@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Italiano Per Piacere</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Experiencias · Italiano Per Piacere</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root {
   --ipp-cream:     #e9e6d5;
@@ -12,1446 +13,512 @@
   --ipp-amber:     #e5ab07;
   --ipp-red:       #cc4736;
   --ipp-teal:      #78a6ba;
-  --ipp-teal-dk:   #528e74;
   --ipp-green:     #528e74;
   --ipp-black:     #1a1a18;
   --ipp-white:     #ffffff;
   --ipp-font-head: 'Playfair Display', Georgia, serif;
   --ipp-font-body: 'Outfit', system-ui, sans-serif;
 }
-.ipp__reset, .ipp__reset *, .ipp__reset *::before, .ipp__reset *::after {
-  box-sizing: border-box; margin: 0; padding: 0;
-}
-.ipp__reset {
-  font-family: var(--ipp-font-body);
-  color: var(--ipp-black);
-  background: var(--ipp-cream);
-  overflow-x: hidden;
-  line-height: 1.6;
-}
 
-/* ANIMACIONES */
-@keyframes ipp-fadein-up {
-  from { opacity:0; transform: translateY(32px); }
-  to   { opacity:1; transform: translateY(0); }
-}
-@keyframes ipp-pulse-cta {
-  0%,100% { box-shadow: 0 0 0 0 rgba(204,71,54,.4); }
-  50%     { box-shadow: 0 0 0 16px rgba(204,71,54,0); }
-}
-@keyframes ipp-float {
-  0%,100% { transform: translateY(0); }
-  50%     { transform: translateY(-10px); }
-}
-@keyframes ipp-badge-pop {
-  0%   { opacity:0; transform: scale(.7) rotate(-6deg); }
-  70%  { transform: scale(1.08) rotate(2deg); }
-  100% { opacity:1; transform: scale(1) rotate(0deg); }
-}
-@keyframes ipp-ticker {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-@keyframes ipp-modal-in {
-  from { opacity:0; transform: translateY(40px) scale(.96); }
-  to   { opacity:1; transform: translateY(0) scale(1); }
-}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 
-/* UTILIDADES */
-.ipp__section { padding: 5rem 1.5rem; }
-.ipp__container { max-width: 1080px; margin: 0 auto; }
-.ipp__text-center { text-align: center; }
-.ipp__anim { opacity:0; animation: ipp-fadein-up .7s ease forwards; }
-.ipp__anim-d1 { animation-delay: .1s; }
-.ipp__anim-d2 { animation-delay: .25s; }
-.ipp__anim-d3 { animation-delay: .4s; }
-.ipp__anim-d4 { animation-delay: .55s; }
+body{background:var(--ipp-cream);color:var(--ipp-black);font-family:var(--ipp-font-body);font-weight:400;line-height:1.6}
 
-/* ANNOUNCEMENT BAR */
-.ipp__bar {
-  background: var(--ipp-green);
-  color: var(--ipp-gold);
-  font-size: .82rem;
-  font-weight: 600;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  overflow: hidden;
-  white-space: nowrap;
-  padding: .55rem 0;
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 2.5rem;
+  background:var(--ipp-white);
+  border-bottom:3px solid var(--ipp-green);
+  box-shadow:0 2px 12px rgba(0,0,0,.08);
 }
-.ipp__bar-inner {
-  display: inline-block;
-  animation: ipp-ticker 22s linear infinite;
-}
-.ipp__bar-inner span { margin: 0 3rem; }
+.nav-logo{display:flex;align-items:center;gap:.8rem;text-decoration:none}
+.nav-logo img{height:40px;width:auto}
+nav ul{display:flex;gap:2rem;list-style:none}
+nav a{color:var(--ipp-black);text-decoration:none;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;opacity:.65;transition:opacity .2s,color .2s}
+nav a:hover{opacity:1;color:var(--ipp-green)}
+@media(max-width:768px){nav ul{display:none}}
 
 /* HERO */
-.ipp__hero {
-  position: relative;
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  background: var(--ipp-green);
-  padding: 5rem 1.5rem 4rem;
-}
-.ipp__hero-bg {
-  position: absolute; inset: 0;
-  background-image: url('https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/ingrid-martinussen-kETozqIC2hM-unsplash.jpg');
-  background-size: cover;
-  background-position: center 30%;
-  opacity: .35;
-}
-.ipp__hero-overlay {
-  position: absolute; inset: 0;
-  background: rgba(82,142,116,.80);
-}
-.ipp__hero-content {
-  position: relative; z-index: 2;
-  max-width: 760px;
-}
-.ipp__eyebrow {
-  display: inline-block;
-  background: var(--ipp-amber);
-  color: var(--ipp-black);
-  font-size: .78rem;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  padding: .35rem .9rem;
-  border-radius: 2px;
-  margin-bottom: 1.5rem;
-}
-.ipp__hero h1 {
-  font-family: var(--ipp-font-head);
-  font-size: clamp(2.4rem, 6.5vw, 5rem);
-  line-height: 1.1;
-  color: var(--ipp-white);
-  margin-bottom: 1.5rem;
-}
-.ipp__hero h1 em { font-style: italic; color: var(--ipp-gold); display: block; }
-.ipp__hero-sub {
-  font-size: clamp(1rem,2.2vw,1.25rem);
-  color: rgba(255,255,255,.82);
-  max-width: 560px;
-  margin-bottom: 2.5rem;
-  font-weight: 300;
-}
-.ipp__hero-sub strong { color: var(--ipp-gold); font-weight: 600; }
-.ipp__cta-main {
-  display: inline-flex;
-  align-items: center;
-  gap: .7rem;
-  background: var(--ipp-red);
-  color: var(--ipp-white);
-  font-family: var(--ipp-font-body);
-  font-size: 1.1rem;
-  font-weight: 700;
-  padding: 1.1rem 2.2rem;
-  border-radius: 4px;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  animation: ipp-pulse-cta 2.4s infinite;
-  transition: transform .2s, background .2s;
-  min-height: 56px;
-}
-.ipp__cta-main:hover { transform: scale(1.03); background: #b83d2e; }
-.ipp__cta-main .ipp__arrow { font-size: 1.4rem; animation: ipp-float 2s ease-in-out infinite; }
-.ipp__hero-proof {
-  margin-top: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.4rem;
-  align-items: center;
-}
-.ipp__hero-stat { display: flex; flex-direction: column; color: var(--ipp-white); }
-.ipp__hero-stat strong {
-  font-family: var(--ipp-font-head);
-  font-size: 2rem;
-  color: var(--ipp-gold);
-  line-height: 1;
-}
-.ipp__hero-stat span { font-size: .78rem; opacity: .7; }
-.ipp__hero-divider { width:1px; height:40px; background: rgba(255,255,255,.25); }
-
-/* STRIP */
-.ipp__strip {
-  background: var(--ipp-amber);
-  padding: 1.2rem 1.5rem;
-  text-align: center;
-}
-.ipp__strip p {
-  font-size: clamp(.92rem,2.2vw,1.1rem);
-  font-weight: 700;
-  color: var(--ipp-black);
-  letter-spacing: .02em;
-}
-
-/* PROBLEMA */
-.ipp__problema { background: var(--ipp-white); }
-.ipp__problema-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-}
-@media(max-width:768px){ .ipp__problema-grid { grid-template-columns:1fr; gap:2rem; } }
-.ipp__problema-img {
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0,0,0,.14);
-  aspect-ratio: 4/5;
-  position: relative;
-}
-.ipp__problema-img img {
-  width:100%; height:100%;
-  object-fit: cover;
-  display: block;
-  transition: transform .4s ease;
-}
-.ipp__problema-img:hover img { transform: scale(1.04); }
-.ipp__badge-float {
-  position: absolute;
-  top:-18px; right:-18px;
-  background: var(--ipp-red);
-  color: var(--ipp-white);
-  width:100px; height:100px;
-  border-radius: 50%;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  font-weight: 800;
-  font-size: .78rem;
-  text-align: center;
-  line-height: 1.2;
-  animation: ipp-badge-pop .6s ease .3s both;
-  box-shadow: 0 8px 24px rgba(204,71,54,.4);
-  z-index: 3;
-}
-.ipp__badge-float strong { font-size: 1.4rem; display: block; }
-.ipp__problema-text .ipp__section-tag {
-  display: inline-block;
-  background: var(--ipp-cream);
-  color: var(--ipp-green);
-  font-size: .78rem;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  padding: .3rem .8rem;
-  border-radius: 2px;
-  margin-bottom: 1rem;
-  border-left: 3px solid var(--ipp-green);
-}
-.ipp__h2 {
-  font-family: var(--ipp-font-head);
-  font-size: clamp(1.8rem,4vw,2.8rem);
-  line-height: 1.2;
-  color: var(--ipp-black);
-  margin-bottom: 1.2rem;
-}
-.ipp__h2 em { font-style: italic; color: var(--ipp-red); }
-.ipp__lead { font-size: 1.05rem; color: #333; margin-bottom: 1.5rem; font-weight: 300; }
-.ipp__check-list { list-style: none; }
-.ipp__check-list li {
-  display: flex;
-  gap: .8rem;
-  align-items: flex-start;
-  padding: .6rem 0;
-  border-bottom: 1px solid #f0ede4;
-  font-size: .95rem;
-  color: var(--ipp-black);
-}
-.ipp__check-list li:last-child { border-bottom: none; }
-.ipp__check-list li::before {
-  content: "✓";
-  background: var(--ipp-green);
-  color: var(--ipp-white);
-  width:22px; height:22px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center; justify-content: center;
-  font-size: .7rem;
-  font-weight: 800;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-/* PARA QUIÉN */
-.ipp__para-quien { background: var(--ipp-cream); }
-.ipp__para-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-  gap: 1.5rem;
-  margin-top: 3rem;
-}
-.ipp__para-card {
-  background: var(--ipp-white);
-  border-radius: 8px;
-  padding: 1.8rem 1.5rem;
-  border-bottom: 4px solid var(--ipp-amber);
-  transition: transform .25s, box-shadow .25s;
-  cursor: default;
-}
-.ipp__para-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.1); }
-.ipp__para-icon { font-size: 2.4rem; margin-bottom: 1rem; display: block; }
-.ipp__para-card h3 {
-  font-family: var(--ipp-font-head);
-  font-size: 1.15rem;
-  margin-bottom: .5rem;
-  color: var(--ipp-black);
-}
-.ipp__para-card p { font-size: .9rem; color: #555; }
-
-/* CURSOS */
-.ipp__cursos {
-  background: var(--ipp-teal);
-  position: relative;
-  overflow: hidden;
-}
-.ipp__cursos::before {
-  content: '';
-  position: absolute;
-  top:-80px; left:-80px;
-  width:400px; height:400px;
-  background: radial-gradient(circle,rgba(229,171,7,.12) 0%,transparent 70%);
-  pointer-events: none;
-}
-.ipp__cursos-header { text-align: center; margin-bottom: 3.5rem; }
-.ipp__cursos-header .ipp__h2 { color: var(--ipp-white); }
-.ipp__cursos-header .ipp__h2 em { color: var(--ipp-gold); }
-.ipp__cursos-sub { color: rgba(255,255,255,.65); font-size:1rem; margin-top:.5rem; font-weight:300; }
-.ipp__cursos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-  gap: 1.5rem;
-  margin-bottom: 3rem;
-}
-.ipp__curso-card {
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform .3s, border-color .3s;
-  display: flex; flex-direction: column;
-}
-.ipp__curso-card:hover { transform: translateY(-8px); border-color: var(--ipp-amber); }
-.ipp__curso-img { height:200px; overflow:hidden; position:relative; }
-.ipp__curso-img img {
-  width:100%; height:100%;
-  object-fit:cover;
-  display:block;
-  transition: transform .4s ease;
-}
-.ipp__curso-card:hover .ipp__curso-img img { transform: scale(1.06); }
-.ipp__nivel-tag {
-  position:absolute; top:12px; left:12px;
-  background: var(--ipp-amber);
-  color: var(--ipp-black);
-  font-size:.7rem;
-  font-weight:800;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  padding:.25rem .6rem;
-  border-radius:3px;
-}
-.ipp__curso-body {
-  padding: 1.5rem;
-  flex:1;
-  display:flex; flex-direction:column;
-}
-.ipp__curso-body h3 {
-  font-family: var(--ipp-font-head);
-  font-size: 1.3rem;
-  color: var(--ipp-white);
-  margin-bottom: .5rem;
-  line-height: 1.2;
-}
-.ipp__curso-body p { font-size:.88rem; color:rgba(255,255,255,.6); flex:1; margin-bottom:1.2rem; }
-.ipp__curso-meta { display:flex; gap:1rem; font-size:.78rem; color:rgba(255,255,255,.45); margin-bottom:1.2rem; }
-.ipp__curso-meta span { display:flex; align-items:center; gap:.3rem; }
-.ipp__btn-outline {
-  display:inline-flex; align-items:center; justify-content:center;
-  border: 1.5px solid var(--ipp-amber);
-  color: var(--ipp-amber);
-  background: transparent;
-  padding:.75rem 1.4rem;
-  border-radius:4px;
-  font-weight:600;
-  font-size:.9rem;
-  text-decoration:none;
-  transition: background .2s, color .2s;
-  min-height:44px;
-  cursor:pointer;
-  width:100%;
-}
-.ipp__btn-outline:hover { background: var(--ipp-amber); color: var(--ipp-black); }
-.ipp__cta-cursos-wrap { text-align:center; margin-top:1rem; }
-.ipp__cta-big {
-  display:inline-flex; align-items:center; gap:.8rem;
-  background: var(--ipp-red);
-  color: var(--ipp-white);
-  font-size:1.15rem;
-  font-weight:700;
-  padding:1.2rem 2.8rem;
-  border-radius:4px;
-  text-decoration:none;
-  border:none;
-  cursor:pointer;
-  animation: ipp-pulse-cta 2.4s infinite;
-  transition: transform .2s;
-  min-height:56px;
-}
-.ipp__cta-big:hover { transform: scale(1.04); background:#b83d2e; }
-.ipp__cta-note { font-size:.8rem; color:rgba(255,255,255,.4); margin-top:.8rem; font-style:italic; }
-
-/* TALLERES */
-.ipp__talleres { background: var(--ipp-white); }
-.ipp__talleres-grid {
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-  gap:1.5rem;
-  margin-top:3rem;
-}
-.ipp__taller-card {
-  border-radius:10px;
+.hero{
+  position:relative;min-height:90vh;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:8rem 2rem 5rem;
   overflow:hidden;
-  position:relative;
-  min-height:340px;
-  display:flex; align-items:flex-end;
-  cursor:pointer;
-  transition: transform .3s;
-}
-.ipp__taller-card:hover { transform: scale(1.02); }
-.ipp__taller-bg {
-  position:absolute; inset:0;
-  background-size:cover;
-  background-position:center;
-  transition: transform .4s ease;
-}
-.ipp__taller-card:hover .ipp__taller-bg { transform: scale(1.07); }
-.ipp__taller-overlay {
-  position:absolute; inset:0;
-  background: linear-gradient(to top, rgba(26,26,24,.9) 0%, rgba(26,26,24,.1) 60%);
-}
-.ipp__taller-info { position:relative; z-index:2; padding:1.5rem; color:var(--ipp-white); }
-.ipp__taller-emoji { font-size:2rem; display:block; margin-bottom:.4rem; }
-.ipp__taller-info h3 { font-family:var(--ipp-font-head); font-size:1.3rem; margin-bottom:.3rem; }
-.ipp__taller-info p { font-size:.84rem; opacity:.8; }
-.ipp__taller-price {
-  display:inline-block;
-  background: var(--ipp-amber);
-  color: var(--ipp-black);
-  font-weight:800; font-size:.8rem;
-  padding:.2rem .7rem; border-radius:3px; margin-top:.6rem;
-}
-
-/* HISTORIA */
-.ipp__historia { background: var(--ipp-cream); position:relative; }
-.ipp__historia-grid {
-  display:grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap:5rem;
-  align-items:center;
-}
-@media(max-width:768px){ .ipp__historia-grid { grid-template-columns:1fr; gap:2.5rem; } }
-.ipp__historia-visual { position:relative; }
-.ipp__historia-img-main {
-  border-radius:8px;
-  overflow:hidden;
-  box-shadow: 0 30px 80px rgba(0,0,0,.18);
-  aspect-ratio:3/4;
-}
-.ipp__historia-img-main img { width:100%; height:100%; object-fit:cover; display:block; }
-.ipp__historia-img-float {
-  position:absolute;
-  bottom:-30px; right:-24px;
-  width:170px;
-  border-radius:6px;
-  overflow:hidden;
-  border:4px solid var(--ipp-white);
-  box-shadow: 0 12px 30px rgba(0,0,0,.2);
-  aspect-ratio:1;
-  animation: ipp-float 4s ease-in-out infinite;
-}
-.ipp__historia-img-float img { width:100%; height:100%; object-fit:cover; display:block; }
-.ipp__historia-text blockquote {
-  border-left:4px solid var(--ipp-red);
-  padding-left:1.2rem;
-  font-family:var(--ipp-font-head);
-  font-style:italic;
-  font-size:1.25rem;
-  color:var(--ipp-black);
-  margin:1.5rem 0;
-  line-height:1.5;
-}
-.ipp__firma {
-  display:flex; align-items:center; gap:1rem;
-  margin-top:1.5rem; padding-top:1.5rem;
-  border-top:1px solid rgba(0,0,0,.1);
-}
-.ipp__firma-avatar {
-  width:56px; height:56px;
-  border-radius:50%;
-  background:var(--ipp-teal);
-  display:flex; align-items:center; justify-content:center;
-  font-family:var(--ipp-font-head);
-  font-size:1.4rem;
-  color:var(--ipp-white);
-  font-weight:700;
-  flex-shrink:0;
-}
-.ipp__firma-name { font-weight:700; font-size:1rem; color:var(--ipp-black); }
-.ipp__firma-title { font-size:.82rem; color:#666; }
-
-/* NÚMEROS */
-.ipp__numeros { background:var(--ipp-green); padding:4rem 1.5rem; }
-.ipp__numeros-grid {
-  display:grid;
-  grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
-  gap:2rem; text-align:center;
-}
-.ipp__numero strong {
-  display:block;
-  font-family:var(--ipp-font-head);
-  font-size:clamp(2.5rem,5vw,4rem);
-  color:var(--ipp-gold); line-height:1;
-}
-.ipp__numero span { font-size:.9rem; color:rgba(255,255,255,.75); font-weight:300; margin-top:.4rem; display:block; }
-
-/* TESTIMONIOS */
-.ipp__testimonios { background:var(--ipp-white); }
-.ipp__test-grid {
-  display:grid;
-  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-  gap:1.5rem; margin-top:3rem;
-}
-.ipp__test-card {
+  margin-top:70px;
   background:var(--ipp-cream);
-  border-radius:10px;
-  padding:2rem 1.5rem;
-  position:relative;
-  transition: transform .25s, box-shadow .25s;
 }
-.ipp__test-card:hover { transform:translateY(-5px); box-shadow:0 20px 50px rgba(0,0,0,.09); }
-.ipp__test-quote { font-size:3rem; line-height:1; color:var(--ipp-amber); font-family:var(--ipp-font-head); margin-bottom:.5rem; }
-.ipp__test-card p { font-size:.95rem; color:#333; font-style:italic; line-height:1.7; margin-bottom:1.2rem; }
-.ipp__test-author { display:flex; align-items:center; gap:.8rem; }
-.ipp__test-dot {
-  width:38px; height:38px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  font-weight:800; font-size:.9rem; color:var(--ipp-white); flex-shrink:0;
-}
-.ipp__test-author-name { font-weight:700; font-size:.88rem; color:var(--ipp-black); }
-.ipp__test-author-sub { font-size:.78rem; color:#888; }
-.ipp__stars { color:var(--ipp-amber); font-size:.9rem; margin-bottom:.6rem; }
+.hero-bg{position:absolute;inset:0;background-image:url('https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Cine%20debate/62298E6D-5C70-4CCA-9A32-68A5C23ED3C0.JPEG');background-size:cover;background-position:center 40%;opacity:.2}
+.hero-overlay{position:absolute;inset:0;background:var(--ipp-cream);opacity:.8}
+.hero-content{position:relative;z-index:1;max-width:900px}
+.eyebrow{display:inline-block;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ipp-red);font-weight:700;margin-bottom:1.5rem;background:rgba(204,71,54,.08);padding:.5rem 1.2rem;border-radius:4px}
+h1{font-family:var(--ipp-font-head);font-size:clamp(2.4rem,6vw,4.5rem);font-weight:900;line-height:1.1;color:var(--ipp-black);margin-bottom:1.2rem}
+h1 em{color:var(--ipp-green);font-style:italic}
+.hero-sub{font-size:1.1rem;font-weight:300;color:#555;max-width:620px;margin:0 auto 2rem}
+.cta-row{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2rem;border-radius:4px;font-family:var(--ipp-font-body);font-size:.9rem;font-weight:700;text-decoration:none;cursor:pointer;border:none;transition:transform .2s,box-shadow .2s;min-height:50px}
+.btn:hover{transform:scale(1.03)}
+.btn-amber{background:var(--ipp-amber);color:var(--ipp-black)}
+.btn-amber:hover{background:#d4971b;box-shadow:0 8px 24px rgba(229,171,7,.3)}
+.btn-outline{background:transparent;border:2px solid var(--ipp-green);color:var(--ipp-green)}
+.btn-outline:hover{background:var(--ipp-green);color:var(--ipp-white)}
+.btn-red{background:var(--ipp-red);color:var(--ipp-white)}
+.btn-red:hover{background:#b83d2e;box-shadow:0 8px 24px rgba(204,71,54,.3)}
+.btn-white{background:var(--ipp-white);color:var(--ipp-red);border:2px solid var(--ipp-white)}
+.btn-white:hover{background:var(--ipp-amber);color:var(--ipp-black)}
 
-/* FAQ */
-.ipp__faq { background:var(--ipp-cream); }
-.ipp__faq-list { max-width:720px; margin:3rem auto 0; }
-.ipp__faq-item { border-bottom:1px solid rgba(0,0,0,.1); }
-.ipp__faq-q {
-  width:100%; background:none; border:none; text-align:left;
-  padding:1.2rem 0;
-  font-family:var(--ipp-font-body); font-size:1rem; font-weight:600;
-  color:var(--ipp-black); cursor:pointer;
-  display:flex; justify-content:space-between; align-items:center; gap:1rem;
-  min-height:44px; transition:color .2s;
-}
-.ipp__faq-q:hover { color:var(--ipp-red); }
-.ipp__faq-icon {
-  width:24px; height:24px; border-radius:50%;
-  background:var(--ipp-amber); color:var(--ipp-black);
-  display:flex; align-items:center; justify-content:center;
-  font-size:1rem; font-weight:800; flex-shrink:0;
-  transition: transform .3s;
-}
-.ipp__faq-item.open .ipp__faq-icon { transform:rotate(45deg); }
-.ipp__faq-a {
-  max-height:0; overflow:hidden;
-  transition: max-height .35s ease, padding .35s ease;
-  padding:0; font-size:.95rem; color:#444; line-height:1.7;
-}
-.ipp__faq-item.open .ipp__faq-a { max-height:300px; padding-bottom:1.2rem; }
+/* SECTIONS */
+section.exp{padding:6rem 1.5rem}
+.container{max-width:1080px;margin:0 auto}
+.section-label{display:inline-block;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;margin-bottom:1rem;color:var(--ipp-green)}
+.exp-header{margin-bottom:3rem}
+.exp-header h2{font-family:var(--ipp-font-head);font-size:clamp(2rem,4vw,3.2rem);font-weight:900;line-height:1.1;color:var(--ipp-black);margin-bottom:1rem}
+.exp-header p{font-size:1.05rem;font-weight:300;max-width:600px;color:#555;margin-bottom:1.5rem}
+.pills{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem}
+.pill{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.08em;padding:.35rem 1rem;border-radius:99px;text-transform:uppercase;color:var(--ipp-white)}
+.pill-teal{background:var(--ipp-teal)}
+.pill-green{background:var(--ipp-green)}
+.pill-red{background:var(--ipp-red)}
+.pill-gold{background:var(--ipp-amber);color:var(--ipp-black)}
 
-/* CTA FINAL */
-.ipp__cta-final {
-  background:var(--ipp-red);
-  padding:6rem 1.5rem;
-  text-align:center;
-  position:relative; overflow:hidden;
-}
-.ipp__cta-final::before {
-  content:''; position:absolute; inset:0;
-  background-image:url('https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/andreas-weilguny-VIWnpzyokpU-unsplash.jpg');
-  background-size:cover; background-position:center; opacity:.08;
-}
-.ipp__cta-final > * { position:relative; z-index:2; }
-.ipp__cta-final h2 {
-  font-family:var(--ipp-font-head);
-  font-size:clamp(2rem,5vw,3.5rem);
-  color:var(--ipp-white); line-height:1.15;
-  max-width:700px; margin:0 auto 1.5rem;
-}
-.ipp__cta-final h2 em { font-style:italic; color:var(--ipp-gold); }
-.ipp__cta-final p { color:rgba(255,255,255,.82); font-size:1.1rem; margin-bottom:2.5rem; font-weight:300; }
-.ipp__btn-white {
-  display:inline-flex; align-items:center; gap:.7rem;
-  background:var(--ipp-white); color:var(--ipp-red);
-  font-weight:800; font-size:1.15rem;
-  padding:1.2rem 3rem; border-radius:4px;
-  text-decoration:none;
-  transition: transform .2s, background .2s;
-  min-height:56px; border:none; cursor:pointer;
-}
-.ipp__btn-white:hover { transform:scale(1.04); background:var(--ipp-gold); color:var(--ipp-black); }
-.ipp__guarantee { margin-top:1.5rem; color:rgba(255,255,255,.65); font-size:.85rem; }
-.ipp__guarantee strong { color:var(--ipp-gold); }
+/* VALUE BOXES */
+.value-box{background:var(--ipp-white);padding:2rem;border-radius:8px;border-left:5px solid;margin-bottom:1.5rem}
+.value-box h3{font-family:var(--ipp-font-head);font-size:1.2rem;margin-bottom:.5rem;color:var(--ipp-black)}
+.value-box p{font-size:.95rem;color:#555;line-height:1.7}
+.value-box.teal{border-color:var(--ipp-teal);background:rgba(120,166,186,.05)}
+.value-box.teal h3{color:var(--ipp-teal)}
+.value-box.green{border-color:var(--ipp-green);background:rgba(82,142,116,.05)}
+.value-box.green h3{color:var(--ipp-green)}
+.value-box.red{border-color:var(--ipp-red);background:rgba(204,71,54,.05)}
+.value-box.red h3{color:var(--ipp-red)}
 
-/* GALERÍA */
-.ipp__galeria-strip {
-  display:grid;
-  grid-template-columns: repeat(5,1fr);
-  height:180px; overflow:hidden;
-}
-@media(max-width:600px){ .ipp__galeria-strip { grid-template-columns:repeat(3,1fr); } }
-.ipp__galeria-strip-item { overflow:hidden; position:relative; }
-.ipp__galeria-strip-item img {
-  width:100%; height:100%; object-fit:cover; display:block;
-  filter:saturate(.7);
-  transition: filter .3s, transform .4s;
-}
-.ipp__galeria-strip-item:hover img { filter:saturate(1.2); transform:scale(1.08); }
+/* GRID LAYOUTS */
+.mosaic{display:grid;gap:12px;margin-bottom:3rem}
+.mosaic-cine{grid-template-columns:1fr 1.2fr 1fr;grid-template-rows:320px 240px}
+.mosaic-cine .c1{grid-column:1/2;grid-row:1/3}
+.mosaic-cine .c2{grid-column:2/4;grid-row:1/2}
+.mosaic-cine .c3{grid-column:2/3;grid-row:2/3}
+.mosaic-cine .c4{grid-column:3/4;grid-row:2/3}
+.mosaic-sapori{grid-template-columns:1.2fr 1fr 1fr;grid-template-rows:300px 240px}
+.mosaic-sapori .s1{grid-column:1/2;grid-row:1/3}
+.mosaic-sapori .s2{grid-column:2/4;grid-row:1/2}
+.mosaic-sapori .s3{grid-column:2/3;grid-row:2/3}
+.mosaic-sapori .s4{grid-column:3/4;grid-row:2/3}
+.mosaic-sapori .s5{grid-column:1/4;grid-row:3/4;height:220px}
+.mosaic-api{grid-template-columns:1fr 1.2fr;grid-template-rows:300px 200px}
+.mosaic-api .a1{grid-column:1/2;grid-row:1/3}
+.mosaic-api .a2{grid-column:2/3;grid-row:1/2}
+.mosaic-api .a3{grid-column:2/3;grid-row:2/3}
 
-/* ===================== MODALES ===================== */
-.ipp__modal-overlay {
-  position: fixed; inset:0;
-  background: rgba(26,26,24,.75);
-  backdrop-filter: blur(6px);
-  z-index: 9000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .3s, visibility .3s;
-}
-.ipp__modal-overlay.open {
-  opacity: 1;
-  visibility: visible;
-}
-.ipp__modal {
-  background: var(--ipp-cream);
-  border-radius: 14px;
-  max-width: 680px;
-  width: 100%;
-  max-height: 90svh;
-  overflow-y: auto;
-  position: relative;
-  transform: translateY(40px) scale(.96);
-  opacity: 0;
-  transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .3s ease;
-  scrollbar-width: thin;
-  scrollbar-color: var(--ipp-amber) transparent;
-}
-.ipp__modal-overlay.open .ipp__modal {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-}
-.ipp__modal-header {
-  position: relative;
-  height: 220px;
-  overflow: hidden;
-  border-radius: 14px 14px 0 0;
-}
-.ipp__modal-header img {
-  width:100%; height:100%;
-  object-fit: cover;
-  display: block;
-}
-.ipp__modal-header-overlay {
-  position:absolute; inset:0;
-  background: linear-gradient(to bottom, transparent 30%, rgba(26,26,24,.7) 100%);
-}
-.ipp__modal-header-badge {
-  position:absolute; bottom:16px; left:20px;
-  background: var(--ipp-amber);
-  color: var(--ipp-black);
-  font-size:.72rem; font-weight:800;
-  letter-spacing:.1em; text-transform:uppercase;
-  padding:.3rem .7rem; border-radius:3px;
-}
-.ipp__modal-close {
-  position:absolute; top:14px; right:14px;
-  width:36px; height:36px;
-  background:rgba(255,255,255,.9);
-  border:none; border-radius:50%;
-  cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  font-size:1.1rem; font-weight:800;
-  color:var(--ipp-black);
-  transition: background .2s, transform .2s;
-  z-index:2;
-}
-.ipp__modal-close:hover { background:var(--ipp-white); transform:scale(1.1); }
-.ipp__modal-body { padding: 2rem; }
-.ipp__modal-body h2 {
-  font-family: var(--ipp-font-head);
-  font-size: clamp(1.6rem,4vw,2.1rem);
-  color: var(--ipp-black);
-  line-height:1.2;
-  margin-bottom:.4rem;
-}
-.ipp__modal-body h2 em { font-style:italic; color:var(--ipp-red); }
-.ipp__modal-tagline {
-  font-size:.95rem;
-  color:#666;
-  margin-bottom:1.6rem;
-  font-weight:300;
-  line-height:1.6;
-}
-.ipp__modal-hook {
-  background: var(--ipp-green);
-  color: var(--ipp-white);
-  border-radius: 8px;
-  padding: 1.2rem 1.5rem;
-  margin-bottom: 1.6rem;
-  font-size:1rem;
-  line-height:1.65;
-  font-weight: 300;
-}
-.ipp__modal-hook strong { font-weight:700; color:var(--ipp-gold); }
-.ipp__modal-section-title {
-  font-family: var(--ipp-font-head);
-  font-size:1rem;
-  font-weight:700;
-  color:var(--ipp-black);
-  margin-bottom:.8rem;
-  display:flex;
-  align-items:center;
-  gap:.5rem;
-}
-.ipp__modal-section-title::before {
-  content:'';
-  display:inline-block;
-  width:4px; height:18px;
-  background:var(--ipp-red);
-  border-radius:2px;
-}
-.ipp__modal-logros {
-  list-style:none;
-  margin-bottom:1.8rem;
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:.6rem .8rem;
-}
-@media(max-width:480px){ .ipp__modal-logros { grid-template-columns:1fr; } }
-.ipp__modal-logros li {
-  display:flex; gap:.6rem; align-items:flex-start;
-  font-size:.9rem; color:var(--ipp-black);
-  background:var(--ipp-white);
-  padding:.7rem .9rem;
-  border-radius:6px;
-  border-left:3px solid var(--ipp-amber);
-  line-height:1.4;
-}
-.ipp__modal-logros li .ico { font-size:1rem; flex-shrink:0; margin-top:.05rem; }
-.ipp__modal-modulos {
-  display:flex; flex-direction:column; gap:.5rem;
-  margin-bottom:1.8rem;
-}
-.ipp__modal-modulo {
-  background:var(--ipp-white);
-  border-radius:6px;
-  padding:.85rem 1rem;
-  display:flex; gap:.8rem; align-items:flex-start;
-  font-size:.9rem;
-  line-height:1.45;
-  cursor:default;
-  transition: box-shadow .2s;
-}
-.ipp__modal-modulo:hover { box-shadow:0 4px 16px rgba(0,0,0,.08); }
-.ipp__modal-modulo .num {
-  background:var(--ipp-green);
-  color:var(--ipp-white);
-  width:26px; height:26px;
-  border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  font-size:.72rem; font-weight:800;
-  flex-shrink:0; margin-top:.1rem;
-}
-.ipp__modal-modulo .mod-title { font-weight:600; color:var(--ipp-black); margin-bottom:.15rem; }
-.ipp__modal-modulo .mod-desc { color:#666; font-size:.83rem; }
-.ipp__modal-chips {
-  display:flex; flex-wrap:wrap; gap:.5rem;
-  margin-bottom:1.8rem;
-}
-.ipp__chip {
-  background:var(--ipp-white);
-  border:1.5px solid rgba(82,142,116,.25);
-  color:var(--ipp-green);
-  font-size:.8rem; font-weight:600;
-  padding:.35rem .8rem; border-radius:20px;
-}
-.ipp__modal-cta {
-  display:flex; align-items:center; justify-content:center;
-  gap:.7rem;
-  background: var(--ipp-red);
-  color: var(--ipp-white);
-  font-family:var(--ipp-font-body);
-  font-size:1.05rem; font-weight:700;
-  padding:1.1rem 2rem;
-  border-radius:4px;
-  border:none; cursor:pointer;
-  width:100%;
-  animation: ipp-pulse-cta 2.4s infinite;
-  transition: transform .2s, background .2s;
-  text-decoration:none;
-  min-height:52px;
-}
-.ipp__modal-cta:hover { background:#b83d2e; transform:scale(1.02); }
+.tile{position:relative;overflow:hidden;border-radius:8px;background:var(--ipp-white);display:flex;align-items:center;justify-content:center;border:2px solid rgba(82,142,116,.1);transition:transform .3s}
+.tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.tile:hover{transform:translateY(-4px)}
+.tile:hover img{transform:scale(1.05)}
+.tile-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;width:100%;height:100%}
+
+/* CARRUSEL */
+.carousel{position:relative;margin:3rem 0}
+.carousel-container{display:flex;gap:1.5rem;overflow-x:auto;scroll-behavior:smooth;padding:1rem 0;scrollbar-width:none}
+.carousel-container::-webkit-scrollbar{display:none}
+.carousel-card{flex:0 0 calc(50% - .75rem);background:var(--ipp-white);padding:2rem;border-radius:8px;border-left:5px solid var(--ipp-green);min-height:280px;display:flex;flex-direction:column;justify-content:space-between}
+.carousel-card h3{font-family:var(--ipp-font-head);font-size:1.3rem;color:var(--ipp-black);margin-bottom:1rem}
+.carousel-card p{font-size:.95rem;color:#555;line-height:1.7;flex:1}
+.carousel-card .author{margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(0,0,0,.08);font-weight:600;font-size:.9rem;color:var(--ipp-green)}
+
+/* DIVIDER */
+.divider{height:3px;background:var(--ipp-green);margin:0}
+
+/* CTA SECTIONS */
+.cta-inline{background:var(--ipp-amber);color:var(--ipp-black);padding:3rem 2rem;border-radius:8px;text-align:center;margin:3rem 0}
+.cta-inline h3{font-family:var(--ipp-font-head);font-size:2rem;font-weight:900;margin-bottom:1rem}
+.cta-inline p{font-size:1rem;margin-bottom:1.5rem;opacity:.8}
+
+/* CONTACT */
+.contact-section{background:var(--ipp-green);color:var(--ipp-white);padding:5rem 1.5rem}
+.contact-container{max-width:1080px;margin:0 auto}
+.contact-header{text-align:center;margin-bottom:3.5rem}
+.contact-header h2{font-family:var(--ipp-font-head);font-size:clamp(1.8rem,4vw,3rem);font-weight:900;margin-bottom:.8rem}
+.contact-header p{font-size:1.05rem;opacity:.85;font-weight:300}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
+.contact-card{background:rgba(255,255,255,.08);padding:2rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);text-align:center;transition:transform .2s,background .2s}
+.contact-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.12)}
+.contact-card-icon{font-size:2.5rem;margin-bottom:1rem}
+.contact-card h3{font-family:var(--ipp-font-head);font-size:1.2rem;margin-bottom:.8rem;font-weight:700}
+.contact-card p{font-size:.9rem;opacity:.8;margin-bottom:1.2rem;line-height:1.6}
+.contact-card-link{display:inline-block;background:var(--ipp-white);color:var(--ipp-green);padding:.7rem 1.5rem;border-radius:4px;text-decoration:none;font-weight:700;font-size:.85rem;transition:transform .2s,background .2s}
+.contact-card-link:hover{transform:scale(1.05);background:var(--ipp-amber);color:var(--ipp-black)}
+
+/* CTA STRIP */
+.cta-strip{background:var(--ipp-red);color:var(--ipp-white);padding:5rem 2rem;text-align:center}
+.cta-strip h2{font-family:var(--ipp-font-head);font-size:clamp(1.8rem,4vw,3rem);font-weight:900;margin-bottom:.8rem}
+.cta-strip h2 em{color:var(--ipp-gold);font-style:italic}
+.cta-strip p{font-size:1rem;opacity:.85;margin-bottom:2rem;font-weight:300}
+
+/* FOOTER */
+footer{padding:3rem 2rem;text-align:center;border-top:3px solid var(--ipp-green);background:var(--ipp-white)}
+footer p{font-size:.85rem;opacity:.55;margin:.5rem 0}
+footer .highlight{color:var(--ipp-amber);font-family:var(--ipp-font-head);font-style:italic;font-weight:700}
 
 /* RESPONSIVE */
 @media(max-width:768px){
-  .ipp__section { padding:3.5rem 1rem; }
-  .ipp__hero { padding:4rem 1rem 3rem; }
-  .ipp__hero h1 { font-size:2.2rem; }
-  .ipp__historia-img-float { display:none; }
-  .ipp__galeria-strip { height:120px; }
-  .ipp__modal-body { padding:1.5rem; }
+  .mosaic-cine,.mosaic-sapori,.mosaic-api{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .mosaic-cine .c1,.mosaic-cine .c2,.mosaic-cine .c3,.mosaic-cine .c4,
+  .mosaic-sapori .s1,.mosaic-sapori .s2,.mosaic-sapori .s3,.mosaic-sapori .s4,.mosaic-sapori .s5,
+  .mosaic-api .a1,.mosaic-api .a2,.mosaic-api .a3{grid-column:auto;grid-row:auto;height:220px}
+  .hero{padding:7rem 1.5rem 3rem;margin-top:50px}
+  nav{padding:1rem 1.5rem}
+  section.exp{padding:4rem 1.5rem}
+  .carousel-card{flex:0 0 100%}
 }
 </style>
 </head>
 <body>
-<div class="ipp__reset">
 
-<!-- ANNOUNCEMENT BAR -->
-<div class="ipp__bar" role="marquee">
-  <div class="ipp__bar-inner">
-    <span>🇮🇹 Aprendé italiano jugando — sin aburrimiento</span>
-    <span>✨ +15 años de experiencia formando italoparlantes</span>
-    <span>🍕 Cine, cocina, música y mucho más</span>
-    <span>🇮🇹 "La dolce vita también se estudia"</span>
-    <span>📚 Cursos A1 · A2 · Viajeros — ¡Empieza hoy!</span>
-    <span>🇮🇹 Aprendé italiano jugando — sin aburrimiento</span>
-    <span>✨ +15 años de experiencia formando italoparlantes</span>
-    <span>🍕 Cine, cocina, música y mucho más</span>
-    <span>🇮🇹 "La dolce vita también se estudia"</span>
-    <span>📚 Cursos A1 · A2 · Viajeros — ¡Empieza hoy!</span>
-  </div>
-</div>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/">
+    <img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=0c29000" alt="Italiano Per Piacere" loading="lazy">
+  </a>
+  <ul>
+    <li><a href="#cine">Cine</a></li>
+    <li><a href="#sapori">Sapori</a></li>
+    <li><a href="#giochi">Giochi</a></li>
+    <li><a href="#cursos">Cursos</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
 
 <!-- HERO -->
-<section class="ipp__hero" aria-label="Sección principal">
-  <div class="ipp__hero-bg" role="img" aria-label="Restaurante italiano al aire libre"></div>
-  <div class="ipp__hero-overlay"></div>
-  <div class="ipp__hero-content ipp__container">
-    <div class="ipp__eyebrow ipp__anim ipp__anim-d1">🇮🇹 Academia de Italiano Online &amp; Presencial</div>
-    <h1 class="ipp__anim ipp__anim-d2">
-      Aprendé italiano
-      <em>como si vivieras en Italia</em>
-    </h1>
-    <p class="ipp__hero-sub ipp__anim ipp__anim-d3">
-      Sin gramática interminable. Sin clases aburridas.
-      Con <strong>juegos, cine, cocina y cultura real</strong> —
-      el método lúdico que hace que el idioma se te pegue sin darte cuenta.
-    </p>
-    <div class="ipp__anim ipp__anim-d4">
-      <a href="https://italianoperpiacere.com/slides" class="ipp__cta-main">
-        Ver todos los cursos
-        <span class="ipp__arrow">→</span>
-      </a>
-    </div>
-    <div class="ipp__hero-proof ipp__anim ipp__anim-d4">
-      <div class="ipp__hero-stat"><strong>+15</strong><span>años enseñando</span></div>
-      <div class="ipp__hero-divider" aria-hidden="true"></div>
-      <div class="ipp__hero-stat"><strong>100%</strong><span>método lúdico</span></div>
-      <div class="ipp__hero-divider" aria-hidden="true"></div>
-      <div class="ipp__hero-stat"><strong>3</strong><span>cursos disponibles</span></div>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="eyebrow">Experiencias que aceleran tu aprendizaje</div>
+    <h1>El italiano <em>se vive</em><br>en los detalles</h1>
+    <p class="hero-sub">No es solo una clase. Es cine en italiano, cocina real y juegos en vivo. Donde el idioma se te pega sin darte cuenta y el aprendizaje cobra vida.</p>
+    <div class="cta-row">
+      <a href="#cine" class="btn btn-amber">Descubrí las experiencias</a>
+      <a href="#cursos" class="btn btn-outline">Ver cursos + experiencias</a>
     </div>
   </div>
 </section>
 
-<!-- STRIP -->
-<div class="ipp__strip">
-  <p>🍷 "Una clase. Un brindis. Un idioma que se hace tuyo." — Charla, cocina, viajá… todo empieza con una palabra.</p>
+<!-- POR QUÉ -->
+<section class="exp" style="background:var(--ipp-white)">
+  <div class="container">
+    <h2 style="font-family:var(--ipp-font-head);font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--ipp-black);margin-bottom:2.5rem;text-align:center">Por qué aprender <em style="color:var(--ipp-green);font-style:italic">viviendo</em> es diferente</h2>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:1080px;margin:0 auto">
+      <div class="value-box teal">
+        <h3>🎬 Contexto Real</h3>
+        <p>En el cine debate no memorizas — estás realmente escuchando italiano como se habla, entendiendo matices, riéndote de los chistes.</p>
+      </div>
+      <div class="value-box green">
+        <h3>👨‍🍳 Vocabulario Vivo</h3>
+        <p>Cocinar en italiano fija palabras para siempre. Ingredientes, técnicas, expresiones que usarás de verdad. Tu memoria lo marca.</p>
+      </div>
+      <div class="value-box red">
+        <h3>🎲 Sin Presión, Con Risa</h3>
+        <p>Cuando jugás en italiano, compiten por divertirse, no por acertar. El aprendizaje fluye sin la ansiedad de un examen.</p>
+      </div>
+      <div class="value-box teal">
+        <h3>💫 Fijación Emocional</h3>
+        <p>Recordarás una experiencia vivida años después. Las emociones son el pegamento más poderoso para memorizar un idioma.</p>
+      </div>
+      <div class="value-box green">
+        <h3>🤝 Comunidad Real</h3>
+        <p>Aprendés con otras personas que aman italiano. La energía grupal acelera confianza y el flujo conversacional.</p>
+      </div>
+      <div class="value-box red">
+        <h3>🔄 Refuerzo Lúdico</h3>
+        <p>Lo visto en clase cobra vida. Las experiencias refuerzan sin estudiar. Diversión pura que educa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CINE DEBATE -->
+<section class="exp exp-cine" id="cine">
+  <div class="container">
+    <div class="exp-header">
+      <div class="section-label">Experiencia 01</div>
+      <h2>Cine Debate<br><em>en Italiano</em></h2>
+      <p>Película italiana, subtítulos en italiano, debate en vivo — aperitivo incluido. Donde entendés el idioma porque estás viviendo la historia.</p>
+      <div class="pills">
+        <span class="pill pill-teal">~3 horas</span>
+        <span class="pill pill-teal">Aperitivo incluido</span>
+        <span class="pill pill-teal">Todos los niveles</span>
+        <span class="pill pill-teal">2× al año</span>
+      </div>
+    </div>
+
+    <div class="mosaic mosaic-cine">
+      <div class="tile c1">
+        <img src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Cine%20debate/62298E6D-5C70-4CCA-9A32-68A5C23ED3C0.JPEG" alt="Cine debate" loading="lazy">
+      </div>
+      <div class="tile c2">
+        <img src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Cine%20debate/78315850_1648707218625104_9028489845713928192_n.jpg" alt="Debate grupal" loading="lazy">
+      </div>
+      <div class="tile c3">
+        <img src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Cine%20debate/IMG_8897.JPG" alt="Aperitivo" loading="lazy">
+      </div>
+      <div class="tile c4" style="background:var(--ipp-teal)">
+        <div class="tile-content" style="background:none">
+          <div style="font-family:var(--ipp-font-head);font-size:3rem;font-weight:900;color:var(--ipp-white);line-height:1">2×</div>
+          <div style="font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ipp-white);margin-top:.4rem">por año</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SAPORI -->
+<section class="exp exp-sapori" id="sapori">
+  <div class="container">
+    <div class="exp-header">
+      <div class="section-label">Experiencia 02</div>
+      <h2>Sapori<br><em>d'Italia</em></h2>
+      <p>Taller teórico-práctico donde cocinás en italiano. Pesto ligure, amatriciana, pasta alla norma — vocabulario que necesitás y que usarás.</p>
+      <div class="pills">
+        <span class="pill pill-green">4 horas</span>
+        <span class="pill pill-green">Ingredientes incluidos</span>
+        <span class="pill pill-green">Manos en la masa</span>
+      </div>
+    </div>
+
+    <div class="mosaic mosaic-sapori">
+      <div class="tile s1">
+        <img src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Sapori%20di%20italia/IMG_1949.JPG" alt="Taller cocina" loading="lazy">
+      </div>
+      <div class="tile s2">
+        <img src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Sapori%20di%20italia/052d8661-1bc8-4805-8429-dc038300af00.JPEG" alt="Cocina" loading="lazy">
+      </div>
+      <div class="tile s3">
+        <img src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Sapori%20di%20italia/IMG_1950.JPG" alt="Pasta" loading="lazy">
+      </div>
+      <div class="tile s4">
+        <img src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Sapori%20di%20italia/IMG_1961.JPG" alt="Ingredientes" loading="lazy">
+      </div>
+      <div class="tile s5">
+        <img src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Sapori%20di%20italia/439964e0-4c2e-472c-b0e3-52c31a36d737.JPEG" alt="Degustación" loading="lazy" style="object-position:center 60%">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- APERIGIOCHI -->
+<section class="exp exp-api" id="giochi">
+  <div class="container">
+    <div class="exp-header">
+      <div class="section-label">Experiencia 03</div>
+      <h2>Aperi<em>giochi</em></h2>
+      <p>Pictionary, Tabú y juegos de mesa en italiano. Verano. Donde comparten, ríen y aprenden sin darse cuenta.</p>
+      <div class="pills">
+        <span class="pill pill-red">~1.5 horas</span>
+        <span class="pill pill-red">Niveles A1 y avanzado</span>
+        <span class="pill pill-red">Verano</span>
+        <span class="pill pill-red">Aperitivo incluido</span>
+      </div>
+    </div>
+
+    <div class="mosaic mosaic-api">
+      <div class="tile a1" style="background:var(--ipp-red)">
+        <div class="tile-content" style="background:none;gap:1rem;z-index:3">
+          <div style="font-size:2.5rem">🎲</div>
+          <div style="font-family:var(--ipp-font-head);font-style:italic;font-size:1.8rem;color:var(--ipp-white);line-height:1.1">Giochi<br>en vivo</div>
+          <div style="font-size:.8rem;opacity:.8;color:var(--ipp-white)">Sin presión · Pura risa</div>
+        </div>
+      </div>
+      <div class="tile a2" style="background:var(--ipp-amber);display:flex;align-items:center;justify-content:center;padding:2rem">
+        <div style="text-align:center">
+          <div style="font-family:var(--ipp-font-head);font-size:1.8rem;font-weight:900;color:var(--ipp-black);margin-bottom:1rem;line-height:1.1">¿Aprender<br>jugando?</div>
+          <p style="color:rgba(26,26,24,.65);font-size:.9rem;line-height:1.6">La ciencia dice: la risa crea conexiones neuronales profundas.</p>
+        </div>
+      </div>
+      <div class="tile a3" style="background:var(--ipp-white);display:flex;align-items:center;justify-content:center;padding:2rem">
+        <div style="text-align:center">
+          <div style="font-size:2rem;margin-bottom:.5rem">🥂</div>
+          <div style="font-family:var(--ipp-font-head);font-size:1.3rem;color:var(--ipp-red);font-weight:700">Aperitivo<br>incluido</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA VENDER CURSOS -->
+<div class="cta-inline" style="max-width:1080px;margin:4rem auto">
+  <h3>¿Ya aprendés italiano?</h3>
+  <p style="font-size:1.1rem">Las experiencias funcionan MEJOR cuando ya tenés un curso. Refuerzan, aceleran y hacen que lo que aprendés en clase cobre vida.</p>
+  <a href="#cursos" class="btn btn-red">Ver cursos + precios →</a>
 </div>
 
-<!-- GALERÍA -->
-<div class="ipp__galeria-strip" aria-hidden="true">
-  <div class="ipp__galeria-strip-item"><img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/matilda-bellman-QGNl98tDIlk-unsplash.jpg" alt="Limones italianos" loading="lazy"></div>
-  <div class="ipp__galeria-strip-item"><img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/olga-angelucci-eBwPHygySmo-unsplash.jpg" alt="Callejón italiano" loading="lazy"></div>
-  <div class="ipp__galeria-strip-item"><img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/massimo-virgilio-q8i702UM1CA-unsplash.jpg" alt="Pimientos rojos" loading="lazy"></div>
-  <div class="ipp__galeria-strip-item"><img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/firdaus-roslan-I6lCxYNqnrs-unsplash.jpg" alt="Vespa italiana" loading="lazy"></div>
-  <div class="ipp__galeria-strip-item"><img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/anton-ivanov-SlnoOiprQPI-unsplash.jpg" alt="Auto rojo italiano" loading="lazy"></div>
-</div>
+<div class="divider"></div>
 
-<!-- PROBLEMA -->
-<section class="ipp__section ipp__problema ipp__anim" id="metodo">
-  <div class="ipp__container">
-    <div class="ipp__problema-grid">
-      <div class="ipp__problema-img">
-        <img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/bjorn-agerbeek-k0SMpuGKSFE-unsplash.jpg" alt="Bicicleta en calle italiana" loading="lazy">
-        <div class="ipp__badge-float"><strong>+15</strong>años de pasión italiana</div>
-      </div>
-      <div class="ipp__problema-text">
-        <div class="ipp__section-tag">¿Te reconocés?</div>
-        <h2 class="ipp__h2">¿Querés hablar italiano pero los métodos <em>te aburrieron</em>?</h2>
-        <p class="ipp__lead">
-          Tenés sangre italiana. O soñás con viajar. O tu abuela habló siempre ese idioma.
-          Empezaste tres veces y lo dejaste — no porque seas "malo para los idiomas",
-          sino porque el método era malo para <em>vos</em>.
-        </p>
-        <ul class="ipp__check-list">
-          <li>Aprendés mejor cuando te divertís, no cuando memorizás conjugaciones</li>
-          <li>Querés entender la cultura, no solo aprobar un examen</li>
-          <li>Necesitás flexibilidad real: a tu ritmo, cuando podés</li>
-          <li>Buscás sentir el idioma como propio, no como obligación</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- TESTIMONIOS CAROUSEL -->
+<section class="exp" id="testimonios">
+  <div class="container">
+    <h2 style="font-family:var(--ipp-font-head);font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--ipp-black);margin-bottom:3rem;text-align:center">Lo que dicen<br><em style="color:var(--ipp-green);font-style:italic">los que vivieron</em></h2>
 
-<!-- PARA QUIÉN -->
-<section class="ipp__section ipp__para-quien" aria-label="Para quién son los cursos">
-  <div class="ipp__container ipp__text-center">
-    <div class="ipp__section-tag" style="display:inline-block;background:var(--ipp-white);color:var(--ipp-green);padding:.3rem .8rem;border-radius:2px;border-left:3px solid var(--ipp-green);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;">Esto es para vos</div>
-    <h2 class="ipp__h2">¿Quién aprende con <em>Italiano Per Piacere</em>?</h2>
-    <p style="color:#555;font-size:1rem;margin-top:.5rem;">Más de 25 millones de argentinos tienen raíces italianas. El idioma ya está en tu sangre.</p>
-    <div class="ipp__para-grid">
-      <div class="ipp__para-card"><span class="ipp__para-icon">✈️</span><h3>El Viajero</h3><p>Viajás a Italia y querés más que señalar el menú. Querés conversar, conectar, vivir la experiencia de verdad.</p></div>
-      <div class="ipp__para-card"><span class="ipp__para-icon">🇮🇹</span><h3>El Descendiente</h3><p>Tu abuelo o bisabuelo vino de Italia y sentís que el idioma te pertenece. Es hora de recuperarlo.</p></div>
-      <div class="ipp__para-card"><span class="ipp__para-icon">📄</span><h3>El de la Ciudadanía</h3><p>Estás en proceso de ciudadanía italiana y necesitás el idioma para completar el camino.</p></div>
-      <div class="ipp__para-card"><span class="ipp__para-icon">🎭</span><h3>El Apasionado</h3><p>Amás el cine, la música, la gastronomía o el arte italiano. Querés disfrutarlos en su idioma original.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- CURSOS -->
-<section class="ipp__section ipp__cursos" id="cursos" aria-label="Nuestros cursos">
-  <div class="ipp__container">
-    <div class="ipp__cursos-header">
-      <div style="display:inline-block;background:rgba(229,171,7,.2);color:var(--ipp-amber);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .8rem;border-radius:2px;margin-bottom:1rem;">Cursos disponibles</div>
-      <h2 class="ipp__h2">Elegí tu camino <em>al italiano</em></h2>
-      <p class="ipp__cursos-sub">Cada curso está diseñado para que avances disfrutando, no sufriendo.</p>
-    </div>
-    <div class="ipp__cursos-grid">
-
-      <!-- CARD A1 -->
-      <div class="ipp__curso-card">
-        <div class="ipp__curso-img">
-          <img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/chris-barbalis-pX4OabSZ2sg-unsplash.jpg" alt="Italiano A1 — Desde cero" loading="lazy">
-          <span class="ipp__nivel-tag">Nivel A1</span>
-        </div>
-        <div class="ipp__curso-body">
-          <h3>Italiano desde Cero</h3>
-          <p>Arrancás sin saber nada y terminás presentándote, ordenando en un café y entendiendo una conversación básica. 100% lúdico.</p>
-          <div class="ipp__curso-meta">
-            <span>🎮 Dinámico</span>
-            <span>📱 Online + Presencial</span>
-          </div>
-          <button class="ipp__btn-outline" data-modal="a1">Ver detalle →</button>
-        </div>
-      </div>
-
-      <!-- CARD VIAJEROS -->
-      <div class="ipp__curso-card">
-        <div class="ipp__curso-img">
-          <img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/firdaus-roslan-I6lCxYNqnrs-unsplash.jpg" alt="Italiano para Viajeros" loading="lazy">
-          <span class="ipp__nivel-tag" style="background:var(--ipp-teal);color:var(--ipp-white);">Viajeros</span>
-        </div>
-        <div class="ipp__curso-body">
-          <h3>Italiano para Viajeros</h3>
-          <p>Vas a Italia en 3 meses y necesitás lo esencial ya. Vocabulario real, situaciones reales. Nada de relleno.</p>
-          <div class="ipp__curso-meta">
-            <span>⚡ Intensivo</span>
-            <span>🗺️ Práctico al 100%</span>
-          </div>
-          <button class="ipp__btn-outline" data-modal="viajeros">Ver detalle →</button>
-        </div>
-      </div>
-
-      <!-- CARD A2 -->
-      <div class="ipp__curso-card">
-        <div class="ipp__curso-img">
-          <img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/tuyen-vo-z8aWwcp_wvA-unsplash.jpg" alt="Vocabulario y juegos" loading="lazy">
-          <span class="ipp__nivel-tag" style="background:var(--ipp-green);">A2 Intermedio</span>
-        </div>
-        <div class="ipp__curso-body">
-          <h3>Vocabulario &amp; Juegos</h3>
-          <p>Ya tenés base. Hora de expandir el vocabulario con Tabú, Pictionary y dinámicas en grupo. Aprender con risa incluida.</p>
-          <div class="ipp__curso-meta">
-            <span>🎲 Grupal</span>
-            <span>🏆 Alta retención</span>
-          </div>
-          <button class="ipp__btn-outline" data-modal="a2">Ver detalle →</button>
-        </div>
-      </div>
-
-    </div>
-    <div class="ipp__cta-cursos-wrap">
-      <a href="https://italianoperpiacere.com/slides" class="ipp__cta-big">🎓 Ver todos los cursos y precios <span>→</span></a>
-      <p class="ipp__cta-note">Sin compromiso. Sin presión. Con mucha pasta.</p>
-    </div>
-  </div>
-</section>
-
-<!-- TALLERES -->
-<section class="ipp__section ipp__talleres" aria-label="Talleres y experiencias">
-  <div class="ipp__container">
-    <div class="ipp__text-center" style="margin-bottom:.5rem;">
-      <div class="ipp__section-tag" style="display:inline-block;background:var(--ipp-cream);color:var(--ipp-green);padding:.3rem .8rem;border-radius:2px;border-left:3px solid var(--ipp-green);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;">Experiencias únicas</div>
-    </div>
-    <h2 class="ipp__h2 ipp__text-center">El italiano también <em>se come, se ve y se juega</em></h2>
-    <p style="text-align:center;color:#555;font-size:1rem;margin-top:.5rem;">Más que clases: experiencias que recordarás toda la vida.</p>
-    <div class="ipp__talleres-grid">
-      <div class="ipp__taller-card">
-        <div class="ipp__taller-bg" style="background-image:url('https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/marialaura-gionfriddo-II3Vo7MJ9Z0-unsplash.jpg');"></div>
-        <div class="ipp__taller-overlay"></div>
-        <div class="ipp__taller-info">
-          <span class="ipp__taller-emoji">🎬</span>
-          <h3>Cine Debate en Italiano</h3>
-          <p>Película italiana, subtítulos en italiano, debate en italiano — y aperitivo de cierre. 2x año.</p>
-          <span class="ipp__taller-price">~3 hs · Aperitivo incluido</span>
-        </div>
-      </div>
-      <div class="ipp__taller-card">
-        <div class="ipp__taller-bg" style="background-image:url('https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/antonia-meier-i-fG9pCzhJs-unsplash.jpg');"></div>
-        <div class="ipp__taller-overlay"></div>
-        <div class="ipp__taller-info">
-          <span class="ipp__taller-emoji">🎲</span>
-          <h3>Aperigiochi</h3>
-          <p>Pictionary, Tabú y juegos de mesa en italiano — con aperitivo de por medio. Verano.</p>
-          <span class="ipp__taller-price">~1.5 hs · Niveles A1 y avanzado</span>
-        </div>
-      </div>
-      <div class="ipp__taller-card">
-        <div class="ipp__taller-bg" style="background-image:url('https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/nicoletta-spinozzi-XzNjT642udI-unsplash.jpg');"></div>
-        <div class="ipp__taller-overlay"></div>
-        <div class="ipp__taller-info">
-          <span class="ipp__taller-emoji">🍝</span>
-          <h3>Sapori d'Italia</h3>
-          <p>Taller teórico-práctico de cocina italiana. Desmitificamos el fernet y cocinamos pesto ligure, amatriciana y pasta alla norma.</p>
-          <span class="ipp__taller-price">4 hs · Ingredientes incluidos</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NÚMEROS -->
-<section class="ipp__numeros" aria-label="Estadísticas">
-  <div class="ipp__container">
-    <div class="ipp__numeros-grid">
-      <div class="ipp__numero"><strong>+15</strong><span>Años formando italoparlantes</span></div>
-      <div class="ipp__numero"><strong>3</strong><span>Talleres únicos anuales</span></div>
-      <div class="ipp__numero"><strong>25M+</strong><span>Descendientes italianos en Argentina</span></div>
-      <div class="ipp__numero"><strong>100%</strong><span>Método lúdico y afectivo</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- HISTORIA -->
-<section class="ipp__section ipp__historia" aria-label="Sobre Carolina">
-  <div class="ipp__container">
-    <div class="ipp__historia-grid">
-      <div class="ipp__historia-visual">
-        <div class="ipp__historia-img-main">
-          <img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/danni-brehme-1AQ3cCjmfow-unsplash.jpg" alt="Calle italiana soleada" loading="lazy">
-        </div>
-        <div class="ipp__historia-img-float">
-          <img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/matilda-bellman-QGNl98tDIlk-unsplash.jpg" alt="Limones de la costa amalfitana" loading="lazy">
-        </div>
-      </div>
-      <div class="ipp__historia-text">
-        <div class="ipp__section-tag">Quién enseña</div>
-        <h2 class="ipp__h2">"Cuando arranco una clase, <em>me olvido del universo</em>"</h2>
-        <p class="ipp__lead">Soy Carolina, profesora de italiano y diseñadora de imagen y sonido. Llevo más de 15 años enseñando desde Comodoro Rivadavia para todo el país — y ahora, para el mundo digital.</p>
-        <blockquote>"Mis clases siempre tienen comida y bebida de por medio porque aprender tiene que sentirse como estar en casa de alguien que te quiere bien."</blockquote>
-        <p style="color:#555;font-size:.95rem;">Diseñé un método que mezcla juegos, cultura, cine y gastronomía porque encontré el único hack que funciona: <strong>si lo disfrutás, no lo olvidás</strong>.</p>
-        <div class="ipp__firma">
-          <div class="ipp__firma-avatar">C</div>
+    <div class="carousel">
+      <div class="carousel-container">
+        <div class="carousel-card">
           <div>
-            <div class="ipp__firma-name">Carolina Carizza</div>
-            <div class="ipp__firma-title">Profesora de Italiano · Diseñadora · Fundadora de Italiano Per Piacere</div>
+            <h3>🎬 "Fue increíble"</h3>
+            <p>"Vine al cine debate pensando que sería raro ver una película entera en italiano. Pero la pasé tan bien que ya me anoté en el curso completo. Carolina es una genia."</p>
           </div>
+          <div class="author">María L. · Buenos Aires</div>
+        </div>
+
+        <div class="carousel-card">
+          <div>
+            <h3>👨‍🍳 "Aprendí cocinando"</h3>
+            <p>"En Sapori d'Italia me sorprendió aprender vocabulario sin estar en un aula. Hice pasta alla amatriciana hablando italiano todo el tiempo. Increíble."</p>
+          </div>
+          <div class="author">Roberto G. · CABA</div>
+        </div>
+
+        <div class="carousel-card">
+          <div>
+            <h3>🎲 "Risa y aprendizaje"</h3>
+            <p>"Los Aperigiochi fueron lo más. Jugábamos pictionary en italiano, se nos paraban las costillas de risa y en realidad estábamos aprendiendo. Carolina es un genio."</p>
+          </div>
+          <div class="author">Valentina P. · La Plata</div>
+        </div>
+
+        <div class="carousel-card">
+          <div>
+            <h3>💫 "Recomendado 100%"</h3>
+            <p>"Si estás pensando en anotarte en un curso de italiano, las experiencias hacen la diferencia. Te hacen sentir que el italiano es parte de tu vida."</p>
+          </div>
+          <div class="author">Juan M. · Mendoza</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIOS -->
-<section class="ipp__section ipp__testimonios" aria-label="Testimonios de alumnos">
-  <div class="ipp__container">
-    <div class="ipp__text-center">
-      <div class="ipp__section-tag" style="display:inline-block;background:var(--ipp-cream);color:var(--ipp-green);padding:.3rem .8rem;border-radius:2px;border-left:3px solid var(--ipp-green);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;">Lo que dicen los alumnos</div>
-      <h2 class="ipp__h2" style="margin-top:.5rem;">No es lo que te decimos. Es <em>lo que viviste.</em></h2>
-    </div>
-    <div class="ipp__test-grid">
-      <div class="ipp__test-card">
-        <div class="ipp__stars">★★★★★</div>
-        <div class="ipp__test-quote">"</div>
-        <p>Vine a un taller de cocina pensando que era solo para pasar el rato y terminé inscripta en el curso completo. El método de Carolina es diferente a todo lo que probé antes.</p>
-        <div class="ipp__test-author">
-          <div class="ipp__test-dot" style="background:var(--ipp-teal);">M</div>
-          <div><div class="ipp__test-author-name">María L.</div><div class="ipp__test-author-sub">Alumna desde 2022 · Comodoro Rivadavia</div></div>
-        </div>
+<div class="divider"></div>
+
+<!-- CURSOS CTA -->
+<section class="exp" id="cursos" style="background:var(--ipp-white)">
+  <div class="container">
+    <h2 style="font-family:var(--ipp-font-head);font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--ipp-black);margin-bottom:1.5rem;text-align:center">Cursos + Experiencias<br><em style="color:var(--ipp-red);font-style:italic">La combinación ganadora</em></h2>
+    <p style="text-align:center;font-size:1.05rem;color:#555;max-width:700px;margin:0 auto 3rem">Los cursos te enseñan. Las experiencias hacen que lo que aprendiste cobre vida. Juntos son la fórmula perfecta para dominar italiano de verdad.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;max-width:1080px;margin:0 auto">
+      <div style="background:rgba(120,166,186,.08);padding:2rem;border-radius:8px;border-left:5px solid var(--ipp-teal);text-align:center">
+        <h3 style="font-family:var(--ipp-font-head);font-size:1.5rem;color:var(--ipp-black);margin-bottom:1rem">A1 Desde Cero</h3>
+        <p style="color:#555;margin-bottom:1.5rem">Empezás sin saber nada. Terminas presentándote y entendiendo conversaciones reales.</p>
+        <a href="#contacto" class="btn btn-outline">Anotarme →</a>
       </div>
-      <div class="ipp__test-card">
-        <div class="ipp__stars">★★★★★</div>
-        <div class="ipp__test-quote">"</div>
-        <p>Yo pensaba que era un desastre para los idiomas. Después de los juegos de mesa con Carolina me di cuenta que nunca fue mi problema — era el método. Gracias a ella llegué a Italia y me manejé solo.</p>
-        <div class="ipp__test-author">
-          <div class="ipp__test-dot" style="background:var(--ipp-red);">R</div>
-          <div><div class="ipp__test-author-name">Roberto G.</div><div class="ipp__test-author-sub">Alumno viajeros · Viajó a Sicilia 2024</div></div>
-        </div>
+
+      <div style="background:rgba(82,142,116,.08);padding:2rem;border-radius:8px;border-left:5px solid var(--ipp-green);text-align:center">
+        <h3 style="font-family:var(--ipp-font-head);font-size:1.5rem;color:var(--ipp-black);margin-bottom:1rem">A2 Vocabulario</h3>
+        <p style="color:#555;margin-bottom:1.5rem">Ya tenés base. Expandimos vocabulario con juegos y dinámicas. La risa garantizada.</p>
+        <a href="#contacto" class="btn btn-outline">Anotarme →</a>
       </div>
-      <div class="ipp__test-card">
-        <div class="ipp__stars">★★★★★</div>
-        <div class="ipp__test-quote">"</div>
-        <p>Descendiente de italianos, siempre quise hablar el idioma de mi familia. En el Cine Debate descubrí que ya entendía más de lo que creía. Esto no es solo una clase — es una experiencia.</p>
-        <div class="ipp__test-author">
-          <div class="ipp__test-dot" style="background:var(--ipp-green);">V</div>
-          <div><div class="ipp__test-author-name">Valentina P.</div><div class="ipp__test-author-sub">Alumna A2 · Descendiente de calabreses</div></div>
-        </div>
+
+      <div style="background:rgba(204,71,54,.08);padding:2rem;border-radius:8px;border-left:5px solid var(--ipp-red);text-align:center">
+        <h3 style="font-family:var(--ipp-font-head);font-size:1.5rem;color:var(--ipp-black);margin-bottom:1rem">Viajeros Express</h3>
+        <p style="color:#555;margin-bottom:1.5rem">Vas a Italia en 3 meses. Necesitás lo esencial YA. Intensivo, práctico, real.</p>
+        <a href="#contacto" class="btn btn-outline">Anotarme →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="ipp__section ipp__faq" aria-label="Preguntas frecuentes">
-  <div class="ipp__container">
-    <div class="ipp__text-center">
-      <div class="ipp__section-tag" style="display:inline-block;background:var(--ipp-white);color:var(--ipp-green);padding:.3rem .8rem;border-radius:2px;border-left:3px solid var(--ipp-green);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;">Preguntas frecuentes</div>
-      <h2 class="ipp__h2" style="margin-top:.5rem;">Lo que todos quieren <em>saber antes de arrancar</em></h2>
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contacto">
+  <div class="contact-container">
+    <div class="contact-header">
+      <h2>¿Listo para vivir el italiano?</h2>
+      <p>Elegí tu canal y conectemos. Estamos acá para armar tu próxima experiencia.</p>
     </div>
-    <div class="ipp__faq-list">
-      <div class="ipp__faq-item">
-        <button class="ipp__faq-q" aria-expanded="false">¿Necesito saber algo de italiano para empezar?<span class="ipp__faq-icon" aria-hidden="true">+</span></button>
-        <div class="ipp__faq-a">Para nada. El curso A1 arranca desde cero absoluto. Lo único que necesitás traer es las ganas de aprender y — si podés — algo para comer porque las clases se disfrutan más con un aperitivo.</div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-card-icon">💬</div>
+        <h3>WhatsApp</h3>
+        <p>Consultas rápidas y coordinación con Carolina.</p>
+        <a href="https://wa.me/541234567890?text=Hola%20Carolina%2C%20quiero%20anotarme" class="contact-card-link" target="_blank">Escribi ahora →</a>
       </div>
-      <div class="ipp__faq-item">
-        <button class="ipp__faq-q" aria-expanded="false">¿Las clases son online, presenciales o las dos?<span class="ipp__faq-icon" aria-hidden="true">+</span></button>
-        <div class="ipp__faq-a">Las dos. Los cursos de e-learning podés hacerlos a tu ritmo desde cualquier lugar del mundo. Los talleres vivenciales (Cine Debate, Aperigiochi, Sapori d'Italia) son presenciales en Comodoro Rivadavia / Radatilí, Chubut.</div>
+
+      <div class="contact-card">
+        <div class="contact-card-icon">☎️</div>
+        <h3>Llamada Directa</h3>
+        <p>Prefiers hablar? Llamá y te cuento todo.</p>
+        <a href="tel:+541234567890" class="contact-card-link">Llamar →</a>
       </div>
-      <div class="ipp__faq-item">
-        <button class="ipp__faq-q" aria-expanded="false">¿Cuánto tiempo necesito por semana?<span class="ipp__faq-icon" aria-hidden="true">+</span></button>
-        <div class="ipp__faq-a">El método está diseñado para personas con vida real. Con 2 a 3 horas semanales avanzás de forma consistente. Podés ir a tu ritmo: no hay fechas límite en los cursos online.</div>
+
+      <div class="contact-card">
+        <div class="contact-card-icon">📅</div>
+        <h3>Reserva Cita</h3>
+        <p>Agenda un chat personal para armar tu plan.</p>
+        <a href="#" class="contact-card-link">Ver disponibilidad →</a>
       </div>
-      <div class="ipp__faq-item">
-        <button class="ipp__faq-q" aria-expanded="false">¿En qué se diferencia de Duolingo o cualquier otra app?<span class="ipp__faq-icon" aria-hidden="true">+</span></button>
-        <div class="ipp__faq-a">En que acá hay una persona real detrás que diseñó cada contenido desde el placer de enseñar, no desde un algoritmo. El método lúdico de Italiano Per Piacere usa cultura, juegos y emoción — no puntos ni rayas.</div>
+
+      <div class="contact-card">
+        <div class="contact-card-icon">✉️</div>
+        <h3>Correo</h3>
+        <p>Escribinos con toda la info. Respuesta en 24hs.</p>
+        <a href="mailto:hola@italianoperpiacere.com" class="contact-card-link">Enviar email →</a>
       </div>
-      <div class="ipp__faq-item">
-        <button class="ipp__faq-q" aria-expanded="false">¿Puedo pagar en cuotas?<span class="ipp__faq-icon" aria-hidden="true">+</span></button>
-        <div class="ipp__faq-a">Sí. Aceptamos Mercado Pago con todas las cuotas disponibles. También podés consultar por otros métodos de pago escribiéndonos directamente.</div>
+
+      <div class="contact-card">
+        <div class="contact-card-icon">📸</div>
+        <h3>Instagram</h3>
+        <p>Mirá las fotos de las últimas experiencias.</p>
+        <a href="https://instagram.com/italianoperpiacere" class="contact-card-link" target="_blank">Seguí →</a>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-card-icon">🗓️</div>
+        <h3>Próximas Fechas</h3>
+        <p>Calendario completo de experiencias y cursos.</p>
+        <a href="#" class="contact-card-link">Ver calendario →</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CTA FINAL -->
-<section class="ipp__cta-final" id="todos-los-cursos" aria-label="Llamada a la acción final">
-  <h2>Tu italiano empieza hoy.<br><em>¿Qué estás esperando?</em></h2>
-  <p>Elegí tu curso, conocé los talleres y sumate a una comunidad que aprende disfrutando.</p>
-  <a href="https://italianoperpiacere.com/slides" class="ipp__btn-white">
-         🎓 Ver todos los cursos 
-        <span class="ipp__arrow">→</span>
-    </a>
-
-  <p class="ipp__guarantee"><strong>Sin presión.</strong> Mirá los cursos, tomá tu tiempo. Tu italiano te está esperando.</p>
-</section>
-
-<!-- ============================================================
-     MODALES DE CURSOS
-     ============================================================ -->
-
-<!-- MODAL A1 -->
-<div class="ipp__modal-overlay" id="modal-a1" role="dialog" aria-modal="true" aria-label="Detalle curso A1">
-  <div class="ipp__modal">
-    <div class="ipp__modal-header">
-      <img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/chris-barbalis-pX4OabSZ2sg-unsplash.jpg" alt="Italiano A1" loading="lazy">
-      <div class="ipp__modal-header-overlay"></div>
-      <span class="ipp__modal-header-badge">🇮🇹 Nivel A1 — Desde cero</span>
-      <button class="ipp__modal-close" aria-label="Cerrar">✕</button>
-    </div>
-    <div class="ipp__modal-body">
-      <h2>Italiano desde Cero — <em>el primer paso</em></h2>
-      <p class="ipp__modal-tagline">Un curso práctico y re lúdico para los que arrancan de cero y quieren llegar lejos. Nada de aburrirse, nada de memorizar listas interminables.</p>
-
-      <div class="ipp__modal-hook">
-        <strong>En 4 meses vas a poder:</strong> presentarte con cualquier italiano, pedir lo que querés en un café o restó, reservar hotel, preguntar cómo llegar... y hasta contar qué hiciste ayer. <strong>Sí, en pasado y todo.</strong> ☕🍝
-      </div>
-
-      <div class="ipp__modal-section-title">Lo que vas a lograr</div>
-      <ul class="ipp__modal-logros">
-        <li><span class="ico">🗣️</span>Presentarte y charlar en italiano sin entrar en pánico</li>
-        <li><span class="ico">☕</span>Pedir en un bar como un local, sin señalar el menú</li>
-        <li><span class="ico">🏨</span>Reservar hotel y resolver imprevistos sin dramas</li>
-        <li><span class="ico">🗺️</span>Pedir y entender direcciones en cualquier ciudad</li>
-        <li><span class="ico">🕐</span>Hablar de tu rutina, tu familia y tus planes</li>
-        <li><span class="ico">📖</span>Contar qué pasó: el pasado sin miedo</li>
-      </ul>
-
-      <div class="ipp__modal-section-title">Qué vas a ver (sin que te aburra)</div>
-      <div class="ipp__modal-modulos">
-        <div class="ipp__modal-modulo"><div class="num">1</div><div><div class="mod-title">🌍 Primer Contacto</div><div class="mod-desc">Saludos, presentaciones y las frases de supervivencia esenciales. Empezás hablando desde el día uno.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">2</div><div><div class="mod-title">✈️ Geografía y Viajes</div><div class="mod-desc">Aeropuertos, procedencia, destinos y transporte. Perfecta para los que ya tienen pasaje comprado.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">3</div><div><div class="mod-title">🎨 Artes y Alojamiento</div><div class="mod-desc">Reservás habitaciones, describís lugares y conocés la cultura de las ciudades de arte italianas.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">4</div><div><div class="mod-title">💼 Sociedad y Bar</div><div class="mod-desc">Profesiones, registro formal e informal, y el ritual del café italiano. Lo más importante de la vida.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">5</div><div><div class="mod-title">👨‍👩‍👧 Rutina y Familia</div><div class="mod-desc">Tu día a día, tus seres queridos y tus horarios. El italiano que usás en casa y en la calle.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">6</div><div><div class="mod-title">🎬 Gustos y Pasado</div><div class="mod-desc">Decís lo que te gusta, lo que no te gusta, y contás qué hiciste. El cierre más redondo del mundo.</div></div></div>
-      </div>
-
-      <div class="ipp__modal-section-title">El estilo de este curso</div>
-      <div class="ipp__modal-chips">
-        <span class="ipp__chip">🎮 100% Lúdico</span>
-        <span class="ipp__chip">🎵 Escucha real</span>
-        <span class="ipp__chip">🎬 Cine italiano</span>
-        <span class="ipp__chip">🍕 Cultura viva</span>
-        <span class="ipp__chip">📱 Online + Presencial</span>
-        <span class="ipp__chip">⏰ A tu ritmo</span>
-      </div>
-
-      <a href="#cursos" class="ipp__modal-cta" onclick="document.getElementById('modal-a1').classList.remove('open')">
-        🎓 Quiero empezar este curso →
-      </a>
-    </div>
+<div class="cta-strip">
+  <h2>Tu experiencia <em>te está esperando</em></h2>
+  <p>No es solo una clase más. Es el momento donde el italiano cobra vida y se queda en vos para siempre.</p>
+  <div class="cta-row">
+    <a href="#contacto" class="btn btn-white">Conectemos ahora</a>
+    <a href="/" class="btn" style="background:var(--ipp-amber);color:var(--ipp-black)">Ver todos los cursos</a>
   </div>
 </div>
 
-<!-- MODAL VIAJEROS -->
-<div class="ipp__modal-overlay" id="modal-viajeros" role="dialog" aria-modal="true" aria-label="Detalle curso Viajeros">
-  <div class="ipp__modal">
-    <div class="ipp__modal-header">
-      <img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/firdaus-roslan-I6lCxYNqnrs-unsplash.jpg" alt="Italiano para Viajeros" loading="lazy">
-      <div class="ipp__modal-header-overlay"></div>
-      <span class="ipp__modal-header-badge" style="background:var(--ipp-teal);color:var(--ipp-white);">✈️ Viajeros — Intensivo</span>
-      <button class="ipp__modal-close" aria-label="Cerrar">✕</button>
-    </div>
-    <div class="ipp__modal-body">
-      <h2>Italiano para Viajeros — <em>lo esencial, ya</em></h2>
-      <p class="ipp__modal-tagline">Vas a Italia y tu italiano actual es "grazie, prego y ciao"? No hay drama. Este curso te da todo lo que necesitás para moverte sola/solo y disfrutarlo de verdad.</p>
-
-      <div class="ipp__modal-hook">
-        <strong>Diez situaciones reales. Cero relleno.</strong> Desde que bajás del avión hasta que hacés la última compra en el mercado — todo lo que te puede pasar en un viaje, practicado de verdad. <strong>Sin gramática por la gramática. Todo en contexto.</strong> 🛫🇮🇹
-      </div>
-
-      <div class="ipp__modal-section-title">Lo que vas a lograr</div>
-      <ul class="ipp__modal-logros">
-        <li><span class="ico">🛬</span>Moverte en el aeropuerto y en migraciones sin sudar frío</li>
-        <li><span class="ico">🚆</span>Sacar pasaje, preguntar el andén y no perder el tren</li>
-        <li><span class="ico">☕</span>Pedir en un bar como un local, café en la barra y todo</li>
-        <li><span class="ico">🍝</span>Leer el menú, ordenar y pedir la cuenta con confianza</li>
-        <li><span class="ico">🏨</span>Hacer el check-in y resolver problemas en el hotel</li>
-        <li><span class="ico">🛍️</span>Preguntar talles, regatear precio y salir ganando</li>
-      </ul>
-
-      <div class="ipp__modal-section-title">Las 10 paradas del viaje</div>
-      <div class="ipp__modal-modulos">
-        <div class="ipp__modal-modulo"><div class="num">1</div><div><div class="mod-title">✈️ En el aeropuerto</div><div class="mod-desc">Carteles, anuncios, pasaporte y primeros pasos en suelo italiano.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">2</div><div><div class="mod-title">🛫 En el avión</div><div class="mod-desc">Pedís agua, entendés al piloto y charlás con la azafata sin quedarte muda/o.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">3</div><div><div class="mod-title">🇮🇹 Llegando a Italia</div><div class="mod-desc">Migraciones, transporte público y cómo comportarte con la policía de fronteras.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">4</div><div><div class="mod-title">🚉 En la estación</div><div class="mod-desc">Comprás el biglietto, lo convalidás (¡fundamental!) y llegás a destino.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">5</div><div><div class="mod-title">🏙️ En la ciudad</div><div class="mod-desc">Pedís indicaciones, leés carteles y te manejás como si conocieras el barrio.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">6</div><div><div class="mod-title">☕ En el bar</div><div class="mod-desc">El ritual del café, el aperitivo y cómo pagar sin que te tomen de turista.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">7</div><div><div class="mod-title">🍝 En el restorante</div><div class="mod-desc">Leer el menú, preguntar qué recomienda el mozo y pagar con tarjeta.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">8</div><div><div class="mod-title">🏨 En el hotel</div><div class="mod-desc">Check-in, reclamás si algo no funciona y entendés la factura (impuesto turístico, ojo).</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">9</div><div><div class="mod-title">😱 Imprevistos</div><div class="mod-desc">Perdés el pasaporte, no te sentís bien o te roban. Sabés qué decir en cada caso.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">10</div><div><div class="mod-title">🛍️ Última serata</div><div class="mod-desc">Probás ropa, pedís descuento y entendés por qué el Made in Italy vale lo que vale.</div></div></div>
-      </div>
-
-      <div class="ipp__modal-section-title">El estilo de este curso</div>
-      <div class="ipp__modal-chips">
-        <span class="ipp__chip">⚡ Intensivo</span>
-        <span class="ipp__chip">🎧 Audio real</span>
-        <span class="ipp__chip">🗺️ Situaciones reales</span>
-        <span class="ipp__chip">🎮 Dinámico</span>
-        <span class="ipp__chip">🚫 Sin relleno</span>
-        <span class="ipp__chip">📱 Online</span>
-      </div>
-
-      <a href="#cursos" class="ipp__modal-cta" style="background:var(--ipp-teal);" onclick="document.getElementById('modal-viajeros').classList.remove('open')">
-        ✈️ Quiero prepararme para Italia →
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL A2 -->
-<div class="ipp__modal-overlay" id="modal-a2" role="dialog" aria-modal="true" aria-label="Detalle curso A2">
-  <div class="ipp__modal">
-    <div class="ipp__modal-header">
-      <img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/tuyen-vo-z8aWwcp_wvA-unsplash.jpg" alt="Italiano A2" loading="lazy">
-      <div class="ipp__modal-header-overlay"></div>
-      <span class="ipp__modal-header-badge" style="background:var(--ipp-green);color:var(--ipp-white);">🎲 A2 Intermedio</span>
-      <button class="ipp__modal-close" aria-label="Cerrar">✕</button>
-    </div>
-    <div class="ipp__modal-body">
-      <h2>Vocabulario &amp; Juegos — <em>metamos quinta</em></h2>
-      <p class="ipp__modal-tagline">Ya arrancaste con el italiano. Ahora es hora de soltarte, expandir el vocabulario y hablar con fluidez de verdad. Con Tabú, Pictionary y más risa que cualquier otra clase.</p>
-
-      <div class="ipp__modal-hook">
-        <strong>¿Qué cambia en este nivel?</strong> Pasás de sobrevivir a <strong>disfrutar.</strong> Describís, comparás, contás historias del pasado, hablás del futuro, discutís de pelis y hasta regatéás el precio de una camisa en el mercado. Todo con juegos de por medio. 🎲🍷
-      </div>
-
-      <div class="ipp__modal-section-title">Lo que vas a lograr</div>
-      <ul class="ipp__modal-logros">
-        <li><span class="ico">📖</span>Contar historias del pasado con fluidez y detalle</li>
-        <li><span class="ico">🛍️</span>Comprar ropa, regatear y no pagar de más como turista</li>
-        <li><span class="ico">🏠</span>Describir tu casa, barrio o cualquier lugar con soltura</li>
-        <li><span class="ico">🎬</span>Entender películas italianas (¡menos subtítulos!)</li>
-        <li><span class="ico">🌦️</span>Hablar del clima, la salud y las vacaciones con naturalidad</li>
-        <li><span class="ico">🎵</span>Interpretar letras de canciones y disfrutar la música italiana</li>
-      </ul>
-
-      <div class="ipp__modal-section-title">Los bloques del curso</div>
-      <div class="ipp__modal-modulos">
-        <div class="ipp__modal-modulo"><div class="num">1</div><div><div class="mod-title">🥂 Fiestas y Tradiciones</div><div class="mod-desc">Describís personas y situaciones. Felicitás, comparás y usás el pasado con elegancia.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">2</div><div><div class="mod-title">🍝 Al Restaurante</div><div class="mod-desc">Reservás, pedís, pagás y expresás preferencias. Nada de "sí, sí" a todo.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">3</div><div><div class="mod-title">📷 El Pasado en Foco</div><div class="mod-desc">Aprendés a describir situaciones pasadas y a contar cómo eran las cosas antes.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">4</div><div><div class="mod-title">🛒 De Compras</div><div class="mod-desc">Talles, materiales, precios. Del almacén al mercado de pulgas, te movés con confianza.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">5</div><div><div class="mod-title">🏠 Casa y Deseos</div><div class="mod-desc">Buscás departamento, describís ambientes y expresás lo que querés (o soñás).</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">6</div><div><div class="mod-title">🌍 Viajes y Vacaciones</div><div class="mod-desc">Contás tus vacaciones, describís destinos y manejás situaciones de viaje como un pro.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">7</div><div><div class="mod-title">🎬 Cine y Música</div><div class="mod-desc">Elegís películas, opinás, convencés a alguien. E interpretás letras de canciones italianas.</div></div></div>
-        <div class="ipp__modal-modulo"><div class="num">8</div><div><div class="mod-title">💊 Salud y Clima</div><div class="mod-desc">Decís cómo te sentís, pedís consejos en la farmacia y hablás del tiempo como un nativo.</div></div></div>
-      </div>
-
-      <div class="ipp__modal-section-title">El estilo de este curso</div>
-      <div class="ipp__modal-chips">
-        <span class="ipp__chip">🎲 Tabú &amp; Pictionary</span>
-        <span class="ipp__chip">🎬 Cine debate</span>
-        <span class="ipp__chip">🎵 Música italiana</span>
-        <span class="ipp__chip">👥 Grupal</span>
-        <span class="ipp__chip">🏆 Alta retención</span>
-        <span class="ipp__chip">🎮 Siempre lúdico</span>
-      </div>
-
-      <a href="#cursos" class="ipp__modal-cta" style="background:var(--ipp-green);" onclick="document.getElementById('modal-a2').classList.remove('open')">
-        🎲 Quiero arrancar el A2 →
-      </a>
-    </div>
-  </div>
-</div>
-
-</div><!-- /ipp__reset -->
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Italiano Per Piacere</p>
+  <p class="highlight">La lingua è cultura.</p>
+  <p style="margin-top:1rem;opacity:.4;font-size:.8rem">Experiencias en Buenos Aires · Cursos online para todo el país</p>
+</footer>
 
 <script>
-(function() {
-  /* FAQ accordion */
-  document.querySelectorAll('.ipp__faq-q').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var item = this.closest('.ipp__faq-item');
-      var isOpen = item.classList.contains('open');
-      document.querySelectorAll('.ipp__faq-item').forEach(function(i) {
-        i.classList.remove('open');
-        i.querySelector('.ipp__faq-q').setAttribute('aria-expanded','false');
-      });
-      if (!isOpen) {
-        item.classList.add('open');
-        this.setAttribute('aria-expanded','true');
-      }
-    });
-  });
-
-  /* ---- MODALES ---- */
-  function openModal(id) {
-    var overlay = document.getElementById('modal-' + id);
-    if (!overlay) return;
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    overlay.querySelector('.ipp__modal').scrollTop = 0;
-  }
-  function closeModal(overlay) {
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  // Abrir con botones "Ver detalle"
-  document.querySelectorAll('[data-modal]').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      openModal(this.getAttribute('data-modal'));
-    });
-  });
-
-  // Cerrar con botón ✕
-  document.querySelectorAll('.ipp__modal-close').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      closeModal(this.closest('.ipp__modal-overlay'));
-    });
-  });
-
-  // Cerrar clickando fuera del modal
-  document.querySelectorAll('.ipp__modal-overlay').forEach(function(overlay) {
-    overlay.addEventListener('click', function(e) {
-      if (e.target === overlay) closeModal(overlay);
-    });
-  });
-
-  // Cerrar con Escape
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      document.querySelectorAll('.ipp__modal-overlay.open').forEach(closeModal);
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target) {
+      e.preventDefault();
+      target.scrollIntoView({behavior:'smooth',block:'start'});
     }
   });
-
-  /* Intersection Observer para animaciones */
-  if ('IntersectionObserver' in window) {
-    var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = 'running';
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.ipp__anim').forEach(function(el) {
-      if (!el.closest('.ipp__hero')) {
-        el.style.animationPlayState = 'paused';
-        obs.observe(el);
-      }
-    });
-  }
-
-  /* Smooth scroll */
-  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-    a.addEventListener('click', function(e) {
-      var href = this.getAttribute('href');
-      if (!href || href === '#') return;
-      var target = document.querySelector(href);
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior:'smooth', block:'start' }); }
-    });
-  });
-
-  /* Contador de números */
-  function animateCounter(el, target, suffix) {
-    var start = 0, step = Math.ceil(target / (1800/16));
-    var timer = setInterval(function() {
-      start += step;
-      if (start >= target) { start = target; clearInterval(timer); }
-      el.textContent = (start >= 1000000 ? (start/1000000).toFixed(0)+'M' : start) + suffix;
-    }, 16);
-  }
-  var countersRun = false;
-  var numeros = document.querySelector('.ipp__numeros');
-  if (numeros && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function(entries) {
-      if (entries[0].isIntersecting && !countersRun) {
-        countersRun = true;
-        var data = [
-          { el: numeros.querySelectorAll('strong')[0], val:15, s:'+' },
-          { el: numeros.querySelectorAll('strong')[1], val:3,  s:'' },
-          { el: numeros.querySelectorAll('strong')[2], val:25, s:'M+' },
-          { el: numeros.querySelectorAll('strong')[3], val:100,s:'%' }
-        ];
-        data.forEach(function(d){ if(d.el) animateCounter(d.el,d.val,d.s); });
-      }
-    }, { threshold:0.3 }).observe(numeros);
-  }
-})();
+});
 </script>
+
 </body>
 </html>
