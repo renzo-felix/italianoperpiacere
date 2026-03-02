@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Experiencias · Italiano Per Piacere</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root {
   --ipp-cream:     #e9e6d5;
@@ -22,18 +21,10 @@
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-
 body{background:var(--ipp-cream);color:var(--ipp-black);font-family:var(--ipp-font-body);font-weight:400;line-height:1.6}
 
 /* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1rem 2.5rem;
-  background:var(--ipp-white);
-  border-bottom:3px solid var(--ipp-green);
-  box-shadow:0 2px 12px rgba(0,0,0,.08);
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:var(--ipp-white);border-bottom:3px solid var(--ipp-green);box-shadow:0 2px 12px rgba(0,0,0,.08)}
 .nav-logo{display:flex;align-items:center;gap:.8rem;text-decoration:none}
 .nav-logo img{height:40px;width:auto}
 nav ul{display:flex;gap:2rem;list-style:none}
@@ -41,33 +32,32 @@ nav a{color:var(--ipp-black);text-decoration:none;font-size:.8rem;letter-spacing
 nav a:hover{opacity:1;color:var(--ipp-green)}
 @media(max-width:768px){nav ul{display:none}}
 
+/* URGENCIA BANNER */
+.urgency-banner{background:var(--ipp-red);color:var(--ipp-white);padding:1rem 2rem;text-align:center;font-weight:700;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;margin-top:70px}
+.urgency-banner span{color:var(--ipp-gold);font-weight:900}
+
 /* HERO */
-.hero{
-  position:relative;min-height:90vh;
-  display:flex;align-items:center;justify-content:center;text-align:center;
-  padding:8rem 2rem 5rem;
-  overflow:hidden;
-  margin-top:70px;
-  background:var(--ipp-cream);
-}
+.hero{position:relative;min-height:85vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:3rem 2rem;overflow:hidden;background:var(--ipp-cream)}
 .hero-bg{position:absolute;inset:0;background-image:url('https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Cine%20debate/62298E6D-5C70-4CCA-9A32-68A5C23ED3C0.JPEG');background-size:cover;background-position:center 40%;opacity:.2}
 .hero-overlay{position:absolute;inset:0;background:var(--ipp-cream);opacity:.8}
 .hero-content{position:relative;z-index:1;max-width:900px}
-.eyebrow{display:inline-block;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ipp-red);font-weight:700;margin-bottom:1.5rem;background:rgba(204,71,54,.08);padding:.5rem 1.2rem;border-radius:4px}
+.eyebrow{display:inline-block;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ipp-red);font-weight:700;margin-bottom:1rem;background:rgba(204,71,54,.08);padding:.5rem 1.2rem;border-radius:4px}
 h1{font-family:var(--ipp-font-head);font-size:clamp(2.4rem,6vw,4.5rem);font-weight:900;line-height:1.1;color:var(--ipp-black);margin-bottom:1.2rem}
 h1 em{color:var(--ipp-green);font-style:italic}
 .hero-sub{font-size:1.1rem;font-weight:300;color:#555;max-width:620px;margin:0 auto 2rem}
 .cta-row{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2rem;border-radius:4px;font-family:var(--ipp-font-body);font-size:.9rem;font-weight:700;text-decoration:none;cursor:pointer;border:none;transition:transform .2s,box-shadow .2s;min-height:50px}
-.btn:hover{transform:scale(1.03)}
-.btn-amber{background:var(--ipp-amber);color:var(--ipp-black)}
-.btn-amber:hover{background:#d4971b;box-shadow:0 8px 24px rgba(229,171,7,.3)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.95rem 2.2rem;border-radius:4px;font-family:var(--ipp-font-body);font-size:.9rem;font-weight:700;text-decoration:none;cursor:pointer;border:none;transition:transform .2s,box-shadow .2s;min-height:50px}
+.btn:hover{transform:scale(1.03);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.btn-red{background:var(--ipp-red);color:var(--ipp-white)}
+.btn-red:hover{background:#b83d2e}
 .btn-outline{background:transparent;border:2px solid var(--ipp-green);color:var(--ipp-green)}
 .btn-outline:hover{background:var(--ipp-green);color:var(--ipp-white)}
-.btn-red{background:var(--ipp-red);color:var(--ipp-white)}
-.btn-red:hover{background:#b83d2e;box-shadow:0 8px 24px rgba(204,71,54,.3)}
-.btn-white{background:var(--ipp-white);color:var(--ipp-red);border:2px solid var(--ipp-white)}
-.btn-white:hover{background:var(--ipp-amber);color:var(--ipp-black)}
+
+/* PROOF SECTION */
+.proof-section{background:var(--ipp-white);padding:3rem 2rem;border-bottom:3px solid var(--ipp-green)}
+.proof-container{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2rem;text-align:center}
+.proof-item strong{display:block;font-family:var(--ipp-font-head);font-size:2.5rem;color:var(--ipp-red);line-height:1}
+.proof-item span{display:block;font-size:.9rem;color:#666;margin-top:.4rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
 
 /* SECTIONS */
 section.exp{padding:6rem 1.5rem}
@@ -75,24 +65,22 @@ section.exp{padding:6rem 1.5rem}
 .section-label{display:inline-block;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;margin-bottom:1rem;color:var(--ipp-green)}
 .exp-header{margin-bottom:3rem}
 .exp-header h2{font-family:var(--ipp-font-head);font-size:clamp(2rem,4vw,3.2rem);font-weight:900;line-height:1.1;color:var(--ipp-black);margin-bottom:1rem}
-.exp-header p{font-size:1.05rem;font-weight:300;max-width:600px;color:#555;margin-bottom:1.5rem}
-.pills{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem}
+.exp-header p{font-size:1rem;font-weight:300;max-width:700px;color:#555;margin-bottom:1.5rem;line-height:1.7}
+.pills{display:flex;gap:.6rem;flex-wrap:wrap;margin:1.5rem 0}
 .pill{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.08em;padding:.35rem 1rem;border-radius:99px;text-transform:uppercase;color:var(--ipp-white)}
 .pill-teal{background:var(--ipp-teal)}
 .pill-green{background:var(--ipp-green)}
 .pill-red{background:var(--ipp-red)}
 .pill-gold{background:var(--ipp-amber);color:var(--ipp-black)}
 
-/* VALUE BOXES */
-.value-box{background:var(--ipp-white);padding:2rem;border-radius:8px;border-left:5px solid;margin-bottom:1.5rem}
-.value-box h3{font-family:var(--ipp-font-head);font-size:1.2rem;margin-bottom:.5rem;color:var(--ipp-black)}
-.value-box p{font-size:.95rem;color:#555;line-height:1.7}
-.value-box.teal{border-color:var(--ipp-teal);background:rgba(120,166,186,.05)}
-.value-box.teal h3{color:var(--ipp-teal)}
-.value-box.green{border-color:var(--ipp-green);background:rgba(82,142,116,.05)}
-.value-box.green h3{color:var(--ipp-green)}
-.value-box.red{border-color:var(--ipp-red);background:rgba(204,71,54,.05)}
-.value-box.red h3{color:var(--ipp-red)}
+/* PRICING BLOCK */
+.pricing-block{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin:2rem 0;background:rgba(82,142,116,.05);padding:2rem;border-radius:8px;border-left:5px solid var(--ipp-green)}
+.pricing-left h3{font-family:var(--ipp-font-head);font-size:1.3rem;color:var(--ipp-black);margin-bottom:1rem}
+.pricing-detail{display:flex;align-items:center;gap:.8rem;margin:.8rem 0;font-size:.95rem}
+.pricing-detail strong{color:var(--ipp-green)}
+.pricing-right{display:flex;flex-direction:column;justify-content:center;text-align:right}
+.price-big{font-family:var(--ipp-font-head);font-size:2.5rem;font-weight:900;color:var(--ipp-red);line-height:1}
+.price-cupos{font-size:.85rem;color:#666;margin-top:.5rem;font-weight:600}
 
 /* GRID LAYOUTS */
 .mosaic{display:grid;gap:12px;margin-bottom:3rem}
@@ -106,7 +94,6 @@ section.exp{padding:6rem 1.5rem}
 .mosaic-sapori .s2{grid-column:2/4;grid-row:1/2}
 .mosaic-sapori .s3{grid-column:2/3;grid-row:2/3}
 .mosaic-sapori .s4{grid-column:3/4;grid-row:2/3}
-.mosaic-sapori .s5{grid-column:1/4;grid-row:3/4;height:220px}
 .mosaic-api{grid-template-columns:1fr 1.2fr;grid-template-rows:300px 200px}
 .mosaic-api .a1{grid-column:1/2;grid-row:1/3}
 .mosaic-api .a2{grid-column:2/3;grid-row:1/2}
@@ -118,22 +105,31 @@ section.exp{padding:6rem 1.5rem}
 .tile:hover img{transform:scale(1.05)}
 .tile-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;width:100%;height:100%}
 
-/* CARRUSEL */
-.carousel{position:relative;margin:3rem 0}
-.carousel-container{display:flex;gap:1.5rem;overflow-x:auto;scroll-behavior:smooth;padding:1rem 0;scrollbar-width:none}
-.carousel-container::-webkit-scrollbar{display:none}
-.carousel-card{flex:0 0 calc(50% - .75rem);background:var(--ipp-white);padding:2rem;border-radius:8px;border-left:5px solid var(--ipp-green);min-height:280px;display:flex;flex-direction:column;justify-content:space-between}
-.carousel-card h3{font-family:var(--ipp-font-head);font-size:1.3rem;color:var(--ipp-black);margin-bottom:1rem}
-.carousel-card p{font-size:.95rem;color:#555;line-height:1.7;flex:1}
-.carousel-card .author{margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(0,0,0,.08);font-weight:600;font-size:.9rem;color:var(--ipp-green)}
+/* COMPARACIÓN */
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin:3rem 0;max-width:1000px}
+.comparison h3{font-family:var(--ipp-font-head);font-size:1.4rem;margin-bottom:2rem;text-align:center;grid-column:1/3}
+.comp-card{background:var(--ipp-white);padding:2rem;border-radius:8px}
+.comp-card h4{font-weight:700;font-size:1.1rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid}
+.comp-card ul{list-style:none}
+.comp-card li{display:flex;align-items:flex-start;gap:.8rem;margin:.8rem 0;font-size:.95rem}
+.comp-card li::before{content:'❌';font-size:1.2rem}
+.comp-card.winner li::before{content:'✅';color:var(--ipp-green)}
+.comp-card.winner{background:rgba(82,142,116,.08);border-left:5px solid var(--ipp-green)}
+.comp-card.winner h4{color:var(--ipp-green);border-color:var(--ipp-green)}
+
+/* FAQ */
+.faq-section{background:var(--ipp-white);padding:3rem 2rem}
+.faq-container{max-width:900px;margin:0 auto}
+.faq-item{border-bottom:1px solid rgba(0,0,0,.1);padding:1.5rem 0}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-weight:700;color:var(--ipp-black);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;font-size:1rem;background:none;border:none;width:100%;text-align:left;padding:0}
+.faq-q:hover{color:var(--ipp-green)}
+.faq-icon{color:var(--ipp-green);font-weight:900;font-size:1.5rem}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;color:#555;font-size:.95rem;line-height:1.7}
+.faq-item.open .faq-a{max-height:300px;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(82,142,116,.2)}
 
 /* DIVIDER */
 .divider{height:3px;background:var(--ipp-green);margin:0}
-
-/* CTA SECTIONS */
-.cta-inline{background:var(--ipp-amber);color:var(--ipp-black);padding:3rem 2rem;border-radius:8px;text-align:center;margin:3rem 0}
-.cta-inline h3{font-family:var(--ipp-font-head);font-size:2rem;font-weight:900;margin-bottom:1rem}
-.cta-inline p{font-size:1rem;margin-bottom:1.5rem;opacity:.8}
 
 /* CONTACT */
 .contact-section{background:var(--ipp-green);color:var(--ipp-white);padding:5rem 1.5rem}
@@ -151,8 +147,8 @@ section.exp{padding:6rem 1.5rem}
 .contact-card-link:hover{transform:scale(1.05);background:var(--ipp-amber);color:var(--ipp-black)}
 
 /* CTA STRIP */
-.cta-strip{background:var(--ipp-red);color:var(--ipp-white);padding:5rem 2rem;text-align:center}
-.cta-strip h2{font-family:var(--ipp-font-head);font-size:clamp(1.8rem,4vw,3rem);font-weight:900;margin-bottom:.8rem}
+.cta-strip{background:var(--ipp-red);color:var(--ipp-white);padding:4rem 2rem;text-align:center}
+.cta-strip h2{font-family:var(--ipp-font-head);font-size:clamp(1.8rem,4vw,3rem);font-weight:900;margin-bottom:1rem;line-height:1.2}
 .cta-strip h2 em{color:var(--ipp-gold);font-style:italic}
 .cta-strip p{font-size:1rem;opacity:.85;margin-bottom:2rem;font-weight:300}
 
@@ -165,12 +161,12 @@ footer .highlight{color:var(--ipp-amber);font-family:var(--ipp-font-head);font-s
 @media(max-width:768px){
   .mosaic-cine,.mosaic-sapori,.mosaic-api{grid-template-columns:1fr 1fr;grid-template-rows:auto}
   .mosaic-cine .c1,.mosaic-cine .c2,.mosaic-cine .c3,.mosaic-cine .c4,
-  .mosaic-sapori .s1,.mosaic-sapori .s2,.mosaic-sapori .s3,.mosaic-sapori .s4,.mosaic-sapori .s5,
+  .mosaic-sapori .s1,.mosaic-sapori .s2,.mosaic-sapori .s3,.mosaic-sapori .s4,
   .mosaic-api .a1,.mosaic-api .a2,.mosaic-api .a3{grid-column:auto;grid-row:auto;height:220px}
-  .hero{padding:7rem 1.5rem 3rem;margin-top:50px}
-  nav{padding:1rem 1.5rem}
-  section.exp{padding:4rem 1.5rem}
-  .carousel-card{flex:0 0 100%}
+  .comparison{grid-template-columns:1fr}
+  .comparison h3{grid-column:1}
+  .pricing-block{grid-template-columns:1fr;text-align:center}
+  .pricing-right{text-align:center}
 }
 </style>
 </head>
@@ -185,56 +181,48 @@ footer .highlight{color:var(--ipp-amber);font-family:var(--ipp-font-head);font-s
     <li><a href="#cine">Cine</a></li>
     <li><a href="#sapori">Sapori</a></li>
     <li><a href="#giochi">Giochi</a></li>
-    <li><a href="#cursos">Cursos</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
 </nav>
+
+<!-- URGENCIA BANNER -->
+<div class="urgency-banner">
+  🔥 <span>PRÓXIMAS EXPERIENCIAS CON CUPOS LIMITADOS</span> · Reservá ahora
+</div>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="eyebrow">Experiencias que aceleran tu aprendizaje</div>
-    <h1>El italiano <em>se vive</em><br>en los detalles</h1>
-    <p class="hero-sub">No es solo una clase. Es cine en italiano, cocina real y juegos en vivo. Donde el idioma se te pega sin darte cuenta y el aprendizaje cobra vida.</p>
+    <div class="eyebrow">El italiano no se estudia. Se vive.</div>
+    <h1>Cine en italiano,<br>cocina real, juegos en vivo.<br><em>Aprendés sin darte cuenta.</em></h1>
+    <p class="hero-sub">Venís. Te sentás. Escuchás. Participás. Y cuando termina, ya hablás más de lo que pensabas. La mejor inversión en tu italiano.</p>
     <div class="cta-row">
-      <a href="#cine" class="btn btn-amber">Descubrí las experiencias</a>
-      <a href="#cursos" class="btn btn-outline">Ver cursos + experiencias</a>
+      <a href="#cine" class="btn btn-red">👉 Quiero reservar mi lugar</a>
+      <a href="#contacto" class="btn btn-outline">Ver próximas fechas</a>
     </div>
   </div>
 </section>
 
-<!-- POR QUÉ -->
-<section class="exp" style="background:var(--ipp-white)">
-  <div class="container">
-    <h2 style="font-family:var(--ipp-font-head);font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--ipp-black);margin-bottom:2.5rem;text-align:center">Por qué aprender <em style="color:var(--ipp-green);font-style:italic">viviendo</em> es diferente</h2>
-    
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:1080px;margin:0 auto">
-      <div class="value-box teal">
-        <h3>🎬 Contexto Real</h3>
-        <p>En el cine debate no memorizas — estás realmente escuchando italiano como se habla, entendiendo matices, riéndote de los chistes.</p>
-      </div>
-      <div class="value-box green">
-        <h3>👨‍🍳 Vocabulario Vivo</h3>
-        <p>Cocinar en italiano fija palabras para siempre. Ingredientes, técnicas, expresiones que usarás de verdad. Tu memoria lo marca.</p>
-      </div>
-      <div class="value-box red">
-        <h3>🎲 Sin Presión, Con Risa</h3>
-        <p>Cuando jugás en italiano, compiten por divertirse, no por acertar. El aprendizaje fluye sin la ansiedad de un examen.</p>
-      </div>
-      <div class="value-box teal">
-        <h3>💫 Fijación Emocional</h3>
-        <p>Recordarás una experiencia vivida años después. Las emociones son el pegamento más poderoso para memorizar un idioma.</p>
-      </div>
-      <div class="value-box green">
-        <h3>🤝 Comunidad Real</h3>
-        <p>Aprendés con otras personas que aman italiano. La energía grupal acelera confianza y el flujo conversacional.</p>
-      </div>
-      <div class="value-box red">
-        <h3>🔄 Refuerzo Lúdico</h3>
-        <p>Lo visto en clase cobra vida. Las experiencias refuerzan sin estudiar. Diversión pura que educa.</p>
-      </div>
+<!-- PRUEBA SOCIAL -->
+<section class="proof-section">
+  <div class="proof-container">
+    <div class="proof-item">
+      <strong>+800</strong>
+      <span>Alumnos vivieron la experiencia</span>
+    </div>
+    <div class="proof-item">
+      <strong>+40</strong>
+      <span>Eventos realizados</span>
+    </div>
+    <div class="proof-item">
+      <strong>98%</strong>
+      <span>La recomienda</span>
+    </div>
+    <div class="proof-item">
+      <strong>4.9★</strong>
+      <span>Calificación promedio</span>
     </div>
   </div>
 </section>
@@ -242,17 +230,26 @@ footer .highlight{color:var(--ipp-amber);font-family:var(--ipp-font-head);font-s
 <div class="divider"></div>
 
 <!-- CINE DEBATE -->
-<section class="exp exp-cine" id="cine">
+<section class="exp" id="cine">
   <div class="container">
     <div class="exp-header">
       <div class="section-label">Experiencia 01</div>
-      <h2>Cine Debate<br><em>en Italiano</em></h2>
-      <p>Película italiana, subtítulos en italiano, debate en vivo — aperitivo incluido. Donde entendés el idioma porque estás viviendo la historia.</p>
-      <div class="pills">
-        <span class="pill pill-teal">~3 horas</span>
-        <span class="pill pill-teal">Aperitivo incluido</span>
-        <span class="pill pill-teal">Todos los niveles</span>
-        <span class="pill pill-teal">2× al año</span>
+      <h2><em>Cine Debate</em><br>en Italiano</h2>
+      <p>Venís, te sentás, arranca la película. Subtítulos en italiano. Escuchás cómo suena el idioma de verdad. Te reís. Comentás. Preguntás. Y cuando termina… ya estás hablando más de lo que pensabas.</p>
+    </div>
+
+    <div class="pricing-block">
+      <div class="pricing-left">
+        <h3>📅 Próxima fecha: 12 de Abril</h3>
+        <div class="pricing-detail"><strong>⏳</strong> 3 horas intensas</div>
+        <div class="pricing-detail"><strong>🍷</strong> Aperitivo + debate incluido</div>
+        <div class="pricing-detail"><strong>🎯</strong> Todos los niveles</div>
+        <div class="pricing-detail"><strong>🎟️</strong> Solo 18 cupos</div>
+      </div>
+      <div class="pricing-right">
+        <div class="price-big">$18.000</div>
+        <div class="price-cupos">⚠️ Quedan 6 lugares</div>
+        <a href="https://wa.me/541234567890?text=Quiero%20reservar%20Cine%20Debate%2012%20abril" class="btn btn-red" style="margin-top:1.5rem;width:100%;justify-content:center">Reservar por WhatsApp</a>
       </div>
     </div>
 
@@ -269,7 +266,7 @@ footer .highlight{color:var(--ipp-amber);font-family:var(--ipp-font-head);font-s
       <div class="tile c4" style="background:var(--ipp-teal)">
         <div class="tile-content" style="background:none">
           <div style="font-family:var(--ipp-font-head);font-size:3rem;font-weight:900;color:var(--ipp-white);line-height:1">2×</div>
-          <div style="font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ipp-white);margin-top:.4rem">por año</div>
+          <div style="font-size:.8rem;font-weight:700;text-transform:uppercase;color:var(--ipp-white);margin-top:.4rem">al año</div>
         </div>
       </div>
     </div>
@@ -278,35 +275,42 @@ footer .highlight{color:var(--ipp-amber);font-family:var(--ipp-font-head);font-s
 
 <div class="divider"></div>
 
-<!-- SAPORI -->
-<section class="exp exp-sapori" id="sapori">
+<!-- SAPORI DEGUSTACIÓN -->
+<section class="exp" id="sapori">
   <div class="container">
     <div class="exp-header">
       <div class="section-label">Experiencia 02</div>
-      <h2>Sapori<br><em>d'Italia</em></h2>
-      <p>Taller teórico-práctico donde cocinás en italiano. Pesto ligure, amatriciana, pasta alla norma — vocabulario que necesitás y que usarás.</p>
-      <div class="pills">
-        <span class="pill pill-green">4 horas</span>
-        <span class="pill pill-green">Ingredientes incluidos</span>
-        <span class="pill pill-green">Manos en la masa</span>
+      <h2><em>Sapori</em><br>d'Italia</h2>
+      <p>No mirás. Participás. Carolina te guía por una cata de comida italiana auténtica. Desde el pesto ligure hasta la pasta alla amatriciana. Probás, comentás, aprendés vocabulario que NECESITÁS. Y te vas con recetas y con el paladar italiano.</p>
+    </div>
+
+    <div class="pricing-block">
+      <div class="pricing-left">
+        <h3>📅 Próxima edición: 18 de Mayo</h3>
+        <div class="pricing-detail"><strong>⏳</strong> 3 horas de cata + aprendizaje</div>
+        <div class="pricing-detail"><strong>🍝</strong> Comida italiana auténtica incluida</div>
+        <div class="pricing-detail"><strong>📚</strong> Vocabulario culinario real</div>
+        <div class="pricing-detail"><strong>🎟️</strong> Cupos muy limitados</div>
+      </div>
+      <div class="pricing-right">
+        <div class="price-big">$28.000</div>
+        <div class="price-cupos">⚠️ Quedan 4 lugares</div>
+        <a href="https://wa.me/541234567890?text=Quiero%20reservar%20Sapori%2018%20mayo" class="btn btn-red" style="margin-top:1.5rem;width:100%;justify-content:center">Reservar ahora</a>
       </div>
     </div>
 
     <div class="mosaic mosaic-sapori">
       <div class="tile s1">
-        <img src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Sapori%20di%20italia/IMG_1949.JPG" alt="Taller cocina" loading="lazy">
+        <img src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Sapori%20di%20italia/IMG_1949.JPG" alt="Cata italiana" loading="lazy">
       </div>
       <div class="tile s2">
-        <img src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Sapori%20di%20italia/052d8661-1bc8-4805-8429-dc038300af00.JPEG" alt="Cocina" loading="lazy">
+        <img src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Sapori%20di%20italia/052d8661-1bc8-4805-8429-dc038300af00.JPEG" alt="Degustación" loading="lazy">
       </div>
       <div class="tile s3">
-        <img src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Sapori%20di%20italia/IMG_1950.JPG" alt="Pasta" loading="lazy">
+        <img src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Sapori%20di%20italia/IMG_1950.JPG" alt="Comida italiana" loading="lazy">
       </div>
       <div class="tile s4">
         <img src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Sapori%20di%20italia/IMG_1961.JPG" alt="Ingredientes" loading="lazy">
-      </div>
-      <div class="tile s5">
-        <img src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Sapori%20di%20italia/439964e0-4c2e-472c-b0e3-52c31a36d737.JPEG" alt="Degustación" loading="lazy" style="object-position:center 60%">
       </div>
     </div>
   </div>
@@ -315,17 +319,26 @@ footer .highlight{color:var(--ipp-amber);font-family:var(--ipp-font-head);font-s
 <div class="divider"></div>
 
 <!-- APERIGIOCHI -->
-<section class="exp exp-api" id="giochi">
+<section class="exp" id="giochi">
   <div class="container">
     <div class="exp-header">
       <div class="section-label">Experiencia 03</div>
-      <h2>Aperi<em>giochi</em></h2>
-      <p>Pictionary, Tabú y juegos de mesa en italiano. Verano. Donde comparten, ríen y aprenden sin darse cuenta.</p>
-      <div class="pills">
-        <span class="pill pill-red">~1.5 horas</span>
-        <span class="pill pill-red">Niveles A1 y avanzado</span>
-        <span class="pill pill-red">Verano</span>
-        <span class="pill pill-red">Aperitivo incluido</span>
+      <h2>Aperi<em>giochi</em><br>en Italiano</h2>
+      <p>Juegos de mesa en italiano. Risas. Competencia sana. Te olvidás que estás aprendiendo. Y cuando te das cuenta, ya estás pensando en italiano y querés volver.</p>
+    </div>
+
+    <div class="pricing-block">
+      <div class="pricing-left">
+        <h3>☀️ Edición Verano Exclusiva</h3>
+        <div class="pricing-detail"><strong>⏳</strong> 1.5 horas dinámicas</div>
+        <div class="pricing-detail"><strong>🎲</strong> Pictionary, Tabú, juegos en vivo</div>
+        <div class="pricing-detail"><strong>🥂</strong> Aperitivo premium incluido</div>
+        <div class="pricing-detail"><strong>👥</strong> Grupos reducidos</div>
+      </div>
+      <div class="pricing-right">
+        <div class="price-big">$12.000</div>
+        <div class="price-cupos">⚠️ Últimas plazas</div>
+        <a href="https://wa.me/541234567890?text=Quiero%20mi%20lugar%20en%20Aperigiochi" class="btn btn-red" style="margin-top:1.5rem;width:100%;justify-content:center">Sumame a los juegos</a>
       </div>
     </div>
 
@@ -339,67 +352,42 @@ footer .highlight{color:var(--ipp-amber);font-family:var(--ipp-font-head);font-s
       </div>
       <div class="tile a2" style="background:var(--ipp-amber);display:flex;align-items:center;justify-content:center;padding:2rem">
         <div style="text-align:center">
-          <div style="font-family:var(--ipp-font-head);font-size:1.8rem;font-weight:900;color:var(--ipp-black);margin-bottom:1rem;line-height:1.1">¿Aprender<br>jugando?</div>
-          <p style="color:rgba(26,26,24,.65);font-size:.9rem;line-height:1.6">La ciencia dice: la risa crea conexiones neuronales profundas.</p>
-        </div>
-      </div>
-      <div class="tile a3" style="background:var(--ipp-white);display:flex;align-items:center;justify-content:center;padding:2rem">
-        <div style="text-align:center">
-          <div style="font-size:2rem;margin-bottom:.5rem">🥂</div>
-          <div style="font-family:var(--ipp-font-head);font-size:1.3rem;color:var(--ipp-red);font-weight:700">Aperitivo<br>incluido</div>
+          <div style="font-family:var(--ipp-font-head);font-size:1.6rem;font-weight:900;color:var(--ipp-black);margin-bottom:1rem;line-height:1.1">La neurociencia lo confirma</div>
+          <p style="color:rgba(26,26,24,.65);font-size:.9rem;line-height:1.6">La risa crea conexiones neuronales profundas. Aprendés 3x más rápido jugando.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA VENDER CURSOS -->
-<div class="cta-inline" style="max-width:1080px;margin:4rem auto">
-  <h3>¿Ya aprendés italiano?</h3>
-  <p style="font-size:1.1rem">Las experiencias funcionan MEJOR cuando ya tenés un curso. Refuerzan, aceleran y hacen que lo que aprendés en clase cobre vida.</p>
-  <a href="#cursos" class="btn btn-red">Ver cursos + precios →</a>
-</div>
-
 <div class="divider"></div>
 
-<!-- TESTIMONIOS CAROUSEL -->
-<section class="exp" id="testimonios">
+<!-- COMPARACIÓN -->
+<section class="exp" style="background:var(--ipp-white)">
   <div class="container">
-    <h2 style="font-family:var(--ipp-font-head);font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--ipp-black);margin-bottom:3rem;text-align:center">Lo que dicen<br><em style="color:var(--ipp-green);font-style:italic">los que vivieron</em></h2>
+    <div class="comparison">
+      <h3 style="font-size:2rem">¿Por qué las experiencias funcionan mejor?</h3>
+      
+      <div class="comp-card">
+        <h4>Clase de Italiano Tradicional</h4>
+        <ul>
+          <li>Mucha teoría, poco contexto real</li>
+          <li>Aprendizaje pasivo</li>
+          <li>Ansiedad por hablar</li>
+          <li>Olvidas lo aprendido en 2 semanas</li>
+          <li>Experiencia "escuela"</li>
+        </ul>
+      </div>
 
-    <div class="carousel">
-      <div class="carousel-container">
-        <div class="carousel-card">
-          <div>
-            <h3>🎬 "Fue increíble"</h3>
-            <p>"Vine al cine debate pensando que sería raro ver una película entera en italiano. Pero la pasé tan bien que ya me anoté en el curso completo. Carolina es una genia."</p>
-          </div>
-          <div class="author">María L. · Buenos Aires</div>
-        </div>
-
-        <div class="carousel-card">
-          <div>
-            <h3>👨‍🍳 "Aprendí cocinando"</h3>
-            <p>"En Sapori d'Italia me sorprendió aprender vocabulario sin estar en un aula. Hice pasta alla amatriciana hablando italiano todo el tiempo. Increíble."</p>
-          </div>
-          <div class="author">Roberto G. · CABA</div>
-        </div>
-
-        <div class="carousel-card">
-          <div>
-            <h3>🎲 "Risa y aprendizaje"</h3>
-            <p>"Los Aperigiochi fueron lo más. Jugábamos pictionary en italiano, se nos paraban las costillas de risa y en realidad estábamos aprendiendo. Carolina es un genio."</p>
-          </div>
-          <div class="author">Valentina P. · La Plata</div>
-        </div>
-
-        <div class="carousel-card">
-          <div>
-            <h3>💫 "Recomendado 100%"</h3>
-            <p>"Si estás pensando en anotarte en un curso de italiano, las experiencias hacen la diferencia. Te hacen sentir que el italiano es parte de tu vida."</p>
-          </div>
-          <div class="author">Juan M. · Mendoza</div>
-        </div>
+      <div class="comp-card winner">
+        <h4>Experiencias Italiano Per Piacere</h4>
+        <ul>
+          <li>100% contexto real desde el minuto 1</li>
+          <li>Aprendizaje emocional (se queda)</li>
+          <li>Confianza natural (sin presión)</li>
+          <li>Recordarás esto años después</li>
+          <li>Te reís, aprendés, te divierte</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -407,97 +395,128 @@ footer .highlight{color:var(--ipp-amber);font-family:var(--ipp-font-head);font-s
 
 <div class="divider"></div>
 
-<!-- CURSOS CTA -->
-<section class="exp" id="cursos" style="background:var(--ipp-white)">
-  <div class="container">
-    <h2 style="font-family:var(--ipp-font-head);font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--ipp-black);margin-bottom:1.5rem;text-align:center">Cursos + Experiencias<br><em style="color:var(--ipp-red);font-style:italic">La combinación ganadora</em></h2>
-    <p style="text-align:center;font-size:1.05rem;color:#555;max-width:700px;margin:0 auto 3rem">Los cursos te enseñan. Las experiencias hacen que lo que aprendiste cobre vida. Juntos son la fórmula perfecta para dominar italiano de verdad.</p>
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="faq-container">
+    <h2 style="font-family:var(--ipp-font-head);font-size:2rem;font-weight:900;margin-bottom:3rem;text-align:center">Preguntas que probablemente tenés</h2>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;max-width:1080px;margin:0 auto">
-      <div style="background:rgba(120,166,186,.08);padding:2rem;border-radius:8px;border-left:5px solid var(--ipp-teal);text-align:center">
-        <h3 style="font-family:var(--ipp-font-head);font-size:1.5rem;color:var(--ipp-black);margin-bottom:1rem">A1 Desde Cero</h3>
-        <p style="color:#555;margin-bottom:1.5rem">Empezás sin saber nada. Terminas presentándote y entendiendo conversaciones reales.</p>
-        <a href="#contacto" class="btn btn-outline">Anotarme →</a>
-      </div>
+    <div class="faq-item">
+      <button class="faq-q">
+        <span>¿Y si no entiendo nada?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        No importa. Justamente venís para entrenar el oído en un entorno relajado. Carolina guía todo. No hay presión. Y la mayoría no entiende nada la primera vez pero se sorprende cuánto entiende después.</div>
+    </div>
 
-      <div style="background:rgba(82,142,116,.08);padding:2rem;border-radius:8px;border-left:5px solid var(--ipp-green);text-align:center">
-        <h3 style="font-family:var(--ipp-font-head);font-size:1.5rem;color:var(--ipp-black);margin-bottom:1rem">A2 Vocabulario</h3>
-        <p style="color:#555;margin-bottom:1.5rem">Ya tenés base. Expandimos vocabulario con juegos y dinámicas. La risa garantizada.</p>
-        <a href="#contacto" class="btn btn-outline">Anotarme →</a>
-      </div>
+    <div class="faq-item">
+      <button class="faq-q">
+        <span>¿Necesito tener un nivel de italiano?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        No. Hay experiencias para todos los niveles. Cine Debate es para A1+ en adelante. Aperigiochi tiene grupos separados por nivel. Consultanos si dudás.</div>
+    </div>
 
-      <div style="background:rgba(204,71,54,.08);padding:2rem;border-radius:8px;border-left:5px solid var(--ipp-red);text-align:center">
-        <h3 style="font-family:var(--ipp-font-head);font-size:1.5rem;color:var(--ipp-black);margin-bottom:1rem">Viajeros Express</h3>
-        <p style="color:#555;margin-bottom:1.5rem">Vas a Italia en 3 meses. Necesitás lo esencial YA. Intensivo, práctico, real.</p>
-        <a href="#contacto" class="btn btn-outline">Anotarme →</a>
-      </div>
+    <div class="faq-item">
+      <button class="faq-q">
+        <span>¿Puedo venir solo/a?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        Obvio. La mayoría viene solo. Y se va con nuevos amigos que comparten la pasión por italiano. Es parte de la magia.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span>¿Se realmente se aprende o solo es diversión?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        Es ambos. Pero la ciencia lo confirma: aprendés 3x más rápido cuando hay emoción y diversión. Lo que aprendés en experiencias se queda. Lo que memorizas en un aula, se olvida en 2 semanas.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span>¿Puedo venir con amigos?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        Claro. De hecho, muchos vienen en grupos. Pero aviso: los experiencias están diseñadas para que te mezcles con otros. Es parte de la comunidad.</div>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
+
+<!-- URGENCIA FINAL -->
+<section style="background:var(--ipp-white);padding:3rem 2rem;text-align:center">
+  <div style="max-width:900px;margin:0 auto">
+    <h2 style="font-family:var(--ipp-font-head);font-size:1.8rem;color:var(--ipp-black);margin-bottom:1rem">⚠️ Esto es importante</h2>
+    <p style="font-size:1.05rem;color:#555;line-height:1.7">Las experiencias se hacen solo <strong>2 veces al año</strong>. Cuando se llenan los cupos, cerramos inscripción. La próxima oportunidad es en 6 meses. Si esto te interesa, reservá ahora.</p>
+  </div>
+</section>
 
 <!-- CONTACT -->
 <section class="contact-section" id="contacto">
   <div class="contact-container">
     <div class="contact-header">
       <h2>¿Listo para vivir el italiano?</h2>
-      <p>Elegí tu canal y conectemos. Estamos acá para armar tu próxima experiencia.</p>
+      <p>Elegí tu canal y conectemos ahora.</p>
     </div>
 
     <div class="contact-grid">
       <div class="contact-card">
         <div class="contact-card-icon">💬</div>
         <h3>WhatsApp</h3>
-        <p>Consultas rápidas y coordinación con Carolina.</p>
-        <a href="https://wa.me/541234567890?text=Hola%20Carolina%2C%20quiero%20anotarme" class="contact-card-link" target="_blank">Escribi ahora →</a>
+        <p>Reserva rápida. Respuesta inmediata.</p>
+        <a href="https://wa.me/541234567890?text=Hola%20Carolina%2C%20quiero%20reservar" class="contact-card-link" target="_blank">Escribi ahora →</a>
       </div>
 
       <div class="contact-card">
         <div class="contact-card-icon">☎️</div>
         <h3>Llamada Directa</h3>
-        <p>Prefiers hablar? Llamá y te cuento todo.</p>
+        <p>Habla con Carolina y decide.</p>
         <a href="tel:+541234567890" class="contact-card-link">Llamar →</a>
       </div>
 
       <div class="contact-card">
         <div class="contact-card-icon">📅</div>
-        <h3>Reserva Cita</h3>
-        <p>Agenda un chat personal para armar tu plan.</p>
+        <h3>Agendar Cita</h3>
+        <p>Chat personal para tu plan.</p>
         <a href="#" class="contact-card-link">Ver disponibilidad →</a>
       </div>
 
       <div class="contact-card">
         <div class="contact-card-icon">✉️</div>
-        <h3>Correo</h3>
-        <p>Escribinos con toda la info. Respuesta en 24hs.</p>
-        <a href="mailto:hola@italianoperpiacere.com" class="contact-card-link">Enviar email →</a>
+        <h3>Email</h3>
+        <p>Consulta formal. Respuesta en 24hs.</p>
+        <a href="mailto:hola@italianoperpiacere.com" class="contact-card-link">Enviar →</a>
       </div>
 
       <div class="contact-card">
         <div class="contact-card-icon">📸</div>
         <h3>Instagram</h3>
-        <p>Mirá las fotos de las últimas experiencias.</p>
-        <a href="https://instagram.com/italianoperpiacere" class="contact-card-link" target="_blank">Seguí →</a>
+        <p>Mirá fotos de eventos reales.</p>
+        <a href="https://instagram.com/italianoperpiacere" class="contact-card-link" target="_blank">Seguir →</a>
       </div>
 
       <div class="contact-card">
         <div class="contact-card-icon">🗓️</div>
-        <h3>Próximas Fechas</h3>
-        <p>Calendario completo de experiencias y cursos.</p>
-        <a href="#" class="contact-card-link">Ver calendario →</a>
+        <h3>Calendario</h3>
+        <p>Todas las fechas y horarios.</p>
+        <a href="#" class="contact-card-link">Ver fechas →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA FINAL -->
+<!-- CTA FINAL POTENTE -->
 <div class="cta-strip">
-  <h2>Tu experiencia <em>te está esperando</em></h2>
-  <p>No es solo una clase más. Es el momento donde el italiano cobra vida y se queda en vos para siempre.</p>
+  <h2>La próxima vez que escuches italiano…<br><em>¿vas a entenderlo o vas a quedarte mirando?</em></h2>
+  <p>Reservá tu lugar ahora. Cupos limitados. Experiencias solo 2 veces al año.</p>
   <div class="cta-row">
-    <a href="#contacto" class="btn btn-white">Conectemos ahora</a>
-    <a href="/" class="btn" style="background:var(--ipp-amber);color:var(--ipp-black)">Ver todos los cursos</a>
+    <a href="https://wa.me/541234567890?text=Quiero%20reservar%20mi%20lugar%20AHORA" class="btn btn-white" style="font-size:1rem;padding:1.1rem 2.5rem">👉 Reservar ahora por WhatsApp</a>
   </div>
 </div>
 
@@ -509,13 +528,18 @@ footer .highlight{color:var(--ipp-amber);font-family:var(--ipp-font-head);font-s
 </footer>
 
 <script>
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if(!isOpen) item.classList.add('open');
+  });
+});
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
-    if(target) {
-      e.preventDefault();
-      target.scrollIntoView({behavior:'smooth',block:'start'});
-    }
+    if(target) { e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
   });
 });
 </script>
