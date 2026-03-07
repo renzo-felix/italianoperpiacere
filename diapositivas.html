@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Diapositivas · Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ipp-cream:     #e9e6d5;
+  --ipp-gold:      #EFCF7F;
+  --ipp-amber:     #e5ab07;
+  --ipp-red:       #cc4736;
+  --ipp-teal:      #78a6ba;
+  --ipp-green:     #528e74;
+  --ipp-black:     #1a1a18;
+  --ipp-white:     #ffffff;
+  --ipp-font-head: 'Playfair Display', Georgia, serif;
+  --ipp-font-body: 'Outfit', system-ui, sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ipp-cream);color:var(--ipp-black);font-family:var(--ipp-font-body);font-weight:400;line-height:1.6}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:var(--ipp-white);border-bottom:3px solid var(--ipp-green);box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.nav-logo{display:flex;align-items:center;gap:.8rem;text-decoration:none}
+.nav-logo img{height:40px;width:auto}
+nav ul{display:flex;gap:2rem;list-style:none}
+nav a{color:var(--ipp-black);text-decoration:none;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;opacity:.65;transition:opacity .2s,color .2s}
+nav a:hover{opacity:1;color:var(--ipp-green)}
+nav a.active{opacity:1;color:var(--ipp-green)}
+@media(max-width:768px){nav ul{display:none}}
+
+/* PAGE HEADER */
+.page-header{margin-top:70px;background:var(--ipp-green);padding:3.5rem 2rem;text-align:center;position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");opacity:1}
+.page-header-content{position:relative;z-index:1}
+.page-eyebrow{display:inline-block;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ipp-gold);font-weight:700;margin-bottom:1rem;background:rgba(239,207,127,.12);padding:.5rem 1.2rem;border-radius:4px}
+.page-header h1{font-family:var(--ipp-font-head);font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.1;color:var(--ipp-white);margin-bottom:1rem}
+.page-header h1 em{color:var(--ipp-gold);font-style:italic}
+.page-header p{font-size:1rem;font-weight:300;color:rgba(255,255,255,.8);max-width:600px;margin:0 auto}
+
+/* EMBED SECTION */
+.embed-section{padding:3rem 1.5rem 4rem}
+.embed-container{max-width:1100px;margin:0 auto}
+
+.embed-card{background:var(--ipp-white);border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(26,26,24,.12);border:2px solid rgba(82,142,116,.15)}
+
+.embed-card-header{background:linear-gradient(135deg,var(--ipp-green),#3d7260);padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.embed-card-header-left{display:flex;align-items:center;gap:.8rem}
+.embed-card-header-dots{display:flex;gap:.5rem}
+.embed-card-header-dots span{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.3)}
+.embed-card-header-title{font-family:var(--ipp-font-head);font-size:1rem;font-style:italic;color:var(--ipp-white);font-weight:700}
+.embed-fullscreen-btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ipp-white);text-decoration:none;background:rgba(255,255,255,.15);padding:.45rem 1rem;border-radius:4px;transition:background .2s}
+.embed-fullscreen-btn:hover{background:rgba(255,255,255,.25)}
+
+.embed-ratio{position:relative;width:100%;padding-bottom:56.25%}
+.embed-ratio iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:block}
+/* Tapa los botones de share y fullscreen del Genially */
+.embed-blocker{position:absolute;top:0;right:0;width:90px;height:42px;background:#1c1c1c;z-index:10;pointer-events:all;cursor:default}
+
+/* INFO STRIP */
+.info-strip{margin-top:2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.info-chip{background:var(--ipp-white);border-radius:8px;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:.8rem;border-left:4px solid var(--ipp-green);box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.info-chip-icon{font-size:1.5rem}
+.info-chip-text strong{display:block;font-size:.85rem;font-weight:700;color:var(--ipp-black)}
+.info-chip-text span{font-size:.8rem;color:#666}
+
+/* BACK BUTTON */
+.back-bar{max-width:1100px;margin:0 auto 1.5rem;padding:0 .5rem}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ipp-green);text-decoration:none;opacity:.75;transition:opacity .2s,gap .2s}
+.back-btn:hover{opacity:1;gap:.8rem}
+
+/* DIVIDER */
+.divider{height:3px;background:var(--ipp-green);margin:0}
+
+/* FOOTER */
+footer{padding:3rem 2rem;text-align:center;border-top:3px solid var(--ipp-green);background:var(--ipp-white)}
+footer p{font-size:.85rem;opacity:.55;margin:.5rem 0}
+footer .highlight{color:var(--ipp-amber);font-family:var(--ipp-font-head);font-style:italic;font-weight:700}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="inicio.html">
+    <img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=0c29000" alt="Italiano Per Piacere" loading="lazy">
+  </a>
+  <ul>
+    <li><a href="inicio.html#cine">Cine</a></li>
+    <li><a href="inicio.html#sapori">Sapori</a></li>
+    <li><a href="inicio.html#giochi">Giochi</a></li>
+    <li><a href="diapositivas.html" class="active">Diapositivas</a></li>
+    <li><a href="inicio.html#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-content">
+    <div class="page-eyebrow">Material interactivo</div>
+    <h1>Juego<br><em>Formativo</em> de Idiomas</h1>
+    <p>Contenido interactivo para practicar y aprender de forma dinámica</p>
+  </div>
+</div>
+
+<!-- EMBED SECTION -->
+<section class="embed-section">
+  <div class="embed-container">
+
+    <div class="back-bar">
+      <a href="inicio.html" class="back-btn">← Volver a Experiencias</a>
+    </div>
+
+    <div class="embed-card">
+      <div class="embed-card-header">
+        <div class="embed-card-header-left">
+          <div class="embed-card-header-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="embed-card-header-title">Juego Formativo · Italiano Per Piacere</div>
+        </div>
+      </div>
+
+      <div class="embed-ratio">
+        <iframe
+          title="Juego formativo idiomas"
+          frameborder="0"
+          width="1200px"
+          height="675px"
+          src="https://view.genially.com/69aaeec29abf43c2f0718a27"
+          type="text/html"
+          allowscriptaccess="always"
+          allowfullscreen="true"
+          scrolling="yes"
+          allownetworking="all">
+        </iframe>
+        <!-- Tapa botones share + fullscreen de Genially -->
+        <div class="embed-blocker"></div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Italiano Per Piacere</p>
+  <p class="highlight">La lingua è cultura.</p>
+  <p style="margin-top:1rem;opacity:.4;font-size:.8rem">Experiencias en Buenos Aires · Cursos online para todo el país</p>
+</footer>
+
+</body>
+</html>

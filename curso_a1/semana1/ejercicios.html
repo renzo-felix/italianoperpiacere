@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semana 1 · Ejercicios</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#F0F4F0;color:#2C2C2C}
+    header{background:linear-gradient(135deg,#1B5E20,#2E7D32);color:#fff;padding:1.5rem 2rem;text-align:center}
+    header .badge{display:inline-block;background:rgba(255,255,255,.2);padding:.25rem .9rem;border-radius:20px;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.4rem}
+    header h1{font-size:1.8rem;font-weight:700}
+    main{max-width:800px;margin:2rem auto;padding:0 1rem}
+    .ex{background:#fff;border-radius:12px;padding:1.8rem;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    .ex-num{display:inline-block;background:#2E7D32;color:#fff;border-radius:50%;width:2rem;height:2rem;line-height:2rem;text-align:center;font-weight:700;font-size:.9rem;margin-right:.5rem}
+    .ex-title{font-size:1.15rem;font-weight:700;color:#1B5E20;margin-bottom:.3rem}
+    .ex-sub{color:#777;font-size:.88rem;margin-bottom:1.2rem}
+    /* EX 1 – SALUTI */
+    .saluto-opts{display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:1rem}
+    .opt-btn{padding:.5rem 1.2rem;border-radius:20px;border:2px solid #C8E6C9;background:#fff;font-size:.9rem;cursor:pointer;transition:all .2s;font-weight:500}
+    .opt-btn:hover{border-color:#2E7D32;background:#E8F5E9}
+    .opt-btn.correct{border-color:#2E7D32;background:#2E7D32;color:#fff}
+    .opt-btn.wrong{border-color:#C62828;background:#FFEBEE;color:#C62828}
+    .scenario{background:#F5F5F5;border-radius:10px;padding:1rem;margin-bottom:.8rem;display:flex;align-items:center;gap:1rem}
+    .scenario-emoji{font-size:2rem}
+    .scenario-text{flex:1;font-weight:500}
+    .scenario-answer{min-width:160px}
+    /* EX 2 – CHIAMARSI */
+    .fill-row{display:grid;grid-template-columns:80px 80px 1fr;align-items:center;gap:.7rem;margin-bottom:.7rem;padding:.5rem;border-radius:8px;background:#F9FBF9}
+    .pron-label{font-style:italic;color:#777;font-size:.9rem}
+    .blank{border:2px solid #C8E6C9;border-radius:6px;padding:.4rem .7rem;font-size:.95rem;width:100%;font-family:inherit;outline:none;transition:border-color .2s}
+    .blank:focus{border-color:#2E7D32}
+    .blank.ok{border-color:#2E7D32;background:#E8F5E9}
+    .blank.err{border-color:#C62828;background:#FFEBEE}
+    .verb-hint{font-weight:700;color:#1B5E20;font-size:.9rem}
+    .check-btn{display:block;margin:1rem auto 0;padding:.6rem 2rem;background:#2E7D32;color:#fff;border:none;border-radius:20px;font-size:.95rem;cursor:pointer;font-weight:600;transition:background .2s}
+    .check-btn:hover{background:#1B5E20}
+    .feedback{margin-top:.8rem;padding:.8rem;border-radius:8px;font-weight:600;text-align:center;display:none}
+    .feedback.show{display:block}
+    .feedback.good{background:#E8F5E9;color:#1B5E20}
+    .feedback.bad{background:#FFEBEE;color:#C62828}
+    /* EX 3 – NUMERI */
+    .num-game{text-align:center;padding:1rem 0}
+    .num-display{font-size:4rem;font-weight:700;color:#1B5E20;margin-bottom:.5rem;min-height:80px}
+    .num-input{border:2px solid #C8E6C9;border-radius:10px;padding:.6rem 1rem;font-size:1.1rem;width:220px;text-align:center;font-family:inherit;outline:none}
+    .num-input:focus{border-color:#2E7D32}
+    .num-btns{display:flex;justify-content:center;gap:.7rem;margin-top:.8rem}
+    .num-btn{padding:.5rem 1.5rem;border-radius:20px;border:none;cursor:pointer;font-size:.9rem;font-weight:600;transition:all .2s}
+    .num-btn.primary{background:#2E7D32;color:#fff}
+    .num-btn.secondary{background:#E8F5E9;color:#2E7D32}
+    .num-score{font-size:1rem;color:#777;margin-top:.8rem}
+    /* EX 4 – VERO/FALSO */
+    .vf-item{display:flex;align-items:center;gap:1rem;padding:1rem;border-radius:10px;margin-bottom:.7rem;background:#F9F9F9;border:2px solid transparent;transition:border-color .2s}
+    .vf-text{flex:1;font-size:.95rem}
+    .vf-btns{display:flex;gap:.5rem}
+    .vf-btn{padding:.4rem 1rem;border-radius:8px;border:2px solid #C8E6C9;background:#fff;cursor:pointer;font-weight:700;font-size:.88rem;transition:all .2s}
+    .vf-btn.V:hover,.vf-btn.V.active{border-color:#2E7D32;background:#2E7D32;color:#fff}
+    .vf-btn.F:hover,.vf-btn.F.active{border-color:#C62828;background:#C62828;color:#fff}
+    .vf-item.correct-border{border-color:#2E7D32}
+    .vf-item.wrong-border{border-color:#C62828}
+    .resultado-final{margin-top:1.5rem;padding:1.2rem;border-radius:12px;text-align:center;background:linear-gradient(135deg,#1B5E20,#2E7D32);color:#fff;display:none}
+    .resultado-final.show{display:block}
+    .resultado-final .score{font-size:2.5rem;font-weight:700}
+    .resultado-final p{opacity:.9;margin-top:.3rem}
+  </style>
+</head>
+<body>
+<header>
+  <div class="badge">Semana 1 · Ejercicios</div>
+  <h1>Esercizi interattivi 🏋️</h1>
+</header>
+<main>
+
+  <!-- EJERCICIO 1: SALUTI -->
+  <div class="ex">
+    <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem">
+      <span class="ex-num">1</span>
+      <span class="ex-title">Scegli il saluto giusto 👋</span>
+    </div>
+    <p class="ex-sub">Selecciona el saludo correcto para cada situación. Puedes elegir más de uno si aplica.</p>
+
+    <div class="scenario">
+      <span class="scenario-emoji">☀️</span>
+      <span class="scenario-text">Son las 9 de la mañana. Llegas a clase.</span>
+      <div class="saluto-opts" style="flex-direction:column;gap:.4rem">
+        <button class="opt-btn" onclick="checkSaluto(this,'correct')">Buongiorno!</button>
+        <button class="opt-btn" onclick="checkSaluto(this,'wrong')">Buonanotte!</button>
+        <button class="opt-btn" onclick="checkSaluto(this,'correct')">Salve!</button>
+        <button class="opt-btn" onclick="checkSaluto(this,'wrong')">Arrivederci!</button>
+      </div>
+    </div>
+
+    <div class="scenario">
+      <span class="scenario-emoji">🌙</span>
+      <span class="scenario-text">Son las 11 de la noche. Te vas a dormir.</span>
+      <div class="saluto-opts" style="flex-direction:column;gap:.4rem">
+        <button class="opt-btn" onclick="checkSaluto(this,'wrong')">Buongiorno!</button>
+        <button class="opt-btn" onclick="checkSaluto(this,'correct')">Buonanotte!</button>
+        <button class="opt-btn" onclick="checkSaluto(this,'wrong')">Salve!</button>
+        <button class="opt-btn" onclick="checkSaluto(this,'wrong')">Buonasera!</button>
+      </div>
+    </div>
+
+    <div class="scenario">
+      <span class="scenario-emoji">🤝</span>
+      <span class="scenario-text">Te despides de un amigo de forma informal.</span>
+      <div class="saluto-opts" style="flex-direction:column;gap:.4rem">
+        <button class="opt-btn" onclick="checkSaluto(this,'correct')">Ciao!</button>
+        <button class="opt-btn" onclick="checkSaluto(this,'correct')">A presto!</button>
+        <button class="opt-btn" onclick="checkSaluto(this,'wrong')">Buongiorno!</button>
+        <button class="opt-btn" onclick="checkSaluto(this,'correct')">Ci vediamo!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EJERCICIO 2: CHIAMARSI -->
+  <div class="ex">
+    <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem">
+      <span class="ex-num">2</span>
+      <span class="ex-title">Completa il verbo CHIAMARSI ✏️</span>
+    </div>
+    <p class="ex-sub">Escribe el pronombre reflexivo correcto (mi / ti / si) y la forma del verbo.</p>
+
+    <div class="fill-row">
+      <span class="pron-label">io</span>
+      <input class="blank" id="r1p" type="text" placeholder="mi" maxlength="4">
+      <span class="verb-hint">chiamo <span style="color:#777;font-weight:400">→ Io ___ chiamo.</span></span>
+    </div>
+    <div class="fill-row">
+      <span class="pron-label">tu</span>
+      <input class="blank" id="r2p" type="text" placeholder="ti" maxlength="4">
+      <input class="blank" id="r2v" type="text" placeholder="chiami" maxlength="10">
+    </div>
+    <div class="fill-row">
+      <span class="pron-label">lui/lei</span>
+      <input class="blank" id="r3p" type="text" placeholder="si" maxlength="4">
+      <input class="blank" id="r3v" type="text" placeholder="chiama" maxlength="10">
+    </div>
+
+    <button class="check-btn" onclick="checkChiamarsi()">Verifica ✓</button>
+    <div class="feedback" id="fb2"></div>
+  </div>
+
+  <!-- EJERCICIO 3: NUMERI GAME -->
+  <div class="ex">
+    <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem">
+      <span class="ex-num">3</span>
+      <span class="ex-title">Scrivi i numeri in italiano 🔢</span>
+    </div>
+    <p class="ex-sub">¿Sabes escribir estos números en italiano? Intenta al menos 10.</p>
+    <div class="num-game">
+      <div class="num-display" id="numDisplay">?</div>
+      <input class="num-input" id="numInput" type="text" placeholder="Scrivi in italiano..." onkeypress="if(event.key==='Enter')checkNum()">
+      <div class="num-btns">
+        <button class="num-btn secondary" onclick="nextNum()">▶ Nuevo número</button>
+        <button class="num-btn primary" onclick="checkNum()">✓ Verificar</button>
+      </div>
+      <div class="num-score" id="numScore">Puntos: 0 / 0</div>
+      <div class="feedback" id="fb3"></div>
+    </div>
+  </div>
+
+  <!-- EJERCICIO 4: VERO/FALSO -->
+  <div class="ex">
+    <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem">
+      <span class="ex-num">4</span>
+      <span class="ex-title">Vero o Falso? ✅❌</span>
+    </div>
+    <p class="ex-sub">Decide si cada afirmación es verdadera (V) o falsa (F).</p>
+
+    <div class="vf-item" id="vf1">
+      <span class="vf-text">1. "Ciao" se puede usar para saludar Y para despedirse.</span>
+      <div class="vf-btns">
+        <button class="vf-btn V" onclick="checkVF(1,'V','V')">V</button>
+        <button class="vf-btn F" onclick="checkVF(1,'F','V')">F</button>
+      </div>
+    </div>
+    <div class="vf-item" id="vf2">
+      <span class="vf-text">2. "Buonanotte" se usa como saludo a las 8 de la mañana.</span>
+      <div class="vf-btns">
+        <button class="vf-btn V" onclick="checkVF(2,'V','F')">V</button>
+        <button class="vf-btn F" onclick="checkVF(2,'F','F')">F</button>
+      </div>
+    </div>
+    <div class="vf-item" id="vf3">
+      <span class="vf-text">3. El italiano tiene 21 letras nativas en su alfabeto.</span>
+      <div class="vf-btns">
+        <button class="vf-btn V" onclick="checkVF(3,'V','V')">V</button>
+        <button class="vf-btn F" onclick="checkVF(3,'F','V')">F</button>
+      </div>
+    </div>
+    <div class="vf-item" id="vf4">
+      <span class="vf-text">4. "Mi chiami" es la forma correcta para "io" de llamarsi.</span>
+      <div class="vf-btns">
+        <button class="vf-btn V" onclick="checkVF(4,'V','F')">V</button>
+        <button class="vf-btn F" onclick="checkVF(4,'F','F')">F</button>
+      </div>
+    </div>
+    <div class="vf-item" id="vf5">
+      <span class="vf-text">5. "Ventitré" lleva acento en la é final.</span>
+      <div class="vf-btns">
+        <button class="vf-btn V" onclick="checkVF(5,'V','V')">V</button>
+        <button class="vf-btn F" onclick="checkVF(5,'F','V')">F</button>
+      </div>
+    </div>
+
+    <button class="check-btn" onclick="showResultado()">Ver resultado final 🏆</button>
+    <div class="resultado-final" id="resultadoFinal">
+      <div class="score" id="finalScore">0/5</div>
+      <p id="finalMsg"></p>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// EX 1
+function checkSaluto(btn, type) {
+  btn.classList.remove('correct','wrong');
+  btn.classList.add(type);
+}
+
+// EX 2
+function checkChiamarsi() {
+  const answers = {
+    r1p: 'mi', r2p: 'ti', r2v: 'chiami', r3p: 'si', r3v: 'chiama'
+  };
+  let correct = 0, total = Object.keys(answers).length;
+  for (const [id, val] of Object.entries(answers)) {
+    const el = document.getElementById(id);
+    if (el) {
+      const userVal = el.value.trim().toLowerCase();
+      if (userVal === val) { el.classList.add('ok'); el.classList.remove('err'); correct++; }
+      else { el.classList.add('err'); el.classList.remove('ok'); }
+    }
+  }
+  const fb = document.getElementById('fb2');
+  fb.className = 'feedback show ' + (correct === total ? 'good' : 'bad');
+  fb.textContent = correct === total
+    ? '✅ ¡Perfecto! Todas las formas son correctas.'
+    : `⚠️ ${correct}/${total} correctas. Las respuestas: mi chiamo / ti chiami / si chiama`;
+}
+
+// EX 3
+const numeros = {
+  1:'uno',2:'due',3:'tre',4:'quattro',5:'cinque',6:'sei',7:'sette',8:'otto',9:'nove',10:'dieci',
+  11:'undici',12:'dodici',13:'tredici',14:'quattordici',15:'quindici',16:'sedici',17:'diciassette',
+  18:'diciotto',19:'diciannove',20:'venti',21:'ventuno',22:'ventidue',23:'ventitré',24:'ventiquattro',
+  25:'venticinque',26:'ventisei',27:'ventisette',28:'ventotto',29:'ventinove',30:'trenta'
+};
+let currentNum = null, numPoints = 0, numTotal = 0;
+
+function nextNum() {
+  const keys = Object.keys(numeros);
+  currentNum = parseInt(keys[Math.floor(Math.random() * keys.length)]);
+  document.getElementById('numDisplay').textContent = currentNum;
+  document.getElementById('numInput').value = '';
+  document.getElementById('numInput').focus();
+  const fb = document.getElementById('fb3');
+  fb.className = 'feedback';
+}
+
+function checkNum() {
+  if (!currentNum) { nextNum(); return; }
+  const input = document.getElementById('numInput').value.trim().toLowerCase();
+  const correct = numeros[currentNum];
+  numTotal++;
+  const fb = document.getElementById('fb3');
+  if (input === correct || input === correct.replace('é','e')) {
+    numPoints++;
+    fb.className = 'feedback show good';
+    fb.textContent = `✅ ¡Correcto! ${currentNum} = ${correct}`;
+  } else {
+    fb.className = 'feedback show bad';
+    fb.textContent = `❌ Era: ${correct}`;
+  }
+  document.getElementById('numScore').textContent = `Puntos: ${numPoints} / ${numTotal}`;
+  setTimeout(nextNum, 1500);
+}
+
+// Initialize
+nextNum();
+
+// EX 4
+let vfAnswers = {};
+function checkVF(n, selected, correct) {
+  vfAnswers[n] = { selected, correct };
+  const item = document.getElementById('vf'+n);
+  item.querySelectorAll('.vf-btn').forEach(b => b.classList.remove('active'));
+  item.querySelector('.vf-btn.' + selected).classList.add('active');
+}
+
+function showResultado() {
+  let score = 0;
+  for (const [n, d] of Object.entries(vfAnswers)) {
+    const item = document.getElementById('vf'+n);
+    if (d.selected === d.correct) {
+      item.className = 'vf-item correct-border'; score++;
+    } else {
+      item.className = 'vf-item wrong-border';
+    }
+  }
+  const rfEl = document.getElementById('resultadoFinal');
+  rfEl.className = 'resultado-final show';
+  document.getElementById('finalScore').textContent = score + '/5';
+  const msgs = ['Sigue practicando 💪','¡Casi! Repasa la teoría 📖','¡Bien! 👍','¡Muy bien! 🌟','¡Perfetto! 🏆'];
+  document.getElementById('finalMsg').textContent = msgs[score] || msgs[4];
+}
+</script>
+</body>
+</html>

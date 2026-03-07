@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semana 1 · Teoría · Come ti chiami?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ipp-cream:     #e9e6d5;
+      --ipp-gold:      #EFCF7F;
+      --ipp-amber:     #e5ab07;
+      --ipp-red:       #cc4736;
+      --ipp-teal:      #78a6ba;
+      --ipp-green:     #528e74;
+      --ipp-black:     #1a1a18;
+      --ipp-white:     #ffffff;
+      --ipp-font-head: 'Playfair Display', Georgia, serif;
+      --ipp-font-body: 'Outfit', system-ui, sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--ipp-font-body);background:var(--ipp-cream);color:var(--ipp-black);min-height:100vh}
+
+    header{background:var(--ipp-green);color:var(--ipp-white);padding:2.5rem 1rem;text-align:center}
+    .badge{display:inline-block;background:rgba(255,255,255,.2);padding:.3rem 1.2rem;border-radius:20px;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.7rem;font-weight:600}
+    header h1{font-family:var(--ipp-font-head);font-size:2.4rem;font-weight:700}
+    header p{font-size:.95rem;opacity:.9;margin-top:.4rem;font-weight:300}
+
+    nav{display:flex;justify-content:center;gap:.5rem;background:var(--ipp-white);padding:.9rem 1rem;flex-wrap:wrap;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+    .pill{padding:.38rem 1rem;border-radius:20px;background:#e8f2ed;color:var(--ipp-green);font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s}
+    .pill:hover{background:var(--ipp-green);color:var(--ipp-white)}
+
+    main{max-width:920px;margin:2rem auto;padding:0 1rem}
+
+    .sec{background:var(--ipp-white);border-radius:14px;padding:2rem;margin-bottom:1.8rem;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+    .sec-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem;padding-bottom:.8rem;border-bottom:3px solid var(--ipp-cream)}
+    .sec-icon{font-size:1.8rem}
+    .sec-title{font-family:var(--ipp-font-head);font-size:1.5rem;font-weight:700;color:var(--ipp-green)}
+    .intro{color:#555;margin-bottom:1.2rem;font-size:.95rem;line-height:1.7}
+
+    /* ── ALFABETO ── */
+    .alpha-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:.5rem;margin-bottom:1.2rem}
+    .lcard{background:var(--ipp-cream);border-radius:9px;padding:.8rem .4rem;text-align:center;transition:all .2s;cursor:default;border:2px solid transparent}
+    .lcard:hover{background:var(--ipp-green);color:var(--ipp-white);transform:scale(1.07)}
+    .lcard .L{font-family:var(--ipp-font-head);font-size:1.5rem;font-weight:700;display:block}
+    .lcard .N{font-size:.64rem;display:block;margin-top:2px;opacity:.75;font-weight:500}
+    .lcard .ex{font-size:.58rem;display:block;margin-top:1px;opacity:.55;font-style:italic}
+    .lcard.ext{background:#fdf5e6;border:2px dashed var(--ipp-amber)}
+    .lcard.ext:hover{background:var(--ipp-amber);color:var(--ipp-white)}
+
+    /* ── SUONI SPECIALI ── */
+    .suoni-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:.7rem;margin-top:1rem}
+    .sgcard{background:var(--ipp-cream);border-radius:10px;padding:.9rem 1rem;border-left:4px solid var(--ipp-teal)}
+    .sg-combo{font-family:var(--ipp-font-head);font-size:1.3rem;font-weight:700;color:var(--ipp-teal);display:block}
+    .sg-sound{font-size:.78rem;color:var(--ipp-green);font-weight:700;display:block;margin-top:.1rem}
+    .sg-ex{font-size:.76rem;color:#666;font-style:italic;display:block;margin-top:.3rem;line-height:1.5}
+
+    /* ── TABLES ── */
+    table{width:100%;border-collapse:collapse;margin-top:.8rem}
+    th{background:var(--ipp-green);color:var(--ipp-white);padding:.7rem 1rem;text-align:left;font-weight:600;font-size:.88rem}
+    td{padding:.72rem 1rem;border-bottom:1px solid var(--ipp-cream);font-size:.94rem}
+    tr:nth-child(even) td{background:#fafaf8}
+    .pron{color:var(--ipp-teal);font-style:italic;font-weight:500}
+    .vform{font-weight:700;color:var(--ipp-green);font-size:1.05rem}
+    .trans{color:#777;font-size:.86rem}
+
+    /* ── SALUTI ── */
+    .saluti{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:1rem}
+    .scard{border-radius:12px;padding:1.1rem;transition:transform .2s}
+    .scard:hover{transform:translateY(-3px)}
+    .scard.g-formal{background:#e8f2ed;border-top:4px solid var(--ipp-green)}
+    .scard.g-inf{background:#fdf8ec;border-top:4px solid var(--ipp-amber)}
+    .scard.g-both{background:#e8f2f7;border-top:4px solid var(--ipp-teal)}
+    .scard.g-bye{background:#fdecea;border-top:4px solid var(--ipp-red)}
+    .sit{font-family:var(--ipp-font-head);font-size:1.15rem;font-weight:700;display:block;color:var(--ipp-black)}
+    .str{font-size:.82rem;color:#555;margin-top:.3rem;display:block}
+    .swhen{font-size:.72rem;color:#888;margin-top:.2rem;font-style:italic;display:block}
+    .stag{display:inline-block;font-size:.67rem;font-weight:700;padding:.15rem .5rem;border-radius:10px;margin-top:.5rem;text-transform:uppercase;letter-spacing:.5px}
+    .stag.f{background:var(--ipp-green);color:var(--ipp-white)}
+    .stag.i{background:var(--ipp-amber);color:var(--ipp-white)}
+    .stag.b{background:var(--ipp-teal);color:var(--ipp-white)}
+    .stag.r{background:var(--ipp-red);color:var(--ipp-white)}
+
+    /* ── FRASI ── */
+    .frasi-list{list-style:none}
+    .fi{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;padding:.85rem 1rem;border-radius:10px;margin-bottom:.5rem;background:var(--ipp-cream);align-items:start}
+    .fit{font-weight:600;color:var(--ipp-green);font-size:.95rem}
+    .fes{color:#555;font-size:.87rem}
+
+    /* ── NUMERI ── */
+    .ngrid{display:grid;grid-template-columns:repeat(6,1fr);gap:.45rem}
+    @media(max-width:520px){.ngrid{grid-template-columns:repeat(4,1fr)}}
+    .nc{background:var(--ipp-cream);border-radius:8px;padding:.65rem .3rem;text-align:center;transition:all .2s;cursor:default}
+    .nc:hover{background:var(--ipp-green);color:var(--ipp-white);transform:scale(1.05)}
+    .nd{font-family:var(--ipp-font-head);font-size:1.2rem;font-weight:700;display:block}
+    .nw{font-size:.68rem;display:block;margin-top:2px}
+
+    /* ── NOTAS ── */
+    .nota{background:#fefaee;border-left:4px solid var(--ipp-gold);border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin-top:1rem;font-size:.9rem;line-height:1.7}
+    .nota strong{color:var(--ipp-green)}
+    .nota.danger{background:#fef3f2;border-left-color:var(--ipp-red)}
+    .nota.danger strong{color:var(--ipp-red)}
+    .nota.info{background:#e8f2f7;border-left-color:var(--ipp-teal)}
+    .nota.info strong{color:var(--ipp-teal)}
+    .nota.green{background:#e8f2ed;border-left-color:var(--ipp-green)}
+    .nota.green strong{color:var(--ipp-green)}
+
+    /* ── DIALOGO ── */
+    .dialogo{background:var(--ipp-cream);border-radius:12px;padding:1.4rem;margin-top:.8rem}
+    .d-line{margin:.5rem 0;line-height:1.6}
+    .d-line .spk{font-weight:700;color:var(--ipp-green)}
+    .d-line .it{font-style:italic}
+    .d-line .es{font-size:.82rem;color:#888;margin-left:1.5rem;display:block}
+
+    /* ── TAGS ── */
+    .tag{display:inline-block;background:var(--ipp-gold);color:var(--ipp-black);border-radius:4px;padding:.1rem .5rem;font-size:.76rem;font-weight:600;margin-left:.3rem;vertical-align:middle}
+
+    footer{text-align:center;padding:2.5rem;color:#888;font-size:.85rem;background:var(--ipp-white);margin-top:1rem}
+    footer strong{color:var(--ipp-green);font-family:var(--ipp-font-head)}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Semana 1 · Módulo 0</div>
+  <h1>Come ti chiami? 🇮🇹</h1>
+  <p>Alfabeto · Pronunciación · Presentación · Saludos · Números 1–30</p>
+</header>
+
+<nav>
+  <a class="pill" href="#alfa">🔤 Alfabeto</a>
+  <a class="pill" href="#suoni">🎵 Pronunciación</a>
+  <a class="pill" href="#chiam">📝 Chiamarsi</a>
+  <a class="pill" href="#sal">👋 Saluti</a>
+  <a class="pill" href="#frasi">💬 Frasi utili</a>
+  <a class="pill" href="#num">🔢 Numeri 1–30</a>
+</nav>
+
+<main>
+
+  <!-- 1. ALFABETO -->
+  <section class="sec" id="alfa">
+    <div class="sec-header">
+      <span class="sec-icon">🔤</span>
+      <h2 class="sec-title">L'alfabeto italiano</h2>
+    </div>
+    <p class="intro">El italiano tiene <strong>21 letras nativas</strong> + <strong>5 extranjeras</strong> <span class="tag">borde naranja</span>. Cada tarjeta muestra la letra, su nombre en italiano y una palabra de ejemplo.</p>
+
+    <div class="alpha-grid">
+      <div class="lcard"><span class="L">A</span><span class="N">a</span><span class="ex">amore</span></div>
+      <div class="lcard"><span class="L">B</span><span class="N">bi</span><span class="ex">bello</span></div>
+      <div class="lcard"><span class="L">C</span><span class="N">ci</span><span class="ex">casa</span></div>
+      <div class="lcard"><span class="L">D</span><span class="N">di</span><span class="ex">donna</span></div>
+      <div class="lcard"><span class="L">E</span><span class="N">e</span><span class="ex">estate</span></div>
+      <div class="lcard"><span class="L">F</span><span class="N">effe</span><span class="ex">fiore</span></div>
+      <div class="lcard"><span class="L">G</span><span class="N">gi</span><span class="ex">gatto</span></div>
+      <div class="lcard"><span class="L">H</span><span class="N">acca</span><span class="ex">hotel</span></div>
+      <div class="lcard"><span class="L">I</span><span class="N">i</span><span class="ex">italia</span></div>
+      <div class="lcard"><span class="L">L</span><span class="N">elle</span><span class="ex">luna</span></div>
+      <div class="lcard"><span class="L">M</span><span class="N">emme</span><span class="ex">mare</span></div>
+      <div class="lcard"><span class="L">N</span><span class="N">enne</span><span class="ex">notte</span></div>
+      <div class="lcard"><span class="L">O</span><span class="N">o</span><span class="ex">ora</span></div>
+      <div class="lcard"><span class="L">P</span><span class="N">pi</span><span class="ex">pasta</span></div>
+      <div class="lcard"><span class="L">Q</span><span class="N">qu</span><span class="ex">quattro</span></div>
+      <div class="lcard"><span class="L">R</span><span class="N">erre</span><span class="ex">Roma</span></div>
+      <div class="lcard"><span class="L">S</span><span class="N">esse</span><span class="ex">sole</span></div>
+      <div class="lcard"><span class="L">T</span><span class="N">ti</span><span class="ex">treno</span></div>
+      <div class="lcard"><span class="L">U</span><span class="N">u</span><span class="ex">uva</span></div>
+      <div class="lcard"><span class="L">V</span><span class="N">vu / vi</span><span class="ex">vino</span></div>
+      <div class="lcard"><span class="L">Z</span><span class="N">zeta</span><span class="ex">zero</span></div>
+      <div class="lcard ext"><span class="L">J</span><span class="N">i lunga</span><span class="ex">jeans</span></div>
+      <div class="lcard ext"><span class="L">K</span><span class="N">kappa</span><span class="ex">karatè</span></div>
+      <div class="lcard ext"><span class="L">W</span><span class="N">doppia vu</span><span class="ex">web</span></div>
+      <div class="lcard ext"><span class="L">X</span><span class="N">ics</span><span class="ex">taxi</span></div>
+      <div class="lcard ext"><span class="L">Y</span><span class="N">ipsilon</span><span class="ex">yogurt</span></div>
+    </div>
+
+    <div class="nota">
+      <strong>⚠️ La H es siempre muda:</strong> "hotel" se lee /otel/, nunca se aspira como en español. Solo aparece para marcar sonidos duros (ver sección de pronunciación).<br>
+      <strong>💡 Letras extranjeras:</strong> J, K, W, X, Y solo se usan en préstamos del inglés, francés o japonés.
+    </div>
+  </section>
+
+  <!-- 2. SUONI SPECIALI -->
+  <section class="sec" id="suoni">
+    <div class="sec-header">
+      <span class="sec-icon">🎵</span>
+      <h2 class="sec-title">Suoni speciali — Pronunciación clave</h2>
+    </div>
+    <p class="intro">En italiano, ciertas <strong>combinaciones de letras</strong> cambian radicalmente de sonido. Dominar estas reglas te permite leer cualquier palabra italiana correctamente.</p>
+
+    <div class="suoni-grid">
+      <div class="sgcard">
+        <span class="sg-combo">C + e / i</span>
+        <span class="sg-sound">Sonido /ch/ (como "chico")</span>
+        <span class="sg-ex">cena → /chéna/ (cena)<br>città → /chittà/ (ciudad)<br>cinema → /chínema/</span>
+      </div>
+      <div class="sgcard">
+        <span class="sg-combo">C + a / o / u</span>
+        <span class="sg-sound">Sonido /k/ (como "casa")</span>
+        <span class="sg-ex">casa → /káza/<br>corpo → /kórpo/ (cuerpo)<br>cura → /kúra/ (cura)</span>
+      </div>
+      <div class="sgcard">
+        <span class="sg-combo">CH + e / i</span>
+        <span class="sg-sound">Sonido /k/ duro (H = escudo)</span>
+        <span class="sg-ex">che → /ke/ (que)<br>chi → /ki/ (quién)<br>mi chiamo → /mi kiámo/</span>
+      </div>
+      <div class="sgcard">
+        <span class="sg-combo">G + e / i</span>
+        <span class="sg-sound">Sonido suave /dj/ (como "joy")</span>
+        <span class="sg-ex">gente → /djénte/ (gente)<br>giorno → /djórno/ (día)<br>gelato → /djéláto/</span>
+      </div>
+      <div class="sgcard">
+        <span class="sg-combo">G + a / o / u</span>
+        <span class="sg-sound">Sonido /g/ duro (como "gato")</span>
+        <span class="sg-ex">gatto → /gátto/ (gato)<br>gusto → /gústo/<br>gondola → /góndola/</span>
+      </div>
+      <div class="sgcard">
+        <span class="sg-combo">GH + e / i</span>
+        <span class="sg-sound">Sonido /g/ duro (H = escudo)</span>
+        <span class="sg-ex">ghetto → /guétto/<br>spaghetti → /spaguétti/<br>laghi → /lági/ (lagos)</span>
+      </div>
+      <div class="sgcard">
+        <span class="sg-combo">GN</span>
+        <span class="sg-sound">Sonido /ñ/ (como "ñoño")</span>
+        <span class="sg-ex">gnocchi → /ñókki/<br>bagno → /báño/ (baño)<br>signore → /siñóre/</span>
+      </div>
+      <div class="sgcard">
+        <span class="sg-combo">GL + i</span>
+        <span class="sg-sound">Sonido /lj/ (como "llegar")</span>
+        <span class="sg-ex">gli → /lji/ (los)<br>figlio → /fíljo/ (hijo)<br>famiglia → /famíllja/</span>
+      </div>
+      <div class="sgcard">
+        <span class="sg-combo">SC + e / i</span>
+        <span class="sg-sound">Sonido /sh/ (como "show")</span>
+        <span class="sg-ex">scena → /shéna/ (escena)<br>pesce → /péshe/ (pez)<br>sci → /shi/ (esquí)</span>
+      </div>
+      <div class="sgcard">
+        <span class="sg-combo">Z / ZZ</span>
+        <span class="sg-sound">/ts/ o /dz/ según posición</span>
+        <span class="sg-ex">pizza → /píttsa/<br>zero → /dzéro/<br>grazie → /grátsje/</span>
+      </div>
+    </div>
+
+    <div class="nota info" style="margin-top:1rem">
+      <strong>💡 La regla de la H "escudo":</strong><br>
+      La H actúa como escudo que <em>endurece</em> la C y la G cuando van seguidas de E o I:<br>
+      • CI = /chi/ &nbsp;→&nbsp; CHI = /ki/ &nbsp;&nbsp;|&nbsp;&nbsp; GI = /dji/ &nbsp;→&nbsp; GHI = /gi/<br>
+      <strong>Ejemplos:</strong> ciao /cháo/ · chiesa /kiéza/ (iglesia) · giù /djú/ (abajo) · ghiro /gíro/ (lirón)
+    </div>
+    <div class="nota danger" style="margin-top:.8rem">
+      <strong>❌ Errores frecuentes de hispanohablantes:</strong><br>
+      • Pronunciar la C de "ciao" como /k/ → ❌ /kiao/ &nbsp;&nbsp; ✅ /cháo/<br>
+      • Pronunciar la G de "gelato" como en español → ❌ /xeláto/ &nbsp;&nbsp; ✅ /djeláto/<br>
+      • Pronunciar la H → la H italiana NUNCA se pronuncia
+    </div>
+  </section>
+
+  <!-- 3. CHIAMARSI -->
+  <section class="sec" id="chiam">
+    <div class="sec-header">
+      <span class="sec-icon">📝</span>
+      <h2 class="sec-title">Il verbo CHIAMARSI — presentarse</h2>
+    </div>
+    <p class="intro"><em>Chiamarsi</em> = "llamarse". Es un verbo <strong>reflexivo</strong>: el pronombre reflexivo (mi, ti, si, ci, vi…) va <strong>siempre antes</strong> del verbo conjugado. Observa el patrón completo:</p>
+
+    <table>
+      <thead>
+        <tr><th>Pronombre</th><th>Reflexivo + Verbo</th><th>Ejemplo completo</th><th>Traducción</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="pron">io</td><td><span class="vform">mi chiamo</span></td><td>Mi chiamo Marco.</td><td class="trans">Me llamo Marco.</td></tr>
+        <tr><td class="pron">tu</td><td><span class="vform">ti chiami</span></td><td>Come ti chiami?</td><td class="trans">¿Cómo te llamas?</td></tr>
+        <tr><td class="pron">lui / lei</td><td><span class="vform">si chiama</span></td><td>Si chiama Giulia.</td><td class="trans">Se llama Giulia.</td></tr>
+        <tr><td class="pron">noi</td><td><span class="vform">ci chiamiamo</span></td><td>Ci chiamiamo Luca e Anna.</td><td class="trans">Nos llamamos Luca y Anna.</td></tr>
+        <tr><td class="pron">voi</td><td><span class="vform">vi chiamate</span></td><td>Come vi chiamate?</td><td class="trans">¿Cómo os llamáis?</td></tr>
+        <tr><td class="pron">loro</td><td><span class="vform">si chiamano</span></td><td>Si chiamano Paolo e Sara.</td><td class="trans">Se llaman Paolo y Sara.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="nota info" style="margin-top:1rem">
+      <strong>🎩 Formal (Lei) vs Informal (tu):</strong><br>
+      Con amigos/familia: <em>Come <strong>ti chiami</strong>?</em> → tú informal<br>
+      Con desconocidos/profesores/jefes: <em>Come <strong>si chiama</strong> Lei?</em> → usted formal (Lei siempre con mayúscula)<br>
+      Respuesta formal: <em>Mi chiamo Professoressa Bianchi. Piacere.</em>
+    </div>
+
+    <div class="nota" style="margin-top:.8rem">
+      <strong>💬 Vocabulario de presentación:</strong><br>
+      <em>Piacere!</em> = ¡Encantado/a! &nbsp;|&nbsp; <em>Piacere mio!</em> = ¡El placer es mío!<br>
+      <em>Molto lieto/a!</em> = ¡Mucho gusto! (formal) &nbsp;|&nbsp; <em>E tu?</em> = ¿Y tú? &nbsp;|&nbsp; <em>E Lei?</em> = ¿Y usted?
+    </div>
+
+    <p style="font-weight:700;color:var(--ipp-green);margin:1.2rem 0 .4rem;font-family:var(--ipp-font-head)">Diálogos modelo:</p>
+    <div class="dialogo">
+      <p style="font-size:.8rem;color:var(--ipp-teal);font-weight:600;margin-bottom:.5rem">INFORMAL — entre compañeros de clase</p>
+      <div class="d-line"><span class="spk">Luca:</span> <span class="it">Ciao! Come ti chiami?</span><span class="es">¡Hola! ¿Cómo te llamas?</span></div>
+      <div class="d-line"><span class="spk">Anna:</span> <span class="it">Mi chiamo Anna. E tu?</span><span class="es">Me llamo Anna. ¿Y tú?</span></div>
+      <div class="d-line"><span class="spk">Luca:</span> <span class="it">Io mi chiamo Luca. Piacere, Anna!</span><span class="es">Yo me llamo Luca. ¡Encantado, Anna!</span></div>
+      <div class="d-line"><span class="spk">Anna:</span> <span class="it">Piacere mio, Luca!</span><span class="es">¡El placer es mío, Luca!</span></div>
+    </div>
+    <div class="dialogo" style="margin-top:.6rem">
+      <p style="font-size:.8rem;color:var(--ipp-teal);font-weight:600;margin-bottom:.5rem">FORMAL — estudiante con profesora</p>
+      <div class="d-line"><span class="spk">Studente:</span> <span class="it">Buongiorno! Come si chiama, scusi?</span><span class="es">¡Buenos días! ¿Cómo se llama, disculpe?</span></div>
+      <div class="d-line"><span class="spk">Prof.ssa:</span> <span class="it">Buongiorno! Mi chiamo Professoressa Ricci.</span><span class="es">¡Buenos días! Me llamo profesora Ricci.</span></div>
+      <div class="d-line"><span class="spk">Studente:</span> <span class="it">Molto lieto, professoressa!</span><span class="es">¡Mucho gusto, profesora!</span></div>
+    </div>
+
+    <div class="nota danger" style="margin-top:1rem">
+      <strong>❌ Error muy común:</strong><br>
+      ❌ <em>Io sono chiamato Marco.</em> — Esta forma NO existe en italiano moderno.<br>
+      ✅ <em>Mi chiamo Marco.</em> — Única forma correcta para decir el nombre.<br>
+      ❌ <em>Come tu ti chiami?</em> — El pronombre sujeto rara vez se usa con reflexivos.<br>
+      ✅ <em>Come ti chiami?</em> — Forma natural y correcta.
+    </div>
+  </section>
+
+  <!-- 4. SALUTI -->
+  <section class="sec" id="sal">
+    <div class="sec-header">
+      <span class="sec-icon">👋</span>
+      <h2 class="sec-title">I saluti — Los saludos</h2>
+    </div>
+    <p class="intro">Los saludos italianos dependen de <strong>la hora del día</strong> y del <strong>nivel de confianza</strong>. Elegir el saludo equivocado puede resultar irrespetuoso o demasiado informal.</p>
+
+    <div class="saluti">
+      <div class="scard g-formal">
+        <span class="sit">Buongiorno</span>
+        <span class="str">Buenos días / Buenas tardes</span>
+        <span class="swhen">☀️ Hasta las ~13h</span>
+        <span class="stag f">Formal</span><span class="stag b" style="margin-left:.3rem">Informal</span>
+      </div>
+      <div class="scard g-formal">
+        <span class="sit">Buon pomeriggio</span>
+        <span class="str">Buenas tardes (mediodía)</span>
+        <span class="swhen">🌤️ De ~13h a ~17h</span>
+        <span class="stag f">Formal</span>
+      </div>
+      <div class="scard g-formal">
+        <span class="sit">Buonasera</span>
+        <span class="str">Buenas tardes / noches</span>
+        <span class="swhen">🌆 Desde las ~17h</span>
+        <span class="stag f">Formal</span><span class="stag b" style="margin-left:.3rem">Informal</span>
+      </div>
+      <div class="scard g-formal">
+        <span class="sit">Buonanotte</span>
+        <span class="str">Buenas noches</span>
+        <span class="swhen">🌙 Solo al despedirse para dormir</span>
+        <span class="stag r">Solo despedida</span>
+      </div>
+      <div class="scard g-inf">
+        <span class="sit">Ciao!</span>
+        <span class="str">¡Hola! y también ¡Chau!</span>
+        <span class="swhen">🤝 Saludo Y despedida</span>
+        <span class="stag i">Solo informal</span>
+      </div>
+      <div class="scard g-both">
+        <span class="sit">Salve</span>
+        <span class="str">Hola (neutro, seguro)</span>
+        <span class="swhen">😊 Cuando no sabes si tutear</span>
+        <span class="stag b">Formal + informal</span>
+      </div>
+      <div class="scard g-bye">
+        <span class="sit">Arrivederci</span>
+        <span class="str">Hasta luego / Adiós</span>
+        <span class="swhen">🎩 Despedida formal</span>
+        <span class="stag f">Formal</span>
+      </div>
+      <div class="scard g-bye">
+        <span class="sit">A presto!</span>
+        <span class="str">¡Hasta pronto!</span>
+        <span class="swhen">👋 Cuando te verás pronto</span>
+        <span class="stag i">Informal</span>
+      </div>
+      <div class="scard g-bye">
+        <span class="sit">Ci vediamo!</span>
+        <span class="str">¡Nos vemos!</span>
+        <span class="swhen">😄 Despedida cercana</span>
+        <span class="stag i">Informal</span>
+      </div>
+      <div class="scard g-bye">
+        <span class="sit">A domani!</span>
+        <span class="str">¡Hasta mañana!</span>
+        <span class="swhen">📅 Cuando te verás mañana</span>
+        <span class="stag i">Informal</span>
+      </div>
+    </div>
+
+    <div class="nota" style="margin-top:1.2rem">
+      <strong>💬 Cómo preguntar "¿cómo estás?":</strong><br>
+      Informal: <em>Come stai?</em> &nbsp;|&nbsp; Formal: <em>Come sta (Lei)?</em><br>
+      Respuestas: <em>Bene!</em> (bien) &nbsp;·&nbsp; <em>Molto bene!</em> (muy bien) &nbsp;·&nbsp; <em>Benissimo!</em> (genial) &nbsp;·&nbsp; <em>Così così.</em> (más o menos) &nbsp;·&nbsp; <em>Non c'è male.</em> (no está mal) &nbsp;·&nbsp; <em>Male.</em> (mal)
+    </div>
+
+    <div class="nota danger" style="margin-top:.8rem">
+      <strong>❌ Trampas comunes:</strong><br>
+      • <strong>Ciao</strong> con el profesor o un desconocido → es descortés. Usa <em>Buongiorno</em> o <em>Salve</em>.<br>
+      • <strong>Buonanotte</strong> NO se usa para saludar al llegar → solo se dice al acostarse.<br>
+      • <strong>Arrivederla</strong> existe y es más formal que <em>Arrivederci</em> (usado con autoridades).
+    </div>
+
+    <div class="dialogo" style="margin-top:1rem">
+      <p style="font-size:.8rem;color:var(--ipp-teal);font-weight:600;margin-bottom:.5rem">💬 En clase — situación real</p>
+      <div class="d-line"><span class="spk">Studente:</span> <span class="it">Buongiorno, professoressa!</span><span class="es">¡Buenos días, profesora!</span></div>
+      <div class="d-line"><span class="spk">Prof.ssa:</span> <span class="it">Buongiorno! Come stai, Marco?</span><span class="es">¡Buenos días! ¿Cómo estás, Marco?</span></div>
+      <div class="d-line"><span class="spk">Studente:</span> <span class="it">Sto bene, grazie! E Lei, come sta?</span><span class="es">Estoy bien, ¡gracias! ¿Y usted, cómo está?</span></div>
+      <div class="d-line"><span class="spk">Prof.ssa:</span> <span class="it">Benissimo, grazie! Cominciamo?</span><span class="es">¡Muy bien, gracias! ¿Empezamos?</span></div>
+    </div>
+  </section>
+
+  <!-- 5. FRASI UTILI -->
+  <section class="sec" id="frasi">
+    <div class="sec-header">
+      <span class="sec-icon">💬</span>
+      <h2 class="sec-title">Frasi utili in classe — Frases de supervivencia</h2>
+    </div>
+    <p class="intro">Estas frases son tu <strong>kit de supervivencia</strong> en clase. Apréndalas de memoria y úsalas desde el primer día: cuanto más italiano hables, más rápido avanzarás.</p>
+
+    <ul class="frasi-list">
+      <li class="fi"><span class="fit">Come si dice "___ " in italiano?</span><span class="fes">¿Cómo se dice "___ " en italiano?</span></li>
+      <li class="fi"><span class="fit">Cosa vuol dire "___"?</span><span class="fes">¿Qué significa "___"?</span></li>
+      <li class="fi"><span class="fit">Come si scrive?</span><span class="fes">¿Cómo se escribe?</span></li>
+      <li class="fi"><span class="fit">Come si pronuncia?</span><span class="fes">¿Cómo se pronuncia?</span></li>
+      <li class="fi"><span class="fit">Ho capito.</span><span class="fes">He entendido. / Ya entendí.</span></li>
+      <li class="fi"><span class="fit">Non capisco. / Non ho capito.</span><span class="fes">No entiendo. / No he entendido.</span></li>
+      <li class="fi"><span class="fit">Può ripetere, per favore?</span><span class="fes">¿Puede repetir, por favor? (formal)</span></li>
+      <li class="fi"><span class="fit">Puoi ripetere, per favore?</span><span class="fes">¿Puedes repetir, por favor? (informal)</span></li>
+      <li class="fi"><span class="fit">Più lentamente, per favore.</span><span class="fes">Más despacio, por favor.</span></li>
+      <li class="fi"><span class="fit">Può parlare più forte?</span><span class="fes">¿Puede hablar más alto?</span></li>
+      <li class="fi"><span class="fit">Scusi / Scusa</span><span class="fes">Disculpe (formal) / Disculpa (informal)</span></li>
+      <li class="fi"><span class="fit">Grazie! — Prego!</span><span class="fes">¡Gracias! — ¡De nada!</span></li>
+      <li class="fi"><span class="fit">Posso andare in bagno?</span><span class="fes">¿Puedo ir al baño?</span></li>
+      <li class="fi"><span class="fit">Ho una domanda.</span><span class="fes">Tengo una pregunta.</span></li>
+      <li class="fi"><span class="fit">Non so. / Non lo so.</span><span class="fes">No sé. / No lo sé.</span></li>
+    </ul>
+
+    <div class="nota green">
+      <strong>💡 Consejo pedagógico:</strong><br>
+      Usa <em>Può ripetere?</em> con la profesora (formal) y <em>Puoi ripetere?</em> con tus compañeros (informal). ¡No mezcles las formas! La distinción formal/informal (Lei/tu) es fundamental en la cultura italiana.
+    </div>
+  </section>
+
+  <!-- 6. NUMERI -->
+  <section class="sec" id="num">
+    <div class="sec-header">
+      <span class="sec-icon">🔢</span>
+      <h2 class="sec-title">I numeri da 1 a 30</h2>
+    </div>
+    <p class="intro">Pasa el cursor sobre cada número para resaltarlo. Practica contando en voz alta: la pronunciación en italiano es bastante regular una vez memorizas las reglas.</p>
+
+    <div class="ngrid">
+      <div class="nc"><span class="nd">1</span><span class="nw">uno</span></div>
+      <div class="nc"><span class="nd">2</span><span class="nw">due</span></div>
+      <div class="nc"><span class="nd">3</span><span class="nw">tre</span></div>
+      <div class="nc"><span class="nd">4</span><span class="nw">quattro</span></div>
+      <div class="nc"><span class="nd">5</span><span class="nw">cinque</span></div>
+      <div class="nc"><span class="nd">6</span><span class="nw">sei</span></div>
+      <div class="nc"><span class="nd">7</span><span class="nw">sette</span></div>
+      <div class="nc"><span class="nd">8</span><span class="nw">otto</span></div>
+      <div class="nc"><span class="nd">9</span><span class="nw">nove</span></div>
+      <div class="nc"><span class="nd">10</span><span class="nw">dieci</span></div>
+      <div class="nc"><span class="nd">11</span><span class="nw">undici</span></div>
+      <div class="nc"><span class="nd">12</span><span class="nw">dodici</span></div>
+      <div class="nc"><span class="nd">13</span><span class="nw">tredici</span></div>
+      <div class="nc"><span class="nd">14</span><span class="nw">quattordici</span></div>
+      <div class="nc"><span class="nd">15</span><span class="nw">quindici</span></div>
+      <div class="nc"><span class="nd">16</span><span class="nw">sedici</span></div>
+      <div class="nc"><span class="nd">17</span><span class="nw">diciassette</span></div>
+      <div class="nc"><span class="nd">18</span><span class="nw">diciotto</span></div>
+      <div class="nc"><span class="nd">19</span><span class="nw">diciannove</span></div>
+      <div class="nc"><span class="nd">20</span><span class="nw">venti</span></div>
+      <div class="nc"><span class="nd">21</span><span class="nw">ventuno</span></div>
+      <div class="nc"><span class="nd">22</span><span class="nw">ventidue</span></div>
+      <div class="nc"><span class="nd">23</span><span class="nw">ventitré</span></div>
+      <div class="nc"><span class="nd">24</span><span class="nw">ventiquattro</span></div>
+      <div class="nc"><span class="nd">25</span><span class="nw">venticinque</span></div>
+      <div class="nc"><span class="nd">26</span><span class="nw">ventisei</span></div>
+      <div class="nc"><span class="nd">27</span><span class="nw">ventisette</span></div>
+      <div class="nc"><span class="nd">28</span><span class="nw">ventotto</span></div>
+      <div class="nc"><span class="nd">29</span><span class="nw">ventinove</span></div>
+      <div class="nc"><span class="nd">30</span><span class="nw">trenta</span></div>
+    </div>
+
+    <div class="nota" style="margin-top:1rem">
+      <strong>📌 3 reglas de oro de los compuestos (venti + …):</strong><br>
+      1. <strong>Antes de UNO u OTTO cae la vocal final:</strong><br>
+      &nbsp;&nbsp;vent<s>i</s> + uno = <em>ventuno</em> &nbsp;·&nbsp; vent<s>i</s> + otto = <em>ventotto</em><br>
+      2. <strong>Los números con -3 llevan acento:</strong><br>
+      &nbsp;&nbsp;<em>ventitré</em> · <em>trentatré</em> · <em>quarantatré</em> …<br>
+      3. <strong>El número 3 solo NO lleva acento:</strong><br>
+      &nbsp;&nbsp;<em>tre</em> (sin acento) · solo en compuestos: <em>ventitré</em>
+    </div>
+
+    <div class="nota info" style="margin-top:.8rem">
+      <strong>🔢 ¿Para qué usamos ya estos números?</strong><br>
+      • Dar tu número de teléfono: <em>Il mio numero è: tre, tre, quattro, uno, due...</em><br>
+      • Decir la hora: <em>Sono le dieci.</em> (Son las diez.)<br>
+      • Decir tu edad (con AVERE): <em>Ho ventidue anni.</em> (Tengo 22 años.) — Lo veremos en Semana 3.<br>
+      • Contar: <em>Ho due fratelli e tre sorelle.</em> (Tengo dos hermanos y tres hermanas.)
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Italiano Per Piacere</strong> · A1 · Semana 1 🇮🇹</p>
+</footer>
+</body>
+</html>

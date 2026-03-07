@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semana 2 · Quiz</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f0f23;color:#fff;min-height:100vh;display:flex;flex-direction:column}
+    header{background:linear-gradient(135deg,#0D47A1,#1565C0);padding:1.5rem 2rem;text-align:center}
+    header .badge{display:inline-block;background:rgba(255,255,255,.2);padding:.25rem .9rem;border-radius:20px;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.4rem}
+    header h1{font-size:1.8rem;font-weight:700}
+    .quiz-container{max-width:680px;margin:2rem auto;padding:0 1rem;flex:1;width:100%}
+    .progress-bar{background:#1e1e3a;border-radius:10px;height:8px;margin-bottom:1.5rem;overflow:hidden}
+    .progress-fill{background:linear-gradient(90deg,#64B5F6,#1565C0);height:100%;border-radius:10px;transition:width .4s}
+    .q-card{background:#1a1a3e;border-radius:16px;padding:2rem;margin-bottom:1rem;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+    .q-number{color:#64B5F6;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:.8rem}
+    .q-text{font-size:1.15rem;font-weight:600;line-height:1.5;margin-bottom:1.5rem}
+    .options{display:grid;gap:.7rem}
+    .opt{padding:.85rem 1.2rem;border-radius:10px;border:2px solid #2a2a5a;background:#12123a;cursor:pointer;font-size:.95rem;text-align:left;color:#fff;transition:all .2s;font-family:inherit}
+    .opt:hover:not(.disabled){border-color:#64B5F6;background:#1e2a5a;transform:translateX(4px)}
+    .opt.correct{border-color:#52b788;background:#1B5E20}
+    .opt.wrong{border-color:#C62828;background:#4a1010}
+    .opt.disabled{cursor:default}
+    .explanation{background:#12123a;border-left:4px solid #64B5F6;border-radius:0 8px 8px 0;padding:1rem;margin-top:.8rem;font-size:.9rem;display:none;color:#90CAF9}
+    .explanation.show{display:block}
+    .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+    .nav-btn{padding:.6rem 1.8rem;border-radius:20px;border:none;cursor:pointer;font-size:.95rem;font-weight:600;font-family:inherit;transition:all .2s}
+    .nav-btn.next{background:#1565C0;color:#fff}
+    .nav-btn.next:hover{background:#0D47A1}
+    .score-display{color:#64B5F6;font-size:.95rem;font-weight:600}
+    .result-screen{text-align:center;display:none;padding:2rem 0}
+    .result-screen.show{display:block}
+    .result-score{font-size:5rem;font-weight:700;color:#64B5F6;line-height:1}
+    .result-label{font-size:1.2rem;color:#aaa;margin:.5rem 0 1.5rem}
+    .result-msg{font-size:1.4rem;font-weight:600;margin-bottom:2rem}
+    .star{display:inline-block;font-size:3rem;margin:0 .2rem;opacity:.3;transition:opacity .5s}
+    .star.lit{opacity:1}
+    .restart-btn{padding:.8rem 2.5rem;border-radius:20px;border:none;cursor:pointer;font-size:1rem;font-weight:700;background:#1565C0;color:#fff;transition:all .2s;font-family:inherit}
+    .restart-btn:hover{background:#0D47A1;transform:scale(1.05)}
+    .result-bars{display:grid;gap:.5rem;margin:1.5rem 0;text-align:left}
+    .r-row{display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem}
+    .r-lbl{width:80px;font-size:.82rem;color:#aaa;flex-shrink:0}
+    .r-track{flex:1;background:#2a2a5a;border-radius:6px;height:10px;overflow:hidden;margin:0 .5rem}
+    .r-fill{height:100%;border-radius:6px;transition:width 1s}
+    .r-fill.g{background:#52b788}
+    .r-fill.r{background:#C62828}
+  </style>
+</head>
+<body>
+<header>
+  <div class="badge">Semana 2 · Quiz</div>
+  <h1>Di dove sei? 🗺️ Quiz</h1>
+</header>
+<div class="quiz-container">
+  <div class="progress-bar"><div class="progress-fill" id="pf" style="width:0%"></div></div>
+  <div id="qa"></div>
+  <div class="result-screen" id="rs">
+    <div class="result-score" id="rsc">0</div>
+    <div class="result-label">de 10 puntos</div>
+    <div id="stars"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div>
+    <div class="result-msg" id="rm"></div>
+    <div class="result-bars" id="rb"></div>
+    <button class="restart-btn" onclick="restart()">🔄 Volver a intentar</button>
+  </div>
+</div>
+<script>
+const questions=[
+  {q:'¿Cómo se dice "yo soy" en italiano?',opts:['io sono','io sei','io siamo','io è'],correct:0,exp:'"Io sono" = yo soy/estoy. ESSERE es un verbo muy irregular, ¡hay que memorizarlo!'},
+  {q:'¿Cuál es la forma correcta para "ellos van"?',opts:['loro va','loro vano','loro vanno','loro andate'],correct:2,exp:'"Loro vanno" = ellos van. Nota: vado, vai, va, andiamo, andate, vanno.'},
+  {q:'¿Cómo preguntas "¿De dónde eres?" de forma informal?',opts:['Di dov\'è Lei?','Di dove sei?','Dove vai?','Sei di dove?'],correct:1,exp:'"Di dove sei?" es la forma informal. "Di dov\'è Lei?" es la formal (con Lei mayúscula = usted).'},
+  {q:'¿Qué preposición usas para decir la procedencia de una ciudad?',opts:['in','a','di','da'],correct:2,exp:'"Sono DI Roma" = soy de Roma. DI indica origen/procedencia.'},
+  {q:'Completa: "Vado ___ Italia"',opts:['a','di','in','da'],correct:2,exp:'"Vado IN Italia". Con países y regiones se usa IN. Con ciudades se usa A: "Vado A Roma".'},
+  {q:'¿Cómo se dice "nosotros somos" en italiano?',opts:['noi siete','noi sono','noi sei','noi siamo'],correct:3,exp:'"Noi siamo" = nosotros somos. La terminación -iamo es característica de la primera persona plural.'},
+  {q:'¿Qué ciudad italiana es la capital de la Toscana?',opts:['Roma','Napoli','Firenze','Milano'],correct:2,exp:'Firenze (Florencia) es la capital de la Toscana. ¡Famosa por el Renacimiento y los Uffizi!'},
+  {q:'¿Cómo se dice "¿A dónde vas?" en italiano?',opts:['Di dove sei?','Come vai?','Dove vai?','Vai dove?'],correct:2,exp:'"Dove vai?" = ¿A dónde vas? "Dove" = dónde/a dónde.'},
+  {q:'Elige la forma correcta: "Tu ___ in vacanza?"',opts:['vado','va','vai','andate'],correct:2,exp:'"Tu vai in vacanza?" = ¿Tú vas de vacaciones? Para "tu" la forma es "vai".'},
+  {q:'¿Qué significa "Sono spagnola"?',opts:['Voy a España','Soy española (mujer)','Estoy en España','Somos españoles'],correct:1,exp:'"Sono spagnola" = Soy española. Nota el femenino: spagnolo (m) → spagnola (f).'}
+];
+let cur=0,score=0,answered=false;
+function render(){
+  if(cur>=questions.length){showResult();return;}
+  const q=questions[cur];
+  document.getElementById('pf').style.width=(cur/questions.length*100)+'%';
+  answered=false;
+  document.getElementById('qa').innerHTML=`
+    <div class="q-card">
+      <div class="q-number">Pregunta ${cur+1} de ${questions.length}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options" id="opts">${q.opts.map((o,i)=>`<button class="opt" onclick="answer(${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}</div>
+      <div class="explanation" id="exp">${q.exp}</div>
+    </div>
+    <div class="nav-row">
+      <div class="score-display">✅ ${score} correctas</div>
+      <button class="nav-btn next" onclick="next()" id="nb" style="display:none">Siguiente →</button>
+    </div>`;
+}
+function answer(i){
+  if(answered)return;
+  answered=true;
+  const q=questions[cur];
+  document.querySelectorAll('.opt').forEach(o=>o.classList.add('disabled'));
+  document.querySelectorAll('.opt')[i].classList.add(i===q.correct?'correct':'wrong');
+  if(i!==q.correct)document.querySelectorAll('.opt')[q.correct].classList.add('correct');
+  else score++;
+  document.getElementById('exp').classList.add('show');
+  document.getElementById('nb').style.display='inline-block';
+}
+function next(){cur++;render();}
+function showResult(){
+  document.getElementById('qa').style.display='none';
+  const rs=document.getElementById('rs');rs.className='result-screen show';
+  document.getElementById('rsc').textContent=score;
+  const msgs=['Riprova 💪','¡Sigue intentando! 📖','¡Bien! 👍','¡Molto bene! 🌟','¡Perfetto! 🏆'];
+  document.getElementById('rm').textContent=msgs[Math.min(Math.floor(score/2),4)];
+  const stars=document.querySelectorAll('.star');
+  const lit=Math.round(score/10*5);
+  setTimeout(()=>{stars.forEach((s,i)=>{if(i<lit)s.classList.add('lit');});},300);
+  document.getElementById('rb').innerHTML=`
+    <div class="r-row"><span class="r-lbl">Correctas</span><div class="r-track"><div class="r-fill g" id="bg" style="width:0%"></div></div><span style="color:#52b788;font-weight:700">${score}</span></div>
+    <div class="r-row"><span class="r-lbl">Incorrectas</span><div class="r-track"><div class="r-fill r" id="br" style="width:0%"></div></div><span style="color:#C62828;font-weight:700">${10-score}</span></div>`;
+  setTimeout(()=>{document.getElementById('bg').style.width=(score*10)+'%';document.getElementById('br').style.width=((10-score)*10)+'%';},400);
+}
+function restart(){cur=0;score=0;answered=false;document.getElementById('qa').style.display='block';document.getElementById('rs').className='result-screen';document.querySelectorAll('.star').forEach(s=>s.classList.remove('lit'));render();}
+render();
+</script>
+</body>
+</html>

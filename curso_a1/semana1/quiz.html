@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semana 1 · Quiz</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#1a1a2e;color:#fff;min-height:100vh;display:flex;flex-direction:column}
+    header{background:linear-gradient(135deg,#1B5E20,#2E7D32);padding:1.5rem 2rem;text-align:center}
+    header .badge{display:inline-block;background:rgba(255,255,255,.2);padding:.25rem .9rem;border-radius:20px;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.4rem}
+    header h1{font-size:1.8rem;font-weight:700}
+    .quiz-container{max-width:680px;margin:2rem auto;padding:0 1rem;flex:1;width:100%}
+    .progress-bar{background:#2d2d44;border-radius:10px;height:8px;margin-bottom:1.5rem;overflow:hidden}
+    .progress-fill{background:linear-gradient(90deg,#52b788,#2E7D32);height:100%;border-radius:10px;transition:width .4s}
+    .q-card{background:#16213e;border-radius:16px;padding:2rem;margin-bottom:1rem;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+    .q-number{color:#52b788;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:.8rem}
+    .q-text{font-size:1.15rem;font-weight:600;line-height:1.5;margin-bottom:1.5rem}
+    .options{display:grid;gap:.7rem}
+    .opt{padding:.85rem 1.2rem;border-radius:10px;border:2px solid #2d2d44;background:#0f3460;cursor:pointer;font-size:.95rem;text-align:left;color:#fff;transition:all .2s;font-family:inherit}
+    .opt:hover:not(.disabled){border-color:#52b788;background:#1a4a7a;transform:translateX(4px)}
+    .opt.correct{border-color:#52b788;background:#1B5E20}
+    .opt.wrong{border-color:#C62828;background:#4a1010}
+    .opt.disabled{cursor:default}
+    .explanation{background:#0f3460;border-left:4px solid #52b788;border-radius:0 8px 8px 0;padding:1rem;margin-top:.8rem;font-size:.9rem;display:none;color:#a8d8b9}
+    .explanation.show{display:block}
+    .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+    .nav-btn{padding:.6rem 1.8rem;border-radius:20px;border:none;cursor:pointer;font-size:.95rem;font-weight:600;transition:all .2s;font-family:inherit}
+    .nav-btn.next{background:#2E7D32;color:#fff}
+    .nav-btn.next:hover{background:#1B5E20}
+    .score-display{color:#52b788;font-size:.95rem;font-weight:600}
+    /* RESULTADO */
+    .result-screen{text-align:center;display:none;padding:2rem 0}
+    .result-screen.show{display:block}
+    .result-score{font-size:5rem;font-weight:700;color:#52b788;line-height:1}
+    .result-label{font-size:1.2rem;color:#aaa;margin:.5rem 0 1.5rem}
+    .result-msg{font-size:1.4rem;font-weight:600;margin-bottom:2rem}
+    .result-bars{display:grid;gap:.5rem;margin:1.5rem 0;text-align:left}
+    .r-bar-row{display:flex;align-items:center;gap.7rem}
+    .r-bar-label{width:80px;font-size:.82rem;color:#aaa;flex-shrink:0}
+    .r-bar-track{flex:1;background:#2d2d44;border-radius:6px;height:10px;overflow:hidden;margin:0 .5rem}
+    .r-bar-fill{height:100%;border-radius:6px;transition:width 1s}
+    .r-bar-fill.g{background:#52b788}
+    .r-bar-fill.r{background:#C62828}
+    .restart-btn{padding:.8rem 2.5rem;border-radius:20px;border:none;cursor:pointer;font-size:1rem;font-weight:700;background:#2E7D32;color:#fff;transition:all .2s;font-family:inherit}
+    .restart-btn:hover{background:#1B5E20;transform:scale(1.05)}
+    .timer{color:#52b788;font-size:.9rem;font-weight:600}
+    .star{display:inline-block;font-size:3rem;margin:0 .2rem;opacity:.3;transition:opacity .5s}
+    .star.lit{opacity:1}
+  </style>
+</head>
+<body>
+<header>
+  <div class="badge">Semana 1 · Quiz Final</div>
+  <h1>¿Cuánto aprendiste? 🎯</h1>
+</header>
+<div class="quiz-container">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <div id="quizArea"></div>
+  <div class="result-screen" id="resultScreen">
+    <div class="result-score" id="rScore">0</div>
+    <div class="result-label">de 10 puntos</div>
+    <div id="stars"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div>
+    <div class="result-msg" id="rMsg"></div>
+    <div class="result-bars" id="rBars"></div>
+    <button class="restart-btn" onclick="restart()">🔄 Volver a intentar</button>
+  </div>
+</div>
+
+<script>
+const questions = [
+  {q:'¿Cómo se dice el número 17 en italiano?',
+   opts:['diciassette','diecisiete','disette','settedici'],correct:0,
+   exp:'17 = diciassette. Recuerda: dieci + a + sette = diciassette.'},
+  {q:'¿Cuál es la forma correcta de "chiamarsi" para "tu"?',
+   opts:['mi chiamo','ti chiami','si chiama','chiamati'],correct:1,
+   exp:'Para "tu" → ti chiami. El pronombre reflexivo cambia con cada persona.'},
+  {q:'Son las 19:00h. ¿Qué saludo usas?',
+   opts:['Buongiorno','Buonanotte','Buonasera','Arrivederci'],correct:2,
+   exp:'Buonasera se usa desde aproximadamente las 17h hasta que te vas a dormir.'},
+  {q:'¿Cuántas letras nativas tiene el alfabeto italiano?',
+   opts:['26','23','21','24'],correct:2,
+   exp:'El italiano tiene 21 letras nativas + 5 extranjeras (J, K, W, X, Y) = 26 en total.'},
+  {q:'¿Cómo se escribe el número 23 en italiano?',
+   opts:['ventitre','ventitré','ventitrè','ventitres'],correct:1,
+   exp:'Ventitré → lleva acento agudo en la é. ¡No te olvides del acento!'},
+  {q:'"Non capisco" significa:',
+   opts:['No puedo','No quiero','No entiendo','No sé'],correct:2,
+   exp:'"Non capisco" = No entiendo. Úsala siempre que no entiendas algo en clase.'},
+  {q:'¿Cuál de estas NO es una frase útil en clase?',
+   opts:['Come si dice?','Più lentamente','Buonanotte','Cosa vuol dire?'],correct:2,
+   exp:'"Buonanotte" es un saludo nocturno, no una frase de clase. Las otras tres sí son útiles en el aula.'},
+  {q:'¿Cómo se dice "28" en italiano?',
+   opts:['ventotto','ventotto','ventiotto','ventio'],correct:2,
+   exp:'28 = ventotto... espera ¡Las dos primeras son iguales! La respuesta correcta es "ventotto" (sin la i de venti).'},
+  {q:'¿Qué letra del alfabeto italiano se llama "acca"?',
+   opts:['A','H','G','K'],correct:1,
+   exp:'H = acca en italiano. Es una letra "muta" (muda) – no se pronuncia casi nunca.'},
+  {q:'"Arrivederci" es:',
+   opts:['Un saludo de mañana','Una despedida formal','Un saludo informal','Una frase de clase'],correct:1,
+   exp:'"Arrivederci" = hasta luego (formal). Entre amigos se dice "ciao" o "a presto".'}
+];
+
+let current = 0, score = 0, answered = false;
+const wrongIds = [];
+
+function render() {
+  if (current >= questions.length) { showResult(); return; }
+  const q = questions[current];
+  document.getElementById('progressFill').style.width = (current / questions.length * 100) + '%';
+  answered = false;
+  document.getElementById('quizArea').innerHTML = `
+    <div class="q-card">
+      <div class="q-number">Pregunta ${current+1} de ${questions.length}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options" id="opts">
+        ${q.opts.map((o,i)=>`<button class="opt" onclick="answer(${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}
+      </div>
+      <div class="explanation" id="exp">${q.exp}</div>
+    </div>
+    <div class="nav-row">
+      <div class="score-display">✅ ${score} correctas</div>
+      <button class="nav-btn next" onclick="next()" id="nextBtn" style="display:none">Siguiente →</button>
+    </div>`;
+}
+
+function answer(i) {
+  if (answered) return;
+  answered = true;
+  const q = questions[current];
+  const opts = document.querySelectorAll('.opt');
+  opts.forEach(o => o.classList.add('disabled'));
+  opts[i].classList.add(i === q.correct ? 'correct' : 'wrong');
+  if (i !== q.correct) { opts[q.correct].classList.add('correct'); wrongIds.push(current); }
+  else score++;
+  document.getElementById('exp').classList.add('show');
+  document.getElementById('nextBtn').style.display = 'inline-block';
+}
+
+function next() { current++; render(); }
+
+function showResult() {
+  document.getElementById('quizArea').style.display = 'none';
+  const rs = document.getElementById('resultScreen');
+  rs.className = 'result-screen show';
+  document.getElementById('rScore').textContent = score;
+  const msgs = ['Riprova! Repasa la teoría 📖','¡Casi! Repasa un poco más 💪','¡Bien! Sigue practicando 👍','¡Muy bien! 🌟','¡Perfetto! Eres un/a crack 🏆'];
+  const msgIdx = Math.min(Math.floor(score / 2), 4);
+  document.getElementById('rMsg').textContent = msgs[msgIdx];
+  const stars = document.querySelectorAll('.star');
+  const litCount = Math.round(score / 10 * 5);
+  setTimeout(() => { stars.forEach((s,i) => { if(i < litCount) s.classList.add('lit'); }); }, 300);
+  const barsHtml = `
+    <div class="r-bar-row" style="display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem">
+      <span class="r-bar-label">Correctas</span>
+      <div class="r-bar-track"><div class="r-bar-fill g" id="barG" style="width:0%"></div></div>
+      <span style="color:#52b788;font-weight:700">${score}</span>
+    </div>
+    <div class="r-bar-row" style="display:flex;align-items:center;gap:.7rem">
+      <span class="r-bar-label">Incorrectas</span>
+      <div class="r-bar-track"><div class="r-bar-fill r" id="barR" style="width:0%"></div></div>
+      <span style="color:#C62828;font-weight:700">${10-score}</span>
+    </div>`;
+  document.getElementById('rBars').innerHTML = barsHtml;
+  setTimeout(() => {
+    document.getElementById('barG').style.width = (score*10) + '%';
+    document.getElementById('barR').style.width = ((10-score)*10) + '%';
+  }, 400);
+}
+
+function restart() {
+  current = 0; score = 0; answered = false;
+  document.getElementById('quizArea').style.display = 'block';
+  document.getElementById('resultScreen').className = 'result-screen';
+  document.querySelectorAll('.star').forEach(s => s.classList.remove('lit'));
+  render();
+}
+
+render();
+</script>
+</body>
+</html>

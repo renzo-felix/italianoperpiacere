@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semana 3 · Teoría · Mi dai il tuo numero?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ipp-cream:     #e9e6d5;
+      --ipp-gold:      #EFCF7F;
+      --ipp-amber:     #e5ab07;
+      --ipp-red:       #cc4736;
+      --ipp-teal:      #78a6ba;
+      --ipp-green:     #528e74;
+      --ipp-black:     #1a1a18;
+      --ipp-white:     #ffffff;
+      --ipp-font-head: 'Playfair Display', Georgia, serif;
+      --ipp-font-body: 'Outfit', system-ui, sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--ipp-font-body);background:var(--ipp-cream);color:var(--ipp-black);min-height:100vh}
+
+    /* ── HEADER: gold + black (combo imagen) ── */
+    header{background:var(--ipp-gold);color:var(--ipp-black);padding:2.5rem 1rem;text-align:center;position:relative;overflow:hidden}
+    header::before{content:'';position:absolute;top:0;left:0;width:100%;height:6px;background:linear-gradient(90deg,var(--ipp-red),var(--ipp-teal),var(--ipp-green))}
+    .badge{display:inline-block;background:var(--ipp-red);color:var(--ipp-cream);padding:.3rem 1.2rem;border-radius:20px;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.7rem;font-weight:700}
+    header h1{font-family:var(--ipp-font-head);font-size:2.4rem;font-weight:700}
+    header p{font-size:.95rem;opacity:.7;margin-top:.4rem;font-weight:400}
+
+    nav{display:flex;justify-content:center;gap:.5rem;background:var(--ipp-white);padding:.9rem 1rem;flex-wrap:wrap;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+    .pill{padding:.38rem 1rem;border-radius:20px;background:#e8f2ed;color:var(--ipp-green);font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s}
+    .pill:hover{background:var(--ipp-green);color:var(--ipp-white)}
+
+    main{max-width:920px;margin:2rem auto;padding:0 1rem}
+
+    .sec{background:var(--ipp-white);border-radius:14px;padding:2rem;margin-bottom:1.8rem;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+    .sec-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem;padding-bottom:.8rem;border-bottom:3px solid var(--ipp-cream)}
+    .sec-icon{font-size:1.8rem}
+    .sec-title{font-family:var(--ipp-font-head);font-size:1.5rem;font-weight:700;color:var(--ipp-green)}
+    .intro{color:#555;margin-bottom:1.2rem;font-size:.95rem;line-height:1.7}
+
+    /* ── TABLES ── */
+    table{width:100%;border-collapse:collapse;margin-top:.8rem}
+    th{background:var(--ipp-teal);color:var(--ipp-white);padding:.7rem 1rem;text-align:left;font-weight:600;font-size:.88rem}
+    th.green{background:var(--ipp-green)}
+    th.red{background:var(--ipp-red)}
+    td{padding:.72rem 1rem;border-bottom:1px solid var(--ipp-cream);font-size:.94rem}
+    tr:nth-child(even) td{background:#fafaf8}
+    .pron{color:var(--ipp-teal);font-style:italic;font-weight:500}
+    .vform{font-weight:700;color:var(--ipp-teal);font-size:1.05rem}
+    .trans{color:#777;font-size:.86rem}
+    .example{color:#444;font-size:.9rem;font-style:italic}
+
+    /* ── TWO-COL ── */
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+    @media(max-width:620px){.two-col{grid-template-columns:1fr}}
+
+    /* ── INFO BOXES (combo brand image) ── */
+    .ibox{border-radius:10px;padding:1rem}
+    .ibox.red{background:var(--ipp-red);color:var(--ipp-cream)}          /* red + cream */
+    .ibox.teal{background:var(--ipp-teal);color:var(--ipp-white)}        /* teal + white */
+    .ibox.green{background:var(--ipp-green);color:var(--ipp-cream)}      /* green + cream */
+    .ibox.gold{background:var(--ipp-gold);color:var(--ipp-black)}        /* gold + black */
+    .ibox-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.4rem;opacity:.8}
+    .ibox p{font-size:.88rem;line-height:1.7}
+
+    /* ── EXPRESIONES CON AVERE ── */
+    .expr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:.7rem;margin-top:1rem}
+    /* card coloreada según categoría — combos del manual */
+    .expr-card{border-radius:10px;padding:.9rem 1rem}
+    .expr-card.g{background:#e8f2ed;border-left:4px solid var(--ipp-green)}    /* green+cream */
+    .expr-card.t{background:#e8f2f7;border-left:4px solid var(--ipp-teal)}     /* teal+cream */
+    .expr-card.r{background:#fdecea;border-left:4px solid var(--ipp-red)}      /* red+cream */
+    .expr-card.o{background:#fefaee;border-left:4px solid var(--ipp-gold)}     /* gold+cream */
+    .expr-it{font-weight:700;font-size:.95rem;display:block}
+    .expr-it.g{color:var(--ipp-green)}
+    .expr-it.t{color:var(--ipp-teal)}
+    .expr-it.r{color:var(--ipp-red)}
+    .expr-it.o{color:var(--ipp-amber)}
+    .expr-es{font-size:.82rem;color:#555;display:block;margin-top:.2rem}
+    .expr-ex{font-size:.78rem;color:#888;font-style:italic;display:block;margin-top:.3rem}
+
+    /* ── NUMERI ── */
+    .dec-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;margin-bottom:1rem}
+    @media(max-width:520px){.dec-grid{grid-template-columns:repeat(3,1fr)}}
+    .dc{background:var(--ipp-cream);border-radius:8px;padding:.7rem .3rem;text-align:center;transition:all .2s;cursor:default;border-bottom:3px solid var(--ipp-teal)}
+    .dc:hover{background:var(--ipp-teal);color:var(--ipp-white);transform:scale(1.05)}
+    .dc.special{border-bottom-color:var(--ipp-red)}
+    .dc.special:hover{background:var(--ipp-red)}
+    .dn{font-family:var(--ipp-font-head);font-size:1.3rem;font-weight:700;display:block}
+    .dw{font-size:.7rem;display:block;margin-top:2px}
+
+    .comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:.4rem}
+    .nc{background:var(--ipp-cream);border-radius:8px;padding:.55rem .3rem;text-align:center;transition:all .2s;cursor:default}
+    .nc:hover{background:var(--ipp-green);color:var(--ipp-white);transform:scale(1.05)}
+    .nc.acc{border-top:2px solid var(--ipp-red)}    /* números con acento = acento visual rojo */
+    .nd{font-family:var(--ipp-font-head);font-size:1.1rem;font-weight:700;display:block}
+    .nw{font-size:.68rem;display:block;margin-top:2px}
+
+    /* ── ETA ── */
+    .eta-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    @media(max-width:540px){.eta-grid{grid-template-columns:1fr}}
+    .eta-card{border-radius:12px;padding:1.1rem}
+    .eta-card.t{background:var(--ipp-teal);color:var(--ipp-white)}      /* teal + white */
+    .eta-card.g{background:var(--ipp-green);color:var(--ipp-cream)}     /* green + cream */
+    .eta-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem;opacity:.8}
+    .eta-it{font-family:var(--ipp-font-head);font-weight:700;font-size:1rem;display:block}
+    .eta-es{font-size:.82rem;margin-top:.1rem;display:block;opacity:.85}
+    .eta-ex{font-size:.85rem;margin-top:.5rem;font-style:italic;line-height:1.6;opacity:.9}
+
+    /* ── DATI PERSONALI ── */
+    .dati-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.8rem}
+    .dato-card{border-radius:10px;padding:1rem;background:var(--ipp-cream);border-top:3px solid var(--ipp-teal)}
+    .dato-card.green{border-top-color:var(--ipp-green)}
+    .dato-card.red{border-top-color:var(--ipp-red)}
+    .dato-card.gold{border-top-color:var(--ipp-gold)}
+    .dato-label{font-size:.72rem;font-weight:700;color:var(--ipp-teal);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.3rem}
+    .dato-card.green .dato-label{color:var(--ipp-green)}
+    .dato-card.red .dato-label{color:var(--ipp-red)}
+    .dato-card.gold .dato-label{color:var(--ipp-amber)}
+    .dato-it{font-weight:600;color:var(--ipp-black);font-size:.95rem;display:block}
+    .dato-es{color:#666;font-size:.8rem;margin-top:.1rem;display:block}
+    .dato-ex{color:#555;font-size:.83rem;margin-top:.4rem;font-style:italic}
+
+    /* ── TELÉFONO ── */
+    .tel-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem;align-items:center}
+    .tel-digit{background:var(--ipp-cream);border-radius:8px;padding:.5rem .7rem;font-family:var(--ipp-font-head);font-size:1.1rem;font-weight:700;color:var(--ipp-teal);border:2px solid var(--ipp-gold)}
+    .tel-sep{color:var(--ipp-red);font-size:1.1rem;font-weight:700}
+    .tel-word{font-size:.72rem;color:#777;display:block;text-align:center;margin-top:.1rem}
+
+    /* ── DIALOGO ── */
+    .dialogo{background:var(--ipp-cream);border-radius:12px;padding:1.4rem;margin-top:.8rem;border-left:5px solid var(--ipp-teal)}
+    .dialogo .header-label{font-size:.78rem;color:var(--ipp-teal);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.7rem}
+    .d-line{margin:.5rem 0;line-height:1.6}
+    .d-line .spk{font-weight:700;color:var(--ipp-green)}
+    .d-line .it{font-style:italic}
+    .d-line .es{font-size:.82rem;color:#888;margin-left:1.5rem;display:block}
+
+    /* ── NOTAS ── */
+    .nota{background:#fefaee;border-left:4px solid var(--ipp-gold);border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin-top:1rem;font-size:.9rem;line-height:1.7}
+    .nota strong{color:var(--ipp-green)}
+    .nota.danger{background:#fef3f2;border-left-color:var(--ipp-red)}
+    .nota.danger strong{color:var(--ipp-red)}
+    .nota.info{background:#e8f2f7;border-left-color:var(--ipp-teal)}
+    .nota.info strong{color:var(--ipp-teal)}
+    .nota.green{background:#e8f2ed;border-left-color:var(--ipp-green)}
+    .nota.green strong{color:var(--ipp-green)}
+
+    /* ── COLOR STRIP (separador visual entre secciones) ── */
+    .color-strip{display:flex;height:6px;border-radius:3px;overflow:hidden;margin-bottom:1.2rem}
+    .cs-r{flex:1;background:var(--ipp-red)}
+    .cs-t{flex:1;background:var(--ipp-teal)}
+    .cs-g{flex:1;background:var(--ipp-green)}
+    .cs-o{flex:1;background:var(--ipp-gold)}
+
+    footer{text-align:center;padding:2.5rem;color:#888;font-size:.85rem;background:var(--ipp-white);margin-top:1rem}
+    footer strong{color:var(--ipp-green);font-family:var(--ipp-font-head)}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Semana 3 · Unidad 2</div>
+  <h1>Mi dai il tuo numero? 📱</h1>
+  <p>Verbo AVERE · Números 0–100 · Edad · Datos personales · Teléfono</p>
+</header>
+
+<nav>
+  <a class="pill" href="#avere">🌿 AVERE</a>
+  <a class="pill" href="#espressioni">✨ Espressioni</a>
+  <a class="pill" href="#numeri">🔢 Numeri 0–100</a>
+  <a class="pill" href="#eta">🎂 L'età</a>
+  <a class="pill" href="#dati">📋 Dati personali</a>
+  <a class="pill" href="#dial">💬 Dialogo</a>
+</nav>
+
+<main>
+
+  <!-- 1. AVERE -->
+  <section class="sec" id="avere">
+    <div class="sec-header">
+      <span class="sec-icon">🌿</span>
+      <h2 class="sec-title">Il verbo AVERE — tener</h2>
+    </div>
+    <p class="intro"><em>Avere</em> = tener. Es un verbo <strong>irregular y esencial</strong> con dos funciones: como verbo principal (posesión) y como <strong>auxiliar</strong> para tiempos compuestos. ¡La H nunca se pronuncia!</p>
+
+    <div class="two-col">
+      <div>
+        <table>
+          <thead>
+            <tr><th colspan="3">AVERE — tener</th></tr>
+            <tr style="background:#e8f2f7">
+              <th style="color:var(--ipp-teal)">Pronome</th>
+              <th style="color:var(--ipp-teal)">Forma</th>
+              <th style="color:var(--ipp-teal)">Ejemplo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="pron">io</td><td><span class="vform">ho</span></td><td class="example">Ho vent'anni.</td></tr>
+            <tr><td class="pron">tu</td><td><span class="vform">hai</span></td><td class="example">Quanti anni hai?</td></tr>
+            <tr><td class="pron">lui / lei / Lei</td><td><span class="vform">ha</span></td><td class="example">Ha un numero di telefono?</td></tr>
+            <tr><td class="pron">noi</td><td><span class="vform">abbiamo</span></td><td class="example">Abbiamo lezione oggi.</td></tr>
+            <tr><td class="pron">voi</td><td><span class="vform">avete</span></td><td class="example">Avete un cane?</td></tr>
+            <tr><td class="pron">loro</td><td><span class="vform">hanno</span></td><td class="example">Hanno due figli.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.7rem;justify-content:center">
+        <!-- red + cream combo (brand image) -->
+        <div class="ibox red">
+          <p class="ibox-label">⚠️ La H es siempre muda</p>
+          <p><strong>ho</strong> = /o/ · <strong>hai</strong> = /ai/<br>
+          <strong>ha</strong> = /a/ · <strong>hanno</strong> = /ánno/<br>
+          La H distingue: <em>ho</em> (tengo) de <em>o</em> (o/u);<br><em>ha</em> (tiene) de <em>a</em> (preposición)</p>
+        </div>
+        <!-- teal + white combo (brand image) -->
+        <div class="ibox teal">
+          <p class="ibox-label">🔧 Como auxiliar — A2</p>
+          <p>En A2 usarás AVERE para el passato prossimo:<br>
+          <em>Ho mangiato.</em> = He comido.<br>
+          <em>Hai studiato?</em> = ¿Has estudiado?</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="nota danger" style="margin-top:1rem">
+      <strong>❌ Errores frecuentes:</strong><br>
+      ❌ <em>Io ho venti anni</em> → ✅ <em>Ho vent'anni</em> — la i de <em>venti</em> cae ante vocal.<br>
+      ❌ <em>Sono venti anni.</em> → ✅ <em>Ho vent'anni.</em> — La edad siempre con AVERE, nunca ESSERE.<br>
+      ❌ <em>Io a un gatto.</em> → ✅ <em>Ho un gatto.</em> — la H se escribe aunque sea muda.
+    </div>
+  </section>
+
+  <!-- 2. ESPRESSIONI CON AVERE -->
+  <section class="sec" id="espressioni">
+    <div class="sec-header">
+      <span class="sec-icon">✨</span>
+      <h2 class="sec-title">Espressioni idiomatiche con AVERE</h2>
+    </div>
+    <p class="intro">En italiano muchas expresiones del día a día usan <em>avere</em>. Las tarjetas están agrupadas por categoría con un color diferente — usa ese color como pista para memorizarlas.</p>
+
+    <div class="color-strip"><div class="cs-r"></div><div class="cs-t"></div><div class="cs-g"></div><div class="cs-o"></div></div>
+
+    <div class="expr-grid">
+      <!-- rojo = necesidades físicas -->
+      <div class="expr-card r">
+        <span class="expr-it r">avere fame</span>
+        <span class="expr-es">tener hambre</span>
+        <span class="expr-ex">Ho fame! Mangiamo? (¡Tengo hambre!)</span>
+      </div>
+      <div class="expr-card r">
+        <span class="expr-it r">avere sete</span>
+        <span class="expr-es">tener sed</span>
+        <span class="expr-ex">Hai sete? Vuoi un caffè?</span>
+      </div>
+      <div class="expr-card r">
+        <span class="expr-it r">avere caldo</span>
+        <span class="expr-es">tener calor</span>
+        <span class="expr-ex">Ho caldo, apro la finestra.</span>
+      </div>
+      <div class="expr-card r">
+        <span class="expr-it r">avere freddo</span>
+        <span class="expr-es">tener frío</span>
+        <span class="expr-ex">Abbiamo freddo in classe!</span>
+      </div>
+      <div class="expr-card r">
+        <span class="expr-it r">avere sonno</span>
+        <span class="expr-es">tener sueño</span>
+        <span class="expr-ex">Ho sonno, è tardi.</span>
+      </div>
+      <!-- teal = emociones/estados mentales -->
+      <div class="expr-card t">
+        <span class="expr-it t">avere paura</span>
+        <span class="expr-es">tener miedo</span>
+        <span class="expr-ex">Hai paura dei ragni? (¿Tienes miedo a las arañas?)</span>
+      </div>
+      <div class="expr-card t">
+        <span class="expr-it t">avere fretta</span>
+        <span class="expr-es">tener prisa</span>
+        <span class="expr-ex">Ho fretta, devo andare!</span>
+      </div>
+      <div class="expr-card t">
+        <span class="expr-it t">avere ragione</span>
+        <span class="expr-es">tener razón</span>
+        <span class="expr-ex">Hai ragione! (¡Tienes razón!)</span>
+      </div>
+      <div class="expr-card t">
+        <span class="expr-it t">avere torto</span>
+        <span class="expr-es">estar equivocado</span>
+        <span class="expr-ex">Ho torto, mi scuso.</span>
+      </div>
+      <!-- verde = deseo/necesidad -->
+      <div class="expr-card g">
+        <span class="expr-it g">avere voglia di</span>
+        <span class="expr-es">tener ganas de</span>
+        <span class="expr-ex">Ho voglia di gelato! (¡Ganas de helado!)</span>
+      </div>
+      <div class="expr-card g">
+        <span class="expr-it g">avere bisogno di</span>
+        <span class="expr-es">necesitar</span>
+        <span class="expr-ex">Ho bisogno di aiuto. (Necesito ayuda.)</span>
+      </div>
+      <!-- gold = edad -->
+      <div class="expr-card o">
+        <span class="expr-it o">avere X anni</span>
+        <span class="expr-es">tener X años (edad)</span>
+        <span class="expr-ex">Ho ventidue anni. (Tengo 22 años.)</span>
+      </div>
+    </div>
+
+    <div class="nota info" style="margin-top:1rem">
+      <strong>💡 Patrón — AVERE + sustantivo:</strong><br>
+      <em>Ho <strong>fame</strong>.</em> · <em>Non ho <strong>fretta</strong>.</em> · <em>Abbiamo <strong>voglia di</strong> pizza!</em><br>
+      Pregunta: <em>Hai <strong>freddo</strong>?</em> → <em>Sì, ho molto freddo!</em> / <em>No, non ho freddo.</em>
+    </div>
+  </section>
+
+  <!-- 3. NUMERI 0-100 -->
+  <section class="sec" id="numeri">
+    <div class="sec-header">
+      <span class="sec-icon">🔢</span>
+      <h2 class="sec-title">I numeri da 0 a 100</h2>
+    </div>
+    <p class="intro">Con las decenas y las reglas de composición puedes construir cualquier número hasta 100. Las celdas con borde rojo tienen regla especial.</p>
+
+    <p style="font-family:var(--ipp-font-head);font-size:1rem;color:var(--ipp-teal);margin-bottom:.6rem;font-weight:700">Le decine — Las decenas</p>
+    <div class="dec-grid">
+      <div class="dc"><span class="dn">0</span><span class="dw">zero</span></div>
+      <div class="dc"><span class="dn">10</span><span class="dw">dieci</span></div>
+      <div class="dc"><span class="dn">20</span><span class="dw">venti</span></div>
+      <div class="dc"><span class="dn">30</span><span class="dw">trenta</span></div>
+      <div class="dc"><span class="dn">40</span><span class="dw">quaranta</span></div>
+      <div class="dc"><span class="dn">50</span><span class="dw">cinquanta</span></div>
+      <div class="dc"><span class="dn">60</span><span class="dw">sessanta</span></div>
+      <div class="dc"><span class="dn">70</span><span class="dw">settanta</span></div>
+      <div class="dc"><span class="dn">80</span><span class="dw">ottanta</span></div>
+      <div class="dc"><span class="dn">90</span><span class="dw">novanta</span></div>
+      <div class="dc special"><span class="dn">100</span><span class="dw">cento</span></div>
+    </div>
+
+    <p style="font-family:var(--ipp-font-head);font-size:1rem;color:var(--ipp-teal);margin:1.2rem 0 .6rem;font-weight:700">Números compuestos — <span style="color:var(--ipp-red);font-size:.85rem">⬆ borde rojo = lleva acento</span></p>
+    <div class="comp-grid">
+      <div class="nc"><span class="nd">31</span><span class="nw">trent<strong>uno</strong></span></div>
+      <div class="nc acc"><span class="nd">33</span><span class="nw">trentatré</span></div>
+      <div class="nc"><span class="nd">38</span><span class="nw">trent<strong>otto</strong></span></div>
+      <div class="nc"><span class="nd">41</span><span class="nw">quarant<strong>uno</strong></span></div>
+      <div class="nc"><span class="nd">44</span><span class="nw">quarantaquattro</span></div>
+      <div class="nc"><span class="nd">48</span><span class="nw">quarant<strong>otto</strong></span></div>
+      <div class="nc"><span class="nd">51</span><span class="nw">cinquant<strong>uno</strong></span></div>
+      <div class="nc"><span class="nd">55</span><span class="nw">cinquantacinque</span></div>
+      <div class="nc"><span class="nd">58</span><span class="nw">cinquant<strong>otto</strong></span></div>
+      <div class="nc acc"><span class="nd">63</span><span class="nw">sessantatré</span></div>
+      <div class="nc"><span class="nd">67</span><span class="nw">sessantasette</span></div>
+      <div class="nc"><span class="nd">71</span><span class="nw">settant<strong>uno</strong></span></div>
+      <div class="nc acc"><span class="nd">73</span><span class="nw">settantatré</span></div>
+      <div class="nc"><span class="nd">81</span><span class="nw">ottant<strong>uno</strong></span></div>
+      <div class="nc"><span class="nd">88</span><span class="nw">ottant<strong>otto</strong></span></div>
+      <div class="nc"><span class="nd">91</span><span class="nw">novant<strong>uno</strong></span></div>
+      <div class="nc acc"><span class="nd">93</span><span class="nw">novantatré</span></div>
+      <div class="nc"><span class="nd">99</span><span class="nw">novantanove</span></div>
+    </div>
+
+    <div class="nota" style="margin-top:1rem">
+      <strong>📌 Las 3 reglas de los números compuestos:</strong><br>
+      1. <strong>Ante UNO u OTTO cae la vocal de la decena:</strong> trent<s>a</s>uno = <em>trentuno</em><br>
+      2. <strong>Los compuestos con -3 llevan acento:</strong> <em>trentatré, quarantatré…</em> (borde rojo en la tabla)<br>
+      3. <strong>El resto se une directamente:</strong> sessanta + due = <em>sessantadue</em>
+    </div>
+
+    <div class="nota info" style="margin-top:.8rem">
+      <strong>📞 Come si legge un numero di telefono:</strong><br>
+      Los teléfonos se leen cifra por cifra en italiano:<br>
+      <em>3 3 4 – 1 2 5 – 6 7 8 9</em> → <em>"tre, tre, quattro — uno, due, cinque — sei, sette, otto, nove"</em>
+    </div>
+
+    <p style="font-family:var(--ipp-font-head);font-size:1rem;color:var(--ipp-teal);margin:1.2rem 0 .6rem;font-weight:700">📞 Esempio — Numero di telefono</p>
+    <div style="background:var(--ipp-cream);border-radius:12px;padding:1.2rem">
+      <div class="tel-row" style="margin-bottom:.8rem">
+        <div style="text-align:center"><div class="tel-digit">3</div><span class="tel-word">tre</span></div>
+        <div style="text-align:center"><div class="tel-digit">3</div><span class="tel-word">tre</span></div>
+        <div style="text-align:center"><div class="tel-digit">4</div><span class="tel-word">quattro</span></div>
+        <span class="tel-sep">–</span>
+        <div style="text-align:center"><div class="tel-digit">1</div><span class="tel-word">uno</span></div>
+        <div style="text-align:center"><div class="tel-digit">2</div><span class="tel-word">due</span></div>
+        <div style="text-align:center"><div class="tel-digit">5</div><span class="tel-word">cinque</span></div>
+        <span class="tel-sep">–</span>
+        <div style="text-align:center"><div class="tel-digit">6</div><span class="tel-word">sei</span></div>
+        <div style="text-align:center"><div class="tel-digit">7</div><span class="tel-word">sette</span></div>
+        <div style="text-align:center"><div class="tel-digit">8</div><span class="tel-word">otto</span></div>
+        <div style="text-align:center"><div class="tel-digit">9</div><span class="tel-word">nove</span></div>
+      </div>
+      <p style="font-size:.85rem;color:#555"><em>Mi dai il tuo numero? — Sì, certo! È tre, tre, quattro… uno, due, cinque… sei, sette, otto, nove.</em></p>
+    </div>
+  </section>
+
+  <!-- 4. ETA -->
+  <section class="sec" id="eta">
+    <div class="sec-header">
+      <span class="sec-icon">🎂</span>
+      <h2 class="sec-title">Chiedere e dire l'età — La edad</h2>
+    </div>
+    <p class="intro">En italiano se usa <strong>AVERE</strong> para la edad. ¡Nunca ESSERE! Las dos tarjetas usan los colores del manual de marca: teal y verde.</p>
+
+    <div class="eta-grid">
+      <!-- teal + white (combo del brand image) -->
+      <div class="eta-card t">
+        <div class="eta-label">📣 Preguntar la edad</div>
+        <span class="eta-it">Quanti anni hai?</span>
+        <span class="eta-es">¿Cuántos años tienes? (informal)</span>
+        <span class="eta-it" style="margin-top:.5rem">Quanti anni ha (Lei)?</span>
+        <span class="eta-es">¿Cuántos años tiene usted? (formal)</span>
+        <div class="eta-ex">→ "Quanti" = "cuántos" · varía con el género:<br><em>quanti anni</em> · <em>quante persone</em></div>
+      </div>
+      <!-- green + cream (combo del brand image) -->
+      <div class="eta-card g">
+        <div class="eta-label">💬 Responder la edad</div>
+        <span class="eta-it">Ho + [número] + anni.</span>
+        <span class="eta-es">Tengo + [número] + años.</span>
+        <div class="eta-ex">
+          Ho <strong>vent'anni</strong>. (20 años)<br>
+          Ho <strong>venticinque anni</strong>. (25 años)<br>
+          Ho <strong>trent'anni</strong>. (30 años)<br>
+          Ho <strong>quarantadue anni</strong>. (42 años)
+        </div>
+      </div>
+    </div>
+
+    <div class="nota danger" style="margin-top:1rem">
+      <strong>❌ Error gravísimo — ESSERE vs AVERE con la edad:</strong><br>
+      ❌ <em>Sono venti anni.</em> — No existe &nbsp;·&nbsp; ❌ <em>Ho venti anno.</em> — siempre plural<br>
+      ✅ <em>Ho vent'anni.</em> — Correcto &nbsp;·&nbsp; ✅ <em>Ho trentatré anni.</em><br><br>
+      <strong>⚠️ Apóstrofo:</strong> venti + anni → <em>vent'anni</em> · trenta + anni → <em>trent'anni</em>
+    </div>
+
+    <div class="nota" style="margin-top:.8rem">
+      <strong>🗓️ Otras formas de hablar de la edad:</strong><br>
+      <em>Sono del 1998.</em> = Soy del 98 · <em>Sono nato/a nel 1995.</em> = Nací en 1995.<br>
+      <em>Quand'è il tuo compleanno?</em> = ¿Cuándo es tu cumpleaños?<br>
+      <em>Il mio compleanno è il 5 marzo.</em> = Mi cumpleaños es el 5 de marzo.
+    </div>
+  </section>
+
+  <!-- 5. DATI PERSONALI -->
+  <section class="sec" id="dati">
+    <div class="sec-header">
+      <span class="sec-icon">📋</span>
+      <h2 class="sec-title">I dati personali — Datos personales</h2>
+    </div>
+    <p class="intro">Cada tipo de dato usa un color de acento diferente (borde superior): <span style="color:var(--ipp-teal);font-weight:600">teal</span> = identidad · <span style="color:var(--ipp-green);font-weight:600">verde</span> = ubicación · <span style="color:var(--ipp-red);font-weight:600">rojo</span> = contacto · <span style="color:var(--ipp-amber);font-weight:600">gold</span> = otros.</p>
+
+    <div class="dati-grid">
+      <div class="dato-card"><!-- teal = identidad -->
+        <div class="dato-label">👤 Nombre</div>
+        <span class="dato-it">il nome</span><span class="dato-es">el nombre (de pila)</span>
+        <span class="dato-it" style="margin-top:.3rem">il cognome</span><span class="dato-es">el apellido</span>
+        <div class="dato-ex">Mi chiamo Luca Rossi.<br>(nombre: Luca · apellido: Rossi)</div>
+      </div>
+      <div class="dato-card"><!-- teal = identidad -->
+        <div class="dato-label">🌍 Nacionalidad</div>
+        <span class="dato-it">la nazionalità</span><span class="dato-es">la nacionalidad</span>
+        <div class="dato-ex">Di dove sei? — Sono spagnolo/a, di Madrid.</div>
+      </div>
+      <div class="dato-card"><!-- teal = identidad -->
+        <div class="dato-label">🎂 Edad</div>
+        <span class="dato-it">l'età (f.)</span><span class="dato-es">la edad</span>
+        <div class="dato-ex">Quanti anni hai? — Ho ventidue anni.</div>
+      </div>
+      <div class="dato-card"><!-- teal = identidad -->
+        <div class="dato-label">📅 Fecha de nacimiento</div>
+        <span class="dato-it">la data di nascita</span><span class="dato-es">la fecha de nacimiento</span>
+        <div class="dato-ex">Quando sei nato/a? — Sono nato/a il 3 maggio 1999.</div>
+      </div>
+      <div class="dato-card green"><!-- verde = ubicación -->
+        <div class="dato-label">📍 Dirección</div>
+        <span class="dato-it">l'indirizzo (m.)</span><span class="dato-es">la dirección</span>
+        <span class="dato-it" style="margin-top:.3rem">la via · la città · il CAP</span><span class="dato-es">la calle · la ciudad · el código postal</span>
+        <div class="dato-ex">Abito in Via Roma, 15, Milano.</div>
+      </div>
+      <div class="dato-card red"><!-- rojo = contacto -->
+        <div class="dato-label">📱 Teléfono</div>
+        <span class="dato-it">il numero di telefono</span><span class="dato-es">el número de teléfono</span>
+        <span class="dato-it" style="margin-top:.3rem">il cellulare · il fisso</span><span class="dato-es">el móvil · el fijo</span>
+        <div class="dato-ex">Mi dai il tuo numero? — Sì, è 334-125-6789.</div>
+      </div>
+      <div class="dato-card red"><!-- rojo = contacto -->
+        <div class="dato-label">📧 Email</div>
+        <span class="dato-it">l'indirizzo email (m.)</span><span class="dato-es">la dirección de correo</span>
+        <div class="dato-ex">@ = la chiocciola &nbsp;·&nbsp; . = il punto<br>_ = underscore &nbsp;·&nbsp; - = trattino</div>
+      </div>
+      <div class="dato-card gold"><!-- gold = otros -->
+        <div class="dato-label">💼 Profesión</div>
+        <span class="dato-it">la professione / il lavoro</span><span class="dato-es">la profesión / el trabajo</span>
+        <div class="dato-ex">Che lavoro fai? — Sono studente/studentessa.<br>medico · insegnante · ingegnere</div>
+      </div>
+      <div class="dato-card gold"><!-- gold = otros -->
+        <div class="dato-label">🎓 Estudios</div>
+        <span class="dato-it">gli studi · l'università</span><span class="dato-es">los estudios · la universidad</span>
+        <div class="dato-ex">Cosa studi? — Studio italiano.<br>Studio all'università di Bologna.</div>
+      </div>
+    </div>
+
+    <div class="nota green" style="margin-top:1rem">
+      <strong>📝 Come compilare un modulo (rellenar un formulario):</strong><br>
+      <em>Nome:</em> Luca &nbsp;·&nbsp; <em>Cognome:</em> Rossi &nbsp;·&nbsp; <em>Data di nascita:</em> 12/03/1998<br>
+      <em>Nazionalità:</em> italiana &nbsp;·&nbsp; <em>Città:</em> Milano &nbsp;·&nbsp; <em>Cellulare:</em> 334-125-6789
+    </div>
+  </section>
+
+  <!-- 6. DIALOGO -->
+  <section class="sec" id="dial">
+    <div class="sec-header">
+      <span class="sec-icon">💬</span>
+      <h2 class="sec-title">Dialogo modello — Scambio di dati</h2>
+    </div>
+    <p class="intro">Este diálogo integra todo lo aprendido en semanas 1, 2 y 3: presentaciones, origen, edad, profesión y teléfono. Estudia el vocabulario en negrita.</p>
+
+    <div class="dialogo">
+      <div class="header-label">📍 Primera clase de universidad — Marco (italiano) y Anna (española)</div>
+      <div class="d-line"><span class="spk">Marco:</span> <span class="it">Ciao! Io mi chiamo Marco, e tu?</span><span class="es">¡Hola! Yo me llamo Marco, ¿y tú?</span></div>
+      <div class="d-line"><span class="spk">Anna:</span> <span class="it">Ciao Marco! Mi chiamo Anna. <strong>Di dove sei</strong>?</span><span class="es">¡Hola Marco! Me llamo Anna. ¿De dónde eres?</span></div>
+      <div class="d-line"><span class="spk">Marco:</span> <span class="it">Sono di Napoli, <strong>sono italiano</strong>. E tu?</span><span class="es">Soy de Nápoles, soy italiano. ¿Y tú?</span></div>
+      <div class="d-line"><span class="spk">Anna:</span> <span class="it">Io <strong>sono di</strong> Madrid, <strong>sono spagnola</strong>. Studio italiano qui all'università.</span><span class="es">Yo soy de Madrid, soy española. Estudio italiano aquí.</span></div>
+      <div class="d-line"><span class="spk">Marco:</span> <span class="it">Che bello! <strong>Quanti anni hai</strong>, Anna?</span><span class="es">¡Qué bien! ¿Cuántos años tienes, Anna?</span></div>
+      <div class="d-line"><span class="spk">Anna:</span> <span class="it"><strong>Ho ventidue anni</strong>. E tu, Marco?</span><span class="es">Tengo 22 años. ¿Y tú, Marco?</span></div>
+      <div class="d-line"><span class="spk">Marco:</span> <span class="it">Anch'io <strong>ho ventidue anni</strong>! Sono del 2002.</span><span class="es">¡Yo también tengo 22 años! Soy del 2002.</span></div>
+      <div class="d-line"><span class="spk">Anna:</span> <span class="it">Anche io! Senti, <strong>mi dai il tuo numero</strong>?</span><span class="es">¡Yo también! Oye, ¿me das tu número?</span></div>
+      <div class="d-line"><span class="spk">Marco:</span> <span class="it">Sì, certo! È tre, tre, quattro — uno, due, cinque — sei, sette, otto, nove.</span><span class="es">¡Sí, claro! Tres, tres, cuatro — uno, dos, cinco — seis, siete, ocho, nueve.</span></div>
+      <div class="d-line"><span class="spk">Anna:</span> <span class="it">Perfetto! <strong>Ho voglia di</strong> un caffè, vieni?</span><span class="es">¡Perfecto! Tengo ganas de un café, ¿vienes?</span></div>
+      <div class="d-line"><span class="spk">Marco:</span> <span class="it">Sì, andiamo! Anch'io <strong>ho fame</strong>!</span><span class="es">¡Sí, vamos! ¡Yo también tengo hambre!</span></div>
+    </div>
+
+    <div class="nota" style="margin-top:1rem">
+      <strong>📚 Vocabulario del diálogo:</strong><br>
+      <em>Che bello!</em> = ¡Qué bien! &nbsp;·&nbsp; <em>Anch'io</em> = Yo también &nbsp;·&nbsp; <em>Senti</em> = Oye (informal)<br>
+      <em>Sì, certo!</em> = ¡Sí, claro! &nbsp;·&nbsp; <em>Perfetto!</em> = ¡Perfecto! &nbsp;·&nbsp; <em>Andiamo!</em> = ¡Vamos!
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Italiano Per Piacere</strong> · A1 · Semana 3 🇮🇹</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semana 3 · Quiz</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#1a0a2e;color:#fff;min-height:100vh;display:flex;flex-direction:column}
+    header{background:linear-gradient(135deg,#4A148C,#6A1B9A);padding:1.5rem 2rem;text-align:center}
+    header .badge{display:inline-block;background:rgba(255,255,255,.2);padding:.25rem .9rem;border-radius:20px;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.4rem}
+    header h1{font-size:1.8rem;font-weight:700}
+    .quiz-container{max-width:680px;margin:2rem auto;padding:0 1rem;flex:1;width:100%}
+    .progress-bar{background:#2a1040;border-radius:10px;height:8px;margin-bottom:1.5rem;overflow:hidden}
+    .progress-fill{background:linear-gradient(90deg,#CE93D8,#6A1B9A);height:100%;border-radius:10px;transition:width .4s}
+    .q-card{background:#1e0a3a;border-radius:16px;padding:2rem;margin-bottom:1rem;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+    .q-number{color:#CE93D8;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:.8rem}
+    .q-text{font-size:1.15rem;font-weight:600;line-height:1.5;margin-bottom:1.5rem}
+    .options{display:grid;gap:.7rem}
+    .opt{padding:.85rem 1.2rem;border-radius:10px;border:2px solid #3a1060;background:#140830;cursor:pointer;font-size:.95rem;text-align:left;color:#fff;transition:all .2s;font-family:inherit}
+    .opt:hover:not(.disabled){border-color:#CE93D8;background:#2a1050;transform:translateX(4px)}
+    .opt.correct{border-color:#52b788;background:#1B5E20}
+    .opt.wrong{border-color:#C62828;background:#4a1010}
+    .opt.disabled{cursor:default}
+    .explanation{background:#140830;border-left:4px solid #CE93D8;border-radius:0 8px 8px 0;padding:1rem;margin-top:.8rem;font-size:.9rem;display:none;color:#E1BEE7}
+    .explanation.show{display:block}
+    .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+    .nav-btn{padding:.6rem 1.8rem;border-radius:20px;border:none;cursor:pointer;font-size:.95rem;font-weight:600;font-family:inherit;transition:all .2s}
+    .nav-btn.next{background:#6A1B9A;color:#fff}
+    .nav-btn.next:hover{background:#4A148C}
+    .score-display{color:#CE93D8;font-size:.95rem;font-weight:600}
+    .result-screen{text-align:center;display:none;padding:2rem 0}
+    .result-screen.show{display:block}
+    .result-score{font-size:5rem;font-weight:700;color:#CE93D8;line-height:1}
+    .result-label{font-size:1.2rem;color:#aaa;margin:.5rem 0 1.5rem}
+    .result-msg{font-size:1.4rem;font-weight:600;margin-bottom:2rem}
+    .star{display:inline-block;font-size:3rem;margin:0 .2rem;opacity:.3;transition:opacity .5s}
+    .star.lit{opacity:1}
+    .restart-btn{padding:.8rem 2.5rem;border-radius:20px;border:none;cursor:pointer;font-size:1rem;font-weight:700;background:#6A1B9A;color:#fff;transition:all .2s;font-family:inherit}
+    .restart-btn:hover{background:#4A148C;transform:scale(1.05)}
+    .r-row{display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem;text-align:left}
+    .r-lbl{width:80px;font-size:.82rem;color:#aaa;flex-shrink:0}
+    .r-track{flex:1;background:#2a1040;border-radius:6px;height:10px;overflow:hidden;margin:0 .5rem}
+    .r-fill{height:100%;border-radius:6px;transition:width 1s}
+    .r-fill.g{background:#52b788}
+    .r-fill.r{background:#C62828}
+  </style>
+</head>
+<body>
+<header>
+  <div class="badge">Semana 3 · Quiz</div>
+  <h1>AVERE e numeri 📱 Quiz</h1>
+</header>
+<div class="quiz-container">
+  <div class="progress-bar"><div class="progress-fill" id="pf" style="width:0%"></div></div>
+  <div id="qa"></div>
+  <div class="result-screen" id="rs">
+    <div class="result-score" id="rsc">0</div>
+    <div class="result-label">de 10 puntos</div>
+    <div id="stars"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div>
+    <div class="result-msg" id="rm"></div>
+    <div id="rb" style="margin:1.5rem 0;text-align:left"></div>
+    <button class="restart-btn" onclick="restart()">🔄 Volver a intentar</button>
+  </div>
+</div>
+<script>
+const questions=[
+  {q:'¿Cómo se dice "yo tengo" en italiano?',opts:['io sono','io ho','io hai','io ha'],correct:1,exp:'"Io ho" = yo tengo. ¡La H es muda! Se pronuncia "o" pero se escribe "ho".'},
+  {q:'¿Cuántos años tengo si digo "Ho trent\'anni"?',opts:['20','13','30','31'],correct:2,exp:'"Ho trent\'anni" = Tengo 30 años. Trenta = 30, con apóstrofe antes de "anni".'},
+  {q:'¿Cómo se dice el número 48 en italiano?',opts:['quarantotto','quaranta otto','quarantaotto','quarantotto'],correct:2,exp:'48 = quarantotto (una sola palabra). La a de quaranta cae antes de otto: quarant+otto.'},
+  {q:'¿Qué forma de AVERE corresponde a "loro"?',opts:['avete','abbiamo','hanno','ha'],correct:2,exp:'"Loro hanno" = ellos tienen. Nota: ho, hai, ha, abbiamo, avete, hanno.'},
+  {q:'¿Cómo preguntas "¿Cuántos años tienes?"?',opts:['Quante anni hai?','Quanti anni hai?','Quanti anni ho?','Quanti anni siete?'],correct:1,exp:'"Quanti anni hai?" = ¿Cuántos años tienes? QUANTI concuerda con "anni" (masculino plural).'},
+  {q:'¿Cuál es la forma correcta para decir "65"?',opts:['sesantacinque','sessantacinque','sessanta cinque','sesantacinco'],correct:1,exp:'65 = sessanta + cinque = sessantacinque. Se escribe todo junto sin espacio.'},
+  {q:'¿Cómo se dice 81 en italiano?',opts:['ottantuno','ottanta uno','ottantauno','ottantauno'],correct:0,exp:'81 = ottantuno. La a de ottanta cae antes de uno: ottant+uno = ottantuno.'},
+  {q:'¿Qué significa "Mi dai il tuo numero"?',opts:['¿Cuál es tu número?','¿Me das tu número?','¿Tienes un número?','¿Cuántos números tienes?'],correct:1,exp:'"Mi dai" = ¿me das? / "il tuo numero" = tu número. Expresión útil para pedir el teléfono.'},
+  {q:'Elige la frase correcta para decir "Tengo 23 años":',opts:['Ho ventitré anni.','Ho ventitre anni.','Sono ventitré anni.','Avete ventitré anni.'],correct:0,exp:'"Ho ventitré anni." → Ho + número + anni. Ventitré lleva acento en la é.'},
+  {q:'¿Cuál es la forma de AVERE para "voi"?',opts:['avete','abbiamo','hanno','aveste'],correct:0,exp:'"Voi avete" = vosotros tenéis. Recuerda la tabla: ho, hai, ha, abbiamo, avete, hanno.'}
+];
+let cur=0,score=0,answered=false;
+function render(){
+  if(cur>=questions.length){showResult();return;}
+  const q=questions[cur];
+  document.getElementById('pf').style.width=(cur/questions.length*100)+'%';
+  answered=false;
+  document.getElementById('qa').innerHTML=`
+    <div class="q-card">
+      <div class="q-number">Pregunta ${cur+1} de ${questions.length}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">${q.opts.map((o,i)=>`<button class="opt" onclick="answer(${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}</div>
+      <div class="explanation" id="exp">${q.exp}</div>
+    </div>
+    <div class="nav-row">
+      <div class="score-display">✅ ${score} correctas</div>
+      <button class="nav-btn next" onclick="next()" id="nb" style="display:none">Siguiente →</button>
+    </div>`;
+}
+function answer(i){
+  if(answered)return;
+  answered=true;
+  const q=questions[cur];
+  document.querySelectorAll('.opt').forEach(o=>o.classList.add('disabled'));
+  document.querySelectorAll('.opt')[i].classList.add(i===q.correct?'correct':'wrong');
+  if(i!==q.correct)document.querySelectorAll('.opt')[q.correct].classList.add('correct');
+  else score++;
+  document.getElementById('exp').classList.add('show');
+  document.getElementById('nb').style.display='inline-block';
+}
+function next(){cur++;render();}
+function showResult(){
+  document.getElementById('qa').style.display='none';
+  const rs=document.getElementById('rs');rs.className='result-screen show';
+  document.getElementById('rsc').textContent=score;
+  const msgs=['Riprova 💪','¡Sigue practicando! 📖','¡Bien! 👍','¡Molto bene! 🌟','¡Perfetto! 🏆'];
+  document.getElementById('rm').textContent=msgs[Math.min(Math.floor(score/2),4)];
+  const stars=document.querySelectorAll('.star');
+  setTimeout(()=>{stars.forEach((s,i)=>{if(i<Math.round(score/10*5))s.classList.add('lit');});},300);
+  document.getElementById('rb').innerHTML=`
+    <div class="r-row"><span class="r-lbl">Correctas</span><div class="r-track"><div class="r-fill g" id="bg" style="width:0%"></div></div><span style="color:#52b788;font-weight:700">${score}</span></div>
+    <div class="r-row"><span class="r-lbl">Incorrectas</span><div class="r-track"><div class="r-fill r" id="br" style="width:0%"></div></div><span style="color:#C62828;font-weight:700">${10-score}</span></div>`;
+  setTimeout(()=>{document.getElementById('bg').style.width=(score*10)+'%';document.getElementById('br').style.width=((10-score)*10)+'%';},400);
+}
+function restart(){cur=0;score=0;answered=false;document.getElementById('qa').style.display='block';document.getElementById('rs').className='result-screen';document.querySelectorAll('.star').forEach(s=>s.classList.remove('lit'));render();}
+render();
+</script>
+</body>
+</html>

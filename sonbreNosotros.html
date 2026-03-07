@@ -1,0 +1,446 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nosotros · Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root {
+  --ipp-cream:     #e9e6d5;
+  --ipp-cream-dk:  #ddd9c8;
+  --ipp-gold:      #EFCF7F;
+  --ipp-amber:     #e5ab07;
+  --ipp-red:       #cc4736;
+  --ipp-teal:      #78a6ba;
+  --ipp-green:     #528e74;
+  --ipp-black:     #1a1a18;
+  --ipp-white:     #ffffff;
+  --ipp-font:      'DM Sans', system-ui, sans-serif;
+  --ipp-radius:    8px;
+}
+
+/* KEYFRAMES */
+@keyframes ipp-fadeUp{from{opacity:0;transform:translateY(2rem)}to{opacity:1;transform:translateY(0)}}
+@keyframes ipp-floatCar{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(2deg)}}
+
+/* HERO */
+.ipp-hero{position:relative;min-height:65vh;display:flex;align-items:center;overflow:hidden;background:var(--ipp-green);padding:4rem 2rem}
+.ipp-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4z' fill='%23fff' fill-opacity='.05'/%3E%3C/svg%3E");pointer-events:none}
+.ipp-hero-content{position:relative;z-index:2;max-width:600px;animation:ipp-fadeUp .9s ease both}
+.ipp-flag{display:flex;gap:.35rem;margin-bottom:1.2rem}
+.ipp-flag span{display:inline-block;width:2rem;height:.55rem;border-radius:3px}
+.ipp-flag span:nth-child(1){background:var(--ipp-green)}
+.ipp-flag span:nth-child(2){background:var(--ipp-white)}
+.ipp-flag span:nth-child(3){background:var(--ipp-red)}
+.ipp-hero h1{font-family:var(--ipp-font-head);font-size:clamp(2rem,5.5vw,3.6rem);color:var(--ipp-white);line-height:1.18;margin-bottom:1rem;font-weight:900}
+.ipp-hero h1 em{font-style:italic;color:var(--ipp-gold)}
+.ipp-hero p{font-size:clamp(1rem,2.2vw,1.15rem);color:rgba(255,255,255,.9);max-width:480px;line-height:1.7;font-weight:300}
+.ipp-hero-car{position:absolute;right:-1%;bottom:0;width:clamp(200px,36vw,460px);animation:ipp-floatCar 5s ease-in-out infinite;z-index:1;filter:drop-shadow(0 16px 32px rgba(0,0,0,.28))}
+.ipp-hero-car img{width:100%;height:auto;display:block}
+@media(max-width:640px){.ipp-hero-car{right:-5%;width:55vw;bottom:-10px;opacity:.85}}
+
+/* STATS */
+.ipp-stats{background:var(--ipp-black);padding:2.5rem 1.5rem;border-bottom:4px solid var(--ipp-green)}
+.ipp-stats-grid{display:flex;flex-wrap:wrap;justify-content:center}
+.ipp-stat-item{flex:1 1 140px;max-width:220px;text-align:center;padding:1.5rem 1rem;border-right:1px solid rgba(255,255,255,.1);transition:transform .2s;cursor:default}
+.ipp-stat-item:last-child{border-right:none}
+.ipp-stat-item:hover{transform:scale(1.08)}
+.ipp-stat-num{font-family:var(--ipp-font-head);font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;color:var(--ipp-gold);display:block;line-height:1}
+.ipp-stat-label{font-size:.75rem;color:rgba(255,255,255,.6);margin-top:.4rem;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+
+/* SECTIONS */
+.ipp-section{padding:5rem 1.5rem}
+.ipp-section-alt{background:var(--ipp-cream-dk)}
+.ipp-container{max-width:1100px;margin:0 auto}
+.ipp-section-title{font-family:var(--ipp-font-head);font-size:clamp(1.5rem,3.8vw,2.3rem);color:var(--ipp-black);margin-bottom:.4rem;font-weight:900}
+.ipp-section-title span{color:var(--ipp-green);font-style:italic}
+.ipp-divider{width:3.5rem;height:4px;background:var(--ipp-amber);border-radius:2px;margin-bottom:2.4rem}
+
+/* ORIGIN */
+.ipp-origin{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+@media(max-width:768px){.ipp-origin{grid-template-columns:1fr}}
+.ipp-origin-img{border-radius:var(--ipp-radius);overflow:hidden;aspect-ratio:4/3;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+.ipp-origin-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.ipp-origin-img:hover img{transform:scale(1.04)}
+.ipp-origin-img::after{content:'';position:absolute;inset:0;border:3px solid var(--ipp-teal);border-radius:var(--ipp-radius);pointer-events:none;opacity:.5}
+.ipp-quote-block{background:var(--ipp-white);border-left:4px solid var(--ipp-green);padding:1.5rem 1.8rem 1.5rem 2rem;border-radius:0 var(--ipp-radius) var(--ipp-radius) 0;margin:1.4rem 0;font-style:italic;font-size:1.04rem;color:#555;line-height:1.75;position:relative}
+.ipp-body-text{font-size:1rem;line-height:1.8;color:#555;margin-bottom:1rem}
+
+/* TIMELINE */
+.ipp-timeline{position:relative}
+.ipp-timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:3px;background:var(--ipp-green);transform:translateX(-50%)}
+@media(max-width:640px){.ipp-timeline::before{left:1.1rem}}
+.ipp-tl-item{display:flex;justify-content:flex-end;padding-right:calc(50% + 2.2rem);margin-bottom:2.8rem;position:relative;opacity:0;transform:translateX(-2rem);transition:opacity .65s ease,transform .65s ease}
+.ipp-tl-item.ipp-visible{opacity:1;transform:translateX(0)}
+.ipp-tl-item:nth-child(even){justify-content:flex-start;padding-right:0;padding-left:calc(50% + 2.2rem);transform:translateX(2rem)}
+.ipp-tl-item:nth-child(even).ipp-visible{transform:translateX(0)}
+@media(max-width:640px){.ipp-tl-item,.ipp-tl-item:nth-child(even){justify-content:flex-start;padding-right:0;padding-left:3.2rem;transform:none}}
+.ipp-tl-dot{position:absolute;left:50%;top:1.1rem;width:1rem;height:1rem;background:var(--ipp-green);border:3px solid var(--ipp-cream-dk);border-radius:50%;transform:translateX(-50%);transition:transform .2s,background .2s}
+@media(max-width:640px){.ipp-tl-dot{left:1.1rem}}
+.ipp-tl-card{background:var(--ipp-white);border-radius:var(--ipp-radius);padding:1.3rem 1.5rem;max-width:370px;box-shadow:0 4px 20px rgba(0,0,0,.08);transition:transform .25s,box-shadow .25s;cursor:default;border-left:4px solid transparent}
+.ipp-tl-card:hover{transform:translateY(-4px);box-shadow:0 10px 35px rgba(82,142,116,.2);border-left-color:var(--ipp-green)}
+.ipp-tl-year{font-family:var(--ipp-font-head);font-size:1.4rem;font-weight:900;color:var(--ipp-red);line-height:1;margin-bottom:.3rem}
+.ipp-tl-card h4{font-size:.92rem;font-weight:700;color:var(--ipp-black);margin-bottom:.35rem}
+.ipp-tl-card p{font-size:.85rem;color:#666;line-height:1.6}
+
+/* FLIP CARDS */
+.ipp-values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.4rem}
+.ipp-hint{font-size:.72rem;color:#777;text-align:center;margin-bottom:1.4rem;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+.ipp-flip-wrap{perspective:1000px;height:255px;cursor:pointer}
+.ipp-flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.ipp-flip-wrap:hover .ipp-flip-inner,.ipp-flip-wrap.ipp-flipped .ipp-flip-inner{transform:rotateY(180deg)}
+.ipp-flip-front,.ipp-flip-back{position:absolute;inset:0;border-radius:var(--ipp-radius);backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.4rem;text-align:center}
+.ipp-flip-front{background:var(--ipp-white);border:2px solid var(--ipp-cream-dk);box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.ipp-flip-back{background:var(--ipp-teal);transform:rotateY(180deg);box-shadow:0 8px 28px rgba(120,166,186,.3)}
+.ipp-flip-icon{font-size:2.2rem;margin-bottom:.75rem;width:60px;height:60px;background:var(--ipp-cream);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ipp-green);font-weight:700}
+.ipp-flip-front h3{font-family:var(--ipp-font-head);font-size:1rem;color:var(--ipp-black);font-weight:700}
+.ipp-flip-front small{font-size:.76rem;color:#777;margin-top:.35rem;font-style:italic}
+.ipp-flip-back p{color:var(--ipp-white);font-size:.9rem;line-height:1.65;font-style:italic}
+
+/* BIO */
+.ipp-bio{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:start}
+@media(max-width:700px){.ipp-bio{grid-template-columns:1fr}}
+.ipp-bio-avatar{width:200px;height:200px;border-radius:50%;overflow:hidden;border:5px solid var(--ipp-teal);box-shadow:0 0 0 8px rgba(120,166,186,.2);flex-shrink:0}
+@media(max-width:700px){.ipp-bio-avatar{width:130px;height:130px;margin:0 auto}}
+.ipp-bio-avatar-ph{width:100%;height:100%;background:var(--ipp-green);display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--ipp-white);font-weight:700}
+.ipp-bio-name{font-family:var(--ipp-font-head);font-size:clamp(1.3rem,3vw,1.85rem);color:var(--ipp-black);margin-bottom:.15rem;font-weight:900}
+.ipp-bio-title{font-size:.85rem;color:var(--ipp-green);text-transform:uppercase;letter-spacing:.12em;margin-bottom:1.2rem;font-weight:700}
+.ipp-badge-list{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.4rem}
+.ipp-badge{background:var(--ipp-cream-dk);border:1px solid var(--ipp-teal);color:var(--ipp-black);font-size:.78rem;padding:.28rem .75rem;border-radius:99px;transition:background .2s,color .2s;cursor:default;font-weight:500}
+.ipp-badge:hover{background:var(--ipp-teal);color:var(--ipp-white)}
+.ipp-social-row{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:1.4rem}
+.ipp-social-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.2rem;border-radius:var(--ipp-radius);font-size:.86rem;text-decoration:none;border:2px solid;transition:transform .2s,background .2s,color .2s;min-height:44px;font-family:var(--ipp-font-body);font-weight:600}
+.ipp-social-btn-ig{border-color:#C13584;color:#C13584}
+.ipp-social-btn-ig:hover{background:#C13584;color:#fff;transform:translateY(-2px)}
+.ipp-social-btn-fb{border-color:#1877F2;color:#1877F2}
+.ipp-social-btn-fb:hover{background:#1877F2;color:#fff;transform:translateY(-2px)}
+
+/* COLLAGE */
+.ipp-collage{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem}
+@media(max-width:520px){.ipp-collage{grid-template-columns:1fr 1fr}}
+.ipp-collage-item{border-radius:var(--ipp-radius);overflow:hidden;position:relative;aspect-ratio:1}
+.ipp-collage-item:first-child{grid-column:span 2;aspect-ratio:16/9}
+.ipp-collage-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;display:block}
+.ipp-collage-item:hover img{transform:scale(1.07)}
+.ipp-collage-overlay{position:absolute;inset:0;background:rgba(82,142,116,.4);opacity:0;transition:opacity .3s}
+.ipp-collage-item:hover .ipp-collage-overlay{opacity:1}
+
+/* CTA */
+.ipp-cta-section{background:var(--ipp-red);padding:4.5rem 1.5rem;text-align:center;position:relative;overflow:hidden}
+.ipp-cta-section h2{font-family:var(--ipp-font-head);font-size:clamp(1.4rem,3.8vw,2.3rem);color:#fff;margin-bottom:.9rem;font-weight:900}
+.ipp-cta-section h2 em{color:var(--ipp-gold);font-style:italic}
+.ipp-cta-section p{color:rgba(255,255,255,.85);max-width:500px;margin:0 auto 2rem;line-height:1.7;font-weight:300}
+.ipp-btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--ipp-amber);color:var(--ipp-black);padding:.9rem 2.2rem;border-radius:var(--ipp-radius);font-size:1rem;text-decoration:none;font-family:var(--ipp-font-body);font-weight:700;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s;min-height:48px}
+.ipp-btn-primary:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 32px rgba(0,0,0,.22)}
+
+/* SCROLL REVEAL */
+.ipp-reveal{opacity:0;transform:translateY(1.8rem);transition:opacity .7s ease,transform .7s ease}
+.ipp-reveal.ipp-visible{opacity:1;transform:translateY(0)}
+
+/* HELPERS */
+.ipp-text-center{text-align:center}
+.ipp-divider-c{margin-left:auto;margin-right:auto}
+</style>
+
+
+
+<section class="ipp-hero">
+  <div class="ipp-hero-content">
+    <div class="ipp-flag"><span></span><span></span><span></span></div>
+    <h1>Una historia de <em>amore</em><br>por el italiano</h1>
+    <p>Desde 2012, Carolina lleva el idioma y la cultura de Italia a corazones argentinos — con calidez, sin presiones y con mucho piacere.</p>
+  </div>
+  <div class="ipp-hero-car">
+    <img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/anton-ivanov-SlnoOiprQPI-unsplash.jpg" alt="Fiat 500 naranja vintage" loading="lazy">
+  </div>
+</section>
+
+<div class="ipp-stats">
+  <div class="ipp-stats-grid">
+    <div class="ipp-stat-item">
+      <span class="ipp-stat-num" data-target="80">0</span>
+      <span class="ipp-stat-label">Alumnos activos</span>
+    </div>
+    <div class="ipp-stat-item">
+      <span class="ipp-stat-num" data-target="13">0</span>
+      <span class="ipp-stat-label">Años de experiencia</span>
+    </div>
+    <div class="ipp-stat-item">
+      <span class="ipp-stat-num" data-target="1">0</span>
+      <span class="ipp-stat-label">Master Ca' Foscari · Venezia</span>
+    </div>
+    <div class="ipp-stat-item">
+      <span class="ipp-stat-num" data-target="10">0</span>
+      <span class="ipp-stat-label">Así empezó — 10 amigas</span>
+    </div>
+  </div>
+</div>
+
+<section class="ipp-section">
+  <div class="ipp-container">
+    <div class="ipp-reveal">
+      <h2 class="ipp-section-title">El <span>origen</span></h2>
+      <div class="ipp-divider"></div>
+    </div>
+    <div class="ipp-origin ipp-reveal">
+      <div class="ipp-origin-img">
+        <img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/johanna-schrag-ziY-tPmCW2g-unsplash.jpg" alt="Mercado italiano" loading="lazy">
+      </div>
+      <div>
+        <div class="ipp-quote-block">
+          El tiempo en los primeros años de vida de mi hijo era valiosísimo — decidí transformar la enseñanza en algo propio, cercano y verdadero.
+        </div>
+        <p class="ipp-body-text">
+          Todo comenzó en 2012 con un grupo de 10 amigas que querían aprender italiano sin demasiadas exigencias. La propuesta era diferente: clases regulares y, una vez al mes, cocinar y comer en clase algún plato típico italiano.
+        </p>
+        <p class="ipp-body-text">
+          Lo que nació como una aventura experimental se convirtió en un proyecto pedagógico con identidad propia: informal pero profundo, relajado pero comprometido. Hoy, más de 80 alumnos son testigos de que otro modo de aprender un idioma es posible.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ipp-section ipp-section-alt">
+  <div class="ipp-container">
+    <div class="ipp-reveal ipp-text-center" style="margin-bottom:3rem;">
+      <h2 class="ipp-section-title">El <span>camino recorrido</span></h2>
+      <div class="ipp-divider ipp-divider-c"></div>
+    </div>
+    <div class="ipp-timeline">
+      <div class="ipp-tl-item">
+        <div class="ipp-tl-card">
+          <div class="ipp-tl-year">2000</div>
+          <h4>El destino elige a Carolina</h4>
+          <p>Un intercambio cultural de seis meses en Italia. Sin buscarlo, nació un amor profundo por el idioma y la cultura italiana.</p>
+        </div>
+        <div class="ipp-tl-dot"></div>
+      </div>
+      <div class="ipp-tl-item">
+        <div class="ipp-tl-card">
+          <div class="ipp-tl-year">2000–2012</div>
+          <h4>Formación y docencia formal</h4>
+          <p>Cinco años enseñando en escuelas públicas de Comodoro Rivadavia y Rada Tilly, mientras estudia italiano sin parar.</p>
+        </div>
+        <div class="ipp-tl-dot"></div>
+      </div>
+      <div class="ipp-tl-item">
+        <div class="ipp-tl-card">
+          <div class="ipp-tl-year">2012</div>
+          <h4>Nace Italiano Per Piacere</h4>
+          <p>10 amigas. Una mesa. Clases + cocina italiana. El proyecto arranca de la manera más auténtica posible.</p>
+        </div>
+        <div class="ipp-tl-dot"></div>
+      </div>
+      <div class="ipp-tl-item">
+        <div class="ipp-tl-card">
+          <div class="ipp-tl-year">2015</div>
+          <h4>La comunidad crece</h4>
+          <p>60 alumnos. El boca a boca hizo lo suyo: grupos que se forman, lazos que perduran, un método que enamora.</p>
+        </div>
+        <div class="ipp-tl-dot"></div>
+      </div>
+      <div class="ipp-tl-item">
+        <div class="ipp-tl-card">
+          <div class="ipp-tl-year">2018</div>
+          <h4>Master en Venezia</h4>
+          <p>Master en Didáctica y Promoción de la Lengua y Cultura Italiana — Universidad Ca' Foscari de Venezia.</p>
+        </div>
+        <div class="ipp-tl-dot"></div>
+      </div>
+      <div class="ipp-tl-item">
+        <div class="ipp-tl-card">
+          <div class="ipp-tl-year">Hoy</div>
+          <h4>80 alumnos y creciendo</h4>
+          <p>E-learning propio, actividades culturales, cocina italiana y una comunidad que ama el idioma tanto como su docente.</p>
+        </div>
+        <div class="ipp-tl-dot"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ipp-section">
+  <div class="ipp-container">
+    <div class="ipp-reveal ipp-text-center" style="margin-bottom:.5rem;">
+      <h2 class="ipp-section-title">Nuestra <span>filosofía</span></h2>
+      <div class="ipp-divider ipp-divider-c"></div>
+    </div>
+    <p class="ipp-hint ipp-reveal">Pasá el cursor o tocá cada tarjeta para descubrir más</p>
+    <div class="ipp-values-grid ipp-reveal">
+      <div class="ipp-flip-wrap" tabindex="0" role="button">
+        <div class="ipp-flip-inner">
+          <div class="ipp-flip-front">
+            <div class="ipp-flip-icon">01</div>
+            <h3>Sin presiones</h3>
+            <small>Aprender debe ser placer</small>
+          </div>
+          <div class="ipp-flip-back">
+            <p>Sin cronogramas rígidos ni fechas límite. El ritmo lo marca el grupo. Aprender italiano es un viaje, no una carrera.</p>
+          </div>
+        </div>
+      </div>
+      <div class="ipp-flip-wrap" tabindex="0" role="button">
+        <div class="ipp-flip-inner">
+          <div class="ipp-flip-front">
+            <div class="ipp-flip-icon">02</div>
+            <h3>Cultura viva</h3>
+            <small>Más allá de la gramática</small>
+          </div>
+          <div class="ipp-flip-back">
+            <p>Películas, cocina, literatura, redes sociales. Llevamos Italia a Comodoro — porque un idioma es, ante todo, su cultura.</p>
+          </div>
+        </div>
+      </div>
+      <div class="ipp-flip-wrap" tabindex="0" role="button">
+        <div class="ipp-flip-inner">
+          <div class="ipp-flip-front">
+            <div class="ipp-flip-icon">03</div>
+            <h3>Comunidad</h3>
+            <small>Aprendo con otros</small>
+          </div>
+          <div class="ipp-flip-back">
+            <p>Las clases en círculo no son casualidad. El aprendizaje colaborativo y los lazos de amistad son parte del método.</p>
+          </div>
+        </div>
+      </div>
+      <div class="ipp-flip-wrap" tabindex="0" role="button">
+        <div class="ipp-flip-inner">
+          <div class="ipp-flip-front">
+            <div class="ipp-flip-icon">04</div>
+            <h3>A medida</h3>
+            <small>Tu motivación, mi programa</small>
+          </div>
+          <div class="ipp-flip-back">
+            <p>¿Buscás tus raíces? ¿Soñás con viajar a Italia? ¿Necesitás rendir un examen? El programa se adapta a vos.</p>
+          </div>
+        </div>
+      </div>
+      <div class="ipp-flip-wrap" tabindex="0" role="button">
+        <div class="ipp-flip-inner">
+          <div class="ipp-flip-front">
+            <div class="ipp-flip-icon">05</div>
+            <h3>Adulto protagonista</h3>
+            <small>Nunca es tarde</small>
+          </div>
+          <div class="ipp-flip-back">
+            <p>De 20 a 75 años. El adulto aprende diferente — y eso es una fortaleza. El estímulo social lo hace perdurar en el tiempo.</p>
+          </div>
+        </div>
+      </div>
+      <div class="ipp-flip-wrap" tabindex="0" role="button">
+        <div class="ipp-flip-inner">
+          <div class="ipp-flip-front">
+            <div class="ipp-flip-icon">06</div>
+            <h3>Cocina e idioma</h3>
+            <small>Italia entra por la boca</small>
+          </div>
+          <div class="ipp-flip-back">
+            <p>Cocinamos platos típicos en clase. Porque el mejor modo de conocer una cultura es comerla, contarla y vivirla.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ipp-section ipp-section-alt">
+  <div class="ipp-container">
+    <div class="ipp-reveal">
+      <h2 class="ipp-section-title">Tu <span>docente</span></h2>
+      <div class="ipp-divider"></div>
+    </div>
+    <div class="ipp-bio ipp-reveal">
+      <div>
+        <div class="ipp-bio-avatar">
+          <div class="ipp-bio-avatar-ph">CC</div>
+        </div>
+      </div>
+      <div>
+        <h3 class="ipp-bio-name">Carolina Carizza</h3>
+        <p class="ipp-bio-title">Profesora y Fundadora · Italiano Per Piacere</p>
+        <div class="ipp-badge-list">
+          <span class="ipp-badge">Master Ca' Foscari · Venezia 2018</span>
+          <span class="ipp-badge">Comodoro Rivadavia</span>
+          <span class="ipp-badge">Bisnieta de italianos</span>
+          <span class="ipp-badge">Diseño Audiovisual</span>
+          <span class="ipp-badge">Animación Sociocultural</span>
+        </div>
+        <p class="ipp-body-text">
+          Mi acercamiento al italiano fue por pura casualidad: un intercambio de seis meses en Italia en el año 2000. Desde entonces nunca dejé de estudiar ni de enamorarme más de este idioma y su cultura.
+        </p>
+        <p class="ipp-body-text">
+          Trabajar de manera autónoma me permite crear clases y cursos a medida, conocer bien a cada alumno y armar los programas según sus motivaciones. Mi formación en diseño audiovisual me permite buscar formas de enseñanza más dinámicas y vivas — lejos de los manuales polvorientos y cerca de la Italia real de hoy.
+        </p>
+        <div class="ipp-social-row">
+          <a href="https://instagram.com/italiano_per_piacere" target="_blank" rel="noopener" class="ipp-social-btn ipp-social-btn-ig">@italiano_per_piacere</a>
+          <a href="https://facebook.com/italianort" target="_blank" rel="noopener" class="ipp-social-btn ipp-social-btn-fb">@italianort</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ipp-section">
+  <div class="ipp-container">
+    <div class="ipp-reveal ipp-text-center" style="margin-bottom:2rem;">
+      <h2 class="ipp-section-title">Italia <span>nos inspira</span></h2>
+      <div class="ipp-divider ipp-divider-c"></div>
+    </div>
+    <div class="ipp-collage ipp-reveal">
+      <div class="ipp-collage-item">
+        <img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/bjorn-agerbeek-k0SMpuGKSFE-unsplash.jpg" alt="Bar en Italia" loading="lazy">
+        <div class="ipp-collage-overlay"></div>
+      </div>
+      <div class="ipp-collage-item">
+        <img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/matilda-bellman-QGNl98tDIlk-unsplash.jpg" alt="Limones italianos" loading="lazy">
+        <div class="ipp-collage-overlay"></div>
+      </div>
+      <div class="ipp-collage-item">
+        <img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/massimo-virgilio-q8i702UM1CA-unsplash.jpg" alt="Pimientos rojos" loading="lazy">
+        <div class="ipp-collage-overlay"></div>
+      </div>
+      <div class="ipp-collage-item">
+        <img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/danni-brehme-1AQ3cCjmfow-unsplash.jpg" alt="Calle italiana" loading="lazy">
+        <div class="ipp-collage-overlay"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ipp-cta-section">
+  <div class="ipp-container">
+    <h2>¿Te animás a aprender italiano<br><em>con piacere</em>?</h2>
+    <p>Sumate a una comunidad de más de 80 alumnos que descubrieron que aprender un idioma puede ser la experiencia más disfrutable de su semana.</p>
+    <a href="#" class="ipp-btn-primary">Quiero empezar ahora</a>
+  </div>
+</section>
+
+<script>
+(function(){
+  'use strict';
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('ipp-visible'); });
+  },{ threshold: 0.1 });
+  document.querySelectorAll('.ipp-reveal, .ipp-tl-item').forEach(function(el){ obs.observe(el); });
+
+  var cObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el = e.target, target = parseInt(el.dataset.target, 10), n = 0;
+      var t = setInterval(function(){
+        n += Math.ceil(target / 60);
+        if(n >= target){ n = target; clearInterval(t); }
+        el.textContent = n + (target > 1 ? '+' : '');
+      }, 18);
+      cObs.unobserve(el);
+    });
+  },{ threshold: 0.5 });
+  document.querySelectorAll('.ipp-stat-num[data-target]').forEach(function(c){ cObs.observe(c); });
+
+  document.querySelectorAll('.ipp-flip-wrap').forEach(function(card){
+    card.addEventListener('click', function(){ this.classList.toggle('ipp-flipped'); });
+    card.addEventListener('keydown', function(e){
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); this.classList.toggle('ipp-flipped'); }
+    });
+  });
+})();
+</script>

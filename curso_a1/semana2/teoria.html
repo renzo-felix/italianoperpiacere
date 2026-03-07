@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semana 2 · Teoría · Di dove sei?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ipp-cream:     #e9e6d5;
+      --ipp-gold:      #EFCF7F;
+      --ipp-amber:     #e5ab07;
+      --ipp-red:       #cc4736;
+      --ipp-teal:      #78a6ba;
+      --ipp-green:     #528e74;
+      --ipp-black:     #1a1a18;
+      --ipp-white:     #ffffff;
+      --ipp-font-head: 'Playfair Display', Georgia, serif;
+      --ipp-font-body: 'Outfit', system-ui, sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--ipp-font-body);background:var(--ipp-cream);color:var(--ipp-black);min-height:100vh}
+
+    header{background:var(--ipp-teal);color:var(--ipp-white);padding:2.5rem 1rem;text-align:center}
+    .badge{display:inline-block;background:rgba(255,255,255,.2);padding:.3rem 1.2rem;border-radius:20px;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.7rem;font-weight:600}
+    header h1{font-family:var(--ipp-font-head);font-size:2.4rem;font-weight:700}
+    header p{font-size:.95rem;opacity:.9;margin-top:.4rem;font-weight:300}
+
+    nav{display:flex;justify-content:center;gap:.5rem;background:var(--ipp-white);padding:.9rem 1rem;flex-wrap:wrap;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+    .pill{padding:.38rem 1rem;border-radius:20px;background:#e8f2f7;color:var(--ipp-teal);font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s}
+    .pill:hover{background:var(--ipp-teal);color:var(--ipp-white)}
+
+    main{max-width:920px;margin:2rem auto;padding:0 1rem}
+
+    .sec{background:var(--ipp-white);border-radius:14px;padding:2rem;margin-bottom:1.8rem;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+    .sec-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem;padding-bottom:.8rem;border-bottom:3px solid var(--ipp-cream)}
+    .sec-icon{font-size:1.8rem}
+    .sec-title{font-family:var(--ipp-font-head);font-size:1.5rem;font-weight:700;color:var(--ipp-teal)}
+    .intro{color:#555;margin-bottom:1.2rem;font-size:.95rem;line-height:1.7}
+
+    /* ── TABLES ── */
+    table{width:100%;border-collapse:collapse;margin-top:.8rem}
+    th{background:var(--ipp-teal);color:var(--ipp-white);padding:.7rem 1rem;text-align:left;font-weight:600;font-size:.88rem}
+    th.green{background:var(--ipp-green)}
+    th.amber{background:var(--ipp-amber)}
+    td{padding:.72rem 1rem;border-bottom:1px solid var(--ipp-cream);font-size:.94rem}
+    tr:nth-child(even) td{background:#fafaf8}
+    .pron{color:var(--ipp-teal);font-style:italic;font-weight:500}
+    .vform{font-weight:700;color:var(--ipp-teal);font-size:1.05rem}
+    .vform.g{color:var(--ipp-green)}
+    .trans{color:#777;font-size:.86rem}
+    .example{color:#444;font-size:.9rem;font-style:italic}
+
+    /* ── TWO-COL GRID ── */
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+    @media(max-width:620px){.two-col{grid-template-columns:1fr}}
+
+    /* ── ESSERE USOS ── */
+    .uso-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem;margin-top:1rem}
+    .uso-card{border-radius:12px;padding:1.1rem;border-top:4px solid var(--ipp-teal)}
+    .uso-card.g{border-top-color:var(--ipp-green);background:#e8f2ed}
+    .uso-card.t{border-top-color:var(--ipp-teal);background:#e8f2f7}
+    .uso-card.a{border-top-color:var(--ipp-amber);background:#fdf8ec}
+    .uso-card.r{border-top-color:var(--ipp-red);background:#fdecea}
+    .uso-titulo{font-family:var(--ipp-font-head);font-size:1rem;font-weight:700;display:block;margin-bottom:.4rem;color:var(--ipp-black)}
+    .uso-it{font-weight:600;font-size:.9rem;color:var(--ipp-teal);display:block}
+    .uso-it.g{color:var(--ipp-green)}
+    .uso-es{font-size:.8rem;color:#666;margin-top:.1rem;display:block}
+
+    /* ── DOMANDE ── */
+    .domanda-card{background:var(--ipp-cream);border-radius:12px;padding:1.2rem;margin-bottom:.8rem}
+    .domanda-it{font-family:var(--ipp-font-head);font-size:1.1rem;font-weight:700;color:var(--ipp-teal);margin-bottom:.2rem}
+    .domanda-es{color:#555;font-size:.88rem;margin-bottom:.7rem}
+    .risposta{background:var(--ipp-white);border-radius:8px;padding:.7rem 1rem;border-left:3px solid var(--ipp-teal)}
+    .risposta .label{font-size:.72rem;font-weight:700;color:var(--ipp-teal);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.3rem}
+    .risposta .it{font-weight:600;color:var(--ipp-black);display:block}
+    .risposta .es{color:#777;font-size:.84rem;display:block;margin-top:.1rem}
+
+    /* ── NAZIONALITÀ ── */
+    .naz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:.7rem;margin-top:1rem}
+    .naz-card{background:var(--ipp-cream);border-radius:10px;padding:.9rem 1rem}
+    .naz-flag{font-size:1.4rem;display:block;margin-bottom:.3rem}
+    .naz-it{font-weight:700;color:var(--ipp-teal);font-size:.95rem}
+    .naz-es{font-size:.8rem;color:#666;margin-top:.1rem}
+    .naz-forma{font-size:.75rem;color:#999;margin-top:.2rem;font-style:italic}
+
+    /* ── CITTÀ ── */
+    .citta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.8rem}
+    .citta-card{border-radius:10px;padding:1rem;text-align:center;background:var(--ipp-cream);border:2px solid transparent;transition:all .2s;cursor:default}
+    .citta-card:hover{border-color:var(--ipp-teal);background:#e8f2f7;transform:translateY(-2px)}
+    .citta-flag{font-size:1.5rem;display:block;margin-bottom:.3rem}
+    .citta-name{font-family:var(--ipp-font-head);font-size:1.1rem;font-weight:700;display:block}
+    .citta-region{font-size:.72rem;color:#777;margin-top:.1rem;display:block}
+    .citta-fact{font-size:.7rem;color:var(--ipp-teal);margin-top:.3rem;font-style:italic;display:block}
+
+    /* ── PREP CARDS ── */
+    .prep-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.7rem;margin-top:1rem}
+    .prep-card{border-radius:10px;padding:1rem;text-align:center;background:#e8f2f7;border-bottom:3px solid var(--ipp-teal)}
+    .prep-card.g{background:#e8f2ed;border-bottom-color:var(--ipp-green)}
+    .prep-it{font-family:var(--ipp-font-head);font-size:1.5rem;font-weight:700;color:var(--ipp-teal);display:block}
+    .prep-it.g{color:var(--ipp-green)}
+    .prep-es{font-size:.8rem;color:#555;display:block;margin-top:.2rem;font-weight:600}
+    .prep-ex{font-size:.75rem;color:#777;font-style:italic;display:block;margin-top:.4rem;line-height:1.5}
+
+    /* ── NOTA ── */
+    .nota{background:#fefaee;border-left:4px solid var(--ipp-gold);border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin-top:1rem;font-size:.9rem;line-height:1.7}
+    .nota strong{color:var(--ipp-green)}
+    .nota.danger{background:#fef3f2;border-left-color:var(--ipp-red)}
+    .nota.danger strong{color:var(--ipp-red)}
+    .nota.info{background:#e8f2f7;border-left-color:var(--ipp-teal)}
+    .nota.info strong{color:var(--ipp-teal)}
+    .nota.green{background:#e8f2ed;border-left-color:var(--ipp-green)}
+    .nota.green strong{color:var(--ipp-green)}
+
+    /* ── DIALOGO ── */
+    .dialogo{background:var(--ipp-cream);border-radius:12px;padding:1.4rem;margin-top:.8rem}
+    .d-line{margin:.5rem 0;line-height:1.6}
+    .d-line .spk{font-weight:700;color:var(--ipp-teal)}
+    .d-line .it{font-style:italic}
+    .d-line .es{font-size:.82rem;color:#888;margin-left:1.5rem;display:block}
+
+    footer{text-align:center;padding:2.5rem;color:#888;font-size:.85rem;background:var(--ipp-white);margin-top:1rem}
+    footer strong{color:var(--ipp-teal);font-family:var(--ipp-font-head)}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Semana 2 · Unidad 1</div>
+  <h1>Di dove sei? 🗺️</h1>
+  <p>ESSERE · ANDARE · Procedencia · Nacionalidades · Ciudades italianas</p>
+</header>
+
+<nav>
+  <a class="pill" href="#essere">🔵 ESSERE</a>
+  <a class="pill" href="#andare">🟢 ANDARE</a>
+  <a class="pill" href="#naz">🌍 Nazionalità</a>
+  <a class="pill" href="#domande">❓ Domande</a>
+  <a class="pill" href="#citta">🏛️ Città</a>
+  <a class="pill" href="#prep">📌 Preposizioni</a>
+</nav>
+
+<main>
+
+  <!-- 1. ESSERE -->
+  <section class="sec" id="essere">
+    <div class="sec-header">
+      <span class="sec-icon">🔵</span>
+      <h2 class="sec-title">Il verbo ESSERE — ser / estar</h2>
+    </div>
+    <p class="intro"><em>Essere</em> es el verbo <strong>más irregular</strong> y <strong>más importante</strong> del italiano. No tiene ninguna forma regular, ¡hay que memorizarlo completo! Se usa para identidad, origen, profesión y más.</p>
+
+    <div class="two-col">
+      <div>
+        <table>
+          <thead>
+            <tr><th colspan="3">ESSERE — ser / estar</th></tr>
+            <tr style="background:#e8f2f7"><th style="color:var(--ipp-teal)">Pronome</th><th style="color:var(--ipp-teal)">Forma</th><th style="color:var(--ipp-teal)">Traducción</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="pron">io</td><td><span class="vform">sono</span></td><td class="trans">soy / estoy</td></tr>
+            <tr><td class="pron">tu</td><td><span class="vform">sei</span></td><td class="trans">eres / estás</td></tr>
+            <tr><td class="pron">lui / lei / Lei</td><td><span class="vform">è</span></td><td class="trans">es / está</td></tr>
+            <tr><td class="pron">noi</td><td><span class="vform">siamo</span></td><td class="trans">somos / estamos</td></tr>
+            <tr><td class="pron">voi</td><td><span class="vform">siete</span></td><td class="trans">sois / estáis</td></tr>
+            <tr><td class="pron">loro</td><td><span class="vform">sono</span></td><td class="trans">son / están</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.7rem;justify-content:center">
+        <div style="background:var(--ipp-cream);border-radius:10px;padding:1rem">
+          <p style="font-size:.78rem;font-weight:700;color:var(--ipp-teal);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem">📌 Curiosidad gramatical</p>
+          <p style="font-size:.88rem;line-height:1.6"><strong>Io sono</strong> y <strong>loro sono</strong> son iguales — igual que en latín (<em>sum / sunt</em>). El contexto lo aclara siempre.</p>
+        </div>
+        <div style="background:var(--ipp-cream);border-radius:10px;padding:1rem">
+          <p style="font-size:.78rem;font-weight:700;color:var(--ipp-teal);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem">⚠️ Acento gráfico</p>
+          <p style="font-size:.88rem;line-height:1.6"><strong>È</strong> (él/ella es) lleva acento grave para diferenciarse de <strong>e</strong> (= y). ¡Nunca lo omitas!</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-family:var(--ipp-font-head);font-size:1.1rem;font-weight:700;color:var(--ipp-teal);margin:1.5rem 0 .8rem">¿Para qué usamos ESSERE?</p>
+    <div class="uso-grid">
+      <div class="uso-card t">
+        <span class="uso-titulo">🌍 Origen / Procedencia</span>
+        <span class="uso-it">Sono di Roma.</span><span class="uso-es">Soy de Roma.</span>
+        <span class="uso-it" style="margin-top:.4rem">Sei di Madrid?</span><span class="uso-es">¿Eres de Madrid?</span>
+      </div>
+      <div class="uso-card g">
+        <span class="uso-titulo">🌐 Nacionalidad</span>
+        <span class="uso-it g">Sono italiano/a.</span><span class="uso-es">Soy italiano/a.</span>
+        <span class="uso-it g" style="margin-top:.4rem">Siamo spagnoli.</span><span class="uso-es">Somos españoles.</span>
+      </div>
+      <div class="uso-card a">
+        <span class="uso-titulo">💼 Profesión / Identidad</span>
+        <span class="uso-it" style="color:var(--ipp-amber)">Sono studente.</span><span class="uso-es">Soy estudiante.</span>
+        <span class="uso-it" style="color:var(--ipp-amber);margin-top:.4rem">È medico.</span><span class="uso-es">Es médico.</span>
+      </div>
+      <div class="uso-card r">
+        <span class="uso-titulo">📍 Ubicación (cosas/lugares)</span>
+        <span class="uso-it" style="color:var(--ipp-red)">Il libro è qui.</span><span class="uso-es">El libro está aquí.</span>
+        <span class="uso-it" style="color:var(--ipp-red);margin-top:.4rem">Roma è in Italia.</span><span class="uso-es">Roma está en Italia.</span>
+      </div>
+    </div>
+
+    <div class="nota info" style="margin-top:1rem">
+      <strong>💡 ESSERE vs STARE (una diferencia clave):</strong><br>
+      En italiano, para "¿cómo estás?" no se usa <em>essere</em> sino el verbo <em>stare</em>:<br>
+      → <em>Come <strong>stai</strong>?</em> / <em>Sto bene.</em> — bienestar/estado físico<br>
+      → <em>Dove <strong>sei</strong>?</em> / <em>Sono in classe.</em> — ubicación de personas<br>
+      → <em>Dove <strong>è</strong> il libro?</em> / <em>È sul tavolo.</em> — ubicación de objetos
+    </div>
+
+    <div class="nota danger" style="margin-top:.8rem">
+      <strong>❌ Errores frecuentes:</strong><br>
+      ❌ <em>Io è italiano.</em> → ✅ <em>Io sono italiano.</em><br>
+      ❌ <em>Come sei?</em> (para pedir bienestar) → ✅ <em>Come stai?</em><br>
+      ❌ <em>Sono de Madrid.</em> → ✅ <em>Sono di Madrid.</em> — usa siempre <em>di</em>, no <em>de</em>
+    </div>
+  </section>
+
+  <!-- 2. ANDARE -->
+  <section class="sec" id="andare">
+    <div class="sec-header">
+      <span class="sec-icon">🟢</span>
+      <h2 class="sec-title">Il verbo ANDARE — ir</h2>
+    </div>
+    <p class="intro"><em>Andare</em> (ir) es otro verbo <strong>irregular fundamental</strong>. Observa cómo las formas cambian radicalmente — solo <em>andiamo</em> y <em>andate</em> conservan la raíz.</p>
+
+    <div class="two-col">
+      <div>
+        <table>
+          <thead>
+            <tr><th colspan="4" class="green">ANDARE — ir</th></tr>
+            <tr style="background:#e8f2ed"><th style="color:var(--ipp-green)">Pronome</th><th style="color:var(--ipp-green)">Forma</th><th style="color:var(--ipp-green)">Ejemplo</th><th style="color:var(--ipp-green)">Trad.</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="pron">io</td><td><span class="vform g">vado</span></td><td class="example">Vado a casa.</td><td class="trans">Voy a casa.</td></tr>
+            <tr><td class="pron">tu</td><td><span class="vform g">vai</span></td><td class="example">Dove vai?</td><td class="trans">¿A dónde vas?</td></tr>
+            <tr><td class="pron">lui/lei</td><td><span class="vform g">va</span></td><td class="example">Va in Italia.</td><td class="trans">Va a Italia.</td></tr>
+            <tr><td class="pron">noi</td><td><span class="vform g">andiamo</span></td><td class="example">Andiamo a Roma!</td><td class="trans">¡Vamos a Roma!</td></tr>
+            <tr><td class="pron">voi</td><td><span class="vform g">andate</span></td><td class="example">Andate in vacanza?</td><td class="trans">¿Vais de vacaciones?</td></tr>
+            <tr><td class="pron">loro</td><td><span class="vform g">vanno</span></td><td class="example">Vanno a scuola.</td><td class="trans">Van al colegio.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.7rem;justify-content:center">
+        <div style="background:#e8f2ed;border-radius:10px;padding:1rem">
+          <p style="font-size:.78rem;font-weight:700;color:var(--ipp-green);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem">🗺️ Con destinos</p>
+          <p style="font-size:.87rem;line-height:1.7">
+            Vado <strong>a</strong> Roma. (ciudad)<br>
+            Vado <strong>in</strong> Italia. (país)<br>
+            Vado <strong>in</strong> vacanza. (vacaciones)<br>
+            Vado <strong>al</strong> bar. (artículo)
+          </p>
+        </div>
+        <div style="background:#fdf8ec;border-radius:10px;padding:1rem">
+          <p style="font-size:.78rem;font-weight:700;color:var(--ipp-amber);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem">💡 Andare + infinitivo</p>
+          <p style="font-size:.87rem;line-height:1.7">
+            <em>Vado <strong>a studiare</strong>.</em> — Voy a estudiar.<br>
+            <em>Andiamo <strong>a mangiare</strong>!</em> — ¡Vamos a comer!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="nota green" style="margin-top:1rem">
+      <strong>🔄 ANDARE vs VENIRE (ir vs venir) — punto de referencia:</strong><br>
+      <em>Andare</em> = alejarse del punto de referencia (yo me alejo de ti)<br>
+      <em>Venire</em> = acercarse al punto de referencia (yo me acerco a ti)<br>
+      → <em>Vengo da te.</em> (Voy a tu casa / Vengo a donde estás tú.)<br>
+      → <em>Vado da te.</em> (Voy a tu casa / Me dirijo hacia donde estás.) — ambas posibles pero <em>venire</em> más natural.
+    </div>
+
+    <div class="dialogo" style="margin-top:1rem">
+      <p style="font-size:.8rem;color:var(--ipp-green);font-weight:600;margin-bottom:.5rem">💬 Usando ESSERE y ANDARE juntos</p>
+      <div class="d-line"><span class="spk">Marco:</span> <span class="it">Ciao! Di dove sei?</span><span class="es">¡Hola! ¿De dónde eres?</span></div>
+      <div class="d-line"><span class="spk">Sara:</span> <span class="it">Sono di Barcellona, sono spagnola. E tu?</span><span class="es">Soy de Barcelona, soy española. ¿Y tú?</span></div>
+      <div class="d-line"><span class="spk">Marco:</span> <span class="it">Io sono di Napoli. Vado a studiare a Milano.</span><span class="es">Yo soy de Nápoles. Voy a estudiar a Milán.</span></div>
+      <div class="d-line"><span class="spk">Sara:</span> <span class="it">Che bello! Anche io vado a Milano la prossima settimana!</span><span class="es">¡Qué bien! ¡Yo también voy a Milán la semana que viene!</span></div>
+    </div>
+  </section>
+
+  <!-- 3. NAZIONALITÀ -->
+  <section class="sec" id="naz">
+    <div class="sec-header">
+      <span class="sec-icon">🌍</span>
+      <h2 class="sec-title">Le nazionalità — Las nacionalidades</h2>
+    </div>
+    <p class="intro">Las nacionalidades en italiano son <strong>adjetivos</strong> y cambian de género: terminación <strong>-o</strong> para masculino, <strong>-a</strong> para femenino. Algunas son <strong>invariables</strong> (misma forma para m/f).</p>
+
+    <div class="naz-grid">
+      <div class="naz-card">
+        <span class="naz-flag">🇮🇹</span>
+        <span class="naz-it">italiano / italiana</span>
+        <span class="naz-es">italiano / italiana</span>
+        <span class="naz-forma">→ cambia -o/-a</span>
+      </div>
+      <div class="naz-card">
+        <span class="naz-flag">🇪🇸</span>
+        <span class="naz-it">spagnolo / spagnola</span>
+        <span class="naz-es">español / española</span>
+        <span class="naz-forma">→ cambia -o/-a</span>
+      </div>
+      <div class="naz-card">
+        <span class="naz-flag">🇫🇷</span>
+        <span class="naz-it">francese / francese</span>
+        <span class="naz-es">francés / francesa</span>
+        <span class="naz-forma">→ invariable (-ese)</span>
+      </div>
+      <div class="naz-card">
+        <span class="naz-flag">🇬🇧</span>
+        <span class="naz-it">inglese / inglese</span>
+        <span class="naz-es">inglés / inglesa</span>
+        <span class="naz-forma">→ invariable (-ese)</span>
+      </div>
+      <div class="naz-card">
+        <span class="naz-flag">🇩🇪</span>
+        <span class="naz-it">tedesco / tedesca</span>
+        <span class="naz-es">alemán / alemana</span>
+        <span class="naz-forma">→ cambia -o/-a</span>
+      </div>
+      <div class="naz-card">
+        <span class="naz-flag">🇵🇹</span>
+        <span class="naz-it">portoghese / portoghese</span>
+        <span class="naz-es">portugués / portuguesa</span>
+        <span class="naz-forma">→ invariable (-ese)</span>
+      </div>
+      <div class="naz-card">
+        <span class="naz-flag">🇺🇸</span>
+        <span class="naz-it">americano / americana</span>
+        <span class="naz-es">estadounidense</span>
+        <span class="naz-forma">→ cambia -o/-a</span>
+      </div>
+      <div class="naz-card">
+        <span class="naz-flag">🇦🇷</span>
+        <span class="naz-it">argentino / argentina</span>
+        <span class="naz-es">argentino / argentina</span>
+        <span class="naz-forma">→ cambia -o/-a</span>
+      </div>
+      <div class="naz-card">
+        <span class="naz-flag">🇧🇷</span>
+        <span class="naz-it">brasiliano / brasiliana</span>
+        <span class="naz-es">brasileño / brasileña</span>
+        <span class="naz-forma">→ cambia -o/-a</span>
+      </div>
+      <div class="naz-card">
+        <span class="naz-flag">🇲🇽</span>
+        <span class="naz-it">messicano / messicana</span>
+        <span class="naz-es">mexicano / mexicana</span>
+        <span class="naz-forma">→ cambia -o/-a</span>
+      </div>
+      <div class="naz-card">
+        <span class="naz-flag">🇨🇳</span>
+        <span class="naz-it">cinese / cinese</span>
+        <span class="naz-es">chino / china</span>
+        <span class="naz-forma">→ invariable (-ese)</span>
+      </div>
+      <div class="naz-card">
+        <span class="naz-flag">🇯🇵</span>
+        <span class="naz-it">giapponese / giapponese</span>
+        <span class="naz-es">japonés / japonesa</span>
+        <span class="naz-forma">→ invariable (-ese)</span>
+      </div>
+    </div>
+
+    <div class="nota" style="margin-top:1rem">
+      <strong>📌 Regla general:</strong><br>
+      • Terminación <strong>-o/-a</strong> → cambia según género: <em>italiano/italiana, spagnolo/spagnola</em><br>
+      • Terminación <strong>-ese</strong> → invariable para m/f: <em>francese, inglese, cinese</em><br>
+      • Plurales: <em>-o/-a</em> → <em>italiani/italiane</em> · <em>-ese</em> → <em>francesi, inglesi</em>
+    </div>
+    <div class="nota info" style="margin-top:.8rem">
+      <strong>💡 Nationalities in context:</strong><br>
+      <em>Io sono <strong>italiano</strong>.</em> (hombre) &nbsp;·&nbsp; <em>Io sono <strong>italiana</strong>.</em> (mujer)<br>
+      <em>Sei <strong>spagnolo</strong>?</em> — <em>No, sono <strong>argentino</strong>.</em><br>
+      <em>Lei è <strong>francese</strong> o <strong>inglese</strong>?</em> — <em>Sono <strong>francese</strong>, di Parigi.</em>
+    </div>
+  </section>
+
+  <!-- 4. DOMANDE -->
+  <section class="sec" id="domande">
+    <div class="sec-header">
+      <span class="sec-icon">❓</span>
+      <h2 class="sec-title">Domande sulla provenienza — Preguntar el origen</h2>
+    </div>
+    <p class="intro">Las preguntas sobre origen y destino son las más usadas en A1. Aprende tanto la versión <strong>informal (tu)</strong> como la <strong>formal (Lei)</strong>.</p>
+
+    <div class="domanda-card">
+      <div class="domanda-it">Di dove sei? <span style="background:#fdf8ec;color:var(--ipp-amber);font-size:.75rem;font-weight:600;padding:.1rem .5rem;border-radius:8px;margin-left:.3rem">informal</span></div>
+      <div class="domanda-es">¿De dónde eres?</div>
+      <div class="risposta">
+        <div class="label">Posibles respuestas</div>
+        <div class="it">Sono di Milano. / Sono italiano/a.</div><div class="es">Soy de Milán. / Soy italiano/a.</div>
+        <div class="it" style="margin-top:.4rem">Vengo dalla Spagna. Sono di Madrid.</div><div class="es">Vengo de España. Soy de Madrid.</div>
+      </div>
+    </div>
+
+    <div class="domanda-card">
+      <div class="domanda-it">Di dov'è Lei? <span style="background:#e8f2f7;color:var(--ipp-teal);font-size:.75rem;font-weight:600;padding:.1rem .5rem;border-radius:8px;margin-left:.3rem">formal</span></div>
+      <div class="domanda-es">¿De dónde es usted?</div>
+      <div class="risposta">
+        <div class="label">Risposta</div>
+        <div class="it">Sono di Roma. Sono spagnolo/a, di Barcellona.</div><div class="es">Soy de Roma. Soy español/a, de Barcelona.</div>
+      </div>
+    </div>
+
+    <div class="domanda-card">
+      <div class="domanda-it">Dove abiti? / Dove abita Lei?</div>
+      <div class="domanda-es">¿Dónde vives? / ¿Dónde vive usted?</div>
+      <div class="risposta">
+        <div class="label">Risposta</div>
+        <div class="it">Abito a Roma. / Vivo in Spagna, a Barcellona.</div><div class="es">Vivo en Roma. / Vivo en España, en Barcelona.</div>
+      </div>
+    </div>
+
+    <div class="domanda-card">
+      <div class="domanda-it">Dove vai? / Dove andate?</div>
+      <div class="domanda-es">¿A dónde vas? / ¿A dónde vais?</div>
+      <div class="risposta">
+        <div class="label">Risposta</div>
+        <div class="it">Vado a Roma. / Andiamo in vacanza in Sicilia.</div><div class="es">Voy a Roma. / Vamos de vacaciones a Sicilia.</div>
+      </div>
+    </div>
+
+    <div class="domanda-card">
+      <div class="domanda-it">Di che nazionalità sei?</div>
+      <div class="domanda-es">¿De qué nacionalidad eres?</div>
+      <div class="risposta">
+        <div class="label">Risposta</div>
+        <div class="it">Sono spagnolo/a. / Sono di nazionalità argentina.</div><div class="es">Soy español/a. / Soy de nacionalidad argentina.</div>
+      </div>
+    </div>
+
+    <div class="nota green" style="margin-top:1rem">
+      <strong>💬 Diálogo completo (combina todo lo aprendido):</strong>
+    </div>
+    <div class="dialogo">
+      <div class="d-line"><span class="spk">Chiara:</span> <span class="it">Ciao! Io mi chiamo Chiara. Di dove sei?</span><span class="es">¡Hola! Yo me llamo Chiara. ¿De dónde eres?</span></div>
+      <div class="d-line"><span class="spk">Pedro:</span> <span class="it">Ciao Chiara! Sono Pedro, sono spagnolo, di Valencia. E tu?</span><span class="es">¡Hola Chiara! Soy Pedro, soy español, de Valencia. ¿Y tú?</span></div>
+      <div class="d-line"><span class="spk">Chiara:</span> <span class="it">Io sono di Firenze, sono italiana. Dove abiti adesso?</span><span class="es">Yo soy de Florencia, soy italiana. ¿Dónde vives ahora?</span></div>
+      <div class="d-line"><span class="spk">Pedro:</span> <span class="it">Abito a Roma, studio italiano all'università. E tu dove vai?</span><span class="es">Vivo en Roma, estudio italiano en la universidad. ¿Y tú a dónde vas?</span></div>
+      <div class="d-line"><span class="spk">Chiara:</span> <span class="it">Vado in biblioteca. A presto, Pedro!</span><span class="es">Voy a la biblioteca. ¡Hasta pronto, Pedro!</span></div>
+      <div class="d-line"><span class="spk">Pedro:</span> <span class="it">A presto! Ci vediamo domani!</span><span class="es">¡Hasta pronto! ¡Nos vemos mañana!</span></div>
+    </div>
+  </section>
+
+  <!-- 5. CITTÀ -->
+  <section class="sec" id="citta">
+    <div class="sec-header">
+      <span class="sec-icon">🏛️</span>
+      <h2 class="sec-title">Le principali città italiane</h2>
+    </div>
+    <p class="intro">Italia tiene muchas ciudades importantes, cada una con su propia identidad. Practica: <em>Sono di ___. Vado a ___. Abito a ___.</em></p>
+
+    <div class="citta-grid">
+      <div class="citta-card">
+        <span class="citta-flag">🏛️</span>
+        <span class="citta-name">Roma</span>
+        <span class="citta-region">Lazio · La Capitale</span>
+        <span class="citta-fact">"La Città Eterna" · 2.800 años de historia</span>
+      </div>
+      <div class="citta-card">
+        <span class="citta-flag">👔</span>
+        <span class="citta-name">Milano</span>
+        <span class="citta-region">Lombardia</span>
+        <span class="citta-fact">Capital de la moda y las finanzas</span>
+      </div>
+      <div class="citta-card">
+        <span class="citta-flag">🎭</span>
+        <span class="citta-name">Venezia</span>
+        <span class="citta-region">Veneto</span>
+        <span class="citta-fact">Ciudad sobre el agua, sin coches</span>
+      </div>
+      <div class="citta-card">
+        <span class="citta-flag">🌺</span>
+        <span class="citta-name">Firenze</span>
+        <span class="citta-region">Toscana</span>
+        <span class="citta-fact">Cuna del Renacimiento y el italiano</span>
+      </div>
+      <div class="citta-card">
+        <span class="citta-flag">🍕</span>
+        <span class="citta-name">Napoli</span>
+        <span class="citta-region">Campania</span>
+        <span class="citta-fact">Cuna de la pizza margherita (1889)</span>
+      </div>
+      <div class="citta-card">
+        <span class="citta-flag">🚗</span>
+        <span class="citta-name">Torino</span>
+        <span class="citta-region">Piemonte</span>
+        <span class="citta-fact">Primera capital de Italia · Sede de Fiat</span>
+      </div>
+      <div class="citta-card">
+        <span class="citta-flag">🎓</span>
+        <span class="citta-name">Bologna</span>
+        <span class="citta-region">Emilia-Romagna</span>
+        <span class="citta-fact">La universidad más antigua del mundo (1088)</span>
+      </div>
+      <div class="citta-card">
+        <span class="citta-flag">🔱</span>
+        <span class="citta-name">Palermo</span>
+        <span class="citta-region">Sicilia</span>
+        <span class="citta-fact">Capital de Sicilia, isla más grande del Mediterráneo</span>
+      </div>
+      <div class="citta-card">
+        <span class="citta-flag">⚓</span>
+        <span class="citta-name">Genova</span>
+        <span class="citta-region">Liguria</span>
+        <span class="citta-fact">Patria de Cristóbal Colón</span>
+      </div>
+      <div class="citta-card">
+        <span class="citta-flag">🏖️</span>
+        <span class="citta-name">Bari</span>
+        <span class="citta-region">Puglia</span>
+        <span class="citta-fact">Capital del sur adriático · Famosa por las orecchiette</span>
+      </div>
+    </div>
+
+    <div class="nota info" style="margin-top:1rem">
+      <strong>🗣️ Practica con estas ciudades:</strong><br>
+      <em>Sono di <strong>Napoli</strong>, sono napoletano/a.</em> &nbsp;·&nbsp; <em>Vado a <strong>Firenze</strong> questa estate.</em><br>
+      Cada ciudad tiene sus habitantes con un gentilicio: Romano/a · Milanese · Veneziano/a · Fiorentino/a · Napoletano/a
+    </div>
+  </section>
+
+  <!-- 6. PREPOSIZIONI -->
+  <section class="sec" id="prep">
+    <div class="sec-header">
+      <span class="sec-icon">📌</span>
+      <h2 class="sec-title">Preposizioni: A · IN · DI · DA</h2>
+    </div>
+    <p class="intro">Estas cuatro preposiciones son <strong>indispensables</strong> para hablar de origen, destino y ubicación. Aprende bien las diferencias: son la base de todo A1.</p>
+
+    <div class="prep-grid">
+      <div class="prep-card">
+        <span class="prep-it">DI</span>
+        <span class="prep-es">de — procedencia / posesión</span>
+        <span class="prep-ex">Sono di Roma.<br>È il libro di Marco.<br>Di dove sei?</span>
+      </div>
+      <div class="prep-card">
+        <span class="prep-it">A</span>
+        <span class="prep-es">a / en — con ciudades</span>
+        <span class="prep-ex">Vado a Napoli.<br>Abito a Milano.<br>Sono a casa.</span>
+      </div>
+      <div class="prep-card g">
+        <span class="prep-it g">IN</span>
+        <span class="prep-es">en — con países y regiones</span>
+        <span class="prep-ex">Vado in Italia.<br>Abito in Spagna.<br>Vivo in Toscana.</span>
+      </div>
+      <div class="prep-card g">
+        <span class="prep-it g">DA</span>
+        <span class="prep-es">de / desde — origen con verbo</span>
+        <span class="prep-ex">Vengo da Roma.<br>Sono da Milano.<br>Torno da scuola.</span>
+      </div>
+    </div>
+
+    <table style="margin-top:1.2rem">
+      <thead>
+        <tr><th>Contexto</th><th>Preposición</th><th>Ejemplo</th><th>Traducción</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ciudad (destino o ubicación)</td><td style="font-weight:700;color:var(--ipp-teal)">A</td><td class="example">Vado <strong>a</strong> Roma.</td><td class="trans">Voy a Roma.</td></tr>
+        <tr><td>País o continente</td><td style="font-weight:700;color:var(--ipp-teal)">IN</td><td class="example">Vado <strong>in</strong> Francia.</td><td class="trans">Voy a Francia.</td></tr>
+        <tr><td>Región italiana</td><td style="font-weight:700;color:var(--ipp-teal)">IN</td><td class="example">Sono <strong>in</strong> Toscana.</td><td class="trans">Estoy en Toscana.</td></tr>
+        <tr><td>Origen con "essere di"</td><td style="font-weight:700;color:var(--ipp-teal)">DI</td><td class="example">Sono <strong>di</strong> Milano.</td><td class="trans">Soy de Milán.</td></tr>
+        <tr><td>Origen con "venire"</td><td style="font-weight:700;color:var(--ipp-teal)">DA</td><td class="example">Vengo <strong>da</strong> Milano.</td><td class="trans">Vengo de Milán.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="nota" style="margin-top:1rem">
+      <strong>📌 Regla rápida: A o IN?</strong><br>
+      → Ciudad: siempre <strong>A</strong> &nbsp;·&nbsp; Vado <em>a</em> Roma, <em>a</em> Parigi, <em>a</em> Madrid<br>
+      → País/región: siempre <strong>IN</strong> &nbsp;·&nbsp; Vado <em>in</em> Italia, <em>in</em> Francia, <em>in</em> Sicilia
+    </div>
+
+    <div class="nota danger" style="margin-top:.8rem">
+      <strong>❌ Errores muy comunes:</strong><br>
+      ❌ <em>Vado in Roma.</em> → ✅ <em>Vado <strong>a</strong> Roma.</em> (ciudad → A)<br>
+      ❌ <em>Vado a Italia.</em> → ✅ <em>Vado <strong>in</strong> Italia.</em> (país → IN)<br>
+      ❌ <em>Sono de Madrid.</em> → ✅ <em>Sono <strong>di</strong> Madrid.</em> (di, nunca de)
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Italiano Per Piacere</strong> · A1 · Semana 2 🇮🇹</p>
+</footer>
+</body>
+</html>

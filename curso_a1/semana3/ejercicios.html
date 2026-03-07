@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semana 3 · Ejercicios</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#F0F4F0;color:#2C2C2C}
+    header{background:linear-gradient(135deg,#4A148C,#6A1B9A);color:#fff;padding:1.5rem 2rem;text-align:center}
+    header .badge{display:inline-block;background:rgba(255,255,255,.2);padding:.25rem .9rem;border-radius:20px;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.4rem}
+    header h1{font-size:1.8rem;font-weight:700}
+    main{max-width:800px;margin:2rem auto;padding:0 1rem}
+    .ex{background:#fff;border-radius:12px;padding:1.8rem;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    .ex-num{display:inline-block;background:#6A1B9A;color:#fff;border-radius:50%;width:2rem;height:2rem;line-height:2rem;text-align:center;font-weight:700;font-size:.9rem;margin-right:.5rem}
+    .ex-title{font-size:1.15rem;font-weight:700;color:#4A148C}
+    .ex-sub{color:#777;font-size:.88rem;margin:.4rem 0 1.2rem 2.5rem}
+    .frase-row{padding:.9rem;border-radius:8px;background:#F8F4FF;margin-bottom:.7rem;font-size:.95rem;line-height:2}
+    .blank{border:none;border-bottom:2px solid #CE93D8;background:transparent;font-size:.95rem;padding:.1rem .4rem;width:90px;text-align:center;font-family:inherit;outline:none;transition:border-color .2s;color:#6A1B9A;font-weight:600}
+    .blank.wide{width:130px}
+    .blank:focus{border-color:#6A1B9A}
+    .blank.ok{border-color:#2E7D32;color:#2E7D32}
+    .blank.err{border-color:#C62828;color:#C62828}
+    select.sel{border:2px solid #CE93D8;border-radius:6px;padding:.35rem .5rem;font-size:.88rem;font-family:inherit;background:#fff;color:#6A1B9A;font-weight:600;outline:none;cursor:pointer}
+    select.sel.ok{border-color:#2E7D32;background:#E8F5E9;color:#2E7D32}
+    select.sel.err{border-color:#C62828;background:#FFEBEE;color:#C62828}
+    .check-btn{padding:.55rem 1.8rem;border-radius:20px;border:none;cursor:pointer;font-weight:600;font-size:.9rem;font-family:inherit;transition:all .2s;margin-top:1rem;display:block}
+    .check-btn.purple{background:#6A1B9A;color:#fff}
+    .check-btn.purple:hover{background:#4A148C}
+    .feedback{margin-top:.8rem;padding:.8rem;border-radius:8px;font-weight:500;font-size:.9rem;display:none}
+    .feedback.show{display:block}
+    .feedback.good{background:#E8F5E9;color:#1B5E20;border-left:4px solid #2E7D32}
+    .feedback.bad{background:#FFEBEE;color:#C62828;border-left:4px solid #C62828}
+    /* NUMERO GAME */
+    .num-game{text-align:center;padding:1rem 0}
+    .num-display{font-size:4.5rem;font-weight:700;color:#6A1B9A;margin:.5rem 0;min-height:85px}
+    .num-input{border:2px solid #CE93D8;border-radius:10px;padding:.6rem 1rem;font-size:1.1rem;width:220px;text-align:center;font-family:inherit;outline:none}
+    .num-input:focus{border-color:#6A1B9A}
+    .num-btns{display:flex;justify-content:center;gap:.7rem;margin-top:.8rem}
+    .num-btn{padding:.5rem 1.5rem;border-radius:20px;border:none;cursor:pointer;font-size:.9rem;font-weight:600;transition:all .2s;font-family:inherit}
+    .num-btn.primary{background:#6A1B9A;color:#fff}
+    .num-btn.secondary{background:#F3E5F5;color:#6A1B9A}
+    .num-score{font-size:1rem;color:#777;margin-top:.8rem}
+    /* IDADE GAME */
+    .edad-scenarios{display:grid;gap:.8rem}
+    .edad-sc{background:#F8F4FF;border-radius:10px;padding:1rem;display:flex;align-items:center;gap:1rem}
+    .edad-emoji{font-size:2rem;flex-shrink:0}
+    .edad-text{flex:1;font-size:.92rem}
+    .edad-input{border:2px solid #CE93D8;border-radius:8px;padding:.4rem .7rem;font-size:.92rem;width:180px;font-family:inherit;outline:none;color:#6A1B9A;font-weight:600}
+    .edad-input.ok{border-color:#2E7D32;background:#E8F5E9;color:#2E7D32}
+    .edad-input.err{border-color:#C62828;background:#FFEBEE;color:#C62828}
+  </style>
+</head>
+<body>
+<header>
+  <div class="badge">Semana 3 · Ejercicios</div>
+  <h1>Esercizi: AVERE e numeri 📱</h1>
+</header>
+<main>
+
+  <!-- EX 1: AVERE -->
+  <div class="ex">
+    <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem">
+      <span class="ex-num">1</span>
+      <span class="ex-title">Completa con AVERE ✏️</span>
+    </div>
+    <p class="ex-sub">Conjuga el verbo AVERE correctamente.</p>
+
+    <div class="frase-row">1. Io <input class="blank" id="v1" maxlength="8"> ventidue anni.</div>
+    <div class="frase-row">2. Tu <input class="blank" id="v2" maxlength="5"> un numero di telefono italiano?</div>
+    <div class="frase-row">3. Marco <input class="blank" id="v3" maxlength="3"> un cane e due gatti.</div>
+    <div class="frase-row">4. Noi <input class="blank" id="v4" maxlength="9"> lezione ogni lunedì.</div>
+    <div class="frase-row">5. Voi <input class="blank" id="v5" maxlength="7"> un appartamento a Roma?</div>
+    <div class="frase-row">6. I miei genitori <input class="blank" id="v6" maxlength="7"> cinquant'anni.</div>
+
+    <button class="check-btn purple" onclick="checkAvere()">Verifica ✓</button>
+    <div class="feedback" id="fb1"></div>
+  </div>
+
+  <!-- EX 2: NUMERI 0-100 GAME -->
+  <div class="ex">
+    <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem">
+      <span class="ex-num">2</span>
+      <span class="ex-title">Scrivi i numeri in italiano 🔢</span>
+    </div>
+    <p class="ex-sub">Escribe el número en letras. Tienes 10 intentos para sumar el máximo.</p>
+    <div class="num-game">
+      <div class="num-display" id="numDisplay">?</div>
+      <input class="num-input" id="numInput" type="text" placeholder="Scrivi in italiano..." onkeypress="if(event.key==='Enter')checkNum()">
+      <div class="num-btns">
+        <button class="num-btn secondary" onclick="skipNum()">⏭ Saltar</button>
+        <button class="num-btn primary" onclick="checkNum()">✓ Verificar</button>
+      </div>
+      <div class="num-score" id="numScore">Puntos: 0 / 0 | Intentos: 10</div>
+      <div class="feedback" id="fb2"></div>
+    </div>
+  </div>
+
+  <!-- EX 3: EDAD -->
+  <div class="ex">
+    <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem">
+      <span class="ex-num">3</span>
+      <span class="ex-title">Scrivi l'età in italiano 🎂</span>
+    </div>
+    <p class="ex-sub">Escribe la frase completa con "Ho ___ anni".</p>
+    <div class="edad-scenarios">
+      <div class="edad-sc">
+        <span class="edad-emoji">👶</span>
+        <span class="edad-text">Un bebé tiene <strong>1</strong> año.</span>
+        <input class="edad-input" id="ed1" type="text" placeholder="Ho ___ anno/anni">
+      </div>
+      <div class="edad-sc">
+        <span class="edad-emoji">🧒</span>
+        <span class="edad-text">Un niño tiene <strong>8</strong> años.</span>
+        <input class="edad-input" id="ed2" type="text" placeholder="Ho ___ anni">
+      </div>
+      <div class="edad-sc">
+        <span class="edad-emoji">🧑‍🎓</span>
+        <span class="edad-text">Un estudiante tiene <strong>20</strong> años.</span>
+        <input class="edad-input" id="ed3" type="text" placeholder="Ho ___ anni">
+      </div>
+      <div class="edad-sc">
+        <span class="edad-emoji">👩‍💼</span>
+        <span class="edad-text">Una profesora tiene <strong>35</strong> años.</span>
+        <input class="edad-input" id="ed4" type="text" placeholder="Ho ___ anni">
+      </div>
+      <div class="edad-sc">
+        <span class="edad-emoji">👴</span>
+        <span class="edad-text">Un abuelo tiene <strong>72</strong> años.</span>
+        <input class="edad-input" id="ed5" type="text" placeholder="Ho ___ anni">
+      </div>
+    </div>
+    <button class="check-btn purple" onclick="checkEdad()">Verifica ✓</button>
+    <div class="feedback" id="fb3"></div>
+  </div>
+
+  <!-- EX 4: COMPLETA DIALOGO -->
+  <div class="ex">
+    <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem">
+      <span class="ex-num">4</span>
+      <span class="ex-title">Completa il dialogo 💬</span>
+    </div>
+    <p class="ex-sub">Elige la opción correcta para completar el diálogo.</p>
+    <div style="background:#F3E5F5;border-radius:8px;padding:.7rem 1rem;margin-bottom:1rem;font-size:.88rem">
+      <strong>Banco de palabras:</strong> ho · hai · anni · numero · chiami · ventitre
+    </div>
+    <div style="background:#F8F4FF;border-radius:12px;padding:1.2rem;line-height:2.2;font-size:.95rem">
+      <p><strong style="color:#6A1B9A">Sofia:</strong> Ciao! Come ti <input class="blank wide" id="d1" maxlength="10">?</p>
+      <p><strong style="color:#6A1B9A">Luca:</strong> Mi chiamo Luca. Quanti anni <input class="blank" id="d2" maxlength="5">?</p>
+      <p><strong style="color:#6A1B9A">Sofia:</strong> <input class="blank wide" id="d3" maxlength="5"> <input class="blank wide" id="d4" maxlength="12"> <input class="blank" id="d5" maxlength="6">. E tu?</p>
+      <p><strong style="color:#6A1B9A">Luca:</strong> Io ho venticinque anni. Mi dai il tuo <input class="blank wide" id="d6" maxlength="8">?</p>
+    </div>
+    <button class="check-btn purple" onclick="checkDialogo()">Verifica ✓</button>
+    <div class="feedback" id="fb4"></div>
+  </div>
+
+</main>
+
+<script>
+// EX 1: AVERE
+function checkAvere(){
+  const ans={v1:'ho',v2:'hai',v3:'ha',v4:'abbiamo',v5:'avete',v6:'hanno'};
+  let ok=0;
+  for(const [id,val] of Object.entries(ans)){
+    const el=document.getElementById(id);
+    if(el.value.trim().toLowerCase()===val){el.className='blank ok';ok++;}
+    else{el.className='blank err';}
+  }
+  const fb=document.getElementById('fb1');
+  fb.className='feedback show '+(ok===6?'good':'bad');
+  fb.innerHTML=ok===6?'✅ ¡Perfecto! Dominas AVERE.':
+    `⚠️ ${ok}/6 correctas. Respuestas: ho / hai / ha / abbiamo / avete / hanno`;
+}
+
+// EX 2: NUMERI
+const numeros={
+  0:'zero',1:'uno',2:'due',3:'tre',4:'quattro',5:'cinque',6:'sei',7:'sette',8:'otto',9:'nove',10:'dieci',
+  11:'undici',12:'dodici',13:'tredici',14:'quattordici',15:'quindici',16:'sedici',17:'diciassette',18:'diciotto',
+  19:'diciannove',20:'venti',21:'ventuno',22:'ventidue',23:'ventitré',24:'ventiquattro',25:'venticinque',
+  26:'ventisei',27:'ventisette',28:'ventotto',29:'ventinove',30:'trenta',
+  31:'trentuno',32:'trentadue',33:'trentatré',40:'quaranta',41:'quarantuno',48:'quarantotto',
+  50:'cinquanta',51:'cinquantuno',55:'cinquantacinque',60:'sessanta',61:'sessantuno',68:'sessantotto',
+  70:'settanta',73:'settantatré',80:'ottanta',81:'ottantuno',88:'ottantotto',
+  90:'novanta',91:'novantuno',99:'novantanove',100:'cento'
+};
+const numKeys=Object.keys(numeros).map(Number);
+let curNum=null,numPts=0,numTot=0,attemptsLeft=10;
+
+function getRandomNum(){
+  return numKeys[Math.floor(Math.random()*numKeys.length)];
+}
+
+function skipNum(){
+  if(curNum!==null){
+    numTot++;
+    attemptsLeft--;
+    const fb=document.getElementById('fb2');
+    fb.className='feedback show bad';
+    fb.textContent=`⏭ Saltado. Era: ${numeros[curNum]}`;
+    document.getElementById('numScore').textContent=`Puntos: ${numPts} / ${numTot} | Intentos: ${attemptsLeft}`;
+    if(attemptsLeft<=0){endNumGame();return;}
+    setTimeout(nextNum,1000);
+  }
+}
+
+function nextNum(){
+  curNum=getRandomNum();
+  document.getElementById('numDisplay').textContent=curNum;
+  document.getElementById('numInput').value='';
+  document.getElementById('numInput').focus();
+  document.getElementById('fb2').className='feedback';
+}
+
+function checkNum(){
+  if(!curNum&&curNum!==0){nextNum();return;}
+  const input=document.getElementById('numInput').value.trim().toLowerCase();
+  const correct=numeros[curNum];
+  numTot++;attemptsLeft--;
+  const fb=document.getElementById('fb2');
+  const accept=[correct,correct.replace('é','e'),correct.replace('é','è')];
+  if(accept.includes(input)){
+    numPts++;
+    fb.className='feedback show good';
+    fb.textContent=`✅ ¡Correcto! ${curNum} = ${correct}`;
+  }else{
+    fb.className='feedback show bad';
+    fb.textContent=`❌ Era: ${correct}`;
+  }
+  document.getElementById('numScore').textContent=`Puntos: ${numPts} / ${numTot} | Intentos: ${attemptsLeft}`;
+  if(attemptsLeft<=0){endNumGame();return;}
+  setTimeout(nextNum,1500);
+}
+
+function endNumGame(){
+  document.getElementById('numDisplay').textContent='🏆';
+  document.getElementById('numInput').disabled=true;
+  const fb=document.getElementById('fb2');
+  fb.className='feedback show '+(numPts>=7?'good':'bad');
+  fb.textContent=`Juego terminado. Resultado final: ${numPts}/${numTot}`;
+}
+
+nextNum();
+
+// EX 3: EDAD
+function checkEdad(){
+  const ans={
+    ed1:'ho un anno',ed2:'ho otto anni',ed3:'ho vent\'anni',
+    ed4:'ho trentacinque anni',ed5:'ho settantadue anni'
+  };
+  const alt={
+    ed3:['ho venti anni','ho vent\'anni','ho ventanni'],
+  };
+  let ok=0;
+  for(const [id,val] of Object.entries(ans)){
+    const el=document.getElementById(id);
+    const v=el.value.trim().toLowerCase().replace(/\s+/g,' ');
+    const alts=alt[id]||[];
+    if(v===val||alts.includes(v)){el.className='edad-input ok';ok++;}
+    else{el.className='edad-input err';}
+  }
+  const fb=document.getElementById('fb3');
+  fb.className='feedback show '+(ok===5?'good':'bad');
+  fb.innerHTML=ok===5?'✅ ¡Bravo! Sabes expresar la edad perfectamente.':
+    `⚠️ ${ok}/5. Respuestas: "Ho un anno" / "Ho otto anni" / "Ho vent\'anni" / "Ho trentacinque anni" / "Ho settantadue anni"`;
+}
+
+// EX 4: DIALOGO
+function checkDialogo(){
+  const ans={d1:'chiami',d2:'hai',d3:'ho',d4:'ventitre',d5:'anni',d6:'numero'};
+  // also accept ventitré
+  let ok=0;
+  for(const [id,val] of Object.entries(ans)){
+    const el=document.getElementById(id);
+    const v=el.value.trim().toLowerCase();
+    if(v===val||v==='ventitré'&&val==='ventitre'||v==='ventitré'&&val==='ventitre'){el.className='blank ok';ok++;}
+    else{el.className='blank err';}
+  }
+  const fb=document.getElementById('fb4');
+  fb.className='feedback show '+(ok===6?'good':'bad');
+  fb.innerHTML=ok===6?'✅ ¡Diálogo perfetto!':
+    `⚠️ ${ok}/6. Respuestas: chiami / hai / Ho / ventitre / anni / numero`;
+}
+</script>
+</body>
+</html>

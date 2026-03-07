@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semana 2 · Ejercicios</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#F0F4F0;color:#2C2C2C}
+    header{background:linear-gradient(135deg,#0D47A1,#1565C0);color:#fff;padding:1.5rem 2rem;text-align:center}
+    header .badge{display:inline-block;background:rgba(255,255,255,.2);padding:.25rem .9rem;border-radius:20px;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.4rem}
+    header h1{font-size:1.8rem;font-weight:700}
+    main{max-width:800px;margin:2rem auto;padding:0 1rem}
+    .ex{background:#fff;border-radius:12px;padding:1.8rem;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    .ex-num{display:inline-block;background:#1565C0;color:#fff;border-radius:50%;width:2rem;height:2rem;line-height:2rem;text-align:center;font-weight:700;font-size:.9rem;margin-right:.5rem}
+    .ex-title{font-size:1.15rem;font-weight:700;color:#0D47A1}
+    .ex-sub{color:#777;font-size:.88rem;margin:0.4rem 0 1.2rem 2.5rem}
+    /* FILL IN BLANKS */
+    .frase-row{padding:.9rem;border-radius:8px;background:#F5F8FF;margin-bottom:.7rem;font-size:.95rem;line-height:2}
+    .blank{border:none;border-bottom:2px solid #90CAF9;background:transparent;font-size:.95rem;padding:.1rem .4rem;width:90px;text-align:center;font-family:inherit;outline:none;transition:border-color .2s;color:#0D47A1;font-weight:600}
+    .blank:focus{border-color:#1565C0}
+    .blank.ok{border-color:#2E7D32;color:#2E7D32}
+    .blank.err{border-color:#C62828;color:#C62828}
+    .check-btn{padding:.55rem 1.8rem;border-radius:20px;border:none;cursor:pointer;font-weight:600;font-size:.9rem;font-family:inherit;transition:all .2s;margin-top:1rem;display:block}
+    .check-btn.blue{background:#1565C0;color:#fff}
+    .check-btn.blue:hover{background:#0D47A1}
+    .feedback{margin-top:.8rem;padding:.8rem;border-radius:8px;font-weight:500;font-size:.9rem;display:none}
+    .feedback.show{display:block}
+    .feedback.good{background:#E8F5E9;color:#1B5E20;border-left:4px solid #2E7D32}
+    .feedback.bad{background:#FFEBEE;color:#C62828;border-left:4px solid #C62828}
+    /* MATCHING */
+    .match-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start}
+    .match-col{display:flex;flex-direction:column;gap:.5rem}
+    .match-item{padding:.7rem 1rem;border-radius:8px;cursor:pointer;font-weight:600;font-size:.9rem;transition:all .2s;text-align:center;border:2px solid transparent}
+    .match-item.left{background:#E3F2FD;color:#0D47A1;border-color:#90CAF9}
+    .match-item.right{background:#F5F5F5;color:#555;border-color:#E0E0E0}
+    .match-item.selected{border-color:#1565C0;background:#1565C0;color:#fff}
+    .match-item.matched{border-color:#2E7D32;background:#E8F5E9;color:#1B5E20;cursor:default}
+    .match-item.wrong-match{border-color:#C62828;background:#FFEBEE;color:#C62828}
+    /* DROPDOWN SELECT */
+    select.sel{border:2px solid #90CAF9;border-radius:6px;padding:.35rem .5rem;font-size:.88rem;font-family:inherit;background:#fff;color:#0D47A1;font-weight:600;outline:none;cursor:pointer}
+    select.sel:focus{border-color:#1565C0}
+    select.sel.ok{border-color:#2E7D32;background:#E8F5E9;color:#2E7D32}
+    select.sel.err{border-color:#C62828;background:#FFEBEE;color:#C62828}
+    /* DIALOGO */
+    .dialogo{background:#F5F8FF;border-radius:12px;padding:1.2rem;line-height:2}
+    .d-speaker{font-weight:700;color:#1565C0;margin-right:.3rem}
+    .result-box{margin-top:1rem;padding:1rem;border-radius:10px;text-align:center;font-size:1.1rem;font-weight:700;display:none}
+    .result-box.show{display:block}
+    .result-box.good{background:#E8F5E9;color:#1B5E20}
+    .result-box.bad{background:#FFEBEE;color:#C62828}
+  </style>
+</head>
+<body>
+<header>
+  <div class="badge">Semana 2 · Ejercicios</div>
+  <h1>Esercizi: Di dove sei? 🗺️</h1>
+</header>
+<main>
+
+  <!-- EX 1: ESSERE -->
+  <div class="ex">
+    <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem">
+      <span class="ex-num">1</span>
+      <span class="ex-title">Completa con ESSERE ✏️</span>
+    </div>
+    <p class="ex-sub">Conjuga el verbo ESSERE correctamente en cada frase.</p>
+
+    <div class="frase-row">1. Io <input class="blank" id="e1" maxlength="6"> di Roma. <span style="color:#aaa;font-size:.8rem">(yo soy de Roma)</span></div>
+    <div class="frase-row">2. Tu <input class="blank" id="e2" maxlength="6"> italiano? <span style="color:#aaa;font-size:.8rem">(¿tú eres italiano?)</span></div>
+    <div class="frase-row">3. Lei <input class="blank" id="e3" maxlength="6"> studentessa. <span style="color:#aaa;font-size:.8rem">(ella es estudiante)</span></div>
+    <div class="frase-row">4. Noi <input class="blank" id="e4" maxlength="8"> di Milano. <span style="color:#aaa;font-size:.8rem">(nosotros somos de Milán)</span></div>
+    <div class="frase-row">5. Voi <input class="blank" id="e5" maxlength="8"> spagnoli? <span style="color:#aaa;font-size:.8rem">(¿vosotros sois españoles?)</span></div>
+    <div class="frase-row">6. Loro <input class="blank" id="e6" maxlength="6"> francesi. <span style="color:#aaa;font-size:.8rem">(ellos son franceses)</span></div>
+    <button class="check-btn blue" onclick="checkEssere()">Verifica ✓</button>
+    <div class="feedback" id="fb1"></div>
+  </div>
+
+  <!-- EX 2: ANDARE -->
+  <div class="ex">
+    <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem">
+      <span class="ex-num">2</span>
+      <span class="ex-title">Completa con ANDARE 🚶</span>
+    </div>
+    <p class="ex-sub">Elige la forma correcta del verbo ANDARE.</p>
+
+    <div class="frase-row">1. Domani io <select class="sel" id="a1"><option value="">--</option><option>vado</option><option>vai</option><option>va</option></select> a Firenze.</div>
+    <div class="frase-row">2. Tu <select class="sel" id="a2"><option value="">--</option><option>vado</option><option>vai</option><option>va</option></select> in aereo?</div>
+    <div class="frase-row">3. Marco <select class="sel" id="a3"><option value="">--</option><option>vai</option><option>va</option><option>vanno</option></select> a scuola ogni giorno.</div>
+    <div class="frase-row">4. Noi <select class="sel" id="a4"><option value="">--</option><option>andiamo</option><option>andate</option><option>vanno</option></select> in vacanza in Sicilia.</div>
+    <div class="frase-row">5. Voi <select class="sel" id="a5"><option value="">--</option><option>andiamo</option><option>andate</option><option>vanno</option></select> al mare questo weekend?</div>
+    <div class="frase-row">6. I miei amici <select class="sel" id="a6"><option value="">--</option><option>vai</option><option>andate</option><option>vanno</option></select> a Venezia.</div>
+    <button class="check-btn blue" onclick="checkAndare()">Verifica ✓</button>
+    <div class="feedback" id="fb2"></div>
+  </div>
+
+  <!-- EX 3: MATCH CITTÀ-REGIONE -->
+  <div class="ex">
+    <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem">
+      <span class="ex-num">3</span>
+      <span class="ex-title">Abbina la città alla regione 🏙️</span>
+    </div>
+    <p class="ex-sub">Haz clic en una ciudad (izquierda) y luego en su región (derecha).</p>
+    <div class="match-grid">
+      <div class="match-col" id="leftCol">
+        <div class="match-item left" onclick="selectMatch('left','Roma')" id="m-Roma">🏛️ Roma</div>
+        <div class="match-item left" onclick="selectMatch('left','Venezia')" id="m-Venezia">🎭 Venezia</div>
+        <div class="match-item left" onclick="selectMatch('left','Napoli')" id="m-Napoli">🍕 Napoli</div>
+        <div class="match-item left" onclick="selectMatch('left','Firenze')" id="m-Firenze">🌺 Firenze</div>
+        <div class="match-item left" onclick="selectMatch('left','Milano')" id="m-Milano">👔 Milano</div>
+      </div>
+      <div class="match-col" id="rightCol">
+        <div class="match-item right" onclick="selectMatch('right','Lombardia')" id="m-Lombardia">Lombardia</div>
+        <div class="match-item right" onclick="selectMatch('right','Lazio')" id="m-Lazio">Lazio</div>
+        <div class="match-item right" onclick="selectMatch('right','Veneto')" id="m-Veneto">Veneto</div>
+        <div class="match-item right" onclick="selectMatch('right','Campania')" id="m-Campania">Campania</div>
+        <div class="match-item right" onclick="selectMatch('right','Toscana')" id="m-Toscana">Toscana</div>
+      </div>
+    </div>
+    <div class="feedback" id="fb3"></div>
+  </div>
+
+  <!-- EX 4: DIALOGO -->
+  <div class="ex">
+    <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem">
+      <span class="ex-num">4</span>
+      <span class="ex-title">Completa il dialogo 💬</span>
+    </div>
+    <p class="ex-sub">Completa el diálogo con la palabra correcta del recuadro.</p>
+    <div style="background:#E3F2FD;border-radius:8px;padding:.8rem 1rem;margin-bottom:1rem;font-size:.9rem">
+      <strong>Palabras:</strong> sono · siamo · di · in · chiami · vai
+    </div>
+    <div class="dialogo">
+      <p><span class="d-speaker">Marta:</span> Ciao! Come ti <input class="blank" id="d1" maxlength="8">?</p>
+      <p><span class="d-speaker">Luis:</span> Mi chiamo Luis. <input class="blank" id="d2" maxlength="6"> spagnolo. E tu?</p>
+      <p><span class="d-speaker">Marta:</span> Io <input class="blank" id="d3" maxlength="6"> italiana, <input class="blank" id="d4" maxlength="4"> Roma.</p>
+      <p><span class="d-speaker">Luis:</span> Che bello! Io <input class="blank" id="d5" maxlength="5"> a studiare <input class="blank" id="d6" maxlength="8"> Italia.</p>
+    </div>
+    <button class="check-btn blue" onclick="checkDialogo()">Verifica ✓</button>
+    <div class="feedback" id="fb4"></div>
+  </div>
+
+</main>
+
+<script>
+// EX 1 ESSERE
+function checkEssere() {
+  const ans = {e1:'sono',e2:'sei',e3:'è',e4:'siamo',e5:'siete',e6:'sono'};
+  let ok=0;
+  for(const [id,val] of Object.entries(ans)){
+    const el=document.getElementById(id);
+    const v=el.value.trim().toLowerCase();
+    if(v===val){el.className='blank ok';ok++;}
+    else{el.className='blank err';}
+  }
+  const fb=document.getElementById('fb1');
+  fb.className='feedback show '+(ok===6?'good':'bad');
+  fb.innerHTML=ok===6?'✅ ¡Perfecto! Todas correctas.':
+    `⚠️ ${ok}/6 correctas. Respuestas: sono / sei / è / siamo / siete / sono`;
+}
+
+// EX 2 ANDARE
+function checkAndare() {
+  const ans = {a1:'vado',a2:'vai',a3:'va',a4:'andiamo',a5:'andate',a6:'vanno'};
+  let ok=0;
+  for(const [id,val] of Object.entries(ans)){
+    const el=document.getElementById(id);
+    if(el.value===val){el.className='sel ok';ok++;}
+    else{el.className='sel err';}
+  }
+  const fb=document.getElementById('fb2');
+  fb.className='feedback show '+(ok===6?'good':'bad');
+  fb.innerHTML=ok===6?'✅ ¡Perfecto!':
+    `⚠️ ${ok}/6 correctas. Respuestas: vado / vai / va / andiamo / andate / vanno`;
+}
+
+// EX 3 MATCHING
+const matchMap = {Roma:'Lazio',Venezia:'Veneto',Napoli:'Campania',Firenze:'Toscana',Milano:'Lombardia'};
+let selectedLeft=null, matchedCount=0;
+
+function selectMatch(side, val) {
+  const el = document.getElementById('m-'+val);
+  if(el.classList.contains('matched')) return;
+  if(side==='left') {
+    if(selectedLeft) document.getElementById('m-'+selectedLeft).classList.remove('selected');
+    selectedLeft=val;
+    el.classList.add('selected');
+  } else {
+    if(!selectedLeft) return;
+    const expected = matchMap[selectedLeft];
+    if(val===expected) {
+      document.getElementById('m-'+selectedLeft).className='match-item left matched';
+      el.className='match-item right matched';
+      matchedCount++;
+      if(matchedCount===5){
+        const fb=document.getElementById('fb3');
+        fb.className='feedback show good';
+        fb.textContent='✅ ¡Perfetto! Conoces las regiones de Italia 🇮🇹';
+      }
+    } else {
+      el.classList.add('wrong-match');
+      setTimeout(()=>el.classList.remove('wrong-match'),700);
+    }
+    document.getElementById('m-'+selectedLeft).classList.remove('selected');
+    selectedLeft=null;
+  }
+}
+
+// EX 4 DIALOGO
+function checkDialogo() {
+  const ans = {d1:'chiami',d2:'sono',d3:'sono',d4:'di',d5:'vado',d6:'in'};
+  let ok=0;
+  for(const [id,val] of Object.entries(ans)){
+    const el=document.getElementById(id);
+    if(el.value.trim().toLowerCase()===val){el.className='blank ok';ok++;}
+    else{el.className='blank err';}
+  }
+  const fb=document.getElementById('fb4');
+  fb.className='feedback show '+(ok===6?'good':'bad');
+  fb.innerHTML=ok===6?'✅ ¡Diálogo perfecto!':
+    `⚠️ ${ok}/6. Respuestas: chiami / sono / sono / di / vado / in`;
+}
+</script>
+</body>
+</html>
