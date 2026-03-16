@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unità 12 · Scoperta | Italiano Per Piacere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{--cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;--red:#cc4736;--teal:#78a6ba;--green:#528e74;--black:#1a1a18;--white:#ffffff;--r:8px;--fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;--ease:cubic-bezier(0.16,1,0.3,1)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--fb);background:var(--cream);color:var(--black);overflow-x:hidden}
+    .hide-es .es{display:none!important}
+    .es{font-size:.82rem;color:#888;font-style:italic;margin-top:.25rem}
+    [data-a]{opacity:0;transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    [data-a="up"]{transform:translateY(48px)}[data-a="fade"]{transform:none}
+    [data-a].in{opacity:1;transform:none!important}
+    [data-stagger].in>*{opacity:1;transform:none!important}
+    [data-stagger]>*{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+    [data-stagger]>*:nth-child(1){transition-delay:.00s}[data-stagger]>*:nth-child(2){transition-delay:.08s}[data-stagger]>*:nth-child(3){transition-delay:.16s}[data-stagger]>*:nth-child(4){transition-delay:.24s}[data-stagger]>*:nth-child(5){transition-delay:.32s}[data-stagger]>*:nth-child(6){transition-delay:.40s}[data-stagger]>*:nth-child(7){transition-delay:.48s}[data-stagger]>*:nth-child(8){transition-delay:.56s}
+    .hero{min-height:100vh;background:var(--teal);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
+    .hero-bg-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.1);pointer-events:none}
+    .hero-bg-circle:nth-child(1){width:600px;height:600px;top:-200px;right:-150px}
+    .hero-bg-circle:nth-child(2){width:400px;height:400px;bottom:-100px;left:-100px}
+    .hero-badge{display:inline-block;background:var(--black);color:var(--gold);font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:.3rem 1.2rem;border-radius:20px;margin-bottom:1.5rem;opacity:0;animation:popIn .6s var(--ease) .2s forwards}
+    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,5.5rem);font-style:italic;color:var(--white);line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
+    .hero-sub{font-size:clamp(1rem,2.5vw,1.2rem);color:rgba(255,255,255,.85);max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
+    .trans-btn{position:fixed;top:1rem;right:1rem;z-index:200;padding:.5rem 1rem;border-radius:20px;border:none;cursor:pointer;font-family:var(--fb);font-size:.78rem;font-weight:700;background:var(--black);color:var(--gold);box-shadow:0 2px 12px rgba(0,0,0,.2)}
+    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.6);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
+    .scroll-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);animation:scrollDot 1.5s ease infinite}
+    @keyframes popIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+    @keyframes slideUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes scrollDot{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(6px);opacity:1}}
+    @keyframes floatAv{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+    .section{padding:6rem 2rem}.section.bg-alt{background:var(--cream-dk)}.section.bg-white{background:var(--white)}
+    .container{max-width:860px;margin:0 auto}
+    .section-label{font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:.75rem}
+    .section-title{font-family:var(--fh);font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;margin-bottom:1.25rem}
+    .section-title em{font-style:italic;color:var(--teal)}
+    .section-desc{font-size:1rem;color:#555;line-height:1.75;max-width:640px}
+    .sofia-wrap{display:flex;align-items:flex-start;gap:1.25rem;background:var(--white);border-radius:16px;padding:1.5rem 2rem;box-shadow:0 4px 24px rgba(0,0,0,.07);max-width:640px}
+    .sofia-avatar{width:60px;height:60px;border-radius:50%;flex-shrink:0;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.8rem;animation:floatAv 3.5s ease-in-out infinite}
+    .speech-bubble{flex:1}.speech-bubble strong{display:block;font-size:.75rem;font-weight:700;color:var(--teal);margin-bottom:.4rem;letter-spacing:1px;text-transform:uppercase}
+    .speech-bubble p{font-size:.95rem;color:#333;line-height:1.65}.speech-bubble p+p{margin-top:.6rem}
+    .word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.75rem;margin-bottom:1.25rem}
+    .word-card{background:var(--white);border:2px solid transparent;border-radius:var(--r);padding:.9rem .75rem;text-align:center;cursor:pointer;user-select:none;position:relative;transition:border-color .2s,background .2s,transform .15s;font-weight:600;font-size:.9rem}
+    .word-card:hover{transform:translateY(-2px);border-color:var(--teal)}
+    .word-card.selected{background:var(--teal);color:var(--white);border-color:var(--teal)}
+    .word-card.correct{background:var(--green);color:var(--white);border-color:var(--green)}
+    .word-card.false-pos{background:var(--amber);color:var(--black);border-color:var(--amber)}
+    .word-card.missed{background:var(--red);color:var(--white);border-color:var(--red)}
+    .word-card.neutral{background:var(--cream-dk);color:#888}
+    .word-badge{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:var(--white)}
+    .word-card.correct .word-badge{display:flex;background:var(--green)}
+    .word-card.false-pos .word-badge{display:flex;background:var(--amber)}
+    .word-card.missed .word-badge{display:flex;background:var(--red)}
+    .word-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-top:.5rem}
+    .btn{padding:.65rem 1.5rem;border-radius:30px;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.9rem;transition:opacity .2s,transform .15s}
+    .btn:hover{opacity:.85;transform:translateY(-1px)}
+    .btn-primary{background:var(--teal);color:var(--white)}
+    .btn-ghost{background:transparent;color:var(--black);border:2px solid var(--cream-dk)}
+    .score-display{font-size:.9rem;font-weight:700;color:var(--green)}
+    .vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;margin-top:1.5rem}
+    .vocab-card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 3px 16px rgba(0,0,0,.08);cursor:pointer;transition:transform .2s}
+    .vocab-card:hover{transform:translateY(-3px)}
+    .vc-top{height:5px;background:var(--teal)}
+    .vc-body{padding:1rem 1.1rem 1.1rem}
+    .vc-it{font-size:1rem;font-weight:700;margin-bottom:.2rem}
+    .vc-es{font-size:.82rem;color:#666;margin-bottom:.4rem}
+    .vc-ex{font-size:.78rem;color:#999;font-style:italic;border-top:1px solid var(--cream-dk);padding-top:.45rem;margin-top:.45rem;display:none}
+    .vocab-card.open .vc-ex{display:block}
+    .dir-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem;margin-top:1.5rem}
+    .dir-card{background:var(--white);border-radius:12px;padding:1.1rem;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.07);border-top:3px solid var(--teal)}
+    .dir-emoji{font-size:1.6rem;margin-bottom:.4rem}
+    .dir-it{font-weight:700;font-size:.95rem}
+    .dir-es{font-size:.78rem;color:#888;font-style:italic;margin-top:.2rem}
+    .ger-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
+    .ger-table th{background:var(--teal);color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
+    .ger-table td{padding:.5rem .75rem;border-bottom:1px solid var(--cream-dk)}
+    .ger-table tr:nth-child(even) td{background:rgba(0,0,0,.03)}
+    .dialogue{display:flex;flex-direction:column;gap:.75rem;margin-top:1.5rem}
+    .dlg-line{display:flex;align-items:flex-start;gap:.75rem}
+    .dlg-line.b{flex-direction:row-reverse}
+    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:var(--green);padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
+    .dlg-line.b .dlg-speaker{background:var(--teal)}
+    .dlg-bubble{background:var(--white);border-radius:12px;padding:.9rem 1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.07);max-width:480px;cursor:pointer}
+    .dlg-bubble .it{font-weight:600;font-size:.95rem}
+    .dlg-bubble .es{display:none}.dlg-bubble.revealed .es{display:block}
+    .cultural-strip{background:var(--black);color:var(--white);padding:4rem 2rem;text-align:center}
+    .cultural-strip h2{font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.4rem);font-style:italic;color:var(--gold);margin-bottom:1rem}
+    .cultural-strip p{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.75;max-width:600px;margin:0 auto}
+    .cultural-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;max-width:760px;margin:2rem auto 0}
+    .cf-item{background:rgba(255,255,255,.06);border-radius:12px;padding:1.5rem}
+    .cf-icon{font-size:2rem;margin-bottom:.75rem}
+    .cf-item h4{font-size:.85rem;font-weight:700;color:var(--gold);margin-bottom:.5rem}
+    .cf-item p{font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.55}
+    .footer{background:var(--cream-dk);padding:2.5rem 2rem;text-align:center;font-size:.82rem;color:#888}
+    .footer strong{color:var(--black)}
+    .nav-pills{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+    .nav-pill{padding:.5rem 1.2rem;border-radius:30px;font-size:.8rem;font-weight:600;text-decoration:none;color:var(--black);background:var(--cream);border:1px solid var(--cream-dk);transition:background .2s}
+    .nav-pill:hover,.nav-pill.active{background:var(--teal);color:var(--white)}
+    @media(max-width:600px){.section{padding:4rem 1.25rem}}
+  </style>
+</head>
+<body class="hide-es">
+
+<button class="trans-btn" id="transBtn" onclick="toggleTrans()">Mostra traduzione</button>
+
+<section class="hero">
+  <div class="hero-bg-circle" id="hbc1"></div>
+  <div class="hero-bg-circle" id="hbc2"></div>
+  <span class="hero-badge">Unità 12 · Scoperta</span>
+  <h1>In treno o<br>in macchina? 🚆</h1>
+  <p class="hero-sub">Trasporti, indicazioni stradali e come muoversi in Italia<span class="es"> · Transporte, indicaciones y cómo moverse en Italia</span></p>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-dot"></div></div>
+</section>
+
+<section class="section bg-white">
+  <div class="container">
+    <div class="sofia-wrap" data-a="up">
+      <div class="sofia-avatar">👩‍🏫</div>
+      <div class="speech-bubble">
+        <strong>Sofia dice</strong>
+        <p>Benvenuti all'Unità 12! Oggi impariamo a muoverci in Italia — in treno, in macchina, in bici. E soprattutto, come chiedere e dare indicazioni stradali!</p>
+        <p>Impariamo anche una struttura nuova: <em>stare + gerundio</em> per dire cosa stiamo facendo in questo momento. <em>Stiamo imparando l'italiano!</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="fade">Attività 1</p>
+    <h2 class="section-title" data-a="up">Riconosci i mezzi <em>di trasporto</em></h2>
+    <p class="section-desc" data-a="up">Seleziona solo le parole legate ai trasporti. <span class="es">Selecciona solo las palabras relacionadas con el transporte.</span></p>
+    <div class="word-grid" id="wordGrid" data-stagger style="margin-top:1.5rem"></div>
+    <div class="word-actions">
+      <button class="btn btn-primary" onclick="verifyWords()">Verifica ✓</button>
+      <button class="btn btn-ghost" onclick="resetWords()">Ricomincia</button>
+      <span class="score-display" id="wordScore"></span>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label" data-a="fade">Vocabolario</p>
+    <h2 class="section-title" data-a="up">I mezzi <em>di trasporto</em></h2>
+    <p class="section-desc" data-a="up">Clicca su ogni card per vedere un esempio. <span class="es">Haz clic en cada tarjeta para ver un ejemplo.</span></p>
+    <div class="vocab-grid" data-stagger>
+      <div class="vocab-card" onclick="this.classList.toggle('open')"><div class="vc-top"></div><div class="vc-body"><div class="vc-it">🚆 treno</div><div class="vc-es">tren</div><div class="vc-ex">Prendo il treno per Milano alle otto.</div></div></div>
+      <div class="vocab-card" onclick="this.classList.toggle('open')"><div class="vc-top"></div><div class="vc-body"><div class="vc-it">🚌 autobus</div><div class="vc-es">autobús</div><div class="vc-ex">Aspetto l'autobus alla fermata.</div></div></div>
+      <div class="vocab-card" onclick="this.classList.toggle('open')"><div class="vc-top"></div><div class="vc-body"><div class="vc-it">🚇 metro</div><div class="vc-es">metro</div><div class="vc-ex">La metro è veloce e comoda.</div></div></div>
+      <div class="vocab-card" onclick="this.classList.toggle('open')"><div class="vc-top"></div><div class="vc-body"><div class="vc-it">🚕 taxi</div><div class="vc-es">taxi</div><div class="vc-ex">Chiamo un taxi per l'aeroporto.</div></div></div>
+      <div class="vocab-card" onclick="this.classList.toggle('open')"><div class="vc-top"></div><div class="vc-body"><div class="vc-it">🚗 macchina</div><div class="vc-es">coche</div><div class="vc-ex">Guido la macchina ogni mattina.</div></div></div>
+      <div class="vocab-card" onclick="this.classList.toggle('open')"><div class="vc-top"></div><div class="vc-body"><div class="vc-it">🚲 bicicletta</div><div class="vc-es">bicicleta</div><div class="vc-ex">Vado in bicicletta al lavoro.</div></div></div>
+      <div class="vocab-card" onclick="this.classList.toggle('open')"><div class="vc-top"></div><div class="vc-body"><div class="vc-it">🛵 moto</div><div class="vc-es">moto</div><div class="vc-ex">A Roma molti usano la moto.</div></div></div>
+      <div class="vocab-card" onclick="this.classList.toggle('open')"><div class="vc-top"></div><div class="vc-body"><div class="vc-it">⛴️ traghetto</div><div class="vc-es">ferry</div><div class="vc-ex">Prendo il traghetto per la Sardegna.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="fade">Indicazioni stradali</p>
+    <h2 class="section-title" data-a="up">Dove si trova? <em>Avverbi di luogo</em></h2>
+    <p class="section-desc" data-a="up">Le parole essenziali per orientarsi in città. <span class="es">Las palabras esenciales para orientarse en la ciudad.</span></p>
+    <div class="dir-grid" data-stagger>
+      <div class="dir-card"><div class="dir-emoji">→</div><div class="dir-it">a destra</div><div class="dir-es">a la derecha</div></div>
+      <div class="dir-card"><div class="dir-emoji">←</div><div class="dir-it">a sinistra</div><div class="dir-es">a la izquierda</div></div>
+      <div class="dir-card"><div class="dir-emoji">↑</div><div class="dir-it">dritto / sempre dritto</div><div class="dir-es">recto / todo recto</div></div>
+      <div class="dir-card"><div class="dir-emoji">↔</div><div class="dir-it">di fronte</div><div class="dir-es">enfrente</div></div>
+      <div class="dir-card"><div class="dir-emoji">📍</div><div class="dir-it">vicino</div><div class="dir-es">cerca</div></div>
+      <div class="dir-card"><div class="dir-emoji">🗺️</div><div class="dir-it">lontano</div><div class="dir-es">lejos</div></div>
+      <div class="dir-card"><div class="dir-emoji">↗</div><div class="dir-it">all'angolo</div><div class="dir-es">en la esquina</div></div>
+      <div class="dir-card"><div class="dir-emoji">🚦</div><div class="dir-it">al semaforo</div><div class="dir-es">en el semáforo</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label" data-a="fade">Struttura nuova</p>
+    <h2 class="section-title" data-a="up"><em>Stare</em> + gerundio</h2>
+    <p class="section-desc" data-a="up">Per descrivere un'azione in corso in questo momento — come <em>estar</em> + gerundio in spagnolo. <span class="es">Para describir una acción en curso — como estar + gerundio en español.</span></p>
+    <table class="ger-table" data-a="up">
+      <thead><tr><th>Struttura</th><th>Esempio</th><th class="es">Traducción</th></tr></thead>
+      <tbody>
+        <tr><td><strong>sto</strong> + gerundio</td><td>Sto aspettando l'autobus.</td><td class="es">Estoy esperando el autobús.</td></tr>
+        <tr><td><strong>stai</strong> + gerundio</td><td>Stai leggendo il giornale?</td><td class="es">¿Estás leyendo el periódico?</td></tr>
+        <tr><td><strong>sta</strong> + gerundio</td><td>Sofia sta parlando al telefono.</td><td class="es">Sofia está hablando por teléfono.</td></tr>
+        <tr><td><strong>stiamo</strong> + gerundio</td><td>Stiamo viaggiando in treno.</td><td class="es">Estamos viajando en tren.</td></tr>
+        <tr><td><strong>state</strong> + gerundio</td><td>State mangiando adesso?</td><td class="es">¿Estáis comiendo ahora?</td></tr>
+        <tr><td><strong>stanno</strong> + gerundio</td><td>Stanno correndo alla fermata!</td><td class="es">¡Están corriendo a la parada!</td></tr>
+      </tbody>
+    </table>
+    <div style="background:var(--cream-dk);border-radius:var(--r);padding:1rem 1.25rem;margin-top:1rem;font-size:.9rem" data-a="up">
+      <strong style="color:var(--teal)">Gerundio:</strong>&nbsp;
+      <strong>-ARE → -ando</strong>: aspettare→aspettando, parlare→parlando, mangiare→mangiando &nbsp;|&nbsp;
+      <strong>-ERE/-IRE → -endo</strong>: leggere→leggendo, scrivere→scrivendo, dormire→dormendo
+      <br><em style="color:var(--teal)">Eccezioni: fare→facendo, bere→bevendo, dire→dicendo</em>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="fade">Dialogo</p>
+    <h2 class="section-title" data-a="up">Come arrivo <em>al museo</em>?</h2>
+    <p class="section-desc" data-a="up">Clicca su ogni bolla per la traduzione. <span class="es">Haz clic en cada burbuja para ver la traducción.</span></p>
+    <div class="dialogue" data-stagger>
+      <div class="dlg-line"><div class="dlg-speaker">Turista</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">Scusi, come arrivo al museo nazionale?</div><div class="es">Perdone, ¿cómo llego al museo nacional?</div></div></div>
+      <div class="dlg-line b"><div class="dlg-speaker">Marco</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">Vada sempre dritto per questa strada, poi giri a sinistra al semaforo.</div><div class="es">Vaya todo recto por esta calle, luego gire a la izquierda en el semáforo.</div></div></div>
+      <div class="dlg-line"><div class="dlg-speaker">Turista</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">È lontano? Sto cercando da mezz'ora!</div><div class="es">¿Está lejos? ¡Llevo media hora buscando!</div></div></div>
+      <div class="dlg-line b"><div class="dlg-speaker">Marco</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">No, è vicinissimo — al secondo incrocio a destra. Dieci minuti a piedi!</div><div class="es">No, está muy cerca — en la segunda intersección a la derecha. ¡Diez minutos a pie!</div></div></div>
+      <div class="dlg-line"><div class="dlg-speaker">Turista</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">Grazie mille! E c'è un autobus?</div><div class="es">¡Muchas gracias! ¿Y hay un autobús?</div></div></div>
+      <div class="dlg-line b"><div class="dlg-speaker">Marco</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">Sì, il 42 — la fermata è di fronte alla banca, proprio lì!</div><div class="es">Sí, el 42 — la parada está enfrente del banco, ¡justo ahí!</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cultural-strip">
+  <div class="container">
+    <h2 data-a="up">Muoversi in Italia 🚆</h2>
+    <p data-a="up">L'Italia è un paese lungo e stretto — e i treni la collegano da Nord a Sud. Trenitalia e Italo gestiscono le principali rotte. Le Frecce (Frecciarossa, Frecciargento, Frecciabianca) raggiungono i 300 km/h e collegano le grandi città in pochi ore. Nelle città, la bicicletta è sempre più popolare — Milano ha il bike sharing BikeMi, Roma ha Citi. Nel Sud, la macchina rimane il mezzo più usato per via della minor densità dei trasporti pubblici.</p>
+    <div class="cultural-facts" data-stagger>
+      <div class="cf-item"><div class="cf-icon">🚅</div><h4>Le Frecce</h4><p>Il Frecciarossa collega Roma-Milano in meno di 3 ore. Velocità massima: 300 km/h.</p></div>
+      <div class="cf-item"><div class="cf-icon">🛵</div><h4>La moto</h4><p>A Roma e Napoli la moto è il mezzo preferito per muoversi nel traffico cittadino.</p></div>
+      <div class="cf-item"><div class="cf-icon">🚶</div><h4>A piedi</h4><p>I centri storici italiani sono spesso a misura d'uomo — passeggiare è parte della cultura.</p></div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <strong>Unità 12 · In treno o in macchina?</strong><br>Italiano Per Piacere — Livello A1
+  <div class="nav-pills">
+    <a href="../modulo_11/etapa2_descubrimiento.html" class="nav-pill">← Unità 11</a>
+    <a href="etapa3_gramatica.html" class="nav-pill active">Grammatica →</a>
+  </div>
+</footer>
+
+<script>
+  const observer=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');observer.unobserve(x.target)}})},{threshold:.12});
+  document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>observer.observe(el));
+  const c1=document.getElementById('hbc1'),c2=document.getElementById('hbc2');
+  window.addEventListener('scroll',()=>{const y=window.scrollY;if(c1)c1.style.transform=`translateY(${y*.25}px)`;if(c2)c2.style.transform=`translateY(${y*-.15}px)`},{passive:true});
+  function toggleTrans(){document.body.classList.toggle('hide-es');document.getElementById('transBtn').textContent=document.body.classList.contains('hide-es')?'Mostra traduzione':'Nascondi traduzione'}
+  const WORDS=[
+    {w:'treno',c:true},{w:'autobus',c:true},{w:'metro',c:true},{w:'taxi',c:true},
+    {w:'bicicletta',c:true},{w:'macchina',c:true},{w:'moto',c:true},{w:'aereo',c:true},{w:'traghetto',c:true},
+    {w:'montagna',c:false},{w:'cucina',c:false},{w:'finestra',c:false},{w:'spiaggia',c:false}
+  ];
+  const sel=new Set();let verified=false;
+  const grid=document.getElementById('wordGrid');
+  WORDS.forEach((w,i)=>{const d=document.createElement('div');d.className='word-card';d.innerHTML=`${w.w}<span class="word-badge" id="b${i}"></span>`;d.addEventListener('click',()=>{if(verified)return;sel.has(i)?(sel.delete(i),d.classList.remove('selected')):(sel.add(i),d.classList.add('selected'))});grid.appendChild(d)});
+  function verifyWords(){verified=true;let s=0,t=WORDS.filter(x=>x.c).length;const cards=grid.querySelectorAll('.word-card');WORDS.forEach((w,i)=>{const c=cards[i],b=document.getElementById('b'+i);c.classList.remove('selected');if(w.c&&sel.has(i)){c.classList.add('correct');b.textContent='✓';s++}else if(!w.c&&sel.has(i)){c.classList.add('false-pos');b.textContent='✗'}else if(w.c&&!sel.has(i)){c.classList.add('missed');b.textContent='!'}else c.classList.add('neutral')});document.getElementById('wordScore').textContent=s+'/'+t;}
+  function resetWords(){verified=false;sel.clear();grid.querySelectorAll('.word-card').forEach(c=>c.className='word-card');document.getElementById('wordScore').textContent='';}
+</script>
+</body>
+</html>

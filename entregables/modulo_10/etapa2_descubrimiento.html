@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unità 10 · Scoperta | Italiano Per Piacere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{--cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;--red:#cc4736;--teal:#78a6ba;--green:#528e74;--black:#1a1a18;--white:#ffffff;--r:8px;--fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;--ease:cubic-bezier(0.16,1,0.3,1)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--fb);background:var(--cream);color:var(--black);overflow-x:hidden}
+    .hide-es .es{display:none!important}
+    .es{font-size:.82rem;color:#888;font-style:italic;margin-top:.25rem}
+    [data-a]{opacity:0;transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    [data-a="up"]{transform:translateY(48px)}[data-a="left"]{transform:translateX(-56px)}[data-a="right"]{transform:translateX(56px)}[data-a="scale"]{transform:scale(0.86)}[data-a="fade"]{transform:none}
+    [data-a].in{opacity:1;transform:none!important}
+    [data-stagger].in>*{opacity:1;transform:none!important}
+    [data-stagger]>*{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+    [data-stagger]>*:nth-child(1){transition-delay:.00s}[data-stagger]>*:nth-child(2){transition-delay:.08s}[data-stagger]>*:nth-child(3){transition-delay:.16s}[data-stagger]>*:nth-child(4){transition-delay:.24s}[data-stagger]>*:nth-child(5){transition-delay:.32s}[data-stagger]>*:nth-child(6){transition-delay:.40s}[data-stagger]>*:nth-child(7){transition-delay:.48s}[data-stagger]>*:nth-child(8){transition-delay:.56s}
+    .hero{min-height:100vh;background:var(--amber);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
+    .hero-bg-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none;will-change:transform}
+    .hero-bg-circle:nth-child(1){width:600px;height:600px;top:-200px;right:-150px}
+    .hero-bg-circle:nth-child(2){width:400px;height:400px;bottom:-100px;left:-100px}
+    .hero-badge{display:inline-block;background:var(--black);color:var(--gold);font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:.3rem 1.2rem;border-radius:20px;margin-bottom:1.5rem;opacity:0;animation:popIn .6s var(--ease) .2s forwards}
+    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-style:italic;color:var(--black);line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
+    .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:rgba(0,0,0,.65);max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
+    .trans-btn{position:fixed;top:1rem;right:1rem;z-index:200;padding:.5rem 1rem;border-radius:20px;border:none;cursor:pointer;font-family:var(--fb);font-size:.78rem;font-weight:700;background:var(--black);color:var(--gold);box-shadow:0 2px 12px rgba(0,0,0,.2)}
+    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(0,0,0,.5);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
+    .scroll-dot{width:6px;height:6px;border-radius:50%;background:rgba(0,0,0,.4);animation:scrollDot 1.5s ease infinite}
+    @keyframes popIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+    @keyframes slideUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes scrollDot{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(6px);opacity:1}}
+    @keyframes floatAv{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+    .section{padding:6rem 2rem}.section.bg-alt{background:var(--cream-dk)}.section.bg-white{background:var(--white)}
+    .container{max-width:860px;margin:0 auto}
+    .section-label{font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem}
+    .section-title{font-family:var(--fh);font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;margin-bottom:1.25rem}
+    .section-title em{font-style:italic;color:var(--amber)}
+    .section-desc{font-size:1rem;color:#555;line-height:1.75;max-width:640px}
+    .sofia-wrap{display:flex;align-items:flex-start;gap:1.25rem;background:var(--white);border-radius:16px;padding:1.5rem 2rem;box-shadow:0 4px 24px rgba(0,0,0,.07);max-width:640px}
+    .sofia-avatar{width:60px;height:60px;border-radius:50%;flex-shrink:0;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.8rem;animation:floatAv 3.5s ease-in-out infinite}
+    .speech-bubble{flex:1}.speech-bubble strong{display:block;font-size:.75rem;font-weight:700;color:var(--amber);margin-bottom:.4rem;letter-spacing:1px;text-transform:uppercase}
+    .speech-bubble p{font-size:.95rem;color:#333;line-height:1.65}.speech-bubble p+p{margin-top:.6rem}
+    .word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;margin-bottom:1.5rem}
+    .word-card{background:var(--white);border:2px solid transparent;border-radius:var(--r);padding:.9rem .75rem;text-align:center;cursor:pointer;user-select:none;position:relative;transition:border-color .2s,background .2s,transform .15s;font-weight:600;font-size:.95rem}
+    .word-card:hover{transform:translateY(-2px);border-color:var(--amber)}
+    .word-card.selected{background:var(--amber);color:var(--black);border-color:var(--amber)}
+    .word-card.correct{background:var(--green);color:var(--white);border-color:var(--green)}
+    .word-card.false-pos{background:var(--teal);color:var(--white);border-color:var(--teal)}
+    .word-card.missed{background:var(--red);color:var(--white);border-color:var(--red)}
+    .word-card.neutral{background:var(--cream-dk);color:#888;border-color:transparent}
+    .word-badge{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:var(--white)}
+    .word-card.correct .word-badge{display:flex;background:var(--green)}
+    .word-card.false-pos .word-badge{display:flex;background:var(--teal)}
+    .word-card.missed .word-badge{display:flex;background:var(--red)}
+    .word-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+    .btn{padding:.65rem 1.5rem;border-radius:30px;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.9rem;transition:opacity .2s,transform .15s}
+    .btn:hover{opacity:.85;transform:translateY(-1px)}
+    .btn-primary{background:var(--amber);color:var(--black)}
+    .btn-ghost{background:transparent;color:var(--black);border:2px solid var(--cream-dk)}
+    .score-display{font-size:.9rem;font-weight:700;color:var(--green)}
+    .legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;font-size:.8rem}
+    .legend-item{display:flex;align-items:center;gap:.4rem}
+    .legend-dot{width:10px;height:10px;border-radius:50%}
+    .timeline{display:flex;flex-direction:column;gap:0;position:relative;margin-top:1.5rem}
+    .timeline::before{content:'';position:absolute;left:60px;top:0;bottom:0;width:2px;background:var(--cream-dk)}
+    .tl-item{display:flex;align-items:flex-start;gap:1.25rem;padding:.85rem 0}
+    .tl-time{min-width:52px;text-align:right;font-size:.82rem;font-weight:700;color:var(--amber);padding-top:.15rem}
+    .tl-dot{width:14px;height:14px;border-radius:50%;background:var(--amber);border:3px solid var(--white);flex-shrink:0;margin-top:.25rem;position:relative;z-index:1}
+    .tl-content{flex:1;background:var(--white);border-radius:var(--r);padding:.75rem 1rem;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+    .tl-content .it{font-weight:700;font-size:.9rem}
+    .tl-content .es{font-size:.78rem;color:#888;font-style:italic}
+    .verb-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-top:1.5rem}
+    .verb-block{background:var(--white);border-radius:12px;padding:1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+    .verb-block h4{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem}
+    .verb-row{display:flex;justify-content:space-between;padding:.3rem 0;border-bottom:1px solid var(--cream-dk);font-size:.85rem}
+    .verb-row:last-child{border-bottom:none}
+    .verb-row .pron{color:#888}.verb-row .form{font-weight:700;color:var(--black)}
+    .freq-scale{display:flex;flex-direction:column;gap:.5rem;margin-top:1.25rem}
+    .freq-row{display:flex;align-items:center;gap:1rem}
+    .freq-bar-wrap{flex:1;background:var(--cream-dk);border-radius:20px;height:10px;overflow:hidden}
+    .freq-bar{height:100%;border-radius:20px;background:var(--amber);transition:width .8s var(--ease)}
+    .freq-label{min-width:110px;font-size:.85rem;font-weight:700}
+    .freq-pct{font-size:.75rem;color:#888;min-width:35px;text-align:right}
+    .dialogue{display:flex;flex-direction:column;gap:.75rem}
+    .dlg-line{display:flex;align-items:flex-start;gap:.75rem}
+    .dlg-line.b{flex-direction:row-reverse}
+    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:var(--green);padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
+    .dlg-line.b .dlg-speaker{background:var(--amber);color:var(--black)}
+    .dlg-bubble{background:var(--white);border-radius:12px;padding:.9rem 1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.07);max-width:480px;cursor:pointer}
+    .dlg-bubble .it{font-weight:600;font-size:.95rem}
+    .dlg-bubble .es{display:none}.dlg-bubble.revealed .es{display:block}
+    .fill-section{margin-top:1.5rem}
+    .fill-section h4{font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
+    .fill-list{display:flex;flex-direction:column;gap:.75rem}
+    .fill-item{display:flex;align-items:center;gap:.5rem;font-size:.95rem;flex-wrap:wrap}
+    .fill-input{border:none;border-bottom:2px solid var(--cream-dk);background:transparent;font-family:var(--fb);font-size:.95rem;font-weight:600;color:var(--black);width:120px;padding:.2rem .3rem;outline:none;text-align:center;transition:border-color .2s}
+    .fill-input:focus{border-color:var(--amber)}.fill-input.ok{border-color:var(--green);color:var(--green)}.fill-input.fail{border-color:var(--red);color:var(--red)}
+    .vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem}
+    .vocab-card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 3px 16px rgba(0,0,0,.08);transition:transform .2s;cursor:pointer}
+    .vocab-card:hover{transform:translateY(-3px)}
+    .vc-top{height:5px}.vc-body{padding:1rem 1.1rem 1.1rem}
+    .vc-it{font-size:1rem;font-weight:700;margin-bottom:.2rem}
+    .vc-es{font-size:.82rem;color:#666;margin-bottom:.4rem}
+    .vc-ex{font-size:.78rem;color:#999;font-style:italic;border-top:1px solid var(--cream-dk);padding-top:.45rem;margin-top:.45rem;display:none}
+    .vocab-card.open .vc-ex{display:block}
+    .cultural-strip{background:var(--black);color:var(--white);padding:4rem 2rem;text-align:center}
+    .cultural-strip h2{font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.4rem);font-style:italic;color:var(--gold);margin-bottom:1rem}
+    .cultural-strip p{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.75;max-width:600px;margin:0 auto 1.5rem}
+    .cultural-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;max-width:760px;margin:2rem auto 0}
+    .cf-item{background:rgba(255,255,255,.06);border-radius:12px;padding:1.5rem}
+    .cf-icon{font-size:2rem;margin-bottom:.75rem}
+    .cf-item h4{font-size:.85rem;font-weight:700;color:var(--gold);margin-bottom:.5rem}
+    .cf-item p{font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.55}
+    .footer{background:var(--cream-dk);padding:2.5rem 2rem;text-align:center;font-size:.82rem;color:#888}
+    .footer strong{color:var(--black)}
+    .nav-pills{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+    .nav-pill{padding:.5rem 1.2rem;border-radius:30px;font-size:.8rem;font-weight:600;text-decoration:none;color:var(--black);background:var(--cream);border:1px solid var(--cream-dk);transition:background .2s,color .2s}
+    .nav-pill:hover,.nav-pill.active{background:var(--amber);color:var(--black)}
+    @media(max-width:600px){.section{padding:4rem 1.25rem}.verb-grid{grid-template-columns:1fr}.sofia-wrap{flex-direction:column}}
+  </style>
+</head>
+<body class="hide-es">
+
+<button class="trans-btn" id="transBtn" onclick="toggleTrans()">Mostra traduzione</button>
+
+<section class="hero"><div class="hero-bg-circle" id="hbc1"></div><div class="hero-bg-circle" id="hbc2"></div>
+  <div class="hero-badge">Unità 10 · Scoperta</div>
+  <h1>La mia<br>giornata</h1>
+  <p class="hero-sub">Verbi riflessivi, avverbi di frequenza<br>e la routine quotidiana italiana</p>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-dot"></div></div>
+</section>
+
+<section class="section bg-white"><div class="container">
+  <div class="sofia-wrap" data-a="up">
+    <div class="sofia-avatar">👩‍🏫</div>
+    <div class="speech-bubble">
+      <strong>Sofia · La tua guida</strong>
+      <p>Benvenuti all'Unità 10! Oggi scopriamo la giornata tipica di un italiano — da quando si sveglia a quando va a dormire.</p>
+      <p>I verbi riflessivi sono fondamentali: <em>svegliarsi, alzarsi, lavarsi, vestirsi...</em> Pronti?</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="section bg-alt"><div class="container">
+  <p class="section-label" data-a="fade">Attività 1</p>
+  <h2 class="section-title" data-a="up">Quali parole <em>riconosci</em>?</h2>
+  <p class="section-desc" data-a="up">Seleziona le parole che ti sembrano legate alla <strong>routine quotidiana</strong>. Poi verifica!</p>
+  <div class="word-grid" id="wordGrid" style="margin-top:1.75rem" data-stagger></div>
+  <div class="word-actions">
+    <button class="btn btn-primary" onclick="verifyWords()">Verifica</button>
+    <button class="btn btn-ghost" onclick="resetWords()">Ricomincia</button>
+    <span class="score-display" id="scoreDisplay"></span>
+  </div>
+  <div class="legend" id="legend" style="display:none">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Corretto ✓</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div> Non pertinente ✗</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Dimenticato !</div>
+  </div>
+</div></section>
+
+<section class="section bg-white"><div class="container">
+  <p class="section-label" data-a="fade">La giornata</p>
+  <h2 class="section-title" data-a="up">La giornata tipo <em>italiana</em></h2>
+  <p class="section-desc" data-a="up">Clicca su ogni fascia oraria per vedere la traduzione.</p>
+  <div class="timeline" data-stagger>
+    <div class="tl-item"><div class="tl-time">07:00</div><div class="tl-dot"></div><div class="tl-content"><div class="it">Si sveglia e si alza</div><div class="es">Se despierta y se levanta</div></div></div>
+    <div class="tl-item"><div class="tl-time">07:15</div><div class="tl-dot"></div><div class="tl-content"><div class="it">Si lava e si veste</div><div class="es">Se lava y se viste</div></div></div>
+    <div class="tl-item"><div class="tl-time">07:45</div><div class="tl-dot"></div><div class="tl-content"><div class="it">Fa colazione al bar</div><div class="es">Desayuna en el bar</div></div></div>
+    <div class="tl-item"><div class="tl-time">08:30</div><div class="tl-dot"></div><div class="tl-content"><div class="it">Va al lavoro / a scuola</div><div class="es">Va al trabajo / a la escuela</div></div></div>
+    <div class="tl-item"><div class="tl-time">13:00</div><div class="tl-dot"></div><div class="tl-content"><div class="it">Pausa pranzo</div><div class="es">Pausa del almuerzo</div></div></div>
+    <div class="tl-item"><div class="tl-time">18:00</div><div class="tl-dot"></div><div class="tl-content"><div class="it">Aperitivo con gli amici</div><div class="es">Aperitivo con amigos</div></div></div>
+    <div class="tl-item"><div class="tl-time">20:00</div><div class="tl-dot"></div><div class="tl-content"><div class="it">Cena in famiglia</div><div class="es">Cena en familia</div></div></div>
+    <div class="tl-item"><div class="tl-time">23:00</div><div class="tl-dot"></div><div class="tl-content"><div class="it">Si addormenta</div><div class="es">Se duerme</div></div></div>
+  </div>
+</div></section>
+
+<section class="section bg-alt"><div class="container">
+  <p class="section-label" data-a="fade">Grammatica · Verbi</p>
+  <h2 class="section-title" data-a="up">I verbi <em>riflessivi</em></h2>
+  <p class="section-desc" data-a="up">I verbi riflessivi si coniugano con i pronomi riflessivi: mi/ti/si/ci/vi/si</p>
+  <div class="verb-grid" data-stagger>
+    <div class="verb-block">
+      <h4>Svegliarsi</h4>
+      <div class="verb-row"><span class="pron">io</span><span class="form">mi sveglio</span></div>
+      <div class="verb-row"><span class="pron">tu</span><span class="form">ti svegli</span></div>
+      <div class="verb-row"><span class="pron">lui/lei</span><span class="form">si sveglia</span></div>
+      <div class="verb-row"><span class="pron">noi</span><span class="form">ci svegliamo</span></div>
+      <div class="verb-row"><span class="pron">voi</span><span class="form">vi svegliate</span></div>
+      <div class="verb-row"><span class="pron">loro</span><span class="form">si svegliano</span></div>
+    </div>
+    <div class="verb-block">
+      <h4>Alzarsi</h4>
+      <div class="verb-row"><span class="pron">io</span><span class="form">mi alzo</span></div>
+      <div class="verb-row"><span class="pron">tu</span><span class="form">ti alzi</span></div>
+      <div class="verb-row"><span class="pron">lui/lei</span><span class="form">si alza</span></div>
+      <div class="verb-row"><span class="pron">noi</span><span class="form">ci alziamo</span></div>
+      <div class="verb-row"><span class="pron">voi</span><span class="form">vi alzate</span></div>
+      <div class="verb-row"><span class="pron">loro</span><span class="form">si alzano</span></div>
+    </div>
+    <div class="verb-block">
+      <h4>Lavarsi</h4>
+      <div class="verb-row"><span class="pron">io</span><span class="form">mi lavo</span></div>
+      <div class="verb-row"><span class="pron">tu</span><span class="form">ti lavi</span></div>
+      <div class="verb-row"><span class="pron">lui/lei</span><span class="form">si lava</span></div>
+      <div class="verb-row"><span class="pron">noi</span><span class="form">ci laviamo</span></div>
+      <div class="verb-row"><span class="pron">voi</span><span class="form">vi lavate</span></div>
+      <div class="verb-row"><span class="pron">loro</span><span class="form">si lavano</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="section bg-white"><div class="container">
+  <p class="section-label" data-a="fade">Vocabulario</p>
+  <h2 class="section-title" data-a="up">Gli avverbi <em>di frequenza</em></h2>
+  <p class="section-desc" data-a="up">Con quale frequenza fai le cose?</p>
+  <div class="freq-scale" style="margin-top:1.5rem" data-stagger>
+    <div class="freq-row"><div class="freq-label">sempre</div><div class="freq-bar-wrap"><div class="freq-bar" style="width:100%"></div></div><div class="freq-pct">100%</div></div>
+    <div class="freq-row"><div class="freq-label">spesso</div><div class="freq-bar-wrap"><div class="freq-bar" style="width:75%"></div></div><div class="freq-pct">~75%</div></div>
+    <div class="freq-row"><div class="freq-label">a volte</div><div class="freq-bar-wrap"><div class="freq-bar" style="width:50%"></div></div><div class="freq-pct">~50%</div></div>
+    <div class="freq-row"><div class="freq-label">raramente</div><div class="freq-bar-wrap"><div class="freq-bar" style="width:20%"></div></div><div class="freq-pct">~20%</div></div>
+    <div class="freq-row"><div class="freq-label">mai</div><div class="freq-bar-wrap"><div class="freq-bar" style="width:0%"></div></div><div class="freq-pct">0%</div></div>
+  </div>
+  <div class="fill-section" data-a="up">
+    <h4>Pratica</h4>
+    <div class="fill-list" id="fillFreq">
+      <div class="fill-item" data-ans="mi sveglio">Ogni mattina <input class="fill-input" placeholder="..."> alle sette.</div>
+      <div class="fill-item" data-ans="si lava">Marco <input class="fill-input" placeholder="..."> i capelli ogni giorno.</div>
+      <div class="fill-item" data-ans="ci alziamo">Noi <input class="fill-input" placeholder="..."> presto il lunedì.</div>
+      <div class="fill-item" data-ans="ti vesti">A che ora <input class="fill-input" placeholder="..."> la mattina?</div>
+    </div>
+    <div style="margin-top:1rem;display:flex;gap:.75rem">
+      <button class="btn btn-primary" onclick="checkFill()">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetFill()">Ripristina</button>
+    </div>
+  </div>
+</div></section>
+
+<section class="section bg-alt"><div class="container">
+  <p class="section-label" data-a="fade">Dialogo</p>
+  <h2 class="section-title" data-a="up">La routine di <em>Sofia</em></h2>
+  <p class="section-desc" data-a="up">Clicca su ogni bolla per vedere la traduzione.</p>
+  <div class="dialogue" style="margin-top:2rem" data-stagger>
+    <div class="dlg-line"><div class="dlg-speaker">Marco</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">A che ora ti svegli di solito?</div><div class="es">¿A qué hora te despiertas normalmente?</div></div></div>
+    <div class="dlg-line b"><div class="dlg-speaker">Sofia</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">Mi sveglio sempre alle sette. Tu?</div><div class="es">Me despierto siempre a las siete. ¿Y tú?</div></div></div>
+    <div class="dlg-line"><div class="dlg-speaker">Marco</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">Io mi alzo raramente prima delle otto!</div><div class="es">¡Yo me levanto raramente antes de las ocho!</div></div></div>
+    <div class="dlg-line b"><div class="dlg-speaker">Sofia</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">Anch'io il weekend! Ma il lunedì devo alzarmi presto...</div><div class="es">¡Yo también el fin de semana! Pero el lunes tengo que levantarme temprano...</div></div></div>
+    <div class="dlg-line"><div class="dlg-speaker">Marco</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">Sì, capisco. Il lunedì è sempre difficile!</div><div class="es">Sí, entiendo. ¡El lunes siempre es difícil!</div></div></div>
+  </div>
+</div></section>
+
+<div class="cultural-strip"><div class="container">
+  <h2 data-a="up">La giornata tipo italiana ☀️</h2>
+  <p data-a="up">Gli italiani hanno una giornata molto strutturata — e molto saporita. Dalla colazione al bar alla cena in famiglia.</p>
+  <div class="cultural-facts" data-stagger>
+    <div class="cf-item"><div class="cf-icon">☕</div><h4>Colazione al bar</h4><p>Gli italiani raramente fanno colazione a casa. Un espresso e un cornetto al bancone — in piedi, in 5 minuti.</p></div>
+    <div class="cf-item"><div class="cf-icon">🍝</div><h4>Il pranzo</h4><p>Tradizionalmente il pasto principale. Molti italiani tornano a casa per mangiare. Pausa di 1-2 ore in molte città.</p></div>
+    <div class="cf-item"><div class="cf-icon">🥂</div><h4>L'aperitivo</h4><p>Alle 18:00 si va al bar per l'aperitivo. Tipicamente Spritz o Negroni con stuzzichini. Un rituale sociale irrinunciabile.</p></div>
+  </div>
+</div></div>
+
+<footer class="footer"><strong>Unità 10 · La mia giornata</strong><br>Italiano Per Piacere — Livello A1
+  <div class="nav-pills">
+    <a href="../modulo_9/etapa2_descubrimiento.html" class="nav-pill">← Unità 9</a>
+    <a href="etapa3_gramatica.html" class="nav-pill active">Grammatica →</a>
+  </div>
+</footer>
+
+<script>
+  const observer=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');observer.unobserve(x.target)}})},{threshold:.12});
+  document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>observer.observe(el));
+  const c1=document.getElementById('hbc1'),c2=document.getElementById('hbc2');
+  window.addEventListener('scroll',()=>{const y=window.scrollY;if(c1)c1.style.transform=`translateY(${y*.25}px)`;if(c2)c2.style.transform=`translateY(${y*-.15}px)`},{passive:true});
+  function toggleTrans(){document.body.classList.toggle('hide-es');document.getElementById('transBtn').textContent=document.body.classList.contains('hide-es')?'Mostra traduzione':'Nascondi traduzione'}
+  const WORDS=[{w:'svegliarsi',c:true},{w:'alzarsi',c:true},{w:'lavarsi',c:true},{w:'colazione',c:true},{w:'mattina',c:true},{w:'sempre',c:true},{w:'caffè',c:false},{w:'treno',c:false},{w:'verde',c:false},{w:'medico',c:false},{w:'bar',c:false},{w:'libro',c:false}];
+  const selected=new Set();let verified=false;
+  const grid=document.getElementById('wordGrid');
+  WORDS.forEach((w,i)=>{const d=document.createElement('div');d.className='word-card';d.innerHTML=`${w.w}<span class="word-badge" id="b${i}"></span>`;d.addEventListener('click',()=>{if(verified)return;selected.has(i)?(selected.delete(i),d.classList.remove('selected')):(selected.add(i),d.classList.add('selected'))});grid.appendChild(d)});
+  function verifyWords(){verified=true;let s=0;const cards=grid.querySelectorAll('.word-card');WORDS.forEach((w,i)=>{const c=cards[i],b=document.getElementById('b'+i);c.classList.remove('selected');if(w.c&&selected.has(i)){c.classList.add('correct');b.textContent='✓';s++}else if(!w.c&&selected.has(i)){c.classList.add('false-pos');b.textContent='✗'}else if(w.c&&!selected.has(i)){c.classList.add('missed');b.textContent='!'}else c.classList.add('neutral')});document.getElementById('scoreDisplay').textContent=s+'/6';document.getElementById('legend').style.display='flex'}
+  function resetWords(){verified=false;selected.clear();grid.querySelectorAll('.word-card').forEach(c=>c.className='word-card');document.getElementById('scoreDisplay').textContent='';document.getElementById('legend').style.display='none'}
+  function checkFill(){document.querySelectorAll('#fillFreq .fill-item').forEach(item=>{const inp=item.querySelector('.fill-input');inp.classList.remove('ok','fail');inp.value.trim().toLowerCase()===item.dataset.ans?inp.classList.add('ok'):inp.classList.add('fail')})}
+  function resetFill(){document.querySelectorAll('#fillFreq .fill-input').forEach(inp=>{inp.value='';inp.classList.remove('ok','fail')})}
+</script>
+</body>
+</html>

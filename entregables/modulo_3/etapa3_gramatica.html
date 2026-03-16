@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unità 3 · Gramática | Italiano Per Piacere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;
+      --red:#cc4736;--teal:#78a6ba;--green:#528e74;--black:#1a1a18;--white:#ffffff;
+      --r:8px;--fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+      --ease:cubic-bezier(0.16,1,0.3,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--fb);background:var(--cream);color:var(--black)}
+
+    /* NAV */
+    .sticky-nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--cream-dk);display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .sticky-nav a{padding:.85rem 1.2rem;font-size:.8rem;font-weight:600;color:#888;text-decoration:none;letter-spacing:.5px;text-transform:uppercase;border-bottom:3px solid transparent;white-space:nowrap;flex-shrink:0;transition:color .2s,border-color .2s}
+    .sticky-nav a:hover{color:var(--red)}
+    .sticky-nav a.active{color:var(--red);border-bottom-color:var(--red)}
+
+    /* PAGE HEADER */
+    .page-header{background:var(--red);color:var(--white);padding:5rem 2rem 3rem;text-align:center}
+    .page-header .badge{display:inline-block;background:rgba(255,255,255,.15);color:var(--white);font-size:.68rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:.3rem 1rem;border-radius:20px;margin-bottom:1rem}
+    .page-header h1{font-family:var(--fh);font-size:clamp(2rem,5vw,3.2rem);font-style:italic;margin-bottom:.75rem}
+    .page-header p{font-size:.95rem;opacity:.8;max-width:480px;margin:0 auto;line-height:1.6}
+
+    /* SECTIONS */
+    .gram-section{padding:5rem 2rem;border-bottom:1px solid var(--cream-dk)}
+    .gram-section.bg-alt{background:var(--cream-dk)}
+    .gram-section.bg-white{background:var(--white)}
+    .container{max-width:820px;margin:0 auto}
+    .sec-label{font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:.6rem}
+    .sec-title{font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.4rem);line-height:1.15;margin-bottom:1rem}
+    .sec-title em{font-style:italic;color:var(--red)}
+    .sec-desc{font-size:.95rem;color:#555;line-height:1.75;margin-bottom:1.5rem}
+
+    /* PLURAL TABLE */
+    .pl-table{width:100%;border-collapse:collapse;font-size:.9rem}
+    .pl-table th{background:var(--red);color:var(--white);padding:.7rem 1.1rem;text-align:left;font-size:.78rem;letter-spacing:1px;text-transform:uppercase}
+    .pl-table td{padding:.65rem 1.1rem;border-bottom:1px solid var(--cream-dk)}
+    .pl-table tr:nth-child(even) td{background:rgba(0,0,0,.02)}
+    .pl-table .rule-col{font-weight:700}
+    .pl-table .masc{color:var(--green)}
+    .pl-table .fem{color:var(--teal)}
+    .pl-table .inv{color:var(--amber)}
+    .pl-table .ex{font-style:italic;color:#777;font-size:.83rem}
+
+    /* PRACTICE */
+    .inline-prac{background:var(--cream);border-radius:var(--r);padding:1.25rem 1.5rem;margin-top:1.5rem}
+    .inline-prac h4{font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:.85rem}
+    .prac-item{display:flex;align-items:center;gap:.5rem;font-size:.93rem;margin-bottom:.6rem;flex-wrap:wrap}
+    .prac-input{border:none;border-bottom:2px solid var(--cream-dk);background:transparent;font-family:var(--fb);font-size:.93rem;font-weight:600;color:var(--black);width:120px;padding:.2rem .3rem;outline:none;text-align:center;transition:border-color .2s}
+    .prac-input:focus{border-color:var(--red)}
+    .prac-input.ok{border-color:var(--green);color:var(--green)}
+    .prac-input.fail{border-color:var(--red);color:var(--red)}
+    .btn{padding:.6rem 1.3rem;border-radius:30px;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.85rem;transition:opacity .2s,transform .15s}
+    .btn:hover{opacity:.85;transform:translateY(-1px)}
+    .btn-primary{background:var(--red);color:var(--white)}
+    .btn-ghost{background:transparent;color:var(--black);border:2px solid var(--cream-dk)}
+
+    /* ECCEZIONI CARDS */
+    .ecc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem;margin-top:1.5rem}
+    .ecc-card{background:var(--white);border-radius:var(--r);padding:1rem;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.07);border-top:3px solid var(--amber)}
+    .ecc-card .it-s{font-size:1.05rem;font-weight:700;color:var(--black)}
+    .ecc-card .arr{font-size:.75rem;color:#aaa;margin:.2rem 0}
+    .ecc-card .it-p{font-size:1.05rem;font-weight:700;color:var(--amber)}
+    .ecc-card .es{font-size:.78rem;color:#888;margin-top:.3rem}
+    .ecc-rule{background:rgba(229,171,7,.12);border-radius:var(--r);padding:1rem 1.25rem;border-left:4px solid var(--amber);margin-top:1.25rem}
+
+    /* FONÉTICA */
+    .fon-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+    .fon-tab{padding:.5rem 1.1rem;border-radius:20px;font-size:.82rem;font-weight:700;cursor:pointer;border:2px solid transparent;transition:background .2s,color .2s,border-color .2s}
+    .fon-tab.active{background:var(--red);color:var(--white)}
+    .fon-tab:not(.active){background:var(--cream);border-color:var(--cream-dk);color:var(--black)}
+    .fon-panel{display:none}
+    .fon-panel.active{display:block}
+    .fon-rows{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem;margin-top:1rem}
+    .fon-row{background:var(--white);border-radius:var(--r);padding:.85rem 1rem;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 8px rgba(0,0,0,.06)}
+    .fon-row .word{font-weight:700;color:var(--black)}
+    .fon-row .ph{font-size:.8rem;font-weight:700;padding:.15rem .55rem;border-radius:12px;color:var(--white)}
+    .fon-row .k-sound{background:var(--green)}
+    .fon-row .ch-sound{background:var(--red)}
+    .fon-row .g-sound{background:var(--green)}
+    .fon-row .dj-sound{background:var(--red)}
+    .fon-rules{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem}
+    .fon-rule{border-radius:var(--r);padding:1rem 1.25rem}
+
+    /* PHONE EXPRESSIONS */
+    .phone-flow{display:flex;flex-direction:column;gap:.85rem;margin-top:1.5rem}
+    .phone-step{display:flex;align-items:flex-start;gap:1rem;background:var(--white);border-radius:12px;padding:1rem 1.25rem;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+    .phone-num{min-width:32px;height:32px;border-radius:50%;background:var(--red);color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0}
+    .phone-content{}
+    .phone-it{font-size:.95rem;font-weight:700;color:var(--black);margin-bottom:.2rem}
+    .phone-es{font-size:.82rem;color:#666;margin-bottom:.3rem}
+    .phone-note{font-size:.78rem;color:#aaa;font-style:italic}
+
+    /* QUIZ */
+    .quiz-wrap{background:var(--white);border-radius:16px;padding:2rem;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+    .quiz-q{margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid var(--cream-dk)}
+    .quiz-q:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+    .quiz-q p{font-size:.95rem;font-weight:600;margin-bottom:.75rem}
+    .quiz-opts{display:flex;flex-wrap:wrap;gap:.6rem}
+    .quiz-opt{padding:.45rem 1rem;border-radius:20px;border:2px solid var(--cream-dk);cursor:pointer;font-size:.85rem;font-weight:500;background:var(--cream);transition:border-color .2s,background .2s,color .2s}
+    .quiz-opt:hover{border-color:var(--red)}
+    .quiz-opt.selected{border-color:var(--red);background:rgba(204,71,54,.1)}
+    .quiz-opt.correct{border-color:var(--green);background:var(--green);color:var(--white)}
+    .quiz-opt.wrong{border-color:var(--red);background:rgba(204,71,54,.1);color:var(--red)}
+    .quiz-actions{display:flex;gap:1rem;margin-top:1.5rem;align-items:center;flex-wrap:wrap}
+    .quiz-result{font-size:.9rem;font-weight:700}
+
+    /* FOOTER */
+    .footer{background:var(--cream-dk);padding:2.5rem 2rem;text-align:center;font-size:.82rem;color:#888}
+    .footer strong{color:var(--black)}
+    .nav-pills{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.25rem}
+    .nav-pill{padding:.5rem 1.2rem;border-radius:30px;font-size:.8rem;font-weight:600;text-decoration:none;color:var(--black);background:var(--cream);border:1px solid var(--cream-dk);transition:background .2s,color .2s}
+    .nav-pill:hover{background:var(--red);color:var(--white)}
+    .nav-pill.active{background:var(--red);color:var(--white)}
+
+    @media(max-width:600px){
+      .gram-section{padding:3.5rem 1.25rem}
+      .fon-rules{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="sticky-nav" id="nav">
+  <a href="#plurale" class="active">PLURALE</a>
+  <a href="#eccezioni">ECCEZIONI</a>
+  <a href="#fonetica">FONETICA</a>
+  <a href="#telefono">TELEFONATA</a>
+  <a href="#quiz">QUIZ</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="badge">Unità 3 · Gramática</div>
+  <h1>Tutti in piazza!</h1>
+  <p>Sustantivos singular/plural, excepciones en -à, fonética c/g y la llamada telefónica</p>
+</header>
+
+<!-- ═══ PLURALE ═══ -->
+<section class="gram-section bg-white" id="plurale">
+  <div class="container">
+    <p class="sec-label">Gramática</p>
+    <h2 class="sec-title">I nomi: <em>singolare e plurale</em></h2>
+    <p class="sec-desc">
+      En italiano, los sustantivos cambian su terminación al pasar al plural. Las reglas dependen del género y la terminación del sustantivo.
+    </p>
+
+    <div style="overflow-x:auto">
+      <table class="pl-table">
+        <thead>
+          <tr><th>Género</th><th>Terminación sing.</th><th>Terminación plur.</th><th>Ejemplo</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="masc">Masculino</td>
+            <td class="rule-col masc">-o</td>
+            <td class="rule-col masc">-i</td>
+            <td class="ex">il libro → i libri · il museo → i musei</td>
+          </tr>
+          <tr>
+            <td class="fem">Femenino</td>
+            <td class="rule-col fem">-a</td>
+            <td class="rule-col fem">-e</td>
+            <td class="ex">la piazza → le piazze · la chiesa → le chiese</td>
+          </tr>
+          <tr>
+            <td>Masc. / Fem.</td>
+            <td class="rule-col" style="color:var(--teal)">-e</td>
+            <td class="rule-col" style="color:var(--teal)">-i</td>
+            <td class="ex">la stazione → le stazioni · il nome → i nomi</td>
+          </tr>
+          <tr>
+            <td class="inv">Masc. en -co</td>
+            <td class="rule-col inv">-co</td>
+            <td class="rule-col inv">-chi</td>
+            <td class="ex">il parco → i parchi · il banco → i banchi</td>
+          </tr>
+          <tr>
+            <td class="inv">Fem. en -ca</td>
+            <td class="rule-col inv">-ca</td>
+            <td class="rule-col inv">-che</td>
+            <td class="ex">la biblioteca → le biblioteche · la banca → le banche</td>
+          </tr>
+          <tr>
+            <td class="inv">Palabras extranjeras</td>
+            <td class="rule-col inv" colspan="2">Invariables</td>
+            <td class="ex">il bar → i bar · il film → i film</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem">
+      <div style="background:rgba(82,142,116,.1);border-radius:var(--r);padding:1rem 1.25rem;border-left:4px solid var(--green)">
+        <strong style="color:var(--green);font-size:.82rem">🎯 Truco</strong>
+        <p style="font-size:.83rem;color:#555;margin-top:.35rem;line-height:1.55">
+          El artículo te indica el género y el número:<br>
+          <strong>il / un</strong> → masc. sing. | <strong>i / dei</strong> → masc. plur.<br>
+          <strong>la / una</strong> → fem. sing. | <strong>le / delle</strong> → fem. plur.
+        </p>
+      </div>
+      <div style="background:rgba(204,71,54,.08);border-radius:var(--r);padding:1rem 1.25rem;border-left:4px solid var(--red)">
+        <strong style="color:var(--red);font-size:.82rem">⚡ Atención</strong>
+        <p style="font-size:.83rem;color:#555;margin-top:.35rem;line-height:1.55">
+          Palabras en <strong>-eo, -io</strong> forman el plural en <strong>-ei, -i</strong>:<br>
+          museo → musei · ufficio → uffici<br>
+          (no "museos" ni "musèi"!)
+        </p>
+      </div>
+    </div>
+
+    <div class="inline-prac">
+      <h4>Pratica: forma el plural</h4>
+      <div id="pracPlural">
+        <div class="prac-item" data-ans="i teatri">il teatro → <input class="prac-input" placeholder="plurale"></div>
+        <div class="prac-item" data-ans="le chiese">la chiesa → <input class="prac-input" placeholder="plurale"></div>
+        <div class="prac-item" data-ans="i parchi">il parco → <input class="prac-input" placeholder="plurale"></div>
+      </div>
+      <div style="margin-top:.85rem;display:flex;gap:.75rem">
+        <button class="btn btn-primary" onclick="checkPrac('pracPlural')">Verificar</button>
+        <button class="btn btn-ghost" onclick="resetPrac('pracPlural')">Limpiar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ECCEZIONI ═══ -->
+<section class="gram-section bg-alt" id="eccezioni">
+  <div class="container">
+    <p class="sec-label">Excepciones</p>
+    <h2 class="sec-title">Le eccezioni in <em>-à</em></h2>
+    <p class="sec-desc">
+      Los sustantivos que terminan en <strong>vocal acentuada (-à, -è, -ì, -ò, -ù)</strong> son invariables: el singular y el plural son idénticos. Solo el artículo cambia.
+    </p>
+
+    <div class="ecc-grid">
+      <div class="ecc-card">
+        <div class="it-s">la città</div>
+        <div class="arr">→</div>
+        <div class="it-p">le città</div>
+        <div class="es">la ciudad / las ciudades</div>
+      </div>
+      <div class="ecc-card">
+        <div class="it-s">l'università</div>
+        <div class="arr">→</div>
+        <div class="it-p">le università</div>
+        <div class="es">la universidad / las universidades</div>
+      </div>
+      <div class="ecc-card">
+        <div class="it-s">la qualità</div>
+        <div class="arr">→</div>
+        <div class="it-p">le qualità</div>
+        <div class="es">la calidad / las calidades</div>
+      </div>
+      <div class="ecc-card">
+        <div class="it-s">la varietà</div>
+        <div class="arr">→</div>
+        <div class="it-p">le varietà</div>
+        <div class="es">la variedad / las variedades</div>
+      </div>
+      <div class="ecc-card">
+        <div class="it-s">la novità</div>
+        <div class="arr">→</div>
+        <div class="it-p">le novità</div>
+        <div class="es">la novedad / las novedades</div>
+      </div>
+      <div class="ecc-card">
+        <div class="it-s">il caffè</div>
+        <div class="arr">→</div>
+        <div class="it-p">i caffè</div>
+        <div class="es">el café / los cafés</div>
+      </div>
+    </div>
+
+    <div class="ecc-rule">
+      <strong style="color:var(--amber);font-size:.85rem">📌 La regla</strong>
+      <p style="font-size:.85rem;color:#555;margin-top:.4rem;line-height:1.6">
+        Sustantivo termina en <strong>vocal con acento gráfico</strong> → <strong>INVARIABLE</strong><br>
+        Solo el artículo cambia para indicar singular/plural:<br>
+        <em>la città</em> → <em>le città</em> &nbsp;|&nbsp; <em>il caffè</em> → <em>i caffè</em>
+      </p>
+    </div>
+
+    <div class="inline-prac" style="margin-top:1.5rem">
+      <h4>Pratica: singular o plural</h4>
+      <div id="pracEcc">
+        <div class="prac-item" data-ans="le città">la città (plural) → <input class="prac-input" placeholder="plurale"></div>
+        <div class="prac-item" data-ans="l'università">le università (singular) → <input class="prac-input" placeholder="singolare"></div>
+        <div class="prac-item" data-ans="i caffè">il caffè (plural) → <input class="prac-input" placeholder="plurale"></div>
+      </div>
+      <div style="margin-top:.85rem;display:flex;gap:.75rem">
+        <button class="btn btn-primary" onclick="checkPrac('pracEcc')">Verificar</button>
+        <button class="btn btn-ghost" onclick="resetPrac('pracEcc')">Limpiar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FONETICA ═══ -->
+<section class="gram-section bg-white" id="fonetica">
+  <div class="container">
+    <p class="sec-label">Fonética</p>
+    <h2 class="sec-title">La <em>C</em> y la <em>G</em> italianas</h2>
+    <p class="sec-desc">
+      Las letras <strong>c</strong> y <strong>g</strong> tienen dos sonidos distintos en italiano, dependiendo de qué vocal las sigue. Esta es una de las reglas fonéticas fundamentales.
+    </p>
+
+    <div class="fon-tabs" id="fonTabs">
+      <div class="fon-tab active" onclick="showFon('c-dura')">C dura /k/</div>
+      <div class="fon-tab" onclick="showFon('c-suave')">C suave /tʃ/</div>
+      <div class="fon-tab" onclick="showFon('g-dura')">G dura /g/</div>
+      <div class="fon-tab" onclick="showFon('g-suave')">G suave /dʒ/</div>
+    </div>
+
+    <div class="fon-panel active" id="c-dura">
+      <div style="background:rgba(82,142,116,.1);border-radius:var(--r);padding:1rem 1.25rem;border-left:4px solid var(--green);margin-bottom:1rem">
+        <strong style="color:var(--green)">C + A, O, U → /k/ (como "casa" en español)</strong>
+        <p style="font-size:.85rem;color:#555;margin-top:.35rem">También: CH + E, I → /k/ ("chiave", "che")</p>
+      </div>
+      <div class="fon-rows">
+        <div class="fon-row"><span class="word">caro</span><span class="ph k-sound">/k/</span></div>
+        <div class="fon-row"><span class="word">cosa</span><span class="ph k-sound">/k/</span></div>
+        <div class="fon-row"><span class="word">cuore</span><span class="ph k-sound">/k/</span></div>
+        <div class="fon-row"><span class="word">caffè</span><span class="ph k-sound">/k/</span></div>
+        <div class="fon-row"><span class="word">comune</span><span class="ph k-sound">/k/</span></div>
+        <div class="fon-row"><span class="word">chiesa</span><span class="ph k-sound">/k/ (ch+e)</span></div>
+        <div class="fon-row"><span class="word">chi</span><span class="ph k-sound">/k/ (ch+i)</span></div>
+        <div class="fon-row"><span class="word">che</span><span class="ph k-sound">/k/ (ch+e)</span></div>
+      </div>
+    </div>
+
+    <div class="fon-panel" id="c-suave">
+      <div style="background:rgba(204,71,54,.08);border-radius:var(--r);padding:1rem 1.25rem;border-left:4px solid var(--red);margin-bottom:1rem">
+        <strong style="color:var(--red)">C + E, I → /tʃ/ (como "ch" en inglés "cheese")</strong>
+        <p style="font-size:.85rem;color:#555;margin-top:.35rem">Parecido al sonido "ch" de "muchacho" en español latinoamericano.</p>
+      </div>
+      <div class="fon-rows">
+        <div class="fon-row"><span class="word">cena</span><span class="ph ch-sound">/tʃ/</span></div>
+        <div class="fon-row"><span class="word">cinema</span><span class="ph ch-sound">/tʃ/</span></div>
+        <div class="fon-row"><span class="word">città</span><span class="ph ch-sound">/tʃ/</span></div>
+        <div class="fon-row"><span class="word">ciao</span><span class="ph ch-sound">/tʃ/</span></div>
+        <div class="fon-row"><span class="word">concerto</span><span class="ph ch-sound">/tʃ/</span></div>
+        <div class="fon-row"><span class="word">cielo</span><span class="ph ch-sound">/tʃ/</span></div>
+        <div class="fon-row"><span class="word">piace</span><span class="ph ch-sound">/tʃ/</span></div>
+        <div class="fon-row"><span class="word">arancia</span><span class="ph ch-sound">/tʃ/</span></div>
+      </div>
+    </div>
+
+    <div class="fon-panel" id="g-dura">
+      <div style="background:rgba(82,142,116,.1);border-radius:var(--r);padding:1rem 1.25rem;border-left:4px solid var(--green);margin-bottom:1rem">
+        <strong style="color:var(--green)">G + A, O, U → /g/ (como "gato" en español)</strong>
+        <p style="font-size:.85rem;color:#555;margin-top:.35rem">También: GH + E, I → /g/ ("spaghetti", "ghiaccio")</p>
+      </div>
+      <div class="fon-rows">
+        <div class="fon-row"><span class="word">gatto</span><span class="ph g-sound">/g/</span></div>
+        <div class="fon-row"><span class="word">gusto</span><span class="ph g-sound">/g/</span></div>
+        <div class="fon-row"><span class="word">gonna</span><span class="ph g-sound">/g/</span></div>
+        <div class="fon-row"><span class="word">grande</span><span class="ph g-sound">/g/</span></div>
+        <div class="fon-row"><span class="word">grazie</span><span class="ph g-sound">/g/</span></div>
+        <div class="fon-row"><span class="word">spaghetti</span><span class="ph g-sound">/g/ (gh+e)</span></div>
+        <div class="fon-row"><span class="word">ghiaccio</span><span class="ph g-sound">/g/ (gh+i)</span></div>
+        <div class="fon-row"><span class="word">lago</span><span class="ph g-sound">/g/</span></div>
+      </div>
+    </div>
+
+    <div class="fon-panel" id="g-suave">
+      <div style="background:rgba(204,71,54,.08);border-radius:var(--r);padding:1rem 1.25rem;border-left:4px solid var(--red);margin-bottom:1rem">
+        <strong style="color:var(--red)">G + E, I → /dʒ/ (como "ll/y" en "yeso" o "j" en inglés "jet")</strong>
+        <p style="font-size:.85rem;color:#555;margin-top:.35rem">Suena similar a una "y" muy pronunciada o a la "j" del inglés.</p>
+      </div>
+      <div class="fon-rows">
+        <div class="fon-row"><span class="word">gelato</span><span class="ph dj-sound">/dʒ/</span></div>
+        <div class="fon-row"><span class="word">gentile</span><span class="ph dj-sound">/dʒ/</span></div>
+        <div class="fon-row"><span class="word">giro</span><span class="ph dj-sound">/dʒ/</span></div>
+        <div class="fon-row"><span class="word">giovedì</span><span class="ph dj-sound">/dʒ/</span></div>
+        <div class="fon-row"><span class="word">giorno</span><span class="ph dj-sound">/dʒ/</span></div>
+        <div class="fon-row"><span class="word">giugno</span><span class="ph dj-sound">/dʒ/</span></div>
+        <div class="fon-row"><span class="word">maggio</span><span class="ph dj-sound">/dʒ/</span></div>
+        <div class="fon-row"><span class="word">viaggio</span><span class="ph dj-sound">/dʒ/</span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem;background:var(--cream-dk);border-radius:12px;padding:1.25rem;text-align:center">
+      <strong style="font-size:.85rem;color:var(--black)">Resumen visual</strong>
+      <div style="display:flex;gap:1rem;justify-content:center;margin-top:.85rem;flex-wrap:wrap">
+        <div style="text-align:center"><div style="font-size:.75rem;color:#888;margin-bottom:.3rem">C + a/o/u</div><div style="background:var(--green);color:var(--white);padding:.3rem .8rem;border-radius:12px;font-weight:700">/k/</div></div>
+        <div style="text-align:center"><div style="font-size:.75rem;color:#888;margin-bottom:.3rem">C + e/i</div><div style="background:var(--red);color:var(--white);padding:.3rem .8rem;border-radius:12px;font-weight:700">/tʃ/</div></div>
+        <div style="text-align:center"><div style="font-size:.75rem;color:#888;margin-bottom:.3rem">CH + e/i</div><div style="background:var(--green);color:var(--white);padding:.3rem .8rem;border-radius:12px;font-weight:700">/k/</div></div>
+        <div style="text-align:center"><div style="font-size:.75rem;color:#888;margin-bottom:.3rem">G + a/o/u</div><div style="background:var(--green);color:var(--white);padding:.3rem .8rem;border-radius:12px;font-weight:700">/g/</div></div>
+        <div style="text-align:center"><div style="font-size:.75rem;color:#888;margin-bottom:.3rem">G + e/i</div><div style="background:var(--red);color:var(--white);padding:.3rem .8rem;border-radius:12px;font-weight:700">/dʒ/</div></div>
+        <div style="text-align:center"><div style="font-size:.75rem;color:#888;margin-bottom:.3rem">GH + e/i</div><div style="background:var(--green);color:var(--white);padding:.3rem .8rem;border-radius:12px;font-weight:700">/g/</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TELEFONATA ═══ -->
+<section class="gram-section bg-alt" id="telefono">
+  <div class="container">
+    <p class="sec-label">Comunicación</p>
+    <h2 class="sec-title">Aprire una telefonata — <em>Abrir una llamada</em></h2>
+    <p class="sec-desc">
+      En Italia hay un protocolo para las llamadas telefónicas. Aprende las frases que van al inicio, en el medio y al final de la conversación.
+    </p>
+
+    <div class="phone-flow">
+      <div class="phone-step">
+        <div class="phone-num">1</div>
+        <div class="phone-content">
+          <div class="phone-it">Pronto?</div>
+          <div class="phone-es">¿Aló? / ¿Hola? (al contestar)</div>
+          <div class="phone-note">Solo al teléfono — nunca en persona. Es la primera palabra al contestar.</div>
+        </div>
+      </div>
+      <div class="phone-step">
+        <div class="phone-num">2</div>
+        <div class="phone-content">
+          <div class="phone-it">Chi parla? / Chi è?</div>
+          <div class="phone-es">¿Quién habla? / ¿Quién es?</div>
+          <div class="phone-note">Para preguntar quién llama cuando no reconoces el número.</div>
+        </div>
+      </div>
+      <div class="phone-step">
+        <div class="phone-num">3</div>
+        <div class="phone-content">
+          <div class="phone-it">Sono Marco. / Sono io!</div>
+          <div class="phone-es">Soy Marco. / ¡Soy yo!</div>
+          <div class="phone-note">Para identificarse. "Sono io!" se usa cuando reconocen tu voz.</div>
+        </div>
+      </div>
+      <div class="phone-step">
+        <div class="phone-num">4</div>
+        <div class="phone-content">
+          <div class="phone-it">Senti... / Allora...</div>
+          <div class="phone-es">Oye... / Entonces...</div>
+          <div class="phone-note">Para introducir el tema principal de la llamada. Muy natural.</div>
+        </div>
+      </div>
+      <div class="phone-step">
+        <div class="phone-num">5</div>
+        <div class="phone-content">
+          <div class="phone-it">Ci vediamo...? / Ci sentiamo!</div>
+          <div class="phone-es">¿Nos vemos...? / ¡Nos hablamos!</div>
+          <div class="phone-note">Para acordar un encuentro o despedirse con un "hasta pronto".</div>
+        </div>
+      </div>
+      <div class="phone-step">
+        <div class="phone-num">6</div>
+        <div class="phone-content">
+          <div class="phone-it">A presto! / Ciao ciao!</div>
+          <div class="phone-es">¡Hasta pronto! / ¡Adiós!</div>
+          <div class="phone-note">"Ciao ciao" (doble) es típicamente italiano y muy informal.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUIZ ═══ -->
+<section class="gram-section bg-white" id="quiz">
+  <div class="container">
+    <p class="sec-label">Repaso</p>
+    <h2 class="sec-title">Mini <em>Quiz</em></h2>
+    <p class="sec-desc">5 preguntas para consolidar la gramática de esta unidad.</p>
+
+    <div class="quiz-wrap">
+      <div class="quiz-q" id="q1">
+        <p>1. ¿Cuál es el plural de <em>la piazza</em>?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="selectOpt(this,'q1','a')">le piazzi</div>
+          <div class="quiz-opt" onclick="selectOpt(this,'q1','b')">le piazze</div>
+          <div class="quiz-opt" onclick="selectOpt(this,'q1','c')">i piazze</div>
+        </div>
+      </div>
+      <div class="quiz-q" id="q2">
+        <p>2. ¿Cuál es el plural de <em>la città</em>?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="selectOpt(this,'q2','a')">le città</div>
+          <div class="quiz-opt" onclick="selectOpt(this,'q2','b')">le cittàe</div>
+          <div class="quiz-opt" onclick="selectOpt(this,'q2','c')">le città</div>
+        </div>
+      </div>
+      <div class="quiz-q" id="q3">
+        <p>3. La palabra <em>cena</em> (cena/cenar), ¿cómo se pronuncia la C?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="selectOpt(this,'q3','a')">/k/ como en "casa"</div>
+          <div class="quiz-opt" onclick="selectOpt(this,'q3','b')">/tʃ/ como en "ciao"</div>
+          <div class="quiz-opt" onclick="selectOpt(this,'q3','c')">/s/ como en "sano"</div>
+        </div>
+      </div>
+      <div class="quiz-q" id="q4">
+        <p>4. ¿Qué se dice en italiano para contestar el teléfono?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="selectOpt(this,'q4','a')">Ciao!</div>
+          <div class="quiz-opt" onclick="selectOpt(this,'q4','b')">Pronto!</div>
+          <div class="quiz-opt" onclick="selectOpt(this,'q4','c')">Sono io!</div>
+        </div>
+      </div>
+      <div class="quiz-q" id="q5">
+        <p>5. ¿Cuál es el plural de <em>il parco</em>?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="selectOpt(this,'q5','a')">i parci</div>
+          <div class="quiz-opt" onclick="selectOpt(this,'q5','b')">i parchi</div>
+          <div class="quiz-opt" onclick="selectOpt(this,'q5','c')">i parcos</div>
+        </div>
+      </div>
+
+      <div class="quiz-actions">
+        <button class="btn btn-primary" onclick="checkQuiz()">Ver resultados</button>
+        <button class="btn btn-ghost" onclick="resetQuiz()">Reiniciar</button>
+        <span class="quiz-result" id="quizResult"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <strong>Unità 3 · Tutti in piazza!</strong><br>
+  Italiano Per Piacere — Nivel A1
+  <div class="nav-pills">
+    <a href="etapa2_descubrimiento.html" class="nav-pill">← Descubrimiento</a>
+    <a href="etapa4_ejercicios.html" class="nav-pill active">Ejercicios →</a>
+  </div>
+</footer>
+
+<script>
+  /* NAV ACTIVE ON SCROLL */
+  const sections=document.querySelectorAll('.gram-section');
+  const navLinks=document.querySelectorAll('.sticky-nav a');
+  window.addEventListener('scroll',()=>{
+    let cur='';
+    sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id;});
+    navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+  },{passive:true});
+
+  /* FONETICS TABS */
+  function showFon(id){
+    document.querySelectorAll('.fon-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.fon-tab').forEach(t=>t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const tabs=document.querySelectorAll('.fon-tab');
+    const map={'c-dura':0,'c-suave':1,'g-dura':2,'g-suave':3};
+    tabs[map[id]].classList.add('active');
+  }
+
+  /* PRACTICE CHECK */
+  function checkPrac(id){
+    document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{
+      const inp=item.querySelector('.prac-input');
+      inp.classList.remove('ok','fail');
+      if(inp.value.trim().toLowerCase()===item.dataset.ans)inp.classList.add('ok');
+      else inp.classList.add('fail');
+    });
+  }
+  function resetPrac(id){
+    document.querySelectorAll('#'+id+' .prac-input').forEach(inp=>{inp.value='';inp.classList.remove('ok','fail');});
+  }
+
+  /* QUIZ */
+  const answers={q1:'b',q2:'a',q3:'b',q4:'b',q5:'b'};
+  const picks={};
+  function selectOpt(el,qid,opt){
+    if(document.getElementById(qid).querySelector('.correct'))return;
+    document.querySelectorAll('#'+qid+' .quiz-opt').forEach(o=>o.classList.remove('selected'));
+    el.classList.add('selected');
+    picks[qid]=opt;
+  }
+  function checkQuiz(){
+    let score=0;
+    Object.keys(answers).forEach(qid=>{
+      const opts=document.querySelectorAll('#'+qid+' .quiz-opt');
+      const ans=answers[qid];
+      const letters=['a','b','c'];
+      opts.forEach((o,i)=>{
+        o.classList.remove('selected');
+        if(letters[i]===ans)o.classList.add('correct');
+        else if(letters[i]===picks[qid])o.classList.add('wrong');
+      });
+      if(picks[qid]===ans)score++;
+    });
+    const r=document.getElementById('quizResult');
+    r.textContent=`${score}/5 respuestas correctas`;
+    r.style.color=score>=4?'var(--green)':score>=2?'var(--amber)':'var(--red)';
+  }
+  function resetQuiz(){
+    Object.keys(picks).forEach(k=>delete picks[k]);
+    document.querySelectorAll('.quiz-opt').forEach(o=>o.className='quiz-opt');
+    document.getElementById('quizResult').textContent='';
+  }
+</script>
+</body>
+</html>

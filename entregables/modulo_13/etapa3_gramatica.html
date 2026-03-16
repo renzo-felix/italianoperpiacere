@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unità 13 · C'è anche questo — Gramática</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;
+  --gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--teal:#78a6ba;--green:#528e74;
+  --black:#1a1a18;--white:#ffffff;
+  --hdr:var(--amber-dk);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--black)}
+body.hide-es .es{display:none}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:var(--black);padding:.7rem 2rem;
+  display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap
+}
+nav .logo{
+  font-family:'Playfair Display',serif;font-style:italic;
+  color:var(--gold);font-size:1.05rem;margin-right:auto
+}
+nav a{
+  color:var(--gold);text-decoration:none;font-size:.88rem;
+  font-weight:600;opacity:.8;transition:opacity .2s
+}
+nav a:hover{opacity:1}
+#es-toggle{
+  background:var(--hdr);color:#fff;border:none;
+  padding:.35rem .9rem;border-radius:2rem;
+  font-family:'Outfit',sans-serif;font-size:.82rem;
+  font-weight:700;cursor:pointer
+}
+
+/* HEADER */
+.page-header{
+  background:var(--hdr);color:#fff;
+  padding:3rem 2rem 2.5rem;text-align:center
+}
+.page-header h1{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(1.9rem,5vw,3rem);margin-bottom:.4rem
+}
+.page-header p{font-size:1rem;opacity:.88;max-width:580px;margin:0 auto}
+
+/* SECTIONS */
+.sec{padding:3.5rem 2rem;max-width:820px;margin:0 auto;border-bottom:1px solid var(--cream-dk)}
+.sec:last-child{border-bottom:none}
+.sec h2{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:1.8rem;color:var(--hdr);margin-bottom:.3rem
+}
+.sec .desc{font-size:.95rem;color:#555;margin-bottom:1.8rem;line-height:1.6}
+.it{font-style:italic;color:var(--hdr);font-weight:600}
+.es{color:#666;font-size:.9rem}
+
+/* GRAMMAR TABLES */
+.gram-table{width:100%;border-collapse:collapse;margin-top:.8rem;font-size:.95rem}
+.gram-table th,.gram-table td{padding:.65rem .85rem;border-bottom:1px solid var(--cream-dk);text-align:left}
+.gram-table th{background:var(--hdr);color:#fff;font-weight:700}
+.gram-table tr:nth-child(even){background:var(--cream-dk)}
+.gram-table .it-cell{color:var(--hdr);font-weight:700;font-style:italic}
+.gram-table .note-cell{font-size:.82rem;color:#666;font-style:italic}
+
+/* RULE CARD */
+.rule-card{
+  background:#fff;border-left:5px solid var(--hdr);
+  border-radius:0 10px 10px 0;padding:1.1rem 1.3rem;
+  margin:1.2rem 0;font-size:.95rem;line-height:1.6
+}
+.rule-card strong{color:var(--hdr)}
+
+/* CONJ GRID */
+.conj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.7rem;margin-top:1rem}
+.conj-card{background:#fff;border-radius:10px;padding:.9rem 1rem;text-align:center;border-top:3px solid var(--hdr)}
+.conj-card .form{font-size:1.2rem;font-weight:700;color:var(--hdr)}
+.conj-card .sub{font-size:.8rem;color:#666;margin-top:.15rem}
+
+/* PRONOMI DIMOSTRATIVI GRID */
+.dim-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1rem}
+.dim-card{
+  background:#fff;border-radius:10px;padding:1rem 1.1rem;
+  border-top:4px solid var(--hdr)
+}
+.dim-card .label{font-size:.75rem;font-weight:700;color:var(--hdr);text-transform:uppercase;letter-spacing:.06em}
+.dim-card .forms{font-size:1.05rem;font-weight:700;color:var(--black);margin:.35rem 0}
+.dim-card .ex{font-size:.85rem;font-style:italic;color:#555}
+
+/* PRONOMI DIRETTI TABLE */
+.pdir-table{width:100%;border-collapse:collapse;font-size:.95rem;margin-top:.8rem}
+.pdir-table th,.pdir-table td{padding:.65rem .85rem;border-bottom:1px solid var(--cream-dk)}
+.pdir-table th{background:var(--hdr);color:#fff}
+.pdir-table .form{font-size:1.15rem;font-weight:700;color:var(--hdr)}
+
+/* PRACTICE */
+.practice-block{background:#fff;border-radius:14px;padding:1.5rem;margin:.8rem 0;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.practice-block p{font-size:.95rem;margin-bottom:1rem;line-height:1.6}
+.practice-block .item{margin:.6rem 0;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.practice-block .item span{font-size:.95rem;min-width:20px}
+.prac-input{
+  border:2px solid var(--cream-dk);border-radius:8px;
+  padding:.35rem .7rem;font-family:'Outfit',sans-serif;font-size:.95rem;
+  background:var(--cream);outline:none;transition:border-color .2s;
+  min-width:100px
+}
+.prac-input:focus{border-color:var(--hdr)}
+.prac-input.ok{border-color:var(--green);background:#d4edda}
+.prac-input.err{border-color:var(--red);background:#f8d7da}
+.check-btn{
+  background:var(--hdr);color:#fff;border:none;
+  padding:.45rem 1.1rem;border-radius:8px;
+  font-family:'Outfit',sans-serif;font-size:.88rem;
+  font-weight:700;cursor:pointer;margin-top:.6rem
+}
+.check-btn:hover{opacity:.88}
+.prac-feedback{font-size:.88rem;margin-top:.5rem;min-height:1.2em;font-weight:600}
+
+/* QUIZ */
+#quiz-section{padding:3rem 2rem;max-width:820px;margin:0 auto}
+#quiz-section h2{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:1.8rem;color:var(--hdr);margin-bottom:.4rem
+}
+.q-block{background:#fff;border-radius:14px;padding:1.4rem;margin:1rem 0;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.q-block p{font-size:.97rem;font-weight:600;margin-bottom:.8rem}
+.q-opts{display:flex;flex-direction:column;gap:.45rem}
+.q-opt{
+  padding:.55rem .9rem;border-radius:8px;border:2px solid var(--cream-dk);
+  background:var(--cream);cursor:pointer;font-size:.93rem;
+  transition:all .2s;text-align:left
+}
+.q-opt:hover{border-color:var(--hdr)}
+.q-opt.selected{border-color:var(--hdr);background:rgba(200,148,10,.12)}
+.q-opt.correct{border-color:var(--green);background:#d4edda;font-weight:700}
+.q-opt.wrong{border-color:var(--red);background:#f8d7da}
+.submit-btn{
+  background:var(--hdr);color:#fff;border:none;
+  padding:.7rem 2rem;border-radius:2rem;font-family:'Outfit',sans-serif;
+  font-size:1rem;font-weight:700;cursor:pointer;margin-top:1rem
+}
+.submit-btn:hover{opacity:.88}
+#quiz-result{
+  margin-top:1.2rem;padding:1rem 1.4rem;border-radius:10px;
+  font-size:1rem;font-weight:700;display:none
+}
+footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
+</style>
+</head>
+<body class="hide-es">
+
+<nav>
+  <span class="logo">Unità 13 · Gramática</span>
+  <a href="#imperativo">Imperativo</a>
+  <a href="#dimostrativi">Dimostrativi</a>
+  <a href="#diretti">Diretti</a>
+  <a href="#quiz-section">Quiz</a>
+  <button id="es-toggle" onclick="toggleEs()">ES ▾</button>
+</nav>
+
+<div class="page-header">
+  <h1>C'è anche questo!</h1>
+  <p>Imperativo informale, pronomi dimostrativi <em>questo/quello</em> y pronomi diretti <em>lo, la, li, le</em></p>
+</div>
+
+<!-- SECTION 1: IMPERATIVO INFORMALE -->
+<div class="sec" id="imperativo">
+  <h2>L'imperativo informale (tu)</h2>
+  <p class="desc">
+    El imperativo informal se usa para dar órdenes, instrucciones o consejos a alguien de confianza (tú).
+    <span class="es">¡Muy útil para dar indicaciones en la ciudad!</span>
+  </p>
+
+  <table class="gram-table">
+    <tr>
+      <th>Infinitivo</th>
+      <th>Terminación</th>
+      <th>Imperativo (tu)</th>
+      <th>Ejemplo</th>
+    </tr>
+    <tr>
+      <td class="it-cell">-ARE</td>
+      <td>→ <strong>-A</strong></td>
+      <td class="it-cell">parla!</td>
+      <td><span class="es">¡habla!</span></td>
+    </tr>
+    <tr>
+      <td class="it-cell">-ERE</td>
+      <td>→ <strong>-I</strong></td>
+      <td class="it-cell">prendi!</td>
+      <td><span class="es">¡coge!</span></td>
+    </tr>
+    <tr>
+      <td class="it-cell">-IRE</td>
+      <td>→ <strong>-I</strong></td>
+      <td class="it-cell">apri! / finisci!</td>
+      <td><span class="es">¡abre! / ¡termina!</span></td>
+    </tr>
+  </table>
+
+  <div class="rule-card">
+    💡 <strong>Los irregolari más comunes:</strong><br>
+    <em>andare → <strong>vai!</strong> &nbsp;|&nbsp; venire → <strong>vieni!</strong> &nbsp;|&nbsp; fare → <strong>fai!</strong> &nbsp;|&nbsp; stare → <strong>stai!</strong> &nbsp;|&nbsp; dire → <strong>di'!</strong></em><br>
+    <span class="es">ir → ¡ve! &nbsp;|&nbsp; venir → ¡ven! &nbsp;|&nbsp; hacer → ¡haz! &nbsp;|&nbsp; estar → ¡quédate! &nbsp;|&nbsp; decir → ¡di!</span>
+  </div>
+
+  <p style="font-size:.95rem;margin-top:1rem">
+    📍 <em>Gira a sinistra, prendi la seconda via a destra e vai dritto fino al semaforo.</em><br>
+    <span class="es">Gira a la izquierda, toma la segunda calle a la derecha y ve recto hasta el semáforo.</span>
+  </p>
+</div>
+
+<!-- SECTION 2: PRONOMI DIMOSTRATIVI -->
+<div class="sec" id="dimostrativi">
+  <h2>Pronomi dimostrativi: questo / quello</h2>
+  <p class="desc">
+    <span class="it">Questo</span> señala algo cercano (este/esta), <span class="it">quello</span> señala algo lejano (ese/aquel).
+    <span class="es">Hay que concordarlos en género y número con el sustantivo al que acompañan.</span>
+  </p>
+
+  <div class="dim-grid">
+    <div class="dim-card">
+      <div class="label">QUESTO — cerca de mí</div>
+      <div class="forms">questo / questa<br>questi / queste</div>
+      <div class="ex"><em>Questo negozio è aperto.</em><br><em>Questa via è bella.</em></div>
+    </div>
+    <div class="dim-card">
+      <div class="label">QUELLO — lejos de mí</div>
+      <div class="forms">quel / quello / quella<br>quei / quegli / quelle</div>
+      <div class="ex"><em>Quel museo è famoso.</em><br><em>Quello stadio è grande.</em></div>
+    </div>
+  </div>
+
+  <div class="rule-card" style="margin-top:1.2rem">
+    💡 <strong>Truco para <em>quello</em>:</strong> sigue exactamente la misma lógica que el artículo determinativo.<br>
+    <em>il → quel &nbsp;|&nbsp; lo → quello &nbsp;|&nbsp; la → quella &nbsp;|&nbsp; i → quei &nbsp;|&nbsp; gli → quegli &nbsp;|&nbsp; le → quelle</em><br>
+    <span class="es">Si antes del sustantivo irías <em>il</em>, dices <em>quel</em>. Si irías <em>lo</em>, dices <em>quello</em>. ¡Así de simple!</span>
+  </div>
+
+  <table class="gram-table" style="margin-top:1.2rem">
+    <tr>
+      <th>Artículo</th>
+      <th>Questo</th>
+      <th>Quello</th>
+      <th>Ejemplo con quello</th>
+    </tr>
+    <tr>
+      <td>il</td>
+      <td class="it-cell">questo libro</td>
+      <td class="it-cell">quel libro</td>
+      <td><span class="es">ese libro</span></td>
+    </tr>
+    <tr>
+      <td>lo</td>
+      <td class="it-cell">questo stadio</td>
+      <td class="it-cell">quello stadio</td>
+      <td><span class="es">ese estadio</span></td>
+    </tr>
+    <tr>
+      <td>la</td>
+      <td class="it-cell">questa piazza</td>
+      <td class="it-cell">quella piazza</td>
+      <td><span class="es">esa plaza</span></td>
+    </tr>
+    <tr>
+      <td>i</td>
+      <td class="it-cell">questi bar</td>
+      <td class="it-cell">quei bar</td>
+      <td><span class="es">esos bares</span></td>
+    </tr>
+    <tr>
+      <td>gli</td>
+      <td class="it-cell">questi amici</td>
+      <td class="it-cell">quegli amici</td>
+      <td><span class="es">esos amigos</span></td>
+    </tr>
+    <tr>
+      <td>le</td>
+      <td class="it-cell">queste strade</td>
+      <td class="it-cell">quelle strade</td>
+      <td><span class="es">esas calles</span></td>
+    </tr>
+  </table>
+
+  <!-- PRACTICE 1 -->
+  <div class="practice-block" style="margin-top:1.8rem" id="prac1">
+    <p><strong>Pratica 1</strong> — Scrivi la forma corretta di <em>questo</em> o <em>quello</em>.</p>
+    <div class="item">
+      <span>1.</span> <em>_____ palazzo</em> è alto. (quello)
+      <input class="prac-input" data-ans="quel" placeholder="?">
+    </div>
+    <div class="item">
+      <span>2.</span> <em>_____ chiesa</em> è bellissima! (questa)
+      <input class="prac-input" data-ans="questa" placeholder="?">
+    </div>
+    <div class="item">
+      <span>3.</span> <em>_____ zaino</em> è mio. (questo)
+      <input class="prac-input" data-ans="questo" placeholder="?">
+    </div>
+    <div class="item">
+      <span>4.</span> <em>_____ studenti</em> sono bravi. (quegli)
+      <input class="prac-input" data-ans="quegli" placeholder="?">
+    </div>
+    <button class="check-btn" onclick="checkPrac('prac1')">Controlla ✓</button>
+    <div class="prac-feedback" id="prac1-fb"></div>
+  </div>
+</div>
+
+<!-- SECTION 3: PRONOMI DIRETTI -->
+<div class="sec" id="diretti">
+  <h2>I pronomi diretti: lo, la, li, le</h2>
+  <p class="desc">
+    Los pronombres de objeto directo sustituyen al complemento directo para evitar repetirlo.
+    <span class="es">Van siempre <strong>antes del verbo conjugado</strong>.</span>
+  </p>
+
+  <table class="pdir-table">
+    <tr>
+      <th>Pronombre</th>
+      <th>Género / Número</th>
+      <th>Ejemplo</th>
+      <th>Traducción</th>
+    </tr>
+    <tr>
+      <td><span class="form">lo</span></td>
+      <td>masc. sing.</td>
+      <td class="it-cell">Prendo il caffè → Lo prendo.</td>
+      <td class="es">Lo tomo.</td>
+    </tr>
+    <tr>
+      <td><span class="form">la</span></td>
+      <td>fem. sing.</td>
+      <td class="it-cell">Cerco la farmacia → La cerco.</td>
+      <td class="es">La busco.</td>
+    </tr>
+    <tr>
+      <td><span class="form">li</span></td>
+      <td>masc. plur.</td>
+      <td class="it-cell">Vedo i ragazzi → Li vedo.</td>
+      <td class="es">Los veo.</td>
+    </tr>
+    <tr>
+      <td><span class="form">le</span></td>
+      <td>fem. plur.</td>
+      <td class="it-cell">Apro le finestre → Le apro.</td>
+      <td class="es">Las abro.</td>
+    </tr>
+  </table>
+
+  <div class="rule-card" style="margin-top:1.2rem">
+    ⚠️ <strong>Posición:</strong> el pronombre directo va <em>ANTES</em> del verbo conjugado.<br>
+    <em>Lo compro. La vedo. Li invito. Le prendo.</em><br>
+    <span class="es">Con el infinitivo va adjunto al final: <em>Voglio comprar<strong>lo</strong>.</em></span>
+  </div>
+
+  <!-- PRACTICE 2 -->
+  <div class="practice-block" style="margin-top:1.5rem" id="prac2">
+    <p><strong>Pratica 2</strong> — Sostituisci con il pronome diretto corretto.</p>
+    <div class="item">
+      <span>1.</span> Mangio la pizza →
+      <input class="prac-input" data-ans="la mangio" placeholder="... mangio">
+    </div>
+    <div class="item">
+      <span>2.</span> Prendo gli autobus →
+      <input class="prac-input" data-ans="li prendo" placeholder="... prendo">
+    </div>
+    <div class="item">
+      <span>3.</span> Cerco il museo →
+      <input class="prac-input" data-ans="lo cerco" placeholder="... cerco">
+    </div>
+    <div class="item">
+      <span>4.</span> Apro le porte →
+      <input class="prac-input" data-ans="le apro" placeholder="... apro">
+    </div>
+    <button class="check-btn" onclick="checkPrac('prac2')">Controlla ✓</button>
+    <div class="prac-feedback" id="prac2-fb"></div>
+  </div>
+
+  <!-- PRACTICE 3 -->
+  <div class="practice-block" style="margin-top:.8rem" id="prac3">
+    <p><strong>Pratica 3</strong> — Imperativo informale. Scrivi la forma giusta.</p>
+    <div class="item">
+      <span>1.</span> <em>parlare</em> → <strong>_____!</strong>
+      <input class="prac-input" data-ans="parla" placeholder="?">
+    </div>
+    <div class="item">
+      <span>2.</span> <em>andare</em> → <strong>_____!</strong>
+      <input class="prac-input" data-ans="vai" placeholder="?">
+    </div>
+    <div class="item">
+      <span>3.</span> <em>prendere</em> → <strong>_____!</strong>
+      <input class="prac-input" data-ans="prendi" placeholder="?">
+    </div>
+    <div class="item">
+      <span>4.</span> <em>venire</em> → <strong>_____!</strong>
+      <input class="prac-input" data-ans="vieni" placeholder="?">
+    </div>
+    <button class="check-btn" onclick="checkPrac('prac3')">Controlla ✓</button>
+    <div class="prac-feedback" id="prac3-fb"></div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz-section">
+  <h2>Quiz finale — Unità 13</h2>
+  <p style="font-size:.9rem;color:#555;margin-bottom:1.2rem">5 domande. Scegli la risposta corretta.</p>
+
+  <div class="q-block" id="q1">
+    <p>1. Dai indicazioni: "Gira a sinistra e _____ dritto!"</p>
+    <div class="q-opts">
+      <button class="q-opt" onclick="selectOpt(this,'q1','a')">a) vai</button>
+      <button class="q-opt" onclick="selectOpt(this,'q1','b')">b) vadi</button>
+      <button class="q-opt" onclick="selectOpt(this,'q1','c')">c) andare</button>
+    </div>
+  </div>
+
+  <div class="q-block" id="q2">
+    <p>2. "_____ zaino è tuo?" — l'altro è lontano.</p>
+    <div class="q-opts">
+      <button class="q-opt" onclick="selectOpt(this,'q2','a')">a) Questo</button>
+      <button class="q-opt" onclick="selectOpt(this,'q2','b')">b) Quello</button>
+      <button class="q-opt" onclick="selectOpt(this,'q2','c')">c) Quegli</button>
+    </div>
+  </div>
+
+  <div class="q-block" id="q3">
+    <p>3. "Cerco gli occhiali." → Sostituisci con il pronome.</p>
+    <div class="q-opts">
+      <button class="q-opt" onclick="selectOpt(this,'q3','a')">a) Li cerco.</button>
+      <button class="q-opt" onclick="selectOpt(this,'q3','b')">b) Le cerco.</button>
+      <button class="q-opt" onclick="selectOpt(this,'q3','c')">c) Lo cerco.</button>
+    </div>
+  </div>
+
+  <div class="q-block" id="q4">
+    <p>4. "_____ studentesse sono brave." — sono vicine a me.</p>
+    <div class="q-opts">
+      <button class="q-opt" onclick="selectOpt(this,'q4','a')">a) Quelle</button>
+      <button class="q-opt" onclick="selectOpt(this,'q4','b')">b) Queste</button>
+      <button class="q-opt" onclick="selectOpt(this,'q4','c')">c) Questi</button>
+    </div>
+  </div>
+
+  <div class="q-block" id="q5">
+    <p>5. ¿Qué forma del imperativo de <em>fare</em> es correcta?</p>
+    <div class="q-opts">
+      <button class="q-opt" onclick="selectOpt(this,'q5','a')">a) fai!</button>
+      <button class="q-opt" onclick="selectOpt(this,'q5','b')">b) fare!</button>
+      <button class="q-opt" onclick="selectOpt(this,'q5','c')">c) faci!</button>
+    </div>
+  </div>
+
+  <button class="submit-btn" onclick="submitQuiz()">Invia il quiz →</button>
+  <div id="quiz-result"></div>
+</div>
+
+<footer>Italiano Per Piacere · Unità 13 · Etapa 3 — Gramática</footer>
+
+<script>
+const ANSWERS={q1:'a',q2:'b',q3:'a',q4:'b',q5:'a'};
+const selected={};
+
+function toggleEs(){
+  document.body.classList.toggle('hide-es');
+  document.getElementById('es-toggle').textContent=
+    document.body.classList.contains('hide-es')? 'ES ▾':'ES ▴';
+}
+
+function checkPrac(id){
+  const block=document.getElementById(id);
+  const inputs=block.querySelectorAll('.prac-input');
+  let ok=0,tot=inputs.length;
+  inputs.forEach(inp=>{
+    const ans=inp.dataset.ans.toLowerCase().trim();
+    const val=inp.value.toLowerCase().trim();
+    inp.classList.remove('ok','err');
+    if(val===ans){inp.classList.add('ok');ok++;}
+    else{inp.classList.add('err');}
+  });
+  const fb=document.getElementById(id+'-fb');
+  if(ok===tot){fb.innerHTML='<span style="color:var(--green)">✅ Perfetto!</span>';}
+  else{fb.innerHTML=`<span style="color:var(--red)">❌ ${ok}/${tot} corretti. Riprova.</span>`;}
+}
+
+function selectOpt(el,qid,opt){
+  document.querySelectorAll(`#${qid} .q-opt`).forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');
+  selected[qid]=opt;
+}
+
+function submitQuiz(){
+  let score=0;
+  Object.keys(ANSWERS).forEach(qid=>{
+    const opts=document.querySelectorAll(`#${qid} .q-opt`);
+    opts.forEach(b=>{
+      const o=b.getAttribute('onclick').match(/'([a-c])'\)$/)[1];
+      if(o===ANSWERS[qid])b.classList.add('correct');
+      else if(selected[qid]===o)b.classList.add('wrong');
+    });
+    if(selected[qid]===ANSWERS[qid])score++;
+  });
+  const res=document.getElementById('quiz-result');
+  res.style.display='block';
+  if(score===5){
+    res.style.background='#d4edda';res.style.color='#155724';
+    res.textContent=`🎉 Perfetto! ${score}/5 — Hai capito tutto!`;
+  } else if(score>=3){
+    res.style.background='#fff3cd';res.style.color='#856404';
+    res.textContent=`👍 Bene! ${score}/5 — Quasi perfetto, rileggi le sezioni in rosso.`;
+  } else {
+    res.style.background='#f8d7da';res.style.color='#721c24';
+    res.textContent=`💪 ${score}/5 — Ripassate la grammatica e riprovate!`;
+  }
+}
+</script>
+</body>
+</html>

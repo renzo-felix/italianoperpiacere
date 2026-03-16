@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Módulo 6 · Gramática — Di che colore è?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;
+  --red:#cc4736;--teal:#78a6ba;--green:#528e74;--black:#1a1a18;--white:#ffffff;
+  --hdr:var(--green);--r:8px;
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6}
+.hide-es .es{display:none!important}
+.es{font-size:.82rem;color:#666;font-style:italic;display:block;margin-top:.2rem}
+nav{position:sticky;top:0;z-index:100;background:var(--black);display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{color:var(--gold);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.75rem 1.1rem;white-space:nowrap;transition:background .2s}
+nav a:hover{background:rgba(255,255,255,.1)}
+nav a.active{background:var(--green);color:var(--white)}
+.page-header{background:var(--green);color:var(--white);padding:3rem 1.5rem 2.5rem;text-align:center;position:relative}
+.page-header .badge{display:inline-block;background:rgba(255,255,255,.2);border-radius:20px;padding:.25rem .85rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.85rem}
+.page-header h1{font-family:var(--fh);font-style:italic;font-size:2.4rem;margin-bottom:.5rem}
+.page-header p{opacity:.9;font-size:1.05rem}
+.toggle-btn{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:var(--white);border-radius:var(--r);padding:.45rem .9rem;font-family:var(--fb);font-size:.78rem;font-weight:600;cursor:pointer;transition:background .2s}
+.toggle-btn:hover{background:rgba(255,255,255,.35)}
+main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem}
+section{margin-bottom:3rem}
+.section-title{font-family:var(--fh);font-style:italic;font-size:1.6rem;color:var(--green);margin-bottom:1.25rem;padding-bottom:.4rem;border-bottom:2px solid var(--cream-dk)}
+.section-intro{margin-bottom:1.1rem;font-size:.97rem}
+.gram-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
+.gram-table th{background:var(--green);color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
+.gram-table td{padding:.5rem .75rem;border-bottom:1px solid var(--cream-dk)}
+.gram-table tr:nth-child(even) td{background:rgba(0,0,0,.03)}
+.form{font-weight:600;color:var(--green)}
+.example-box{background:var(--white);border-left:4px solid var(--green);border-radius:0 var(--r) var(--r) 0;padding:.75rem 1rem;margin:.6rem 0;font-size:.95rem}
+.example-box .it{font-weight:600}
+.example-box .tr-small{font-size:.82rem;color:#777;font-style:italic}
+.inline-prac{background:var(--cream-dk);border-radius:var(--r);padding:1.1rem 1.25rem;margin-top:1.25rem}
+.inline-prac h4{font-family:var(--fh);font-style:italic;color:var(--green);margin-bottom:.85rem;font-size:1.1rem}
+.prac-item{margin-bottom:.65rem;font-size:.95rem;display:flex;align-items:center;flex-wrap:wrap;gap:.4rem}
+.prac-input{border:1.5px solid var(--cream-dk);border-radius:6px;padding:.3rem .55rem;font-family:var(--fb);font-size:.92rem;background:var(--white);width:110px;transition:border .2s}
+.prac-input:focus{outline:none;border-color:var(--green)}
+.prac-item.correct .prac-input{border-color:var(--green);background:rgba(82,142,116,.1)}
+.prac-item.wrong .prac-input{border-color:var(--red);background:rgba(204,71,54,.08)}
+.prac-fb{font-size:.8rem;margin-left:.3rem}
+.prac-item.correct .prac-fb{color:var(--green)}
+.prac-item.wrong .prac-fb{color:var(--red)}
+.btn{border:none;border-radius:var(--r);padding:.5rem 1.1rem;font-family:var(--fb);font-size:.87rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--green);color:var(--white)}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-ghost{background:transparent;border:1.5px solid var(--green);color:var(--green)}
+.btn-ghost:hover{background:var(--green);color:var(--white)}
+.quiz-wrap{background:var(--white);border-radius:var(--r);padding:1.5rem;border:1px solid var(--cream-dk)}
+.quiz-q{margin-bottom:1.5rem}
+.quiz-q p{font-weight:600;margin-bottom:.7rem;font-size:.97rem}
+.quiz-opts{display:flex;flex-direction:column;gap:.45rem}
+.quiz-opt{background:var(--cream);border-radius:6px;padding:.6rem .9rem;cursor:pointer;font-size:.92rem;border:1.5px solid transparent;transition:all .2s}
+.quiz-opt:hover{border-color:var(--green)}
+.quiz-opt.correct{background:rgba(82,142,116,.15);border-color:var(--green);color:var(--green)}
+.quiz-opt.wrong{background:rgba(204,71,54,.1);border-color:var(--red);color:var(--red)}
+.quiz-result{text-align:center;padding:1.25rem;font-size:1.1rem;font-weight:600;border-radius:var(--r);margin-top:1rem;display:none}
+.quiz-result.show{display:block}
+.quiz-result.good{background:rgba(82,142,116,.15);color:var(--green)}
+.quiz-result.ok{background:rgba(239,207,127,.3);color:#7a5e00}
+.quiz-result.try{background:rgba(204,71,54,.1);color:var(--red)}
+.rule-box{background:rgba(82,142,116,.1);border:1px solid rgba(82,142,116,.3);border-radius:var(--r);padding:.85rem 1.1rem;margin:.8rem 0;font-size:.93rem}
+.rule-box strong{color:var(--green)}
+footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px solid var(--cream-dk)}
+/* COLOR GRID */
+.color-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.65rem;margin:1rem 0}
+.color-cell{border-radius:var(--r);padding:.8rem .6rem;text-align:center;font-size:.88rem;border:1px solid rgba(0,0,0,.08)}
+.color-cell .it-m{font-weight:700;font-size:.95rem}
+.color-cell .it-f{font-size:.82rem;opacity:.8;margin-top:.15rem}
+.color-cell .es-lbl{font-size:.75rem;color:rgba(0,0,0,.5);margin-top:.2rem}
+/* TIPO FRASE */
+.tipo-card{background:var(--white);border-radius:var(--r);padding:1rem;margin:.65rem 0;display:flex;align-items:flex-start;gap:.9rem;border:1px solid var(--cream-dk)}
+.tipo-mark{font-size:1.8rem;font-weight:700;width:40px;flex-shrink:0;text-align:center;color:var(--green);line-height:1}
+.tipo-body h4{font-weight:700;margin-bottom:.2rem;color:var(--black)}
+.tipo-body p{font-size:.9rem;color:#555}
+/* STRESS */
+.stress-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:.65rem;margin:1rem 0}
+.stress-card{background:var(--white);border-radius:var(--r);padding:.75rem;border:1px solid var(--cream-dk)}
+.stress-card .word{font-size:1rem;font-weight:600;color:var(--green)}
+.stress-card .word .stressed{border-bottom:2px solid var(--green);font-weight:700}
+.stress-card small{font-size:.78rem;color:#777}
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="#colori" class="active">I Colori</a>
+  <a href="#aggettivi">Aggettivi</a>
+  <a href="#frasi">Le Frasi</a>
+  <a href="#fonetica">Fonetica</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<header class="page-header">
+  <button class="toggle-btn" id="toggleEs" onclick="toggleEs()">Ocultar traducciones</button>
+  <div class="badge">Módulo 6 · Gramática</div>
+  <h1>Di che colore è?</h1>
+  <p>Los colores, los adjetivos y la concordancia en italiano</p>
+</header>
+
+<main>
+
+<!-- SECTION 1: COLORI -->
+<section id="colori">
+  <h2 class="section-title">1. I colori</h2>
+  <p class="section-intro">Los colores en italiano son adjetivos y deben concordar con el sustantivo. <span class="es">Hay tres grupos: los que terminan en -o/-a, los que son iguales en masc. y fem. (-e o invariables como blu), y los invariables absolutos.</span></p>
+
+  <div class="color-grid">
+    <div class="color-cell" style="background:#cc2222;color:white"><div class="it-m">rosso</div><div class="it-f">rossa</div><div class="es-lbl" style="color:rgba(255,255,255,.7)">rojo/a</div></div>
+    <div class="color-cell" style="background:#2244cc;color:white"><div class="it-m">blu</div><div class="it-f">blu</div><div class="es-lbl" style="color:rgba(255,255,255,.7)">azul (inv.)</div></div>
+    <div class="color-cell" style="background:#528e74;color:white"><div class="it-m">verde</div><div class="it-f">verde</div><div class="es-lbl" style="color:rgba(255,255,255,.7)">verde (inv.)</div></div>
+    <div class="color-cell" style="background:#f5d800;color:#333"><div class="it-m">giallo</div><div class="it-f">gialla</div><div class="es-lbl">amarillo/a</div></div>
+    <div class="color-cell" style="background:#ff8800;color:white"><div class="it-m">arancione</div><div class="it-f">arancione</div><div class="es-lbl" style="color:rgba(255,255,255,.7)">naranja (inv.)</div></div>
+    <div class="color-cell" style="background:#8b44cc;color:white"><div class="it-m">viola</div><div class="it-f">viola</div><div class="es-lbl" style="color:rgba(255,255,255,.7)">morado (inv.)</div></div>
+    <div class="color-cell" style="background:#cc88aa;color:white"><div class="it-m">rosa</div><div class="it-f">rosa</div><div class="es-lbl" style="color:rgba(255,255,255,.7)">rosa (inv.)</div></div>
+    <div class="color-cell" style="background:#777;color:white"><div class="it-m">grigio</div><div class="it-f">grigia</div><div class="es-lbl" style="color:rgba(255,255,255,.7)">gris</div></div>
+    <div class="color-cell" style="background:#fff;color:#333;border:1px solid #ccc"><div class="it-m">bianco</div><div class="it-f">bianca</div><div class="es-lbl">blanco/a</div></div>
+    <div class="color-cell" style="background:#1a1a18;color:white"><div class="it-m">nero</div><div class="it-f">nera</div><div class="es-lbl" style="color:rgba(255,255,255,.7)">negro/a</div></div>
+    <div class="color-cell" style="background:#8B4513;color:white"><div class="it-m">marrone</div><div class="it-f">marrone</div><div class="es-lbl" style="color:rgba(255,255,255,.7)">marrón (inv.)</div></div>
+    <div class="color-cell" style="background:#78a6ba;color:white"><div class="it-m">azzurro</div><div class="it-f">azzurra</div><div class="es-lbl" style="color:rgba(255,255,255,.7)">celeste</div></div>
+  </div>
+
+  <div class="rule-box">
+    <strong>Invariables:</strong> blu, verde, rosa, viola, arancione, marrone — no cambian nunca.
+    <br><strong>-o/-a:</strong> rosso/rossa, nero/nera, bianco/bianca, giallo/gialla, grigio/grigia, azzurro/azzurra.
+    <span class="es">Los colores invariables son más fáciles: solo memorizas una forma.</span>
+  </div>
+
+  <div class="inline-prac">
+    <h4>Pratica — Maschile o femminile?</h4>
+    <div id="prac1">
+      <div class="prac-item" data-ans="rossa">La borsa è ___ (rosso) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="blu">Il cielo è ___ (blu) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="bianca">La camicia è ___ (bianco) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="verde">Il parco è ___ (verde) <input class="prac-input" placeholder="..."></div>
+    </div>
+    <div style="margin-top:.85rem;display:flex;gap:.75rem">
+      <button class="btn btn-primary" onclick="checkPrac('prac1')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac1')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: AGGETTIVI -->
+<section id="aggettivi">
+  <h2 class="section-title">2. Gli aggettivi — concordanza</h2>
+  <p class="section-intro">En italiano, el adjetivo concuerda en género y número con el sustantivo. <span class="es">Además, casi siempre va DESPUÉS del sustantivo (al revés que en inglés).</span></p>
+
+  <table class="gram-table">
+    <thead><tr><th>Tipo</th><th>Maschile sing.</th><th>Femminile sing.</th><th>Maschile pl.</th><th>Femminile pl.</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Adj. en -o</strong></td>
+        <td><span class="form">alto</span></td>
+        <td><span class="form">alta</span></td>
+        <td><span class="form">alti</span></td>
+        <td><span class="form">alte</span></td>
+      </tr>
+      <tr>
+        <td><strong>Adj. en -e</strong></td>
+        <td><span class="form">grande</span></td>
+        <td><span class="form">grande</span></td>
+        <td><span class="form">grandi</span></td>
+        <td><span class="form">grandi</span></td>
+      </tr>
+      <tr>
+        <td><strong>Invariable</strong></td>
+        <td><span class="form">blu</span></td>
+        <td><span class="form">blu</span></td>
+        <td><span class="form">blu</span></td>
+        <td><span class="form">blu</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="rule-box">
+    <strong>Posizione:</strong> En italiano el adjetivo va DOPO il sostantivo: <em>una borsa rossa</em> (no: rossa borsa).
+    <br>Excepción: algunos adjetivos comunes van delante: <em>bello, brutto, grande, piccolo, buono, cattivo, nuovo, vecchio</em>.
+    <span class="es">Regla de oro: cuando tengas dudas, coloca el adjetivo después del sustantivo.</span>
+  </div>
+
+  <div class="example-box"><span class="it">un vestito rosso — una gonna rossa — vestiti rossi — gonne rosse</span><span class="tr-small">un vestido rojo — una falda roja — vestidos rojos — faldas rojas</span></div>
+  <div class="example-box"><span class="it">un appartamento grande — una casa grande — appartamenti grandi — case grandi</span><span class="tr-small">un apartamento grande — una casa grande — apartamentos grandes — casas grandes</span></div>
+
+  <div class="inline-prac">
+    <h4>Pratica — Concordanza</h4>
+    <div id="prac2">
+      <div class="prac-item" data-ans="nuove">Le scarpe sono ___. (nuovo) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="bello">Il museo è ___. (bello) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="grandi">I palazzi sono ___. (grande) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="verde">La gonna è ___. (verde) <input class="prac-input" placeholder="..."></div>
+    </div>
+    <div style="margin-top:.85rem;display:flex;gap:.75rem">
+      <button class="btn btn-primary" onclick="checkPrac('prac2')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac2')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: TIPI DI FRASE -->
+<section id="frasi">
+  <h2 class="section-title">3. I tipi di frase</h2>
+  <p class="section-intro"><span class="es">El tipo de frase cambia según la intención comunicativa. En italiano la puntuación funciona igual que en español:</span></p>
+
+  <div class="tipo-card">
+    <div class="tipo-mark">.</div>
+    <div class="tipo-body">
+      <h4>Frase dichiarativa — Declarativa</h4>
+      <p>Afirma o niega algo. Entonación descendente al final.</p>
+      <p style="margin-top:.4rem"><em>Il vestito è rosso. — Marco non parla inglese.</em></p>
+    </div>
+  </div>
+  <div class="tipo-card">
+    <div class="tipo-mark">?</div>
+    <div class="tipo-body">
+      <h4>Frase interrogativa — Interrogativa</h4>
+      <p>Hace una pregunta. Entonación ascendente. Lleva "?" al final.</p>
+      <p style="margin-top:.4rem"><em>Di che colore è la tua borsa? — Hai una penna?</em></p>
+    </div>
+  </div>
+  <div class="tipo-card">
+    <div class="tipo-mark">!</div>
+    <div class="tipo-body">
+      <h4>Frase esclamativa — Exclamativa</h4>
+      <p>Expresa emoción, sorpresa, énfasis. Lleva "!" al final.</p>
+      <p style="margin-top:.4rem"><em>Che bello! — Che colori magnifici! — Bravo!</em></p>
+    </div>
+  </div>
+
+  <div class="rule-box">
+    <strong>Nota:</strong> En italiano las frases interrogativas no invierten el orden sujeto-verbo (como en inglés). Se mantiene el mismo orden y solo cambia la entonación: <em>Marco parla italiano.</em> → <em>Marco parla italiano?</em>
+    <span class="es">Eso hace el italiano más fácil que el inglés en este aspecto.</span>
+  </div>
+</section>
+
+<!-- SECTION 4: FONETICA -->
+<section id="fonetica">
+  <h2 class="section-title">4. Fonetica — L'accento di parola</h2>
+  <p class="section-intro">En italiano todas las palabras tienen una sílaba acentuada (tónica). <span class="es">Conocer dónde recae el acento es clave para pronunciar correctamente:</span></p>
+
+  <table class="gram-table">
+    <thead><tr><th>Regola</th><th>Ejemplo</th><th class="es">Explicación</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Parole piane</strong> (~80%)</td><td>ca<u>sa</u>, par<u>la</u>re, bel<u>lo</u></td><td class="es">Acento en la penúltima sílaba. Mayoría de palabras.</td></tr>
+      <tr><td><strong>Parole tronche</strong></td><td>cit<u>tà</u>, caf<u>fè</u>, par<u>lò</u></td><td class="es">Acento en la última sílaba. Lleva acento gráfico.</td></tr>
+      <tr><td><strong>Parole sdrucciole</strong></td><td><u>ta</u>volo, <u>u</u>ltimo, <u>su</u>bito</td><td class="es">Acento en la antepenúltima sílaba.</td></tr>
+      <tr><td><strong>Parole bisdrucciole</strong></td><td><u>ca</u>pitano, <u>a</u>bitano</td><td class="es">Acento en la 4ª sílaba desde el final. Raras.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="stress-grid">
+    <div class="stress-card"><div class="word">ca-<span class="stressed">sa</span></div><small>piana — acento en penúltima</small></div>
+    <div class="stress-card"><div class="word">cit-<span class="stressed">tà</span></div><small>tronca — acento en última</small></div>
+    <div class="stress-card"><div class="word"><span class="stressed">ta</span>-vo-lo</div><small>sdrucciola — antepenúltima</small></div>
+    <div class="stress-card"><div class="word">i-<span class="stressed">ta</span>-lia-no</div><small>piana</small></div>
+    <div class="stress-card"><div class="word">par-<span class="stressed">la</span>-re</div><small>piana</small></div>
+    <div class="stress-card"><div class="word"><span class="stressed">u</span>-cci-do</div><small>sdrucciola</small></div>
+  </div>
+
+  <div class="rule-box">
+    <strong>Consejo:</strong> El acento gráfico (à, è, ì, ò, ù) solo aparece en palabras <em>tronche</em> y en algunas palabras para distinguir significados: <em>e</em> (y) vs <em>è</em> (es), <em>la</em> (artículo) vs <em>là</em> (allí).
+    <span class="es">No te preocupes demasiado — la mayoría de palabras son <em>piane</em>.</span>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <h2 class="section-title">5. Quiz — Verifica le tue conoscenze</h2>
+  <div class="quiz-wrap">
+    <div class="quiz-q" id="q1">
+      <p>1. "Una borsa ___" — ¿Qué forma de "verde" es correcta?</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','a')">verda</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','b')">verde</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','c')">verdi</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <p>2. "Le scarpe ___" — plural femenino de "rosso":</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','a')">rosso</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','b')">rossa</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','c')">rosse</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <p>3. ¿Qué tipo de frase es "Che bello!"?</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','a')">Dichiarativa</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','b')">Interrogativa</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','c')">Esclamativa</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <p>4. ¿Dónde va normalmente el adjetivo en italiano?</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','a')">Antes del sustantivo</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','b')">Después del sustantivo</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','c')">Al principio de la frase</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <p>5. "Città" lleva acento gráfico porque es una palabra:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','a')">piana</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','b')">tronca</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','c')">sdrucciola</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:1.25rem">
+      <button class="btn btn-primary" onclick="submitQuiz()">Controlla le risposte</button>
+    </div>
+    <div class="quiz-result" id="quiz-result"></div>
+  </div>
+</section>
+</main>
+
+<footer><p>Italiano Per Piacere · Módulo 6 · <em>Di che colore è?</em></p></footer>
+
+<script>
+let esVisible=true;
+function toggleEs(){esVisible=!esVisible;document.body.classList.toggle('hide-es',!esVisible);document.getElementById('toggleEs').textContent=esVisible?'Ocultar traducciones':'Mostrar traducciones';}
+const secs=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('nav a');
+window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)c=s.id});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)});});
+function checkPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{const inp=item.querySelector('.prac-input');const ans=item.dataset.ans;const val=inp.value.trim().toLowerCase();item.classList.remove('correct','wrong');let fb=item.querySelector('.prac-fb');if(!fb){fb=document.createElement('span');fb.className='prac-fb';item.appendChild(fb);}if(val===ans){item.classList.add('correct');fb.textContent='✓';}else{item.classList.add('wrong');fb.textContent='✗ '+ans;}});}
+function resetPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{item.classList.remove('correct','wrong');item.querySelector('.prac-input').value='';const fb=item.querySelector('.prac-fb');if(fb)fb.textContent='';});}
+const answers={q1:'b',q2:'c',q3:'c',q4:'b',q5:'b'};
+let selected={};
+function selectOpt(el,qid,opt){if(selected[qid])return;selected[qid]=opt;const opts=el.parentElement.querySelectorAll('.quiz-opt');opts.forEach(o=>o.style.pointerEvents='none');const correct=answers[qid];opts.forEach((o,i)=>{const k=['a','b','c'][i];if(k===correct)o.classList.add('correct');else if(k===opt)o.classList.add('wrong');});}
+function submitQuiz(){let score=0;Object.keys(answers).forEach(q=>{if(selected[q]===answers[q])score++;});const res=document.getElementById('quiz-result');res.classList.add('show');if(score>=4){res.className='quiz-result show good';res.textContent=`Bravissimo/a! ${score}/5 ✓`;}else if(score>=2){res.className='quiz-result show ok';res.textContent=`Bene! ${score}/5 — continua a studiare.`;}else{res.className='quiz-result show try';res.textContent=`${score}/5 — Riprova! Torna alle sezioni.`;}}
+</script>
+</body>
+</html>

@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unità 15 · Il concerto è andato bene! — Descubrimiento</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;
+  --gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--teal:#78a6ba;--green:#528e74;--green-dk:#3d6b58;
+  --black:#1a1a18;--white:#ffffff;
+  --hero:var(--green);--hero-text:var(--white);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--black);overflow-x:hidden}
+body.hide-es .es{display:none}
+
+#toggle-btn{
+  position:fixed;top:1rem;right:1rem;z-index:999;
+  background:var(--green-dk);color:#fff;border:none;
+  padding:.5rem 1rem;border-radius:2rem;font-family:'Outfit',sans-serif;
+  font-size:.85rem;cursor:pointer;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.25)
+}
+
+/* HERO */
+.hero{
+  min-height:94vh;background:var(--hero);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:4rem 2rem;position:relative;overflow:hidden
+}
+.hero-circle{position:absolute;border-radius:50%;opacity:.15;background:var(--white);pointer-events:none;transition:transform .1s linear}
+.c1{width:500px;height:500px;top:-120px;right:-130px}
+.c2{width:320px;height:320px;bottom:30px;left:-80px}
+.c3{width:200px;height:200px;bottom:160px;right:12%}
+.c4{width:100px;height:100px;top:25%;left:8%}
+.hero h1{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(2.4rem,6vw,4.2rem);color:var(--white);
+  line-height:1.15;margin-bottom:.6rem
+}
+.hero .badge{
+  background:var(--white);color:var(--green-dk);
+  padding:.3rem 1rem;border-radius:2rem;font-size:.85rem;font-weight:700;
+  letter-spacing:.05em;margin-bottom:1.5rem;display:inline-block
+}
+.hero p{font-size:1.1rem;max-width:650px;line-height:1.7;color:rgba(255,255,255,.92);margin-bottom:.5rem}
+.hero .audio-note{
+  background:rgba(255,255,255,.18);border-radius:14px;padding:1rem 1.6rem;
+  margin-top:1.5rem;font-size:.95rem;color:#fff;max-width:560px;text-align:left;line-height:1.7
+}
+.hero .audio-note strong{display:block;margin-bottom:.4rem;font-size:1rem}
+.hero .scroll-hint{margin-top:2.5rem;font-size:.9rem;opacity:.6;animation:bounce 2s infinite;color:#fff}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* SECTIONS */
+section{padding:4rem 2rem;max-width:900px;margin:0 auto}
+section h2{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(1.6rem,4vw,2.3rem);color:var(--green-dk);margin-bottom:.4rem
+}
+section .subtitle{font-size:.95rem;color:#555;margin-bottom:2rem;line-height:1.65}
+.it{font-style:italic;color:var(--green-dk);font-weight:600}
+.es{color:#666;font-size:.9rem}
+.divider{border:none;border-top:1px solid var(--cream-dk);margin:2.5rem 0}
+
+/* ANIMATIONS */
+[data-a]{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+[data-a].visible{opacity:1;transform:none}
+[data-stagger]>*{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+[data-stagger].visible>*:nth-child(1){opacity:1;transform:none;transition-delay:.05s}
+[data-stagger].visible>*:nth-child(2){opacity:1;transform:none;transition-delay:.15s}
+[data-stagger].visible>*:nth-child(3){opacity:1;transform:none;transition-delay:.25s}
+[data-stagger].visible>*:nth-child(4){opacity:1;transform:none;transition-delay:.35s}
+[data-stagger].visible>*:nth-child(5){opacity:1;transform:none;transition-delay:.45s}
+[data-stagger].visible>*:nth-child(6){opacity:1;transform:none;transition-delay:.55s}
+[data-stagger].visible>*:nth-child(7){opacity:1;transform:none;transition-delay:.65s}
+[data-stagger].visible>*:nth-child(n+8){opacity:1;transform:none;transition-delay:.75s}
+
+/* WORD GRID */
+.word-grid{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.5rem}
+.word-btn{
+  padding:.55rem 1.1rem;border-radius:2rem;border:2px solid var(--green-dk);
+  background:#fff;color:var(--black);font-family:'Outfit',sans-serif;
+  font-size:.95rem;cursor:pointer;transition:all .2s
+}
+.word-btn:hover{background:var(--cream-dk)}
+.word-btn.selected{background:rgba(82,142,116,.2);border-color:var(--green-dk);font-weight:700}
+.word-btn.correct{background:#d4edda;border-color:var(--green);color:var(--green-dk);font-weight:700}
+.word-btn.wrong{background:#f8d7da;border-color:var(--red);color:var(--red);font-weight:700}
+.word-btn.missed{background:#fff3cd;border-color:var(--amber);color:#856404;font-weight:700}
+.verify-btn{background:var(--green-dk);color:#fff;border:none;padding:.6rem 1.6rem;border-radius:2rem;font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;margin-bottom:1rem}
+#grid-feedback{font-size:.95rem;margin-top:.5rem;min-height:1.4em}
+
+/* VOCAB CARDS */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.vcard{background:#fff;border-radius:12px;padding:1.2rem 1rem;border-left:4px solid var(--green);cursor:pointer;transition:box-shadow .2s,transform .2s}
+.vcard:hover{box-shadow:0 4px 18px rgba(0,0,0,.1);transform:translateY(-2px)}
+.vcard .vit{font-size:1.05rem;font-weight:700;color:var(--green-dk)}
+.vcard .ves{font-size:.9rem;color:#555;margin-top:.2rem}
+.vcard .vex{font-size:.85rem;margin-top:.6rem;color:var(--black);font-style:italic;border-top:1px solid var(--cream-dk);padding-top:.6rem;display:none}
+.vcard.open .vex{display:block}
+
+/* TIMELINE DISCOVERY */
+.timeline{display:flex;flex-direction:column;gap:0;position:relative;padding-left:2rem;margin-top:1.2rem}
+.timeline::before{content:'';position:absolute;left:.6rem;top:0;bottom:0;width:3px;background:var(--green);border-radius:2px}
+.tl-item{position:relative;padding:.9rem 1rem 1rem 1.2rem;margin-bottom:.6rem}
+.tl-item::before{content:'';position:absolute;left:-1.65rem;top:1.1rem;width:14px;height:14px;border-radius:50%;background:var(--green-dk);border:3px solid var(--cream)}
+.tl-time{font-size:.8rem;font-weight:700;color:var(--green-dk);text-transform:uppercase;letter-spacing:.05em}
+.tl-text{font-size:.95rem;font-style:italic;margin:.2rem 0;color:var(--black)}
+.tl-es{font-size:.85rem;color:#666}
+
+/* PARTICIPIO TABLE */
+.part-table{width:100%;border-collapse:collapse;font-size:.93rem;margin-top:.8rem}
+.part-table th,.part-table td{padding:.6rem .8rem;border-bottom:1px solid var(--cream-dk);text-align:left}
+.part-table th{background:var(--green-dk);color:#fff;font-weight:700}
+.part-table tr:nth-child(even){background:var(--cream-dk)}
+.part-table .it-cell{color:var(--green-dk);font-weight:700;font-style:italic}
+.irreg-badge{background:rgba(204,71,54,.12);color:var(--red);font-size:.78rem;font-weight:700;padding:.1rem .4rem;border-radius:4px;margin-left:.3rem}
+
+/* ORDER ACTIVITY */
+.order-activity{background:#fff;border-radius:14px;padding:1.5rem;margin-top:1rem;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.order-activity p{font-size:.95rem;margin-bottom:1rem;line-height:1.6;color:#444}
+.drag-list{display:flex;flex-direction:column;gap:.5rem}
+.drag-item{
+  display:flex;align-items:center;gap:.8rem;
+  background:var(--cream);border:2px solid var(--cream-dk);
+  border-radius:8px;padding:.65rem 1rem;cursor:grab;
+  font-size:.93rem;transition:border-color .2s
+}
+.drag-item:hover{border-color:var(--green)}
+.drag-item .number{
+  width:24px;height:24px;background:var(--green-dk);color:#fff;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;font-weight:700;flex-shrink:0
+}
+.reveal-btn{
+  background:var(--green-dk);color:#fff;border:none;padding:.5rem 1.3rem;
+  border-radius:8px;font-family:'Outfit',sans-serif;font-size:.88rem;
+  font-weight:700;cursor:pointer;margin-top:.9rem
+}
+.order-answer{display:none;margin-top:.8rem;padding:1rem;background:var(--cream-dk);border-radius:8px;font-size:.9rem;line-height:1.7}
+.order-answer.show{display:block}
+
+/* FILL BLANKS */
+.fill-section{background:#fff;border-radius:14px;padding:1.5rem;margin-top:1rem;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.fill-section p.instruc{font-size:.93rem;color:#555;margin-bottom:1rem;line-height:1.6}
+.fill-text{font-size:1rem;line-height:2.1;color:var(--black)}
+.fill-blank{
+  border:none;border-bottom:2px solid var(--green);
+  background:transparent;font-family:'Outfit',sans-serif;
+  font-size:.97rem;outline:none;padding:.1rem .2rem;
+  width:110px;color:var(--green-dk);font-weight:600;text-align:center
+}
+.fill-blank:focus{border-bottom-color:var(--amber)}
+.word-bank{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;padding:.8rem;background:var(--cream-dk);border-radius:8px}
+.bank-word{
+  padding:.3rem .8rem;background:#fff;border-radius:1rem;
+  font-size:.9rem;cursor:pointer;border:1.5px solid var(--cream-dk);transition:all .2s
+}
+.bank-word:hover{border-color:var(--green);background:var(--cream)}
+.reveal-fill-btn{background:var(--green-dk);color:#fff;border:none;padding:.45rem 1.1rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:.9rem}
+.fill-answers{display:none;margin-top:.7rem;padding:.8rem;background:#d4edda;border-radius:8px;font-size:.88rem;line-height:1.7;color:#155724}
+.fill-answers.show{display:block}
+
+/* DIALOGUE */
+.dialogue{display:flex;flex-direction:column;gap:.9rem}
+.bubble{max-width:78%;padding:.9rem 1.2rem;border-radius:16px;position:relative;font-size:.95rem;line-height:1.55;cursor:pointer}
+.bubble.left{align-self:flex-start;background:var(--cream-dk);border-bottom-left-radius:4px}
+.bubble.right{align-self:flex-end;background:var(--green);color:#fff;border-bottom-right-radius:4px}
+.bubble .btr{font-size:.82rem;margin-top:.4rem;border-top:1px solid rgba(0,0,0,.1);padding-top:.3rem;display:none;color:#555}
+.bubble.right .btr{color:rgba(255,255,255,.8);border-top-color:rgba(255,255,255,.2)}
+.bubble.open .btr{display:block}
+.bubble::after{content:'▾';font-size:.7rem;opacity:.5;margin-left:.4rem}
+
+/* PASSATO DISCOVERY BOX */
+.discovery-box{
+  background:var(--black);color:#fff;border-radius:14px;
+  padding:1.8rem;margin-top:1.2rem
+}
+.discovery-box h3{color:var(--gold);font-size:1.05rem;margin-bottom:1rem}
+.disc-item{display:flex;gap:1rem;margin:.7rem 0;align-items:flex-start;font-size:.95rem}
+.disc-arrow{color:var(--gold);font-size:1rem;flex-shrink:0;margin-top:.1rem}
+.disc-text em{color:var(--gold)}
+
+/* CULTURAL STRIP */
+.cultural{background:var(--green-dk);color:#fff;padding:3.5rem 2rem;margin-top:3rem}
+.cultural h3{font-family:'Playfair Display',serif;font-style:italic;font-size:1.7rem;margin-bottom:1rem}
+.cultural p{line-height:1.75;max-width:700px;font-size:.97rem}
+.cultural em{color:var(--gold)}
+
+footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
+</style>
+</head>
+<body class="hide-es">
+
+<button id="toggle-btn" onclick="toggleEs()">👁 Mostrar traducciones</button>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-circle c1" id="c1"></div>
+  <div class="hero-circle c2" id="c2"></div>
+  <div class="hero-circle c3" id="c3"></div>
+  <div class="hero-circle c4" id="c4"></div>
+  <span class="badge">Unità 15 · A1</span>
+  <h1>Il concerto è andato bene!</h1>
+  <p>Un italiano racconta il suo fine settimana. Ascolta e scopri: come si racconta qualcosa al passato in italiano?</p>
+  <div class="audio-note">
+    <strong>🎧 Prima di ascoltare l'audio:</strong>
+    1. ¿Qué tiempo verbal usas en español para contar algo que pasó ayer? (fui, comí, hablé…)<br>
+    2. ¿Cómo crees que se dice en italiano "fui al concierto"? ¿Qué auxiliar usarías?<br>
+    3. Escucha e identifica cuántas veces escuchas <em>ho</em> y <em>sono</em>.
+  </div>
+  <div class="scroll-hint">↓ Esplora</div>
+</div>
+
+<!-- SECTION 1: WORD GRID — Espressioni di tempo -->
+<section data-a>
+  <h2>Espressioni di tempo — passato</h2>
+  <p class="subtitle">
+    Selecciona todas las <strong>expresiones de tiempo pasado</strong>. ¡Hay algunas expresiones de tiempo presente o futuro como trampa! <span class="es">Estas expresiones son el vocabulario clave de la unidad.</span>
+  </p>
+  <div class="word-grid" id="word-grid">
+    <button class="word-btn" onclick="toggleWord(this,'ok')">ieri</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">ieri sera</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">l'altro ieri</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">stamattina</button>
+    <button class="word-btn" onclick="toggleWord(this,'trap')">domani</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">una settimana fa</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">due giorni fa</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">dal 3 al 5 giugno</button>
+    <button class="word-btn" onclick="toggleWord(this,'trap')">fra tre giorni</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">il mese scorso</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">la settimana scorsa</button>
+    <button class="word-btn" onclick="toggleWord(this,'trap')">adesso</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">l'anno scorso</button>
+    <button class="word-btn" onclick="toggleWord(this,'trap')">fra poco</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">stamattina presto</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">tre settimane fa</button>
+  </div>
+  <button class="verify-btn" onclick="verifyGrid()">Verifica ✓</button>
+  <div id="grid-feedback"></div>
+</section>
+
+<!-- SECTION 2: VOCAB CARDS -->
+<section data-a>
+  <h2>Come si usa? Le espressioni di tempo</h2>
+  <p class="subtitle">Haz clic en cada tarjeta para ver un ejemplo con el passato prossimo. <span class="es">¡Empieza a reconocer el patrón!</span></p>
+  <div class="vocab-grid" data-stagger>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">ieri</div>
+      <div class="ves">ayer</div>
+      <div class="vex">📅 <em>Ieri sono andato al concerto.</em><br><span class="es">Ayer fui al concierto.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">ieri sera</div>
+      <div class="ves">anoche</div>
+      <div class="vex">🌙 <em>Ieri sera ho incontrato degli amici.</em><br><span class="es">Anoche me encontré con unos amigos.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">l'altro ieri</div>
+      <div class="ves">anteayer</div>
+      <div class="vex">📅 <em>L'altro ieri ho lavorato tutto il giorno.</em><br><span class="es">Anteayer trabajé todo el día.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">... fa</div>
+      <div class="ves">hace... (tiempo)</div>
+      <div class="vex">⏱ <em>Due settimane fa sono andato a Roma.</em><br><span class="es">Hace dos semanas fui a Roma.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">dal... al...</div>
+      <div class="ves">del... al... (período)</div>
+      <div class="vex">📆 <em>Dal 10 al 15 luglio ho viaggiato.</em><br><span class="es">Del 10 al 15 de julio viajé.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">fra...</div>
+      <div class="ves">dentro de... (futuro)</div>
+      <div class="vex">➡️ <em>Fra tre giorni parto per Milano.</em><br><span class="es">Dentro de tres días parto para Milán.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">scorso / scorsa</div>
+      <div class="ves">pasado/a</div>
+      <div class="vex">🗓 <em>Il mese scorso ho comprato una chitarra.</em><br><span class="es">El mes pasado compré una guitarra.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">stamattina</div>
+      <div class="ves">esta mañana</div>
+      <div class="vex">☀️ <em>Stamattina ho fatto colazione al bar.</em><br><span class="es">Esta mañana desayuné en el bar.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: DISCOVERING THE PASSATO PROSSIMO -->
+<section data-a>
+  <h2>Scopri il passato prossimo</h2>
+  <p class="subtitle">
+    Lee el relato y observa cómo se forman los verbos en pasado. ¿Notas un patrón?
+    <span class="es">No tienes que aprenderlo todo ahora — solo ¡observar!</span>
+  </p>
+  <div class="discovery-box">
+    <h3>🎙 Marco racconta il suo sabato:</h3>
+    <div class="disc-item"><span class="disc-arrow">▶</span><span>Sabato <em>sono andato</em> al concerto di Zucchero con i miei amici.</span></div>
+    <div class="disc-item"><span class="disc-arrow">▶</span><span><em>Abbiamo incontrato</em> molti amici là.</span></div>
+    <div class="disc-item"><span class="disc-arrow">▶</span><span>La musica <em>è stata</em> fantastica!</span></div>
+    <div class="disc-item"><span class="disc-arrow">▶</span><span>Dopo il concerto <em>abbiamo cenato</em> in un ristorante in centro.</span></div>
+    <div class="disc-item"><span class="disc-arrow">▶</span><span><em>Ho ordinato</em> una carbonara e <em>ho bevuto</em> del vino bianco.</span></div>
+    <div class="disc-item"><span class="disc-arrow">▶</span><span>Siamo <em>tornati</em> a casa tardissimo — ma ne è valsa la pena!</span></div>
+  </div>
+  <p style="margin-top:1.2rem;font-size:.93rem;color:#555;line-height:1.7">
+    💡 <strong>¿Qué notas?</strong>
+    <span class="es">Todos los verbos en pasado tienen dos partes: un <em>auxiliar</em> (<em>ho, hai, ha… / sono, sei, è…</em>) + un <em>participio passato</em> (<em>andato, incontrato, bevuto…</em>). ¡Eso es el <strong>passato prossimo</strong>!</span>
+  </p>
+</section>
+
+<!-- SECTION 4: PARTICIPIO PASSATO DISCOVERY -->
+<section data-a>
+  <h2>Il participio passato — scopri le regole</h2>
+  <p class="subtitle">
+    Observa cómo cambia el infinitivo para formar el participio. Hay verbos regulares… y algunos irregolari. <span class="es">¡Intenta encontrar el patrón!</span>
+  </p>
+  <table class="part-table">
+    <tr>
+      <th>Infinito</th>
+      <th>Participio passato</th>
+      <th>Regola</th>
+      <th>Traduzione</th>
+    </tr>
+    <tr>
+      <td class="it-cell">parlare</td>
+      <td class="it-cell">parlato</td>
+      <td>-ARE → -ato</td>
+      <td class="es">hablado</td>
+    </tr>
+    <tr>
+      <td class="it-cell">mangiare</td>
+      <td class="it-cell">mangiato</td>
+      <td>-ARE → -ato</td>
+      <td class="es">comido</td>
+    </tr>
+    <tr>
+      <td class="it-cell">ricevere</td>
+      <td class="it-cell">ricevuto</td>
+      <td>-ERE → -uto</td>
+      <td class="es">recibido</td>
+    </tr>
+    <tr>
+      <td class="it-cell">dormire</td>
+      <td class="it-cell">dormito</td>
+      <td>-IRE → -ito</td>
+      <td class="es">dormido</td>
+    </tr>
+    <tr>
+      <td class="it-cell">finire</td>
+      <td class="it-cell">finito</td>
+      <td>-IRE → -ito</td>
+      <td class="es">terminado</td>
+    </tr>
+    <tr>
+      <td class="it-cell">essere</td>
+      <td class="it-cell">stato <span class="irreg-badge">IRREG.</span></td>
+      <td>—</td>
+      <td class="es">sido / estado</td>
+    </tr>
+    <tr>
+      <td class="it-cell">andare</td>
+      <td class="it-cell">andato</td>
+      <td>-ARE → -ato</td>
+      <td class="es">ido</td>
+    </tr>
+    <tr>
+      <td class="it-cell">bere</td>
+      <td class="it-cell">bevuto <span class="irreg-badge">IRREG.</span></td>
+      <td>—</td>
+      <td class="es">bebido</td>
+    </tr>
+    <tr>
+      <td class="it-cell">leggere</td>
+      <td class="it-cell">letto <span class="irreg-badge">IRREG.</span></td>
+      <td>—</td>
+      <td class="es">leído</td>
+    </tr>
+    <tr>
+      <td class="it-cell">fare</td>
+      <td class="it-cell">fatto <span class="irreg-badge">IRREG.</span></td>
+      <td>—</td>
+      <td class="es">hecho</td>
+    </tr>
+    <tr>
+      <td class="it-cell">venire</td>
+      <td class="it-cell">venuto <span class="irreg-badge">IRREG.</span></td>
+      <td>—</td>
+      <td class="es">venido</td>
+    </tr>
+    <tr>
+      <td class="it-cell">vedere</td>
+      <td class="it-cell">visto <span class="irreg-badge">IRREG.</span></td>
+      <td>—</td>
+      <td class="es">visto</td>
+    </tr>
+  </table>
+  <p style="margin-top:.9rem;font-size:.9rem;color:#555">⚠️ <span class="es">Los verbos irregolari hay que aprenderlos de memoria. ¡Pero son los más usados, así que los aprenderás rápido!</span></p>
+</section>
+
+<!-- SECTION 5: FILL BLANKS ACTIVITY -->
+<section data-a>
+  <h2>Completa il racconto</h2>
+  <p class="subtitle">
+    Completa el relato de Sofia eligiendo del banco de palabras. <span class="es">No hay respuesta única para todos los espacios — usa tu intuición.</span>
+  </p>
+  <div class="fill-section">
+    <p class="instruc">Scegli dal <em>banco delle parole</em> e scrivi nei spazi. Poi clicca "Mostra risposte" per verificare.</p>
+    <div class="fill-text">
+      La settimana scorsa Sofia <input class="fill-blank" id="f1" placeholder="..."> al festival di musica.
+      Prima <input class="fill-blank" id="f2" placeholder="..."> comprato i biglietti online.
+      Con i suoi amici <input class="fill-blank" id="f3" placeholder="..."> la sera e
+      il giorno del festival <input class="fill-blank" id="f4" placeholder="..."> in treno.
+      Il concerto <input class="fill-blank" id="f5" placeholder="..."> meraviglioso!
+      Alla fine tutti <input class="fill-blank" id="f6" placeholder="..."> a casa molto tardi.
+    </div>
+    <div class="word-bank">
+      <span class="bank-word" onclick="insertWord(this,'è andata')">è andata</span>
+      <span class="bank-word" onclick="insertWord(this,'ha')">ha</span>
+      <span class="bank-word" onclick="insertWord(this,'hanno mangiato')">hanno mangiato</span>
+      <span class="bank-word" onclick="insertWord(this,'sono partiti')">sono partiti</span>
+      <span class="bank-word" onclick="insertWord(this,'è stato')">è stato</span>
+      <span class="bank-word" onclick="insertWord(this,'sono tornati')">sono tornati</span>
+    </div>
+    <button class="reveal-fill-btn" onclick="showFillAnswers()">Mostra risposte ✓</button>
+    <div class="fill-answers" id="fill-ans">
+      ✅ <strong>Risposta:</strong><br>
+      è andata · ha (comprato) · hanno mangiato · sono partiti · è stato · sono tornati<br>
+      <span class="es">¿Notaste los dos auxiliares? <em>essere</em> (è andata, sono partiti, sono tornati) y <em>avere</em> (ha comprato, hanno mangiato).</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: CRONOLOGIA — ORDER ACTIVITY -->
+<section data-a>
+  <h2>Ricostruisci la storia — in ordine cronologico</h2>
+  <p class="subtitle">
+    Estas oraciones del relato de Marco están desordenadas. <span class="es">Lée las y mentalmente ponlas en orden antes de ver la solución.</span> ¡Usa las expresiones de tiempo como pistas!
+  </p>
+  <div class="order-activity">
+    <p>Metti in ordine queste frasi — dalla prima all'ultima cosa successa:</p>
+    <div class="drag-list">
+      <div class="drag-item"><span class="number">?</span>Dopo cena siamo andati a ballare in un locale.</div>
+      <div class="drag-item"><span class="number">?</span>Abbiamo comprato i biglietti due settimane fa.</div>
+      <div class="drag-item"><span class="number">?</span>Siamo tornati a casa alle tre di notte.</div>
+      <div class="drag-item"><span class="number">?</span>Ieri sera siamo andati al concerto di Vasco Rossi.</div>
+      <div class="drag-item"><span class="number">?</span>Prima del concerto abbiamo cenato in pizzeria.</div>
+      <div class="drag-item"><span class="number">?</span>Stamattina mi sono svegliato tardi!</div>
+    </div>
+    <button class="reveal-btn" onclick="showOrder()">Mostra l'ordine corretto ✓</button>
+    <div class="order-answer" id="order-ans">
+      <strong>Ordine corretto:</strong><br>
+      1️⃣ Abbiamo comprato i biglietti due settimane fa.<br>
+      2️⃣ Ieri sera siamo andati al concerto di Vasco Rossi.<br>
+      3️⃣ Prima del concerto abbiamo cenato in pizzeria.<br>
+      4️⃣ Dopo cena siamo andati a ballare in un locale.<br>
+      5️⃣ Siamo tornati a casa alle tre di notte.<br>
+      6️⃣ Stamattina mi sono svegliato tardi!<br>
+      <span class="es">Las pistas temporales son clave: <em>due settimane fa → ieri sera → prima → dopo → siamo tornati → stamattina</em></span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: ESSERE vs AVERE — DISCOVERY -->
+<section data-a>
+  <h2>Ho o sono? — scopri quando usarli</h2>
+  <p class="subtitle">
+    Hay dos auxiliares en el passato prossimo. Observa qué tipo de verbos van con cada uno.
+    <span class="es">¡Intenta deducir la regla antes de leer la explicación!</span>
+  </p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.5rem">
+    <div style="background:#fff;border-radius:12px;padding:1.2rem;border-top:4px solid var(--green-dk)">
+      <div style="font-weight:700;color:var(--green-dk);font-size:1rem;margin-bottom:.8rem">🔵 CON AVERE (ho, hai, ha…)</div>
+      <div style="font-size:.92rem;line-height:1.8;font-style:italic">
+        Ho <strong>mangiato</strong> la pizza.<br>
+        Ho <strong>ascoltato</strong> musica.<br>
+        Ho <strong>letto</strong> un libro.<br>
+        Ho <strong>visto</strong> un film.<br>
+        Ho <strong>comprato</strong> i biglietti.
+      </div>
+      <div style="font-size:.82rem;color:#555;margin-top:.7rem;line-height:1.6">
+        <span class="es">→ Verbos que tienen complemento directo (lo que hice A algo).</span>
+      </div>
+    </div>
+    <div style="background:#fff;border-radius:12px;padding:1.2rem;border-top:4px solid var(--teal)">
+      <div style="font-weight:700;color:var(--teal);font-size:1rem;margin-bottom:.8rem">🟢 CON ESSERE (sono, sei, è…)</div>
+      <div style="font-size:.92rem;line-height:1.8;font-style:italic">
+        Sono <strong>andato</strong> al concerto.<br>
+        Sono <strong>venuto</strong> in centro.<br>
+        Sono <strong>tornato</strong> tardi.<br>
+        Siamo <strong>partiti</strong> alle 8.<br>
+        È <strong>arrivata</strong> Ana.
+      </div>
+      <div style="font-size:.82rem;color:#555;margin-top:.7rem;line-height:1.6">
+        <span class="es">→ Verbos de movimiento y cambio de estado. El participio concuerda con el sujeto.</span>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:1rem;font-size:.88rem;color:#555">
+    💡 <span class="es">Con <em>essere</em>, el participio funciona como un adjetivo: <em>sono andato</em> (yo, masc.) / <em>sono andata</em> (yo, fem.) / <em>siamo andati</em> (nosotros). ¡Concuerda en género y número!</span>
+  </p>
+</section>
+
+<!-- SECTION 8: TIMELINE DEL RACCONTO -->
+<section data-a>
+  <h2>La linea del tempo di Anna</h2>
+  <p class="subtitle">
+    Anna cuenta su semana. Sigue la línea del tiempo y fíjate en cómo el italiano usa el passato prossimo para todo lo que ya ocurrió. <span class="es">¡Incluso cosas de esta mañana o de un momento hace diez minutos!</span>
+  </p>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">Tre settimane fa</div>
+      <div class="tl-text">Ho comprato i biglietti del concerto online.</div>
+      <div class="tl-es"><span class="es">Hace tres semanas compré las entradas del concierto por internet.</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">La settimana scorsa</div>
+      <div class="tl-text">Ho incontrato i miei amici e abbiamo parlato del concerto.</div>
+      <div class="tl-es"><span class="es">La semana pasada quedé con mis amigos y hablamos del concierto.</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">Ieri mattina</div>
+      <div class="tl-text">Sono andata a comprare un abito nuovo per la serata.</div>
+      <div class="tl-es"><span class="es">Ayer por la mañana fui a comprar un vestido nuevo para la noche.</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">Ieri sera — alle 20:00</div>
+      <div class="tl-text">Siamo arrivati al teatro. Il concerto è cominciato puntuale.</div>
+      <div class="tl-es"><span class="es">Anoche llegamos al teatro. El concierto empezó puntual.</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">Ieri sera — alle 23:30</div>
+      <div class="tl-text">Il concerto è finito. Abbiamo applaudito per dieci minuti!</div>
+      <div class="tl-es"><span class="es">El concierto terminó. ¡Aplaudimos durante diez minutos!</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">Stamattina</div>
+      <div class="tl-text">Mi sono svegliata tardi. Ho fatto colazione e ho scritto un post.</div>
+      <div class="tl-es"><span class="es">Esta mañana me desperté tarde. Desayuné y escribí una publicación.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: DIALOGUE -->
+<section data-a>
+  <h2>Racconta! — un dialogo</h2>
+  <p class="subtitle">Haz clic en cada globo para ver la traducción. <span class="es">¿Notas los auxiliares essere y avere?</span></p>
+  <div class="dialogue">
+    <div class="bubble left" onclick="this.classList.toggle('open')">
+      <strong>Giulia:</strong> Allora? Com'è andato il concerto ieri sera?
+      <div class="btr"><span class="es">¿Entonces? ¿Cómo fue el concierto anoche?</span></div>
+    </div>
+    <div class="bubble right" onclick="this.classList.toggle('open')">
+      <strong>Luca:</strong> Fantastico! È andato benissimo. Abbiamo cantato tutta la notte!
+      <div class="btr">¡Fantástico! Fue genial. ¡Cantamos toda la noche!</div>
+    </div>
+    <div class="bubble left" onclick="this.classList.toggle('open')">
+      <strong>Giulia:</strong> A che ora siete arrivati? E avete trovato parcheggio?
+      <div class="btr"><span class="es">¿A qué hora llegasteis? ¿Y encontrasteis aparcamiento?</span></div>
+    </div>
+    <div class="bubble right" onclick="this.classList.toggle('open')">
+      <strong>Luca:</strong> Siamo arrivati alle sette. Sì, abbiamo trovato un posto vicino al teatro, per fortuna!
+      <div class="btr">Llegamos a las siete. ¡Sí, encontramos un sitio cerca del teatro, por suerte!</div>
+    </div>
+    <div class="bubble left" onclick="this.classList.toggle('open')">
+      <strong>Giulia:</strong> E dopo il concerto? Siete usciti?
+      <div class="btr"><span class="es">¿Y después del concierto? ¿Salisteis?</span></div>
+    </div>
+    <div class="bubble right" onclick="this.classList.toggle('open')">
+      <strong>Luca:</strong> Certo! Siamo andati in un bar e abbiamo bevuto qualcosa. Siamo tornati a casa verso l'una.
+      <div class="btr">¡Claro! Fuimos a un bar y tomamos algo. Volvimos a casa hacia la una.</div>
+    </div>
+    <div class="bubble left" onclick="this.classList.toggle('open')">
+      <strong>Giulia:</strong> Che bella serata! Anche l'anno scorso sei andato al suo concerto?
+      <div class="btr"><span class="es">¡Qué bonita noche! ¿También el año pasado fuiste a su concierto?</span></div>
+    </div>
+    <div class="bubble right" onclick="this.classList.toggle('open')">
+      <strong>Luca:</strong> Sì, ma quest'anno è stato ancora meglio. Due concerti fa ha suonato solo due ore — ieri ha suonato quasi tre ore!
+      <div class="btr">Sí, pero este año fue aún mejor. Hace dos conciertos tocó solo dos horas — ¡ayer tocó casi tres horas!</div>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURAL STRIP -->
+<div class="cultural" data-a>
+  <h3>La musica dal vivo in Italia — una passione nazionale</h3>
+  <p>Los conciertos en Italia son más que entretenimiento: son un ritual social. Desde los estadios llenos para <em>Vasco Rossi</em> o <em>Zucchero</em> hasta las pequeñas <em>piazze</em> de pueblo donde tocan grupos locales en verano, <em>la musica dal vivo</em> es parte del tejido cultural italiano. El <em>Festival di Sanremo</em>, celebrado desde 1951, paraliza el país entero durante cinco noches. Y cuando un italiano dice <em>"ieri sera sono andato a un concerto"</em>, lo dice con los ojos brillantes — ¡hay historias que contar!</p>
+</div>
+
+<footer>Italiano Per Piacere · Unità 15 · Etapa 2 — Descubrimiento</footer>
+
+<script>
+// TOGGLE
+function toggleEs(){
+  document.body.classList.toggle('hide-es');
+  document.getElementById('toggle-btn').textContent=
+    document.body.classList.contains('hide-es')? '👁 Mostrar traducciones':'🙈 Ocultar traducciones';
+}
+
+// WORD GRID
+function toggleWord(el,type){
+  if(el.classList.contains('correct')||el.classList.contains('wrong')||el.classList.contains('missed'))return;
+  el.classList.toggle('selected');el._type=type;
+}
+function verifyGrid(){
+  const btns=document.querySelectorAll('#word-grid .word-btn');
+  let correct=0,fp=0,missed=0;
+  btns.forEach(b=>{
+    const sel=b.classList.contains('selected');const ok=b._type==='ok';
+    b.classList.remove('selected');
+    if(sel&&ok){b.classList.add('correct');correct++;}
+    else if(sel&&!ok){b.classList.add('wrong');fp++;}
+    else if(!sel&&ok){b.classList.add('missed');missed++;}
+  });
+  const fb=document.getElementById('grid-feedback');
+  if(fp===0&&missed===0){fb.innerHTML='<span style="color:var(--green-dk);font-weight:700">✅ Perfetto! Tutte le espressioni trovate.</span>';}
+  else{
+    let msg='<span style="color:var(--amber-dk);font-weight:700">';
+    if(correct)msg+=`✅ ${correct} corretti. `;
+    if(fp)msg+=`❌ ${fp} errori (non sono espressioni di passato). `;
+    if(missed)msg+=`⚠️ ${missed} mancanti (gialli).`;
+    fb.innerHTML=msg+'</span>';
+  }
+}
+
+// FILL BLANKS word bank
+let fillTarget=null;
+document.querySelectorAll('.fill-blank').forEach(inp=>{
+  inp.addEventListener('focus',()=>fillTarget=inp);
+});
+function insertWord(el,word){
+  if(fillTarget){fillTarget.value=word;fillTarget.focus();}
+}
+function showFillAnswers(){
+  document.getElementById('fill-ans').classList.add('show');
+}
+
+// ORDER
+function showOrder(){
+  document.getElementById('order-ans').classList.add('show');
+}
+
+// PARALLAX
+const circles=[
+  {el:document.getElementById('c1'),fx:.04,fy:.03},
+  {el:document.getElementById('c2'),fx:-.05,fy:.04},
+  {el:document.getElementById('c3'),fx:.03,fy:-.05},
+  {el:document.getElementById('c4'),fx:-.03,fy:.05},
+];
+window.addEventListener('mousemove',e=>{
+  const cx=window.innerWidth/2,cy=window.innerHeight/2;
+  circles.forEach(c=>{
+    c.el.style.transform=`translate(${(e.clientX-cx)*c.fx}px,${(e.clientY-cy)*c.fy}px)`;
+  });
+});
+
+// INTERSECTION OBSERVER
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.1});
+document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

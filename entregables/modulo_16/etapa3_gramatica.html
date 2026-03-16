@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unità 16 · Ieri sera — Gramática</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;
+  --gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--teal:#78a6ba;--teal-dk:#5a8ea0;
+  --green:#528e74;--black:#1a1a18;--white:#ffffff;
+  --hdr:var(--teal-dk);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--black)}
+body.hide-es .es{display:none}
+
+nav{position:sticky;top:0;z-index:100;background:var(--black);padding:.7rem 2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+nav .logo{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:1.05rem;margin-right:auto}
+nav a{color:var(--gold);text-decoration:none;font-size:.88rem;font-weight:600;opacity:.8;transition:opacity .2s}
+nav a:hover{opacity:1}
+#es-toggle{background:var(--hdr);color:#fff;border:none;padding:.35rem .9rem;border-radius:2rem;font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer}
+
+.page-header{background:var(--hdr);color:#fff;padding:3rem 2rem 2.5rem;text-align:center}
+.page-header h1{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.9rem,5vw,3rem);margin-bottom:.4rem}
+.page-header p{font-size:1rem;opacity:.88;max-width:600px;margin:0 auto}
+
+.sec{padding:3.5rem 2rem;max-width:820px;margin:0 auto;border-bottom:1px solid var(--cream-dk)}
+.sec h2{font-family:'Playfair Display',serif;font-style:italic;font-size:1.8rem;color:var(--hdr);margin-bottom:.3rem}
+.sec .desc{font-size:.95rem;color:#555;margin-bottom:1.8rem;line-height:1.65}
+.it{font-style:italic;color:var(--hdr);font-weight:600}
+.es{color:#666;font-size:.9rem}
+
+.gram-table{width:100%;border-collapse:collapse;margin-top:.8rem;font-size:.93rem}
+.gram-table th,.gram-table td{padding:.65rem .85rem;border-bottom:1px solid var(--cream-dk);text-align:left}
+.gram-table th{background:var(--hdr);color:#fff;font-weight:700}
+.gram-table tr:nth-child(even){background:var(--cream-dk)}
+.gram-table .it-cell{color:var(--hdr);font-weight:700;font-style:italic}
+
+.rule-card{background:#fff;border-left:5px solid var(--hdr);border-radius:0 10px 10px 0;padding:1.1rem 1.3rem;margin:1.2rem 0;font-size:.95rem;line-height:1.65}
+.rule-card strong{color:var(--hdr)}
+
+/* AUSILIARE FULL TABLE */
+.aux-table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:.8rem}
+.aux-table th,.aux-table td{padding:.6rem .8rem;border-bottom:1px solid var(--cream-dk);text-align:left}
+.aux-table th{background:var(--hdr);color:#fff;font-weight:700}
+.aux-table tr:nth-child(even){background:var(--cream-dk)}
+.aux-table .avere-cell{color:var(--teal-dk);font-weight:700;font-style:italic}
+.aux-table .essere-cell{color:var(--red);font-weight:700;font-style:italic}
+
+/* CHE BOX */
+.che-scheme{background:#fff;border-radius:14px;padding:1.4rem;margin-top:1rem;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.che-step{display:flex;gap:.8rem;margin:.7rem 0;font-size:.93rem;line-height:1.6;align-items:flex-start}
+.che-num{background:var(--hdr);color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;margin-top:.1rem}
+.che-before{color:#999;text-decoration:line-through;font-size:.88rem}
+.che-after{color:var(--hdr);font-weight:600;font-style:italic}
+.che-label{background:var(--teal);color:#fff;border-radius:4px;padding:.05rem .4rem;font-size:.8rem;font-weight:700}
+
+/* DATA BOX */
+.data-scheme{background:#fff;border-radius:12px;padding:1.3rem;margin-top:1rem;border-left:4px solid var(--hdr)}
+.data-scheme .row{display:flex;gap:1rem;margin:.5rem 0;font-size:.93rem;align-items:center;flex-wrap:wrap}
+.data-scheme .label{font-size:.78rem;font-weight:700;color:var(--hdr);text-transform:uppercase;min-width:100px}
+.data-scheme .ex{font-style:italic}
+
+/* CONCORDANZA BOX */
+.concord-table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:.8rem}
+.concord-table th,.concord-table td{padding:.6rem .8rem;border-bottom:1px solid var(--cream-dk);text-align:center}
+.concord-table th{background:var(--hdr);color:#fff;font-weight:700}
+.concord-table .it-cell{color:var(--hdr);font-weight:700;font-style:italic}
+.concord-table .note{font-size:.8rem;color:#666}
+
+/* FONETICA */
+.fon-box{background:var(--black);color:#fff;border-radius:14px;padding:1.8rem;margin-top:1rem}
+.fon-box h4{color:var(--gold);margin-bottom:1rem;font-size:1rem}
+.fon-row{display:flex;gap:1.5rem;flex-wrap:wrap;margin:.6rem 0;align-items:center;font-size:.93rem}
+.fon-type{color:var(--gold);font-weight:700;font-size:.85rem;min-width:130px}
+.fon-ex{font-style:italic}
+
+/* PRACTICE */
+.practice-block{background:#fff;border-radius:14px;padding:1.5rem;margin:.8rem 0;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.practice-block p{font-size:.95rem;margin-bottom:1rem;line-height:1.6}
+.practice-block .item{margin:.6rem 0;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.prac-input{border:2px solid var(--cream-dk);border-radius:8px;padding:.35rem .7rem;font-family:'Outfit',sans-serif;font-size:.95rem;background:var(--cream);outline:none;transition:border-color .2s;min-width:130px}
+.prac-input:focus{border-color:var(--hdr)}
+.prac-input.ok{border-color:var(--green);background:#d4edda}
+.prac-input.err{border-color:var(--red);background:#f8d7da}
+.check-btn{background:var(--hdr);color:#fff;border:none;padding:.45rem 1.1rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:.6rem}
+.check-btn:hover{opacity:.88}
+.prac-feedback{font-size:.88rem;margin-top:.5rem;min-height:1.2em;font-weight:600}
+
+/* QUIZ */
+#quiz-section{padding:3rem 2rem;max-width:820px;margin:0 auto}
+#quiz-section h2{font-family:'Playfair Display',serif;font-style:italic;font-size:1.8rem;color:var(--hdr);margin-bottom:.4rem}
+.q-block{background:#fff;border-radius:14px;padding:1.4rem;margin:1rem 0;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.q-block p{font-size:.97rem;font-weight:600;margin-bottom:.8rem}
+.q-opts{display:flex;flex-direction:column;gap:.45rem}
+.q-opt{padding:.55rem .9rem;border-radius:8px;border:2px solid var(--cream-dk);background:var(--cream);cursor:pointer;font-size:.93rem;transition:all .2s;text-align:left}
+.q-opt:hover{border-color:var(--hdr)}
+.q-opt.selected{border-color:var(--hdr);background:rgba(90,142,160,.1)}
+.q-opt.correct{border-color:var(--green);background:#d4edda;font-weight:700}
+.q-opt.wrong{border-color:var(--red);background:#f8d7da}
+.submit-btn{background:var(--hdr);color:#fff;border:none;padding:.7rem 2rem;border-radius:2rem;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;margin-top:1rem}
+.submit-btn:hover{opacity:.88}
+#quiz-result{margin-top:1.2rem;padding:1rem 1.4rem;border-radius:10px;font-size:1rem;font-weight:700;display:none}
+footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
+</style>
+</head>
+<body class="hide-es">
+
+<nav>
+  <span class="logo">Unità 16 · Gramática</span>
+  <a href="#ausiliare">Essere/Avere</a>
+  <a href="#concordanza">Concordanza</a>
+  <a href="#che">Pron. che</a>
+  <a href="#data">La data</a>
+  <a href="#fonetica">Fonetica</a>
+  <a href="#quiz-section">Quiz</a>
+  <button id="es-toggle" onclick="toggleEs()">ES ▾</button>
+</nav>
+
+<div class="page-header">
+  <h1>Ieri sera</h1>
+  <p>Essere vs avere nel passato prossimo, concordanza del participio, pronome relativo <em>che</em>, la data, e intonazione</p>
+</div>
+
+<!-- SECTION 1: ESSERE vs AVERE -->
+<div class="sec" id="ausiliare">
+  <h2>Essere o avere? — La regola completa</h2>
+  <p class="desc">
+    En la unidad 15 viste los dos auxiliares. Ahora los sistematizamos con la regla completa.
+    <span class="es">¡Este es uno de los puntos más importantes del A1!</span>
+  </p>
+
+  <div class="rule-card">
+    📌 <strong>Regla general:</strong><br>
+    → <em><strong>AVERE</strong></em>: verbos transitivos (tienen complemento directo: <em>ho mangiato <strong>una pizza</strong></em>)<br>
+    → <em><strong>ESSERE</strong></em>: verbos de movimiento/cambio de estado + tutti i verbi riflessivi<br>
+    <span class="es">Truco: si puedes responder "<em>cosa?</em>" después del verbo → avere. Si no → essere.</span>
+  </div>
+
+  <table class="aux-table">
+    <tr>
+      <th>Con AVERE</th>
+      <th>Exemplo</th>
+      <th>Con ESSERE</th>
+      <th>Exemplo</th>
+    </tr>
+    <tr>
+      <td>mangiare</td>
+      <td class="avere-cell">ho mangiato</td>
+      <td>andare</td>
+      <td class="essere-cell">sono andato/a</td>
+    </tr>
+    <tr>
+      <td>leggere</td>
+      <td class="avere-cell">ho letto</td>
+      <td>venire</td>
+      <td class="essere-cell">sono venuto/a</td>
+    </tr>
+    <tr>
+      <td>vedere</td>
+      <td class="avere-cell">ho visto</td>
+      <td>tornare</td>
+      <td class="essere-cell">sono tornato/a</td>
+    </tr>
+    <tr>
+      <td>scrivere</td>
+      <td class="avere-cell">ho scritto</td>
+      <td>partire</td>
+      <td class="essere-cell">sono partito/a</td>
+    </tr>
+    <tr>
+      <td>fare</td>
+      <td class="avere-cell">ho fatto</td>
+      <td>uscire</td>
+      <td class="essere-cell">sono uscito/a</td>
+    </tr>
+    <tr>
+      <td>dire</td>
+      <td class="avere-cell">ho detto</td>
+      <td>essere</td>
+      <td class="essere-cell">sono stato/a</td>
+    </tr>
+    <tr>
+      <td>prendere</td>
+      <td class="avere-cell">ho preso</td>
+      <td>arrivare</td>
+      <td class="essere-cell">sono arrivato/a</td>
+    </tr>
+    <tr>
+      <td>ascoltare</td>
+      <td class="avere-cell">ho ascoltato</td>
+      <td>svegliarsi (rifless.)</td>
+      <td class="essere-cell">mi sono svegliato/a</td>
+    </tr>
+  </table>
+
+  <div class="practice-block" id="prac1">
+    <p><strong>Pratica 1</strong> — Scrivi il passato prossimo completo (ausiliare + participio).</p>
+    <div class="item"><span>1.</span> io / vedere → <input class="prac-input" data-ans="ho visto" placeholder="... visto"></div>
+    <div class="item"><span>2.</span> lei / partire → <input class="prac-input" data-ans="è partita" placeholder="... partita"></div>
+    <div class="item"><span>3.</span> loro / fare → <input class="prac-input" data-ans="hanno fatto" placeholder="... fatto"></div>
+    <div class="item"><span>4.</span> noi / uscire → <input class="prac-input" data-ans="siamo usciti" placeholder="... usciti"></div>
+    <button class="check-btn" onclick="checkPrac('prac1')">Controlla ✓</button>
+    <div class="prac-feedback" id="prac1-fb"></div>
+  </div>
+</div>
+
+<!-- SECTION 2: CONCORDANZA DEL PARTICIPIO -->
+<div class="sec" id="concordanza">
+  <h2>La concordanza del participio con essere</h2>
+  <p class="desc">
+    Con el auxiliar <em>essere</em>, el participio passato funciona como un adjetivo: concuerda en género y número con el sujeto.
+    <span class="es">¡Es como decir en español "él fue ido" vs "ella fue ida"!</span>
+  </p>
+
+  <table class="concord-table">
+    <tr>
+      <th>Soggetto</th>
+      <th>Genere/Numero</th>
+      <th>Passato prossimo</th>
+      <th>Nota</th>
+    </tr>
+    <tr>
+      <td>Marco (lui)</td>
+      <td>masc. sing.</td>
+      <td class="it-cell">è andato</td>
+      <td class="note">-o finale</td>
+    </tr>
+    <tr>
+      <td>Sofia (lei)</td>
+      <td>fem. sing.</td>
+      <td class="it-cell">è andata</td>
+      <td class="note">-a finale</td>
+    </tr>
+    <tr>
+      <td>Marco e Luca</td>
+      <td>masc. plur.</td>
+      <td class="it-cell">sono andati</td>
+      <td class="note">-i finale</td>
+    </tr>
+    <tr>
+      <td>Sofia e Anna</td>
+      <td>fem. plur.</td>
+      <td class="it-cell">sono andate</td>
+      <td class="note">-e finale</td>
+    </tr>
+    <tr>
+      <td>Marco e Sofia</td>
+      <td>misto (masc.)</td>
+      <td class="it-cell">sono andati</td>
+      <td class="note">misto → masc. plur.</td>
+    </tr>
+    <tr>
+      <td>io (masch.)</td>
+      <td>masc. sing.</td>
+      <td class="it-cell">sono andato</td>
+      <td class="note"></td>
+    </tr>
+    <tr>
+      <td>io (femm.)</td>
+      <td>fem. sing.</td>
+      <td class="it-cell">sono andata</td>
+      <td class="note"></td>
+    </tr>
+  </table>
+
+  <div class="rule-card" style="margin-top:1.2rem">
+    ⚠️ <strong>Con avere</strong>, el participio NO concuerda con el sujeto (permanece invariable):<br>
+    <em>Marco <strong>ha mangiato</strong>. / Sofia <strong>ha mangiato</strong>. / Marco e Sofia <strong>hanno mangiato</strong>.</em><br>
+    <span class="es">¡Todos iguales! Solo cambia el auxiliar.</span>
+  </div>
+
+  <div class="practice-block" id="prac2">
+    <p><strong>Pratica 2</strong> — Scegli la forma corretta del participio.</p>
+    <div class="item"><span>1.</span> Anna (partire) → Anna _____ <input class="prac-input" data-ans="è partita" placeholder="... partita/o"></div>
+    <div class="item"><span>2.</span> Marco e Luca (venire) → _____ <input class="prac-input" data-ans="sono venuti" placeholder="... venuti/e"></div>
+    <div class="item"><span>3.</span> Io (f.) (tornare) → _____ <input class="prac-input" data-ans="sono tornata" placeholder="... tornato/a"></div>
+    <div class="item"><span>4.</span> Loro (f.) (arrivare) → _____ <input class="prac-input" data-ans="sono arrivate" placeholder="... arrivati/e"></div>
+    <button class="check-btn" onclick="checkPrac('prac2')">Controlla ✓</button>
+    <div class="prac-feedback" id="prac2-fb"></div>
+  </div>
+</div>
+
+<!-- SECTION 3: PRONOME RELATIVO CHE -->
+<div class="sec" id="che">
+  <h2>Il pronome relativo "che"</h2>
+  <p class="desc">
+    <span class="it">Che</span> sustituye a un sustantivo ya mencionado para conectar dos oraciones, evitando repetición.
+    <span class="es">Es invariable — no cambia según género ni número.</span>
+  </p>
+
+  <div class="che-scheme">
+    <h4>Come si costruisce:</h4>
+    <div class="che-step">
+      <span class="che-num">1</span>
+      <div>
+        <div>Frase 1: <em>Ho visto uno spettacolo.</em></div>
+        <div>Frase 2: <em>Lo spettacolo era bellissimo.</em></div>
+        <div style="margin-top:.3rem">→ <em>Ho visto uno spettacolo <span class="che-label">che</span> era bellissimo.</em></div>
+      </div>
+    </div>
+    <div class="che-step">
+      <span class="che-num">2</span>
+      <div>
+        <div>Frase 1: <em>Conosco una ragazza.</em></div>
+        <div>Frase 2: <em>La ragazza studia italiano.</em></div>
+        <div style="margin-top:.3rem">→ <em>Conosco una ragazza <span class="che-label">che</span> studia italiano.</em></div>
+      </div>
+    </div>
+    <div class="che-step">
+      <span class="che-num">3</span>
+      <div>
+        <div>Frase 1: <em>Ho letto un libro.</em></div>
+        <div>Frase 2: <em>Il libro mi è piaciuto molto.</em></div>
+        <div style="margin-top:.3rem">→ <em>Ho letto un libro <span class="che-label">che</span> mi è piaciuto molto.</em></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule-card" style="margin-top:1.2rem">
+    💡 <strong>Che</strong> è invariabile:<br>
+    <em>Il film <strong>che</strong> ho visto / La musica <strong>che</strong> mi piace / I libri <strong>che</strong> leggo / Le persone <strong>che</strong> conosco</em><br>
+    <span class="es">Siempre es <em>che</em>, sin importar si lo que sustituye es masculino/femenino, singular/plural.</span>
+  </div>
+
+  <div class="practice-block" id="prac3">
+    <p><strong>Pratica 3</strong> — Unisci le due frasi con il pronome relativo "che".</p>
+    <div class="item" style="flex-direction:column;align-items:flex-start">
+      <span>1. Ho visto un film. Il film era stupendo. →</span>
+      <input class="prac-input" data-ans="ho visto un film che era stupendo" placeholder="Ho visto un film che..." style="width:100%;margin-top:.3rem">
+    </div>
+    <div class="item" style="flex-direction:column;align-items:flex-start">
+      <span>2. Conosco un ristorante. Il ristorante fa ottime pizze. →</span>
+      <input class="prac-input" data-ans="conosco un ristorante che fa ottime pizze" placeholder="Conosco un ristorante che..." style="width:100%;margin-top:.3rem">
+    </div>
+    <button class="check-btn" onclick="checkPrac('prac3')">Controlla ✓</button>
+    <div class="prac-feedback" id="prac3-fb"></div>
+  </div>
+</div>
+
+<!-- SECTION 4: LA DATA -->
+<div class="sec" id="data">
+  <h2>La data — come si chiede e si dice</h2>
+  <p class="desc">
+    Pedir y decir la fecha es esencial para concordar citas y hablar del pasado.
+    <span class="es">¡En italiano el orden es: día de la semana + número + mes + año!</span>
+  </p>
+
+  <div class="data-scheme">
+    <div class="row">
+      <span class="label">¿Cómo preguntar?</span>
+      <span class="ex"><em>Che giorno è oggi? / Quanti ne abbiamo oggi? / Qual è la data di oggi?</em></span>
+    </div>
+    <div class="row">
+      <span class="label">¿Cómo responder?</span>
+      <span class="ex"><em>Oggi è (giovedì) 15 marzo 2026.</em></span>
+    </div>
+    <div class="row">
+      <span class="label">Estructura</span>
+      <span class="ex"><em>[giorno della settimana,] numero + mese + anno</em></span>
+    </div>
+    <div class="row">
+      <span class="label">Il primo</span>
+      <span class="ex"><em>Il primo maggio / L'uno maggio ✗ — sempre <strong>il primo</strong>!</em></span>
+    </div>
+    <div class="row">
+      <span class="label">Senza articolo</span>
+      <span class="ex"><em>"Il 15 marzo" oppure "15 marzo" (senza articolo per scrivere)</em></span>
+    </div>
+  </div>
+
+  <table class="gram-table" style="margin-top:1.2rem">
+    <tr>
+      <th>Mese</th>
+      <th>Mese</th>
+      <th>Mese</th>
+    </tr>
+    <tr>
+      <td class="it-cell">gennaio</td>
+      <td class="it-cell">maggio</td>
+      <td class="it-cell">settembre</td>
+    </tr>
+    <tr>
+      <td class="it-cell">febbraio</td>
+      <td class="it-cell">giugno</td>
+      <td class="it-cell">ottobre</td>
+    </tr>
+    <tr>
+      <td class="it-cell">marzo</td>
+      <td class="it-cell">luglio</td>
+      <td class="it-cell">novembre</td>
+    </tr>
+    <tr>
+      <td class="it-cell">aprile</td>
+      <td class="it-cell">agosto</td>
+      <td class="it-cell">dicembre</td>
+    </tr>
+  </table>
+
+  <div class="practice-block" id="prac4">
+    <p><strong>Pratica 4</strong> — Scrivi la data completa in italiano.</p>
+    <div class="item"><span>1.</span> 1° gennaio → <em>il</em> <input class="prac-input" data-ans="primo gennaio" placeholder="..."></div>
+    <div class="item"><span>2.</span> 25 dicembre → <em>il</em> <input class="prac-input" data-ans="venticinque dicembre" placeholder="..."></div>
+    <div class="item"><span>3.</span> "¿Qué día es hoy?" → <input class="prac-input" data-ans="che giorno è oggi" placeholder="..."></div>
+    <button class="check-btn" onclick="checkPrac('prac4')">Controlla ✓</button>
+    <div class="prac-feedback" id="prac4-fb"></div>
+  </div>
+</div>
+
+<!-- SECTION 5: FONETICA -->
+<div class="sec" id="fonetica">
+  <h2>Fonetica — l'accento e l'intonazione</h2>
+  <p class="desc">
+    La entonación italiana es expressiva y musical. Cada tipo de oración tiene su propia curva melódica.
+    <span class="es">¡Practica leyendo en voz alta y exagerando un poco!</span>
+  </p>
+  <div class="fon-box">
+    <h4>🎵 Tre tipi di frase — tre melodie:</h4>
+    <div class="fon-row">
+      <span class="fon-type">Dichiarativa ↘</span>
+      <span class="fon-ex">"Ieri sera sono andato a teatro." <em style="opacity:.5">↘ baja al final</em></span>
+    </div>
+    <div class="fon-row">
+      <span class="fon-type">Interrogativa ↗</span>
+      <span class="fon-ex">"Sei andato a teatro ieri sera?" <em style="opacity:.5">↗ sube al final</em></span>
+    </div>
+    <div class="fon-row">
+      <span class="fon-type">Esclamativa ↑↗↘</span>
+      <span class="fon-ex">"È stato FANTASTICO!" <em style="opacity:.5">pico de énfasis</em></span>
+    </div>
+    <div class="fon-row">
+      <span class="fon-type">Proposta ↗ final</span>
+      <span class="fon-ex">"Ti va di venire al cinema?" <em style="opacity:.5">↗ en la última palabra</em></span>
+    </div>
+    <p style="font-size:.85rem;opacity:.7;margin-top:1rem">
+      💡 <span class="es">El acento de énfasis cae sobre la información nueva: <em>"È STATA lei!" / "Ho fatto IO tutto!"</em></span>
+    </p>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz-section">
+  <h2>Quiz finale — Unità 16</h2>
+  <p style="font-size:.9rem;color:#555;margin-bottom:1.2rem">5 domande. Scegli la risposta corretta. Unità finale del livello A1!</p>
+
+  <div class="q-block" id="q1">
+    <p>1. "Marco _____ a Milano ieri." (andare)</p>
+    <div class="q-opts">
+      <button class="q-opt" onclick="selectOpt(this,'q1','a')">a) ha andato</button>
+      <button class="q-opt" onclick="selectOpt(this,'q1','b')">b) è andato</button>
+      <button class="q-opt" onclick="selectOpt(this,'q1','c')">c) è andata</button>
+    </div>
+  </div>
+
+  <div class="q-block" id="q2">
+    <p>2. "Sofia e Anna _____ a casa tardi." (tornare)</p>
+    <div class="q-opts">
+      <button class="q-opt" onclick="selectOpt(this,'q2','a')">a) sono tornati</button>
+      <button class="q-opt" onclick="selectOpt(this,'q2','b')">b) sono tornate</button>
+      <button class="q-opt" onclick="selectOpt(this,'q2','c')">c) hanno tornate</button>
+    </div>
+  </div>
+
+  <div class="q-block" id="q3">
+    <p>3. "Ho letto un libro _____ era molto bello."</p>
+    <div class="q-opts">
+      <button class="q-opt" onclick="selectOpt(this,'q3','a')">a) chi</button>
+      <button class="q-opt" onclick="selectOpt(this,'q3','b')">b) quello</button>
+      <button class="q-opt" onclick="selectOpt(this,'q3','c')">c) che</button>
+    </div>
+  </div>
+
+  <div class="q-block" id="q4">
+    <p>4. Come si dice "el 1° de mayo" in italiano?</p>
+    <div class="q-opts">
+      <button class="q-opt" onclick="selectOpt(this,'q4','a')">a) il uno maggio</button>
+      <button class="q-opt" onclick="selectOpt(this,'q4','b')">b) il primo maggio</button>
+      <button class="q-opt" onclick="selectOpt(this,'q4','c')">c) l'uno di maggio</button>
+    </div>
+  </div>
+
+  <div class="q-block" id="q5">
+    <p>5. "_____ hai letto?" (che cosa) — ¿Cuál pregunta por el complemento directo?</p>
+    <div class="q-opts">
+      <button class="q-opt" onclick="selectOpt(this,'q5','a')">a) Chi</button>
+      <button class="q-opt" onclick="selectOpt(this,'q5','b')">b) Cosa</button>
+      <button class="q-opt" onclick="selectOpt(this,'q5','c')">c) Come</button>
+    </div>
+  </div>
+
+  <button class="submit-btn" onclick="submitQuiz()">Invia il quiz →</button>
+  <div id="quiz-result"></div>
+</div>
+
+<!-- FINALE BLOCK -->
+<div style="background:var(--hdr);color:#fff;text-align:center;padding:3rem 2rem;margin-top:2rem">
+  <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:2rem;margin-bottom:.8rem">Complimenti! 🎉</div>
+  <p style="font-size:1rem;opacity:.9;max-width:560px;margin:0 auto;line-height:1.7">
+    Hai completato il livello A1 di <em>Italiano Per Piacere</em>.<br>
+    Ora puoi presentarti, chiedere informazioni, raccontare il tuo passato, esprimere preferenze e concordare appuntamenti.<br>
+    <em>Benvenuto/a nel mondo della lingua italiana!</em>
+  </p>
+</div>
+
+<footer>Italiano Per Piacere · Unità 16 · Etapa 3 — Gramática · Fine livello A1</footer>
+
+<script>
+const ANSWERS={q1:'b',q2:'b',q3:'c',q4:'b',q5:'b'};
+const selected={};
+function toggleEs(){
+  document.body.classList.toggle('hide-es');
+  document.getElementById('es-toggle').textContent=document.body.classList.contains('hide-es')? 'ES ▾':'ES ▴';
+}
+function checkPrac(id){
+  const block=document.getElementById(id);
+  const inputs=block.querySelectorAll('.prac-input');
+  let ok=0,tot=inputs.length;
+  inputs.forEach(inp=>{
+    const ans=inp.dataset.ans.toLowerCase().trim();
+    const val=inp.value.toLowerCase().trim();
+    inp.classList.remove('ok','err');
+    if(val===ans){inp.classList.add('ok');ok++;}else{inp.classList.add('err');}
+  });
+  const fb=document.getElementById(id+'-fb');
+  if(ok===tot){fb.innerHTML='<span style="color:var(--green)">✅ Perfetto!</span>';}
+  else{fb.innerHTML=`<span style="color:var(--red)">❌ ${ok}/${tot} corretti. Riprova.</span>`;}
+}
+function selectOpt(el,qid,opt){
+  document.querySelectorAll(`#${qid} .q-opt`).forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');selected[qid]=opt;
+}
+function submitQuiz(){
+  let score=0;
+  Object.keys(ANSWERS).forEach(qid=>{
+    const opts=document.querySelectorAll(`#${qid} .q-opt`);
+    opts.forEach(b=>{
+      const o=b.getAttribute('onclick').match(/'([a-c])'\)$/)[1];
+      if(o===ANSWERS[qid])b.classList.add('correct');
+      else if(selected[qid]===o)b.classList.add('wrong');
+    });
+    if(selected[qid]===ANSWERS[qid])score++;
+  });
+  const res=document.getElementById('quiz-result');res.style.display='block';
+  if(score===5){res.style.background='#d4edda';res.style.color='#155724';res.textContent=`🎉 Perfetto! ${score}/5 — Livello A1 completato con successo!`;}
+  else if(score>=3){res.style.background='#fff3cd';res.style.color='#856404';res.textContent=`👍 Bene! ${score}/5 — Quasi perfetto!`;}
+  else{res.style.background='#f8d7da';res.style.color='#721c24';res.textContent=`💪 ${score}/5 — Ripassate e riprovate!`;}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modulo 8 · Grammatica — Bene, grazie, e Lei?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;
+  --red:#cc4736;--teal:#78a6ba;--green:#528e74;--black:#1a1a18;--white:#ffffff;
+  --hdr:var(--teal);--r:8px;
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6}
+/* Translations HIDDEN by default in phase 2 */
+body:not(.show-es) .es{display:none!important}
+.es{font-size:.82rem;color:#666;font-style:italic;display:block;margin-top:.2rem}
+nav{position:sticky;top:0;z-index:100;background:var(--black);display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{color:var(--gold);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.75rem 1.1rem;white-space:nowrap;transition:background .2s}
+nav a:hover{background:rgba(255,255,255,.1)}
+nav a.active{background:var(--teal);color:var(--white)}
+.page-header{background:var(--teal);color:var(--white);padding:3rem 1.5rem 2.5rem;text-align:center;position:relative}
+.page-header .badge{display:inline-block;background:rgba(255,255,255,.2);border-radius:20px;padding:.25rem .85rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.85rem}
+.page-header h1{font-family:var(--fh);font-style:italic;font-size:2.4rem;margin-bottom:.5rem}
+.page-header p{opacity:.9;font-size:1.05rem}
+.toggle-btn{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:var(--white);border-radius:var(--r);padding:.45rem .9rem;font-family:var(--fb);font-size:.78rem;font-weight:600;cursor:pointer;transition:background .2s}
+.toggle-btn:hover{background:rgba(255,255,255,.35)}
+main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem}
+section{margin-bottom:3rem}
+.section-title{font-family:var(--fh);font-style:italic;font-size:1.6rem;color:var(--teal);margin-bottom:1.25rem;padding-bottom:.4rem;border-bottom:2px solid var(--cream-dk)}
+.section-intro{margin-bottom:1.1rem;font-size:.97rem}
+.gram-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
+.gram-table th{background:var(--teal);color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
+.gram-table td{padding:.5rem .75rem;border-bottom:1px solid var(--cream-dk)}
+.gram-table tr:nth-child(even) td{background:rgba(0,0,0,.03)}
+.pron{color:var(--teal);font-weight:700;min-width:70px;display:inline-block}
+.form{font-weight:600;color:var(--teal)}
+.example-box{background:var(--white);border-left:4px solid var(--teal);border-radius:0 var(--r) var(--r) 0;padding:.75rem 1rem;margin:.6rem 0;font-size:.95rem}
+.example-box .it{font-weight:600}
+.example-box .tr-small{font-size:.82rem;color:#777;font-style:italic}
+.inline-prac{background:var(--cream-dk);border-radius:var(--r);padding:1.1rem 1.25rem;margin-top:1.25rem}
+.inline-prac h4{font-family:var(--fh);font-style:italic;color:var(--teal);margin-bottom:.85rem;font-size:1.1rem}
+.prac-item{margin-bottom:.65rem;font-size:.95rem;display:flex;align-items:center;flex-wrap:wrap;gap:.4rem}
+.prac-input{border:1.5px solid var(--cream-dk);border-radius:6px;padding:.3rem .55rem;font-family:var(--fb);font-size:.92rem;background:var(--white);width:120px;transition:border .2s}
+.prac-input:focus{outline:none;border-color:var(--teal)}
+.prac-item.correct .prac-input{border-color:var(--green);background:rgba(82,142,116,.1)}
+.prac-item.wrong .prac-input{border-color:var(--red);background:rgba(204,71,54,.08)}
+.prac-fb{font-size:.8rem;margin-left:.3rem}
+.prac-item.correct .prac-fb{color:var(--green)}
+.prac-item.wrong .prac-fb{color:var(--red)}
+.btn{border:none;border-radius:var(--r);padding:.5rem 1.1rem;font-family:var(--fb);font-size:.87rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--teal);color:var(--white)}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-ghost{background:transparent;border:1.5px solid var(--teal);color:var(--teal)}
+.btn-ghost:hover{background:var(--teal);color:var(--white)}
+.quiz-wrap{background:var(--white);border-radius:var(--r);padding:1.5rem;border:1px solid var(--cream-dk)}
+.quiz-q{margin-bottom:1.5rem}
+.quiz-q p{font-weight:600;margin-bottom:.7rem;font-size:.97rem}
+.quiz-opts{display:flex;flex-direction:column;gap:.45rem}
+.quiz-opt{background:var(--cream);border-radius:6px;padding:.6rem .9rem;cursor:pointer;font-size:.92rem;border:1.5px solid transparent;transition:all .2s}
+.quiz-opt:hover{border-color:var(--teal)}
+.quiz-opt.correct{background:rgba(82,142,116,.15);border-color:var(--green);color:var(--green)}
+.quiz-opt.wrong{background:rgba(204,71,54,.1);border-color:var(--red);color:var(--red)}
+.quiz-result{text-align:center;padding:1.25rem;font-size:1.1rem;font-weight:600;border-radius:var(--r);margin-top:1rem;display:none}
+.quiz-result.show{display:block}
+.quiz-result.good{background:rgba(82,142,116,.15);color:var(--green)}
+.quiz-result.ok{background:rgba(239,207,127,.3);color:#7a5e00}
+.quiz-result.try{background:rgba(204,71,54,.1);color:var(--red)}
+.rule-box{background:rgba(120,166,186,.1);border:1px solid rgba(120,166,186,.3);border-radius:var(--r);padding:.85rem 1.1rem;margin:.8rem 0;font-size:.93rem}
+.rule-box strong{color:var(--teal)}
+footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px solid var(--cream-dk)}
+/* modal verbs side by side */
+.modal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1rem 0}
+.modal-block{background:var(--white);border-radius:var(--r);padding:.85rem;border:1px solid var(--cream-dk);border-top:3px solid var(--teal)}
+.modal-block h5{color:var(--teal);font-weight:700;margin-bottom:.6rem;font-size:.93rem}
+.modal-row{display:flex;justify-content:space-between;font-size:.9rem;padding:.2rem 0;border-bottom:1px solid var(--cream-dk)}
+.modal-row:last-child{border-bottom:none}
+/* formal vs informal */
+.compare-table{width:100%;border-collapse:collapse;margin:1rem 0}
+.compare-table th{background:var(--teal);color:var(--white);padding:.55rem .75rem;text-align:left}
+.compare-table td{padding:.5rem .75rem;border-bottom:1px solid var(--cream-dk);font-size:.92rem}
+.compare-table .tu-col{background:rgba(82,142,116,.06)}
+.compare-table .lei-col{background:rgba(120,166,186,.1)}
+/* days grid */
+.days-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.5rem;margin:1rem 0;text-align:center}
+.day-cell{background:var(--white);border-radius:var(--r);padding:.6rem .3rem;border:1px solid var(--cream-dk)}
+.day-cell .it{font-weight:700;font-size:.85rem;color:var(--teal)}
+.day-cell .es{font-size:.72rem;color:#999;font-style:normal;display:block;margin-top:.15rem}
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="#modali" class="active">Modali</a>
+  <a href="#preposizioni">Preposizioni</a>
+  <a href="#formale">Formale</a>
+  <a href="#giorni">Giorni</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<header class="page-header">
+  <button class="toggle-btn" id="toggleEs" onclick="toggleEs()">Mostra traduzioni</button>
+  <div class="badge">Modulo 8 · Grammatica</div>
+  <h1>Bene, grazie, e Lei?</h1>
+  <p>Verbi modali, preposizioni di luogo e registro formale</p>
+</header>
+
+<main>
+
+<!-- SECTION 1: MODALI -->
+<section id="modali">
+  <h2 class="section-title">1. Verbi modali — dovere / potere / volere</h2>
+  <p class="section-intro">I verbi modali si usano davanti a un infinito. Sono tutti irregolari.
+    <span class="es">Los verbos modales se usan antes de un infinitivo para expresar obligación, posibilidad o deseo.</span>
+  </p>
+
+  <div class="modal-grid">
+    <div class="modal-block">
+      <h5>dovere — deber / tener que</h5>
+      <div class="modal-row"><span class="pron">io</span><span class="form">devo</span></div>
+      <div class="modal-row"><span class="pron">tu</span><span class="form">devi</span></div>
+      <div class="modal-row"><span class="pron">lui/lei</span><span class="form">deve</span></div>
+      <div class="modal-row"><span class="pron">noi</span><span class="form">dobbiamo</span></div>
+      <div class="modal-row"><span class="pron">voi</span><span class="form">dovete</span></div>
+      <div class="modal-row"><span class="pron">loro</span><span class="form">devono</span></div>
+    </div>
+    <div class="modal-block">
+      <h5>potere — poder</h5>
+      <div class="modal-row"><span class="pron">io</span><span class="form">posso</span></div>
+      <div class="modal-row"><span class="pron">tu</span><span class="form">puoi</span></div>
+      <div class="modal-row"><span class="pron">lui/lei</span><span class="form">può</span></div>
+      <div class="modal-row"><span class="pron">noi</span><span class="form">possiamo</span></div>
+      <div class="modal-row"><span class="pron">voi</span><span class="form">potete</span></div>
+      <div class="modal-row"><span class="pron">loro</span><span class="form">possono</span></div>
+    </div>
+    <div class="modal-block">
+      <h5>volere — querer</h5>
+      <div class="modal-row"><span class="pron">io</span><span class="form">voglio</span></div>
+      <div class="modal-row"><span class="pron">tu</span><span class="form">vuoi</span></div>
+      <div class="modal-row"><span class="pron">lui/lei</span><span class="form">vuole</span></div>
+      <div class="modal-row"><span class="pron">noi</span><span class="form">vogliamo</span></div>
+      <div class="modal-row"><span class="pron">voi</span><span class="form">volete</span></div>
+      <div class="modal-row"><span class="pron">loro</span><span class="form">vogliono</span></div>
+    </div>
+  </div>
+
+  <div class="rule-box">
+    <strong>Struttura:</strong> verbo modale + infinito → <em>Devo lavorare. / Puoi aiutarmi? / Voglio un caffè.</em>
+    <span class="es">El verbo modal va conjugado y el segundo verbo siempre en infinitivo.</span>
+  </div>
+
+  <div class="example-box"><span class="it">Devo lavorare domani — non posso uscire.</span><span class="tr-small">Tengo que trabajar mañana — no puedo salir.</span></div>
+  <div class="example-box"><span class="it">Vuoi venire al cinema stasera?</span><span class="tr-small">¿Quieres venir al cine esta noche?</span></div>
+
+  <div class="inline-prac">
+    <h4>Pratica — Completa con il modale giusto</h4>
+    <div id="prac1">
+      <div class="prac-item" data-ans="posso">Non ___ venire, mi dispiace. (potere/io) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="dobbiamo">___ studiare stasera. (dovere/noi) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="vogliono">Loro ___ una pizza. (volere) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="puoi">___ aprire la finestra? (potere/tu) <input class="prac-input" placeholder="..."></div>
+    </div>
+    <div style="margin-top:.85rem;display:flex;gap:.75rem">
+      <button class="btn btn-primary" onclick="checkPrac('prac1')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac1')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: PREPOSIZIONI -->
+<section id="preposizioni">
+  <h2 class="section-title">2. Preposizioni di luogo — da / a / in</h2>
+  <p class="section-intro">Tre preposizioni molto usate per indicare il luogo.
+    <span class="es">Tres preposiciones de lugar con usos específicos que hay que memorizar:</span>
+  </p>
+
+  <table class="gram-table">
+    <thead><tr><th>Preposizione</th><th>Uso principale</th><th>Esempio</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="form">A</span></td>
+        <td>Città / luoghi specifici<br><span class="es">Ciudades y lugares con nombre propio</span></td>
+        <td>Vado <strong>a</strong> Roma. Sono <strong>a</strong> casa.</td>
+      </tr>
+      <tr>
+        <td><span class="form">IN</span></td>
+        <td>Nazioni / regioni / ambienti<br><span class="es">Países, regiones, espacios interiores</span></td>
+        <td>Vivo <strong>in</strong> Italia. Lavoro <strong>in</strong> ufficio.</td>
+      </tr>
+      <tr>
+        <td><span class="form">DA</span></td>
+        <td>Provenienza / "da + persona"<br><span class="es">Origen, o "en casa/local de alguien"</span></td>
+        <td>Vengo <strong>da</strong> Madrid. Vado <strong>dal</strong> medico.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="rule-box">
+    <strong>DA + articolo:</strong> da + il = <em>dal</em>, da + la = <em>dalla</em>, da + l' = <em>dall'</em>, da + lo = <em>dallo</em>, da + i = <em>dai</em>, da + le = <em>dalle</em>
+    <span class="es">Cuando "da" precede a un artículo, se fusionan. Esto se llama "preposizione articolata".</span>
+  </div>
+
+  <div class="example-box"><span class="it">Vado dal dottore alle tre.</span><span class="tr-small">Voy al médico a las tres.</span></div>
+  <div class="example-box"><span class="it">Sono a Milano ma lavoro in Germania.</span><span class="tr-small">Estoy en Milán pero trabajo en Alemania.</span></div>
+</section>
+
+<!-- SECTION 3: FORMALE -->
+<section id="formale">
+  <h2 class="section-title">3. Formale vs Informale — Lei e tu</h2>
+  <p class="section-intro">In italiano esistono due registri: informale (tu) e formale (Lei — con la maiuscola).
+    <span class="es">El registro formal usa "Lei" (ella) para referirse a la persona, por eso el verbo va en 3ª persona singular.</span>
+  </p>
+
+  <table class="compare-table">
+    <thead>
+      <tr><th>Situazione</th><th class="tu-col">Informale — TU</th><th class="lei-col">Formale — LEI</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Saluto</td><td class="tu-col">Ciao! Come stai?</td><td class="lei-col">Buongiorno! Come sta?</td></tr>
+      <tr><td>Nome</td><td class="tu-col">Come ti chiami?</td><td class="lei-col">Come si chiama?</td></tr>
+      <tr><td>Provenienza</td><td class="tu-col">Di dove sei?</td><td class="lei-col">Di dov'è?</td></tr>
+      <tr><td>Lavoro</td><td class="tu-col">Che lavoro fai?</td><td class="lei-col">Che lavoro fa?</td></tr>
+      <tr><td>Modale</td><td class="tu-col">Puoi aspettare?</td><td class="lei-col">Può aspettare?</td></tr>
+      <tr><td>Pronome</td><td class="tu-col">Ti presento Marco.</td><td class="lei-col">Le presento Marco.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-box">
+    <strong>Quando usare il LEI formale:</strong> con persone che non conosci, clienti, dottori, professori, persone più anziane, contesti professionali.
+    <span class="es">Usa "tu" con amigos, familia, compañeros de la misma edad. Usa "Lei" en contextos profesionales o con desconocidos adultos.</span>
+  </div>
+</section>
+
+<!-- SECTION 4: GIORNI -->
+<section id="giorni">
+  <h2 class="section-title">4. I giorni della settimana</h2>
+  <p class="section-intro">I giorni della settimana in italiano sono quasi tutti maschili.
+    <span class="es">Los días de la semana son masculinos excepto "domenica" que es femenino.</span>
+  </p>
+
+  <div class="days-grid">
+    <div class="day-cell"><div class="it">lunedì</div><div class="es">lunes</div></div>
+    <div class="day-cell"><div class="it">martedì</div><div class="es">martes</div></div>
+    <div class="day-cell"><div class="it">mercoledì</div><div class="es">miércoles</div></div>
+    <div class="day-cell"><div class="it">giovedì</div><div class="es">jueves</div></div>
+    <div class="day-cell"><div class="it">venerdì</div><div class="es">viernes</div></div>
+    <div class="day-cell"><div class="it">sabato</div><div class="es">sábado</div></div>
+    <div class="day-cell"><div class="it">domenica</div><div class="es">domingo</div></div>
+  </div>
+
+  <table class="gram-table">
+    <thead><tr><th>Uso</th><th>Esempio</th><th class="es">Significado</th></tr></thead>
+    <tbody>
+      <tr><td>Azione specifica</td><td>Lunedì vado dal medico.</td><td class="es">El lunes (próximo) voy al médico.</td></tr>
+      <tr><td>Azione abituale</td><td>Il lunedì vado in palestra.</td><td class="es">Los lunes (siempre) voy al gimnasio.</td></tr>
+      <tr><td>Sempre con art.</td><td>La domenica resto a casa.</td><td class="es">Los domingos me quedo en casa.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-box">
+    <strong>Regola:</strong> <em>lunedì</em> (senza articolo) = azione specifica · <em>il lunedì</em> (con articolo) = azione abituale.
+    <br>La domenica prende sempre l'articolo per uso abituale.
+    <span class="es">El artículo antes del día indica hábito. Sin artículo indica un día concreto.</span>
+  </div>
+
+  <div class="inline-prac">
+    <h4>Pratica — Formale o informale?</h4>
+    <div id="prac2">
+      <div class="prac-item" data-ans="sta">Scusi, come ___ (Lei)? <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="stai">Ciao Marco, come ___? <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="può">Signora, ___ aspettare? (potere/Lei) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="puoi">Paolo, ___ aiutarmi? (potere/tu) <input class="prac-input" placeholder="..."></div>
+    </div>
+    <div style="margin-top:.85rem;display:flex;gap:.75rem">
+      <button class="btn btn-primary" onclick="checkPrac('prac2')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac2')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <h2 class="section-title">Quiz — Verifica le tue conoscenze</h2>
+  <div class="quiz-wrap">
+    <div class="quiz-q" id="q1">
+      <p>1. "Io non ___ venire domani." — Qual è la forma corretta di POTERE?</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','a')">può</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','b')">posso</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','c')">puoi</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <p>2. "Abito ___ Milano, ___ Italia." — Preposizioni corrette:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','a')">in / a</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','b')">a / in</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','c')">da / in</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <p>3. In un ufficio con un cliente dici:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','a')">Ciao! Come stai?</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','b')">Buongiorno! Come sta?</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','c')">Ehi! Tutto bene?</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <p>4. "Il venerdì vado in palestra" significa:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','a')">Este viernes voy al gimnasio (una vez)</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','b')">Los viernes voy al gimnasio (siempre)</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','c')">El pasado viernes fui al gimnasio</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <p>5. "Loro ___ lavorare fino alle otto." — DOVERE para "loro":</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','a')">devono</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','b')">dobbiamo</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','c')">devo</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:1.25rem">
+      <button class="btn btn-primary" onclick="submitQuiz()">Controlla le risposte</button>
+    </div>
+    <div class="quiz-result" id="quiz-result"></div>
+  </div>
+</section>
+</main>
+
+<footer><p>Italiano Per Piacere · Modulo 8 · <em>Bene, grazie, e Lei?</em></p></footer>
+
+<script>
+// Phase 2: translations hidden by default
+let esVisible=false;
+function toggleEs(){esVisible=!esVisible;document.body.classList.toggle('show-es',esVisible);document.getElementById('toggleEs').textContent=esVisible?'Nascondi traduzioni':'Mostra traduzioni';}
+const secs=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('nav a');
+window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)c=s.id});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)});});
+function checkPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{const inp=item.querySelector('.prac-input');const ans=item.dataset.ans;const val=inp.value.trim().toLowerCase();item.classList.remove('correct','wrong');let fb=item.querySelector('.prac-fb');if(!fb){fb=document.createElement('span');fb.className='prac-fb';item.appendChild(fb);}if(val===ans){item.classList.add('correct');fb.textContent='✓';}else{item.classList.add('wrong');fb.textContent='✗ '+ans;}});}
+function resetPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{item.classList.remove('correct','wrong');item.querySelector('.prac-input').value='';const fb=item.querySelector('.prac-fb');if(fb)fb.textContent='';});}
+const answers={q1:'b',q2:'b',q3:'b',q4:'b',q5:'a'};
+let selected={};
+function selectOpt(el,qid,opt){if(selected[qid])return;selected[qid]=opt;const opts=el.parentElement.querySelectorAll('.quiz-opt');opts.forEach(o=>o.style.pointerEvents='none');const correct=answers[qid];opts.forEach((o,i)=>{const k=['a','b','c'][i];if(k===correct)o.classList.add('correct');else if(k===opt)o.classList.add('wrong');});}
+function submitQuiz(){let score=0;Object.keys(answers).forEach(q=>{if(selected[q]===answers[q])score++;});const res=document.getElementById('quiz-result');res.classList.add('show');if(score>=4){res.className='quiz-result show good';res.textContent=`Bravissimo/a! ${score}/5 ✓`;}else if(score>=2){res.className='quiz-result show ok';res.textContent=`Bene! ${score}/5 — continua così.`;}else{res.className='quiz-result show try';res.textContent=`${score}/5 — Riprova! Rivedi le sezioni.`;}}
+</script>
+</body>
+</html>

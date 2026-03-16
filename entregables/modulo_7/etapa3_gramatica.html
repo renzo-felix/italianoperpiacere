@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Módulo 7 · Gramática — Che lavoro fai?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;
+  --red:#cc4736;--teal:#78a6ba;--green:#528e74;--black:#1a1a18;--white:#ffffff;
+  --hdr:var(--red);--r:8px;
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6}
+.hide-es .es{display:none!important}
+.es{font-size:.82rem;color:#666;font-style:italic;display:block;margin-top:.2rem}
+nav{position:sticky;top:0;z-index:100;background:var(--black);display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{color:var(--gold);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.75rem 1.1rem;white-space:nowrap;transition:background .2s}
+nav a:hover{background:rgba(255,255,255,.1)}
+nav a.active{background:var(--red);color:var(--white)}
+.page-header{background:var(--red);color:var(--white);padding:3rem 1.5rem 2.5rem;text-align:center;position:relative}
+.page-header .badge{display:inline-block;background:rgba(255,255,255,.2);border-radius:20px;padding:.25rem .85rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.85rem}
+.page-header h1{font-family:var(--fh);font-style:italic;font-size:2.4rem;margin-bottom:.5rem}
+.page-header p{opacity:.9;font-size:1.05rem}
+.toggle-btn{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:var(--white);border-radius:var(--r);padding:.45rem .9rem;font-family:var(--fb);font-size:.78rem;font-weight:600;cursor:pointer;transition:background .2s}
+.toggle-btn:hover{background:rgba(255,255,255,.35)}
+main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem}
+section{margin-bottom:3rem}
+.section-title{font-family:var(--fh);font-style:italic;font-size:1.6rem;color:var(--red);margin-bottom:1.25rem;padding-bottom:.4rem;border-bottom:2px solid var(--cream-dk)}
+.section-intro{margin-bottom:1.1rem;font-size:.97rem}
+.gram-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
+.gram-table th{background:var(--red);color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
+.gram-table td{padding:.5rem .75rem;border-bottom:1px solid var(--cream-dk)}
+.gram-table tr:nth-child(even) td{background:rgba(0,0,0,.03)}
+.gram-table .highlight td{background:rgba(204,71,54,.12);font-weight:700}
+.pron{color:var(--red);font-weight:700;min-width:70px;display:inline-block}
+.form{font-weight:600;color:var(--red)}
+.infix{color:var(--red);font-weight:800}
+.example-box{background:var(--white);border-left:4px solid var(--red);border-radius:0 var(--r) var(--r) 0;padding:.75rem 1rem;margin:.6rem 0;font-size:.95rem}
+.example-box .it{font-weight:600}
+.example-box .tr-small{font-size:.82rem;color:#777;font-style:italic}
+.inline-prac{background:var(--cream-dk);border-radius:var(--r);padding:1.1rem 1.25rem;margin-top:1.25rem}
+.inline-prac h4{font-family:var(--fh);font-style:italic;color:var(--red);margin-bottom:.85rem;font-size:1.1rem}
+.prac-item{margin-bottom:.65rem;font-size:.95rem;display:flex;align-items:center;flex-wrap:wrap;gap:.4rem}
+.prac-input{border:1.5px solid var(--cream-dk);border-radius:6px;padding:.3rem .55rem;font-family:var(--fb);font-size:.92rem;background:var(--white);width:120px;transition:border .2s}
+.prac-input:focus{outline:none;border-color:var(--red)}
+.prac-item.correct .prac-input{border-color:var(--green);background:rgba(82,142,116,.1)}
+.prac-item.wrong .prac-input{border-color:var(--red);background:rgba(204,71,54,.08)}
+.prac-fb{font-size:.8rem;margin-left:.3rem}
+.prac-item.correct .prac-fb{color:var(--green)}
+.prac-item.wrong .prac-fb{color:var(--red)}
+.btn{border:none;border-radius:var(--r);padding:.5rem 1.1rem;font-family:var(--fb);font-size:.87rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--red);color:var(--white)}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-ghost{background:transparent;border:1.5px solid var(--red);color:var(--red)}
+.btn-ghost:hover{background:var(--red);color:var(--white)}
+.quiz-wrap{background:var(--white);border-radius:var(--r);padding:1.5rem;border:1px solid var(--cream-dk)}
+.quiz-q{margin-bottom:1.5rem}
+.quiz-q p{font-weight:600;margin-bottom:.7rem;font-size:.97rem}
+.quiz-opts{display:flex;flex-direction:column;gap:.45rem}
+.quiz-opt{background:var(--cream);border-radius:6px;padding:.6rem .9rem;cursor:pointer;font-size:.92rem;border:1.5px solid transparent;transition:all .2s}
+.quiz-opt:hover{border-color:var(--red)}
+.quiz-opt.correct{background:rgba(82,142,116,.15);border-color:var(--green);color:var(--green)}
+.quiz-opt.wrong{background:rgba(204,71,54,.1);border-color:var(--red);color:var(--red)}
+.quiz-result{text-align:center;padding:1.25rem;font-size:1.1rem;font-weight:600;border-radius:var(--r);margin-top:1rem;display:none}
+.quiz-result.show{display:block}
+.quiz-result.good{background:rgba(82,142,116,.15);color:var(--green)}
+.quiz-result.ok{background:rgba(239,207,127,.3);color:#7a5e00}
+.quiz-result.try{background:rgba(204,71,54,.1);color:var(--red)}
+.rule-box{background:rgba(204,71,54,.08);border:1px solid rgba(204,71,54,.25);border-radius:var(--r);padding:.85rem 1.1rem;margin:.8rem 0;font-size:.93rem}
+.rule-box strong{color:var(--red)}
+footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px solid var(--cream-dk)}
+/* CONJ GRID */
+.conj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1rem 0}
+.conj-block{background:var(--white);border-radius:var(--r);padding:.85rem;border:1px solid var(--cream-dk)}
+.conj-block h5{color:var(--red);font-weight:700;margin-bottom:.6rem;font-size:.93rem}
+.conj-row{display:flex;justify-content:space-between;font-size:.9rem;padding:.2rem 0;border-bottom:1px solid var(--cream-dk)}
+.conj-row:last-child{border-bottom:none}
+/* FONETICA */
+.fon-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1rem 0}
+.fon-card{background:var(--white);border-radius:var(--r);padding:.85rem;border:1px solid var(--cream-dk)}
+.fon-card h5{color:var(--red);font-weight:700;margin-bottom:.5rem;font-size:.9rem}
+.fon-pair{display:flex;gap:.8rem;margin:.3rem 0;font-size:.93rem}
+.fon-word{background:var(--cream);border-radius:5px;padding:.2rem .5rem;font-weight:600}
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="#isco" class="active">Verbi -ISCO</a>
+  <a href="#fare">FARE</a>
+  <a href="#articoli">Articoli det.</a>
+  <a href="#concordanza">Concordanza</a>
+  <a href="#fonetica">Fonetica</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<header class="page-header">
+  <button class="toggle-btn" id="toggleEs" onclick="toggleEs()">Ocultar traducciones</button>
+  <div class="badge">Módulo 7 · Gramática</div>
+  <h1>Che lavoro fai?</h1>
+  <p>Verbos en -ISCO, FARE, artículos y concordancia</p>
+</header>
+
+<main>
+
+<!-- SECTION 1: VERBI -ISCO -->
+<section id="isco">
+  <h2 class="section-title">1. Verbi in -IRE con infisso -ISC-</h2>
+  <p class="section-intro">Algunos verbos en -IRE insertan el infijo <strong>-isc-</strong> en la raíz para las personas io, tu, lui/lei y loro. <span class="es">Esta es una irregularidad muy frecuente — hay que memorizarla:</span></p>
+
+  <div class="conj-grid">
+    <div class="conj-block">
+      <h5>capire — entender</h5>
+      <div class="conj-row"><span class="pron">io</span><span>cap<span class="infix">isc</span>o</span></div>
+      <div class="conj-row"><span class="pron">tu</span><span>cap<span class="infix">isc</span>i</span></div>
+      <div class="conj-row"><span class="pron">lui/lei</span><span>cap<span class="infix">isc</span>e</span></div>
+      <div class="conj-row"><span class="pron">noi</span><span>cap<strong>iamo</strong></span></div>
+      <div class="conj-row"><span class="pron">voi</span><span>cap<strong>ite</strong></span></div>
+      <div class="conj-row"><span class="pron">loro</span><span>cap<span class="infix">isc</span>ono</span></div>
+    </div>
+    <div class="conj-block">
+      <h5>finire — terminar</h5>
+      <div class="conj-row"><span class="pron">io</span><span>fin<span class="infix">isc</span>o</span></div>
+      <div class="conj-row"><span class="pron">tu</span><span>fin<span class="infix">isc</span>i</span></div>
+      <div class="conj-row"><span class="pron">lui/lei</span><span>fin<span class="infix">isc</span>e</span></div>
+      <div class="conj-row"><span class="pron">noi</span><span>fin<strong>iamo</strong></span></div>
+      <div class="conj-row"><span class="pron">voi</span><span>fin<strong>ite</strong></span></div>
+      <div class="conj-row"><span class="pron">loro</span><span>fin<span class="infix">isc</span>ono</span></div>
+    </div>
+    <div class="conj-block">
+      <h5>preferire — preferir</h5>
+      <div class="conj-row"><span class="pron">io</span><span>prefer<span class="infix">isc</span>o</span></div>
+      <div class="conj-row"><span class="pron">tu</span><span>prefer<span class="infix">isc</span>i</span></div>
+      <div class="conj-row"><span class="pron">lui/lei</span><span>prefer<span class="infix">isc</span>e</span></div>
+      <div class="conj-row"><span class="pron">noi</span><span>prefer<strong>iamo</strong></span></div>
+      <div class="conj-row"><span class="pron">voi</span><span>prefer<strong>ite</strong></span></div>
+      <div class="conj-row"><span class="pron">loro</span><span>prefer<span class="infix">isc</span>ono</span></div>
+    </div>
+  </div>
+
+  <div class="rule-box">
+    <strong>Regola -ISC-:</strong> El infijo aparece en io, tu, lui/lei, loro — las 4 formas del "rombo". Las formas <em>noi</em> y <em>voi</em> NO lo llevan y se conjugan como verbos -IRE normales.
+    <span class="es">Otros verbos con -isc-: pulire (limpiar), costruire (construir), spedire (enviar), obbedire (obedecer).</span>
+  </div>
+
+  <div class="inline-prac">
+    <h4>Pratica — Con o sin -isc-?</h4>
+    <div id="prac1">
+      <div class="prac-item" data-ans="capisce">Lui ___ tutto. (capire) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="finiamo">Noi ___ alle sei. (finire) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="preferisco">Io ___ il caffè. (preferire) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="capite">Voi ___ il problema? (capire) <input class="prac-input" placeholder="..."></div>
+    </div>
+    <div style="margin-top:.85rem;display:flex;gap:.75rem">
+      <button class="btn btn-primary" onclick="checkPrac('prac1')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac1')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: FARE -->
+<section id="fare">
+  <h2 class="section-title">2. Verbo FARE — irregolare</h2>
+  <p class="section-intro"><strong>Fare</strong> (hacer) es uno de los verbos más usados en italiano. Es completamente irregular. <span class="es">Se usa también delante de profesiones y actividades:</span></p>
+
+  <table class="gram-table">
+    <thead><tr><th>Pronome</th><th>fare</th><th>Uso con professione</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pron">io</span></td><td><span class="form">faccio</span></td><td>Faccio il medico.</td></tr>
+      <tr><td><span class="pron">tu</span></td><td><span class="form">fai</span></td><td>Che lavoro fai?</td></tr>
+      <tr><td><span class="pron">lui/lei</span></td><td><span class="form">fa</span></td><td>Lei fa l'insegnante.</td></tr>
+      <tr><td><span class="pron">noi</span></td><td><span class="form">facciamo</span></td><td>Facciamo gli avvocati.</td></tr>
+      <tr><td><span class="pron">voi</span></td><td><span class="form">fate</span></td><td>Che lavoro fate?</td></tr>
+      <tr><td><span class="pron">loro</span></td><td><span class="form">fanno</span></td><td>Fanno i cuochi.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-box">
+    <strong>Fare + professione:</strong> Se usa el artículo determinativo: <em>faccio <u>il</u> medico</em>. Es una construcción típica del italiano que expresa "trabajar como".
+    <br>También: <em>fare colazione</em> (desayunar), <em>fare una passeggiata</em> (dar un paseo), <em>fare la spesa</em> (hacer la compra).
+    <span class="es">A diferencia del español, en italiano NO se dice "sono medico" con tanta frecuencia — "faccio il medico" es muy natural.</span>
+  </div>
+
+  <div class="example-box"><span class="it">— Che lavoro fai? — Faccio l'architetto.</span><span class="tr-small">— ¿A qué te dedicas? — Soy arquitecto.</span></div>
+  <div class="example-box"><span class="it">Marco e Luca fanno i pompieri.</span><span class="tr-small">Marco y Luca son bomberos.</span></div>
+
+  <div class="inline-prac">
+    <h4>Pratica — Coniuga FARE</h4>
+    <div id="prac2">
+      <div class="prac-item" data-ans="faccio">Io ___ il programmatore. <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="fate">Voi ___ i dentisti? <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="fanno">Loro ___ i cuochi. <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="fa">Mia sorella ___ l'infermiera. <input class="prac-input" placeholder="..."></div>
+    </div>
+    <div style="margin-top:.85rem;display:flex;gap:.75rem">
+      <button class="btn btn-primary" onclick="checkPrac('prac2')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac2')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: ARTICOLI DETERMINATIVI -->
+<section id="articoli">
+  <h2 class="section-title">3. Articoli determinativi — tabella completa</h2>
+  <p class="section-intro">Repaso completo de todos los artículos determinativos. <span class="es">La elección depende del género, número y letra inicial del sustantivo:</span></p>
+
+  <table class="gram-table">
+    <thead><tr><th>Contesto</th><th>Maschile sing.</th><th>Femminile sing.</th><th>Maschile pl.</th><th>Femminile pl.</th></tr></thead>
+    <tbody>
+      <tr><td>Consonante normale</td><td><span class="form">il</span> medico</td><td><span class="form">la</span> dottoressa</td><td><span class="form">i</span> medici</td><td><span class="form">le</span> dottoresse</td></tr>
+      <tr><td>Vocale</td><td><span class="form">l'</span> avvocato</td><td><span class="form">l'</span> avvocatessa</td><td><span class="form">gli</span> avvocati</td><td><span class="form">le</span> avvocatesse</td></tr>
+      <tr><td>s+cons, z, gn, ps</td><td><span class="form">lo</span> studente</td><td>— (la)</td><td><span class="form">gli</span> studenti</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-box">
+    <strong>Professioni al maschile e femminile:</strong>
+    <br>il medico → la medica · il professore → la professoressa · l'ingegnere → l'ingegnera
+    <br>il cuoco → la cuoca · l'infermiere → l'infermiera · l'attore → l'attrice
+    <span class="es">Cada profesión puede tener forma masculina y femenina. Es importante usarlas correctamente.</span>
+  </div>
+</section>
+
+<!-- SECTION 4: CONCORDANZA -->
+<section id="concordanza">
+  <h2 class="section-title">4. Concordanza articolo-nome-aggettivo</h2>
+  <p class="section-intro">El artículo, el sustantivo y el adjetivo deben concordar en género y número. <span class="es">Los tres deben "ir de acuerdo":</span></p>
+
+  <table class="gram-table">
+    <thead><tr><th>Maschile sing.</th><th>Femminile sing.</th><th>Maschile pl.</th><th>Femminile pl.</th></tr></thead>
+    <tbody>
+      <tr><td>il medico bravo</td><td>la medica brava</td><td>i medici bravi</td><td>le mediche brave</td></tr>
+      <tr><td>un avvocato famoso</td><td>un'avvocatessa famosa</td><td>gli avvocati famosi</td><td>le avvocatesse famose</td></tr>
+      <tr><td>lo studente intelligente</td><td>la studentessa intelligente</td><td>gli studenti intelligenti</td><td>le studentesse intelligenti</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-box">
+    <strong>Catena di concordanza:</strong> ARTICOLO + NOME + AGGETTIVO — los tres deben concordar.
+    <em>Il</em> cuoco brav<em>o</em> → L<em>a</em> cuoc<em>a</em> brav<em>a</em> → I cuoch<em>i</em> brav<em>i</em> → Le cuoc<em>he</em> brav<em>e</em>
+    <span class="es">Los adjetivos en -e (grande, intelligente) solo cambian en plural: grandi, intelligenti.</span>
+  </div>
+</section>
+
+<!-- SECTION 5: FONETICA -->
+<section id="fonetica">
+  <h2 class="section-title">5. Fonetica — SK vs Ʃ e le consonanti doppie</h2>
+  <p class="section-intro"><span class="es">Dos aspectos de pronunciación importantes en este módulo:</span></p>
+
+  <div class="fon-grid">
+    <div class="fon-card">
+      <h5>SC — dos sonidos</h5>
+      <div class="fon-pair"><span class="fon-word">[sk]</span>sc + a, o, u, he, hi: <em>scarpa, scuola, scheda</em></div>
+      <div class="fon-pair"><span class="fon-word">[ʃ]</span>sc + e, i: <em>scena, sci</em></div>
+    </div>
+    <div class="fon-card">
+      <h5>Consonanti doppie</h5>
+      <div class="fon-pair"><span class="fon-word">pala</span> vs <span class="fon-word">palla</span></div>
+      <div class="fon-pair"><span class="fon-word">nona</span> vs <span class="fon-word">nonna</span></div>
+      <div class="fon-pair"><span class="fon-word">fato</span> vs <span class="fon-word">fatto</span></div>
+      <p style="font-size:.82rem;color:#666;margin-top:.4rem">La consonante doble se pronuncia más larga — ¡cambia el significado!</p>
+    </div>
+  </div>
+
+  <div class="example-box"><span class="it">la scuola (la escuela) — la scena (la escena) — gli sci (los esquís)</span><span class="tr-small">SC tiene sonido duro [sk] ante a/o/u/h y suave [ʃ] ante e/i.</span></div>
+  <div class="example-box"><span class="it">faccio [fatt-cho] — facciamo [fatt-cha-mo]</span><span class="tr-small">En FARE la -cc- se pronuncia como doble, especialmente ante -io/-ia.</span></div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <h2 class="section-title">Quiz — Verifica le tue conoscenze</h2>
+  <div class="quiz-wrap">
+    <div class="quiz-q" id="q1">
+      <p>1. ¿Cuál es la forma correcta de "capire" para "io"?</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','a')">capo</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','b')">capisco</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','c')">capire</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <p>2. "Che lavoro ___?" — ¿Cuál es la forma de FARE para "tu"?</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','a')">fai</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','b')">faccio</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','c')">fa</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <p>3. ¿Cuál es la concordancia correcta?</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','a')">le mediche bravi</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','b')">la medica brava</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','c')">il medica brave</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <p>4. En "finire" con -isc-, ¿qué formas NO llevan el infijo -isc-?</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','a')">io, tu, lui, loro</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','b')">noi, voi</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','c')">tu, lui, loro</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <p>5. "Lo studente intelligente" — ¿Por qué se usa "lo" y no "il"?</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','a')">Porque es femenino</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','b')">Porque empieza por "st" (s + consonante)</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','c')">Porque es plural</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:1.25rem">
+      <button class="btn btn-primary" onclick="submitQuiz()">Controlla le risposte</button>
+    </div>
+    <div class="quiz-result" id="quiz-result"></div>
+  </div>
+</section>
+</main>
+
+<footer><p>Italiano Per Piacere · Módulo 7 · <em>Che lavoro fai?</em></p></footer>
+
+<script>
+let esVisible=true;
+function toggleEs(){esVisible=!esVisible;document.body.classList.toggle('hide-es',!esVisible);document.getElementById('toggleEs').textContent=esVisible?'Ocultar traducciones':'Mostrar traducciones';}
+const secs=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('nav a');
+window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)c=s.id});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)});});
+function checkPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{const inp=item.querySelector('.prac-input');const ans=item.dataset.ans;const val=inp.value.trim().toLowerCase();item.classList.remove('correct','wrong');let fb=item.querySelector('.prac-fb');if(!fb){fb=document.createElement('span');fb.className='prac-fb';item.appendChild(fb);}if(val===ans){item.classList.add('correct');fb.textContent='✓';}else{item.classList.add('wrong');fb.textContent='✗ '+ans;}});}
+function resetPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{item.classList.remove('correct','wrong');item.querySelector('.prac-input').value='';const fb=item.querySelector('.prac-fb');if(fb)fb.textContent='';});}
+const answers={q1:'b',q2:'a',q3:'b',q4:'b',q5:'b'};
+let selected={};
+function selectOpt(el,qid,opt){if(selected[qid])return;selected[qid]=opt;const opts=el.parentElement.querySelectorAll('.quiz-opt');opts.forEach(o=>o.style.pointerEvents='none');const correct=answers[qid];opts.forEach((o,i)=>{const k=['a','b','c'][i];if(k===correct)o.classList.add('correct');else if(k===opt)o.classList.add('wrong');});}
+function submitQuiz(){let score=0;Object.keys(answers).forEach(q=>{if(selected[q]===answers[q])score++;});const res=document.getElementById('quiz-result');res.classList.add('show');if(score>=4){res.className='quiz-result show good';res.textContent=`Bravissimo/a! ${score}/5 ✓`;}else if(score>=2){res.className='quiz-result show ok';res.textContent=`Bene! ${score}/5 — continua a studiare.`;}else{res.className='quiz-result show try';res.textContent=`${score}/5 — Riprova! Torna alle sezioni.`;}}
+</script>
+</body>
+</html>

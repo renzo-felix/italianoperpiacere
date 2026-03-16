@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unità 13 · C'è anche questo — Descubrimiento</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;
+  --gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--teal:#78a6ba;--green:#528e74;
+  --black:#1a1a18;--white:#ffffff;
+  --hero:var(--amber);--hdr-dark:var(--amber-dk);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--black);overflow-x:hidden}
+body.hide-es .es{display:none}
+
+#toggle-btn{
+  position:fixed;top:1rem;right:1rem;z-index:999;
+  background:var(--amber-dk);color:#fff;border:none;
+  padding:.5rem 1rem;border-radius:2rem;font-family:'Outfit',sans-serif;
+  font-size:.85rem;cursor:pointer;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.25)
+}
+
+/* HERO */
+.hero{
+  min-height:94vh;background:var(--hero);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:4rem 2rem;position:relative;overflow:hidden
+}
+.hero-circle{position:absolute;border-radius:50%;opacity:.15;background:var(--black);pointer-events:none;transition:transform .1s linear}
+.c1{width:520px;height:520px;top:-140px;right:-120px}
+.c2{width:340px;height:340px;bottom:20px;left:-80px}
+.c3{width:200px;height:200px;bottom:150px;right:12%}
+.c4{width:100px;height:100px;top:22%;left:7%}
+.hero h1{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(2.5rem,6.5vw,4.3rem);color:var(--black);
+  line-height:1.1;margin-bottom:.6rem
+}
+.hero .badge{background:var(--black);color:var(--amber);padding:.3rem 1rem;border-radius:2rem;font-size:.85rem;font-weight:700;letter-spacing:.05em;margin-bottom:1.5rem;display:inline-block}
+.hero p{font-size:1.1rem;max-width:650px;line-height:1.7;color:var(--black);opacity:.85}
+.hero .music-note{
+  background:rgba(0,0,0,.1);border-radius:14px;padding:1.2rem 1.8rem;
+  margin-top:1.8rem;max-width:580px;text-align:left;color:var(--black);font-size:.95rem;line-height:1.7
+}
+.hero .music-note strong{font-size:1rem;display:block;margin-bottom:.4rem;color:var(--black)}
+.scroll-hint{margin-top:2rem;font-size:.9rem;opacity:.6;animation:bounce 2s infinite;color:var(--black)}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* SECTIONS */
+section{padding:4rem 2rem;max-width:900px;margin:0 auto}
+section h2{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.7rem,4vw,2.3rem);color:var(--hdr-dark);margin-bottom:.4rem}
+section .subtitle{font-size:.95rem;color:#555;margin-bottom:2rem;line-height:1.65}
+.it{font-style:italic;color:var(--hdr-dark);font-weight:600}
+.es{color:#666;font-size:.9rem}
+
+/* ANIMATIONS */
+[data-a]{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+[data-a].visible{opacity:1;transform:none}
+[data-stagger]>*{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+[data-stagger].visible>*:nth-child(1){opacity:1;transform:none;transition-delay:.05s}
+[data-stagger].visible>*:nth-child(2){opacity:1;transform:none;transition-delay:.15s}
+[data-stagger].visible>*:nth-child(3){opacity:1;transform:none;transition-delay:.25s}
+[data-stagger].visible>*:nth-child(4){opacity:1;transform:none;transition-delay:.35s}
+[data-stagger].visible>*:nth-child(5){opacity:1;transform:none;transition-delay:.45s}
+[data-stagger].visible>*:nth-child(6){opacity:1;transform:none;transition-delay:.55s}
+[data-stagger].visible>*:nth-child(7){opacity:1;transform:none;transition-delay:.65s}
+[data-stagger].visible>*:nth-child(n+8){opacity:1;transform:none;transition-delay:.75s}
+
+/* WORD GRID */
+.word-grid{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.5rem}
+.word-btn{padding:.55rem 1.1rem;border-radius:2rem;border:2px solid var(--amber-dk);background:#fff;color:var(--black);font-family:'Outfit',sans-serif;font-size:.95rem;cursor:pointer;transition:all .2s}
+.word-btn:hover{background:var(--cream-dk)}
+.word-btn.selected{background:rgba(229,171,7,.2);border-color:var(--amber-dk);font-weight:700}
+.word-btn.correct{background:#d4edda;border-color:var(--green);color:var(--green);font-weight:700}
+.word-btn.wrong{background:#f8d7da;border-color:var(--red);color:var(--red);font-weight:700}
+.word-btn.missed{background:#fff3cd;border-color:var(--amber);color:#856404;font-weight:700}
+.verify-btn{background:var(--amber-dk);color:#fff;border:none;padding:.6rem 1.6rem;border-radius:2rem;font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;margin-bottom:1rem}
+#grid-feedback,#grid2-feedback{font-size:.95rem;margin-top:.5rem;min-height:1.4em}
+
+/* VOCAB CARDS */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.vcard{background:#fff;border-radius:12px;padding:1.2rem 1rem;border-left:4px solid var(--amber);cursor:pointer;transition:box-shadow .2s,transform .2s}
+.vcard:hover{box-shadow:0 4px 18px rgba(0,0,0,.1);transform:translateY(-2px)}
+.vcard .vit{font-size:1.05rem;font-weight:700;color:var(--amber-dk)}
+.vcard .ves{font-size:.9rem;color:#555;margin-top:.2rem}
+.vcard .vex{font-size:.85rem;margin-top:.6rem;color:var(--black);font-style:italic;border-top:1px solid var(--cream-dk);padding-top:.6rem;display:none}
+.vcard.open .vex{display:block}
+
+/* STRADE GRID */
+.strade-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.8rem;margin-top:1rem}
+.strada-card{background:#fff;border-radius:12px;padding:1rem;text-align:center;border-top:4px solid var(--amber-dk);transition:box-shadow .2s}
+.strada-card:hover{box-shadow:0 3px 14px rgba(0,0,0,.08)}
+.strada-card .s-it{font-size:1.1rem;font-weight:700;color:var(--amber-dk)}
+.strada-card .s-es{font-size:.85rem;color:#555;margin:.2rem 0}
+.strada-card .s-ex{font-size:.8rem;font-style:italic;color:#777;margin-top:.3rem}
+
+/* MAP ACTIVITY */
+.map-activity{background:#fff;border-radius:14px;padding:1.5rem;margin-top:1rem;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.map-activity p{font-size:.93rem;color:#444;line-height:1.65;margin-bottom:.8rem}
+.address-list{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.address-list li{padding:.65rem 1rem;background:var(--cream);border-radius:8px;font-style:italic;font-size:.93rem;border-left:3px solid var(--amber)}
+.address-list li strong{color:var(--amber-dk);font-style:normal}
+
+/* QUESTO/QUELLO TABLE */
+.dim-table{width:100%;border-collapse:collapse;font-size:.93rem;margin-top:.8rem}
+.dim-table th,.dim-table td{padding:.65rem .8rem;border-bottom:1px solid var(--cream-dk);text-align:left}
+.dim-table th{background:var(--amber-dk);color:#fff;font-weight:700}
+.dim-table tr:nth-child(even){background:var(--cream-dk)}
+.dim-table .it-cell{color:var(--amber-dk);font-weight:700;font-style:italic}
+
+/* COMPLETE ACTIVITY */
+.complete-box{background:#fff;border-radius:14px;padding:1.5rem;margin-top:1rem;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.complete-box h4{font-size:.97rem;color:var(--amber-dk);font-weight:700;margin-bottom:1rem}
+.comp-item{display:flex;align-items:center;gap:.6rem;margin:.6rem 0;font-size:.95rem;flex-wrap:wrap}
+.comp-input{border:none;border-bottom:2px solid var(--amber);background:transparent;font-family:'Outfit',sans-serif;font-size:.95rem;outline:none;padding:.1rem .2rem;width:90px;color:var(--amber-dk);font-weight:600;text-align:center}
+.comp-input:focus{border-bottom-color:var(--hdr-dark)}
+.reveal-btn{background:var(--amber-dk);color:#fff;border:none;padding:.45rem 1.2rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:.8rem}
+.comp-answers{display:none;margin-top:.8rem;padding:.9rem;background:#fff3cd;border-radius:8px;font-size:.9rem;line-height:1.8}
+.comp-answers.show{display:block}
+
+/* PRONOMI DIRETTI */
+.pdir-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1rem}
+.pdir-card{background:#fff;border-radius:12px;padding:1.1rem;border-top:4px solid var(--amber-dk)}
+.pdir-card .pform{font-size:1.5rem;font-weight:700;color:var(--amber-dk);text-align:center}
+.pdir-card .pdesc{font-size:.85rem;color:#555;text-align:center;margin:.2rem 0}
+.pdir-card .pex{font-size:.88rem;font-style:italic;color:var(--black);border-top:1px solid var(--cream-dk);padding-top:.5rem;margin-top:.4rem}
+
+/* INDICAZIONI BOX */
+.indicaz-box{background:#fff;border-radius:14px;padding:1.4rem;margin-top:1rem;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.indicaz-box h4{color:var(--amber-dk);font-weight:700;margin-bottom:.9rem;font-size:.97rem}
+.indicaz-item{display:flex;gap:.7rem;margin:.55rem 0;font-size:.93rem;line-height:1.6;align-items:flex-start}
+.indicaz-badge{background:var(--amber);color:var(--black);border-radius:6px;padding:.1rem .6rem;font-size:.78rem;font-weight:700;flex-shrink:0;margin-top:.1rem}
+
+/* SURPRESA BOX */
+.surpresa-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.8rem;margin-top:1rem}
+.surpresa-card{background:#fff;border-radius:12px;padding:1rem;border-left:4px solid var(--amber);text-align:center}
+.surpresa-card .expr{font-size:1rem;font-weight:700;color:var(--amber-dk);font-style:italic}
+.surpresa-card .tr{font-size:.85rem;color:#555;margin-top:.3rem}
+.surpresa-card .uso{font-size:.8rem;color:#888;margin-top:.3rem;font-style:italic}
+
+/* FILL TEXT */
+.fill-section{background:#fff;border-radius:14px;padding:1.5rem;margin-top:1rem;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.fill-section p.instruc{font-size:.93rem;color:#555;margin-bottom:1rem;line-height:1.6}
+.fill-text{font-size:1rem;line-height:2.2}
+.fill-blank{border:none;border-bottom:2px solid var(--amber);background:transparent;font-family:'Outfit',sans-serif;font-size:.97rem;outline:none;padding:.1rem .2rem;width:100px;color:var(--amber-dk);font-weight:600;text-align:center}
+.fill-blank:focus{border-bottom-color:var(--black)}
+.word-bank{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;padding:.8rem;background:var(--cream-dk);border-radius:8px}
+.bank-word{padding:.3rem .8rem;background:#fff;border-radius:1rem;font-size:.9rem;cursor:pointer;border:1.5px solid var(--cream-dk);transition:all .2s}
+.bank-word:hover{border-color:var(--amber);background:var(--cream)}
+.fill-answers{display:none;margin-top:.7rem;padding:.8rem;background:#fff3cd;border-radius:8px;font-size:.88rem;line-height:1.7;color:var(--black)}
+.fill-answers.show{display:block}
+
+/* DIALOGUE */
+.dialogue{display:flex;flex-direction:column;gap:.9rem}
+.bubble{max-width:78%;padding:.9rem 1.2rem;border-radius:16px;position:relative;font-size:.95rem;line-height:1.55;cursor:pointer}
+.bubble.left{align-self:flex-start;background:var(--cream-dk);border-bottom-left-radius:4px}
+.bubble.right{align-self:flex-end;background:var(--amber);color:var(--black);border-bottom-right-radius:4px}
+.bubble .btr{font-size:.82rem;margin-top:.4rem;border-top:1px solid rgba(0,0,0,.1);padding-top:.3rem;display:none;color:#555}
+.bubble.open .btr{display:block}
+.bubble::after{content:'▾';font-size:.7rem;opacity:.5;margin-left:.4rem}
+
+/* CULTURAL */
+.cultural{background:var(--amber-dk);color:#fff;padding:3.5rem 2rem;margin-top:3rem}
+.cultural h3{font-family:'Playfair Display',serif;font-style:italic;font-size:1.7rem;margin-bottom:1rem}
+.cultural p{line-height:1.75;max-width:700px;font-size:.97rem}
+.cultural em{color:var(--gold)}
+
+footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
+</style>
+</head>
+<body class="hide-es">
+
+<button id="toggle-btn" onclick="toggleEs()">👁 Mostrar traducciones</button>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-circle c1" id="c1"></div>
+  <div class="hero-circle c2" id="c2"></div>
+  <div class="hero-circle c3" id="c3"></div>
+  <div class="hero-circle c4" id="c4"></div>
+  <span class="badge">Unità 13 · A1</span>
+  <h1>C'è anche questo!</h1>
+  <p>"Questo piccolo grande amore" — Claudio Baglioni. Una de las canciones más queridas del pop italiano, llena de <em>questo</em>, <em>quello</em> e imperativos que nos invitan a explorar la lengua desde las emociones.</p>
+  <div class="music-note">
+    <strong>🎵 Prima di ascoltare la canzone:</strong>
+    ¿Puedes encontrar las palabras <em>questo</em> y <em>quello</em> en la letra? ¿Qué crees que significan?<br>
+    ¿Escuchas verbos que suenan a órdenes o invitaciones? (<em>guarda, vieni, dimmi, aspetta…</em>)<br>
+    ¿Qué emociones transmite la música incluso sin entender todo?
+  </div>
+  <div class="scroll-hint">↓ Esplora</div>
+</div>
+
+<!-- SECTION 1: LUOGHI DELLA CITTÀ — WORD GRID -->
+<section data-a>
+  <h2>Dove siamo? — Luoghi della città</h2>
+  <p class="subtitle">
+    Selecciona todos los <strong>lugares de la ciudad</strong>. Hay palabras trampa que no son lugares urbanos — ¡a ver si las descubres!
+    <span class="es">Este es el vocabulario clave de la unidad: la ciudad con sus locales, transportes y espacios.</span>
+  </p>
+  <div class="word-grid" id="word-grid">
+    <button class="word-btn" onclick="toggleWord(this,'ok')">biblioteca</button>
+    <button class="word-btn" onclick="toggleWord(this,'trap')">montagna</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">farmacia</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">municipio</button>
+    <button class="word-btn" onclick="toggleWord(this,'trap')">foresta</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">chiesa</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">museo</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">cinema</button>
+    <button class="word-btn" onclick="toggleWord(this,'trap')">spiaggia</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">teatro</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">tabaccheria</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">mercato</button>
+    <button class="word-btn" onclick="toggleWord(this,'trap')">cucina</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">supermercato</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">fermata dell'autobus</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">stazione</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">parcheggio</button>
+    <button class="word-btn" onclick="toggleWord(this,'trap')">campo</button>
+  </div>
+  <button class="verify-btn" onclick="verifyGrid()">Verifica ✓</button>
+  <div id="grid-feedback"></div>
+</section>
+
+<!-- SECTION 2: TRASPORTI — WORD GRID 2 -->
+<section data-a>
+  <h2>Come ci muoviamo? — I mezzi di trasporto</h2>
+  <p class="subtitle">
+    Selecciona los <strong>medios de transporte urbanos</strong>. <span class="es">La ciudad italiana se recorre a pie, en metro, en bici y en bus — ¡raro usar coche en el centro!</span>
+  </p>
+  <div class="word-grid" id="word-grid2">
+    <button class="word-btn" onclick="toggleWord2(this,'ok')">autobus</button>
+    <button class="word-btn" onclick="toggleWord2(this,'ok')">metro / metropolitana</button>
+    <button class="word-btn" onclick="toggleWord2(this,'ok')">bicicletta</button>
+    <button class="word-btn" onclick="toggleWord2(this,'ok')">tram</button>
+    <button class="word-btn" onclick="toggleWord2(this,'trap')">aereo</button>
+    <button class="word-btn" onclick="toggleWord2(this,'ok')">taxi</button>
+    <button class="word-btn" onclick="toggleWord2(this,'ok')">moto</button>
+    <button class="word-btn" onclick="toggleWord2(this,'ok')">a piedi</button>
+    <button class="word-btn" onclick="toggleWord2(this,'trap')">nave</button>
+    <button class="word-btn" onclick="toggleWord2(this,'ok')">macchina</button>
+    <button class="word-btn" onclick="toggleWord2(this,'trap')">traghetto</button>
+    <button class="word-btn" onclick="toggleWord2(this,'ok')">monopattino</button>
+  </div>
+  <button class="verify-btn" onclick="verifyGrid2()">Verifica ✓</button>
+  <div id="grid2-feedback"></div>
+</section>
+
+<!-- SECTION 3: LE STRADE ITALIANE -->
+<section data-a>
+  <h2>Le strade della città italiana</h2>
+  <p class="subtitle">En Italia, las calles tienen nombres propios según su tamaño y forma. <span class="es">¡Aprende a distinguirlas para poder decir direcciones como un nativo!</span></p>
+  <div class="strade-grid" data-stagger>
+    <div class="strada-card">
+      <div class="s-it">la via</div>
+      <div class="s-es">la calle (general)</div>
+      <div class="s-ex">Via Dante, 12 · Via Roma, 5</div>
+    </div>
+    <div class="strada-card">
+      <div class="s-it">il viale</div>
+      <div class="s-es">el bulevar / avenida</div>
+      <div class="s-ex">Viale Mazzini · Viale Europa</div>
+    </div>
+    <div class="strada-card">
+      <div class="s-it">la piazza</div>
+      <div class="s-es">la plaza</div>
+      <div class="s-ex">Piazza Navona · Piazza del Duomo</div>
+    </div>
+    <div class="strada-card">
+      <div class="s-it">il corso</div>
+      <div class="s-es">la calle principal / paseo</div>
+      <div class="s-ex">Corso Garibaldi · Corso Italia</div>
+    </div>
+    <div class="strada-card">
+      <div class="s-it">il vicolo</div>
+      <div class="s-es">el callejón</div>
+      <div class="s-ex">Vicolo Cieco · Vicolo del Gatto</div>
+    </div>
+    <div class="strada-card">
+      <div class="s-it">l'angolo</div>
+      <div class="s-es">la esquina</div>
+      <div class="s-ex">all'angolo di via Dante</div>
+    </div>
+    <div class="strada-card">
+      <div class="s-it">l'incrocio</div>
+      <div class="s-es">el cruce</div>
+      <div class="s-ex">al secondo incrocio</div>
+    </div>
+    <div class="strada-card">
+      <div class="s-it">il semaforo</div>
+      <div class="s-es">el semáforo</div>
+      <div class="s-ex">al semaforo, gira a destra</div>
+    </div>
+  </div>
+
+  <!-- ADDRESS READING ACTIVITY -->
+  <div class="map-activity" style="margin-top:1.5rem">
+    <p><strong>📍 Leggi gli indirizzi!</strong> <span class="es">Lee estas direcciones en voz alta. ¿Entiendes dónde está cada lugar?</span></p>
+    <ul class="address-list">
+      <li><strong>Ristorante Da Gianni:</strong> <em>Viale Roma, 15 — all'angolo con Via Mazzini</em></li>
+      <li><strong>Farmacia Centrale:</strong> <em>Via Garibaldi, 3 — vicino al semaforo</em></li>
+      <li><strong>Museo d'Arte:</strong> <em>Piazza della Repubblica, 1 — di fronte alla stazione</em></li>
+      <li><strong>Supermercato Coop:</strong> <em>Corso Italia, 45 — al secondo incrocio a destra</em></li>
+      <li><strong>Hotel Bel Soggiorno:</strong> <em>Via Dante, 22 — nel vicolo a sinistra della chiesa</em></li>
+    </ul>
+  </div>
+</section>
+
+<!-- SECTION 4: VOCAB CARDS — vocabolario della città -->
+<section data-a>
+  <h2>Parole utili per muoversi in città</h2>
+  <p class="subtitle">Haz clic en cada tarjeta para ver un ejemplo de uso. <span class="es">¡Estas palabras te harán sonar como un italiano de verdad!</span></p>
+  <div class="vocab-grid" data-stagger>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">dritto / diritto</div>
+      <div class="ves">recto, todo seguido</div>
+      <div class="vex">📍 <em>Vai dritto per 200 metri.</em><br><span class="es">Ve todo seguido 200 metros.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">a destra</div>
+      <div class="ves">a la derecha</div>
+      <div class="vex">📍 <em>Al semaforo, gira a destra.</em><br><span class="es">En el semáforo, gira a la derecha.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">a sinistra</div>
+      <div class="ves">a la izquierda</div>
+      <div class="vex">📍 <em>Prendi la seconda a sinistra.</em><br><span class="es">Toma la segunda a la izquierda.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">di fronte (a)</div>
+      <div class="ves">enfrente (de)</div>
+      <div class="vex">📍 <em>Il museo è di fronte alla stazione.</em><br><span class="es">El museo está enfrente de la estación.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">vicino (a)</div>
+      <div class="ves">cerca (de)</div>
+      <div class="vex">📍 <em>La farmacia è vicino al supermercato.</em><br><span class="es">La farmacia está cerca del supermercado.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">lontano (da)</div>
+      <div class="ves">lejos (de)</div>
+      <div class="vex">📍 <em>È lontano dal centro?</em><br><span class="es">¿Está lejos del centro?</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">qui / qua</div>
+      <div class="ves">aquí, acá</div>
+      <div class="vex">📍 <em>C'è una fermata qui vicino?</em><br><span class="es">¿Hay una parada aquí cerca?</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">là / lì</div>
+      <div class="ves">allá, allí</div>
+      <div class="vex">📍 <em>Vedi quella chiesa là? Gira lì.</em><br><span class="es">¿Ves esa iglesia de allá? Gira ahí.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: QUESTO / QUELLO DISCOVERY -->
+<section data-a>
+  <h2>Questo e quello — scopri la differenza</h2>
+  <p class="subtitle">
+    <span class="it">Questo</span> señala algo CERCANO a quien habla. <span class="it">Quello</span> señala algo LEJANO. <span class="es">¿Puedes deducir la regla de concordancia observando la tabla?</span>
+  </p>
+  <table class="dim-table">
+    <tr>
+      <th>Artículo</th>
+      <th>QUESTO (aquí cerca)</th>
+      <th>QUELLO (allá lejos)</th>
+    </tr>
+    <tr>
+      <td>il museo</td>
+      <td class="it-cell">questo museo</td>
+      <td class="it-cell">quel museo</td>
+    </tr>
+    <tr>
+      <td>lo stadio</td>
+      <td class="it-cell">questo stadio</td>
+      <td class="it-cell">quello stadio</td>
+    </tr>
+    <tr>
+      <td>la piazza</td>
+      <td class="it-cell">questa piazza</td>
+      <td class="it-cell">quella piazza</td>
+    </tr>
+    <tr>
+      <td>l'incrocio</td>
+      <td class="it-cell">questo incrocio</td>
+      <td class="it-cell">quell'incrocio</td>
+    </tr>
+    <tr>
+      <td>i negozi</td>
+      <td class="it-cell">questi negozi</td>
+      <td class="it-cell">quei negozi</td>
+    </tr>
+    <tr>
+      <td>gli amici</td>
+      <td class="it-cell">questi amici</td>
+      <td class="it-cell">quegli amici</td>
+    </tr>
+    <tr>
+      <td>le vie</td>
+      <td class="it-cell">queste vie</td>
+      <td class="it-cell">quelle vie</td>
+    </tr>
+  </table>
+  <div style="background:#fff3cd;border-radius:10px;padding:1rem 1.2rem;margin-top:1rem;font-size:.93rem;line-height:1.7">
+    💡 <strong>Truco <em>quello</em>:</strong> sigue la misma lógica que el artículo determinativo.<br>
+    <em>il → quel | lo → quello | la → quella | i → quei | gli → quegli | le → quelle</em><br>
+    <span class="es">¡Si ya sabes los artículos, ya sabes <em>quello</em>!</span>
+  </div>
+
+  <!-- COMPLETE ACTIVITY -->
+  <div class="complete-box">
+    <h4>Completa con questo/questa/questi/queste o quel/quello/quella/quei/quegli/quelle</h4>
+    <div class="comp-item"><span>1.</span> <em>_____ bar</em> qui a sinistra è ottimo! <em>(questo, vicino)</em> <input class="comp-input" id="c1" placeholder="?"></div>
+    <div class="comp-item"><span>2.</span> <em>_____ chiesa</em> là in fondo — la conosci? <em>(quella, lontana)</em> <input class="comp-input" id="c2" placeholder="?"></div>
+    <div class="comp-item"><span>3.</span> <em>_____ autobus</em> vanno al centro? <em>(questi, vicini)</em> <input class="comp-input" id="c3" placeholder="?"></div>
+    <div class="comp-item"><span>4.</span> <em>_____ studenti</em> là sono bravi. <em>(quegli, lontani)</em> <input class="comp-input" id="c4" placeholder="?"></div>
+    <div class="comp-item"><span>5.</span> Mi piace <em>_____ piazza</em> vicino al museo. <em>(questa)</em> <input class="comp-input" id="c5" placeholder="?"></div>
+    <button class="reveal-btn" onclick="showComplete()">Mostra risposte ✓</button>
+    <div class="comp-answers" id="comp-ans">
+      1. <strong>Questo</strong> · 2. <strong>Quella</strong> · 3. <strong>Questi</strong> · 4. <strong>Quegli</strong> · 5. <strong>Questa</strong>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: PRONOMI DIRETTI -->
+<section data-a>
+  <h2>Lo, la, li, le — pronomi diretti</h2>
+  <p class="subtitle">
+    Los pronombres de objeto directo reemplazan al complemento para no repetir.
+    <span class="es">¡Son como "lo/la/los/las" en español y van ANTES del verbo!</span>
+  </p>
+  <div class="pdir-grid" data-stagger>
+    <div class="pdir-card">
+      <div class="pform">lo</div>
+      <div class="pdesc">masc. sing. <span class="es">(lo/el/esto)</span></div>
+      <div class="pex"><em>Cerco il museo → <strong>Lo</strong> cerco.</em><br><span class="es">Lo busco.</span></div>
+    </div>
+    <div class="pdir-card">
+      <div class="pform">la</div>
+      <div class="pdesc">fem. sing. <span class="es">(la/ella/esto)</span></div>
+      <div class="pex"><em>Prendo la metro → <strong>La</strong> prendo.</em><br><span class="es">La tomo.</span></div>
+    </div>
+    <div class="pdir-card">
+      <div class="pform">li</div>
+      <div class="pdesc">masc. plur. <span class="es">(los)</span></div>
+      <div class="pex"><em>Conosco i negozi → <strong>Li</strong> conosco.</em><br><span class="es">Los conozco.</span></div>
+    </div>
+    <div class="pdir-card">
+      <div class="pform">le</div>
+      <div class="pdesc">fem. plur. <span class="es">(las)</span></div>
+      <div class="pex"><em>Prendo le chiavi → <strong>Le</strong> prendo.</em><br><span class="es">Las tomo.</span></div>
+    </div>
+  </div>
+  <div style="background:#fff3cd;border-radius:10px;padding:1rem 1.2rem;margin-top:1rem;font-size:.93rem;line-height:1.7">
+    ⚠️ <strong>Posizione:</strong> <em>PRIMA del verbo</em> — <em>Lo compro. La vedo. Li cerco. Le apro.</em><br>
+    <span class="es">Con infinitivo va al final: <em>Voglio comprar<strong>lo</strong>. Devo prender<strong>la</strong>.</em></span>
+  </div>
+</section>
+
+<!-- SECTION 7: DARE INDICAZIONI -->
+<section data-a>
+  <h2>Dare indicazioni — come si fa</h2>
+  <p class="subtitle">
+    ¡Una habilidad comunicativa clave! Para dar indicaciones en italiano se usa el <strong>imperativo informale</strong>.
+    <span class="es">¡Verbos como órdenes amistosas que te ayudan a llegar a tu destino!</span>
+  </p>
+  <div class="indicaz-box">
+    <h4>🗺 Frasi utili per dare indicazioni:</h4>
+    <div class="indicaz-item">
+      <span class="indicaz-badge">GIRA</span>
+      <span><em>Gira a destra / a sinistra al semaforo.</em> <span class="es">Gira a la derecha/izquierda en el semáforo.</span></span>
+    </div>
+    <div class="indicaz-item">
+      <span class="indicaz-badge">VAI</span>
+      <span><em>Vai dritto per cento metri.</em> <span class="es">Ve recto 100 metros.</span></span>
+    </div>
+    <div class="indicaz-item">
+      <span class="indicaz-badge">PRENDI</span>
+      <span><em>Prendi la seconda via a destra.</em> <span class="es">Toma la segunda calle a la derecha.</span></span>
+    </div>
+    <div class="indicaz-item">
+      <span class="indicaz-badge">ATTRAVERSA</span>
+      <span><em>Attraversa la piazza e poi gira.</em> <span class="es">Cruza la plaza y luego gira.</span></span>
+    </div>
+    <div class="indicaz-item">
+      <span class="indicaz-badge">CONTINUA</span>
+      <span><em>Continua dritto fino all'incrocio.</em> <span class="es">Sigue recto hasta el cruce.</span></span>
+    </div>
+    <div class="indicaz-item">
+      <span class="indicaz-badge">CERCA</span>
+      <span><em>Cerca il segnale blu — è lì!</em> <span class="es">Busca la señal azul — ¡está ahí!</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: ESPRIMERE SORPRESA / CAMBIARE DISCORSO -->
+<section data-a>
+  <h2>Sorpresa e cambio di discorso</h2>
+  <p class="subtitle">
+    ¡La comunicación va mucho más allá de las frases textuales! Estas expresiones te harán sonar natural en italiano.
+    <span class="es">Apréndetelas y úsalas desde hoy.</span>
+  </p>
+  <div class="surpresa-grid" data-stagger>
+    <div class="surpresa-card">
+      <div class="expr">Davvero?!</div>
+      <div class="tr"><span class="es">¿En serio?! / ¿De verdad?!</span></div>
+      <div class="uso"><em>— Ho trovato 50 euro! — Davvero?!</em></div>
+    </div>
+    <div class="surpresa-card">
+      <div class="expr">Ma va'!</div>
+      <div class="tr"><span class="es">¡Anda! / ¡No me digas!</span></div>
+      <div class="uso"><em>— Si sono sposati. — Ma va'!</em></div>
+    </div>
+    <div class="surpresa-card">
+      <div class="expr">C'è anche questo!</div>
+      <div class="tr"><span class="es">¡Además esto! / ¡Para colmo!</span></div>
+      <div class="uso"><em>Piove e c'è anche questo traffico!</em></div>
+    </div>
+    <div class="surpresa-card">
+      <div class="expr">A proposito…</div>
+      <div class="tr"><span class="es">A propósito… / Por cierto…</span></div>
+      <div class="uso"><em>A proposito, hai visto Marco?</em></div>
+    </div>
+    <div class="surpresa-card">
+      <div class="expr">Comunque…</div>
+      <div class="tr"><span class="es">De todas formas… / En cualquier caso…</span></div>
+      <div class="uso"><em>Comunque, torniamo al tema…</em></div>
+    </div>
+    <div class="surpresa-card">
+      <div class="expr">Cambiamo discorso!</div>
+      <div class="tr"><span class="es">¡Cambiemos de tema!</span></div>
+      <div class="uso"><em>Ok, cambiamo discorso — cosa fai stasera?</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: FILL BLANKS — dialogo in città -->
+<section data-a>
+  <h2>Completa il percorso</h2>
+  <p class="subtitle">
+    Completa le indicazioni con le parole del banco. <span class="es">¿Puedes reconstruir el camino de Luca hacia el teatro?</span>
+  </p>
+  <div class="fill-section">
+    <p class="instruc">Scegli dal banco e scrivi nei spazi. Poi clicca "Mostra risposte".</p>
+    <div class="fill-text">
+      — Scusa, <input class="fill-blank" id="f1" placeholder="..."> il Teatro Verdi da qui?<br>
+      — Sì! Vai <input class="fill-blank" id="f2" placeholder="..."> per questa via, poi al semaforo
+      gira <input class="fill-blank" id="f3" placeholder="...">.<br>
+      — <input class="fill-blank" id="f4" placeholder="...">?! È lontano?<br>
+      — No, no! <input class="fill-blank" id="f5" placeholder="..."> alla piazza e lo vedi subito.
+      È <input class="fill-blank" id="f6" placeholder="..."> alla chiesa grande.
+    </div>
+    <div class="word-bank">
+      <span class="bank-word" onclick="insertWord('f1','c\'è')">c'è</span>
+      <span class="bank-word" onclick="insertWord('f2','dritto')">dritto</span>
+      <span class="bank-word" onclick="insertWord('f3','a sinistra')">a sinistra</span>
+      <span class="bank-word" onclick="insertWord('f4','Davvero')">Davvero</span>
+      <span class="bank-word" onclick="insertWord('f5','Attraversa')">Attraversa</span>
+      <span class="bank-word" onclick="insertWord('f6','di fronte')">di fronte</span>
+    </div>
+    <button class="reveal-btn" onclick="showFillAnswers()">Mostra risposte ✓</button>
+    <div class="fill-answers" id="fill-ans">
+      ✅ c'è · dritto · a sinistra · Davvero · Attraversa · di fronte<br>
+      <span class="es">¿Notaste el imperativo <em>Attraversa</em>? Y la expresión de sorpresa <em>Davvero</em>.</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 10: DIALOGUE -->
+<section data-a>
+  <h2>In città — un dialogo completo</h2>
+  <p class="subtitle">Haz clic en cada globo para ver la traducción. <span class="es">¿Cuántos pronombres demostrativos y directos puedes identificar?</span></p>
+  <div class="dialogue">
+    <div class="bubble left" onclick="this.classList.toggle('open')">
+      <strong>Tourist:</strong> Scusa! C'è una farmacia vicino?
+      <div class="btr"><span class="es">¡Perdona! ¿Hay una farmacia cerca?</span></div>
+    </div>
+    <div class="bubble right" onclick="this.classList.toggle('open')">
+      <strong>Sofia:</strong> Sì! Vedi quella piazza là? Attraversa lì e c'è subito a destra.
+      <div class="btr"><span class="es">¡Sí! ¿Ves esa plaza de allá? Cruza ahí y está enseguida a la derecha.</span></div>
+    </div>
+    <div class="bubble left" onclick="this.classList.toggle('open')">
+      <strong>Tourist:</strong> Questa piazza qui — devo attraversarla tutta?
+      <div class="btr"><span class="es">Esta plaza de aquí — ¿tengo que cruzarla entera?</span></div>
+    </div>
+    <div class="bubble right" onclick="this.classList.toggle('open')">
+      <strong>Sofia:</strong> No! Prendi quel vicolo a destra — lo vedi? È più corto.
+      <div class="btr"><span class="es">¡No! Toma ese callejón a la derecha — ¿lo ves? Es más corto.</span></div>
+    </div>
+    <div class="bubble left" onclick="this.classList.toggle('open')">
+      <strong>Tourist:</strong> Ah! E quel museo grande lì — lo conosci? Come si chiama?
+      <div class="btr"><span class="es">¡Ah! ¿Y ese museo grande de allá — lo conoces? ¿Cómo se llama?</span></div>
+    </div>
+    <div class="bubble right" onclick="this.classList.toggle('open')">
+      <strong>Sofia:</strong> Quello? È il Museo Civico! Lo visitano tutti i turisti. Vale la pena!
+      <div class="btr"><span class="es">¿Ese? ¡Es el Museo Cívico! Lo visitan todos los turistas. ¡Vale la pena!</span></div>
+    </div>
+    <div class="bubble left" onclick="this.classList.toggle('open')">
+      <strong>Tourist:</strong> Davvero?! A proposito… questi negozi qui — li aprono di mattina?
+      <div class="btr"><span class="es">¿En serio?! Por cierto… estas tiendas de aquí — ¿las abren por la mañana?</span></div>
+    </div>
+    <div class="bubble right" onclick="this.classList.toggle('open')">
+      <strong>Sofia:</strong> Sì, li aprono alle 9. Comunque, buona visita! La farmacia è proprio là!
+      <div class="btr"><span class="es">Sí, las abren a las 9. ¡De todas formas, que disfrutes! ¡La farmacia está justo allá!</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURAL STRIP -->
+<div class="cultural" data-a>
+  <h3>La piazza italiana — il cuore della città</h3>
+  <p>En Italia, la <em>piazza</em> no es solo un espacio físico: es el alma del municipio. Allí se celebran mercados, conciertos, ceremonias cívicas y la famosa <em>passeggiata</em> — el paseo vespertino que une generaciones. Cuando Claudio Baglioni canta <em>"questo piccolo grande amore"</em>, habla de algo que pasa en los mismos lugares que ahora conoces: calles, plazas, esquinas de ciudad. Porque el italiano no es solo gramática — es vida que ocurre en un lugar concreto.</p>
+</div>
+
+<footer>Italiano Per Piacere · Unità 13 · Etapa 2 — Descubrimiento</footer>
+
+<script>
+function toggleEs(){
+  document.body.classList.toggle('hide-es');
+  document.getElementById('toggle-btn').textContent=
+    document.body.classList.contains('hide-es')? '👁 Mostrar traducciones':'🙈 Ocultar traducciones';
+}
+// GRID 1
+function toggleWord(el,type){
+  if(el.classList.contains('correct')||el.classList.contains('wrong')||el.classList.contains('missed'))return;
+  el.classList.toggle('selected');el._type=type;
+}
+function verifyGrid(){
+  const btns=document.querySelectorAll('#word-grid .word-btn');
+  let correct=0,fp=0,missed=0;
+  btns.forEach(b=>{
+    const sel=b.classList.contains('selected');const ok=b._type==='ok';
+    b.classList.remove('selected');
+    if(sel&&ok){b.classList.add('correct');correct++;}
+    else if(sel&&!ok){b.classList.add('wrong');fp++;}
+    else if(!sel&&ok){b.classList.add('missed');missed++;}
+  });
+  const fb=document.getElementById('grid-feedback');
+  if(fp===0&&missed===0){fb.innerHTML='<span style="color:var(--green);font-weight:700">✅ Perfetto! Tutti i luoghi trovati.</span>';}
+  else{let m='<span style="color:var(--amber-dk);font-weight:700">';if(correct)m+=`✅ ${correct} corretti. `;if(fp)m+=`❌ ${fp} errori. `;if(missed)m+=`⚠️ ${missed} mancanti.`;fb.innerHTML=m+'</span>';}
+}
+// GRID 2
+function toggleWord2(el,type){
+  if(el.classList.contains('correct')||el.classList.contains('wrong')||el.classList.contains('missed'))return;
+  el.classList.toggle('selected');el._type=type;
+}
+function verifyGrid2(){
+  const btns=document.querySelectorAll('#word-grid2 .word-btn');
+  let correct=0,fp=0,missed=0;
+  btns.forEach(b=>{
+    const sel=b.classList.contains('selected');const ok=b._type==='ok';
+    b.classList.remove('selected');
+    if(sel&&ok){b.classList.add('correct');correct++;}
+    else if(sel&&!ok){b.classList.add('wrong');fp++;}
+    else if(!sel&&ok){b.classList.add('missed');missed++;}
+  });
+  const fb=document.getElementById('grid2-feedback');
+  if(fp===0&&missed===0){fb.innerHTML='<span style="color:var(--green);font-weight:700">✅ Perfetto! Tutti i mezzi trovati.</span>';}
+  else{let m='<span style="color:var(--amber-dk);font-weight:700">';if(correct)m+=`✅ ${correct} corretti. `;if(fp)m+=`❌ ${fp} errori (non sono mezzi urbani). `;if(missed)m+=`⚠️ ${missed} mancanti.`;fb.innerHTML=m+'</span>';}
+}
+function showComplete(){document.getElementById('comp-ans').classList.add('show');}
+function insertWord(id,word){document.getElementById(id).value=word;}
+function showFillAnswers(){document.getElementById('fill-ans').classList.add('show');}
+// PARALLAX
+const circles=[
+  {el:document.getElementById('c1'),fx:.04,fy:.03},
+  {el:document.getElementById('c2'),fx:-.05,fy:.04},
+  {el:document.getElementById('c3'),fx:.03,fy:-.05},
+  {el:document.getElementById('c4'),fx:-.03,fy:.05},
+];
+window.addEventListener('mousemove',e=>{
+  const cx=window.innerWidth/2,cy=window.innerHeight/2;
+  circles.forEach(c=>{c.el.style.transform=`translate(${(e.clientX-cx)*c.fx}px,${(e.clientY-cy)*c.fy}px)`;});
+});
+// OBS
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.1});
+document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

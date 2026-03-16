@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unità 0 · Descubrimiento | Italiano Per Piacere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ipp-cream:    #e9e6d5;
+      --ipp-cream-dk: #ddd9c8;
+      --ipp-gold:     #EFCF7F;
+      --ipp-amber:    #e5ab07;
+      --ipp-red:      #cc4736;
+      --ipp-teal:     #78a6ba;
+      --ipp-green:    #528e74;
+      --ipp-black:    #1a1a18;
+      --ipp-white:    #ffffff;
+      --radius:       8px;
+      --font-head:    'Playfair Display', Georgia, serif;
+      --font-body:    'Outfit', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--ipp-cream);
+      color: var(--ipp-black);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--ipp-green);
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+      color: var(--ipp-white);
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '🇮🇹';
+      position: absolute;
+      font-size: 14rem;
+      opacity: 0.05;
+      bottom: -3rem;
+      right: -1rem;
+      pointer-events: none;
+    }
+    .header-badge {
+      display: inline-block;
+      background: var(--ipp-gold);
+      color: var(--ipp-black);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 0.3rem 1.2rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .header h1 {
+      font-family: var(--font-head);
+      font-size: 2.5rem;
+      font-style: italic;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .header p { font-size: 0.95rem; opacity: 0.82; font-weight: 300; }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 940px; margin: 0 auto; padding: 2.5rem 1.2rem; }
+    .sec { margin-bottom: 3.5rem; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateX(-36px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.from-right { transform: translateX(36px); }
+    .reveal.from-bottom { transform: translateY(28px); }
+    .reveal.visible { opacity: 1; transform: translate(0); }
+
+    /* ── SOFIA MASCOT ── */
+    .sofia-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .sofia-row.right { flex-direction: row-reverse; }
+    .sofia-avatar-wrap { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .sofia-avatar {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--ipp-green);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      animation: float 3.5s ease-in-out infinite;
+      box-shadow: 0 6px 24px rgba(82,142,116,0.35);
+    }
+    .sofia-label {
+      font-size: 0.62rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: var(--ipp-green); margin-top: 0.3rem; text-align: center;
+    }
+    .sofia-bubble {
+      background: var(--ipp-white);
+      border-radius: var(--radius) var(--radius) var(--radius) 0;
+      padding: 1.1rem 1.5rem;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+      font-size: 0.93rem; line-height: 1.72;
+      max-width: 82%;
+      animation: popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;
+    }
+    .sofia-row.right .sofia-bubble {
+      border-radius: var(--radius) var(--radius) 0 var(--radius);
+    }
+    .sofia-bubble strong { color: var(--ipp-green); }
+    .sofia-bubble em { color: var(--ipp-red); font-style: italic; }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      40%      { transform: translateY(-9px) rotate(-3deg); }
+      70%      { transform: translateY(-4px) rotate(2deg); }
+    }
+    @keyframes popIn {
+      from { opacity:0; transform: scale(0.82) translateY(8px); }
+      to   { opacity:1; transform: scale(1)    translateY(0); }
+    }
+
+    /* ── SECTION TITLES ── */
+    .sec-title {
+      font-family: var(--font-head);
+      font-size: 1.6rem; font-style: italic;
+      color: var(--ipp-green); margin-bottom: 0.35rem;
+    }
+    .sec-sub { font-size: 0.87rem; color: #666; margin-bottom: 1.25rem; font-weight: 400; }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--ipp-white);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+
+    /* ── ACCENT BORDERS ── */
+    .b-green { border-left: 5px solid var(--ipp-green); }
+    .b-teal  { border-left: 5px solid var(--ipp-teal);  }
+    .b-red   { border-left: 5px solid var(--ipp-red);   }
+    .b-gold  { border-left: 5px solid var(--ipp-amber); }
+
+    /* ── INFO BANNERS ── */
+    .info {
+      border-radius: var(--radius); padding: 1rem 1.4rem;
+      font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.2rem;
+    }
+    .info-green { background:#e8f4ef; color:#1f4d38; border-left:4px solid var(--ipp-green); }
+    .info-teal  { background:#e5f1f5; color:#1a3c48; border-left:4px solid var(--ipp-teal);  }
+    .info-gold  { background:#fdf4dc; color:#5a4200; border-left:4px solid var(--ipp-amber); }
+    .info-red   { background:#fbeae8; color:#6b1e17; border-left:4px solid var(--ipp-red);   }
+    .info strong { font-weight:700; }
+
+    /* ── REFLECTION ITEMS ── */
+    .reflect-item {
+      background: var(--ipp-white);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin-bottom: 0.75rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .reflect-num {
+      background: var(--ipp-green); color: var(--ipp-white);
+      border-radius: 50%; width: 30px; height: 30px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.88rem; flex-shrink: 0;
+    }
+    .reflect-text { font-size: 0.91rem; line-height: 1.65; color: #444; padding-top: 0.15rem; }
+
+    /* ── VIDEO CARD ── */
+    .video-card {
+      background: var(--ipp-white);
+      border-radius: var(--radius);
+      padding: 1.5rem 2rem;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+      border-left: 5px solid var(--ipp-red);
+    }
+    .video-card h3 {
+      font-family: var(--font-head);
+      color: var(--ipp-green); font-size: 1.15rem; margin-bottom: 0.5rem;
+    }
+    .video-card p { font-size: 0.9rem; color: #555; line-height: 1.65; margin-bottom: 1rem; }
+
+    .watch-table { width:100%; border-collapse:collapse; font-size:0.87rem; margin-bottom:1rem; }
+    .watch-table th {
+      background: var(--ipp-green); color: var(--ipp-white);
+      padding: 0.55rem 0.9rem; text-align:left;
+      font-size:0.78rem; text-transform:uppercase; letter-spacing:0.5px;
+    }
+    .watch-table th:first-child { border-radius:6px 0 0 0; }
+    .watch-table th:last-child  { border-radius:0 6px 0 0; }
+    .watch-table td { padding:0.6rem 0.9rem; border-bottom:1px solid var(--ipp-cream-dk); color:#555; }
+    .watch-table tr:last-child td { border-bottom:none; }
+    .watch-table tr:nth-child(even) td { background: var(--ipp-cream); }
+
+    .btn-video {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--ipp-red); color: var(--ipp-white);
+      padding: 0.6rem 1.5rem; border-radius: 30px;
+      text-decoration: none; font-weight: 600; font-size: 0.9rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-video:hover { background: #a93828; transform: translateY(-2px); }
+
+    .copyright-notice {
+      background: var(--ipp-cream); border-radius: var(--radius);
+      padding: 0.75rem 1.1rem; font-size: 0.76rem; color: #777;
+      line-height: 1.55; margin-top: 0.85rem;
+    }
+    .copyright-notice a { color: var(--ipp-teal); }
+
+    /* ── PROGRESS ── */
+    .progress-wrap { margin-bottom: 1.4rem; }
+    .progress-label { font-size: 0.82rem; color: #888; text-align:center; margin-bottom:0.35rem; }
+    .progress-bar { background:var(--ipp-cream-dk); border-radius:50px; height:8px; overflow:hidden; }
+    .progress-fill { height:100%; background:var(--ipp-green); border-radius:50px; width:0; transition:width 0.4s ease; }
+
+    /* ── CONTROLS ── */
+    .controls { display:flex; gap:0.7rem; margin-bottom:1.3rem; flex-wrap:wrap; }
+    .btn {
+      padding:0.5rem 1.3rem; border:none; border-radius:30px;
+      cursor:pointer; font-family:var(--font-body); font-size:0.87rem;
+      font-weight:600; transition:opacity 0.2s, transform 0.15s;
+    }
+    .btn:hover { opacity:0.85; transform:translateY(-2px); }
+    .btn-green { background:var(--ipp-green); color:var(--ipp-white); }
+    .btn-red   { background:var(--ipp-red);   color:var(--ipp-white); }
+
+    /* ── FLIP CARDS ── */
+    .alphabet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      gap: 0.75rem;
+    }
+    .flip-wrap { height: 108px; cursor: pointer; perspective: 900px; }
+    .flip-inner {
+      position:relative; width:100%; height:100%;
+      transition:transform 0.5s ease; transform-style:preserve-3d;
+    }
+    .flip-wrap.flipped .flip-inner { transform: rotateY(180deg); }
+    .flip-front, .flip-back {
+      position:absolute; inset:0; border-radius:var(--radius);
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      -webkit-backface-visibility:hidden; backface-visibility:hidden;
+      padding:0.4rem; text-align:center;
+    }
+    .flip-front { background:var(--ipp-green); color:var(--ipp-gold); }
+    .flip-front .big-ltr { font-family:var(--font-head); font-size:2.5rem; font-weight:900; line-height:1; }
+    .flip-front .hint-lbl { font-size:0.62rem; opacity:0.75; margin-top:0.2rem; }
+    .flip-back { background:var(--ipp-gold); color:var(--ipp-black); transform:rotateY(180deg); }
+    .flip-back .city-nm  { font-size:0.8rem; font-weight:700; line-height:1.25; }
+    .flip-back .pron-nm  { font-size:0.68rem; opacity:0.65; margin-top:0.2rem; font-style:italic; }
+    .flip-back .lsm      { font-family:var(--font-head); font-size:1.2rem; font-weight:900; margin-bottom:0.15rem; }
+
+    /* ── FUN FACTS GRID ── */
+    .facts-grid {
+      display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
+      gap:0.85rem; margin-top:1.5rem;
+    }
+    .fact-card {
+      background:var(--ipp-white); border-radius:var(--radius);
+      padding:1rem 1.2rem; font-size:0.87rem; line-height:1.6;
+      box-shadow:0 2px 8px rgba(0,0,0,0.05);
+      display:flex; gap:0.75rem; align-items:flex-start;
+    }
+    .fact-icon { font-size:1.6rem; flex-shrink:0; }
+    .fact-title { color:var(--ipp-green); font-weight:700; margin-bottom:0.2rem; font-size:0.88rem; }
+
+    /* ── CITIES GRID ── */
+    .cities-grid {
+      display:grid; grid-template-columns:repeat(auto-fill, minmax(162px, 1fr));
+      gap:0.75rem; margin-top:1rem;
+    }
+    .city-card {
+      background:var(--ipp-white); border-radius:var(--radius);
+      padding:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.05);
+      text-align:center; cursor:pointer;
+      border-top:3px solid var(--ipp-teal);
+      transition:transform 0.2s, box-shadow 0.2s;
+    }
+    .city-card:hover { transform:translateY(-3px); box-shadow:0 6px 18px rgba(0,0,0,0.09); }
+    .city-card .c-flag  { font-size:2rem; margin-bottom:0.3rem; }
+    .city-card .c-name  { font-weight:700; font-size:0.95rem; color:var(--ipp-green); }
+    .city-card .c-region{ font-size:0.72rem; color:#999; margin-top:0.1rem; }
+    .city-card .c-fact  { font-size:0.76rem; color:#555; margin-top:0.45rem; line-height:1.5; display:none; }
+    .city-card.open .c-fact { display:block; }
+    .city-card.open { background:var(--ipp-cream); }
+
+    /* ── NAMES ── */
+    .names-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .names-col h4 {
+      font-weight:700; color:var(--ipp-green); font-size:0.88rem;
+      text-transform:uppercase; letter-spacing:1px;
+      margin-bottom:0.75rem; padding-bottom:0.4rem;
+      border-bottom:2px solid var(--ipp-green);
+    }
+    .name-chip {
+      display:inline-block; background:var(--ipp-cream);
+      border-radius:20px; padding:0.3rem 0.85rem;
+      font-size:0.87rem; margin:0.2rem 0.15rem;
+      cursor:pointer; transition:all 0.2s;
+      border:1.5px solid transparent;
+    }
+    .name-chip:hover { background:var(--ipp-green); color:var(--ipp-white); }
+    .name-chip.sel   { background:var(--ipp-teal);  color:var(--ipp-white); border-color:var(--ipp-teal); }
+
+    /* ── SPELLING QUIZ ── */
+    .q-block {
+      background:var(--ipp-white); border-radius:var(--radius);
+      padding:1.2rem 1.4rem; margin-bottom:0.85rem;
+      box-shadow:0 2px 8px rgba(0,0,0,0.04);
+    }
+    .q-block p { font-weight:600; font-size:0.95rem; color:var(--ipp-green); margin-bottom:0.7rem; }
+    .input-row { display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap; }
+    .input-row input {
+      flex:1; min-width:180px; padding:0.5rem 1rem;
+      border:2px solid var(--ipp-cream-dk); border-radius:var(--radius);
+      font-family:var(--font-body); font-size:0.92rem; background:var(--ipp-white);
+      transition:border-color 0.2s;
+    }
+    .input-row input:focus { outline:none; border-color:var(--ipp-teal); }
+    .btn-check {
+      background:var(--ipp-teal); color:var(--ipp-white); border:none;
+      border-radius:20px; padding:0.5rem 1.2rem; cursor:pointer;
+      font-family:var(--font-body); font-weight:600; font-size:0.85rem;
+      transition:background 0.2s;
+    }
+    .btn-check:hover { background:#5e8fa2; }
+    .feedback {
+      display:none; margin-top:0.6rem; padding:0.5rem 0.9rem;
+      border-radius:var(--radius); font-size:0.87rem; font-weight:600;
+    }
+    .feedback.ok   { display:block; background:#d4edda; color:#155724; }
+    .feedback.fail { display:block; background:#fbeae8; color:#6b1e17; }
+
+    /* ── CLOSING ── */
+    .closing-card {
+      background:var(--ipp-green); color:var(--ipp-white);
+      border-radius:var(--radius); padding:2.5rem 2rem; text-align:center;
+    }
+    .closing-card h2 {
+      font-family:var(--font-head); font-size:1.7rem;
+      font-style:italic; margin-bottom:0.6rem;
+    }
+    .closing-card p { opacity:0.9; line-height:1.7; font-size:0.93rem; }
+
+    /* ── FOOTER ── */
+    .footer { text-align:center; padding:2rem 1rem; font-size:0.77rem; color:#aaa; }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-badge">Unità 0 · A1 · Etapa 2</div>
+    <h1>Come ti chiami?</h1>
+    <p>Descubrimiento — El alfabeto, las ciudades y los nombres italianos</p>
+  </header>
+
+  <div class="container">
+
+    <!-- ══ 1. SOFIA BIENVENIDA ══ -->
+    <section class="sec">
+      <div class="sofia-row reveal from-bottom">
+        <div class="sofia-avatar-wrap">
+          <div class="sofia-avatar">👩‍🏫</div>
+          <div class="sofia-label">Sofia · guida</div>
+        </div>
+        <div class="sofia-bubble">
+          <strong>Benvenuta/o!</strong> Sono Sofia, la tua guida di oggi. 🍷<br><br>
+          Ya llegaste aquí después del video — eso ya es un primer paso enorme. Ahora es cuando de verdad empieza la magia: <em>explorar, descubrir y conectar</em> lo que escuchaste con el idioma real. Tómate tu tiempo. Hay mucho para disfrutar, y sin prisa. <strong>Piacere di conoscerti!</strong> 🇮🇹
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 2. ANTES DE VER ══ -->
+    <section class="sec">
+      <h2 class="sec-title reveal">Prima di cominciare...</h2>
+      <p class="sec-sub reveal">Tres preguntas para activar lo que ya sabes — reflexiona antes de ver el video</p>
+
+      <div class="reflect-item reveal">
+        <div class="reflect-num">1</div>
+        <div class="reflect-text">
+          <strong>¿Cuántas ciudades italianas conoces?</strong> Piénsalo un momento sin ayuda.
+          Roma, Milano, Venezia... ¿llegas a 5? ¿a 10? Spoiler: Italia tiene más de 8.000 municipios. 🏙️
+          Cada uno tiene nombre propio, historia propia, y en el alfabeto fonético, cada letra <em>lleva el nombre de una de ellas</em>.
+        </div>
+      </div>
+      <div class="reflect-item reveal">
+        <div class="reflect-num">2</div>
+        <div class="reflect-text">
+          <strong>¿Cómo se llama la letra M en italiano?</strong> En español decimos "eme".
+          En italiano se dice algo diferente. ¿Lo adivinas? Pista: tiene que ver con la ciudad de Milano.
+          Sigue leyendo para confirmarlo... 🤔
+        </div>
+      </div>
+      <div class="reflect-item reveal">
+        <div class="reflect-num">3</div>
+        <div class="reflect-text">
+          <strong>¿El italiano tiene la misma cantidad de letras que el español?</strong>
+          El español tiene 27 letras (incluyendo la Ñ). El italiano, sorprendentemente, tiene menos.
+          ¿Cuántas crees que tiene? La respuesta te la da el alfabeto fonético. 🔤
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 3. EL VIDEO ══ -->
+    <section class="sec">
+      <h2 class="sec-title reveal">🎬 Il Video — L'Alfabeto Italiano</h2>
+      <p class="sec-sub reveal">Antes de continuar con las actividades, mira el video</p>
+
+      <div class="video-card reveal">
+        <h3>L'Alfabeto Italiano | LearnAmo</h3>
+        <p>
+          Un video de <strong>LearnAmo</strong> de aproximadamente 5 minutos donde recorren
+          las 21 letras del alfabeto italiano, asociando cada una con una ciudad italiana famosa.
+          Escucha con atención cómo suena el <em>nombre</em> de cada letra — eso es exactamente
+          lo que necesitarás cuando alguien te pregunte "Come si scrive il tuo nome?"
+        </p>
+
+        <table class="watch-table">
+          <thead>
+            <tr><th>Visualización</th><th>¿Qué hacer?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>🎧 1.ª vez</td><td>Solo escucha y disfruta. No tomes notas todavía. Deja que los sonidos entren.</td></tr>
+            <tr><td>✏️ 2.ª vez</td><td>Intenta anotar mentalmente cuántas ciudades reconoces por letra. ¿Cuántas ya conocías?</td></tr>
+          </tbody>
+        </table>
+
+        <a class="btn-video" href="https://www.youtube.com/watch?v=6R_4YRTshIg" target="_blank" rel="noopener">
+          ▶ Ver en YouTube
+        </a>
+
+        <div class="copyright-notice">
+          ℹ️ <strong>Uso educativo:</strong> Este video es contenido de terceros publicado en YouTube por el canal <em>LearnAmo</em>. Italiano Per Piacere no tiene afiliación con el canal y enlaza el recurso únicamente con fines pedagógicos, sin reproducir ni modificar el contenido original. Todos los derechos de autor pertenecen a sus creadores.
+          <a href="https://www.youtube.com/c/learnamo" target="_blank" rel="noopener">→ Canal LearnAmo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 4. FLIP CARDS ══ -->
+    <section class="sec">
+      <h2 class="sec-title reveal">🃏 Scopri le Lettere!</h2>
+      <p class="sec-sub reveal">Haz clic en cada letra para revelar su ciudad y su pronunciación</p>
+
+      <div class="sofia-row right reveal from-right">
+        <div class="sofia-avatar-wrap">
+          <div class="sofia-avatar" style="background:var(--ipp-teal)">🤌</div>
+          <div class="sofia-label" style="color:var(--ipp-teal)">Tip de Sofia</div>
+        </div>
+        <div class="sofia-bubble">
+          El <strong>alfabeto fonético italiano</strong> sirve para deletrear con claridad por teléfono o en persona.
+          Si alguien te pregunta <em>"come si scrive il tuo cognome?"</em> (¿cómo se escribe tu apellido?),
+          respondes letra a letra usando el nombre de cada una: Marco → <em>emme – a – erre – ci – o</em>.
+          ¡Inténtalo con tu nombre después de explorar las tarjetas! 🗣️
+        </div>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-label" id="progLabel">0 de 21 letras descubiertas</div>
+        <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
+      </div>
+      <div class="controls">
+        <button class="btn btn-green" onclick="flipAll()">Revelar todas</button>
+        <button class="btn btn-red"   onclick="resetAll()">Reiniciar</button>
+      </div>
+
+      <div class="alphabet-grid" id="alphabetGrid"></div>
+
+      <div class="facts-grid">
+        <div class="fact-card reveal">
+          <div class="fact-icon">🔢</div>
+          <div>
+            <div class="fact-title">Solo 21 letras nativas</div>
+            El italiano tiene 5 letras menos que el español. Las letras J, K, W, X, Y son
+            "straniere" (extranjeras) y solo aparecen en palabras importadas de otros idiomas como
+            <em>jeans, karaoke, weekend, taxi, yoga</em>.
+          </div>
+        </div>
+        <div class="fact-card reveal from-right">
+          <div class="fact-icon">🏛️</div>
+          <div>
+            <div class="fact-title">Ciudades como anclas de memoria</div>
+            Asociar cada letra con una ciudad activa más zonas del cerebro que solo memorizar
+            listas. ¡La memoria visual y emocional trabaja junto con la auditiva! Es uno de los
+            trucos mnemotécnicos más efectivos del italiano.
+          </div>
+        </div>
+        <div class="fact-card reveal">
+          <div class="fact-icon">🎵</div>
+          <div>
+            <div class="fact-title">Vocales puras — la clave del italiano</div>
+            El italiano es el idioma de la ópera justamente porque sus vocales (a, e, i, o, u) son
+            siempre claras y puras, sin excepciones. Cada vocal suena igual en todas las palabras,
+            al contrario del inglés o el francés.
+          </div>
+        </div>
+        <div class="fact-card reveal from-right">
+          <div class="fact-icon">🤫</div>
+          <div>
+            <div class="fact-title">La H nunca suena</div>
+            La letra H en italiano se llama "acca" pero es completamente muda en todas las palabras.
+            <em>Hotel, hanno, ho</em>... la H no se pronuncia nunca. ¡Todo lo contrario que en español,
+            donde puede aspirarse!
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 5. CIUDADES ══ -->
+    <section class="sec">
+      <h2 class="sec-title reveal">🗺️ Le Città Italiane</h2>
+      <p class="sec-sub reveal">Haz clic en cada ciudad para descubrir un dato curioso</p>
+
+      <div class="sofia-row reveal">
+        <div class="sofia-avatar-wrap">
+          <div class="sofia-avatar" style="background:var(--ipp-red)">🧳</div>
+          <div class="sofia-label" style="color:var(--ipp-red)">Sofia viajera</div>
+        </div>
+        <div class="sofia-bubble">
+          Conocer las ciudades italianas no sirve solo para el alfabeto fonético — te abre las puertas
+          a la <strong>cultura, la historia y la gastronomía</strong> de Italia. Cada ciudad es un mundo aparte.
+          La gente de Roma y la de Milano hablan el mismo idioma pero con ritmos y expresiones
+          completamente distintas. <em>L'Italia è bella e diversa!</em> 🍕🎨⛵
+        </div>
+      </div>
+
+      <div class="cities-grid" id="citiesGrid"></div>
+
+      <div class="info info-gold reveal" style="margin-top:1.5rem">
+        <strong>¡Ojo cultural!</strong> En italiano se dice <em>"Sono di Roma"</em> (Soy de Roma) para el origen,
+        y <em>"Vado a Milano"</em> (Voy a Milán) para el destino. Dos verbos clave — <em>essere</em> y <em>andare</em> —
+        que trabajaremos muy pronto en la Etapa 3.
+      </div>
+    </section>
+
+    <!-- ══ 6. NOMI ITALIANI ══ -->
+    <section class="sec">
+      <h2 class="sec-title reveal">👤 I Nomi Italiani</h2>
+      <p class="sec-sub reveal">Los nombres más comunes — haz clic para ver cómo se deletrean</p>
+
+      <div class="sofia-row right reveal from-right">
+        <div class="sofia-avatar-wrap">
+          <div class="sofia-avatar" style="background:var(--ipp-amber)">😊</div>
+          <div class="sofia-label" style="color:var(--ipp-amber)">Sofia</div>
+        </div>
+        <div class="sofia-bubble">
+          Los nombres italianos son muy musicales porque terminan casi siempre en vocal.
+          Los nombres masculinos suelen terminar en <strong>-o</strong> (Marco, Lorenzo, Matteo)
+          y los femeninos en <strong>-a</strong> (Sofia, Giulia, Laura). Haz clic en los nombres
+          que te gusten — ¡luego practica deletrearlos usando los nombres de las letras que acabas de aprender!
+        </div>
+      </div>
+
+      <div class="card b-teal reveal">
+        <div class="names-grid" id="namesGrid">
+          <div class="names-col">
+            <h4>♂ Nomi Maschili</h4>
+            <div id="maleNames"></div>
+          </div>
+          <div class="names-col">
+            <h4>♀ Nomi Femminili</h4>
+            <div id="femaleNames"></div>
+          </div>
+        </div>
+        <div class="info info-teal" style="margin-top:1.25rem" id="nameSpellingBox">
+          <strong>Come si scrive?</strong><br>
+          <span id="nameSpellingText">Haz clic en cualquier nombre de arriba para ver cómo se deletrea en italiano.</span>
+        </div>
+      </div>
+
+      <div class="info info-green reveal" style="margin-top:1rem">
+        <strong>Practica en voz alta:</strong> Una vez que hagas clic en un nombre, intenta leer su deletreo
+        en voz alta antes de ver la respuesta. Es el mejor ejercicio para la pronunciación. 🎤
+      </div>
+    </section>
+
+    <!-- ══ 7. SPELLING QUIZ ══ -->
+    <section class="sec">
+      <h2 class="sec-title reveal">✏️ Come si scrive?</h2>
+      <p class="sec-sub reveal">Practica deletrear palabras en italiano — escribe el nombre de cada letra separado por guiones</p>
+
+      <div class="info info-green reveal">
+        <strong>Cómo funciona:</strong> Escribe el nombre de cada letra usando los que aprendiste en las tarjetas,
+        separados por guiones o espacios. Ejemplo: <em>BENE → bi – e – enne – e</em>.
+        No importa si usas guiones, comas o espacios — lo que importa es el nombre correcto de cada letra.
+      </div>
+
+      <div id="spellingQuiz"></div>
+    </section>
+
+    <!-- ══ 8. CIERRE ══ -->
+    <section class="sec">
+      <div class="closing-card reveal from-bottom">
+        <div style="font-size:3rem; margin-bottom:0.75rem">🍷</div>
+        <h2>Bravissimo/a!</h2>
+        <p style="margin-top:0.75rem; max-width:560px; margin-left:auto; margin-right:auto">
+          Acabas de explorar el alfabeto fonético italiano, descubrir ciudades, conocer nombres
+          y practicar el deletreo. Es mucho para una sola sesión — y todo con tu propio ritmo. 🎉
+          <br><br>
+          En la <strong>Etapa 3</strong> verás la gramática organizada de forma visual e interactiva.
+          ¡Vai avanti con entusiasmo!
+        </p>
+        <div style="margin-top:1.5rem; font-family:var(--font-head); font-size:1.15rem; font-style:italic; opacity:0.85">
+          "L'italiano è musica per le orecchie." 🎶
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /container -->
+
+  <footer class="footer">
+    🍷 <strong>Italiano Per Piacere</strong> &nbsp;·&nbsp; Unità 0 &nbsp;·&nbsp; Etapa 2: Descubrimiento
+  </footer>
+
+  <script>
+    /* ── DATA ── */
+    const ALPHABET = [
+      {l:'A',city:'Ancona',      pron:'a'    },
+      {l:'B',city:'Bologna',     pron:'bi'   },
+      {l:'C',city:'Como',        pron:'ci'   },
+      {l:'D',city:'Domodossola', pron:'di'   },
+      {l:'E',city:'Empoli',      pron:'e'    },
+      {l:'F',city:'Firenze',     pron:'effe' },
+      {l:'G',city:'Genova',      pron:'gi'   },
+      {l:'H',city:'Hotel',       pron:'acca' },
+      {l:'I',city:'Imola',       pron:'i'    },
+      {l:'L',city:'Livorno',     pron:'elle' },
+      {l:'M',city:'Milano',      pron:'emme' },
+      {l:'N',city:'Napoli',      pron:'enne' },
+      {l:'O',city:'Otranto',     pron:'o'    },
+      {l:'P',city:'Palermo',     pron:'pi'   },
+      {l:'Q',city:'Quarto',      pron:'cu'   },
+      {l:'R',city:'Roma',        pron:'erre' },
+      {l:'S',city:'Savona',      pron:'esse' },
+      {l:'T',city:'Torino',      pron:'ti'   },
+      {l:'U',city:'Udine',       pron:'u'    },
+      {l:'V',city:'Venezia',     pron:'vu'   },
+      {l:'Z',city:'Zara',        pron:'zeta' },
+    ];
+
+    const CITIES = [
+      {name:'Roma',    region:'Lazio',         flag:'🏛️',fact:'La Città Eterna. Fundada en el 753 a.C. según la leyenda. Capital de Italia y hogar del Vaticano, el Coliseo y la Fontana di Trevi.'},
+      {name:'Milano',  region:'Lombardia',     flag:'👗',fact:'Capital de la moda y las finanzas. Sede del Duomo, La Scala y el Cenacolo de Leonardo. La ciudad más cosmopolita de Italia.'},
+      {name:'Venezia', region:'Veneto',        flag:'🚤',fact:'Construida sobre 118 islotes. Sin coches, solo barcos, gondole y canales. Cada año se hunde unos milímetros. ¡Un milagro arquitectónico!'},
+      {name:'Firenze', region:'Toscana',       flag:'🎨',fact:'Cuna del Renacimiento. Aquí vivieron Dante, Leonardo y Michelangelo. El David de Michelangelo y Los Uffizi están aquí.'},
+      {name:'Napoli',  region:'Campania',      flag:'🍕',fact:'¡Cuna de la pizza! La margherita nació aquí en 1889. El Vesuvio vigila la ciudad. Tiene la mejor pizza del mundo según sus habitantes.'},
+      {name:'Torino',  region:'Piemonte',      flag:'🏎️',fact:'Primera capital de Italia (1861). Sede de FIAT y la Juventus. Capital del cioccolato y del bicerin. Elegante y discreta.'},
+      {name:'Bologna', region:'Emilia-Romagna',flag:'🍝',fact:'"La grassa" (la gorda) por su cocina incomparable. Aquí nacieron los tortellini, la mortadella y el ragù bolognese que el mundo llama "boloñesa".'},
+      {name:'Palermo', region:'Sicilia',       flag:'🌊',fact:'Capital de Sicilia, la mayor isla del Mediterráneo. Mezcla única de culturas árabe, normanda y española. El arancino es su emblema gastronómico.'},
+      {name:'Genova',  region:'Liguria',       flag:'⛵',fact:'Ciudad natal de Cristoforo Colombo. Puerto histórico de marineros y exploradores. El pesto genovese con albahaca fresca nació aquí.'},
+      {name:'Bari',    region:'Puglia',        flag:'🌅',fact:'Puerta de Oriente. Famosa por las orecchiette (pasta con forma de orejitas) y los trulli de Alberobello, patrimonio UNESCO a pocos kilómetros.'},
+    ];
+
+    const MALE_NAMES = [
+      {name:'Marco',      spell:'emme – a – erre – ci – o'},
+      {name:'Lorenzo',    spell:'elle – o – erre – e – enne – zeta – o'},
+      {name:'Alessandro', spell:'a – elle – e – esse – esse – a – enne – di – erre – o'},
+      {name:'Matteo',     spell:'emme – a – ti – ti – e – o'},
+      {name:'Francesco',  spell:'effe – erre – a – enne – ci – e – esse – ci – o'},
+      {name:'Luca',       spell:'elle – u – ci – a'},
+      {name:'Giovanni',   spell:'gi – i – o – vu – a – enne – enne – i'},
+      {name:'Davide',     spell:'di – a – vu – i – di – e'},
+    ];
+
+    const FEMALE_NAMES = [
+      {name:'Sofia',    spell:'esse – o – effe – i – a'},
+      {name:'Giulia',   spell:'gi – i – u – elle – i – a'},
+      {name:'Chiara',   spell:'ci – acca – i – a – erre – a'},
+      {name:'Martina',  spell:'emme – a – erre – ti – i – enne – a'},
+      {name:'Laura',    spell:'elle – a – u – erre – a'},
+      {name:'Elena',    spell:'e – elle – e – enne – a'},
+      {name:'Sara',     spell:'esse – a – erre – a'},
+      {name:'Valentina',spell:'vu – a – elle – e – enne – ti – i – enne – a'},
+    ];
+
+    const SPELLING_Q = [
+      {q:'¿Cómo se deletrea "CIAO"?',   hint:'ci – i – a – o',          ok:['ci i a o','ci-i-a-o','ci – i – a – o']},
+      {q:'¿Cómo se deletrea "NOME"?',   hint:'enne – o – emme – e',     ok:['enne o emme e','enne-o-emme-e','enne – o – emme – e']},
+      {q:'¿Cómo se deletrea "ITALIA"?', hint:'i – ti – a – elle – i – a',ok:['i ti a elle i a','i-ti-a-elle-i-a','i – ti – a – elle – i – a']},
+      {q:'¿Cómo se deletrea "PIZZA"?',  hint:'pi – i – zeta – zeta – a', ok:['pi i zeta zeta a','pi-i-zeta-zeta-a','pi – i – zeta – zeta – a']},
+      {q:'¿Cómo se deletrea "BELLO"?',  hint:'bi – e – elle – elle – o', ok:['bi e elle elle o','bi-e-elle-elle-o','bi – e – elle – elle – o']},
+    ];
+
+    /* ── FLIP CARDS ── */
+    let flipped = 0;
+    function buildGrid() {
+      const grid = document.getElementById('alphabetGrid');
+      ALPHABET.forEach((item, i) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'flip-wrap'; wrap.id = `card-${i}`;
+        wrap.title = 'Haz clic para revelar';
+        wrap.innerHTML = `
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="big-ltr">${item.l}</div>
+              <div class="hint-lbl">¿qué ciudad?</div>
+            </div>
+            <div class="flip-back">
+              <div class="lsm">${item.l}</div>
+              <div class="city-nm">${item.city}</div>
+              <div class="pron-nm">[${item.pron}]</div>
+            </div>
+          </div>`;
+        wrap.addEventListener('click', () => flipOne(i));
+        grid.appendChild(wrap);
+      });
+    }
+    function flipOne(i) {
+      const c = document.getElementById(`card-${i}`);
+      if (!c.classList.contains('flipped')) { c.classList.add('flipped'); flipped++; updateProg(); }
+    }
+    function flipAll()  { ALPHABET.forEach((_,i)=>{ const c=document.getElementById(`card-${i}`); if(!c.classList.contains('flipped')){c.classList.add('flipped');flipped++;} }); updateProg(); }
+    function resetAll() { ALPHABET.forEach((_,i)=>document.getElementById(`card-${i}`).classList.remove('flipped')); flipped=0; updateProg(); }
+    function updateProg() {
+      const pct = Math.round((flipped/ALPHABET.length)*100);
+      document.getElementById('progFill').style.width = pct+'%';
+      document.getElementById('progLabel').textContent = `${flipped} de ${ALPHABET.length} letras descubiertas`;
+    }
+
+    /* ── CITIES ── */
+    function buildCities() {
+      const grid = document.getElementById('citiesGrid');
+      const tops = ['var(--ipp-green)','var(--ipp-teal)','var(--ipp-red)','var(--ipp-amber)'];
+      CITIES.forEach((c,i) => {
+        const card = document.createElement('div');
+        card.className = 'city-card';
+        card.style.borderTopColor = tops[i % tops.length];
+        card.innerHTML = `<div class="c-flag">${c.flag}</div><div class="c-name">${c.name}</div><div class="c-region">${c.region}</div><div class="c-fact">${c.fact}</div>`;
+        card.addEventListener('click', () => card.classList.toggle('open'));
+        grid.appendChild(card);
+      });
+    }
+
+    /* ── NAMES ── */
+    function buildNames() {
+      function chips(containerId, arr) {
+        const cont = document.getElementById(containerId);
+        arr.forEach(n => {
+          const chip = document.createElement('span');
+          chip.className = 'name-chip'; chip.textContent = n.name;
+          chip.addEventListener('click', () => {
+            document.querySelectorAll('.name-chip').forEach(c=>c.classList.remove('sel'));
+            chip.classList.add('sel');
+            document.getElementById('nameSpellingText').innerHTML =
+              `<strong>${n.name}</strong> → <em>${n.spell}</em>`;
+          });
+          cont.appendChild(chip);
+        });
+      }
+      chips('maleNames',   MALE_NAMES);
+      chips('femaleNames', FEMALE_NAMES);
+    }
+
+    /* ── SPELLING QUIZ ── */
+    function buildSpelling() {
+      const wrap = document.getElementById('spellingQuiz');
+      SPELLING_Q.forEach((q,i) => {
+        const n = i+1;
+        const block = document.createElement('div');
+        block.className = 'q-block reveal';
+        block.innerHTML = `
+          <p>${n}. ${q.q}</p>
+          <div class="input-row">
+            <input type="text" id="sq${n}" placeholder="Ej: ${q.hint}" />
+            <button class="btn-check" onclick="checkSp(${n})">Verificar</button>
+          </div>
+          <div class="feedback" id="sf${n}"></div>`;
+        wrap.appendChild(block);
+      });
+    }
+
+    function norm(s){ return s.toLowerCase().replace(/[–—-]/g,' ').replace(/\s+/g,' ').trim(); }
+    function checkSp(n) {
+      const val = norm(document.getElementById(`sq${n}`).value);
+      const q   = SPELLING_Q[n-1];
+      const ok  = q.ok.some(a => norm(a)===val);
+      const fb  = document.getElementById(`sf${n}`);
+      fb.textContent = ok ? `✅ Perfetto! → ${q.hint}` : `❌ Quasi! La risposta: ${q.hint}`;
+      fb.className   = `feedback ${ok?'ok':'fail'}`;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+    }, {threshold:0.1});
+    function initReveal(){ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el)); }
+
+    buildGrid(); buildCities(); buildNames(); buildSpelling(); initReveal();
+  </script>
+</body>
+</html>

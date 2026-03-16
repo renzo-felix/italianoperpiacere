@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unità 5 · Descubrimiento | Italiano Per Piacere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream:#e9e6d5; --cream-dk:#ddd9c8; --gold:#EFCF7F; --amber:#e5ab07;
+      --red:#cc4736; --teal:#78a6ba; --green:#528e74; --black:#1a1a18; --white:#ffffff;
+      --r:8px; --fh:'Playfair Display',Georgia,serif; --fb:'Outfit',system-ui,sans-serif;
+      --ease:cubic-bezier(0.16,1,0.3,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--fb);background:var(--cream);color:var(--black);overflow-x:hidden}
+
+    .es{font-size:.8rem;color:#888;font-style:italic;margin-top:.2rem}
+    .hide-es .es{display:none !important}
+    .trans-toggle{position:fixed;top:1.2rem;right:1.2rem;z-index:999;background:var(--white);border:2px solid var(--amber);color:var(--amber);font-family:var(--fb);font-size:.78rem;font-weight:700;padding:.45rem 1rem;border-radius:30px;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.12);transition:background .2s,color .2s}
+    .trans-toggle:hover{background:var(--amber);color:var(--white)}
+
+    [data-a]{opacity:0;transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    [data-a="up"]   {transform:translateY(48px)}
+    [data-a="left"] {transform:translateX(-56px)}
+    [data-a="right"]{transform:translateX(56px)}
+    [data-a="scale"]{transform:scale(0.86)}
+    [data-a="fade"] {transform:none}
+    [data-a].in{opacity:1;transform:none !important}
+    [data-stagger].in > *{opacity:1;transform:none !important}
+    [data-stagger] > *{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+    [data-stagger]>*:nth-child(1){transition-delay:.00s}
+    [data-stagger]>*:nth-child(2){transition-delay:.08s}
+    [data-stagger]>*:nth-child(3){transition-delay:.16s}
+    [data-stagger]>*:nth-child(4){transition-delay:.24s}
+    [data-stagger]>*:nth-child(5){transition-delay:.32s}
+    [data-stagger]>*:nth-child(6){transition-delay:.40s}
+    [data-stagger]>*:nth-child(7){transition-delay:.48s}
+    [data-stagger]>*:nth-child(8){transition-delay:.56s}
+    [data-stagger]>*:nth-child(n+9){transition-delay:.64s}
+
+    /* HERO */
+    .hero{min-height:100vh;background:var(--amber);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
+    .hero-bg-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.1);pointer-events:none;will-change:transform}
+    .hero-bg-circle:nth-child(1){width:600px;height:600px;top:-200px;right:-150px}
+    .hero-bg-circle:nth-child(2){width:400px;height:400px;bottom:-100px;left:-100px}
+    .hero-bg-circle:nth-child(3){width:250px;height:250px;top:20%;left:8%}
+    .hero-badge{display:inline-block;background:var(--white);color:var(--black);font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:.3rem 1.2rem;border-radius:20px;margin-bottom:1.5rem;opacity:0;animation:popIn .6s var(--ease) .2s forwards}
+    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-style:italic;color:var(--white);line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
+    .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:rgba(255,255,255,.9);max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
+    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.7);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
+    .scroll-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.7);animation:scrollDot 1.5s ease infinite}
+    @keyframes popIn   {from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+    @keyframes slideUp {from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+    @keyframes fadeIn  {from{opacity:0}to{opacity:1}}
+    @keyframes scrollDot{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(6px);opacity:1}}
+    @keyframes floatAv {0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+
+    .section{padding:6rem 2rem}
+    .section.bg-alt{background:var(--cream-dk)}
+    .section.bg-white{background:var(--white)}
+    .container{max-width:860px;margin:0 auto}
+    .section-label{font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem}
+    .section-title{font-family:var(--fh);font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;margin-bottom:1.25rem}
+    .section-title em{font-style:italic;color:var(--amber)}
+    .section-desc{font-size:1rem;color:#555;line-height:1.75;max-width:640px}
+
+    .sofia-wrap{display:flex;align-items:flex-start;gap:1.25rem;background:var(--white);border-radius:16px;padding:1.5rem 2rem;box-shadow:0 4px 24px rgba(0,0,0,.07);max-width:640px}
+    .sofia-avatar{width:60px;height:60px;border-radius:50%;flex-shrink:0;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.8rem;animation:floatAv 3.5s ease-in-out infinite}
+    .speech-bubble{flex:1}
+    .speech-bubble strong{display:block;font-size:.75rem;font-weight:700;color:var(--amber);margin-bottom:.4rem;letter-spacing:1px;text-transform:uppercase}
+    .speech-bubble p{font-size:.95rem;color:#333;line-height:1.65}
+    .speech-bubble p+p{margin-top:.6rem}
+
+    /* WORD RECOGNITION */
+    .word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;margin-bottom:1.5rem}
+    .word-card{background:var(--white);border:2px solid transparent;border-radius:var(--r);padding:.9rem .75rem;text-align:center;cursor:pointer;user-select:none;position:relative;transition:border-color .2s,background .2s,transform .15s;font-weight:600;font-size:.95rem}
+    .word-card:hover{transform:translateY(-2px);border-color:var(--amber)}
+    .word-card.selected{background:var(--amber);color:var(--white);border-color:var(--amber)}
+    .word-card.correct  {background:var(--green);color:var(--white);border-color:var(--green)}
+    .word-card.false-pos{background:var(--red);color:var(--white);border-color:var(--red)}
+    .word-card.missed   {background:var(--teal);color:var(--white);border-color:var(--teal)}
+    .word-card.neutral  {background:var(--cream-dk);color:#888;border-color:transparent}
+    .word-badge{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:var(--white)}
+    .word-card.correct   .word-badge{display:flex;background:var(--green)}
+    .word-card.false-pos .word-badge{display:flex;background:var(--red)}
+    .word-card.missed    .word-badge{display:flex;background:var(--teal)}
+    .word-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+    .btn{padding:.65rem 1.5rem;border-radius:30px;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.9rem;transition:opacity .2s,transform .15s}
+    .btn:hover{opacity:.85;transform:translateY(-1px)}
+    .btn-primary{background:var(--amber);color:var(--white)}
+    .btn-ghost{background:transparent;color:var(--black);border:2px solid var(--cream-dk)}
+    .score-display{font-size:.9rem;font-weight:700;color:var(--green)}
+    .legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;font-size:.8rem}
+    .legend-item{display:flex;align-items:center;gap:.4rem}
+    .legend-dot{width:10px;height:10px;border-radius:50%}
+
+    /* CLOCK CARDS */
+    .clock-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:1rem;margin-top:1.5rem}
+    .clock-card{background:var(--white);border-radius:12px;padding:1.25rem;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.07)}
+    .clock-face{font-size:2.5rem;margin-bottom:.6rem}
+    .clock-it{font-size:.95rem;font-weight:700;color:var(--black);margin-bottom:.3rem}
+    .clock-es{font-size:.82rem;color:#888;font-style:italic}
+
+    /* GREETINGS TABLE */
+    .greet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:1.5rem}
+    .greet-card{border-radius:12px;padding:1.25rem;text-align:center}
+    .greet-time{font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.5rem;opacity:.8}
+    .greet-it{font-family:var(--fh);font-size:1.4rem;font-style:italic;margin-bottom:.35rem;color:var(--white)}
+    .greet-es{font-size:.82rem;color:rgba(255,255,255,.8)}
+
+    /* VOCAB CARDS */
+    .vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:1rem}
+    .vocab-card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 3px 16px rgba(0,0,0,.08);transition:transform .2s;cursor:pointer}
+    .vocab-card:hover{transform:translateY(-3px)}
+    .vocab-top{padding:1.25rem;display:flex;align-items:center;justify-content:center;font-size:2.2rem}
+    .vocab-body{padding:.85rem 1.1rem 1.1rem}
+    .vocab-it{font-size:1rem;font-weight:700}
+    .vocab-art{font-size:.75rem;color:var(--amber);font-weight:600;margin-bottom:.3rem}
+    .vocab-es-visible{font-size:.85rem;color:#666;margin-bottom:.5rem}
+    .vocab-ex{font-size:.78rem;color:#999;font-style:italic;border-top:1px solid var(--cream-dk);padding-top:.45rem;margin-top:.45rem;display:none}
+    .vocab-card.open .vocab-ex{display:block}
+
+    /* DIALOGUE */
+    .dialogue{display:flex;flex-direction:column;gap:.75rem}
+    .dlg-line{display:flex;align-items:flex-start;gap:.75rem}
+    .dlg-line.b{flex-direction:row-reverse}
+    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:var(--amber);padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
+    .dlg-line.b .dlg-speaker{background:var(--teal)}
+    .dlg-bubble{background:var(--white);border-radius:12px;padding:.9rem 1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.07);max-width:480px}
+    .dlg-bubble .it{font-weight:600;font-size:.95rem;color:var(--black)}
+    .dlg-bubble .es{font-size:.8rem;color:#888;margin-top:.25rem;font-style:italic}
+
+    /* FILL PRACTICE */
+    .fill-section{margin-top:1.5rem}
+    .fill-section h4{font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
+    .fill-list{display:flex;flex-direction:column;gap:.75rem}
+    .fill-item{display:flex;align-items:center;gap:.5rem;font-size:.95rem;flex-wrap:wrap}
+    .fill-input{border:none;border-bottom:2px solid var(--cream-dk);background:transparent;font-family:var(--fb);font-size:.95rem;font-weight:600;color:var(--black);width:140px;padding:.2rem .3rem;outline:none;text-align:center;transition:border-color .2s}
+    .fill-input:focus{border-color:var(--amber)}
+    .fill-input.ok{border-color:var(--green);color:var(--green)}
+    .fill-input.fail{border-color:var(--red);color:var(--red)}
+    .fill-btn{margin-top:1rem;display:flex;gap:.75rem;flex-wrap:wrap}
+
+    /* INTERROGATIVI */
+    .interr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1rem;margin-top:1.5rem}
+    .interr-card{background:var(--white);border-radius:12px;padding:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,.07);border-top:3px solid var(--amber)}
+    .interr-it{font-family:var(--fh);font-size:1.3rem;font-style:italic;font-weight:700;color:var(--amber);margin-bottom:.35rem}
+    .interr-es{font-size:.82rem;color:#666;margin-bottom:.4rem}
+    .interr-ex{font-size:.78rem;color:#999;font-style:italic}
+
+    /* CULTURAL STRIP */
+    .cultural-strip{background:var(--black);color:var(--white);padding:4rem 2rem;text-align:center}
+    .cultural-strip h2{font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.4rem);font-style:italic;color:var(--gold);margin-bottom:1rem}
+    .cultural-strip p{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.75;max-width:600px;margin:0 auto 1.5rem}
+    .cultural-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;max-width:760px;margin:2rem auto 0}
+    .cf-item{background:rgba(255,255,255,.06);border-radius:12px;padding:1.5rem}
+    .cf-icon{font-size:2rem;margin-bottom:.75rem}
+    .cf-item h4{font-size:.85rem;font-weight:700;color:var(--gold);margin-bottom:.5rem}
+    .cf-item p{font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.55}
+
+    .footer{background:var(--cream-dk);padding:2.5rem 2rem;text-align:center;font-size:.82rem;color:#888}
+    .footer strong{color:var(--black)}
+    .nav-pills{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+    .nav-pill{padding:.5rem 1.2rem;border-radius:30px;font-size:.8rem;font-weight:600;text-decoration:none;color:var(--black);background:var(--cream);border:1px solid var(--cream-dk);transition:background .2s,color .2s}
+    .nav-pill:hover{background:var(--amber);color:var(--white)}
+    .nav-pill.active{background:var(--amber);color:var(--white)}
+    @media(max-width:600px){.section{padding:4rem 1.25rem}.sofia-wrap{flex-direction:column}}
+  </style>
+</head>
+<body>
+
+<button class="trans-toggle" id="transBtn" onclick="toggleTrans()">Ocultar traducciones</button>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg-circle" id="hbc1"></div>
+  <div class="hero-bg-circle" id="hbc2"></div>
+  <div class="hero-bg-circle" id="hbc3"></div>
+  <div class="hero-badge">Unità 5 · Descubrimiento</div>
+  <h1>Che ore<br>sono?</h1>
+  <p class="hero-sub">Le ore, i saluti della giornata<br>e gli interrogativi</p>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- SOFIA INTRO -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="sofia-wrap" data-a="up">
+      <div class="sofia-avatar">👩‍🏫</div>
+      <div class="speech-bubble">
+        <strong>Sofia · Tu guía italiana</strong>
+        <p>¡Ciao! En Italia el tiempo es importantísimo — pero no de la manera que imaginas. El <em>aperitivo</em> es a las 18:00, el <em>pranzo</em> a la 13:00... ¡todo tiene su hora!</p>
+        <p>Hoy aprendemos a leer el reloj en italiano, los saludos según el momento del día, y las preguntas más usadas. ¡Vamos!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORD RECOGNITION -->
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="fade">Actividad 1</p>
+    <h2 class="section-title" data-a="up">Palabras del <em>tiempo</em></h2>
+    <p class="section-desc" data-a="up">Selecciona las palabras relacionadas con <strong>el tiempo y el horario</strong>. Luego verifica.</p>
+
+    <div class="word-grid" id="wordGrid" style="margin-top:1.75rem" data-stagger></div>
+
+    <div class="word-actions">
+      <button class="btn btn-primary" onclick="verifyWords()">Verificar selección</button>
+      <button class="btn btn-ghost" onclick="resetWords()">Intentar de nuevo</button>
+      <span class="score-display" id="scoreDisplay"></span>
+    </div>
+    <div class="legend" id="legend" style="display:none">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Correcto ✓</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> No está relacionado ✗</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div> La olvidaste !</div>
+    </div>
+  </div>
+</section>
+
+<!-- VOCAB CARDS -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label" data-a="fade">Vocabulario</p>
+    <h2 class="section-title" data-a="up"><em>Il tempo</em> — El tiempo</h2>
+    <p class="section-desc" data-a="up">Palabras esenciales para hablar del horario. Haz clic para ver un ejemplo.</p>
+
+    <div class="vocab-grid" style="margin-top:2rem" data-stagger>
+      <div class="vocab-card" onclick="this.classList.toggle('open')">
+        <div class="vocab-top" style="background:rgba(229,171,7,.15)">🕐</div>
+        <div class="vocab-body">
+          <div class="vocab-it">le ore</div>
+          <div class="vocab-art">sostantivo femminile plurale</div>
+          <div class="vocab-es-visible es">las horas</div>
+          <div class="vocab-ex">Che ore sono? Sono le tre.<br><em class="es">¿Qué hora es? Son las tres.</em></div>
+        </div>
+      </div>
+      <div class="vocab-card" onclick="this.classList.toggle('open')">
+        <div class="vocab-top" style="background:rgba(229,171,7,.15)">☀️</div>
+        <div class="vocab-body">
+          <div class="vocab-it">il mezzogiorno</div>
+          <div class="vocab-art">sostantivo maschile</div>
+          <div class="vocab-es-visible es">el mediodía</div>
+          <div class="vocab-ex">A mezzogiorno mangio sempre a casa.<br><em class="es">A mediodía siempre como en casa.</em></div>
+        </div>
+      </div>
+      <div class="vocab-card" onclick="this.classList.toggle('open')">
+        <div class="vocab-top" style="background:rgba(26,26,24,.08)">🌙</div>
+        <div class="vocab-body">
+          <div class="vocab-it">la mezzanotte</div>
+          <div class="vocab-art">sostantivo femminile</div>
+          <div class="vocab-es-visible es">la medianoche</div>
+          <div class="vocab-ex">Il treno parte a mezzanotte.<br><em class="es">El tren sale a medianoche.</em></div>
+        </div>
+      </div>
+      <div class="vocab-card" onclick="this.classList.toggle('open')">
+        <div class="vocab-top" style="background:rgba(82,142,116,.15)">⏰</div>
+        <div class="vocab-body">
+          <div class="vocab-it">presto</div>
+          <div class="vocab-art">avverbio</div>
+          <div class="vocab-es-visible es">pronto / temprano</div>
+          <div class="vocab-ex">Mi sveglio sempre molto presto.<br><em class="es">Me despierto siempre muy temprano.</em></div>
+        </div>
+      </div>
+      <div class="vocab-card" onclick="this.classList.toggle('open')">
+        <div class="vocab-top" style="background:rgba(204,71,54,.12)">🐌</div>
+        <div class="vocab-body">
+          <div class="vocab-it">tardi</div>
+          <div class="vocab-art">avverbio</div>
+          <div class="vocab-es-visible es">tarde</div>
+          <div class="vocab-ex">Arrivo sempre tardi a cena!<br><em class="es">¡Siempre llego tarde a cenar!</em></div>
+        </div>
+      </div>
+      <div class="vocab-card" onclick="this.classList.toggle('open')">
+        <div class="vocab-top" style="background:rgba(229,171,7,.15)">⚡</div>
+        <div class="vocab-body">
+          <div class="vocab-it">adesso / ora</div>
+          <div class="vocab-art">avverbio</div>
+          <div class="vocab-es-visible es">ahora</div>
+          <div class="vocab-ex">Adesso non posso, sono occupato.<br><em class="es">Ahora no puedo, estoy ocupado.</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOCK ACTIVITY -->
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="fade">Attività</p>
+    <h2 class="section-title" data-a="up">Come si legge <em>l'orologio</em>?</h2>
+    <p class="section-desc" data-a="up">En italiano, la hora se expresa con artículo determinado: <strong>Sono le + numero</strong> (salvo la 1:00: È l'una). Aquí algunos ejemplos:</p>
+
+    <div class="clock-grid" data-stagger>
+      <div class="clock-card">
+        <div class="clock-face">🕗</div>
+        <div class="clock-it">Sono le otto</div>
+        <div class="clock-es es">Son las ocho (8:00)</div>
+      </div>
+      <div class="clock-card">
+        <div class="clock-face">🕙</div>
+        <div class="clock-it">Sono le dieci e mezza</div>
+        <div class="clock-es es">Son las diez y media (10:30)</div>
+      </div>
+      <div class="clock-card">
+        <div class="clock-face">🕒</div>
+        <div class="clock-it">Sono le tre meno un quarto</div>
+        <div class="clock-es es">Son las tres menos cuarto (2:45)</div>
+      </div>
+      <div class="clock-card">
+        <div class="clock-face">🕐</div>
+        <div class="clock-it">È l'una</div>
+        <div class="clock-es es">Es la una (1:00)</div>
+      </div>
+      <div class="clock-card">
+        <div class="clock-face">🕧</div>
+        <div class="clock-it">È mezzogiorno e mezza</div>
+        <div class="clock-es es">Es el mediodía y media (12:30)</div>
+      </div>
+      <div class="clock-card">
+        <div class="clock-face">🕖</div>
+        <div class="clock-it">Sono le diciotto</div>
+        <div class="clock-es es">Son las seis de la tarde (18:00)</div>
+      </div>
+    </div>
+
+    <div style="background:var(--white);border-radius:12px;padding:1.25rem;margin-top:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,.07)" data-a="up">
+      <strong style="color:var(--amber)">💡 Para preguntar la hora:</strong>
+      <p style="font-size:.85rem;color:#555;margin-top:.4rem;line-height:1.65">
+        <strong>Che ore sono?</strong> <span class="es">¿Qué hora es?</span> (respuesta: Sono le...)<br>
+        <strong>A che ora...?</strong> <span class="es">¿A qué hora...?</span> (respuesta: Alle... / All'una)
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- GREETINGS BY TIME -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label" data-a="fade">Vocabolario</p>
+    <h2 class="section-title" data-a="up">I <em>saluti</em> della giornata</h2>
+    <p class="section-desc" data-a="up">En italiano, el saludo cambia según el momento del día. ¡No puedes decir "buongiorno" a las diez de la noche!</p>
+
+    <div class="greet-grid" style="margin-top:1.5rem" data-stagger>
+      <div class="greet-card" style="background:var(--amber)">
+        <div class="greet-time">6:00 — 12:00</div>
+        <div class="greet-it">Buongiorno!</div>
+        <div class="greet-es es">¡Buenos días!</div>
+      </div>
+      <div class="greet-card" style="background:var(--teal)">
+        <div class="greet-time">12:00 — 18:00</div>
+        <div class="greet-it">Buon pomeriggio!</div>
+        <div class="greet-es es">¡Buenas tardes!</div>
+      </div>
+      <div class="greet-card" style="background:var(--green)">
+        <div class="greet-time">18:00 — 21:00</div>
+        <div class="greet-it">Buonasera!</div>
+        <div class="greet-es es">¡Buenas tardes / noches!</div>
+      </div>
+      <div class="greet-card" style="background:#3a3a38">
+        <div class="greet-time">21:00 — 6:00</div>
+        <div class="greet-it">Buonanotte!</div>
+        <div class="greet-es es">¡Buenas noches! (al despedirse)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERROGATIVI -->
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="fade">Gramática · Descubrimiento</p>
+    <h2 class="section-title" data-a="up">Gli <em>interrogativi</em></h2>
+    <p class="section-desc" data-a="up">Las palabras para hacer preguntas. Son la llave del italiano conversacional.</p>
+
+    <div class="interr-grid" data-stagger>
+      <div class="interr-card">
+        <div class="interr-it">Come?</div>
+        <div class="interr-es es">¿Cómo?</div>
+        <div class="interr-ex">Come ti chiami? <span class="es">¿Cómo te llamas?</span></div>
+      </div>
+      <div class="interr-card">
+        <div class="interr-it">Quale?</div>
+        <div class="interr-es es">¿Cuál?</div>
+        <div class="interr-ex">Quale film preferisci? <span class="es">¿Qué película prefieres?</span></div>
+      </div>
+      <div class="interr-card">
+        <div class="interr-it">Che?</div>
+        <div class="interr-es es">¿Qué?</div>
+        <div class="interr-ex">Che ore sono? <span class="es">¿Qué hora es?</span></div>
+      </div>
+      <div class="interr-card">
+        <div class="interr-it">Quando?</div>
+        <div class="interr-es es">¿Cuándo?</div>
+        <div class="interr-ex">Quando parti? <span class="es">¿Cuándo te vas?</span></div>
+      </div>
+      <div class="interr-card">
+        <div class="interr-it">Dove?</div>
+        <div class="interr-es es">¿Dónde?</div>
+        <div class="interr-ex">Dove abiti? <span class="es">¿Dónde vives?</span></div>
+      </div>
+      <div class="interr-card">
+        <div class="interr-it">Perché?</div>
+        <div class="interr-es es">¿Por qué?</div>
+        <div class="interr-ex">Perché studi italiano? <span class="es">¿Por qué estudias italiano?</span></div>
+      </div>
+    </div>
+
+    <!-- FILL PRACTICE -->
+    <div class="fill-section" data-a="up">
+      <h4>Pratica — Preguntas y respuestas</h4>
+      <div class="fill-list" id="fillTime">
+        <div class="fill-item" data-ans="sono le undici">— Che ore sono? — _____. (11:00)</div>
+        <div class="fill-item" data-ans="alle otto e mezza">— A che ora apre il museo? — _____. (8:30)</div>
+        <div class="fill-item" data-ans="è mezzanotte">— Che ore sono? — _____. (0:00)</div>
+        <div class="fill-item" data-ans="alle diciannove">— A che ora hai lezione? — _____. (19:00)</div>
+        <div class="fill-item" data-ans="buonasera">— _____ professore! (18:30)</div>
+        <div class="fill-item" data-ans="buongiorno">— _____ Maria! (9:00)</div>
+      </div>
+      <div class="fill-btn">
+        <button class="btn btn-primary" onclick="checkFill()">Verificar</button>
+        <button class="btn btn-ghost" onclick="resetFill()">Limpiar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIALOGUE -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label" data-a="fade">Dialogo autentico</p>
+    <h2 class="section-title" data-a="up"><em>A che ora apre?</em></h2>
+    <p class="section-desc" data-a="up">Laura llama al museo para preguntar los horarios.</p>
+
+    <div class="dialogue" style="margin-top:2rem" data-stagger>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Laura</div>
+        <div class="dlg-bubble">
+          <div class="it">Pronto? Buongiorno! Vorrei sapere gli orari del museo.</div>
+          <div class="es">¿Hola? ¡Buenos días! Quisiera saber los horarios del museo.</div>
+        </div>
+      </div>
+      <div class="dlg-line b">
+        <div class="dlg-speaker">Museo</div>
+        <div class="dlg-bubble">
+          <div class="it">Buongiorno! Il museo è aperto dal martedì alla domenica.</div>
+          <div class="es">¡Buenos días! El museo está abierto de martes a domingo.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Laura</div>
+        <div class="dlg-bubble">
+          <div class="it">A che ora apre?</div>
+          <div class="es">¿A qué hora abre?</div>
+        </div>
+      </div>
+      <div class="dlg-line b">
+        <div class="dlg-speaker">Museo</div>
+        <div class="dlg-bubble">
+          <div class="it">Apre alle nove e chiude alle diciotto. Il giovedì chiude alle venti.</div>
+          <div class="es">Abre a las nueve y cierra a las dieciocho. El jueves cierra a las veinte.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Laura</div>
+        <div class="dlg-bubble">
+          <div class="it">Perfetto! E il biglietto, quanto costa?</div>
+          <div class="es">¡Perfecto! ¿Y la entrada, cuánto cuesta?</div>
+        </div>
+      </div>
+      <div class="dlg-line b">
+        <div class="dlg-speaker">Museo</div>
+        <div class="dlg-bubble">
+          <div class="it">Il biglietto intero costa dodici euro. I bambini sotto i dodici anni entrano gratis.</div>
+          <div class="es">La entrada general cuesta doce euros. Los niños menores de doce años entran gratis.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Laura</div>
+        <div class="dlg-bubble">
+          <div class="it">Grazie mille! Arrivederci!</div>
+          <div class="es">¡Muchas gracias! ¡Adiós!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURAL STRIP -->
+<div class="cultural-strip">
+  <div class="container">
+    <h2 data-a="up">Il tempo all'italiana ⏰🇮🇹</h2>
+    <p data-a="up">En Italia, el tiempo tiene sus propios rituales. No se trata de puntualidad — se trata de ritmo.</p>
+    <div class="cultural-facts" data-stagger>
+      <div class="cf-item">
+        <div class="cf-icon">☕</div>
+        <h4>Il caffè delle 10</h4>
+        <p>A las 10 de la mañana, toda Italia para para tomarse un espresso. Es una pausa sagrada que no se interrumpe.</p>
+      </div>
+      <div class="cf-item">
+        <div class="cf-icon">🥂</div>
+        <h4>L'aperitivo alle 18</h4>
+        <p>El aperitivo comienza a las 18:00. Spritz, Negroni, olive e grissini. Es la transición entre el trabajo y la cena.</p>
+      </div>
+      <div class="cf-item">
+        <div class="cf-icon">🍝</div>
+        <h4>Il pranzo alle 13</h4>
+        <p>En Italia, la comida principal es a la 1 del mediodía. Muchos negocios cierran de 13 a 15h: es la sagrada pausa pranzo.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <strong>Unità 5 · Che ore sono?</strong><br>
+  Italiano Per Piacere — Nivel A1
+  <div class="nav-pills">
+    <a href="../modulo_4/etapa2_descubrimiento.html" class="nav-pill">← Unità 4</a>
+    <a href="etapa3_gramatica.html" class="nav-pill active">Gramática →</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('[data-a],[data-stagger]').forEach(el => observer.observe(el));
+
+  const c1=document.getElementById('hbc1'), c2=document.getElementById('hbc2'), c3=document.getElementById('hbc3');
+  window.addEventListener('scroll', () => {
+    const y=window.scrollY;
+    if(c1) c1.style.transform=`translateY(${y*.25}px)`;
+    if(c2) c2.style.transform=`translateY(${y*-.15}px)`;
+    if(c3) c3.style.transform=`translateY(${y*.1}px)`;
+  }, {passive:true});
+
+  function toggleTrans() {
+    document.body.classList.toggle('hide-es');
+    const btn = document.getElementById('transBtn');
+    btn.textContent = document.body.classList.contains('hide-es') ? 'Mostrar traducciones' : 'Ocultar traducciones';
+  }
+
+  const WORDS = [
+    {w:'mattina',    inCtx:true },
+    {w:'sera',       inCtx:true },
+    {w:'notte',      inCtx:true },
+    {w:'mezzogiorno',inCtx:true },
+    {w:'presto',     inCtx:true },
+    {w:'tardi',      inCtx:true },
+    {w:'numero',     inCtx:false},
+    {w:'camera',     inCtx:false},
+    {w:'treno',      inCtx:false},
+    {w:'verde',      inCtx:false},
+    {w:'libro',      inCtx:false},
+    {w:'pasta',      inCtx:false},
+  ];
+  const selected=new Set(); let verified=false;
+  const grid=document.getElementById('wordGrid');
+  WORDS.forEach((w,i)=>{
+    const div=document.createElement('div');
+    div.className='word-card';
+    div.innerHTML=`${w.w}<span class="word-badge" id="badge${i}"></span>`;
+    div.addEventListener('click',()=>{
+      if(verified)return;
+      if(selected.has(i)){selected.delete(i);div.classList.remove('selected');}
+      else{selected.add(i);div.classList.add('selected');}
+    });
+    grid.appendChild(div);
+  });
+
+  function verifyWords(){
+    verified=true; let correct=0;
+    const cards=grid.querySelectorAll('.word-card');
+    WORDS.forEach((w,i)=>{
+      const card=cards[i], badge=document.getElementById('badge'+i);
+      card.classList.remove('selected');
+      if(w.inCtx && selected.has(i))       {card.classList.add('correct');  badge.textContent='✓';correct++;}
+      else if(!w.inCtx && selected.has(i)) {card.classList.add('false-pos');badge.textContent='✗';}
+      else if(w.inCtx && !selected.has(i)) {card.classList.add('missed');   badge.textContent='!';}
+      else                                  {card.classList.add('neutral');}
+    });
+    document.getElementById('scoreDisplay').textContent=correct+'/6 palabras correctas';
+    document.getElementById('legend').style.display='flex';
+  }
+  function resetWords(){
+    verified=false;selected.clear();
+    grid.querySelectorAll('.word-card').forEach(c=>c.className='word-card');
+    document.getElementById('scoreDisplay').textContent='';
+    document.getElementById('legend').style.display='none';
+  }
+
+  document.querySelectorAll('#fillTime .fill-item').forEach(item=>{
+    const text = item.innerHTML;
+    item.innerHTML = text.replace('_____', '<input class="fill-input" placeholder="risposta">');
+  });
+  function checkFill(){
+    document.querySelectorAll('#fillTime .fill-item').forEach(item=>{
+      const inp=item.querySelector('.fill-input');
+      if(!inp) return;
+      inp.classList.remove('ok','fail');
+      if(inp.value.trim().toLowerCase()===item.dataset.ans) inp.classList.add('ok');
+      else inp.classList.add('fail');
+    });
+  }
+  function resetFill(){
+    document.querySelectorAll('#fillTime .fill-input').forEach(inp=>{inp.value='';inp.classList.remove('ok','fail');});
+  }
+</script>
+</body>
+</html>

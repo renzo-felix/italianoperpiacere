@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Módulo 5 · Gramática — Che ore sono?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;
+  --red:#cc4736;--teal:#78a6ba;--green:#528e74;--black:#1a1a18;--white:#ffffff;
+  --hdr:var(--amber);--r:8px;
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6}
+.hide-es .es{display:none!important}
+.es{font-size:.82rem;color:#666;font-style:italic;display:block;margin-top:.2rem}
+nav{position:sticky;top:0;z-index:100;background:var(--black);display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{color:var(--gold);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.75rem 1.1rem;white-space:nowrap;transition:background .2s}
+nav a:hover{background:rgba(255,255,255,.1)}
+nav a.active{background:#c8940a;color:var(--white)}
+.page-header{background:var(--amber);color:var(--white);padding:3rem 1.5rem 2.5rem;text-align:center;position:relative}
+.page-header .badge{display:inline-block;background:rgba(255,255,255,.2);border-radius:20px;padding:.25rem .85rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.85rem}
+.page-header h1{font-family:var(--fh);font-style:italic;font-size:2.4rem;margin-bottom:.5rem}
+.page-header p{opacity:.9;font-size:1.05rem}
+.toggle-btn{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:var(--white);border-radius:var(--r);padding:.45rem .9rem;font-family:var(--fb);font-size:.78rem;font-weight:600;cursor:pointer;transition:background .2s}
+.toggle-btn:hover{background:rgba(255,255,255,.35)}
+main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem}
+section{margin-bottom:3rem}
+.section-title{font-family:var(--fh);font-style:italic;font-size:1.6rem;color:#c8940a;margin-bottom:1.25rem;padding-bottom:.4rem;border-bottom:2px solid var(--cream-dk)}
+.section-intro{margin-bottom:1.1rem;font-size:.97rem}
+.gram-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
+.gram-table th{background:var(--amber);color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
+.gram-table td{padding:.5rem .75rem;border-bottom:1px solid var(--cream-dk)}
+.gram-table tr:nth-child(even) td{background:rgba(0,0,0,.03)}
+.gram-table tr:hover td{background:rgba(229,171,7,.08)}
+.pron{color:#c8940a;font-weight:700;min-width:70px;display:inline-block}
+.form{font-weight:600}
+.example-box{background:var(--white);border-left:4px solid var(--amber);border-radius:0 var(--r) var(--r) 0;padding:.75rem 1rem;margin:.6rem 0;font-size:.95rem}
+.example-box .it{font-weight:600;color:var(--black)}
+.example-box .tr-small{font-size:.82rem;color:#777;font-style:italic}
+.inline-prac{background:var(--cream-dk);border-radius:var(--r);padding:1.1rem 1.25rem;margin-top:1.25rem}
+.inline-prac h4{font-family:var(--fh);font-style:italic;color:#c8940a;margin-bottom:.85rem;font-size:1.1rem}
+.prac-item{margin-bottom:.65rem;font-size:.95rem;display:flex;align-items:center;flex-wrap:wrap;gap:.4rem}
+.prac-input{border:1.5px solid var(--cream-dk);border-radius:6px;padding:.3rem .55rem;font-family:var(--fb);font-size:.92rem;background:var(--white);width:130px;transition:border .2s}
+.prac-input:focus{outline:none;border-color:var(--amber)}
+.prac-item.correct .prac-input{border-color:var(--green);background:rgba(82,142,116,.1)}
+.prac-item.wrong .prac-input{border-color:var(--red);background:rgba(204,71,54,.08)}
+.prac-fb{font-size:.8rem;margin-left:.3rem}
+.prac-item.correct .prac-fb{color:var(--green)}
+.prac-item.wrong .prac-fb{color:var(--red)}
+.btn{border:none;border-radius:var(--r);padding:.5rem 1.1rem;font-family:var(--fb);font-size:.87rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--amber);color:var(--white)}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-ghost{background:transparent;border:1.5px solid var(--amber);color:#c8940a}
+.btn-ghost:hover{background:var(--amber);color:var(--white)}
+.quiz-wrap{background:var(--white);border-radius:var(--r);padding:1.5rem;border:1px solid var(--cream-dk)}
+.quiz-q{margin-bottom:1.5rem}
+.quiz-q p{font-weight:600;margin-bottom:.7rem;font-size:.97rem}
+.quiz-opts{display:flex;flex-direction:column;gap:.45rem}
+.quiz-opt{background:var(--cream);border-radius:6px;padding:.6rem .9rem;cursor:pointer;font-size:.92rem;border:1.5px solid transparent;transition:all .2s}
+.quiz-opt:hover{border-color:var(--amber);background:rgba(229,171,7,.1)}
+.quiz-opt.correct{background:rgba(82,142,116,.15);border-color:var(--green);color:var(--green)}
+.quiz-opt.wrong{background:rgba(204,71,54,.1);border-color:var(--red);color:var(--red)}
+.quiz-result{text-align:center;padding:1.25rem;font-size:1.1rem;font-weight:600;border-radius:var(--r);margin-top:1rem;display:none}
+.quiz-result.show{display:block}
+.quiz-result.good{background:rgba(82,142,116,.15);color:var(--green)}
+.quiz-result.ok{background:rgba(239,207,127,.3);color:#7a5e00}
+.quiz-result.try{background:rgba(204,71,54,.1);color:var(--red)}
+.rule-box{background:rgba(229,171,7,.1);border:1px solid rgba(229,171,7,.4);border-radius:var(--r);padding:.85rem 1.1rem;margin:.8rem 0;font-size:.93rem}
+.rule-box strong{color:#c8940a}
+footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px solid var(--cream-dk)}
+/* Clock visualization */
+.ora-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:.75rem;margin:1rem 0}
+.ora-card{background:var(--white);border-radius:var(--r);padding:.85rem 1rem;border:1px solid var(--cream-dk);border-left:3px solid var(--amber)}
+.ora-card .time{font-weight:700;font-size:1.05rem;color:#c8940a}
+.ora-card .formula{font-size:.88rem;color:#555;margin:.2rem 0}
+.ora-card .example{font-size:.85rem;color:#777;font-style:italic}
+/* Greeting cards */
+.greeting-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.75rem;margin:1rem 0}
+.gr-card{background:var(--white);border-radius:var(--r);padding:.85rem;text-align:center;border:1px solid var(--cream-dk)}
+.gr-card .phrase{font-weight:700;color:#c8940a;font-size:.97rem}
+.gr-card .time{font-size:.8rem;color:#777;margin-top:.3rem;font-style:italic}
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="#lora" class="active">L'Ora</a>
+  <a href="#saluti">Saluti</a>
+  <a href="#interrogativi">Interrogativi</a>
+  <a href="#articoli">Articoli</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<header class="page-header">
+  <button class="toggle-btn" id="toggleEs" onclick="toggleEs()">Ocultar traducciones</button>
+  <div class="badge">Módulo 5 · Gramática</div>
+  <h1>Che ore sono?</h1>
+  <p>La hora, los saludos del día, interrogativos y artículos</p>
+</header>
+
+<main>
+
+<!-- SECTION 1: L'ORA -->
+<section id="lora">
+  <h2 class="section-title">1. L'ora — ¿Qué hora es?</h2>
+  <p class="section-intro">Para preguntar la hora: <strong>Che ore sono?</strong> o <strong>Che ora è?</strong>. <span class="es">La mayoría de respuestas usan "Sono le + número". Solo el mediodía, medianoche y la una usan "È".</span></p>
+
+  <div class="ora-grid">
+    <div class="ora-card">
+      <div class="time">È l'una.</div>
+      <div class="formula">È + l'una (solo para 1)</div>
+      <div class="example">Es la una.</div>
+    </div>
+    <div class="ora-card">
+      <div class="time">Sono le due.</div>
+      <div class="formula">Sono le + número</div>
+      <div class="example">Son las dos.</div>
+    </div>
+    <div class="ora-card">
+      <div class="time">Sono le tre e un quarto.</div>
+      <div class="formula">e un quarto = y cuarto</div>
+      <div class="example">Son las tres y cuarto.</div>
+    </div>
+    <div class="ora-card">
+      <div class="time">Sono le quattro e mezza.</div>
+      <div class="formula">e mezza/mezzo = y media</div>
+      <div class="example">Son las cuatro y media.</div>
+    </div>
+    <div class="ora-card">
+      <div class="time">Sono le cinque meno un quarto.</div>
+      <div class="formula">meno = menos</div>
+      <div class="example">Son las cinco menos cuarto.</div>
+    </div>
+    <div class="ora-card">
+      <div class="time">È mezzogiorno.</div>
+      <div class="formula">È (no Sono)</div>
+      <div class="example">Es mediodía.</div>
+    </div>
+    <div class="ora-card">
+      <div class="time">È mezzanotte.</div>
+      <div class="formula">È (no Sono)</div>
+      <div class="example">Es medianoche.</div>
+    </div>
+    <div class="ora-card">
+      <div class="time">Sono le otto di mattina.</div>
+      <div class="formula">di mattina/sera/pomeriggio</div>
+      <div class="example">Son las ocho de la mañana.</div>
+    </div>
+  </div>
+
+  <div class="rule-box">
+    <strong>Regola:</strong> Usa <em>È</em> solo con <strong>l'una, mezzogiorno, mezzanotte</strong>. Para todo lo demás: <em>Sono le</em> + número.
+    <span class="es">Para indicar AM/PM: di mattina (mañana), di pomeriggio (tarde), di sera (noche).</span>
+  </div>
+
+  <div class="inline-prac">
+    <h4>Pratica — Come si dice?</h4>
+    <div id="prac1">
+      <div class="prac-item" data-ans="sono le nove">Son las nueve → <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="è mezzanotte">Es medianoche → <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="è l'una">Es la una → <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="sono le sei e mezza">Son las seis y media → <input class="prac-input" placeholder="..."></div>
+    </div>
+    <div style="margin-top:.85rem;display:flex;gap:.75rem">
+      <button class="btn btn-primary" onclick="checkPrac('prac1')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac1')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: SALUTI -->
+<section id="saluti">
+  <h2 class="section-title">2. I saluti della giornata</h2>
+  <p class="section-intro">Los italianos usan saludos distintos según la hora del día. <span class="es">Es importante conocer cuándo usar cada uno:</span></p>
+
+  <div class="greeting-cards">
+    <div class="gr-card">
+      <div class="phrase">Buongiorno</div>
+      <div class="time">Buenos días / Buenas tardes (mañana)</div>
+      <div class="time" style="color:#c8940a">06:00 – 13:00</div>
+    </div>
+    <div class="gr-card">
+      <div class="phrase">Buon pomeriggio</div>
+      <div class="time">Buenas tardes</div>
+      <div class="time" style="color:#c8940a">13:00 – 17:00</div>
+    </div>
+    <div class="gr-card">
+      <div class="phrase">Buonasera</div>
+      <div class="time">Buenas noches (saludo)</div>
+      <div class="time" style="color:#c8940a">17:00 – 22:00</div>
+    </div>
+    <div class="gr-card">
+      <div class="phrase">Buonanotte</div>
+      <div class="time">Buenas noches (despedida)</div>
+      <div class="time" style="color:#c8940a">Al dormir</div>
+    </div>
+    <div class="gr-card">
+      <div class="phrase">Salve</div>
+      <div class="time">Hola (neutro/formal)</div>
+      <div class="time" style="color:#c8940a">Cualquier hora</div>
+    </div>
+    <div class="gr-card">
+      <div class="phrase">Ciao</div>
+      <div class="time">Hola / Hasta luego (informal)</div>
+      <div class="time" style="color:#c8940a">Con amigos</div>
+    </div>
+  </div>
+
+  <div class="example-box"><span class="it">— Buongiorno! Sono le nove. Ha un tavolo libero?</span><span class="tr-small">— ¡Buenos días! Son las nueve. ¿Tiene una mesa libre?</span></div>
+  <div class="example-box"><span class="it">— Buonanotte, a domani!</span><span class="tr-small">— Buenas noches, ¡hasta mañana!</span></div>
+</section>
+
+<!-- SECTION 3: INTERROGATIVI -->
+<section id="interrogativi">
+  <h2 class="section-title">3. Gli interrogativi — Come / Quale / Che</h2>
+  <p class="section-intro"><span class="es">Tres palabras interrogativas que a veces se confunden:</span></p>
+
+  <table class="gram-table">
+    <thead><tr><th>Interrogativo</th><th>Uso</th><th>Ejemplo</th><th class="es">Traducción</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="form">Come</span></td>
+        <td>Modo / manera<br><span class="es">Cómo</span></td>
+        <td>Come stai? / Come si chiama?</td>
+        <td class="es">¿Cómo estás? / ¿Cómo se llama?</td>
+      </tr>
+      <tr>
+        <td><span class="form">Quale / Quali</span></td>
+        <td>Elección entre opciones<br><span class="es">Cuál / Cuáles</span></td>
+        <td>Quale pizza preferisci?</td>
+        <td class="es">¿Cuál pizza prefieres?</td>
+      </tr>
+      <tr>
+        <td><span class="form">Che</span></td>
+        <td>Tipo / qué tipo de<br><span class="es">Qué (en sentido general)</span></td>
+        <td>Che lavoro fai? / Che ore sono?</td>
+        <td class="es">¿Qué trabajo tienes? / ¿Qué hora es?</td>
+      </tr>
+      <tr>
+        <td><span class="form">Quando</span></td>
+        <td>Tiempo<br><span class="es">Cuándo</span></td>
+        <td>Quando arrivi?</td>
+        <td class="es">¿Cuándo llegas?</td>
+      </tr>
+      <tr>
+        <td><span class="form">Dove</span></td>
+        <td>Lugar<br><span class="es">Dónde</span></td>
+        <td>Dove abiti?</td>
+        <td class="es">¿Dónde vives?</td>
+      </tr>
+      <tr>
+        <td><span class="form">Perché</span></td>
+        <td>Causa / razón<br><span class="es">Por qué / Porque</span></td>
+        <td>Perché studi italiano?</td>
+        <td class="es">¿Por qué estudias italiano?</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="rule-box">
+    <strong>Attenzione:</strong> <em>Che ore sono?</em> usa <em>Che</em> (qué tipo de hora). Se puede decir también <em>Che ora è?</em> (singular). En italiano se usa <em>Che</em> delante de sustantivos con sentido de "qué tipo de".
+    <span class="es">Ejemplo: <em>Che musica ascolti?</em> = ¿Qué música escuchas?</span>
+  </div>
+
+  <div class="inline-prac">
+    <h4>Pratica — Come, Quale o Che?</h4>
+    <div id="prac2">
+      <div class="prac-item" data-ans="come">___ si chiama? (¿Cómo se llama?) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="quale">___ vino preferisci? (¿Cuál vino prefieres?) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="che">___ ore sono? (¿Qué hora es?) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="dove">___ abiti? (¿Dónde vives?) <input class="prac-input" placeholder="..."></div>
+    </div>
+    <div style="margin-top:.85rem;display:flex;gap:.75rem">
+      <button class="btn btn-primary" onclick="checkPrac('prac2')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac2')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: ARTICOLI -->
+<section id="articoli">
+  <h2 class="section-title">4. Articoli determinativi e indeterminativi</h2>
+  <p class="section-intro">Los artículos en italiano varían según el género (masculino/femenino) y número (singular/plural), y también según la letra inicial de la palabra. <span class="es">Aquí tienes la tabla completa:</span></p>
+
+  <table class="gram-table">
+    <thead><tr><th>Tipo</th><th>Maschile sing.</th><th>Femminile sing.</th><th>Maschile pl.</th><th>Femminile pl.</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Det. normale</strong></td><td><span class="form">il</span> libro</td><td><span class="form">la</span> borsa</td><td><span class="form">i</span> libri</td><td><span class="form">le</span> borse</td></tr>
+      <tr><td><strong>Det. + vocale</strong></td><td><span class="form">l'</span> amico</td><td><span class="form">l'</span> amica</td><td><span class="form">gli</span> amici</td><td><span class="form">le</span> amiche</td></tr>
+      <tr><td><strong>Det. s+cons/z/ps</strong></td><td><span class="form">lo</span> studente</td><td>—</td><td><span class="form">gli</span> studenti</td><td>—</td></tr>
+      <tr><td><strong>Indet. normale</strong></td><td><span class="form">un</span> libro</td><td><span class="form">una</span> borsa</td><td colspan="2" style="color:#999;font-style:italic">no existe</td></tr>
+      <tr><td><strong>Indet. + vocale</strong></td><td><span class="form">un</span> amico</td><td><span class="form">un'</span> amica</td><td colspan="2" style="color:#999;font-style:italic">no existe</td></tr>
+      <tr><td><strong>Indet. s+cons/z</strong></td><td><span class="form">uno</span> studente</td><td>—</td><td colspan="2" style="color:#999;font-style:italic">no existe</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-box">
+    <strong>LO / GLI</strong> se usan ante: <em>s + consonante</em> (lo studente), <em>z</em> (lo zaino), <em>ps/gn/x/y</em> (lo psicologo).
+    <br><strong>L' / UN'</strong> se usan ante vocales: <em>l'amico</em>, <em>un'amica</em>. Solo <em>un'</em> (con apostrofo) es femenino.
+    <span class="es">Recuerda: el artículo indeterminativo no tiene plural (se usa la partícula "dei/delle" o nada).</span>
+  </div>
+
+  <div class="example-box"><span class="it">Ho un appuntamento alle tre. — Prendo il treno delle sei.</span><span class="tr-small">Tengo una cita a las tres. — Tomo el tren de las seis.</span></div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <h2 class="section-title">5. Quiz — Verifica le tue conoscenze</h2>
+  <div class="quiz-wrap">
+    <div class="quiz-q" id="q1">
+      <p>1. ¿Cómo se dice "Son las doce del mediodía"?</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','a')">Sono le dodici.</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','b')">È mezzogiorno.</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','c')">È la dodici.</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <p>2. Son las 5 de la tarde. ¿Con qué saludo entras a una tienda?</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','a')">Buongiorno!</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','b')">Buonanotte!</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','c')">Buonasera!</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <p>3. "¿Cuál pizza prefieres?" → en italiano:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','a')">Come pizza preferisci?</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','b')">Quale pizza preferisci?</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','c')">Che pizza preferisci?</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <p>4. ¿Cuál es el artículo correcto para "studente" (masc. sing.)?</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','a')">il studente</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','b')">lo studente</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','c')">l' studente</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <p>5. "Sono le sette e un quarto" significa:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','a')">Son las siete y media.</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','b')">Son las siete menos cuarto.</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','c')">Son las siete y cuarto.</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:1.25rem">
+      <button class="btn btn-primary" onclick="submitQuiz()">Controlla le risposte</button>
+    </div>
+    <div class="quiz-result" id="quiz-result"></div>
+  </div>
+</section>
+</main>
+
+<footer><p>Italiano Per Piacere · Módulo 5 · <em>Che ore sono?</em></p></footer>
+
+<script>
+let esVisible=true;
+function toggleEs(){esVisible=!esVisible;document.body.classList.toggle('hide-es',!esVisible);document.getElementById('toggleEs').textContent=esVisible?'Ocultar traducciones':'Mostrar traducciones';}
+const secs=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('nav a');
+window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)c=s.id});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)});});
+function checkPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{const inp=item.querySelector('.prac-input');const ans=item.dataset.ans;const val=inp.value.trim().toLowerCase();item.classList.remove('correct','wrong');let fb=item.querySelector('.prac-fb');if(!fb){fb=document.createElement('span');fb.className='prac-fb';item.appendChild(fb);}if(val===ans){item.classList.add('correct');fb.textContent='✓';}else{item.classList.add('wrong');fb.textContent='✗ '+ans;}});}
+function resetPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{item.classList.remove('correct','wrong');item.querySelector('.prac-input').value='';const fb=item.querySelector('.prac-fb');if(fb)fb.textContent='';});}
+const answers={q1:'b',q2:'c',q3:'b',q4:'b',q5:'c'};
+let selected={};
+function selectOpt(el,qid,opt){if(selected[qid])return;selected[qid]=opt;const opts=el.parentElement.querySelectorAll('.quiz-opt');opts.forEach(o=>o.style.pointerEvents='none');const correct=answers[qid];opts.forEach((o,i)=>{const k=['a','b','c'][i];if(k===correct)o.classList.add('correct');else if(k===opt)o.classList.add('wrong');});}
+function submitQuiz(){let score=0;Object.keys(answers).forEach(q=>{if(selected[q]===answers[q])score++;});const res=document.getElementById('quiz-result');res.classList.add('show');if(score>=4){res.className='quiz-result show good';res.textContent=`Bravissimo/a! ${score}/5 ✓`;}else if(score>=2){res.className='quiz-result show ok';res.textContent=`Bene! ${score}/5 — continua a studiare.`;}else{res.className='quiz-result show try';res.textContent=`${score}/5 — Riprova! Torna alle sezioni.`;}}
+</script>
+</body>
+</html>

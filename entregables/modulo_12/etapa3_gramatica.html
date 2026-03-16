@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modulo 12 · Grammatica — In treno o in macchina?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;--red:#cc4736;--teal:#78a6ba;--green:#528e74;--black:#1a1a18;--white:#ffffff;--hdr:#78a6ba;--r:8px;--fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6}
+body:not(.show-es) .es{display:none!important}
+.es{font-size:.82rem;color:#666;font-style:italic;display:block;margin-top:.2rem}
+nav{position:sticky;top:0;z-index:100;background:var(--black);display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{color:var(--gold);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.75rem 1.1rem;white-space:nowrap;transition:background .2s}
+nav a:hover{background:rgba(255,255,255,.1)}
+nav a.active{background:var(--hdr);color:var(--white)}
+.page-header{background:var(--hdr);color:var(--white);padding:3rem 1.5rem 2.5rem;text-align:center;position:relative}
+.page-header .badge{display:inline-block;background:rgba(255,255,255,.2);border-radius:20px;padding:.25rem .85rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.85rem}
+.page-header h1{font-family:var(--fh);font-style:italic;font-size:2.4rem;margin-bottom:.5rem}
+.page-header p{opacity:.9;font-size:1.05rem}
+.toggle-btn{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:var(--white);border-radius:var(--r);padding:.45rem .9rem;font-family:var(--fb);font-size:.78rem;font-weight:600;cursor:pointer;transition:background .2s}
+.toggle-btn:hover{background:rgba(255,255,255,.35)}
+main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem}
+section{margin-bottom:3rem}
+.section-title{font-family:var(--fh);font-style:italic;font-size:1.6rem;color:var(--hdr);margin-bottom:1.25rem;padding-bottom:.4rem;border-bottom:2px solid var(--cream-dk)}
+.section-intro{margin-bottom:1.1rem;font-size:.97rem}
+.gram-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
+.gram-table th{background:var(--hdr);color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
+.gram-table td{padding:.5rem .75rem;border-bottom:1px solid var(--cream-dk)}
+.gram-table tr:nth-child(even) td{background:rgba(0,0,0,.03)}
+.hl{font-weight:700;color:var(--hdr)}
+.example-box{background:var(--white);border-left:4px solid var(--hdr);border-radius:0 var(--r) var(--r) 0;padding:.75rem 1rem;margin:.6rem 0;font-size:.95rem}
+.example-box .it{font-weight:600}
+.example-box .tr-small{font-size:.82rem;color:#777;font-style:italic}
+.inline-prac{background:var(--cream-dk);border-radius:var(--r);padding:1.1rem 1.25rem;margin-top:1.25rem}
+.inline-prac h4{font-family:var(--fh);font-style:italic;color:var(--hdr);margin-bottom:.85rem;font-size:1.1rem}
+.prac-item{margin-bottom:.65rem;font-size:.95rem;display:flex;align-items:center;flex-wrap:wrap;gap:.4rem}
+.prac-input{border:1.5px solid var(--cream-dk);border-radius:6px;padding:.3rem .55rem;font-family:var(--fb);font-size:.92rem;background:var(--white);width:160px;transition:border .2s}
+.prac-input:focus{outline:none;border-color:var(--hdr)}
+.prac-item.correct .prac-input{border-color:var(--green);background:rgba(82,142,116,.1)}
+.prac-item.wrong .prac-input{border-color:var(--red);background:rgba(204,71,54,.08)}
+.prac-fb{font-size:.8rem;margin-left:.3rem}
+.prac-item.correct .prac-fb{color:var(--green)}
+.prac-item.wrong .prac-fb{color:var(--red)}
+.btn{border:none;border-radius:var(--r);padding:.5rem 1.1rem;font-family:var(--fb);font-size:.87rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--hdr);color:var(--white)}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-ghost{background:transparent;border:1.5px solid var(--hdr);color:var(--hdr)}
+.btn-ghost:hover{background:var(--hdr);color:var(--white)}
+.btn-row{display:flex;gap:.75rem;margin-top:.85rem}
+.quiz-wrap{background:var(--white);border-radius:var(--r);padding:1.5rem;border:1px solid var(--cream-dk)}
+.quiz-q{margin-bottom:1.5rem}
+.quiz-q p{font-weight:600;margin-bottom:.7rem;font-size:.97rem}
+.quiz-opts{display:flex;flex-direction:column;gap:.45rem}
+.quiz-opt{background:var(--cream);border-radius:6px;padding:.6rem .9rem;cursor:pointer;font-size:.92rem;border:1.5px solid transparent;transition:all .2s}
+.quiz-opt:hover{border-color:var(--hdr)}
+.quiz-opt.correct{background:rgba(82,142,116,.15);border-color:var(--green);color:var(--green)}
+.quiz-opt.wrong{background:rgba(204,71,54,.1);border-color:var(--red);color:var(--red)}
+.quiz-result{text-align:center;padding:1.25rem;font-size:1.1rem;font-weight:600;border-radius:var(--r);margin-top:1rem;display:none}
+.quiz-result.show{display:block}
+.quiz-result.good{background:rgba(82,142,116,.15);color:var(--green)}
+.quiz-result.ok{background:rgba(239,207,127,.3);color:#7a5e00}
+.quiz-result.try{background:rgba(204,71,54,.1);color:var(--red)}
+.rule-box{background:rgba(120,166,186,.1);border:1px solid rgba(120,166,186,.35);border-radius:var(--r);padding:.85rem 1.1rem;margin:.8rem 0;font-size:.93rem}
+.rule-box strong{color:var(--hdr)}
+.ord-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;margin:1rem 0}
+.ord-card{background:var(--white);border-radius:var(--r);padding:.75rem;text-align:center;border-top:3px solid var(--hdr);box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.ord-num{font-size:1.2rem;font-weight:700;font-family:var(--fh);color:var(--hdr)}
+.ord-word{font-size:.85rem;font-weight:600;margin-top:.2rem}
+footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px solid var(--cream-dk)}
+.nav-pills{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+.nav-pill{padding:.5rem 1.2rem;border-radius:30px;font-size:.8rem;font-weight:600;text-decoration:none;color:var(--black);background:var(--cream);border:1px solid var(--cream-dk);transition:background .2s}
+.nav-pill:hover,.nav-pill.active{background:var(--hdr);color:var(--white)}
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="#ordinali">Ordinali</a>
+  <a href="#gerundio">Stare+Gerundio</a>
+  <a href="#pronome-ci">Pronome CI</a>
+  <a href="#fonetica">Fonetica</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<header class="page-header">
+  <button class="toggle-btn" id="toggleEs" onclick="toggleEs()">Mostra traduzioni</button>
+  <div class="badge">Modulo 12 · Grammatica</div>
+  <h1>In treno o in macchina?</h1>
+  <p>Numeri ordinali, stare+gerundio e il pronome CI</p>
+</header>
+
+<main>
+
+<section id="ordinali">
+  <h2 class="section-title">1. Numeri ordinali</h2>
+  <p class="section-intro">I numeri ordinali indicano posizione o ordine: il primo, il secondo, il terzo...
+    <span class="es">Los números ordinales indican posición u orden.</span>
+  </p>
+
+  <div class="ord-grid">
+    <div class="ord-card"><div class="ord-num">1°</div><div class="ord-word">primo/a</div></div>
+    <div class="ord-card"><div class="ord-num">2°</div><div class="ord-word">secondo/a</div></div>
+    <div class="ord-card"><div class="ord-num">3°</div><div class="ord-word">terzo/a</div></div>
+    <div class="ord-card"><div class="ord-num">4°</div><div class="ord-word">quarto/a</div></div>
+    <div class="ord-card"><div class="ord-num">5°</div><div class="ord-word">quinto/a</div></div>
+    <div class="ord-card"><div class="ord-num">6°</div><div class="ord-word">sesto/a</div></div>
+    <div class="ord-card"><div class="ord-num">7°</div><div class="ord-word">settimo/a</div></div>
+    <div class="ord-card"><div class="ord-num">8°</div><div class="ord-word">ottavo/a</div></div>
+    <div class="ord-card"><div class="ord-num">9°</div><div class="ord-word">nono/a</div></div>
+    <div class="ord-card"><div class="ord-num">10°</div><div class="ord-word">decimo/a</div></div>
+  </div>
+
+  <div class="rule-box">
+    <strong>Dal 11° in poi:</strong> aggiungi <strong>-esimo/a</strong> al numero cardinale (elimina la vocale finale): undici→undicesimo, dodici→dodicesimo, venti→ventesimo, cento→centesimo
+    <br><strong>Concordanza:</strong> primo/prima/primi/prime — concordano con il sostantivo
+    <span class="es">Del 11° en adelante: número + -esimo. Concuerdan en género y número.</span>
+  </div>
+
+  <div class="example-box"><div class="it">Gira alla seconda strada a destra. Poi prendi il primo incrocio a sinistra.</div><div class="tr-small">Gira en la segunda calle a la derecha. Luego toma la primera intersección a la izquierda.</div></div>
+  <div class="example-box"><div class="it">Il museo è al terzo piano.</div><div class="tr-small">El museo está en el tercer piso.</div></div>
+
+  <div class="inline-prac">
+    <h4>Pratica — Completa con l'ordinale</h4>
+    <div id="prac1">
+      <div class="prac-item" data-ans="primo">Vado al _____ piano. (1°)<input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="terza">Gira alla _____ strada a sinistra. (3°, femm.)<input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="secondo">Prendi il _____ autobus. (2°)<input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="decimo">È il _____ mese dell'anno? (10°)<input class="prac-input" placeholder="..."></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="checkPrac('prac1')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac1')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<section id="gerundio">
+  <h2 class="section-title">2. Stare + gerundio</h2>
+  <p class="section-intro">Stare + gerundio descrive un'azione in corso in questo preciso momento — equivale a <em>estar + gerundio</em> in spagnolo.
+    <span class="es">Equivale a "estar + gerundio" en español. Describe una acción en progreso ahora mismo.</span>
+  </p>
+
+  <table class="gram-table">
+    <thead><tr><th>Stare</th><th>Gerundio (-ando / -endo)</th><th>Esempio</th></tr></thead>
+    <tbody>
+      <tr><td class="hl">sto</td><td>mangi<strong>ando</strong></td><td>Sto mangiando la pizza.</td></tr>
+      <tr><td class="hl">stai</td><td>parl<strong>ando</strong></td><td>Stai parlando troppo!</td></tr>
+      <tr><td class="hl">sta</td><td>legge<strong>ndo</strong></td><td>Sofia sta leggendo un libro.</td></tr>
+      <tr><td class="hl">stiamo</td><td>aspett<strong>ando</strong></td><td>Stiamo aspettando il treno.</td></tr>
+      <tr><td class="hl">state</td><td>dormi<strong>endo</strong></td><td>State dormendo a quest'ora?</td></tr>
+      <tr><td class="hl">stanno</td><td>corr<strong>endo</strong></td><td>Stanno correndo alla fermata!</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-box">
+    <strong>Formazione del gerundio:</strong><br>
+    • <strong>-ARE → -ando</strong>: parlare→parlando, mangiare→mangiando, lavorare→lavorando<br>
+    • <strong>-ERE / -IRE → -endo</strong>: leggere→leggendo, scrivere→scrivendo, dormire→dormendo<br>
+    • Irregolari: <strong>fare→facendo</strong>, <strong>bere→bevendo</strong>, <strong>dire→dicendo</strong>
+    <span class="es">Gerundio: -are→-ando, -ere/-ire→-endo. Irregulares: fare→facendo, bere→bevendo.</span>
+  </div>
+
+  <div class="inline-prac">
+    <h4>Pratica — Stare + gerundio</h4>
+    <div id="prac2">
+      <div class="prac-item" data-ans="sto mangiando">Io _____ la pizza. (mangiare)<input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="sta leggendo">Marco _____ il giornale. (leggere)<input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="stiamo aspettando">Noi _____ il treno. (aspettare)<input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="stai dormendo">Tu _____? (dormire)<input class="prac-input" placeholder="..."></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="checkPrac('prac2')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac2')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<section id="pronome-ci">
+  <h2 class="section-title">3. Il pronome di luogo CI</h2>
+  <p class="section-intro">CI sostituisce un complemento di luogo già menzionato. Equivale a "ci / lì / là" o a frasi come "in quel posto".
+    <span class="es">CI sustituye un complemento de lugar. Equivale a "allí", "en ese lugar".</span>
+  </p>
+
+  <table class="gram-table">
+    <thead><tr><th>Domanda</th><th>Risposta con CI</th><th class="es">Significado</th></tr></thead>
+    <tbody>
+      <tr><td>Vai spesso al bar?</td><td class="hl">Sì, <strong>ci</strong> vado ogni mattina.</td><td class="es">Sí, voy allí cada mañana. (ci = al bar)</td></tr>
+      <tr><td>Sei mai stato a Venezia?</td><td class="hl">No, non <strong>ci</strong> sono mai stato.</td><td class="es">No, nunca he estado allí. (ci = a Venezia)</td></tr>
+      <tr><td>Vuoi venire a casa mia?</td><td class="hl">Sì, <strong>ci</strong> vengo volentieri!</td><td class="es">¡Sí, voy con mucho gusto! (ci = a casa tua)</td></tr>
+      <tr><td>Abiti ancora a Milano?</td><td class="hl">Sì, <strong>ci</strong> abito da dieci anni.</td><td class="es">Sí, vivo allí desde hace diez años.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-box">
+    <strong>Posizione:</strong> CI va <strong>prima</strong> del verbo coniugato: ci vado, ci sono, ci vengo.<br>
+    <strong>Con infinito:</strong> CI può andare dopo l'infinito: voglio andarci, devo stare<strong>ci</strong>.
+    <span class="es">CI va antes del verbo conjugado. Con infinitivo puede ir al final.</span>
+  </div>
+
+  <div class="inline-prac">
+    <h4>Pratica — Rispondi con CI</h4>
+    <div id="prac3">
+      <div class="prac-item" data-ans="ci vado">Vai in palestra? → Sì, _____ ogni lunedì.<input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="ci siamo stati">Siete stati a Roma? → Sì, _____ l'estate scorsa.<input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="ci abita">Tua sorella abita a Milano? → Sì, _____ ancora.<input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="non ci vengo">Vieni alla festa? → No, _____ stasera.<input class="prac-input" placeholder="..."></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="checkPrac('prac3')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac3')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<section id="fonetica">
+  <h2 class="section-title">4. Fonetica — Consonanti sonore e sorde</h2>
+  <p class="section-intro">In italiano alcune consonanti si distinguono per il solo fatto di essere sonore (vibrate) o sorde. Ecco le coppie più importanti per chi parla spagnolo.
+    <span class="es">En italiano distinguimos consonantes sonoras y sordas en pares importantes para hispanohablantes.</span>
+  </p>
+
+  <table class="gram-table">
+    <thead><tr><th>Coppia</th><th>Differenza</th><th>Parole con V</th><th>Parole con B/F/D</th></tr></thead>
+    <tbody>
+      <tr><td class="hl">V vs B</td><td>V = labiodentale sonora / B = bilabiale</td><td>vino, vela, vado</td><td>bino, bela, bado</td></tr>
+      <tr><td class="hl">F vs V</td><td>F = labiodentale sorda / V = labiodentale sonora</td><td>vino, vita, vero</td><td>fino, fita, fero</td></tr>
+      <tr><td class="hl">P vs B</td><td>P = bilabiale sorda / B = bilabiale sonora</td><td>pane, porta, peso</td><td>bane, borta, beso</td></tr>
+      <tr><td class="hl">T vs D</td><td>T = dentale sorda / D = dentale sonora</td><td>tanto, treno, topo</td><td>dando, dreno, dopo</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-box">
+    <strong>Suggerimento:</strong> La V italiana è sempre labiodentale (labbro inferiore + denti superiori) — mai bilabiale come la B. In spagnolo la distinzione V/B spesso si perde — in italiano è fondamentale!
+    <span class="es">La V italiana siempre es labiodental (labio inferior + dientes superiores) — nunca bilabial como la B. En español la distinción V/B a menudo se pierde — ¡en italiano es fundamental!</span>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2 class="section-title">Quiz — Verifica le tue conoscenze</h2>
+  <div class="quiz-wrap">
+    <div class="quiz-q" id="q1">
+      <p>1. "Il terzo piano" — "terzo" è un numero:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','a')">cardinale</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','b')">ordinale</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','c')">negativo</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <p>2. "Marco _____ il libro." — Stare + gerundio corretto:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','a')">sta leggendo</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','b')">è leggendo</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','c')">ha leggendo</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <p>3. "Vai spesso al cinema?" — Risposta con CI:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','a')">Sì, ci vado</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','b')">Sì, lo vado</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','c')">Sì, vi vado</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <p>4. "La ventesima edizione" — Quante edizioni sono?</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','a')">12ª</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','b')">20ª</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','c')">22ª</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <p>5. Il gerundio di FARE è:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','a')">farendo</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','b')">facendo</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','c')">fando</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:1.25rem">
+      <button class="btn btn-primary" onclick="submitQuiz()">Controlla le risposte</button>
+    </div>
+    <div class="quiz-result" id="quiz-result"></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Italiano Per Piacere · Modulo 12 · <em>In treno o in macchina?</em></p>
+  <div class="nav-pills">
+    <a href="etapa2_descubrimiento.html" class="nav-pill">← Scoperta</a>
+    <a href="../modulo_13/etapa1_input.md" class="nav-pill">Unità 13 →</a>
+  </div>
+</footer>
+
+<script>
+let esVisible=false;
+function toggleEs(){esVisible=!esVisible;document.body.classList.toggle('show-es',esVisible);document.getElementById('toggleEs').textContent=esVisible?'Nascondi traduzioni':'Mostra traduzioni';}
+const secs=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('nav a');
+window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)c=s.id});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)});});
+function checkPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{const inp=item.querySelector('.prac-input');const ans=item.dataset.ans;const val=inp.value.trim().toLowerCase();item.classList.remove('correct','wrong');let fb=item.querySelector('.prac-fb');if(!fb){fb=document.createElement('span');fb.className='prac-fb';item.appendChild(fb);}if(val===ans){item.classList.add('correct');fb.textContent='✓';}else{item.classList.add('wrong');fb.textContent='✗ '+ans;}});}
+function resetPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{item.classList.remove('correct','wrong');item.querySelector('.prac-input').value='';const fb=item.querySelector('.prac-fb');if(fb)fb.textContent='';});}
+const answers={q1:'b',q2:'a',q3:'a',q4:'b',q5:'b'};
+let selected={};
+function selectOpt(el,qid,opt){if(selected[qid])return;selected[qid]=opt;const opts=el.parentElement.querySelectorAll('.quiz-opt');opts.forEach(o=>o.style.pointerEvents='none');const correct=answers[qid];opts.forEach((o,i)=>{const k=['a','b','c'][i];if(k===correct)o.classList.add('correct');else if(k===opt)o.classList.add('wrong');});}
+function submitQuiz(){let score=0;Object.keys(answers).forEach(q=>{if(selected[q]===answers[q])score++;});const res=document.getElementById('quiz-result');res.classList.add('show');if(score>=4){res.className='quiz-result show good';res.textContent=`Bravissimo/a! ${score}/5 ✓`;}else if(score>=2){res.className='quiz-result show ok';res.textContent=`Bene! ${score}/5 — continua così.`;}else{res.className='quiz-result show try';res.textContent=`${score}/5 — Riprova! Rivedi le sezioni.`;}}
+</script>
+</body>
+</html>

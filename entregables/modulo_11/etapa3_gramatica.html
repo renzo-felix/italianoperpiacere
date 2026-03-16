@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modulo 11 · Grammatica — In famiglia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;--red:#cc4736;--teal:#78a6ba;--green:#528e74;--black:#1a1a18;--white:#ffffff;--hdr:#528e74;--r:8px;--fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6}
+body:not(.show-es) .es{display:none!important}
+.es{font-size:.82rem;color:#666;font-style:italic;display:block;margin-top:.2rem}
+nav{position:sticky;top:0;z-index:100;background:var(--black);display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{color:var(--gold);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.75rem 1.1rem;white-space:nowrap;transition:background .2s}
+nav a:hover{background:rgba(255,255,255,.1)}
+nav a.active{background:var(--hdr);color:var(--white)}
+.page-header{background:var(--hdr);color:var(--white);padding:3rem 1.5rem 2.5rem;text-align:center;position:relative}
+.page-header .badge{display:inline-block;background:rgba(255,255,255,.2);border-radius:20px;padding:.25rem .85rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.85rem}
+.page-header h1{font-family:var(--fh);font-style:italic;font-size:2.4rem;margin-bottom:.5rem}
+.page-header p{opacity:.9;font-size:1.05rem}
+.toggle-btn{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:var(--white);border-radius:var(--r);padding:.45rem .9rem;font-family:var(--fb);font-size:.78rem;font-weight:600;cursor:pointer;transition:background .2s}
+.toggle-btn:hover{background:rgba(255,255,255,.35)}
+main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem}
+section{margin-bottom:3rem}
+.section-title{font-family:var(--fh);font-style:italic;font-size:1.6rem;color:var(--hdr);margin-bottom:1.25rem;padding-bottom:.4rem;border-bottom:2px solid var(--cream-dk)}
+.section-intro{margin-bottom:1.1rem;font-size:.97rem}
+.gram-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
+.gram-table th{background:var(--hdr);color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
+.gram-table td{padding:.5rem .75rem;border-bottom:1px solid var(--cream-dk)}
+.gram-table tr:nth-child(even) td{background:rgba(0,0,0,.03)}
+.hl{font-weight:700;color:var(--hdr)}
+.example-box{background:var(--white);border-left:4px solid var(--hdr);border-radius:0 var(--r) var(--r) 0;padding:.75rem 1rem;margin:.6rem 0;font-size:.95rem}
+.example-box .it{font-weight:600}
+.example-box .tr-small{font-size:.82rem;color:#777;font-style:italic}
+.inline-prac{background:var(--cream-dk);border-radius:var(--r);padding:1.1rem 1.25rem;margin-top:1.25rem}
+.inline-prac h4{font-family:var(--fh);font-style:italic;color:var(--hdr);margin-bottom:.85rem;font-size:1.1rem}
+.prac-item{margin-bottom:.65rem;font-size:.95rem;display:flex;align-items:center;flex-wrap:wrap;gap:.4rem}
+.prac-input{border:1.5px solid var(--cream-dk);border-radius:6px;padding:.3rem .55rem;font-family:var(--fb);font-size:.92rem;background:var(--white);width:160px;transition:border .2s}
+.prac-input:focus{outline:none;border-color:var(--hdr)}
+.prac-item.correct .prac-input{border-color:var(--green);background:rgba(82,142,116,.1)}
+.prac-item.wrong .prac-input{border-color:var(--red);background:rgba(204,71,54,.08)}
+.prac-fb{font-size:.8rem;margin-left:.3rem}
+.prac-item.correct .prac-fb{color:var(--green)}
+.prac-item.wrong .prac-fb{color:var(--red)}
+.btn{border:none;border-radius:var(--r);padding:.5rem 1.1rem;font-family:var(--fb);font-size:.87rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--hdr);color:var(--white)}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-ghost{background:transparent;border:1.5px solid var(--hdr);color:var(--hdr)}
+.btn-ghost:hover{background:var(--hdr);color:var(--white)}
+.btn-row{display:flex;gap:.75rem;margin-top:.85rem}
+.quiz-wrap{background:var(--white);border-radius:var(--r);padding:1.5rem;border:1px solid var(--cream-dk)}
+.quiz-q{margin-bottom:1.5rem}
+.quiz-q p{font-weight:600;margin-bottom:.7rem;font-size:.97rem}
+.quiz-opts{display:flex;flex-direction:column;gap:.45rem}
+.quiz-opt{background:var(--cream);border-radius:6px;padding:.6rem .9rem;cursor:pointer;font-size:.92rem;border:1.5px solid transparent;transition:all .2s}
+.quiz-opt:hover{border-color:var(--hdr)}
+.quiz-opt.correct{background:rgba(82,142,116,.15);border-color:var(--green);color:var(--green)}
+.quiz-opt.wrong{background:rgba(204,71,54,.1);border-color:var(--red);color:var(--red)}
+.quiz-result{text-align:center;padding:1.25rem;font-size:1.1rem;font-weight:600;border-radius:var(--r);margin-top:1rem;display:none}
+.quiz-result.show{display:block}
+.quiz-result.good{background:rgba(82,142,116,.15);color:var(--green)}
+.quiz-result.ok{background:rgba(239,207,127,.3);color:#7a5e00}
+.quiz-result.try{background:rgba(204,71,54,.1);color:var(--red)}
+.rule-box{background:rgba(82,142,116,.08);border:1px solid rgba(82,142,116,.3);border-radius:var(--r);padding:.85rem 1.1rem;margin:.8rem 0;font-size:.93rem}
+.rule-box strong{color:var(--hdr)}
+.bad{color:var(--red);text-decoration:line-through;font-weight:700}
+.good-ex{color:var(--hdr);font-weight:700}
+.num-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;margin:1rem 0}
+.num-card{background:var(--white);border-radius:var(--r);padding:.85rem 1rem;display:flex;justify-content:space-between;align-items:center;border-left:4px solid var(--hdr);box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.num-card .num{font-size:1.1rem;font-weight:700;font-family:var(--fh);color:var(--hdr)}
+.num-card .word{font-size:.9rem;font-weight:600}
+footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px solid var(--cream-dk)}
+.nav-pills{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+.nav-pill{padding:.5rem 1.2rem;border-radius:30px;font-size:.8rem;font-weight:600;text-decoration:none;color:var(--black);background:var(--cream);border:1px solid var(--cream-dk);transition:background .2s}
+.nav-pill:hover,.nav-pill.active{background:var(--hdr);color:var(--white)}
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="#possessivi">Possessivi</a>
+  <a href="#cisce">C'è / Ci sono</a>
+  <a href="#numeri">Numeri &gt;1000</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<header class="page-header">
+  <button class="toggle-btn" id="toggleEs" onclick="toggleEs()">Mostra traduzioni</button>
+  <div class="badge">Modulo 11 · Grammatica</div>
+  <h1>In famiglia</h1>
+  <p>Possessivi, C'è/Ci sono e numeri grandi</p>
+</header>
+
+<main>
+
+<section id="possessivi">
+  <h2 class="section-title">1. I possessivi con la famiglia</h2>
+  <p class="section-intro">Con i nomi di parentela al <strong>singolare</strong>, i possessivi NON prendono l'articolo.
+    <span class="es">Con sustantivos de parentesco en singular, el posesivo NO lleva artículo.</span>
+  </p>
+
+  <div class="rule-box">
+    <strong>⚠️ Regola fondamentale:</strong><br>
+    <span class="good-ex">✓ mia madre &nbsp;·&nbsp; tuo padre &nbsp;·&nbsp; sua sorella &nbsp;·&nbsp; nostro zio</span><br>
+    <span class="bad">✗ la mia madre &nbsp;·&nbsp; il tuo padre &nbsp;·&nbsp; la sua sorella</span>
+    <br><br>
+    <strong>Eccezioni:</strong><br>
+    • <strong>loro</strong> vuole sempre l'articolo: <span class="good-ex">il loro padre / la loro madre</span><br>
+    • Con i <strong>plurali</strong> si usa sempre l'articolo: <span class="good-ex">i miei fratelli / le tue sorelle</span><br>
+    • Con i <strong>diminutivi</strong>: <span class="good-ex">la mia mamma / il mio papà</span>
+    <span class="es">Excepción: "loro" siempre lleva artículo. Los plurales también llevan artículo.</span>
+  </div>
+
+  <table class="gram-table">
+    <thead><tr><th>Persona</th><th>Masch. sing.</th><th>Femm. sing.</th><th>Masch. pl.</th><th>Femm. pl.</th></tr></thead>
+    <tbody>
+      <tr><td>io</td><td class="hl">mio padre</td><td class="hl">mia madre</td><td class="hl">i miei fratelli</td><td class="hl">le mie sorelle</td></tr>
+      <tr><td>tu</td><td class="hl">tuo fratello</td><td class="hl">tua sorella</td><td class="hl">i tuoi nonni</td><td class="hl">le tue cugine</td></tr>
+      <tr><td>lui/lei</td><td class="hl">suo figlio</td><td class="hl">sua figlia</td><td class="hl">i suoi nipoti</td><td class="hl">le sue zie</td></tr>
+      <tr><td>noi</td><td class="hl">nostro cugino</td><td class="hl">nostra zia</td><td class="hl">i nostri genitori</td><td class="hl">le nostre nonne</td></tr>
+      <tr><td>voi</td><td class="hl">vostro nonno</td><td class="hl">vostra nonna</td><td class="hl">i vostri figli</td><td class="hl">le vostre figlie</td></tr>
+      <tr><td>loro</td><td colspan="4" style="font-weight:700;color:var(--red)">il loro padre / la loro madre / i loro fratelli / le loro sorelle (sempre con articolo!)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="example-box"><div class="it">Mia sorella si chiama Sofia. Suo marito è ingegnere.</div><div class="tr-small">Mi hermana se llama Sofia. Su marido es ingeniero.</div></div>
+  <div class="example-box"><div class="it">I loro figli abitano a Milano. La loro casa è grande.</div><div class="tr-small">Sus hijos viven en Milán. Su casa es grande.</div></div>
+
+  <div class="inline-prac">
+    <h4>Pratica — Possessivi con la famiglia</h4>
+    <div id="prac1">
+      <div class="prac-item" data-ans="mia madre">_____ abita a Napoli. (mio — madre)<input class="prac-input" placeholder="mia madre"></div>
+      <div class="prac-item" data-ans="tuo fratello">_____ studia medicina? (tuo — fratello)<input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="sua figlia">_____ si chiama Giulia. (suo — figlia)<input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="il loro padre">_____ è medico. (loro — padre)<input class="prac-input" placeholder="..."></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="checkPrac('prac1')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac1')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<section id="cisce">
+  <h2 class="section-title">2. C'è e Ci sono</h2>
+  <p class="section-intro">C'è (= hay / there is) con il singolare. Ci sono con il plurale.
+    <span class="es">C'è se usa con singular, ci sono con plural. Equivalen a "hay" en español.</span>
+  </p>
+
+  <table class="gram-table">
+    <thead><tr><th>Uso</th><th>Affermativo</th><th>Negativo</th><th>Interrogativo</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Singolare</strong></td>
+        <td class="hl">C'è un gatto.</td>
+        <td>Non c'è nessuno.</td>
+        <td class="hl">C'è qualcuno?</td>
+      </tr>
+      <tr>
+        <td><strong>Plurale</strong></td>
+        <td class="hl">Ci sono tre bambini.</td>
+        <td>Non ci sono problemi.</td>
+        <td class="hl">Ci sono ancora posti?</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="example-box"><div class="it">In famiglia c'è mia nonna — ha novant'anni!</div><div class="tr-small">En la familia está mi abuela — ¡tiene noventa años!</div></div>
+  <div class="example-box"><div class="it">Ci sono molte fotografie sul muro di casa mia.</div><div class="tr-small">Hay muchas fotografías en la pared de mi casa.</div></div>
+
+  <div class="inline-prac">
+    <h4>Pratica — C'è o Ci sono?</h4>
+    <div id="prac2">
+      <div class="prac-item" data-ans="ci sono">In famiglia _____ quattro persone.<input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="c'è">_____ un cane in casa?<input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="non ci sono">_____ bambini in questa festa.<input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="c'è">_____ un problema con la prenotazione.<input class="prac-input" placeholder="..."></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="checkPrac('prac2')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac2')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<section id="numeri">
+  <h2 class="section-title">3. Numeri oltre 1.000</h2>
+  <p class="section-intro">Come si formano i numeri grandi in italiano.
+    <span class="es">Cómo se forman los números grandes en italiano.</span>
+  </p>
+
+  <div class="num-grid">
+    <div class="num-card"><span class="num">1.000</span><span class="word">mille</span></div>
+    <div class="num-card"><span class="num">1.200</span><span class="word">milleduecento</span></div>
+    <div class="num-card"><span class="num">1.500</span><span class="word">millecinquecento</span></div>
+    <div class="num-card"><span class="num">2.000</span><span class="word">duemila</span></div>
+    <div class="num-card"><span class="num">3.500</span><span class="word">tremilacinquecento</span></div>
+    <div class="num-card"><span class="num">10.000</span><span class="word">diecimila</span></div>
+    <div class="num-card"><span class="num">50.000</span><span class="word">cinquantamila</span></div>
+    <div class="num-card"><span class="num">100.000</span><span class="word">centomila</span></div>
+    <div class="num-card"><span class="num">1.000.000</span><span class="word">un milione</span></div>
+    <div class="num-card"><span class="num">2.000.000</span><span class="word">due milioni</span></div>
+  </div>
+
+  <div class="rule-box" style="margin-top:1.25rem">
+    <strong>Regole chiave:</strong><br>
+    • <strong>mille</strong> (1.000) → <strong>mila</strong> al plurale: duemila, tremila, diecimila…<br>
+    • <strong>milione</strong> → <strong>milioni</strong> al plurale: due milioni, cinque milioni…<br>
+    • I numeri si scrivono attaccati: milleduecento (NON: mille duecento)
+    <span class="es">mille → mila en plural. milione → milioni. Los números se escriben unidos.</span>
+  </div>
+
+  <div class="inline-prac">
+    <h4>Pratica — Scrivi in lettere</h4>
+    <div id="prac3">
+      <div class="prac-item" data-ans="duemila">2.000 = <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="quindicimila">15.000 = <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="centomila">100.000 = <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="un milione">1.000.000 = <input class="prac-input" placeholder="..."></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="checkPrac('prac3')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac3')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2 class="section-title">Quiz — Verifica le tue conoscenze</h2>
+  <div class="quiz-wrap">
+
+    <div class="quiz-q" id="q1">
+      <p>1. "_____ sorella è simpatica." Quale possessivo è corretto?</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','a')">La mia sorella</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','b')">Mia sorella</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','c')">Mio sorella</div>
+      </div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <p>2. "In questa stanza _____ tre sedie." Forma corretta:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','a')">c'è</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','b')">ci sono</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','c')">sono</div>
+      </div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <p>3. "_____ il loro padre" — questa frase è:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','a')">sbagliata — loro non vuole articolo</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','b')">corretta — loro vuole sempre l'articolo</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','c')">corretta solo al plurale</div>
+      </div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <p>4. 2.500 si dice:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','a')">duemilacinquecento</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','b')">duemila e cinquecento</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','c')">due mila cinquecento</div>
+      </div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <p>5. "Non _____ nessun problema." Forma corretta:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','a')">non ci sono</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','b')">non c'è</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','c')">non è</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:1.25rem">
+      <button class="btn btn-primary" onclick="submitQuiz()">Controlla le risposte</button>
+    </div>
+    <div class="quiz-result" id="quiz-result"></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Italiano Per Piacere · Modulo 11 · <em>In famiglia</em></p>
+  <div class="nav-pills">
+    <a href="etapa2_descubrimiento.html" class="nav-pill">← Scoperta</a>
+    <a href="../modulo_12/etapa1_input.md" class="nav-pill">Unità 12 →</a>
+  </div>
+</footer>
+
+<script>
+let esVisible=false;
+function toggleEs(){esVisible=!esVisible;document.body.classList.toggle('show-es',esVisible);document.getElementById('toggleEs').textContent=esVisible?'Nascondi traduzioni':'Mostra traduzioni';}
+const secs=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('nav a');
+window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)c=s.id});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)});});
+function checkPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{const inp=item.querySelector('.prac-input');const ans=item.dataset.ans;const val=inp.value.trim().toLowerCase();item.classList.remove('correct','wrong');let fb=item.querySelector('.prac-fb');if(!fb){fb=document.createElement('span');fb.className='prac-fb';item.appendChild(fb);}if(val===ans){item.classList.add('correct');fb.textContent='✓';}else{item.classList.add('wrong');fb.textContent='✗ '+ans;}});}
+function resetPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{item.classList.remove('correct','wrong');item.querySelector('.prac-input').value='';const fb=item.querySelector('.prac-fb');if(fb)fb.textContent='';});}
+const answers={q1:'b',q2:'b',q3:'b',q4:'a',q5:'b'};
+let selected={};
+function selectOpt(el,qid,opt){if(selected[qid])return;selected[qid]=opt;const opts=el.parentElement.querySelectorAll('.quiz-opt');opts.forEach(o=>o.style.pointerEvents='none');const correct=answers[qid];opts.forEach((o,i)=>{const k=['a','b','c'][i];if(k===correct)o.classList.add('correct');else if(k===opt)o.classList.add('wrong');});}
+function submitQuiz(){let score=0;Object.keys(answers).forEach(q=>{if(selected[q]===answers[q])score++;});const res=document.getElementById('quiz-result');res.classList.add('show');if(score>=4){res.className='quiz-result show good';res.textContent=`Bravissimo/a! ${score}/5 ✓`;}else if(score>=2){res.className='quiz-result show ok';res.textContent=`Bene! ${score}/5 — continua così.`;}else{res.className='quiz-result show try';res.textContent=`${score}/5 — Riprova! Rivedi le sezioni.`;}}
+</script>
+</body>
+</html>

@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unità 1 · Gramática | Italiano Per Piacere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ipp-cream:    #e9e6d5;
+      --ipp-cream-dk: #ddd9c8;
+      --ipp-gold:     #EFCF7F;
+      --ipp-amber:    #e5ab07;
+      --ipp-red:      #cc4736;
+      --ipp-teal:     #78a6ba;
+      --ipp-green:    #528e74;
+      --ipp-black:    #1a1a18;
+      --ipp-white:    #ffffff;
+      --radius:       8px;
+      --font-head:    'Playfair Display', Georgia, serif;
+      --font-body:    'Outfit', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--ipp-cream); color: var(--ipp-black); min-height: 100vh; overflow-x: hidden; }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--ipp-green);
+      padding: 3rem 1.5rem 1.5rem; text-align: center; color: var(--ipp-white);
+      position: relative; overflow: hidden;
+    }
+    .header::after {
+      content: '📖'; position: absolute; font-size: 11rem; opacity: 0.06;
+      bottom: -2rem; left: 1rem; pointer-events: none;
+    }
+    .header-badge {
+      display: inline-block; background: var(--ipp-gold); color: var(--ipp-black);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+      padding: 0.3rem 1.2rem; border-radius: 20px; margin-bottom: 1rem;
+    }
+    .header h1 { font-family: var(--font-head); font-size: 2.3rem; font-style: italic; line-height: 1.1; margin-bottom: 0.4rem; }
+    .header p  { font-size: 0.9rem; opacity: 0.82; font-weight: 300; }
+
+    /* ── STICKY NAV ── */
+    .sticky-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--ipp-green);
+      display: flex; justify-content: center; gap: 0.4rem;
+      padding: 0.6rem 1rem; flex-wrap: wrap;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.18);
+    }
+    .sticky-nav a {
+      color: var(--ipp-white); text-decoration: none;
+      font-size: 0.78rem; font-weight: 600;
+      padding: 0.3rem 0.85rem; border-radius: 20px;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      transition: background 0.2s; white-space: nowrap;
+    }
+    .sticky-nav a:hover { background: rgba(255,255,255,0.18); }
+
+    /* ── CONTAINER & SECTIONS ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.2rem; }
+    .sec { margin-bottom: 3rem; scroll-margin-top: 60px; }
+    .divider { border: none; border-top: 2px solid rgba(82,142,116,0.15); margin: 2.5rem 0; }
+
+    /* ── SECTION HEADER ── */
+    .sec-hd { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+    .sec-hd h2 { font-family: var(--font-head); font-size: 1.55rem; color: var(--ipp-green); }
+    .sec-hd p  { font-size: 0.85rem; color: #666; margin-top: 0.15rem; }
+    .sec-emoji { font-size: 2rem; flex-shrink: 0; }
+
+    /* ── CARDS ── */
+    .card { background: var(--ipp-white); border-radius: var(--radius); padding: 1.5rem 1.75rem; box-shadow: 0 3px 14px rgba(0,0,0,0.06); }
+    .info { border-radius: var(--radius); padding: 1rem 1.4rem; font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.2rem; }
+    .info-green { background: #e8f4ef; color: #1f4d38; border-left: 4px solid var(--ipp-green); }
+    .info-teal  { background: #e5f1f5; color: #1a3c48; border-left: 4px solid var(--ipp-teal);  }
+    .info-gold  { background: #fdf4dc; color: #5a4200; border-left: 4px solid var(--ipp-amber); }
+    .info strong { font-weight: 700; }
+
+    /* ── VERB CONJUGATION TABLE ── */
+    .verb-intro {
+      background: var(--ipp-cream); border-radius: var(--radius);
+      padding: 1rem 1.4rem; margin-bottom: 1.25rem;
+      font-size: 0.92rem; line-height: 1.65; color: #444;
+    }
+    .verb-intro strong { color: var(--ipp-green); font-size: 1.05rem; }
+
+    .verb-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; margin-bottom: 1.25rem; }
+    .verb-table th {
+      background: var(--ipp-green); color: var(--ipp-gold);
+      padding: 0.65rem 1rem; text-align: left;
+      font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .verb-table th:first-child { border-radius: 6px 0 0 0; }
+    .verb-table th:last-child  { border-radius: 0 6px 0 0; }
+    .verb-table td { padding: 0.7rem 1rem; border-bottom: 1px solid #eee; }
+    .verb-table tr:last-child td { border-bottom: none; }
+    .verb-table tr:nth-child(even) td { background: var(--ipp-cream); }
+    .verb-table .pron { font-weight: 700; color: var(--ipp-green); }
+    .verb-table .forma { color: var(--ipp-red); font-weight: 700; font-size: 1.05rem; }
+    .verb-table .es-transl { font-size: 0.82rem; color: #888; }
+    .verb-table .show-btn {
+      background: var(--ipp-gold); border: none; border-radius: 20px;
+      padding: 0.22rem 0.65rem; font-size: 0.72rem; font-weight: 700;
+      color: var(--ipp-black); cursor: pointer; transition: background 0.2s;
+    }
+    .verb-table .show-btn:hover { background: #e0b430; }
+
+    .dialog-panel {
+      background: var(--ipp-teal); color: var(--ipp-white);
+      border-radius: var(--radius); padding: 1rem 1.4rem;
+      margin-top: 0.75rem; font-size: 0.92rem; line-height: 1.7;
+      display: none; animation: fadeIn 0.3s ease;
+    }
+    .dialog-panel.open { display: block; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+    .dialog-panel em { color: var(--ipp-gold); font-style: italic; }
+
+    /* ── COMPARISON BOX (ESSERE vs ANDARE) ── */
+    .compare-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .compare-col { background: var(--ipp-white); border-radius: var(--radius); padding: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .compare-col h4 {
+      font-family: var(--font-head); font-size: 1.1rem; margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+    }
+    .compare-col.essere h4 { color: var(--ipp-green); border-bottom: 2px solid var(--ipp-green); }
+    .compare-col.andare  h4 { color: var(--ipp-red);   border-bottom: 2px solid var(--ipp-red);   }
+    .conj-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.45rem 0; border-bottom: 1px solid var(--ipp-cream-dk);
+      font-size: 0.93rem;
+    }
+    .conj-row:last-child { border-bottom: none; }
+    .conj-pron { color: #888; font-size: 0.85rem; }
+    .conj-forma { font-weight: 700; font-size: 1rem; }
+    .essere  .conj-forma { color: var(--ipp-green); }
+    .andare  .conj-forma { color: var(--ipp-red);   }
+    .conj-es { font-size: 0.75rem; color: #aaa; text-align: right; }
+
+    /* ── INTERACTIVE PRACTICE ── */
+    .practice-block {
+      background: var(--ipp-cream); border-radius: var(--radius);
+      padding: 1.2rem 1.4rem; margin-top: 1rem;
+    }
+    .practice-block p { font-weight: 600; font-size: 0.93rem; color: var(--ipp-green); margin-bottom: 0.85rem; }
+    .fill-row { display: flex; align-items: center; gap: 0.55rem; flex-wrap: wrap; margin-bottom: 0.6rem; font-size: 0.95rem; }
+    .fill-blank {
+      border: none; border-bottom: 2px solid var(--ipp-teal);
+      background: transparent; font-family: var(--font-body);
+      font-size: 0.95rem; color: var(--ipp-teal); font-weight: 700;
+      width: 110px; text-align: center; padding-bottom: 2px; outline: none;
+    }
+    .fill-blank:focus { border-bottom-color: var(--ipp-green); }
+    .btn-check {
+      margin-top: 0.85rem; background: var(--ipp-teal); color: var(--ipp-white);
+      border: none; border-radius: 25px; padding: 0.5rem 1.3rem;
+      font-family: var(--font-body); font-size: 0.87rem; font-weight: 600;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .btn-check:hover { background: #5e8fa2; }
+    .check-result { display: none; margin-top: 0.65rem; padding: 0.5rem 0.9rem; border-radius: var(--radius); font-size: 0.88rem; font-weight: 600; }
+    .check-result.ok   { display: block; background: #d4edda; color: #155724; }
+    .check-result.fail { display: block; background: #fbeae8; color: #6b1e17; }
+
+    /* ── PREPOSITIONS SECTION ── */
+    .prep-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .prep-card {
+      background: var(--ipp-white); border-radius: var(--radius);
+      padding: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-align: center;
+    }
+    .prep-card .prep-letter {
+      font-family: var(--font-head); font-size: 3rem; font-weight: 900;
+      line-height: 1; margin-bottom: 0.35rem;
+    }
+    .prep-card.di-card .prep-letter { color: var(--ipp-green); }
+    .prep-card.a-card  .prep-letter { color: var(--ipp-red);   }
+    .prep-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .prep-card.di-card h4 { color: var(--ipp-green); }
+    .prep-card.a-card  h4 { color: var(--ipp-red);   }
+    .prep-card ul { list-style: none; }
+    .prep-card li { font-size: 0.87rem; padding: 0.3rem 0; border-bottom: 1px solid var(--ipp-cream-dk); color: #555; }
+    .prep-card li:last-child { border-bottom: none; }
+    .prep-card li em { font-weight: 600; font-style: italic; }
+
+    /* ── EXPRESSIONS ── */
+    .expr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 0.85rem; }
+    .expr-card {
+      background: var(--ipp-white); border-radius: var(--radius);
+      padding: 1rem 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      display: flex; gap: 0.75rem; align-items: flex-start;
+    }
+    .expr-card .e-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .expr-card .e-it   { font-weight: 700; color: var(--ipp-green); font-size: 0.95rem; }
+    .expr-card .e-es   { font-size: 0.82rem; color: #888; margin-top: 0.15rem; }
+    .expr-card .e-uso  { font-size: 0.74rem; color: var(--ipp-teal); margin-top: 0.25rem; font-style: italic; }
+
+    /* ── QUIZ ── */
+    .quiz-wrap { background: var(--ipp-white); border-radius: var(--radius); padding: 2rem; box-shadow: 0 3px 14px rgba(0,0,0,0.06); }
+    .quiz-wrap h3 { font-family: var(--font-head); color: var(--ipp-green); font-size: 1.2rem; margin-bottom: 0.35rem; }
+    .quiz-intro  { font-size: 0.87rem; color: #777; margin-bottom: 1.5rem; }
+    .q-item { background: var(--ipp-cream); border-radius: var(--radius); padding: 1.2rem 1.4rem; margin-bottom: 1rem; }
+    .q-item p { font-weight: 600; font-size: 0.95rem; color: var(--ipp-green); margin-bottom: 0.75rem; }
+    .options { display: flex; flex-direction: column; gap: 0.4rem; }
+    .opt {
+      background: var(--ipp-white); border: 2px solid #ddd; border-radius: var(--radius);
+      padding: 0.5rem 1rem; cursor: pointer; font-family: var(--font-body);
+      font-size: 0.9rem; text-align: left; transition: all 0.2s;
+    }
+    .opt:hover { border-color: var(--ipp-teal); background: #eef6f9; }
+    .opt.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: 700; }
+    .opt.wrong   { background: #fbeae8; border-color: #dc3545; color: #6b1e17; }
+    .opt:disabled { cursor: default; }
+    .quiz-score { display:none; text-align:center; padding:1.5rem; background:var(--ipp-gold); border-radius:var(--radius); font-size:1.15rem; font-weight:700; color:var(--ipp-black); margin-top:1rem; animation:fadeIn 0.4s ease; }
+    .quiz-score.show { display:block; }
+
+    /* ── FOOTER ── */
+    .footer { text-align:center; padding:2rem 1rem; font-size:0.77rem; color:#aaa; }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-badge">Unità 1 · A1 · Etapa 3</div>
+    <h1>Gramática en sí</h1>
+    <p>Di dove sei? · Essere · Andare · Preposizioni · Espressioni</p>
+  </header>
+
+  <nav class="sticky-nav">
+    <a href="#essere">🔵 ESSERE</a>
+    <a href="#andare">🔴 ANDARE</a>
+    <a href="#confronto">⚡ Comparar</a>
+    <a href="#prep">📌 DI / A</a>
+    <a href="#espressioni">✨ Espressioni</a>
+    <a href="#quiz">🎯 Mini Quiz</a>
+  </nav>
+
+  <div class="container">
+
+    <!-- ══ ESSERE ══ -->
+    <section class="sec" id="essere">
+      <div class="sec-hd">
+        <div class="sec-emoji">🔵</div>
+        <div>
+          <h2>Il Verbo ESSERE — ser / estar</h2>
+          <p>Conjugación para io · tu · lui / lei · Haz clic en cada fila para ver un ejemplo</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="verb-intro">
+          <strong>ESSERE</strong> es el verbo "ser" o "estar" en italiano. Es el verbo más fundamental del idioma.
+          Lo usamos para decir <em>de dónde somos</em> (Sono di Roma), para describir a alguien,
+          o para decir la nacionalidad (Sono italiano). Atención: es un verbo <strong>irregular</strong> —
+          sus formas no siguen un patrón regular.
+        </div>
+
+        <table class="verb-table">
+          <thead>
+            <tr><th>Pronombre</th><th>Forma</th><th>Equivale a</th><th>Ejemplo</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="pron">io</td>
+              <td class="forma">sono</td>
+              <td class="es-transl">soy / estoy</td>
+              <td><button class="show-btn" onclick="toggleDialog('d_e1')">👁 Ver</button></td>
+            </tr>
+            <tr>
+              <td class="pron">tu</td>
+              <td class="forma">sei</td>
+              <td class="es-transl">eres / estás</td>
+              <td><button class="show-btn" onclick="toggleDialog('d_e2')">👁 Ver</button></td>
+            </tr>
+            <tr>
+              <td class="pron">lui / lei</td>
+              <td class="forma">è</td>
+              <td class="es-transl">es / está</td>
+              <td><button class="show-btn" onclick="toggleDialog('d_e3')">👁 Ver</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="dialog-panel" id="d_e1">
+          <em>Io sono di Roma.</em> — Soy de Roma.<br>
+          <em>Io sono italiano.</em> — Soy italiano.<br>
+          <em>Io non sono di Milano.</em> — No soy de Milán.
+        </div>
+        <div class="dialog-panel" id="d_e2">
+          <em>Tu sei spagnola?</em> — ¿Eres española?<br>
+          <em>Di dove sei?</em> — ¿De dónde eres?<br>
+          <em>Tu sei di Napoli?</em> — ¿Eres de Nápoles?
+        </div>
+        <div class="dialog-panel" id="d_e3">
+          <em>Lei è di Firenze.</em> — Ella es de Florencia.<br>
+          <em>Lui è italiano?</em> — ¿Él es italiano?<br>
+          <em>Di dov'è lei?</em> — ¿De dónde es ella? (formal)
+        </div>
+
+        <div class="practice-block">
+          <p>✏️ Pratica: Completa con la forma correcta de ESSERE</p>
+          <div class="fill-row">
+            <span>1. Io</span>
+            <input class="fill-blank" id="e1" placeholder="..." />
+            <span>di Bologna.</span>
+          </div>
+          <div class="fill-row">
+            <span>2. Tu</span>
+            <input class="fill-blank" id="e2" placeholder="..." />
+            <span>francese?</span>
+          </div>
+          <div class="fill-row">
+            <span>3. Lui</span>
+            <input class="fill-blank" id="e3" placeholder="..." />
+            <span>di Venezia.</span>
+          </div>
+          <button class="btn-check" onclick="checkEssere()">Verificar</button>
+          <div class="check-result" id="er_essere"></div>
+        </div>
+      </div>
+
+      <div class="info info-gold" style="margin-top:1rem">
+        <strong>¡Ojo!</strong> En italiano el pronombre sujeto (io, tu, lui...) es <strong>opcional</strong>.
+        Se puede decir tanto <em>"Io sono di Roma"</em> como simplemente <em>"Sono di Roma"</em>.
+        La forma del verbo ya indica quién habla. Pero en A1 es mejor incluirlo para mayor claridad.
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ══ ANDARE ══ -->
+    <section class="sec" id="andare">
+      <div class="sec-hd">
+        <div class="sec-emoji">🔴</div>
+        <div>
+          <h2>Il Verbo ANDARE — ir</h2>
+          <p>Conjugación para io · tu · lui / lei · Haz clic en cada fila para ver un ejemplo</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="verb-intro">
+          <strong>ANDARE</strong> es el verbo "ir". Lo usamos para decir <em>adónde vamos</em>:
+          Vado a Roma (Voy a Roma), Vai alla stazione? (¿Vas a la estación?).
+          También es un verbo <strong>irregular</strong> — sus formas cambian bastante.
+          ¡Hay que memorizarlas!
+        </div>
+
+        <table class="verb-table">
+          <thead>
+            <tr><th>Pronombre</th><th>Forma</th><th>Equivale a</th><th>Ejemplo</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="pron">io</td>
+              <td class="forma">vado</td>
+              <td class="es-transl">voy</td>
+              <td><button class="show-btn" onclick="toggleDialog('d_a1')">👁 Ver</button></td>
+            </tr>
+            <tr>
+              <td class="pron">tu</td>
+              <td class="forma">vai</td>
+              <td class="es-transl">vas</td>
+              <td><button class="show-btn" onclick="toggleDialog('d_a2')">👁 Ver</button></td>
+            </tr>
+            <tr>
+              <td class="pron">lui / lei</td>
+              <td class="forma">va</td>
+              <td class="es-transl">va</td>
+              <td><button class="show-btn" onclick="toggleDialog('d_a3')">👁 Ver</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="dialog-panel" id="d_a1">
+          <em>Vado a Venezia.</em> — Voy a Venecia.<br>
+          <em>Vado alla stazione.</em> — Voy a la estación.<br>
+          <em>Non vado a Milano.</em> — No voy a Milán.
+        </div>
+        <div class="dialog-panel" id="d_a2">
+          <em>Dove vai?</em> — ¿Adónde vas?<br>
+          <em>Vai a Napoli?</em> — ¿Vas a Nápoles?<br>
+          <em>Tu vai in treno?</em> — ¿Vas en tren?
+        </div>
+        <div class="dialog-panel" id="d_a3">
+          <em>Lei va a Roma.</em> — Ella va a Roma.<br>
+          <em>Lui va all'aeroporto.</em> — Él va al aeropuerto.<br>
+          <em>Dove va Marco?</em> — ¿Adónde va Marco?
+        </div>
+
+        <div class="practice-block">
+          <p>✏️ Pratica: Completa con la forma correcta de ANDARE</p>
+          <div class="fill-row">
+            <span>1. Io</span>
+            <input class="fill-blank" id="a1" placeholder="..." />
+            <span>a Firenze.</span>
+          </div>
+          <div class="fill-row">
+            <span>2. Tu</span>
+            <input class="fill-blank" id="a2" placeholder="..." />
+            <span>alla stazione?</span>
+          </div>
+          <div class="fill-row">
+            <span>3. Lui</span>
+            <input class="fill-blank" id="a3" placeholder="..." />
+            <span>a Torino in treno.</span>
+          </div>
+          <button class="btn-check" onclick="checkAndare()">Verificar</button>
+          <div class="check-result" id="er_andare"></div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ══ COMPARACIÓN ══ -->
+    <section class="sec" id="confronto">
+      <div class="sec-hd">
+        <div class="sec-emoji">⚡</div>
+        <div>
+          <h2>ESSERE vs ANDARE — de un vistazo</h2>
+          <p>Las dos conjugaciones juntas para compararlas y memorizarlas</p>
+        </div>
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-col essere">
+          <h4>ESSERE — ser/estar</h4>
+          <div class="conj-row">
+            <span class="conj-pron">io</span>
+            <span class="conj-forma">sono</span>
+            <span class="conj-es">soy / estoy</span>
+          </div>
+          <div class="conj-row">
+            <span class="conj-pron">tu</span>
+            <span class="conj-forma">sei</span>
+            <span class="conj-es">eres / estás</span>
+          </div>
+          <div class="conj-row">
+            <span class="conj-pron">lui / lei</span>
+            <span class="conj-forma">è</span>
+            <span class="conj-es">es / está</span>
+          </div>
+        </div>
+        <div class="compare-col andare">
+          <h4>ANDARE — ir</h4>
+          <div class="conj-row">
+            <span class="conj-pron">io</span>
+            <span class="conj-forma">vado</span>
+            <span class="conj-es">voy</span>
+          </div>
+          <div class="conj-row">
+            <span class="conj-pron">tu</span>
+            <span class="conj-forma">vai</span>
+            <span class="conj-es">vas</span>
+          </div>
+          <div class="conj-row">
+            <span class="conj-pron">lui / lei</span>
+            <span class="conj-forma">va</span>
+            <span class="conj-es">va</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info info-teal" style="margin-top:1rem">
+        <strong>Truco visual:</strong>
+        ESSERE → <em>sono / sei / è</em> (formas con S y letras cortas) &nbsp;|&nbsp;
+        ANDARE → <em>vado / vai / va</em> (todas empiezan con V). ¡Memoriza el patrón!
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ══ PREPOSIZIONI ══ -->
+    <section class="sec" id="prep">
+      <div class="sec-hd">
+        <div class="sec-emoji">📌</div>
+        <div>
+          <h2>Le Preposizioni — DI e A</h2>
+          <p>La clave para hablar de origen (DI) y destino (A)</p>
+        </div>
+      </div>
+
+      <div class="prep-grid">
+        <div class="prep-card di-card">
+          <div class="prep-letter">DI</div>
+          <h4>Origen — ¿De dónde?</h4>
+          <ul>
+            <li><em>Sono di Roma.</em> — Soy de Roma</li>
+            <li><em>Sei di Napoli?</em> — ¿Eres de Nápoles?</li>
+            <li><em>È di Milano.</em> — Es de Milán</li>
+            <li><em>Di dove sei?</em> — ¿De dónde eres?</li>
+          </ul>
+        </div>
+        <div class="prep-card a-card">
+          <div class="prep-letter">A</div>
+          <h4>Destino — ¿Adónde?</h4>
+          <ul>
+            <li><em>Vado a Roma.</em> — Voy a Roma</li>
+            <li><em>Vai a Napoli?</em> — ¿Vas a Nápoles?</li>
+            <li><em>Va a Milano.</em> — Va a Milán</li>
+            <li><em>Dove vai?</em> — ¿Adónde vas?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info info-green" style="margin-top:1rem">
+        <strong>Artículo + A = preposición articulada:</strong>
+        A + il = <em>al</em> (al treno) &nbsp;|&nbsp; A + la = <em>alla</em> (alla stazione) &nbsp;|&nbsp;
+        A + l' = <em>all'</em> (all'aeroporto). ¡Esto lo estudiaremos en detalle más adelante!
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ══ ESPRESSIONI ══ -->
+    <section class="sec" id="espressioni">
+      <div class="sec-hd">
+        <div class="sec-emoji">✨</div>
+        <div>
+          <h2>Espressioni Utili</h2>
+          <p>Frases esenciales de esta unidad</p>
+        </div>
+      </div>
+
+      <div class="expr-grid">
+        <div class="expr-card">
+          <div class="e-icon">🙋</div>
+          <div>
+            <div class="e-it">Di dove sei?</div>
+            <div class="e-es">¿De dónde eres? (informal)</div>
+            <div class="e-uso">Pregunta clave de esta unidad</div>
+          </div>
+        </div>
+        <div class="expr-card">
+          <div class="e-icon">👔</div>
+          <div>
+            <div class="e-it">Di dov'è lei?</div>
+            <div class="e-es">¿De dónde es usted? (formal)</div>
+            <div class="e-uso">Contracción: di + dove → di dov'</div>
+          </div>
+        </div>
+        <div class="expr-card">
+          <div class="e-icon">🗺️</div>
+          <div>
+            <div class="e-it">Dove vai?</div>
+            <div class="e-es">¿Adónde vas?</div>
+            <div class="e-uso">Pregunta con ANDARE + dove</div>
+          </div>
+        </div>
+        <div class="expr-card">
+          <div class="e-icon">🏠</div>
+          <div>
+            <div class="e-it">Sono di...</div>
+            <div class="e-es">Soy de... (origen)</div>
+            <div class="e-uso">Risposta a "Di dove sei?"</div>
+          </div>
+        </div>
+        <div class="expr-card">
+          <div class="e-icon">🚂</div>
+          <div>
+            <div class="e-it">Vado a...</div>
+            <div class="e-es">Voy a... (destino)</div>
+            <div class="e-uso">Risposta a "Dove vai?"</div>
+          </div>
+        </div>
+        <div class="expr-card">
+          <div class="e-icon">🙏</div>
+          <div>
+            <div class="e-it">Grazie / Prego</div>
+            <div class="e-es">Gracias / De nada</div>
+            <div class="e-uso">Par inseparable del italiano</div>
+          </div>
+        </div>
+        <div class="expr-card">
+          <div class="e-icon">😅</div>
+          <div>
+            <div class="e-it">Scusa / Scusi</div>
+            <div class="e-es">Perdona / Perdone</div>
+            <div class="e-uso">Informal / formal — para interrumpir</div>
+          </div>
+        </div>
+        <div class="expr-card">
+          <div class="e-icon">😊</div>
+          <div>
+            <div class="e-it">Piacere!</div>
+            <div class="e-es">¡Encantado/a!</div>
+            <div class="e-uso">Al conocer a alguien por primera vez</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ══ MINI QUIZ ══ -->
+    <section class="sec" id="quiz">
+      <div class="sec-hd">
+        <div class="sec-emoji">🎯</div>
+        <div>
+          <h2>Mini Quiz</h2>
+          <p>Comprueba lo que aprendiste · 5 preguntas rápidas</p>
+        </div>
+      </div>
+
+      <div class="quiz-wrap">
+        <h3>¿Cuánto recuerdas?</h3>
+        <p class="quiz-intro">Selecciona la respuesta correcta. Una sola oportunidad por pregunta.</p>
+
+        <div class="q-item" id="qi1">
+          <p>1. ¿Cómo se dice "Yo soy de Roma" en italiano?</p>
+          <div class="options">
+            <button class="opt" onclick="ansQ(1,this,false)">A) Io vado di Roma</button>
+            <button class="opt" onclick="ansQ(1,this,true)">B) Io sono di Roma</button>
+            <button class="opt" onclick="ansQ(1,this,false)">C) Io sei di Roma</button>
+          </div>
+        </div>
+
+        <div class="q-item" id="qi2">
+          <p>2. ¿Cuál es la forma correcta de ANDARE para "tú"?</p>
+          <div class="options">
+            <button class="opt" onclick="ansQ(2,this,false)">A) tu va</button>
+            <button class="opt" onclick="ansQ(2,this,false)">B) tu vado</button>
+            <button class="opt" onclick="ansQ(2,this,true)">C) tu vai</button>
+          </div>
+        </div>
+
+        <div class="q-item" id="qi3">
+          <p>3. Completa: "Vado ___ stazione" (Voy a la estación)</p>
+          <div class="options">
+            <button class="opt" onclick="ansQ(3,this,false)">A) di</button>
+            <button class="opt" onclick="ansQ(3,this,true)">B) alla</button>
+            <button class="opt" onclick="ansQ(3,this,false)">C) con</button>
+          </div>
+        </div>
+
+        <div class="q-item" id="qi4">
+          <p>4. ¿Cómo se pregunta "¿De dónde eres?" en italiano?</p>
+          <div class="options">
+            <button class="opt" onclick="ansQ(4,this,false)">A) Dove vai?</button>
+            <button class="opt" onclick="ansQ(4,this,true)">B) Di dove sei?</button>
+            <button class="opt" onclick="ansQ(4,this,false)">C) Chi sei?</button>
+          </div>
+        </div>
+
+        <div class="q-item" id="qi5">
+          <p>5. ¿Qué significa "Piacere!" cuando conoces a alguien?</p>
+          <div class="options">
+            <button class="opt" onclick="ansQ(5,this,false)">A) ¡Hasta luego!</button>
+            <button class="opt" onclick="ansQ(5,this,false)">B) ¿Cómo estás?</button>
+            <button class="opt" onclick="ansQ(5,this,true)">C) ¡Encantado/a!</button>
+          </div>
+        </div>
+
+        <div class="quiz-score" id="quizScore"></div>
+      </div>
+    </section>
+
+  </div><!-- /container -->
+
+  <footer class="footer">
+    🍷 <strong>Italiano Per Piacere</strong> &nbsp;·&nbsp; Unità 1 &nbsp;·&nbsp; Etapa 3: Gramática
+  </footer>
+
+  <script>
+    /* ── DIALOG TOGGLE ── */
+    let lastOpen = null;
+    function toggleDialog(id) {
+      const el = document.getElementById(id);
+      if (lastOpen && lastOpen !== el) lastOpen.classList.remove('open');
+      el.classList.toggle('open');
+      lastOpen = el.classList.contains('open') ? el : null;
+    }
+
+    /* ── ESSERE PRACTICE ── */
+    function checkEssere() {
+      const answers = ['sono','sei','è'];
+      let c = 0, msgs = [];
+      answers.forEach((a,i) => {
+        const val = document.getElementById(`e${i+1}`).value.trim().toLowerCase();
+        if (val === a) { c++; document.getElementById(`e${i+1}`).style.borderBottomColor='var(--ipp-green)'; }
+        else { document.getElementById(`e${i+1}`).style.borderBottomColor='var(--ipp-red)'; msgs.push(`#${i+1}: ${a}`); }
+      });
+      const r = document.getElementById('er_essere');
+      r.textContent = c===3 ? '✅ Perfetto! 3/3 corrette!' : `${c}/3 − Correzioni: ${msgs.join(' | ')}`;
+      r.className = `check-result ${c===3?'ok':'fail'}`;
+    }
+
+    /* ── ANDARE PRACTICE ── */
+    function checkAndare() {
+      const answers = ['vado','vai','va'];
+      let c = 0, msgs = [];
+      answers.forEach((a,i) => {
+        const val = document.getElementById(`a${i+1}`).value.trim().toLowerCase();
+        if (val === a) { c++; document.getElementById(`a${i+1}`).style.borderBottomColor='var(--ipp-green)'; }
+        else { document.getElementById(`a${i+1}`).style.borderBottomColor='var(--ipp-red)'; msgs.push(`#${i+1}: ${a}`); }
+      });
+      const r = document.getElementById('er_andare');
+      r.textContent = c===3 ? '✅ Perfetto! 3/3 corrette!' : `${c}/3 − Correzioni: ${msgs.join(' | ')}`;
+      r.className = `check-result ${c===3?'ok':'fail'}`;
+    }
+
+    /* ── MINI QUIZ ── */
+    const done = {1:false,2:false,3:false,4:false,5:false};
+    let score = 0;
+    function ansQ(n, btn, isOk) {
+      if (done[n]) return;
+      done[n] = true;
+      const opts = btn.closest('.q-item').querySelectorAll('.opt');
+      opts.forEach(o => o.disabled = true);
+      if (isOk) { btn.classList.add('correct'); score++; }
+      else {
+        btn.classList.add('wrong');
+        opts.forEach(o => { if(o.getAttribute('onclick').includes('true')) o.classList.add('correct'); });
+      }
+      if (Object.values(done).every(Boolean)) {
+        const el = document.getElementById('quizScore');
+        el.textContent = score===5 ? `🎉 Perfetto! 5/5! Sei un/a campione/essa!`
+          : score>=3 ? `😊 Molto bene! ${score}/5 — Quasi perfetto!`
+          : `💪 ${score}/5 — Ripassa le sezioni e riprova!`;
+        el.classList.add('show');
+      }
+    }
+  </script>
+</body>
+</html>

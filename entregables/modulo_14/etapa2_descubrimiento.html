@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unità 14 · Mi piace moltissimo! — Descubrimiento</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;
+  --gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--teal:#78a6ba;--green:#528e74;
+  --black:#1a1a18;--white:#ffffff;
+  --hero:var(--red);--hero-text:var(--white);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--black);overflow-x:hidden}
+body.hide-es .es{display:none}
+
+#toggle-btn{
+  position:fixed;top:1rem;right:1rem;z-index:999;
+  background:var(--red);color:#fff;border:none;
+  padding:.5rem 1rem;border-radius:2rem;font-family:'Outfit',sans-serif;
+  font-size:.85rem;cursor:pointer;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.25)
+}
+
+.hero{
+  min-height:92vh;background:var(--hero);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:4rem 2rem;position:relative;overflow:hidden
+}
+.hero-circle{
+  position:absolute;border-radius:50%;opacity:.15;
+  background:var(--white);pointer-events:none;transition:transform .1s linear
+}
+.c1{width:420px;height:420px;top:-80px;right:-100px}
+.c2{width:280px;height:280px;bottom:40px;left:-60px}
+.c3{width:160px;height:160px;bottom:120px;right:15%}
+.hero h1{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(2.4rem,6vw,4rem);color:var(--white);
+  line-height:1.15;margin-bottom:.5rem
+}
+.hero .badge{
+  background:var(--white);color:var(--red);
+  padding:.3rem 1rem;border-radius:2rem;font-size:.85rem;font-weight:700;
+  letter-spacing:.05em;margin-bottom:1.5rem;display:inline-block
+}
+.hero p{font-size:1.1rem;max-width:600px;line-height:1.6;color:var(--white);opacity:.9}
+.hero .scroll-hint{margin-top:2.5rem;font-size:.9rem;opacity:.6;animation:bounce 2s infinite;color:#fff}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+section{padding:4rem 2rem;max-width:860px;margin:0 auto}
+section h2{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(1.6rem,4vw,2.2rem);color:var(--red);
+  margin-bottom:.4rem
+}
+section .subtitle{font-size:.95rem;color:#555;margin-bottom:2rem}
+.it{font-style:italic;color:var(--red);font-weight:600}
+.es{color:#666;font-size:.9rem}
+
+[data-a]{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+[data-a].visible{opacity:1;transform:none}
+[data-stagger]>*{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+[data-stagger].visible>*:nth-child(1){opacity:1;transform:none;transition-delay:.05s}
+[data-stagger].visible>*:nth-child(2){opacity:1;transform:none;transition-delay:.15s}
+[data-stagger].visible>*:nth-child(3){opacity:1;transform:none;transition-delay:.25s}
+[data-stagger].visible>*:nth-child(4){opacity:1;transform:none;transition-delay:.35s}
+[data-stagger].visible>*:nth-child(5){opacity:1;transform:none;transition-delay:.45s}
+[data-stagger].visible>*:nth-child(6){opacity:1;transform:none;transition-delay:.55s}
+[data-stagger].visible>*:nth-child(7){opacity:1;transform:none;transition-delay:.65s}
+[data-stagger].visible>*:nth-child(n+8){opacity:1;transform:none;transition-delay:.75s}
+
+/* WORD GRID */
+.word-grid{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.5rem}
+.word-btn{
+  padding:.55rem 1.1rem;border-radius:2rem;border:2px solid var(--red);
+  background:#fff;color:var(--black);font-family:'Outfit',sans-serif;
+  font-size:.95rem;cursor:pointer;transition:all .2s
+}
+.word-btn:hover{background:var(--cream-dk)}
+.word-btn.selected{background:rgba(204,71,54,.15);border-color:var(--red);font-weight:700}
+.word-btn.correct{background:#d4edda;border-color:var(--green);color:var(--green);font-weight:700}
+.word-btn.wrong{background:#f8d7da;border-color:var(--red);color:var(--red);font-weight:700}
+.word-btn.missed{background:#fff3cd;border-color:var(--amber);color:#856404;font-weight:700}
+.verify-btn{
+  background:var(--red);color:#fff;border:none;padding:.6rem 1.6rem;
+  border-radius:2rem;font-family:'Outfit',sans-serif;font-size:.95rem;
+  font-weight:700;cursor:pointer;margin-bottom:1rem
+}
+#grid-feedback{font-size:.95rem;margin-top:.5rem;min-height:1.4em}
+
+/* VOCAB CARDS */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem}
+.vcard{
+  background:#fff;border-radius:12px;padding:1.2rem 1rem;
+  border-left:4px solid var(--red);cursor:pointer;
+  transition:box-shadow .2s,transform .2s
+}
+.vcard:hover{box-shadow:0 4px 18px rgba(0,0,0,.1);transform:translateY(-2px)}
+.vcard .vit{font-size:1.1rem;font-weight:700;color:var(--red)}
+.vcard .ves{font-size:.9rem;color:#555;margin-top:.2rem}
+.vcard .vex{
+  font-size:.85rem;margin-top:.6rem;color:var(--black);
+  font-style:italic;border-top:1px solid var(--cream-dk);
+  padding-top:.6rem;display:none
+}
+.vcard.open .vex{display:block}
+
+/* PIACERE BOX */
+.piacere-box{
+  background:#fff;border-radius:14px;padding:1.5rem;
+  border-left:5px solid var(--red);margin-top:1rem
+}
+.piacere-box h3{font-size:1.05rem;font-weight:700;color:var(--red);margin-bottom:.8rem}
+.piacere-row{display:flex;align-items:center;gap:.8rem;margin:.5rem 0;flex-wrap:wrap}
+.piacere-form{
+  background:var(--red);color:#fff;padding:.3rem .8rem;
+  border-radius:2rem;font-weight:700;font-size:.95rem;min-width:50px;text-align:center
+}
+.piacere-ex{font-size:.92rem;font-style:italic}
+
+/* PREP TABLE */
+.prep-table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:.8rem}
+.prep-table th,.prep-table td{padding:.55rem .7rem;border:1px solid var(--cream-dk);text-align:center}
+.prep-table th{background:var(--red);color:#fff;font-weight:700}
+.prep-table .prep-head{background:var(--cream-dk);font-weight:700;font-style:italic;color:var(--black)}
+.prep-table .it-cell{color:var(--red);font-weight:700}
+
+/* DIALOGUE */
+.dialogue{display:flex;flex-direction:column;gap:.9rem}
+.bubble{max-width:75%;padding:.9rem 1.2rem;border-radius:16px;position:relative;font-size:.95rem;line-height:1.5;cursor:pointer}
+.bubble.left{align-self:flex-start;background:var(--cream-dk);border-bottom-left-radius:4px}
+.bubble.right{align-self:flex-end;background:var(--red);color:#fff;border-bottom-right-radius:4px}
+.bubble .btr{font-size:.82rem;color:rgba(255,255,255,.75);margin-top:.4rem;border-top:1px solid rgba(255,255,255,.2);padding-top:.3rem;display:none}
+.bubble.left .btr{color:#555;border-top-color:rgba(0,0,0,.1)}
+.bubble.open .btr{display:block}
+.bubble::after{content:'▾';font-size:.7rem;opacity:.5;margin-left:.4rem}
+
+/* CULTURAL STRIP */
+.cultural{background:var(--red);color:#fff;padding:3rem 2rem;margin-top:3rem}
+.cultural h3{font-family:'Playfair Display',serif;font-style:italic;font-size:1.6rem;margin-bottom:1rem}
+.cultural p{line-height:1.7;max-width:680px;font-size:.97rem}
+
+footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
+</style>
+</head>
+<body class="hide-es">
+
+<button id="toggle-btn" onclick="toggleEs()">👁 Mostrar traducciones</button>
+
+<div class="hero" id="hero">
+  <div class="hero-circle c1" id="c1"></div>
+  <div class="hero-circle c2" id="c2"></div>
+  <div class="hero-circle c3" id="c3"></div>
+  <span class="badge">Unità 14 · A1</span>
+  <h1>Mi piace moltissimo!</h1>
+  <p>Un festival de música italiana, colores, ritmo, gente bailando… ¿Qué ves? ¿Qué te gusta? Antes de estudiar el verbo <em>piacere</em>, ¡cuéntalo en italiano!</p>
+  <div class="scroll-hint">↓ Scopri</div>
+</div>
+
+<!-- WORD GRID -->
+<section data-a>
+  <h2>Cosa fai nel tempo libero?</h2>
+  <p class="subtitle">Selecciona las <strong>actividades de ocio</strong>. ¡Las trampas son cosas que no son exactamente tiempo libre!</p>
+  <div class="word-grid" id="word-grid">
+    <button class="word-btn" onclick="toggleWord(this,'ok')">leggere</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">ascoltare musica</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">ballare</button>
+    <button class="word-btn" onclick="toggleWord(this,'trap')">lavorare</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">dipingere</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">suonare</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">nuotare</button>
+    <button class="word-btn" onclick="toggleWord(this,'trap')">studiare</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">viaggiare</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">andare al cinema</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">fare sport</button>
+    <button class="word-btn" onclick="toggleWord(this,'trap')">fare la spesa</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">cucinare</button>
+    <button class="word-btn" onclick="toggleWord(this,'ok')">giocare a calcio</button>
+  </div>
+  <button class="verify-btn" onclick="verifyGrid()">Verifica ✓</button>
+  <div id="grid-feedback"></div>
+</section>
+
+<!-- GENERI MUSICALI -->
+<section data-a>
+  <h2>I generi musicali</h2>
+  <p class="subtitle">Haz clic en cada tarjeta para ver un artista o ejemplo italiano. <span class="es">¡Italia tiene una tradición musical increíble!</span></p>
+  <div class="vocab-grid" data-stagger>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">il rock</div>
+      <div class="ves">el rock</div>
+      <div class="vex">🎸 <em>Mi piace molto il rock.</em><br><span class="es">Me gusta mucho el rock.</span><br>Artista: Ligabue, Vasco Rossi</div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">il jazz</div>
+      <div class="ves">el jazz</div>
+      <div class="vex">🎷 <em>Ascolto jazz di sera.</em><br><span class="es">Escucho jazz por la noche.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">la musica classica</div>
+      <div class="ves">la música clásica</div>
+      <div class="vex">🎻 <em>Non mi piace la classica.</em><br><span class="es">No me gusta la clásica.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">il pop</div>
+      <div class="ves">el pop</div>
+      <div class="vex">🎤 <em>Preferisco il pop italiano.</em><br><span class="es">Prefiero el pop italiano.</span><br>Artista: Pausini, Ramazzotti</div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">l'opera</div>
+      <div class="ves">la ópera</div>
+      <div class="vex">🎭 <em>L'opera è bellissima!</em><br><span class="es">¡La ópera es bellísima!</span><br>Verdi, Puccini, Rossini</div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">il rap</div>
+      <div class="ves">el rap</div>
+      <div class="vex">🎧 <em>Mi piacciono i rapper italiani.</em><br><span class="es">Me gustan los raperos italianos.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">la canzone d'autore</div>
+      <div class="ves">la canción de autor</div>
+      <div class="vex">🎵 <em>De André, Guccini, Battiato…</em><br><span class="es">Grandes compositores italianos.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vit">il folk</div>
+      <div class="ves">el folk, música tradicional</div>
+      <div class="vex">🪗 <em>La tarantella è musica folk!</em><br><span class="es">La tarantela es música folk.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PIACERE PREVIEW -->
+<section data-a>
+  <h2>Come funziona "piacere"?</h2>
+  <p class="subtitle">
+    ¡El verbo <span class="it">piacere</span> funciona al revés que en español! El sujeto es lo que gusta, no la persona.
+    <span class="es">"Mi piace la musica" = literalmente "La música me place a mí".</span>
+  </p>
+  <div class="piacere-box">
+    <h3>La estructura</h3>
+    <div class="piacere-row">
+      <div class="piacere-form">mi piace</div>
+      <span class="piacere-ex">+ cosa singolare: <em>Mi piace il jazz.</em></span>
+    </div>
+    <div class="piacere-row">
+      <div class="piacere-form">mi piacciono</div>
+      <span class="piacere-ex">+ cosa plurale: <em>Mi piacciono i concerti.</em></span>
+    </div>
+    <div class="piacere-row">
+      <div class="piacere-form">ti piace</div>
+      <span class="piacere-ex"><em>Ti piace ballare?</em> <span class="es">¿Te gusta bailar?</span></span>
+    </div>
+    <div class="piacere-row">
+      <div class="piacere-form">gli/le piace</div>
+      <span class="piacere-ex"><em>Le piace la musica classica.</em> <span class="es">A ella le gusta la música clásica.</span></span>
+    </div>
+  </div>
+  <p style="margin-top:1rem;font-size:.9rem;color:#555">
+    💡 <span class="es">Con el infinitivo siempre va <em>piace</em> (singular): <em>Mi piace <strong>ballare</strong>.</em></span>
+  </p>
+</section>
+
+<!-- PREPOSIZIONI ARTICOLATE PREVIEW -->
+<section data-a>
+  <h2>Preposizioni articolate — un'anteprima</h2>
+  <p class="subtitle">Cuando una preposición se une a un artículo, ¡se fusionan! <span class="es">Es un fenómeno único del italiano.</span></p>
+  <table class="prep-table">
+    <tr>
+      <th>Prep.</th>
+      <th>+ il</th>
+      <th>+ lo</th>
+      <th>+ la</th>
+      <th>+ i</th>
+      <th>+ gli</th>
+      <th>+ le</th>
+    </tr>
+    <tr>
+      <td class="prep-head">a</td>
+      <td class="it-cell">al</td>
+      <td class="it-cell">allo</td>
+      <td class="it-cell">alla</td>
+      <td class="it-cell">ai</td>
+      <td class="it-cell">agli</td>
+      <td class="it-cell">alle</td>
+    </tr>
+    <tr>
+      <td class="prep-head">di</td>
+      <td class="it-cell">del</td>
+      <td class="it-cell">dello</td>
+      <td class="it-cell">della</td>
+      <td class="it-cell">dei</td>
+      <td class="it-cell">degli</td>
+      <td class="it-cell">delle</td>
+    </tr>
+    <tr>
+      <td class="prep-head">da</td>
+      <td class="it-cell">dal</td>
+      <td class="it-cell">dallo</td>
+      <td class="it-cell">dalla</td>
+      <td class="it-cell">dai</td>
+      <td class="it-cell">dagli</td>
+      <td class="it-cell">dalle</td>
+    </tr>
+    <tr>
+      <td class="prep-head">in</td>
+      <td class="it-cell">nel</td>
+      <td class="it-cell">nello</td>
+      <td class="it-cell">nella</td>
+      <td class="it-cell">nei</td>
+      <td class="it-cell">negli</td>
+      <td class="it-cell">nelle</td>
+    </tr>
+    <tr>
+      <td class="prep-head">su</td>
+      <td class="it-cell">sul</td>
+      <td class="it-cell">sullo</td>
+      <td class="it-cell">sulla</td>
+      <td class="it-cell">sui</td>
+      <td class="it-cell">sugli</td>
+      <td class="it-cell">sulle</td>
+    </tr>
+  </table>
+  <p style="margin-top:.8rem;font-size:.9rem;color:#555">
+    📌 <em>Vado al concerto. Parlo della musica. Suono dalla mattina. Libro sul tavolo.</em>
+  </p>
+</section>
+
+<!-- DIALOGUE -->
+<section data-a>
+  <h2>Cosa ti piace fare?</h2>
+  <p class="subtitle">Haz clic en cada globo para ver la traducción. <span class="es">¿Notas cómo funciona <em>piacere</em>?</span></p>
+  <div class="dialogue">
+    <div class="bubble left" onclick="this.classList.toggle('open')">
+      <strong>Marco:</strong> Ciao Anna! Sei stata al festival ieri sera?
+      <div class="btr"><span class="es">¡Hola Anna! ¿Estuviste en el festival anoche?</span></div>
+    </div>
+    <div class="bubble right" onclick="this.classList.toggle('open')">
+      <strong>Anna:</strong> Sì! Mi è piaciuto moltissimo! Mi piace tantissimo la musica dal vivo.
+      <div class="btr">Sí! ¡Me gustó muchísimo! Me encanta la música en directo.</div>
+    </div>
+    <div class="bubble left" onclick="this.classList.toggle('open')">
+      <strong>Marco:</strong> Anch'a me! E i concerti in piazza — ti piacciono?
+      <div class="btr"><span class="es">¡A mí también! ¿Y los conciertos en la plaza — te gustan?</span></div>
+    </div>
+    <div class="bubble right" onclick="this.classList.toggle('open')">
+      <strong>Anna:</strong> Sì, mi piacciono molto. Preferisco il rock, ma mi piace anche il jazz.
+      <div class="btr">Sí, me gustan mucho. Prefiero el rock, pero también me gusta el jazz.</div>
+    </div>
+    <div class="bubble left" onclick="this.classList.toggle('open')">
+      <strong>Marco:</strong> A me non piace molto il jazz… preferisco la musica pop. Vieni al concerto degli Zero Assoluto sabato?
+      <div class="btr"><span class="es">A mí no me gusta mucho el jazz… prefiero la música pop. ¿Vienes al concierto de Zero Assoluto el sábado?</span></div>
+    </div>
+    <div class="bubble right" onclick="this.classList.toggle('open')">
+      <strong>Anna:</strong> Certo! Mi piacciono da morire! A che ora inizia?
+      <div class="btr">¡Claro! ¡Me encantan! ¿A qué hora empieza?</div>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURAL STRIP -->
+<div class="cultural" data-a>
+  <h3>La musica italiana — patrimonio mondiale</h3>
+  <p>Italia es la cuna de la ópera, inventada en Florencia en el siglo XVII. Pero la tradición musical italiana no se detiene ahí: del <em>melodramma</em> de Verdi y Puccini al <em>cantautorato</em> de Fabrizio De André, pasando por los festivales de Sanremo que cada año reúnen a toda la nación frente al televisor. <em>La musica è nell'anima degli italiani</em> — la música está en el alma de los italianos. Y tú, ¿ya tienes tu canción italiana favorita?</p>
+</div>
+
+<footer>Italiano Per Piacere · Unità 14 · Etapa 2 — Descubrimiento</footer>
+
+<script>
+function toggleEs(){
+  document.body.classList.toggle('hide-es');
+  document.getElementById('toggle-btn').textContent=
+    document.body.classList.contains('hide-es')? '👁 Mostrar traducciones':'🙈 Ocultar traducciones';
+}
+function toggleWord(el,type){
+  if(el.classList.contains('correct')||el.classList.contains('wrong')||el.classList.contains('missed'))return;
+  el.classList.toggle('selected');el._type=type;
+}
+function verifyGrid(){
+  const btns=document.querySelectorAll('#word-grid .word-btn');
+  let correct=0,fp=0,missed=0;
+  btns.forEach(b=>{
+    const sel=b.classList.contains('selected');const ok=b._type==='ok';
+    b.classList.remove('selected');
+    if(sel&&ok){b.classList.add('correct');correct++;}
+    else if(sel&&!ok){b.classList.add('wrong');fp++;}
+    else if(!sel&&ok){b.classList.add('missed');missed++;}
+  });
+  const fb=document.getElementById('grid-feedback');
+  if(fp===0&&missed===0){fb.innerHTML='<span style="color:var(--green);font-weight:700">✅ Perfetto! Tutte le attività trovate.</span>';}
+  else{
+    let msg='<span style="color:var(--amber-dk);font-weight:700">';
+    if(correct)msg+=`✅ ${correct} corretti. `;
+    if(fp)msg+=`❌ ${fp} errori. `;
+    if(missed)msg+=`⚠️ ${missed} mancanti (gialli).`;
+    fb.innerHTML=msg+'</span>';
+  }
+}
+const circles=[
+  {el:document.getElementById('c1'),fx:.04,fy:.03},
+  {el:document.getElementById('c2'),fx:-.05,fy:.04},
+  {el:document.getElementById('c3'),fx:.03,fy:-.05},
+];
+window.addEventListener('mousemove',e=>{
+  const cx=window.innerWidth/2,cy=window.innerHeight/2;
+  circles.forEach(c=>{
+    c.el.style.transform=`translate(${(e.clientX-cx)*c.fx}px,${(e.clientY-cy)*c.fy}px)`;
+  });
+});
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.12});
+document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

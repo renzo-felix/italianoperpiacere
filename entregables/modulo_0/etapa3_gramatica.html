@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unità 0 · Gramática | Italiano Per Piacere</title>
+  <style>
+    :root {
+      --verde:   #1B5E3C;
+      --beige:   #E8E4D9;
+      --azzurro: #8BB8C7;
+      --corallo: #E07B54;
+      --giallo:  #F5C946;
+      --bianco:  #FAFAF7;
+      --testo:   #2c2c2c;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--beige);
+      color: var(--testo);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--verde);
+      color: var(--bianco);
+      padding: 2.5rem 1.5rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::after {
+      content: '📚';
+      position: absolute;
+      font-size: 9rem;
+      opacity: 0.06;
+      bottom: -1.5rem;
+      left: 2rem;
+      pointer-events: none;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--giallo);
+      color: var(--verde);
+      font-size: 0.72rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      margin-bottom: 0.75rem;
+    }
+    .header h1 { font-size: 2rem; margin-bottom: 0.4rem; }
+    .header p  { font-size: 0.9rem; opacity: 0.82; }
+
+    /* ── STICKY NAV ── */
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--verde);
+      display: flex;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1rem;
+      flex-wrap: wrap;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+    }
+    .sticky-nav a {
+      color: var(--bianco);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: bold;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .sticky-nav a:hover { background: rgba(255,255,255,0.18); }
+
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.5rem 1rem;
+    }
+
+    /* ── SECTION BLOCK ── */
+    .sec {
+      margin-bottom: 3rem;
+      scroll-margin-top: 60px;
+    }
+    .sec-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .sec-emoji { font-size: 2rem; flex-shrink: 0; }
+    .sec-header h2 {
+      color: var(--verde);
+      font-size: 1.5rem;
+    }
+    .sec-header p {
+      font-size: 0.88rem;
+      color: #666;
+    }
+
+    .divider {
+      border: none;
+      border-top: 2px solid rgba(27,94,60,0.15);
+      margin: 3rem 0;
+    }
+
+    /* ── ALPHABET SECTION ── */
+    .alpha-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+      gap: 0.75rem;
+    }
+    .alpha-card {
+      background: var(--bianco);
+      border-radius: 12px;
+      padding: 0.75rem 0.5rem;
+      text-align: center;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .alpha-card:hover { border-color: var(--azzurro); transform: translateY(-3px); }
+    .alpha-card.active { background: var(--azzurro); border-color: var(--azzurro); }
+    .alpha-card .ltr {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--verde);
+      line-height: 1;
+    }
+    .alpha-card .pron-name {
+      font-size: 0.7rem;
+      color: #666;
+      margin-top: 0.15rem;
+    }
+    .alpha-card .example {
+      font-size: 0.65rem;
+      color: var(--corallo);
+      margin-top: 0.15rem;
+      font-style: italic;
+      min-height: 0.9rem;
+    }
+    .alpha-card.active .pron-name { color: var(--verde); }
+    .alpha-card.active .ltr { color: var(--verde); }
+
+    .info-box {
+      background: var(--bianco);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #555;
+      border-left: 4px solid var(--giallo);
+      line-height: 1.65;
+    }
+    .info-box strong { color: var(--verde); }
+
+    /* ── FOREIGN LETTERS ── */
+    .foreign-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+    .foreign-card {
+      background: var(--bianco);
+      border-radius: 12px;
+      padding: 1.2rem 1rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border-top: 4px solid var(--corallo);
+    }
+    .foreign-card .fl { font-size: 2.5rem; font-weight: bold; color: var(--corallo); line-height: 1; }
+    .foreign-card .fn { font-size: 0.95rem; color: var(--verde); font-weight: bold; margin: 0.3rem 0; }
+    .foreign-card .fe { font-size: 0.78rem; color: #777; font-style: italic; }
+
+    /* ── NUMBERS ── */
+    .numbers-wrap {
+      background: var(--bianco);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 0.5rem;
+    }
+    .num-chip {
+      background: var(--beige);
+      border-radius: 8px;
+      padding: 0.4rem 0.3rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+    }
+    .num-chip:hover { border-color: var(--verde); }
+    .num-chip.revealed { background: var(--verde); color: var(--bianco); }
+    .num-chip.revealed .num-it { color: var(--giallo); }
+    .num-chip .num-n  { font-size: 1.1rem; font-weight: bold; color: var(--verde); }
+    .num-chip.revealed .num-n { color: var(--bianco); }
+    .num-chip .num-it { font-size: 0.65rem; color: #888; min-height: 1rem; margin-top: 0.1rem; }
+    .num-chip:not(.revealed) .num-it::after { content: '...'; }
+
+    .num-controls {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-sm {
+      padding: 0.4rem 1.1rem;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: bold;
+      transition: opacity 0.2s;
+    }
+    .btn-sm:hover { opacity: 0.85; }
+    .btn-verde-sm { background: var(--verde); color: var(--bianco); }
+    .btn-coral-sm { background: var(--corallo); color: var(--bianco); }
+
+    /* ── CHIAMARSI ── */
+    .verb-section {
+      background: var(--bianco);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .verb-intro {
+      background: var(--beige);
+      border-radius: 10px;
+      padding: 1rem 1.4rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: #444;
+    }
+    .verb-intro strong { color: var(--verde); font-size: 1.05rem; }
+
+    .verb-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+    .verb-table th {
+      background: var(--verde);
+      color: var(--giallo);
+      padding: 0.7rem 1rem;
+      text-align: left;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .verb-table th:first-child { border-radius: 8px 0 0 0; }
+    .verb-table th:last-child  { border-radius: 0 8px 0 0; }
+    .verb-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #eee;
+    }
+    .verb-table tr:last-child td { border-bottom: none; }
+    .verb-table tr:nth-child(even) td { background: var(--beige); }
+    .verb-table .pronome {
+      font-weight: bold;
+      color: var(--verde);
+      font-size: 1rem;
+    }
+    .verb-table .forma {
+      color: var(--corallo);
+      font-weight: bold;
+      font-size: 1.05rem;
+    }
+    .verb-table .esempio {
+      font-size: 0.88rem;
+      color: #555;
+      font-style: italic;
+    }
+    .verb-table .clicca {
+      cursor: pointer;
+      background: var(--giallo);
+      border: none;
+      border-radius: 20px;
+      padding: 0.25rem 0.7rem;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: var(--verde);
+      transition: background 0.2s;
+    }
+    .verb-table .clicca:hover { background: #e0b430; }
+
+    .dialog-box {
+      display: none;
+      background: var(--azzurro);
+      color: #163640;
+      border-radius: 12px;
+      padding: 1rem 1.4rem;
+      margin-top: 1rem;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      animation: fadeIn 0.3s ease;
+    }
+    .dialog-box.visible { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Practice fill-in */
+    .practice-block {
+      background: var(--beige);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      margin-top: 1.2rem;
+    }
+    .practice-block p {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: var(--verde);
+      margin-bottom: 0.75rem;
+    }
+    .fill-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+      flex-wrap: wrap;
+    }
+    .fill-row span { color: #555; }
+    .fill-row .blank {
+      display: inline-block;
+      border-bottom: 2px solid var(--corallo);
+      width: 130px;
+      text-align: center;
+      font-weight: bold;
+      color: var(--corallo);
+      cursor: pointer;
+      padding-bottom: 2px;
+      font-size: 0.95rem;
+    }
+    .fill-row .blank.revealed::after { content: ''; }
+
+    /* ── SALUTI ── */
+    .saluti-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 0.45rem 1.2rem;
+      border: 2px solid var(--verde);
+      border-radius: 25px;
+      background: transparent;
+      color: var(--verde);
+      font-weight: bold;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn.active { background: var(--verde); color: var(--bianco); }
+
+    .saluti-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.85rem;
+    }
+    .saluto-card {
+      background: var(--bianco);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-top: 3px solid var(--azzurro);
+      transition: transform 0.2s;
+    }
+    .saluto-card:hover { transform: translateY(-3px); }
+    .saluto-card.formal-only  { border-top-color: var(--verde); }
+    .saluto-card.informal-only { border-top-color: var(--corallo); }
+    .saluto-card.both         { border-top-color: var(--azzurro); }
+    .saluto-card .italiano {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--verde);
+      margin-bottom: 0.2rem;
+    }
+    .saluto-card .espaniol {
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 0.35rem;
+    }
+    .saluto-card .tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .tag-formal   { background: #d4edda; color: #155724; }
+    .tag-informal { background: #fde8e3; color: #842029; }
+    .tag-both     { background: #daeef4; color: #163640; }
+    .tag-moment   { background: #fff3cd; color: #664d03; margin-left: 0.3rem; }
+
+    .hidden-card { display: none !important; }
+
+    /* ── ESPRESSIONI UTILI ── */
+    .expr-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.85rem;
+    }
+    .expr-card {
+      background: var(--bianco);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .expr-card .emoji { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .expr-card .it { font-weight: bold; color: var(--verde); font-size: 0.95rem; }
+    .expr-card .es { font-size: 0.82rem; color: #777; margin-top: 0.15rem; }
+    .expr-card .uso{ font-size: 0.75rem; color: var(--corallo); margin-top: 0.25rem; font-style: italic; }
+
+    /* ── MINI QUIZ ── */
+    .quiz-wrap {
+      background: var(--bianco);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .quiz-wrap h3 { color: var(--verde); font-size: 1.2rem; margin-bottom: 0.35rem; }
+    .quiz-wrap .intro-q { font-size: 0.88rem; color: #777; margin-bottom: 1.5rem; }
+    .q-item {
+      background: var(--beige);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .q-item p { font-weight: bold; font-size: 0.95rem; color: var(--verde); margin-bottom: 0.75rem; }
+    .options { display: flex; flex-direction: column; gap: 0.4rem; }
+    .opt {
+      background: var(--bianco);
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-align: left;
+      transition: all 0.2s;
+    }
+    .opt:hover { border-color: var(--azzurro); background: #f0f7fa; }
+    .opt.correct  { background: #d4edda; border-color: #28a745; color: #155724; font-weight: bold; }
+    .opt.wrong    { background: #fde8e3; border-color: #dc3545; color: #842029; }
+    .opt:disabled { cursor: default; }
+
+    .quiz-score {
+      display: none;
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--giallo);
+      border-radius: 12px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--verde);
+      margin-top: 1rem;
+      animation: fadeIn 0.4s ease;
+    }
+    .quiz-score.show { display: block; }
+    .btn-quiz-submit {
+      margin-top: 1rem;
+      background: var(--verde);
+      color: var(--bianco);
+      border: none;
+      border-radius: 30px;
+      padding: 0.65rem 2rem;
+      font-size: 0.95rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-quiz-submit:hover { opacity: 0.85; }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--verde);
+      font-size: 0.82rem;
+      opacity: 0.75;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════ HEADER ════ -->
+  <header class="header">
+    <div class="badge">Unità 0 · A1 · Etapa 3</div>
+    <h1>Gramática en sí 🇮🇹</h1>
+    <p>Come ti chiami? · L'alfabeto, i numeri, il verbo chiamarsi e i saluti</p>
+  </header>
+
+  <!-- ════ STICKY NAV ════ -->
+  <nav class="sticky-nav">
+    <a href="#alfabeto">🔤 L'Alfabeto</a>
+    <a href="#straniere">🌍 Lettere Straniere</a>
+    <a href="#numeri">🔢 I Numeri</a>
+    <a href="#chiamarsi">💬 Chiamarsi</a>
+    <a href="#saluti">👋 I Saluti</a>
+    <a href="#espressioni">✨ Espressioni</a>
+    <a href="#quiz">🎯 Mini Quiz</a>
+  </nav>
+
+  <div class="container">
+
+    <!-- ════ SECTION 1: L'ALFABETO ════ -->
+    <section class="sec" id="alfabeto">
+      <div class="sec-header">
+        <div class="sec-emoji">🔤</div>
+        <div>
+          <h2>L'Alfabeto Italiano</h2>
+          <p>21 letras · Haz clic en cada letra para ver cómo se pronuncia</p>
+        </div>
+      </div>
+
+      <div class="alpha-grid" id="alphaGrid"></div>
+
+      <div class="info-box" style="margin-top:1rem">
+        <strong>¿Sabías que?</strong> El alfabeto italiano tiene solo <strong>21 letras</strong>
+        (no 26 como el español). Las letras <em>J, K, W, X, Y</em> no son letras
+        "nativas" del italiano — se usan solo en palabras extranjeras. ¡Las veremos
+        en la próxima sección!
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ════ SECTION 2: LETTERE STRANIERE ════ -->
+    <section class="sec" id="straniere">
+      <div class="sec-header">
+        <div class="sec-emoji">🌍</div>
+        <div>
+          <h2>Le Lettere Straniere</h2>
+          <p>5 letras de origen extranjero que también existen en italiano</p>
+        </div>
+      </div>
+
+      <div class="foreign-grid">
+        <div class="foreign-card">
+          <div class="fl">J</div>
+          <div class="fn">i lunga</div>
+          <div class="fe">jeans, judo</div>
+        </div>
+        <div class="foreign-card">
+          <div class="fl">K</div>
+          <div class="fn">kappa</div>
+          <div class="fe">karaoke, kimono</div>
+        </div>
+        <div class="foreign-card">
+          <div class="fl">W</div>
+          <div class="fn">doppia vu</div>
+          <div class="fe">weekend, whisky</div>
+        </div>
+        <div class="foreign-card">
+          <div class="fl">X</div>
+          <div class="fn">ics</div>
+          <div class="fe">taxi, extra</div>
+        </div>
+        <div class="foreign-card">
+          <div class="fl">Y</div>
+          <div class="fn">ipsilon / i greca</div>
+          <div class="fe">yoga, yogurt</div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <strong>Recuerda:</strong> Cuando alguien te pregunta
+        <em>"Come si scrive?"</em> (¿Cómo se escribe?), usas los nombres de las letras.
+        Por ejemplo: <em>Milano → emme-i-elle-a-enne-o</em>. ¡Practica tu nombre!
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ════ SECTION 3: I NUMERI ════ -->
+    <section class="sec" id="numeri">
+      <div class="sec-header">
+        <div class="sec-emoji">🔢</div>
+        <div>
+          <h2>I Numeri — Da 1 a 30</h2>
+          <p>Haz clic en cada número para revelar cómo se dice en italiano</p>
+        </div>
+      </div>
+
+      <div class="numbers-wrap">
+        <div class="num-controls">
+          <button class="btn-sm btn-verde-sm" onclick="revealAllNums()">Revelar todos</button>
+          <button class="btn-sm btn-coral-sm" onclick="resetNums()">Ocultar todos</button>
+        </div>
+        <div class="numbers-grid" id="numsGrid"></div>
+      </div>
+
+      <div class="info-box" style="margin-top:1rem">
+        <strong>Truco para los números compuestos:</strong>
+        Del 21 en adelante se forman con <em>venti + número</em>, pero:
+        <br>• Si el número empieza por <strong>u</strong> (uno) o <strong>o</strong> (otto), se elimina la <strong>i</strong> final de venti:
+        <br>&nbsp;&nbsp;&nbsp;20+1 = ven<strong>tuno</strong> (no ventiu­no), 20+8 = ven<strong>totto</strong>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ════ SECTION 4: CHIAMARSI ════ -->
+    <section class="sec" id="chiamarsi">
+      <div class="sec-header">
+        <div class="sec-emoji">💬</div>
+        <div>
+          <h2>Il Verbo CHIAMARSI</h2>
+          <p>Un verbo reflexivo · io / tu / lui-lei</p>
+        </div>
+      </div>
+
+      <div class="verb-section">
+        <div class="verb-intro">
+          <strong>CHIAMARSI</strong> significa "llamarse". Es un verbo <em>reflexivo</em>:
+          el sujeto hace la acción sobre sí mismo. Por eso lleva una partícula reflexiva
+          (<em>mi, ti, si</em>) delante del verbo.
+          Haz clic en cada fila para ver un ejemplo en contexto.
+        </div>
+
+        <table class="verb-table">
+          <thead>
+            <tr>
+              <th>Pronombre</th>
+              <th>Partícula</th>
+              <th>Verbo</th>
+              <th>Ver ejemplo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="pronome">io</td>
+              <td><strong>mi</strong></td>
+              <td class="forma">chiamo</td>
+              <td><button class="clicca" onclick="showDialog(0)">👁 Esempio</button></td>
+            </tr>
+            <tr>
+              <td class="pronome">tu</td>
+              <td><strong>ti</strong></td>
+              <td class="forma">chiami</td>
+              <td><button class="clicca" onclick="showDialog(1)">👁 Esempio</button></td>
+            </tr>
+            <tr>
+              <td class="pronome">lui / lei</td>
+              <td><strong>si</strong></td>
+              <td class="forma">chiama</td>
+              <td><button class="clicca" onclick="showDialog(2)">👁 Esempio</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="dialog-box" id="dialogBox"></div>
+
+        <div class="practice-block">
+          <p>✏️ Mini pratica: Haz clic en los espacios para completar las frases</p>
+          <div class="fill-row">
+            <span>– Come ti chiami?</span><br />
+            <span>– <strong>Io</strong></span>
+            <span class="blank" id="b1" onclick="revealBlank('b1','mi chiamo')">mi chiamo</span>
+            <span>Marco.</span>
+          </div>
+          <div class="fill-row" style="margin-top:0.5rem">
+            <span>– E lui, come</span>
+            <span class="blank" id="b2" onclick="revealBlank('b2','si chiama')">si chiama</span>
+            <span>?</span>
+          </div>
+          <div class="fill-row" style="margin-top:0.5rem">
+            <span>– Si chiama Luca.</span>
+          </div>
+          <p style="font-size:0.8rem;color:#888;margin-top:0.75rem;font-style:italic">
+            * Haz clic en las líneas subrayadas para revelar la respuesta.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ════ SECTION 5: SALUTI ════ -->
+    <section class="sec" id="saluti">
+      <div class="sec-header">
+        <div class="sec-emoji">👋</div>
+        <div>
+          <h2>I Saluti</h2>
+          <p>Saludos y despedidas · Filtra por tipo</p>
+        </div>
+      </div>
+
+      <div class="saluti-tabs">
+        <button class="tab-btn active" onclick="filterSaluti('all', this)">Tutti</button>
+        <button class="tab-btn" onclick="filterSaluti('formal', this)">Formale</button>
+        <button class="tab-btn" onclick="filterSaluti('informal', this)">Informale</button>
+      </div>
+
+      <div class="saluti-grid" id="salutiGrid"></div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ════ SECTION 6: ESPRESSIONI UTILI ════ -->
+    <section class="sec" id="espressioni">
+      <div class="sec-header">
+        <div class="sec-emoji">✨</div>
+        <div>
+          <h2>Espressioni Utili</h2>
+          <p>Frases clave para esta unidad</p>
+        </div>
+      </div>
+
+      <div class="expr-grid">
+        <div class="expr-card">
+          <div class="emoji">🤔</div>
+          <div>
+            <div class="it">Che significa?</div>
+            <div class="es">¿Qué significa?</div>
+            <div class="uso">Cuando no entiendes una palabra</div>
+          </div>
+        </div>
+        <div class="expr-card">
+          <div class="emoji">✏️</div>
+          <div>
+            <div class="it">Come si scrive?</div>
+            <div class="es">¿Cómo se escribe?</div>
+            <div class="uso">Para pedir que deletreen</div>
+          </div>
+        </div>
+        <div class="expr-card">
+          <div class="emoji">👤</div>
+          <div>
+            <div class="it">Come ti chiami?</div>
+            <div class="es">¿Cómo te llamas? (informal)</div>
+            <div class="uso">Para preguntar el nombre</div>
+          </div>
+        </div>
+        <div class="expr-card">
+          <div class="emoji">👔</div>
+          <div>
+            <div class="it">Come si chiama?</div>
+            <div class="es">¿Cómo se llama? (formal)</div>
+            <div class="uso">Versión formal / tercera persona</div>
+          </div>
+        </div>
+        <div class="expr-card">
+          <div class="emoji">😊</div>
+          <div>
+            <div class="it">Mi chiamo...</div>
+            <div class="es">Me llamo...</div>
+            <div class="uso">Presentarse</div>
+          </div>
+        </div>
+        <div class="expr-card">
+          <div class="emoji">🙏</div>
+          <div>
+            <div class="it">Prego!</div>
+            <div class="es">De nada / Con gusto</div>
+            <div class="uso">Respuesta a "grazie"</div>
+          </div>
+        </div>
+        <div class="expr-card">
+          <div class="emoji">😅</div>
+          <div>
+            <div class="it">Scusa / Scusi</div>
+            <div class="es">Perdona / Perdone</div>
+            <div class="uso">Informal / formal</div>
+          </div>
+        </div>
+        <div class="expr-card">
+          <div class="emoji">🔄</div>
+          <div>
+            <div class="it">Puoi ripetere?</div>
+            <div class="es">¿Puedes repetir?</div>
+            <div class="uso">Si no entendiste</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ════ SECTION 7: MINI QUIZ ════ -->
+    <section class="sec" id="quiz">
+      <div class="sec-header">
+        <div class="sec-emoji">🎯</div>
+        <div>
+          <h2>Mini Quiz</h2>
+          <p>Comprueba lo que aprendiste · 4 preguntas rápidas</p>
+        </div>
+      </div>
+
+      <div class="quiz-wrap">
+        <h3>¿Cuánto recuerdas?</h3>
+        <p class="intro-q">Selecciona la respuesta correcta en cada pregunta.</p>
+
+        <!-- Q1 -->
+        <div class="q-item" id="qi1">
+          <p>1. ¿Cuántas letras tiene el alfabeto italiano "nativo"?</p>
+          <div class="options">
+            <button class="opt" onclick="answerQ(1, this, false)">A) 26 letras</button>
+            <button class="opt" onclick="answerQ(1, this, true)">B) 21 letras</button>
+            <button class="opt" onclick="answerQ(1, this, false)">C) 24 letras</button>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="q-item" id="qi2">
+          <p>2. ¿Cómo se conjuga CHIAMARSI para la primera persona (io)?</p>
+          <div class="options">
+            <button class="opt" onclick="answerQ(2, this, false)">A) io ti chiami</button>
+            <button class="opt" onclick="answerQ(2, this, true)">B) io mi chiamo</button>
+            <button class="opt" onclick="answerQ(2, this, false)">C) io si chiama</button>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="q-item" id="qi3">
+          <p>3. ¿Qué significa "Buonasera"?</p>
+          <div class="options">
+            <button class="opt" onclick="answerQ(3, this, false)">A) Buenos días</button>
+            <button class="opt" onclick="answerQ(3, this, false)">B) Buenas noches (al dormir)</button>
+            <button class="opt" onclick="answerQ(3, this, true)">C) Buenas tardes / noches (al saludar)</button>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="q-item" id="qi4">
+          <p>4. ¿Cómo se dice "quince" en italiano?</p>
+          <div class="options">
+            <button class="opt" onclick="answerQ(4, this, false)">A) quattordici</button>
+            <button class="opt" onclick="answerQ(4, this, true)">B) quindici</button>
+            <button class="opt" onclick="answerQ(4, this, false)">C) diciassette</button>
+          </div>
+        </div>
+
+        <div class="quiz-score" id="quizScore"></div>
+      </div>
+    </section>
+
+  </div><!-- /container -->
+
+  <footer class="footer">
+    🍷 <strong>Italiano Per Piacere</strong> &nbsp;·&nbsp; Unità 0 &nbsp;·&nbsp; Etapa 3: Gramática
+  </footer>
+
+  <!-- ════ JAVASCRIPT ════ -->
+  <script>
+    /* ── ALPHABET DATA ── */
+    const ALPHA_DATA = [
+      { l:'A', name:'a',     ex:'Ancona'       },
+      { l:'B', name:'bi',    ex:'Bologna'      },
+      { l:'C', name:'ci',    ex:'Como'         },
+      { l:'D', name:'di',    ex:'Domodossola'  },
+      { l:'E', name:'e',     ex:'Empoli'       },
+      { l:'F', name:'effe',  ex:'Firenze'      },
+      { l:'G', name:'gi',    ex:'Genova'       },
+      { l:'H', name:'acca',  ex:'Hotel'        },
+      { l:'I', name:'i',     ex:'Imola'        },
+      { l:'L', name:'elle',  ex:'Livorno'      },
+      { l:'M', name:'emme',  ex:'Milano'       },
+      { l:'N', name:'enne',  ex:'Napoli'       },
+      { l:'O', name:'o',     ex:'Otranto'      },
+      { l:'P', name:'pi',    ex:'Palermo'      },
+      { l:'Q', name:'cu',    ex:'Quarto'       },
+      { l:'R', name:'erre',  ex:'Roma'         },
+      { l:'S', name:'esse',  ex:'Savona'       },
+      { l:'T', name:'ti',    ex:'Torino'       },
+      { l:'U', name:'u',     ex:'Udine'        },
+      { l:'V', name:'vu',    ex:'Venezia'      },
+      { l:'Z', name:'zeta',  ex:'Zara'         },
+    ];
+
+    function buildAlpha() {
+      const grid = document.getElementById('alphaGrid');
+      ALPHA_DATA.forEach((item, i) => {
+        const card = document.createElement('div');
+        card.className = 'alpha-card';
+        card.id = `ac-${i}`;
+        card.innerHTML = `
+          <div class="ltr">${item.l}</div>
+          <div class="pron-name">[${item.name}]</div>
+          <div class="example" id="ex-${i}"></div>`;
+        card.addEventListener('click', () => {
+          card.classList.toggle('active');
+          const exEl = document.getElementById(`ex-${i}`);
+          exEl.textContent = card.classList.contains('active') ? item.ex : '';
+        });
+        grid.appendChild(card);
+      });
+    }
+
+    /* ── NUMBERS DATA ── */
+    const NUMS = [
+      [1,'uno'],[2,'due'],[3,'tre'],[4,'quattro'],[5,'cinque'],
+      [6,'sei'],[7,'sette'],[8,'otto'],[9,'nove'],[10,'dieci'],
+      [11,'undici'],[12,'dodici'],[13,'tredici'],[14,'quattordici'],[15,'quindici'],
+      [16,'sedici'],[17,'diciassette'],[18,'diciotto'],[19,'diciannove'],[20,'venti'],
+      [21,'ventuno'],[22,'ventidue'],[23,'ventitré'],[24,'ventiquattro'],[25,'venticinque'],
+      [26,'ventisei'],[27,'ventisette'],[28,'ventotto'],[29,'ventinove'],[30,'trenta'],
+    ];
+
+    function buildNums() {
+      const grid = document.getElementById('numsGrid');
+      NUMS.forEach(([n, it]) => {
+        const chip = document.createElement('div');
+        chip.className = 'num-chip';
+        chip.id = `num-${n}`;
+        chip.innerHTML = `<div class="num-n">${n}</div><div class="num-it"></div>`;
+        chip.addEventListener('click', () => {
+          chip.classList.toggle('revealed');
+          chip.querySelector('.num-it').textContent =
+            chip.classList.contains('revealed') ? it : '';
+        });
+        grid.appendChild(chip);
+      });
+    }
+
+    function revealAllNums() {
+      NUMS.forEach(([n, it]) => {
+        const c = document.getElementById(`num-${n}`);
+        c.classList.add('revealed');
+        c.querySelector('.num-it').textContent = it;
+      });
+    }
+
+    function resetNums() {
+      NUMS.forEach(([n]) => {
+        const c = document.getElementById(`num-${n}`);
+        c.classList.remove('revealed');
+        c.querySelector('.num-it').textContent = '';
+      });
+    }
+
+    /* ── CHIAMARSI DIALOGS ── */
+    const DIALOGS = [
+      `<strong>io mi chiamo</strong><br>
+       – <em>Come ti chiami?</em> (¿Cómo te llamas?)<br>
+       – <em>Io mi chiamo Sofia. E tu?</em> (Me llamo Sofía. ¿Y tú?)`,
+
+      `<strong>tu ti chiami</strong><br>
+       – <em>Tu ti chiami Marco, vero?</em> (Tú te llamas Marco, ¿verdad?)<br>
+       – <em>Sì, mi chiamo Marco!</em> (¡Sí, me llamo Marco!)`,
+
+      `<strong>lui/lei si chiama</strong><br>
+       – <em>Come si chiama lui?</em> (¿Cómo se llama él?)<br>
+       – <em>Si chiama Lorenzo.</em> (Se llama Lorenzo.)<br>
+       – <em>E lei come si chiama?</em> (¿Y ella cómo se llama?)<br>
+       – <em>Si chiama Giulia.</em> (Se llama Giulia.)`,
+    ];
+
+    let lastDialog = -1;
+    function showDialog(i) {
+      const box = document.getElementById('dialogBox');
+      if (lastDialog === i && box.classList.contains('visible')) {
+        box.classList.remove('visible');
+        lastDialog = -1;
+      } else {
+        box.innerHTML = DIALOGS[i];
+        box.classList.add('visible');
+        lastDialog = i;
+      }
+    }
+
+    function revealBlank(id, text) {
+      const el = document.getElementById(id);
+      el.style.borderBottomColor = 'var(--verde)';
+      el.style.color = 'var(--verde)';
+      el.textContent = text;
+      el.style.cursor = 'default';
+    }
+
+    /* ── SALUTI DATA ── */
+    const SALUTI_DATA = [
+      { it:'Ciao!',        es:'¡Hola! / ¡Chao!',         type:'informal', moment:'cualquier momento'   },
+      { it:'Salve!',       es:'¡Hola! (neutro)',           type:'both',     moment:'cualquier momento'   },
+      { it:'Buongiorno!',  es:'Buenos días',              type:'both',     moment:'mañana'              },
+      { it:'Buon pomeriggio!', es:'Buenas tardes',        type:'both',     moment:'tarde'               },
+      { it:'Buonasera!',   es:'Buenas tardes/noches',     type:'both',     moment:'tarde-noche'         },
+      { it:'Buonanotte!',  es:'Buenas noches (al dormir)',type:'both',     moment:'antes de dormir'     },
+      { it:'Arrivederci!', es:'Hasta luego (formal)',     type:'formal',   moment:'despedida'           },
+      { it:'A presto!',    es:'¡Hasta pronto!',           type:'informal', moment:'despedida'           },
+      { it:'A dopo!',      es:'¡Hasta luego!',            type:'informal', moment:'despedida'           },
+      { it:'Come stai?',   es:'¿Cómo estás? (informal)',  type:'informal', moment:'pregunta'            },
+      { it:'Come sta?',    es:'¿Cómo está? (formal)',     type:'formal',   moment:'pregunta'            },
+      { it:'Bene, grazie!',es:'Bien, ¡gracias!',          type:'both',     moment:'respuesta'           },
+    ];
+
+    function buildSaluti() {
+      const grid = document.getElementById('salutiGrid');
+      SALUTI_DATA.forEach((s, i) => {
+        const card = document.createElement('div');
+        const typeClass = s.type === 'formal' ? 'formal-only' :
+                          s.type === 'informal' ? 'informal-only' : 'both';
+        card.className = `saluto-card ${typeClass}`;
+        card.dataset.type = s.type;
+        card.id = `sc-${i}`;
+        const tagLabel = s.type === 'formal' ? 'Formale' :
+                         s.type === 'informal' ? 'Informale' : 'Entrambi';
+        const tagClass = s.type === 'formal' ? 'tag-formal' :
+                         s.type === 'informal' ? 'tag-informal' : 'tag-both';
+        card.innerHTML = `
+          <div class="italiano">${s.it}</div>
+          <div class="espaniol">${s.es}</div>
+          <span class="tag ${tagClass}">${tagLabel}</span>
+          <span class="tag tag-moment">${s.moment}</span>`;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterSaluti(type, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.saluto-card').forEach(card => {
+        if (type === 'all') {
+          card.classList.remove('hidden-card');
+        } else {
+          const ct = card.dataset.type;
+          const show = (type === 'formal'   && (ct === 'formal' || ct === 'both')) ||
+                       (type === 'informal' && (ct === 'informal' || ct === 'both'));
+          card.classList.toggle('hidden-card', !show);
+        }
+      });
+    }
+
+    /* ── MINI QUIZ ── */
+    const answered = { 1: false, 2: false, 3: false, 4: false };
+    let score = 0;
+
+    function answerQ(qNum, btn, isCorrect) {
+      if (answered[qNum]) return;
+      answered[qNum] = true;
+      const opts = btn.closest('.q-item').querySelectorAll('.opt');
+      opts.forEach(o => o.disabled = true);
+      if (isCorrect) {
+        btn.classList.add('correct');
+        score++;
+      } else {
+        btn.classList.add('wrong');
+        opts.forEach(o => {
+          if (o.getAttribute('onclick').includes('true')) o.classList.add('correct');
+        });
+      }
+      checkAllAnswered();
+    }
+
+    function checkAllAnswered() {
+      if (Object.values(answered).every(Boolean)) {
+        const scoreEl = document.getElementById('quizScore');
+        const msg = score === 4 ? '🎉 Perfetto! ¡4/4! ¡Sei un campione!' :
+                    score === 3 ? '😊 Molto bene! 3/4 — ¡Casi perfecta!' :
+                    score === 2 ? '🙂 Non male! 2/4 — Repasa un poco.' :
+                                  '💪 Dai! 1/4 — ¡Vuelve a repasar el contenido!';
+        scoreEl.textContent = `Tu puntaje: ${score}/4 · ${msg}`;
+        scoreEl.classList.add('show');
+      }
+    }
+
+    /* ── INIT ── */
+    buildAlpha();
+    buildNums();
+    buildSaluti();
+  </script>
+</body>
+</html>

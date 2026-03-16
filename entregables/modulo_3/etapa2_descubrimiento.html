@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unità 3 · Descubrimiento | Italiano Per Piacere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream:#e9e6d5; --cream-dk:#ddd9c8; --gold:#EFCF7F; --amber:#e5ab07;
+      --red:#cc4736; --teal:#78a6ba; --green:#528e74; --black:#1a1a18; --white:#ffffff;
+      --r:8px; --fh:'Playfair Display',Georgia,serif; --fb:'Outfit',system-ui,sans-serif;
+      --ease:cubic-bezier(0.16,1,0.3,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--fb);background:var(--cream);color:var(--black);overflow-x:hidden}
+
+    /* SCROLL ANIMATION ENGINE */
+    [data-a]{opacity:0;transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    [data-a="up"]   {transform:translateY(48px)}
+    [data-a="left"] {transform:translateX(-56px)}
+    [data-a="right"]{transform:translateX(56px)}
+    [data-a="scale"]{transform:scale(0.86)}
+    [data-a="fade"] {transform:none}
+    [data-a].in{opacity:1;transform:none !important}
+    [data-stagger].in > *{opacity:1;transform:none !important}
+    [data-stagger] > *{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+    [data-stagger]>*:nth-child(1){transition-delay:.00s}
+    [data-stagger]>*:nth-child(2){transition-delay:.08s}
+    [data-stagger]>*:nth-child(3){transition-delay:.16s}
+    [data-stagger]>*:nth-child(4){transition-delay:.24s}
+    [data-stagger]>*:nth-child(5){transition-delay:.32s}
+    [data-stagger]>*:nth-child(6){transition-delay:.40s}
+    [data-stagger]>*:nth-child(7){transition-delay:.48s}
+    [data-stagger]>*:nth-child(8){transition-delay:.56s}
+    [data-stagger]>*:nth-child(n+9){transition-delay:.64s}
+
+    /* HERO */
+    .hero{
+      min-height:100vh;background:var(--red);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;padding:4rem 2rem;position:relative;overflow:hidden;
+    }
+    .hero-bg-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.06);pointer-events:none;will-change:transform}
+    .hero-bg-circle:nth-child(1){width:600px;height:600px;top:-200px;right:-150px}
+    .hero-bg-circle:nth-child(2){width:400px;height:400px;bottom:-100px;left:-100px}
+    .hero-badge{display:inline-block;background:var(--gold);color:var(--black);font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:.3rem 1.2rem;border-radius:20px;margin-bottom:1.5rem;opacity:0;animation:popIn .6s var(--ease) .2s forwards}
+    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-style:italic;color:var(--white);line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
+    .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:rgba(255,255,255,.8);max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
+    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.6);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
+    .scroll-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6);animation:scrollDot 1.5s ease infinite}
+
+    @keyframes popIn   {from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+    @keyframes slideUp {from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+    @keyframes fadeIn  {from{opacity:0}to{opacity:1}}
+    @keyframes scrollDot{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(6px);opacity:1}}
+    @keyframes floatAv {0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+
+    /* SECTIONS */
+    .section{padding:6rem 2rem}
+    .section.bg-alt{background:var(--cream-dk)}
+    .section.bg-white{background:var(--white)}
+    .container{max-width:860px;margin:0 auto}
+    .section-label{font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+    .section-title{font-family:var(--fh);font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;margin-bottom:1.25rem}
+    .section-title em{font-style:italic;color:var(--red)}
+    .section-desc{font-size:1rem;color:#555;line-height:1.75;max-width:640px}
+
+    /* SOFIA */
+    .sofia-wrap{display:flex;align-items:flex-start;gap:1.25rem;background:var(--white);border-radius:16px;padding:1.5rem 2rem;box-shadow:0 4px 24px rgba(0,0,0,.07);max-width:640px}
+    .sofia-avatar{width:60px;height:60px;border-radius:50%;flex-shrink:0;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.8rem;animation:floatAv 3.5s ease-in-out infinite}
+    .speech-bubble{flex:1}
+    .speech-bubble strong{display:block;font-size:.75rem;font-weight:700;color:var(--red);margin-bottom:.4rem;letter-spacing:1px;text-transform:uppercase}
+    .speech-bubble p{font-size:.95rem;color:#333;line-height:1.65}
+    .speech-bubble p+p{margin-top:.6rem}
+
+    /* AUDIO RESOURCE */
+    .audio-box{background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,.1)}
+    .audio-vis{
+      width:100%;padding:3rem 2rem;
+      background:linear-gradient(135deg,var(--red) 0%,#9b3728 100%);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      color:var(--white);text-align:center;
+    }
+    .audio-waves{display:flex;align-items:center;gap:4px;height:48px;margin-bottom:1.25rem}
+    .audio-wave{width:6px;border-radius:3px;background:rgba(255,255,255,.7);animation:wavePulse 1.2s ease-in-out infinite}
+    .audio-wave:nth-child(1){height:20px;animation-delay:0s}
+    .audio-wave:nth-child(2){height:36px;animation-delay:.1s}
+    .audio-wave:nth-child(3){height:48px;animation-delay:.2s}
+    .audio-wave:nth-child(4){height:30px;animation-delay:.3s}
+    .audio-wave:nth-child(5){height:44px;animation-delay:.4s}
+    .audio-wave:nth-child(6){height:22px;animation-delay:.5s}
+    .audio-wave:nth-child(7){height:38px;animation-delay:.6s}
+    @keyframes wavePulse{0%,100%{transform:scaleY(.4);opacity:.5}50%{transform:scaleY(1);opacity:1}}
+    .audio-vis h3{font-family:var(--fh);font-size:1.5rem;font-style:italic;margin-bottom:.5rem}
+    .audio-vis p{font-size:.85rem;opacity:.8;max-width:360px;line-height:1.5}
+    .audio-caption{padding:1.25rem 1.75rem}
+    .audio-caption h4{font-size:.8rem;font-weight:700;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:.4rem}
+    .audio-caption p{font-size:.9rem;color:#444;line-height:1.6}
+    .audio-caption .copyright{font-size:.75rem;color:#888;margin-top:.75rem;font-style:italic}
+
+    /* WORD RECOGNITION */
+    .word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;margin-bottom:1.5rem}
+    .word-card{background:var(--white);border:2px solid transparent;border-radius:var(--r);padding:.9rem .75rem;text-align:center;cursor:pointer;user-select:none;position:relative;transition:border-color .2s,background .2s,transform .15s;font-weight:600;font-size:.95rem}
+    .word-card:hover{transform:translateY(-2px);border-color:var(--red)}
+    .word-card.selected{background:var(--red);color:var(--white);border-color:var(--red)}
+    .word-card.correct  {background:var(--green);color:var(--white);border-color:var(--green)}
+    .word-card.false-pos{background:var(--teal);color:var(--white);border-color:var(--teal)}
+    .word-card.missed   {background:var(--amber);color:var(--black);border-color:var(--amber)}
+    .word-card.neutral  {background:var(--cream-dk);color:#888;border-color:transparent}
+    .word-badge{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:var(--white)}
+    .word-card.correct   .word-badge{display:flex;background:var(--green)}
+    .word-card.false-pos .word-badge{display:flex;background:var(--teal)}
+    .word-card.missed    .word-badge{display:flex;background:var(--amber);color:var(--black)}
+    .word-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+    .btn{padding:.65rem 1.5rem;border-radius:30px;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.9rem;transition:opacity .2s,transform .15s}
+    .btn:hover{opacity:.85;transform:translateY(-1px)}
+    .btn-primary{background:var(--red);color:var(--white)}
+    .btn-ghost{background:transparent;color:var(--black);border:2px solid var(--cream-dk)}
+    .score-display{font-size:.9rem;font-weight:700;color:var(--green)}
+    .legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;font-size:.8rem}
+    .legend-item{display:flex;align-items:center;gap:.4rem}
+    .legend-dot{width:10px;height:10px;border-radius:50%}
+
+    /* LUGARES GRID */
+    .lugares-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:1rem}
+    .lugar-card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 3px 16px rgba(0,0,0,.08);transition:transform .2s,box-shadow .2s;cursor:pointer}
+    .lugar-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.12)}
+    .lugar-top{padding:1.25rem;display:flex;align-items:center;justify-content:center;font-size:2.2rem}
+    .lugar-body{padding:.85rem 1.1rem 1.1rem}
+    .lugar-it{font-size:1rem;font-weight:700;color:var(--black);margin-bottom:.15rem}
+    .lugar-art{font-size:.75rem;color:var(--red);font-weight:600;margin-bottom:.3rem}
+    .lugar-es{font-size:.85rem;color:#666;margin-bottom:.5rem}
+    .lugar-ex{font-size:.78rem;color:#999;font-style:italic;border-top:1px solid var(--cream-dk);padding-top:.45rem;margin-top:.45rem;display:none}
+    .lugar-card.open .lugar-ex{display:block}
+
+    /* PLURAL DISCOVERY */
+    .plural-table{width:100%;border-collapse:collapse;font-size:.9rem}
+    .plural-table th{background:var(--red);color:var(--white);padding:.7rem 1.1rem;text-align:left;font-size:.78rem;letter-spacing:1px;text-transform:uppercase}
+    .plural-table td{padding:.65rem 1.1rem;border-bottom:1px solid var(--cream-dk)}
+    .plural-table tr:nth-child(even) td{background:rgba(0,0,0,.02)}
+    .plural-table .form{font-weight:700}
+    .plural-table .masc{color:var(--green)}
+    .plural-table .fem{color:var(--teal)}
+    .plural-table .inv{color:var(--amber)}
+    .rule-pills{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem}
+    .rule-pill{padding:.5rem 1.1rem;border-radius:20px;font-size:.82rem;font-weight:600}
+
+    /* DIALOGUE */
+    .dialogue{display:flex;flex-direction:column;gap:.75rem}
+    .dlg-line{display:flex;align-items:flex-start;gap:.75rem}
+    .dlg-line.b{flex-direction:row-reverse}
+    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:var(--green);padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
+    .dlg-line.b .dlg-speaker{background:var(--red)}
+    .dlg-bubble{background:var(--white);border-radius:12px;padding:.9rem 1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.07);max-width:480px}
+    .dlg-bubble .it{font-weight:600;font-size:.95rem;color:var(--black)}
+    .dlg-bubble .es{font-size:.8rem;color:#888;margin-top:.25rem;font-style:italic}
+
+    /* EVENTS GRID */
+    .events-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:1rem}
+    .event-card{background:var(--white);border-radius:12px;padding:1.1rem 1.2rem;box-shadow:0 2px 12px rgba(0,0,0,.07)}
+    .event-icon{font-size:1.8rem;margin-bottom:.6rem}
+    .event-it{font-size:.95rem;font-weight:700;color:var(--black);margin-bottom:.2rem}
+    .event-es{font-size:.82rem;color:#666;margin-bottom:.4rem}
+    .event-ex{font-size:.78rem;color:#999;font-style:italic}
+
+    /* FILL PRACTICE */
+    .fill-section{margin-top:1.5rem}
+    .fill-section h4{font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:1rem}
+    .fill-list{display:flex;flex-direction:column;gap:.75rem}
+    .fill-item{display:flex;align-items:center;gap:.5rem;font-size:.95rem;flex-wrap:wrap}
+    .fill-input{border:none;border-bottom:2px solid var(--cream-dk);background:transparent;font-family:var(--fb);font-size:.95rem;font-weight:600;color:var(--black);width:120px;padding:.2rem .3rem;outline:none;text-align:center;transition:border-color .2s}
+    .fill-input:focus{border-color:var(--red)}
+    .fill-input.ok{border-color:var(--green);color:var(--green)}
+    .fill-input.fail{border-color:var(--red);color:var(--red)}
+    .fill-btn{margin-top:1rem}
+
+    /* FONETICA */
+    .fonetic-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:1.5rem}
+    .fon-col{background:var(--white);border-radius:12px;padding:1.25rem;box-shadow:0 2px 12px rgba(0,0,0,.07)}
+    .fon-col h4{font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:.75rem}
+    .fon-ex{font-size:.88rem;padding:.3rem 0;border-bottom:1px solid var(--cream-dk);display:flex;justify-content:space-between}
+    .fon-ex:last-child{border-bottom:none}
+    .fon-ex .it{font-weight:700;color:var(--black)}
+    .fon-ex .sound{font-size:.78rem;color:var(--red);font-weight:700;padding:.1rem .5rem;background:rgba(204,71,54,.1);border-radius:12px}
+
+    /* CULTURAL STRIP */
+    .cultural-strip{background:var(--black);color:var(--white);padding:4rem 2rem;text-align:center}
+    .cultural-strip h2{font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.4rem);font-style:italic;color:var(--gold);margin-bottom:1rem}
+    .cultural-strip p{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.75;max-width:600px;margin:0 auto 1.5rem}
+    .cultural-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;max-width:760px;margin:2rem auto 0}
+    .cf-item{background:rgba(255,255,255,.06);border-radius:12px;padding:1.5rem}
+    .cf-icon{font-size:2rem;margin-bottom:.75rem}
+    .cf-item h4{font-size:.85rem;font-weight:700;color:var(--gold);margin-bottom:.5rem}
+    .cf-item p{font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.55}
+
+    /* FOOTER */
+    .footer{background:var(--cream-dk);padding:2.5rem 2rem;text-align:center;font-size:.82rem;color:#888}
+    .footer strong{color:var(--black)}
+    .nav-pills{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+    .nav-pill{padding:.5rem 1.2rem;border-radius:30px;font-size:.8rem;font-weight:600;text-decoration:none;color:var(--black);background:var(--cream);border:1px solid var(--cream-dk);transition:background .2s,color .2s}
+    .nav-pill:hover{background:var(--red);color:var(--white)}
+    .nav-pill.active{background:var(--red);color:var(--white)}
+
+    @media(max-width:600px){
+      .section{padding:4rem 1.25rem}
+      .sofia-wrap{flex-direction:column}
+      .fonetic-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg-circle" id="hbc1"></div>
+  <div class="hero-bg-circle" id="hbc2"></div>
+  <div class="hero-badge">Unità 3 · Descubrimiento</div>
+  <h1>Tutti<br>in piazza!</h1>
+  <p class="hero-sub">Los lugares de la ciudad, los sustantivos en plural<br>y cómo abrir una conversación telefónica</p>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- SOFIA INTRO -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="sofia-wrap" data-a="up">
+      <div class="sofia-avatar">👩‍🏫</div>
+      <div class="speech-bubble">
+        <strong>Sofia · Tu guía italiana</strong>
+        <p>¡Ciao! Hoy descubrimos la ciudad italiana — <em>la piazza</em>, el mercado, la iglesia... ¡Los lugares que dan vida a Italia!</p>
+        <p>También aprendemos algo muy importante: cómo los sustantivos cambian en plural. Y cómo abrir una llamada telefónica con naturalidad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIO RESOURCE -->
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="fade">Recurso · Audio</p>
+    <h2 class="section-title" data-a="up">El audio de hoy</h2>
+    <p class="section-desc" data-a="up">Escucha el audio dos veces. La primera: solo para sentir el italiano. La segunda: intenta identificar 2–3 palabras.</p>
+
+    <div class="audio-box" style="margin-top:2rem" data-a="scale">
+      <div class="audio-vis">
+        <div class="audio-waves">
+          <div class="audio-wave"></div><div class="audio-wave"></div>
+          <div class="audio-wave"></div><div class="audio-wave"></div>
+          <div class="audio-wave"></div><div class="audio-wave"></div>
+          <div class="audio-wave"></div>
+        </div>
+        <h3>Una conversazione in piazza</h3>
+        <p>Inserta aquí el audio: Coffee Break Italian S1 Ep.3 (coffeebreakitalian.com) u otro recurso de audio auténtico sobre la ciudad italiana.</p>
+      </div>
+      <div class="audio-caption">
+        <h4>Mientras escuchas</h4>
+        <p>¿Escuchas las palabras <em>piazza, caffè, chiesa</em>? ¿El ritmo del italiano te parece rápido o lento? ¿Hay palabras que suenan parecidas al español?</p>
+        <p class="copyright">© Coffee Break Italian — Radio Lingua Network. Recurso educativo de acceso libre. Verificar licencia de uso vigente en coffeebreakitalian.com. Uso exclusivamente educativo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORD RECOGNITION -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label" data-a="fade">Actividad 1</p>
+    <h2 class="section-title" data-a="up">¿Qué palabras <em>reconociste</em>?</h2>
+    <p class="section-desc" data-a="up">
+      Selecciona todas las palabras que crees que están relacionadas con <strong>la ciudad y los lugares italianos</strong>. Luego verifica tu selección.
+    </p>
+
+    <div class="word-grid" id="wordGrid" style="margin-top:1.75rem" data-stagger></div>
+
+    <div class="word-actions">
+      <button class="btn btn-primary" onclick="verifyWords()">Verificar selección</button>
+      <button class="btn btn-ghost" onclick="resetWords()">Intentar de nuevo</button>
+      <span class="score-display" id="scoreDisplay"></span>
+    </div>
+    <div class="legend" id="legend" style="display:none">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Correcto ✓</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div> No está relacionado ✗</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div> La olvidaste !</div>
+    </div>
+  </div>
+</section>
+
+<!-- LUGARES DELLA CITTÀ -->
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="fade">Vocabulario</p>
+    <h2 class="section-title" data-a="up"><em>I luoghi della città</em></h2>
+    <p class="section-desc" data-a="up">Los lugares que dan vida a la ciudad italiana. Haz clic en cada tarjeta para ver un ejemplo de uso.</p>
+
+    <div class="lugares-grid" style="margin-top:2rem" data-stagger>
+      <div class="lugar-card" onclick="this.classList.toggle('open')">
+        <div class="lugar-top" style="background:rgba(82,142,116,.15)">🏛️</div>
+        <div class="lugar-body">
+          <div class="lugar-it">la piazza</div>
+          <div class="lugar-art">sostantivo femminile</div>
+          <div class="lugar-es">la plaza</div>
+          <div class="lugar-ex">Ci vediamo in piazza alle tre!<br><em>¡Nos vemos en la plaza a las tres!</em></div>
+        </div>
+      </div>
+      <div class="lugar-card" onclick="this.classList.toggle('open')">
+        <div class="lugar-top" style="background:rgba(229,171,7,.15)">🛒</div>
+        <div class="lugar-body">
+          <div class="lugar-it">il mercato</div>
+          <div class="lugar-art">sostantivo maschile</div>
+          <div class="lugar-es">el mercado</div>
+          <div class="lugar-ex">Vado al mercato a comprare verdure.<br><em>Voy al mercado a comprar verduras.</em></div>
+        </div>
+      </div>
+      <div class="lugar-card" onclick="this.classList.toggle('open')">
+        <div class="lugar-top" style="background:rgba(120,166,186,.2)">⛪</div>
+        <div class="lugar-body">
+          <div class="lugar-it">la chiesa</div>
+          <div class="lugar-art">sostantivo femminile</div>
+          <div class="lugar-es">la iglesia</div>
+          <div class="lugar-ex">La chiesa di Santa Maria è bellissima!<br><em>¡La iglesia de Santa María es preciosa!</em></div>
+        </div>
+      </div>
+      <div class="lugar-card" onclick="this.classList.toggle('open')">
+        <div class="lugar-top" style="background:rgba(204,71,54,.12)">🏛️</div>
+        <div class="lugar-body">
+          <div class="lugar-it">il museo</div>
+          <div class="lugar-art">sostantivo maschile</div>
+          <div class="lugar-es">el museo</div>
+          <div class="lugar-ex">Il museo è aperto fino alle diciotto.<br><em>El museo está abierto hasta las seis.</em></div>
+        </div>
+      </div>
+      <div class="lugar-card" onclick="this.classList.toggle('open')">
+        <div class="lugar-top" style="background:rgba(82,142,116,.15)">🌳</div>
+        <div class="lugar-body">
+          <div class="lugar-it">il parco</div>
+          <div class="lugar-art">sostantivo maschile</div>
+          <div class="lugar-es">el parque</div>
+          <div class="lugar-ex">Facciamo una passeggiata nel parco?<br><em>¿Damos un paseo por el parque?</em></div>
+        </div>
+      </div>
+      <div class="lugar-card" onclick="this.classList.toggle('open')">
+        <div class="lugar-top" style="background:rgba(239,207,127,.3)">🏫</div>
+        <div class="lugar-body">
+          <div class="lugar-it">il comune</div>
+          <div class="lugar-art">sostantivo maschile</div>
+          <div class="lugar-es">el ayuntamiento</div>
+          <div class="lugar-ex">L'ufficio è al comune.<br><em>La oficina está en el ayuntamiento.</em></div>
+        </div>
+      </div>
+      <div class="lugar-card" onclick="this.classList.toggle('open')">
+        <div class="lugar-top" style="background:rgba(120,166,186,.2)">📚</div>
+        <div class="lugar-body">
+          <div class="lugar-it">la biblioteca</div>
+          <div class="lugar-art">sostantivo femminile</div>
+          <div class="lugar-es">la biblioteca</div>
+          <div class="lugar-ex">Studio in biblioteca ogni pomeriggio.<br><em>Estudio en la biblioteca cada tarde.</em></div>
+        </div>
+      </div>
+      <div class="lugar-card" onclick="this.classList.toggle('open')">
+        <div class="lugar-top" style="background:rgba(204,71,54,.12)">🎭</div>
+        <div class="lugar-body">
+          <div class="lugar-it">il teatro</div>
+          <div class="lugar-art">sostantivo maschile</div>
+          <div class="lugar-es">el teatro</div>
+          <div class="lugar-ex">Stasera andiamo a teatro!<br><em>¡Esta noche vamos al teatro!</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SINGOLARE / PLURALE DISCOVERY -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label" data-a="fade">Gramática · Descubrimiento</p>
+    <h2 class="section-title" data-a="up">Singolare <em>→</em> Plurale</h2>
+    <p class="section-desc" data-a="up">En italiano, los sustantivos cambian al pasar al plural. ¿Puedes descubrir el patrón?</p>
+
+    <div style="overflow-x:auto;margin-top:2rem" data-a="up">
+      <table class="plural-table">
+        <thead>
+          <tr><th>Singolare</th><th>Plurale</th><th>Regla</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="form masc">il libro</td><td class="form masc">i libri</td><td>-o → -i (maschile)</td></tr>
+          <tr><td class="form masc">il museo</td><td class="form masc">i musei</td><td>-eo → -ei (maschile)</td></tr>
+          <tr><td class="form masc">il parco</td><td class="form masc">i parchi</td><td>-co → -chi (suena /k/)</td></tr>
+          <tr><td class="form fem">la piazza</td><td class="form fem">le piazze</td><td>-a → -e (femminile)</td></tr>
+          <tr><td class="form fem">la chiesa</td><td class="form fem">le chiese</td><td>-a → -e (femminile)</td></tr>
+          <tr><td class="form fem">la stazione</td><td class="form fem">le stazioni</td><td>-e → -i (masc. y fem.)</td></tr>
+          <tr><td class="form inv">il bar</td><td class="form inv">i bar</td><td>Invariable (palabras extranjeras)</td></tr>
+          <tr><td class="form inv">il caffè</td><td class="form inv">i caffè</td><td>Invariable (vocal acentuada)</td></tr>
+          <tr><td class="form inv">la città</td><td class="form inv">le città</td><td>Invariable (vocal acentuada)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule-pills" data-stagger>
+      <div style="padding:.6rem 1.1rem;border-radius:20px;font-size:.82rem;font-weight:700;background:rgba(82,142,116,.15);color:var(--green);">🟢 Masc. -o → -i</div>
+      <div style="padding:.6rem 1.1rem;border-radius:20px;font-size:.82rem;font-weight:700;background:rgba(120,166,186,.2);color:var(--teal);">🔵 Fem. -a → -e</div>
+      <div style="padding:.6rem 1.1rem;border-radius:20px;font-size:.82rem;font-weight:700;background:rgba(229,171,7,.2);color:#b07d00;">🟡 -e → -i (ambos)</div>
+      <div style="padding:.6rem 1.1rem;border-radius:20px;font-size:.82rem;font-weight:700;background:rgba(204,71,54,.12);color:var(--red);">🔴 Acentuado/extranjero: Invariable</div>
+    </div>
+
+    <!-- FILL PRACTICE -->
+    <div class="fill-section" data-a="up">
+      <h4>Pratica: forma el plural</h4>
+      <div class="fill-list" id="fillPlural">
+        <div class="fill-item" data-ans="i musei">il museo → <input class="fill-input" placeholder="plurale"></div>
+        <div class="fill-item" data-ans="le piazze">la piazza → <input class="fill-input" placeholder="plurale"></div>
+        <div class="fill-item" data-ans="i teatri">il teatro → <input class="fill-input" placeholder="plurale"></div>
+        <div class="fill-item" data-ans="le stazioni">la stazione → <input class="fill-input" placeholder="plurale"></div>
+        <div class="fill-item" data-ans="le città">la città → <input class="fill-input" placeholder="plurale"></div>
+        <div class="fill-item" data-ans="i bar">il bar → <input class="fill-input" placeholder="plurale"></div>
+      </div>
+      <div class="fill-btn">
+        <button class="btn btn-primary" onclick="checkFill()">Verificar</button>
+        <button class="btn btn-ghost" style="margin-left:.75rem" onclick="resetFill()">Limpiar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIALOGUE - TELEFONATA -->
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="fade">Dialogo autentico</p>
+    <h2 class="section-title" data-a="up"><em>Pronto? Chi parla?</em></h2>
+    <p class="section-desc" data-a="up">Escucha cómo los italianos abren y cierran una conversación telefónica.</p>
+
+    <div class="dialogue" style="margin-top:2rem" data-stagger>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Marco</div>
+        <div class="dlg-bubble">
+          <div class="it">Pronto?</div>
+          <div class="es">¿Aló? / ¿Hola?</div>
+        </div>
+      </div>
+      <div class="dlg-line b">
+        <div class="dlg-speaker">Giulia</div>
+        <div class="dlg-bubble">
+          <div class="it">Sì, pronto! Chi parla?</div>
+          <div class="es">¡Sí, hola! ¿Quién habla?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Marco</div>
+        <div class="dlg-bubble">
+          <div class="it">Sono Marco! Ciao Giulia, come stai?</div>
+          <div class="es">¡Soy Marco! Hola Giulia, ¿cómo estás?</div>
+        </div>
+      </div>
+      <div class="dlg-line b">
+        <div class="dlg-speaker">Giulia</div>
+        <div class="dlg-bubble">
+          <div class="it">Ciao Marco! Bene grazie. Senti, hai programmi per oggi?</div>
+          <div class="es">¡Hola Marco! Bien gracias. Oye, ¿tienes planes para hoy?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Marco</div>
+        <div class="dlg-bubble">
+          <div class="it">No, sono libero. Cosa c'è?</div>
+          <div class="es">No, estoy libre. ¿Qué pasa?</div>
+        </div>
+      </div>
+      <div class="dlg-line b">
+        <div class="dlg-speaker">Giulia</div>
+        <div class="dlg-bubble">
+          <div class="it">C'è un concerto in piazza stasera! Ci vieni?</div>
+          <div class="es">¡Hay un concierto en la plaza esta noche! ¿Vienes?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Marco</div>
+        <div class="dlg-bubble">
+          <div class="it">Certo! A che ora comincia?</div>
+          <div class="es">¡Claro! ¿A qué hora empieza?</div>
+        </div>
+      </div>
+      <div class="dlg-line b">
+        <div class="dlg-speaker">Giulia</div>
+        <div class="dlg-bubble">
+          <div class="it">Alle otto. Ci vediamo in piazza alle sette e mezza?</div>
+          <div class="es">A las ocho. ¿Nos vemos en la plaza a las siete y media?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Marco</div>
+        <div class="dlg-bubble">
+          <div class="it">Perfetto! A stasera allora!</div>
+          <div class="es">¡Perfecto! ¡Hasta esta noche entonces!</div>
+        </div>
+      </div>
+      <div class="dlg-line b">
+        <div class="dlg-speaker">Giulia</div>
+        <div class="dlg-bubble">
+          <div class="it">A presto! Ciao ciao!</div>
+          <div class="es">¡Hasta pronto! ¡Adiós!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTI CULTURALI -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label" data-a="fade">Vocabulario</p>
+    <h2 class="section-title" data-a="up"><em>Gli eventi</em> — Los eventos</h2>
+    <p class="section-desc" data-a="up">En Italia, la piazza es el centro de la vida cultural. Aquí el vocabulario de los eventos que la llenan de vida.</p>
+
+    <div class="events-grid" style="margin-top:2rem" data-stagger>
+      <div class="event-card">
+        <div class="event-icon">🎵</div>
+        <div class="event-it">il concerto</div>
+        <div class="event-es">el concierto</div>
+        <div class="event-ex">C'è un concerto in piazza!</div>
+      </div>
+      <div class="event-card">
+        <div class="event-icon">🎪</div>
+        <div class="event-it">la festa</div>
+        <div class="event-es">la fiesta / la celebración</div>
+        <div class="event-ex">La festa del paese è domani.</div>
+      </div>
+      <div class="event-card">
+        <div class="event-icon">🎨</div>
+        <div class="event-it">la mostra</div>
+        <div class="event-es">la exposición</div>
+        <div class="event-ex">C'è una mostra al museo.</div>
+      </div>
+      <div class="event-card">
+        <div class="event-icon">🌿</div>
+        <div class="event-it">il mercato biologico</div>
+        <div class="event-es">el mercado ecológico</div>
+        <div class="event-ex">Il sabato c'è il mercato bio.</div>
+      </div>
+      <div class="event-card">
+        <div class="event-icon">🎭</div>
+        <div class="event-it">lo spettacolo</div>
+        <div class="event-es">el espectáculo</div>
+        <div class="event-ex">Lo spettacolo inizia alle venti.</div>
+      </div>
+      <div class="event-card">
+        <div class="event-icon">🎉</div>
+        <div class="event-it">la sagra</div>
+        <div class="event-es">la feria gastronómica local</div>
+        <div class="event-ex">La sagra della pizza è questo weekend!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FONETICA C e G -->
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="fade">Fonetica</p>
+    <h2 class="section-title" data-a="up">La <em>C</em> y la <em>G</em> en italiano</h2>
+    <p class="section-desc" data-a="up">
+      Las letras <strong>c</strong> y <strong>g</strong> suenan diferente dependiendo de qué vocal viene después. ¡Es una de las reglas más importantes del italiano!
+    </p>
+
+    <div class="fonetic-grid" data-stagger>
+      <div class="fon-col">
+        <h4 style="color:var(--green)">C + a, o, u → /k/ como "casa"</h4>
+        <div class="fon-ex"><span class="it">caro</span><span class="sound">/k/</span></div>
+        <div class="fon-ex"><span class="it">cosa</span><span class="sound">/k/</span></div>
+        <div class="fon-ex"><span class="it">cuore</span><span class="sound">/k/</span></div>
+        <div class="fon-ex"><span class="it">caffè</span><span class="sound">/k/</span></div>
+        <div class="fon-ex"><span class="it">comune</span><span class="sound">/k/</span></div>
+      </div>
+      <div class="fon-col">
+        <h4 style="color:var(--red)">C + e, i → /tʃ/ como "chico"</h4>
+        <div class="fon-ex"><span class="it">cena</span><span class="sound">/tʃ/</span></div>
+        <div class="fon-ex"><span class="it">cinema</span><span class="sound">/tʃ/</span></div>
+        <div class="fon-ex"><span class="it">città</span><span class="sound">/tʃ/</span></div>
+        <div class="fon-ex"><span class="it">ciao</span><span class="sound">/tʃ/</span></div>
+        <div class="fon-ex"><span class="it">concerto</span><span class="sound">/tʃ/</span></div>
+      </div>
+      <div class="fon-col">
+        <h4 style="color:var(--green)">G + a, o, u → /g/ como "gato"</h4>
+        <div class="fon-ex"><span class="it">gatto</span><span class="sound">/g/</span></div>
+        <div class="fon-ex"><span class="it">gusto</span><span class="sound">/g/</span></div>
+        <div class="fon-ex"><span class="it">gonna</span><span class="sound">/g/</span></div>
+        <div class="fon-ex"><span class="it">grande</span><span class="sound">/g/</span></div>
+        <div class="fon-ex"><span class="it">grazie</span><span class="sound">/g/</span></div>
+      </div>
+      <div class="fon-col">
+        <h4 style="color:var(--red)">G + e, i → /dʒ/ como "yeso" (suave)</h4>
+        <div class="fon-ex"><span class="it">gelato</span><span class="sound">/dʒ/</span></div>
+        <div class="fon-ex"><span class="it">gentile</span><span class="sound">/dʒ/</span></div>
+        <div class="fon-ex"><span class="it">giro</span><span class="sound">/dʒ/</span></div>
+        <div class="fon-ex"><span class="it">giovedì</span><span class="sound">/dʒ/</span></div>
+        <div class="fon-ex"><span class="it">giorno</span><span class="sound">/dʒ/</span></div>
+      </div>
+    </div>
+
+    <div style="background:var(--white);border-radius:12px;padding:1.25rem;margin-top:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,.07)" data-a="up">
+      <strong style="color:var(--amber);font-size:.85rem">⚡ La excepción: CH y GH</strong>
+      <p style="font-size:.85rem;color:#555;margin-top:.4rem;line-height:1.6">
+        Para recuperar el sonido /k/ o /g/ antes de e/i, se añade una <strong>h</strong>:<br>
+        <strong>ch + e/i = /k/</strong>: chiesa (/kjeza/), chi (/ki/), che (/ke/)<br>
+        <strong>gh + e/i = /g/</strong>: ghetto, ghiaccio, spaghetti
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURAL STRIP -->
+<div class="cultural-strip">
+  <div class="container">
+    <h2 data-a="up">La Piazza — Il cuore d'Italia 🇮🇹</h2>
+    <p data-a="up">En Italia, la piazza no es solo una plaza — es el alma de la ciudad. Desde la época romana, es el lugar donde se vive, se habla y se celebra.</p>
+    <div class="cultural-facts" data-stagger>
+      <div class="cf-item">
+        <div class="cf-icon">☕</div>
+        <h4>Il caffè in piazza</h4>
+        <p>Tomarse un espresso de pie en el bar de la piazza es un ritual diario. No se sienta, no se tarda — se socializa de pie en 5 minutos.</p>
+      </div>
+      <div class="cf-item">
+        <div class="cf-icon">🎵</div>
+        <h4>Piazzas famosas</h4>
+        <p>Piazza Navona (Roma), Piazza del Campo (Siena), Piazza San Marco (Venezia)... Cada ciudad tiene su piazza principal con su propio carácter.</p>
+      </div>
+      <div class="cf-item">
+        <div class="cf-icon">🌆</div>
+        <h4>La passeggiata</h4>
+        <p>El ritual de caminar por la piazza al atardecer — ver y ser vistos. No tiene traducción exacta. Es una institución italiana.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <strong>Unità 3 · Tutti in piazza!</strong><br>
+  Italiano Per Piacere — Nivel A1
+  <div class="nav-pills">
+    <a href="../modulo_2/etapa2_descubrimiento.html" class="nav-pill">← Unità 2</a>
+    <a href="etapa3_gramatica.html" class="nav-pill active">Gramática →</a>
+  </div>
+</footer>
+
+<script>
+  /* SCROLL ANIMATIONS */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('[data-a],[data-stagger]').forEach(el => observer.observe(el));
+
+  /* PARALLAX */
+  const c1=document.getElementById('hbc1'), c2=document.getElementById('hbc2');
+  window.addEventListener('scroll', () => {
+    const y=window.scrollY;
+    if(c1) c1.style.transform=`translateY(${y*.25}px)`;
+    if(c2) c2.style.transform=`translateY(${y*-.15}px)`;
+  }, {passive:true});
+
+  /* WORD RECOGNITION */
+  const WORDS = [
+    {w:'piazza',   inCtx:true },
+    {w:'caffè',    inCtx:true },
+    {w:'chiesa',   inCtx:true },
+    {w:'mercato',  inCtx:true },
+    {w:'bello',    inCtx:true },
+    {w:'oggi',     inCtx:true },
+    {w:'treno',    inCtx:false},
+    {w:'aeroporto',inCtx:false},
+    {w:'telefono', inCtx:false},
+    {w:'numero',   inCtx:false},
+    {w:'anni',     inCtx:false},
+    {w:'nome',     inCtx:false},
+  ];
+  const selected=new Set(); let verified=false;
+  const grid=document.getElementById('wordGrid');
+  WORDS.forEach((w,i)=>{
+    const div=document.createElement('div');
+    div.className='word-card';
+    div.innerHTML=`${w.w}<span class="word-badge" id="badge${i}"></span>`;
+    div.addEventListener('click',()=>{
+      if(verified)return;
+      if(selected.has(i)){selected.delete(i);div.classList.remove('selected');}
+      else{selected.add(i);div.classList.add('selected');}
+    });
+    grid.appendChild(div);
+  });
+
+  function verifyWords(){
+    verified=true; let correct=0;
+    const cards=grid.querySelectorAll('.word-card');
+    WORDS.forEach((w,i)=>{
+      const card=cards[i], badge=document.getElementById('badge'+i);
+      card.classList.remove('selected');
+      if(w.inCtx && selected.has(i))       {card.classList.add('correct');  badge.textContent='✓';correct++;}
+      else if(!w.inCtx && selected.has(i)) {card.classList.add('false-pos');badge.textContent='✗';}
+      else if(w.inCtx && !selected.has(i)) {card.classList.add('missed');   badge.textContent='!';}
+      else                                  {card.classList.add('neutral');}
+    });
+    document.getElementById('scoreDisplay').textContent=correct+'/6 palabras correctas';
+    document.getElementById('legend').style.display='flex';
+  }
+  function resetWords(){
+    verified=false;selected.clear();
+    grid.querySelectorAll('.word-card').forEach(c=>c.className='word-card');
+    document.getElementById('scoreDisplay').textContent='';
+    document.getElementById('legend').style.display='none';
+  }
+
+  /* FILL PLURAL */
+  function checkFill(){
+    document.querySelectorAll('#fillPlural .fill-item').forEach(item=>{
+      const inp=item.querySelector('.fill-input');
+      inp.classList.remove('ok','fail');
+      if(inp.value.trim().toLowerCase()===item.dataset.ans) inp.classList.add('ok');
+      else inp.classList.add('fail');
+    });
+  }
+  function resetFill(){
+    document.querySelectorAll('#fillPlural .fill-input').forEach(inp=>{inp.value='';inp.classList.remove('ok','fail');});
+  }
+</script>
+</body>
+</html>

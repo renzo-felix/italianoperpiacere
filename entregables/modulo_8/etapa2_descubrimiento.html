@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unità 8 · Descubrimiento | Italiano Per Piacere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{--cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;--red:#cc4736;--teal:#78a6ba;--green:#528e74;--black:#1a1a18;--white:#ffffff;--r:8px;--fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;--ease:cubic-bezier(0.16,1,0.3,1);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--fb);background:var(--cream);color:var(--black);overflow-x:hidden}
+    /* TRANSLATIONS HIDDEN BY DEFAULT */
+    .es{font-size:.8rem;color:#888;font-style:italic;margin-top:.2rem}
+    body.hide-es .es{display:none !important}
+    .trans-toggle{position:fixed;top:1.2rem;right:1.2rem;z-index:999;background:var(--teal);border:2px solid var(--teal);color:var(--white);font-family:var(--fb);font-size:.78rem;font-weight:700;padding:.45rem 1rem;border-radius:30px;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.15);transition:background .2s,color .2s}
+    .trans-toggle:hover{background:var(--white);color:var(--teal)}
+    [data-a]{opacity:0;transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    [data-a="up"]{transform:translateY(48px)}[data-a="left"]{transform:translateX(-56px)}[data-a="right"]{transform:translateX(56px)}[data-a="scale"]{transform:scale(0.86)}[data-a="fade"]{transform:none}
+    [data-a].in{opacity:1;transform:none !important}
+    [data-stagger].in>*{opacity:1;transform:none !important}
+    [data-stagger]>*{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+    [data-stagger]>*:nth-child(1){transition-delay:.00s}[data-stagger]>*:nth-child(2){transition-delay:.08s}[data-stagger]>*:nth-child(3){transition-delay:.16s}[data-stagger]>*:nth-child(4){transition-delay:.24s}[data-stagger]>*:nth-child(5){transition-delay:.32s}[data-stagger]>*:nth-child(6){transition-delay:.40s}[data-stagger]>*:nth-child(7){transition-delay:.48s}[data-stagger]>*:nth-child(8){transition-delay:.56s}[data-stagger]>*:nth-child(n+9){transition-delay:.64s}
+    .hero{min-height:100vh;background:var(--teal);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
+    .hero-bg-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none;will-change:transform}
+    .hero-bg-circle:nth-child(1){width:600px;height:600px;top:-200px;right:-150px}
+    .hero-bg-circle:nth-child(2){width:400px;height:400px;bottom:-100px;left:-100px}
+    .hero-bg-circle:nth-child(3){width:220px;height:220px;top:25%;left:6%}
+    .hero-badge{display:inline-block;background:var(--gold);color:var(--black);font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:.3rem 1.2rem;border-radius:20px;margin-bottom:1.5rem;opacity:0;animation:popIn .6s var(--ease) .2s forwards}
+    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-style:italic;color:var(--white);line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
+    .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:rgba(255,255,255,.85);max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
+    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.6);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
+    .scroll-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6);animation:scrollDot 1.5s ease infinite}
+    @keyframes popIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+    @keyframes slideUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes scrollDot{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(6px);opacity:1}}
+    @keyframes floatAv{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+    .section{padding:6rem 2rem}.section.bg-alt{background:var(--cream-dk)}.section.bg-white{background:var(--white)}
+    .container{max-width:860px;margin:0 auto}
+    .section-label{font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:.75rem}
+    .section-title{font-family:var(--fh);font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;margin-bottom:1.25rem}
+    .section-title em{font-style:italic;color:var(--teal)}
+    .section-desc{font-size:1rem;color:#555;line-height:1.75;max-width:640px}
+    .sofia-wrap{display:flex;align-items:flex-start;gap:1.25rem;background:var(--white);border-radius:16px;padding:1.5rem 2rem;box-shadow:0 4px 24px rgba(0,0,0,.07);max-width:640px}
+    .sofia-avatar{width:60px;height:60px;border-radius:50%;flex-shrink:0;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.8rem;animation:floatAv 3.5s ease-in-out infinite}
+    .speech-bubble{flex:1}.speech-bubble strong{display:block;font-size:.75rem;font-weight:700;color:var(--teal);margin-bottom:.4rem;letter-spacing:1px;text-transform:uppercase}
+    .speech-bubble p{font-size:.95rem;color:#333;line-height:1.65}.speech-bubble p+p{margin-top:.6rem}
+    /* WORD RECOGNITION */
+    .word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;margin-bottom:1.5rem}
+    .word-card{background:var(--white);border:2px solid transparent;border-radius:var(--r);padding:.9rem .75rem;text-align:center;cursor:pointer;user-select:none;position:relative;transition:border-color .2s,background .2s,transform .15s;font-weight:600;font-size:.95rem}
+    .word-card:hover{transform:translateY(-2px);border-color:var(--teal)}
+    .word-card.selected{background:var(--teal);color:var(--white);border-color:var(--teal)}
+    .word-card.correct{background:var(--green);color:var(--white);border-color:var(--green)}
+    .word-card.false-pos{background:var(--red);color:var(--white);border-color:var(--red)}
+    .word-card.missed{background:var(--amber);color:var(--black);border-color:var(--amber)}
+    .word-card.neutral{background:var(--cream-dk);color:#888;border-color:transparent}
+    .word-badge{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:var(--white)}
+    .word-card.correct .word-badge{display:flex;background:var(--green)}
+    .word-card.false-pos .word-badge{display:flex;background:var(--red)}
+    .word-card.missed .word-badge{display:flex;background:var(--amber);color:var(--black)}
+    .word-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+    .btn{padding:.65rem 1.5rem;border-radius:30px;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.9rem;transition:opacity .2s,transform .15s}
+    .btn:hover{opacity:.85;transform:translateY(-1px)}
+    .btn-primary{background:var(--teal);color:var(--white)}.btn-ghost{background:transparent;color:var(--black);border:2px solid var(--cream-dk)}
+    .score-display{font-size:.9rem;font-weight:700;color:var(--green)}
+    .legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;font-size:.8rem}
+    .legend-item{display:flex;align-items:center;gap:.4rem}
+    .legend-dot{width:10px;height:10px;border-radius:50%}
+    /* MODAL TABLE */
+    .modal-table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:1.5rem}
+    .modal-table th{padding:.7rem 1.1rem;text-align:left;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;color:var(--white)}
+    .modal-table td{padding:.65rem 1.1rem;border-bottom:1px solid var(--cream-dk)}
+    .modal-table tr:nth-child(even) td{background:rgba(0,0,0,.02)}
+    .verb-form{font-weight:700}
+    .verb-pron{color:#888;font-size:.85rem}
+    /* WEEK CALENDAR */
+    .week-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:.5rem;margin-top:1.5rem}
+    .day-cell{background:var(--white);border-radius:8px;padding:.85rem .5rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);cursor:pointer;transition:background .2s,transform .15s}
+    .day-cell:hover{background:var(--teal);color:var(--white);transform:translateY(-2px)}
+    .day-cell.today{background:var(--teal);color:var(--white);font-weight:700}
+    .day-name{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:.3rem;opacity:.7}
+    .day-it{font-size:.85rem;font-weight:700}
+    .day-es{font-size:.65rem;margin-top:.2rem;opacity:.75}
+    /* FORMAL/INFORMAL TABLE */
+    .fif-table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:1.5rem;border-radius:8px;overflow:hidden}
+    .fif-table th{padding:.7rem 1.1rem;text-align:left;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;color:var(--white)}
+    .fif-table td{padding:.65rem 1.1rem;border-bottom:1px solid var(--cream-dk)}
+    .fif-table tr:nth-child(even) td{background:rgba(0,0,0,.02)}
+    /* DIALOGUE */
+    .dialogue{display:flex;flex-direction:column;gap:.75rem}
+    .dlg-line{display:flex;align-items:flex-start;gap:.75rem}
+    .dlg-line.b{flex-direction:row-reverse}
+    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:var(--teal);padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
+    .dlg-line.b .dlg-speaker{background:var(--green)}
+    .dlg-bubble{background:var(--white);border-radius:12px;padding:.9rem 1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.07);max-width:480px}
+    .dlg-bubble .it{font-weight:600;font-size:.95rem;color:var(--black)}
+    .dlg-bubble .es{font-size:.8rem;color:#888;margin-top:.25rem;font-style:italic}
+    /* FILL */
+    .fill-section{margin-top:1.5rem}
+    .fill-section h4{font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:1rem}
+    .fill-list{display:flex;flex-direction:column;gap:.75rem}
+    .fill-item{display:flex;align-items:center;gap:.5rem;font-size:.95rem;flex-wrap:wrap}
+    .fill-input{border:none;border-bottom:2px solid var(--cream-dk);background:transparent;font-family:var(--fb);font-size:.95rem;font-weight:600;color:var(--black);width:120px;padding:.2rem .3rem;outline:none;text-align:center;transition:border-color .2s}
+    .fill-input:focus{border-color:var(--teal)}.fill-input.ok{border-color:var(--green);color:var(--green)}.fill-input.fail{border-color:var(--red);color:var(--red)}
+    .fill-btn{margin-top:1rem;display:flex;gap:.75rem;flex-wrap:wrap}
+    /* COFFEE MENU */
+    .coffee-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:1rem;margin-top:1.5rem}
+    .coffee-card{background:var(--white);border-radius:12px;padding:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,.07);border-bottom:3px solid var(--amber)}
+    .coffee-icon{font-size:1.8rem;margin-bottom:.5rem}
+    .coffee-it{font-size:.95rem;font-weight:700;margin-bottom:.2rem}
+    .coffee-desc{font-size:.78rem;color:#666;line-height:1.4}
+    /* CULTURAL */
+    .cultural-strip{background:var(--black);color:var(--white);padding:4rem 2rem;text-align:center}
+    .cultural-strip h2{font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.4rem);font-style:italic;color:var(--gold);margin-bottom:1rem}
+    .cultural-strip p{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.75;max-width:600px;margin:0 auto 1.5rem}
+    .cultural-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;max-width:760px;margin:2rem auto 0}
+    .cf-item{background:rgba(255,255,255,.06);border-radius:12px;padding:1.5rem}
+    .cf-icon{font-size:2rem;margin-bottom:.75rem}
+    .cf-item h4{font-size:.85rem;font-weight:700;color:var(--gold);margin-bottom:.5rem}
+    .cf-item p{font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.55}
+    .footer{background:var(--cream-dk);padding:2.5rem 2rem;text-align:center;font-size:.82rem;color:#888}
+    .footer strong{color:var(--black)}
+    .nav-pills{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+    .nav-pill{padding:.5rem 1.2rem;border-radius:30px;font-size:.8rem;font-weight:600;text-decoration:none;color:var(--black);background:var(--cream);border:1px solid var(--cream-dk);transition:background .2s,color .2s}
+    .nav-pill:hover{background:var(--teal);color:var(--white)}.nav-pill.active{background:var(--teal);color:var(--white)}
+    .note-box{background:rgba(120,166,186,.12);border-left:4px solid var(--teal);border-radius:0 8px 8px 0;padding:1rem 1.25rem;margin-top:1.25rem;font-size:.9rem;color:#444;line-height:1.65}
+    @media(max-width:600px){.section{padding:4rem 1.25rem}.sofia-wrap{flex-direction:column}.week-cal{grid-template-columns:repeat(4,1fr)}}
+  </style>
+</head>
+<body class="hide-es">
+
+<button class="trans-toggle" id="transBtn" onclick="toggleTrans()">Mostrar traducciones</button>
+
+<section class="hero" id="top">
+  <div class="hero-bg-circle" id="hbc1"></div>
+  <div class="hero-bg-circle" id="hbc2"></div>
+  <div class="hero-bg-circle" id="hbc3"></div>
+  <div class="hero-badge">Unità 8 · Descubrimiento</div>
+  <h1>Bene, grazie,<br>e Lei?</h1>
+  <p class="hero-sub">I verbi modali, i giorni della settimana<br>e il registro formale / informale</p>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-dot"></div></div>
+</section>
+
+<section class="section bg-white">
+  <div class="container">
+    <div class="sofia-wrap" data-a="up">
+      <div class="sofia-avatar">👩‍🏫</div>
+      <div class="speech-bubble">
+        <strong>Sofia · La tua guida italiana</strong>
+        <p>Bene! Da adesso usiamo un po' più di italiano. <span class="es">¡Bien! A partir de ahora usamos un poco más de italiano.</span></p>
+        <p>In questa unità impariamo i verbi modali (dovere, potere, volere), i giorni della settimana e la differenza tra formale e informale. <span class="es">En esta unidad aprendemos los verbos modales, los días de la semana y la diferencia entre formal e informal.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORD RECOGNITION -->
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="fade">Attività 1</p>
+    <h2 class="section-title" data-a="up">Parole del <em>bar</em> e della settimana</h2>
+    <p class="section-desc" data-a="up">Seleziona le parole legate al bar e alla routine settimanale. <span class="es">Selecciona las palabras relacionadas con el bar y la rutina semanal.</span></p>
+    <div class="word-grid" id="wordGrid" style="margin-top:1.75rem" data-stagger></div>
+    <div class="word-actions">
+      <button class="btn btn-primary" onclick="verifyWords()">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetWords()">Riprova</button>
+      <span class="score-display" id="scoreDisplay"></span>
+    </div>
+    <div class="legend" id="legend" style="display:none">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Corretto ✓</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Non è giusto ✗</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div> L'hai dimenticato !</div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL VERBS -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label" data-a="fade">Grammatica · Scoperta</p>
+    <h2 class="section-title" data-a="up">I verbi <em>modali</em></h2>
+    <p class="section-desc" data-a="up">Tre verbi fondamentali che si usano con un infinito. <span class="es">Tres verbos fundamentales que se usan con un infinitivo.</span></p>
+
+    <div style="overflow-x:auto;margin-top:2rem" data-a="up">
+      <table class="modal-table">
+        <thead>
+          <tr>
+            <th style="background:#444">Pronome</th>
+            <th style="background:var(--red)">DOVERE <span class="es" style="font-size:.65rem;display:inline">(deber)</span></th>
+            <th style="background:var(--teal)">POTERE <span class="es" style="font-size:.65rem;display:inline">(poder)</span></th>
+            <th style="background:var(--green)">VOLERE <span class="es" style="font-size:.65rem;display:inline">(querer)</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="verb-pron">io</td><td class="verb-form" style="color:var(--red)">devo</td><td class="verb-form" style="color:var(--teal)">posso</td><td class="verb-form" style="color:var(--green)">voglio</td></tr>
+          <tr><td class="verb-pron">tu</td><td class="verb-form" style="color:var(--red)">devi</td><td class="verb-form" style="color:var(--teal)">puoi</td><td class="verb-form" style="color:var(--green)">vuoi</td></tr>
+          <tr><td class="verb-pron">lui/lei</td><td class="verb-form" style="color:var(--red)">deve</td><td class="verb-form" style="color:var(--teal)">può</td><td class="verb-form" style="color:var(--green)">vuole</td></tr>
+          <tr><td class="verb-pron">noi</td><td class="verb-form" style="color:var(--red)">dobbiamo</td><td class="verb-form" style="color:var(--teal)">possiamo</td><td class="verb-form" style="color:var(--green)">vogliamo</td></tr>
+          <tr><td class="verb-pron">voi</td><td class="verb-form" style="color:var(--red)">dovete</td><td class="verb-form" style="color:var(--teal)">potete</td><td class="verb-form" style="color:var(--green)">volete</td></tr>
+          <tr><td class="verb-pron">loro</td><td class="verb-form" style="color:var(--red)">devono</td><td class="verb-form" style="color:var(--teal)">possono</td><td class="verb-form" style="color:var(--green)">vogliono</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box" data-a="up">
+      Esempi: <strong>Devo lavorare domani.</strong> <span class="es">Tengo que trabajar mañana.</span> · <strong>Posso venire con te?</strong> <span class="es">¿Puedo ir contigo?</span> · <strong>Voglio un caffè!</strong> <span class="es">¡Quiero un café!</span>
+    </div>
+
+    <!-- FILL PRACTICE -->
+    <div class="fill-section" data-a="up">
+      <h4>Pratica — verbi modali</h4>
+      <div class="fill-list" id="fillModal">
+        <div class="fill-item" data-ans="devo">Io _____ studiare stasera. <span class="es">Tengo que estudiar esta noche.</span></div>
+        <div class="fill-item" data-ans="puoi">Tu _____ venire alla festa? <span class="es">¿Puedes venir a la fiesta?</span></div>
+        <div class="fill-item" data-ans="vuole">Lei _____ un cappuccino, per favore. <span class="es">Ella quiere un cappuccino, por favor.</span></div>
+        <div class="fill-item" data-ans="dobbiamo">Noi _____ prenotare subito! <span class="es">¡Tenemos que reservar enseguida!</span></div>
+        <div class="fill-item" data-ans="potete">Voi _____ aspettare un momento? <span class="es">¿Podéis esperar un momento?</span></div>
+        <div class="fill-item" data-ans="vogliono">Loro _____ un tavolo per tre. <span class="es">Ellos quieren una mesa para tres.</span></div>
+      </div>
+      <div class="fill-btn">
+        <button class="btn btn-primary" onclick="checkFill()">Verifica</button>
+        <button class="btn btn-ghost" onclick="resetFill()">Pulisci</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAYS OF WEEK -->
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="fade">Vocabolario</p>
+    <h2 class="section-title" data-a="up"><em>I giorni</em> della settimana</h2>
+    <p class="section-desc" data-a="up">In italiano i giorni si scrivono in minuscolo! <span class="es">¡En italiano los días se escriben en minúscula!</span></p>
+    <div class="week-cal" data-stagger>
+      <div class="day-cell"><div class="day-name">Lun</div><div class="day-it">lunedì</div><div class="day-es es">lunes</div></div>
+      <div class="day-cell"><div class="day-name">Mar</div><div class="day-it">martedì</div><div class="day-es es">martes</div></div>
+      <div class="day-cell"><div class="day-name">Mer</div><div class="day-it">mercoledì</div><div class="day-es es">miércoles</div></div>
+      <div class="day-cell"><div class="day-name">Gio</div><div class="day-it">giovedì</div><div class="day-es es">jueves</div></div>
+      <div class="day-cell"><div class="day-name">Ven</div><div class="day-it">venerdì</div><div class="day-es es">viernes</div></div>
+      <div class="day-cell today"><div class="day-name">Sab</div><div class="day-it">sabato</div><div class="day-es es">sábado</div></div>
+      <div class="day-cell"><div class="day-name">Dom</div><div class="day-it">domenica</div><div class="day-es es">domingo</div></div>
+    </div>
+    <div class="note-box" style="margin-top:1.5rem" data-a="up">
+      <strong>Nota:</strong> "Il lunedì" = los lunes (habitual). "Lunedì" senza articolo = este lunes próximo. <span class="es">Con artículo = habitualmente. Sin artículo = este lunes específico.</span>
+    </div>
+  </div>
+</section>
+
+<!-- FORMAL / INFORMAL -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label" data-a="fade">Grammatica</p>
+    <h2 class="section-title" data-a="up">Formale vs <em>Informale</em></h2>
+    <p class="section-desc" data-a="up">In italiano, il registro formale usa "Lei" (terza persona). <span class="es">En italiano, el registro formal usa "Lei" (tercera persona).</span></p>
+    <div style="overflow-x:auto;margin-top:1.5rem" data-a="up">
+      <table class="fif-table">
+        <thead><tr><th style="background:var(--green)">Informale (tu)</th><th style="background:var(--teal)">Formale (Lei)</th></tr></thead>
+        <tbody>
+          <tr><td>Come <strong>ti</strong> chiami?</td><td>Come <strong>si</strong> chiama?</td></tr>
+          <tr><td>Come <strong>stai</strong>?</td><td>Come <strong>sta</strong>?</td></tr>
+          <tr><td><strong>Vuoi</strong> un caffè?</td><td><strong>Vuole</strong> un caffè?</td></tr>
+          <tr><td><strong>Puoi</strong> aiutarmi?</td><td><strong>Può</strong> aiutarmi?</td></tr>
+          <tr><td>Da dove <strong>vieni</strong>?</td><td>Da dove <strong>viene</strong>?</td></tr>
+          <tr><td>Ciao! / Arrivederci</td><td>Buongiorno! / Arrivederla</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- DIALOGUE -->
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="fade">Dialogo</p>
+    <h2 class="section-title" data-a="up"><em>Al bar</em> — registro formale</h2>
+    <p class="section-desc" data-a="up">Marco entra al bar e ordina in modo formale. <span class="es">Marco entra al bar y pide de forma formal.</span></p>
+    <div class="dialogue" style="margin-top:2rem" data-stagger>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Marco</div>
+        <div class="dlg-bubble">
+          <div class="it">Buongiorno!</div>
+          <div class="es">¡Buenos días!</div>
+        </div>
+      </div>
+      <div class="dlg-line b">
+        <div class="dlg-speaker">Barista</div>
+        <div class="dlg-bubble">
+          <div class="it">Buongiorno, signore! Cosa desidera?</div>
+          <div class="es">¡Buenos días, señor! ¿Qué desea?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Marco</div>
+        <div class="dlg-bubble">
+          <div class="it">Vorrei un caffè e un cornetto, per favore.</div>
+          <div class="es">Quisiera un café y un croissant, por favor.</div>
+        </div>
+      </div>
+      <div class="dlg-line b">
+        <div class="dlg-speaker">Barista</div>
+        <div class="dlg-bubble">
+          <div class="it">Subito! Vuole il cornetto caldo?</div>
+          <div class="es">¡En seguida! ¿Quiere el croissant caliente?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Marco</div>
+        <div class="dlg-bubble">
+          <div class="it">Sì, grazie. Quant'è?</div>
+          <div class="es">Sí, gracias. ¿Cuánto es?</div>
+        </div>
+      </div>
+      <div class="dlg-line b">
+        <div class="dlg-speaker">Barista</div>
+        <div class="dlg-bubble">
+          <div class="it">Sono due euro e venti. Paga alla cassa, per favore.</div>
+          <div class="es">Son dos euros con veinte. Paga en caja, por favor.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Marco</div>
+        <div class="dlg-bubble">
+          <div class="it">Grazie mille! Buona giornata!</div>
+          <div class="es">¡Muchas gracias! ¡Buen día!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COFFEE CULTURE -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label" data-a="fade">Cultura</p>
+    <h2 class="section-title" data-a="up">La cultura del <em>caffè</em></h2>
+    <p class="section-desc" data-a="up">Il caffè in Italia non è una bevanda — è un rituale sociale. <span class="es">El café en Italia no es una bebida — es un ritual social.</span></p>
+    <div class="coffee-grid" data-stagger>
+      <div class="coffee-card">
+        <div class="coffee-icon">☕</div>
+        <div class="coffee-it">l'espresso</div>
+        <div class="coffee-desc">Piccolo, forte, veloce. Il caffè per eccellenza. <span class="es">Pequeño, fuerte, rápido.</span></div>
+      </div>
+      <div class="coffee-card">
+        <div class="coffee-icon">🫧</div>
+        <div class="coffee-it">il cappuccino</div>
+        <div class="coffee-desc">Solo a colazione! Mai dopo pranzo. <span class="es">¡Solo en el desayuno! Nunca después de almorzar.</span></div>
+      </div>
+      <div class="coffee-card">
+        <div class="coffee-icon">🥛</div>
+        <div class="coffee-it">il caffè macchiato</div>
+        <div class="coffee-desc">Espresso con un goccio di latte. <span class="es">Espresso con un chorrito de leche.</span></div>
+      </div>
+      <div class="coffee-card">
+        <div class="coffee-icon">🍦</div>
+        <div class="coffee-it">l'affogato</div>
+        <div class="coffee-desc">Gelato con espresso sopra. Paradiso! <span class="es">Helado con espresso encima. ¡Paraíso!</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cultural-strip">
+  <div class="container">
+    <h2 data-a="up">Il bar italiano ☕🇮🇹</h2>
+    <p data-a="up">Il bar italiano non è un pub — è il cuore della vita sociale. Si va al bar la mattina, all'ora di pranzo, nel pomeriggio... <span class="es">El bar italiano no es un pub — es el corazón de la vida social.</span></p>
+    <div class="cultural-facts" data-stagger>
+      <div class="cf-item">
+        <div class="cf-icon">📍</div>
+        <h4>Il banco o il tavolo?</h4>
+        <p>Al banco si paga meno! Molti bar applicano un supplemento se ti siedi al tavolo. Gli italiani bevono in piedi in 2 minuti. <span class="es">En la barra se paga menos que en mesa.</span></p>
+      </div>
+      <div class="cf-item">
+        <div class="cf-icon">💶</div>
+        <h4>Il caffè sospeso</h4>
+        <p>A Napoli esiste la tradizione del "caffè sospeso": paghi due caffè ma ne bevi uno, l'altro è per chi non può permetterselo. <span class="es">Tradición napolitana de pagar un café para quien no puede.</span></p>
+      </div>
+      <div class="cf-item">
+        <div class="cf-icon">🥐</div>
+        <h4>Il cornetto</h4>
+        <p>Il cornetto italiano è diverso dal croissant francese: più dolce, più morbido, spesso ripieno di crema, marmellata o Nutella. <span class="es">El croissant italiano es diferente al francés.</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <strong>Unità 8 · Bene, grazie, e Lei?</strong><br>
+  Italiano Per Piacere — Nivel A1
+  <div class="nav-pills">
+    <a href="../modulo_7/etapa2_descubrimiento.html" class="nav-pill">← Unità 7</a>
+    <a href="etapa3_gramatica.html" class="nav-pill active">Grammatica →</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('[data-a],[data-stagger]').forEach(el => observer.observe(el));
+  const c1=document.getElementById('hbc1'),c2=document.getElementById('hbc2'),c3=document.getElementById('hbc3');
+  window.addEventListener('scroll',()=>{const y=window.scrollY;if(c1)c1.style.transform=`translateY(${y*.25}px)`;if(c2)c2.style.transform=`translateY(${y*-.15}px)`;if(c3)c3.style.transform=`translateY(${y*.1}px)`;},{passive:true});
+  function toggleTrans(){document.body.classList.toggle('hide-es');const btn=document.getElementById('transBtn');btn.textContent=document.body.classList.contains('hide-es')?'Mostrar traducciones':'Ocultar traducciones';}
+  const WORDS=[{w:'caffè',inCtx:true},{w:'cornetto',inCtx:true},{w:'bar',inCtx:true},{w:'lunedì',inCtx:true},{w:'colazione',inCtx:true},{w:'formale',inCtx:true},{w:'camera',inCtx:false},{w:'verde',inCtx:false},{w:'medico',inCtx:false},{w:'sera',inCtx:false},{w:'treno',inCtx:false},{w:'libro',inCtx:false}];
+  const selected=new Set();let verified=false;
+  const grid=document.getElementById('wordGrid');
+  WORDS.forEach((w,i)=>{const div=document.createElement('div');div.className='word-card';div.innerHTML=`${w.w}<span class="word-badge" id="badge${i}"></span>`;div.addEventListener('click',()=>{if(verified)return;if(selected.has(i)){selected.delete(i);div.classList.remove('selected');}else{selected.add(i);div.classList.add('selected');}});grid.appendChild(div);});
+  function verifyWords(){verified=true;let correct=0;const cards=grid.querySelectorAll('.word-card');WORDS.forEach((w,i)=>{const card=cards[i],badge=document.getElementById('badge'+i);card.classList.remove('selected');if(w.inCtx&&selected.has(i)){card.classList.add('correct');badge.textContent='✓';correct++;}else if(!w.inCtx&&selected.has(i)){card.classList.add('false-pos');badge.textContent='✗';}else if(w.inCtx&&!selected.has(i)){card.classList.add('missed');badge.textContent='!';}else{card.classList.add('neutral');}});document.getElementById('scoreDisplay').textContent=correct+'/6 corretti';document.getElementById('legend').style.display='flex';}
+  function resetWords(){verified=false;selected.clear();grid.querySelectorAll('.word-card').forEach(c=>c.className='word-card');document.getElementById('scoreDisplay').textContent='';document.getElementById('legend').style.display='none';}
+  document.querySelectorAll('#fillModal .fill-item').forEach(item=>{item.innerHTML=item.innerHTML.replace('_____','<input class="fill-input" placeholder="verbo">');});
+  function checkFill(){document.querySelectorAll('#fillModal .fill-item').forEach(item=>{const inp=item.querySelector('.fill-input');if(!inp)return;inp.classList.remove('ok','fail');if(inp.value.trim().toLowerCase()===item.dataset.ans)inp.classList.add('ok');else inp.classList.add('fail');});}
+  function resetFill(){document.querySelectorAll('#fillModal .fill-input').forEach(inp=>{inp.value='';inp.classList.remove('ok','fail');});}
+</script>
+</body>
+</html>

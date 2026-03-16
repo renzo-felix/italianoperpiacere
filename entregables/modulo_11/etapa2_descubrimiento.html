@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unità 11 · In famiglia | Italiano Per Piacere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{--cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;--red:#cc4736;--teal:#78a6ba;--green:#528e74;--black:#1a1a18;--white:#ffffff;--r:8px;--fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;--ease:cubic-bezier(0.16,1,0.3,1)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--fb);background:var(--cream);color:var(--black);overflow-x:hidden}
+    .hide-es .es{display:none!important}
+    .es{font-size:.82rem;color:#888;font-style:italic;margin-top:.25rem}
+    [data-a]{opacity:0;transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    [data-a="up"]{transform:translateY(48px)}[data-a="left"]{transform:translateX(-56px)}[data-a="right"]{transform:translateX(56px)}[data-a="scale"]{transform:scale(0.86)}[data-a="fade"]{transform:none}
+    [data-a].in{opacity:1;transform:none!important}
+    [data-stagger].in>*{opacity:1;transform:none!important}
+    [data-stagger]>*{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+    [data-stagger]>*:nth-child(1){transition-delay:.00s}[data-stagger]>*:nth-child(2){transition-delay:.08s}[data-stagger]>*:nth-child(3){transition-delay:.16s}[data-stagger]>*:nth-child(4){transition-delay:.24s}[data-stagger]>*:nth-child(5){transition-delay:.32s}[data-stagger]>*:nth-child(6){transition-delay:.40s}[data-stagger]>*:nth-child(7){transition-delay:.48s}[data-stagger]>*:nth-child(8){transition-delay:.56s}
+    .hero{min-height:100vh;background:var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
+    .hero-bg-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none;will-change:transform}
+    .hero-bg-circle:nth-child(1){width:600px;height:600px;top:-200px;right:-150px}
+    .hero-bg-circle:nth-child(2){width:400px;height:400px;bottom:-100px;left:-100px}
+    .hero-badge{display:inline-block;background:rgba(0,0,0,.25);color:var(--white);font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:.3rem 1.2rem;border-radius:20px;margin-bottom:1.5rem;opacity:0;animation:popIn .6s var(--ease) .2s forwards}
+    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-style:italic;color:var(--white);line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
+    .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:rgba(255,255,255,.8);max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
+    .trans-btn{position:fixed;top:1rem;right:1rem;z-index:200;padding:.5rem 1rem;border-radius:20px;border:none;cursor:pointer;font-family:var(--fb);font-size:.78rem;font-weight:700;background:var(--black);color:var(--gold);box-shadow:0 2px 12px rgba(0,0,0,.2)}
+    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.6);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
+    .scroll-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);animation:scrollDot 1.5s ease infinite}
+    @keyframes popIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+    @keyframes slideUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes scrollDot{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(6px);opacity:1}}
+    @keyframes floatAv{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+    .section{padding:6rem 2rem}.section.bg-alt{background:var(--cream-dk)}.section.bg-white{background:var(--white)}
+    .container{max-width:860px;margin:0 auto}
+    .section-label{font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+    .section-title{font-family:var(--fh);font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;margin-bottom:1.25rem}
+    .section-title em{font-style:italic;color:var(--red)}
+    .section-desc{font-size:1rem;color:#555;line-height:1.75;max-width:640px}
+    .sofia-wrap{display:flex;align-items:flex-start;gap:1.25rem;background:var(--white);border-radius:16px;padding:1.5rem 2rem;box-shadow:0 4px 24px rgba(0,0,0,.07);max-width:640px}
+    .sofia-avatar{width:60px;height:60px;border-radius:50%;flex-shrink:0;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.8rem;animation:floatAv 3.5s ease-in-out infinite}
+    .speech-bubble{flex:1}.speech-bubble strong{display:block;font-size:.75rem;font-weight:700;color:var(--red);margin-bottom:.4rem;letter-spacing:1px;text-transform:uppercase}
+    .speech-bubble p{font-size:.95rem;color:#333;line-height:1.65}.speech-bubble p+p{margin-top:.6rem}
+    .word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;margin-bottom:1.5rem}
+    .word-card{background:var(--white);border:2px solid transparent;border-radius:var(--r);padding:.9rem .75rem;text-align:center;cursor:pointer;user-select:none;position:relative;transition:border-color .2s,background .2s,transform .15s;font-weight:600;font-size:.95rem}
+    .word-card:hover{transform:translateY(-2px);border-color:var(--red)}
+    .word-card.selected{background:var(--red);color:var(--white);border-color:var(--red)}
+    .word-card.correct{background:var(--green);color:var(--white);border-color:var(--green)}
+    .word-card.false-pos{background:var(--teal);color:var(--white);border-color:var(--teal)}
+    .word-card.missed{background:var(--red);color:var(--white);border-color:var(--red)}
+    .word-card.neutral{background:var(--cream-dk);color:#888;border-color:transparent}
+    .word-badge{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:var(--white)}
+    .word-card.correct .word-badge{display:flex;background:var(--green)}
+    .word-card.false-pos .word-badge{display:flex;background:var(--teal)}
+    .word-card.missed .word-badge{display:flex;background:var(--red)}
+    .word-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+    .btn{padding:.65rem 1.5rem;border-radius:30px;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.9rem;transition:opacity .2s,transform .15s}
+    .btn:hover{opacity:.85;transform:translateY(-1px)}
+    .btn-primary{background:var(--red);color:var(--white)}
+    .btn-ghost{background:transparent;color:var(--black);border:2px solid var(--cream-dk)}
+    .score-display{font-size:.9rem;font-weight:700;color:var(--green)}
+    .legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;font-size:.8rem}
+    .legend-item{display:flex;align-items:center;gap:.4rem}
+    .legend-dot{width:10px;height:10px;border-radius:50%}
+    /* Family tree */
+    .tree{display:flex;flex-direction:column;gap:2rem;align-items:center;margin-top:2rem}
+    .tree-row{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center}
+    .person-card{background:var(--white);border-radius:12px;padding:1rem 1.2rem;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.08);min-width:110px;border-top:4px solid var(--red)}
+    .person-card.nonni{border-top-color:var(--amber)}
+    .person-card.genitori{border-top-color:var(--teal)}
+    .person-card.figli{border-top-color:var(--green)}
+    .person-card .emoji{font-size:2rem;display:block;margin-bottom:.4rem}
+    .person-card .nome{font-weight:700;font-size:.9rem}
+    .person-card .anni{font-size:.75rem;color:#888}
+    .person-card .ruolo{font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--red);margin-top:.3rem}
+    .person-card.nonni .ruolo{color:var(--amber)}
+    .person-card.genitori .ruolo{color:var(--teal)}
+    .person-card.figli .ruolo{color:var(--green)}
+    .tree-connector{width:2px;height:32px;background:var(--cream-dk);margin:0 auto}
+    /* Possessives table */
+    .poss-table{width:100%;border-collapse:collapse;margin-top:1.5rem;font-size:.9rem}
+    .poss-table th{background:var(--red);color:var(--white);padding:.6rem 1rem;text-align:left;font-weight:600}
+    .poss-table td{padding:.55rem 1rem;border-bottom:1px solid var(--cream-dk)}
+    .poss-table tr:nth-child(even) td{background:var(--white)}
+    .poss-table .form{font-weight:700;color:var(--red)}
+    .rule-box{background:var(--white);border-left:4px solid var(--amber);border-radius:0 12px 12px 0;padding:1.2rem 1.5rem;margin:1.5rem 0}
+    .rule-box h4{font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:.6rem}
+    .rule-box .good{color:var(--green);font-weight:700}
+    .rule-box .bad{color:var(--red);font-weight:700;text-decoration:line-through}
+    /* Dialogue */
+    .dialogue{display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem}
+    .dlg-bubble{background:var(--white);border-radius:16px;padding:1rem 1.25rem;box-shadow:0 2px 12px rgba(0,0,0,.07);max-width:480px;cursor:pointer;transition:box-shadow .2s}
+    .dlg-bubble:hover{box-shadow:0 4px 20px rgba(0,0,0,.12)}
+    .dlg-bubble.right{align-self:flex-end;background:var(--red);color:var(--white)}
+    .dlg-bubble .speaker{font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:.3rem}
+    .dlg-bubble.right .speaker{color:rgba(255,255,255,.7)}
+    .dlg-bubble p{font-size:.95rem;line-height:1.5}
+    .dlg-bubble .es{display:none;margin-top:.5rem;font-size:.8rem;color:#aaa;font-style:italic}
+    .dlg-bubble.right .es{color:rgba(255,255,255,.6)}
+    .dlg-bubble.revealed .es{display:block}
+    .dlg-hint{text-align:center;font-size:.75rem;color:#aaa;margin-top:.5rem;font-style:italic}
+    /* Numbers */
+    .num-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;margin-top:1.5rem}
+    .num-card{background:var(--white);border-radius:12px;padding:1.1rem 1rem;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.07);border-top:3px solid var(--red)}
+    .num-card .numeral{font-size:1.5rem;font-weight:700;font-family:var(--fh);color:var(--red)}
+    .num-card .letters{font-size:.85rem;font-weight:600;margin-top:.4rem;color:var(--black)}
+    .num-card .es{font-size:.72rem}
+    /* C'è practice */
+    .cisce-box{background:var(--white);border-radius:12px;padding:1.2rem 1.5rem;margin-bottom:1rem;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+    .cisce-box .sentence{font-size:1rem;margin-bottom:.75rem;line-height:1.5}
+    .cisce-box .btns{display:flex;gap:.75rem}
+    .cisce-opt{padding:.5rem 1.2rem;border-radius:20px;border:2px solid var(--cream-dk);background:transparent;cursor:pointer;font-family:var(--fb);font-size:.9rem;font-weight:600;transition:all .2s}
+    .cisce-opt:hover{border-color:var(--red)}
+    .cisce-opt.correct{background:var(--green);color:var(--white);border-color:var(--green)}
+    .cisce-opt.wrong{background:var(--red);color:var(--white);border-color:var(--red);opacity:.6}
+    /* Cultural strip */
+    .cultural-strip{background:var(--teal);padding:4rem 2rem;color:var(--white)}
+    .cultural-strip .section-label{color:rgba(255,255,255,.7)}
+    .cultural-strip .section-title{color:var(--white)}
+    .cultural-strip .section-title em{color:var(--gold)}
+    .cultural-strip p{color:rgba(255,255,255,.85);line-height:1.8;font-size:.95rem}
+  </style>
+</head>
+<body class="hide-es">
+
+<button class="trans-btn" id="transBtn" onclick="toggleTrans()">Mostra traduzione</button>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-circle" id="bg1"></div>
+  <div class="hero-bg-circle" id="bg2"></div>
+  <span class="hero-badge">Unità 11 · Scoperta</span>
+  <h1>In famiglia 👨‍👩‍👧‍👦</h1>
+  <p class="hero-sub">La famiglia: il cuore della vita italiana.<span class="es"> La familia: el corazón de la vida italiana.</span></p>
+  <div class="scroll-hint">
+    <span>Scorri</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- SOFIA INTRO -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="sofia-wrap" data-a="up">
+      <div class="sofia-avatar">👩‍🏫</div>
+      <div class="speech-bubble">
+        <strong>Sofia dice</strong>
+        <p>In questa unità parliamo di famiglia! Impariamo i nomi dei parenti, i possessivi, e come descrivere la nostra famiglia con <em>c'è</em> e <em>ci sono</em>.</p>
+        <p class="es">En esta unidad hablamos de la familia. Aprendemos los nombres de los parientes, los posesivos y cómo describir nuestra familia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAROLE NUOVE -->
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="up">Attività di ascolto</p>
+    <h2 class="section-title" data-a="up">Riconosci le <em>parole di famiglia</em></h2>
+    <p class="section-desc" data-a="up">Seleziona solo le parole legate alla famiglia che senti o riconosci. <span class="es">Selecciona solo las palabras relacionadas con la familia.</span></p>
+    <div class="word-grid" data-stagger id="wordGrid">
+      <div class="word-card" data-correct="true" onclick="toggleWord(this)"><span class="word-badge">✓</span>nonno</div>
+      <div class="word-card" onclick="toggleWord(this)"><span class="word-badge">✗</span>amico</div>
+      <div class="word-card" data-correct="true" onclick="toggleWord(this)"><span class="word-badge">✓</span>nonna</div>
+      <div class="word-card" data-correct="true" onclick="toggleWord(this)"><span class="word-badge">✓</span>padre</div>
+      <div class="word-card" onclick="toggleWord(this)"><span class="word-badge">✗</span>lavoro</div>
+      <div class="word-card" data-correct="true" onclick="toggleWord(this)"><span class="word-badge">✓</span>madre</div>
+      <div class="word-card" data-correct="true" onclick="toggleWord(this)"><span class="word-badge">✓</span>fratello</div>
+      <div class="word-card" onclick="toggleWord(this)"><span class="word-badge">✗</span>scuola</div>
+      <div class="word-card" data-correct="true" onclick="toggleWord(this)"><span class="word-badge">✓</span>sorella</div>
+      <div class="word-card" data-correct="true" onclick="toggleWord(this)"><span class="word-badge">✓</span>figlio</div>
+      <div class="word-card" data-correct="true" onclick="toggleWord(this)"><span class="word-badge">✓</span>nipote</div>
+      <div class="word-card" onclick="toggleWord(this)"><span class="word-badge">✗</span>città</div>
+      <div class="word-card" data-correct="true" onclick="toggleWord(this)"><span class="word-badge">✓</span>zio</div>
+      <div class="word-card" data-correct="true" onclick="toggleWord(this)"><span class="word-badge">✓</span>zia</div>
+      <div class="word-card" data-correct="true" onclick="toggleWord(this)"><span class="word-badge">✓</span>cugino</div>
+      <div class="word-card" data-correct="true" onclick="toggleWord(this)"><span class="word-badge">✓</span>genitori</div>
+    </div>
+    <div class="word-actions">
+      <button class="btn btn-primary" onclick="verifyWords()">Verifica ✓</button>
+      <button class="btn btn-ghost" onclick="resetWords()">Ricomincia</button>
+      <span class="score-display" id="wordScore"></span>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Corretta</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div> Falso positivo</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Mancata</div>
+    </div>
+  </div>
+</section>
+
+<!-- ALBERO GENEALOGICO -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label" data-a="up">La famiglia Rossi</p>
+    <h2 class="section-title" data-a="up">L'albero <em>genealogico</em></h2>
+    <p class="section-desc" data-a="up">Guarda la famiglia di Marco. <span class="es">Mira la familia de Marco.</span></p>
+    <div class="tree" data-a="up">
+      <div class="tree-row" data-stagger>
+        <div class="person-card nonni">
+          <span class="emoji">👴</span>
+          <div class="nome">Luigi</div>
+          <div class="anni">75 anni</div>
+          <div class="ruolo">il nonno <span class="es">/ abuelo</span></div>
+        </div>
+        <div class="person-card nonni">
+          <span class="emoji">👵</span>
+          <div class="nome">Maria</div>
+          <div class="anni">72 anni</div>
+          <div class="ruolo">la nonna <span class="es">/ abuela</span></div>
+        </div>
+      </div>
+      <div class="tree-connector"></div>
+      <div class="tree-row" data-stagger>
+        <div class="person-card genitori">
+          <span class="emoji">👨</span>
+          <div class="nome">Roberto</div>
+          <div class="anni">50 anni</div>
+          <div class="ruolo">il padre <span class="es">/ padre</span></div>
+        </div>
+        <div class="person-card genitori">
+          <span class="emoji">👩</span>
+          <div class="nome">Anna</div>
+          <div class="anni">48 anni</div>
+          <div class="ruolo">la madre <span class="es">/ madre</span></div>
+        </div>
+        <div class="person-card" style="border-top-color:var(--amber)">
+          <span class="emoji">👨</span>
+          <div class="nome">Marco</div>
+          <div class="anni">45 anni</div>
+          <div class="ruolo" style="color:var(--amber)">lo zio <span class="es">/ tío</span></div>
+        </div>
+      </div>
+      <div class="tree-connector"></div>
+      <div class="tree-row" data-stagger>
+        <div class="person-card figli" style="border-top-color:var(--red)">
+          <span class="emoji">🧑</span>
+          <div class="nome">Marco (io)</div>
+          <div class="anni">25 anni</div>
+          <div class="ruolo" style="color:var(--red)">il figlio <span class="es">/ hijo</span></div>
+        </div>
+        <div class="person-card figli">
+          <span class="emoji">👧</span>
+          <div class="nome">Giulia</div>
+          <div class="anni">22 anni</div>
+          <div class="ruolo">la sorella <span class="es">/ hermana</span></div>
+        </div>
+        <div class="person-card" style="border-top-color:var(--amber)">
+          <span class="emoji">👧</span>
+          <div class="nome">Sofia</div>
+          <div class="anni">20 anni</div>
+          <div class="ruolo" style="color:var(--amber)">la cugina <span class="es">/ prima</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- C'È / CI SONO -->
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="up">Struttura chiave</p>
+    <h2 class="section-title" data-a="up"><em>C'è</em> e <em>ci sono</em></h2>
+    <p class="section-desc" data-a="up">C'è (hay/there is) con il singolare. Ci sono con il plurale. <span class="es">C'è se usa con singular. Ci sono con plural.</span></p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2rem 0;max-width:640px" data-stagger>
+      <div style="background:var(--white);border-radius:12px;padding:1.5rem;border-top:4px solid var(--amber)">
+        <div style="font-size:1.6rem;font-weight:900;font-family:var(--fh);color:var(--amber);margin-bottom:.5rem">C'è</div>
+        <p style="font-size:.9rem;color:#555">+ singolare</p>
+        <p style="margin-top:.75rem;font-weight:600">C'è <em>una sorella</em></p>
+        <p style="margin-top:.25rem;font-weight:600">C'è <em>un gatto</em></p>
+        <p class="es">Hay una hermana / Hay un gato</p>
+      </div>
+      <div style="background:var(--white);border-radius:12px;padding:1.5rem;border-top:4px solid var(--red)">
+        <div style="font-size:1.6rem;font-weight:900;font-family:var(--fh);color:var(--red);margin-bottom:.5rem">Ci sono</div>
+        <p style="font-size:.9rem;color:#555">+ plurale</p>
+        <p style="margin-top:.75rem;font-weight:600">Ci sono <em>tre sorelle</em></p>
+        <p style="margin-top:.25rem;font-weight:600">Ci sono <em>due gatti</em></p>
+        <p class="es">Hay tres hermanas / Hay dos gatos</p>
+      </div>
+    </div>
+    <h3 style="margin-bottom:1rem;font-size:1rem;font-weight:700" data-a="up">Pratica: Scegli la forma corretta</h3>
+    <div data-a="up">
+      <div class="cisce-box">
+        <p class="sentence">In famiglia _______ cinque persone.</p>
+        <div class="btns">
+          <button class="cisce-opt" onclick="checkCisce(this,'wrong')">c'è</button>
+          <button class="cisce-opt" onclick="checkCisce(this,'correct')">ci sono</button>
+        </div>
+      </div>
+      <div class="cisce-box">
+        <p class="sentence">_______ un cane in casa?</p>
+        <div class="btns">
+          <button class="cisce-opt" onclick="checkCisce(this,'correct')">C'è</button>
+          <button class="cisce-opt" onclick="checkCisce(this,'wrong')">Ci sono</button>
+        </div>
+      </div>
+      <div class="cisce-box">
+        <p class="sentence">_______ molte fotografie della famiglia sul muro.</p>
+        <div class="btns">
+          <button class="cisce-opt" onclick="checkCisce(this,'wrong')">C'è</button>
+          <button class="cisce-opt" onclick="checkCisce(this,'correct')">Ci sono</button>
+        </div>
+      </div>
+      <div class="cisce-box">
+        <p class="sentence">_______ un problema con la prenotazione.</p>
+        <div class="btns">
+          <button class="cisce-opt" onclick="checkCisce(this,'correct')">C'è</button>
+          <button class="cisce-opt" onclick="checkCisce(this,'wrong')">Ci sono</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POSSESSIVI -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label" data-a="up">Grammatica essenziale</p>
+    <h2 class="section-title" data-a="up">I <em>possessivi</em> con la famiglia</h2>
+    <div class="rule-box" data-a="up">
+      <h4>⚠️ Regola importante</h4>
+      <p>Con i nomi di parentela singolari, <strong>NON si usa l'articolo</strong>:</p>
+      <p style="margin-top:.75rem"><span class="good">✓ mia madre</span> &nbsp;·&nbsp; <span class="good">✓ tuo fratello</span> &nbsp;·&nbsp; <span class="good">✓ suo padre</span></p>
+      <p style="margin-top:.4rem"><span class="bad">✗ la mia madre</span> &nbsp;·&nbsp; <span class="bad">✗ il tuo fratello</span></p>
+      <p class="es" style="margin-top:.75rem">Con sustantivos de parentesco en singular no se usa el artículo</p>
+    </div>
+    <table class="poss-table" data-a="up">
+      <thead>
+        <tr><th>Persona</th><th>Maschile sing.</th><th>Femminile sing.</th><th>Maschile pl.</th><th>Femminile pl.</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>io</td><td class="form">mio padre</td><td class="form">mia madre</td><td class="form">i miei zii</td><td class="form">le mie sorelle</td></tr>
+        <tr><td>tu</td><td class="form">tuo fratello</td><td class="form">tua sorella</td><td class="form">i tuoi nonni</td><td class="form">le tue cugine</td></tr>
+        <tr><td>lui/lei</td><td class="form">suo figlio</td><td class="form">sua figlia</td><td class="form">i suoi nipoti</td><td class="form">le sue zie</td></tr>
+        <tr><td>noi</td><td class="form">nostro cugino</td><td class="form">nostra zia</td><td class="form">i nostri genitori</td><td class="form">le nostre nonne</td></tr>
+        <tr><td>voi</td><td class="form">vostro nonno</td><td class="form">vostra nonna</td><td class="form">i vostri figli</td><td class="form">le vostre figlie</td></tr>
+        <tr><td>loro</td><td colspan="4" style="text-align:center;font-weight:700;color:var(--red)">il loro padre / la loro madre / i loro fratelli (sempre con articolo!)</td></tr>
+      </tbody>
+    </table>
+    <p class="es" style="margin-top:1rem">Nota: "loro" siempre lleva artículo, incluso con parentesco singular</p>
+  </div>
+</section>
+
+<!-- DIALOGO -->
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="up">Dialogo autentico</p>
+    <h2 class="section-title" data-a="up">Sofia e Marco <em>parlano di famiglia</em></h2>
+    <p class="dlg-hint">Clicca su ogni messaggio per vedere la traduzione</p>
+    <div class="dialogue" data-a="up">
+      <div class="dlg-bubble" onclick="this.classList.toggle('revealed')">
+        <div class="speaker">Sofia</div>
+        <p>Marco, hai fratelli?</p>
+        <p class="es">Marco, ¿tienes hermanos?</p>
+      </div>
+      <div class="dlg-bubble right" onclick="this.classList.toggle('revealed')">
+        <div class="speaker">Marco</div>
+        <p>Sì, ho una sorella. Si chiama Giulia e ha ventidue anni.</p>
+        <p class="es">Sí, tengo una hermana. Se llama Giulia y tiene veintidós años.</p>
+      </div>
+      <div class="dlg-bubble" onclick="this.classList.toggle('revealed')">
+        <div class="speaker">Sofia</div>
+        <p>E i tuoi nonni? Sono ancora tutti e quattro?</p>
+        <p class="es">¿Y tus abuelos? ¿Siguen siendo los cuatro?</p>
+      </div>
+      <div class="dlg-bubble right" onclick="this.classList.toggle('revealed')">
+        <div class="speaker">Marco</div>
+        <p>Sì! Ci sono tutti e quattro — vivono a Roma. Mia nonna Maria ha settantadue anni ed è energicissima!</p>
+        <p class="es">¡Sí! Están los cuatro — viven en Roma. Mi abuela Maria tiene 72 años y es muy activa.</p>
+      </div>
+      <div class="dlg-bubble" onclick="this.classList.toggle('revealed')">
+        <div class="speaker">Sofia</div>
+        <p>Che bella famiglia numerosa! C'è anche uno zio, vero?</p>
+        <p class="es">¡Qué bella familia numerosa! También hay un tío, ¿verdad?</p>
+      </div>
+      <div class="dlg-bubble right" onclick="this.classList.toggle('revealed')">
+        <div class="speaker">Marco</div>
+        <p>Sì, mio zio Marco — sì, ci chiamiamo entrambi Marco! — e sua figlia Sofia, la mia cugina!</p>
+        <p class="es">Sí, mi tío Marco — sí, ¡los dos nos llamamos Marco! — y su hija Sofia, ¡mi prima!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMERI OLTRE 1000 -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label" data-a="up">Numeri grandi</p>
+    <h2 class="section-title" data-a="up">Oltre <em>mille</em></h2>
+    <p class="section-desc" data-a="up">Come si formano i numeri grandi in italiano. <span class="es">Cómo se forman los números grandes en italiano.</span></p>
+    <div class="num-grid" data-stagger>
+      <div class="num-card"><div class="numeral">1.000</div><div class="letters">mille</div><p class="es">mil</p></div>
+      <div class="num-card"><div class="numeral">1.500</div><div class="letters">millecinquecento</div><p class="es">mil quinientos</p></div>
+      <div class="num-card"><div class="numeral">2.000</div><div class="letters">duemila</div><p class="es">dos mil</p></div>
+      <div class="num-card"><div class="numeral">3.500</div><div class="letters">tremilacinquecento</div><p class="es">tres mil quinientos</p></div>
+      <div class="num-card"><div class="numeral">10.000</div><div class="letters">diecimila</div><p class="es">diez mil</p></div>
+      <div class="num-card"><div class="numeral">100.000</div><div class="letters">centomila</div><p class="es">cien mil</p></div>
+      <div class="num-card"><div class="numeral">1.000.000</div><div class="letters">un milione</div><p class="es">un millón</p></div>
+      <div class="num-card"><div class="numeral">2.000.000</div><div class="letters">due milioni</div><p class="es">dos millones</p></div>
+    </div>
+    <div class="rule-box" style="margin-top:2rem" data-a="up">
+      <h4>💡 Regola</h4>
+      <p><strong>mille</strong> (solo 1.000) → <strong>mila</strong> al plurale (2.000 = duemila, 10.000 = diecimila)</p>
+      <p style="margin-top:.5rem"><strong>milione</strong> → <strong>milioni</strong> al plurale (2.000.000 = due milioni)</p>
+      <p class="es">mille (para 1.000), mila en plural. milione → milioni en plural.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURAL STRIP -->
+<section class="cultural-strip">
+  <div class="container">
+    <p class="section-label">Cultura italiana</p>
+    <h2 class="section-title" style="margin-bottom:1.5rem">La famiglia italiana: <em>tra tradizione e modernità</em></h2>
+    <p>In Italia, la famiglia occupa un posto centralissimo nella vita sociale. Il pranzo della domenica è quasi sacro: nonni, genitori, figli e nipoti si riuniscono attorno alla tavola per ore. Anche i giovani italiani, rispetto ai coetanei europei, tendono a restare in famiglia più a lungo — spesso fino ai 30 anni. Non per mancanza di indipendenza, ma per scelta affettiva e culturale. <em>"La famiglia prima di tutto"</em> non è solo un detto: è un modo di vivere.</p>
+  </div>
+</section>
+
+<script>
+  // Translation toggle
+  function toggleTrans(){
+    document.body.classList.toggle('hide-es');
+    document.getElementById('transBtn').textContent =
+      document.body.classList.contains('hide-es') ? 'Mostra traduzione' : 'Nascondi traduzione';
+  }
+
+  // Word recognition
+  function toggleWord(card){
+    if(card.classList.contains('correct')||card.classList.contains('missed')||card.classList.contains('false-pos')||card.classList.contains('neutral')) return;
+    card.classList.toggle('selected');
+  }
+  function verifyWords(){
+    const cards = document.querySelectorAll('.word-card');
+    let correct=0,total=0;
+    cards.forEach(c=>{
+      const isCorrect = c.dataset.correct==='true';
+      const isSelected = c.classList.contains('selected');
+      total += isCorrect ? 1 : 0;
+      c.classList.remove('selected');
+      if(isCorrect && isSelected){c.classList.add('correct');correct++;}
+      else if(!isCorrect && isSelected) c.classList.add('false-pos');
+      else if(isCorrect && !isSelected) c.classList.add('missed');
+      else c.classList.add('neutral');
+    });
+    document.getElementById('wordScore').textContent = `${correct}/${total} corrette`;
+  }
+  function resetWords(){
+    document.querySelectorAll('.word-card').forEach(c=>{
+      c.className='word-card';
+      c.querySelector('.word-badge').textContent = c.dataset.correct==='true'?'✓':'✗';
+    });
+    document.getElementById('wordScore').textContent='';
+  }
+
+  // C'è / Ci sono practice
+  function checkCisce(btn, result){
+    const box = btn.closest('.cisce-box');
+    if(box.dataset.done) return;
+    box.dataset.done='1';
+    const btns = box.querySelectorAll('.cisce-opt');
+    btns.forEach(b=>b.disabled=true);
+    if(result==='correct') btn.classList.add('correct');
+    else {
+      btn.classList.add('wrong');
+      btns.forEach(b=>{if(b!==btn) b.classList.add('correct');});
+    }
+  }
+
+  // IntersectionObserver animations
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');}});
+  },{threshold:0.12});
+  document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>io.observe(el));
+
+  // Parallax hero
+  window.addEventListener('scroll',()=>{
+    const y = window.scrollY;
+    const b1=document.getElementById('bg1'), b2=document.getElementById('bg2');
+    if(b1) b1.style.transform=`translateY(${y*0.25}px)`;
+    if(b2) b2.style.transform=`translateY(${y*-0.15}px)`;
+  });
+</script>
+</body>
+</html>

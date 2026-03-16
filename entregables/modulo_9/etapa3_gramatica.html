@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modulo 9 · Grammatica — Al bar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;
+  --red:#cc4736;--teal:#78a6ba;--green:#528e74;--black:#1a1a18;--white:#ffffff;
+  --hdr:var(--green);--r:8px;
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6}
+body:not(.show-es) .es{display:none!important}
+.es{font-size:.82rem;color:#666;font-style:italic;display:block;margin-top:.2rem}
+nav{position:sticky;top:0;z-index:100;background:var(--black);display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{color:var(--gold);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.75rem 1.1rem;white-space:nowrap;transition:background .2s}
+nav a:hover{background:rgba(255,255,255,.1)}
+nav a.active{background:var(--green);color:var(--white)}
+.page-header{background:var(--green);color:var(--white);padding:3rem 1.5rem 2.5rem;text-align:center;position:relative}
+.page-header .badge{display:inline-block;background:rgba(255,255,255,.2);border-radius:20px;padding:.25rem .85rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.85rem}
+.page-header h1{font-family:var(--fh);font-style:italic;font-size:2.4rem;margin-bottom:.5rem}
+.page-header p{opacity:.9;font-size:1.05rem}
+.toggle-btn{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:var(--white);border-radius:var(--r);padding:.45rem .9rem;font-family:var(--fb);font-size:.78rem;font-weight:600;cursor:pointer;transition:background .2s}
+.toggle-btn:hover{background:rgba(255,255,255,.35)}
+main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem}
+section{margin-bottom:3rem}
+.section-title{font-family:var(--fh);font-style:italic;font-size:1.6rem;color:var(--green);margin-bottom:1.25rem;padding-bottom:.4rem;border-bottom:2px solid var(--cream-dk)}
+.section-intro{margin-bottom:1.1rem;font-size:.97rem}
+.gram-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
+.gram-table th{background:var(--green);color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
+.gram-table td{padding:.5rem .75rem;border-bottom:1px solid var(--cream-dk)}
+.gram-table tr:nth-child(even) td{background:rgba(0,0,0,.03)}
+.form{font-weight:600;color:var(--green)}
+.example-box{background:var(--white);border-left:4px solid var(--green);border-radius:0 var(--r) var(--r) 0;padding:.75rem 1rem;margin:.6rem 0;font-size:.95rem}
+.example-box .it{font-weight:600}
+.example-box .tr-small{font-size:.82rem;color:#777;font-style:italic}
+.inline-prac{background:var(--cream-dk);border-radius:var(--r);padding:1.1rem 1.25rem;margin-top:1.25rem}
+.inline-prac h4{font-family:var(--fh);font-style:italic;color:var(--green);margin-bottom:.85rem;font-size:1.1rem}
+.prac-item{margin-bottom:.65rem;font-size:.95rem;display:flex;align-items:center;flex-wrap:wrap;gap:.4rem}
+.prac-input{border:1.5px solid var(--cream-dk);border-radius:6px;padding:.3rem .55rem;font-family:var(--fb);font-size:.92rem;background:var(--white);width:110px;transition:border .2s}
+.prac-input:focus{outline:none;border-color:var(--green)}
+.prac-item.correct .prac-input{border-color:var(--green);background:rgba(82,142,116,.1)}
+.prac-item.wrong .prac-input{border-color:var(--red);background:rgba(204,71,54,.08)}
+.prac-fb{font-size:.8rem;margin-left:.3rem}
+.prac-item.correct .prac-fb{color:var(--green)}
+.prac-item.wrong .prac-fb{color:var(--red)}
+.btn{border:none;border-radius:var(--r);padding:.5rem 1.1rem;font-family:var(--fb);font-size:.87rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--green);color:var(--white)}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-ghost{background:transparent;border:1.5px solid var(--green);color:var(--green)}
+.btn-ghost:hover{background:var(--green);color:var(--white)}
+.quiz-wrap{background:var(--white);border-radius:var(--r);padding:1.5rem;border:1px solid var(--cream-dk)}
+.quiz-q{margin-bottom:1.5rem}
+.quiz-q p{font-weight:600;margin-bottom:.7rem;font-size:.97rem}
+.quiz-opts{display:flex;flex-direction:column;gap:.45rem}
+.quiz-opt{background:var(--cream);border-radius:6px;padding:.6rem .9rem;cursor:pointer;font-size:.92rem;border:1.5px solid transparent;transition:all .2s}
+.quiz-opt:hover{border-color:var(--green)}
+.quiz-opt.correct{background:rgba(82,142,116,.15);border-color:var(--green);color:var(--green)}
+.quiz-opt.wrong{background:rgba(204,71,54,.1);border-color:var(--red);color:var(--red)}
+.quiz-result{text-align:center;padding:1.25rem;font-size:1.1rem;font-weight:600;border-radius:var(--r);margin-top:1rem;display:none}
+.quiz-result.show{display:block}
+.quiz-result.good{background:rgba(82,142,116,.15);color:var(--green)}
+.quiz-result.ok{background:rgba(239,207,127,.3);color:#7a5e00}
+.quiz-result.try{background:rgba(204,71,54,.1);color:var(--red)}
+.rule-box{background:rgba(82,142,116,.1);border:1px solid rgba(82,142,116,.3);border-radius:var(--r);padding:.85rem 1.1rem;margin:.8rem 0;font-size:.93rem}
+.rule-box strong{color:var(--green)}
+footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px solid var(--cream-dk)}
+/* Bar vocab grid */
+.bar-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;margin:1rem 0}
+.bar-cat{background:var(--white);border-radius:var(--r);padding:.85rem;border:1px solid var(--cream-dk);border-top:3px solid var(--green)}
+.bar-cat h5{color:var(--green);font-weight:700;margin-bottom:.6rem;font-size:.9rem;text-transform:uppercase;letter-spacing:.03em}
+.bar-item{font-size:.88rem;padding:.2rem 0;border-bottom:1px solid var(--cream-dk);display:flex;justify-content:space-between}
+.bar-item:last-child{border-bottom:none}
+.bar-item .it{font-weight:600}
+.bar-item .es{font-size:.82rem;color:#888;font-style:italic;margin-top:0;display:inline}
+/* Minimal pairs */
+.pair-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;margin:1rem 0}
+.pair-card{background:var(--white);border-radius:var(--r);padding:.85rem;border:1px solid var(--cream-dk);text-align:center}
+.pair-card .row{display:flex;justify-content:space-around;margin:.4rem 0}
+.pair-card .word{font-size:1.1rem;font-weight:700;color:var(--green);background:var(--cream);padding:.3rem .7rem;border-radius:6px}
+.pair-card .meaning{font-size:.78rem;color:#888;margin-top:.15rem}
+/* Expressions */
+.expr-list{display:flex;flex-direction:column;gap:.5rem;margin:1rem 0}
+.expr-item{background:var(--white);border-radius:var(--r);padding:.75rem 1rem;border:1px solid var(--cream-dk);display:flex;gap:1rem;align-items:flex-start}
+.expr-phrase{font-weight:700;color:var(--green);min-width:160px;font-size:.97rem}
+.expr-use{font-size:.88rem;color:#555}
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="#articoli" class="active">Articoli Indet.</a>
+  <a href="#bar">Al Bar</a>
+  <a href="#doppie">Le Doppie</a>
+  <a href="#espressioni">Espressioni</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<header class="page-header">
+  <button class="toggle-btn" id="toggleEs" onclick="toggleEs()">Mostra traduzioni</button>
+  <div class="badge">Modulo 9 · Grammatica</div>
+  <h1>Al bar</h1>
+  <p>Articoli indeterminativi, lessico del bar e consonanti doppie</p>
+</header>
+
+<main>
+
+<!-- SECTION 1: ARTICOLI INDETERMINATIVI -->
+<section id="articoli">
+  <h2 class="section-title">1. Articoli indeterminativi — un / una / un' / uno</h2>
+  <p class="section-intro">L'articolo indeterminativo si usa per riferirsi a qualcosa di non specifico, per la prima menzione.
+    <span class="es">El artículo indeterminativo se usa cuando mencionas algo por primera vez o de forma general.</span>
+  </p>
+
+  <table class="gram-table">
+    <thead><tr><th>Genere</th><th>Contesto</th><th>Articolo</th><th>Esempio</th></tr></thead>
+    <tbody>
+      <tr><td>Maschile</td><td>Consonante o vocale</td><td><span class="form">un</span></td><td>un caffè, un amico, un hotel</td></tr>
+      <tr><td>Maschile</td><td>s+cons, z, gn, ps, y, x</td><td><span class="form">uno</span></td><td>uno zaino, uno studente, uno psicologo</td></tr>
+      <tr><td>Femminile</td><td>Consonante</td><td><span class="form">una</span></td><td>una birra, una pizza, una borsa</td></tr>
+      <tr><td>Femminile</td><td>Vocale</td><td><span class="form">un'</span></td><td>un'acqua, un'arancia, un'idea</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-box">
+    <strong>Attenzione!</strong> <em>Un</em> (maschile) NON ha apostrofo. Solo <em>un'</em> (femminile davanti a vocale) ha l'apostrofo.
+    <br><em>Un amico</em> (m.) vs <em>un'amica</em> (f.) — la differenza è solo l'apostrofo!
+    <span class="es">Error frecuente: escribir "un'" para masculino. Solo el femenino tiene apóstrofo.</span>
+  </div>
+
+  <div class="inline-prac">
+    <h4>Pratica — Quale articolo?</h4>
+    <div id="prac1">
+      <div class="prac-item" data-ans="un">___ cappuccino, per favore. <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="una">___ pasta al pomodoro. <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="un'">___ acqua minerale. <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="uno">___ spumante secco. <input class="prac-input" placeholder="..."></div>
+    </div>
+    <div style="margin-top:.85rem;display:flex;gap:.75rem">
+      <button class="btn btn-primary" onclick="checkPrac('prac1')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac1')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: AL BAR -->
+<section id="bar">
+  <h2 class="section-title">2. Al bar — il lessico</h2>
+  <p class="section-intro">Il bar italiano è un luogo speciale. Si va per il caffè, ma anche per la colazione, un aperitivo o una merenda.
+    <span class="es">El bar italiano no es como un bar español — es el lugar para el café rápido en la barra, el desayuno y el aperitivo.</span>
+  </p>
+
+  <div class="bar-grid">
+    <div class="bar-cat">
+      <h5>Caffè</h5>
+      <div class="bar-item"><span class="it">espresso</span><span class="es">café solo</span></div>
+      <div class="bar-item"><span class="it">cappuccino</span><span class="es">cappuccino</span></div>
+      <div class="bar-item"><span class="it">caffè macchiato</span><span class="es">café con leche poco</span></div>
+      <div class="bar-item"><span class="it">caffè latte</span><span class="es">café con leche</span></div>
+      <div class="bar-item"><span class="it">caffè decaffeinato</span><span class="es">descafeinado</span></div>
+    </div>
+    <div class="bar-cat">
+      <h5>Dolci</h5>
+      <div class="bar-item"><span class="it">cornetto</span><span class="es">croissant</span></div>
+      <div class="bar-item"><span class="it">brioche</span><span class="es">brioche</span></div>
+      <div class="bar-item"><span class="it">pasta</span><span class="es">pastel / bollo</span></div>
+      <div class="bar-item"><span class="it">torta</span><span class="es">tarta</span></div>
+      <div class="bar-item"><span class="it">gelato</span><span class="es">helado</span></div>
+    </div>
+    <div class="bar-cat">
+      <h5>Salato</h5>
+      <div class="bar-item"><span class="it">tramezzino</span><span class="es">sándwich triangular</span></div>
+      <div class="bar-item"><span class="it">panino</span><span class="es">bocadillo</span></div>
+      <div class="bar-item"><span class="it">toast</span><span class="es">tostado</span></div>
+      <div class="bar-item"><span class="it">piadina</span><span class="es">piadina (pan plano)</span></div>
+    </div>
+    <div class="bar-cat">
+      <h5>Bevande</h5>
+      <div class="bar-item"><span class="it">acqua naturale</span><span class="es">agua sin gas</span></div>
+      <div class="bar-item"><span class="it">acqua frizzante</span><span class="es">agua con gas</span></div>
+      <div class="bar-item"><span class="it">succo di frutta</span><span class="es">zumo de fruta</span></div>
+      <div class="bar-item"><span class="it">bibita</span><span class="es">refresco</span></div>
+      <div class="bar-item"><span class="it">aperitivo</span><span class="es">aperitivo</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: LE DOPPIE -->
+<section id="doppie">
+  <h2 class="section-title">3. Le consonanti doppie</h2>
+  <p class="section-intro">In italiano la consonante doppia si pronuncia più lunga della semplice. Questa differenza è fondamentale — cambia il significato della parola!
+    <span class="es">La consonante doble se pronuncia más larga, como si la "sujetaras" un momento más. Es fonológicamente significativa.</span>
+  </p>
+
+  <div class="pair-grid">
+    <div class="pair-card">
+      <div class="row"><div><div class="word">pala</div><div class="meaning">pala / remo</div></div><div><div class="word">palla</div><div class="meaning">pelota</div></div></div>
+    </div>
+    <div class="pair-card">
+      <div class="row"><div><div class="word">nona</div><div class="meaning">novena</div></div><div><div class="word">nonna</div><div class="meaning">abuela</div></div></div>
+    </div>
+    <div class="pair-card">
+      <div class="row"><div><div class="word">fato</div><div class="meaning">destino</div></div><div><div class="word">fatto</div><div class="meaning">hecho / hizo</div></div></div>
+    </div>
+    <div class="pair-card">
+      <div class="row"><div><div class="word">tono</div><div class="meaning">tono</div></div><div><div class="word">tonno</div><div class="meaning">atún</div></div></div>
+    </div>
+    <div class="pair-card">
+      <div class="row"><div><div class="word">caro</div><div class="meaning">querido/caro</div></div><div><div class="word">carro</div><div class="meaning">carro / carreta</div></div></div>
+    </div>
+    <div class="pair-card">
+      <div class="row"><div><div class="word">capello</div><div class="meaning">cabello</div></div><div><div class="word">cappello</div><div class="meaning">sombrero</div></div></div>
+    </div>
+  </div>
+
+  <div class="rule-box">
+    <strong>Come si pronuncia:</strong> Per le doppie, "tieni" la consonante un momento prima di rilasciarla. <em>palla</em> = pal-la (pausa sulla l). Non è due consonanti separate — è una consonante più lunga.
+    <span class="es">Truco: imagina que la consonante dura el doble de tiempo.</span>
+  </div>
+</section>
+
+<!-- SECTION 4: ESPRESSIONI -->
+<section id="espressioni">
+  <h2 class="section-title">4. Espressioni tipiche del bar</h2>
+  <p class="section-intro">Le frasi che senti e dici ogni volta che vai al bar.
+    <span class="es">Las frases que escuchas y dices cada vez que vas al bar:</span>
+  </p>
+
+  <div class="expr-list">
+    <div class="expr-item">
+      <span class="expr-phrase">Scusi! / Senta!</span>
+      <span class="expr-use">Per chiamare il barista. <span class="es">(Para llamar al barista)</span></span>
+    </div>
+    <div class="expr-item">
+      <span class="expr-phrase">Vorrei un caffè.</span>
+      <span class="expr-use">Forma educata per ordinare. <span class="es">(Forma educada: Querría un café)</span></span>
+    </div>
+    <div class="expr-item">
+      <span class="expr-phrase">Prendo un cappuccino.</span>
+      <span class="expr-use">Forma diretta e comune. <span class="es">(Tomo un cappuccino — forma directa)</span></span>
+    </div>
+    <div class="expr-item">
+      <span class="expr-phrase">Un caffè, per favore.</span>
+      <span class="expr-use">Brevissimo e molto usato. <span class="es">(Brevísimo y muy usado)</span></span>
+    </div>
+    <div class="expr-item">
+      <span class="expr-phrase">Quant'è? / Quanto costa?</span>
+      <span class="expr-use">Per chiedere il prezzo. <span class="es">(¿Cuánto es?)</span></span>
+    </div>
+    <div class="expr-item">
+      <span class="expr-phrase">Al banco / Al tavolo.</span>
+      <span class="expr-use">In piedi al banco (più economico) o seduto al tavolo. <span class="es">(En la barra o sentado en mesa)</span></span>
+    </div>
+    <div class="expr-item">
+      <span class="expr-phrase">Grazie! / Prego!</span>
+      <span class="expr-use">Grazie = gracias. Prego = de nada. <span class="es">(Las más básicas)</span></span>
+    </div>
+  </div>
+
+  <div class="inline-prac">
+    <h4>Pratica — Al bar</h4>
+    <div id="prac2">
+      <div class="prac-item" data-ans="vorrei">Buongiorno! ___ un cappuccino. <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="un">Prendo ___ cornetto. <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="quant'è">___ tutto? (¿Cuánto es todo?) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="prego">— Grazie! — ___! <input class="prac-input" placeholder="..."></div>
+    </div>
+    <div style="margin-top:.85rem;display:flex;gap:.75rem">
+      <button class="btn btn-primary" onclick="checkPrac('prac2')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac2')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <h2 class="section-title">Quiz — Verifica le tue conoscenze</h2>
+  <div class="quiz-wrap">
+    <div class="quiz-q" id="q1">
+      <p>1. "___arancia" — Quale articolo indeterminativo si usa?</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','a')">un</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','b')">una</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','c')">un'</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <p>2. "Vorrei ___acqua frizzante." — Articolo corretto:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','a')">uno</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','b')">un'</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','c')">una</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <p>3. "Nonna" significa:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','a')">novena</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','b')">nombre</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','c')">abuela</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <p>4. Per chiamare il barista dici:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','a')">Prego!</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','b')">Scusi!</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','c')">Grazie!</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <p>5. "Uno zaino" — Perché si usa "uno" e non "un"?</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','a')">Perché è femminile</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','b')">Perché inizia con z (z = speciale)</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','c')">Perché è plurale</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:1.25rem">
+      <button class="btn btn-primary" onclick="submitQuiz()">Controlla le risposte</button>
+    </div>
+    <div class="quiz-result" id="quiz-result"></div>
+  </div>
+</section>
+</main>
+
+<footer><p>Italiano Per Piacere · Modulo 9 · <em>Al bar</em></p></footer>
+
+<script>
+let esVisible=false;
+function toggleEs(){esVisible=!esVisible;document.body.classList.toggle('show-es',esVisible);document.getElementById('toggleEs').textContent=esVisible?'Nascondi traduzioni':'Mostra traduzioni';}
+const secs=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('nav a');
+window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)c=s.id});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)});});
+function checkPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{const inp=item.querySelector('.prac-input');const ans=item.dataset.ans;const val=inp.value.trim().toLowerCase();item.classList.remove('correct','wrong');let fb=item.querySelector('.prac-fb');if(!fb){fb=document.createElement('span');fb.className='prac-fb';item.appendChild(fb);}if(val===ans){item.classList.add('correct');fb.textContent='✓';}else{item.classList.add('wrong');fb.textContent='✗ '+ans;}});}
+function resetPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{item.classList.remove('correct','wrong');item.querySelector('.prac-input').value='';const fb=item.querySelector('.prac-fb');if(fb)fb.textContent='';});}
+const answers={q1:'c',q2:'b',q3:'c',q4:'b',q5:'b'};
+let selected={};
+function selectOpt(el,qid,opt){if(selected[qid])return;selected[qid]=opt;const opts=el.parentElement.querySelectorAll('.quiz-opt');opts.forEach(o=>o.style.pointerEvents='none');const correct=answers[qid];opts.forEach((o,i)=>{const k=['a','b','c'][i];if(k===correct)o.classList.add('correct');else if(k===opt)o.classList.add('wrong');});}
+function submitQuiz(){let score=0;Object.keys(answers).forEach(q=>{if(selected[q]===answers[q])score++;});const res=document.getElementById('quiz-result');res.classList.add('show');if(score>=4){res.className='quiz-result show good';res.textContent=`Bravissimo/a! ${score}/5 ✓`;}else if(score>=2){res.className='quiz-result show ok';res.textContent=`Bene! ${score}/5 — continua così.`;}else{res.className='quiz-result show try';res.textContent=`${score}/5 — Riprova! Rivedi le sezioni.`;}}
+</script>
+</body>
+</html>

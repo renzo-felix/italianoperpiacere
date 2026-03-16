@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modulo 10 · Grammatica — La mia giornata</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;
+  --red:#cc4736;--teal:#78a6ba;--green:#528e74;--black:#1a1a18;--white:#ffffff;
+  --hdr:var(--amber);--r:8px;
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6}
+body:not(.show-es) .es{display:none!important}
+.es{font-size:.82rem;color:#666;font-style:italic;display:block;margin-top:.2rem}
+nav{position:sticky;top:0;z-index:100;background:var(--black);display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{color:var(--gold);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.75rem 1.1rem;white-space:nowrap;transition:background .2s}
+nav a:hover{background:rgba(255,255,255,.1)}
+nav a.active{background:#c8940a;color:var(--white)}
+.page-header{background:var(--amber);color:var(--white);padding:3rem 1.5rem 2.5rem;text-align:center;position:relative}
+.page-header .badge{display:inline-block;background:rgba(255,255,255,.2);border-radius:20px;padding:.25rem .85rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.85rem}
+.page-header h1{font-family:var(--fh);font-style:italic;font-size:2.4rem;margin-bottom:.5rem}
+.page-header p{opacity:.9;font-size:1.05rem}
+.toggle-btn{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:var(--white);border-radius:var(--r);padding:.45rem .9rem;font-family:var(--fb);font-size:.78rem;font-weight:600;cursor:pointer;transition:background .2s}
+.toggle-btn:hover{background:rgba(255,255,255,.35)}
+main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem}
+section{margin-bottom:3rem}
+.section-title{font-family:var(--fh);font-style:italic;font-size:1.6rem;color:#c8940a;margin-bottom:1.25rem;padding-bottom:.4rem;border-bottom:2px solid var(--cream-dk)}
+.section-intro{margin-bottom:1.1rem;font-size:.97rem}
+.gram-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
+.gram-table th{background:var(--amber);color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
+.gram-table td{padding:.5rem .75rem;border-bottom:1px solid var(--cream-dk)}
+.gram-table tr:nth-child(even) td{background:rgba(0,0,0,.03)}
+.pron{color:#c8940a;font-weight:700;min-width:70px;display:inline-block}
+.form{font-weight:600;color:#c8940a}
+.example-box{background:var(--white);border-left:4px solid var(--amber);border-radius:0 var(--r) var(--r) 0;padding:.75rem 1rem;margin:.6rem 0;font-size:.95rem}
+.example-box .it{font-weight:600}
+.example-box .tr-small{font-size:.82rem;color:#777;font-style:italic}
+.inline-prac{background:var(--cream-dk);border-radius:var(--r);padding:1.1rem 1.25rem;margin-top:1.25rem}
+.inline-prac h4{font-family:var(--fh);font-style:italic;color:#c8940a;margin-bottom:.85rem;font-size:1.1rem}
+.prac-item{margin-bottom:.65rem;font-size:.95rem;display:flex;align-items:center;flex-wrap:wrap;gap:.4rem}
+.prac-input{border:1.5px solid var(--cream-dk);border-radius:6px;padding:.3rem .55rem;font-family:var(--fb);font-size:.92rem;background:var(--white);width:120px;transition:border .2s}
+.prac-input:focus{outline:none;border-color:var(--amber)}
+.prac-item.correct .prac-input{border-color:var(--green);background:rgba(82,142,116,.1)}
+.prac-item.wrong .prac-input{border-color:var(--red);background:rgba(204,71,54,.08)}
+.prac-fb{font-size:.8rem;margin-left:.3rem}
+.prac-item.correct .prac-fb{color:var(--green)}
+.prac-item.wrong .prac-fb{color:var(--red)}
+.btn{border:none;border-radius:var(--r);padding:.5rem 1.1rem;font-family:var(--fb);font-size:.87rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--amber);color:var(--white)}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-ghost{background:transparent;border:1.5px solid var(--amber);color:#c8940a}
+.btn-ghost:hover{background:var(--amber);color:var(--white)}
+.quiz-wrap{background:var(--white);border-radius:var(--r);padding:1.5rem;border:1px solid var(--cream-dk)}
+.quiz-q{margin-bottom:1.5rem}
+.quiz-q p{font-weight:600;margin-bottom:.7rem;font-size:.97rem}
+.quiz-opts{display:flex;flex-direction:column;gap:.45rem}
+.quiz-opt{background:var(--cream);border-radius:6px;padding:.6rem .9rem;cursor:pointer;font-size:.92rem;border:1.5px solid transparent;transition:all .2s}
+.quiz-opt:hover{border-color:var(--amber)}
+.quiz-opt.correct{background:rgba(82,142,116,.15);border-color:var(--green);color:var(--green)}
+.quiz-opt.wrong{background:rgba(204,71,54,.1);border-color:var(--red);color:var(--red)}
+.quiz-result{text-align:center;padding:1.25rem;font-size:1.1rem;font-weight:600;border-radius:var(--r);margin-top:1rem;display:none}
+.quiz-result.show{display:block}
+.quiz-result.good{background:rgba(82,142,116,.15);color:var(--green)}
+.quiz-result.ok{background:rgba(239,207,127,.3);color:#7a5e00}
+.quiz-result.try{background:rgba(204,71,54,.1);color:var(--red)}
+.rule-box{background:rgba(229,171,7,.1);border:1px solid rgba(229,171,7,.35);border-radius:var(--r);padding:.85rem 1.1rem;margin:.8rem 0;font-size:.93rem}
+.rule-box strong{color:#c8940a}
+footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px solid var(--cream-dk)}
+/* REFLEXIVE grid */
+.refl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1rem 0}
+.refl-block{background:var(--white);border-radius:var(--r);padding:.85rem;border:1px solid var(--cream-dk);border-top:3px solid var(--amber)}
+.refl-block h5{color:#c8940a;font-weight:700;margin-bottom:.6rem;font-size:.93rem}
+.refl-row{display:flex;justify-content:space-between;font-size:.88rem;padding:.2rem 0;border-bottom:1px solid var(--cream-dk)}
+.refl-row:last-child{border-bottom:none}
+.refl-pron{color:#c8940a;font-weight:600}
+/* FREQUENCY scale */
+.freq-scale{display:flex;flex-direction:column;gap:.4rem;margin:1rem 0;position:relative}
+.freq-item{display:flex;align-items:center;gap:.75rem}
+.freq-bar{height:28px;border-radius:4px;background:var(--amber);display:flex;align-items:center;padding:0 .6rem;color:var(--white);font-size:.85rem;font-weight:600;white-space:nowrap}
+.freq-pct{font-size:.8rem;color:#888;white-space:nowrap}
+/* POSSESSIVE table */
+.poss-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.88rem}
+.poss-table th{background:var(--amber);color:var(--white);padding:.45rem .6rem;text-align:left}
+.poss-table td{padding:.4rem .6rem;border-bottom:1px solid var(--cream-dk);font-size:.9rem}
+.poss-table .it{font-weight:700;color:#c8940a}
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="#riflessivi" class="active">Riflessivi</a>
+  <a href="#avverbi">Avverbi</a>
+  <a href="#possessivi">Possessivi</a>
+  <a href="#giorni">Art. + Giorni</a>
+  <a href="#fonetica">Fonetica</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<header class="page-header">
+  <button class="toggle-btn" id="toggleEs" onclick="toggleEs()">Mostra traduzioni</button>
+  <div class="badge">Modulo 10 · Grammatica</div>
+  <h1>La mia giornata</h1>
+  <p>Verbi riflessivi, avverbi di frequenza e possessivi</p>
+</header>
+
+<main>
+
+<!-- SECTION 1: RIFLESSIVI -->
+<section id="riflessivi">
+  <h2 class="section-title">1. Verbi riflessivi</h2>
+  <p class="section-intro">I verbi riflessivi si coniugano con i pronomi riflessivi: mi, ti, si, ci, vi, si. L'infinito termina in <em>-arsi / -ersi / -irsi</em>.
+    <span class="es">Los verbos reflexivos llevan un pronombre reflexivo antes del verbo conjugado. El infinitivo termina en -arsi/-ersi/-irsi.</span>
+  </p>
+
+  <div class="refl-grid">
+    <div class="refl-block">
+      <h5>svegliarsi — despertarse</h5>
+      <div class="refl-row"><span class="refl-pron">mi</span><span>sveglio</span></div>
+      <div class="refl-row"><span class="refl-pron">ti</span><span>svegli</span></div>
+      <div class="refl-row"><span class="refl-pron">si</span><span>sveglia</span></div>
+      <div class="refl-row"><span class="refl-pron">ci</span><span>svegliamo</span></div>
+      <div class="refl-row"><span class="refl-pron">vi</span><span>svegliate</span></div>
+      <div class="refl-row"><span class="refl-pron">si</span><span>svegliano</span></div>
+    </div>
+    <div class="refl-block">
+      <h5>alzarsi — levantarse</h5>
+      <div class="refl-row"><span class="refl-pron">mi</span><span>alzo</span></div>
+      <div class="refl-row"><span class="refl-pron">ti</span><span>alzi</span></div>
+      <div class="refl-row"><span class="refl-pron">si</span><span>alza</span></div>
+      <div class="refl-row"><span class="refl-pron">ci</span><span>alziamo</span></div>
+      <div class="refl-row"><span class="refl-pron">vi</span><span>alzate</span></div>
+      <div class="refl-row"><span class="refl-pron">si</span><span>alzano</span></div>
+    </div>
+    <div class="refl-block">
+      <h5>lavarsi — lavarse</h5>
+      <div class="refl-row"><span class="refl-pron">mi</span><span>lavo</span></div>
+      <div class="refl-row"><span class="refl-pron">ti</span><span>lavi</span></div>
+      <div class="refl-row"><span class="refl-pron">si</span><span>lava</span></div>
+      <div class="refl-row"><span class="refl-pron">ci</span><span>laviamo</span></div>
+      <div class="refl-row"><span class="refl-pron">vi</span><span>lavate</span></div>
+      <div class="refl-row"><span class="refl-pron">si</span><span>lavano</span></div>
+    </div>
+  </div>
+
+  <div class="rule-box">
+    <strong>Struttura:</strong> pronome riflessivo + verbo coniugato → <em>Mi sveglio alle sette.</em>
+    <br>All'infinito con modale: <em>Voglio svegliar<strong>mi</strong></em> oppure <em>Mi voglio svegliare</em> — entrambi corretti.
+    <span class="es">El pronombre reflexivo va antes del verbo conjugado o al final del infinitivo.</span>
+  </div>
+
+  <div class="example-box"><span class="it">Mi sveglio alle sei e mi alzo subito.</span><span class="tr-small">Me despierto a las seis y me levanto inmediatamente.</span></div>
+  <div class="example-box"><span class="it">A che ora ti svegli di solito?</span><span class="tr-small">¿A qué hora te despiertas normalmente?</span></div>
+
+  <div class="inline-prac">
+    <h4>Pratica — Coniuga il verbo riflessivo</h4>
+    <div id="prac1">
+      <div class="prac-item" data-ans="mi sveglio">Io ___ alle sei. (svegliarsi) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="si alza">Marco ___ tardi. (alzarsi) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="vi lavate">Voi ___ in bagno. (lavarsi) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="ci svegliamo">Noi ___ insieme. (svegliarsi) <input class="prac-input" placeholder="..."></div>
+    </div>
+    <div style="margin-top:.85rem;display:flex;gap:.75rem">
+      <button class="btn btn-primary" onclick="checkPrac('prac1')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac1')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: AVVERBI -->
+<section id="avverbi">
+  <h2 class="section-title">2. Avverbi di frequenza</h2>
+  <p class="section-intro">Gli avverbi di frequenza indicano quanto spesso facciamo qualcosa. Generalmente si mettono dopo il verbo.
+    <span class="es">Los adverbios de frecuencia van normalmente después del verbo conjugado.</span>
+  </p>
+
+  <div class="freq-scale">
+    <div class="freq-item"><div class="freq-bar" style="width:100%">sempre</div><div class="freq-pct">100% — siempre</div></div>
+    <div class="freq-item"><div class="freq-bar" style="width:82%">quasi sempre</div><div class="freq-pct">~85% — casi siempre</div></div>
+    <div class="freq-item"><div class="freq-bar" style="width:70%">spesso</div><div class="freq-pct">~70% — a menudo</div></div>
+    <div class="freq-item"><div class="freq-bar" style="width:50%">a volte / qualche volta</div><div class="freq-pct">~50% — a veces</div></div>
+    <div class="freq-item"><div class="freq-bar" style="width:30%">raramente / di rado</div><div class="freq-pct">~20% — raramente</div></div>
+    <div class="freq-item"><div class="freq-bar" style="width:10%">quasi mai</div><div class="freq-pct">~5% — casi nunca</div></div>
+    <div class="freq-item"><div class="freq-bar" style="width:5%;background:#888">mai</div><div class="freq-pct">0% — nunca</div></div>
+  </div>
+
+  <div class="rule-box">
+    <strong>MAI con "non":</strong> <em>Non mangio mai la carne.</em> (Nunca como carne) → si MAI va dopo il verbo, ci vuole NON prima.
+    <br>Se MAI viene all'inizio: <em>Mai mangio la carne.</em> — senza NON (più enfatico, letterario).
+    <span class="es">Con "mai" después del verbo siempre necesitas "non" antes: <em>non...mai</em>.</span>
+  </div>
+
+  <div class="example-box"><span class="it">Mi alzo sempre alle sei. — A volte faccio colazione al bar.</span><span class="tr-small">Siempre me levanto a las seis. — A veces desayuno en el bar.</span></div>
+</section>
+
+<!-- SECTION 3: POSSESSIVI -->
+<section id="possessivi">
+  <h2 class="section-title">3. I possessivi</h2>
+  <p class="section-intro">I possessivi concordano in genere e numero con la cosa posseduta, non con il possessore.
+    <span class="es">Los posesivos concuerdan con la cosa poseída, no con quien la posee.</span>
+  </p>
+
+  <table class="poss-table">
+    <thead><tr><th>Persona</th><th>Masch. sing.</th><th>Femm. sing.</th><th>Masch. pl.</th><th>Femm. pl.</th></tr></thead>
+    <tbody>
+      <tr><td>io</td><td class="it">il mio</td><td class="it">la mia</td><td class="it">i miei</td><td class="it">le mie</td></tr>
+      <tr><td>tu</td><td class="it">il tuo</td><td class="it">la tua</td><td class="it">i tuoi</td><td class="it">le tue</td></tr>
+      <tr><td>lui/lei</td><td class="it">il suo</td><td class="it">la sua</td><td class="it">i suoi</td><td class="it">le sue</td></tr>
+      <tr><td>noi</td><td class="it">il nostro</td><td class="it">la nostra</td><td class="it">i nostri</td><td class="it">le nostre</td></tr>
+      <tr><td>voi</td><td class="it">il vostro</td><td class="it">la vostra</td><td class="it">i vostri</td><td class="it">le vostre</td></tr>
+      <tr><td>loro</td><td class="it">il loro</td><td class="it">la loro</td><td class="it">i loro</td><td class="it">le loro</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-box">
+    <strong>Regola:</strong> Il possessivo si usa quasi sempre con l'articolo: <em>il mio zaino, la tua borsa, il suo lavoro</em>.
+    <strong>Eccezione:</strong> con i nomi di parentela al singolare NON si usa l'articolo: <em>mia madre, tuo padre, suo fratello</em> (vedremo questo nel Modulo 11).
+    <span class="es">El posesivo siempre lleva artículo excepto con nombres de parentesco en singular.</span>
+  </div>
+
+  <div class="inline-prac">
+    <h4>Pratica — Aggiungi il possessivo</h4>
+    <div id="prac2">
+      <div class="prac-item" data-ans="il mio">___ libro è interessante. (my — masc.) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="la tua">Dov'è ___ chiave? (your — fem.) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="i miei">___ amici sono simpatici. (my — pl. masc.) <input class="prac-input" placeholder="..."></div>
+      <div class="prac-item" data-ans="la nostra">___ casa è grande. (our — fem.) <input class="prac-input" placeholder="..."></div>
+    </div>
+    <div style="margin-top:.85rem;display:flex;gap:.75rem">
+      <button class="btn btn-primary" onclick="checkPrac('prac2')">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetPrac('prac2')">Ripristina</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: ARTICOLI CON GIORNI -->
+<section id="giorni">
+  <h2 class="section-title">4. Articoli con i giorni della settimana</h2>
+  <p class="section-intro">Come abbiamo visto nel Modulo 8, l'articolo con i giorni indica un'azione abituale.
+    <span class="es">Repaso: el artículo antes del día = acción habitual. Sin artículo = día específico.</span>
+  </p>
+
+  <table class="gram-table">
+    <thead><tr><th>Uso</th><th>Esempio</th><th class="es">Significado</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Senza articolo</strong> = specifico</td><td>Lunedì vado dal dentista.</td><td class="es">El lunes (próximo) voy al dentista.</td></tr>
+      <tr><td><strong>Con articolo</strong> = abituale</td><td>Il lunedì vado in palestra.</td><td class="es">Los lunes (siempre) voy al gimnasio.</td></tr>
+      <tr><td><strong>La domenica</strong> sempre con art.</td><td>La domenica mi riposo.</td><td class="es">Los domingos descanso. (siempre)</td></tr>
+      <tr><td><strong>Il sabato</strong></td><td>Il sabato esco con gli amici.</td><td class="es">Los sábados salgo con los amigos.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="example-box"><span class="it">Di solito il martedì mi alzo tardi. — Ma martedì prossimo ho una riunione alle sette!</span><span class="tr-small">Normalmente los martes me levanto tarde. — ¡Pero el próximo martes tengo una reunión a las siete!</span></div>
+</section>
+
+<!-- SECTION 5: FONETICA -->
+<section id="fonetica">
+  <h2 class="section-title">5. Fonetica — ʎ (gli) e ɲ (gn)</h2>
+  <p class="section-intro">Due suoni italiani speciali che non esistono in spagnolo nella stessa forma.
+    <span class="es">Dos sonidos especiales del italiano:</span>
+  </p>
+
+  <table class="gram-table">
+    <thead><tr><th>Suono</th><th>Grafia</th><th>Come si pronuncia</th><th>Esempi</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>[ʎ]</strong></td>
+        <td><em>GLI</em></td>
+        <td>Como la "ll" en español rioplatense o la "lj" en catalán. La lengua toca el paladar.<span class="es">(similar a "ll" argentina)</span></td>
+        <td>gli amici, figlio, moglie, aglio</td>
+      </tr>
+      <tr>
+        <td><strong>[ɲ]</strong></td>
+        <td><em>GN</em></td>
+        <td>Como la "ñ" española. ¡Muy fácil para hispanohablantes!<span class="es">(igual que la ñ española)</span></td>
+        <td>gnocchi, bagno, ogni, cognome</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="rule-box">
+    <strong>Attenzione:</strong> <em>gli</em> come articolo si pronuncia [ʎi]. <em>Gli</em> nella parola <em>figlio</em> si pronuncia [ʎ]. Non pronunciare la G separatamente!
+    <span class="es">El sonido GN es como nuestra ñ. El sonido GLI es más parecido a la ll argentina que a ningún otro sonido español.</span>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <h2 class="section-title">Quiz — Verifica le tue conoscenze</h2>
+  <div class="quiz-wrap">
+    <div class="quiz-q" id="q1">
+      <p>1. "Marco ___ alle sette." — Coniugazione corretta di ALZARSI per "lui":</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','a')">alza si</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','b')">si alza</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q1','c')">si alzano</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <p>2. "Non mangio ___ la pasta." — Avverbio per "nunca":</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','a')">raramente</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','b')">sempre</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q2','c')">mai</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <p>3. Quale possessivo completa: "___ sorelle sono simpatiche" (le mie sorelle)?</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','a')">le miei</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','b')">le mie</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','c')">i mie</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <p>4. "Il venerdì vado a nuoto" significa che:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','a')">Questo venerdì vado a nuoto (una volta)</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','b')">Ogni venerdì vado a nuoto (abituale)</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q4','c')">Venerdì scorso sono andato a nuoto</div>
+      </div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <p>5. Il suono GN in italiano è simile a:</p>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','a')">La "g" en español</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','b')">La "ñ" en español</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q5','c')">La "j" en español</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:1.25rem">
+      <button class="btn btn-primary" onclick="submitQuiz()">Controlla le risposte</button>
+    </div>
+    <div class="quiz-result" id="quiz-result"></div>
+  </div>
+</section>
+</main>
+
+<footer><p>Italiano Per Piacere · Modulo 10 · <em>La mia giornata</em></p></footer>
+
+<script>
+let esVisible=false;
+function toggleEs(){esVisible=!esVisible;document.body.classList.toggle('show-es',esVisible);document.getElementById('toggleEs').textContent=esVisible?'Nascondi traduzioni':'Mostra traduzioni';}
+const secs=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('nav a');
+window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)c=s.id});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)});});
+function checkPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{const inp=item.querySelector('.prac-input');const ans=item.dataset.ans;const val=inp.value.trim().toLowerCase();item.classList.remove('correct','wrong');let fb=item.querySelector('.prac-fb');if(!fb){fb=document.createElement('span');fb.className='prac-fb';item.appendChild(fb);}if(val===ans){item.classList.add('correct');fb.textContent='✓';}else{item.classList.add('wrong');fb.textContent='✗ '+ans;}});}
+function resetPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{item.classList.remove('correct','wrong');item.querySelector('.prac-input').value='';const fb=item.querySelector('.prac-fb');if(fb)fb.textContent='';});}
+const answers={q1:'b',q2:'c',q3:'b',q4:'b',q5:'b'};
+let selected={};
+function selectOpt(el,qid,opt){if(selected[qid])return;selected[qid]=opt;const opts=el.parentElement.querySelectorAll('.quiz-opt');opts.forEach(o=>o.style.pointerEvents='none');const correct=answers[qid];opts.forEach((o,i)=>{const k=['a','b','c'][i];if(k===correct)o.classList.add('correct');else if(k===opt)o.classList.add('wrong');});}
+function submitQuiz(){let score=0;Object.keys(answers).forEach(q=>{if(selected[q]===answers[q])score++;});const res=document.getElementById('quiz-result');res.classList.add('show');if(score>=4){res.className='quiz-result show good';res.textContent=`Bravissimo/a! ${score}/5 ✓`;}else if(score>=2){res.className='quiz-result show ok';res.textContent=`Bene! ${score}/5 — continua così.`;}else{res.className='quiz-result show try';res.textContent=`${score}/5 — Riprova! Rivedi le sezioni.`;}}
+</script>
+</body>
+</html>

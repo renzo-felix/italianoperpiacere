@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unità 4 · Descubrimiento | Italiano Per Piacere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream:#e9e6d5; --cream-dk:#ddd9c8; --gold:#EFCF7F; --amber:#e5ab07;
+      --red:#cc4736; --teal:#78a6ba; --green:#528e74; --black:#1a1a18; --white:#ffffff;
+      --accent:var(--teal);
+      --r:8px; --fh:'Playfair Display',Georgia,serif; --fb:'Outfit',system-ui,sans-serif;
+      --ease:cubic-bezier(0.16,1,0.3,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--fb);background:var(--cream);color:var(--black);overflow-x:hidden}
+
+    /* TRANSLATIONS */
+    .es{font-size:.8rem;color:#888;font-style:italic;margin-top:.2rem}
+    .hide-es .es{display:none !important}
+
+    /* TRANSLATION TOGGLE */
+    .trans-toggle{position:fixed;top:1.2rem;right:1.2rem;z-index:999;background:var(--white);border:2px solid var(--teal);color:var(--teal);font-family:var(--fb);font-size:.78rem;font-weight:700;padding:.45rem 1rem;border-radius:30px;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.12);transition:background .2s,color .2s}
+    .trans-toggle:hover{background:var(--teal);color:var(--white)}
+
+    /* SCROLL ANIMATIONS */
+    [data-a]{opacity:0;transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    [data-a="up"]   {transform:translateY(48px)}
+    [data-a="left"] {transform:translateX(-56px)}
+    [data-a="right"]{transform:translateX(56px)}
+    [data-a="scale"]{transform:scale(0.86)}
+    [data-a="fade"] {transform:none}
+    [data-a].in{opacity:1;transform:none !important}
+    [data-stagger].in > *{opacity:1;transform:none !important}
+    [data-stagger] > *{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+    [data-stagger]>*:nth-child(1){transition-delay:.00s}
+    [data-stagger]>*:nth-child(2){transition-delay:.08s}
+    [data-stagger]>*:nth-child(3){transition-delay:.16s}
+    [data-stagger]>*:nth-child(4){transition-delay:.24s}
+    [data-stagger]>*:nth-child(5){transition-delay:.32s}
+    [data-stagger]>*:nth-child(6){transition-delay:.40s}
+    [data-stagger]>*:nth-child(7){transition-delay:.48s}
+    [data-stagger]>*:nth-child(8){transition-delay:.56s}
+    [data-stagger]>*:nth-child(n+9){transition-delay:.64s}
+
+    /* HERO */
+    .hero{min-height:100vh;background:var(--teal);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
+    .hero-bg-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none;will-change:transform}
+    .hero-bg-circle:nth-child(1){width:600px;height:600px;top:-200px;right:-150px}
+    .hero-bg-circle:nth-child(2){width:400px;height:400px;bottom:-100px;left:-100px}
+    .hero-bg-circle:nth-child(3){width:200px;height:200px;top:30%;left:5%}
+    .hero-badge{display:inline-block;background:var(--gold);color:var(--black);font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:.3rem 1.2rem;border-radius:20px;margin-bottom:1.5rem;opacity:0;animation:popIn .6s var(--ease) .2s forwards}
+    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-style:italic;color:var(--white);line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
+    .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:rgba(255,255,255,.85);max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
+    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.6);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
+    .scroll-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6);animation:scrollDot 1.5s ease infinite}
+    @keyframes popIn   {from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+    @keyframes slideUp {from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+    @keyframes fadeIn  {from{opacity:0}to{opacity:1}}
+    @keyframes scrollDot{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(6px);opacity:1}}
+    @keyframes floatAv {0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+
+    /* SECTIONS */
+    .section{padding:6rem 2rem}
+    .section.bg-alt{background:var(--cream-dk)}
+    .section.bg-white{background:var(--white)}
+    .container{max-width:860px;margin:0 auto}
+    .section-label{font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:.75rem}
+    .section-title{font-family:var(--fh);font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;margin-bottom:1.25rem}
+    .section-title em{font-style:italic;color:var(--teal)}
+    .section-desc{font-size:1rem;color:#555;line-height:1.75;max-width:640px}
+
+    /* SOFIA */
+    .sofia-wrap{display:flex;align-items:flex-start;gap:1.25rem;background:var(--white);border-radius:16px;padding:1.5rem 2rem;box-shadow:0 4px 24px rgba(0,0,0,.07);max-width:640px}
+    .sofia-avatar{width:60px;height:60px;border-radius:50%;flex-shrink:0;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.8rem;animation:floatAv 3.5s ease-in-out infinite}
+    .speech-bubble{flex:1}
+    .speech-bubble strong{display:block;font-size:.75rem;font-weight:700;color:var(--teal);margin-bottom:.4rem;letter-spacing:1px;text-transform:uppercase}
+    .speech-bubble p{font-size:.95rem;color:#333;line-height:1.65}
+    .speech-bubble p+p{margin-top:.6rem}
+
+    /* WORD RECOGNITION */
+    .word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;margin-bottom:1.5rem}
+    .word-card{background:var(--white);border:2px solid transparent;border-radius:var(--r);padding:.9rem .75rem;text-align:center;cursor:pointer;user-select:none;position:relative;transition:border-color .2s,background .2s,transform .15s;font-weight:600;font-size:.95rem}
+    .word-card:hover{transform:translateY(-2px);border-color:var(--teal)}
+    .word-card.selected{background:var(--teal);color:var(--white);border-color:var(--teal)}
+    .word-card.correct  {background:var(--green);color:var(--white);border-color:var(--green)}
+    .word-card.false-pos{background:var(--red);color:var(--white);border-color:var(--red)}
+    .word-card.missed   {background:var(--amber);color:var(--black);border-color:var(--amber)}
+    .word-card.neutral  {background:var(--cream-dk);color:#888;border-color:transparent}
+    .word-badge{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:var(--white)}
+    .word-card.correct   .word-badge{display:flex;background:var(--green)}
+    .word-card.false-pos .word-badge{display:flex;background:var(--red)}
+    .word-card.missed    .word-badge{display:flex;background:var(--amber);color:var(--black)}
+    .word-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+    .btn{padding:.65rem 1.5rem;border-radius:30px;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.9rem;transition:opacity .2s,transform .15s}
+    .btn:hover{opacity:.85;transform:translateY(-1px)}
+    .btn-primary{background:var(--teal);color:var(--white)}
+    .btn-ghost{background:transparent;color:var(--black);border:2px solid var(--cream-dk)}
+    .score-display{font-size:.9rem;font-weight:700;color:var(--green)}
+    .legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;font-size:.8rem}
+    .legend-item{display:flex;align-items:center;gap:.4rem}
+    .legend-dot{width:10px;height:10px;border-radius:50%}
+
+    /* VOCAB CARDS */
+    .vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:1rem}
+    .vocab-card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 3px 16px rgba(0,0,0,.08);transition:transform .2s,box-shadow .2s;cursor:pointer}
+    .vocab-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.12)}
+    .vocab-top{padding:1.25rem;display:flex;align-items:center;justify-content:center;font-size:2.2rem}
+    .vocab-body{padding:.85rem 1.1rem 1.1rem}
+    .vocab-it{font-size:1rem;font-weight:700;color:var(--black);margin-bottom:.15rem}
+    .vocab-art{font-size:.75rem;color:var(--teal);font-weight:600;margin-bottom:.3rem}
+    .vocab-es-visible{font-size:.85rem;color:#666;margin-bottom:.5rem}
+    .vocab-ex{font-size:.78rem;color:#999;font-style:italic;border-top:1px solid var(--cream-dk);padding-top:.45rem;margin-top:.45rem;display:none}
+    .vocab-card.open .vocab-ex{display:block}
+
+    /* VERB TABLE */
+    .verb-table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:1.5rem}
+    .verb-table th{background:var(--teal);color:var(--white);padding:.7rem 1.1rem;text-align:left;font-size:.78rem;letter-spacing:1px;text-transform:uppercase}
+    .verb-table td{padding:.65rem 1.1rem;border-bottom:1px solid var(--cream-dk)}
+    .verb-table tr:nth-child(even) td{background:rgba(0,0,0,.02)}
+    .verb-form{font-weight:700;color:var(--teal)}
+    .verb-pron{color:#888;font-size:.85rem}
+
+    /* DIALOGUE */
+    .dialogue{display:flex;flex-direction:column;gap:.75rem}
+    .dlg-line{display:flex;align-items:flex-start;gap:.75rem}
+    .dlg-line.b{flex-direction:row-reverse}
+    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:var(--teal);padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
+    .dlg-line.b .dlg-speaker{background:var(--green)}
+    .dlg-bubble{background:var(--white);border-radius:12px;padding:.9rem 1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.07);max-width:480px}
+    .dlg-bubble .it{font-weight:600;font-size:.95rem;color:var(--black)}
+    .dlg-bubble .es{font-size:.8rem;color:#888;margin-top:.25rem;font-style:italic}
+
+    /* FILL PRACTICE */
+    .fill-section{margin-top:1.5rem}
+    .fill-section h4{font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:1rem}
+    .fill-list{display:flex;flex-direction:column;gap:.75rem}
+    .fill-item{display:flex;align-items:center;gap:.5rem;font-size:.95rem;flex-wrap:wrap}
+    .fill-input{border:none;border-bottom:2px solid var(--cream-dk);background:transparent;font-family:var(--fb);font-size:.95rem;font-weight:600;color:var(--black);width:120px;padding:.2rem .3rem;outline:none;text-align:center;transition:border-color .2s}
+    .fill-input:focus{border-color:var(--teal)}
+    .fill-input.ok{border-color:var(--green);color:var(--green)}
+    .fill-input.fail{border-color:var(--red);color:var(--red)}
+    .fill-btn{margin-top:1rem;display:flex;gap:.75rem;flex-wrap:wrap}
+
+    /* ACCOMMODATION TYPES */
+    .alloggio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;margin-top:1.5rem}
+    .alloggio-card{background:var(--white);border-radius:12px;padding:1.1rem 1.2rem;box-shadow:0 2px 12px rgba(0,0,0,.07);border-left:4px solid var(--teal)}
+    .alloggio-icon{font-size:1.8rem;margin-bottom:.5rem}
+    .alloggio-it{font-size:.95rem;font-weight:700;margin-bottom:.2rem}
+    .alloggio-stars{color:var(--amber);font-size:.85rem;margin-bottom:.3rem}
+    .alloggio-desc{font-size:.78rem;color:#666;line-height:1.5}
+
+    /* CULTURAL STRIP */
+    .cultural-strip{background:var(--black);color:var(--white);padding:4rem 2rem;text-align:center}
+    .cultural-strip h2{font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.4rem);font-style:italic;color:var(--gold);margin-bottom:1rem}
+    .cultural-strip p{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.75;max-width:600px;margin:0 auto 1.5rem}
+    .cultural-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;max-width:760px;margin:2rem auto 0}
+    .cf-item{background:rgba(255,255,255,.06);border-radius:12px;padding:1.5rem}
+    .cf-icon{font-size:2rem;margin-bottom:.75rem}
+    .cf-item h4{font-size:.85rem;font-weight:700;color:var(--gold);margin-bottom:.5rem}
+    .cf-item p{font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.55}
+
+    /* FOOTER */
+    .footer{background:var(--cream-dk);padding:2.5rem 2rem;text-align:center;font-size:.82rem;color:#888}
+    .footer strong{color:var(--black)}
+    .nav-pills{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+    .nav-pill{padding:.5rem 1.2rem;border-radius:30px;font-size:.8rem;font-weight:600;text-decoration:none;color:var(--black);background:var(--cream);border:1px solid var(--cream-dk);transition:background .2s,color .2s}
+    .nav-pill:hover{background:var(--teal);color:var(--white)}
+    .nav-pill.active{background:var(--teal);color:var(--white)}
+
+    @media(max-width:600px){
+      .section{padding:4rem 1.25rem}
+      .sofia-wrap{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+
+<button class="trans-toggle" id="transBtn" onclick="toggleTrans()">Ocultar traducciones</button>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg-circle" id="hbc1"></div>
+  <div class="hero-bg-circle" id="hbc2"></div>
+  <div class="hero-bg-circle" id="hbc3"></div>
+  <div class="hero-badge">Unità 4 · Descubrimiento</div>
+  <h1>Una notte<br>a Roma</h1>
+  <p class="hero-sub">Tipi di alloggio, numeri 100–1000<br>e verbi regolari in -ARE</p>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- SOFIA INTRO -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="sofia-wrap" data-a="up">
+      <div class="sofia-avatar">👩‍🏫</div>
+      <div class="speech-bubble">
+        <strong>Sofia · Tu guía italiana</strong>
+        <p>¡Benvenuti! Hoy imaginamos que llegamos a Roma por primera vez — necesitamos un <em>albergo</em>, queremos entender el precio... ¡y tenemos que hablar italiano!</p>
+        <p>Vamos a descubrir cómo funciona el sistema de alojamiento en Italia y cómo conjugar los verbos regulares en -ARE. ¡Es más fácil de lo que crees!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORD RECOGNITION -->
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="fade">Actividad 1</p>
+    <h2 class="section-title" data-a="up">¿Cuáles son palabras del <em>hotel</em>?</h2>
+    <p class="section-desc" data-a="up">
+      Selecciona todas las palabras que crees que están relacionadas con <strong>el alojamiento en Italia</strong>. Luego verifica tu selección.
+    </p>
+
+    <div class="word-grid" id="wordGrid" style="margin-top:1.75rem" data-stagger></div>
+
+    <div class="word-actions">
+      <button class="btn btn-primary" onclick="verifyWords()">Verificar selección</button>
+      <button class="btn btn-ghost" onclick="resetWords()">Intentar de nuevo</button>
+      <span class="score-display" id="scoreDisplay"></span>
+    </div>
+    <div class="legend" id="legend" style="display:none">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Correcto ✓</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> No está relacionado ✗</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div> La olvidaste !</div>
+    </div>
+  </div>
+</section>
+
+<!-- VOCAB CARDS -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label" data-a="fade">Vocabulario</p>
+    <h2 class="section-title" data-a="up"><em>All'albergo</em> — En el hotel</h2>
+    <p class="section-desc" data-a="up">Las palabras clave para hospedarte en Italia. Haz clic en cada tarjeta para ver un ejemplo.</p>
+
+    <div class="vocab-grid" style="margin-top:2rem" data-stagger>
+      <div class="vocab-card" onclick="this.classList.toggle('open')">
+        <div class="vocab-top" style="background:rgba(120,166,186,.15)">🏨</div>
+        <div class="vocab-body">
+          <div class="vocab-it">l'albergo</div>
+          <div class="vocab-art">sostantivo maschile</div>
+          <div class="vocab-es-visible es">el hotel</div>
+          <div class="vocab-ex">Vorrei prenotare una camera all'albergo.<br><em class="es">Quisiera reservar una habitación en el hotel.</em></div>
+        </div>
+      </div>
+      <div class="vocab-card" onclick="this.classList.toggle('open')">
+        <div class="vocab-top" style="background:rgba(82,142,116,.15)">🛏️</div>
+        <div class="vocab-body">
+          <div class="vocab-it">la camera</div>
+          <div class="vocab-art">sostantivo femminile</div>
+          <div class="vocab-es-visible es">la habitación</div>
+          <div class="vocab-ex">C'è una camera libera per stasera?<br><em class="es">¿Hay una habitación libre para esta noche?</em></div>
+        </div>
+      </div>
+      <div class="vocab-card" onclick="this.classList.toggle('open')">
+        <div class="vocab-top" style="background:rgba(239,207,127,.3)">🥐</div>
+        <div class="vocab-body">
+          <div class="vocab-it">la colazione</div>
+          <div class="vocab-art">sostantivo femminile</div>
+          <div class="vocab-es-visible es">el desayuno</div>
+          <div class="vocab-ex">La colazione è inclusa nel prezzo?<br><em class="es">¿El desayuno está incluido en el precio?</em></div>
+        </div>
+      </div>
+      <div class="vocab-card" onclick="this.classList.toggle('open')">
+        <div class="vocab-top" style="background:rgba(120,166,186,.15)">🚿</div>
+        <div class="vocab-body">
+          <div class="vocab-it">il bagno</div>
+          <div class="vocab-art">sostantivo maschile</div>
+          <div class="vocab-es-visible es">el baño</div>
+          <div class="vocab-ex">La camera ha il bagno privato.<br><em class="es">La habitación tiene baño privado.</em></div>
+        </div>
+      </div>
+      <div class="vocab-card" onclick="this.classList.toggle('open')">
+        <div class="vocab-top" style="background:rgba(204,71,54,.12)">📅</div>
+        <div class="vocab-body">
+          <div class="vocab-it">prenotare</div>
+          <div class="vocab-art">verbo regolare -ARE</div>
+          <div class="vocab-es-visible es">reservar</div>
+          <div class="vocab-ex">Ho prenotato la camera per tre notti.<br><em class="es">He reservado la habitación por tres noches.</em></div>
+        </div>
+      </div>
+      <div class="vocab-card" onclick="this.classList.toggle('open')">
+        <div class="vocab-top" style="background:rgba(229,171,7,.2)">💶</div>
+        <div class="vocab-body">
+          <div class="vocab-it">il prezzo</div>
+          <div class="vocab-art">sostantivo maschile</div>
+          <div class="vocab-es-visible es">el precio</div>
+          <div class="vocab-ex">Qual è il prezzo per notte?<br><em class="es">¿Cuál es el precio por noche?</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERB -ARE TEASER -->
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="fade">Gramática · Descubrimiento</p>
+    <h2 class="section-title" data-a="up">Los verbos <em>regulares -ARE</em></h2>
+    <p class="section-desc" data-a="up">En italiano, los verbos terminados en -ARE siguen siempre el mismo patrón. Aprende uno y entiendes todos. Observa <strong>parlare</strong> (hablar):</p>
+
+    <div style="overflow-x:auto;margin-top:2rem" data-a="up">
+      <table class="verb-table">
+        <thead>
+          <tr><th>Pronome</th><th>Parlare</th><th>Esempio</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="verb-pron">io</td><td class="verb-form">parlo</td><td>Io parlo italiano. <span class="es">Yo hablo italiano.</span></td></tr>
+          <tr><td class="verb-pron">tu</td><td class="verb-form">parli</td><td>Tu parli molto bene! <span class="es">¡Tú hablas muy bien!</span></td></tr>
+          <tr><td class="verb-pron">lui/lei</td><td class="verb-form">parla</td><td>Lei parla con il receptionist. <span class="es">Ella habla con el recepcionista.</span></td></tr>
+          <tr><td class="verb-pron">noi</td><td class="verb-form">parliamo</td><td>Parliamo di prezzi. <span class="es">Hablamos de precios.</span></td></tr>
+          <tr><td class="verb-pron">voi</td><td class="verb-form">parlate</td><td>Voi parlate in italiano! <span class="es">¡Vosotros habláis en italiano!</span></td></tr>
+          <tr><td class="verb-pron">loro</td><td class="verb-form">parlano</td><td>Loro parlano tutto il giorno. <span class="es">Ellos hablan todo el día.</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="background:var(--white);border-radius:12px;padding:1.25rem;margin-top:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,.07)" data-a="up">
+      <strong style="color:var(--teal);font-size:.85rem">✨ La regla es sencilla</strong>
+      <p style="font-size:.85rem;color:#555;margin-top:.4rem;line-height:1.6">
+        Quita la -are del infinitivo → obtienes la raíz <strong>parl-</strong> → añade las terminaciones: <strong>-o / -i / -a / -iamo / -ate / -ano</strong><br>
+        Funciona igual para: prenotare, comprare, mangiare, ascoltare, camminare...
+      </p>
+    </div>
+
+    <!-- FILL PRACTICE -->
+    <div class="fill-section" data-a="up">
+      <h4>Pratica — Conjuga los verbos</h4>
+      <div class="fill-list" id="fillVerbs">
+        <div class="fill-item" data-ans="prenoto">Io _____ una camera doppia. (prenotare) <span class="es">Yo reservo una habitación doble.</span></div>
+        <div class="fill-item" data-ans="parli">Tu _____ molto bene! (parlare) <span class="es">¡Tú hablas muy bien!</span></div>
+        <div class="fill-item" data-ans="mangia">Lei _____ la colazione alle sette. (mangiare) <span class="es">Ella desayuna a las siete.</span></div>
+        <div class="fill-item" data-ans="paghiamo">Noi _____ con carta. (pagare) <span class="es">Nosotros pagamos con tarjeta.</span></div>
+        <div class="fill-item" data-ans="ascoltate">Voi _____ la guida. (ascoltare) <span class="es">Vosotros escucháis al guía.</span></div>
+        <div class="fill-item" data-ans="prenotano">Loro _____ l'albergo online. (prenotare) <span class="es">Ellos reservan el hotel en línea.</span></div>
+      </div>
+      <div class="fill-btn">
+        <button class="btn btn-primary" onclick="checkFill()">Verificar</button>
+        <button class="btn btn-ghost" onclick="resetFill()">Limpiar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIALOGUE -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label" data-a="fade">Dialogo autentico</p>
+    <h2 class="section-title" data-a="up"><em>Alla reception</em></h2>
+    <p class="section-desc" data-a="up">Marco llega a Roma y se hospeda en su hotel. Escucha cómo se comunica con la recepcionista.</p>
+
+    <div class="dialogue" style="margin-top:2rem" data-stagger>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Marco</div>
+        <div class="dlg-bubble">
+          <div class="it">Buonasera! Ho una prenotazione a nome Marco Rossi.</div>
+          <div class="es">¡Buenas noches! Tengo una reserva a nombre de Marco Rossi.</div>
+        </div>
+      </div>
+      <div class="dlg-line b">
+        <div class="dlg-speaker">Receptionist</div>
+        <div class="dlg-bubble">
+          <div class="it">Buonasera, signor Rossi! Un momento... Sì, camera doppia per tre notti. Corretto?</div>
+          <div class="es">¡Buenas noches, señor Rossi! Un momento... Sí, habitación doble por tres noches. ¿Correcto?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Marco</div>
+        <div class="dlg-bubble">
+          <div class="it">Sì, esatto. La colazione è inclusa?</div>
+          <div class="es">Sí, exacto. ¿El desayuno está incluido?</div>
+        </div>
+      </div>
+      <div class="dlg-line b">
+        <div class="dlg-speaker">Receptionist</div>
+        <div class="dlg-bubble">
+          <div class="it">Sì, la colazione è inclusa nel prezzo. Si serve dalle sette alle dieci.</div>
+          <div class="es">Sí, el desayuno está incluido en el precio. Se sirve de siete a diez.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Marco</div>
+        <div class="dlg-bubble">
+          <div class="it">Perfetto! C'è il Wi-Fi in camera?</div>
+          <div class="es">¡Perfecto! ¿Hay Wi-Fi en la habitación?</div>
+        </div>
+      </div>
+      <div class="dlg-line b">
+        <div class="dlg-speaker">Receptionist</div>
+        <div class="dlg-bubble">
+          <div class="it">Certo! La password è sul foglio in camera. Ecco la sua chiave. Camera trecento due, al terzo piano.</div>
+          <div class="es">¡Por supuesto! La contraseña está en la hoja de la habitación. Aquí tiene su llave. Habitación trescientos dos, en el tercer piso.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Marco</div>
+        <div class="dlg-bubble">
+          <div class="it">Grazie mille! Buona serata!</div>
+          <div class="es">¡Muchas gracias! ¡Buenas noches!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCOMMODATION TYPES -->
+<section class="section bg-alt">
+  <div class="container">
+    <p class="section-label" data-a="fade">Cultura</p>
+    <h2 class="section-title" data-a="up">Tipi di <em>alloggio</em> in Italia</h2>
+    <p class="section-desc" data-a="up">En Italia hay muchos tipos de alojamiento para todos los gustos y presupuestos.</p>
+
+    <div class="alloggio-grid" data-stagger>
+      <div class="alloggio-card">
+        <div class="alloggio-icon">🏨</div>
+        <div class="alloggio-it">l'albergo / l'hotel</div>
+        <div class="alloggio-stars">★★★★★</div>
+        <div class="alloggio-desc">Del 1 al 5 estrellas. La opción más formal. <span class="es">From 1 to 5 stars.</span></div>
+      </div>
+      <div class="alloggio-card">
+        <div class="alloggio-icon">🏡</div>
+        <div class="alloggio-it">la pensione</div>
+        <div class="alloggio-stars">★★★</div>
+        <div class="alloggio-desc">Hotel familiar pequeño, muy acogedor. Suele incluir desayuno y cena. <span class="es">Small family hotel.</span></div>
+      </div>
+      <div class="alloggio-card">
+        <div class="alloggio-icon">🛎️</div>
+        <div class="alloggio-it">il Bed & Breakfast</div>
+        <div class="alloggio-stars">★★★</div>
+        <div class="alloggio-desc">Casa particular con desayuno incluido. Muy popular en Italia. <span class="es">Bed &amp; breakfast.</span></div>
+      </div>
+      <div class="alloggio-card">
+        <div class="alloggio-icon">🌾</div>
+        <div class="alloggio-it">l'agriturismo</div>
+        <div class="alloggio-stars">★★★★</div>
+        <div class="alloggio-desc">Granja turística en el campo. Comida casera, vino local. ¡Una experiencia auténtica! <span class="es">Farm stay.</span></div>
+      </div>
+      <div class="alloggio-card">
+        <div class="alloggio-icon">🎒</div>
+        <div class="alloggio-it">l'ostello</div>
+        <div class="alloggio-stars">★★</div>
+        <div class="alloggio-desc">Hostal económico. Ideal para viajeros jóvenes. <span class="es">Youth hostel.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURAL STRIP -->
+<div class="cultural-strip">
+  <div class="container">
+    <h2 data-a="up">Roma — La Città Eterna 🇮🇹</h2>
+    <p data-a="up">Cada rincón de Roma es historia viva. Hospedarse en Roma es hospedarse en el corazón de la civilización occidental.</p>
+    <div class="cultural-facts" data-stagger>
+      <div class="cf-item">
+        <div class="cf-icon">🏛️</div>
+        <h4>I numeri romani</h4>
+        <p>Los pisos y habitaciones en los hoteles italianos usan números ordinales: primo piano (1er piso), secondo piano (2do)... ¡El piano terra es la planta baja!</p>
+      </div>
+      <div class="cf-item">
+        <div class="cf-icon">🥐</div>
+        <h4>La colazione italiana</h4>
+        <p>El desayuno italiano es sencillo: un espresso o cappuccino con un cornetto (croissant). Nada de huevos revueltos. Simple, rápido y delicioso.</p>
+      </div>
+      <div class="cf-item">
+        <div class="cf-icon">💶</div>
+        <h4>I numeri 100-1000</h4>
+        <p>cento (100), duecento (200), trecento (300), quattrocento (400), cinquecento (500)... mille (1000). ¡El Cinquecento es también el siglo XVI en arte!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <strong>Unità 4 · Una notte a Roma</strong><br>
+  Italiano Per Piacere — Nivel A1
+  <div class="nav-pills">
+    <a href="../modulo_3/etapa2_descubrimiento.html" class="nav-pill">← Unità 3</a>
+    <a href="etapa3_gramatica.html" class="nav-pill active">Gramática →</a>
+  </div>
+</footer>
+
+<script>
+  /* SCROLL ANIMATIONS */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('[data-a],[data-stagger]').forEach(el => observer.observe(el));
+
+  /* PARALLAX */
+  const c1=document.getElementById('hbc1'), c2=document.getElementById('hbc2'), c3=document.getElementById('hbc3');
+  window.addEventListener('scroll', () => {
+    const y=window.scrollY;
+    if(c1) c1.style.transform=`translateY(${y*.25}px)`;
+    if(c2) c2.style.transform=`translateY(${y*-.15}px)`;
+    if(c3) c3.style.transform=`translateY(${y*.1}px)`;
+  }, {passive:true});
+
+  /* TRANSLATION TOGGLE */
+  function toggleTrans() {
+    document.body.classList.toggle('hide-es');
+    const btn = document.getElementById('transBtn');
+    btn.textContent = document.body.classList.contains('hide-es') ? 'Mostrar traducciones' : 'Ocultar traducciones';
+  }
+
+  /* WORD RECOGNITION */
+  const WORDS = [
+    {w:'albergo',   inCtx:true },
+    {w:'camera',    inCtx:true },
+    {w:'prenotare', inCtx:true },
+    {w:'notte',     inCtx:true },
+    {w:'prezzo',    inCtx:true },
+    {w:'colazione', inCtx:true },
+    {w:'bicicletta',inCtx:false},
+    {w:'gelato',    inCtx:false},
+    {w:'treno',     inCtx:false},
+    {w:'chiesa',    inCtx:false},
+    {w:'museo',     inCtx:false},
+    {w:'libro',     inCtx:false},
+  ];
+  const selected=new Set(); let verified=false;
+  const grid=document.getElementById('wordGrid');
+  WORDS.forEach((w,i)=>{
+    const div=document.createElement('div');
+    div.className='word-card';
+    div.innerHTML=`${w.w}<span class="word-badge" id="badge${i}"></span>`;
+    div.addEventListener('click',()=>{
+      if(verified)return;
+      if(selected.has(i)){selected.delete(i);div.classList.remove('selected');}
+      else{selected.add(i);div.classList.add('selected');}
+    });
+    grid.appendChild(div);
+  });
+
+  function verifyWords(){
+    verified=true; let correct=0;
+    const cards=grid.querySelectorAll('.word-card');
+    WORDS.forEach((w,i)=>{
+      const card=cards[i], badge=document.getElementById('badge'+i);
+      card.classList.remove('selected');
+      if(w.inCtx && selected.has(i))       {card.classList.add('correct');  badge.textContent='✓';correct++;}
+      else if(!w.inCtx && selected.has(i)) {card.classList.add('false-pos');badge.textContent='✗';}
+      else if(w.inCtx && !selected.has(i)) {card.classList.add('missed');   badge.textContent='!';}
+      else                                  {card.classList.add('neutral');}
+    });
+    document.getElementById('scoreDisplay').textContent=correct+'/6 palabras correctas';
+    document.getElementById('legend').style.display='flex';
+  }
+  function resetWords(){
+    verified=false;selected.clear();
+    grid.querySelectorAll('.word-card').forEach(c=>c.className='word-card');
+    document.getElementById('scoreDisplay').textContent='';
+    document.getElementById('legend').style.display='none';
+  }
+
+  /* FILL VERBS — add inputs dynamically */
+  document.querySelectorAll('#fillVerbs .fill-item').forEach(item=>{
+    const text = item.innerHTML;
+    item.innerHTML = text.replace('_____', '<input class="fill-input" placeholder="verbo">');
+  });
+
+  function checkFill(){
+    document.querySelectorAll('#fillVerbs .fill-item').forEach(item=>{
+      const inp=item.querySelector('.fill-input');
+      if(!inp) return;
+      inp.classList.remove('ok','fail');
+      if(inp.value.trim().toLowerCase()===item.dataset.ans) inp.classList.add('ok');
+      else inp.classList.add('fail');
+    });
+  }
+  function resetFill(){
+    document.querySelectorAll('#fillVerbs .fill-input').forEach(inp=>{inp.value='';inp.classList.remove('ok','fail');});
+  }
+</script>
+</body>
+</html>
