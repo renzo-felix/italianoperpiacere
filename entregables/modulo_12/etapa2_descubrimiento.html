@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
@@ -18,15 +18,15 @@
     [data-stagger].in>*{opacity:1;transform:none!important}
     [data-stagger]>*{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
     [data-stagger]>*:nth-child(1){transition-delay:.00s}[data-stagger]>*:nth-child(2){transition-delay:.08s}[data-stagger]>*:nth-child(3){transition-delay:.16s}[data-stagger]>*:nth-child(4){transition-delay:.24s}[data-stagger]>*:nth-child(5){transition-delay:.32s}[data-stagger]>*:nth-child(6){transition-delay:.40s}[data-stagger]>*:nth-child(7){transition-delay:.48s}[data-stagger]>*:nth-child(8){transition-delay:.56s}
-    .hero{min-height:100vh;background:var(--teal);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
-    .hero-bg-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.1);pointer-events:none}
+    .hero{min-height:100vh;background:#fef9e8;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
+    .hero-bg-circle{display:none;position:absolute;border-radius:50%;background:rgba(255,255,255,.1);pointer-events:none}
     .hero-bg-circle:nth-child(1){width:600px;height:600px;top:-200px;right:-150px}
     .hero-bg-circle:nth-child(2){width:400px;height:400px;bottom:-100px;left:-100px}
     .hero-badge{display:inline-block;background:var(--black);color:var(--gold);font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:.3rem 1.2rem;border-radius:20px;margin-bottom:1.5rem;opacity:0;animation:popIn .6s var(--ease) .2s forwards}
-    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,5.5rem);font-style:italic;color:var(--white);line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
-    .hero-sub{font-size:clamp(1rem,2.5vw,1.2rem);color:rgba(255,255,255,.85);max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
+    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,5.5rem);font-style:italic;color:#1a1a18;line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
+    .hero-sub{font-size:clamp(1rem,2.5vw,1.2rem);color:#1a1a18;opacity:.75;max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
     .trans-btn{position:fixed;top:1rem;right:1rem;z-index:200;padding:.5rem 1rem;border-radius:20px;border:none;cursor:pointer;font-family:var(--fb);font-size:.78rem;font-weight:700;background:var(--black);color:var(--gold);box-shadow:0 2px 12px rgba(0,0,0,.2)}
-    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.6);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
+    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(0,0,0,.4);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
     .scroll-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);animation:scrollDot 1.5s ease infinite}
     @keyframes popIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
     @keyframes slideUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
@@ -46,25 +46,25 @@
     .word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.75rem;margin-bottom:1.25rem}
     .word-card{background:var(--white);border:2px solid transparent;border-radius:var(--r);padding:.9rem .75rem;text-align:center;cursor:pointer;user-select:none;position:relative;transition:border-color .2s,background .2s,transform .15s;font-weight:600;font-size:.9rem}
     .word-card:hover{transform:translateY(-2px);border-color:var(--teal)}
-    .word-card.selected{background:var(--teal);color:var(--white);border-color:var(--teal)}
-    .word-card.correct{background:var(--green);color:var(--white);border-color:var(--green)}
-    .word-card.false-pos{background:var(--amber);color:var(--black);border-color:var(--amber)}
-    .word-card.missed{background:var(--red);color:var(--white);border-color:var(--red)}
+    .word-card.selected{background:#fef9e8;color:var(--white);border-color:var(--teal)}
+    .word-card.correct{background:#fef9e8;color:var(--white);border-color:var(--green)}
+    .word-card.false-pos{background:#fef9e8;color:var(--black);border-color:var(--amber)}
+    .word-card.missed{background:#fef9e8;color:var(--white);border-color:var(--red)}
     .word-card.neutral{background:var(--cream-dk);color:#888}
     .word-badge{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:var(--white)}
-    .word-card.correct .word-badge{display:flex;background:var(--green)}
-    .word-card.false-pos .word-badge{display:flex;background:var(--amber)}
-    .word-card.missed .word-badge{display:flex;background:var(--red)}
+    .word-card.correct .word-badge{display:flex;background:#fef9e8}
+    .word-card.false-pos .word-badge{display:flex;background:#fef9e8}
+    .word-card.missed .word-badge{display:flex;background:#fef9e8}
     .word-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-top:.5rem}
     .btn{padding:.65rem 1.5rem;border-radius:30px;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.9rem;transition:opacity .2s,transform .15s}
     .btn:hover{opacity:.85;transform:translateY(-1px)}
-    .btn-primary{background:var(--teal);color:var(--white)}
+    .btn-primary{background:#fef9e8;color:var(--white)}
     .btn-ghost{background:transparent;color:var(--black);border:2px solid var(--cream-dk)}
     .score-display{font-size:.9rem;font-weight:700;color:var(--green)}
     .vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;margin-top:1.5rem}
     .vocab-card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 3px 16px rgba(0,0,0,.08);cursor:pointer;transition:transform .2s}
     .vocab-card:hover{transform:translateY(-3px)}
-    .vc-top{height:5px;background:var(--teal)}
+    .vc-top{height:5px;background:#fef9e8}
     .vc-body{padding:1rem 1.1rem 1.1rem}
     .vc-it{font-size:1rem;font-weight:700;margin-bottom:.2rem}
     .vc-es{font-size:.82rem;color:#666;margin-bottom:.4rem}
@@ -76,14 +76,14 @@
     .dir-it{font-weight:700;font-size:.95rem}
     .dir-es{font-size:.78rem;color:#888;font-style:italic;margin-top:.2rem}
     .ger-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
-    .ger-table th{background:var(--teal);color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
+    .ger-table th{background:#fef9e8;color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
     .ger-table td{padding:.5rem .75rem;border-bottom:1px solid var(--cream-dk)}
     .ger-table tr:nth-child(even) td{background:rgba(0,0,0,.03)}
     .dialogue{display:flex;flex-direction:column;gap:.75rem;margin-top:1.5rem}
     .dlg-line{display:flex;align-items:flex-start;gap:.75rem}
     .dlg-line.b{flex-direction:row-reverse}
-    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:var(--green);padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
-    .dlg-line.b .dlg-speaker{background:var(--teal)}
+    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:#fef9e8;padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
+    .dlg-line.b .dlg-speaker{background:#fef9e8}
     .dlg-bubble{background:var(--white);border-radius:12px;padding:.9rem 1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.07);max-width:480px;cursor:pointer}
     .dlg-bubble .it{font-weight:600;font-size:.95rem}
     .dlg-bubble .es{display:none}.dlg-bubble.revealed .es{display:block}
@@ -99,7 +99,7 @@
     .footer strong{color:var(--black)}
     .nav-pills{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
     .nav-pill{padding:.5rem 1.2rem;border-radius:30px;font-size:.8rem;font-weight:600;text-decoration:none;color:var(--black);background:var(--cream);border:1px solid var(--cream-dk);transition:background .2s}
-    .nav-pill:hover,.nav-pill.active{background:var(--teal);color:var(--white)}
+    .nav-pill:hover,.nav-pill.active{background:#fef9e8;color:var(--white)}
     @media(max-width:600px){.section{padding:4rem 1.25rem}}
   </style>
 </head>
@@ -133,10 +133,10 @@
   <div class="container">
     <p class="section-label" data-a="fade">Attività 1</p>
     <h2 class="section-title" data-a="up">Riconosci i mezzi <em>di trasporto</em></h2>
-    <p class="section-desc" data-a="up">Seleziona solo le parole legate ai trasporti. <span class="es">Selecciona solo las palabras relacionadas con el transporte.</span></p>
+    <p class="section-desc" data-a="up">Seleziona solo le parole legate ai trasporti. <span class="es">Seleccioná solo las palabras relacionadas con el transporte.</span></p>
     <div class="word-grid" id="wordGrid" data-stagger style="margin-top:1.5rem"></div>
     <div class="word-actions">
-      <button class="btn btn-primary" onclick="verifyWords()">Verifica ✓</button>
+      <button class="btn btn-primary" onclick="verifyWords()">Verificá ✓</button>
       <button class="btn btn-ghost" onclick="resetWords()">Ricomincia</button>
       <span class="score-display" id="wordScore"></span>
     </div>
@@ -147,7 +147,7 @@
   <div class="container">
     <p class="section-label" data-a="fade">Vocabolario</p>
     <h2 class="section-title" data-a="up">I mezzi <em>di trasporto</em></h2>
-    <p class="section-desc" data-a="up">Clicca su ogni card per vedere un esempio. <span class="es">Haz clic en cada tarjeta para ver un ejemplo.</span></p>
+    <p class="section-desc" data-a="up">Clicca su ogni card per vedere un esempio. <span class="es">Hacé clic en cada tarjeta para ver un ejemplo.</span></p>
     <div class="vocab-grid" data-stagger>
       <div class="vocab-card" onclick="this.classList.toggle('open')"><div class="vc-top"></div><div class="vc-body"><div class="vc-it">🚆 treno</div><div class="vc-es">tren</div><div class="vc-ex">Prendo il treno per Milano alle otto.</div></div></div>
       <div class="vocab-card" onclick="this.classList.toggle('open')"><div class="vc-top"></div><div class="vc-body"><div class="vc-it">🚌 autobus</div><div class="vc-es">autobús</div><div class="vc-ex">Aspetto l'autobus alla fermata.</div></div></div>
@@ -208,7 +208,7 @@
   <div class="container">
     <p class="section-label" data-a="fade">Dialogo</p>
     <h2 class="section-title" data-a="up">Come arrivo <em>al museo</em>?</h2>
-    <p class="section-desc" data-a="up">Clicca su ogni bolla per la traduzione. <span class="es">Haz clic en cada burbuja para ver la traducción.</span></p>
+    <p class="section-desc" data-a="up">Clicca su ogni bolla per la traduzione. <span class="es">Hacé clic en cada burbuja para ver la traducción.</span></p>
     <div class="dialogue" data-stagger>
       <div class="dlg-line"><div class="dlg-speaker">Turista</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">Scusi, come arrivo al museo nazionale?</div><div class="es">Perdone, ¿cómo llego al museo nacional?</div></div></div>
       <div class="dlg-line b"><div class="dlg-speaker">Marco</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">Vada sempre dritto per questa strada, poi giri a sinistra al semaforo.</div><div class="es">Vaya todo recto por esta calle, luego gire a la izquierda en el semáforo.</div></div></div>
@@ -241,6 +241,8 @@
 </footer>
 
 <script>
+(function(){
+
   const observer=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');observer.unobserve(x.target)}})},{threshold:.12});
   document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>observer.observe(el));
   const c1=document.getElementById('hbc1'),c2=document.getElementById('hbc2');
@@ -256,6 +258,7 @@
   WORDS.forEach((w,i)=>{const d=document.createElement('div');d.className='word-card';d.innerHTML=`${w.w}<span class="word-badge" id="b${i}"></span>`;d.addEventListener('click',()=>{if(verified)return;sel.has(i)?(sel.delete(i),d.classList.remove('selected')):(sel.add(i),d.classList.add('selected'))});grid.appendChild(d)});
   function verifyWords(){verified=true;let s=0,t=WORDS.filter(x=>x.c).length;const cards=grid.querySelectorAll('.word-card');WORDS.forEach((w,i)=>{const c=cards[i],b=document.getElementById('b'+i);c.classList.remove('selected');if(w.c&&sel.has(i)){c.classList.add('correct');b.textContent='✓';s++}else if(!w.c&&sel.has(i)){c.classList.add('false-pos');b.textContent='✗'}else if(w.c&&!sel.has(i)){c.classList.add('missed');b.textContent='!'}else c.classList.add('neutral')});document.getElementById('wordScore').textContent=s+'/'+t;}
   function resetWords(){verified=false;sel.clear();grid.querySelectorAll('.word-card').forEach(c=>c.className='word-card');document.getElementById('wordScore').textContent='';}
+})();
 </script>
 </body>
 </html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gramática — Módulo 8 | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #e9e6d5; --cream-dk: #ddd9c8;
+    --green: #528e74; --green-dk: #3d6b58;
+    --green-hero: #c8e8de; --green-th: #a8d4c4;
+    --green-active: #3d6b58; --green-text: #2a4d3c;
+    --red: #cc4736;
+    --black: #1a1a18; --white: #ffffff;
+    --fh: 'Playfair Display', Georgia, serif;
+    --fb: 'Outfit', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--fb); color: var(--black); background: var(--cream); line-height: 1.6; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 0 1.5rem; display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+  .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+  .nav-logo img { height: 40px; }
+  .nav-links { display: flex; gap: 0.25rem; list-style: none; flex-wrap: wrap; }
+  .nav-links a { font-family: var(--fb); font-size: 0.82rem; font-weight: 600; color: var(--green-text); text-decoration: none; padding: 0.4rem 0.75rem; border-radius: 20px; transition: background 0.2s; }
+  .nav-links a:hover, .nav-links a.active { background: var(--green-hero); color: var(--green-active); }
+
+  .hero { background: var(--green-hero); border-bottom: 4px solid var(--green); padding: 3rem 1.5rem; text-align: center; }
+  .hero-badge { display: inline-block; background: var(--green-th); color: var(--green-text); font-size: 0.8rem; font-weight: 600; padding: 0.3rem 1rem; border-radius: 20px; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .hero h1 { font-family: var(--fh); font-size: clamp(2rem, 4.5vw, 3rem); font-style: italic; color: var(--green-text); margin-bottom: 0.5rem; }
+  .hero p { font-size: 1rem; color: var(--green-active); }
+
+  section { padding: 3rem 1.5rem; scroll-margin-top: 80px; }
+  section:nth-child(even) { background: var(--cream-dk); }
+  .section-inner { max-width: 1000px; margin: 0 auto; }
+  .section-title { font-family: var(--fh); font-size: 1.8rem; font-style: italic; color: var(--green-active); margin-bottom: 0.5rem; }
+  .section-lead { font-size: 0.95rem; color: #4a4a44; margin-bottom: 1.75rem; max-width: 680px; }
+
+  .rule-card { background: var(--white); border-left: 5px solid var(--green); border-radius: 0 12px 12px 0; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; }
+  .rule-card h3 { font-family: var(--fh); font-style: italic; font-size: 1.1rem; color: var(--green-active); margin-bottom: 0.5rem; }
+  .rule-card p { font-size: 0.9rem; color: #3a3a35; margin-bottom: 0.5rem; }
+  .formula { background: var(--green-hero); border: 1px solid var(--green); border-radius: 8px; padding: 0.6rem 1rem; font-family: monospace; font-size: 0.95rem; color: var(--green-text); margin: 0.5rem 0; }
+
+  .table-wrap { overflow-x: auto; margin: 1.25rem 0; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.91rem; }
+  th { background: var(--green-th); color: var(--green-text); padding: 0.65rem 1rem; text-align: left; font-weight: 700; }
+  td { padding: 0.58rem 1rem; border-bottom: 1px solid #d0ecdf; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f0faf6; }
+  .it-cell { font-family: var(--fh); font-style: italic; color: var(--green-active); font-weight: 600; }
+  .highlight-row td { background: var(--green-hero) !important; font-weight: 600; }
+
+  .example-box { background: var(--green-hero); border-radius: 10px; padding: 1.1rem 1.5rem; margin: 0.75rem 0; border: 1px solid var(--green); }
+  .example-box .it { font-family: var(--fh); font-style: italic; font-size: 1rem; color: var(--green-text); }
+  .example-box .es { font-size: 0.85rem; color: #5a5a54; margin-top: 0.2rem; }
+  .ex-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; margin: 1rem 0; }
+
+  .pratica-block { background: var(--white); border-radius: 12px; padding: 1.5rem; margin: 1.25rem 0; border: 2px solid var(--green-th); }
+  .pratica-block h3 { font-family: var(--fh); font-style: italic; font-size: 1.1rem; color: var(--green-active); margin-bottom: 1rem; }
+  .pratica-item { margin-bottom: 0.9rem; font-size: 0.92rem; }
+  .pratica-item label { display: block; margin-bottom: 0.3rem; color: #3a3a35; line-height: 1.5; }
+  .pratica-item input, .pratica-item select { border: 2px solid var(--green-th); border-radius: 8px; padding: 0.38rem 0.7rem; font-family: var(--fb); font-size: 0.88rem; background: var(--white); color: var(--black); transition: border-color 0.2s; }
+  .pratica-item input:focus { outline: none; border-color: var(--green-active); }
+  .pratica-item input.correct { border-color: var(--green); background: #eef7f3; }
+  .pratica-item input.incorrect { border-color: var(--red); background: #fdf0ee; }
+  .check-btn { background: var(--green-active); color: var(--white); border: none; border-radius: 8px; padding: 0.55rem 1.4rem; font-family: var(--fb); font-weight: 600; font-size: 0.88rem; cursor: pointer; margin-top: 0.5rem; transition: background 0.2s; }
+  .check-btn:hover { background: var(--green-text); }
+  .feedback { font-size: 0.84rem; margin-top: 0.5rem; font-weight: 600; min-height: 1.2em; }
+  .feedback.ok { color: var(--green); }
+  .feedback.err { color: var(--red); }
+
+  /* ACCENT SECTION */
+  .accent-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; margin: 1rem 0; }
+  .accent-card { background: var(--white); border: 2px solid var(--green-th); border-radius: 10px; padding: 1rem; text-align: center; }
+  .accent-card .word { font-family: var(--fh); font-size: 1.2rem; color: var(--green-active); font-style: italic; font-weight: 700; }
+  .accent-card .rule { font-size: 0.78rem; color: #5a5a54; margin-top: 0.3rem; }
+  .accent-card .type { display: inline-block; background: var(--green-th); color: var(--green-text); font-size: 0.72rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 4px; margin-top: 0.4rem; }
+
+  .quiz-container { background: var(--white); border-radius: 14px; padding: 2rem; margin: 1.5rem 0; border: 2px solid var(--green-th); }
+  .quiz-q { margin-bottom: 1.5rem; }
+  .quiz-q p { font-weight: 600; font-size: 0.95rem; color: var(--green-text); margin-bottom: 0.6rem; }
+  .quiz-option { display: block; padding: 0.5rem 0.9rem; margin: 0.3rem 0; border-radius: 8px; border: 2px solid var(--green-th); cursor: pointer; font-size: 0.88rem; transition: all 0.2s; background: var(--cream); }
+  .quiz-option:hover { border-color: var(--green); background: var(--green-hero); }
+  .quiz-option.correct { border-color: var(--green); background: #eef7f3; font-weight: 600; }
+  .quiz-option.incorrect { border-color: var(--red); background: #fdf0ee; }
+  .quiz-score { font-family: var(--fh); font-size: 1.4rem; font-style: italic; color: var(--green-active); text-align: center; margin-top: 1rem; }
+
+  footer { background: var(--cream-dk); border-top: 2px solid var(--green-th); padding: 1.5rem; text-align: center; font-size: 0.82rem; color: #6a6a60; }
+
+  @media (max-width: 640px) {
+    .nav-links a { font-size: 0.75rem; padding: 0.35rem 0.55rem; }
+    .ex-grid, .accent-grid { grid-template-columns: 1fr; }
+  }
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo) { font-family: var(--fb); font-size: 0.82rem; font-weight: 600; color: var(--green-text); text-decoration: none; padding: 0.4rem 0.75rem; border-radius: 20px; transition: background 0.2s; }
+nav > a:not(.nav-logo):hover, nav > a:not(.nav-logo).active { background: var(--green-hero); color: var(--green-active); }
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+
+<nav class="sticky-nav">
+    <div class="nav-logo"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img">
+    <ul class="nav-links">
+      <li><a href="#possessivi" class="active">Possessivi</a></li>
+      <li><a href="#aggettivi">Aggettivi</a></li>
+      <li><a href="#accenti">Accenti</a></li>
+      <li><a href="#pratica">Práctica</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+    </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Módulo 8 · Gramática</div>
+  <h1>In albergo — Gramática</h1>
+  <p>Aggettivi possessivi · Aggettivi descriptivos · Acentos en italiano</p>
+</div>
+
+<!-- POSSESSIVI -->
+<section id="possessivi">
+  <div class="section-inner">
+    <h2 class="section-title">1. Aggettivi e pronomi possessivi</h2>
+    <p class="section-lead">Los posesivos en italiano concuerdan con la cosa poseída, no con la persona que posee. Y casi siempre van acompañados del artículo determinado.</p>
+
+    <div class="rule-card">
+      <h3>La regla del artículo</h3>
+      <p>A diferencia del español, en italiano el posesivo SIEMPRE lleva artículo delante, con una sola excepción importante: los miembros de la familia en singular no llevan artículo.</p>
+      <div class="formula">✓ La mia camera · il tuo documento · i nostri bagagli<br>✗ Mia camera · tuo documento (sin artículo: incorrecto con objetos)<br><br>Excepción familia: mio padre · tua madre · suo fratello (sin artículo, singular)</div>
+    </div>
+
+    <p style="margin:0.75rem 0 0.25rem; font-size:0.9rem; color:#3a3a35;"><strong>Tabla completa de possessivi con artículo:</strong></p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Persona</th><th>m. sg. (il/lo)</th><th>f. sg. (la)</th><th>m. pl. (i/gli)</th><th>f. pl. (le)</th></tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row"><td><strong>io</strong></td><td class="it-cell">il mio</td><td class="it-cell">la mia</td><td class="it-cell">i miei</td><td class="it-cell">le mie</td></tr>
+          <tr><td><strong>tu</strong></td><td class="it-cell">il tuo</td><td class="it-cell">la tua</td><td class="it-cell">i tuoi</td><td class="it-cell">le tue</td></tr>
+          <tr><td><strong>lui/lei/Lei</strong></td><td class="it-cell">il suo</td><td class="it-cell">la sua</td><td class="it-cell">i suoi</td><td class="it-cell">le sue</td></tr>
+          <tr><td><strong>noi</strong></td><td class="it-cell">il nostro</td><td class="it-cell">la nostra</td><td class="it-cell">i nostri</td><td class="it-cell">le nostre</td></tr>
+          <tr><td><strong>voi</strong></td><td class="it-cell">il vostro</td><td class="it-cell">la vostra</td><td class="it-cell">i vostri</td><td class="it-cell">le vostre</td></tr>
+          <tr><td><strong>loro</strong></td><td class="it-cell">il loro</td><td class="it-cell">la loro</td><td class="it-cell">i loro</td><td class="it-cell">le loro</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule-card">
+      <h3>Atención: "suo" puede ser confuso</h3>
+      <p>El posesivo <strong>suo/sua/suoi/sue</strong> corresponde tanto a "su" (de él), "su" (de ella) como "su" (de usted formal — Lei). El contexto siempre aclara de quién se trata.</p>
+      <div class="formula">Mario ha perso la sua chiave. → Mario perdió su llave.<br>Maria ha perso la sua chiave. → María perdió su llave.<br>Signor Rossi, la sua camera è pronta. → Sr. Rossi, su habitación está lista (usted).</div>
+    </div>
+
+    <p style="margin:1rem 0 0.5rem; font-size:0.92rem; color:#3a3a35;"><strong>Ejemplos en el hotel:</strong></p>
+    <div class="ex-grid">
+      <div class="example-box"><div class="it">La mia camera non ha il balcone.</div><div class="es">Mi habitación no tiene balcón.</div></div>
+      <div class="example-box"><div class="it">Il tuo documento è scaduto.</div><div class="es">Tu documento está vencido.</div></div>
+      <div class="example-box"><div class="it">Le nostre valigie sono al piano terra.</div><div class="es">Nuestras valijas están en planta baja.</div></div>
+      <div class="example-box"><div class="it">I loro bagagli sono già in camera.</div><div class="es">Su equipaje (de ellos) ya está en la habitación.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AGGETTIVI -->
+<section id="aggettivi">
+  <div class="section-inner">
+    <h2 class="section-title">2. Aggettivi — descripción y comparación</h2>
+    <p class="section-lead">Para quejarse en el hotel necesitás adjetivos descriptivos y saber cómo compararlos. El comparativo en italiano es bastante regular.</p>
+
+    <div class="rule-card">
+      <h3>Adjetivos que describen problemas</h3>
+      <p>Estos adjetivos tienen terminación <strong>-o/-a/-i/-e</strong> según el género y número del sustantivo que describen.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>m. sg.</th><th>f. sg.</th><th>m. pl.</th><th>f. pl.</th><th>Significado</th></tr></thead>
+        <tbody>
+          <tr><td class="it-cell">rotto</td><td class="it-cell">rotta</td><td class="it-cell">rotti</td><td class="it-cell">rotte</td><td>roto/a</td></tr>
+          <tr><td class="it-cell">sporco</td><td class="it-cell">sporca</td><td class="it-cell">sporchi</td><td class="it-cell">sporche</td><td>sucio/a</td></tr>
+          <tr><td class="it-cell">rumoroso</td><td class="it-cell">rumorosa</td><td class="it-cell">rumorosi</td><td class="it-cell">rumorose</td><td>ruidoso/a</td></tr>
+          <tr><td class="it-cell">freddo</td><td class="it-cell">fredda</td><td class="it-cell">freddi</td><td class="it-cell">fredde</td><td>frío/a</td></tr>
+          <tr><td class="it-cell">piccolo</td><td class="it-cell">piccola</td><td class="it-cell">piccoli</td><td class="it-cell">piccole</td><td>pequeño/a</td></tr>
+          <tr><td class="it-cell">lento</td><td class="it-cell">lenta</td><td class="it-cell">lenti</td><td class="it-cell">lente</td><td>lento/a</td></tr>
+          <tr><td class="it-cell">caldo</td><td class="it-cell">calda</td><td class="it-cell">caldi</td><td class="it-cell">calde</td><td>caliente / cálido</td></tr>
+          <tr><td class="it-cell">grande</td><td class="it-cell">grande</td><td class="it-cell">grandi</td><td class="it-cell">grandi</td><td>grande (invariable en sg.)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule-card" style="margin-top:1.5rem;">
+      <h3>El comparativo</h3>
+      <p>Para comparar en italiano se usan estas estructuras:</p>
+      <div class="formula">più + aggettivo + di/che → más [adj] que<br>meno + aggettivo + di/che → menos [adj] que<br>così... come / tanto... quanto → tan... como</div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Comparativo</th><th>Esempio</th><th>Traducción</th></tr></thead>
+        <tbody>
+          <tr><td class="it-cell">più grande di</td><td class="it-cell">La camera 301 è più grande della 302.</td><td>La habitación 301 es más grande que la 302.</td></tr>
+          <tr><td class="it-cell">meno rumorosa di</td><td class="it-cell">Questa camera è meno rumorosa dell'altra.</td><td>Esta habitación es menos ruidosa que la otra.</td></tr>
+          <tr><td class="it-cell">così... come</td><td class="it-cell">Il bagno non è così sporco come pensavo.</td><td>El baño no está tan sucio como pensaba.</td></tr>
+          <tr><td class="it-cell">troppo + aggettivo</td><td class="it-cell">La camera è troppo piccola per tre persone.</td><td>La habitación es demasiado pequeña para tres.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin:1rem 0 0.5rem; font-size:0.92rem; color:#3a3a35;"><strong>Superlativi irregolari más comunes:</strong></p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Aggettivo</th><th>Comparativo</th><th>Superlativo assoluto</th><th>Superlativo relativo</th></tr></thead>
+        <tbody>
+          <tr><td class="it-cell">buono</td><td class="it-cell">migliore</td><td class="it-cell">ottimo</td><td class="it-cell">il migliore</td></tr>
+          <tr><td class="it-cell">cattivo</td><td class="it-cell">peggiore</td><td class="it-cell">pessimo</td><td class="it-cell">il peggiore</td></tr>
+          <tr><td class="it-cell">grande</td><td class="it-cell">maggiore / più grande</td><td class="it-cell">massimo</td><td class="it-cell">il più grande</td></tr>
+          <tr><td class="it-cell">piccolo</td><td class="it-cell">minore / più piccolo</td><td class="it-cell">minimo</td><td class="it-cell">il più piccolo</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ACCENTI -->
+<section id="accenti">
+  <div class="section-inner">
+    <h2 class="section-title">3. Accenti grafici e tonici</h2>
+    <p class="section-lead">Los acentos en italiano son pocos pero importantes. Hay acentos gráficos obligatorios y acentos tónicos (que determinan cómo se pronuncia cada palabra).</p>
+
+    <div class="rule-card">
+      <h3>Acentos gráficos (obligatorios)</h3>
+      <p>El italiano solo escribe el acento cuando cae en la última sílaba (parola tronca) o en algunas palabras monosilábicas para distinguirlas. Las vocales acentuadas son: à, è, ì, ò, ù.</p>
+      <div class="formula">caffè · città · perché · così · però · più · già · lì · giù</div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tipo de acento</th><th>Vocal</th><th>Ejemplos</th><th>Diferencia</th></tr></thead>
+        <tbody>
+          <tr><td>Acento grave (aperto)</td><td class="it-cell">è, à, ì, ò, ù</td><td class="it-cell">è (es), città, lì, più</td><td>sonido abierto</td></tr>
+          <tr><td>Acento agudo (chiuso)</td><td class="it-cell">é, ó</td><td class="it-cell">perché, né, ché</td><td>sonido cerrado (menos común en escritura)</td></tr>
+          <tr><td>Distinguir homógrafos</td><td class="it-cell">è vs e</td><td class="it-cell">è = "es" / e = "y"</td><td>misma ortografía, distinto significado</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule-card" style="margin-top:1.5rem;">
+      <h3>Acento tónico — tipos de palabras</h3>
+      <p>En italiano el acento tónico (pronunciación) no siempre se escribe, pero sí determina cómo se pronuncia cada palabra. Según dónde cae el acento, las palabras se clasifican en tres grupos.</p>
+    </div>
+
+    <div class="accent-grid">
+      <div class="accent-card">
+        <div class="word">pàrola piàna</div>
+        <div class="rule">Acento en la penúltima sílaba</div>
+        <div class="type">La más común</div>
+        <div style="font-size:0.8rem;margin-top:0.5rem;color:#3a3a35;">ca-ME-ra · al-BER-go · pa-RO-la · do-CU-men-to</div>
+      </div>
+      <div class="accent-card">
+        <div class="word">pàrola sdrùcciola</div>
+        <div class="rule">Acento en la antepenúltima sílaba</div>
+        <div class="type">Bastante común</div>
+        <div style="font-size:0.8rem;margin-top:0.5rem;color:#3a3a35;">tE-le-fo-no · sE-m-pli-ce · rU-mo-ro-so</div>
+      </div>
+      <div class="accent-card">
+        <div class="word">pàrola tronca</div>
+        <div class="rule">Acento en la última sílaba (siempre escrito)</div>
+        <div class="type">Se escribe siempre</div>
+        <div style="font-size:0.8rem;margin-top:0.5rem;color:#3a3a35;">cit-TÀ · caf-FÈ · pe-RO · co-SÌ</div>
+      </div>
+    </div>
+
+    <p style="margin:1.5rem 0 0.75rem; font-size:0.92rem; color:#3a3a35;"><strong>Palabras del hotel con acento gráfico:</strong></p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Palabra</th><th>Pronunciación</th><th>Significado</th></tr></thead>
+        <tbody>
+          <tr><td class="it-cell">città</td><td>/chit-TÀ/</td><td>ciudad</td></tr>
+          <tr><td class="it-cell">caffè</td><td>/caf-FÈ/</td><td>café</td></tr>
+          <tr><td class="it-cell">però</td><td>/pe-RÒ/</td><td>pero / sin embargo</td></tr>
+          <tr><td class="it-cell">già</td><td>/JÀ/</td><td>ya</td></tr>
+          <tr><td class="it-cell">più</td><td>/PJYÙ/</td><td>más</td></tr>
+          <tr><td class="it-cell">perché</td><td>/per-KÉ/</td><td>porque / ¿por qué?</td></tr>
+          <tr><td class="it-cell">così</td><td>/co-ZÌ/</td><td>así</td></tr>
+          <tr><td class="it-cell">lì / là</td><td>/LÌ/ /LÀ/</td><td>ahí / allá</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- PRATICA -->
+<section id="pratica">
+  <div class="section-inner">
+    <h2 class="section-title">Práctica integrada</h2>
+    <p class="section-lead">Ejercicios combinados de los tres temas.</p>
+
+    <div class="pratica-block">
+      <h3>Ejercicio A — Possessivi correctos</h3>
+      <div class="pratica-item"><label>1. (mi habitación, f. sg.) → <input type="text" class="pA" data-answer="la mia camera" placeholder="art. + pos. + sust."></label></div>
+      <div class="pratica-item"><label>2. (tu llave, f. sg.) → <input type="text" class="pA" data-answer="la tua chiave" placeholder="art. + pos. + sust."></label></div>
+      <div class="pratica-item"><label>3. (nuestro documento, m. sg.) → <input type="text" class="pA" data-answer="il nostro documento" placeholder="art. + pos. + sust."></label></div>
+      <div class="pratica-item"><label>4. (sus valijas — de ellos, f. pl.) → <input type="text" class="pA" data-answer="le loro valigie" placeholder="art. + pos. + sust."></label></div>
+      <div class="pratica-item"><label>5. (vuestra habitación, f. sg.) → <input type="text" class="pA" data-answer="la vostra camera" placeholder="art. + pos. + sust."></label></div>
+      <button class="check-btn" onclick="checkFill('pA','fbA')">Verificar</button>
+      <div class="feedback" id="fbA"></div>
+    </div>
+
+    <div class="pratica-block">
+      <h3>Ejercicio B — Concordancia de adjetivos</h3>
+      <div class="pratica-item"><label>1. La doccia (freddo, f.) → La doccia è <input type="text" class="pB" data-answer="fredda" placeholder="...">.</label></div>
+      <div class="pratica-item"><label>2. I bagagli (sporco, m. pl.) → I bagagli sono <input type="text" class="pB" data-answer="sporchi" placeholder="...">.</label></div>
+      <div class="pratica-item"><label>3. Le lenzuola (rotto, f. pl.) → Le lenzuola sono <input type="text" class="pB" data-answer="rotte" placeholder="...">.</label></div>
+      <div class="pratica-item"><label>4. Il wifi (lento, m.) → Il wifi è troppo <input type="text" class="pB" data-answer="lento" placeholder="...">.</label></div>
+      <div class="pratica-item"><label>5. La camera (rumoroso, f.) → La camera è troppo <input type="text" class="pB" data-answer="rumorosa" placeholder="...">.</label></div>
+      <button class="check-btn" onclick="checkFill('pB','fbB')">Verificar</button>
+      <div class="feedback" id="fbB"></div>
+    </div>
+
+    <div class="pratica-block">
+      <h3>Ejercicio C — Frases de queja completas</h3>
+      <div class="pratica-item"><label>1. Disculpe, el calefactor está roto: "Scusi, <input type="text" class="pC" data-answer="il riscaldamento è rotto" placeholder="...">."</label></div>
+      <div class="pratica-item"><label>2. ¿Podría mandar a alguien?: "<input type="text" class="pC" data-answer="Potrebbe mandare qualcuno" placeholder="...">?"</label></div>
+      <div class="pratica-item"><label>3. La habitación 201 es más grande que la 102: "La camera 201 è <input type="text" class="pC" data-answer="più grande della" placeholder="..."> 102."</label></div>
+      <div class="pratica-item"><label>4. ¿Cuándo es el checkout?: "Entro che ora devo <input type="text" class="pC" data-answer="fare il checkout" placeholder="...">?"</label></div>
+      <button class="check-btn" onclick="checkFill('pC','fbC')">Verificar</button>
+      <div class="feedback" id="fbC"></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="section-inner">
+    <h2 class="section-title">Quiz final — 5 preguntas</h2>
+    <p class="section-lead">Comprobá lo que aprendiste en este módulo.</p>
+
+    <div class="quiz-container">
+      <div class="quiz-q" id="q1">
+        <p>1. ¿Cuál es la forma correcta del possessivo para "mi habitación"?</p>
+        <label class="quiz-option" data-q="q1" data-correct="false">Mia camera</label>
+        <label class="quiz-option" data-q="q1" data-correct="true">La mia camera</label>
+        <label class="quiz-option" data-q="q1" data-correct="false">Mia la camera</label>
+      </div>
+      <div class="quiz-q" id="q2">
+        <p>2. El adjetivo "sporco" en femenino plural es:</p>
+        <label class="quiz-option" data-q="q2" data-correct="false">sporci</label>
+        <label class="quiz-option" data-q="q2" data-correct="false">sporce</label>
+        <label class="quiz-option" data-q="q2" data-correct="true">sporche</label>
+      </div>
+      <div class="quiz-q" id="q3">
+        <p>3. ¿Cuál de estas palabras lleva acento gráfico obligatorio?</p>
+        <label class="quiz-option" data-q="q3" data-correct="false">camera</label>
+        <label class="quiz-option" data-q="q3" data-correct="true">caffè</label>
+        <label class="quiz-option" data-q="q3" data-correct="false">albergo</label>
+      </div>
+      <div class="quiz-q" id="q4">
+        <p>4. ¿Cómo se dice "sus valijas" (de ellos) en italiano?</p>
+        <label class="quiz-option" data-q="q4" data-correct="false">i suoi bagagli</label>
+        <label class="quiz-option" data-q="q4" data-correct="true">i loro bagagli</label>
+        <label class="quiz-option" data-q="q4" data-correct="false">i vostri bagagli</label>
+      </div>
+      <div class="quiz-q" id="q5">
+        <p>5. ¿Cuál es la frase correcta para reportar que la ducha no funciona?</p>
+        <label class="quiz-option" data-q="q5" data-correct="false">La doccia è fredda.</label>
+        <label class="quiz-option" data-q="q5" data-correct="true">Scusi, la doccia non funziona.</label>
+        <label class="quiz-option" data-q="q5" data-correct="false">Il bagno non prende.</label>
+      </div>
+      <button class="check-btn" onclick="checkQuiz()" style="width:100%;margin-top:0.5rem;">Ver resultados</button>
+      <div class="quiz-score" id="quizScore"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Italiano Per Piacere · Módulo 8 — In albergo · Gramática</p>
+</footer>
+
+<script>
+function checkFill(cls, fbId) {
+  const inputs = document.querySelectorAll('.' + cls);
+  let ok = 0;
+  inputs.forEach(inp => {
+    const ans = inp.dataset.answer.toLowerCase().trim();
+    const val = inp.value.toLowerCase().trim();
+    if (val === ans) { inp.classList.add('correct'); inp.classList.remove('incorrect'); ok++; }
+    else { inp.classList.add('incorrect'); inp.classList.remove('correct'); }
+  });
+  const fb = document.getElementById(fbId);
+  if (ok === inputs.length) { fb.textContent = '✓ Perfetto! Todas correctas.'; fb.className = 'feedback ok'; }
+  else { fb.textContent = `${ok}/${inputs.length} correctas.`; fb.className = 'feedback err'; }
+}
+
+let quizAnswered = {};
+document.querySelectorAll('.quiz-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    const q = opt.dataset.q;
+    if (quizAnswered[q]) return;
+    quizAnswered[q] = true;
+    document.querySelectorAll(`.quiz-option[data-q="${q}"]`).forEach(o => {
+      if (o.dataset.correct === 'true') o.classList.add('correct');
+      else if (o === opt) o.classList.add('incorrect');
+    });
+  });
+});
+
+function checkQuiz() {
+  const qs = ['q1','q2','q3','q4','q5'];
+  qs.forEach(q => {
+    if (!quizAnswered[q]) {
+      document.querySelectorAll(`.quiz-option[data-q="${q}"]`).forEach(o => {
+        if (o.dataset.correct === 'true') o.classList.add('correct');
+      });
+    }
+  });
+  const answered = qs.filter(q => quizAnswered[q]);
+  let correct = 0;
+  answered.forEach(q => {
+    const sel = document.querySelector(`.quiz-option[data-q="${q}"].correct`);
+    if (sel) correct++;
+  });
+  const el = document.getElementById('quizScore');
+  if (correct === qs.length) { el.textContent = `🎉 ${correct}/${qs.length} — Bravissimo/a!`; el.style.color = 'var(--green)'; }
+  else if (correct >= 3) { el.textContent = `✓ ${correct}/${qs.length} — Molto bene!`; el.style.color = 'var(--green-active)'; }
+  else { el.textContent = `${correct}/${qs.length} — Ripassate la teoria.`; el.style.color = 'var(--red)'; }
+}
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const link = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>

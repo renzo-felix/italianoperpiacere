@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -11,7 +11,6 @@
   --gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
   --red:#cc4736;--teal:#78a6ba;--teal-dk:#5a8ea0;
   --green:#528e74;--black:#1a1a18;--white:#ffffff;
-  --hero:var(--teal);--hero-text:var(--white);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--black);overflow-x:hidden}
@@ -19,14 +18,14 @@ body.hide-es .es{display:none}
 
 #toggle-btn{
   position:fixed;top:1rem;right:1rem;z-index:999;
-  background:var(--teal-dk);color:#fff;border:none;
+  background:var(--amber-dk);color:#fff;border:none;
   padding:.5rem 1rem;border-radius:2rem;font-family:'Outfit',sans-serif;
   font-size:.85rem;cursor:pointer;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.25)
 }
 
 /* HERO */
 .hero{
-  min-height:94vh;background:linear-gradient(135deg,var(--teal),var(--teal-dk));
+  min-height:94vh;background:linear-gradient(135deg,var(--amber),var(--amber-dk));
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:4rem 2rem;position:relative;overflow:hidden
 }
@@ -37,32 +36,32 @@ body.hide-es .es{display:none}
 .c4{width:120px;height:120px;top:20%;left:6%}
 .hero h1{
   font-family:'Playfair Display',serif;font-style:italic;
-  font-size:clamp(2.5rem,7vw,4.5rem);color:var(--white);
-  line-height:1.1;margin-bottom:.6rem;text-shadow:0 2px 12px rgba(0,0,0,.2)
+  font-size:clamp(2.5rem,7vw,4.5rem);color:#7a5500;
+  line-height:1.1;margin-bottom:.6rem;text-shadow:0 2px 12px rgba(0,0,0,.15)
 }
 .hero .badge{
-  background:var(--white);color:var(--teal-dk);
+  background:var(--white);color:var(--amber-dk);
   padding:.3rem 1rem;border-radius:2rem;font-size:.85rem;font-weight:700;
   letter-spacing:.05em;margin-bottom:1.5rem;display:inline-block
 }
-.hero p{font-size:1.1rem;max-width:650px;line-height:1.7;color:rgba(255,255,255,.93)}
+.hero p{font-size:1.1rem;max-width:650px;line-height:1.7;color:rgba(26,26,24,.85)}
 .hero .benigni-box{
-  background:rgba(255,255,255,.15);backdrop-filter:blur(4px);
-  border:1px solid rgba(255,255,255,.3);
+  background:rgba(255,255,255,.35);backdrop-filter:blur(4px);
+  border:1px solid rgba(255,255,255,.5);
   border-radius:14px;padding:1.2rem 1.8rem;
-  margin-top:1.8rem;max-width:580px;text-align:left;color:#fff;font-size:.95rem;line-height:1.7
+  margin-top:1.8rem;max-width:580px;text-align:left;color:var(--black);font-size:.95rem;line-height:1.7
 }
-.hero .benigni-box strong{font-size:1rem;display:block;margin-bottom:.4rem;color:var(--gold)}
-.hero .scroll-hint{margin-top:2rem;font-size:.9rem;opacity:.6;animation:bounce 2s infinite;color:#fff}
+.hero .benigni-box strong{font-size:1rem;display:block;margin-bottom:.4rem;color:#7a5500}
+.hero .scroll-hint{margin-top:2rem;font-size:.9rem;opacity:.6;animation:bounce 2s infinite;color:rgba(26,26,24,.5)}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
 section{padding:4rem 2rem;max-width:900px;margin:0 auto}
 section h2{
   font-family:'Playfair Display',serif;font-style:italic;
-  font-size:clamp(1.7rem,4vw,2.3rem);color:var(--teal-dk);margin-bottom:.4rem
+  font-size:clamp(1.7rem,4vw,2.3rem);color:var(--amber-dk);margin-bottom:.4rem
 }
 section .subtitle{font-size:.95rem;color:#555;margin-bottom:2rem;line-height:1.65}
-.it{font-style:italic;color:var(--teal-dk);font-weight:600}
+.it{font-style:italic;color:var(--amber-dk);font-weight:600}
 .es{color:#666;font-size:.9rem}
 
 /* ANIMATIONS */
@@ -80,66 +79,66 @@ section .subtitle{font-size:.95rem;color:#555;margin-bottom:2rem;line-height:1.6
 
 /* WORD GRID */
 .word-grid{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.5rem}
-.word-btn{padding:.55rem 1.1rem;border-radius:2rem;border:2px solid var(--teal-dk);background:#fff;color:var(--black);font-family:'Outfit',sans-serif;font-size:.95rem;cursor:pointer;transition:all .2s}
+.word-btn{padding:.55rem 1.1rem;border-radius:2rem;border:2px solid var(--amber-dk);background:#fff;color:var(--black);font-family:'Outfit',sans-serif;font-size:.95rem;cursor:pointer;transition:all .2s}
 .word-btn:hover{background:var(--cream-dk)}
-.word-btn.selected{background:rgba(90,142,160,.2);border-color:var(--teal-dk);font-weight:700}
+.word-btn.selected{background:rgba(229,171,7,.2);border-color:var(--amber-dk);font-weight:700}
 .word-btn.correct{background:#d4edda;border-color:var(--green);color:var(--green);font-weight:700}
 .word-btn.wrong{background:#f8d7da;border-color:var(--red);color:var(--red);font-weight:700}
 .word-btn.missed{background:#fff3cd;border-color:var(--amber);color:#856404;font-weight:700}
-.verify-btn{background:var(--teal-dk);color:#fff;border:none;padding:.6rem 1.6rem;border-radius:2rem;font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;margin-bottom:1rem}
+.verify-btn{background:var(--amber-dk);color:#fff;border:none;padding:.6rem 1.6rem;border-radius:2rem;font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;margin-bottom:1rem}
 #grid-feedback{font-size:.95rem;margin-top:.5rem;min-height:1.4em}
 
 /* VOCAB CARDS */
 .vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:1rem}
-.vcard{background:#fff;border-radius:12px;padding:1.2rem 1rem;border-left:4px solid var(--teal);cursor:pointer;transition:box-shadow .2s,transform .2s}
+.vcard{background:#fff;border-radius:12px;padding:1.2rem 1rem;border-left:4px solid var(--amber);cursor:pointer;transition:box-shadow .2s,transform .2s}
 .vcard:hover{box-shadow:0 4px 18px rgba(0,0,0,.1);transform:translateY(-2px)}
-.vcard .vit{font-size:1.05rem;font-weight:700;color:var(--teal-dk)}
+.vcard .vit{font-size:1.05rem;font-weight:700;color:var(--amber-dk)}
 .vcard .ves{font-size:.9rem;color:#555;margin-top:.2rem}
 .vcard .vex{font-size:.85rem;margin-top:.6rem;color:var(--black);font-style:italic;border-top:1px solid var(--cream-dk);padding-top:.6rem;display:none}
 .vcard.open .vex{display:block}
 
 /* LA DATA */
 .data-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;margin-top:1rem}
-.data-card{background:#fff;border-radius:12px;padding:1.1rem;text-align:center;border-top:4px solid var(--teal)}
-.data-card .label{font-size:.75rem;font-weight:700;color:var(--teal-dk);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem}
+.data-card{background:#fff;border-radius:12px;padding:1.1rem;text-align:center;border-top:4px solid var(--amber)}
+.data-card .label{font-size:.75rem;font-weight:700;color:var(--amber-dk);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem}
 .data-card .content{font-size:.88rem;line-height:1.7;font-style:italic;color:var(--black)}
 
 /* ESSERE/AVERE DISCOVERY */
 .aux-discovery{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
-.aux-side{background:#fff;border-radius:12px;padding:1.2rem;border-top:4px solid var(--teal-dk)}
+.aux-side{background:#fff;border-radius:12px;padding:1.2rem;border-top:4px solid var(--amber-dk)}
 .aux-side.essere-side{border-top-color:var(--red)}
-.aux-side h4{font-size:.92rem;font-weight:700;margin-bottom:.8rem;color:var(--teal-dk)}
+.aux-side h4{font-size:.92rem;font-weight:700;margin-bottom:.8rem;color:var(--amber-dk)}
 .aux-side.essere-side h4{color:var(--red)}
 .aux-example{font-size:.9rem;font-style:italic;margin:.45rem 0;color:var(--black);padding:.3rem 0;border-bottom:1px solid var(--cream-dk)}
 .aux-example:last-of-type{border-bottom:none}
-.aux-example strong{color:var(--teal-dk)}
+.aux-example strong{color:var(--amber-dk)}
 .aux-side.essere-side .aux-example strong{color:var(--red)}
 
 /* CHE PRONOME */
 .che-box{background:#fff;border-radius:14px;padding:1.5rem;margin-top:1rem;box-shadow:0 2px 10px rgba(0,0,0,.06)}
-.che-box h4{font-size:.97rem;font-weight:700;color:var(--teal-dk);margin-bottom:1rem}
+.che-box h4{font-size:.97rem;font-weight:700;color:var(--amber-dk);margin-bottom:1rem}
 .che-example{display:flex;gap:.8rem;margin:.6rem 0;align-items:flex-start;font-size:.93rem;line-height:1.6}
-.che-arrow{color:var(--teal-dk);flex-shrink:0;margin-top:.1rem}
-.che-word{background:var(--teal);color:#fff;padding:.1rem .5rem;border-radius:4px;font-weight:700}
+.che-arrow{color:var(--amber-dk);flex-shrink:0;margin-top:.1rem}
+.che-word{background:var(--amber);color:#7a5500;padding:.1rem .5rem;border-radius:4px;font-weight:700}
 
 /* FILL SECTION */
 .fill-section{background:#fff;border-radius:14px;padding:1.5rem;margin-top:1rem;box-shadow:0 2px 10px rgba(0,0,0,.06)}
 .fill-section p.instruc{font-size:.93rem;color:#555;margin-bottom:1rem;line-height:1.6}
 .fill-text{font-size:1rem;line-height:2.1}
-.fill-blank{border:none;border-bottom:2px solid var(--teal);background:transparent;font-family:'Outfit',sans-serif;font-size:.97rem;outline:none;padding:.1rem .2rem;width:120px;color:var(--teal-dk);font-weight:600;text-align:center}
-.fill-blank:focus{border-bottom-color:var(--amber)}
+.fill-blank{border:none;border-bottom:2px solid var(--amber);background:transparent;font-family:'Outfit',sans-serif;font-size:.97rem;outline:none;padding:.1rem .2rem;width:120px;color:var(--amber-dk);font-weight:600;text-align:center}
+.fill-blank:focus{border-bottom-color:var(--amber-dk)}
 .word-bank{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;padding:.8rem;background:var(--cream-dk);border-radius:8px}
 .bank-word{padding:.3rem .8rem;background:#fff;border-radius:1rem;font-size:.9rem;cursor:pointer;border:1.5px solid var(--cream-dk);transition:all .2s}
-.bank-word:hover{border-color:var(--teal);background:var(--cream)}
-.reveal-btn{background:var(--teal-dk);color:#fff;border:none;padding:.45rem 1.1rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:.9rem}
+.bank-word:hover{border-color:var(--amber);background:var(--cream)}
+.reveal-btn{background:var(--amber-dk);color:#fff;border:none;padding:.45rem 1.1rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:.9rem}
 .fill-answers{display:none;margin-top:.7rem;padding:.8rem;background:#d4edda;border-radius:8px;font-size:.88rem;line-height:1.7;color:#155724}
 .fill-answers.show{display:block}
 
 /* PROPOSTA ACTIVITY */
 .proposta-box{background:#fff;border-radius:14px;padding:1.5rem;margin-top:1rem;box-shadow:0 2px 10px rgba(0,0,0,.06)}
-.proposta-box h4{color:var(--teal-dk);font-size:.97rem;margin-bottom:1rem;font-weight:700}
+.proposta-box h4{color:var(--amber-dk);font-size:.97rem;margin-bottom:1rem;font-weight:700}
 .proposta-item{display:flex;gap:.7rem;margin:.55rem 0;font-size:.93rem;line-height:1.6;align-items:flex-start}
-.proposta-badge{background:var(--teal);color:#fff;border-radius:6px;padding:.15rem .6rem;font-size:.78rem;font-weight:700;flex-shrink:0;margin-top:.1rem}
+.proposta-badge{background:var(--amber-dk);color:#fff;border-radius:6px;padding:.15rem .6rem;font-size:.78rem;font-weight:700;flex-shrink:0;margin-top:.1rem}
 .proposta-badge.rifiuto{background:var(--red)}
 .proposta-badge.risposta{background:var(--green)}
 
@@ -155,17 +154,17 @@ section .subtitle{font-size:.95rem;color:#555;margin-bottom:2rem;line-height:1.6
 .dialogue{display:flex;flex-direction:column;gap:.9rem}
 .bubble{max-width:78%;padding:.9rem 1.2rem;border-radius:16px;position:relative;font-size:.95rem;line-height:1.55;cursor:pointer}
 .bubble.left{align-self:flex-start;background:var(--cream-dk);border-bottom-left-radius:4px}
-.bubble.right{align-self:flex-end;background:var(--teal);color:#fff;border-bottom-right-radius:4px}
+.bubble.right{align-self:flex-end;background:var(--gold);color:var(--black);border-bottom-right-radius:4px}
 .bubble .btr{font-size:.82rem;margin-top:.4rem;border-top:1px solid rgba(0,0,0,.1);padding-top:.3rem;display:none;color:#555}
-.bubble.right .btr{color:rgba(255,255,255,.8);border-top-color:rgba(255,255,255,.2)}
+.bubble.right .btr{color:rgba(26,26,24,.65);border-top-color:rgba(26,26,24,.12)}
 .bubble.open .btr{display:block}
 .bubble::after{content:'▾';font-size:.7rem;opacity:.5;margin-left:.4rem}
 
 /* CULTURAL STRIP */
-.cultural{background:var(--teal-dk);color:#fff;padding:3.5rem 2rem;margin-top:3rem}
-.cultural h3{font-family:'Playfair Display',serif;font-style:italic;font-size:1.7rem;margin-bottom:1rem}
+.cultural{background:linear-gradient(135deg,var(--gold),var(--cream-dk));color:var(--black);padding:3.5rem 2rem;margin-top:3rem;border-top:4px solid var(--amber)}
+.cultural h3{font-family:'Playfair Display',serif;font-style:italic;font-size:1.7rem;margin-bottom:1rem;color:var(--amber-dk)}
 .cultural p{line-height:1.75;max-width:700px;font-size:.97rem}
-.cultural em{color:var(--gold)}
+.cultural em{color:var(--amber-dk)}
 
 footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 </style>
@@ -196,7 +195,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <section data-a>
   <h2>Espressioni di tempo — vocab chiave</h2>
   <p class="subtitle">
-    Selecciona todas las <strong>expresiones de tiempo</strong> que usarías para contar algo que pasó. <span class="es">Esta unidad tiene un vocabulario temporal muy rico — ¡apréndetelo todo!</span>
+    Seleccioná todas las <strong>expresiones de tiempo</strong> que usarías para contar algo que pasó. <span class="es">Esta unidad tiene un vocabulario temporal muy rico — ¡apréndetelo todo!</span>
   </p>
   <div class="word-grid" id="word-grid">
     <button class="word-btn" onclick="toggleWord(this,'ok')">adesso</button>
@@ -216,14 +215,14 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
     <button class="word-btn" onclick="toggleWord(this,'ok')">due sere fa</button>
     <button class="word-btn" onclick="toggleWord(this,'ok')">tre giorni fa</button>
   </div>
-  <button class="verify-btn" onclick="verifyGrid()">Verifica ✓</button>
+  <button class="verify-btn" onclick="verifyGrid()">Verificá ✓</button>
   <div id="grid-feedback"></div>
 </section>
 
 <!-- SECTION 2: VOCAB CARDS — Tutte le espressioni -->
 <section data-a>
   <h2>Ogni espressione nel suo contesto</h2>
-  <p class="subtitle">Haz clic en cada tarjeta para ver cómo se usa en una oración completa. <span class="es">¡Son el vocabulario esencial para narrar eventos!</span></p>
+  <p class="subtitle">Hacé clic en cada tarjeta para ver cómo se usa en una oración completa. <span class="es">¡Son el vocabulario esencial para narrar eventos!</span></p>
   <div class="vocab-grid" data-stagger>
     <div class="vcard" onclick="this.classList.toggle('open')">
       <div class="vit">adesso / ora</div>
@@ -288,7 +287,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
       <div class="content"><em>Oggi è il 15 marzo 2026.</em><br><em>Che giorno è oggi?</em><br><em>È lunedì.</em><br><em>Quanti ne abbiamo oggi?</em></div>
     </div>
   </div>
-  <div style="background:#fff;border-radius:12px;padding:1.2rem 1.4rem;margin-top:1rem;border-left:4px solid var(--teal)">
+  <div style="background:#fff;border-radius:12px;padding:1.2rem 1.4rem;margin-top:1rem;border-left:4px solid var(--amber)">
     <p style="font-size:.93rem;line-height:1.8">
       📌 <strong>Estructura:</strong> <em>giorno della settimana + numero + mese + anno</em><br>
       <em>Sabato, 15 marzo 2026</em><br>
@@ -302,7 +301,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <section data-a>
   <h2>Essere o avere? — distinguili nel video</h2>
   <p class="subtitle">
-    Observa estos ejemplos del tipo de lenguaje que usa Benigni. ¿Ves cuándo usa <em>ho</em> y cuándo usa <em>sono/è</em>?
+    Observá estos ejemplos del tipo de lenguaje que usa Benigni. ¿Ves cuándo usa <em>ho</em> y cuándo usa <em>sono/è</em>?
     <span class="es">Los mismos dos auxiliares que aprendiste en la unidad 15, ¡ahora en contexto narrativo real!</span>
   </p>
   <div class="aux-discovery">
@@ -366,7 +365,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <section data-a>
   <h2>Completa il racconto</h2>
   <p class="subtitle">
-    Completa el relato de Marina sobre su noche en el teatro. <span class="es">Usa el banco de palabras — puedes escribir directamente en los espacios.</span>
+    Completá el relato de Marina sobre su noche en el teatro. <span class="es">Usá el banco de palabras — puedes escribir directamente en los espacios.</span>
   </p>
   <div class="fill-section">
     <p class="instruc">Scrivi la parola del banco nei spazi. Poi clicca "Mostra risposte".</p>
@@ -465,7 +464,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <!-- SECTION 9: DIALOGUE -->
 <section data-a>
   <h2>Ieri sera — un dialogo</h2>
-  <p class="subtitle">Haz clic en cada globo para ver la traducción. <span class="es">¿Puedes identificar: essere/avere, espressioni di tempo, "che" pronome, y una proposta?</span></p>
+  <p class="subtitle">Hacé clic en cada globo para ver la traducción. <span class="es">¿Puedes identificar: essere/avere, espressioni di tempo, "che" pronome, y una proposta?</span></p>
   <div class="dialogue">
     <div class="bubble left" onclick="this.classList.toggle('open')">
       <strong>Chiara:</strong> Ciao! Com'è andata ieri sera?
@@ -509,12 +508,14 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <!-- CULTURAL STRIP -->
 <div class="cultural" data-a>
   <h3>Roberto Benigni — il teatro come poesia</h3>
-  <p>Roberto Benigni nació en Toscana en 1952. Actor, director, cómico y poeta, es famoso mundialmente por <em>La vita è bella</em> (Oscar 1997). Pero en Italia es igualmente querido por sus <em>spettacoli teatrali</em>, donde recita el <em>Inferno</em> de Dante, habla de política con humor mordaz o simplemente cuenta historias con una energía que hipnotiza al público. Cuando Benigni habla, el passato prossimo fluye como música: <em>"Ho visto, sono andato, abbiamo riso, è stato bellissimo"</em>. ¡El mismo tiempo verbal que tú acabas de aprender!</p>
+  <p>Roberto Benigni nació en Toscana en 1952. Actor, director, cómico y poeta, es famoso mundialmente por <em>La vita è bella</em> (Oscar 1997). Pero en Italia es igualmente querido por sus <em>spettacoli teatrali</em>, donde recita el <em>Inferno</em> de Dante, habla de política con humor mordaz o simplemente cuenta historias con una energía que hipnotiza al público. Cuando Benigni habla, el passato prossimo fluye como música: <em>"Ho visto, sono andato, abbiamo riso, è stato bellissimo"</em>. ¡El mismo tiempo verbal que vos acabás de aprender!</p>
 </div>
 
 <footer>Italiano Per Piacere · Unità 16 · Etapa 2 — Descubrimiento</footer>
 
 <script>
+(function(){
+
 function toggleEs(){
   document.body.classList.toggle('hide-es');
   document.getElementById('toggle-btn').textContent=
@@ -559,6 +560,7 @@ const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
 },{threshold:.1});
 document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>obs.observe(el));
+})();
 </script>
 </body>
 </html>

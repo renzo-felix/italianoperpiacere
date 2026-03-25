@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al bar — Módulo 6 | Viajeros | Italiano Per Piacere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mod: #cc4736;
+    --mod-dk: #a8382a;
+    --mod-hero: #fde4e1;
+    --mod-border: #cc4736;
+    --mod-th: #fbc8c2;
+    --mod-th-text: #7a1f14;
+    --cream: #e9e6d5;
+    --cream-dk: #ddd9c8;
+    --gold: #EFCF7F;
+    --amber: #e5ab07;
+    --green: #528e74;
+    --black: #1a1a18;
+    --white: #ffffff;
+    --fh: 'Playfair Display', Georgia, serif;
+    --fb: 'Outfit', system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--fb); color: var(--black); background: var(--cream); }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white);
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto; padding: .75rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .nav-logo img { height: 40px; display: block; }
+  .nav-links { display: flex; gap: .25rem; flex-wrap: wrap; }
+  .nav-links a {
+    font-family: var(--fb); font-size: .82rem; font-weight: 600;
+    color: var(--mod-dk); text-decoration: none;
+    padding: .35rem .75rem; border-radius: 20px;
+    transition: background .2s, color .2s;
+  }
+  .nav-links a:hover { background: var(--mod-hero); }
+
+  /* PROGRESS */
+  .progress-wrap { background: var(--mod-th); height: 6px; }
+  .progress-bar { height: 6px; background: var(--mod-dk); width: 0%; transition: width .4s; }
+
+  /* HERO */
+  .hero {
+    background: var(--mod-hero);
+    border-bottom: 4px solid var(--mod-border);
+    padding: 3.5rem 1.5rem 3rem;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--mod-th); color: var(--mod-th-text);
+    font-family: var(--fb); font-size: .78rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .08em;
+    padding: .3rem .9rem; border-radius: 20px; margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-family: var(--fh); font-size: clamp(2rem,5vw,3.2rem);
+    font-style: italic; color: var(--black); line-height: 1.2;
+    margin-bottom: .6rem;
+  }
+  .hero p { font-size: 1.05rem; color: #334; max-width: 600px; margin: 0 auto; }
+
+  /* SECTIONS */
+  .section { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem; }
+  .section-title {
+    font-family: var(--fh); font-size: 1.7rem; font-style: italic;
+    color: var(--mod-dk); margin-bottom: 1.5rem;
+    padding-bottom: .5rem; border-bottom: 2px solid var(--mod-th);
+  }
+
+  /* CANCION BOX */
+  .cancion-box {
+    background: var(--white); border: 2px solid var(--mod-th);
+    border-radius: 16px; padding: 2rem; margin-bottom: 2rem;
+  }
+  .song-header {
+    display: flex; align-items: flex-start; gap: 1.5rem; flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .song-cover {
+    width: 110px; height: 110px; border-radius: 12px;
+    background: var(--mod-th); display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; flex-shrink: 0;
+  }
+  .song-info h3 { font-family: var(--fh); font-style: italic; font-size: 1.4rem; color: var(--mod-dk); margin-bottom: .4rem; }
+  .song-info p { font-size: .92rem; color: #446; line-height: 1.6; margin-bottom: .3rem; }
+  .song-tag {
+    display: inline-block; font-size: .72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .06em; background: var(--mod-th); color: var(--mod-th-text);
+    padding: .2rem .6rem; border-radius: 20px; margin-right: .3rem; margin-top: .4rem;
+  }
+  .song-link {
+    display: inline-block; margin-top: .75rem;
+    background: var(--mod); color: var(--white);
+    text-decoration: none; font-weight: 600; font-size: .88rem;
+    padding: .5rem 1.2rem; border-radius: 8px; transition: background .2s;
+  }
+  .song-link:hover { background: var(--mod-dk); }
+  .actividad-title { font-weight: 700; color: var(--mod-dk); margin: 1.2rem 0 .6rem; font-size: .95rem; }
+  .actividad-list { list-style: none; padding: 0; }
+  .actividad-list li {
+    padding: .45rem .75rem; border-left: 3px solid var(--mod-th);
+    margin-bottom: .4rem; font-size: .93rem; color: #334; line-height: 1.5;
+    background: var(--mod-hero); border-radius: 0 8px 8px 0;
+  }
+
+  /* VOCAB GRID */
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(170px,1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .vocab-card {
+    background: var(--white); border: 2px solid var(--mod-th);
+    border-radius: 12px; padding: 1rem; text-align: center;
+    cursor: pointer; transition: transform .2s, box-shadow .2s, border-color .2s;
+  }
+  .vocab-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(204,71,54,.18); border-color: var(--mod); }
+  .vocab-card .it { font-weight: 700; font-size: 1rem; color: var(--mod-dk); }
+  .vocab-card .es { font-size: .85rem; color: #557; margin-top: .3rem; }
+  .vocab-card .emoji { font-size: 1.6rem; margin-bottom: .4rem; }
+  .vocab-label {
+    font-family: var(--fb); font-size: .72rem; font-weight: 700; text-transform: uppercase;
+    color: var(--mod-th-text); background: var(--mod-th);
+    padding: .2rem .6rem; border-radius: 20px; display: inline-block; margin-bottom: .75rem;
+  }
+
+  /* DISCOVERY BOX */
+  .discovery {
+    background: var(--white); border-radius: 16px;
+    border: 2px solid var(--mod-th); padding: 2rem; margin-bottom: 2rem;
+  }
+  .discovery h3 { font-family: var(--fh); font-style: italic; font-size: 1.25rem; color: var(--mod-dk); margin-bottom: 1rem; }
+  .discovery p { font-size: .93rem; line-height: 1.7; color: #334; margin-bottom: .75rem; }
+  .highlight-box {
+    background: var(--mod-hero); border-left: 4px solid var(--mod);
+    border-radius: 0 10px 10px 0; padding: .9rem 1.2rem; margin: 1rem 0;
+    font-size: .92rem; line-height: 1.6; color: #333;
+  }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .93rem; }
+  th { background: var(--mod-th); color: var(--mod-th-text); font-weight: 700; padding: .6rem .9rem; text-align: left; }
+  td { padding: .55rem .9rem; border-bottom: 1px solid var(--mod-th); }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #fef6f5; }
+
+  /* FILL EXERCISE */
+  .fill-exercise { margin-bottom: 2rem; }
+  .fill-exercise h4 { font-weight: 700; color: var(--mod-dk); margin-bottom: 1rem; }
+  .fill-item { display: flex; align-items: center; gap: .5rem; margin-bottom: .75rem; flex-wrap: wrap; }
+  .fill-item span { font-size: .95rem; }
+  .fill-input {
+    border: 2px solid var(--mod-th); border-radius: 8px;
+    padding: .3rem .6rem; font-family: var(--fb); font-size: .95rem;
+    color: var(--black); background: var(--mod-hero); min-width: 80px;
+    transition: border-color .2s;
+  }
+  .fill-input:focus { outline: none; border-color: var(--mod-dk); }
+  .fill-input.correct { border-color: var(--green); background: #e6f4ef; }
+  .fill-input.wrong { border-color: #a8382a; background: var(--mod-hero); }
+  .check-btn {
+    background: var(--mod-dk); color: var(--white);
+    border: none; border-radius: 8px; padding: .55rem 1.3rem;
+    font-family: var(--fb); font-weight: 600; cursor: pointer;
+    transition: background .2s; margin-top: .5rem;
+  }
+  .check-btn:hover { background: var(--mod); }
+  .feedback { font-size: .85rem; font-weight: 600; margin-top: .5rem; }
+  .feedback.ok { color: var(--green); }
+  .feedback.err { color: var(--mod-dk); }
+
+  /* DIALOGO */
+  .dialogo { margin-bottom: 2rem; }
+  .dialogo h4 { font-weight: 700; color: var(--mod-dk); margin-bottom: 1rem; }
+  .bubble-wrap { display: flex; flex-direction: column; gap: .75rem; }
+  .bubble { max-width: 80%; padding: .9rem 1.1rem; border-radius: 16px; font-size: .95rem; line-height: 1.5; }
+  .bubble.a { align-self: flex-start; background: var(--mod-hero); border: 2px solid var(--mod-th); border-bottom-left-radius: 4px; }
+  .bubble.b { align-self: flex-end; background: var(--cream-dk); border: 2px solid var(--cream); border-bottom-right-radius: 4px; }
+  .bubble .speaker { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--mod-dk); margin-bottom: .3rem; }
+  .bubble.b .speaker { color: #6b5e3a; }
+  .bubble .it { font-weight: 600; }
+  .bubble .es { font-size: .82rem; color: #556; font-style: italic; margin-top: .2rem; }
+
+  /* LECTURA */
+  .lectura { background: var(--white); border: 2px solid var(--mod-th); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; }
+  .lectura h4 { font-family: var(--fh); font-style: italic; font-size: 1.2rem; color: var(--mod-dk); margin-bottom: 1rem; }
+  .lectura p { font-size: .93rem; line-height: 1.75; color: #334; margin-bottom: .75rem; }
+  .lectura em { font-style: italic; color: var(--mod-dk); font-weight: 600; }
+
+  /* MATCHING */
+  .matching { background: var(--white); border: 2px solid var(--mod-th); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; }
+  .matching h4 { font-weight: 700; color: var(--mod-dk); margin-bottom: 1rem; }
+  .match-row { display: flex; align-items: center; gap: .75rem; margin-bottom: .75rem; flex-wrap: wrap; }
+  .match-item { font-weight: 600; color: var(--mod-dk); min-width: 170px; }
+  .match-select {
+    border: 2px solid var(--mod-th); border-radius: 8px;
+    padding: .35rem .6rem; font-family: var(--fb); font-size: .9rem;
+    background: var(--mod-hero); color: var(--black);
+  }
+  .match-select.correct { border-color: var(--green); background: #e6f4ef; }
+  .match-select.wrong { border-color: var(--mod-dk); }
+
+  /* CULTURE STRIP */
+  .culture-strip {
+    background: #fde4e1;
+    border-top: 4px solid var(--mod);
+    padding: 2.5rem 1.5rem; text-align: center;
+  }
+  .culture-strip .cs-inner { max-width: 760px; margin: 0 auto; }
+  .culture-strip h3 { font-family: var(--fh); font-style: italic; font-size: 1.5rem; color: var(--mod-dk); margin-bottom: 1rem; }
+  .culture-strip p { font-size: .97rem; line-height: 1.7; color: #334; }
+  .culture-strip .cs-badge {
+    display: inline-block; background: var(--mod-th); color: var(--mod-th-text);
+    font-weight: 700; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em;
+    padding: .25rem .8rem; border-radius: 20px; margin-bottom: .75rem;
+  }
+
+  /* FOOTER */
+  footer { background: var(--cream-dk); text-align: center; padding: 1.5rem; font-size: .82rem; color: #667; border-top: 1px solid var(--cream); }
+
+  /* ANIMATE */
+  [data-a] { opacity: 0; transform: translateY(22px); transition: opacity .55s, transform .55s; }
+  [data-a].visible { opacity: 1; transform: none; }
+
+  @media (max-width: 600px) {
+    .nav-links a { font-size: .75rem; padding: .3rem .55rem; }
+    .vocab-grid { grid-template-columns: repeat(auto-fill,minmax(140px,1fr)); }
+    .song-header { flex-direction: column; }
+    .bubble { max-width: 95%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=f5755ad" alt="Italiano Per Piacere" loading="lazy">
+    </a>
+    <div class="nav-links">
+      <a href="#cancion">La canción</a>
+      <a href="#vocab">Vocabulario</a>
+      <a href="#descubrimiento">Descubrimiento</a>
+      <a href="#dialogos">Diálogos</a>
+      <a href="#lectura">Lectura</a>
+      <a href="#cultura">Cultura</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PROGRESS -->
+<div class="progress-wrap"><div class="progress-bar" id="progress"></div></div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">Viajeros · Módulo 6 · Descubrimiento</div>
+  <h1>Al bar ☕</h1>
+  <p>Bolonia te espera con un espresso en la barra y el aroma del cornetto recién horneado. Aprendé a pedir, pagar y disfrutar el ritual del café italiano.</p>
+</header>
+
+<!-- ====== LA CANCIÓN ====== -->
+<section class="section" id="cancion">
+  <h2 class="section-title" data-a>La canción del módulo</h2>
+
+  <div class="cancion-box" data-a>
+    <div class="song-header">
+      <div class="song-cover">🎵</div>
+      <div class="song-info">
+        <h3>"L'italiano" — Toto Cutugno (1983)</h3>
+        <p>Un himno a la identidad italiana: el sol, el café, la pasión por la vida cotidiana. Toto Cutugno canta con orgullo las pequeñas cosas que definen a Italia — y el bar, naturalmente, es una de ellas.</p>
+        <span class="song-tag">Pop italiano</span>
+        <span class="song-tag">1983</span>
+        <span class="song-tag">Canzone iconica</span>
+        <br>
+        <a class="song-link" href="https://youtu.be/P0UMwj6DcwI" target="_blank">▶ Escuchar en YouTube</a>
+      </div>
+    </div>
+
+    <div class="actividad-title">Antes de escuchar — Pensá:</div>
+    <ul class="actividad-list">
+      <li>¿Qué imágenes te vienen a la mente cuando pensás en Italia? ¿El café aparece en esa imagen?</li>
+      <li>¿Alguna vez tomaste un espresso de pie en una barra? ¿Cómo fue la experiencia?</li>
+      <li>¿Qué palabras en italiano creés que puede incluir una canción sobre el "ser italiano"?</li>
+    </ul>
+
+    <div class="actividad-title">Mientras escuchás — Buscá en la letra:</div>
+    <ul class="actividad-list">
+      <li>¿Cutugno menciona el café o el bar directamente? ¿Cómo lo describe?</li>
+      <li>¿Qué palabras o frases podés identificar relacionadas con el estilo de vida o la cotidianeidad?</li>
+      <li>¿Qué emociones transmite la canción? ¿El ritmo es alegre, melancólico, orgulloso?</li>
+    </ul>
+
+    <div class="actividad-title">Después de escuchar — Reflexioná:</div>
+    <ul class="actividad-list">
+      <li>"L'italiano" es más que una canción: es una declaración de identidad. ¿Qué elementos del estilo de vida italino reconocés?</li>
+      <li>¿Hay algo en tu cultura que funcione de manera similar? ¿Un ritual cotidiano que defina quiénes son?</li>
+      <li>Anotá 3 palabras italianas que escuchaste en la canción y buscá su significado.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ====== VOCABULARIO ====== -->
+<section class="section" id="vocab">
+  <h2 class="section-title" data-a>Vocabulario del módulo</h2>
+
+  <p class="vocab-label" data-a>Set 1 — Tipos de café</p>
+  <div class="vocab-grid" data-a>
+    <div class="vocab-card"><div class="emoji">☕</div><div class="it">il caffè (espresso)</div><div class="es">el café expreso</div></div>
+    <div class="vocab-card"><div class="emoji">☕</div><div class="it">il caffè macchiato</div><div class="es">expreso con gota de leche</div></div>
+    <div class="vocab-card"><div class="emoji">🥛</div><div class="it">il cappuccino</div><div class="es">el capuchino</div></div>
+    <div class="vocab-card"><div class="emoji">☕</div><div class="it">il caffè americano</div><div class="es">café largo / americano</div></div>
+    <div class="vocab-card"><div class="emoji">🧋</div><div class="it">il caffè latte</div><div class="es">café con leche</div></div>
+    <div class="vocab-card"><div class="emoji">❄️</div><div class="it">il caffè freddo</div><div class="es">café frío</div></div>
+  </div>
+
+  <p class="vocab-label" data-a>Set 2 — Comida y bebidas del bar</p>
+  <div class="vocab-grid" data-a>
+    <div class="vocab-card"><div class="emoji">🥐</div><div class="it">il cornetto</div><div class="es">la medialuna / croissant</div></div>
+    <div class="vocab-card"><div class="emoji">💧</div><div class="it">l'acqua</div><div class="es">el agua</div></div>
+    <div class="vocab-card"><div class="emoji">🍊</div><div class="it">il succo</div><div class="es">el jugo</div></div>
+    <div class="vocab-card"><div class="emoji">🍺</div><div class="it">la birra</div><div class="es">la cerveza</div></div>
+    <div class="vocab-card"><div class="emoji">🍊</div><div class="it">lo spritz</div><div class="es">el spritz (aperitivo)</div></div>
+    <div class="vocab-card"><div class="emoji">🍸</div><div class="it">l'aperitivo</div><div class="es">el aperitivo</div></div>
+  </div>
+
+  <p class="vocab-label" data-a>Set 3 — Expresiones en el bar</p>
+  <div class="vocab-grid" data-a>
+    <div class="vocab-card"><div class="emoji">🍽️</div><div class="it">la barra / il bancone</div><div class="es">la barra / el mostrador</div></div>
+    <div class="vocab-card"><div class="emoji">🧾</div><div class="it">il conto</div><div class="es">la cuenta</div></div>
+    <div class="vocab-card"><div class="emoji">👨‍🍳</div><div class="it">il cameriere</div><div class="es">el mozo / mesero</div></div>
+    <div class="vocab-card"><div class="emoji">🥤</div><div class="it">da portare via</div><div class="es">para llevar</div></div>
+    <div class="vocab-card"><div class="emoji">💶</div><div class="it">il resto</div><div class="es">el vuelto / el cambio</div></div>
+    <div class="vocab-card"><div class="emoji">🍬</div><div class="it">lo zucchero</div><div class="es">el azúcar</div></div>
+  </div>
+</section>
+
+<!-- ====== DESCUBRIMIENTO ====== -->
+<section class="section" id="descubrimiento">
+  <h2 class="section-title" data-a>Cajas de descubrimiento</h2>
+
+  <!-- DISCOVERY 1 -->
+  <div class="discovery" data-a>
+    <h3>Descubrimiento 1 — El café en la barra: ¿qué pedís?</h3>
+    <p>En Italia, cuando entrás a un bar y querés un café, lo más natural es pedirlo así: <strong>"Un caffè, per favore."</strong> Nada más. Nada de "un espresso doble con leche de almendras". El italiano sabe exactamente lo que quiere — y lo quiere rápido y de pie en la barra (<em>al bancone</em>).</p>
+    <div class="highlight-box">
+      <strong>Dato clave:</strong> En Italia, "un caffè" = un espresso. Si querés algo más largo o con leche, tenés que especificarlo. El café se toma en uno o dos minutos, de pie, sin sentarse. ¡Es un ritual, no una pausa larga!
+    </div>
+    <table>
+      <thead><tr><th>Nombre</th><th>Descripción</th><th>¿Cuándo se toma?</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Caffè (espresso)</strong></td><td>Pequeño, intenso, concentrado</td><td>Cualquier hora, especialmente después de comer</td></tr>
+        <tr><td><strong>Cappuccino</strong></td><td>Espresso + leche espumada caliente</td><td>Solo en el desayuno (¡nunca después de comer!)</td></tr>
+        <tr><td><strong>Macchiato</strong></td><td>Espresso con una gota de leche</td><td>Mañana o tarde</td></tr>
+        <tr><td><strong>Americano</strong></td><td>Espresso + agua caliente (más largo)</td><td>Para quienes prefieren café suave</td></tr>
+        <tr><td><strong>Caffè latte</strong></td><td>Más leche que café</td><td>Solo en el desayuno</td></tr>
+      </tbody>
+    </table>
+    <div class="fill-exercise" id="fill1">
+      <h4>Completá con el tipo de café correcto</h4>
+      <p style="font-size:.85rem;color:#557;margin-bottom:1rem;">Opciones: cappuccino / macchiato / americano / espresso / caffè latte</p>
+      <div class="fill-item"><span>1. Son las 8 de la mañana, querés café con mucha leche espumosa →</span><input class="fill-input" data-answer="cappuccino" placeholder="___"></div>
+      <div class="fill-item"><span>2. Son las 3 de la tarde, querés el café clásico italiano, breve e intenso →</span><input class="fill-input" data-answer="espresso" placeholder="___"></div>
+      <div class="fill-item"><span>3. Querés espresso con solo una gota de leche →</span><input class="fill-input" data-answer="macchiato" placeholder="___"></div>
+      <div class="fill-item"><span>4. Sos del estilo "café largo" y pedís espresso con agua extra →</span><input class="fill-input" data-answer="americano" placeholder="___"></div>
+      <div class="fill-item"><span>5. Son las 7:30, querés desayuno suave con mucha leche y poco café →</span><input class="fill-input" data-answer="caffè latte" placeholder="___"></div>
+      <button class="check-btn" onclick="checkFill('fill1')">Verificar</button>
+      <div class="feedback" id="fill1-fb"></div>
+    </div>
+  </div>
+
+  <!-- DISCOVERY 2 -->
+  <div class="discovery" data-a>
+    <h3>Descubrimiento 2 — Mi piace o mi piacciono: expresá tus gustos</h3>
+    <p>En italiano, para decir que algo te gusta, usás el verbo <strong>piacere</strong> — pero funciona al revés del español. No decís "yo gusto el café", sino que <em>el café le gusta a mí</em>: <strong>"Mi piace il caffè."</strong></p>
+    <div class="highlight-box">
+      <strong>La lógica del piacere:</strong><br>
+      • <em>Mi piace</em> → cuando lo que gusta es singular o un infinitivo: <em>"Mi piace il cappuccino."</em> / <em>"Mi piace bere il caffè."</em><br>
+      • <em>Mi piacciono</em> → cuando son varias cosas: <em>"Mi piacciono i cornetti."</em> / <em>"Mi piacciono gli aperitivi."</em>
+    </div>
+    <table>
+      <thead><tr><th>Pronombre</th><th>Singular (piace)</th><th>Plural (piacciono)</th></tr></thead>
+      <tbody>
+        <tr><td>a me</td><td><strong>mi piace</strong></td><td><strong>mi piacciono</strong></td></tr>
+        <tr><td>a te</td><td><strong>ti piace</strong></td><td><strong>ti piacciono</strong></td></tr>
+        <tr><td>a lui / a lei</td><td><strong>gli / le piace</strong></td><td><strong>gli / le piacciono</strong></td></tr>
+        <tr><td>a noi</td><td><strong>ci piace</strong></td><td><strong>ci piacciono</strong></td></tr>
+        <tr><td>a voi</td><td><strong>vi piace</strong></td><td><strong>vi piacciono</strong></td></tr>
+        <tr><td>a loro</td><td><strong>gli piace</strong></td><td><strong>gli piacciono</strong></td></tr>
+      </tbody>
+    </table>
+    <div class="fill-exercise" id="fill2">
+      <h4>Completá con PIACE o PIACCIONO</h4>
+      <div class="fill-item"><span>1. Mi</span><input class="fill-input" data-answer="piace" placeholder="___"><span>il caffè macchiato.</span></div>
+      <div class="fill-item"><span>2. Ti</span><input class="fill-input" data-answer="piacciono" placeholder="___"><span>i cornetti alla marmellata?</span></div>
+      <div class="fill-item"><span>3. Gli</span><input class="fill-input" data-answer="piace" placeholder="___"><span>bere l'aperitivo al tramonto.</span></div>
+      <div class="fill-item"><span>4. Ci</span><input class="fill-input" data-answer="piacciono" placeholder="___"><span>gli spritz in piazza.</span></div>
+      <div class="fill-item"><span>5. Le</span><input class="fill-input" data-answer="piace" placeholder="___"><span>il cappuccino con schiuma.</span></div>
+      <div class="fill-item"><span>6. Vi</span><input class="fill-input" data-answer="piacciono" placeholder="___"><span>le brioche italiane?</span></div>
+      <button class="check-btn" onclick="checkFill('fill2')">Verificar</button>
+      <div class="feedback" id="fill2-fb"></div>
+    </div>
+  </div>
+
+  <!-- DISCOVERY 3 -->
+  <div class="discovery" data-a>
+    <h3>Descubrimiento 3 — Ci vuole / ci vogliono: cuando algo "hace falta"</h3>
+    <p>La expresión <strong>ci vuole</strong> (singular) y <strong>ci vogliono</strong> (plural) se usa para decir que algo hace falta o que lleva cierto tiempo. Es superfrecuente en el bar y en la vida diaria italiana.</p>
+    <div class="highlight-box">
+      <strong>Ejemplos típicos del bar:</strong><br>
+      • <em>Ci vuole un minuto.</em> → Lleva un minuto.<br>
+      • <em>Ci vuole pazienza.</em> → Hace falta paciencia.<br>
+      • <em>Ci vogliono due zuccheri?</em> → ¿Hacen falta dos azúcares?<br>
+      • <em>Ci vuole il latte?</em> → ¿Va con leche?
+    </div>
+    <p>También lo usás para tiempos de espera o distancias: <em>"Ci vuole mezz'ora per arrivare al bar."</em> (Se tarda media hora en llegar al bar.)</p>
+    <div class="fill-exercise" id="fill3">
+      <h4>Completá con CI VUOLE o CI VOGLIONO</h4>
+      <div class="fill-item"><input class="fill-input" data-answer="ci vuole" placeholder="___"><span>un caffè adesso!</span></div>
+      <div class="fill-item"><input class="fill-input" data-answer="ci vogliono" placeholder="___"><span>tre euro per il cappuccino.</span></div>
+      <div class="fill-item"><span>Per fare un espresso perfetto</span><input class="fill-input" data-answer="ci vuole" placeholder="___"><span>meno di trenta secondi.</span></div>
+      <div class="fill-item"><input class="fill-input" data-answer="ci vogliono" placeholder="___"><span>due minuti per la schiuma del cappuccino.</span></div>
+      <div class="fill-item"><span>Per il conto,</span><input class="fill-input" data-answer="ci vuole" placeholder="___"><span>il cameriere.</span></div>
+      <button class="check-btn" onclick="checkFill('fill3')">Verificar</button>
+      <div class="feedback" id="fill3-fb"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== DIÁLOGOS ====== -->
+<section class="section" id="dialogos">
+  <h2 class="section-title" data-a>Diálogos</h2>
+
+  <div class="dialogo" data-a>
+    <h4>Diálogo 1 — Pedir en la barra (Bolonia, Bar sotto i portici)</h4>
+    <div class="bubble-wrap">
+      <div class="bubble a">
+        <div class="speaker">Barista</div>
+        <div class="it">Buongiorno! Cosa prende?</div>
+        <div class="es">¡Buenos días! ¿Qué va a tomar?</div>
+      </div>
+      <div class="bubble b">
+        <div class="speaker">Valentina (viajera)</div>
+        <div class="it">Buongiorno. Vorrei un cappuccino e un cornetto alla crema, per favore.</div>
+        <div class="es">Buenos días. Quisiera un capuchino y una medialuna de crema, por favor.</div>
+      </div>
+      <div class="bubble a">
+        <div class="speaker">Barista</div>
+        <div class="it">Subito! Al bancone o al tavolo?</div>
+        <div class="es">¡Enseguida! ¿En la barra o en mesa?</div>
+      </div>
+      <div class="bubble b">
+        <div class="speaker">Valentina</div>
+        <div class="it">Al bancone, grazie. Mi piace stare in piedi al bar!</div>
+        <div class="es">En la barra, gracias. ¡Me gusta estar de pie en el bar!</div>
+      </div>
+      <div class="bubble a">
+        <div class="speaker">Barista</div>
+        <div class="it">Brava! Come una vera italiana. Il cappuccino è pronto. Vuole lo zucchero?</div>
+        <div class="es">¡Muy bien! Como una italiana de verdad. El capuchino está listo. ¿Quiere azúcar?</div>
+      </div>
+      <div class="bubble b">
+        <div class="speaker">Valentina</div>
+        <div class="it">Sì, un cucchiaino, grazie. Quant'è?</div>
+        <div class="es">Sí, una cucharadita, gracias. ¿Cuánto es?</div>
+      </div>
+      <div class="bubble a">
+        <div class="speaker">Barista</div>
+        <div class="it">Tre euro e venti. Ecco il cornetto. Buona colazione!</div>
+        <div class="es">Tres euros con veinte. Acá tiene la medialuna. ¡Buen desayuno!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogo" data-a>
+    <h4>Diálogo 2 — Pagar y pedir algo para llevar</h4>
+    <div class="bubble-wrap">
+      <div class="bubble b">
+        <div class="speaker">Valentina</div>
+        <div class="it">Mi scusi, vorrei pagare. Il conto, per favore.</div>
+        <div class="es">Disculpe, quisiera pagar. La cuenta, por favor.</div>
+      </div>
+      <div class="bubble a">
+        <div class="speaker">Barista</div>
+        <div class="it">Allora… il cappuccino e il cornetto: tre euro e cinquanta.</div>
+        <div class="es">Entonces… el capuchino y la medialuna: tres euros y cincuenta.</div>
+      </div>
+      <div class="bubble b">
+        <div class="speaker">Valentina</div>
+        <div class="it">Ecco cinque euro. Ah, scusi — ha qualcosa da portare via? Un cornetto al cioccolato?</div>
+        <div class="es">Acá tiene cinco euros. Ah, disculpe — ¿tiene algo para llevar? ¿Una medialuna de chocolate?</div>
+      </div>
+      <div class="bubble a">
+        <div class="speaker">Barista</div>
+        <div class="it">Certo! Glielo metto in un sacchetto. Ci vuole un attimo solo.</div>
+        <div class="es">¡Claro! Se lo pongo en una bolsita. Es solo un instante.</div>
+      </div>
+      <div class="bubble b">
+        <div class="speaker">Valentina</div>
+        <div class="it">Perfetto! E il resto?</div>
+        <div class="es">¡Perfecto! ¿Y el vuelto?</div>
+      </div>
+      <div class="bubble a">
+        <div class="speaker">Barista</div>
+        <div class="it">Il resto è un euro e cinquanta. Ecco a lei! Arrivederci e buona giornata!</div>
+        <div class="es">El vuelto es un euro con cincuenta. ¡Acá tiene! ¡Hasta luego y buen día!</div>
+      </div>
+      <div class="bubble b">
+        <div class="speaker">Valentina</div>
+        <div class="it">Grazie mille! Arrivederci!</div>
+        <div class="es">¡Muchísimas gracias! ¡Hasta luego!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== LECTURA ====== -->
+<section class="section" id="lectura">
+  <h2 class="section-title" data-a>Lectura cultural</h2>
+
+  <div class="lectura" data-a>
+    <h4>Il rituale del caffè italiano</h4>
+    <p>En Italia, ir al bar no es simplemente tomar algo. Es un <em>rito quotidiano</em> — un ritual diario que define el ritmo de la jornada. El bar italiano abre temprano, generalmente antes de las 7 de la mañana, y el aroma del espresso ya llena la calle.</p>
+    <p>El primer encuentro del día con el barista es casi sagrado. Se llega, se saluda con un <em>"Buongiorno"</em> enérgico, se pide <em>"Un caffè"</em> y en menos de dos minutos ya estás en la calle con el día listo para empezar. No hay apps, no hay colas largas, no hay "nombre para el vaso".</p>
+    <p>En Bolonia, ciudad universitaria y gastronómica, la cultura del bar tiene un carácter especial. Los bares bajo los famosos <em>portici bolognesi</em> — los pórticos del casco histórico, Patrimonio de la Humanidad — se llenan de estudiantes, profesores y turistas. El <em>aperitivo</em> de la tarde (entre las 18 y las 20 horas) es casi una institución: por el precio de una copa, el bar ofrece un buffet de snacks que muchos boloñeses usan directamente como cena ligera.</p>
+    <p>Una regla no escrita pero muy respetada: el <em>cappuccino</em> solo se toma en el desayuno. Pedir un capuchino después del almuerzo o la cena es una señal inmediata de que sos turista. Los italianos lo dicen con cariño: <em>"Il latte fa male allo stomaco dopo mangiato"</em>. ¿Es verdad científica? Probablemente no, pero la tradición manda.</p>
+    <p>Otro punto cultural importante: en muchos bares hay diferencia de precio entre tomar algo <em>al bancone</em> (de pie en la barra) y sentarse <em>al tavolo</em> (en una mesa). Elegir la barra no es solo más auténtico — también es más económico. Los italianos saben vivir bien sin gastar de más.</p>
+  </div>
+
+  <!-- MATCHING -->
+  <div class="matching" data-a>
+    <h4>Actividad de correspondencia — Uní cada expresión con su significado</h4>
+    <p style="font-size:.88rem;color:#557;margin-bottom:1rem;">Seleccioná la opción correcta para cada expresión del bar:</p>
+    <div class="match-row">
+      <span class="match-item">Un caffè</span>
+      <select class="match-select" data-answer="un espresso solo, pequeño e intenso">
+        <option>---</option>
+        <option>un café largo con leche</option>
+        <option>un espresso solo, pequeño e intenso</option>
+        <option>un café con muchas espumas</option>
+      </select>
+    </div>
+    <div class="match-row">
+      <span class="match-item">Al bancone</span>
+      <select class="match-select" data-answer="de pie en la barra, sin sentarse">
+        <option>---</option>
+        <option>de pie en la barra, sin sentarse</option>
+        <option>sentado en una mesa afuera</option>
+        <option>llevando el café para casa</option>
+      </select>
+    </div>
+    <div class="match-row">
+      <span class="match-item">Da portare via</span>
+      <select class="match-select" data-answer="para llevar">
+        <option>---</option>
+        <option>para compartir en mesa</option>
+        <option>para llevar</option>
+        <option>para comer despacio</option>
+      </select>
+    </div>
+    <div class="match-row">
+      <span class="match-item">Il conto</span>
+      <select class="match-select" data-answer="la cuenta a pagar">
+        <option>---</option>
+        <option>el menú del día</option>
+        <option>la cuenta a pagar</option>
+        <option>el recibo del banco</option>
+      </select>
+    </div>
+    <div class="match-row">
+      <span class="match-item">L'aperitivo</span>
+      <select class="match-select" data-answer="bebida + snacks antes de cenar (tarde)">
+        <option>---</option>
+        <option>bebida + snacks antes de cenar (tarde)</option>
+        <option>el desayuno italiano tradicional</option>
+        <option>postre con licor después de cenar</option>
+      </select>
+    </div>
+    <div class="match-row">
+      <span class="match-item">Il resto</span>
+      <select class="match-select" data-answer="el vuelto / cambio del pago">
+        <option>---</option>
+        <option>el descanso del barista</option>
+        <option>los demás productos del bar</option>
+        <option>el vuelto / cambio del pago</option>
+      </select>
+    </div>
+    <button class="check-btn" onclick="checkMatching()">Verificar correspondencia</button>
+    <div class="feedback" id="matching-fb"></div>
+  </div>
+</section>
+
+<!-- CULTURE STRIP -->
+<div class="culture-strip" id="cultura">
+  <div class="cs-inner">
+    <div class="cs-badge">Tip Cultural</div>
+    <h3>La barra italiana: el ritual del caffè</h3>
+    <p>Cuando entrás a un bar en Italia, hay una frase que lo resume todo: <em>"Come un rito"</em> — como un ritual. El espresso no se saborea lentamente; se bebe de un sorbo, de pie, mientras el barista ya prepara el próximo. Es la pausa perfecta: breve, intensa y reparadora.</p>
+    <p style="margin-top:.85rem;">En Bolonia, los bares bajo los pórticos son especialmente famosos. La ciudad tiene más de 40 km de galerías cubiertas, y en cada esquina encontrás un bar donde parar. El aperitivo boloñés de la tarde es generoso: pedís una copa de vino o un spritz y te dan acceso a un buffet de embutidos, quesos y tartas saladas. La hospitalidad italiana empieza acá — en la barra, con un café y una sonrisa.</p>
+  </div>
+</div>
+
+<footer>
+  <p>Italiano Per Piacere · Viajeros · Módulo 6 — <em>Al bar</em> · Bolonia</p>
+</footer>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const pct = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+    document.getElementById('progress').style.width = pct + '%';
+  });
+
+  // IntersectionObserver animations
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('[data-a]').forEach(el => observer.observe(el));
+
+  // Check fill exercises
+  function checkFill(id) {
+    const section = document.getElementById(id);
+    const inputs = section.querySelectorAll('.fill-input');
+    let correct = 0;
+    inputs.forEach(inp => {
+      const userVal = inp.value.trim().toLowerCase();
+      const answer = inp.dataset.answer.toLowerCase();
+      const ok = userVal === answer;
+      inp.classList.toggle('correct', ok);
+      inp.classList.toggle('wrong', !ok && userVal !== '');
+      if (ok) correct++;
+    });
+    const fb = document.getElementById(id + '-fb');
+    if (correct === inputs.length) {
+      fb.textContent = 'Perfecto! Todas correctas.';
+      fb.className = 'feedback ok';
+    } else {
+      fb.textContent = correct + ' de ' + inputs.length + ' correctas. Revisá las marcadas en rojo.';
+      fb.className = 'feedback err';
+    }
+  }
+
+  // Check matching
+  function checkMatching() {
+    const selects = document.querySelectorAll('.match-select');
+    let correct = 0;
+    selects.forEach(sel => {
+      const ok = sel.value === sel.dataset.answer;
+      sel.classList.toggle('correct', ok);
+      sel.classList.toggle('wrong', !ok && sel.value !== '---');
+      if (ok) correct++;
+    });
+    const fb = document.getElementById('matching-fb');
+    if (correct === selects.length) {
+      fb.textContent = 'Excelente! Todas las correspondencias son correctas.';
+      fb.className = 'feedback ok';
+    } else {
+      fb.textContent = correct + ' de ' + selects.length + ' correctas.';
+      fb.className = 'feedback err';
+    }
+  }
+</script>
+</body>
+</html>

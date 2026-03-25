@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gramática — Módulo 7 | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #e9e6d5; --cream-dk: #ddd9c8;
+    --teal: #78a6ba; --teal-dk: #5a8ea0;
+    --teal-hero: #deeef5; --teal-th: #b8d8e8;
+    --teal-active: #3d7a94; --teal-text: #1f4d60;
+    --green: #528e74; --red: #cc4736;
+    --black: #1a1a18; --white: #ffffff;
+    --fh: 'Playfair Display', Georgia, serif;
+    --fb: 'Outfit', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--fb); color: var(--black); background: var(--cream); line-height: 1.6; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 0 1.5rem; display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+  .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+  .nav-logo img { height: 40px; }
+  .nav-links { display: flex; gap: 0.25rem; list-style: none; flex-wrap: wrap; }
+  .nav-links a { font-family: var(--fb); font-size: 0.82rem; font-weight: 600; color: var(--teal-text); text-decoration: none; padding: 0.4rem 0.75rem; border-radius: 20px; transition: background 0.2s; }
+  .nav-links a:hover, .nav-links a.active { background: var(--teal-hero); color: var(--teal-active); }
+
+  .hero { background: var(--teal-hero); border-bottom: 4px solid var(--teal); padding: 3rem 1.5rem; text-align: center; }
+  .hero-badge { display: inline-block; background: var(--teal-th); color: var(--teal-text); font-size: 0.8rem; font-weight: 600; padding: 0.3rem 1rem; border-radius: 20px; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .hero h1 { font-family: var(--fh); font-size: clamp(2rem, 4.5vw, 3rem); font-style: italic; color: var(--teal-text); margin-bottom: 0.5rem; }
+  .hero p { font-size: 1rem; color: var(--teal-active); }
+
+  section { padding: 3rem 1.5rem; scroll-margin-top: 80px; }
+  section:nth-child(even) { background: var(--cream-dk); }
+  .section-inner { max-width: 1000px; margin: 0 auto; }
+  .section-title { font-family: var(--fh); font-size: 1.8rem; font-style: italic; color: var(--teal-active); margin-bottom: 0.5rem; }
+  .section-lead { font-size: 0.95rem; color: #4a4a44; margin-bottom: 1.75rem; max-width: 680px; }
+
+  .rule-card { background: var(--white); border-left: 5px solid var(--teal); border-radius: 0 12px 12px 0; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; }
+  .rule-card h3 { font-family: var(--fh); font-style: italic; font-size: 1.1rem; color: var(--teal-active); margin-bottom: 0.5rem; }
+  .rule-card p { font-size: 0.9rem; color: #3a3a35; margin-bottom: 0.5rem; }
+  .formula { background: var(--teal-hero); border: 1px solid var(--teal); border-radius: 8px; padding: 0.6rem 1rem; font-family: monospace; font-size: 0.95rem; color: var(--teal-text); margin: 0.5rem 0; }
+
+  .table-wrap { overflow-x: auto; margin: 1.25rem 0; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.91rem; }
+  th { background: var(--teal-th); color: var(--teal-text); padding: 0.65rem 1rem; text-align: left; font-weight: 700; }
+  td { padding: 0.58rem 1rem; border-bottom: 1px solid #e8f2f7; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f0f8fc; }
+  .it-cell { font-family: var(--fh); font-style: italic; color: var(--teal-active); font-weight: 600; }
+  .highlight-row td { background: var(--teal-hero) !important; font-weight: 600; }
+
+  .example-box { background: var(--teal-hero); border-radius: 10px; padding: 1.1rem 1.5rem; margin: 1rem 0; border: 1px solid var(--teal); }
+  .example-box .it { font-family: var(--fh); font-style: italic; font-size: 1rem; color: var(--teal-text); }
+  .example-box .es { font-size: 0.85rem; color: #5a5a54; margin-top: 0.2rem; }
+  .ex-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0.75rem; margin: 1rem 0; }
+
+  .pratica-block { background: var(--white); border-radius: 12px; padding: 1.5rem; margin: 1.25rem 0; border: 2px solid var(--teal-th); }
+  .pratica-block h3 { font-family: var(--fh); font-style: italic; font-size: 1.1rem; color: var(--teal-active); margin-bottom: 1rem; }
+  .pratica-item { margin-bottom: 0.9rem; font-size: 0.92rem; }
+  .pratica-item label { display: block; margin-bottom: 0.3rem; color: #3a3a35; line-height: 1.5; }
+  .pratica-item input, .pratica-item select { border: 2px solid var(--teal-th); border-radius: 8px; padding: 0.38rem 0.7rem; font-family: var(--fb); font-size: 0.88rem; background: var(--white); color: var(--black); transition: border-color 0.2s; }
+  .pratica-item input:focus, .pratica-item select:focus { outline: none; border-color: var(--teal-active); }
+  .pratica-item input.correct { border-color: var(--green); background: #eef7f3; }
+  .pratica-item input.incorrect { border-color: var(--red); background: #fdf0ee; }
+  .check-btn { background: var(--teal-active); color: var(--white); border: none; border-radius: 8px; padding: 0.55rem 1.4rem; font-family: var(--fb); font-weight: 600; font-size: 0.88rem; cursor: pointer; margin-top: 0.5rem; transition: background 0.2s; }
+  .check-btn:hover { background: var(--teal-text); }
+  .feedback { font-size: 0.84rem; margin-top: 0.5rem; font-weight: 600; min-height: 1.2em; }
+  .feedback.ok { color: var(--green); }
+  .feedback.err { color: var(--red); }
+
+  /* QUIZ */
+  .quiz-container { background: var(--white); border-radius: 14px; padding: 2rem; margin: 1.5rem 0; border: 2px solid var(--teal-th); }
+  .quiz-q { margin-bottom: 1.5rem; }
+  .quiz-q p { font-weight: 600; font-size: 0.95rem; color: var(--teal-text); margin-bottom: 0.6rem; }
+  .quiz-option { display: block; padding: 0.5rem 0.9rem; margin: 0.3rem 0; border-radius: 8px; border: 2px solid var(--teal-th); cursor: pointer; font-size: 0.88rem; transition: all 0.2s; background: var(--cream); }
+  .quiz-option:hover { border-color: var(--teal); background: var(--teal-hero); }
+  .quiz-option.correct { border-color: var(--green); background: #eef7f3; font-weight: 600; }
+  .quiz-option.incorrect { border-color: var(--red); background: #fdf0ee; }
+  .quiz-score { font-family: var(--fh); font-size: 1.4rem; font-style: italic; color: var(--teal-active); text-align: center; margin-top: 1rem; }
+
+  footer { background: var(--cream-dk); border-top: 2px solid var(--teal-th); padding: 1.5rem; text-align: center; font-size: 0.82rem; color: #6a6a60; }
+
+  @media (max-width: 640px) {
+    .nav-links a { font-size: 0.75rem; padding: 0.35rem 0.55rem; }
+    .ex-grid { grid-template-columns: 1fr; }
+  }
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo) { font-family: var(--fb); font-size: 0.82rem; font-weight: 600; color: var(--teal-text); text-decoration: none; padding: 0.4rem 0.75rem; border-radius: 20px; transition: background 0.2s; }
+nav > a:not(.nav-logo):hover, nav > a:not(.nav-logo).active { background: var(--teal-hero); color: var(--teal-active); }
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+
+<nav class="sticky-nav">
+    <div class="nav-logo"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img">
+    <ul class="nav-links">
+      <li><a href="#condizionale" class="active">Condizionale</a></li>
+      <li><a href="#partitivi">Partitivi</a></li>
+      <li><a href="#plurali">Plurali</a></li>
+      <li><a href="#pratica">Práctica</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+    </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Módulo 7 · Gramática</div>
+  <h1>Al ristorante — Gramática</h1>
+  <p>Condicional de cortesía · Partitivos · Plurales irregolari</p>
+</div>
+
+<!-- CONDIZIONALE -->
+<section id="condizionale">
+  <div class="section-inner">
+    <h2 class="section-title">1. Il condizionale presente</h2>
+    <p class="section-lead">El condicional presente se usa para pedir con cortesía, hacer propuestas y expresar deseos. En el restaurante es esencial: "Voglio" suena brusco, "Vorrei" suena perfecto.</p>
+
+    <div class="rule-card">
+      <h3>Formación: verbos regulares</h3>
+      <p>Para los verbos regulares, el condicional se forma con el infinitivo (sin la -e final) + las desinencias del condicional. ¡Todos los verbos comparten las mismas terminaciones!</p>
+      <div class="formula">-are: parlare → parler- + ei, esti, ebbe, emmo, este, ebbero<br>-ere / -ire: scrivere → scriver- | partire → partir-</div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Pronombre</th><th>parlare (hablar)</th><th>scrivere (escribir)</th><th>partire (partir)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>io</td><td class="it-cell">parlerei</td><td class="it-cell">scriverei</td><td class="it-cell">partirei</td></tr>
+          <tr><td>tu</td><td class="it-cell">parleresti</td><td class="it-cell">scriveresti</td><td class="it-cell">partiresti</td></tr>
+          <tr><td>lui/lei</td><td class="it-cell">parlerebbe</td><td class="it-cell">scriverebbe</td><td class="it-cell">partirebbe</td></tr>
+          <tr><td>noi</td><td class="it-cell">parleremmo</td><td class="it-cell">scriveremmo</td><td class="it-cell">partiremmo</td></tr>
+          <tr><td>voi</td><td class="it-cell">parlereste</td><td class="it-cell">scrivereste</td><td class="it-cell">partireste</td></tr>
+          <tr><td>loro</td><td class="it-cell">parlerebbero</td><td class="it-cell">scriverebbero</td><td class="it-cell">partirebbero</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule-card">
+      <h3>Verbos irregolari más usados en el restaurante</h3>
+      <p>Estos verbos tienen una raíz irregular en el condicional. Hay que memorizarlos porque son los más frecuentes.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Infinitivo</th><th>Raíz condicional</th><th>Forma io</th><th>Uso típico</th></tr></thead>
+        <tbody>
+          <tr class="highlight-row"><td>volere</td><td class="it-cell">vorr-</td><td class="it-cell">vorrei</td><td>Vorrei un tavolo per due</td></tr>
+          <tr class="highlight-row"><td>potere</td><td class="it-cell">potr-</td><td class="it-cell">potrei</td><td>Potrei avere il menu?</td></tr>
+          <tr class="highlight-row"><td>avere</td><td class="it-cell">avr-</td><td class="it-cell">avrei</td><td>Avrei bisogno del conto</td></tr>
+          <tr><td>essere</td><td class="it-cell">sar-</td><td class="it-cell">sarei</td><td>Saremmo quattro persone</td></tr>
+          <tr><td>venire</td><td class="it-cell">verr-</td><td class="it-cell">verrei</td><td>Verrei domani sera</td></tr>
+          <tr><td>fare</td><td class="it-cell">far-</td><td class="it-cell">farei</td><td>Farei una prenotazione</td></tr>
+          <tr><td>dovere</td><td class="it-cell">dovr-</td><td class="it-cell">dovrei</td><td>Dovrei prenotare in anticipo?</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin: 1rem 0 0.5rem; font-size: 0.92rem; color: #3a3a35;"><strong>Ejemplos en contexto:</strong></p>
+    <div class="ex-grid">
+      <div class="example-box"><div class="it">Vorrei prenotare un tavolo per sabato.</div><div class="es">Quisiera reservar una mesa para el sábado.</div></div>
+      <div class="example-box"><div class="it">Potrei avere il menu del giorno?</div><div class="es">¿Podría traerme el menú del día?</div></div>
+      <div class="example-box"><div class="it">Avrei bisogno di un tavolo più tranquillo.</div><div class="es">Necesitaría (tendría necesidad de) una mesa más tranquila.</div></div>
+      <div class="example-box"><div class="it">Saremmo lì verso le otto.</div><div class="es">Estaríamos ahí alrededor de las ocho.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTITIVI -->
+<section id="partitivi">
+  <div class="section-inner">
+    <h2 class="section-title">2. I partitivi</h2>
+    <p class="section-lead">Los partitivos expresan "una cantidad no determinada" de algo. Se forman con "di + artículo determinado" y funcionan como el "some / any" del inglés o el "un poco de / algo de" del español.</p>
+
+    <div class="rule-card">
+      <h3>Regla de formación</h3>
+      <p>El partitivo siempre concuerda en género y número con el sustantivo que acompaña. Elegís el artículo que usarías normalmente para ese sustantivo y le agregás "di" adelante.</p>
+      <div class="formula">di + il = del &nbsp;·&nbsp; di + lo = dello &nbsp;·&nbsp; di + la = della &nbsp;·&nbsp; di + l' = dell'<br>di + i = dei &nbsp;·&nbsp; di + gli = degli &nbsp;·&nbsp; di + le = delle</div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Artículo</th><th>Partitivo</th><th>Sustantivo ejemplo</th><th>Frase completa</th></tr></thead>
+        <tbody>
+          <tr><td>il</td><td class="it-cell">del</td><td>pane (m.sg.)</td><td class="it-cell">Vorrei del pane, grazie.</td></tr>
+          <tr><td>lo</td><td class="it-cell">dello</td><td>zucchero (m.sg.)</td><td class="it-cell">Potrei avere dello zucchero?</td></tr>
+          <tr><td>la</td><td class="it-cell">della</td><td>pasta (f.sg.)</td><td class="it-cell">Vorrei della pasta al pomodoro.</td></tr>
+          <tr><td>l'</td><td class="it-cell">dell'</td><td>acqua (f.sg. vocal)</td><td class="it-cell">Potrei avere dell'acqua frizzante?</td></tr>
+          <tr><td>i</td><td class="it-cell">dei</td><td>funghi (m.pl.)</td><td class="it-cell">Vorrei dei funghi trifolati.</td></tr>
+          <tr><td>gli</td><td class="it-cell">degli</td><td>spaghetti (m.pl.)</td><td class="it-cell">Vorrei degli spaghetti al pesto.</td></tr>
+          <tr><td>le</td><td class="it-cell">delle</td><td>olive (f.pl.)</td><td class="it-cell">Avrei bisogno delle olive.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule-card">
+      <h3>Cuándo NO usar el partitivo</h3>
+      <p>En frases negativas no se usa el partitivo. Se usa directamente "non + verbo" sin artículo:</p>
+      <div class="formula">✓ Vorrei del vino. → ✗ Non voglio del vino. → ✓ Non voglio vino.</div>
+      <p>Tampoco se usa en oraciones interrogativas formales o cuando se especifica la cantidad exacta: <span style="font-style:italic;color:var(--teal-active)">Voglio due caffè</span> (no "dei caffè" porque especificás cuántos).</p>
+    </div>
+  </div>
+</section>
+
+<!-- PLURALI -->
+<section id="plurali">
+  <div class="section-inner">
+    <h2 class="section-title">3. I plurali — regulares e irregolari</h2>
+    <p class="section-lead">La formación del plural en italiano sigue reglas bastante claras, pero hay un grupo de palabras con plural irregular que vale la pena memorizar.</p>
+
+    <div class="rule-card">
+      <h3>Reglas generales del plural regular</h3>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Terminación singular</th><th>Terminación plural</th><th>Género</th><th>Ejemplo</th></tr></thead>
+        <tbody>
+          <tr><td>-o</td><td class="it-cell">-i</td><td>m.</td><td class="it-cell">libro → libri</td></tr>
+          <tr><td>-a</td><td class="it-cell">-e</td><td>f.</td><td class="it-cell">pasta → paste</td></tr>
+          <tr><td>-e</td><td class="it-cell">-i</td><td>m./f.</td><td class="it-cell">pesce → pesci / classe → classi</td></tr>
+          <tr><td>-ca / -ga</td><td class="it-cell">-che / -ghe</td><td>f.</td><td class="it-cell">amica → amiche / bottega → botteghe</td></tr>
+          <tr><td>-co / -go</td><td class="it-cell">-chi / -ghi</td><td>m.</td><td class="it-cell">fungo → funghi / cuoco → cuochi</td></tr>
+          <tr><td>-cia / -gia</td><td class="it-cell">-ce / -ge</td><td>f.</td><td class="it-cell">arancia → arance / pioggia → piogge</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule-card" style="margin-top:1.5rem;">
+      <h3>Plurales irregolari — los del latín neutro</h3>
+      <p>Un grupo especial de palabras viene del neutro latino. Su característica es que cambian de género en el plural (de masculino singular pasan a femenino plural) y terminan en <strong>-a</strong>.</p>
+      <div class="formula">uovo (m. sg.) → uova (f. pl.) — ¡el plural es femenino!</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Singular (m.)</th><th>Plural (f.)</th><th>Traducción</th></tr></thead>
+        <tbody>
+          <tr class="highlight-row"><td class="it-cell">l'uovo</td><td class="it-cell">le uova</td><td>el huevo → los huevos</td></tr>
+          <tr><td class="it-cell">il braccio</td><td class="it-cell">le braccia</td><td>el brazo → los brazos</td></tr>
+          <tr><td class="it-cell">il ginocchio</td><td class="it-cell">le ginocchia</td><td>la rodilla → las rodillas</td></tr>
+          <tr><td class="it-cell">il labbro</td><td class="it-cell">le labbra</td><td>el labio → los labios</td></tr>
+          <tr><td class="it-cell">il dito</td><td class="it-cell">le dita</td><td>el dedo → los dedos</td></tr>
+          <tr><td class="it-cell">il paio</td><td class="it-cell">le paia</td><td>el par → los pares</td></tr>
+          <tr><td class="it-cell">il centinaio</td><td class="it-cell">le centinaia</td><td>la centena → las centenas</td></tr>
+          <tr><td class="it-cell">il migliaio</td><td class="it-cell">le migliaia</td><td>el millar → los millares</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin: 1rem 0 0.5rem; font-size: 0.92rem; color: #3a3a35;"><strong>Otros irregolari comunes:</strong></p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Singular</th><th>Plural</th><th>Regla especial</th></tr></thead>
+        <tbody>
+          <tr><td class="it-cell">la mano</td><td class="it-cell">le mani</td><td>mano es FEMENINO aunque termina en -o</td></tr>
+          <tr><td class="it-cell">l'uomo</td><td class="it-cell">gli uomini</td><td>forma totalmente irregular</td></tr>
+          <tr><td class="it-cell">il bue</td><td class="it-cell">i buoi</td><td>buey → bueyes</td></tr>
+          <tr><td class="it-cell">il dio</td><td class="it-cell">gli dei</td><td>dios → dioses</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- PRATICA -->
+<section id="pratica">
+  <div class="section-inner">
+    <h2 class="section-title">Práctica integrada</h2>
+    <p class="section-lead">Combinamos los tres temas en ejercicios de aplicación real.</p>
+
+    <div class="pratica-block">
+      <h3>Ejercicio A — Condicional en el restaurante</h3>
+      <div class="pratica-item"><label>1. (volere - io) _____ un tavolo per due. <input type="text" class="prac-a" data-answer="Vorrei" placeholder="..."></label></div>
+      <div class="pratica-item"><label>2. (potere - voi) _____ aspettare cinque minuti? <input type="text" class="prac-a" data-answer="Potreste" placeholder="..."></label></div>
+      <div class="pratica-item"><label>3. (avere - noi) _____ bisogno del conto. <input type="text" class="prac-a" data-answer="Avremmo" placeholder="..."></label></div>
+      <div class="pratica-item"><label>4. (essere - noi) _____ lì verso le otto e mezza. <input type="text" class="prac-a" data-answer="Saremmo" placeholder="..."></label></div>
+      <div class="pratica-item"><label>5. (consigliare - lei) Cosa ci _____? (lei = il cameriere) <input type="text" class="prac-a" data-answer="consiglierebbe" placeholder="..."></label></div>
+      <button class="check-btn" onclick="checkFill('prac-a','fbA')">Verificar</button>
+      <div class="feedback" id="fbA"></div>
+    </div>
+
+    <div class="pratica-block">
+      <h3>Ejercicio B — Partitivos correctos</h3>
+      <div class="pratica-item"><label>1. Vorrei ___ pane con l'olio. <input type="text" class="prac-b" data-answer="del" placeholder="..."></label></div>
+      <div class="pratica-item"><label>2. Potrei avere ___ acqua naturale? <input type="text" class="prac-b" data-answer="dell'" placeholder="..."></label></div>
+      <div class="pratica-item"><label>3. Vorrei ___ olive nere come antipasto. <input type="text" class="prac-b" data-answer="delle" placeholder="..."></label></div>
+      <div class="pratica-item"><label>4. Avrei bisogno ___ zucchero per il caffè. <input type="text" class="prac-b" data-answer="dello" placeholder="..."></label></div>
+      <div class="pratica-item"><label>5. Vorrei ___ spaghetti alla vongole. <input type="text" class="prac-b" data-answer="degli" placeholder="..."></label></div>
+      <button class="check-btn" onclick="checkFill('prac-b','fbB')">Verificar</button>
+      <div class="feedback" id="fbB"></div>
+    </div>
+
+    <div class="pratica-block">
+      <h3>Ejercicio C — Plurales irregolari</h3>
+      <div class="pratica-item"><label>1. Ho ordinato un uovo, ma il cameriere ha portato due ___. <input type="text" class="prac-c" data-answer="uova" placeholder="..."></label></div>
+      <div class="pratica-item"><label>2. Il braccio fa male → Le ___ fanno male. <input type="text" class="prac-c" data-answer="braccia" placeholder="..."></label></div>
+      <div class="pratica-item"><label>3. Un fungo al tegamino → Tre ___ al tegamino. <input type="text" class="prac-c" data-answer="funghi" placeholder="..."></label></div>
+      <div class="pratica-item"><label>4. La mano → Le ___. <input type="text" class="prac-c" data-answer="mani" placeholder="..."></label></div>
+      <div class="pratica-item"><label>5. Un migliaio di persone → Due ___ di persone. <input type="text" class="prac-c" data-answer="migliaia" placeholder="..."></label></div>
+      <button class="check-btn" onclick="checkFill('prac-c','fbC')">Verificar</button>
+      <div class="feedback" id="fbC"></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="section-inner">
+    <h2 class="section-title">Quiz final — 5 preguntas</h2>
+    <p class="section-lead">Ponete a prueba con este mini-quiz de gramática del módulo.</p>
+
+    <div class="quiz-container">
+      <div class="quiz-q" id="q1">
+        <p>1. ¿Cuál es la forma correcta para pedir cortésmente una mesa para dos?</p>
+        <label class="quiz-option" data-q="q1" data-correct="false">Voglio un tavolo per due.</label>
+        <label class="quiz-option" data-q="q1" data-correct="true">Vorrei un tavolo per due.</label>
+        <label class="quiz-option" data-q="q1" data-correct="false">Volevo un tavolo per due.</label>
+      </div>
+      <div class="quiz-q" id="q2">
+        <p>2. ¿Qué partitivo usás con "acqua" (l'acqua)?</p>
+        <label class="quiz-option" data-q="q2" data-correct="false">della</label>
+        <label class="quiz-option" data-q="q2" data-correct="true">dell'</label>
+        <label class="quiz-option" data-q="q2" data-correct="false">degli</label>
+      </div>
+      <div class="quiz-q" id="q3">
+        <p>3. ¿Cuál es el plural correcto de "uovo"?</p>
+        <label class="quiz-option" data-q="q3" data-correct="false">uovi (masculino)</label>
+        <label class="quiz-option" data-q="q3" data-correct="false">uovos</label>
+        <label class="quiz-option" data-q="q3" data-correct="true">uova (femenino)</label>
+      </div>
+      <div class="quiz-q" id="q4">
+        <p>4. La forma "potreste" corresponde a:</p>
+        <label class="quiz-option" data-q="q4" data-correct="false">io (yo podría)</label>
+        <label class="quiz-option" data-q="q4" data-correct="true">voi (ustedes podrían)</label>
+        <label class="quiz-option" data-q="q4" data-correct="false">loro (ellos podrían)</label>
+      </div>
+      <div class="quiz-q" id="q5">
+        <p>5. En una frase negativa, ¿cuál es correcta?</p>
+        <label class="quiz-option" data-q="q5" data-correct="false">Non voglio del vino.</label>
+        <label class="quiz-option" data-q="q5" data-correct="true">Non voglio vino.</label>
+        <label class="quiz-option" data-q="q5" data-correct="false">Non voglio dello vino.</label>
+      </div>
+      <button class="check-btn" onclick="checkQuiz()" style="width:100%;margin-top:0.5rem;">Ver resultados</button>
+      <div class="quiz-score" id="quizScore"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Italiano Per Piacere · Módulo 7 — Al ristorante · Gramática</p>
+</footer>
+
+<script>
+function checkFill(cls, fbId) {
+  const inputs = document.querySelectorAll('.' + cls);
+  let ok = 0;
+  inputs.forEach(inp => {
+    const ans = inp.dataset.answer.toLowerCase().trim();
+    const val = inp.value.toLowerCase().trim();
+    if (val === ans) { inp.classList.add('correct'); inp.classList.remove('incorrect'); ok++; }
+    else { inp.classList.add('incorrect'); inp.classList.remove('correct'); }
+  });
+  const fb = document.getElementById(fbId);
+  if (ok === inputs.length) { fb.textContent = '✓ Perfetto! Todas correctas.'; fb.className = 'feedback ok'; }
+  else { fb.textContent = `${ok}/${inputs.length} correctas. ¡Revisá las marcadas en rojo!`; fb.className = 'feedback err'; }
+}
+
+let quizAnswered = {};
+document.querySelectorAll('.quiz-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    const q = opt.dataset.q;
+    if (quizAnswered[q]) return;
+    quizAnswered[q] = true;
+    const opts = document.querySelectorAll(`.quiz-option[data-q="${q}"]`);
+    opts.forEach(o => {
+      if (o.dataset.correct === 'true') o.classList.add('correct');
+      else if (o === opt && o.dataset.correct === 'false') o.classList.add('incorrect');
+    });
+  });
+});
+
+function checkQuiz() {
+  let score = 0;
+  document.querySelectorAll('.quiz-option.correct').forEach(o => {
+    if (Object.keys(quizAnswered).includes(o.dataset.q)) score++;
+  });
+  // also count ones not yet answered that we check now
+  const qs = ['q1','q2','q3','q4','q5'];
+  qs.forEach(q => {
+    if (!quizAnswered[q]) {
+      const opts = document.querySelectorAll(`.quiz-option[data-q="${q}"]`);
+      opts.forEach(o => { if (o.dataset.correct === 'true') o.classList.add('correct'); });
+    }
+  });
+  const total = qs.length;
+  const answered = qs.filter(q => quizAnswered[q]);
+  let correct = 0;
+  answered.forEach(q => {
+    const sel = document.querySelector(`.quiz-option[data-q="${q}"].correct`);
+    if (sel && quizAnswered[q]) correct++;
+  });
+  const el = document.getElementById('quizScore');
+  if (correct === total) { el.textContent = `🎉 ${correct}/${total} — Bravissimo/a!`; el.style.color = 'var(--green)'; }
+  else if (correct >= 3) { el.textContent = `✓ ${correct}/${total} — Molto bene! Ripassate i punti difficili.`; el.style.color = 'var(--teal-active)'; }
+  else { el.textContent = `${correct}/${total} — Studiate ancora un po'! Ripassa la teoria.`; el.style.color = 'var(--red)'; }
+}
+
+// nav highlight
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const link = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>

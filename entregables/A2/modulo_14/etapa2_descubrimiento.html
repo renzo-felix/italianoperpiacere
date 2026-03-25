@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Módulo 14 A2 — Etapa 2: Descubrimiento</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--red-dk:#a8382a;--teal:#78a6ba;--teal-dk:#5a8ea0;
+  --green:#528e74;--green-dk:#3d6b58;--black:#1a1a18;--white:#ffffff;
+  --mod:var(--teal);--mod-dk:var(--teal-dk);
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.7;overflow-x:hidden}
+#prog-bar{position:fixed;bottom:0;left:0;width:0%;height:5px;
+  background:#b8d8e8;z-index:999;transition:width .3s}
+.hero{background:#deeef5;border-bottom:3px solid #78a6ba;color:var(--black);padding:72px 32px 60px;text-align:center;position:relative;overflow:hidden;min-height:300px}
+.hero::before,.hero::after{display:none}
+.hero-circles span{position:absolute;border-radius:50%;opacity:.15;pointer-events:none}
+.hero-circles span:nth-child(1){width:280px;height:280px;background:#fff;top:-70px;right:-70px}
+.hero-circles span:nth-child(2){width:200px;height:200px;background:var(--gold);bottom:-50px;left:-50px}
+.hero-circles span:nth-child(3){width:130px;height:130px;background:#fff;top:35%;right:18%}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:2.6rem;margin-bottom:12px;position:relative;z-index:1;color:#1a1a18}
+.hero p{font-size:1.1rem;max-width:600px;margin:0 auto;position:relative;z-index:1;color:#1a1a18;opacity:.75}
+.hero .mod-tag{display:inline-block;background:rgba(0,0,0,.07);border-radius:20px;padding:4px 16px;font-size:.85rem;font-weight:700;margin-bottom:16px;color:#1a1a18}
+.sec{max-width:950px;margin:0 auto;padding:56px 24px}
+.sec h2{font-family:var(--fh);font-style:italic;font-size:2rem;color:var(--teal-dk);margin-bottom:8px}
+.sec-sub{color:#666;font-size:.95rem;margin-bottom:32px;padding-bottom:14px;border-bottom:2px solid var(--cream-dk)}
+.divider{border:none;border-top:2px solid var(--cream-dk);margin:0}
+/* Word grid */
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:24px 0}
+.wcard{background:#fff;border:2px solid var(--cream-dk);border-radius:12px;padding:14px 16px;cursor:pointer;transition:.25s;text-align:center}
+.wcard:hover{border-color:var(--teal);transform:translateY(-2px)}
+.wcard.ok{border-color:var(--green);background:#e9f5f0}
+.wcard.trap{border-color:var(--red);background:#fde8e6}
+.wcard .it{font-style:italic;font-weight:700;font-size:1rem}
+.wcard .es{font-size:.8rem;color:#888;display:none;margin-top:4px}
+.wcard.ok .es,.wcard.trap .es{display:block}
+.wcard.trap .it{color:var(--red)}
+.wcard.ok .it{color:var(--green-dk)}
+/* Vocab */
+.vset{margin-bottom:36px}
+.vset h3{font-family:var(--fh);font-style:italic;color:var(--teal-dk);font-size:1.3rem;margin-bottom:16px}
+.vcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px}
+.vcard{background:#fff;border:2px solid var(--cream-dk);border-radius:14px;padding:18px 16px;cursor:pointer;transition:.3s;min-height:100px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.vcard:hover{border-color:var(--teal);box-shadow:0 4px 14px rgba(120,166,186,.2)}
+.vcard.open{border-color:var(--teal);background:#deeef5}
+.vcard .vit{font-style:italic;font-weight:700;font-size:1.05rem}
+.vcard .vex{font-size:.85rem;color:#555;margin-top:6px;display:none;line-height:1.4}
+.vcard.open .vex{display:block}
+.vcard .vicon{font-size:1.6rem;margin-bottom:6px}
+/* Discovery box */
+.disc-box{background:#deeef5;color:var(--black);border-radius:16px;padding:28px 32px;margin:28px 0}
+.disc-box h3{font-family:var(--fh);font-style:italic;font-size:1.4rem;margin-bottom:14px;color:var(--gold)}
+.disc-box strong{color:var(--gold)}
+.disc-box .ex-line{background:rgba(0,0,0,.05);border-radius:8px;padding:10px 16px;margin:8px 0;font-style:italic;font-size:1rem;border-left:3px solid var(--gold)}
+.hl-box{background:var(--gold);color:var(--black);border-radius:10px;padding:16px 20px;margin:20px 0;font-size:.97rem;font-weight:600;border-left:4px solid var(--amber-dk);text-align:center;font-style:italic}
+/* Fill */
+.fill-set{background:#fff;border:1px solid var(--cream-dk);border-radius:14px;padding:24px;margin:20px 0}
+.fill-set h4{font-family:var(--fh);font-style:italic;color:var(--teal-dk);font-size:1.1rem;margin-bottom:16px}
+.fill-item{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;font-size:.95rem}
+.fill-item label{flex:1;min-width:240px}
+.fill-item input{border:2px solid var(--cream-dk);border-radius:8px;padding:7px 12px;font-family:var(--fb);font-size:.95rem;width:160px;transition:.2s}
+.fill-item input:focus{outline:none;border-color:var(--teal)}
+.fill-item input.ok{border-color:var(--green);background:#e8f5ee}
+.fill-item input.err{border-color:var(--red);background:#fde8e6}
+.fill-btn{background:var(--teal);color:var(--black);border:none;border-radius:8px;padding:9px 22px;font-family:var(--fb);font-size:.9rem;font-weight:700;cursor:pointer;transition:.2s;margin-top:4px}
+.fill-btn:hover{background:var(--teal-dk)}
+.fill-fb{margin-top:10px;font-size:.9rem;font-weight:600;min-height:18px}
+.fill-fb.ok{color:var(--green-dk)}
+.fill-fb.err{color:var(--red)}
+/* Pronoun table */
+.pron-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin:24px 0}
+.pron-card{background:#fff;border:2px solid var(--cream-dk);border-radius:12px;padding:14px 16px;text-align:center;transition:.3s}
+.pron-card:hover{border-color:var(--teal);transform:translateY(-2px)}
+.pron-card .pa{font-size:.8rem;color:#888;margin-bottom:4px}
+.pron-card .pt{font-style:italic;font-weight:700;font-size:1.3rem;color:var(--teal-dk)}
+.pron-card .pex{font-size:.82rem;color:#666;margin-top:6px;line-height:1.3}
+/* Market items interactive */
+.market-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin:24px 0}
+.market-item{background:#fff;border:2px solid var(--cream-dk);border-radius:14px;padding:18px 14px;text-align:center;cursor:pointer;transition:.3s}
+.market-item:hover{border-color:var(--teal);transform:scale(1.03)}
+.market-item.open{border-color:var(--teal-dk);background:#deeef5}
+.market-item .mi-icon{font-size:2rem;margin-bottom:6px}
+.market-item .mi-it{font-style:italic;font-weight:700;font-size:.95rem}
+.market-item .mi-ex{font-size:.82rem;color:#666;margin-top:4px;display:none}
+.market-item.open .mi-ex{display:block}
+.market-item .mi-fr{font-size:.8rem;color:var(--teal-dk);font-weight:700;margin-top:4px;display:none}
+.market-item.open .mi-fr{display:block}
+/* Matching */
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0}
+@media(max-width:580px){.match-wrap{grid-template-columns:1fr}}
+.match-col h5{font-size:.85rem;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.match-item{background:#fff;border:2px solid var(--cream-dk);border-radius:10px;padding:10px 14px;margin-bottom:8px;cursor:pointer;transition:.2s;font-size:.93rem}
+.match-item:hover{border-color:var(--teal)}
+.match-item.sel{border-color:var(--teal-dk);background:#d6eaf3}
+.match-item.ok{border-color:var(--green);background:#e8f5ee;cursor:default}
+.match-item.err{border-color:var(--red);background:#fde8e6}
+.match-result{text-align:center;font-size:.95rem;font-weight:700;margin-top:12px;min-height:20px;color:var(--teal-dk)}
+/* Dialogue */
+.dial{background:var(--cream-dk);border-radius:16px;padding:24px 28px;margin:24px 0}
+.dial h4{font-family:var(--fh);font-style:italic;color:var(--teal-dk);font-size:1.15rem;margin-bottom:16px}
+.bubble{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;cursor:pointer}
+.bubble.b{flex-direction:row-reverse}
+.bav{width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;color:var(--black)}
+.bubble:not(.b) .bav{background:#c8e5f0}
+.bubble.b .bav{background:var(--cream-dk)}
+.btext{background:#fff;border-radius:12px;padding:10px 14px;font-size:.93rem;max-width:75%}
+.bubble.b .btext{background:var(--cream-dk);color:var(--black)}
+.btr{font-size:.82rem;color:#888;font-style:italic;margin-top:4px;display:none}
+.bubble.show .btr{display:block}
+.dial-hint{font-size:.8rem;color:#999;text-align:center;margin-top:10px}
+/* Reading */
+.reading-box{background:#fff;border:1px solid var(--cream-dk);border-radius:14px;padding:24px 28px;margin:24px 0}
+.reading-box h4{font-family:var(--fh);font-style:italic;color:var(--teal-dk);font-size:1.15rem;margin-bottom:14px}
+.reading-text{background:var(--cream);border-radius:10px;padding:18px 20px;font-size:.95rem;line-height:1.8;margin-bottom:20px;border-left:3px solid var(--teal)}
+.r-q{margin-bottom:18px}
+.r-q p{font-weight:600;font-size:.95rem;margin-bottom:8px}
+.r-opts label{display:block;cursor:pointer;padding:7px 12px;border-radius:8px;font-size:.9rem;transition:.18s}
+.r-opts label:hover{background:var(--cream-dk)}
+.r-opts input{margin-right:8px;accent-color:var(--teal)}
+.r-opts label.ok{background:#e8f5ee;color:var(--green-dk);font-weight:700}
+.r-opts label.err{background:#fde8e6;color:var(--red)}
+.r-btn{background:#c8e5f0;color:var(--black);border:none;border-radius:8px;padding:9px 24px;font-family:var(--fb);font-size:.9rem;font-weight:700;cursor:pointer;transition:.2s;margin-top:8px}
+.r-btn:hover{background:var(--teal-dk)}
+.r-result{margin-top:12px;font-weight:700;font-size:.95rem;min-height:18px;color:var(--teal-dk)}
+/* Culture */
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:4px solid var(--teal-dk);padding:48px 24px;margin-top:0}
+.culture-inner{max-width:950px;margin:0 auto}
+.culture h2{font-family:var(--fh);font-style:italic;font-size:1.9rem;color:var(--teal-dk);margin-bottom:8px}
+.culture p{color:#555;font-size:.95rem;margin-bottom:28px}
+.culture-facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.cf{background:#fff;border-radius:14px;padding:18px 20px;border:1px solid var(--cream-dk)}
+.cf .cf-icon{font-size:1.8rem;margin-bottom:8px}
+.cf h4{font-family:var(--fh);font-style:italic;color:var(--teal-dk);font-size:1.05rem;margin-bottom:6px}
+.cf p{font-size:.87rem;color:#555;margin:0;line-height:1.5}
+[data-a]{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+[data-a].vis{opacity:1;transform:none}
+[data-stagger] [data-a]{transition-delay:calc(var(--i,0)*.08s)}
+footer{background:var(--cream-dk);color:var(--black);text-align:center;padding:24px;font-size:.85rem}
+</style>
+</head>
+<body>
+<div id="prog-bar"></div>
+
+<div class="hero">
+  <div class="hero-circles"><span></span><span></span><span></span></div>
+  <div class="mod-tag">A2 · Módulo 14 · Descubrimiento</div>
+  <h1>Cosa ne pensi? 🛒</h1>
+  <p>Congiunzione "se" · Forme toniche · Avverbio "mica"</p>
+</div>
+
+<!-- ══ 1. WORD GRID ══ -->
+<div class="sec">
+  <h2>Prima esplorazione</h2>
+  <p class="sec-sub">¿Cuáles son palabras italianas auténticas? Haz clic para descubrirlo</p>
+  <div class="wgrid" data-stagger>
+    <div class="wcard" data-ok="true" data-es="el puesto / el mostrador" data-a><span class="it">il banco</span><span class="es">el puesto</span></div>
+    <div class="wcard" data-ok="true" data-es="la oferta especial" data-a><span class="it">l'offerta</span><span class="es">la oferta</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'il venditore')" data-a><span class="it">il seller</span><span class="es">(trampa)</span></div>
+    <div class="wcard" data-ok="true" data-es="fresco/a" data-a><span class="it">fresco/a</span><span class="es">fresco/a</span></div>
+    <div class="wcard" data-ok="true" data-es="para nada (énfasis negativo)" data-a><span class="it">mica</span><span class="es">para nada</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'il prezzo')" data-a><span class="it">il price</span><span class="es">(trampa)</span></div>
+    <div class="wcard" data-ok="true" data-es="forma tónica: yo" data-a><span class="it">me</span><span class="es">yo (tónico)</span></div>
+    <div class="wcard" data-ok="true" data-es="forma tónica: tú" data-a><span class="it">te</span><span class="es">tú (tónico)</span></div>
+    <div class="wcard" data-ok="true" data-es="regatear" data-a><span class="it">contrattare</span><span class="es">regatear</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'il mercato')" data-a><span class="it">il market</span><span class="es">(trampa)</span></div>
+    <div class="wcard" data-ok="true" data-es="el queso mozzarella" data-a><span class="it">la mozzarella</span><span class="es">mozzarella</span></div>
+    <div class="wcard" data-ok="true" data-es="el tomate" data-a><span class="it">il pomodoro</span><span class="es">el tomate</span></div>
+    <div class="wcard" data-ok="true" data-es="el cliente" data-a><span class="it">il cliente</span><span class="es">el cliente</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'economico')" data-a><span class="it">cheap</span><span class="es">(trampa)</span></div>
+    <div class="wcard" data-ok="true" data-es="la berenjena" data-a><span class="it">la melanzana</span><span class="es">berenjena</span></div>
+    <div class="wcard" data-ok="true" data-es="la cebolla" data-a><span class="it">la cipolla</span><span class="es">la cebolla</span></div>
+    <div class="wcard" data-ok="true" data-es="entre yo y tú" data-a><span class="it">tra me e te</span><span class="es">entre tú y yo</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'tornare')" data-a><span class="it">returnare</span><span class="es">(trampa)</span></div>
+  </div>
+  <p style="font-size:.82rem;color:#888;margin-top:8px">
+    <span style="display:inline-block;width:12px;height:12px;background:var(--green);border-radius:3px;margin-right:4px;vertical-align:middle"></span>Italiana auténtica &nbsp;
+    <span style="display:inline-block;width:12px;height:12px;background:var(--red);border-radius:3px;margin-right:4px;margin-left:12px;vertical-align:middle"></span>Trampa
+  </p>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 2. VOCAB A: Mercato ══ -->
+<div class="sec">
+  <h2>Vocabolario — Set A</h2>
+  <p class="sec-sub">Al mercato — productos y expresiones de compra</p>
+  <div class="vset">
+    <h3>🛒 Prodotti e voci del mercato</h3>
+    <div class="market-grid" data-stagger>
+      <div class="market-item" data-a onclick="this.classList.toggle('open')">
+        <div class="mi-icon">🍅</div><div class="mi-it">i pomodori</div>
+        <div class="mi-ex">los tomates</div><div class="mi-fr"><em>"Pomodori freschi, 1€ al kg!"</em></div>
+      </div>
+      <div class="market-item" data-a onclick="this.classList.toggle('open')">
+        <div class="mi-icon">🧀</div><div class="mi-it">la mozzarella</div>
+        <div class="mi-ex">la mozzarella</div><div class="mi-fr"><em>"Mozzarella di bufala fresca."</em></div>
+      </div>
+      <div class="market-item" data-a onclick="this.classList.toggle('open')">
+        <div class="mi-icon">🧅</div><div class="mi-it">la cipolla</div>
+        <div class="mi-ex">la cebolla</div><div class="mi-fr"><em>"Cipolle dolci di Tropea."</em></div>
+      </div>
+      <div class="market-item" data-a onclick="this.classList.toggle('open')">
+        <div class="mi-icon">🍆</div><div class="mi-it">la melanzana</div>
+        <div class="mi-ex">la berenjena</div><div class="mi-fr"><em>"Melanzane belle e fresche!"</em></div>
+      </div>
+      <div class="market-item" data-a onclick="this.classList.toggle('open')">
+        <div class="mi-icon">🥬</div><div class="mi-it">la verdura</div>
+        <div class="mi-ex">la verdura / las verduras</div><div class="mi-fr"><em>"Verdura di stagione."</em></div>
+      </div>
+      <div class="market-item" data-a onclick="this.classList.toggle('open')">
+        <div class="mi-icon">🏷️</div><div class="mi-it">il prezzo</div>
+        <div class="mi-ex">el precio</div><div class="mi-fr"><em>"Che prezzo fa?"</em></div>
+      </div>
+      <div class="market-item" data-a onclick="this.classList.toggle('open')">
+        <div class="mi-icon">🤝</div><div class="mi-it">contrattare</div>
+        <div class="mi-ex">regatear</div><div class="mi-fr"><em>"In Italia non si contratta al supermercato, ma al mercato sì!"</em></div>
+      </div>
+      <div class="market-item" data-a onclick="this.classList.toggle('open')">
+        <div class="mi-icon">🛍️</div><div class="mi-it">l'offerta</div>
+        <div class="mi-ex">la oferta</div><div class="mi-fr"><em>"C'è un'offerta speciale oggi!"</em></div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 3. VOCAB B: Forme toniche ══ -->
+<div class="sec">
+  <h2>Vocabolario — Set B</h2>
+  <p class="sec-sub">Forme toniche (tónicas) de los pronombres personales — haz clic en cada par</p>
+  <div class="pron-grid" data-stagger>
+    <div class="pron-card" data-a>
+      <div class="pa">atono → tonico</div>
+      <div class="pt">mi → <span style="color:var(--teal-dk)">me</span></div>
+      <div class="pex"><em>"Vieni con me?"</em><br><em>"È per me."</em></div>
+    </div>
+    <div class="pron-card" data-a>
+      <div class="pa">atono → tonico</div>
+      <div class="pt">ti → <span style="color:var(--teal-dk)">te</span></div>
+      <div class="pex"><em>"L'ho fatto per te."</em><br><em>"Tra me e te."</em></div>
+    </div>
+    <div class="pron-card" data-a>
+      <div class="pa">atono → tonico</div>
+      <div class="pt">gli → <span style="color:var(--teal-dk)">lui</span></div>
+      <div class="pex"><em>"Ho parlato di lui."</em><br><em>"È più alto di lui."</em></div>
+    </div>
+    <div class="pron-card" data-a>
+      <div class="pa">atono → tonico</div>
+      <div class="pt">le → <span style="color:var(--teal-dk)">lei</span></div>
+      <div class="pex"><em>"Ho scritto a lei."</em><br><em>"Più brava di lei."</em></div>
+    </div>
+    <div class="pron-card" data-a>
+      <div class="pa">atono → tonico</div>
+      <div class="pt">ci → <span style="color:var(--teal-dk)">noi</span></div>
+      <div class="pex"><em>"Vieni con noi?"</em><br><em>"È per noi."</em></div>
+    </div>
+    <div class="pron-card" data-a>
+      <div class="pa">atono → tonico</div>
+      <div class="pt">vi → <span style="color:var(--teal-dk)">voi</span></div>
+      <div class="pex"><em>"Ho pensato a voi."</em><br><em>"È per voi."</em></div>
+    </div>
+    <div class="pron-card" data-a>
+      <div class="pa">atono → tonico</div>
+      <div class="pt">li/le → <span style="color:var(--teal-dk)">loro</span></div>
+      <div class="pex"><em>"L'ho fatto per loro."</em><br><em>"Ho parlato di loro."</em></div>
+    </div>
+    <div class="pron-card" data-a>
+      <div class="pa">uso speciale</div>
+      <div class="pt">sé (riflessivo)</div>
+      <div class="pex"><em>"Pensa solo a sé."</em><br>3ª pers. reflexiva (con acento)</div>
+    </div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 4. VOCAB C: Espressioni al mercato ══ -->
+<div class="sec">
+  <h2>Vocabolario — Set C</h2>
+  <p class="sec-sub">Frases para comprar en el mercato italiano — haz clic para explorar</p>
+  <div class="vcards" data-stagger>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">👋</div><div class="vit">Cosa le do?</div>
+      <div class="vex">¿Qué le pongo? (vendedor)<br><em>Forma formal de atender</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">🤔</div><div class="vit">Quanto costa?</div>
+      <div class="vex">¿Cuánto cuesta?<br><em>"Quanto costano le mele?"</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">⚖️</div><div class="vit">Un chilo di...</div>
+      <div class="vex">Un kilo de...<br><em>"Un chilo di pomodori."</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">📦</div><div class="vit">Me ne dia mezzo chilo.</div>
+      <div class="vex">Deme medio kilo.<br><em>Uso de "ne" + forma tónica</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">💰</div><div class="vit">È un po' caro.</div>
+      <div class="vex">Es un poco caro.<br><em>Para iniciar el regateo</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">🙅</div><div class="vit">Non è mica caro!</div>
+      <div class="vex">¡Para nada es caro!<br><em>Respuesta del vendedor con "mica"</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">✅</div><div class="vit">Va bene, lo prendo.</div>
+      <div class="vex">Está bien, me lo llevo.<br><em>"Va bene" = de acuerdo</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">👏</div><div class="vit">Ha fatto un affare!</div>
+      <div class="vex">¡Ha hecho una ganga!<br><em>"fare un affare" = conseguir una ganga</em></div>
+    </div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 5. DISCOVERY: Se (reale) ══ -->
+<div class="sec">
+  <h2>Scoperta 1 — Congiunzione "se" 🔭</h2>
+  <p class="sec-sub">El "se" real vs hipotético — observa las diferencias</p>
+
+  <div class="disc-box" data-a>
+    <h3>Se + presente / futuro (periodo ipotetico del 1° tipo)</h3>
+    <p>Observa estas frases del mercato — ¿qué tiempo verbal sigue a "se"?</p>
+    <div class="ex-line">☀️ "Se <strong>vuoi</strong>, vieni con me al mercato." → presente</div>
+    <div class="ex-line">🛒 "Se <strong>prendo</strong> la mozzarella, poi faccio la caprese." → presente</div>
+    <div class="ex-line">💰 "Se i pomodori <strong>saranno</strong> freschi, li compro." → futuro</div>
+    <div class="ex-line">🏠 "Se <strong>avrai</strong> fame, c'è qualcosa in frigo." → futuro</div>
+    <p style="margin-top:12px">Este tipo de "se" expresa condiciones <strong>reales y probables</strong>. La condición puede cumplirse fácilmente.</p>
+  </div>
+
+  <div class="hl-box" data-a>
+    🇮🇹 vs 🇪🇸 — En español: "Si tienes tiempo, ven." (presente en ambas).<br>
+    En italiano con futuro también es común: <em>"Se <strong>avrai</strong> tempo, <strong>vieni</strong>."</em> ✅
+  </div>
+
+  <div class="fill-set" data-a>
+    <h4>Pratica A — "Se" + presente: completa</h4>
+    <div class="fill-item"><label>1. Se _____ (avere) fame, mangia pure.</label><input id="fa1" data-ans="hai" type="text" placeholder="presente…"/></div>
+    <div class="fill-item"><label>2. Se _____ (volere), ti spiego la ricetta.</label><input id="fa2" data-ans="vuoi" type="text" placeholder="presente…"/></div>
+    <div class="fill-item"><label>3. Se _____ (piovere) domani, prendo l'ombrello.</label><input id="fa3" data-ans="piove" type="text" placeholder="presente…"/></div>
+    <div class="fill-item"><label>4. Se _____ (tu/venire) al mercato, ti aspetto.</label><input id="fa4" data-ans="vieni" type="text" placeholder="presente…"/></div>
+    <div class="fill-item"><label>5. Se i prezzi _____ (essere) alti, non compro niente.</label><input id="fa5" data-ans="sono" type="text" placeholder="presente…"/></div>
+    <button class="fill-btn" onclick="checkFill(['fa1','fa2','fa3','fa4','fa5'],'fba')">Controlla ✓</button>
+    <div class="fill-fb" id="fba"></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 6. DISCOVERY: Forme toniche ══ -->
+<div class="sec">
+  <h2>Scoperta 2 — Forme toniche 👤</h2>
+  <p class="sec-sub">Cuándo usar las formas tónicas de los pronombres</p>
+
+  <div class="disc-box" data-a>
+    <h3>Forma atona vs forma tonica</h3>
+    <p>En italiano hay dos series de pronombres. Las formas átonas van pegadas al verbo; las <strong>tónicas</strong> se usan en posiciones de énfasis o después de preposiciones:</p>
+    <div class="ex-line">📌 Después de preposición: <strong>con me / per te / da lui / tra noi</strong></div>
+    <div class="ex-line">📌 Para contraste/énfasis: <strong>Ha invitato lui</strong>, non lei. (a él, no a ella)</div>
+    <div class="ex-line">📌 Como sujeto contrastivo: <strong>Lui</strong> lavora, <strong>lei</strong> studia.</div>
+    <div class="ex-line">📌 Después de "come" y "quanto": "Alto come <strong>me</strong>" / "Più di <strong>te</strong>"</div>
+  </div>
+
+  <div class="fill-set" data-a>
+    <h4>Pratica B — Forme toniche: completa</h4>
+    <div class="fill-item"><label>1. Questo regalo è per _____. (tu)</label><input id="fb1" data-ans="te" type="text" placeholder="tonico…"/></div>
+    <div class="fill-item"><label>2. Vieni con _____? (io)</label><input id="fb2" data-ans="me" type="text" placeholder="tonico…"/></div>
+    <div class="fill-item"><label>3. Tra _____ non ci sono segreti. (noi)</label><input id="fb3" data-ans="noi" type="text" placeholder="tonico…"/></div>
+    <div class="fill-item"><label>4. Ha scritto solo a _____. (lei)</label><input id="fb4" data-ans="lei" type="text" placeholder="tonico…"/></div>
+    <div class="fill-item"><label>5. È più bravo di _____. (lui)</label><input id="fb5" data-ans="lui" type="text" placeholder="tonico…"/></div>
+    <button class="fill-btn" onclick="checkFill(['fb1','fb2','fb3','fb4','fb5'],'fbb')">Controlla ✓</button>
+    <div class="fill-fb" id="fbb"></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 7. DISCOVERY: Mica ══ -->
+<div class="sec">
+  <h2>Scoperta 3 — Mica! 🙅</h2>
+  <p class="sec-sub">La negación enfática del italiano coloquial</p>
+
+  <div class="disc-box" data-a>
+    <h3>Mica = per niente / assolutamente no</h3>
+    <p><strong>Mica</strong> es un refuerzo negativo muy coloquial. Hace la negación más enfática, añadiendo un matiz de "¡para nada!" o "¡ni mucho menos!":</p>
+    <div class="ex-line">💸 "Non è <strong>mica</strong> caro!" — ¡Para nada está caro!</div>
+    <div class="ex-line">😤 "Non ho <strong>mica</strong> capito!" — ¡No entendí nada!</div>
+    <div class="ex-line">🤥 "<strong>Mica</strong> è vero!" — ¡Eso no es verdad para nada!</div>
+    <div class="ex-line">❓ "Non sarai <strong>mica</strong> arrabbiato?" — ¿No estarás enfadado, verdad?</div>
+    <p style="margin-top:12px"><strong>Mica</strong> va siempre con la negación <em>non</em>, pero también puede ir al inicio de la frase con un valor interrogativo retórico.</p>
+  </div>
+
+  <div class="fill-set" data-a>
+    <h4>Pratica C — Inserisci "mica" nella posizione giusta</h4>
+    <div class="fill-item"><label>1. Non è _____ vero! (énfasis)</label><input id="fc1" data-ans="mica" type="text" placeholder="avverbio…"/></div>
+    <div class="fill-item"><label>2. Non sono _____ stanca! (¡para nada cansada!)</label><input id="fc2" data-ans="mica" type="text" placeholder="avverbio…"/></div>
+    <div class="fill-item"><label>3. Non l'ho _____ fatto apposta! (a propósito)</label><input id="fc3" data-ans="mica" type="text" placeholder="avverbio…"/></div>
+    <div class="fill-item"><label>4. _____ vorrai dirmi che hai dimenticato! (¿No me dirás...?)</label><input id="fc4" data-ans="mica" type="text" placeholder="avverbio…"/></div>
+    <button class="fill-btn" onclick="checkFill(['fc1','fc2','fc3','fc4'],'fbc')">Controlla ✓</button>
+    <div class="fill-fb" id="fbc"></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 8. MATCHING ══ -->
+<div class="sec">
+  <h2>Attività — Abbina 🔗</h2>
+  <p class="sec-sub">Conecta la forma atona con su forma tónica correspondiente</p>
+  <div class="match-wrap">
+    <div>
+      <h5>Forma atona</h5>
+      <div class="match-item" id="mL1" data-id="1" onclick="selectMatch(this,'L','1')">mi (me lo dai?)</div>
+      <div class="match-item" id="mL2" data-id="2" onclick="selectMatch(this,'L','2')">ti (ti aspetto)</div>
+      <div class="match-item" id="mL3" data-id="3" onclick="selectMatch(this,'L','3')">gli (gli ho detto)</div>
+      <div class="match-item" id="mL4" data-id="4" onclick="selectMatch(this,'L','4')">ci (ci piace)</div>
+      <div class="match-item" id="mL5" data-id="5" onclick="selectMatch(this,'L','5')">vi (vi ho chiamato)</div>
+      <div class="match-item" id="mL6" data-id="6" onclick="selectMatch(this,'L','6')">li (li ho visti)</div>
+    </div>
+    <div>
+      <h5>Forma tonica (con preposizione)</h5>
+      <div class="match-item" id="mR1" data-id="1" onclick="selectMatch(this,'R','1')">per me</div>
+      <div class="match-item" id="mR2" data-id="2" onclick="selectMatch(this,'R','2')">per te</div>
+      <div class="match-item" id="mR3" data-id="3" onclick="selectMatch(this,'R','3')">per lui</div>
+      <div class="match-item" id="mR4" data-id="4" onclick="selectMatch(this,'R','4')">per noi</div>
+      <div class="match-item" id="mR5" data-id="5" onclick="selectMatch(this,'R','5')">per voi</div>
+      <div class="match-item" id="mR6" data-id="6" onclick="selectMatch(this,'R','6')">per loro</div>
+    </div>
+  </div>
+  <div class="match-result" id="match-result"></div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 9. DIALOGUES ══ -->
+<div class="sec">
+  <h2>Dialoghi al mercato 💬</h2>
+  <p class="sec-sub">Haz clic en cada burbuja para la traducción</p>
+
+  <div class="dial" data-a>
+    <h4>Dialogo 1 — Al banco della verdura</h4>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">V</div>
+      <div class="btext">Venditore: Buongiorno! Cosa le do?
+        <div class="btr">Buenos días. ¿Qué le pongo?</div></div>
+    </div>
+    <div class="bubble b" onclick="this.classList.toggle('show')">
+      <div class="bav">C</div>
+      <div class="btext">Cliente: Un chilo di pomodori, per favore. Se sono freschi, ne prendo due chili.
+        <div class="btr">Un kilo de tomates, por favor. Si están frescos, cojo dos kilos.</div></div>
+    </div>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">V</div>
+      <div class="btext">Venditore: Sono freschissimi! Li ho presi stamattina. Non è mica caro — due chili per 3 euro!
+        <div class="btr">¡Fresquísimos! Los cogí esta mañana. ¡Para nada es caro — dos kilos por 3 euros!</div></div>
+    </div>
+    <div class="bubble b" onclick="this.classList.toggle('show')">
+      <div class="bav">C</div>
+      <div class="btext">Cliente: Va bene, li prendo! Ha anche la mozzarella per me?
+        <div class="btr">De acuerdo, me los llevo. ¿Tiene también mozzarella para mí?</div></div>
+    </div>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">V</div>
+      <div class="btext">Venditore: Certo! Il banco è là in fondo, da lui — il mio collega.
+        <div class="btr">¡Claro! El puesto está allá al fondo, donde él — mi compañero.</div></div>
+    </div>
+    <p class="dial-hint">👆 Haz clic en cada burbuja para la traducción</p>
+  </div>
+
+  <div class="dial" data-a>
+    <h4>Dialogo 2 — Tra amici al mercato</h4>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">A</div>
+      <div class="btext">Anna: Se hai un po' di tempo, vieni con me al Porta Palazzo?
+        <div class="btr">Si tienes un rato, ¿vienes conmigo a Porta Palazzo?</div></div>
+    </div>
+    <div class="bubble b" onclick="this.classList.toggle('show')">
+      <div class="bav">L</div>
+      <div class="btext">Laura: Sì, vengo con te! Ma non ho mica voglia di camminare tanto.
+        <div class="btr">¡Sí, voy contigo! Pero no me apetece nada caminar mucho.</div></div>
+    </div>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">A</div>
+      <div class="btext">Anna: Non preoccuparti! Se sei stanca, ti aspetto seduta lì.
+        <div class="btr">¡No te preocupes! Si estás cansada, te espero sentada allí.</div></div>
+    </div>
+    <div class="bubble b" onclick="this.classList.toggle('show')">
+      <div class="bav">L</div>
+      <div class="btext">Laura: Ok, dai! Tra me e te siamo i migliori clienti del mercato!
+        <div class="btr">¡Ok, venga! Entre tú y yo somos las mejores clientes del mercado.</div></div>
+    </div>
+    <p class="dial-hint">👆 Haz clic en cada burbuja para la traducción</p>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 10. READING ══ -->
+<div class="sec">
+  <h2>Comprensione 📖</h2>
+  <p class="sec-sub">Lee el texto y responde las preguntas</p>
+  <div class="reading-box" data-a>
+    <h4>Porta Palazzo — il mercato del cuore di Torino</h4>
+    <div class="reading-text">
+      <em>Sabato mattina. Anna e la sua amica Laura sono al Porta Palazzo.</em>
+
+      "Se <em>vuoi</em>, ti mostro il banco del mio venditore preferito," dice Anna. "È quello là — da <strong>lui</strong> si trovano i migliori pomodori di tutta Torino."
+
+      Si avvicinano al banco. Il venditore le saluta: "Buongiorno! Cosa faccio per <strong>voi</strong>?"
+
+      Laura vede i prezzi: "Non è <strong>mica</strong> economico..." dice sottovoce. Il venditore sorride: "Non è <strong>mica</strong> vero! Se guarda bene, è tutto fresco e a buon prezzo. Se vuole, le do un assaggio gratuito!"
+
+      "Grazie mille! Va bene, prendo i pomodori." — risponde Laura. "Se tornate la settimana prossima, vi farò uno sconto!" — promette il venditore.
+
+      "Tra <strong>me</strong> e <strong>te</strong>," dice Anna a Laura mentre si allontanano, "questo è il miglior mercato del mondo!"
+    </div>
+    <div class="r-q">
+      <p>1. ¿A quién le muestra Anna el puesto preferido?</p>
+      <div class="r-opts">
+        <label><input type="radio" name="rq1" value="a"/> A su madre</label>
+        <label><input type="radio" name="rq1" value="b"/> A su amiga Laura</label>
+        <label><input type="radio" name="rq1" value="c"/> Al vendedor</label>
+      </div>
+    </div>
+    <div class="r-q">
+      <p>2. ¿Qué dice el vendedor sobre los precios?</p>
+      <div class="r-opts">
+        <label><input type="radio" name="rq2" value="a"/> Que son caros pero valen la pena</label>
+        <label><input type="radio" name="rq2" value="b"/> Que "para nada son caros" (non è mica caro)</label>
+        <label><input type="radio" name="rq2" value="c"/> Que tiene ofertas especiales</label>
+      </div>
+    </div>
+    <div class="r-q">
+      <p>3. ¿Qué promete el vendedor para la semana siguiente?</p>
+      <div class="r-opts">
+        <label><input type="radio" name="rq3" value="a"/> Más productos frescos</label>
+        <label><input type="radio" name="rq3" value="b"/> Un descuento si vuelven</label>
+        <label><input type="radio" name="rq3" value="c"/> Entrega a domicilio</label>
+      </div>
+    </div>
+    <div class="r-q">
+      <p>4. ¿Qué dice Anna al final?</p>
+      <div class="r-opts">
+        <label><input type="radio" name="rq4" value="a"/> Que quiere volver mañana</label>
+        <label><input type="radio" name="rq4" value="b"/> Que el vendedor es simpático</label>
+        <label><input type="radio" name="rq4" value="c"/> Que este es el mejor mercado del mundo</label>
+      </div>
+    </div>
+    <button class="r-btn" onclick="checkReading()">Controlla →</button>
+    <div class="r-result" id="r-result"></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- CULTURE STRIP -->
+<div class="culture">
+  <div class="culture-inner">
+    <h2>Cultura italiana 🛒</h2>
+    <p>Il mercato — cuore della vita italiana</p>
+    <div class="culture-facts">
+      <div class="cf" data-a>
+        <div class="cf-icon">🏙️</div>
+        <h4>Porta Palazzo, Torino</h4>
+        <p>Con 800 puestos y más de 40 nacionalidades representadas, es el mercado al aire libre más grande de Europa. Un símbolo de la Torino multicultural.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">🌿</div>
+        <h4>Prodotti di stagione</h4>
+        <p>Los italianos siguen comprando según la temporada. "È di stagione?" es una pregunta habitual en el mercato. Comer de temporada es parte de la cultura culinaria italiana.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">🤝</div>
+        <h4>Il rapporto con il venditore</h4>
+        <p>En Italia, comprar en el mercado es una relación social. Los clientes habituales reciben mejores precios, trozos extra y conversación. "Il mio fruttivendolo" es casi de la familia.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">🧀</div>
+        <h4>Mozzarella di bufala</h4>
+        <p>La verdadera mozzarella di bufala viene de Campania (Nápoles) y es DOP (Denominazione di Origine Protetta). Fuera de Italia suele encontrarse mozzarella di latte vaccino (vaca).</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">🍅</div>
+        <h4>Pomodoro San Marzano</h4>
+        <p>El tomate San Marzano del Vesuvio es DOP y considerado el mejor del mundo para la salsa. Es la base de la pizza napolitana auténtica. Los italianos lo cuidan como tesoro nacional.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">⭐</div>
+        <h4>Torino capitale</h4>
+        <p>Turín fue la primera capital de la Italia unificada (1861). Patria de la Fiat, del cioccolato gianduiotto y del vermouth (Martini y Cinzano nacieron aquí). Una ciudad de historia, industria y cultura.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>Italiano per piacere · A2 · Módulo 14 · Etapa 2 Descubrimiento</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  document.getElementById('prog-bar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+});
+document.querySelector('.hero').addEventListener('mousemove',e=>{
+  const circles=document.querySelectorAll('.hero-circles span');
+  const x=(e.clientX/window.innerWidth-.5)*20;
+  const y=(e.clientY/window.innerHeight-.5)*20;
+  circles.forEach((c,i)=>{c.style.transform=`translate(${x*(i+1)*.4}px,${y*(i+1)*.4}px)`});
+});
+document.querySelectorAll('.wcard').forEach(c=>{
+  c.addEventListener('click',()=>{
+    if(c.dataset.ok==='true'){c.classList.remove('trap');c.classList.add('ok');}
+    else{c.classList.remove('ok');c.classList.add('trap');}
+  });
+});
+function checkFill(ids,fbId){
+  let ok=0;
+  ids.forEach(id=>{
+    const el=document.getElementById(id);
+    const v=el.value.toLowerCase().trim();
+    const a=el.dataset.ans.toLowerCase().trim();
+    el.classList.remove('ok','err');
+    if(v===a){el.classList.add('ok');ok++;}else el.classList.add('err');
+  });
+  const fb=document.getElementById(fbId);
+  fb.className='fill-fb '+(ok===ids.length?'ok':'err');
+  fb.textContent=ok===ids.length?'✅ Perfetto! Tutte corrette!':`${ok}/${ids.length} corrette — controlla quelle in rosso.`;
+}
+let matchSel={L:null,R:null};
+const matchPairs={1:1,2:2,3:3,4:4,5:5,6:6};
+function selectMatch(el,side,id){
+  if(el.classList.contains('ok'))return;
+  document.querySelectorAll('.match-item.sel').forEach(e=>{
+    if((side==='L'&&e.id.startsWith('mL'))||(side==='R'&&e.id.startsWith('mR')))e.classList.remove('sel');
+  });
+  el.classList.add('sel');matchSel[side]=id;
+  if(matchSel.L&&matchSel.R){
+    const lEl=document.getElementById('mL'+matchSel.L);
+    const rEl=document.getElementById('mR'+matchSel.R);
+    if(matchPairs[matchSel.L]==matchSel.R){lEl.classList.add('ok');rEl.classList.add('ok');}
+    else{lEl.classList.add('err');rEl.classList.add('err');setTimeout(()=>{lEl.classList.remove('err','sel');rEl.classList.remove('err','sel');},700);}
+    matchSel={L:null,R:null};
+    if(document.querySelectorAll('.match-item.ok').length===12)document.getElementById('match-result').textContent='🎉 Perfetto! Tutte le coppie corrette!';
+  }
+}
+function checkReading(){
+  const ans={rq1:'b',rq2:'b',rq3:'b',rq4:'c'};
+  let ok=0;
+  for(const q in ans){
+    const sel=document.querySelector(`input[name="${q}"]:checked`);
+    document.querySelectorAll(`input[name="${q}"]`).forEach(i=>i.parentElement.classList.remove('ok','err'));
+    if(sel){if(sel.value===ans[q]){sel.parentElement.classList.add('ok');ok++;}else sel.parentElement.classList.add('err');}
+  }
+  document.getElementById('r-result').textContent=ok===4?'🌟 Perfetto! Tutte corrette!':`${ok}/4 corrette.`;
+}
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});
+},{threshold:.12});
+document.querySelectorAll('[data-a]').forEach((el,i)=>{
+  const par=el.closest('[data-stagger]');
+  if(par)el.style.setProperty('--i',i%8);
+  obs.observe(el);
+});
+</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
@@ -18,8 +18,8 @@
     [data-stagger].in>*{opacity:1;transform:none!important}
     [data-stagger]>*{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
     [data-stagger]>*:nth-child(1){transition-delay:.00s}[data-stagger]>*:nth-child(2){transition-delay:.08s}[data-stagger]>*:nth-child(3){transition-delay:.16s}[data-stagger]>*:nth-child(4){transition-delay:.24s}[data-stagger]>*:nth-child(5){transition-delay:.32s}[data-stagger]>*:nth-child(6){transition-delay:.40s}[data-stagger]>*:nth-child(7){transition-delay:.48s}[data-stagger]>*:nth-child(8){transition-delay:.56s}
-    .hero{min-height:100vh;background:var(--amber);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
-    .hero-bg-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none;will-change:transform}
+    .hero{min-height:55vh;background:#fef9e8;border-bottom:3px solid var(--amber);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
+    .hero-bg-circle{display:none;position:absolute;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none;will-change:transform}
     .hero-bg-circle:nth-child(1){width:600px;height:600px;top:-200px;right:-150px}
     .hero-bg-circle:nth-child(2){width:400px;height:400px;bottom:-100px;left:-100px}
     .hero-badge{display:inline-block;background:var(--black);color:var(--gold);font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:.3rem 1.2rem;border-radius:20px;margin-bottom:1.5rem;opacity:0;animation:popIn .6s var(--ease) .2s forwards}
@@ -46,19 +46,19 @@
     .word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;margin-bottom:1.5rem}
     .word-card{background:var(--white);border:2px solid transparent;border-radius:var(--r);padding:.9rem .75rem;text-align:center;cursor:pointer;user-select:none;position:relative;transition:border-color .2s,background .2s,transform .15s;font-weight:600;font-size:.95rem}
     .word-card:hover{transform:translateY(-2px);border-color:var(--amber)}
-    .word-card.selected{background:var(--amber);color:var(--black);border-color:var(--amber)}
-    .word-card.correct{background:var(--green);color:var(--white);border-color:var(--green)}
-    .word-card.false-pos{background:var(--teal);color:var(--white);border-color:var(--teal)}
-    .word-card.missed{background:var(--red);color:var(--white);border-color:var(--red)}
+    .word-card.selected{background:#deeef5;color:var(--black);border-color:var(--amber)}
+    .word-card.correct{background:#deeef5;color:var(--white);border-color:var(--green)}
+    .word-card.false-pos{background:#deeef5;color:var(--white);border-color:var(--teal)}
+    .word-card.missed{background:#deeef5;color:var(--white);border-color:var(--red)}
     .word-card.neutral{background:var(--cream-dk);color:#888;border-color:transparent}
     .word-badge{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:var(--white)}
-    .word-card.correct .word-badge{display:flex;background:var(--green)}
-    .word-card.false-pos .word-badge{display:flex;background:var(--teal)}
-    .word-card.missed .word-badge{display:flex;background:var(--red)}
+    .word-card.correct .word-badge{display:flex;background:#deeef5}
+    .word-card.false-pos .word-badge{display:flex;background:#deeef5}
+    .word-card.missed .word-badge{display:flex;background:#deeef5}
     .word-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
     .btn{padding:.65rem 1.5rem;border-radius:30px;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.9rem;transition:opacity .2s,transform .15s}
     .btn:hover{opacity:.85;transform:translateY(-1px)}
-    .btn-primary{background:var(--amber);color:var(--black)}
+    .btn-primary{background:#deeef5;color:var(--black)}
     .btn-ghost{background:transparent;color:var(--black);border:2px solid var(--cream-dk)}
     .score-display{font-size:.9rem;font-weight:700;color:var(--green)}
     .legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;font-size:.8rem}
@@ -68,7 +68,7 @@
     .timeline::before{content:'';position:absolute;left:60px;top:0;bottom:0;width:2px;background:var(--cream-dk)}
     .tl-item{display:flex;align-items:flex-start;gap:1.25rem;padding:.85rem 0}
     .tl-time{min-width:52px;text-align:right;font-size:.82rem;font-weight:700;color:var(--amber);padding-top:.15rem}
-    .tl-dot{width:14px;height:14px;border-radius:50%;background:var(--amber);border:3px solid var(--white);flex-shrink:0;margin-top:.25rem;position:relative;z-index:1}
+    .tl-dot{width:14px;height:14px;border-radius:50%;background:#deeef5;border:3px solid var(--white);flex-shrink:0;margin-top:.25rem;position:relative;z-index:1}
     .tl-content{flex:1;background:var(--white);border-radius:var(--r);padding:.75rem 1rem;box-shadow:0 2px 8px rgba(0,0,0,.06)}
     .tl-content .it{font-weight:700;font-size:.9rem}
     .tl-content .es{font-size:.78rem;color:#888;font-style:italic}
@@ -81,14 +81,14 @@
     .freq-scale{display:flex;flex-direction:column;gap:.5rem;margin-top:1.25rem}
     .freq-row{display:flex;align-items:center;gap:1rem}
     .freq-bar-wrap{flex:1;background:var(--cream-dk);border-radius:20px;height:10px;overflow:hidden}
-    .freq-bar{height:100%;border-radius:20px;background:var(--amber);transition:width .8s var(--ease)}
+    .freq-bar{height:100%;border-radius:20px;background:#deeef5;transition:width .8s var(--ease)}
     .freq-label{min-width:110px;font-size:.85rem;font-weight:700}
     .freq-pct{font-size:.75rem;color:#888;min-width:35px;text-align:right}
     .dialogue{display:flex;flex-direction:column;gap:.75rem}
     .dlg-line{display:flex;align-items:flex-start;gap:.75rem}
     .dlg-line.b{flex-direction:row-reverse}
-    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:var(--green);padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
-    .dlg-line.b .dlg-speaker{background:var(--amber);color:var(--black)}
+    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:#deeef5;padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
+    .dlg-line.b .dlg-speaker{background:#deeef5;color:var(--black)}
     .dlg-bubble{background:var(--white);border-radius:12px;padding:.9rem 1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.07);max-width:480px;cursor:pointer}
     .dlg-bubble .it{font-weight:600;font-size:.95rem}
     .dlg-bubble .es{display:none}.dlg-bubble.revealed .es{display:block}
@@ -106,19 +106,26 @@
     .vc-es{font-size:.82rem;color:#666;margin-bottom:.4rem}
     .vc-ex{font-size:.78rem;color:#999;font-style:italic;border-top:1px solid var(--cream-dk);padding-top:.45rem;margin-top:.45rem;display:none}
     .vocab-card.open .vc-ex{display:block}
-    .cultural-strip{background:var(--black);color:var(--white);padding:4rem 2rem;text-align:center}
-    .cultural-strip h2{font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.4rem);font-style:italic;color:var(--gold);margin-bottom:1rem}
-    .cultural-strip p{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.75;max-width:600px;margin:0 auto 1.5rem}
+    .resource-box{background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,.1)}
+    .resource-img{width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--cream-dk)}
+    .resource-img img{width:100%;height:100%;object-fit:cover;display:block}
+    .resource-caption{padding:1.25rem 1.75rem}
+    .resource-caption h4{font-size:.8rem;font-weight:700;color:var(--amber);letter-spacing:2px;text-transform:uppercase;margin-bottom:.4rem}
+    .resource-caption p{font-size:.9rem;color:#444;line-height:1.6}
+    .resource-caption .copyright{font-size:.75rem;color:#888;margin-top:.75rem;font-style:italic}
+    .cultural-strip{background:linear-gradient(135deg,#fef9e8 0%,var(--cream-dk) 100%);border-top:3px solid var(--amber);color:var(--black);padding:4rem 2rem;text-align:center}
+    .cultural-strip h2{font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.4rem);font-style:italic;color:var(--amber);margin-bottom:1rem}
+    .cultural-strip p{font-size:.95rem;color:#444;line-height:1.75;max-width:600px;margin:0 auto 1.5rem}
     .cultural-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;max-width:760px;margin:2rem auto 0}
-    .cf-item{background:rgba(255,255,255,.06);border-radius:12px;padding:1.5rem}
+    .cf-item{background:rgba(255,255,255,.7);border-radius:12px;padding:1.5rem}
     .cf-icon{font-size:2rem;margin-bottom:.75rem}
-    .cf-item h4{font-size:.85rem;font-weight:700;color:var(--gold);margin-bottom:.5rem}
-    .cf-item p{font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.55}
+    .cf-item h4{font-size:.85rem;font-weight:700;color:var(--amber);margin-bottom:.5rem}
+    .cf-item p{font-size:.8rem;color:#555;line-height:1.55}
     .footer{background:var(--cream-dk);padding:2.5rem 2rem;text-align:center;font-size:.82rem;color:#888}
     .footer strong{color:var(--black)}
     .nav-pills{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
     .nav-pill{padding:.5rem 1.2rem;border-radius:30px;font-size:.8rem;font-weight:600;text-decoration:none;color:var(--black);background:var(--cream);border:1px solid var(--cream-dk);transition:background .2s,color .2s}
-    .nav-pill:hover,.nav-pill.active{background:var(--amber);color:var(--black)}
+    .nav-pill:hover,.nav-pill.active{background:#deeef5;color:var(--black)}
     @media(max-width:600px){.section{padding:4rem 1.25rem}.verb-grid{grid-template-columns:1fr}.sofia-wrap{flex-direction:column}}
   </style>
 </head>
@@ -135,7 +142,7 @@
 
 <section class="section bg-white"><div class="container">
   <div class="sofia-wrap" data-a="up">
-    <div class="sofia-avatar">👩‍🏫</div>
+    <div class="sofia-avatar">S</div>
     <div class="speech-bubble">
       <strong>Sofia · La tua guida</strong>
       <p>Benvenuti all'Unità 10! Oggi scopriamo la giornata tipica di un italiano — da quando si sveglia a quando va a dormire.</p>
@@ -144,20 +151,39 @@
   </div>
 </div></section>
 
+<!-- RESOURCE IMAGE -->
 <section class="section bg-alt"><div class="container">
+  <p class="section-label" data-a="fade">Risorsa · Immagine</p>
+  <h2 class="section-title" data-a="up">L'immagine di oggi</h2>
+  <p class="section-desc" data-a="up">Observá esta imagen durante 30 segundos. ¿Qué ves? ¿Qué momento del día representa?</p>
+  <div class="resource-box" style="margin-top:2rem" data-a="scale">
+    <div class="resource-img">
+      <img src="https://live.staticflickr.com/3010/2475827570_2f6940b707.jpg"
+           alt="Cappuccino italiano — la colazione al bar, momento icónico de la giornata italiana"
+           loading="lazy" />
+    </div>
+    <div class="resource-caption">
+      <h4>Osserva e rifletti</h4>
+      <p>Un cappuccino al bar — <em>la colazione italiana</em>. En Italia, desayunar en el bar es el primer ritual del día. ¿A qué hora crees que es esto? ¿Reconoces el verbo reflexivo que describe este momento: <em>fare colazione</em>?</p>
+      <p class="copyright">Foto: "Homemade Cappuccino" · The Italian Voice · CC BY 2.0 · Flickr · flickr.com/photos/italianvoice · Uso educativo.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="section bg-white"><div class="container">
   <p class="section-label" data-a="fade">Attività 1</p>
   <h2 class="section-title" data-a="up">Quali parole <em>riconosci</em>?</h2>
   <p class="section-desc" data-a="up">Seleziona le parole che ti sembrano legate alla <strong>routine quotidiana</strong>. Poi verifica!</p>
   <div class="word-grid" id="wordGrid" style="margin-top:1.75rem" data-stagger></div>
   <div class="word-actions">
-    <button class="btn btn-primary" onclick="verifyWords()">Verifica</button>
+    <button class="btn btn-primary" onclick="verifyWords()">Verificá</button>
     <button class="btn btn-ghost" onclick="resetWords()">Ricomincia</button>
     <span class="score-display" id="scoreDisplay"></span>
   </div>
   <div class="legend" id="legend" style="display:none">
-    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Corretto ✓</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div> Non pertinente ✗</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Dimenticato !</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#deeef5"></div> Corretto ✓</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#deeef5"></div> Non pertinente ✗</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#deeef5"></div> Dimenticato !</div>
   </div>
 </div></section>
 
@@ -232,7 +258,7 @@
       <div class="fill-item" data-ans="ti vesti">A che ora <input class="fill-input" placeholder="..."> la mattina?</div>
     </div>
     <div style="margin-top:1rem;display:flex;gap:.75rem">
-      <button class="btn btn-primary" onclick="checkFill()">Verifica</button>
+      <button class="btn btn-primary" onclick="checkFill()">Verificá</button>
       <button class="btn btn-ghost" onclick="resetFill()">Ripristina</button>
     </div>
   </div>
@@ -244,7 +270,7 @@
   <p class="section-desc" data-a="up">Clicca su ogni bolla per vedere la traduzione.</p>
   <div class="dialogue" style="margin-top:2rem" data-stagger>
     <div class="dlg-line"><div class="dlg-speaker">Marco</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">A che ora ti svegli di solito?</div><div class="es">¿A qué hora te despiertas normalmente?</div></div></div>
-    <div class="dlg-line b"><div class="dlg-speaker">Sofia</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">Mi sveglio sempre alle sette. Tu?</div><div class="es">Me despierto siempre a las siete. ¿Y tú?</div></div></div>
+    <div class="dlg-line b"><div class="dlg-speaker">Sofia</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">Mi sveglio sempre alle sette. Tu?</div><div class="es">Me despierto siempre a las siete. ¿Y vos?</div></div></div>
     <div class="dlg-line"><div class="dlg-speaker">Marco</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">Io mi alzo raramente prima delle otto!</div><div class="es">¡Yo me levanto raramente antes de las ocho!</div></div></div>
     <div class="dlg-line b"><div class="dlg-speaker">Sofia</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">Anch'io il weekend! Ma il lunedì devo alzarmi presto...</div><div class="es">¡Yo también el fin de semana! Pero el lunes tengo que levantarme temprano...</div></div></div>
     <div class="dlg-line"><div class="dlg-speaker">Marco</div><div class="dlg-bubble" onclick="this.classList.toggle('revealed')"><div class="it">Sì, capisco. Il lunedì è sempre difficile!</div><div class="es">Sí, entiendo. ¡El lunes siempre es difícil!</div></div></div>
@@ -269,6 +295,8 @@
 </footer>
 
 <script>
+(function(){
+
   const observer=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');observer.unobserve(x.target)}})},{threshold:.12});
   document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>observer.observe(el));
   const c1=document.getElementById('hbc1'),c2=document.getElementById('hbc2');
@@ -282,6 +310,7 @@
   function resetWords(){verified=false;selected.clear();grid.querySelectorAll('.word-card').forEach(c=>c.className='word-card');document.getElementById('scoreDisplay').textContent='';document.getElementById('legend').style.display='none'}
   function checkFill(){document.querySelectorAll('#fillFreq .fill-item').forEach(item=>{const inp=item.querySelector('.fill-input');inp.classList.remove('ok','fail');inp.value.trim().toLowerCase()===item.dataset.ans?inp.classList.add('ok'):inp.classList.add('fail')})}
   function resetFill(){document.querySelectorAll('#fillFreq .fill-input').forEach(inp=>{inp.value='';inp.classList.remove('ok','fail')})}
+})();
 </script>
 </body>
 </html>

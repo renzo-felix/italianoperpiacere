@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 7 — Al ristorante | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #e9e6d5;
+    --cream-dk: #ddd9c8;
+    --gold: #EFCF7F;
+    --amber: #e5ab07;
+    --red: #cc4736;
+    --teal: #78a6ba;
+    --teal-dk: #5a8ea0;
+    --teal-hero: #deeef5;
+    --teal-th: #b8d8e8;
+    --teal-active: #3d7a94;
+    --teal-text: #1f4d60;
+    --green: #528e74;
+    --black: #1a1a18;
+    --white: #ffffff;
+    --fh: 'Playfair Display', Georgia, serif;
+    --fb: 'Outfit', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--fb); color: var(--black); background: var(--cream); line-height: 1.6; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 0 1.5rem;
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px; gap: 1rem;
+  }
+  .nav-logo img { height: 40px; width: auto; }
+  .nav-links {
+    display: flex; gap: 0.25rem; list-style: none;
+    flex-wrap: wrap;
+  }
+  .nav-links a {
+    font-family: var(--fb); font-size: 0.82rem; font-weight: 600;
+    color: var(--teal-text); text-decoration: none;
+    padding: 0.4rem 0.75rem; border-radius: 20px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active {
+    background: var(--teal-hero); color: var(--teal-active);
+  }
+
+  /* PROGRESS BAR */
+  .progress-container {
+    background: var(--teal-th); height: 6px;
+    position: sticky; top: 64px; z-index: 99;
+  }
+  .progress-bar {
+    height: 100%; background: var(--teal-active);
+    width: 0%; transition: width 0.4s ease;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--teal-hero);
+    border-bottom: 4px solid var(--teal);
+    padding: 3.5rem 1.5rem;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--teal-th);
+    color: var(--teal-text);
+    font-family: var(--fb); font-size: 0.8rem; font-weight: 600;
+    padding: 0.3rem 1rem; border-radius: 20px;
+    margin-bottom: 1rem; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: var(--fh); font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-style: italic; font-weight: 700;
+    color: var(--teal-text); margin-bottom: 0.75rem;
+  }
+  .hero-sub {
+    font-size: 1.1rem; color: var(--teal-active);
+    max-width: 600px; margin: 0 auto;
+  }
+  .hero-meta {
+    display: flex; justify-content: center; gap: 1.5rem;
+    margin-top: 1.5rem; flex-wrap: wrap;
+  }
+  .hero-meta span {
+    background: var(--white); border: 1px solid var(--teal);
+    border-radius: 20px; padding: 0.3rem 1rem;
+    font-size: 0.85rem; color: var(--teal-text); font-weight: 500;
+  }
+
+  /* SECTIONS */
+  section { padding: 3rem 1.5rem; scroll-margin-top: 80px; }
+  section:nth-child(even) { background: var(--cream-dk); }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-title {
+    font-family: var(--fh); font-size: 1.9rem; font-style: italic;
+    color: var(--teal-active); margin-bottom: 0.5rem;
+  }
+  .section-lead {
+    font-size: 1rem; color: #4a4a44; margin-bottom: 2rem;
+    max-width: 700px;
+  }
+
+  /* VOCAB GRID */
+  .vocab-section-title {
+    font-family: var(--fb); font-size: 0.8rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--teal-active); margin: 1.5rem 0 0.75rem;
+  }
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem; margin-bottom: 0.5rem;
+  }
+  .vocab-card {
+    background: var(--white); border: 2px solid var(--teal-th);
+    border-radius: 12px; padding: 1rem;
+    cursor: pointer; transition: all 0.25s;
+    text-align: center; user-select: none;
+  }
+  .vocab-card:hover { border-color: var(--teal); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(120,166,186,0.2); }
+  .vocab-card.flipped { background: var(--teal-hero); border-color: var(--teal-active); }
+  .vocab-card .it { font-family: var(--fh); font-size: 1.05rem; font-style: italic; color: var(--teal-active); font-weight: 700; }
+  .vocab-card .es { font-size: 0.88rem; color: #5a5a54; margin-top: 0.25rem; display: none; }
+  .vocab-card.flipped .es { display: block; }
+  .vocab-card .emoji { font-size: 1.3rem; margin-bottom: 0.3rem; display: block; }
+
+  /* DISCOVERY BLOCKS */
+  .discovery-block {
+    background: var(--white); border-left: 5px solid var(--teal);
+    border-radius: 0 12px 12px 0; padding: 1.5rem 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .discovery-block h3 {
+    font-family: var(--fh); font-size: 1.2rem; font-style: italic;
+    color: var(--teal-active); margin-bottom: 0.75rem;
+  }
+  .discovery-block p { font-size: 0.95rem; margin-bottom: 0.75rem; color: #3a3a35; }
+  .discovery-block .formula {
+    background: var(--teal-hero); border: 1px solid var(--teal);
+    border-radius: 8px; padding: 0.75rem 1rem;
+    font-family: monospace; font-size: 1rem;
+    color: var(--teal-text); margin: 0.75rem 0;
+  }
+
+  /* TABLES */
+  .table-wrap { overflow-x: auto; margin: 1rem 0; border-radius: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  th {
+    background: var(--teal-th); color: var(--teal-text);
+    padding: 0.65rem 1rem; text-align: left; font-weight: 700;
+    font-family: var(--fb);
+  }
+  td { padding: 0.6rem 1rem; border-bottom: 1px solid var(--teal-th); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f0f8fc; }
+  .it-cell { font-family: var(--fh); font-style: italic; color: var(--teal-active); font-weight: 600; }
+
+  /* FILL EXERCISES */
+  .fill-exercise {
+    background: var(--cream); border-radius: 12px;
+    padding: 1.5rem; margin: 1rem 0;
+  }
+  .fill-exercise h4 {
+    font-family: var(--fb); font-weight: 700; font-size: 0.95rem;
+    color: var(--teal-text); margin-bottom: 1rem;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .fill-item { margin-bottom: 1rem; font-size: 0.95rem; }
+  .fill-item label { display: block; margin-bottom: 0.3rem; color: #3a3a35; }
+  .fill-item input, .fill-item select {
+    border: 2px solid var(--teal-th); border-radius: 8px;
+    padding: 0.4rem 0.75rem; font-family: var(--fb); font-size: 0.9rem;
+    background: var(--white); color: var(--black);
+    transition: border-color 0.2s;
+  }
+  .fill-item input:focus, .fill-item select:focus {
+    outline: none; border-color: var(--teal-active);
+  }
+  .fill-item input.correct { border-color: var(--green); background: #eef7f3; }
+  .fill-item input.incorrect { border-color: var(--red); background: #fdf0ee; }
+  .check-btn {
+    background: var(--teal-active); color: var(--white);
+    border: none; border-radius: 8px; padding: 0.6rem 1.5rem;
+    font-family: var(--fb); font-weight: 600; font-size: 0.9rem;
+    cursor: pointer; margin-top: 0.5rem; transition: background 0.2s;
+  }
+  .check-btn:hover { background: var(--teal-text); }
+  .feedback { font-size: 0.85rem; margin-top: 0.5rem; font-weight: 600; min-height: 1.2em; }
+  .feedback.ok { color: var(--green); }
+  .feedback.err { color: var(--red); }
+
+  /* DIALOGS */
+  .dialog-container { margin: 1.5rem 0; }
+  .dialog-title {
+    font-family: var(--fb); font-size: 0.8rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--teal-active); margin-bottom: 0.75rem;
+  }
+  .bubble-wrap { display: flex; flex-direction: column; gap: 0.6rem; }
+  .bubble {
+    max-width: 78%; padding: 0.75rem 1.1rem;
+    border-radius: 16px; font-size: 0.92rem; line-height: 1.5;
+  }
+  .bubble.a {
+    align-self: flex-start;
+    background: var(--cream-dk); color: var(--black);
+    border-bottom-left-radius: 4px;
+  }
+  .bubble.b {
+    align-self: flex-end;
+    background: var(--teal-hero); color: var(--black);
+    border-bottom-right-radius: 4px;
+    border: 1px solid var(--teal);
+  }
+  .bubble .speaker {
+    font-size: 0.75rem; font-weight: 700; margin-bottom: 0.2rem;
+    color: var(--teal-active); text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .bubble .it { font-style: italic; color: var(--teal-text); }
+  .bubble .es { font-size: 0.82rem; color: #6a6a60; margin-top: 0.15rem; }
+
+  /* MENU ACTIVITY */
+  .menu-activity {
+    background: var(--white); border: 2px solid var(--teal);
+    border-radius: 14px; padding: 1.5rem; margin: 1.5rem 0;
+  }
+  .menu-activity h3 {
+    font-family: var(--fh); font-style: italic; font-size: 1.3rem;
+    color: var(--teal-active); margin-bottom: 1rem; text-align: center;
+  }
+  .menu-section { margin-bottom: 1.25rem; }
+  .menu-section-name {
+    font-family: var(--fh); font-style: italic; font-size: 1rem;
+    color: var(--teal-text); font-weight: 700;
+    border-bottom: 1px solid var(--teal-th); padding-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .menu-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.4rem 0.5rem; border-radius: 6px; cursor: pointer;
+    transition: background 0.2s;
+    font-size: 0.9rem;
+  }
+  .menu-item:hover { background: var(--teal-hero); }
+  .menu-item.selected { background: var(--teal-th); font-weight: 600; }
+  .menu-item .dish-name { color: var(--black); }
+  .menu-item .dish-price { color: var(--teal-active); font-weight: 600; font-size: 0.85rem; }
+  .menu-item .dish-desc { font-size: 0.78rem; color: #6a6a60; display: block; }
+  .menu-summary {
+    background: var(--teal-hero); border-radius: 8px; padding: 1rem;
+    margin-top: 1rem; font-size: 0.9rem;
+  }
+  .menu-summary strong { color: var(--teal-active); }
+
+  /* COMPREHENSION */
+  .comprehension-block {
+    background: var(--white); border-radius: 14px;
+    padding: 1.5rem; margin: 1.5rem 0;
+    border: 2px solid var(--teal-th);
+  }
+  .comprehension-block .passage {
+    background: var(--teal-hero); border-radius: 8px; padding: 1rem;
+    font-size: 0.92rem; line-height: 1.7; margin-bottom: 1.25rem;
+    color: var(--black); border-left: 4px solid var(--teal);
+  }
+  .compreh-q { margin-bottom: 1rem; }
+  .compreh-q p { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--teal-text); }
+  .compreh-q label { display: block; font-size: 0.88rem; padding: 0.2rem 0; cursor: pointer; }
+  .compreh-q label input { margin-right: 0.5rem; accent-color: var(--teal-active); }
+
+  /* MATCHING */
+  .matching-game {
+    background: var(--white); border-radius: 14px;
+    padding: 1.5rem; margin: 1.5rem 0;
+    border: 2px solid var(--teal-th);
+  }
+  .matching-game h4 {
+    font-family: var(--fh); font-style: italic; font-size: 1.1rem;
+    color: var(--teal-active); margin-bottom: 1rem;
+  }
+  .match-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .match-item {
+    padding: 0.6rem 1rem; border-radius: 8px;
+    border: 2px solid var(--teal-th); font-size: 0.9rem;
+    cursor: pointer; transition: all 0.2s; text-align: center;
+    background: var(--cream);
+  }
+  .match-item:hover { border-color: var(--teal); }
+  .match-item.selected { border-color: var(--teal-active); background: var(--teal-hero); font-weight: 600; }
+  .match-item.matched { border-color: var(--green); background: #eef7f3; cursor: default; }
+  .match-item.error { border-color: var(--red); background: #fdf0ee; }
+
+  /* CULTURE STRIP */
+  .culture-strip {
+    background: linear-gradient(135deg, var(--teal-th), var(--cream-dk));
+    border-top: 4px solid var(--teal);
+    padding: 2.5rem 1.5rem;
+  }
+  .culture-strip .section-inner { max-width: 800px; }
+  .culture-strip h2 {
+    font-family: var(--fh); font-style: italic; font-size: 1.6rem;
+    color: var(--teal-text); margin-bottom: 1rem;
+  }
+  .culture-strip p { font-size: 0.95rem; color: #3a3a35; margin-bottom: 0.75rem; }
+  .culture-strip .tip-box {
+    background: var(--white); border-radius: 10px;
+    padding: 1rem 1.25rem; margin-top: 1rem;
+    border-left: 4px solid var(--teal-active);
+    font-size: 0.9rem;
+  }
+  .culture-strip .tip-box strong { color: var(--teal-active); }
+
+  /* FOOTER */
+  footer {
+    background: var(--cream-dk); border-top: 2px solid var(--teal-th);
+    padding: 1.5rem; text-align: center;
+    font-size: 0.82rem; color: #6a6a60;
+  }
+
+  /* UTILS */
+  .highlight { color: var(--teal-active); font-weight: 700; font-style: italic; }
+  .tag {
+    display: inline-block; background: var(--teal-th);
+    color: var(--teal-text); border-radius: 4px;
+    padding: 0.1rem 0.4rem; font-size: 0.78rem; font-weight: 700;
+    margin: 0 0.1rem;
+  }
+
+  @media (max-width: 640px) {
+    .nav-links a { font-size: 0.75rem; padding: 0.35rem 0.55rem; }
+    .match-cols { grid-template-columns: 1fr; }
+    .bubble { max-width: 92%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=f5755ad" alt="Italiano Per Piacere" loading="lazy">
+    </div>
+    <ul class="nav-links">
+      <li><a href="#vocab" class="active">Vocabulario</a></li>
+      <li><a href="#condizionale">Condizionale</a></li>
+      <li><a href="#partitivi">Partitivi</a></li>
+      <li><a href="#dialogos">Diálogos</a></li>
+      <li><a href="#cultura">Cultura</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PROGRESS BAR -->
+<div class="progress-container">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Viajeros · Módulo 7</div>
+  <h1>Al ristorante 🍝</h1>
+  <p class="hero-sub">Reservá la mesa, pedí como un local y aprendé todos los secretos del menú italiano. Hoy cenamos en Turín.</p>
+  <div class="hero-meta">
+    <span>📍 Turín</span>
+    <span>🖼️ Recurso: Imagen de menú</span>
+    <span>⏱️ ~30 minutos</span>
+  </div>
+</div>
+
+<!-- SECCIÓN 1: VOCABULARIO -->
+<section id="vocab">
+  <div class="section-inner">
+    <h2 class="section-title">Vocabulario del ristorante</h2>
+    <p class="section-lead">Hacé clic en cada tarjeta para ver la traducción. ¡Tratá de adivinar antes de voltearla!</p>
+
+    <div class="vocab-section-title">A — El menú (estructura)</div>
+    <div class="vocab-grid" id="vocabA"></div>
+
+    <div class="vocab-section-title">B — Platos típicos</div>
+    <div class="vocab-grid" id="vocabB"></div>
+
+    <div class="vocab-section-title">C — El servicio</div>
+    <div class="vocab-grid" id="vocabC"></div>
+  </div>
+</section>
+
+<!-- SECCIÓN 2: CONDIZIONALE -->
+<section id="condizionale">
+  <div class="section-inner">
+    <h2 class="section-title">Descubrimiento 1 — El condicional de cortesía</h2>
+    <p class="section-lead">En Italia, pedir con el condicional es señal de buena educación. No se dice "voglio" (quiero), se dice "vorrei" (quisiera).</p>
+
+    <div class="discovery-block">
+      <h3>¿Por qué usar el condicional?</h3>
+      <p>En un restaurante italiano vas a escuchar frases como <span class="highlight">Vorrei un tavolo per due</span> o <span class="highlight">Potrei avere il menu?</span>. El condicional presente suaviza el pedido y lo hace más cortés — como en español cuando decís "¿Podrías pasarme la sal?" en lugar de "Pasame la sal".</p>
+      <div class="formula">vorrei = yo quisiera / me gustaría<br>potrei = yo podría<br>avrei = yo tendría</div>
+      <p>Estos son formas del condicional presente de <strong>volere, potere y avere</strong>. Son los más usados en el restaurante y en situaciones de cortesía formal.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Pronombre</th>
+            <th>volere → vorrei</th>
+            <th>potere → potrei</th>
+            <th>avere → avrei</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>io</td><td class="it-cell">vorrei</td><td class="it-cell">potrei</td><td class="it-cell">avrei</td></tr>
+          <tr><td>tu</td><td class="it-cell">vorresti</td><td class="it-cell">potresti</td><td class="it-cell">avresti</td></tr>
+          <tr><td>lui/lei</td><td class="it-cell">vorrebbe</td><td class="it-cell">potrebbe</td><td class="it-cell">avrebbe</td></tr>
+          <tr><td>noi</td><td class="it-cell">vorremmo</td><td class="it-cell">potremmo</td><td class="it-cell">avremmo</td></tr>
+          <tr><td>voi</td><td class="it-cell">vorreste</td><td class="it-cell">potreste</td><td class="it-cell">avreste</td></tr>
+          <tr><td>loro</td><td class="it-cell">vorrebbero</td><td class="it-cell">potrebbero</td><td class="it-cell">avrebbero</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fill-exercise">
+      <h4>Ejercicio — Transformá el pedido en cortés</h4>
+      <div class="fill-item">
+        <label>1. "Voglio un tavolo." → "<input type="text" class="fill-cond" data-answer="Vorrei un tavolo" placeholder="forma cortés...">."</label>
+      </div>
+      <div class="fill-item">
+        <label>2. "Posso avere il menu?" → "<input type="text" class="fill-cond" data-answer="Potrei avere il menu" placeholder="forma cortés...">?"</label>
+      </div>
+      <div class="fill-item">
+        <label>3. "Ho bisogno del conto." → "<input type="text" class="fill-cond" data-answer="Avrei bisogno del conto" placeholder="forma cortés...">."</label>
+      </div>
+      <div class="fill-item">
+        <label>4. "Voglio ordinare la pasta." → "<input type="text" class="fill-cond" data-answer="Vorrei ordinare la pasta" placeholder="forma cortés...">."</label>
+      </div>
+      <button class="check-btn" onclick="checkFill('fill-cond','feedbackCond')">Verificar</button>
+      <div class="feedback" id="feedbackCond"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN 3: PARTITIVI -->
+<section id="partitivi">
+  <div class="section-inner">
+    <h2 class="section-title">Descubrimiento 2 — Los partitivos</h2>
+    <p class="section-lead">Para pedir "un poco de" algo o "algo de" en italiano, usamos los partitivos: del, della, dell', dei, degli, delle. Son la combinación de "di + artículo".</p>
+
+    <div class="discovery-block">
+      <h3>¿Cómo se forman?</h3>
+      <p>Los partitivos se usan para hablar de una cantidad indeterminada, como cuando pedís "un poco de agua" o "algo de pan". En italiano, el artículo cambia según el género y número del sustantivo que sigue.</p>
+      <div class="formula">di + il = del &nbsp;|&nbsp; di + la = della &nbsp;|&nbsp; di + l' = dell'<br>di + i = dei &nbsp;|&nbsp; di + gli = degli &nbsp;|&nbsp; di + le = delle</div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Artículo</th><th>Partitivo</th><th>Ejemplo</th><th>Traducción</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>il (m. sg.)</td><td class="it-cell">del</td><td class="it-cell">del vino</td><td>un poco de vino</td></tr>
+          <tr><td>la (f. sg.)</td><td class="it-cell">della</td><td class="it-cell">della pasta</td><td>un poco de pasta</td></tr>
+          <tr><td>l' (sg. vocal)</td><td class="it-cell">dell'</td><td class="it-cell">dell'acqua</td><td>un poco de agua</td></tr>
+          <tr><td>i (m. pl.)</td><td class="it-cell">dei</td><td class="it-cell">dei funghi</td><td>unos hongos</td></tr>
+          <tr><td>gli (m. pl. vocal/s+c)</td><td class="it-cell">degli</td><td class="it-cell">degli spaghetti</td><td>unos spaghettis</td></tr>
+          <tr><td>le (f. pl.)</td><td class="it-cell">delle</td><td class="it-cell">delle olive</td><td>unas aceitunas</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fill-exercise">
+      <h4>Ejercicio — Pedidos con partitivos</h4>
+      <div class="fill-item">
+        <label>1. Vorrei ___ pane. (il pane) → <input type="text" class="fill-part" data-answer="del" placeholder="partitivo..."></label>
+      </div>
+      <div class="fill-item">
+        <label>2. Potrei avere ___ acqua frizzante? (l'acqua) → <input type="text" class="fill-part" data-answer="dell'" placeholder="partitivo..."></label>
+      </div>
+      <div class="fill-item">
+        <label>3. Vorrei ___ olive. (le olive) → <input type="text" class="fill-part" data-answer="delle" placeholder="partitivo..."></label>
+      </div>
+      <div class="fill-item">
+        <label>4. Avrei bisogno ___ formaggio. (il formaggio) → <input type="text" class="fill-part" data-answer="del" placeholder="partitivo..."></label>
+      </div>
+      <div class="fill-item">
+        <label>5. Vorrei ___ spaghetti al pomodoro. (gli spaghetti) → <input type="text" class="fill-part" data-answer="degli" placeholder="partitivo..."></label>
+      </div>
+      <button class="check-btn" onclick="checkFill('fill-part','feedbackPart')">Verificar</button>
+      <div class="feedback" id="feedbackPart"></div>
+    </div>
+
+    <!-- MENÚ INTERACTIVO -->
+    <div class="menu-activity">
+      <h3>🍽️ Armá tu cena en la trattoria</h3>
+      <p style="text-align:center; font-size:0.88rem; color:#5a5a54; margin-bottom:1rem;">Hacé clic en un plato de cada sección para armar tu cena ideal. ¡Seguí el orden correcto del menú italiano!</p>
+      <div id="menuBoard"></div>
+      <div class="menu-summary" id="menuSummary" style="display:none;">
+        <strong>Tu cena:</strong> <span id="summaryText"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN 4: PLURALES -->
+<section>
+  <div class="section-inner">
+    <h2 class="section-title">Descubrimiento 3 — Plurales irregolari</h2>
+    <p class="section-lead">En italiano hay sustantivos que forman el plural de manera irregular. Los más comunes en el restaurante los vas a reconocer enseguida.</p>
+
+    <div class="discovery-block">
+      <h3>Regla general vs. irregolari</h3>
+      <p>La mayoría de los sustantivos siguen la regla: <span class="highlight">-o → -i</span> (libro → libri) y <span class="highlight">-a → -e</span> (pasta → paste). Pero algunos tienen plural irregular, especialmente palabras que vienen del latín neutro.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Singular</th><th>Plural</th><th>Notas</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="it-cell">uovo (n. m.)</td><td class="it-cell">uova (n. f.!)</td><td>¡cambia de género en plural!</td></tr>
+          <tr><td class="it-cell">braccio</td><td class="it-cell">braccia</td><td>igual que uovo, -o → -a</td></tr>
+          <tr><td class="it-cell">mano (f.)</td><td class="it-cell">mani</td><td>mano es femenino aunque termina en -o</td></tr>
+          <tr><td class="it-cell">dito</td><td class="it-cell">dita / diti</td><td>ambas formas se usan</td></tr>
+          <tr><td class="it-cell">centinaio</td><td class="it-cell">centinaia</td><td>centena → centenas</td></tr>
+          <tr><td class="it-cell">paio</td><td class="it-cell">paia</td><td>par → pares (di scarpe, di guanti)</td></tr>
+          <tr><td class="it-cell">labbro</td><td class="it-cell">labbra</td><td>labio → labios</td></tr>
+          <tr><td class="it-cell">ginocchio</td><td class="it-cell">ginocchia</td><td>rodilla → rodillas</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin: 1rem 0 0.5rem; font-size:0.92rem; color:#3a3a35;"><strong>En el restaurante específicamente:</strong></p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Singular</th><th>Plural</th><th>Ejemplo</th></tr></thead>
+        <tbody>
+          <tr><td class="it-cell">uovo</td><td class="it-cell">uova</td><td>due uova al tegamino — dos huevos fritos</td></tr>
+          <tr><td class="it-cell">pesce (m.)</td><td class="it-cell">pesci</td><td>i pesci del giorno — los pescados del día</td></tr>
+          <tr><td class="it-cell">fungo</td><td class="it-cell">funghi</td><td>funghi porcini — hongos porcini</td></tr>
+          <tr><td class="it-cell">gamberetto</td><td class="it-cell">gamberetti</td><td>gamberetti alla griglia — langostinos a la plancha</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fill-exercise">
+      <h4>Ejercicio — Plurales en contexto</h4>
+      <div class="fill-item">
+        <label>1. Un uovo → due <input type="text" class="fill-plur" data-answer="uova" placeholder="..."></label>
+      </div>
+      <div class="fill-item">
+        <label>2. Un fungo → tre <input type="text" class="fill-plur" data-answer="funghi" placeholder="..."></label>
+      </div>
+      <div class="fill-item">
+        <label>3. La mano → le <input type="text" class="fill-plur" data-answer="mani" placeholder="..."></label>
+      </div>
+      <div class="fill-item">
+        <label>4. Un gamberetto → i <input type="text" class="fill-plur" data-answer="gamberetti" placeholder="..."></label>
+      </div>
+      <button class="check-btn" onclick="checkFill('fill-plur','feedbackPlur')">Verificar</button>
+      <div class="feedback" id="feedbackPlur"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN 5: DIÁLOGOS -->
+<section id="dialogos">
+  <div class="section-inner">
+    <h2 class="section-title">Diálogos reales</h2>
+    <p class="section-lead">Escuchá (o leé) estos diálogos típicos de un restaurante italiano. Prestá atención a las formas de cortesía.</p>
+
+    <div class="dialog-container">
+      <div class="dialog-title">Diálogo 1 — Prenotazione al telefono 📞</div>
+      <div class="bubble-wrap">
+        <div class="bubble a">
+          <div class="speaker">Ristorante La Pergola</div>
+          <div class="it">Pronto, ristorante La Pergola, buonasera.</div>
+          <div class="es">Hola, restaurante La Pérgola, buenas noches.</div>
+        </div>
+        <div class="bubble b">
+          <div class="speaker">Cliente</div>
+          <div class="it">Buonasera, vorrei prenotare un tavolo per sabato sera.</div>
+          <div class="es">Buenas noches, quisiera reservar una mesa para el sábado a la noche.</div>
+        </div>
+        <div class="bubble a">
+          <div class="speaker">Ristorante</div>
+          <div class="it">Perfetto. Per quante persone?</div>
+          <div class="es">Perfecto. ¿Para cuántas personas?</div>
+        </div>
+        <div class="bubble b">
+          <div class="speaker">Cliente</div>
+          <div class="it">Per quattro persone. Saremmo lì verso le otto e mezza.</div>
+          <div class="es">Para cuatro personas. Estaríamos ahí alrededor de las ocho y media.</div>
+        </div>
+        <div class="bubble a">
+          <div class="speaker">Ristorante</div>
+          <div class="it">Benissimo. Mi può dare il suo nome e un recapito telefonico?</div>
+          <div class="es">Muy bien. ¿Me puede dar su nombre y un número de teléfono?</div>
+        </div>
+        <div class="bubble b">
+          <div class="speaker">Cliente</div>
+          <div class="it">Sì, mi chiamo Marco Ferrari e il mio numero è 333 456 7890.</div>
+          <div class="es">Sí, me llamo Marco Ferrari y mi número es 333 456 7890.</div>
+        </div>
+        <div class="bubble a">
+          <div class="speaker">Ristorante</div>
+          <div class="it">Ottimo, a sabato sera allora! Arrivederci.</div>
+          <div class="es">¡Excelente, hasta el sábado a la noche entonces! Hasta luego.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dialog-container" style="margin-top:2rem;">
+      <div class="dialog-title">Diálogo 2 — Al ristorante: ordinare e pagare 🍽️</div>
+      <div class="bubble-wrap">
+        <div class="bubble a">
+          <div class="speaker">Cameriere</div>
+          <div class="it">Buonasera! Avete già scelto o avete bisogno di un po' di tempo?</div>
+          <div class="es">¡Buenas noches! ¿Ya eligieron o necesitan un poco más de tiempo?</div>
+        </div>
+        <div class="bubble b">
+          <div class="speaker">Cliente</div>
+          <div class="it">Sì, siamo pronti. Vorrei iniziare con i carciofi alla romana come antipasto.</div>
+          <div class="es">Sí, ya estamos listos. Quisiera empezar con los alcauciles a la romana de entrada.</div>
+        </div>
+        <div class="bubble a">
+          <div class="speaker">Cameriere</div>
+          <div class="it">Ottima scelta! E come primo?</div>
+          <div class="es">¡Excelente elección! ¿Y de primer plato?</div>
+        </div>
+        <div class="bubble b">
+          <div class="speaker">Cliente</div>
+          <div class="it">Potrei avere gli spaghetti alla carbonara? È il vostro piatto tipico, vero?</div>
+          <div class="es">¿Podría tener los spaghetti a la carbonara? Es su plato típico, ¿verdad?</div>
+        </div>
+        <div class="bubble a">
+          <div class="speaker">Cameriere</div>
+          <div class="it">Assolutamente sì, la nostra carbonara è preparata con uova fresche e guanciale. E per secondo?</div>
+          <div class="es">Absolutamente sí, nuestra carbonara se prepara con huevos frescos y mejilla de cerdo. ¿Y de segundo?</div>
+        </div>
+        <div class="bubble b">
+          <div class="speaker">Cliente</div>
+          <div class="it">Per adesso basta così, grazie. E potrei avere dell'acqua naturale?</div>
+          <div class="es">Por ahora es suficiente así, gracias. ¿Y podría tener agua sin gas?</div>
+        </div>
+        <div class="bubble a">
+          <div class="speaker">Cameriere</div>
+          <div class="it">Certo! Subito.</div>
+          <div class="es">¡Claro! Enseguida.</div>
+        </div>
+        <div class="bubble b" style="margin-top:1rem;">
+          <div class="speaker">Cliente (al final)</div>
+          <div class="it">Scusi, potrei avere il conto? Paghiamo con carta di credito.</div>
+          <div class="es">Disculpe, ¿podría traernos la cuenta? Pagamos con tarjeta de crédito.</div>
+        </div>
+        <div class="bubble a">
+          <div class="speaker">Cameriere</div>
+          <div class="it">Certo, glielo porto subito. È incluso il coperto di €2 a persona.</div>
+          <div class="es">Claro, se lo traigo enseguida. Está incluido el cargo por cubierto de €2 por persona.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPRENSIÓN -->
+    <div class="comprehension-block" style="margin-top:2rem;">
+      <h3 style="font-family:var(--fh);font-style:italic;color:var(--teal-active);margin-bottom:1rem;">Comprensión — Menú della trattoria</h3>
+      <div class="passage">
+        <strong>Trattoria da Nonna Rosa — Menù del giorno</strong><br><br>
+        <em>Antipasti:</em> Bruschetta al pomodoro (€4) · Prosciutto e melone (€7)<br>
+        <em>Primi:</em> Spaghetti alla carbonara (€11) · Risotto ai funghi porcini (€12) · Penne all'arrabbiata (€9)<br>
+        <em>Secondi:</em> Bistecca alla fiorentina 200g (€18) · Branzino al forno (€15) · Pollo alla cacciatora (€13)<br>
+        <em>Contorni:</em> Insalata mista (€4) · Patate al forno (€4) · Verdure grigliate (€5)<br>
+        <em>Dolci:</em> Tiramisù della casa (€6) · Panna cotta al caramello (€5) · Gelato artigianale (€4)<br><br>
+        <em>Coperto €2 a persona · Vini della casa disponibili · Carta di credito accettata</em>
+      </div>
+      <div class="compreh-q">
+        <p>1. ¿Cuántos platos de pasta hay en el menú?</p>
+        <label><input type="radio" name="q1" value="a"> Dos (spaghetti y penne)</label>
+        <label><input type="radio" name="q1" value="b"> Tres (spaghetti, risotto y penne)</label>
+        <label><input type="radio" name="q1" value="c"> Uno (solo spaghetti)</label>
+      </div>
+      <div class="compreh-q">
+        <p>2. ¿Cuánto cuesta el coperto por dos personas?</p>
+        <label><input type="radio" name="q2" value="a"> €2 en total</label>
+        <label><input type="radio" name="q2" value="b"> €4 en total</label>
+        <label><input type="radio" name="q2" value="c"> Es gratis</label>
+      </div>
+      <div class="compreh-q">
+        <p>3. ¿Cuál es el contorno más caro del menú?</p>
+        <label><input type="radio" name="q3" value="a"> Insalata mista</label>
+        <label><input type="radio" name="q3" value="b"> Patate al forno</label>
+        <label><input type="radio" name="q3" value="c"> Verdure grigliate</label>
+      </div>
+      <div class="compreh-q">
+        <p>4. ¿Qué dolce viene de la casa (especialidad)?</p>
+        <label><input type="radio" name="q4" value="a"> Panna cotta</label>
+        <label><input type="radio" name="q4" value="b"> Tiramisù</label>
+        <label><input type="radio" name="q4" value="c"> Gelato</label>
+      </div>
+      <button class="check-btn" onclick="checkComprehension()">Verificar respuestas</button>
+      <div class="feedback" id="feedbackCompreh"></div>
+    </div>
+
+    <!-- MATCHING -->
+    <div class="matching-game">
+      <h4>Matching — Plato y categoría del menú</h4>
+      <p style="font-size:0.85rem;color:#5a5a54;margin-bottom:1rem;">Seleccioná un plato de la columna izquierda y la categoría correcta de la derecha.</p>
+      <div class="match-cols">
+        <div id="matchLeft"></div>
+        <div id="matchRight"></div>
+      </div>
+      <div class="feedback" id="feedbackMatch" style="margin-top:1rem;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURA -->
+<div class="culture-strip" id="cultura">
+  <div class="section-inner">
+    <h2>🇮🇹 Cultura italiana — El coperto y las propinas</h2>
+    <p>Una de las primeras sorpresas al comer en Italia es el <strong>coperto</strong>: un cargo fijo por persona que aparece en la cuenta y que incluye el pan, la cubiertería y el servicio de mesa. Puede ir de €1 a €4 según el restaurante. No es negociable ni opcional.</p>
+    <p>Sobre las <strong>propinas</strong>: en Italia no existe la cultura de la propina como en Argentina o EE.UU. El servicio está incluido en el coperto. Dejar monedas de cambio (il resto) o redondear la cuenta está bien visto, pero dejar un 10-20% es completamente inusual y puede incluso desconcertar al cameriere.</p>
+    <p>Otro detalle importante: <strong>el orden del menú es sagrado</strong>. Pedís el antipasto, esperás que lo sirvan y lo termines, después viene el primo, y así. No se sirven todos los platos juntos. ¡Esto puede demorar 2-3 horas en una cena de familia italiana, y es parte del placer!</p>
+    <div class="tip-box">
+      <strong>Tip viajero:</strong> Si solo querés un plato, está perfecto — especialmente en las ciudades grandes. Pero en trattorias pequeñas del sur, saltarse el primo para pedir directo el secondo puede levantar alguna ceja. Cuando en duda: seguí el orden.
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Italiano Per Piacere · Módulo 7 — Al ristorante · Nivel Viajeros</p>
+</footer>
+
+<script>
+// ---- VOCAB DATA ----
+const vocabA = [
+  { it: 'antipasto', es: '🥗 entrada / aperitivo', emoji: '🥗' },
+  { it: 'primo piatto', es: '🍝 primer plato (pasta/risotto)', emoji: '🍝' },
+  { it: 'secondo piatto', es: '🥩 segundo plato (carne/pescado)', emoji: '🥩' },
+  { it: 'contorno', es: '🥦 guarnición / acompañamiento', emoji: '🥦' },
+  { it: 'dolce', es: '🍮 postre', emoji: '🍮' },
+  { it: 'acqua', es: '💧 agua (naturale / frizzante)', emoji: '💧' },
+  { it: 'vino', es: '🍷 vino (rosso / bianco / rosato)', emoji: '🍷' },
+  { it: 'caffè', es: '☕ café (sempre al final!)', emoji: '☕' },
+];
+const vocabB = [
+  { it: 'risotto', es: '🍚 risotto (arroz cremoso italiano)', emoji: '🍚' },
+  { it: 'pasta', es: '🍝 pasta (spaghetti, penne, rigatoni...)', emoji: '🍝' },
+  { it: 'pizza', es: '🍕 pizza (¡Nápoles la inventó!)', emoji: '🍕' },
+  { it: 'bistecca', es: '🥩 bife / filete de carne', emoji: '🥩' },
+  { it: 'pesce', es: '🐟 pescado', emoji: '🐟' },
+  { it: 'insalata', es: '🥗 ensalada', emoji: '🥗' },
+  { it: 'tiramisù', es: '🍮 tiramisú (el postre italiano por excelencia)', emoji: '🍮' },
+  { it: 'panna cotta', es: '🍮 panna cotta (crema cocida con caramelo)', emoji: '🍮' },
+];
+const vocabC = [
+  { it: 'cameriere/a', es: '👨‍🍳 mozo / moza', emoji: '👨‍🍳' },
+  { it: 'menu', es: '📋 menú (la carta)', emoji: '📋' },
+  { it: 'conto', es: '🧾 la cuenta', emoji: '🧾' },
+  { it: 'prenotazione', es: '📅 reserva', emoji: '📅' },
+  { it: 'tavolo', es: '🪑 mesa', emoji: '🪑' },
+  { it: 'coperto', es: '💶 cargo por cubierto', emoji: '💶' },
+  { it: 'mancia', es: '💰 propina', emoji: '💰' },
+  { it: 'carta di credito', es: '💳 tarjeta de crédito', emoji: '💳' },
+];
+
+function buildVocabGrid(containerId, data) {
+  const grid = document.getElementById(containerId);
+  data.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'vocab-card';
+    card.innerHTML = `<span class="emoji">${item.emoji}</span><div class="it">${item.it}</div><div class="es">${item.es}</div>`;
+    card.addEventListener('click', () => {
+      card.classList.toggle('flipped');
+      updateProgress();
+    });
+    grid.appendChild(card);
+  });
+}
+buildVocabGrid('vocabA', vocabA);
+buildVocabGrid('vocabB', vocabB);
+buildVocabGrid('vocabC', vocabC);
+
+// ---- MENÚ INTERACTIVO ----
+const menuData = [
+  { section: 'Antipasti', icon: '🥗', items: [
+    { name: 'Bruschetta al pomodoro', price: '€4', desc: 'Pan tostado con tomate y albahaca' },
+    { name: 'Prosciutto e melone', price: '€7', desc: 'Jamón crudo con melón fresco' },
+    { name: 'Carpaccio di manzo', price: '€9', desc: 'Finas láminas de carne cruda' },
+  ]},
+  { section: 'Primi piatti', icon: '🍝', items: [
+    { name: 'Spaghetti alla carbonara', price: '€11', desc: 'Con uova, guanciale e pecorino' },
+    { name: 'Risotto ai funghi porcini', price: '€12', desc: 'Cremoso con hongos porcini' },
+    { name: 'Penne all\'arrabbiata', price: '€9', desc: 'Salsa de tomate picante' },
+  ]},
+  { section: 'Secondi piatti', icon: '🥩', items: [
+    { name: 'Bistecca alla fiorentina', price: '€18', desc: '200g de bife toscano a la parrilla' },
+    { name: 'Branzino al forno', price: '€15', desc: 'Róbalo al horno con hierbas' },
+    { name: 'Pollo alla cacciatora', price: '€13', desc: 'Pollo estofado con aceitunas y tomate' },
+  ]},
+  { section: 'Dolci', icon: '🍮', items: [
+    { name: 'Tiramisù della casa', price: '€6', desc: 'Receta original de la nonna' },
+    { name: 'Panna cotta al caramello', price: '€5', desc: 'Crema cocida con caramelo salato' },
+  ]},
+];
+const selected = {};
+function buildMenu() {
+  const board = document.getElementById('menuBoard');
+  menuData.forEach(sec => {
+    const s = document.createElement('div');
+    s.className = 'menu-section';
+    s.innerHTML = `<div class="menu-section-name">${sec.icon} ${sec.section}</div>`;
+    sec.items.forEach(item => {
+      const d = document.createElement('div');
+      d.className = 'menu-item';
+      d.innerHTML = `<div><span class="dish-name">${item.name}</span><span class="dish-desc">${item.desc}</span></div><span class="dish-price">${item.price}</span>`;
+      d.addEventListener('click', () => {
+        s.querySelectorAll('.menu-item').forEach(x => x.classList.remove('selected'));
+        d.classList.add('selected');
+        selected[sec.section] = item.name;
+        updateMenuSummary();
+      });
+      s.appendChild(d);
+    });
+    board.appendChild(s);
+  });
+}
+function updateMenuSummary() {
+  const keys = Object.keys(selected);
+  if (keys.length > 0) {
+    document.getElementById('menuSummary').style.display = 'block';
+    document.getElementById('summaryText').textContent = menuData.map(s => selected[s.section] ? selected[s.section] : '—').join(' → ');
+  }
+}
+buildMenu();
+
+// ---- CHECK FILL ----
+function checkFill(cls, feedbackId) {
+  const inputs = document.querySelectorAll('.' + cls);
+  let correct = 0;
+  inputs.forEach(inp => {
+    const ans = inp.dataset.answer.toLowerCase().trim();
+    const val = inp.value.toLowerCase().trim();
+    if (val === ans) { inp.classList.add('correct'); inp.classList.remove('incorrect'); correct++; }
+    else { inp.classList.add('incorrect'); inp.classList.remove('correct'); }
+  });
+  const fb = document.getElementById(feedbackId);
+  if (correct === inputs.length) {
+    fb.textContent = '✓ ¡Perfetto! Todas correctas.';
+    fb.className = 'feedback ok';
+  } else {
+    fb.textContent = `${correct} de ${inputs.length} correctas. ¡Revisá las marcadas en rojo!`;
+    fb.className = 'feedback err';
+  }
+  updateProgress();
+}
+
+// ---- COMPREHENSION ----
+const comprAnswers = { q1: 'a', q2: 'b', q3: 'c', q4: 'b' };
+function checkComprehension() {
+  let correct = 0;
+  Object.keys(comprAnswers).forEach(q => {
+    const sel = document.querySelector(`input[name="${q}"]:checked`);
+    if (sel && sel.value === comprAnswers[q]) correct++;
+  });
+  const fb = document.getElementById('feedbackCompreh');
+  if (correct === 4) { fb.textContent = '✓ ¡Bravissimo! 4/4 correctas.'; fb.className = 'feedback ok'; }
+  else { fb.textContent = `${correct}/4 correctas. Revisá el menú de nuevo.`; fb.className = 'feedback err'; }
+  updateProgress();
+}
+
+// ---- MATCHING ----
+const matchPairs = [
+  { dish: 'Tiramisù', category: 'Dolce' },
+  { dish: 'Risotto ai funghi', category: 'Primo piatto' },
+  { dish: 'Bistecca', category: 'Secondo piatto' },
+  { dish: 'Bruschetta', category: 'Antipasto' },
+  { dish: 'Patate al forno', category: 'Contorno' },
+];
+let matchSelected = null;
+let matchCompleted = 0;
+function buildMatching() {
+  const left = document.getElementById('matchLeft');
+  const right = document.getElementById('matchRight');
+  const shuffledRight = [...matchPairs.map(p => p.category)].sort(() => Math.random() - 0.5);
+  matchPairs.forEach(pair => {
+    const d = document.createElement('div');
+    d.className = 'match-item';
+    d.dataset.dish = pair.dish;
+    d.dataset.type = 'dish';
+    d.textContent = pair.dish;
+    d.addEventListener('click', () => handleMatch(d));
+    left.appendChild(d);
+  });
+  shuffledRight.forEach(cat => {
+    const d = document.createElement('div');
+    d.className = 'match-item';
+    d.dataset.cat = cat;
+    d.dataset.type = 'cat';
+    d.textContent = cat;
+    d.addEventListener('click', () => handleMatch(d));
+    right.appendChild(d);
+  });
+}
+function handleMatch(el) {
+  if (el.classList.contains('matched')) return;
+  if (!matchSelected) {
+    if (el.dataset.type !== 'dish') return;
+    matchSelected = el;
+    el.classList.add('selected');
+  } else {
+    if (el.dataset.type !== 'cat') { matchSelected.classList.remove('selected'); matchSelected = null; return; }
+    const correctCat = matchPairs.find(p => p.dish === matchSelected.dataset.dish)?.category;
+    if (el.dataset.cat === correctCat) {
+      matchSelected.classList.remove('selected'); matchSelected.classList.add('matched');
+      el.classList.add('matched');
+      matchCompleted++;
+      if (matchCompleted === matchPairs.length) {
+        document.getElementById('feedbackMatch').textContent = '✓ ¡Perfetto! Todos los pares correctos.';
+        document.getElementById('feedbackMatch').className = 'feedback ok';
+        updateProgress();
+      }
+    } else {
+      matchSelected.classList.remove('selected'); matchSelected.classList.add('error');
+      el.classList.add('error');
+      setTimeout(() => { matchSelected.classList.remove('error'); el.classList.remove('error'); }, 800);
+    }
+    matchSelected = null;
+  }
+}
+buildMatching();
+
+// ---- PROGRESS ----
+function updateProgress() {
+  const total = document.querySelectorAll('.vocab-card').length
+    + document.querySelectorAll('.fill-cond,.fill-part,.fill-plur').length
+    + 4; // comprehension
+  const done = document.querySelectorAll('.vocab-card.flipped').length
+    + document.querySelectorAll('.fill-cond.correct,.fill-part.correct,.fill-plur.correct').length
+    + (matchCompleted * 0.5);
+  const pct = Math.min(100, Math.round((done / total) * 100));
+  document.getElementById('progressBar').style.width = pct + '%';
+}
+
+// ---- NAV HIGHLIGHT ----
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const link = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

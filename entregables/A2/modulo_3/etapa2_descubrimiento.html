@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unità 3 — Al ristorante · Descubrimiento | Italiano Per Piacere A2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;
+  --gold:#EFCF7F;--amber:#e5ab07;
+  --red:#cc4736;--teal:#78a6ba;
+  --green:#528e74;--green-dk:#3d6b58;--green-txt:#2d4d3c;
+  --black:#1a1a18;--white:#ffffff;
+  --hero:var(--green);--hero-dk:var(--green-dk);--hero-txt:var(--green-txt);
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);overflow-x:hidden}
+body.hide-es .es{display:none}
+.hero{min-height:92vh;background:#c8e8de;border-bottom:3px solid #528e74;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;text-align:center;padding:2rem 1.5rem}
+.hero::before,.hero::after{display:none}
+.hero-circle{position:absolute;border-radius:50%;opacity:.12;pointer-events:none;transition:transform .6s ease}
+.hero-circle.c1{width:500px;height:500px;background:var(--white);top:-150px;right:-150px}
+.hero-circle.c2{width:320px;height:320px;background:var(--gold);bottom:-80px;left:-80px}
+.hero-circle.c3{width:180px;height:180px;background:var(--white);top:25%;left:8%}
+.hero-badge{background:rgba(0,0,0,.07);color:#1a1a18;font-size:.75rem;font-weight:700;letter-spacing:.12em;padding:.4rem 1.1rem;border-radius:2rem;margin-bottom:1.2rem;backdrop-filter:blur(6px);text-transform:uppercase}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:clamp(2.4rem,7vw,4.5rem);color:#1a1a18;line-height:1.1;margin-bottom:.8rem}
+.hero-sub{color:#1a1a18;opacity:.75;font-size:clamp(.95rem,2.5vw,1.15rem);max-width:560px;line-height:1.6;margin-bottom:2rem}
+.audio-box{background:rgba(255,255,255,.95);border-radius:1.2rem;padding:1.4rem 2rem;border:1px solid rgba(0,0,0,.08);max-width:460px;margin:0 auto}
+.audio-box .at{font-family:var(--fh);font-style:italic;font-size:1.3rem;color:var(--gold);margin-bottom:.3rem}
+.audio-box .as{color:rgba(0,0,0,.65);font-size:.88rem;margin-bottom:.8rem}
+.audio-box a{display:inline-block;background:var(--gold);color:var(--black);font-weight:700;font-size:.85rem;padding:.55rem 1.4rem;border-radius:2rem;text-decoration:none;transition:transform .2s}
+.audio-box a:hover{transform:translateY(-2px)}
+#toggle-btn{position:fixed;top:1rem;right:1rem;z-index:500;background:#c8dfd5;color:var(--black);border:none;border-radius:2rem;padding:.45rem 1.1rem;font-family:var(--fb);font-size:.8rem;font-weight:700;cursor:pointer;box-shadow:0 3px 12px rgba(0,0,0,.2)}
+.section{max-width:880px;margin:0 auto;padding:4rem 1.5rem}
+.sec-tag{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--hero);margin-bottom:.4rem}
+.sec-title{font-family:var(--fh);font-style:italic;font-size:clamp(1.6rem,4vw,2.2rem);color:var(--black);margin-bottom:.4rem;line-height:1.2}
+.sec-sub{color:#666;font-size:.9rem;line-height:1.6;margin-bottom:2rem}
+.es{color:#888;font-size:.85rem;font-style:italic}
+[data-a]{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+[data-a].visible{opacity:1;transform:none}
+[data-stagger]>*{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+[data-stagger].visible>*{opacity:1;transform:none}
+[data-stagger].visible>*:nth-child(1){transition-delay:.05s}[data-stagger].visible>*:nth-child(2){transition-delay:.12s}
+[data-stagger].visible>*:nth-child(3){transition-delay:.19s}[data-stagger].visible>*:nth-child(4){transition-delay:.26s}
+[data-stagger].visible>*:nth-child(5){transition-delay:.33s}[data-stagger].visible>*:nth-child(6){transition-delay:.40s}
+[data-stagger].visible>*:nth-child(7){transition-delay:.47s}[data-stagger].visible>*:nth-child(8){transition-delay:.54s}
+.word-grid{display:flex;flex-wrap:wrap;gap:.65rem;margin:1.2rem 0}
+.wcard{padding:.55rem 1.1rem;border-radius:2rem;border:2px solid var(--cream-dk);background:var(--white);font-size:.88rem;font-weight:600;cursor:pointer;transition:all .25s;user-select:none}
+.wcard:hover{border-color:var(--hero);transform:translateY(-2px)}
+.wcard.ok{background:#c8dfd5;color:var(--black);border-color:var(--hero)}
+.wcard.trap{background:#fde8e5;border-color:var(--red);text-decoration:line-through;color:#999}
+.grid-feedback{font-size:.85rem;font-weight:700;margin-top:.8rem;min-height:1.2rem;color:var(--hero)}
+.grid-btn{background:#c8dfd5;color:var(--black);border:none;border-radius:2rem;padding:.5rem 1.4rem;font-family:var(--fb);font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.6rem;transition:background .2s}
+.grid-btn:hover{background:var(--hero-dk)}
+.vcard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem;margin:1.2rem 0}
+.vcard{background:var(--white);border-radius:1rem;padding:1.3rem 1.2rem;border:2px solid var(--cream-dk);cursor:pointer;transition:all .25s;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.vcard:hover{border-color:var(--hero);transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.1)}
+.vcard .vit{font-size:1.05rem;font-weight:700;color:var(--hero);margin-bottom:.3rem}
+.vcard .ves{color:#777;font-size:.82rem;font-style:italic}
+.vcard .vex{font-size:.83rem;color:#555;margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--cream-dk);display:none}
+.vcard.open .vex{display:block}
+.vcard .vtag{font-size:.7rem;font-weight:700;background:var(--cream-dk);border-radius:.25rem;padding:.1rem .4rem;display:inline-block;margin-bottom:.5rem;color:#666}
+.gtable{width:100%;border-collapse:collapse;margin:1rem 0;border-radius:.7rem;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.gtable th{background:#a8d4c4;color:#2a4d3c;padding:.7rem 1rem;text-align:center;font-size:.82rem;letter-spacing:.05em}
+.gtable td{padding:.65rem 1rem;border-bottom:1px solid var(--cream-dk);font-size:.9rem;text-align:center;background:var(--white)}
+.gtable tr:last-child td{border:none}.gtable tr:hover td{background:var(--cream)}
+.gtable tr:nth-child(even) td{background:#e8f5f0}
+.gtable td:first-child{font-weight:700;color:var(--hero);text-align:left}
+.fill-box{background:var(--white);border-radius:1.2rem;padding:1.6rem;border:2px solid var(--cream-dk);box-shadow:0 4px 16px rgba(0,0,0,.07)}
+.fill-box h4{font-family:var(--fh);font-style:italic;color:var(--hero);margin-bottom:1rem;font-size:1.1rem}
+.fill-row{margin:.7rem 0;font-size:.92rem;line-height:1.9;display:flex;flex-wrap:wrap;align-items:center;gap:.3rem}
+.fill-input{border:none;border-bottom:2.5px solid var(--hero);background:transparent;padding:.1rem .5rem;font-family:var(--fb);font-size:.9rem;width:150px;outline:none;color:var(--black)}
+.fill-input.ok{border-color:var(--green-dk);color:var(--green-dk)}
+.fill-input.err{border-color:var(--red);color:var(--red)}
+.fill-btn{background:#c8dfd5;color:var(--black);border:none;border-radius:2rem;padding:.5rem 1.4rem;font-family:var(--fb);font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.8rem;transition:background .2s}
+.fill-btn:hover{background:var(--hero-dk)}
+.fill-fb{font-size:.83rem;margin-top:.5rem;font-weight:600;color:var(--hero);min-height:1.1rem}
+.bubble-row{margin:.7rem 0;display:flex;gap:.8rem;align-items:flex-start}
+.bubble-row.b{flex-direction:row-reverse}
+.bubble-avatar{width:36px;height:36px;border-radius:50%;background:#c8dfd5;color:var(--black);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;flex-shrink:0}
+.bubble-row.b .bubble-avatar{background:var(--cream-dk);color:var(--black)}
+.bubble{background:var(--cream);border-radius:1rem;padding:.75rem 1rem;max-width:440px;font-size:.9rem;line-height:1.5;cursor:pointer}
+.bubble-row.b .bubble{background:var(--cream-dk)}
+.bubble .btr{display:none;font-size:.78rem;color:#888;font-style:italic;margin-top:.4rem;border-top:1px solid rgba(0,0,0,.08);padding-top:.4rem}
+.bubble.show .btr{display:block}
+.bubble strong{color:var(--hero)}
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:4px solid var(--hero-dk);padding:3.5rem 1.5rem;text-align:center}
+.culture-inner{max-width:700px;margin:0 auto}
+.culture h3{font-family:var(--fh);font-style:italic;font-size:1.8rem;color:var(--hero-txt);margin-bottom:.8rem}
+.culture p{color:#555;font-size:.92rem;line-height:1.7;max-width:580px;margin:0 auto .6rem}
+.culture-facts{display:flex;justify-content:center;gap:2rem;margin-top:1.5rem;flex-wrap:wrap}
+.cfact{background:var(--white);border-radius:.8rem;padding:1rem 1.3rem;min-width:130px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.cfact .cnum{font-family:var(--fh);font-size:1.6rem;color:var(--hero);font-style:italic}
+.cfact .clabel{font-size:.75rem;color:#777;margin-top:.2rem}
+/* MENU PORTATE */
+.portate{display:flex;gap:0;margin:1.2rem 0;border-radius:1rem;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.1)}
+.portata{flex:1;background:var(--white);padding:1rem .8rem;text-align:center;border-right:1px solid var(--cream-dk);transition:background .2s;cursor:default}
+.portata:last-child{border:none}
+.portata:hover{background:var(--cream)}
+.portata .pnum{font-size:.7rem;font-weight:700;color:var(--hero);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.3rem}
+.portata .pit{font-size:.92rem;font-weight:700;color:var(--black)}
+.portata .pes{font-size:.75rem;color:#888;margin-top:.2rem;font-style:italic}
+@media(max-width:600px){.portate{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<button id="toggle-btn" onclick="toggleEs()">ES 👁</button>
+
+<section class="hero">
+  <div class="hero-circle c1"></div>
+  <div class="hero-circle c2"></div>
+  <div class="hero-circle c3"></div>
+  <div class="hero-badge">A2 · Unità 3 · Audio</div>
+  <h1>Al ristorante 🍝</h1>
+  <p class="hero-sub">Ascolta, ordina, confronta — e scopri le regole d'oro della tavola italiana.</p>
+  <div class="audio-box" data-a>
+    <div class="at">Coffee Break Italian</div>
+    <div class="as">Stagione 2 — Al ristorante · Podcast</div>
+    <a href="https://coffeebreaklanguages.com/coffeebreakitalian/" target="_blank">🎧 Ascolta il podcast</a>
+  </div>
+</section>
+
+<!-- WORD GRID -->
+<section style="background:var(--cream-dk);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Vocabolario</div>
+  <h2 class="sec-title" data-a>Al ristorante — parole chiave</h2>
+  <p class="sec-sub es" data-a>Selecciona solo las palabras relacionadas con el restaurante:</p>
+  <div class="word-grid" id="wg1" data-stagger>
+    <div class="wcard ok" data-ok>menù</div>
+    <div class="wcard trap" data-trap>semaforo</div>
+    <div class="wcard ok" data-ok>cameriere</div>
+    <div class="wcard ok" data-ok>antipasto</div>
+    <div class="wcard trap" data-trap>binario</div>
+    <div class="wcard ok" data-ok>prenotare</div>
+    <div class="wcard ok" data-ok>il conto</div>
+    <div class="wcard trap" data-trap>raffreddore</div>
+    <div class="wcard ok" data-ok>la portata</div>
+    <div class="wcard ok" data-ok>saporito</div>
+    <div class="wcard trap" data-trap>scaffale</div>
+    <div class="wcard ok" data-ok>il dolce</div>
+  </div>
+  <button class="grid-btn" onclick="checkGrid('wg1')">Verifica ✓</button>
+  <div class="grid-feedback" id="wg1-fb"></div>
+</div>
+</section>
+
+<!-- PORTATE -->
+<section style="background:var(--cream);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Cultura</div>
+  <h2 class="sec-title" data-a>La struttura del pasto italiano 🍽️</h2>
+  <p class="sec-sub es" data-a>En Italia la comida tiene un orden muy específico. ¿Lo conoces?</p>
+  <div class="portate" data-a>
+    <div class="portata"><div class="pnum">0</div><div class="pit">Aperitivo</div><div class="pes">antes de sentarse</div></div>
+    <div class="portata"><div class="pnum">1</div><div class="pit">Antipasto</div><div class="pes">entrante</div></div>
+    <div class="portata"><div class="pnum">2</div><div class="pit">Primo</div><div class="pes">pasta / risotto</div></div>
+    <div class="portata"><div class="pnum">3</div><div class="pit">Secondo</div><div class="pes">carne / pesce</div></div>
+    <div class="portata"><div class="pnum">4</div><div class="pit">Contorno</div><div class="pes">verdura / insalata</div></div>
+    <div class="portata"><div class="pnum">5</div><div class="pit">Dolce</div><div class="pes">postre</div></div>
+    <div class="portata"><div class="pnum">6</div><div class="pit">Caffè</div><div class="pes">al fondo, non con il dolce</div></div>
+  </div>
+
+  <!-- VOCAB CARDS -->
+  <div class="vcard-grid" style="margin-top:2rem" data-stagger>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">prenotare</div>
+      <div class="vit">prenotare un tavolo</div>
+      <div class="ves">reservar una mesa</div>
+      <div class="vex"><em>"Vorrei prenotare un tavolo per due persone per venerdì sera."</em></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">ordinare</div>
+      <div class="vit">ordinare</div>
+      <div class="ves">pedir / ordenar</div>
+      <div class="vex"><em>"Scusi, possiamo ordinare?"</em> / <em>"Come primo, prendo le tagliatelle."</em></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">aggettivi</div>
+      <div class="vit">saporito / leggero</div>
+      <div class="ves">sabroso / ligero</div>
+      <div class="vex"><em>"Questo piatto è più saporito di quello."</em> / <em>"Il pesce è più leggero della carne."</em></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">il conto</div>
+      <div class="vit">chiedere il conto</div>
+      <div class="ves">pedir la cuenta</div>
+      <div class="vex"><em>"Scusi, ci porta il conto?"</em> / <em>"Possiamo avere il conto, per favore?"</em></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">consiglio</div>
+      <div class="vit">consigliare</div>
+      <div class="ves">recomendar</div>
+      <div class="vex"><em>"Cosa consiglia oggi?"</em> / <em>"Le consiglio il risotto — è ottimo!"</em></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">formule</div>
+      <div class="vit">Buon appetito!</div>
+      <div class="ves">¡Buen provecho!</div>
+      <div class="vex">Respuesta: <em>"Grazie, altrettanto!"</em> — Gracias, igualmente. Non si dice "Grazie" senza il contrario.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- COMPARATIVI DISCOVERY -->
+<section style="background:var(--cream-dk);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Grammatica · Scoperta</div>
+  <h2 class="sec-title" data-a>Scopri i comparativi!</h2>
+  <p class="sec-sub es" data-a>El camarero recomienda platos comparándolos. ¿Qué estructura usa?</p>
+
+  <div style="background:var(--white);border-radius:1.2rem;padding:1.6rem;border:2px solid var(--cream-dk);box-shadow:0 4px 16px rgba(0,0,0,.07);margin-bottom:1.5rem" data-a>
+    <h4 style="font-family:var(--fh);font-style:italic;color:var(--hero);margin-bottom:1rem">Dal menu: frasi del cameriere</h4>
+    <div style="display:grid;gap:.7rem;font-size:.93rem">
+      <div style="background:var(--cream);padding:.7rem 1rem;border-radius:.5rem;border-left:4px solid var(--hero)">Il pesce è <strong>più leggero</strong> della carne. <span class="es">(más ligero que)</span></div>
+      <div style="background:var(--cream);padding:.7rem 1rem;border-radius:.5rem;border-left:4px solid var(--hero)">Questo vino è <strong>meno caro</strong> di quello. <span class="es">(menos caro que)</span></div>
+      <div style="background:var(--cream);padding:.7rem 1rem;border-radius:.5rem;border-left:4px solid var(--hero)">La pasta è <strong>tanto buona quanto</strong> il risotto. <span class="es">(tan buena como)</span></div>
+      <div style="background:var(--cream);padding:.7rem 1rem;border-radius:.5rem;border-left:4px solid var(--hero)">È più saporito <strong>mangiare qui che</strong> a casa. <span class="es">(verbo vs. verbo → "che")</span></div>
+    </div>
+    <table class="gtable" style="margin-top:1.2rem">
+      <thead><tr><th>Tipo</th><th>Struttura</th><th class="es">Ejemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Maggioranza</strong></td><td><em>più + adj. + <span style="color:var(--hero)">di/che</span></em></td><td class="es"><em>più buono di quello</em></td></tr>
+        <tr><td><strong>Minoranza</strong></td><td><em>meno + adj. + <span style="color:var(--hero)">di/che</span></em></td><td class="es"><em>meno caro di questo</em></td></tr>
+        <tr><td><strong>Uguaglianza</strong></td><td><em>tanto + adj. + quanto / così + adj. + come</em></td><td class="es"><em>tanto buono quanto la pizza</em></td></tr>
+      </tbody>
+    </table>
+    <div style="background:var(--cream-dk);border-radius:.6rem;padding:.9rem 1.1rem;margin-top:1rem;font-size:.87rem">
+      <strong>di vs che:</strong> Si usa <em>di</em> quando si confrontano due <strong>nomi/pronomi diversi</strong>. Si usa <em>che</em> quando si confrontano due <strong>aggettivi, avverbi o verbi</strong> della stessa persona.
+    </div>
+  </div>
+
+  <div class="fill-box" id="fill1" data-a>
+    <h4>Prova tu! — Comparativi</h4>
+    <div class="fill-row">1. La pasta è <input class="fill-input" data-ans="più saporita" placeholder="più/saporita"> del riso.</div>
+    <div class="fill-row">2. È <input class="fill-input" data-ans="meno caro" placeholder="meno/caro"> mangiare a casa che al ristorante.</div>
+    <div class="fill-row">3. Il tiramisù è <input class="fill-input" data-ans="tanto buono quanto" placeholder="tanto...quanto"> la panna cotta.</div>
+    <div class="fill-row">4. Il vino rosso è <input class="fill-input" data-ans="più pesante" placeholder="più/pesante"> di quello bianco.</div>
+    <button class="fill-btn" onclick="checkFill('fill1')">Controlla ✓</button>
+    <div class="fill-fb" id="fill1-fb"></div>
+  </div>
+</div>
+</section>
+
+<!-- DIALOGUE -->
+<section style="background:var(--cream);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Dialogo</div>
+  <h2 class="sec-title" data-a>Buona sera, ha prenotato? 🍷</h2>
+  <p class="sec-sub es" data-a>Toca cada burbuja para ver la traducción.</p>
+  <div style="background:var(--white);border-radius:1.2rem;padding:1.6rem;box-shadow:0 4px 16px rgba(0,0,0,.07);border:2px solid var(--cream-dk)" data-a>
+    <h4 style="font-family:var(--fh);font-style:italic;color:var(--hero);margin-bottom:1rem">Sara e Davide in un ristorante romano</h4>
+    <div class="bubble-row">
+      <div class="bubble-avatar">C</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">Buonasera! Ha prenotato?
+        <div class="btr">¡Buenas noches! ¿Ha reservado?</div>
+      </div>
+    </div>
+    <div class="bubble-row b">
+      <div class="bubble-avatar">S</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">Sì, a nome Martini — un tavolo per due.
+        <div class="btr">Sí, a nombre de Martini — una mesa para dos.</div>
+      </div>
+    </div>
+    <div class="bubble-row">
+      <div class="bubble-avatar">C</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">Perfetto! Prego, si accomodino. Ecco il menù. Cosa desiderano come <strong>primo</strong>?
+        <div class="btr">¡Perfecto! Por favor, tomen asiento. Aquí tienen el menú. ¿Qué desean de primero?</div>
+      </div>
+    </div>
+    <div class="bubble-row b">
+      <div class="bubble-avatar">D</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">Il risotto è <strong>più leggero</strong> delle tagliatelle, vero? Prendo quello.
+        <div class="btr">El risotto es más ligero que los tagliatelle, ¿verdad? Me lo llevo ese.</div>
+      </div>
+    </div>
+    <div class="bubble-row">
+      <div class="bubble-avatar">C</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">Sì, è <strong>meno pesante</strong>, ma <strong>tanto saporito quanto</strong> la pasta. Ottima scelta!
+        <div class="btr">Sí, es menos pesado, pero igual de sabroso que la pasta. ¡Excelente elección!</div>
+      </div>
+    </div>
+    <div class="bubble-row b">
+      <div class="bubble-avatar">S</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">...Scusi, ci porta il <strong>conto</strong>? Grazie per tutto — era una cena <strong>deliziosa</strong>!
+        <div class="btr">...Perdone, ¿nos trae la cuenta? Gracias por todo — ¡ha sido una cena deliciosa!</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="culture">
+  <div class="culture-inner">
+    <h3>La cultura del ristorante italiano 🍷</h3>
+    <p>In Italia il ristorante non è solo un posto dove mangiare — è un rito sociale. Si va per stare insieme, parlare, assaporare. Non si mangia in fretta. Una cena tradizionale può durare due o tre ore.</p>
+    <p>Alcune regole fondamentali: il <em>pane</em> si porta automaticamente (e si paga nel coperto); il <em>cappuccino</em> si beve solo la mattina; il <em>caffè</em> si ordina alla fine, non durante il pasto. E "dividere il conto" (alla romana) è accettato tra amici, ma in un ristorante elegante si preferisce pagare tutto insieme.</p>
+    <div class="culture-facts">
+      <div class="cfact"><div class="cnum">6</div><div class="clabel">portate tradizionali</div></div>
+      <div class="cfact"><div class="cnum">2-3h</div><div class="clabel">durata cena italiana</div></div>
+      <div class="cfact"><div class="cnum">coperto</div><div class="clabel">cover charge obbligatorio</div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleEs(){
+  document.body.classList.toggle('hide-es');
+  document.getElementById('toggle-btn').textContent=
+    document.body.classList.contains('hide-es')?'ES 🙈':'ES 👁';
+}
+document.addEventListener('mousemove',e=>{
+  const x=(e.clientX/window.innerWidth-.5)*18,y=(e.clientY/window.innerHeight-.5)*18;
+  document.querySelectorAll('.hero-circle').forEach((c,i)=>{c.style.transform=`translate(${x*(i+1)*.4}px,${y*(i+1)*.4}px)`});
+});
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>io.observe(el));
+function checkGrid(id){
+  const grid=document.getElementById(id);let ok=0;
+  grid.querySelectorAll('.wcard').forEach(c=>{
+    c.classList.remove('ok','trap');
+    if(c.dataset.ok!==undefined){c.classList.add('ok');ok++}else c.classList.add('trap');
+  });
+  document.getElementById(id+'-fb').textContent='✅ '+ok+' parole del ristorante trovate!';
+}
+function checkFill(id){
+  const box=document.getElementById(id);const inputs=box.querySelectorAll('.fill-input');let ok=0;
+  inputs.forEach(inp=>{
+    inp.classList.remove('ok','err');
+    if(inp.value.toLowerCase().trim()===inp.dataset.ans){inp.classList.add('ok');ok++}
+    else if(inp.value.trim())inp.classList.add('err');
+  });
+  document.getElementById(id+'-fb').textContent=ok===inputs.length?'🎉 Perfetto!':'👀 '+ok+'/'+inputs.length+' corretti.';
+}
+</script>
+</body>
+</html>

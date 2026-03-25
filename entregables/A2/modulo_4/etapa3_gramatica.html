@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unità 4 — Come eravamo · Gramática | Italiano Per Piacere A2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;
+  --amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--green:#528e74;--green-dk:#3d6b58;
+  --black:#1a1a18;--white:#ffffff;--hdr:var(--amber-dk);
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--fb);background:var(--cream);color:var(--black)}
+body.hide-es .es{display:none}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #EFCF7F;box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#c8940a;border-bottom-color:#EFCF7F}
+#etoggle{position:fixed;top:.9rem;right:1rem;z-index:200;background:#fde8a0;color:var(--black);border:none;border-radius:2rem;padding:.4rem 1rem;font-family:var(--fb);font-size:.8rem;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.section{max-width:860px;margin:0 auto;padding:3rem 1.5rem}
+.sec-title{font-family:var(--fh);font-style:italic;font-size:clamp(1.5rem,4vw,2rem);color:var(--hdr);margin-bottom:.3rem}
+.sec-sub{color:#666;font-size:.9rem;margin-bottom:1.8rem;line-height:1.5}
+.es{color:#888;font-size:.85rem;font-style:italic}
+.rule-card{background:var(--white);border-radius:.9rem;padding:1.4rem 1.6rem;margin-bottom:1.2rem;border-left:5px solid var(--hdr);box-shadow:0 3px 12px rgba(0,0,0,.07)}
+.rule-card h4{font-weight:700;color:var(--hdr);margin-bottom:.6rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.05em}
+.rule-card p,.rule-card li{font-size:.92rem;line-height:1.65;color:#444}
+.rule-card em{font-style:italic;font-weight:600;color:var(--black)}
+.rule-card ul{padding-left:1.2rem;margin-top:.4rem}
+.gtable{width:100%;border-collapse:collapse;margin:1rem 0;border-radius:.7rem;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.gtable th{background:#fde8a0;color:var(--black);padding:.7rem 1rem;text-align:center;font-size:.82rem;letter-spacing:.05em}
+.gtable td{padding:.65rem 1rem;border-bottom:1px solid var(--cream-dk);font-size:.9rem;text-align:center;background:var(--white)}
+.gtable tr:last-child td{border:none}.gtable tr:hover td{background:var(--cream)}
+.gtable td:first-child{font-weight:700;color:var(--hdr);text-align:left}
+.hl{background:var(--gold);padding:.1rem .3rem;border-radius:.25rem;font-weight:700}
+.uso-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1.2rem 0}
+.uso-card{background:var(--white);border-radius:.8rem;padding:1.1rem 1.2rem;border-top:3px solid var(--hdr);box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.uso-card h5{font-weight:700;color:var(--hdr);font-size:.82rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem}
+.uso-card p{font-size:.85rem;line-height:1.55;color:#555}
+.uso-card em{color:var(--black);font-weight:600;font-style:italic}
+.prac-block{background:var(--white);border-radius:1rem;padding:1.6rem;margin-bottom:1.5rem;box-shadow:0 3px 14px rgba(0,0,0,.07);border:1px solid var(--cream-dk)}
+.prac-block h4{font-family:var(--fh);font-style:italic;color:var(--hdr);margin-bottom:1rem;font-size:1.1rem}
+.prac-row{margin:.6rem 0;font-size:.93rem;line-height:1.9;display:flex;flex-wrap:wrap;align-items:center;gap:.3rem}
+.prac-input{border:none;border-bottom:2.5px solid var(--hdr);background:transparent;padding:.1rem .5rem;font-family:var(--fb);font-size:.92rem;width:140px;outline:none;color:var(--black)}
+.prac-input.ok{border-color:var(--green);color:var(--green-dk)}
+.prac-input.err{border-color:var(--red);color:var(--red)}
+.prac-btn{background:#fde8a0;color:var(--black);border:none;border-radius:2rem;padding:.5rem 1.4rem;font-family:var(--fb);font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.8rem;transition:background .2s}
+.prac-btn:hover{background:var(--amber)}
+.prac-fb{font-size:.83rem;margin-top:.5rem;font-weight:600;color:var(--hdr);min-height:1.1rem}
+.quiz-section{background:var(--cream-dk);padding:3rem 1.5rem}
+.quiz-inner{max-width:700px;margin:0 auto}
+.quiz-title{font-family:var(--fh);font-style:italic;font-size:1.8rem;color:var(--hdr);margin-bottom:.4rem}
+.qcard{background:var(--white);border-radius:1rem;padding:1.4rem 1.6rem;margin-bottom:1.2rem;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.qcard .qtext{font-size:.95rem;font-weight:600;margin-bottom:.9rem;line-height:1.5}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.qopt{background:var(--cream);border:2px solid var(--cream-dk);border-radius:.6rem;padding:.6rem 1rem;cursor:pointer;font-size:.88rem;transition:all .2s;text-align:center}
+.qopt:hover{border-color:var(--hdr);background:var(--gold)}
+.qopt.selected{background:var(--gold);border-color:var(--hdr);font-weight:700}
+.qopt.correct{background:#d4edda;border-color:var(--green)}
+.qopt.wrong{background:#f8d7da;border-color:var(--red)}
+.quiz-submit{background:#fde8a0;color:var(--black);border:none;border-radius:2rem;padding:.65rem 2rem;font-family:var(--fb);font-size:.92rem;font-weight:700;cursor:pointer;display:block;margin:1.5rem auto 0;box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.quiz-result{text-align:center;font-size:1.1rem;font-weight:700;margin-top:1.2rem;min-height:1.5rem;color:var(--hdr)}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+nav > a:not(.nav-logo):hover,nav > a:not(.nav-logo).active{opacity:1;color:#c8940a;border-bottom-color:#EFCF7F}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+
+<button id="etoggle" onclick="toggleEs()">ES 👁</button>
+
+<!-- NAV -->
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#formazione">Formazione</a>
+      <a href="#usi">Usi</a>
+      <a href="#irregolari">Irregolari</a>
+      <a href="#pratica">Pratica</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+
+<!-- FORMAZIONE -->
+<section class="section" id="formazione">
+  <h2 class="sec-title">L'imperfetto — formazione</h2>
+  <p class="sec-sub es">El imperfecto es regular para casi todos los verbos. La raíz es la misma para las 3 conjugaciones.</p>
+
+  <div class="rule-card">
+    <h4>Come si forma</h4>
+    <p>Tema del verbo (infinito - RE) + desinenze: <span class="hl">-vo · -vi · -va · -vamo · -vate · -vano</span></p>
+    <p style="margin-top:.5rem">Esempi: parl<em>are</em> → parl- | legg<em>ere</em> → legg- | part<em>ire</em> → part-</p>
+  </div>
+
+  <table class="gtable">
+    <thead><tr><th>Pronome</th><th>parlare (-ARE)</th><th>leggere (-ERE)</th><th>partire (-IRE)</th><th>fare (irreg.)</th></tr></thead>
+    <tbody>
+      <tr><td>io</td><td>parlav<strong>o</strong></td><td>leggev<strong>o</strong></td><td>partiv<strong>o</strong></td><td>fac<strong>evo</strong></td></tr>
+      <tr><td>tu</td><td>parlav<strong>i</strong></td><td>leggev<strong>i</strong></td><td>partiv<strong>i</strong></td><td>fac<strong>evi</strong></td></tr>
+      <tr><td>lui/lei</td><td>parlav<strong>a</strong></td><td>leggev<strong>a</strong></td><td>partiv<strong>a</strong></td><td>fac<strong>eva</strong></td></tr>
+      <tr><td>noi</td><td>parlav<strong>amo</strong></td><td>leggev<strong>amo</strong></td><td>partiv<strong>amo</strong></td><td>fac<strong>evamo</strong></td></tr>
+      <tr><td>voi</td><td>parlav<strong>ate</strong></td><td>leggev<strong>ate</strong></td><td>partiv<strong>ate</strong></td><td>fac<strong>evate</strong></td></tr>
+      <tr><td>loro</td><td>parlav<strong>ano</strong></td><td>leggev<strong>ano</strong></td><td>partiv<strong>ano</strong></td><td>fac<strong>evano</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-card" style="margin-top:1.2rem">
+    <h4>⭐ Essere all'imperfetto — irregolare!</h4>
+    <p>La forma del verbo <em>essere</em> è completamente irregolare:</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-top:.6rem;font-size:.9rem">
+      <div style="background:var(--cream);border-radius:.4rem;padding:.4rem .7rem"><strong>io</strong> <span class="hl">ero</span></div>
+      <div style="background:var(--cream);border-radius:.4rem;padding:.4rem .7rem"><strong>tu</strong> <span class="hl">eri</span></div>
+      <div style="background:var(--cream);border-radius:.4rem;padding:.4rem .7rem"><strong>lui/lei</strong> <span class="hl">era</span></div>
+      <div style="background:var(--cream);border-radius:.4rem;padding:.4rem .7rem"><strong>noi</strong> <span class="hl">eravamo</span></div>
+      <div style="background:var(--cream);border-radius:.4rem;padding:.4rem .7rem"><strong>voi</strong> <span class="hl">eravate</span></div>
+      <div style="background:var(--cream);border-radius:.4rem;padding:.4rem .7rem"><strong>loro</strong> <span class="hl">erano</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- USI -->
+<section class="section" id="usi" style="background:var(--cream-dk);padding:3rem 1.5rem">
+<div style="max-width:860px;margin:0 auto">
+  <h2 class="sec-title">Quando si usa l'imperfetto</h2>
+  <p class="sec-sub es">El imperfecto tiene varios usos específicos. Todos comparten la idea de "continuidad o repetición en el pasado".</p>
+
+  <div class="uso-grid">
+    <div class="uso-card">
+      <h5>1. Descrizione</h5>
+      <p>Describir cómo era algo en el pasado (situaciones, lugares, personas).</p>
+      <p><em>"La città era piccola e silenziosa."</em></p>
+    </div>
+    <div class="uso-card">
+      <h5>2. Abitudine</h5>
+      <p>Acciones habituales o repetidas en el pasado.</p>
+      <p><em>"Da bambino mangiavo sempre la pizza il venerdì."</em></p>
+    </div>
+    <div class="uso-card">
+      <h5>3. Stato mentale/fisico</h5>
+      <p>Estados de ánimo, sensaciones físicas en el pasado.</p>
+      <p><em>"Avevo paura del buio. Mi sentivo stanco."</em></p>
+    </div>
+    <div class="uso-card">
+      <h5>4. Azione in corso</h5>
+      <p>Acción en progreso cuando ocurrió algo más.</p>
+      <p><em>"Dormivo quando ha suonato il telefono."</em></p>
+    </div>
+    <div class="uso-card">
+      <h5>5. Età / ora nel passato</h5>
+      <p>Para indicar la edad o la hora en el pasado.</p>
+      <p><em>"Avevo 10 anni." / "Erano le tre di notte."</em></p>
+    </div>
+    <div class="uso-card">
+      <h5>6. "Si" impersonale</h5>
+      <p>Acciones genéricas o de toda la gente.</p>
+      <p><em>"Una volta si andava al cinema il sabato."</em></p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- IRREGOLARI -->
+<section class="section" id="irregolari">
+  <h2 class="sec-title">Imperfetto irregolare</h2>
+  <p class="sec-sub es">Solo pocos verbos son irregolari — y el patrón es simple: usan una raíz diferente.</p>
+
+  <table class="gtable">
+    <thead><tr><th>Infinito</th><th>Radice imp.</th><th>io</th><th>lui/lei</th><th>loro</th></tr></thead>
+    <tbody>
+      <tr><td><strong>essere</strong></td><td>er-</td><td>ero</td><td>era</td><td>erano</td></tr>
+      <tr><td><strong>fare</strong></td><td>fac-</td><td>facevo</td><td>faceva</td><td>facevano</td></tr>
+      <tr><td><strong>dire</strong></td><td>dic-</td><td>dicevo</td><td>diceva</td><td>dicevano</td></tr>
+      <tr><td><strong>bere</strong></td><td>bev-</td><td>bevevo</td><td>beveva</td><td>bevevano</td></tr>
+      <tr><td><strong>tradurre</strong></td><td>traduc-</td><td>traducevo</td><td>traduceva</td><td>traducevano</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-card" style="margin-top:1rem">
+    <h4>💡 Trucco per ricordare</h4>
+    <p>La radice irregolare dell'imperfetto è spesso uguale alla prima persona singolare del presente: <em>fac<strong>cio</strong> → fac-evo</em>, <em>dic<strong>o</strong> → dic-evo</em>, <em>bev<strong>o</strong> → bev-evo</em>.</p>
+  </div>
+
+  <!-- PRACTICE 1 -->
+  <div class="prac-block" id="prac1" style="margin-top:1.5rem">
+    <h4>Pratica 1 — Formazione dell'imperfetto</h4>
+    <div class="prac-row">1. Io (parlare) <input class="prac-input" data-ans="parlavo" placeholder="imperfetto"> italiano da bambino.</div>
+    <div class="prac-row">2. Mia madre (fare) <input class="prac-input" data-ans="faceva" placeholder="imperfetto"> la spesa ogni mattina.</div>
+    <div class="prac-row">3. Noi (essere) <input class="prac-input" data-ans="eravamo" placeholder="imperfetto"> giovani e felici.</div>
+    <div class="prac-row">4. I ragazzi (portare) <input class="prac-input" data-ans="portavano" placeholder="imperfetto"> i pantaloni a zampa.</div>
+    <div class="prac-row">5. Tu (bere) <input class="prac-input" data-ans="bevevi" placeholder="imperfetto"> sempre il caffè la mattina?</div>
+    <button class="prac-btn" onclick="checkPrac('prac1')">Controlla ✓</button>
+    <div class="prac-fb" id="prac1-fb"></div>
+  </div>
+
+  <!-- PRACTICE 2 -->
+  <div class="prac-block" id="prac2">
+    <h4>Pratica 2 — Usi dell'imperfetto</h4>
+    <p class="es" style="font-size:.83rem;margin-bottom:.8rem">Indica qué uso es: (a) descripción | (b) hábito | (c) estado | (d) acción en corso:</p>
+    <div class="prac-row">1. <em>"Dormivo quando è arrivato."</em> → Uso: <input class="prac-input" data-ans="d" placeholder="a/b/c/d" style="width:60px"></div>
+    <div class="prac-row">2. <em>"Da giovane portavo sempre la giacca."</em> → Uso: <input class="prac-input" data-ans="b" placeholder="a/b/c/d" style="width:60px"></div>
+    <div class="prac-row">3. <em>"La casa era grande e luminosa."</em> → Uso: <input class="prac-input" data-ans="a" placeholder="a/b/c/d" style="width:60px"></div>
+    <div class="prac-row">4. <em>"Avevo molta fame!"</em> → Uso: <input class="prac-input" data-ans="c" placeholder="a/b/c/d" style="width:60px"></div>
+    <button class="prac-btn" onclick="checkPrac('prac2')">Controlla ✓</button>
+    <div class="prac-fb" id="prac2-fb"></div>
+  </div>
+</section>
+
+<!-- PRATICA LIBERA -->
+<section class="section" id="pratica" style="background:var(--cream-dk);padding:3rem 1.5rem">
+<div style="max-width:860px;margin:0 auto">
+  <h2 class="sec-title">Pratica combinata</h2>
+
+  <div class="prac-block" id="prac3">
+    <h4>Pratica 3 — Come si vestivano?</h4>
+    <p class="es" style="font-size:.83rem;margin-bottom:.8rem">Completa con l'imperfetto giusto (portare · avere · essere · andare · indossare):</p>
+    <div class="prac-row">1. Negli anni '70 le ragazze <input class="prac-input" data-ans="portavano" placeholder="imperfetto"> la gonna a vita bassa.</div>
+    <div class="prac-row">2. I capelli lunghi <input class="prac-input" data-ans="erano" placeholder="imperfetto"> di moda per tutti, uomini e donne.</div>
+    <div class="prac-row">3. Mia nonna <input class="prac-input" data-ans="aveva" placeholder="imperfetto"> sempre un vestito elegante il domenica.</div>
+    <div class="prac-row">4. Si <input class="prac-input" data-ans="andava" placeholder="imperfetto"> in discoteca con gli abiti più colorati.</div>
+    <div class="prac-row">5. Le signore <input class="prac-input" data-ans="indossavano" placeholder="imperfetto"> il cappotto di lana d'inverno.</div>
+    <button class="prac-btn" onclick="checkPrac('prac3')">Controlla ✓</button>
+    <div class="prac-fb" id="prac3-fb"></div>
+  </div>
+</div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz-section" id="quiz">
+  <div class="quiz-inner">
+    <h2 class="quiz-title">Quiz — Come eravamo ✨</h2>
+
+    <div class="qcard">
+      <div class="qtext">1. Qual è la forma corretta? "Da bambino io ___ (giocare) in giardino ogni pomeriggio."</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q1','a')">a) giocavo</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','b')">b) ho giocato</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','c')">c) gioco</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','d')">d) giocai</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">2. Imperfetto di "fare" per "noi":</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q2','a')">a) facevamo</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','b')">b) facebamo</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','c')">c) faciamo</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','d')">d) facciavamo</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">3. "Dormivo quando ___ il telefono." Quale tempo per il secondo verbo?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q3','a')">a) suonava</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','b')">b) ha suonato</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','c')">c) suona</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','d')">d) suonerà</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">4. Quale frase usa correttamente l'imperfetto per un'abitudine?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q4','a')">a) Ieri ho mangiato la pizza.</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','b')">b) Ogni giovedì mangiavamo la pizza in famiglia.</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','c')">c) Domani mangio la pizza.</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','d')">d) Mangio la pizza stasera.</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">5. Imperfetto di "essere" per "loro" (i ragazzi):</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q5','a')">a) erano</td></div>
+        <div class="qopt" onclick="selectOpt(this,'q5','b')">b) eravano</div>
+        <div class="qopt" onclick="selectOpt(this,'q5','c')">c) stavano</div>
+        <div class="qopt" onclick="selectOpt(this,'q5','d')">d) erano stati</div>
+      </div>
+    </div>
+
+    <button class="quiz-submit" onclick="submitQuiz()">Controlla il quiz ✓</button>
+    <div class="quiz-result" id="quiz-result"></div>
+  </div>
+</section>
+
+<script>
+function toggleEs(){
+  document.body.classList.toggle('hide-es');
+  document.getElementById('etoggle').textContent=
+    document.body.classList.contains('hide-es')?'ES 🙈':'ES 👁';
+}
+function checkPrac(id){
+  const block=document.getElementById(id);const inputs=block.querySelectorAll('.prac-input');let ok=0;
+  inputs.forEach(inp=>{
+    inp.classList.remove('ok','err');
+    if(inp.value.toLowerCase().trim()===inp.dataset.ans){inp.classList.add('ok');ok++}
+    else if(inp.value.trim())inp.classList.add('err');
+  });
+  document.getElementById(id+'-fb').textContent=ok===inputs.length?'✅ Perfetto!':'👀 '+ok+'/'+inputs.length+' corretti.';
+}
+const ANSWERS={q1:'a',q2:'a',q3:'b',q4:'b',q5:'a'};
+const selected={};
+function selectOpt(el,qid,opt){
+  el.closest('.qcard').querySelectorAll('.qopt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');selected[qid]=opt;
+}
+function submitQuiz(){
+  let score=0;
+  document.querySelectorAll('.qcard').forEach((card,i)=>{
+    const qid='q'+(i+1);
+    card.querySelectorAll('.qopt').forEach(o=>{
+      const optLetter=o.textContent.trim()[0];
+      o.classList.remove('correct','wrong');
+      if(optLetter===ANSWERS[qid])o.classList.add('correct');
+      else if(o.classList.contains('selected'))o.classList.add('wrong');
+    });
+    if(selected[qid]===ANSWERS[qid])score++;
+  });
+  const res=document.getElementById('quiz-result');
+  res.textContent=score===5?'🎉 Perfetto! 5/5 — L\'imperfetto è tuo!':
+    score>=3?`✅ ${score}/5 — Brava! Ripassa gli errori.`:
+    `👀 ${score}/5 — Rileggi gli usi e riprova!`;
+}
+</script>
+</body>
+</html>

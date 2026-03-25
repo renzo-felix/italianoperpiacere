@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Módulo 6 A2 · Gramática — Buongiorno, desidera?</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--red-dk:#a8382a;--teal:#78a6ba;--teal-dk:#5a8ea0;
+  --green:#528e74;--green-dk:#3d6b58;--black:#1a1a18;--white:#ffffff;
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+  --hdr:var(--teal-dk);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #78a6ba;box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#3d7a94;border-bottom-color:#78a6ba}
+#etoggle{background:rgba(0,0,0,.07);border:1px solid rgba(0,0,0,.12);color:var(--black);padding:6px 12px;border-radius:20px;cursor:pointer;font-size:.78rem;font-family:var(--fb);font-weight:600;white-space:nowrap}
+#etoggle:hover{background:rgba(255,255,255,.28)}
+body.hide-es .es{display:none}
+
+/* HERO */
+.hero{background:#deeef5;border-bottom:3px solid #78a6ba;color:var(--black);padding:48px 20px 40px;text-align:center}
+.hero::before,.hero::after{display:none}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:2.2rem;margin-bottom:8px;color:#1a1a18}
+.hero p{color:#1a1a18;opacity:.75;font-size:1.05rem;max-width:600px;margin:0 auto}
+
+/* SECTIONS */
+.section{max-width:900px;margin:0 auto;padding:48px 20px}
+.section h2{font-family:var(--fh);font-style:italic;font-size:1.7rem;color:var(--hdr);margin-bottom:24px;padding-bottom:8px;border-bottom:2px solid var(--teal)}
+
+/* RULE CARD */
+.rule-card{background:#fff;border-left:5px solid var(--teal);border-radius:0 12px 12px 0;padding:20px 24px;margin:20px 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.rule-card h3{color:var(--hdr);font-size:1rem;font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.rule-card p,.rule-card li{font-size:.95rem;margin-bottom:6px}
+.rule-card ul{padding-left:18px}
+.rule-card .es{color:#666;font-size:.88rem}
+
+/* GRAMMAR TABLE */
+.gtable{width:100%;border-collapse:collapse;margin:16px 0;font-size:.92rem}
+.gtable th{background:#b8d8e8;color:#1f4d60;padding:10px 14px;text-align:left;font-weight:600}
+.gtable td{padding:9px 14px;border-bottom:1px solid var(--cream-dk)}
+.gtable tr:nth-child(even) td{background:#eef6fa}
+.gtable tr:hover{background:#e0eff5}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.78rem;font-weight:700;margin-left:6px}
+.tag-teal{background:#d4ecf5;color:var(--teal-dk)}
+.tag-gold{background:#fef3cc;color:#8a6500}
+
+/* SCHEME BOX */
+.scheme{background:linear-gradient(135deg,#eef6fa 0%,#c8e5f0 100%);color:var(--black);border-radius:12px;padding:20px 24px;margin:20px 0;font-size:1rem;font-family:monospace}
+.scheme span.hl{color:var(--gold);font-weight:700}
+.scheme .line{margin:6px 0}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+.col-box{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.col-box h4{color:var(--hdr);font-weight:700;font-size:.95rem;margin-bottom:10px;text-transform:uppercase;letter-spacing:.4px}
+.col-box .item{font-size:.9rem;margin:5px 0;padding:4px 0;border-bottom:1px solid var(--cream-dk)}
+
+/* PRACTICE */
+.prac-box{background:#fff;border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 3px 12px rgba(0,0,0,.1)}
+.prac-box h3{color:var(--hdr);font-weight:700;margin-bottom:6px}
+.prac-box .inst{font-size:.88rem;color:#666;margin-bottom:18px}
+.prac-item{display:flex;align-items:center;gap:10px;margin:12px 0;flex-wrap:wrap}
+.prac-item span{font-size:.93rem;flex-shrink:0}
+.prac-input{border:2px solid var(--cream-dk);border-radius:8px;padding:7px 12px;font-family:var(--fb);font-size:.92rem;width:200px;transition:border .2s}
+.prac-input:focus{outline:none;border-color:var(--teal)}
+.prac-input.ok{border-color:var(--green);background:#edf7f2}
+.prac-input.no{border-color:var(--red);background:#fdf0ee}
+.prac-btn{background:#c8e5f0;color:var(--black);border:none;border-radius:8px;padding:8px 20px;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.88rem;transition:background .2s}
+.prac-btn:hover{background:var(--teal-dk)}
+.prac-fb{font-size:.82rem;margin-top:8px;min-height:20px;font-weight:600}
+.prac-fb.ok{color:var(--green)}
+.prac-fb.no{color:var(--red)}
+
+/* QUIZ */
+.quiz-box{background:linear-gradient(135deg,#eef6fa 0%,#c8e5f0 100%);border-radius:16px;padding:32px;margin:24px 0;color:var(--black)}
+.quiz-box h3{font-family:var(--fh);font-style:italic;font-size:1.4rem;margin-bottom:20px}
+.q-item{background:rgba(0,0,0,.06);border-radius:10px;padding:16px 20px;margin:14px 0}
+.q-item p{font-size:.95rem;margin-bottom:12px;font-weight:600}
+.q-opts{display:flex;flex-direction:column;gap:8px}
+.q-opt{background:rgba(0,0,0,.05);border:2px solid transparent;border-radius:8px;padding:9px 16px;cursor:pointer;font-size:.9rem;transition:all .2s}
+.q-opt:hover{background:rgba(255,255,255,.25)}
+.q-opt.selected{border-color:var(--gold);background:rgba(239,207,127,.25)}
+.q-opt.correct{border-color:#6fcf97;background:rgba(111,207,151,.25)}
+.q-opt.wrong{border-color:#eb5757;background:rgba(235,87,87,.2)}
+.quiz-submit{display:block;margin:24px auto 0;background:var(--gold);color:var(--black);border:none;border-radius:10px;padding:12px 32px;font-family:var(--fb);font-weight:700;font-size:1rem;cursor:pointer;transition:opacity .2s}
+.quiz-submit:hover{opacity:.88}
+#quiz-result{text-align:center;margin-top:16px;font-size:1.1rem;font-weight:700;min-height:28px}
+
+/* CULTURE */
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:4px solid var(--teal-dk);padding:40px 20px;margin-top:40px}
+.culture-inner{max-width:700px;margin:0 auto;text-align:center}
+.culture-inner h3{font-family:var(--fh);font-style:italic;font-size:1.5rem;color:var(--black);margin-bottom:12px}
+.culture-inner p{font-size:.95rem;color:var(--black);max-width:600px;margin:0 auto}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+nav > a:not(.nav-logo):hover,nav > a:not(.nav-logo).active{opacity:1;color:#3d7a94;border-bottom-color:#78a6ba}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#cel">Ce l'ho</a>
+      <a href="#imp">Imperativo + pronomi</a>
+      <a href="#irreg">Irregolari</a>
+      <a href="#pratica">Pratica</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+
+<div class="hero">
+  <h1>Buongiorno, desidera?</h1>
+  <p>Ce l'ho · Imperativo informale con pronomi · Imperativo irregolare</p>
+</div>
+
+<!-- CE L'HO -->
+<div class="section" id="cel">
+  <h2>Ce l'ho — "Lo tengo / lo tenemos"</h2>
+
+  <div class="rule-card">
+    <h3>¿Qué significa "ce l'ho"?</h3>
+    <p><strong>Ce l'ho</strong> es una expresión italiana muy usada que significa <em>lo tengo</em>, <em>lo tenemos disponible</em>. Se usa mucho en tiendas y mercados.</p>
+    <p class="es">Se forma con: <strong>ce + lo/la (elidido) + avere</strong></p>
+    <ul>
+      <li>Ce l'ho → <span class="es">yo lo tengo</span></li>
+      <li>Non ce l'ho → <span class="es">no lo tengo</span></li>
+      <li>Ce l'abbiamo → <span class="es">nosotros lo tenemos</span></li>
+    </ul>
+  </div>
+
+  <table class="gtable">
+    <tr><th>Persona</th><th>Affermativo</th><th>Negativo</th><th class="es">Español</th></tr>
+    <tr><td>io</td><td><strong>ce l'ho</strong></td><td>non ce l'ho</td><td class="es">lo tengo / no lo tengo</td></tr>
+    <tr><td>tu</td><td><strong>ce l'hai</strong></td><td>non ce l'hai</td><td class="es">lo tienes / no lo tienes</td></tr>
+    <tr><td>lui/lei</td><td><strong>ce l'ha</strong></td><td>non ce l'ha</td><td class="es">lo tiene / no lo tiene</td></tr>
+    <tr><td>noi</td><td><strong>ce l'abbiamo</strong></td><td>non ce l'abbiamo</td><td class="es">lo tenemos / no lo tenemos</td></tr>
+    <tr><td>voi</td><td><strong>ce l'avete</strong></td><td>non ce l'avete</td><td class="es">lo tenéis / no lo tenéis</td></tr>
+    <tr><td>loro</td><td><strong>ce l'hanno</strong></td><td>non ce l'hanno</td><td class="es">lo tienen / no lo tienen</td></tr>
+  </table>
+
+  <div class="rule-card">
+    <h3>Ejemplos en contexto</h3>
+    <ul>
+      <li>— Scusi, ha il pecorino romano? — Sì, <strong>ce l'abbiamo</strong>! <span class="es">— ¿Tiene pecorino romano? — ¡Sí, lo tenemos!</span></li>
+      <li>— Hai il numero di Giulia? — No, non <strong>ce l'ho</strong>. <span class="es">— ¿Tienes el número de Giulia? — No, no lo tengo.</span></li>
+      <li>— Ragazzi, <strong>ce l'avete</strong> il biglietto? <span class="es">— Chicos, ¿tenéis la entrada?</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- IMPERATIVO + PRONOMI -->
+<div class="section" id="imp" style="background:var(--cream-dk)">
+  <h2>Imperativo informale + pronomi</h2>
+
+  <div class="rule-card">
+    <h3>Regola: il pronome si attacca all'imperativo</h3>
+    <p>Con el imperativo <strong>afirmativo</strong>, el pronombre se une directamente al verbo:</p>
+    <p class="es">El pronombre va DESPUÉS del verbo, pegado a él.</p>
+    <ul>
+      <li>Chiamami! <span class="es">¡Llámame!</span></li>
+      <li>Portalo al mercato. <span class="es">Llévalo al mercado.</span></li>
+      <li>Prendila, è fresca! <span class="es">¡Cógela, está fresca!</span></li>
+    </ul>
+    <p style="margin-top:10px">Con el imperativo <strong>negativo</strong>, el pronombre puede ir antes O después (pegado al infinitivo):</p>
+    <ul>
+      <li>Non mi chiamare / Non chiamarmi. <span class="es">No me llames.</span></li>
+      <li>Non lo prendere / Non prenderlo. <span class="es">No lo cojas.</span></li>
+    </ul>
+  </div>
+
+  <div class="scheme">
+    <div class="line"><span class="hl">Imperativo TU + pronome diretto:</span></div>
+    <div class="line">compra + lo → <span class="hl">compralo</span> &nbsp;|&nbsp; prendi + la → <span class="hl">prendila</span></div>
+    <div class="line">porta + mi → <span class="hl">portami</span> &nbsp;|&nbsp; guarda + ci → <span class="hl">guardaci</span></div>
+    <div class="line" style="margin-top:10px"><span class="hl">Imperativo VOI + pronome:</span></div>
+    <div class="line">prendete + lo → <span class="hl">prendetelo</span></div>
+  </div>
+
+  <table class="gtable">
+    <tr><th>Frase base</th><th>Con pronome</th><th class="es">Significado</th></tr>
+    <tr><td>Compra il formaggio.</td><td><strong>Compralo!</strong></td><td class="es">¡Cómpralo!</td></tr>
+    <tr><td>Prendi la mozzarella.</td><td><strong>Prendila!</strong></td><td class="es">¡Cógela!</td></tr>
+    <tr><td>Porta i pomodori.</td><td><strong>Portali!</strong></td><td class="es">¡Tráelos!</td></tr>
+    <tr><td>Chiama le amiche.</td><td><strong>Chiamale!</strong></td><td class="es">¡Llámales!</td></tr>
+    <tr><td>Aspetta me.</td><td><strong>Aspettami!</strong></td><td class="es">¡Espérame!</td></tr>
+    <tr><td>Guarda noi.</td><td><strong>Guardaci!</strong></td><td class="es">¡Míranos!</td></tr>
+  </table>
+</div>
+
+<!-- IRREGOLARI -->
+<div class="section" id="irreg">
+  <h2>Imperativo irregolare + raddoppiamento</h2>
+
+  <div class="rule-card">
+    <h3>Verbi irregolari all'imperativo (tu)</h3>
+    <p>Estos verbos tienen formas especiales en la persona <em>tu</em>. Además, cuando se les añade un pronombre monosílabo, <strong>la consonante inicial del pronombre se dobla</strong>.</p>
+  </div>
+
+  <table class="gtable">
+    <tr><th>Verbo</th><th>Imperativo (tu)</th><th>+ pronome</th><th class="es">Ejemplo</th></tr>
+    <tr><td>dare</td><td><strong>da'</strong> (o dai)</td><td>da' + mi → <strong>dammi</strong></td><td class="es">¡Dame el pan!</td></tr>
+    <tr><td>dire</td><td><strong>di'</strong></td><td>di' + mi → <strong>dimmi</strong></td><td class="es">¡Dime la verdad!</td></tr>
+    <tr><td>fare</td><td><strong>fa'</strong> (o fai)</td><td>fa' + lo → <strong>fallo</strong></td><td class="es">¡Hazlo ahora!</td></tr>
+    <tr><td>andare</td><td><strong>va'</strong> (o vai)</td><td>va' + ci → <strong>vacci</strong></td><td class="es">¡Ve allí!</td></tr>
+    <tr><td>stare</td><td><strong>sta'</strong> (o stai)</td><td>sta' + ci → <strong>stacci</strong></td><td class="es">¡Quédate ahí!</td></tr>
+    <tr><td>essere</td><td><strong>sii</strong></td><td>sii + lo → <strong>siilo</strong> (raro)</td><td class="es">¡Sé bueno!</td></tr>
+    <tr><td>avere</td><td><strong>abbi</strong></td><td>—</td><td class="es">¡Ten paciencia!</td></tr>
+    <tr><td>venire</td><td><strong>vieni</strong></td><td>vieni + ci → <strong>vienici</strong></td><td class="es">¡Ven aquí!</td></tr>
+  </table>
+
+  <div class="rule-card">
+    <h3>⚡ Raddoppiamento</h3>
+    <p>Con <strong>da' / di' / fa' / va' / sta'</strong>, si el pronombre comienza con consonante, esa consonante se duplica:</p>
+    <ul>
+      <li>da' + mi → <strong>dammi</strong> (no "dami")</li>
+      <li>di' + mi → <strong>dimmi</strong></li>
+      <li>fa' + lo → <strong>fallo</strong> (la l se dobla)</li>
+      <li>va' + ci → <strong>vacci</strong> (la c se dobla)</li>
+      <li>da' + lo → <strong>dallo</strong></li>
+    </ul>
+    <p class="es">⚠️ Excepción: con "gli" no hay doblamiento: <strong>dagli</strong>, <strong>digli</strong>.</p>
+  </div>
+</div>
+
+<!-- PRATICA -->
+<div class="section" id="pratica" style="background:var(--cream-dk)">
+  <h2>Pratica</h2>
+
+  <!-- PRAC 1: ce l'ho -->
+  <div class="prac-box">
+    <h3>Esercizio 1 — Ce l'ho</h3>
+    <p class="inst">Completa con la forma correcta de "ce l'ho/hai/ha..."</p>
+    <div class="prac-item">
+      <span>1. — Hai la ricetta? — Sì, ______ !</span>
+      <input class="prac-input" id="p1a" data-ans="ce l'ho" placeholder="ce l'...">
+    </div>
+    <div class="prac-item">
+      <span>2. Il negozio ______ , il pane fresco.</span>
+      <input class="prac-input" id="p1b" data-ans="ce l'ha" placeholder="ce l'...">
+    </div>
+    <div class="prac-item">
+      <span>3. — Ragazzi, ______ il biglietto? — No, non ______ !</span>
+      <input class="prac-input" id="p1c" data-ans="ce l'avete" placeholder="(voi)">
+      <input class="prac-input" id="p1d" data-ans="ce l'abbiamo" placeholder="(noi)">
+    </div>
+    <button class="prac-btn" onclick="checkPrac('p1')">Controlla</button>
+    <div class="prac-fb" id="p1-fb"></div>
+  </div>
+
+  <!-- PRAC 2: imperativo + pronomi -->
+  <div class="prac-box">
+    <h3>Esercizio 2 — Imperativo + pronomi</h3>
+    <p class="inst">Transforma usando el imperativo con pronombre.</p>
+    <div class="prac-item">
+      <span>1. Compra il latte! → ______!</span>
+      <input class="prac-input" id="p2a" data-ans="compralo" placeholder="imper. + pronome">
+    </div>
+    <div class="prac-item">
+      <span>2. Prendi la mozzarella! → ______!</span>
+      <input class="prac-input" id="p2b" data-ans="prendila" placeholder="imper. + pronome">
+    </div>
+    <div class="prac-item">
+      <span>3. Porta i pomodori! → ______!</span>
+      <input class="prac-input" id="p2c" data-ans="portali" placeholder="imper. + pronome">
+    </div>
+    <div class="prac-item">
+      <span>4. Chiama le amiche! → ______!</span>
+      <input class="prac-input" id="p2d" data-ans="chiamale" placeholder="imper. + pronome">
+    </div>
+    <button class="prac-btn" onclick="checkPrac('p2')">Controlla</button>
+    <div class="prac-fb" id="p2-fb"></div>
+  </div>
+
+  <!-- PRAC 3: irregolari -->
+  <div class="prac-box">
+    <h3>Esercizio 3 — Irregolari con raddoppiamento</h3>
+    <p class="inst">Usa la forma correcta del imperativo irregular con pronombre.</p>
+    <div class="prac-item">
+      <span>1. dare + mi → ______</span>
+      <input class="prac-input" id="p3a" data-ans="dammi" placeholder="irreg. + pron.">
+    </div>
+    <div class="prac-item">
+      <span>2. fare + lo → ______</span>
+      <input class="prac-input" id="p3b" data-ans="fallo" placeholder="irreg. + pron.">
+    </div>
+    <div class="prac-item">
+      <span>3. andare + ci → ______</span>
+      <input class="prac-input" id="p3c" data-ans="vacci" placeholder="irreg. + pron.">
+    </div>
+    <div class="prac-item">
+      <span>4. dire + mi → ______</span>
+      <input class="prac-input" id="p3d" data-ans="dimmi" placeholder="irreg. + pron.">
+    </div>
+    <button class="prac-btn" onclick="checkPrac('p3')">Controlla</button>
+    <div class="prac-fb" id="p3-fb"></div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="quiz">
+  <div class="quiz-box">
+    <h3>Quiz finale — Buongiorno, desidera?</h3>
+
+    <div class="q-item" id="qq1">
+      <p>1. — Hai il cambio? — No, non ______ .</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q1','a')">a) ce l'ho</div>
+        <div class="q-opt" onclick="selectOpt(this,'q1','b')">b) ce l'abbiamo</div>
+        <div class="q-opt" onclick="selectOpt(this,'q1','c')">c) ce l'hai</div>
+      </div>
+    </div>
+
+    <div class="q-item" id="qq2">
+      <p>2. Compra il pane! → ______!</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q2','a')">a) compra lo</div>
+        <div class="q-opt" onclick="selectOpt(this,'q2','b')">b) compralo</div>
+        <div class="q-opt" onclick="selectOpt(this,'q2','c')">c) lo compra</div>
+      </div>
+    </div>
+
+    <div class="q-item" id="qq3">
+      <p>3. ¿Cuál es el imperativo de "dare" con "mi"?</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q3','a')">a) dami</div>
+        <div class="q-opt" onclick="selectOpt(this,'q3','b')">b) dammi</div>
+        <div class="q-opt" onclick="selectOpt(this,'q3','c')">c) da mi</div>
+      </div>
+    </div>
+
+    <div class="q-item" id="qq4">
+      <p>4. Non prendere il formaggio. → Non ______ .</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q4','a')">a) prendilo</div>
+        <div class="q-opt" onclick="selectOpt(this,'q4','b')">b) prenderlo</div>
+        <div class="q-opt" onclick="selectOpt(this,'q4','c')">c) non prenderlo</div>
+      </div>
+    </div>
+
+    <div class="q-item" id="qq5">
+      <p>5. "Vacci!" viene dal verbo ______.</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q5','a')">a) venire</div>
+        <div class="q-opt" onclick="selectOpt(this,'q5','b')">b) stare</div>
+        <div class="q-opt" onclick="selectOpt(this,'q5','c')">c) andare</div>
+      </div>
+    </div>
+
+    <button class="quiz-submit" onclick="submitQuiz()">Invia le risposte</button>
+    <div id="quiz-result"></div>
+  </div>
+</div>
+
+<div class="culture">
+  <div class="culture-inner">
+    <h3>🛒 Il mercato rionale — un'istituzione italiana</h3>
+    <p>En Italia, el <em>mercato rionale</em> (mercado de barrio) es mucho más que un lugar de compras: es un espacio social donde se habla, se discute, se ríe y se intercambian recetas. Los vendedores usan el imperativo todo el tiempo: <em>Prendila, è freschissima!</em> Conocer estas expresiones te hace sonar completamente italiano.</p>
+  </div>
+</div>
+
+<script>
+const ANSWERS={q1:'a',q2:'b',q3:'b',q4:'c',q5:'c'};
+const selected={};
+
+function selectOpt(el,qid,opt){
+  const box=document.getElementById('qq'+qid.slice(1));
+  box.querySelectorAll('.q-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  selected[qid]=opt;
+}
+
+function submitQuiz(){
+  let score=0;
+  for(const[qid,ans] of Object.entries(ANSWERS)){
+    const box=document.getElementById('qq'+qid.slice(1));
+    const opts=box.querySelectorAll('.q-opt');
+    opts.forEach(o=>{
+      const letter=o.onclick.toString().match(/'([a-c])'\)$/)?.[1]||o.getAttribute('onclick').slice(-3,-2);
+      if(o.classList.contains('selected')){
+        if(selected[qid]===ans){o.classList.add('correct');score++;}
+        else o.classList.add('wrong');
+      }
+      if(letter===ans && !o.classList.contains('correct')) o.style.opacity='1';
+    });
+    // mark correct answer
+    opts.forEach(o=>{
+      const oc=o.getAttribute('onclick');
+      if(oc && oc.includes("'"+ans+"'")){o.style.border='2px solid #6fcf97';}
+    });
+  }
+  document.getElementById('quiz-result').textContent=`Risultato: ${score}/5 — ${score>=4?'Ottimo! 🎉':score>=3?'Bene! 👍':'Riprova! 💪'}`;
+}
+
+function checkPrac(id){
+  const box=document.querySelector(`[onclick="checkPrac('${id}')"]`).closest('.prac-box');
+  const inputs=box.querySelectorAll('.prac-input');
+  let ok=0;
+  inputs.forEach(inp=>{
+    const v=inp.value.toLowerCase().trim();
+    const a=inp.dataset.ans.toLowerCase().trim();
+    inp.classList.remove('ok','no');
+    if(v===a){inp.classList.add('ok');ok++;}
+    else if(v) inp.classList.add('no');
+  });
+  const fb=box.querySelector('.prac-fb');
+  fb.className='prac-fb'+(ok===inputs.length?' ok':' no');
+  fb.textContent=ok===inputs.length?'✓ Perfetto!':'✗ Ricontrolla le risposte evidenziate in rosso.';
+}
+
+// nav active on scroll
+const secs=[...document.querySelectorAll('.section[id]')];
+const links=[...document.querySelectorAll('nav a')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id;});
+  links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur);});
+},{passive:true});
+</script>
+</body>
+</html>

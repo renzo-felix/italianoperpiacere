@@ -5,9 +5,12 @@
 ---
 
 TIPO: Imagen
-FUENTE SUGERIDA: Infografía o ilustración de una jornada típica italiana — buscar "giornata tipo italiano infografica" o "routine italiana illustrazione"
-TÍTULO: La giornata di un italiano tipico
-DESCRIPCIÓN: Una infografía o ilustración que muestre la rutina diaria de un italiano: *si sveglia alle sette, fa colazione al bar, va al lavoro, torna a casa, cena in famiglia...* El objetivo es activar los verbos reflexivos y los adverbios de frecuencia antes de empezar la unidad.
+FUENTE: Flickr — The Italian Voice
+URL: https://live.staticflickr.com/3010/2475827570_2f6940b707.jpg
+PÁGINA DE LA OBRA: https://www.flickr.com/photos/italianvoice/2475827570
+LICENCIA: Creative Commons CC BY 2.0 (uso libre con atribución)
+TÍTULO: "Homemade Cappuccino" — La colazione italiana al bar
+DESCRIPCIÓN: Fotografía de un cappuccino artesanal — el símbolo de la colazione italiana. En Italia, ir al bar por la mañana a tomar un cappuccino es el primer ritual de la giornata. Activa perfectamente los verbos reflexivos (svegliarsi, alzarsi, fare colazione) y la rutina diaria antes de comenzar la unidad. El autor del perfil Flickr es "The Italian Voice", detalle que hace la fuente aún más relevante culturalmente.
 
 ---
 
@@ -20,4 +23,5 @@ DESCRIPCIÓN: Una infografía o ilustración que muestre la rutina diaria de un 
 - A che ora si alza? Che cosa fa la mattina?
 - Come si chiama questa persona? Dove abita, secondo voi?
 
-**Diritti:** Usare immagini in licenza CC0 o creare una infografía propia con herramientas gratuitas (Canva). Solo uso educativo.
+**Diritti:** Creative Commons CC BY 2.0 — uso libre con atribución al autor.
+Atribuir como: Foto "Homemade Cappuccino" · The Italian Voice · CC BY 2.0 · Flickr · flickr.com/photos/italianvoice/2475827570

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -88,7 +88,7 @@
 
     .verb-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; margin-bottom: 1.25rem; }
     .verb-table th {
-      background: var(--ipp-green); color: var(--ipp-gold);
+      background:#fbc8c2; color: var(--ipp-gold);
       padding: 0.65rem 1rem; text-align: left;
       font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px;
     }
@@ -218,24 +218,39 @@
 
     /* ── FOOTER ── */
     .footer { text-align:center; padding:2rem 1rem; font-size:0.77rem; color:#aaa; }
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
   </style>
 </head>
 <body>
 
   <header class="header">
+    <img src="../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img">
     <div class="header-badge">Unità 1 · A1 · Etapa 3</div>
     <h1>Gramática en sí</h1>
     <p>Di dove sei? · Essere · Andare · Preposizioni · Espressioni</p>
   </header>
 
   <nav class="sticky-nav">
-    <a href="#essere">🔵 ESSERE</a>
+    <a class="nav-logo" href="#"><img src="../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#essere">🔵 ESSERE</a>
     <a href="#andare">🔴 ANDARE</a>
     <a href="#confronto">⚡ Comparar</a>
     <a href="#prep">📌 DI / A</a>
     <a href="#espressioni">✨ Espressioni</a>
     <a href="#quiz">🎯 Mini Quiz</a>
-  </nav>
+</nav>
 
   <div class="container">
 
@@ -245,7 +260,7 @@
         <div class="sec-emoji">🔵</div>
         <div>
           <h2>Il Verbo ESSERE — ser / estar</h2>
-          <p>Conjugación para io · tu · lui / lei · Haz clic en cada fila para ver un ejemplo</p>
+          <p>Conjugación para io · tu · lui / lei · Hacé clic en cada fila para ver un ejemplo</p>
         </div>
       </div>
 
@@ -300,7 +315,7 @@
         </div>
 
         <div class="practice-block">
-          <p>✏️ Pratica: Completa con la forma correcta de ESSERE</p>
+          <p>✏️ Pratica: Completá con la forma correcta de ESSERE</p>
           <div class="fill-row">
             <span>1. Io</span>
             <input class="fill-blank" id="e1" placeholder="..." />
@@ -336,7 +351,7 @@
         <div class="sec-emoji">🔴</div>
         <div>
           <h2>Il Verbo ANDARE — ir</h2>
-          <p>Conjugación para io · tu · lui / lei · Haz clic en cada fila para ver un ejemplo</p>
+          <p>Conjugación para io · tu · lui / lei · Hacé clic en cada fila para ver un ejemplo</p>
         </div>
       </div>
 
@@ -391,7 +406,7 @@
         </div>
 
         <div class="practice-block">
-          <p>✏️ Pratica: Completa con la forma correcta de ANDARE</p>
+          <p>✏️ Pratica: Completá con la forma correcta de ANDARE</p>
           <div class="fill-row">
             <span>1. Io</span>
             <input class="fill-blank" id="a1" placeholder="..." />
@@ -607,7 +622,7 @@
 
       <div class="quiz-wrap">
         <h3>¿Cuánto recuerdas?</h3>
-        <p class="quiz-intro">Selecciona la respuesta correcta. Una sola oportunidad por pregunta.</p>
+        <p class="quiz-intro">Seleccioná la respuesta correcta. Una sola oportunidad por pregunta.</p>
 
         <div class="q-item" id="qi1">
           <p>1. ¿Cómo se dice "Yo soy de Roma" en italiano?</p>
@@ -628,7 +643,7 @@
         </div>
 
         <div class="q-item" id="qi3">
-          <p>3. Completa: "Vado ___ stazione" (Voy a la estación)</p>
+          <p>3. Completá: "Vado ___ stazione" (Voy a la estación)</p>
           <div class="options">
             <button class="opt" onclick="ansQ(3,this,false)">A) di</button>
             <button class="opt" onclick="ansQ(3,this,true)">B) alla</button>
@@ -665,6 +680,8 @@
   </footer>
 
   <script>
+(function(){
+
     /* ── DIALOG TOGGLE ── */
     let lastOpen = null;
     function toggleDialog(id) {
@@ -723,6 +740,8 @@
         el.classList.add('show');
       }
     }
-  </script>
+  
+})();
+</script>
 </body>
 </html>

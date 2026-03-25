@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -428,7 +428,7 @@
         <p>
           Un video de <strong>LearnAmo</strong> de aproximadamente 5 minutos donde recorren
           las 21 letras del alfabeto italiano, asociando cada una con una ciudad italiana famosa.
-          Escucha con atención cómo suena el <em>nombre</em> de cada letra — eso es exactamente
+          Escuchá con atención cómo suena el <em>nombre</em> de cada letra — eso es exactamente
           lo que necesitarás cuando alguien te pregunte "Come si scrive il tuo nome?"
         </p>
 
@@ -438,7 +438,7 @@
           </thead>
           <tbody>
             <tr><td>🎧 1.ª vez</td><td>Solo escucha y disfruta. No tomes notas todavía. Deja que los sonidos entren.</td></tr>
-            <tr><td>✏️ 2.ª vez</td><td>Intenta anotar mentalmente cuántas ciudades reconoces por letra. ¿Cuántas ya conocías?</td></tr>
+            <tr><td>✏️ 2.ª vez</td><td>Intentá anotar mentalmente cuántas ciudades reconoces por letra. ¿Cuántas ya conocías?</td></tr>
           </tbody>
         </table>
 
@@ -456,7 +456,7 @@
     <!-- ══ 4. FLIP CARDS ══ -->
     <section class="sec">
       <h2 class="sec-title reveal">🃏 Scopri le Lettere!</h2>
-      <p class="sec-sub reveal">Haz clic en cada letra para revelar su ciudad y su pronunciación</p>
+      <p class="sec-sub reveal">Hacé clic en cada letra para revelar su ciudad y su pronunciación</p>
 
       <div class="sofia-row right reveal from-right">
         <div class="sofia-avatar-wrap">
@@ -525,7 +525,7 @@
     <!-- ══ 5. CIUDADES ══ -->
     <section class="sec">
       <h2 class="sec-title reveal">🗺️ Le Città Italiane</h2>
-      <p class="sec-sub reveal">Haz clic en cada ciudad para descubrir un dato curioso</p>
+      <p class="sec-sub reveal">Hacé clic en cada ciudad para descubrir un dato curioso</p>
 
       <div class="sofia-row reveal">
         <div class="sofia-avatar-wrap">
@@ -562,7 +562,7 @@
         <div class="sofia-bubble">
           Los nombres italianos son muy musicales porque terminan casi siempre en vocal.
           Los nombres masculinos suelen terminar en <strong>-o</strong> (Marco, Lorenzo, Matteo)
-          y los femeninos en <strong>-a</strong> (Sofia, Giulia, Laura). Haz clic en los nombres
+          y los femeninos en <strong>-a</strong> (Sofia, Giulia, Laura). Hacé clic en los nombres
           que te gusten — ¡luego practica deletrearlos usando los nombres de las letras que acabas de aprender!
         </div>
       </div>
@@ -580,12 +580,12 @@
         </div>
         <div class="info info-teal" style="margin-top:1.25rem" id="nameSpellingBox">
           <strong>Come si scrive?</strong><br>
-          <span id="nameSpellingText">Haz clic en cualquier nombre de arriba para ver cómo se deletrea en italiano.</span>
+          <span id="nameSpellingText">Hacé clic en cualquier nombre de arriba para ver cómo se deletrea en italiano.</span>
         </div>
       </div>
 
       <div class="info info-green reveal" style="margin-top:1rem">
-        <strong>Practica en voz alta:</strong> Una vez que hagas clic en un nombre, intenta leer su deletreo
+        <strong>Practicá en voz alta:</strong> Una vez que hagas clic en un nombre, intenta leer su deletreo
         en voz alta antes de ver la respuesta. Es el mejor ejercicio para la pronunciación. 🎤
       </div>
     </section>
@@ -593,10 +593,10 @@
     <!-- ══ 7. SPELLING QUIZ ══ -->
     <section class="sec">
       <h2 class="sec-title reveal">✏️ Come si scrive?</h2>
-      <p class="sec-sub reveal">Practica deletrear palabras en italiano — escribe el nombre de cada letra separado por guiones</p>
+      <p class="sec-sub reveal">Practicá deletrear palabras en italiano — escribe el nombre de cada letra separado por guiones</p>
 
       <div class="info info-green reveal">
-        <strong>Cómo funciona:</strong> Escribe el nombre de cada letra usando los que aprendiste en las tarjetas,
+        <strong>Cómo funciona:</strong> Escribí el nombre de cada letra usando los que aprendiste en las tarjetas,
         separados por guiones o espacios. Ejemplo: <em>BENE → bi – e – enne – e</em>.
         No importa si usas guiones, comas o espacios — lo que importa es el nombre correcto de cada letra.
       </div>
@@ -629,6 +629,8 @@
   </footer>
 
   <script>
+(function(){
+
     /* ── DATA ── */
     const ALPHABET = [
       {l:'A',city:'Ancona',      pron:'a'    },
@@ -704,7 +706,7 @@
       ALPHABET.forEach((item, i) => {
         const wrap = document.createElement('div');
         wrap.className = 'flip-wrap'; wrap.id = `card-${i}`;
-        wrap.title = 'Haz clic para revelar';
+        wrap.title = 'Hacé clic para revelar';
         wrap.innerHTML = `
           <div class="flip-inner">
             <div class="flip-front">
@@ -802,6 +804,8 @@
     function initReveal(){ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el)); }
 
     buildGrid(); buildCities(); buildNames(); buildSpelling(); initReveal();
-  </script>
+  
+})();
+</script>
 </body>
 </html>

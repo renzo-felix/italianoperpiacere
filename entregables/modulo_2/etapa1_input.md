@@ -5,9 +5,13 @@
 ---
 
 TIPO: Imagen
-FUENTE SUGERIDA: Unsplash / Pexels (búsqueda: "italian phone vintage" o "italian market numbers")
-TÍTULO: Il numero di telefono — Una escena de la vida cotidiana italiana
-DESCRIPCIÓN: Una fotografía que muestre números en contexto italiano cotidiano: una agenda telefónica de papel, una tarjeta de visita italiana, un mercado con precios numéricos, o un teléfono fijo vintage en un apartamento italiano. El objetivo es activar la curiosidad por los números y los datos personales antes de comenzar la unidad.
+FUENTE: Flickr — psd (Peter Seibel)
+URL: https://live.staticflickr.com/2167/2059150331_6b89b5b4cd_b.jpg
+PÁGINA DE LA OBRA: https://www.flickr.com/photos/psd/2059150331
+LICENCIA: Creative Commons CC BY 2.0 (uso libre con atribución)
+TÍTULO: "Red Telephone" — Un teléfono rojo vintage a disco
+DESCRIPCIÓN: Fotografía de un teléfono rojo vintage de disco — el símbolo icónico del teléfono analógico italiano. Activa la curiosidad por los números (el disco contiene los dígitos 0–9) y la pregunta central de la unidad: ¿cómo se dan los datos personales en italiano? El color rojo intenso lo hace visualmente llamativo como warm-up.
+ATRIBUCIÓN: Foto: "Red Telephone" · psd · CC BY 2.0 · Flickr
 
 ---
 
@@ -26,5 +30,5 @@ El objetivo **no** es describir la imagen con precisión — sino:
 
 Luego pasan a la Etapa 2 donde descubren los números y el vocabulario de datos personales.
 
-**Derechos:** Imagen de uso libre bajo licencia Creative Commons (CC0) o Unsplash License.
-Insertar enlace directo a la imagen elegida en el campo URL antes de publicar.
+**Derechos:** Creative Commons CC BY 2.0 — uso libre con atribución al autor.
+Atribuir como: Foto "Red Telephone" · psd · CC BY 2.0 · Flickr · flickr.com/photos/psd/2059150331

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Módulo 10 A2 · Descubrimiento — Come ti senti?</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;--red:#cc4736;--teal:#78a6ba;--teal-dk:#5a8ea0;--green:#528e74;--green-dk:#3d6b58;--black:#1a1a18;--white:#fff;--mod:var(--teal);--mod-dk:var(--teal-dk);--fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.65;overflow-x:hidden}
+#toggle-btn{position:fixed;top:14px;right:16px;z-index:200;background:rgba(255,255,255,.92);border:2px solid var(--mod-dk);color:var(--mod-dk);padding:7px 16px;border-radius:20px;cursor:pointer;font-family:var(--fb);font-weight:700;font-size:.82rem;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+#toggle-btn:hover{background:var(--teal);color:#fff}
+body.hide-es .es{display:none}
+.hero{min-height:88vh;background:#deeef5;border-bottom:3px solid #78a6ba;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;position:relative;overflow:hidden}
+.hero::before,.hero::after{display:none}
+.hero-circle{position:absolute;border-radius:50%;opacity:.1;background:#fff;pointer-events:none}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:clamp(2.4rem,6vw,4rem);color:#1a1a18;margin-bottom:14px;position:relative;z-index:1}
+.hero p{color:#1a1a18;opacity:.75;font-size:1.1rem;max-width:580px;position:relative;z-index:1;margin-bottom:28px}
+.hero-badge{background:rgba(0,0,0,.07);border:2px solid rgba(0,0,0,.07);border-radius:14px;padding:14px 28px;color:#1a1a18;font-size:.95rem;position:relative;z-index:1;display:inline-block}
+.hero-badge strong{display:block;font-size:1.1rem;margin-bottom:2px}
+.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.55);font-size:.82rem;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+.section{max-width:960px;margin:0 auto;padding:60px 20px}
+.section-alt{background:var(--cream-dk)}
+.section h2{font-family:var(--fh);font-style:italic;font-size:1.85rem;color:var(--mod-dk);margin-bottom:8px}
+.section .sub{color:#666;font-size:.92rem;margin-bottom:32px}
+.section-label{display:inline-block;background:#c8e5f0;color:var(--black);font-size:.75rem;font-weight:700;padding:3px 12px;border-radius:10px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
+.word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin:20px 0}
+.wcard{background:#fff;border:2px solid var(--cream-dk);border-radius:12px;padding:14px 10px;text-align:center;cursor:pointer;transition:all .25s;font-size:.9rem;font-weight:600;user-select:none}
+.wcard:hover{border-color:var(--teal);transform:translateY(-2px)}
+.wcard.ok{background:#d4ecf5;border-color:var(--teal);color:var(--teal-dk)}
+.wcard.trap{background:#fdf0ee;border-color:var(--red);color:var(--red)}
+.wcard .reveal{display:none;font-size:.75rem;font-weight:400;margin-top:4px}
+.wcard.ok .reveal,.wcard.trap .reveal{display:block}
+.grid-legend{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:.85rem}
+.leg-dot{width:12px;height:12px;border-radius:50%}
+.leg-teal{background:var(--teal)}
+.leg-red{background:var(--red)}
+.grid-result{font-weight:600;margin-top:12px;font-size:.9rem;min-height:22px;color:var(--mod-dk)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:24px 0}
+.vcard{background:#fff;border-radius:14px;padding:18px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.08);transition:all .25s;border:2px solid transparent}
+.vcard:hover{transform:translateY(-3px);border-color:var(--teal)}
+.vcard .ita{font-size:1.05rem;font-weight:700;color:var(--teal-dk)}
+.vcard .emoji{font-size:1.6rem;margin-bottom:8px;display:block}
+.vcard .vex{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--cream-dk);font-size:.86rem;color:#555;line-height:1.5}
+.vcard.open .vex{display:block}
+.vcard .hint{font-size:.75rem;color:#aaa;margin-top:6px}
+.disc-box{background:#fff;border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 3px 16px rgba(0,0,0,.09)}
+.disc-box h3{color:var(--mod-dk);font-size:1.1rem;font-weight:700;margin-bottom:16px}
+.hl-box{background:#deeef5;border-left:4px solid #78a6ba;padding:16px 20px;border-radius:0 10px 10px 0;margin:14px 0;font-size:.95rem;line-height:1.85}
+.hl-box .hl{background:var(--teal);color:var(--black);padding:1px 5px;border-radius:4px;font-weight:700}
+.hl-box .es{color:#666;font-size:.88rem}
+.gtable{width:100%;border-collapse:collapse;margin:16px 0;font-size:.9rem}
+.gtable th{background:#b8d8e8;color:#1f4d60;padding:11px 14px;text-align:left;font-weight:600}
+.gtable td{padding:9px 14px;border-bottom:1px solid var(--cream-dk)}
+.gtable tr:nth-child(even) td{background:#eef6fa}
+.gtable tr:hover{background:#d4ecf5}
+.schema{background:#deeef5;color:var(--black);border-radius:14px;padding:22px 28px;margin:20px 0;font-family:monospace;font-size:.95rem}
+.schema .hl{color:var(--gold);font-weight:700}
+.schema .line{margin:7px 0}
+.fill-box{background:#fff;border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 3px 16px rgba(0,0,0,.09)}
+.fill-box h3{color:var(--mod-dk);font-weight:700;margin-bottom:8px}
+.fill-box .inst{font-size:.88rem;color:#666;margin-bottom:18px}
+.fill-item{margin:14px 0;font-size:.94rem;line-height:1.7}
+.fill-blank{border:none;border-bottom:2px solid var(--teal);background:transparent;font-family:var(--fb);font-size:.92rem;width:150px;padding:3px 6px;transition:border-color .2s}
+.fill-blank:focus{outline:none;border-color:var(--teal-dk)}
+.fill-blank.ok{border-color:var(--green);background:#edf7f2;border-radius:4px}
+.fill-blank.no{border-color:var(--red);background:#fdf0ee;border-radius:4px}
+.fill-btn{background:var(--teal);color:var(--black);border:none;border-radius:8px;padding:9px 22px;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.88rem;margin-top:14px;transition:background .2s}
+.fill-btn:hover{background:var(--teal-dk)}
+.fill-fb{font-size:.82rem;margin-top:8px;font-weight:600;min-height:20px}
+.fill-fb.ok{color:var(--green)}
+.fill-fb.no{color:var(--red)}
+.body-map{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:24px 0}
+.body-part{background:#fff;border:2px solid var(--cream-dk);border-radius:12px;padding:12px 18px;cursor:pointer;transition:all .2s;text-align:center}
+.body-part:hover{border-color:var(--teal);background:#d4ecf5}
+.body-part .it{font-weight:700;color:var(--teal-dk);font-size:.95rem}
+.body-part .pl{font-size:.78rem;color:#888;margin-top:3px}
+.body-part .es-tr{display:none;font-size:.8rem;color:#666;margin-top:5px;padding-top:5px;border-top:1px solid var(--cream-dk)}
+.body-part.open .es-tr{display:block}
+.dialogue{margin:28px 0}
+.dialogue h3{color:var(--mod-dk);font-weight:700;margin-bottom:16px;font-size:1rem}
+.bubble-wrap{margin:10px 0}
+.bubble{background:#fff;border-radius:16px 16px 16px 4px;padding:14px 18px;display:inline-block;max-width:75%;box-shadow:0 2px 8px rgba(0,0,0,.08);cursor:pointer}
+.bubble:hover{box-shadow:0 4px 16px rgba(120,166,186,.3)}
+.bubble.right-side{border-radius:16px 16px 4px 16px;background:#c8e5f0;color:var(--black);margin-left:auto;display:block}
+.bubble .speaker{font-size:.75rem;font-weight:700;color:var(--teal-dk);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.bubble.right-side .speaker{color:rgba(0,0,0,.6)}
+.bubble .btext{font-size:.93rem}
+.bubble .btr{display:none;margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.1);font-size:.82rem;color:#888;font-style:italic}
+.bubble.right-side .btr{border-top-color:rgba(255,255,255,.2);color:rgba(255,255,255,.7)}
+.bubble.show .btr{display:block}
+.bubble-hint{font-size:.78rem;color:#aaa;text-align:center;margin:8px 0 16px}
+.reading-box{background:#fff;border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 3px 16px rgba(0,0,0,.09)}
+.reading-box h3{color:var(--mod-dk);font-weight:700;font-size:1rem;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
+.reading-text{font-size:.95rem;line-height:1.85;padding:16px;background:var(--cream);border-radius:10px;margin-bottom:20px}
+.reading-text .hl{background:var(--gold);padding:1px 4px;border-radius:3px;font-weight:600}
+.q-box{margin:12px 0}
+.q-box p{font-size:.9rem;font-weight:600;margin-bottom:8px}
+.q-opts{display:flex;flex-direction:column;gap:6px}
+.q-opt{background:var(--cream);border:2px solid var(--cream-dk);border-radius:8px;padding:8px 14px;cursor:pointer;font-size:.88rem;transition:all .2s}
+.q-opt:hover{border-color:var(--teal)}
+.q-opt.chosen{border-color:var(--teal);background:#d4ecf5;font-weight:600}
+.q-opt.right{border-color:var(--green);background:#d4edda;color:var(--green-dk)}
+.q-opt.wrong{border-color:var(--red);background:#fde8e6;color:var(--red)}
+.check-btn{background:#c8e5f0;color:var(--black);border:none;border-radius:8px;padding:9px 22px;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.88rem;margin-top:14px;transition:background .2s}
+.check-btn:hover{background:var(--teal-dk)}
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:4px solid var(--teal-dk);padding:52px 20px}
+.culture-inner{max-width:760px;margin:0 auto}
+.culture-inner h3{font-family:var(--fh);font-style:italic;font-size:1.6rem;color:var(--black);margin-bottom:16px}
+.culture-inner p{font-size:.95rem;color:var(--black);margin-bottom:12px;max-width:680px}
+.culture-facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:24px}
+.fact-card{background:rgba(255,255,255,.65);border-radius:12px;padding:16px;font-size:.88rem;border-left:3px solid var(--teal-dk)}
+.fact-card strong{display:block;color:var(--teal-dk);margin-bottom:4px;font-size:.9rem}
+.progress-bar{position:fixed;bottom:0;left:0;right:0;height:5px;background:rgba(0,0,0,.1);z-index:300}
+.progress-fill{height:100%;background:#b8d8e8;width:0;transition:width .3s}
+[data-a]{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+[data-a].visible{opacity:1;transform:none}
+[data-stagger]>*{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
+[data-stagger].visible>*{opacity:1;transform:none}
+[data-stagger].visible>*:nth-child(2){transition-delay:.08s}
+[data-stagger].visible>*:nth-child(3){transition-delay:.16s}
+[data-stagger].visible>*:nth-child(4){transition-delay:.24s}
+[data-stagger].visible>*:nth-child(5){transition-delay:.32s}
+[data-stagger].visible>*:nth-child(6){transition-delay:.40s}
+[data-stagger].visible>*:nth-child(7){transition-delay:.48s}
+[data-stagger].visible>*:nth-child(8){transition-delay:.56s}
+</style>
+</head>
+<body>
+<button id="toggle-btn" onclick="document.body.classList.toggle('hide-es');this.textContent=document.body.classList.contains('hide-es')?'Mostrar ES':'Ocultar ES'">Ocultar ES</button>
+<div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+
+<div class="hero">
+  <div class="hero-circle" style="width:340px;height:340px;top:-80px;right:-80px"></div>
+  <div class="hero-circle" style="width:200px;height:200px;bottom:60px;left:-40px"></div>
+  <p class="section-label" style="position:relative;z-index:2;margin-bottom:16px">Módulo 10 · A2</p>
+  <h1>Come ti senti?</h1>
+  <p>Dal medico italiano: nomi irregolari, si impersonale e come dare istruzioni con l'imperativo formale.</p>
+  <div class="hero-badge">
+    <strong>🏥 Dal medico — Studio medico italiano</strong>
+    Nomi irregolari · Si impersonale · Imperativo formale
+  </div>
+  <div class="scroll-hint">↓ Inizia il percorso</div>
+</div>
+
+<!-- WORD GRID -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Warm-up</span>
+    <h2>Riconosci il lessico medico</h2>
+    <p class="sub">Haz clic en las palabras relacionadas con la salud y la medicina italiana.</p>
+  </div>
+  <div class="grid-legend">
+    <div class="leg-item"><div class="leg-dot leg-teal"></div><span>Salute / medicina</span></div>
+    <div class="leg-item"><div class="leg-dot leg-red"></div><span>Altre categorie</span></div>
+  </div>
+  <div class="word-grid" id="grid1" data-stagger>
+    <div class="wcard" onclick="clickWord(this,'ok')">la febbre<div class="reveal">✓ sintomo</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la ricetta<div class="reveal">✓ documento medico</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il cannone<div class="reveal">✗ è l'artiglieria</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il medico di base<div class="reveal">✓ sistema sanitario</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la farmacia<div class="reveal">✓ si comprano i farmaci</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il terremoto<div class="reveal">✗ è la geologia</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il mal di testa<div class="reveal">✓ sintomo frequente</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">l'analisi del sangue<div class="reveal">✓ esame medico</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il satellite<div class="reveal">✗ è lo spazio</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la visita medica<div class="reveal">✓ appuntamento dal dottore</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">l'antibiotico<div class="reveal">✓ farmaco</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">la giraffa<div class="reveal">✗ è l'animale</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il pronto soccorso<div class="reveal">✓ emergenza medica</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la pressione arteriosa<div class="reveal">✓ parametro medico</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il rinoceronte<div class="reveal">✗ è l'animale</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il cardiologo<div class="reveal">✓ specialista medico</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la radiografia<div class="reveal">✓ esame diagnostico</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il vulcano<div class="reveal">✗ è la geologia</div></div>
+  </div>
+  <div class="grid-result" id="grid1-res"></div>
+</div>
+
+<!-- VOCAB 1: SINTOMI -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Vocabolario 1</span>
+    <h2>I sintomi più comuni</h2>
+    <p class="sub">Haz clic en cada tarjeta para saber cómo describir los síntomas en italiano.</p>
+  </div>
+  <div class="vocab-grid" data-stagger>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🤒</span><div class="ita">avere la febbre</div><div class="hint">tener fiebre</div>
+      <div class="vex"><strong>es:</strong> tener fiebre<br><em>Ho la febbre a 38,5.</em><br><span class="es">Tengo 38,5 de fiebre.</span><br>💡 In Italia si misura in Celsius: febbre alta = oltre 38°</div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🤧</span><div class="ita">il raffreddore / starnutire</div><div class="hint">resfriado / estornudar</div>
+      <div class="vex"><strong>es:</strong> resfriado / estornudar<br><em>Ho il raffreddore e starnutisco continuamente.</em><br><span class="es">Tengo un resfriado y estornudo continuamente.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">😮‍💨</span><div class="ita">la tosse / tossire</div><div class="hint">la tos / toser</div>
+      <div class="vex"><strong>es:</strong> la tos / toser<br><em>Tossisco molto di notte.</em><br><span class="es">Toso mucho por la noche.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🤕</span><div class="ita">mi fa male + parte del corpo</div><div class="hint">me duele</div>
+      <div class="vex"><strong>es:</strong> me duele / me duelen<br><em>Mi fa male la testa. / Mi fanno male le gambe.</em><br><span class="es">Me duele la cabeza. / Me duelen las piernas.</span><br>💡 Singolare: fa male · Plurale: fanno male</div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">😵</span><div class="ita">il mal di testa / l'emicrania</div><div class="hint">dolor de cabeza / migraña</div>
+      <div class="vex"><strong>es:</strong> dolor de cabeza / migraña<br><em>Ho un terribile mal di testa da ieri.</em><br><span class="es">Tengo un terrible dolor de cabeza desde ayer.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🤢</span><div class="ita">la nausea / vomitare</div><div class="hint">náusea / vomitar</div>
+      <div class="vex"><strong>es:</strong> náusea / vomitar<br><em>Ho la nausea e non riesco a mangiare.</em><br><span class="es">Tengo náuseas y no puedo comer.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🦴</span><div class="ita">i dolori muscolari / articolari</div><div class="hint">dolores musculares / articulares</div>
+      <div class="vex"><strong>es:</strong> dolores musculares / articulares<br><em>Ho dolori muscolari a tutto il corpo.</em><br><span class="es">Tengo dolores musculares por todo el cuerpo.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">😴</span><div class="ita">la stanchezza / sentirsi debole</div><div class="hint">cansancio / sentirse débil</div>
+      <div class="vex"><strong>es:</strong> cansancio / sentirse débil<br><em>Mi sento molto stanco e debole.</em><br><span class="es">Me siento muy cansado y débil.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- BODY MAP: NOMI IRREGOLARI -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Scoperta grammaticale 1</span>
+    <h2>Nomi irregolari — il corpo umano</h2>
+    <p class="sub">Haz clic en cada parte del cuerpo para ver el plural irregular.</p>
+  </div>
+  <div class="disc-box" data-a>
+    <h3>🔍 Osserva questi plurali speciali!</h3>
+    <div class="hl-box">
+      Ho <span class="hl">le mani</span> fredde. <span class="es">— Tengo las manos frías.</span> (la mano → le mani)<br>
+      Mi fanno male <span class="hl">le ginocchia</span>. <span class="es">— Me duelen las rodillas.</span> (il ginocchio → le ginocchia)<br>
+      Si è rotto <span class="hl">le braccia</span>. <span class="es">— Se ha roto los brazos.</span> (il braccio → le braccia)<br>
+      Ha <span class="hl">le dita</span> lunghe. <span class="es">— Tiene los dedos largos.</span> (il dito → le dita)
+    </div>
+    <p style="font-size:.88rem;color:#666;margin-top:12px">💡 Muchos nombres de partes del cuerpo forman el plural en <strong>-a femenino</strong> aunque el singular sea masculino. Se llaman <em>nomi di genere comune</em>.</p>
+  </div>
+  <div class="body-map" data-a>
+    <div class="body-part" onclick="this.classList.toggle('open')"><div class="it">la mano</div><div class="pl">→ le mani</div><div class="es-tr es">la mano → las manos</div></div>
+    <div class="body-part" onclick="this.classList.toggle('open')"><div class="it">il braccio</div><div class="pl">→ le braccia</div><div class="es-tr es">el brazo → los brazos</div></div>
+    <div class="body-part" onclick="this.classList.toggle('open')"><div class="it">il ginocchio</div><div class="pl">→ le ginocchia</div><div class="es-tr es">la rodilla → las rodillas</div></div>
+    <div class="body-part" onclick="this.classList.toggle('open')"><div class="it">il dito</div><div class="pl">→ le dita</div><div class="es-tr es">el dedo → los dedos</div></div>
+    <div class="body-part" onclick="this.classList.toggle('open')"><div class="it">l'osso</div><div class="pl">→ le ossa</div><div class="es-tr es">el hueso → los huesos</div></div>
+    <div class="body-part" onclick="this.classList.toggle('open')"><div class="it">il labbro</div><div class="pl">→ le labbra</div><div class="es-tr es">el labio → los labios</div></div>
+    <div class="body-part" onclick="this.classList.toggle('open')"><div class="it">l'orecchio</div><div class="pl">→ le orecchie</div><div class="es-tr es">la oreja → las orejas</div></div>
+    <div class="body-part" onclick="this.classList.toggle('open')"><div class="it">il sopracciglio</div><div class="pl">→ le sopracciglia</div><div class="es-tr es">la ceja → las cejas</div></div>
+    <div class="body-part" onclick="this.classList.toggle('open')"><div class="it">il medico</div><div class="pl">→ i medici</div><div class="es-tr es">el médico → los médicos</div></div>
+    <div class="body-part" onclick="this.classList.toggle('open')"><div class="it">il farmaco</div><div class="pl">→ i farmaci</div><div class="es-tr es">el fármaco → los fármacos</div></div>
+  </div>
+  <div class="fill-box" data-a>
+    <h3>Pratica — plurali irregolari</h3>
+    <p class="inst">Scrivi il plurale corretto:</p>
+    <div class="fill-item">1. Ho freddo alle <input class="fill-blank" id="nm1" data-ans="mani"> (la mano).</div>
+    <div class="fill-item">2. Mi fanno male le <input class="fill-blank" id="nm2" data-ans="ginocchia"> (il ginocchio).</div>
+    <div class="fill-item">3. Si è rotto le <input class="fill-blank" id="nm3" data-ans="braccia"> (il braccio).</div>
+    <div class="fill-item">4. Ha le <input class="fill-blank" id="nm4" data-ans="dita"> lunghe (il dito).</div>
+    <div class="fill-item">5. I <input class="fill-blank" id="nm5" data-ans="medici"> di base sono molto utili (il medico).</div>
+    <button class="fill-btn" onclick="checkFill(['nm1','nm2','nm3','nm4','nm5'],'nm')">Controlla</button>
+    <div class="fill-fb" id="nm-fb"></div>
+  </div>
+</div>
+
+<!-- VOCAB 2: DAL MEDICO -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Vocabolario 2</span>
+    <h2>Dal medico — frasi essenziali</h2>
+    <p class="sub">Toca para descubrir las expresiones que necesitas en una consulta médica italiana.</p>
+  </div>
+  <div class="vocab-grid" data-stagger>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">👨‍⚕️</span><div class="ita">prendere un appuntamento</div><div class="hint">pedir cita</div>
+      <div class="vex"><strong>es:</strong> pedir cita médica<br><em>Vorrei prendere un appuntamento con il medico.</em><br><span class="es">Me gustaría pedir cita con el médico.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">📋</span><div class="ita">descrivere i sintomi</div><div class="hint">describir síntomas</div>
+      <div class="vex"><strong>es:</strong> describir los síntomas<br><em>Ho febbre, mal di gola e tosse secca.</em><br><span class="es">Tengo fiebre, dolor de garganta y tos seca.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">💊</span><div class="ita">la ricetta / il farmaco</div><div class="hint">receta / medicamento</div>
+      <div class="vex"><strong>es:</strong> receta / medicamento<br><em>Il medico mi ha dato la ricetta per l'antibiotico.</em><br><span class="es">El médico me ha dado la receta para el antibiótico.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🩺</span><div class="ita">la visita specialistica</div><div class="hint">consulta especialista</div>
+      <div class="vex"><strong>es:</strong> consulta con un especialista<br><em>Ho una visita cardiologica venerdì.</em><br><span class="es">Tengo una consulta de cardiología el viernes.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🏥</span><div class="ita">il pronto soccorso</div><div class="hint">urgencias</div>
+      <div class="vex"><strong>es:</strong> urgencias del hospital<br><em>In caso di emergenza, si va al pronto soccorso.</em><br><span class="es">En caso de emergencia, se va a urgencias.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">😴</span><div class="ita">stare a riposo / riposare</div><div class="hint">guardar reposo</div>
+      <div class="vex"><strong>es:</strong> guardar reposo<br><em>Il medico mi ha detto di stare a riposo tre giorni.</em><br><span class="es">El médico me ha dicho que guarde reposo tres días.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🩸</span><div class="ita">le analisi del sangue</div><div class="hint">análisis de sangre</div>
+      <div class="vex"><strong>es:</strong> análisis de sangre<br><em>Faccia le analisi del sangue a digiuno.</em><br><span class="es">Hágase el análisis de sangre en ayunas.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">📅</span><div class="ita">tornare per un controllo</div><div class="hint">volver para revisión</div>
+      <div class="vex"><strong>es:</strong> volver para una revisión<br><em>Torni tra una settimana per un controllo.</em><br><span class="es">Vuelva en una semana para una revisión.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SI IMPERSONALE DISCOVERY -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Scoperta grammaticale 2</span>
+    <h2>Il "si" impersonale</h2>
+    <p class="sub">Observa cómo se usa el "si" para hablar de lo que hace "la gente" en general.</p>
+  </div>
+  <div class="disc-box" data-a>
+    <h3>🔍 Dal testo medico — osserva</h3>
+    <div class="hl-box">
+      <span class="hl">Si va</span> dal medico quando <span class="hl">si sta</span> male. <span class="es">— Se va al médico cuando uno está mal.</span><br>
+      In farmacia <span class="hl">si comprano</span> i farmaci. <span class="es">— En la farmacia se compran los medicamentos.</span><br>
+      <span class="hl">Si dice</span> "buongiorno" quando si entra. <span class="es">— Se dice "buongiorno" cuando uno entra.</span><br>
+      Non <span class="hl">si fuma</span> nei luoghi pubblici. <span class="es">— No se fuma en los lugares públicos.</span>
+    </div>
+  </div>
+  <div class="schema" data-a>
+    <div class="line"><span class="hl">si</span> + verbo singolare (intransitivo / transitivo sing.)</div>
+    <div class="line">Si mangia la pizza. / Si parla italiano.</div>
+    <div class="line" style="margin-top:10px"><span class="hl">si</span> + verbo plurale (con oggetto plurale)</div>
+    <div class="line">Si mangiano le verdure. / Si fanno le analisi.</div>
+  </div>
+  <div class="fill-box" data-a>
+    <h3>Pratica — si impersonale</h3>
+    <p class="inst">Completa con il "si impersonale" corretto:</p>
+    <div class="fill-item">1. In Italia _____ molto caffè. (bere) → <input class="fill-blank" id="si1" data-ans="si beve"></div>
+    <div class="fill-item">2. _____ i farmaci in farmacia. (comprare) → <input class="fill-blank" id="si2" data-ans="si comprano"></div>
+    <div class="fill-item">3. _____ un appuntamento prima di andare dal medico. (prendere) → <input class="fill-blank" id="si3" data-ans="si prende"></div>
+    <div class="fill-item">4. _____ le analisi del sangue a digiuno. (fare) → <input class="fill-blank" id="si4" data-ans="si fanno"></div>
+    <button class="fill-btn" onclick="checkFill(['si1','si2','si3','si4'],'si')">Controlla</button>
+    <div class="fill-fb" id="si-fb"></div>
+  </div>
+</div>
+
+<!-- IMPERATIVO FORMALE DISCOVERY -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Scoperta grammaticale 3</span>
+    <h2>L'imperativo formale (Lei)</h2>
+    <p class="sub">Así habla el médico cuando da instrucciones al paciente.</p>
+  </div>
+  <div class="disc-box" data-a>
+    <h3>🩺 Il medico dice — osserva l'imperativo formale</h3>
+    <div class="hl-box">
+      <span class="hl">Prenda</span> questa medicina due volte al giorno. <span class="es">— Tome este medicamento dos veces al día.</span><br>
+      <span class="hl">Faccia</span> le analisi del sangue domani mattina. <span class="es">— Hágase el análisis de sangre mañana por la mañana.</span><br>
+      <span class="hl">Stia</span> a riposo per tre giorni. <span class="es">— Guarde reposo durante tres días.</span><br>
+      <span class="hl">Torni</span> tra una settimana per il controllo. <span class="es">— Vuelva dentro de una semana para la revisión.</span><br>
+      <span class="hl">Apra</span> la bocca, per favore. <span class="es">— Abra la boca, por favor.</span>
+    </div>
+  </div>
+  <table class="gtable" data-a>
+    <tr><th>Verbo</th><th>Imperativo formale (Lei)</th><th class="es">Ejemplo médico</th></tr>
+    <tr><td>prendere (-ere)</td><td><strong>prenda</strong></td><td class="es">Prenda l'antibiotico.</td></tr>
+    <tr><td>fare (irreg.)</td><td><strong>faccia</strong></td><td class="es">Faccia le analisi.</td></tr>
+    <tr><td>stare (irreg.)</td><td><strong>stia</strong></td><td class="es">Stia a riposo.</td></tr>
+    <tr><td>andare (irreg.)</td><td><strong>vada</strong></td><td class="es">Vada in farmacia.</td></tr>
+    <tr><td>tornare (-are)</td><td><strong>torni</strong></td><td class="es">Torni tra 5 giorni.</td></tr>
+    <tr><td>aprire (-ire)</td><td><strong>apra</strong></td><td class="es">Apra la bocca.</td></tr>
+    <tr><td>essere (irreg.)</td><td><strong>sia</strong></td><td class="es">Sia paziente!</td></tr>
+    <tr><td>avere (irreg.)</td><td><strong>abbia</strong></td><td class="es">Abbia cura di sé.</td></tr>
+  </table>
+  <div class="fill-box" data-a>
+    <h3>Pratica — imperativo formale</h3>
+    <p class="inst">Completa le istruzioni del medico con l'imperativo formale:</p>
+    <div class="fill-item">1. _____ (aprire) la bocca, per favore. → <input class="fill-blank" id="if1" data-ans="apra"></div>
+    <div class="fill-item">2. _____ (prendere) questa compressa. → <input class="fill-blank" id="if2" data-ans="prenda"></div>
+    <div class="fill-item">3. _____ (stare) a riposo per tre giorni. → <input class="fill-blank" id="if3" data-ans="stia"></div>
+    <div class="fill-item">4. _____ (andare) in farmacia con questa ricetta. → <input class="fill-blank" id="if4" data-ans="vada"></div>
+    <div class="fill-item">5. _____ (tornare) tra una settimana. → <input class="fill-blank" id="if5" data-ans="torni"></div>
+    <button class="fill-btn" onclick="checkFill(['if1','if2','if3','if4','if5'],'if')">Controlla</button>
+    <div class="fill-fb" id="if-fb"></div>
+  </div>
+</div>
+
+<!-- DIALOGUE 1 -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Dialogo 1</span>
+    <h2>Dal medico di base</h2>
+  </div>
+  <div class="dialogue" data-a>
+    <h3>Marco (paziente) e il Dottor Ferretti</h3>
+    <div class="bubble-hint">👆 Toca para ver la traducción</div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Dottore</div>
+        <div class="btext">Si accomodi, prego. Come si sente?</div>
+        <div class="btr es">Siéntese, por favor. ¿Cómo se encuentra?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Marco</div>
+        <div class="btext">Ho la febbre da due giorni e mi fa molto male la gola. Ho anche le mani e le braccia indolenzite.</div>
+        <div class="btr es">Tengo fiebre desde hace dos días y me duele mucho la garganta. También tengo las manos y los brazos doloridos.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Dottore</div>
+        <div class="btext">Apra la bocca, per favore. Dica "aaah".</div>
+        <div class="btr es">Abra la boca, por favor. Diga "aaah".</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Marco</div>
+        <div class="btext">Aaah...</div>
+        <div class="btr es">Aaah...</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Dottore</div>
+        <div class="btext">Ha la gola molto infiammata. Prenda questo antibiotico per cinque giorni e stia a riposo. Beva molta acqua.</div>
+        <div class="btr es">Tiene la garganta muy inflamada. Tome este antibiótico durante cinco días y guarde reposo. Beba mucha agua.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Marco</div>
+        <div class="btext">Grazie dottore. Devo tornare?</div>
+        <div class="btr es">Gracias doctor. ¿Tengo que volver?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Dottore</div>
+        <div class="btext">Torni tra una settimana se non migliora. Altrimenti si ristabilirà presto!</div>
+        <div class="btr es">Vuelva en una semana si no mejora. ¡De lo contrario, se recuperará pronto!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- READING -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Lettura e comprensione</span>
+    <h2>Il Sistema Sanitario Nazionale</h2>
+  </div>
+  <div class="reading-box" data-a>
+    <h3>Leggi il testo e rispondi</h3>
+    <div class="reading-text">
+      In Italia <span class="hl">si va</span> dal medico di base per qualsiasi problema di salute. Il medico di base è il primo contatto con il sistema sanitario. <span class="hl">Si prende</span> un appuntamento per telefono o online. Quando si arriva, <span class="hl">si aspetta</span> nella sala d'aspetto. Il medico visita il paziente e poi <span class="hl">si prescrivono</span> i farmaci con una ricetta. I farmaci <span class="hl">si comprano</span> in farmacia. Per i cittadini italiani, molti farmaci <span class="hl">si pagano</span> solo parzialmente grazie al SSN (Sistema Sanitario Nazionale).
+    </div>
+    <div class="q-box">
+      <p>1. Chi è il "medico di base"?</p>
+      <div class="q-opts" id="rq1">
+        <div class="q-opt" onclick="chooseOpt(this,'rq1','a')">a) Uno specialista</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq1','b')">b) Il primo contatto con il sistema sanitario</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq1','c')">c) Il medico del pronto soccorso</div>
+      </div>
+    </div>
+    <div class="q-box">
+      <p>2. Come si prende un appuntamento?</p>
+      <div class="q-opts" id="rq2">
+        <div class="q-opt" onclick="chooseOpt(this,'rq2','a')">a) Solo di persona</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq2','b')">b) Per telefono o online</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq2','c')">c) Solo per email</div>
+      </div>
+    </div>
+    <div class="q-box">
+      <p>3. Dove si comprano i farmaci?</p>
+      <div class="q-opts" id="rq3">
+        <div class="q-opt" onclick="chooseOpt(this,'rq3','a')">a) Al supermercato</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq3','b')">b) In farmacia</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq3','c')">c) In ospedale</div>
+      </div>
+    </div>
+    <button class="check-btn" onclick="checkReading()">Controlla le risposte</button>
+    <div class="fill-fb" id="reading-fb" style="margin-top:10px"></div>
+  </div>
+</div>
+
+<!-- DIALOGUE 2 -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Dialogo 2</span>
+    <h2>In farmacia</h2>
+  </div>
+  <div class="dialogue" data-a>
+    <h3>Elena e il farmacista</h3>
+    <div class="bubble-hint">👆 Toca para ver la traducción</div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Farmacista</div>
+        <div class="btext">Buongiorno! Desidera?</div>
+        <div class="btr es">¡Buenos días! ¿Qué desea?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Elena</div>
+        <div class="btext">Ho questa ricetta del mio medico. È per un antibiotico.</div>
+        <div class="btr es">Tengo esta receta de mi médico. Es para un antibiótico.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Farmacista</div>
+        <div class="btext">Ecco qui. Prenda una compressa ogni 12 ore, durante i pasti. Abbia cura di finire tutta la confezione!</div>
+        <div class="btr es">Aquí tiene. Tome una pastilla cada 12 horas, durante las comidas. ¡Tenga cuidado de terminar todo el envase!</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Elena</div>
+        <div class="btext">Capito. Posso prendere anche qualcosa per il mal di testa?</div>
+        <div class="btr es">Entendido. ¿Puedo tomar también algo para el dolor de cabeza?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Farmacista</div>
+        <div class="btext">Certo, prenda questa tachipirina. E beva molta acqua!</div>
+        <div class="btr es">Claro, tome esta tachipirina. ¡Y beba mucha agua!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CULTURE -->
+<div class="culture">
+  <div class="culture-inner">
+    <h3>🏥 La salute in Italia — il SSN</h3>
+    <p>Il Sistema Sanitario Nazionale italiano è considerato uno dei migliori al mondo. Garantisce cure mediche a tutti i cittadini e residenti. Il punto di forza è il <em>medico di base</em>: ogni italiano ha il suo medico di fiducia, che lo segue nel tempo e lo indirizza verso i giusti specialisti.</p>
+    <p>Curiosità: in Italia si dice spesso <em>"Si va dal dottore"</em> (con il si impersonale) per indicare che è normale e necessario consultare il medico. La salute è considerata un bene collettivo, non solo individuale.</p>
+    <div class="culture-facts">
+      <div class="fact-card"><strong>💊 La farmacia italiana</strong>In Italia le farmacie sono riconoscibili dalla croce verde. Molti farmaci richiedono la ricetta medica — si dice che gli italiani consumino molti antibiotici!</div>
+      <div class="fact-card"><strong>🩺 Il medico di base</strong>Ogni italiano ha il suo "medico di fiducia" al quale si rivolge per primo. Il rapporto è spesso molto personale e duraturo.</div>
+      <div class="fact-card"><strong>🏥 Il pronto soccorso</strong>In caso di emergenza si va al "Pronto Soccorso" (PS). Il numero delle emergenze in Italia è il 118.</div>
+      <div class="fact-card"><strong>🌡️ La tachipirina</strong>La tachipirina (paracetamolo) è il farmaco più venduto in Italia. È il rimedio classico per febbre e dolori.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=((window.scrollY/(h.scrollHeight-h.clientHeight))*100)+'%';},{passive:true});
+const circles=document.querySelectorAll('.hero-circle');
+document.addEventListener('mousemove',e=>{const x=(e.clientX/window.innerWidth-.5)*20,y=(e.clientY/window.innerHeight-.5)*20;circles.forEach((c,i)=>{const f=(i+1)*.4;c.style.transform=`translate(${x*f}px,${y*f}px)`;});});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.12});
+document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>io.observe(el));
+function clickWord(el,type){if(el.classList.contains('ok')||el.classList.contains('trap'))return;el.classList.add(type);const ok=document.querySelectorAll('#grid1 .ok').length,trap=document.querySelectorAll('#grid1 .trap').length;if(ok+trap>0)document.getElementById('grid1-res').textContent=`✓ ${ok} corrette · ✗ ${trap} trappole`;}
+function checkFill(ids,fbId){let ok=0;ids.forEach(id=>{const inp=document.getElementById(id);if(!inp)return;inp.classList.remove('ok','no');if(inp.value.toLowerCase().trim()===inp.dataset.ans.toLowerCase()){inp.classList.add('ok');ok++;}else if(inp.value)inp.classList.add('no');});const fb=document.getElementById(fbId+'-fb');if(fb){fb.className='fill-fb'+(ok===ids.length?' ok':' no');fb.textContent=ok===ids.length?'✓ Perfetto!':'✗ '+ok+'/'+ids.length+' corrette.';}}
+const rAns={rq1:'b',rq2:'b',rq3:'b'};const rCh={};
+function chooseOpt(el,qid,opt){document.getElementById(qid).querySelectorAll('.q-opt').forEach(o=>o.classList.remove('chosen'));el.classList.add('chosen');rCh[qid]=opt;}
+function checkReading(){let sc=0;for(const[qid,ans] of Object.entries(rAns)){const box=document.getElementById(qid);box.querySelectorAll('.q-opt').forEach(o=>{o.classList.remove('right','wrong');const letter=o.getAttribute('onclick').match(/'([a-c])'\)/)?.[1];if(letter===ans)o.classList.add('right');else if(o.classList.contains('chosen'))o.classList.add('wrong');});if(rCh[qid]===ans)sc++;}const fb=document.getElementById('reading-fb');fb.className='fill-fb'+(sc>=2?' ok':' no');fb.textContent=`${sc}/3 — ${sc===3?'Ottimo! 🎉':sc>=2?'Bene! 👍':'Rileggi il testo 💪'}`;}
+</script>
+</body>
+</html>

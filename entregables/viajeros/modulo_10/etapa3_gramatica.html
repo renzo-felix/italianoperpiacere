@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gramática M10 · Comparativi, Superlativi, Dimostrativi — Italiano Per Piacere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #e9e6d5; --cream-dk: #ddd9c8; --gold: #EFCF7F;
+    --amber: #e5ab07; --red: #cc4736; --teal: #78a6ba; --green: #528e74;
+    --black: #1a1a18; --white: #ffffff;
+    --fh: 'Playfair Display', Georgia, serif; --fb: 'Outfit', system-ui, sans-serif;
+    --mod: #cc4736; --mod-dk: #a8382a; --mod-hero-bg: #fde4e1;
+    --mod-border: #cc4736; --mod-th-bg: #fbc8c2; --mod-th-color: #7a1f14;
+    --mod-light: #fff5f4;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--fb); color: var(--black); background: var(--cream); line-height: 1.6; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 2px solid var(--mod-border); box-shadow: 0 2px 8px rgba(0,0,0,.08); display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: .7rem 1.5rem; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; gap: .5rem; }
+  .nav-logo img { height: 38px; display: block; }
+  .nav-links { display: flex; gap: .4rem; flex-wrap: wrap; }
+  .nav-links a { font-size: .78rem; font-weight: 600; text-decoration: none; color: var(--black); padding: .35rem .7rem; border-radius: 20px; transition: background .2s; }
+  .nav-links a:hover, .nav-links a.active { background: var(--mod); color: var(--white); }
+
+  .hero { background: var(--mod-hero-bg); border-bottom: 3px solid var(--mod-border); padding: 2.5rem 1.5rem 2rem; text-align: center; }
+  .hero-badge { display: inline-block; background: var(--mod); color: var(--white); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .3rem .9rem; border-radius: 20px; margin-bottom: 1rem; }
+  .hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2rem, 5vw, 3rem); color: var(--mod-th-color); }
+  .hero p { font-size: 1rem; color: #5a1a14; max-width: 620px; margin: .5rem auto 0; }
+
+  .section { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+  .section-title { font-family: var(--fh); font-style: italic; font-size: 1.6rem; color: var(--mod-dk); margin-bottom: .3rem; }
+  .section-sub { font-size: .9rem; color: #666; margin-bottom: 1.5rem; }
+  .divider { border: none; border-top: 2px solid var(--mod-border); margin: 2rem 0; }
+
+  .grammar-box { background: var(--white); border-radius: 14px; border: 2px solid var(--mod-border); padding: 1.6rem; margin: 1.2rem 0; }
+  .grammar-box h3 { font-family: var(--fh); font-style: italic; font-size: 1.2rem; color: var(--mod-dk); margin-bottom: .8rem; }
+  .grammar-box p { font-size: .93rem; color: #444; margin-bottom: .7rem; line-height: 1.7; }
+  .grammar-box .formula { background: var(--mod-th-bg); border-left: 4px solid var(--mod); border-radius: 0 8px 8px 0; padding: .8rem 1.2rem; font-size: 1rem; font-weight: 700; color: var(--mod-th-color); margin: .8rem 0; font-style: italic; }
+  .tag { display: inline-block; background: var(--mod-th-bg); color: var(--mod-th-color); font-size: .78rem; font-weight: 700; padding: .2rem .6rem; border-radius: 20px; margin-right: .4rem; margin-bottom: .4rem; }
+  .tag.green { background: #d4edda; color: #2d6a4f; }
+
+  .table-wrap { overflow-x: auto; margin: 1rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  th { background: var(--mod-th-bg); color: var(--mod-th-color); font-weight: 700; padding: .65rem .9rem; text-align: left; }
+  td { padding: .6rem .9rem; border-bottom: 1px solid var(--mod-border); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--mod-hero-bg); }
+  .it-cell { font-family: var(--fh); font-style: italic; color: var(--mod-dk); font-weight: 600; }
+  .highlight-row td { background: var(--mod-th-bg); font-weight: 600; }
+
+  .practice { background: var(--white); border-radius: 14px; border: 2px solid var(--mod-border); padding: 1.4rem; margin: 1.2rem 0; }
+  .practice h3 { font-family: var(--fh); font-style: italic; font-size: 1.1rem; color: var(--mod-dk); margin-bottom: 1rem; }
+  .fill-item { display: flex; align-items: center; gap: .6rem; margin-bottom: .8rem; font-size: .92rem; flex-wrap: wrap; }
+  .fill-item input { border: none; border-bottom: 2px solid var(--mod); background: transparent; font-family: var(--fb); font-size: .92rem; font-style: italic; color: var(--mod-dk); width: 180px; outline: none; padding: .15rem .3rem; }
+  .fill-item input.correct { border-bottom-color: var(--green); color: var(--green); }
+  .fill-item input.wrong { border-bottom-color: var(--red); color: var(--red); }
+  .check-btn { background: var(--mod); color: var(--white); border: none; border-radius: 20px; padding: .5rem 1.2rem; font-family: var(--fb); font-weight: 600; font-size: .85rem; cursor: pointer; margin-top: .5rem; transition: background .2s; }
+  .check-btn:hover { background: var(--mod-dk); }
+  .fill-feedback { font-size: .85rem; margin-top: .5rem; font-weight: 600; display: none; }
+  .fill-feedback.show { display: block; }
+  .fill-feedback.ok { color: var(--green); }
+  .fill-feedback.err { color: var(--red); }
+
+  /* COMPARISON CARDS */
+  .comp-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin: 1rem 0; }
+  .comp-card { background: var(--white); border: 2px solid var(--mod-border); border-radius: 12px; padding: 1.1rem; }
+  .comp-card h4 { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--mod-th-color); margin-bottom: .6rem; }
+  .comp-card .it { font-family: var(--fh); font-style: italic; font-size: 1rem; color: var(--mod-dk); }
+  .comp-card .es { font-size: .82rem; color: #777; margin-top: .3rem; }
+  .comp-card .struct { font-size: .75rem; background: var(--mod-th-bg); color: var(--mod-th-color); border-radius: 4px; padding: .15rem .4rem; display: inline-block; margin-top: .4rem; font-weight: 700; }
+
+  /* DIMO TABLE */
+  .dimo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+  .dimo-card { background: var(--white); border-radius: 12px; padding: 1.1rem; border: 2px solid var(--mod-border); }
+  .dimo-card h4 { font-weight: 700; font-size: .9rem; color: var(--mod-th-color); margin-bottom: .8rem; text-transform: uppercase; letter-spacing: .04em; }
+  .dimo-row { display: flex; justify-content: space-between; padding: .3rem 0; border-bottom: 1px solid var(--mod-border); font-size: .88rem; }
+  .dimo-row:last-child { border-bottom: none; }
+  .dimo-row .label { color: #888; font-size: .78rem; }
+  .dimo-row .form { font-family: var(--fh); font-style: italic; color: var(--mod-dk); font-weight: 600; }
+
+  /* QUIZ */
+  .quiz { background: var(--white); border-radius: 14px; border: 2px solid var(--mod-border); padding: 1.4rem; margin: 1.2rem 0; }
+  .quiz h3 { font-family: var(--fh); font-style: italic; font-size: 1.2rem; color: var(--mod-dk); margin-bottom: 1rem; }
+  .quiz-q { background: var(--cream); border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: 1.2rem; }
+  .quiz-q p { font-size: .92rem; font-weight: 600; margin-bottom: .7rem; }
+  .quiz-opts { display: flex; flex-direction: column; gap: .4rem; }
+  .quiz-opt { background: var(--white); border: 2px solid var(--cream-dk); border-radius: 8px; padding: .5rem 1rem; font-family: var(--fb); font-size: .87rem; cursor: pointer; text-align: left; transition: border-color .2s; }
+  .quiz-opt:hover:not(:disabled) { border-color: var(--mod); }
+  .quiz-opt.correct { border-color: var(--green); background: #eafaf3; color: #2d6a4f; font-weight: 600; }
+  .quiz-opt.wrong { border-color: var(--red); background: #fde8e6; color: var(--red); }
+  .quiz-result { background: var(--mod-th-bg); border-radius: 10px; padding: 1rem 1.2rem; text-align: center; display: none; margin-top: 1rem; }
+  .quiz-result.show { display: block; }
+  .quiz-result p { font-weight: 700; font-size: 1rem; color: var(--mod-th-color); }
+
+  /* FINALE BANNER */
+  .finale-banner { background: linear-gradient(135deg, var(--mod-hero-bg), #fff5f4); border: 3px solid var(--mod); border-radius: 16px; padding: 2rem; margin: 2rem 0; text-align: center; }
+  .finale-banner h3 { font-family: var(--fh); font-style: italic; font-size: 1.6rem; color: var(--mod-dk); margin-bottom: .5rem; }
+  .finale-banner p { font-size: .95rem; color: #5a1a14; }
+  .finale-banner .next-btn { display: inline-block; margin-top: 1rem; background: var(--mod); color: var(--white); border-radius: 30px; padding: .8rem 2rem; font-weight: 700; font-size: .95rem; text-decoration: none; transition: background .2s; }
+  .finale-banner .next-btn:hover { background: var(--mod-dk); }
+
+  footer { background: var(--black); color: var(--cream); text-align: center; padding: 1.5rem; font-size: .82rem; margin-top: 3rem; }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 600px) { .dimo-grid { grid-template-columns: 1fr; } }
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo) { font-size: .78rem; font-weight: 600; text-decoration: none; color: var(--black); padding: .35rem .7rem; border-radius: 20px; transition: background .2s; }
+nav > a:not(.nav-logo):hover, nav > a:not(.nav-logo).active { background: var(--mod); color: var(--white); }
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+
+<nav class="sticky-nav">
+    <div class="nav-logo">
+      <a href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#comparativi" class="active">Comparativi</a>
+      <a href="#superlativi">Superlativi</a>
+      <a href="#dimostrativi">Dimostrativi</a>
+      <a href="#pratica">Práctica</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+
+<div class="hero">
+  <span class="hero-badge">Módulo 10 · Gramática · FINALE</span>
+  <h1>Comparativi, Superlativi e Dimostrativi</h1>
+  <p>Las herramientas gramaticales para describir, comparar y señalar productos — perfectas para el shopping en Italia.</p>
+</div>
+
+<!-- COMPARATIVI -->
+<section class="section" id="comparativi">
+  <h2 class="section-title">I Comparativi</h2>
+  <p class="section-sub">Para decir que algo es más, menos o igual que otra cosa.</p>
+
+  <div class="grammar-box">
+    <h3>Tres tipos de comparativos</h3>
+    <p>En italiano hay tres comparativos básicos:</p>
+    <div class="formula">più + aggettivo + di/che → maggioranza (más...que)</div>
+    <div class="formula">meno + aggettivo + di/che → minoranza (menos...que)</div>
+    <div class="formula">tanto...quanto / così...come → uguaglianza (tan...como)</div>
+    <p>La diferencia entre <strong>di</strong> y <strong>che</strong>: usás <em>di</em> cuando comparás dos sustantivos o pronombres diferentes. Usás <em>che</em> cuando comparás dos adjetivos, dos verbos, o cuando hay una preposición.</p>
+    <span class="tag">Più caro DI quello → dos sustantivos distintos</span>
+    <span class="tag">Più caro CHE elegante → dos adjetivos</span>
+    <span class="tag">Più facile DA comprare CHE da trovare → preposición</span>
+  </div>
+
+  <div class="comp-cards">
+    <div class="comp-card">
+      <h4>Maggioranza</h4>
+      <div class="it">Questa borsa è più cara di quella.</div>
+      <div class="es">Esta cartera es más cara que aquella.</div>
+      <div class="struct">più + adj + di</div>
+    </div>
+    <div class="comp-card">
+      <h4>Minoranza</h4>
+      <div class="it">Il mercato è meno caro del negozio.</div>
+      <div class="es">El mercado es menos caro que la tienda.</div>
+      <div class="struct">meno + adj + di</div>
+    </div>
+    <div class="comp-card">
+      <h4>Uguaglianza</h4>
+      <div class="it">La seta è tanto bella quanto la lana.</div>
+      <div class="es">La seda es tan bella como la lana.</div>
+      <div class="struct">tanto...quanto</div>
+    </div>
+    <div class="comp-card">
+      <h4>Con che (2 adj)</h4>
+      <div class="it">È più artigianale che industriale.</div>
+      <div class="es">Es más artesanal que industrial.</div>
+      <div class="struct">più + adj + che + adj</div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Tipo</th><th>Frase italiana</th><th>Traducción</th><th>Regla usada</th></tr>
+      <tr><td>Più + di</td><td class="it-cell">Il cuoio è più resistente del cotone.</td><td>El cuero es más resistente que el algodón.</td><td>di (dos sustantivos)</td></tr>
+      <tr><td>Meno + di</td><td class="it-cell">Questo modello è meno caro di quello.</td><td>Este modelo es menos caro que aquel.</td><td>di (dos sustantivos)</td></tr>
+      <tr><td>Più + che (adj)</td><td class="it-cell">È più originale che costoso.</td><td>Es más original que caro.</td><td>che (dos adjetivos)</td></tr>
+      <tr><td>Tanto...quanto</td><td class="it-cell">È tanto bella quanto costosa.</td><td>Es tan linda como cara.</td><td>uguaglianza</td></tr>
+      <tr class="highlight-row"><td>Più + che (prep)</td><td class="it-cell">È meglio comprare qui che in aeroporto.</td><td>Es mejor comprar aquí que en el aeropuerto.</td><td>che (dos verbos)</td></tr>
+    </table>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SUPERLATIVI -->
+<section class="section" id="superlativi">
+  <h2 class="section-title">I Superlativi</h2>
+  <p class="section-sub">Para decir "el más..." (relativo) o "muy/ísimo" (absoluto).</p>
+
+  <div class="grammar-box">
+    <h3>Superlativo relativo vs. assoluto</h3>
+    <p><strong>Superlativo relativo</strong>: el más/menos dentro de un grupo.</p>
+    <div class="formula">il/la/i/le + più/meno + aggettivo + di + gruppo</div>
+    <p><strong>Superlativo assoluto</strong>: muy, tremendamente.</p>
+    <div class="formula">aggettivo (radice) + -issimo / -issima / -issimi / -issime</div>
+    <span class="tag">bello → bellissimo</span>
+    <span class="tag">caro → carissimo</span>
+    <span class="tag">buono → buonissimo</span>
+    <span class="tag">lungo → lunghissimo</span>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Aggettivo</th><th>Superlativo relativo</th><th>Superlativo assoluto</th></tr>
+      <tr><td>bello</td><td class="it-cell">il più bello del mercato</td><td class="it-cell">bellissimo</td></tr>
+      <tr><td>caro</td><td class="it-cell">il più caro del negozio</td><td class="it-cell">carissimo</td></tr>
+      <tr><td>economico</td><td class="it-cell">il meno caro di tutti</td><td class="it-cell">economicissimo</td></tr>
+      <tr><td>buono</td><td class="it-cell">il migliore del mercato</td><td class="it-cell">buonissimo / ottimo</td></tr>
+      <tr><td>cattivo</td><td class="it-cell">il peggiore di tutti</td><td class="it-cell">pessimo</td></tr>
+      <tr><td>grande</td><td class="it-cell">il maggiore della collezione</td><td class="it-cell">grandissimo / massimo</td></tr>
+      <tr><td>piccolo</td><td class="it-cell">il minore dei modelli</td><td class="it-cell">piccolissimo / minimo</td></tr>
+    </table>
+  </div>
+
+  <div class="grammar-box">
+    <h3>Superlativi irregolari — tablita del shopping</h3>
+    <p>Estos cuatro pares son los más importantes. El superlativo relativo y assoluto tienen formas especiales:</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Aggettivo</th><th>Comparativo</th><th>Superlativo relativo</th><th>Superlativo assoluto</th></tr>
+      <tr class="highlight-row"><td>buono (bueno)</td><td class="it-cell">migliore (mejor)</td><td class="it-cell">il migliore</td><td class="it-cell">ottimo</td></tr>
+      <tr class="highlight-row"><td>cattivo (malo)</td><td class="it-cell">peggiore (peor)</td><td class="it-cell">il peggiore</td><td class="it-cell">pessimo</td></tr>
+      <tr class="highlight-row"><td>grande (grande)</td><td class="it-cell">maggiore (mayor)</td><td class="it-cell">il maggiore</td><td class="it-cell">massimo</td></tr>
+      <tr class="highlight-row"><td>piccolo (chico)</td><td class="it-cell">minore (menor)</td><td class="it-cell">il minore</td><td class="it-cell">minimo</td></tr>
+    </table>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- DIMOSTRATIVI -->
+<section class="section" id="dimostrativi">
+  <h2 class="section-title">I Dimostrativi</h2>
+  <p class="section-sub">Questo (este/esta — cerca) y quello (ese/aquel — lejos). Indispensables para señalar productos.</p>
+
+  <div class="grammar-box">
+    <h3>Questo — regular, fácil</h3>
+    <p><strong>Questo</strong> es completamente regular: cambia solo por género y número.</p>
+    <span class="tag">questo vestito (m. sing.)</span>
+    <span class="tag">questa borsa (f. sing.)</span>
+    <span class="tag">questi guanti (m. pl.)</span>
+    <span class="tag">queste scarpe (f. pl.)</span>
+  </div>
+
+  <div class="grammar-box">
+    <h3>Quello — irregular, funciona como "bello"</h3>
+    <p><strong>Quello</strong> cambia según el sonido inicial de la palabra que sigue, igual que el artículo <em>il/lo/l'</em>:</p>
+    <span class="tag">quel + cons. normal (quel vestito)</span>
+    <span class="tag">quello + s+cons / z / gn / ps (quello zaino)</span>
+    <span class="tag">quell' + vocal (quell'orologio)</span>
+    <span class="tag">quei + m.pl. cons. normal (quei guanti)</span>
+    <span class="tag">quegli + m.pl. vocal/s+cons (quegli stivali)</span>
+    <span class="tag">quella + f.sing. (quella borsa)</span>
+    <span class="tag">quell' + f.sing. vocal (quell'offerta)</span>
+    <span class="tag">quelle + f.pl. (quelle scarpe)</span>
+  </div>
+
+  <div class="dimo-grid">
+    <div class="dimo-card">
+      <h4>QUESTO (este/esta)</h4>
+      <div class="dimo-row"><span class="label">M. sing.</span><span class="form">questo vestito</span></div>
+      <div class="dimo-row"><span class="label">F. sing.</span><span class="form">questa borsa</span></div>
+      <div class="dimo-row"><span class="label">M. pl.</span><span class="form">questi guanti</span></div>
+      <div class="dimo-row"><span class="label">F. pl.</span><span class="form">queste scarpe</span></div>
+      <div class="dimo-row"><span class="label">+ vocal (m/f)</span><span class="form">quest'orologio / quest'offerta</span></div>
+    </div>
+    <div class="dimo-card">
+      <h4>QUELLO (ese/aquel)</h4>
+      <div class="dimo-row"><span class="label">M. sing. cons.</span><span class="form">quel vestito</span></div>
+      <div class="dimo-row"><span class="label">M. sing. s+cons/z</span><span class="form">quello zaino</span></div>
+      <div class="dimo-row"><span class="label">M. sing. vocal</span><span class="form">quell'orologio</span></div>
+      <div class="dimo-row"><span class="label">F. sing.</span><span class="form">quella borsa</span></div>
+      <div class="dimo-row"><span class="label">F. sing. vocal</span><span class="form">quell'offerta</span></div>
+      <div class="dimo-row"><span class="label">M. pl. cons.</span><span class="form">quei guanti</span></div>
+      <div class="dimo-row"><span class="label">M. pl. vocal/s+c</span><span class="form">quegli stivali</span></div>
+      <div class="dimo-row"><span class="label">F. pl.</span><span class="form">quelle scarpe</span></div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Frase</th><th>Dimostrativo</th><th>¿Por qué?</th></tr>
+      <tr><td>___ cappotto (m.sing., c-) costa troppo.</td><td class="it-cell">Quel cappotto</td><td>m.sing. + cons. normal</td></tr>
+      <tr><td>___ stivali (m.pl., st-) sono bellissimi.</td><td class="it-cell">Quegli stivali</td><td>m.pl. + s+consonante</td></tr>
+      <tr><td>___ orecchini (m.pl., vocal) sono originali.</td><td class="it-cell">Quegli orecchini</td><td>m.pl. + vocal</td></tr>
+      <tr><td>___ offerta (f.sing., vocal) è ottima.</td><td class="it-cell">Quell'offerta</td><td>f.sing. + vocal → quell'</td></tr>
+      <tr class="highlight-row"><td>Preferisco ___ borsa qui (vicino).</td><td class="it-cell">questa borsa</td><td>QUESTO = cerca</td></tr>
+    </table>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PRÁCTICA -->
+<section class="section" id="pratica">
+  <h2 class="section-title">Pratica guidata ✏️</h2>
+
+  <div class="practice" id="prac1">
+    <h3>Pratica 1 — Comparativi</h3>
+    <div class="fill-item">
+      <span>Questa giacca è</span>
+      <input type="text" placeholder="più cara" data-answer="più cara" id="p1_1">
+      <span>di quella.</span>
+    </div>
+    <div class="fill-item">
+      <span>Il mercato è</span>
+      <input type="text" placeholder="meno caro" data-answer="meno caro" id="p1_2">
+      <span>della boutique.</span>
+    </div>
+    <div class="fill-item">
+      <span>Questo prodotto è</span>
+      <input type="text" placeholder="tanto originale quanto" data-answer="tanto originale quanto" id="p1_3">
+      <span>bello.</span>
+    </div>
+    <div class="fill-item">
+      <span>È</span>
+      <input type="text" placeholder="più artigianale che" data-answer="più artigianale che" id="p1_4">
+      <span>industriale.</span>
+    </div>
+    <button class="check-btn" onclick="checkPrac('prac1')">Verificar</button>
+    <div class="fill-feedback" id="prac1-feedback"></div>
+  </div>
+
+  <div class="practice" id="prac2">
+    <h3>Pratica 2 — Superlativi</h3>
+    <p style="font-size:.85rem;color:#777;margin-bottom:1rem;">Usá el superlativo assoluto o relativo según el contexto.</p>
+    <div class="fill-item">
+      <span>Questa borsa è</span>
+      <input type="text" placeholder="bellissima" data-answer="bellissima" id="p2_1">
+      <span>! La prendo.</span>
+    </div>
+    <div class="fill-item">
+      <span>È</span>
+      <input type="text" placeholder="il migliore" data-answer="il migliore" id="p2_2">
+      <span>prodotto del mercato.</span>
+    </div>
+    <div class="fill-item">
+      <span>Questo ristorante è</span>
+      <input type="text" placeholder="pessimo" data-answer="pessimo" id="p2_3">
+      <span>! Non ci torno.</span>
+    </div>
+    <div class="fill-item">
+      <span>Il prezzo è</span>
+      <input type="text" placeholder="bassissimo" data-answer="bassissimo" id="p2_4">
+      <span>per un prodotto autentico.</span>
+    </div>
+    <button class="check-btn" onclick="checkPrac('prac2')">Verificar</button>
+    <div class="fill-feedback" id="prac2-feedback"></div>
+  </div>
+
+  <div class="practice" id="prac3">
+    <h3>Pratica 3 — Dimostrativi</h3>
+    <p style="font-size:.85rem;color:#777;margin-bottom:1rem;">Completá con la forma correcta de questo o quello.</p>
+    <div class="fill-item">
+      <span>Quanto costa</span>
+      <input type="text" placeholder="quella" data-answer="quella" id="p3_1">
+      <span>borsa in vetrina? (lontano, f.)</span>
+    </div>
+    <div class="fill-item">
+      <span>Mi piacciono</span>
+      <input type="text" placeholder="questi" data-answer="questi" id="p3_2">
+      <span>guanti qui. (vicino, m.pl.)</span>
+    </div>
+    <div class="fill-item">
+      <span>Quanto costano</span>
+      <input type="text" placeholder="quegli" data-answer="quegli" id="p3_3">
+      <span>stivali laggiù? (lontano, m.pl. + s+cons.)</span>
+    </div>
+    <div class="fill-item">
+      <span>Prendo</span>
+      <input type="text" placeholder="questa" data-answer="questa" id="p3_4">
+      <span>camicia qui. (vicino, f.)</span>
+    </div>
+    <div class="fill-item">
+      <span>Mi dà</span>
+      <input type="text" placeholder="quell'" data-answer="quell'" id="p3_5">
+      <span>orologio in vetrina? (lontano, m. + vocal)</span>
+    </div>
+    <button class="check-btn" onclick="checkPrac('prac3')">Verificar</button>
+    <div class="fill-feedback" id="prac3-feedback"></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- QUIZ -->
+<section class="section" id="quiz">
+  <h2 class="section-title">Quiz finale 🏆</h2>
+
+  <div class="quiz">
+    <h3>5 preguntas — ¿Dominás los comparativi, superlativi e dimostrativi?</h3>
+
+    <div class="quiz-q">
+      <p>1. ¿Cómo se dice "Esta camisa es más cara que aquella"?</p>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="quizOpt(this, false)">Questa camicia è più cara che quella.</button>
+        <button class="quiz-opt" onclick="quizOpt(this, true)">Questa camicia è più cara di quella.</button>
+        <button class="quiz-opt" onclick="quizOpt(this, false)">Questa camicia è più cara tanto quella.</button>
+      </div>
+    </div>
+
+    <div class="quiz-q">
+      <p>2. ¿Cuál es el superlativo assoluto de "buono"?</p>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="quizOpt(this, false)">migliore</button>
+        <button class="quiz-opt" onclick="quizOpt(this, false)">buonissimo</button>
+        <button class="quiz-opt" onclick="quizOpt(this, true)">Tanto migliore como ottimo son superlativos — ottimo es el assoluto</button>
+      </div>
+    </div>
+
+    <div class="quiz-q">
+      <p>3. ¿Cómo señalás "esos zapatos de allá" (m.pl., lejos)?</p>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="quizOpt(this, false)">questi scarpe</button>
+        <button class="quiz-opt" onclick="quizOpt(this, true)">quei scarpe / quelle scarpe (scarpe es femenino → quelle scarpe)</button>
+        <button class="quiz-opt" onclick="quizOpt(this, false)">quegli scarpe</button>
+      </div>
+    </div>
+
+    <div class="quiz-q">
+      <p>4. ¿Cuándo usás "che" en un comparativo?</p>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="quizOpt(this, false)">Siempre, en vez de "di"</button>
+        <button class="quiz-opt" onclick="quizOpt(this, true)">Cuando comparás dos adjetivos, dos verbos, o cuando hay preposición</button>
+        <button class="quiz-opt" onclick="quizOpt(this, false)">Cuando comparás dos sustantivos diferentes</button>
+      </div>
+    </div>
+
+    <div class="quiz-q">
+      <p>5. "Quello stivale" — ¿por qué "quello" y no "quel"?</p>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="quizOpt(this, false)">Porque el plural de stivale es irregular</button>
+        <button class="quiz-opt" onclick="quizOpt(this, true)">Porque stivale empieza con "st" (s + consonante) → se usa "quello"</button>
+        <button class="quiz-opt" onclick="quizOpt(this, false)">Porque stivale es femenino</button>
+      </div>
+    </div>
+
+    <button class="check-btn" onclick="showQuizResult()">Ver resultado</button>
+    <div class="quiz-result" id="quiz-result">
+      <p id="quiz-score-text"></p>
+    </div>
+  </div>
+</section>
+
+<!-- FINALE BANNER -->
+<section class="section">
+  <div class="finale-banner">
+    <h3>Hai completato il corso Viajeros! 🎉</h3>
+    <p>Aprendiste comparativos, superlativos y dimostrativos — las últimas herramientas de este viaje por Italia. Ahora podés comunicarte en situaciones cotidianas reales.</p>
+    <p style="margin-top:.8rem;font-size:.9rem;font-style:italic;">Prossimo livello: <strong>A1 completo</strong> — un viaggio ancora più profondo nella lingua italiana →</p>
+    <a href="https://italianoperpiacere.com" class="next-btn">A1 completo →</a>
+  </div>
+</section>
+
+<footer>
+  <p>Módulo 10 · Gramática · FINALE Viajeros · <a href="https://italianoperpiacere.com">italianoperpiacere.com</a></p>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+  const ids = ['comparativi','superlativi','dimostrativi','pratica','quiz'];
+  let cur = '';
+  ids.forEach(id => { const el = document.getElementById(id); if (el && window.scrollY >= el.offsetTop - 120) cur = id; });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+  });
+});
+
+function checkPrac(blockId) {
+  const block = document.getElementById(blockId);
+  const inputs = block.querySelectorAll('input');
+  let correct = 0;
+  inputs.forEach(inp => {
+    const ans = inp.dataset.answer.toLowerCase().trim();
+    const val = inp.value.toLowerCase().trim();
+    inp.classList.remove('correct','wrong');
+    if (val === ans) { inp.classList.add('correct'); correct++; }
+    else if (val.length > 0) { inp.classList.add('wrong'); }
+  });
+  const fb = document.getElementById(blockId + '-feedback');
+  fb.classList.add('show');
+  if (correct === inputs.length) { fb.textContent = '¡Perfecto! ✓'; fb.className = 'fill-feedback show ok'; }
+  else { fb.textContent = correct + ' de ' + inputs.length + ' correctas.'; fb.className = 'fill-feedback show err'; }
+}
+
+let quizScore = 0;
+function quizOpt(btn, isCorrect) {
+  const group = btn.closest('.quiz-opts');
+  if (group.querySelector('.correct, .wrong')) return;
+  group.querySelectorAll('.quiz-opt').forEach(b => b.disabled = true);
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (isCorrect) quizScore++;
+}
+function showQuizResult() {
+  const res = document.getElementById('quiz-result');
+  const txt = document.getElementById('quiz-score-text');
+  res.classList.add('show');
+  if (quizScore === 5) txt.textContent = '¡Perfecto! 5/5 — Sei un esperto di shopping italiano. Bravissimo/a!';
+  else if (quizScore >= 3) txt.textContent = quizScore + '/5 — Molto bene! Repasá los errores y andás de shopping.';
+  else txt.textContent = quizScore + '/5 — Ripassa le tabelle e riprova. Ce la fai!';
+}
+</script>
+</body>
+</html>

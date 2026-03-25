@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Módulo 13 A2 — Etapa 3: Gramática</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--red-dk:#a8382a;--teal:#78a6ba;--green:#528e74;--green-dk:#3d6b58;--black:#1a1a18;
+  --mod:var(--red);--mod-dk:var(--red-dk);--hdr:var(--red-dk);
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.7}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #cc4736;box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#a8382a;border-bottom-color:#cc4736}
+.hero{background:#fde4e1;border-bottom:3px solid #cc4736;color:var(--black);padding:56px 32px 48px;text-align:center}
+.hero::before,.hero::after{display:none}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:2.4rem;margin-bottom:8px}
+.hero p{font-size:1.05rem;opacity:.9;max-width:600px;margin:0 auto}
+section{max-width:900px;margin:0 auto;padding:48px 24px}
+section h2{font-family:var(--fh);font-style:italic;font-size:1.9rem;color:var(--mod-dk);margin-bottom:6px}
+.sec-sub{color:#555;font-size:.95rem;margin-bottom:28px;padding-bottom:12px;border-bottom:2px solid var(--cream-dk)}
+section+section{border-top:2px solid var(--cream-dk)}
+.scheme{background:linear-gradient(135deg,#fdf0ee 0%,#f5cdc8 100%);color:var(--black);border-radius:14px;padding:24px 28px;margin-bottom:24px;font-size:1.05rem}
+.scheme strong{color:var(--black)}
+.scheme .formula{font-size:1.2rem;font-weight:700;text-align:center;padding:12px;background:rgba(0,0,0,.06);border-radius:8px;margin:12px 0}
+.info{background:var(--cream-dk);border-left:4px solid var(--mod);border-radius:0 10px 10px 0;padding:16px 20px;margin:20px 0;font-size:.95rem}
+.info strong{color:var(--mod-dk)}
+.tbl-wrap{overflow-x:auto;margin:20px 0}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th{background:#fbc8c2;color:#7a1f14;padding:10px 14px;text-align:left}
+td{padding:9px 14px;border-bottom:1px solid var(--cream-dk)}
+tr:nth-child(even) td{background:#fef0ee}
+tr:hover td{background:#d4d0be}
+.it{font-style:italic;font-weight:600;color:var(--red-dk)}
+.es{color:#666;font-size:.88rem}
+.tag{display:inline-block;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:10px;background:#f5cdc8;color:var(--black);margin-left:6px}
+.hl{background:var(--gold);padding:2px 6px;border-radius:4px;font-weight:700;color:var(--black)}
+.hl-box{background:var(--gold);color:var(--black);border-radius:10px;padding:16px 20px;margin:20px 0;font-size:.97rem;font-weight:600;border-left:4px solid var(--amber-dk);text-align:center;font-style:italic}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:20px 0}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--cream-dk);border-radius:12px;padding:18px 20px}
+.card h4{font-family:var(--fh);font-style:italic;color:var(--mod-dk);font-size:1.1rem;margin-bottom:10px}
+.card ul{padding-left:18px;font-size:.92rem}
+.card ul li{margin-bottom:6px}
+.prac-block{background:#fff;border:1px solid var(--cream-dk);border-radius:14px;padding:24px;margin-bottom:20px}
+.prac-block h3{font-family:var(--fh);font-style:italic;color:var(--mod-dk);margin-bottom:16px;font-size:1.2rem}
+.prac-item{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.prac-item label{min-width:250px;font-size:.95rem}
+.prac-item input{border:2px solid var(--cream-dk);border-radius:8px;padding:7px 12px;font-family:var(--fb);font-size:.95rem;width:220px;transition:.2s}
+.prac-item input:focus{outline:none;border-color:var(--mod)}
+.prac-item input.ok{border-color:var(--green);background:#e8f5ee}
+.prac-item input.err{border-color:var(--red);background:#fde8e6}
+.check-btn{background:#f5cdc8;color:var(--black);border:none;border-radius:8px;padding:9px 22px;font-family:var(--fb);font-size:.9rem;font-weight:700;cursor:pointer;transition:.2s;margin-top:8px}
+.check-btn:hover{background:var(--mod-dk)}
+.prac-fb{margin-top:10px;font-size:.9rem;font-weight:600;min-height:20px}
+.prac-fb.ok{color:var(--green-dk)}
+.prac-fb.err{color:var(--red)}
+/* adv table */
+.adv-tbl td:first-child{font-style:italic;color:var(--red-dk);font-weight:600}
+.adv-tbl .rule{background:#fff3cd;color:#7a5500;font-size:.8rem;padding:2px 8px;border-radius:6px;display:inline-block;margin-left:6px}
+#quiz{background:linear-gradient(135deg,#fdf0ee 0%,#f5cdc8 100%);color:var(--black);border-radius:16px;padding:32px;max-width:900px;margin:0 auto 40px;box-shadow:0 4px 20px rgba(0,0,0,.12)}
+#quiz h2{font-family:var(--fh);font-style:italic;color:var(--black);font-size:1.7rem;margin-bottom:24px}
+.q-block{background:rgba(255,255,255,.08);border-radius:10px;padding:18px 20px;margin-bottom:16px}
+.q-block p{font-weight:600;margin-bottom:12px;line-height:1.5}
+.q-opt{display:flex;flex-direction:column;gap:8px}
+.q-opt label{display:flex;align-items:center;gap:10px;cursor:pointer;background:rgba(255,255,255,.06);border-radius:8px;padding:9px 14px;transition:.2s;font-size:.95rem}
+.q-opt label:hover{background:rgba(255,255,255,.16)}
+.q-opt input{accent-color:var(--gold)}
+#quiz-btn{display:block;margin:24px auto 0;background:var(--gold);color:var(--black);border:none;border-radius:10px;padding:12px 36px;font-family:var(--fb);font-size:1rem;font-weight:700;cursor:pointer;transition:.2s}
+#quiz-btn:hover{background:var(--amber)}
+#quiz-result{text-align:center;margin-top:20px;font-size:1.1rem;font-weight:700;min-height:28px;color:var(--black)}
+footer{background:var(--cream-dk);color:var(--black);text-align:center;padding:24px;font-size:.85rem}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+nav > a:not(.nav-logo):hover,nav > a:not(.nav-logo).active{opacity:1;color:#a8382a;border-bottom-color:#cc4736}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#modali">Modali al passato</a>
+      <a href="#avverbi">Avverbi -mente</a>
+      <a href="#addirittura">Addirittura</a>
+      <a href="#pratica">Pratica</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+<div class="hero">
+  <h1>Storie e sentimenti · Grammatica</h1>
+  <p>Passato prossimo verbi modali · Avverbi in -mente · Addirittura</p>
+</div>
+
+<!-- MODALI AL PASSATO -->
+<section id="modali">
+  <h2>Passato prossimo dei verbi modali</h2>
+  <p class="sec-sub">Potere · Volere · Dovere en passato prossimo</p>
+  <div class="scheme">
+    <p style="margin-bottom:10px">Los verbos modales al passato prossimo siguen la misma regla que los demás verbos: el auxiliar lo determina el <strong>infinitivo que sigue</strong>:</p>
+    <div class="formula">Ho + participio &nbsp;&nbsp;(si l'infinitivo prende avere)<br>Sono/a + participio &nbsp;&nbsp;(si l'infinitivo prende essere)</div>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Verbo</th><th>Participio</th><th>Esempio con avere</th><th>Esempio con essere</th></tr>
+      <tr><td>potere</td><td class="it">potuto</td><td class="it">ho potuto mangiare</td><td class="it">sono potuto/a andare</td></tr>
+      <tr><td>volere</td><td class="it">voluto</td><td class="it">ho voluto rimanere</td><td class="it">sono voluto/a partire</td></tr>
+      <tr><td>dovere</td><td class="it">dovuto</td><td class="it">ho dovuto lavorare</td><td class="it">sono dovuto/a uscire</td></tr>
+    </table>
+  </div>
+  <div class="hl-box">
+    💡 La regola: guarda l'INFINITO che segue il modale, non il modale stesso.<br>
+    <em>"Ho dovuto <strong>mangiare</strong>"</em> (mangiare = avere) ✅ &nbsp;&nbsp;
+    <em>"Sono dovuto/a <strong>andare</strong>"</em> (andare = essere) ✅
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Pronome</th><th>potere (+ avere)</th><th>dovere (+ essere)</th></tr>
+      <tr><td>io</td><td class="it">ho potuto dormire</td><td class="it">sono dovuto/a uscire</td></tr>
+      <tr><td>tu</td><td class="it">hai potuto dormire</td><td class="it">sei dovuto/a uscire</td></tr>
+      <tr><td>lui/lei</td><td class="it">ha potuto dormire</td><td class="it">è dovuto/a uscire</td></tr>
+      <tr><td>noi</td><td class="it">abbiamo potuto dormire</td><td class="it">siamo dovuti/e uscire</td></tr>
+      <tr><td>voi</td><td class="it">avete potuto dormire</td><td class="it">siete dovuti/e uscire</td></tr>
+      <tr><td>loro</td><td class="it">hanno potuto dormire</td><td class="it">sono dovuti/e uscire</td></tr>
+    </table>
+  </div>
+  <div class="info">
+    <strong>Concordanza:</strong> Con essere, il participio concorda con il soggetto: <em>Lei è dovut<strong>a</strong> uscire</em> / <em>Loro sono dovut<strong>i</strong> uscire</em>.
+  </div>
+  <div class="two-col">
+    <div class="card">
+      <h4>Verbi che prendono avere</h4>
+      <ul>
+        <li><em>ho <span class="hl">potuto</span> dormire</em> <span class="es">(dormire = avere)</span></li>
+        <li><em>ho <span class="hl">voluto</span> mangiare</em> <span class="es">(mangiare = avere)</span></li>
+        <li><em>ho <span class="hl">dovuto</span> lavorare</em> <span class="es">(lavorare = avere)</span></li>
+        <li><em>ho <span class="hl">potuto</span> parlare</em></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Verbi che prendono essere</h4>
+      <ul>
+        <li><em>sono <span class="hl">potuto/a</span> andare</em> <span class="es">(andare = essere)</span></li>
+        <li><em>sono <span class="hl">dovuto/a</span> uscire</em> <span class="es">(uscire = essere)</span></li>
+        <li><em>sono <span class="hl">voluto/a</span> partire</em> <span class="es">(partire = essere)</span></li>
+        <li><em>siamo <span class="hl">potuti/e</span> venire</em></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- AVVERBI IN -MENTE -->
+<section id="avverbi">
+  <h2>Avverbi in -mente</h2>
+  <p class="sec-sub">Cómo se forman los adverbios de modo en italiano</p>
+  <div class="scheme">
+    <div class="formula">Aggettivo femminile + -MENTE</div>
+    <p style="margin-top:10px">Excepción: aggettivi in <strong>-le</strong> y <strong>-re</strong> → se elimina la -e antes de añadir -mente.</p>
+  </div>
+  <div class="tbl-wrap">
+    <table class="adv-tbl">
+      <tr><th>Aggettivo (m.)</th><th>Femminile</th><th>Avverbio</th><th>Significado</th></tr>
+      <tr><td>lento</td><td>lenta</td><td class="it">lentamente</td><td class="es">lentamente, despacio</td></tr>
+      <tr><td>rapido</td><td>rapida</td><td class="it">rapidamente</td><td class="es">rápidamente</td></tr>
+      <tr><td>tranquillo</td><td>tranquilla</td><td class="it">tranquillamente</td><td class="es">tranquilamente</td></tr>
+      <tr><td>triste</td><td>triste</td><td class="it">tristemente</td><td class="es">tristemente</td></tr>
+      <tr><td>dolce</td><td>dolce</td><td class="it">dolcemente <span class="rule">-ce → -cemente</span></td><td class="es">dulcemente</td></tr>
+      <tr><td>facile</td><td>facile</td><td class="it">facilmente <span class="rule">-le: elimina -e</span></td><td class="es">fácilmente</td></tr>
+      <tr><td>normale</td><td>normale</td><td class="it">normalmente <span class="rule">-le: elimina -e</span></td><td class="es">normalmente</td></tr>
+      <tr><td>finale</td><td>finale</td><td class="it">finalmente <span class="rule">-le: elimina -e</span></td><td class="es">finalmente, por fin</td></tr>
+      <tr><td>semplice</td><td>semplice</td><td class="it">semplicemente</td><td class="es">simplemente</td></tr>
+      <tr><td>felice</td><td>felice</td><td class="it">felicemente</td><td class="es">felizmente</td></tr>
+      <tr><td>silenzioso</td><td>silenziosa</td><td class="it">silenziosamente</td><td class="es">silenciosamente</td></tr>
+      <tr><td>particolare</td><td>particolare</td><td class="it">particolarmente <span class="rule">-re: elimina -e</span></td><td class="es">particularmente</td></tr>
+    </table>
+  </div>
+  <div class="info">
+    <strong>Posizione:</strong> En italiano el adverbio normalmente va <em>después</em> del verbo: <em>"Parlava <strong>lentamente</strong>."</em> Pero puede ir al inicio para mayor énfasis: <em>"<strong>Finalmente</strong> sei arrivato!"</em>
+  </div>
+</section>
+
+<!-- ADDIRITTURA -->
+<section id="addirittura">
+  <h2>Addirittura</h2>
+  <p class="sec-sub">El adverbio enfático por excelencia del italiano</p>
+  <div class="scheme">
+    <p style="margin-bottom:10px"><strong>Addirittura</strong> se usa para expresar sorpresa ante algo inesperado o exagerado. Equivale a:</p>
+    <div class="formula">incluso · nada menos que · hasta · addirittura (¿en serio?!)</div>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Uso</th><th>Esempio</th><th>Español</th></tr>
+      <tr><td>Cantidad sorprendente</td><td class="it">Ha mangiato addirittura tre pizze!</td><td class="es">¡Se comió nada menos que tres pizzas!</td></tr>
+      <tr><td>Duración inesperada</td><td class="it">È rimasto addirittura una settimana.</td><td class="es">Se quedó incluso una semana.</td></tr>
+      <tr><td>Persona o cosa improbable</td><td class="it">Conosceva addirittura il sindaco!</td><td class="es">¡Conocía nada menos que al alcalde!</td></tr>
+      <tr><td>Exclamación de sorpresa</td><td class="it">— Ho vinto! — Addirittura?!</td><td class="es">— ¡Gané! — ¿¡En serio!?</td></tr>
+    </table>
+  </div>
+  <div class="two-col">
+    <div class="card">
+      <h4>Con numeri e quantità</h4>
+      <ul>
+        <li><em>Ha corso addirittura una maratona!</em></li>
+        <li><em>Ha studiato addirittura tutta la notte.</em></li>
+        <li><em>Ha speso addirittura 500 euro.</em></li>
+        <li><em>È rimasto addirittura in silenzio.</em></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Avverbi simili</h4>
+      <ul>
+        <li><strong>perfino / persino</strong> = incluso (más literario)</li>
+        <li><strong>anche</strong> = también / incluso (más neutro)</li>
+        <li><strong>addirittura</strong> = más enfático, con sorpresa</li>
+        <li><em>"Perfino lui è venuto." = incluso él vino.</em></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PRATICA -->
+<section id="pratica">
+  <h2>Pratica</h2>
+  <p class="sec-sub">Completa con la forma corretta · Controlla le risposte</p>
+  <div class="prac-block">
+    <h3>1 · Modali al passato: scegli l'ausiliare</h3>
+    <div class="prac-item"><label>1. Non (io) _____ potuto venire. (avere)</label><input type="text" id="p1a" data-ans="ho" placeholder="ausiliare…"/></div>
+    <div class="prac-item"><label>2. Lei _____ dovuta uscire presto. (essere)</label><input type="text" id="p1b" data-ans="è" placeholder="ausiliare…"/></div>
+    <div class="prac-item"><label>3. Loro _____ voluto partire subito. (avere)</label><input type="text" id="p1c" data-ans="hanno" placeholder="ausiliare…"/></div>
+    <div class="prac-item"><label>4. Noi _____ potuti andare al cinema. (essere)</label><input type="text" id="p1d" data-ans="siamo" placeholder="ausiliare…"/></div>
+    <div class="prac-item"><label>5. Tu _____ dovuto lavorare sabato? (avere)</label><input type="text" id="p1e" data-ans="hai" placeholder="ausiliare…"/></div>
+    <button class="check-btn" onclick="checkPrac('p1',['p1a','p1b','p1c','p1d','p1e'])">Controlla ✓</button>
+    <div class="prac-fb" id="p1-fb"></div>
+  </div>
+  <div class="prac-block">
+    <h3>2 · Avverbi in -mente: trasforma</h3>
+    <div class="prac-item"><label>1. (lento) Il treno è passato _____.</label><input type="text" id="p2a" data-ans="lentamente" placeholder="-mente…"/></div>
+    <div class="prac-item"><label>2. (felice) Vivevano _____ insieme.</label><input type="text" id="p2b" data-ans="felicemente" placeholder="-mente…"/></div>
+    <div class="prac-item"><label>3. (normale) _____ faccio colazione a casa.</label><input type="text" id="p2c" data-ans="normalmente" placeholder="-mente…"/></div>
+    <div class="prac-item"><label>4. (finale) _____ ha capito tutto!</label><input type="text" id="p2d" data-ans="finalmente" placeholder="-mente…"/></div>
+    <div class="prac-item"><label>5. (tranquillo) Ha parlato _____ con il capo.</label><input type="text" id="p2e" data-ans="tranquillamente" placeholder="-mente…"/></div>
+    <button class="check-btn" onclick="checkPrac('p2',['p2a','p2b','p2c','p2d','p2e'])">Controlla ✓</button>
+    <div class="prac-fb" id="p2-fb"></div>
+  </div>
+  <div class="prac-block">
+    <h3>3 · Modale + passato + avverbio</h3>
+    <div class="prac-item"><label>1. Ieri non (potere) _____ dormire. (io)</label><input type="text" id="p3a" data-ans="ho potuto" placeholder="pp modale…"/></div>
+    <div class="prac-item"><label>2. Ha risposto _____ (rapido).</label><input type="text" id="p3b" data-ans="rapidamente" placeholder="-mente…"/></div>
+    <div class="prac-item"><label>3. Ha aspettato _____ tre ore! (incluso)</label><input type="text" id="p3c" data-ans="addirittura" placeholder="avverbio enfatico…"/></div>
+    <div class="prac-item"><label>4. Loro (dovere) _____ partire presto. (essere)</label><input type="text" id="p3d" data-ans="sono dovuti" placeholder="pp modale…"/></div>
+    <div class="prac-item"><label>5. _____ sei arrivato! Ti aspettavo! (finale)</label><input type="text" id="p3e" data-ans="finalmente" placeholder="-mente…"/></div>
+    <button class="check-btn" onclick="checkPrac('p3',['p3a','p3b','p3c','p3d','p3e'])">Controlla ✓</button>
+    <div class="prac-fb" id="p3-fb"></div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" style="padding:0;border:none;max-width:100%">
+<div style="max-width:900px;margin:48px auto;padding:0 24px">
+<div id="quiz">
+  <h2>Quiz finale 🎵</h2>
+  <div class="q-block">
+    <p>1. ¿Cuál es la forma correcta del passato prossimo de "dovere + uscire" para "lei"?</p>
+    <div class="q-opt">
+      <label><input type="radio" name="q1" value="a"/> ha dovuto uscire</label>
+      <label><input type="radio" name="q1" value="b"/> è dovuta uscire</label>
+      <label><input type="radio" name="q1" value="c"/> è dovuto uscire</label>
+    </div>
+  </div>
+  <div class="q-block">
+    <p>2. ¿Cuál es el avverbio correcto de "facile"?</p>
+    <div class="q-opt">
+      <label><input type="radio" name="q2" value="a"/> facilemente</label>
+      <label><input type="radio" name="q2" value="b"/> facilmente</label>
+      <label><input type="radio" name="q2" value="c"/> facilamente</label>
+    </div>
+  </div>
+  <div class="q-block">
+    <p>3. ¿Cuál es el uso correcto de "addirittura"?</p>
+    <div class="q-opt">
+      <label><input type="radio" name="q3" value="a"/> "Sono andato addirittura al bar." (sin énfasis)</label>
+      <label><input type="radio" name="q3" value="b"/> "Ha mangiato addirittura cinque panini!" (sorpresa)</label>
+      <label><input type="radio" name="q3" value="c"/> "Addirittura ho bevuto il caffè." (rutina)</label>
+    </div>
+  </div>
+  <div class="q-block">
+    <p>4. "Non ho potuto _____." — ¿Qué verbo lleva "avere" como auxiliar?</p>
+    <div class="q-opt">
+      <label><input type="radio" name="q4" value="a"/> andare</label>
+      <label><input type="radio" name="q4" value="b"/> uscire</label>
+      <label><input type="radio" name="q4" value="c"/> dormire</label>
+    </div>
+  </div>
+  <div class="q-block">
+    <p>5. ¿Cómo se forma el avverbio de "triste"?</p>
+    <div class="q-opt">
+      <label><input type="radio" name="q5" value="a"/> tristamente</label>
+      <label><input type="radio" name="q5" value="b"/> tristamente (igual en italiano y español)</label>
+      <label><input type="radio" name="q5" value="c"/> tristemente</label>
+    </div>
+  </div>
+  <button id="quiz-btn" onclick="submitQuiz()">Invia le risposte →</button>
+  <div id="quiz-result"></div>
+</div>
+</div>
+</section>
+
+<footer>Italiano per piacere · A2 · Módulo 13 · Etapa 3 Gramática</footer>
+<script>
+const ANSWERS={q1:'b',q2:'b',q3:'b',q4:'c',q5:'c'};
+function checkPrac(id,ids){
+  let ok=0;
+  ids.forEach(i=>{
+    const el=document.getElementById(i);
+    const v=el.value.toLowerCase().trim();
+    const a=el.dataset.ans.toLowerCase().trim();
+    el.classList.remove('ok','err');
+    if(v===a){el.classList.add('ok');ok++;}else el.classList.add('err');
+  });
+  const fb=document.getElementById(id+'-fb');
+  fb.className='prac-fb '+(ok===ids.length?'ok':'err');
+  fb.textContent=ok===ids.length?'✅ Perfetto! Tutte corrette.':`${ok}/${ids.length} corrette — ricontrolla quelle in rosso.`;
+}
+function submitQuiz(){
+  let ok=0,tot=Object.keys(ANSWERS).length;
+  for(const q in ANSWERS){const sel=document.querySelector(`input[name="${q}"]:checked`);if(sel&&sel.value===ANSWERS[q])ok++;}
+  const pct=Math.round(ok/tot*100);
+  const r=document.getElementById('quiz-result');
+  if(pct>=80)r.textContent=`🌟 ${ok}/${tot} — Benissimo! Ottimo lavoro!`;
+  else if(pct>=60)r.textContent=`👍 ${ok}/${tot} — Bene! Ripassi un po'.`;
+  else r.textContent=`💪 ${ok}/${tot} — Ripassi le tabelle e riprova!`;
+}
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const href=a.getAttribute('href');
+    if(href&&href.startsWith('#')){e.preventDefault();document.querySelector(href)?.scrollIntoView({behavior:'smooth'});}
+  });
+});
+</script>
+</body>
+</html>

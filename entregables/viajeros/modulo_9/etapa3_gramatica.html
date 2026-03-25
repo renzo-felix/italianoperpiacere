@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gramática M9 · Passato Prossimo — Italiano Per Piacere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #e9e6d5; --cream-dk: #ddd9c8; --gold: #EFCF7F;
+    --amber: #e5ab07; --amber-dk: #c8940a; --red: #cc4736;
+    --teal: #78a6ba; --green: #528e74; --black: #1a1a18; --white: #ffffff;
+    --fh: 'Playfair Display', Georgia, serif; --fb: 'Outfit', system-ui, sans-serif;
+    --mod: #e5ab07; --mod-dk: #c8940a; --mod-hero-bg: #fef9e8;
+    --mod-border: #EFCF7F; --mod-th-bg: #fde8a0; --mod-th-color: #7a5500;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--fb); color: var(--black); background: var(--cream); line-height: 1.6; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 2px solid var(--mod-border); box-shadow: 0 2px 8px rgba(0,0,0,.08); display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: .7rem 1.5rem; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; gap: .5rem; }
+  .nav-logo img { height: 38px; display: block; }
+  .nav-links { display: flex; gap: .4rem; flex-wrap: wrap; }
+  .nav-links a { font-size: .78rem; font-weight: 600; text-decoration: none; color: var(--black); padding: .35rem .7rem; border-radius: 20px; transition: background .2s; }
+  .nav-links a:hover, .nav-links a.active { background: var(--mod); color: var(--white); }
+
+  .hero { background: var(--mod-hero-bg); border-bottom: 3px solid var(--mod-border); padding: 2.5rem 1.5rem 2rem; text-align: center; }
+  .hero-badge { display: inline-block; background: var(--mod); color: var(--white); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .3rem .9rem; border-radius: 20px; margin-bottom: 1rem; }
+  .hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2rem, 5vw, 3rem); color: var(--mod-th-color); }
+  .hero p { font-size: 1rem; color: #5a4a00; max-width: 600px; margin: .5rem auto 0; }
+
+  .section { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+  .section-title { font-family: var(--fh); font-style: italic; font-size: 1.6rem; color: var(--mod-dk); margin-bottom: .3rem; }
+  .section-sub { font-size: .9rem; color: #666; margin-bottom: 1.5rem; }
+  .divider { border: none; border-top: 2px solid var(--mod-border); margin: 2rem 0; }
+
+  /* GRAMMAR BOXES */
+  .grammar-box { background: var(--white); border-radius: 14px; border: 2px solid var(--mod-border); padding: 1.6rem; margin: 1.2rem 0; }
+  .grammar-box h3 { font-family: var(--fh); font-style: italic; font-size: 1.2rem; color: var(--mod-dk); margin-bottom: .8rem; }
+  .grammar-box p { font-size: .93rem; color: #444; margin-bottom: .7rem; line-height: 1.7; }
+  .grammar-box .formula { background: var(--mod-th-bg); border-left: 4px solid var(--mod); border-radius: 0 8px 8px 0; padding: .8rem 1.2rem; font-size: 1rem; font-weight: 700; color: var(--mod-th-color); margin: .8rem 0; font-style: italic; }
+  .tag { display: inline-block; background: var(--mod-th-bg); color: var(--mod-th-color); font-size: .78rem; font-weight: 700; padding: .2rem .6rem; border-radius: 20px; margin-right: .4rem; margin-bottom: .4rem; }
+  .tag.green { background: #d4edda; color: #2d6a4f; }
+  .tag.red { background: #fde8e6; color: var(--red); }
+
+  /* TABLES */
+  .table-wrap { overflow-x: auto; margin: 1rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  th { background: var(--mod-th-bg); color: var(--mod-th-color); font-weight: 700; padding: .65rem .9rem; text-align: left; }
+  td { padding: .6rem .9rem; border-bottom: 1px solid var(--mod-border); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--mod-hero-bg); }
+  .it-cell { font-family: var(--fh); font-style: italic; color: var(--mod-dk); font-weight: 600; }
+  .highlight-row td { background: var(--mod-th-bg); }
+  .note-cell { font-size: .78rem; color: #888; }
+
+  /* COMPARISON */
+  .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+  .vs-card { border-radius: 12px; padding: 1.2rem; }
+  .vs-card.a { background: var(--mod-th-bg); border: 2px solid var(--mod-border); }
+  .vs-card.b { background: #e8f5ee; border: 2px solid #a8d5b8; }
+  .vs-card h4 { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; margin-bottom: .8rem; }
+  .vs-card.a h4 { color: var(--mod-th-color); }
+  .vs-card.b h4 { color: #2d6a4f; }
+  .vs-item { font-size: .88rem; padding: .3rem 0; border-bottom: 1px solid rgba(0,0,0,.08); }
+  .vs-item:last-child { border-bottom: none; }
+  .vs-item .it { font-style: italic; font-family: var(--fh); }
+
+  /* PRACTICE */
+  .practice { background: var(--white); border-radius: 14px; border: 2px solid var(--mod-border); padding: 1.4rem; margin: 1.2rem 0; }
+  .practice h3 { font-family: var(--fh); font-style: italic; font-size: 1.1rem; color: var(--mod-dk); margin-bottom: 1rem; }
+  .fill-item { display: flex; align-items: center; gap: .6rem; margin-bottom: .8rem; font-size: .92rem; flex-wrap: wrap; }
+  .fill-item input { border: none; border-bottom: 2px solid var(--mod); background: transparent; font-family: var(--fb); font-size: .92rem; font-style: italic; color: var(--mod-dk); width: 160px; outline: none; padding: .15rem .3rem; }
+  .fill-item input.correct { border-bottom-color: var(--green); color: var(--green); }
+  .fill-item input.wrong { border-bottom-color: var(--red); color: var(--red); }
+  .check-btn { background: var(--mod); color: var(--white); border: none; border-radius: 20px; padding: .5rem 1.2rem; font-family: var(--fb); font-weight: 600; font-size: .85rem; cursor: pointer; margin-top: .5rem; transition: background .2s; }
+  .check-btn:hover { background: var(--mod-dk); }
+  .fill-feedback { font-size: .85rem; margin-top: .5rem; font-weight: 600; display: none; }
+  .fill-feedback.show { display: block; }
+  .fill-feedback.ok { color: var(--green); }
+  .fill-feedback.err { color: var(--red); }
+  .hint { font-size: .78rem; color: #aaa; font-style: italic; }
+
+  /* QUIZ */
+  .quiz { background: var(--white); border-radius: 14px; border: 2px solid var(--mod-border); padding: 1.4rem; margin: 1.2rem 0; }
+  .quiz h3 { font-family: var(--fh); font-style: italic; font-size: 1.2rem; color: var(--mod-dk); margin-bottom: 1rem; }
+  .quiz-q { background: var(--cream); border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: 1.2rem; }
+  .quiz-q p { font-size: .92rem; font-weight: 600; margin-bottom: .7rem; }
+  .quiz-opts { display: flex; flex-direction: column; gap: .4rem; }
+  .quiz-opt { background: var(--white); border: 2px solid var(--cream-dk); border-radius: 8px; padding: .5rem 1rem; font-family: var(--fb); font-size: .87rem; cursor: pointer; text-align: left; transition: border-color .2s; }
+  .quiz-opt:hover:not(:disabled) { border-color: var(--mod); }
+  .quiz-opt.correct { border-color: var(--green); background: #eafaf3; color: #2d6a4f; font-weight: 600; }
+  .quiz-opt.wrong { border-color: var(--red); background: #fde8e6; color: var(--red); }
+  .quiz-result { background: var(--mod-th-bg); border-radius: 10px; padding: 1rem 1.2rem; text-align: center; display: none; margin-top: 1rem; }
+  .quiz-result.show { display: block; }
+  .quiz-result p { font-weight: 700; font-size: 1rem; color: var(--mod-th-color); }
+
+  /* TRIGGER MEMO */
+  .memo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .8rem; margin: 1rem 0; }
+  .memo-card { background: var(--white); border: 2px solid var(--mod-border); border-radius: 10px; padding: .9rem 1rem; }
+  .memo-card .verb { font-family: var(--fh); font-style: italic; font-size: 1rem; color: var(--mod-dk); font-weight: 600; }
+  .memo-card .part { font-size: .85rem; color: #444; }
+  .memo-card .aux { display: inline-block; font-size: .72rem; font-weight: 700; padding: .15rem .5rem; border-radius: 20px; margin-top: .3rem; }
+  .memo-card .aux.av { background: var(--mod-th-bg); color: var(--mod-th-color); }
+  .memo-card .aux.es { background: #d4edda; color: #2d6a4f; }
+
+  footer { background: var(--black); color: var(--cream); text-align: center; padding: 1.5rem; font-size: .82rem; margin-top: 3rem; }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 600px) { .vs-grid { grid-template-columns: 1fr; } }
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo) { font-size: .78rem; font-weight: 600; text-decoration: none; color: var(--black); padding: .35rem .7rem; border-radius: 20px; transition: background .2s; }
+nav > a:not(.nav-logo):hover, nav > a:not(.nav-logo).active { background: var(--mod); color: var(--white); }
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+
+<nav class="sticky-nav">
+    <div class="nav-logo">
+      <a href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#avere" class="active">Passato con avere</a>
+      <a href="#essere">Passato con essere</a>
+      <a href="#participi">Participi</a>
+      <a href="#pratica">Práctica</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+
+<div class="hero">
+  <span class="hero-badge">Módulo 9 · Gramática · Viajeros</span>
+  <h1>Il Passato Prossimo</h1>
+  <p>El tiempo verbal del pasado más usado en italiano. Aprendés a usarlo con AVERE y con ESSERE para contar lo que pasó en tu viaje.</p>
+</div>
+
+<!-- AVERE -->
+<section class="section" id="avere">
+  <h2 class="section-title">Passato prossimo con AVERE</h2>
+  <p class="section-sub">La mayoría de los verbos transitivos (que tienen objeto directo) usa AVERE como auxiliar.</p>
+
+  <div class="grammar-box">
+    <h3>La fórmula</h3>
+    <div class="formula">AVERE (conjugado) + PARTICIPIO PASSATO</div>
+    <p>El participio NO cambia cuando usás AVERE — siempre queda igual independientemente del sujeto.</p>
+    <span class="tag">Ho mangiato</span>
+    <span class="tag">Hai mangiato</span>
+    <span class="tag">Ha mangiato</span>
+    <span class="tag">Abbiamo mangiato</span>
+    <span class="tag">Avete mangiato</span>
+    <span class="tag">Hanno mangiato</span>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Pronombre</th><th>Avere</th><th>Participio de -ARE</th><th>Participio de -ERE</th><th>Participio de -IRE</th></tr>
+      <tr><td>io</td><td class="it-cell">ho</td><td class="it-cell">mangiato</td><td class="it-cell">bevuto</td><td class="it-cell">sentito</td></tr>
+      <tr><td>tu</td><td class="it-cell">hai</td><td class="it-cell">mangiato</td><td class="it-cell">bevuto</td><td class="it-cell">sentito</td></tr>
+      <tr><td>lui / lei</td><td class="it-cell">ha</td><td class="it-cell">mangiato</td><td class="it-cell">bevuto</td><td class="it-cell">sentito</td></tr>
+      <tr><td>noi</td><td class="it-cell">abbiamo</td><td class="it-cell">mangiato</td><td class="it-cell">bevuto</td><td class="it-cell">sentito</td></tr>
+      <tr><td>voi</td><td class="it-cell">avete</td><td class="it-cell">mangiato</td><td class="it-cell">bevuto</td><td class="it-cell">sentito</td></tr>
+      <tr><td>loro</td><td class="it-cell">hanno</td><td class="it-cell">mangiato</td><td class="it-cell">bevuto</td><td class="it-cell">sentito</td></tr>
+    </table>
+  </div>
+
+  <div class="grammar-box">
+    <h3>Participi irregolari — los más importantes</h3>
+    <p>Estos verbos forman el participio de manera irregular. Hay que memorizarlos.</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Infinitivo</th><th>Participio</th><th>Grupo</th><th>Ejemplo de emergencia</th></tr>
+      <tr><td class="it-cell">fare</td><td class="it-cell">fatto</td><td>-ARE irreg.</td><td>Ho fatto una denuncia.</td></tr>
+      <tr><td class="it-cell">perdere</td><td class="it-cell">perso</td><td>-ERE irreg.</td><td>Ho perso il passaporto.</td></tr>
+      <tr><td class="it-cell">prendere</td><td class="it-cell">preso</td><td>-ERE irreg.</td><td>Ho preso una medicina.</td></tr>
+      <tr><td class="it-cell">rompere</td><td class="it-cell">rotto</td><td>-ERE irreg.</td><td>Ho rotto il telefono.</td></tr>
+      <tr><td class="it-cell">vedere</td><td class="it-cell">visto</td><td>-ERE irreg.</td><td>Ho visto un incidente.</td></tr>
+      <tr><td class="it-cell">chiedere</td><td class="it-cell">chiesto</td><td>-ERE irreg.</td><td>Ho chiesto aiuto al medico.</td></tr>
+      <tr><td class="it-cell">rispondere</td><td class="it-cell">risposto</td><td>-ERE irreg.</td><td>Non ho risposto al telefono.</td></tr>
+      <tr><td class="it-cell">aprire</td><td class="it-cell">aperto</td><td>-IRE irreg.</td><td>Ho aperto la porta sbagliata.</td></tr>
+      <tr><td class="it-cell">dire</td><td class="it-cell">detto</td><td>-IRE irreg.</td><td>Ho detto al medico i sintomi.</td></tr>
+      <tr><td class="it-cell">scrivere</td><td class="it-cell">scritto</td><td>-ERE irreg.</td><td>Ho scritto il numero di emergenza.</td></tr>
+    </table>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ESSERE -->
+<section class="section" id="essere">
+  <h2 class="section-title">Passato prossimo con ESSERE</h2>
+  <p class="section-sub">Los verbos de movimiento, estado y los reflexivos usan ESSERE. ¡El participio concuerda con el sujeto!</p>
+
+  <div class="grammar-box">
+    <h3>La fórmula + concordanza</h3>
+    <div class="formula">ESSERE (conjugado) + PARTICIPIO PASSATO (concuerda con el sujeto)</div>
+    <p>Pensá en el participio como un adjetivo: cambia según género y número del sujeto.</p>
+    <span class="tag">Marco → andatO</span>
+    <span class="tag">Lucia → andatA</span>
+    <span class="tag">Marco e Paolo → andatI</span>
+    <span class="tag">Lucia e Anna → andatE</span>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Pronombre</th><th>Essere</th><th>+ andare (m.)</th><th>+ andare (f.)</th></tr>
+      <tr><td>io</td><td class="it-cell">sono</td><td class="it-cell">andatO</td><td class="it-cell">andatA</td></tr>
+      <tr><td>tu</td><td class="it-cell">sei</td><td class="it-cell">andatO</td><td class="it-cell">andatA</td></tr>
+      <tr><td>lui/lei</td><td class="it-cell">è</td><td class="it-cell">andatO</td><td class="it-cell">andatA</td></tr>
+      <tr><td>noi</td><td class="it-cell">siamo</td><td class="it-cell">andatI</td><td class="it-cell">andatE</td></tr>
+      <tr><td>voi</td><td class="it-cell">siete</td><td class="it-cell">andatI</td><td class="it-cell">andatE</td></tr>
+      <tr><td>loro</td><td class="it-cell">sono</td><td class="it-cell">andatI</td><td class="it-cell">andatE</td></tr>
+    </table>
+  </div>
+
+  <div class="grammar-box">
+    <h3>Verbos que usan ESSERE — los más comunes</h3>
+    <p>Una forma de recordarlos: son verbos de movimiento (ir, venir, salir, entrar, volver...) y verbos de estado/cambio.</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Infinitivo</th><th>Participio</th><th>Traducción</th><th>Ejemplo</th></tr>
+      <tr><td class="it-cell">andare</td><td class="it-cell">andato/a/i/e</td><td>ir</td><td>Sono andato al pronto soccorso.</td></tr>
+      <tr><td class="it-cell">venire</td><td class="it-cell">venuto/a/i/e</td><td>venir</td><td>Il dottore è venuto subito.</td></tr>
+      <tr><td class="it-cell">uscire</td><td class="it-cell">uscito/a/i/e</td><td>salir</td><td>Siamo usciti dall'albergo.</td></tr>
+      <tr><td class="it-cell">entrare</td><td class="it-cell">entrato/a/i/e</td><td>entrar</td><td>Sono entrata in farmacia.</td></tr>
+      <tr><td class="it-cell">tornare</td><td class="it-cell">tornato/a/i/e</td><td>volver</td><td>Sono tornato a casa.</td></tr>
+      <tr><td class="it-cell">partire</td><td class="it-cell">partito/a/i/e</td><td>partir</td><td>Il treno è partito in ritardo.</td></tr>
+      <tr><td class="it-cell">arrivare</td><td class="it-cell">arrivato/a/i/e</td><td>llegar</td><td>L'ambulanza è arrivata.</td></tr>
+      <tr><td class="it-cell">cadere</td><td class="it-cell">caduto/a/i/e</td><td>caerse</td><td>Sono caduta per le scale.</td></tr>
+      <tr><td class="it-cell">nascere</td><td class="it-cell">nato/a/i/e</td><td>nacer</td><td>Sono nato a Buenos Aires.</td></tr>
+      <tr><td class="it-cell">morire</td><td class="it-cell">morto/a/i/e</td><td>morir</td><td>Il paziente è sopravvissuto.</td></tr>
+    </table>
+  </div>
+
+  <div class="grammar-box">
+    <h3>Verbos reflexivos — sempre con ESSERE</h3>
+    <p>Los verbos reflexivos (con si / mi / ti / ci / vi) siempre usan ESSERE y el participio concuerda.</p>
+    <span class="tag">mi sono fatto/a male</span>
+    <span class="tag">si è sentito/a male</span>
+    <span class="tag">ci siamo svegliati/e</span>
+    <span class="tag">si sono alzati/e</span>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Reflexivo</th><th>Masc. sing.</th><th>Femm. sing.</th><th>Traducción</th></tr>
+      <tr><td class="it-cell">farsi male</td><td class="it-cell">mi sono fattO male</td><td class="it-cell">mi sono fattA male</td><td>lastimarse</td></tr>
+      <tr><td class="it-cell">sentirsi male</td><td class="it-cell">mi sono sentitO male</td><td class="it-cell">mi sono sentitA male</td><td>sentirse mal</td></tr>
+      <tr><td class="it-cell">svegliarsi</td><td class="it-cell">mi sono svegliAtO</td><td class="it-cell">mi sono svegliAtA</td><td>despertarse</td></tr>
+      <tr><td class="it-cell">vestirsi</td><td class="it-cell">mi sono vestitO</td><td class="it-cell">mi sono vestitA</td><td>vestirse</td></tr>
+    </table>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PARTICIPI MEMO -->
+<section class="section" id="participi">
+  <h2 class="section-title">Guía rápida de participi 📋</h2>
+  <p class="section-sub">Todos los verbos más usados en emergencias con su auxiliar correcto.</p>
+
+  <div class="vs-grid">
+    <div class="vs-card a">
+      <h4>Con AVERE</h4>
+      <div class="vs-item"><span class="it">ho mangiato</span> — comí</div>
+      <div class="vs-item"><span class="it">ho bevuto</span> — bebí</div>
+      <div class="vs-item"><span class="it">ho chiamato</span> — llamé</div>
+      <div class="vs-item"><span class="it">ho perso</span> — perdí</div>
+      <div class="vs-item"><span class="it">ho rotto</span> — rompí</div>
+      <div class="vs-item"><span class="it">ho fatto</span> — hice</div>
+      <div class="vs-item"><span class="it">ho preso</span> — tomé</div>
+      <div class="vs-item"><span class="it">ho visto</span> — vi</div>
+      <div class="vs-item"><span class="it">ho detto</span> — dije</div>
+      <div class="vs-item"><span class="it">ho chiesto</span> — pregunté</div>
+    </div>
+    <div class="vs-card b">
+      <h4>Con ESSERE</h4>
+      <div class="vs-item"><span class="it">sono andato/a</span> — fui / fui</div>
+      <div class="vs-item"><span class="it">sono venuto/a</span> — vine</div>
+      <div class="vs-item"><span class="it">sono uscito/a</span> — salí</div>
+      <div class="vs-item"><span class="it">sono entrato/a</span> — entré</div>
+      <div class="vs-item"><span class="it">sono tornato/a</span> — volví</div>
+      <div class="vs-item"><span class="it">sono arrivato/a</span> — llegué</div>
+      <div class="vs-item"><span class="it">sono caduto/a</span> — me caí</div>
+      <div class="vs-item"><span class="it">mi sono fatto/a male</span> — me lastimé</div>
+      <div class="vs-item"><span class="it">mi sono sentito/a male</span> — me sentí mal</div>
+      <div class="vs-item"><span class="it">mi sono svegliato/a</span> — me desperté</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PRÁCTICA -->
+<section class="section" id="pratica">
+  <h2 class="section-title">Pratica guidata ✏️</h2>
+
+  <div class="practice" id="prac1">
+    <h3>Pratica 1 — Scegli AVERE o ESSERE</h3>
+    <div class="fill-item">
+      <span>Ieri</span>
+      <input type="text" placeholder="ho" data-answer="ho" id="p1_1">
+      <span>mangiato del pesce al mercato.</span>
+    </div>
+    <div class="fill-item">
+      <span>Lucia</span>
+      <input type="text" placeholder="è" data-answer="è" id="p1_2">
+      <span>arrivata tardi all'ospedale.</span>
+    </div>
+    <div class="fill-item">
+      <span>Noi</span>
+      <input type="text" placeholder="abbiamo" data-answer="abbiamo" id="p1_3">
+      <span>chiamato la polizia subito.</span>
+    </div>
+    <div class="fill-item">
+      <span>I bambini</span>
+      <input type="text" placeholder="sono" data-answer="sono" id="p1_4">
+      <span>usciti dal museo correndo.</span>
+    </div>
+    <div class="fill-item">
+      <span>Tu</span>
+      <input type="text" placeholder="hai" data-answer="hai" id="p1_5">
+      <span>perso il portafoglio?</span>
+    </div>
+    <button class="check-btn" onclick="checkPrac('prac1')">Verificar</button>
+    <div class="fill-feedback" id="prac1-feedback"></div>
+  </div>
+
+  <div class="practice" id="prac2">
+    <h3>Pratica 2 — Participio corretto</h3>
+    <p style="font-size:.85rem;color:#777;margin-bottom:1rem;">Escribí la forma completa del passato prossimo.</p>
+    <div class="fill-item">
+      <span>Marco</span>
+      <input type="text" placeholder="ha rotto" data-answer="ha rotto" id="p2_1">
+      <span>il telefono stamattina.</span>
+    </div>
+    <div class="fill-item">
+      <span>Io (f)</span>
+      <input type="text" placeholder="mi sono fatta male" data-answer="mi sono fatta male" id="p2_2">
+      <span>alla caviglia.</span>
+    </div>
+    <div class="fill-item">
+      <span>Voi</span>
+      <input type="text" placeholder="avete chiesto" data-answer="avete chiesto" id="p2_3">
+      <span>aiuto a qualcuno?</span>
+    </div>
+    <div class="fill-item">
+      <span>L'ambulanza</span>
+      <input type="text" placeholder="è arrivata" data-answer="è arrivata" id="p2_4">
+      <span>in cinque minuti.</span>
+    </div>
+    <button class="check-btn" onclick="checkPrac('prac2')">Verificar</button>
+    <div class="fill-feedback" id="prac2-feedback"></div>
+  </div>
+
+  <div class="practice" id="prac3">
+    <h3>Pratica 3 — Concordanza del participio</h3>
+    <p style="font-size:.85rem;color:#777;margin-bottom:1rem;">Completá con la forma correcta del participio (cambia según el sujeto).</p>
+    <div class="fill-item">
+      <span>Carla e Marta sono</span>
+      <input type="text" placeholder="andate" data-answer="andate" id="p3_1">
+      <span>in farmacia insieme.</span>
+    </div>
+    <div class="fill-item">
+      <span>Il dottor Rossi è</span>
+      <input type="text" placeholder="venuto" data-answer="venuto" id="p3_2">
+      <span>subito al pronto soccorso.</span>
+    </div>
+    <div class="fill-item">
+      <span>Io (m) mi sono</span>
+      <input type="text" placeholder="sentito" data-answer="sentito" id="p3_3">
+      <span>male in spiaggia.</span>
+    </div>
+    <div class="fill-item">
+      <span>Noi (mixed) siamo</span>
+      <input type="text" placeholder="tornati" data-answer="tornati" id="p3_4">
+      <span>in albergo di corsa.</span>
+    </div>
+    <button class="check-btn" onclick="checkPrac('prac3')">Verificar</button>
+    <div class="fill-feedback" id="prac3-feedback"></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- QUIZ -->
+<section class="section" id="quiz">
+  <h2 class="section-title">Quiz finale 🏆</h2>
+  <p class="section-sub">5 preguntas para comprobar que dominás el passato prossimo.</p>
+
+  <div class="quiz">
+    <h3>Scegli la risposta corretta</h3>
+
+    <div class="quiz-q">
+      <p>1. ¿Cuál es el passato prossimo de "perdere" (yo)?</p>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="quizOpt(this, false)">Ho perduto</button>
+        <button class="quiz-opt" onclick="quizOpt(this, true)">Ho perso</button>
+        <button class="quiz-opt" onclick="quizOpt(this, false)">Sono perso</button>
+      </div>
+    </div>
+
+    <div class="quiz-q">
+      <p>2. Lucia ha caído. ¿Cómo se dice?</p>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="quizOpt(this, false)">Lucia ha caduto</button>
+        <button class="quiz-opt" onclick="quizOpt(this, false)">Lucia è caduto</button>
+        <button class="quiz-opt" onclick="quizOpt(this, true)">Lucia è caduta</button>
+      </div>
+    </div>
+
+    <div class="quiz-q">
+      <p>3. ¿Cuál oración usa ESSERE correctamente?</p>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="quizOpt(this, false)">Ho andato al pronto soccorso</button>
+        <button class="quiz-opt" onclick="quizOpt(this, true)">Sono andato al pronto soccorso</button>
+        <button class="quiz-opt" onclick="quizOpt(this, false)">Ero andato al pronto soccorso</button>
+      </div>
+    </div>
+
+    <div class="quiz-q">
+      <p>4. "Me lastimé el pie" (yo, mujer). ¿Cómo se dice?</p>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="quizOpt(this, false)">Ho fatto male al piede</button>
+        <button class="quiz-opt" onclick="quizOpt(this, false)">Mi sono fatto male al piede</button>
+        <button class="quiz-opt" onclick="quizOpt(this, true)">Mi sono fatta male al piede</button>
+      </div>
+    </div>
+
+    <div class="quiz-q">
+      <p>5. ¿Cuál es el participio irregular de "fare"?</p>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="quizOpt(this, false)">farito</button>
+        <button class="quiz-opt" onclick="quizOpt(this, false)">fato</button>
+        <button class="quiz-opt" onclick="quizOpt(this, true)">fatto</button>
+      </div>
+    </div>
+
+    <button class="check-btn" onclick="showQuizResult()" style="margin-top:1rem">Ver resultado</button>
+    <div class="quiz-result" id="quiz-result">
+      <p id="quiz-score-text"></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Módulo 9 · Gramática · Passato Prossimo · <a href="https://italianoperpiacere.com">italianoperpiacere.com</a></p>
+</footer>
+
+<script>
+// NAV
+window.addEventListener('scroll', () => {
+  const ids = ['avere','essere','participi','pratica','quiz'];
+  let cur = '';
+  ids.forEach(id => { const el = document.getElementById(id); if (el && window.scrollY >= el.offsetTop - 120) cur = id; });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+  });
+});
+
+// FILL CHECK
+function checkPrac(blockId) {
+  const block = document.getElementById(blockId);
+  const inputs = block.querySelectorAll('input');
+  let correct = 0;
+  inputs.forEach(inp => {
+    const ans = inp.dataset.answer.toLowerCase().trim();
+    const val = inp.value.toLowerCase().trim();
+    inp.classList.remove('correct', 'wrong');
+    if (val === ans) { inp.classList.add('correct'); correct++; }
+    else if (val.length > 0) { inp.classList.add('wrong'); }
+  });
+  const fb = document.getElementById(blockId + '-feedback');
+  fb.classList.add('show');
+  if (correct === inputs.length) {
+    fb.textContent = '¡Perfecto! Todas correctas. ✓';
+    fb.className = 'fill-feedback show ok';
+  } else {
+    fb.textContent = correct + ' de ' + inputs.length + ' correctas.';
+    fb.className = 'fill-feedback show err';
+  }
+}
+
+// QUIZ
+let quizScore = 0;
+let quizAnswered = 0;
+function quizOpt(btn, isCorrect) {
+  const group = btn.closest('.quiz-opts');
+  if (group.querySelector('.correct, .wrong')) return;
+  group.querySelectorAll('.quiz-opt').forEach(b => b.disabled = true);
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (isCorrect) quizScore++;
+  quizAnswered++;
+}
+function showQuizResult() {
+  const res = document.getElementById('quiz-result');
+  const txt = document.getElementById('quiz-score-text');
+  res.classList.add('show');
+  if (quizScore === 5) txt.textContent = '¡Perfecto! 5/5 — Dominás el passato prossimo. Bravissimo/a!';
+  else if (quizScore >= 3) txt.textContent = quizScore + '/5 — Muy bien! Repasá los errores y ya estás listo/a.';
+  else txt.textContent = quizScore + '/5 — Seguí practicando. Revisá las tablas de auxiliares.';
+}
+</script>
+</body>
+</html>

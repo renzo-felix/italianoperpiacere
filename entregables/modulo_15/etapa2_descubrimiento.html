@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -19,14 +19,15 @@ body.hide-es .es{display:none}
 
 #toggle-btn{
   position:fixed;top:1rem;right:1rem;z-index:999;
-  background:var(--green-dk);color:#fff;border:none;
+  background:var(--white);color:var(--green);border:2px solid var(--green);
   padding:.5rem 1rem;border-radius:2rem;font-family:'Outfit',sans-serif;
-  font-size:.85rem;cursor:pointer;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.25)
+  font-size:.85rem;cursor:pointer;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.12);transition:background .2s,color .2s
 }
+#toggle-btn:hover{background:var(--green);color:var(--white)}
 
 /* HERO */
 .hero{
-  min-height:94vh;background:var(--hero);
+  min-height:94vh;background:#c8e8de;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:4rem 2rem;position:relative;overflow:hidden
 }
@@ -37,7 +38,7 @@ body.hide-es .es{display:none}
 .c4{width:100px;height:100px;top:25%;left:8%}
 .hero h1{
   font-family:'Playfair Display',serif;font-style:italic;
-  font-size:clamp(2.4rem,6vw,4.2rem);color:var(--white);
+  font-size:clamp(2.4rem,6vw,4.2rem);color:#1a1a18;
   line-height:1.15;margin-bottom:.6rem
 }
 .hero .badge{
@@ -45,13 +46,13 @@ body.hide-es .es{display:none}
   padding:.3rem 1rem;border-radius:2rem;font-size:.85rem;font-weight:700;
   letter-spacing:.05em;margin-bottom:1.5rem;display:inline-block
 }
-.hero p{font-size:1.1rem;max-width:650px;line-height:1.7;color:rgba(255,255,255,.92);margin-bottom:.5rem}
+.hero p{font-size:1.1rem;max-width:650px;line-height:1.7;color:rgba(26,26,24,.8);margin-bottom:.5rem}
 .hero .audio-note{
-  background:rgba(255,255,255,.18);border-radius:14px;padding:1rem 1.6rem;
-  margin-top:1.5rem;font-size:.95rem;color:#fff;max-width:560px;text-align:left;line-height:1.7
+  background:rgba(255,255,255,.6);border-radius:14px;padding:1rem 1.6rem;
+  margin-top:1.5rem;font-size:.95rem;color:var(--black);max-width:560px;text-align:left;line-height:1.7
 }
 .hero .audio-note strong{display:block;margin-bottom:.4rem;font-size:1rem}
-.hero .scroll-hint{margin-top:2.5rem;font-size:.9rem;opacity:.6;animation:bounce 2s infinite;color:#fff}
+.hero .scroll-hint{margin-top:2.5rem;font-size:.9rem;opacity:.6;animation:bounce 2s infinite;color:rgba(0,0,0,.4)}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
 /* SECTIONS */
@@ -104,7 +105,7 @@ section .subtitle{font-size:.95rem;color:#555;margin-bottom:2rem;line-height:1.6
 
 /* TIMELINE DISCOVERY */
 .timeline{display:flex;flex-direction:column;gap:0;position:relative;padding-left:2rem;margin-top:1.2rem}
-.timeline::before{content:'';position:absolute;left:.6rem;top:0;bottom:0;width:3px;background:var(--green);border-radius:2px}
+.timeline::before{content:'';position:absolute;left:.6rem;top:0;bottom:0;width:3px;background:#c8e8de;border-radius:2px}
 .tl-item{position:relative;padding:.9rem 1rem 1rem 1.2rem;margin-bottom:.6rem}
 .tl-item::before{content:'';position:absolute;left:-1.65rem;top:1.1rem;width:14px;height:14px;border-radius:50%;background:var(--green-dk);border:3px solid var(--cream)}
 .tl-time{font-size:.8rem;font-weight:700;color:var(--green-dk);text-transform:uppercase;letter-spacing:.05em}
@@ -176,7 +177,7 @@ section .subtitle{font-size:.95rem;color:#555;margin-bottom:2rem;line-height:1.6
 
 /* PASSATO DISCOVERY BOX */
 .discovery-box{
-  background:var(--black);color:#fff;border-radius:14px;
+  background:var(--green-dk);color:#fff;border-radius:14px;
   padding:1.8rem;margin-top:1.2rem
 }
 .discovery-box h3{color:var(--gold);font-size:1.05rem;margin-bottom:1rem}
@@ -185,10 +186,10 @@ section .subtitle{font-size:.95rem;color:#555;margin-bottom:2rem;line-height:1.6
 .disc-text em{color:var(--gold)}
 
 /* CULTURAL STRIP */
-.cultural{background:var(--green-dk);color:#fff;padding:3.5rem 2rem;margin-top:3rem}
-.cultural h3{font-family:'Playfair Display',serif;font-style:italic;font-size:1.7rem;margin-bottom:1rem}
-.cultural p{line-height:1.75;max-width:700px;font-size:.97rem}
-.cultural em{color:var(--gold)}
+.cultural{background:linear-gradient(135deg,#c8e8d8 0%,var(--cream-dk) 100%);border-top:3px solid var(--green);color:var(--black);padding:3.5rem 2rem;margin-top:3rem}
+.cultural h3{font-family:'Playfair Display',serif;font-style:italic;font-size:1.7rem;margin-bottom:1rem;color:var(--green-dk)}
+.cultural p{line-height:1.75;max-width:700px;font-size:.97rem;color:#444}
+.cultural em{color:var(--green)}
 
 footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 </style>
@@ -210,16 +211,26 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
     <strong>🎧 Prima di ascoltare l'audio:</strong>
     1. ¿Qué tiempo verbal usas en español para contar algo que pasó ayer? (fui, comí, hablé…)<br>
     2. ¿Cómo crees que se dice en italiano "fui al concierto"? ¿Qué auxiliar usarías?<br>
-    3. Escucha e identifica cuántas veces escuchas <em>ho</em> y <em>sono</em>.
+    3. Escuchá e identifica cuántas veces escuchas <em>ho</em> y <em>sono</em>.
   </div>
   <div class="scroll-hint">↓ Esplora</div>
+</div>
+
+<!-- AUDIO INPUT EMBED -->
+<div style="background:var(--white);padding:2.5rem 2rem;border-bottom:3px solid var(--cream-dk)">
+  <div style="max-width:860px;margin:0 auto">
+    <p style="font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:.5rem">🎧 Audio di riferimento</p>
+    <h2 style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.35rem;color:var(--black);margin-bottom:.5rem">Coffee Break Italian — <em style="color:var(--green)">CBI 2.16</em></h2>
+    <p style="font-size:.9rem;color:#555;margin-bottom:1.25rem;line-height:1.6">Ascolta prima di iniziare: <em>"Abbiamo imparato molto!"</em> — cerca l'episodio CBI 2.16 nello show.<br><a href="etapa1_input.html" style="color:var(--green);font-size:.82rem;font-weight:700">→ Vai alla pagina completa dell'audio</a></p>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/show/2PdBXXDEbSyR8fyd6RL5dR?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Coffee Break Italian"></iframe>
+  </div>
 </div>
 
 <!-- SECTION 1: WORD GRID — Espressioni di tempo -->
 <section data-a>
   <h2>Espressioni di tempo — passato</h2>
   <p class="subtitle">
-    Selecciona todas las <strong>expresiones de tiempo pasado</strong>. ¡Hay algunas expresiones de tiempo presente o futuro como trampa! <span class="es">Estas expresiones son el vocabulario clave de la unidad.</span>
+    Seleccioná todas las <strong>expresiones de tiempo pasado</strong>. ¡Hay algunas expresiones de tiempo presente o futuro como trampa! <span class="es">Estas expresiones son el vocabulario clave de la unidad.</span>
   </p>
   <div class="word-grid" id="word-grid">
     <button class="word-btn" onclick="toggleWord(this,'ok')">ieri</button>
@@ -239,14 +250,14 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
     <button class="word-btn" onclick="toggleWord(this,'ok')">stamattina presto</button>
     <button class="word-btn" onclick="toggleWord(this,'ok')">tre settimane fa</button>
   </div>
-  <button class="verify-btn" onclick="verifyGrid()">Verifica ✓</button>
+  <button class="verify-btn" onclick="verifyGrid()">Verificá ✓</button>
   <div id="grid-feedback"></div>
 </section>
 
 <!-- SECTION 2: VOCAB CARDS -->
 <section data-a>
   <h2>Come si usa? Le espressioni di tempo</h2>
-  <p class="subtitle">Haz clic en cada tarjeta para ver un ejemplo con el passato prossimo. <span class="es">¡Empieza a reconocer el patrón!</span></p>
+  <p class="subtitle">Hacé clic en cada tarjeta para ver un ejemplo con el passato prossimo. <span class="es">¡Empieza a reconocer el patrón!</span></p>
   <div class="vocab-grid" data-stagger>
     <div class="vcard" onclick="this.classList.toggle('open')">
       <div class="vit">ieri</div>
@@ -295,7 +306,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <section data-a>
   <h2>Scopri il passato prossimo</h2>
   <p class="subtitle">
-    Lee el relato y observa cómo se forman los verbos en pasado. ¿Notas un patrón?
+    Leé el relato y observa cómo se forman los verbos en pasado. ¿Notas un patrón?
     <span class="es">No tienes que aprenderlo todo ahora — solo ¡observar!</span>
   </p>
   <div class="discovery-box">
@@ -317,7 +328,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <section data-a>
   <h2>Il participio passato — scopri le regole</h2>
   <p class="subtitle">
-    Observa cómo cambia el infinitivo para formar el participio. Hay verbos regulares… y algunos irregolari. <span class="es">¡Intenta encontrar el patrón!</span>
+    Observá cómo cambia el infinitivo para formar el participio. Hay verbos regulares… y algunos irregolari. <span class="es">¡Intentá encontrar el patrón!</span>
   </p>
   <table class="part-table">
     <tr>
@@ -406,7 +417,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <section data-a>
   <h2>Completa il racconto</h2>
   <p class="subtitle">
-    Completa el relato de Sofia eligiendo del banco de palabras. <span class="es">No hay respuesta única para todos los espacios — usa tu intuición.</span>
+    Completá el relato de Sofia eligiendo del banco de palabras. <span class="es">No hay respuesta única para todos los espacios — usa tu intuición.</span>
   </p>
   <div class="fill-section">
     <p class="instruc">Scegli dal <em>banco delle parole</em> e scrivi nei spazi. Poi clicca "Mostra risposte" per verificare.</p>
@@ -439,7 +450,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <section data-a>
   <h2>Ricostruisci la storia — in ordine cronologico</h2>
   <p class="subtitle">
-    Estas oraciones del relato de Marco están desordenadas. <span class="es">Lée las y mentalmente ponlas en orden antes de ver la solución.</span> ¡Usa las expresiones de tiempo como pistas!
+    Estas oraciones del relato de Marco están desordenadas. <span class="es">Lée las y mentalmente ponlas en orden antes de ver la solución.</span> ¡Usá las expresiones de tiempo como pistas!
   </p>
   <div class="order-activity">
     <p>Metti in ordine queste frasi — dalla prima all'ultima cosa successa:</p>
@@ -469,8 +480,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <section data-a>
   <h2>Ho o sono? — scopri quando usarli</h2>
   <p class="subtitle">
-    Hay dos auxiliares en el passato prossimo. Observa qué tipo de verbos van con cada uno.
-    <span class="es">¡Intenta deducir la regla antes de leer la explicación!</span>
+    Hay dos auxiliares en el passato prossimo. Observá qué tipo de verbos van con cada uno.
+    <span class="es">¡Intentá deducir la regla antes de leer la explicación!</span>
   </p>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.5rem">
@@ -549,7 +560,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <!-- SECTION 9: DIALOGUE -->
 <section data-a>
   <h2>Racconta! — un dialogo</h2>
-  <p class="subtitle">Haz clic en cada globo para ver la traducción. <span class="es">¿Notas los auxiliares essere y avere?</span></p>
+  <p class="subtitle">Hacé clic en cada globo para ver la traducción. <span class="es">¿Notas los auxiliares essere y avere?</span></p>
   <div class="dialogue">
     <div class="bubble left" onclick="this.classList.toggle('open')">
       <strong>Giulia:</strong> Allora? Com'è andato il concerto ieri sera?
@@ -595,6 +606,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <footer>Italiano Per Piacere · Unità 15 · Etapa 2 — Descubrimiento</footer>
 
 <script>
+(function(){
+
 // TOGGLE
 function toggleEs(){
   document.body.classList.toggle('hide-es');
@@ -664,6 +677,7 @@ const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
 },{threshold:.1});
 document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>obs.observe(el));
+})();
 </script>
 </body>
 </html>

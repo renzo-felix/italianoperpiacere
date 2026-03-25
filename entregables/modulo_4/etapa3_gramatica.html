@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -10,7 +10,7 @@
 :root{
   --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;
   --red:#cc4736;--teal:#78a6ba;--green:#528e74;--black:#1a1a18;--white:#ffffff;
-  --hdr:var(--teal);--r:8px;
+  --hdr:var(--amber);--r:8px;
   --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
   --ease:cubic-bezier(0.16,1,0.3,1);
 }
@@ -21,19 +21,21 @@ body{font-family:var(--fb);background:var(--cream);color:var(--black);line-heigh
 .es{font-size:.82rem;color:#666;font-style:italic;display:block;margin-top:.2rem}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:100;background:var(--black);display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
-nav::-webkit-scrollbar{display:none}
-nav a{color:var(--gold);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.75rem 1.1rem;white-space:nowrap;transition:background .2s}
-nav a:hover{background:rgba(255,255,255,.1)}
-nav a.active{background:var(--hdr);color:var(--white)}
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #EFCF7F;box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#c8940a;border-bottom-color:#EFCF7F}
 
 /* HEADER */
-.page-header{background:var(--hdr);color:var(--white);padding:3rem 1.5rem 2.5rem;text-align:center;position:relative}
+.page-header{background:#fef9e8;color:#1a1a18;padding:3rem 1.5rem 2.5rem;text-align:center;position:relative}
 .page-header .badge{display:inline-block;background:rgba(255,255,255,.2);border-radius:20px;padding:.25rem .85rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.85rem}
 .page-header h1{font-family:var(--fh);font-style:italic;font-size:2.4rem;margin-bottom:.5rem}
 .page-header p{opacity:.9;font-size:1.05rem}
-.toggle-btn{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:var(--white);border-radius:var(--r);padding:.45rem .9rem;font-family:var(--fb);font-size:.78rem;font-weight:600;cursor:pointer;transition:background .2s}
-.toggle-btn:hover{background:rgba(255,255,255,.35)}
+.toggle-btn{position:absolute;top:1rem;right:1rem;background:rgba(229,171,7,.25);border:1px solid rgba(229,171,7,.5);color:var(--black);border-radius:var(--r);padding:.45rem .9rem;font-family:var(--fb);font-size:.78rem;font-weight:600;cursor:pointer;transition:background .2s}
+.toggle-btn:hover{background:rgba(229,171,7,.45)}
 
 /* SECTIONS */
 main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem}
@@ -43,7 +45,7 @@ section{margin-bottom:3rem}
 
 /* TABLES */
 .gram-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
-.gram-table th{background:var(--hdr);color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
+.gram-table th{background:var(--amber);color:var(--black);padding:.55rem .75rem;text-align:left;font-weight:600}
 .gram-table td{padding:.5rem .75rem;border-bottom:1px solid var(--cream-dk)}
 .gram-table tr:nth-child(even) td{background:rgba(0,0,0,.03)}
 .gram-table tr:hover td{background:rgba(120,166,186,.08)}
@@ -76,10 +78,10 @@ section{margin-bottom:3rem}
 
 /* BUTTONS */
 .btn{border:none;border-radius:var(--r);padding:.5rem 1.1rem;font-family:var(--fb);font-size:.87rem;font-weight:600;cursor:pointer;transition:all .2s}
-.btn-primary{background:var(--hdr);color:var(--white)}
+.btn-primary{background:var(--amber);color:var(--black)}
 .btn-primary:hover{filter:brightness(1.1)}
 .btn-ghost{background:transparent;border:1.5px solid var(--hdr);color:var(--hdr)}
-.btn-ghost:hover{background:var(--hdr);color:var(--white)}
+.btn-ghost:hover{background:rgba(229,171,7,.15);color:var(--black)}
 
 /* QUIZ */
 .quiz-wrap{background:var(--white);border-radius:var(--r);padding:1.5rem;border:1px solid var(--cream-dk)}
@@ -112,12 +114,29 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
 .color-cell{border-radius:var(--r);padding:.7rem;text-align:center;font-size:.88rem}
 .color-cell .it-m{font-weight:700}
 .color-cell .it-f{font-size:.82rem;opacity:.85}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+nav > a:not(.nav-logo):hover,nav > a:not(.nav-logo).active{opacity:1;color:#c8940a;border-bottom-color:#EFCF7F}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
 </style>
 </head>
 <body>
 
-<nav id="main-nav">
-  <a href="#verbi-are" class="active">Verbi -ARE</a>
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#verbi-are" class="active">Verbi -ARE</a>
   <a href="#verbi-ere-ire">Verbi -ERE/-IRE</a>
   <a href="#essere-avere-andare">Essere/Avere/Andare</a>
   <a href="#nazionalita">Nazionalità</a>
@@ -136,7 +155,7 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
 <!-- SECTION 1: VERBI -ARE -->
 <section id="verbi-are">
   <h2 class="section-title">1. Verbi regolari in -ARE</h2>
-  <p class="section-intro">Los verbos en <strong>-ARE</strong> son los más comunes en italiano. Para conjugarlos, quitamos <em>-are</em> y añadimos las terminaciones. <span class="es">Observa el patrón:</span></p>
+  <p class="section-intro">Los verbos en <strong>-ARE</strong> son los más comunes en italiano. Para conjugarlos, quitamos <em>-are</em> y añadimos las terminaciones. <span class="es">Observá el patrón:</span></p>
 
   <table class="gram-table">
     <thead><tr><th>Pronome</th><th>parlare (hablar)</th><th>prenotare (reservar)</th><th>abitare (vivir)</th></tr></thead>
@@ -160,7 +179,7 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
   <div class="example-box"><span class="it">Abitiamo vicino alla stazione.</span><span class="tr-small">Vivimos cerca de la estación.</span></div>
 
   <div class="inline-prac">
-    <h4>Pratica — Completa con la forma correcta</h4>
+    <h4>Pratica — Completá con la forma correcta</h4>
     <div id="prac1">
       <div class="prac-item" data-ans="parliamo">Noi ___ molto! (parlare) <input class="prac-input" placeholder="..."></div>
       <div class="prac-item" data-ans="prenota">Lui ___ una camera. (prenotare) <input class="prac-input" placeholder="..."></div>
@@ -168,7 +187,7 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
       <div class="prac-item" data-ans="parlo">Io ___ con il direttore. (parlare) <input class="prac-input" placeholder="..."></div>
     </div>
     <div style="margin-top:.85rem;display:flex;gap:.75rem">
-      <button class="btn btn-primary" onclick="checkPrac('prac1')">Verifica</button>
+      <button class="btn btn-primary" onclick="checkPrac('prac1')">Verificá</button>
       <button class="btn btn-ghost" onclick="resetPrac('prac1')">Ripristina</button>
     </div>
   </div>
@@ -228,7 +247,7 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
       <div class="prac-item" data-ans="dormo">Io ___ otto ore. (dormire) <input class="prac-input" placeholder="..."></div>
     </div>
     <div style="margin-top:.85rem;display:flex;gap:.75rem">
-      <button class="btn btn-primary" onclick="checkPrac('prac2')">Verifica</button>
+      <button class="btn btn-primary" onclick="checkPrac('prac2')">Verificá</button>
       <button class="btn btn-ghost" onclick="resetPrac('prac2')">Ripristina</button>
     </div>
   </div>
@@ -264,7 +283,7 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
 <!-- SECTION 4: NAZIONALITÀ -->
 <section id="nazionalita">
   <h2 class="section-title">4. La nazionalità</h2>
-  <p class="section-intro">Los adjetivos de nacionalidad concuerdan con el sustantivo al que acompañan. <span class="es">Observa las formas masculina y femenina — muchas terminan en <em>-o/-a</em>, pero algunas son invariables:</span></p>
+  <p class="section-intro">Los adjetivos de nacionalidad concuerdan con el sustantivo al que acompañan. <span class="es">Observá las formas masculina y femenina — muchas terminan en <em>-o/-a</em>, pero algunas son invariables:</span></p>
 
   <table class="gram-table">
     <thead><tr><th>Nazionalità</th><th>Maschile</th><th>Femminile</th><th>Esempio</th></tr></thead>
@@ -304,7 +323,7 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
       </div>
     </div>
     <div class="quiz-q" id="q2">
-      <p>2. Completa: "Loro ___ a Roma domani." (andare)</p>
+      <p>2. Completá: "Loro ___ a Roma domani." (andare)</p>
       <div class="quiz-opts">
         <div class="quiz-opt" onclick="selectOpt(this,'q2','a')">vanno</div>
         <div class="quiz-opt" onclick="selectOpt(this,'q2','b')">andate</div>
@@ -315,7 +334,7 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
       <p>3. "Avete una prenotazione?" — ¿A quién va dirigida esta pregunta?</p>
       <div class="quiz-opts">
         <div class="quiz-opt" onclick="selectOpt(this,'q3','a')">A una persona (usted formal)</div>
-        <div class="quiz-opt" onclick="selectOpt(this,'q3','b')">A varias personas (vosotros)</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'q3','b')">A varias personas (ustedes)</div>
         <div class="quiz-opt" onclick="selectOpt(this,'q3','c')">A él o ella</div>
       </div>
     </div>
@@ -350,6 +369,8 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
 </footer>
 
 <script>
+(function(){
+
 // Translation toggle
 let esVisible = true;
 function toggleEs(){
@@ -360,7 +381,7 @@ function toggleEs(){
 
 // Nav active state
 const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('nav a');
+const navLinks = document.querySelectorAll('nav a:not(.nav-logo)');
 window.addEventListener('scroll', ()=>{
   let cur='';
   sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id});
@@ -415,6 +436,7 @@ function submitQuiz(){
   else if(score>=2){res.className='quiz-result show ok';res.textContent=`Bene! ${score}/5 — continua a studiare.`;}
   else{res.className='quiz-result show try';res.textContent=`${score}/5 — Riprova! Torna alle sezioni.`;}
 }
+})();
 </script>
 </body>
 </html>

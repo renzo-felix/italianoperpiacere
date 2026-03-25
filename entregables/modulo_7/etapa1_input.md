@@ -5,8 +5,12 @@
 ---
 
 TIPO: Audio
-FUENTE SUGERIDA: RAI Radio o podcast italiano para principiantes — buscar "Coffee Break Italian S1 Ep.5" o "italiano professioni A1 podcast"
-TÍTULO: Il mondo del lavoro — El mundo del trabajo en Italia
+FUENTE: Coffee Break Italian — Podcast de Radio Lingua Network
+EPISODIO: Season 1, Lesson 27 — "CBI 1-27 | Talking about your job in Italian"
+URL SITIO OFICIAL: https://coffeebreaklanguages.com/2015/11/cbi-127-talking-about-your-job-in-italian/
+URL SPOTIFY SHOW: https://open.spotify.com/show/2PdBXXDEbSyR8fyd6RL5dR (buscar "CBI 1-27" dentro del show)
+LICENCIA: Podcast gratuito para uso educativo · Radio Lingua Network
+TÍTULO: Il mondo del lavoro — "CBI 1-27 | Talking about your job in Italian" — Coffee Break Italian
 DESCRIPCIÓN: Un fragmento de audio o podcast donde se presenten profesiones italianas en contexto: una entrevista, un diálogo sobre trabajo, o un fragmento radiofónico donde se mencionen diferentes ocupaciones (*medico, insegnante, avvocato, attore...*). El audio activa el vocabulario de profesiones antes de comenzar la unidad.
 
 ---

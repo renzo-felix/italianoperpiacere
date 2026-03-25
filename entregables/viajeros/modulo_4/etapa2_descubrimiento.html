@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alla stazione — Módulo 4 | Italiano Per Piacere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #e9e6d5;
+    --cream-dk: #ddd9c8;
+    --gold: #EFCF7F;
+    --green: #528e74;
+    --green-dk: #3d6b58;
+    --green-hero: #c8e8de;
+    --green-border: #528e74;
+    --green-active: #3d6b58;
+    --green-th: #a8d4c4;
+    --green-th-text: #2a4d3c;
+    --red: #cc4736;
+    --black: #1a1a18;
+    --white: #ffffff;
+    --fh: 'Playfair Display', Georgia, serif;
+    --fb: 'Outfit', system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--fb); color: var(--black); background: var(--cream); }
+
+  nav { position: sticky; top: 0; z-index: 100; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+  .nav-inner { max-width: 1100px; margin: 0 auto; padding: .75rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .nav-logo img { height: 40px; display: block; }
+  .nav-links { display: flex; gap: .25rem; flex-wrap: wrap; }
+  .nav-links a { font-family: var(--fb); font-size: .82rem; font-weight: 600; color: var(--green-active); text-decoration: none; padding: .35rem .75rem; border-radius: 20px; transition: background .2s; }
+  .nav-links a:hover { background: var(--green-hero); }
+
+  .progress-wrap { background: var(--green-th); height: 6px; }
+  .progress-bar { height: 6px; background: var(--green-active); width: 0%; transition: width .4s; }
+
+  .hero { background: var(--green-hero); border-bottom: 4px solid var(--green-border); padding: 3.5rem 1.5rem 3rem; text-align: center; }
+  .hero-badge { display: inline-block; background: var(--green-th); color: var(--green-th-text); font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: .3rem .9rem; border-radius: 20px; margin-bottom: 1rem; }
+  .hero h1 { font-family: var(--fh); font-size: clamp(2rem,5vw,3.2rem); font-style: italic; color: var(--black); margin-bottom: .6rem; }
+  .hero p { font-size: 1.05rem; color: #334; max-width: 600px; margin: 0 auto; }
+
+  .section { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem; }
+  .section-title { font-family: var(--fh); font-size: 1.7rem; font-style: italic; color: var(--green-active); margin-bottom: 1.5rem; padding-bottom: .5rem; border-bottom: 2px solid var(--green-th); }
+
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(170px,1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .vocab-card { background: var(--white); border: 2px solid var(--green-th); border-radius: 12px; padding: 1rem; text-align: center; cursor: pointer; transition: transform .2s, box-shadow .2s, border-color .2s; }
+  .vocab-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(82,142,116,.22); border-color: var(--green); }
+  .vocab-card .it { font-weight: 700; font-size: 1rem; color: var(--green-active); }
+  .vocab-card .es { font-size: .85rem; color: #557; margin-top: .3rem; }
+  .vocab-card .emoji { font-size: 1.6rem; margin-bottom: .4rem; }
+  .vocab-label { font-family: var(--fb); font-size: .72rem; font-weight: 700; text-transform: uppercase; color: var(--green-th-text); background: var(--green-th); padding: .2rem .6rem; border-radius: 20px; display: inline-block; margin-bottom: .75rem; }
+
+  .discovery { background: var(--white); border-radius: 16px; border: 2px solid var(--green-th); padding: 2rem; margin-bottom: 2rem; }
+  .discovery h3 { font-family: var(--fh); font-style: italic; font-size: 1.25rem; color: var(--green-active); margin-bottom: 1rem; }
+
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .93rem; }
+  th { background: var(--green-th); color: var(--green-th-text); font-weight: 700; padding: .65rem .9rem; text-align: left; }
+  td { padding: .55rem .9rem; border-bottom: 1px solid var(--green-th); }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #f0f9f5; }
+
+  /* Numbers grid */
+  .num-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(90px,1fr)); gap: .5rem; margin: 1rem 0; }
+  .num-cell { background: var(--green-hero); border: 2px solid var(--green-th); border-radius: 8px; padding: .5rem .4rem; text-align: center; }
+  .num-cell .n { font-weight: 700; font-size: 1.1rem; color: var(--green-active); }
+  .num-cell .w { font-size: .78rem; color: #446; margin-top: .15rem; }
+  .num-section-title { font-weight: 700; color: var(--green-active); margin: 1.2rem 0 .5rem; font-size: .9rem; text-transform: uppercase; letter-spacing: .05em; }
+
+  /* Clock widget */
+  .clock-widget { background: var(--green-hero); border: 2px solid var(--green-border); border-radius: 16px; padding: 2rem; text-align: center; margin: 1.5rem 0; }
+  .clock-display { font-family: var(--fh); font-size: 3rem; font-style: italic; color: var(--green-active); margin-bottom: 1rem; letter-spacing: .05em; }
+  .clock-labels { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .clock-label-box { background: var(--white); border: 2px solid var(--green-th); border-radius: 10px; padding: .6rem 1rem; font-size: .88rem; }
+  .clock-label-box .lbl { font-size: .72rem; font-weight: 700; text-transform: uppercase; color: var(--green-th-text); margin-bottom: .2rem; }
+  .clock-label-box .val { font-weight: 600; color: var(--green-active); }
+  .time-btns { display: flex; gap: .5rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
+  .time-btn { background: var(--green-th); color: var(--green-th-text); border: none; border-radius: 8px; padding: .4rem .9rem; font-family: var(--fb); font-weight: 600; font-size: .85rem; cursor: pointer; transition: background .2s; }
+  .time-btn:hover, .time-btn.active { background: var(--green-active); color: var(--white); }
+
+  /* Train board */
+  .train-board { background: #1a2a22; color: var(--white); border-radius: 16px; padding: 1.5rem; margin: 1.5rem 0; font-family: var(--fb); overflow-x: auto; }
+  .board-title { text-align: center; font-weight: 700; font-size: .9rem; text-transform: uppercase; letter-spacing: .1em; color: var(--green-th); margin-bottom: 1rem; }
+  .board-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+  .board-table th { color: var(--green-th); font-weight: 700; padding: .5rem .6rem; border-bottom: 1px solid #2a4a36; text-transform: uppercase; font-size: .75rem; letter-spacing: .06em; }
+  .board-table td { padding: .5rem .6rem; border-bottom: 1px solid #1e3228; }
+  .board-table .ora { font-weight: 700; color: #ffd98a; }
+  .board-table .dest { color: var(--white); font-weight: 600; }
+  .board-table .tipo { color: var(--green-th); font-size: .82rem; }
+  .board-table .bin { color: #ffd98a; font-weight: 700; text-align: center; }
+  .board-table .stato-ok { color: #7ae8b0; font-size: .82rem; }
+| .board-table .stato-late { color: #ffb347; font-size: .82rem; }
+  .board-table .stato-cancel { color: #ff7070; font-size: .82rem; }
+
+  /* Fill */
+  .fill-exercise { margin-bottom: 2rem; }
+  .fill-exercise h4 { font-weight: 700; color: var(--green-active); margin-bottom: 1rem; }
+  .fill-item { display: flex; align-items: center; gap: .5rem; margin-bottom: .75rem; flex-wrap: wrap; }
+  .fill-item span { font-size: .95rem; }
+  .fill-input { border: 2px solid var(--green-th); border-radius: 8px; padding: .3rem .6rem; font-family: var(--fb); font-size: .95rem; color: var(--black); background: var(--green-hero); min-width: 80px; transition: border-color .2s; }
+  .fill-input:focus { outline: none; border-color: var(--green-active); }
+  .fill-input.correct { border-color: var(--green); background: #d8f0e8; }
+  .fill-input.wrong { border-color: var(--red); background: #fdf0ee; }
+  .check-btn { background: var(--green-active); color: var(--white); border: none; border-radius: 8px; padding: .55rem 1.3rem; font-family: var(--fb); font-weight: 600; cursor: pointer; transition: background .2s; margin-top: .5rem; }
+  .check-btn:hover { background: var(--green-dk); }
+  .feedback { font-size: .85rem; font-weight: 600; margin-top: .5rem; }
+  .feedback.ok { color: var(--green); }
+  .feedback.err { color: var(--red); }
+
+  /* Dialogo */
+  .dialogo { margin-bottom: 2rem; }
+  .dialogo h4 { font-weight: 700; color: var(--green-active); margin-bottom: 1rem; }
+  .bubble-wrap { display: flex; flex-direction: column; gap: .75rem; }
+  .bubble { max-width: 80%; padding: .9rem 1.1rem; border-radius: 16px; font-size: .95rem; line-height: 1.5; }
+  .bubble.a { align-self: flex-start; background: var(--green-hero); border: 2px solid var(--green-th); border-bottom-left-radius: 4px; }
+  .bubble.b { align-self: flex-end; background: var(--cream-dk, #ddd9c8); border: 2px solid var(--cream-dk, #ddd9c8); border-bottom-right-radius: 4px; }
+  .bubble .speaker { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--green-active); margin-bottom: .3rem; }
+  .bubble.b .speaker { color: #6b5e3a; }
+  .bubble .it { font-weight: 600; }
+  .bubble .es { font-size: .82rem; color: #556; font-style: italic; margin-top: .2rem; }
+
+  /* Matching */
+  .matching { background: var(--white); border: 2px solid var(--green-th); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; }
+  .matching h4 { font-weight: 700; color: var(--green-active); margin-bottom: 1rem; }
+  .match-row { display: flex; align-items: center; gap: .75rem; margin-bottom: .75rem; flex-wrap: wrap; }
+  .match-item { font-weight: 600; color: var(--green-active); }
+  .match-select { border: 2px solid var(--green-th); border-radius: 8px; padding: .35rem .6rem; font-family: var(--fb); font-size: .9rem; background: var(--green-hero); color: var(--black); }
+
+  /* Culture strip */
+  .culture-strip { background: linear-gradient(135deg, #c8e8de 0%, var(--cream-dk) 100%); border-top: 4px solid var(--green); padding: 2.5rem 1.5rem; text-align: center; }
+  .culture-strip .cs-inner { max-width: 760px; margin: 0 auto; }
+  .culture-strip h3 { font-family: var(--fh); font-style: italic; font-size: 1.5rem; color: var(--green-active); margin-bottom: 1rem; }
+  .culture-strip p { font-size: .97rem; line-height: 1.7; color: #334; }
+  .culture-strip .cs-badge { display: inline-block; background: var(--green-th); color: var(--green-th-text); font-weight: 700; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; padding: .25rem .8rem; border-radius: 20px; margin-bottom: .75rem; }
+  .tip-urgente { background: #fff3cd; border: 2px solid #f5c542; border-radius: 10px; padding: 1rem 1.2rem; margin-top: 1.2rem; font-size: .93rem; color: #5a4a00; font-weight: 600; }
+
+  footer { background: var(--cream-dk); text-align: center; padding: 1.5rem; font-size: .82rem; color: #667; border-top: 1px solid var(--cream); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=f5755ad" alt="Italiano Per Piacere" loading="lazy">
+    </div>
+    <div class="nav-links">
+      <a href="#vocab">Vocabulario</a>
+      <a href="#numeri">Números</a>
+      <a href="#ora">La hora</a>
+      <a href="#dialogos">Diálogos</a>
+      <a href="#cultura">Cultura</a>
+    </div>
+  </div>
+</nav>
+<div class="progress-wrap"><div class="progress-bar" id="progress"></div></div>
+
+<header class="hero">
+  <div class="hero-badge">Viajeros · Módulo 4</div>
+  <h1>Alla stazione 🚄</h1>
+  <p>Comprá el boleto, encontrá el andén y no te olvidés de convalidar. ¡El tren a Florencia te espera!</p>
+</header>
+
+<!-- VOCABULARIO -->
+<section class="section" id="vocab">
+  <h2 class="section-title">Vocabulario del módulo</h2>
+
+  <p class="vocab-label">A — En la estación</p>
+  <div class="vocab-grid">
+    <div class="vocab-card"><div class="emoji">🎫</div><div class="it">il biglietto</div><div class="es">el boleto / ticket</div></div>
+    <div class="vocab-card"><div class="emoji">🛤️</div><div class="it">il binario</div><div class="es">el andén / vía</div></div>
+    <div class="vocab-card"><div class="emoji">🚃</div><div class="it">la carrozza</div><div class="es">el vagón</div></div>
+    <div class="vocab-card"><div class="emoji">💺</div><div class="it">il posto</div><div class="es">el asiento</div></div>
+    <div class="vocab-card"><div class="emoji">📋</div><div class="it">la prenotazione</div><div class="es">la reserva</div></div>
+    <div class="vocab-card"><div class="emoji">✅</div><div class="it">la convalida</div><div class="es">la validación</div></div>
+    <div class="vocab-card"><div class="emoji">⏱️</div><div class="it">il ritardo</div><div class="es">el retraso</div></div>
+    <div class="vocab-card"><div class="emoji">🔄</div><div class="it">la coincidenza</div><div class="es">la combinación</div></div>
+  </div>
+
+  <p class="vocab-label">B — Tipos de tren</p>
+  <div class="vocab-grid">
+    <div class="vocab-card"><div class="emoji">🚂</div><div class="it">Regionale</div><div class="es">Regional (lento)</div></div>
+    <div class="vocab-card"><div class="emoji">🚆</div><div class="it">RegioExpress</div><div class="es">Regional rápido</div></div>
+    <div class="vocab-card"><div class="emoji">🚇</div><div class="it">Intercity</div><div class="es">Intercity</div></div>
+    <div class="vocab-card"><div class="emoji">🔴</div><div class="it">Frecciarossa</div><div class="es">Alta velocidad (rojo)</div></div>
+    <div class="vocab-card"><div class="emoji">⚪</div><div class="it">Frecciabianca</div><div class="es">Alta velocidad (blanco)</div></div>
+    <div class="vocab-card"><div class="emoji">🔵</div><div class="it">Frecciaargento</div><div class="es">Alta velocidad (plata)</div></div>
+    <div class="vocab-card"><div class="emoji">⭐</div><div class="it">Eurostar</div><div class="es">Tren internacional</div></div>
+    <div class="vocab-card"><div class="emoji">🌙</div><div class="it">notturno</div><div class="es">tren nocturno</div></div>
+  </div>
+
+  <p class="vocab-label">C — Comprando el boleto</p>
+  <div class="vocab-grid">
+    <div class="vocab-card"><div class="emoji">➡️</div><div class="it">andata</div><div class="es">solo ida</div></div>
+    <div class="vocab-card"><div class="emoji">↩️</div><div class="it">ritorno</div><div class="es">solo vuelta</div></div>
+    <div class="vocab-card"><div class="emoji">↔️</div><div class="it">andata e ritorno</div><div class="es">ida y vuelta</div></div>
+    <div class="vocab-card"><div class="emoji">🥇</div><div class="it">prima classe</div><div class="es">primera clase</div></div>
+    <div class="vocab-card"><div class="emoji">🥈</div><div class="it">seconda classe</div><div class="es">segunda clase</div></div>
+    <div class="vocab-card"><div class="emoji">🎟️</div><div class="it">la riduzione</div><div class="es">el descuento</div></div>
+    <div class="vocab-card"><div class="emoji">➕</div><div class="it">il supplemento</div><div class="es">el suplemento</div></div>
+    <div class="vocab-card"><div class="emoji">🔁</div><div class="it">lo scalo</div><div class="es">la escala / transbordo</div></div>
+  </div>
+</section>
+
+<!-- NUMERI -->
+<section class="section" id="numeri">
+  <h2 class="section-title">I numeri 1–100</h2>
+
+  <div class="discovery">
+    <h3>Los números del viajero — imprescindibles en la estación</h3>
+
+    <div class="num-section-title">1 – 10</div>
+    <div class="num-grid">
+      <div class="num-cell"><div class="n">1</div><div class="w">uno</div></div>
+      <div class="num-cell"><div class="n">2</div><div class="w">due</div></div>
+      <div class="num-cell"><div class="n">3</div><div class="w">tre</div></div>
+      <div class="num-cell"><div class="n">4</div><div class="w">quattro</div></div>
+      <div class="num-cell"><div class="n">5</div><div class="w">cinque</div></div>
+      <div class="num-cell"><div class="n">6</div><div class="w">sei</div></div>
+      <div class="num-cell"><div class="n">7</div><div class="w">sette</div></div>
+      <div class="num-cell"><div class="n">8</div><div class="w">otto</div></div>
+      <div class="num-cell"><div class="n">9</div><div class="w">nove</div></div>
+      <div class="num-cell"><div class="n">10</div><div class="w">dieci</div></div>
+    </div>
+
+    <div class="num-section-title">11 – 20 (los irregulares)</div>
+    <div class="num-grid">
+      <div class="num-cell"><div class="n">11</div><div class="w">undici</div></div>
+      <div class="num-cell"><div class="n">12</div><div class="w">dodici</div></div>
+      <div class="num-cell"><div class="n">13</div><div class="w">tredici</div></div>
+      <div class="num-cell"><div class="n">14</div><div class="w">quattordici</div></div>
+      <div class="num-cell"><div class="n">15</div><div class="w">quindici</div></div>
+      <div class="num-cell"><div class="n">16</div><div class="w">sedici</div></div>
+      <div class="num-cell"><div class="n">17</div><div class="w">diciassette</div></div>
+      <div class="num-cell"><div class="n">18</div><div class="w">diciotto</div></div>
+      <div class="num-cell"><div class="n">19</div><div class="w">diciannove</div></div>
+      <div class="num-cell"><div class="n">20</div><div class="w">venti</div></div>
+    </div>
+
+    <div class="num-section-title">Decenas (20–100)</div>
+    <div class="num-grid">
+      <div class="num-cell"><div class="n">20</div><div class="w">venti</div></div>
+      <div class="num-cell"><div class="n">30</div><div class="w">trenta</div></div>
+      <div class="num-cell"><div class="n">40</div><div class="w">quaranta</div></div>
+      <div class="num-cell"><div class="n">50</div><div class="w">cinquanta</div></div>
+      <div class="num-cell"><div class="n">60</div><div class="w">sessanta</div></div>
+      <div class="num-cell"><div class="n">70</div><div class="w">settanta</div></div>
+      <div class="num-cell"><div class="n">80</div><div class="w">ottanta</div></div>
+      <div class="num-cell"><div class="n">90</div><div class="w">novanta</div></div>
+      <div class="num-cell"><div class="n">100</div><div class="w">cento</div></div>
+    </div>
+
+    <p style="margin-top:1.2rem;font-size:.9rem;color:#446;line-height:1.6;"><strong>Para combinar:</strong> venti + uno = <em>ventuno</em> (pierde la -i) · venti + otto = <em>ventotto</em> · trenta + tre = <em>trentatré</em> (lleva acento) · cento + uno = <em>centouno</em>.</p>
+  </div>
+
+  <!-- FILL 1 -->
+  <div class="fill-exercise" id="fill1">
+    <h4>Ejercicio 1 — Escribí el número en italiano</h4>
+    <div class="fill-item"><span>1. Binario número 7 →</span><input class="fill-input" data-answer="sette" placeholder="___"></div>
+    <div class="fill-item"><span>2. El tren cuesta 14 euros →</span><input class="fill-input" data-answer="quattordici" placeholder="___"><span>euro</span></div>
+    <div class="fill-item"><span>3. Salida a las 9 →</span><input class="fill-input" data-answer="nove" placeholder="___"></div>
+    <div class="fill-item"><span>4. Vagón número 3, asiento 15 → carrozza</span><input class="fill-input" data-answer="tre" placeholder="___"><span>, posto</span><input class="fill-input" data-answer="quindici" placeholder="___"></div>
+    <div class="fill-item"><span>5. El tren llega en 45 minutos →</span><input class="fill-input" data-answer="quarantacinque" placeholder="___"><span>minuti</span></div>
+    <button class="check-btn" onclick="checkFill('fill1')">Verificar</button>
+    <div class="feedback" id="fill1-fb"></div>
+  </div>
+</section>
+
+<!-- LA ORA -->
+<section class="section" id="ora">
+  <h2 class="section-title">L'ora — La hora en italiano</h2>
+
+  <div class="discovery">
+    <h3>Formal (24h) vs. Informal (12h)</h3>
+    <table>
+      <thead><tr><th>Hora</th><th>Formal (estación)</th><th>Informal (conversación)</th></tr></thead>
+      <tbody>
+        <tr><td>8:00</td><td>le otto</td><td>le otto di mattina</td></tr>
+        <tr><td>8:15</td><td>le otto e quindici / le otto e un quarto</td><td>le otto e un quarto</td></tr>
+        <tr><td>8:30</td><td>le otto e trenta / le otto e mezza</td><td>le otto e mezza</td></tr>
+        <tr><td>8:45</td><td>le otto e quarantacinque / le nove meno un quarto</td><td>le nove meno un quarto</td></tr>
+        <tr><td>13:00</td><td>le tredici</td><td>l'una di pomeriggio</td></tr>
+        <tr><td>13:20</td><td>le tredici e venti</td><td>l'una e venti di pomeriggio</td></tr>
+        <tr><td>0:00</td><td>le zero / la mezzanotte</td><td>mezzanotte</td></tr>
+        <tr><td>12:00</td><td>le dodici / mezzogiorno</td><td>mezzogiorno</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:1rem;font-size:.9rem;color:#446;line-height:1.6;"><strong>Estructura:</strong> <em>Sono le</em> + hora (plural) / <em>È l'una</em> (solo para la 1) / <em>È mezzogiorno</em> / <em>È mezzanotte</em>.</p>
+  </div>
+
+  <!-- Reloj interactivo -->
+  <div class="clock-widget">
+    <div class="clock-display" id="clockDisplay">13:45</div>
+    <div class="clock-labels">
+      <div class="clock-label-box"><div class="lbl">Formal</div><div class="val" id="formalLabel">le tredici e quarantacinque</div></div>
+      <div class="clock-label-box"><div class="lbl">Informal</div><div class="val" id="informalLabel">le due meno un quarto</div></div>
+    </div>
+    <div class="time-btns">
+      <button class="time-btn" onclick="setTime('08:00','le otto','le otto di mattina')">08:00</button>
+      <button class="time-btn" onclick="setTime('08:30','le otto e trenta','le otto e mezza')">08:30</button>
+      <button class="time-btn" onclick="setTime('10:15','le dieci e quindici','le dieci e un quarto')">10:15</button>
+      <button class="time-btn" onclick="setTime('12:00','le dodici (mezzogiorno)','mezzogiorno')">12:00</button>
+      <button class="time-btn" onclick="setTime('13:00','le tredici','l\'una di pomeriggio')">13:00</button>
+      <button class="time-btn" onclick="setTime('13:45','le tredici e quarantacinque','le due meno un quarto')">13:45</button>
+      <button class="time-btn" onclick="setTime('18:50','le diciotto e cinquanta','le sette meno dieci')">18:50</button>
+      <button class="time-btn" onclick="setTime('21:30','le ventuno e trenta','le nove e mezza di sera')">21:30</button>
+    </div>
+  </div>
+
+  <!-- FILL 2 -->
+  <div class="fill-exercise" id="fill2">
+    <h4>Ejercicio 2 — Escribí la hora en italiano (formal)</h4>
+    <div class="fill-item"><span>1. 9:00 → Sono</span><input class="fill-input" data-answer="le nove" placeholder="___"></div>
+    <div class="fill-item"><span>2. 1:00 PM → Sono</span><input class="fill-input" data-answer="le tredici" placeholder="___"></div>
+    <div class="fill-item"><span>3. 7:30 → Sono</span><input class="fill-input" data-answer="le sette e trenta" placeholder="___"></div>
+    <div class="fill-item"><span>4. 10:15 → Sono</span><input class="fill-input" data-answer="le dieci e quindici" placeholder="___"></div>
+    <div class="fill-item"><span>5. 12:00 → È</span><input class="fill-input" data-answer="mezzogiorno" placeholder="___"></div>
+    <button class="check-btn" onclick="checkFill('fill2')">Verificar</button>
+    <div class="feedback" id="fill2-fb"></div>
+  </div>
+
+  <!-- FILL 3: ventanilla -->
+  <div class="fill-exercise" id="fill3">
+    <h4>Ejercicio 3 — Diálogo en la biglietteria</h4>
+    <p style="font-size:.9rem;color:#334;margin-bottom:1rem;line-height:1.6;">Completá el diálogo con: un biglietto / andata / seconda / dodici / binario / convalidare</p>
+    <div class="fill-item"><span>Viaggiatore: Buongiorno, vorrei</span><input class="fill-input" data-answer="un biglietto" placeholder="___"><span>per Firenze, per favore.</span></div>
+    <div class="fill-item"><span>Cassiere: Solo</span><input class="fill-input" data-answer="andata" placeholder="___"><span>o andata e ritorno?</span></div>
+    <div class="fill-item"><span>Viaggiatore: Solo andata. In</span><input class="fill-input" data-answer="seconda" placeholder="___"><span>classe.</span></div>
+    <div class="fill-item"><span>Cassiere: Il prossimo treno parte alle</span><input class="fill-input" data-answer="dodici" placeholder="___"><span>e venti.</span></div>
+    <div class="fill-item"><span>Viaggiatore: E da quale</span><input class="fill-input" data-answer="binario" placeholder="___"><span>?</span></div>
+    <div class="fill-item"><span>Cassiere: Binario 5. Ricordi di</span><input class="fill-input" data-answer="convalidare" placeholder="___"><span>il biglietto prima di salire!</span></div>
+    <button class="check-btn" onclick="checkFill('fill3')">Verificar</button>
+    <div class="feedback" id="fill3-fb"></div>
+  </div>
+</section>
+
+<!-- DIALOGOS -->
+<section class="section" id="dialogos">
+  <h2 class="section-title">Diálogos</h2>
+
+  <div class="dialogo">
+    <h4>Diálogo 1 — Comprando el boleto en ventanilla</h4>
+    <div class="bubble-wrap">
+      <div class="bubble b"><div class="speaker">Marco (viajero)</div><div class="it">Buongiorno! Vorrei un biglietto per Firenze.</div><div class="es">¡Buenos días! Quisiera un boleto para Florencia.</div></div>
+      <div class="bubble a"><div class="speaker">Cassiera</div><div class="it">Andata semplice o andata e ritorno?</div><div class="es">¿Solo ida o ida y vuelta?</div></div>
+      <div class="bubble b"><div class="speaker">Marco</div><div class="it">Andata e ritorno, per favore. Seconda classe.</div><div class="es">Ida y vuelta, por favor. Segunda clase.</div></div>
+      <div class="bubble a"><div class="speaker">Cassiera</div><div class="it">Per oggi? Il Frecciarossa delle undici e venti è disponibile.</div><div class="es">¿Para hoy? Hay disponibilidad en el Frecciarossa de las 11:20.</div></div>
+      <div class="bubble b"><div class="speaker">Marco</div><div class="it">Perfetto. Quanto costa?</div><div class="es">Perfecto. ¿Cuánto cuesta?</div></div>
+      <div class="bubble a"><div class="speaker">Cassiera</div><div class="it">Quarantadue euro.</div><div class="es">Cuarenta y dos euros.</div></div>
+      <div class="bubble b"><div class="speaker">Marco</div><div class="it">Va bene. Da quale binario parte?</div><div class="es">Está bien. ¿De qué andén sale?</div></div>
+      <div class="bubble a"><div class="speaker">Cassiera</div><div class="it">Binario tre. Ricordi di convalidare il biglietto!</div><div class="es">Andén 3. ¡No olvide validar el boleto!</div></div>
+    </div>
+  </div>
+
+  <div class="dialogo">
+    <h4>Diálogo 2 — Preguntando por el andén y la hora</h4>
+    <div class="bubble-wrap">
+      <div class="bubble b"><div class="speaker">Valentina</div><div class="it">Scusi, questo è il binario per Firenze?</div><div class="es">Disculpe, ¿este es el andén para Florencia?</div></div>
+      <div class="bubble a"><div class="speaker">Passeggero</div><div class="it">No, questo è il binario sei. Per Firenze deve andare al binario tre.</div><div class="es">No, este es el andén 6. Para Florencia tiene que ir al andén 3.</div></div>
+      <div class="bubble b"><div class="speaker">Valentina</div><div class="it">Grazie! A che ora parte il prossimo treno?</div><div class="es">¡Gracias! ¿A qué hora sale el próximo tren?</div></div>
+      <div class="bubble a"><div class="speaker">Passeggero</div><div class="it">Alle undici e venti. Ha ancora dieci minuti.</div><div class="es">A las 11:20. Todavía tiene diez minutos.</div></div>
+      <div class="bubble b"><div class="speaker">Valentina</div><div class="it">Meno male! E c'è un ritardo?</div><div class="es">¡Menos mal! ¿Y hay retraso?</div></div>
+      <div class="bubble a"><div class="speaker">Passeggero</div><div class="it">No, oggi è in orario.</div><div class="es">No, hoy está en horario.</div></div>
+    </div>
+  </div>
+
+  <!-- TABLERO SALIDAS -->
+  <div class="discovery">
+    <h3>Comprensión — Tablero de salidas de Firenze SMN</h3>
+    <div class="train-board">
+      <div class="board-title">PARTENZE — DEPARTURES</div>
+      <table class="board-table">
+        <thead><tr><th>ORA</th><th>DESTINAZIONE</th><th>TRENO</th><th>BIN.</th><th>STATO</th></tr></thead>
+        <tbody>
+          <tr><td class="ora">09:05</td><td class="dest">Roma Termini</td><td class="tipo">FR 9612</td><td class="bin">5</td><td class="stato-ok">In orario</td></tr>
+          <tr><td class="ora">09:28</td><td class="dest">Bologna Centrale</td><td class="tipo">RV 3842</td><td class="bin">8</td><td class="stato-late">+12 min</td></tr>
+          <tr><td class="ora">10:00</td><td class="dest">Venezia Santa Lucia</td><td class="tipo">IC 0652</td><td class="bin">3</td><td class="stato-ok">In orario</td></tr>
+          <tr><td class="ora">10:35</td><td class="dest">Milano Centrale</td><td class="tipo">FR 9526</td><td class="bin">2</td><td class="stato-ok">In orario</td></tr>
+          <tr><td class="ora">11:20</td><td class="dest">Napoli Centrale</td><td class="tipo">FR 9630</td><td class="bin">3</td><td class="stato-ok">In orario</td></tr>
+          <tr><td class="ora">12:15</td><td class="dest">Pisa Centrale</td><td class="tipo">R 3211</td><td class="bin">11</td><td class="stato-cancel">Soppresso</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:1.2rem;">
+      <p style="font-weight:600;margin-bottom:.8rem;">Respondé estas preguntas sobre el tablero:</p>
+      <div style="margin-bottom:.75rem;"><label style="display:block;font-weight:600;font-size:.9rem;margin-bottom:.3rem;">1. ¿A qué hora sale el tren a Roma y de qué andén?</label><input type="text" style="width:100%;border:2px solid var(--green-th);border-radius:8px;padding:.4rem .8rem;font-family:var(--fb);background:var(--green-hero);" placeholder="Tu respuesta..."></div>
+      <div style="margin-bottom:.75rem;"><label style="display:block;font-weight:600;font-size:.9rem;margin-bottom:.3rem;">2. ¿Qué tren tiene retraso y de cuántos minutos?</label><input type="text" style="width:100%;border:2px solid var(--green-th);border-radius:8px;padding:.4rem .8rem;font-family:var(--fb);background:var(--green-hero);" placeholder="Tu respuesta..."></div>
+      <div style="margin-bottom:.75rem;"><label style="display:block;font-weight:600;font-size:.9rem;margin-bottom:.3rem;">3. ¿Qué tren está cancelado y a dónde iba?</label><input type="text" style="width:100%;border:2px solid var(--green-th);border-radius:8px;padding:.4rem .8rem;font-family:var(--fb);background:var(--green-hero);" placeholder="Tu respuesta..."></div>
+      <div><label style="display:block;font-weight:600;font-size:.9rem;margin-bottom:.3rem;">4. ¿De qué andén sale el tren a Nápoles?</label><input type="text" style="width:100%;border:2px solid var(--green-th);border-radius:8px;padding:.4rem .8rem;font-family:var(--fb);background:var(--green-hero);" placeholder="Tu respuesta..."></div>
+    </div>
+  </div>
+
+  <!-- MATCHING -->
+  <div class="matching">
+    <h4>Matching — Tipo de tren y característica</h4>
+    <p style="font-size:.88rem;color:#557;margin-bottom:1rem;">Uní cada tren con su descripción:</p>
+    <div class="match-row"><span class="match-item">Frecciarossa</span><select class="match-select"><option>---</option><option>A. El más lento, para trayectos cortos</option><option>B. Alta velocidad, el más rápido de Italia</option><option>C. Tren nocturno con cama</option><option>D. Tren de larga distancia con paradas</option></select></div>
+    <div class="match-row"><span class="match-item">Regionale</span><select class="match-select"><option>---</option><option>A. El más lento, para trayectos cortos</option><option>B. Alta velocidad, el más rápido de Italia</option><option>C. Tren nocturno con cama</option><option>D. Tren de larga distancia con paradas</option></select></div>
+    <div class="match-row"><span class="match-item">Intercity</span><select class="match-select"><option>---</option><option>A. El más lento, para trayectos cortos</option><option>B. Alta velocidad, el más rápido de Italia</option><option>C. Tren nocturno con cama</option><option>D. Tren de larga distancia con paradas</option></select></div>
+    <div class="match-row"><span class="match-item">notturno</span><select class="match-select"><option>---</option><option>A. El más lento, para trayectos cortos</option><option>B. Alta velocidad, el más rápido de Italia</option><option>C. Tren nocturno con cama</option><option>D. Tren de larga distancia con paradas</option></select></div>
+  </div>
+</section>
+
+<!-- CULTURE STRIP -->
+<div class="culture-strip" id="cultura">
+  <div class="cs-inner">
+    <div class="cs-badge">Tip Cultural — URGENTE</div>
+    <h3>¡Convalidá el boleto antes de subir!</h3>
+    <p>En Italia, muchos boletos de tren (especialmente Regionale y Intercity) no son válidos si no los validás antes de subir. Las máquinas de convalidación (pequeños cajeros amarillos o verdes) están en los accesos a los andenes. Si te subís sin validar y llega el controllore, la multa es de entre 50 y 200 euros, aunque tengas el boleto. Los billetes del Frecciarossa ya llevan la fecha y hora impresa, así que no necesitás validarlos. En caso de duda, buscá las máquinas verde/amarillo y pasá el boleto. ¡Mejor dos segundos que una multa!</p>
+    <div class="tip-urgente">⚠️ Regla de oro: Biglietto = convalidare SEMPRE prima di salire sul treno.</div>
+  </div>
+</div>
+
+<footer>
+  <p>Italiano Per Piacere · Viajeros · Módulo 4 — <em>Alla stazione</em></p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const p = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+    document.getElementById('progress').style.width = p + '%';
+  });
+
+  function setTime(time, formal, informal) {
+    document.getElementById('clockDisplay').textContent = time;
+    document.getElementById('formalLabel').textContent = formal;
+    document.getElementById('informalLabel').textContent = informal;
+    document.querySelectorAll('.time-btn').forEach(b => {
+      b.classList.toggle('active', b.getAttribute('onclick').includes("'" + time + "'"));
+    });
+  }
+
+  function checkFill(id) {
+    const section = document.getElementById(id);
+    const inputs = section.querySelectorAll('.fill-input');
+    let correct = 0;
+    inputs.forEach(inp => {
+      const uv = inp.value.trim().toLowerCase();
+      const ans = inp.dataset.answer.toLowerCase();
+      const ok = uv === ans;
+      inp.classList.toggle('correct', ok);
+      inp.classList.toggle('wrong', !ok && uv !== '');
+      if (ok) correct++;
+    });
+    const fb = document.getElementById(id + '-fb');
+    if (correct === inputs.length) { fb.textContent = '✓ ¡Perfetto!'; fb.className = 'feedback ok'; }
+    else { fb.textContent = correct + '/' + inputs.length + ' correctas.'; fb.className = 'feedback err'; }
+  }
+</script>
+</body>
+</html>

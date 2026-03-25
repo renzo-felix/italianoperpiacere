@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Módulo 8 A2 · Gramática — Made in Italy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--green:#528e74;--green-dk:#3d6b58;--black:#1a1a18;--white:#fff;
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;--hdr:var(--amber-dk);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #EFCF7F;box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#c8940a;border-bottom-color:#EFCF7F}
+#etoggle{background:rgba(0,0,0,.07);border:1px solid rgba(0,0,0,.12);color:var(--black);padding:6px 12px;border-radius:20px;cursor:pointer;font-size:.78rem;font-family:var(--fb);font-weight:600}
+body.hide-es .es{display:none}
+.hero{background:#fef9e8;border-bottom:3px solid #EFCF7F;color:var(--black);padding:48px 20px 40px;text-align:center}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:2.2rem;margin-bottom:8px;color:var(--black)}
+.hero p{opacity:.85;font-size:1.05rem;max-width:600px;margin:0 auto;color:var(--black)}
+.section{max-width:900px;margin:0 auto;padding:48px 20px}
+.section h2{font-family:var(--fh);font-style:italic;font-size:1.7rem;color:var(--hdr);margin-bottom:24px;padding-bottom:8px;border-bottom:2px solid var(--amber)}
+.rule-card{background:#fff;border-left:5px solid var(--amber);border-radius:0 12px 12px 0;padding:20px 24px;margin:20px 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.rule-card h3{color:var(--hdr);font-size:1rem;font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.rule-card p,.rule-card li{font-size:.95rem;margin-bottom:6px}
+.rule-card ul{padding-left:18px}
+.rule-card .es{color:#666;font-size:.88rem}
+.gtable{width:100%;border-collapse:collapse;margin:16px 0;font-size:.92rem}
+.gtable th{background:#fde8a0;color:var(--black);padding:10px 14px;text-align:left;font-weight:600}
+.gtable td{padding:9px 14px;border-bottom:1px solid var(--cream-dk)}
+.gtable tr:nth-child(even){background:var(--cream)}
+.gtable tr:hover{background:#fff8e0}
+.scheme{background:linear-gradient(135deg,#fef9e8 0%,#fde8a0 100%);color:var(--black);border-radius:12px;padding:20px 24px;margin:20px 0;font-size:.95rem;font-family:monospace}
+.scheme .hl{color:var(--gold);font-weight:700}
+.scheme .line{margin:7px 0}
+.prac-box{background:#fff;border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 3px 12px rgba(0,0,0,.1)}
+.prac-box h3{color:var(--hdr);font-weight:700;margin-bottom:6px}
+.prac-box .inst{font-size:.88rem;color:#666;margin-bottom:18px}
+.prac-item{display:flex;align-items:center;gap:10px;margin:12px 0;flex-wrap:wrap}
+.prac-item span{font-size:.93rem}
+.prac-input{border:2px solid var(--cream-dk);border-radius:8px;padding:7px 12px;font-family:var(--fb);font-size:.92rem;width:200px;transition:border .2s}
+.prac-input:focus{outline:none;border-color:var(--amber)}
+.prac-input.ok{border-color:var(--green);background:#edf7f2}
+.prac-input.no{border-color:var(--red);background:#fdf0ee}
+.prac-btn{background:var(--amber);color:var(--black);border:none;border-radius:8px;padding:8px 20px;cursor:pointer;font-family:var(--fb);font-weight:700;font-size:.88rem;transition:background .2s;margin-top:8px}
+.prac-btn:hover{background:var(--amber-dk);color:#fff}
+.prac-fb{font-size:.82rem;margin-top:8px;min-height:20px;font-weight:600}
+.prac-fb.ok{color:var(--green)}
+.prac-fb.no{color:var(--red)}
+.quiz-box{background:linear-gradient(135deg,#fef9e8 0%,#fde8a0 100%);border-radius:16px;padding:32px;margin:24px 0;color:var(--black)}
+.quiz-box h3{font-family:var(--fh);font-style:italic;font-size:1.4rem;margin-bottom:20px}
+.q-item{background:rgba(0,0,0,.06);border-radius:10px;padding:16px 20px;margin:14px 0}
+.q-item p{font-size:.95rem;margin-bottom:12px;font-weight:600}
+.q-opts{display:flex;flex-direction:column;gap:8px}
+.q-opt{background:rgba(0,0,0,.05);border:2px solid transparent;border-radius:8px;padding:9px 16px;cursor:pointer;font-size:.9rem;transition:all .2s}
+.q-opt:hover{background:rgba(255,255,255,.25)}
+.q-opt.selected{border-color:var(--gold);background:rgba(239,207,127,.25)}
+.q-opt.correct{border-color:#6fcf97;background:rgba(111,207,151,.25)}
+.q-opt.wrong{border-color:#eb5757;background:rgba(235,87,87,.2)}
+.quiz-submit{display:block;margin:24px auto 0;background:var(--gold);color:var(--black);border:none;border-radius:10px;padding:12px 32px;font-family:var(--fb);font-weight:700;font-size:1rem;cursor:pointer}
+.quiz-submit:hover{opacity:.88}
+#quiz-result{text-align:center;margin-top:16px;font-size:1.1rem;font-weight:700;min-height:28px}
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:4px solid var(--amber-dk);padding:40px 20px;margin-top:40px}
+.culture-inner{max-width:700px;margin:0 auto;text-align:center}
+.culture-inner h3{font-family:var(--fh);font-style:italic;font-size:1.5rem;color:var(--black);margin-bottom:12px}
+.culture-inner p{font-size:.95rem;color:var(--black);max-width:600px;margin:0 auto}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+nav > a:not(.nav-logo):hover,nav > a:not(.nav-logo).active{opacity:1;color:#c8940a;border-bottom-color:#EFCF7F}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#comb">Pronomi combinati</a>
+      <a href="#staper">Stare per</a>
+      <a href="#bisogno">Avere bisogno di</a>
+      <a href="#pratica">Pratica</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+<div class="hero">
+  <h1>Made in Italy</h1>
+  <p>Pronomi combinati · Stare per + infinito · Avere bisogno di</p>
+</div>
+
+<!-- PRONOMI COMBINATI -->
+<div class="section" id="comb">
+  <h2>I pronomi combinati</h2>
+  <div class="rule-card">
+    <h3>Come si formano</h3>
+    <p>Cuando hay un pronombre <strong>indirecto</strong> + un pronombre <strong>directo</strong> juntos, el indirecto cambia forma:</p>
+    <ul>
+      <li><strong>mi → me</strong> (me lo, me la, me li, me le)</li>
+      <li><strong>ti → te</strong> (te lo, te la, te li, te le)</li>
+      <li><strong>gli/le → glie-</strong> + lo/la/li/le <em>unido</em>: glielo, gliela, glieli, gliele</li>
+      <li><strong>ci → ce</strong> (ce lo, ce la, ce li, ce le)</li>
+      <li><strong>vi → ve</strong> (ve lo, ve la, ve li, ve le)</li>
+    </ul>
+    <p class="es">Orden: siempre ind. + dir. El pronombre combinado va ANTES del verbo.</p>
+  </div>
+  <table class="gtable">
+    <tr><th>Ind.</th><th>+ lo</th><th>+ la</th><th>+ li</th><th>+ le</th></tr>
+    <tr><td>mi →</td><td><strong>me lo</strong></td><td><strong>me la</strong></td><td><strong>me li</strong></td><td><strong>me le</strong></td></tr>
+    <tr><td>ti →</td><td><strong>te lo</strong></td><td><strong>te la</strong></td><td><strong>te li</strong></td><td><strong>te le</strong></td></tr>
+    <tr><td>gli/le →</td><td><strong>glielo</strong></td><td><strong>gliela</strong></td><td><strong>glieli</strong></td><td><strong>gliele</strong></td></tr>
+    <tr><td>ci →</td><td><strong>ce lo</strong></td><td><strong>ce la</strong></td><td><strong>ce li</strong></td><td><strong>ce le</strong></td></tr>
+    <tr><td>vi →</td><td><strong>ve lo</strong></td><td><strong>ve la</strong></td><td><strong>ve li</strong></td><td><strong>ve le</strong></td></tr>
+  </table>
+  <div class="rule-card">
+    <h3>Concordanza con il passato prossimo</h3>
+    <p>Con <em>passato prossimo</em>, el participio concuerda con el pronombre <strong>directo</strong>:</p>
+    <ul>
+      <li><strong>Te lo</strong> ho mandat<strong>o</strong>. <span class="es">(lo → masc. sing.)</span></li>
+      <li><strong>Te la</strong> ho mandat<strong>a</strong>. <span class="es">(la → fem. sing.)</span></li>
+      <li><strong>Ve li</strong> ho portat<strong>i</strong>. <span class="es">(li → masc. plur.)</span></li>
+      <li><strong>Ce le</strong> ha dat<strong>e</strong>. <span class="es">(le → fem. plur.)</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- STARE PER -->
+<div class="section" id="staper" style="background:var(--cream-dk)">
+  <h2>Stare per + infinito</h2>
+  <div class="rule-card">
+    <h3>Azione imminente</h3>
+    <p>"Stare per + infinito" expresa que algo <strong>está a punto de ocurrir</strong> en el futuro inmediato.</p>
+    <p class="es">Equivale a "estar a punto de + infinitivo".</p>
+  </div>
+  <div class="scheme">
+    <div class="line"><span class="hl">stare</span> (coniug.) + <span class="hl">per</span> + infinito</div>
+    <div class="line">io <span class="hl">sto per</span> partire &nbsp;|&nbsp; tu <span class="hl">stai per</span> arrivare</div>
+    <div class="line">lui/lei <span class="hl">sta per</span> finire &nbsp;|&nbsp; noi <span class="hl">stiamo per</span> cominciare</div>
+    <div class="line">voi <span class="hl">state per</span> partire &nbsp;|&nbsp; loro <span class="hl">stanno per</span> iniziare</div>
+  </div>
+  <table class="gtable">
+    <tr><th>Frase</th><th class="es">Significado</th></tr>
+    <tr><td>La sfilata <strong>sta per</strong> cominciare.</td><td class="es">El desfile está a punto de empezar.</td></tr>
+    <tr><td><strong>Sto per</strong> chiamare il fornitore.</td><td class="es">Estoy a punto de llamar al proveedor.</td></tr>
+    <tr><td><strong>Stiamo per</strong> presentare la collezione.</td><td class="es">Estamos a punto de presentar la colección.</td></tr>
+    <tr><td>Il negozio <strong>sta per</strong> chiudere.</td><td class="es">La tienda está a punto de cerrar.</td></tr>
+    <tr><td><strong>Stanno per</strong> iniziare le vendite.</td><td class="es">Las ventas están a punto de empezar.</td></tr>
+  </table>
+</div>
+
+<!-- AVERE BISOGNO DI -->
+<div class="section" id="bisogno">
+  <h2>Avere bisogno di</h2>
+  <div class="rule-card">
+    <h3>Esprimere il bisogno / la necessità</h3>
+    <p>"Avere bisogno di" = necesitar. Va siempre seguido de:</p>
+    <ul>
+      <li><strong>un sostantivo:</strong> Ho bisogno <strong>di</strong> tempo / aiuto / un consiglio.</li>
+      <li><strong>un infinito:</strong> Ho bisogno <strong>di</strong> parlare / riposarmi.</li>
+    </ul>
+  </div>
+  <table class="gtable">
+    <tr><th>Persona</th><th>Forma</th><th>Esempio</th><th class="es">ES</th></tr>
+    <tr><td>io</td><td><strong>ho bisogno di</strong></td><td>Ho bisogno di aiuto.</td><td class="es">Necesito ayuda.</td></tr>
+    <tr><td>tu</td><td><strong>hai bisogno di</strong></td><td>Hai bisogno di tempo?</td><td class="es">¿Necesitas tiempo?</td></tr>
+    <tr><td>lui/lei</td><td><strong>ha bisogno di</strong></td><td>Ha bisogno di riposare.</td><td class="es">Necesita descansar.</td></tr>
+    <tr><td>noi</td><td><strong>abbiamo bisogno di</strong></td><td>Abbiamo bisogno di una pausa.</td><td class="es">Necesitamos un descanso.</td></tr>
+    <tr><td>voi</td><td><strong>avete bisogno di</strong></td><td>Avete bisogno di qualcosa?</td><td class="es">¿Necesitáis algo?</td></tr>
+    <tr><td>loro</td><td><strong>hanno bisogno di</strong></td><td>Hanno bisogno di più spazio.</td><td class="es">Necesitan más espacio.</td></tr>
+  </table>
+</div>
+
+<!-- PRATICA -->
+<div class="section" id="pratica" style="background:var(--cream-dk)">
+  <h2>Pratica</h2>
+  <div class="prac-box">
+    <h3>Esercizio 1 — Pronomi combinati</h3>
+    <p class="inst">Sostituisci con i pronomi combinati:</p>
+    <div class="prac-item"><span>1. Do il catalogo a te. →</span>
+      <input class="prac-input" id="e1a" data-ans="te lo do"></div>
+    <div class="prac-item"><span>2. Mando la foto a lui. →</span>
+      <input class="prac-input" id="e1b" data-ans="gliela mando"></div>
+    <div class="prac-item"><span>3. Porto i campioni a voi. →</span>
+      <input class="prac-input" id="e1c" data-ans="ve li porto"></div>
+    <div class="prac-item"><span>4. Spiego le regole a noi. →</span>
+      <input class="prac-input" id="e1d" data-ans="ce le spiega"></div>
+    <button class="prac-btn" onclick="checkPrac('e1',['e1a','e1b','e1c','e1d'])">Controlla</button>
+    <div class="prac-fb" id="e1-fb"></div>
+  </div>
+  <div class="prac-box">
+    <h3>Esercizio 2 — Stare per</h3>
+    <p class="inst">Trasforma usando "stare per + infinito":</p>
+    <div class="prac-item"><span>1. Il treno parte. → Il treno ______.</span>
+      <input class="prac-input" id="e2a" data-ans="sta per partire"></div>
+    <div class="prac-item"><span>2. Cominciamo la riunione. → Noi ______.</span>
+      <input class="prac-input" id="e2b" data-ans="stiamo per cominciare la riunione"></div>
+    <div class="prac-item"><span>3. Gli stilisti iniziano la sfilata. → ______.</span>
+      <input class="prac-input" id="e2c" data-ans="stanno per iniziare la sfilata"></div>
+    <button class="prac-btn" onclick="checkPrac('e2',['e2a','e2b','e2c'])">Controlla</button>
+    <div class="prac-fb" id="e2-fb"></div>
+  </div>
+  <div class="prac-box">
+    <h3>Esercizio 3 — Avere bisogno di</h3>
+    <p class="inst">Completa con la forma corretta di "avere bisogno di":</p>
+    <div class="prac-item"><span>1. Io / aiuto →</span>
+      <input class="prac-input" id="e3a" data-ans="ho bisogno di aiuto"></div>
+    <div class="prac-item"><span>2. Marco / più tempo →</span>
+      <input class="prac-input" id="e3b" data-ans="ha bisogno di più tempo"></div>
+    <div class="prac-item"><span>3. Noi / una pausa →</span>
+      <input class="prac-input" id="e3c" data-ans="abbiamo bisogno di una pausa"></div>
+    <button class="prac-btn" onclick="checkPrac('e3',['e3a','e3b','e3c'])">Controlla</button>
+    <div class="prac-fb" id="e3-fb"></div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="quiz">
+  <div class="quiz-box">
+    <h3>Quiz finale — Made in Italy</h3>
+    <div class="q-item" id="qq1">
+      <p>1. — Puoi darmi il catalogo? — Sì, _____ do subito.</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q1','a')">a) te lo</div>
+        <div class="q-opt" onclick="selectOpt(this,'q1','b')">b) me lo</div>
+        <div class="q-opt" onclick="selectOpt(this,'q1','c')">c) glielo</div>
+      </div>
+    </div>
+    <div class="q-item" id="qq2">
+      <p>2. Ho mandato la lettera a Giulia. → _____ ho mandata.</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q2','a')">a) Glielo</div>
+        <div class="q-opt" onclick="selectOpt(this,'q2','b')">b) Gliela</div>
+        <div class="q-opt" onclick="selectOpt(this,'q2','c')">c) Ve la</div>
+      </div>
+    </div>
+    <div class="q-item" id="qq3">
+      <p>3. Il treno _____ partire. (tra un minuto)</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q3','a')">a) va per</div>
+        <div class="q-opt" onclick="selectOpt(this,'q3','b')">b) sta per</div>
+        <div class="q-opt" onclick="selectOpt(this,'q3','c')">c) è per</div>
+      </div>
+    </div>
+    <div class="q-item" id="qq4">
+      <p>4. Marco _____ un nuovo tessuto. (necesita)</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q4','a')">a) ha bisogno di</div>
+        <div class="q-opt" onclick="selectOpt(this,'q4','b')">b) ha necessità</div>
+        <div class="q-opt" onclick="selectOpt(this,'q4','c')">c) ha volere di</div>
+      </div>
+    </div>
+    <div class="q-item" id="qq5">
+      <p>5. Porto i documenti a voi. → _____ porto.</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q5','a')">a) ce li</div>
+        <div class="q-opt" onclick="selectOpt(this,'q5','b')">b) ve li</div>
+        <div class="q-opt" onclick="selectOpt(this,'q5','c')">c) te li</div>
+      </div>
+    </div>
+    <button class="quiz-submit" onclick="submitQuiz()">Invia le risposte</button>
+    <div id="quiz-result"></div>
+  </div>
+</div>
+
+<div class="culture">
+  <div class="culture-inner">
+    <h3>🇮🇹 Made in Italy</h3>
+    <p>I pronomi combinati rendono il linguaggio professionale italiano più fluido ed elegante. Quando un buyer dice <em>Te lo mando domani</em> invece di <em>Mando a te il catalogo domani</em>, suona molto più naturale e professionale — proprio come il Made in Italy: elegante, preciso e curato.</p>
+  </div>
+</div>
+
+<script>
+const ANSWERS={q1:'a',q2:'b',q3:'b',q4:'a',q5:'b'};
+const selected={};
+function selectOpt(el,qid,opt){
+  document.getElementById('qq'+qid.slice(1)).querySelectorAll('.q-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');selected[qid]=opt;
+}
+function submitQuiz(){
+  let score=0;
+  for(const[qid,ans] of Object.entries(ANSWERS)){
+    const box=document.getElementById('qq'+qid.slice(1));
+    box.querySelectorAll('.q-opt').forEach(o=>{
+      const oc=o.getAttribute('onclick');const letter=oc.match(/'([a-c])'\)/)?.[1];
+      if(o.classList.contains('selected')){if(selected[qid]===ans){o.classList.add('correct');score++;}else o.classList.add('wrong');}
+      if(letter===ans)o.style.borderColor='#6fcf97';
+    });
+  }
+  document.getElementById('quiz-result').textContent=`${score}/5 — ${score>=4?'Ottimo! 🎉':score>=3?'Bene! 👍':'Riprova! 💪'}`;
+}
+function checkPrac(id,ids){
+  let ok=0;
+  ids.forEach(pid=>{
+    const inp=document.getElementById(pid);if(!inp)return;
+    inp.classList.remove('ok','no');
+    if(inp.value.toLowerCase().trim()===inp.dataset.ans.toLowerCase()){inp.classList.add('ok');ok++;}
+    else if(inp.value)inp.classList.add('no');
+  });
+  const fb=document.getElementById(id+'-fb');
+  fb.className='prac-fb'+(ok===ids.length?' ok':' no');
+  fb.textContent=ok===ids.length?'✓ Perfetto!':'✗ Ricontrolla le caselle in rosso.';
+}
+const secs=[...document.querySelectorAll('.section[id]')];
+const links=[...document.querySelectorAll('nav a')];
+window.addEventListener('scroll',()=>{
+  let cur='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id;});
+  links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur));
+},{passive:true});
+</script>
+</body>
+</html>

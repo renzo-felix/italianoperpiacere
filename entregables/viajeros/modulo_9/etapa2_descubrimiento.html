@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 9 · Imprevisti — Italiano Per Piacere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #e9e6d5;
+    --cream-dk: #ddd9c8;
+    --gold: #EFCF7F;
+    --amber: #e5ab07;
+    --amber-dk: #c8940a;
+    --red: #cc4736;
+    --teal: #78a6ba;
+    --green: #528e74;
+    --black: #1a1a18;
+    --white: #ffffff;
+    --fh: 'Playfair Display', Georgia, serif;
+    --fb: 'Outfit', system-ui, sans-serif;
+    /* Module colors — amber */
+    --mod: #e5ab07;
+    --mod-dk: #c8940a;
+    --mod-hero-bg: #fef9e8;
+    --mod-border: #EFCF7F;
+    --mod-th-bg: #fde8a0;
+    --mod-th-color: #7a5500;
+    --mod-light: #fffdf0;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--fb); color: var(--black); background: var(--cream); line-height: 1.6; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 2px solid var(--mod-border); box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: .7rem 1.5rem; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; gap: .5rem; }
+  .nav-logo img { height: 38px; display: block; }
+  .nav-links { display: flex; gap: .4rem; flex-wrap: wrap; }
+  .nav-links a { font-family: var(--fb); font-size: .78rem; font-weight: 600; text-decoration: none; color: var(--black); padding: .35rem .7rem; border-radius: 20px; transition: background .2s, color .2s; white-space: nowrap; }
+  .nav-links a:hover, .nav-links a.active { background: var(--mod); color: var(--white); }
+
+  /* HERO */
+  .hero { background: var(--mod-hero-bg); border-bottom: 3px solid var(--mod-border); padding: 3rem 1.5rem 2.5rem; text-align: center; }
+  .hero-badge { display: inline-block; background: var(--mod); color: var(--white); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .3rem .9rem; border-radius: 20px; margin-bottom: 1rem; }
+  .hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2.2rem, 5vw, 3.5rem); color: var(--mod-th-color); line-height: 1.15; margin-bottom: .5rem; }
+  .hero p { font-size: 1.05rem; color: #5a4a00; max-width: 620px; margin: 0 auto 1.5rem; }
+  .city-tag { display: inline-flex; align-items: center; gap: .4rem; background: var(--white); border: 2px solid var(--mod-border); border-radius: 20px; padding: .3rem .9rem; font-size: .85rem; font-weight: 600; color: var(--mod-dk); }
+
+  /* PROGRESS */
+  .progress-wrap { background: var(--mod-hero-bg); padding: .8rem 1.5rem; border-bottom: 1px solid var(--mod-border); }
+  .progress-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1rem; }
+  .progress-label { font-size: .8rem; font-weight: 600; color: var(--mod-dk); white-space: nowrap; }
+  .progress-bar { flex: 1; height: 8px; background: var(--mod-th-bg); border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--mod); border-radius: 4px; width: 0%; transition: width .6s ease; }
+  .progress-pct { font-size: .8rem; font-weight: 700; color: var(--mod-dk); min-width: 36px; }
+
+  /* SECTIONS */
+  .section { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+  .section-title { font-family: var(--fh); font-style: italic; font-size: 1.7rem; color: var(--mod-dk); margin-bottom: .3rem; }
+  .section-sub { font-size: .92rem; color: #666; margin-bottom: 1.5rem; }
+  .divider { border: none; border-top: 2px solid var(--mod-border); margin: 2.5rem 0; }
+
+  /* VOCAB GRID */
+  .vocab-label { font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--mod-dk); margin-bottom: .7rem; margin-top: 1.4rem; }
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .9rem; }
+  .vocab-card { background: var(--white); border: 2px solid var(--mod-border); border-radius: 12px; padding: 1rem 1.1rem; cursor: pointer; transition: transform .2s, box-shadow .2s, border-color .2s; }
+  .vocab-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(229,171,7,.2); border-color: var(--mod); }
+  .vocab-card .it { font-family: var(--fh); font-style: italic; font-size: 1.1rem; color: var(--mod-dk); display: block; }
+  .vocab-card .es { font-size: .85rem; color: #666; display: block; margin-top: .2rem; }
+  .vocab-card .ex { font-size: .78rem; color: #888; font-style: italic; margin-top: .4rem; display: none; border-top: 1px solid var(--mod-border); padding-top: .4rem; }
+  .vocab-card.open .ex { display: block; }
+  .vocab-card .emoji { font-size: 1.4rem; margin-bottom: .3rem; display: block; }
+
+  /* DISCOVERY BOXES */
+  .discovery { background: var(--white); border-left: 4px solid var(--mod); border-radius: 0 12px 12px 0; padding: 1.4rem 1.6rem; margin: 1.5rem 0; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+  .discovery h3 { font-family: var(--fh); font-style: italic; font-size: 1.25rem; color: var(--mod-dk); margin-bottom: .8rem; }
+  .discovery p { font-size: .95rem; margin-bottom: .8rem; color: #444; }
+  .discovery .tag { display: inline-block; background: var(--mod-th-bg); color: var(--mod-th-color); font-size: .78rem; font-weight: 700; padding: .2rem .6rem; border-radius: 20px; margin-right: .4rem; margin-bottom: .4rem; }
+
+  /* TABLES */
+  .table-wrap { overflow-x: auto; margin: 1rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  th { background: var(--mod-th-bg); color: var(--mod-th-color); font-weight: 700; padding: .65rem .9rem; text-align: left; }
+  td { padding: .6rem .9rem; border-bottom: 1px solid var(--mod-border); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--mod-hero-bg); }
+  .it-cell { font-family: var(--fh); font-style: italic; color: var(--mod-dk); font-weight: 600; }
+  .highlight-row td { background: var(--mod-th-bg); font-weight: 600; }
+
+  /* FILL IN */
+  .fill-block { background: var(--cream); border: 2px dashed var(--mod-border); border-radius: 12px; padding: 1.4rem; margin: 1.2rem 0; }
+  .fill-block h4 { font-weight: 700; font-size: .95rem; color: var(--mod-dk); margin-bottom: 1rem; }
+  .fill-item { display: flex; align-items: center; gap: .6rem; margin-bottom: .8rem; font-size: .93rem; flex-wrap: wrap; }
+  .fill-item input { border: none; border-bottom: 2px solid var(--mod); background: transparent; font-family: var(--fb); font-size: .93rem; font-style: italic; color: var(--mod-dk); width: 140px; outline: none; padding: .15rem .3rem; }
+  .fill-item input:focus { border-bottom-color: var(--amber-dk); background: var(--white); border-radius: 4px 4px 0 0; }
+  .fill-item input.correct { border-bottom-color: var(--green); color: var(--green); }
+  .fill-item input.wrong { border-bottom-color: var(--red); color: var(--red); }
+  .check-btn { background: var(--mod); color: var(--white); border: none; border-radius: 20px; padding: .5rem 1.2rem; font-family: var(--fb); font-weight: 600; font-size: .85rem; cursor: pointer; margin-top: .5rem; transition: background .2s; }
+  .check-btn:hover { background: var(--mod-dk); }
+  .fill-feedback { font-size: .85rem; margin-top: .5rem; font-weight: 600; display: none; }
+  .fill-feedback.show { display: block; }
+  .fill-feedback.ok { color: var(--green); }
+  .fill-feedback.err { color: var(--red); }
+
+  /* FLIP CARDS */
+  .flip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0; }
+  .flip-card { perspective: 800px; height: 160px; cursor: pointer; }
+  .flip-inner { position: relative; width: 100%; height: 100%; transition: transform .5s; transform-style: preserve-3d; }
+  .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+  .flip-front, .flip-back { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1rem; text-align: center; }
+  .flip-front { background: var(--mod-th-bg); border: 2px solid var(--mod-border); }
+  .flip-front .num { font-size: 2rem; font-weight: 800; color: var(--mod-dk); }
+  .flip-front .label { font-size: .8rem; color: var(--mod-th-color); font-weight: 600; margin-top: .3rem; }
+  .flip-back { background: var(--mod-dk); border: 2px solid var(--mod-dk); transform: rotateY(180deg); }
+  .flip-back .service { font-family: var(--fh); font-style: italic; font-size: 1rem; color: var(--white); }
+  .flip-back .desc { font-size: .78rem; color: rgba(255,255,255,.85); margin-top: .4rem; }
+
+  /* DIALOGUE */
+  .dialogue { background: var(--white); border-radius: 14px; padding: 1.4rem; margin: 1.2rem 0; border: 2px solid var(--mod-border); }
+  .dialogue h4 { font-weight: 700; font-size: .9rem; color: var(--mod-dk); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: .05em; }
+  .bubble-wrap { display: flex; flex-direction: column; gap: .7rem; }
+  .b { display: flex; gap: .7rem; align-items: flex-start; }
+  .b.r { flex-direction: row-reverse; }
+  .b-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--mod-th-bg); border: 2px solid var(--mod-border); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .b.r .b-avatar { background: var(--cream-dk); }
+  .b-text { background: var(--cream-dk); border-radius: 0 12px 12px 12px; padding: .7rem 1rem; max-width: 72%; font-size: .9rem; }
+  .b.r .b-text { background: var(--mod-th-bg); border-radius: 12px 0 12px 12px; text-align: right; }
+  .b-text .it { font-family: var(--fh); font-style: italic; color: var(--mod-dk); }
+  .b-text .es { font-size: .78rem; color: #888; margin-top: .2rem; }
+  .b-speaker { font-size: .72rem; font-weight: 700; color: #999; margin-bottom: .15rem; letter-spacing: .04em; }
+
+  /* COMPREHENSION */
+  .comprehension { background: var(--white); border-radius: 14px; padding: 1.4rem; margin: 1.2rem 0; border: 2px solid var(--mod-border); }
+  .comprehension h4 { font-weight: 700; font-size: .95rem; color: var(--mod-dk); margin-bottom: 1rem; }
+  .reading-text { background: var(--cream); border-left: 3px solid var(--mod); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; font-size: .9rem; line-height: 1.7; margin-bottom: 1.2rem; font-style: italic; color: #444; }
+  .question { margin-bottom: 1rem; }
+  .question p { font-size: .9rem; font-weight: 600; margin-bottom: .5rem; }
+  .options { display: flex; flex-direction: column; gap: .4rem; }
+  .option-btn { background: var(--cream); border: 2px solid var(--cream-dk); border-radius: 8px; padding: .5rem 1rem; font-family: var(--fb); font-size: .85rem; cursor: pointer; text-align: left; transition: border-color .2s, background .2s; }
+  .option-btn:hover { border-color: var(--mod); background: var(--mod-hero-bg); }
+  .option-btn.correct { border-color: var(--green); background: #eafaf3; color: var(--green); }
+  .option-btn.wrong { border-color: var(--red); background: #fde8e6; color: var(--red); }
+
+  /* MATCHING */
+  .matching { background: var(--white); border-radius: 14px; padding: 1.4rem; margin: 1.2rem 0; border: 2px solid var(--mod-border); }
+  .matching h4 { font-weight: 700; font-size: .95rem; color: var(--mod-dk); margin-bottom: 1rem; }
+  .match-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .match-col h5 { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #999; margin-bottom: .6rem; }
+  .match-item { background: var(--cream); border: 2px solid var(--cream-dk); border-radius: 8px; padding: .5rem .8rem; font-size: .88rem; cursor: pointer; margin-bottom: .5rem; transition: border-color .2s, background .2s; }
+  .match-item:hover { border-color: var(--mod); }
+  .match-item.selected { border-color: var(--mod); background: var(--mod-th-bg); font-weight: 600; }
+  .match-item.matched { border-color: var(--green); background: #eafaf3; cursor: default; }
+  .match-item.wrong-match { border-color: var(--red); background: #fde8e6; }
+  .match-check { margin-top: .8rem; }
+
+  /* CULTURE STRIP */
+  .culture-strip { background: linear-gradient(135deg, var(--mod-light), var(--cream-dk)); border-top: 4px solid var(--mod); padding: 2rem 1.5rem; margin-top: 1rem; }
+  .culture-inner { max-width: 1100px; margin: 0 auto; }
+  .culture-strip h3 { font-family: var(--fh); font-style: italic; font-size: 1.4rem; color: var(--mod-dk); margin-bottom: .8rem; }
+  .culture-strip p { font-size: .93rem; color: #555; max-width: 720px; line-height: 1.7; }
+  .culture-strip .nums { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.2rem; }
+  .culture-num { background: var(--white); border: 2px solid var(--mod-border); border-radius: 12px; padding: .8rem 1.2rem; text-align: center; min-width: 140px; }
+  .culture-num .n { font-family: var(--fh); font-size: 2rem; font-weight: 700; color: var(--mod-dk); }
+  .culture-num .nl { font-size: .78rem; font-weight: 600; color: #666; }
+
+  /* FOOTER */
+  footer { background: var(--black); color: var(--cream); text-align: center; padding: 1.5rem; font-size: .82rem; margin-top: 3rem; }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .match-cols { grid-template-columns: 1fr; }
+    .flip-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <a href="#"><img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=f5755ad" alt="Italiano Per Piacere" loading="lazy"></a>
+    </div>
+    <div class="nav-links">
+      <a href="#vocab" class="active">Vocabulario</a>
+      <a href="#avere">Passato (avere)</a>
+      <a href="#essere">Passato (essere)</a>
+      <a href="#dialogos">Diálogos</a>
+      <a href="#emergenze">Emergenze</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <span class="hero-badge">Viajeros · Módulo 9 · Bari</span>
+  <h1>Imprevisti 🚨</h1>
+  <p>Cuando algo sale mal en el viaje, necesitás saber pedir ayuda. Hoy aprendés el vocabulario de emergencias y el <em>passato prossimo</em> para contar lo que pasó.</p>
+  <span class="city-tag">📍 Bari, Puglia</span>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <span class="progress-label">Progreso</span>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-pct" id="progressPct">0%</span>
+  </div>
+</div>
+
+<!-- VOCABULARIO -->
+<section class="section" id="vocab">
+  <h2 class="section-title">Vocabulario esencial 🔤</h2>
+  <p class="section-sub">Hacé clic en cada tarjeta para ver un ejemplo de uso.</p>
+
+  <div class="vocab-label">A — Síntomas y salud</div>
+  <div class="vocab-grid">
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🤒</span>
+      <span class="it">la febbre</span>
+      <span class="es">la fiebre</span>
+      <span class="ex">Ho la febbre da ieri. — Tengo fiebre desde ayer.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🤢</span>
+      <span class="it">la nausea</span>
+      <span class="es">las náuseas</span>
+      <span class="ex">Sento nausea dopo aver mangiato. — Siento náuseas después de comer.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">😣</span>
+      <span class="it">il dolore</span>
+      <span class="es">el dolor</span>
+      <span class="ex">Ho un forte dolore al petto. — Tengo un fuerte dolor en el pecho.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🤕</span>
+      <span class="it">il mal di testa</span>
+      <span class="es">el dolor de cabeza</span>
+      <span class="ex">Ho mal di testa terribile. — Tengo un dolor de cabeza terrible.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🤮</span>
+      <span class="it">il mal di stomaco</span>
+      <span class="es">el dolor de estómago</span>
+      <span class="ex">Ho mangiato troppo, ora ho mal di stomaco. — Comí demasiado, ahora me duele el estómago.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🤧</span>
+      <span class="it">il vomito</span>
+      <span class="es">el vómito</span>
+      <span class="ex">Ho avuto il vomito stanotte. — Tuve vómitos esta noche.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">😤</span>
+      <span class="it">la tosse</span>
+      <span class="es">la tos</span>
+      <span class="ex">Ho una tosse che non passa. — Tengo una tos que no se va.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🤧</span>
+      <span class="it">il raffreddore</span>
+      <span class="es">el resfrío / resfriado</span>
+      <span class="ex">Ho preso un raffreddore in treno. — Agarré un resfrío en el tren.</span>
+    </div>
+  </div>
+
+  <div class="vocab-label">B — Servicios de emergencia</div>
+  <div class="vocab-grid">
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">💊</span>
+      <span class="it">la farmacia</span>
+      <span class="es">la farmacia</span>
+      <span class="ex">C'è una farmacia vicino all'hotel? — ¿Hay una farmacia cerca del hotel?</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🏥</span>
+      <span class="it">il pronto soccorso</span>
+      <span class="es">la sala de urgencias</span>
+      <span class="ex">Devo andare al pronto soccorso. — Tengo que ir a urgencias.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🏨</span>
+      <span class="it">l'ospedale</span>
+      <span class="es">el hospital</span>
+      <span class="ex">L'ospedale più vicino è lontano? — ¿El hospital más cercano está lejos?</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🩺</span>
+      <span class="it">la guardia medica</span>
+      <span class="es">la guardia médica (de turno)</span>
+      <span class="ex">Di notte puoi chiamare la guardia medica. — De noche podés llamar a la guardia médica.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">👮</span>
+      <span class="it">la polizia</span>
+      <span class="es">la policía</span>
+      <span class="ex">Ho chiamato la polizia per il furto. — Llamé a la policía por el robo.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🚒</span>
+      <span class="it">i vigili del fuoco</span>
+      <span class="es">los bomberos</span>
+      <span class="ex">Chiama i vigili del fuoco! — ¡Llamá a los bomberos!</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🚑</span>
+      <span class="it">l'ambulanza</span>
+      <span class="es">la ambulancia</span>
+      <span class="ex">Abbiamo chiamato un'ambulanza. — Llamamos una ambulancia.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">👨‍⚕️</span>
+      <span class="it">il medico di guardia</span>
+      <span class="es">el médico de guardia</span>
+      <span class="ex">Il medico di guardia visita fino a mezzanotte. — El médico de guardia atiende hasta la medianoche.</span>
+    </div>
+  </div>
+
+  <div class="vocab-label">C — Robo y pérdida</div>
+  <div class="vocab-grid">
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🚨</span>
+      <span class="it">il furto</span>
+      <span class="es">el robo</span>
+      <span class="ex">Ho subito un furto in piazza. — Me robaron en la plaza.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">👜</span>
+      <span class="it">il borseggio</span>
+      <span class="es">el carterismo / robo de cartera</span>
+      <span class="ex">Attenzione al borseggio sul treno. — Cuidado con los carteristas en el tren.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">👛</span>
+      <span class="it">il portafoglio</span>
+      <span class="es">la billetera</span>
+      <span class="ex">Ho perso il portafoglio. — Perdí la billetera.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">📘</span>
+      <span class="it">il passaporto</span>
+      <span class="es">el pasaporte</span>
+      <span class="ex">Mi hanno rubato il passaporto! — ¡Me robaron el pasaporte!</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🧳</span>
+      <span class="it">il bagaglio</span>
+      <span class="es">el equipaje</span>
+      <span class="ex">Il mio bagaglio è scomparso. — Mi equipaje desapareció.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">📋</span>
+      <span class="it">la denuncia</span>
+      <span class="es">la denuncia</span>
+      <span class="ex">Devo fare una denuncia. — Tengo que hacer una denuncia.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🏛️</span>
+      <span class="it">la questura</span>
+      <span class="es">la jefatura de policía</span>
+      <span class="ex">Vai alla questura più vicina. — Andá a la comisaría más cercana.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🏢</span>
+      <span class="it">il consolato</span>
+      <span class="es">el consulado</span>
+      <span class="ex">Chiama il consolato argentino. — Llamá al consulado argentino.</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PASSATO CON AVERE -->
+<section class="section" id="avere">
+  <h2 class="section-title">Passato prossimo con AVERE</h2>
+  <p class="section-sub">Para contar lo que pasó, usás el passato prossimo. Con AVERE va así:</p>
+
+  <div class="discovery">
+    <h3>Discovery 1 — Ho mangiato, ho perso, ho chiamato</h3>
+    <p>El <strong>passato prossimo</strong> se forma con el auxiliar (AVERE o ESSERE) + el participio passato del verbo.</p>
+    <p>Con <strong>AVERE</strong>: conjugás avere + el participio. El participio NO cambia con el sujeto.</p>
+    <span class="tag">-ARE → -ato</span>
+    <span class="tag">-ERE → -uto</span>
+    <span class="tag">-IRE → -ito</span>
+    <span class="tag">Irregolari → los más comunes</span>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Pronombre</th><th>avere</th><th>+ participio</th><th>Ejemplo</th></tr>
+      <tr><td>io</td><td class="it-cell">ho</td><td class="it-cell">mangiato</td><td>Io ho mangiato troppo.</td></tr>
+      <tr><td>tu</td><td class="it-cell">hai</td><td class="it-cell">mangiato</td><td>Tu hai chiamato il medico?</td></tr>
+      <tr><td>lui/lei</td><td class="it-cell">ha</td><td class="it-cell">mangiato</td><td>Lei ha perso il passaporto.</td></tr>
+      <tr><td>noi</td><td class="it-cell">abbiamo</td><td class="it-cell">mangiato</td><td>Noi abbiamo chiamato la polizia.</td></tr>
+      <tr><td>voi</td><td class="it-cell">avete</td><td class="it-cell">mangiato</td><td>Voi avete preso la medicina?</td></tr>
+      <tr><td>loro</td><td class="it-cell">hanno</td><td class="it-cell">mangiato</td><td>Loro hanno trovato un ospedale.</td></tr>
+    </table>
+  </div>
+
+  <div class="discovery">
+    <h3>Participi irregolari — los más usados en emergencias</h3>
+    <p>Estos verbos tienen participio irregular. ¡Hay que aprenderlos de memoria!</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Infinitivo</th><th>Participio</th><th>Traducción</th><th>Ejemplo</th></tr>
+      <tr><td class="it-cell">perdere</td><td class="it-cell">perso</td><td>perder</td><td>Ho perso il portafoglio.</td></tr>
+      <tr><td class="it-cell">prendere</td><td class="it-cell">preso</td><td>tomar / agarrar</td><td>Ho preso un raffreddore.</td></tr>
+      <tr><td class="it-cell">rompere</td><td class="it-cell">rotto</td><td>romper</td><td>Ho rotto il telefono.</td></tr>
+      <tr><td class="it-cell">aprire</td><td class="it-cell">aperto</td><td>abrir</td><td>Ho aperto la porta sbagliata.</td></tr>
+      <tr><td class="it-cell">vedere</td><td class="it-cell">visto</td><td>ver</td><td>Ho visto un incidente.</td></tr>
+      <tr><td class="it-cell">chiedere</td><td class="it-cell">chiesto</td><td>pedir / preguntar</td><td>Ho chiesto aiuto.</td></tr>
+      <tr><td class="it-cell">rispondere</td><td class="it-cell">risposto</td><td>responder</td><td>Non ho risposto al telefono.</td></tr>
+      <tr><td class="it-cell">fare</td><td class="it-cell">fatto</td><td>hacer</td><td>Ho fatto una denuncia.</td></tr>
+    </table>
+  </div>
+
+  <!-- FILL 1 -->
+  <div class="fill-block" id="fill1">
+    <h4>Completá con el passato prossimo (avere) 🖊</h4>
+    <div class="fill-item">
+      <span>Ieri sera io</span>
+      <input type="text" placeholder="ho mangiato" data-answer="ho mangiato" id="f1_1">
+      <span>qualcosa di strano.</span>
+    </div>
+    <div class="fill-item">
+      <span>Marco</span>
+      <input type="text" placeholder="ha perso" data-answer="ha perso" id="f1_2">
+      <span>il passaporto in stazione.</span>
+    </div>
+    <div class="fill-item">
+      <span>Noi</span>
+      <input type="text" placeholder="abbiamo chiamato" data-answer="abbiamo chiamato" id="f1_3">
+      <span>un'ambulanza.</span>
+    </div>
+    <div class="fill-item">
+      <span>Voi</span>
+      <input type="text" placeholder="avete fatto" data-answer="avete fatto" id="f1_4">
+      <span>la denuncia alla questura?</span>
+    </div>
+    <button class="check-btn" onclick="checkFill('fill1')">Verificar respuestas</button>
+    <div class="fill-feedback" id="fill1-feedback"></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PASSATO CON ESSERE -->
+<section class="section" id="essere">
+  <h2 class="section-title">Passato prossimo con ESSERE</h2>
+  <p class="section-sub">Algunos verbos usan ESSERE como auxiliar. ¡Y el participio concuerda con el sujeto!</p>
+
+  <div class="discovery">
+    <h3>Discovery 2 — Sono andato, sono caduto, mi sono fatto male</h3>
+    <p>Los verbos de <strong>movimiento</strong>, estado y los <strong>reflexivos</strong> usan ESSERE. La regla clave: el participio <em>concuerda</em> con el sujeto (como un adjetivo).</p>
+    <span class="tag">io (m) → andatO</span>
+    <span class="tag">io (f) → andatA</span>
+    <span class="tag">noi (m/mix) → andatI</span>
+    <span class="tag">noi (f) → andatE</span>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Infinitivo</th><th>Participio</th><th>Tipo</th><th>Ejemplo</th></tr>
+      <tr><td class="it-cell">andare</td><td class="it-cell">andato/a/i/e</td><td>movimiento</td><td>Sono andato all'ospedale.</td></tr>
+      <tr><td class="it-cell">venire</td><td class="it-cell">venuto/a/i/e</td><td>movimiento</td><td>Il medico è venuto subito.</td></tr>
+      <tr><td class="it-cell">cadere</td><td class="it-cell">caduto/a/i/e</td><td>movimiento</td><td>Sono caduta per le scale.</td></tr>
+      <tr><td class="it-cell">uscire</td><td class="it-cell">uscito/a/i/e</td><td>movimiento</td><td>Siamo usciti di corsa.</td></tr>
+      <tr><td class="it-cell">tornare</td><td class="it-cell">tornato/a/i/e</td><td>movimiento</td><td>Sono tornato in albergo.</td></tr>
+      <tr><td class="it-cell">partire</td><td class="it-cell">partito/a/i/e</td><td>movimiento</td><td>Il treno è partito in ritardo.</td></tr>
+      <tr class="highlight-row"><td class="it-cell">farsi male</td><td class="it-cell">fatto male</td><td>reflexivo</td><td>Mi sono fatta male al piede.</td></tr>
+      <tr class="highlight-row"><td class="it-cell">sentirsi male</td><td class="it-cell">sentito male</td><td>reflexivo</td><td>Mi sono sentito male in metro.</td></tr>
+    </table>
+  </div>
+
+  <div class="discovery">
+    <h3>Discovery 3 — La concordanza del participio</h3>
+    <p>Con ESSERE, el participio funciona como un adjetivo. Mírá cómo cambia:</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Sujeto</th><th>Masculino singular</th><th>Femenino singular</th><th>Masculino/mix plural</th><th>Femenino plural</th></tr>
+      <tr><td>Marco</td><td class="it-cell">è andatO</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>Lucia</td><td>—</td><td class="it-cell">è andatA</td><td>—</td><td>—</td></tr>
+      <tr><td>Marco e Paolo</td><td>—</td><td>—</td><td class="it-cell">sono andatI</td><td>—</td></tr>
+      <tr><td>Lucia e Anna</td><td>—</td><td>—</td><td>—</td><td class="it-cell">sono andatE</td></tr>
+      <tr><td>Io (m)</td><td class="it-cell">mi sono fattO male</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>Io (f)</td><td>—</td><td class="it-cell">mi sono fattA male</td><td>—</td><td>—</td></tr>
+    </table>
+  </div>
+
+  <!-- FILL 2 -->
+  <div class="fill-block" id="fill2">
+    <h4>Completá con il passato prossimo (essere) 🖊</h4>
+    <div class="fill-item">
+      <span>Ieri</span>
+      <input type="text" placeholder="sono caduta" data-answer="sono caduta" id="f2_1">
+      <span>(io, f) per le scale del museo.</span>
+    </div>
+    <div class="fill-item">
+      <span>Marco</span>
+      <input type="text" placeholder="si è fatto male" data-answer="si è fatto male" id="f2_2">
+      <span>alla mano.</span>
+    </div>
+    <div class="fill-item">
+      <span>Noi</span>
+      <input type="text" placeholder="siamo andati" data-answer="siamo andati" id="f2_3">
+      <span>al pronto soccorso.</span>
+    </div>
+    <div class="fill-item">
+      <span>Carla</span>
+      <input type="text" placeholder="si è sentita male" data-answer="si è sentita male" id="f2_4">
+      <span>in centro.</span>
+    </div>
+    <button class="check-btn" onclick="checkFill('fill2')">Verificar respuestas</button>
+    <div class="fill-feedback" id="fill2-feedback"></div>
+  </div>
+
+  <!-- FILL 3 -->
+  <div class="fill-block" id="fill3">
+    <h4>Narración de emergencia — completá el relato 🖊</h4>
+    <p style="font-size:.85rem;color:#666;margin-bottom:.8rem;">Marco cuenta lo que le pasó ayer en Bari. Usá avere o essere según corresponda.</p>
+    <div class="fill-item">
+      <span>Ieri</span>
+      <input type="text" placeholder="sono uscito" data-answer="sono uscito" id="f3_1">
+      <span>dall'albergo di corsa.</span>
+    </div>
+    <div class="fill-item">
+      <span>In piazza, qualcuno mi</span>
+      <input type="text" placeholder="ha rubato" data-answer="ha rubato" id="f3_2">
+      <span>il portafoglio.</span>
+    </div>
+    <div class="fill-item">
+      <span>Poi</span>
+      <input type="text" placeholder="ho chiamato" data-answer="ho chiamato" id="f3_3">
+      <span>la polizia.</span>
+    </div>
+    <div class="fill-item">
+      <span>La polizia</span>
+      <input type="text" placeholder="è arrivata" data-answer="è arrivata" id="f3_4">
+      <span>in dieci minuti.</span>
+    </div>
+    <button class="check-btn" onclick="checkFill('fill3')">Verificar respuestas</button>
+    <div class="fill-feedback" id="fill3-feedback"></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TARJETAS DE EMERGENCIA -->
+<section class="section" id="emergenze">
+  <h2 class="section-title">Numeri di emergenza 🚨</h2>
+  <p class="section-sub">Hacé clic en cada tarjeta para descubrir qué servicio llama ese número.</p>
+  <div class="flip-grid">
+    <div class="flip-card" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="num">112</span><span class="label">¿Qué servicio llama?</span></div>
+        <div class="flip-back"><span class="service">Numero Unico di Emergenza</span><span class="desc">Como el 911 — policía, ambulancia, bomberos.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="num">113</span><span class="label">¿Qué servicio llama?</span></div>
+        <div class="flip-back"><span class="service">Polizia di Stato</span><span class="desc">Para denuncias y emergencias de seguridad.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="num">115</span><span class="label">¿Qué servicio llama?</span></div>
+        <div class="flip-back"><span class="service">Vigili del Fuoco</span><span class="desc">Bomberos — incendios y rescates.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="num">118</span><span class="label">¿Qué servicio llama?</span></div>
+        <div class="flip-back"><span class="service">Emergenza Sanitaria</span><span class="desc">Ambulanza — para emergencias médicas.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="num">116</span><span class="label">¿Qué servicio llama?</span></div>
+        <div class="flip-back"><span class="service">Carabinieri</span><span class="desc">Fuerza militar de policía. Presente en todo el territorio.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="num">117</span><span class="label">¿Qué servicio llama?</span></div>
+        <div class="flip-back"><span class="service">Guardia di Finanza</span><span class="desc">Policía financiera — fraudes y contrabando.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- DIÁLOGOS -->
+<section class="section" id="dialogos">
+  <h2 class="section-title">Diálogos en situación 🗣</h2>
+  <p class="section-sub">Leé los diálogos, prestá atención a las frases de emergencia.</p>
+
+  <div class="dialogue">
+    <h4>Diálogo 1 — In farmacia 💊</h4>
+    <div class="bubble-wrap">
+      <div class="b">
+        <div class="b-avatar">👩‍⚕️</div>
+        <div class="b-text">
+          <div class="b-speaker">FARMACISTA</div>
+          <div class="it">Buongiorno! Come posso aiutarla?</div>
+          <div class="es">¡Buenos días! ¿En qué puedo ayudarla?</div>
+        </div>
+      </div>
+      <div class="b r">
+        <div class="b-avatar">🧑</div>
+        <div class="b-text">
+          <div class="b-speaker">VIAGGIATORE</div>
+          <div class="it">Buongiorno. Mi sento male. Ho la febbre e mal di testa da ieri sera.</div>
+          <div class="es">Buenos días. Me siento mal. Tengo fiebre y dolor de cabeza desde anoche.</div>
+        </div>
+      </div>
+      <div class="b">
+        <div class="b-avatar">👩‍⚕️</div>
+        <div class="b-text">
+          <div class="b-speaker">FARMACISTA</div>
+          <div class="it">Ha anche nausea o vomito?</div>
+          <div class="es">¿También tiene náuseas o vómitos?</div>
+        </div>
+      </div>
+      <div class="b r">
+        <div class="b-avatar">🧑</div>
+        <div class="b-text">
+          <div class="b-speaker">VIAGGIATORE</div>
+          <div class="it">Sì, ho avuto vomito stanotte. Ho mangiato del pesce ieri.</div>
+          <div class="es">Sí, tuve vómitos esta noche. Comí pescado ayer.</div>
+        </div>
+      </div>
+      <div class="b">
+        <div class="b-avatar">👩‍⚕️</div>
+        <div class="b-text">
+          <div class="b-speaker">FARMACISTA</div>
+          <div class="it">Potrebbe essere un'intossicazione alimentare. Le do qualcosa per la nausea e la febbre. Se non migliora, vada al pronto soccorso.</div>
+          <div class="es">Podría ser una intoxicación alimentaria. Le doy algo para las náuseas y la fiebre. Si no mejora, vaya a urgencias.</div>
+        </div>
+      </div>
+      <div class="b r">
+        <div class="b-avatar">🧑</div>
+        <div class="b-text">
+          <div class="b-speaker">VIAGGIATORE</div>
+          <div class="it">Grazie mille! Quant'è?</div>
+          <div class="es">¡Muchas gracias! ¿Cuánto es?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <h4>Diálogo 2 — Alla questura (denuncia di furto) 👮</h4>
+    <div class="bubble-wrap">
+      <div class="b">
+        <div class="b-avatar">👮</div>
+        <div class="b-text">
+          <div class="b-speaker">POLIZIOTTO</div>
+          <div class="it">Buongiorno. Desidera?</div>
+          <div class="es">Buenos días. ¿En qué le puedo ayudar?</div>
+        </div>
+      </div>
+      <div class="b r">
+        <div class="b-avatar">👩</div>
+        <div class="b-text">
+          <div class="b-speaker">VIAGGIATRICE</div>
+          <div class="it">Buongiorno. Vorrei fare una denuncia. Mi hanno rubato la borsa in piazza.</div>
+          <div class="es">Buenos días. Quisiera hacer una denuncia. Me robaron la cartera en la plaza.</div>
+        </div>
+      </div>
+      <div class="b">
+        <div class="b-avatar">👮</div>
+        <div class="b-text">
+          <div class="b-speaker">POLIZIOTTO</div>
+          <div class="it">Mi dispiace. Quando è successo esattamente?</div>
+          <div class="es">Lo siento. ¿Cuándo ocurrió exactamente?</div>
+        </div>
+      </div>
+      <div class="b r">
+        <div class="b-avatar">👩</div>
+        <div class="b-text">
+          <div class="b-speaker">VIAGGIATRICE</div>
+          <div class="it">Stamattina, verso le undici. Ero in Piazza del Ferrarese. Qualcuno mi ha spinto e poi è scappato con la mia borsa.</div>
+          <div class="es">Esta mañana, alrededor de las once. Estaba en la Piazza del Ferrarese. Alguien me empujó y luego escapó con mi cartera.</div>
+        </div>
+      </div>
+      <div class="b">
+        <div class="b-avatar">👮</div>
+        <div class="b-text">
+          <div class="b-speaker">POLIZIOTTO</div>
+          <div class="it">Cosa conteneva la borsa? Aveva il passaporto?</div>
+          <div class="es">¿Qué contenía la cartera? ¿Tenía el pasaporte?</div>
+        </div>
+      </div>
+      <div class="b r">
+        <div class="b-avatar">👩</div>
+        <div class="b-text">
+          <div class="b-speaker">VIAGGIATRICE</div>
+          <div class="it">Sì, aveva il passaporto, il portafoglio e il telefono. Devo chiamare il consolato?</div>
+          <div class="es">Sí, tenía el pasaporte, la billetera y el teléfono. ¿Tengo que llamar al consulado?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- COMPRENSIÓN -->
+<section class="section">
+  <h2 class="section-title">Comprensión lectora 📖</h2>
+
+  <div class="comprehension">
+    <h4>Leé el texto y respondé las preguntas</h4>
+    <div class="reading-text">
+      "Se ti rubano qualcosa in Italia, la prima cosa da fare è andare alla questura o ai carabinieri per fare una denuncia. Hai bisogno di questo documento per richiedere nuovi documenti al consolato e per l'assicurazione di viaggio. Se hai perso il passaporto, chiama subito il consolato del tuo paese — in Italia ci sono consolati argentini a Roma, Milano e Napoli. Per le emergenze mediche, chiama il 118 o vai direttamente al pronto soccorso. Le farmacie di turno sono aperte anche di notte e nei giorni festivi — cerca la croce verde illuminata."
+    </div>
+
+    <div class="question">
+      <p>1. ¿Qué tenés que hacer primero si te roban algo?</p>
+      <div class="options">
+        <button class="option-btn" onclick="checkOption(this, false)">Llamar al consulado directamente</button>
+        <button class="option-btn" onclick="checkOption(this, true)">Ir a la questura o a los carabinieri a hacer una denuncia</button>
+        <button class="option-btn" onclick="checkOption(this, false)">Volver al hotel y esperar</button>
+      </div>
+    </div>
+
+    <div class="question">
+      <p>2. ¿Para qué sirve la denuncia?</p>
+      <div class="options">
+        <button class="option-btn" onclick="checkOption(this, false)">Para recuperar los objetos robados inmediatamente</button>
+        <button class="option-btn" onclick="checkOption(this, false)">Solo para el consulado</button>
+        <button class="option-btn" onclick="checkOption(this, true)">Para nuevos documentos y para el seguro de viaje</button>
+      </div>
+    </div>
+
+    <div class="question">
+      <p>3. ¿En qué ciudades hay consulados argentinos?</p>
+      <div class="options">
+        <button class="option-btn" onclick="checkOption(this, false)">Roma, Venecia y Florencia</button>
+        <button class="option-btn" onclick="checkOption(this, true)">Roma, Milán y Nápoles</button>
+        <button class="option-btn" onclick="checkOption(this, false)">Solo en Roma</button>
+      </div>
+    </div>
+
+    <div class="question">
+      <p>4. ¿Cómo reconocés una farmacia de turno abierta?</p>
+      <div class="options">
+        <button class="option-btn" onclick="checkOption(this, false)">Tiene bandera italiana en la puerta</button>
+        <button class="option-btn" onclick="checkOption(this, true)">Busca la croce verde illuminata (cruz verde iluminada)</button>
+        <button class="option-btn" onclick="checkOption(this, false)">Está marcada en el mapa del hotel</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- MATCHING -->
+<section class="section">
+  <h2 class="section-title">Asociá síntoma → remedio 🔗</h2>
+  <p class="section-sub">Hacé clic en un síntoma y luego en su solución correcta.</p>
+
+  <div class="matching">
+    <h4>Síntoma / Problema → Acción correcta</h4>
+    <div class="match-cols">
+      <div>
+        <h5>Problema</h5>
+        <div class="match-item" onclick="selectMatch(this, 'A')" data-pair="A">🤒 Ho la febbre alta e dolori muscolari</div>
+        <div class="match-item" onclick="selectMatch(this, 'B')" data-pair="B">👜 Mi hanno rubato il portafoglio</div>
+        <div class="match-item" onclick="selectMatch(this, 'C')" data-pair="C">🚑 Sono caduta e mi sono fatta male alla testa</div>
+        <div class="match-item" onclick="selectMatch(this, 'D')" data-pair="D">💊 Ho mal di stomaco e nausea</div>
+      </div>
+      <div>
+        <h5>Solución</h5>
+        <div class="match-item" onclick="selectMatch(this, '3')" data-pair="3">Chiama il 118 — è un'emergenza!</div>
+        <div class="match-item" onclick="selectMatch(this, '1')" data-pair="1">Vai in farmacia e chiedi un antipiretico</div>
+        <div class="match-item" onclick="selectMatch(this, '4')" data-pair="4">Chiedi al farmacista un antinausea</div>
+        <div class="match-item" onclick="selectMatch(this, '2')" data-pair="2">Vai alla questura a fare una denuncia</div>
+      </div>
+    </div>
+    <div class="match-check">
+      <button class="check-btn" onclick="checkMatching()">Verificar</button>
+      <div class="fill-feedback" id="match-feedback"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURE STRIP -->
+<div class="culture-strip">
+  <div class="culture-inner">
+    <h3>Consiglio culturale 🇮🇹 — Emergenze in Italia</h3>
+    <p>En Italia el sistema de emergencias está muy bien organizado. El <strong>112</strong> es el número único europeo que conecta con todos los servicios. Si estás en una zona turística, los operadores suelen hablar inglés. La <em>farmacia di turno</em> es la farmacia que está abierta de noche y los domingos — se identifica con la cruz verde iluminada. Y la <em>guardia medica</em> es el servicio médico nocturno gratuito, ideal para situaciones que no requieren urgencias pero necesitan atención inmediata.</p>
+    <div class="nums">
+      <div class="culture-num"><div class="n">112</div><div class="nl">Emergencias</div></div>
+      <div class="culture-num"><div class="n">113</div><div class="nl">Polizia</div></div>
+      <div class="culture-num"><div class="n">115</div><div class="nl">Bomberos</div></div>
+      <div class="culture-num"><div class="n">118</div><div class="nl">Ambulanza</div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Módulo 9 · Imprevisti · <a href="https://italianoperpiacere.com">italianoperpiacere.com</a></p>
+</footer>
+
+<script>
+// PROGRESS
+function updateProgress() {
+  const total = document.querySelectorAll('.vocab-card, .flip-card, .option-btn.correct').length;
+  const opened = document.querySelectorAll('.vocab-card.open').length;
+  const flipped = document.querySelectorAll('.flip-card.flipped').length;
+  const correct = document.querySelectorAll('.option-btn.correct').length;
+  const fills = document.querySelectorAll('input.correct').length;
+  const score = Math.min(100, Math.round(((opened + flipped + correct + fills) / 30) * 100));
+  document.getElementById('progressFill').style.width = score + '%';
+  document.getElementById('progressPct').textContent = score + '%';
+}
+
+// NAV ACTIVE
+const sections = document.querySelectorAll('section[id], div[id]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+  });
+});
+
+// FILL CHECK
+function checkFill(blockId) {
+  const block = document.getElementById(blockId);
+  const inputs = block.querySelectorAll('input');
+  let correct = 0;
+  inputs.forEach(inp => {
+    const ans = inp.dataset.answer.toLowerCase().trim();
+    const val = inp.value.toLowerCase().trim();
+    inp.classList.remove('correct', 'wrong');
+    if (val === ans) { inp.classList.add('correct'); correct++; }
+    else if (val.length > 0) { inp.classList.add('wrong'); }
+  });
+  const fb = document.getElementById(blockId + '-feedback');
+  fb.classList.add('show');
+  if (correct === inputs.length) {
+    fb.textContent = '¡Perfecto! Todas correctas. ✓';
+    fb.className = 'fill-feedback show ok';
+  } else {
+    fb.textContent = correct + ' de ' + inputs.length + ' correctas. Revisá las marcadas en rojo.';
+    fb.className = 'fill-feedback show err';
+  }
+  updateProgress();
+}
+
+// COMPREHENSION
+function checkOption(btn, isCorrect) {
+  const group = btn.closest('.options');
+  group.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  updateProgress();
+}
+
+// MATCHING
+let matchSelected = null;
+let matchPairs = { A: '1', B: '2', C: '3', D: '4' };
+let matchDone = {};
+
+function selectMatch(el, id) {
+  if (el.classList.contains('matched')) return;
+  const isLeft = ['A','B','C','D'].includes(id);
+  if (!matchSelected) {
+    el.classList.add('selected');
+    matchSelected = { el, id, isLeft };
+  } else {
+    if (matchSelected.isLeft === isLeft) {
+      document.querySelectorAll('.match-item.selected').forEach(i => i.classList.remove('selected'));
+      el.classList.add('selected');
+      matchSelected = { el, id, isLeft };
+      return;
+    }
+    const leftId = matchSelected.isLeft ? matchSelected.id : id;
+    const rightId = matchSelected.isLeft ? id : matchSelected.id;
+    matchDone[leftId] = rightId;
+    matchSelected.el.classList.remove('selected');
+    el.classList.remove('selected');
+    matchSelected = null;
+  }
+}
+
+function checkMatching() {
+  let correct = 0;
+  const total = Object.keys(matchPairs).length;
+  document.querySelectorAll('.match-item').forEach(item => {
+    item.classList.remove('matched', 'wrong-match');
+  });
+  Object.entries(matchDone).forEach(([left, right]) => {
+    const isCorrect = matchPairs[left] === right;
+    document.querySelectorAll('.match-item').forEach(item => {
+      if (item.dataset.pair === left || item.dataset.pair === right) {
+        item.classList.add(isCorrect ? 'matched' : 'wrong-match');
+      }
+    });
+    if (isCorrect) correct++;
+  });
+  const fb = document.getElementById('match-feedback');
+  fb.classList.add('show');
+  fb.textContent = correct + ' de ' + total + ' pares correctos.';
+  fb.className = 'fill-feedback show ' + (correct === total ? 'ok' : 'err');
+  updateProgress();
+}
+</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -55,13 +55,13 @@
     /* ─── HERO ─── */
     .hero {
       min-height: 100vh;
-      background: var(--teal);
+      background:#fde4e1;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center; padding: 4rem 2rem;
       position: relative; overflow: hidden;
     }
-    .hero-bg-circle {
+    .hero-bg-circle {display:none;
       position: absolute; border-radius: 50%;
       background: rgba(255,255,255,0.06);
       pointer-events: none; will-change: transform;
@@ -77,12 +77,12 @@
     }
     .hero h1 {
       font-family: var(--fh); font-size: clamp(3rem, 8vw, 6rem);
-      font-style: italic; color: var(--white); line-height: 1.05;
+      font-style: italic; color:#1a1a18; line-height: 1.05;
       margin-bottom: 1rem;
       opacity: 0; animation: slideUp .9s var(--ease) .4s forwards;
     }
     .hero-sub {
-      font-size: clamp(.95rem, 2vw, 1.2rem); color: rgba(255,255,255,.8);
+      font-size: clamp(.95rem, 2vw, 1.2rem); color:#1a1a18;opacity:.75;
       font-weight: 300; max-width: 520px; line-height: 1.65;
       opacity: 0; animation: slideUp .9s var(--ease) .65s forwards;
     }
@@ -97,7 +97,7 @@
     .scroll-hint {
       position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: .4rem;
-      color: rgba(255,255,255,.6); font-size: .75rem; letter-spacing: 1px;
+      color:rgba(0,0,0,.4); font-size: .75rem; letter-spacing: 1px;
       text-transform: uppercase;
       opacity: 0; animation: fadeIn 1s ease 1.5s forwards;
     }
@@ -127,7 +127,7 @@
       text-transform: uppercase; color: var(--teal);
       margin-bottom: 1rem;
     }
-    .sec-label::before { content: ''; display: block; width: 24px; height: 2px; background: var(--teal); }
+    .sec-label::before { content: ''; display: block; width: 24px; height: 2px; background:#fde4e1; }
     h2.sec-title {
       font-family: var(--fh); font-size: clamp(1.8rem, 4vw, 2.5rem);
       font-style: italic; color: var(--black); line-height: 1.15; margin-bottom: .5rem;
@@ -174,7 +174,7 @@
     /* ─── REFLECT ITEMS ─── */
     .reflect { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: .85rem; }
     .reflect-num {
-      background: var(--teal); color: var(--white);
+      background:#fde4e1; color: var(--white);
       width: 30px; height: 30px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-weight: 700; font-size: .85rem; flex-shrink: 0;
@@ -199,13 +199,13 @@
     }
     .song-card p { font-size: .9rem; color: #555; line-height: 1.7; margin-bottom: 1rem; }
     .listen-grid { display: grid; grid-template-columns: auto 1fr; gap: 0; margin-bottom: 1rem; border-radius: var(--r); overflow: hidden; }
-    .lg-head { background: var(--green); color: var(--white); font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; padding: .5rem .9rem; }
+    .lg-head { background:#fde4e1; color: var(--white); font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; padding: .5rem .9rem; }
     .lg-cell { padding: .55rem .9rem; border-bottom: 1px solid var(--cream-dk); font-size: .87rem; color: #555; }
     .lg-cell:nth-last-child(-n+2) { border-bottom: none; }
     .lg-cell:nth-child(4n+1), .lg-cell:nth-child(4n+2) { background: var(--cream); }
     .btn-song {
       display: inline-flex; align-items: center; gap: .5rem;
-      background: var(--teal); color: var(--white);
+      background:#fde4e1; color: var(--white);
       padding: .65rem 1.6rem; border-radius: 30px;
       text-decoration: none; font-weight: 600; font-size: .9rem;
       transition: background .2s, transform .2s;
@@ -231,7 +231,7 @@
       user-select: none;
     }
     .wcard:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,.1); }
-    .wcard.selected { border-color: var(--teal); background: var(--teal); }
+    .wcard.selected { border-color: var(--teal); background:#fde4e1; }
     .wcard.selected .wi  { filter: none; }
     .wcard.selected .wit { color: var(--gold); }
     .wcard.selected .wes { color: rgba(255,255,255,.8); }
@@ -250,8 +250,8 @@
       font-size: .8rem; font-weight: 900;
     }
     .wcard.correct  .wcard-badge { display: flex; background: #28a745; color: #fff; }
-    .wcard.false-positive .wcard-badge { display: flex; background: var(--red); color: #fff; }
-    .wcard.missed   .wcard-badge { display: flex; background: var(--amber); color: #fff; }
+    .wcard.false-positive .wcard-badge { display: flex; background:#fde4e1; color: #fff; }
+    .wcard.missed   .wcard-badge { display: flex; background:#fde4e1; color: #fff; }
     .wi  { font-size: 1.5rem; margin-bottom: .25rem; }
     .wit { font-weight: 700; font-size: .95rem; color: var(--teal); margin-bottom: .15rem; transition: color .2s; }
     .wes { font-size: .72rem; color: #999; transition: color .2s; }
@@ -259,7 +259,7 @@
 
     .verify-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
     .btn-verify {
-      background: var(--green); color: var(--white); border: none;
+      background:#fde4e1; color: var(--white); border: none;
       border-radius: 30px; padding: .6rem 1.6rem; font-family: var(--fb);
       font-size: .9rem; font-weight: 600; cursor: pointer; transition: all .2s;
     }
@@ -297,7 +297,7 @@
       position: relative;
     }
     .map-city:hover { border-color: var(--teal); background: #edf5f8; transform: translateY(-2px); }
-    .map-city.active { border-color: var(--teal); background: var(--teal); color: var(--white); }
+    .map-city.active { border-color: var(--teal); background:#fde4e1; color: var(--white); }
     .map-city.active .mc-region { color: rgba(255,255,255,.75); }
     .mc-flag    { font-size: 1.4rem; margin-bottom: .2rem; }
     .mc-name    { font-weight: 700; font-size: .92rem; color: var(--green); }
@@ -349,8 +349,8 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 1rem; font-weight: 700;
     }
-    .sp-a { background: var(--teal); color: var(--white); }
-    .sp-b { background: var(--red);  color: var(--white); }
+    .sp-a { background:#fde4e1; color: var(--white); }
+    .sp-b { background:#fde4e1;  color: var(--white); }
     .dbubble {
       background: var(--white); border-radius: 12px 12px 12px 0;
       padding: .85rem 1.1rem; box-shadow: 0 2px 8px rgba(0,0,0,.06);
@@ -383,7 +383,7 @@
     .fi.ok   { border-bottom-color: #28a745; color: #155724; }
     .fi.fail { border-bottom-color: var(--red); color: var(--red); }
     .btn-chk {
-      margin-top: .85rem; background: var(--green); color: var(--white);
+      margin-top: .85rem; background:#fde4e1; color: var(--white);
       border: none; border-radius: 30px; padding: .55rem 1.4rem;
       font-family: var(--fb); font-size: .88rem; font-weight: 600;
       cursor: pointer; transition: background .2s;
@@ -395,8 +395,8 @@
 
     /* ─── CULTURAL STRIP ─── */
     .culture-strip {
-      background: var(--green); border-radius: var(--r);
-      padding: 2rem 2.25rem; color: var(--white); overflow: hidden; position: relative;
+      background:#fde4e1; border-radius: var(--r);
+      padding: 2rem 2.25rem; color:#1a1a18; overflow: hidden; position: relative;
     }
     .culture-strip::after {
       content: '🇮🇹'; position: absolute; right: 1.5rem; top: 50%;
@@ -411,7 +411,7 @@
 
     /* ─── CLOSING ─── */
     .closing {
-      background: var(--teal); border-radius: var(--r);
+      background:#fde4e1; border-radius: var(--r);
       padding: 3rem 2rem; text-align: center; color: var(--white);
     }
     .closing h2 { font-family: var(--fh); font-size: 2rem; font-style: italic; margin-bottom: .75rem; }
@@ -457,7 +457,7 @@
     <div data-a="up" style="margin-bottom:3.5rem">
       <div class="sofia-row">
         <div class="sofia-av-wrap">
-          <div class="sofia-av" style="background:var(--teal)">👩‍🏫</div>
+          <div class="sofia-av" style="background:#fde4e1">👩‍🏫</div>
           <div class="sofia-lbl" style="color:var(--teal)">Sofia · guida</div>
         </div>
         <div class="bubble">
@@ -492,7 +492,7 @@
           <div class="reflect-num">2</div>
           <div class="reflect-txt">
             <strong>¿Puedes adivinar qué palabras italianas escucharás en una canción sobre el verano italiano?</strong>
-            Piensa en: el sol, el mar, el calor, un tren... En italiano: <em>sole, mare, caldo, treno</em>.
+            Pensá en: el sol, el mar, el calor, un tren... En italiano: <em>sole, mare, caldo, treno</em>.
             Luego verifica cuántas aparecen realmente en la canción. ☀️
           </div>
         </div>
@@ -530,9 +530,9 @@
           tu objetivo es absorber los sonidos, el ritmo y reconocer algunas palabras clave que ya conoces.
         </p>
         <div class="listen-grid">
-          <div class="lg-head">Escucha</div><div class="lg-head">¿Qué hacer?</div>
+          <div class="lg-head">Escuchá</div><div class="lg-head">¿Qué hacer?</div>
           <div class="lg-cell">🎧 1.ª vez</div><div class="lg-cell">Cierra los ojos. Solo escucha el ritmo y la melodía. Déjate llevar sin traducir.</div>
-          <div class="lg-cell">👁 2.ª vez</div><div class="lg-cell">Intenta identificar palabras que ya conoces o intuyes. Anótalas mentalmente.</div>
+          <div class="lg-cell">👁 2.ª vez</div><div class="lg-cell">Intentá identificar palabras que ya conoces o intuyes. Anótalas mentalmente.</div>
           <div class="lg-cell">✅ Después</div><div class="lg-cell">Vuelve aquí y haz el ejercicio de reconocimiento de palabras.</div>
         </div>
         <a class="btn-song" href="https://www.youtube.com/watch?v=HCyzGuipTd4" target="_blank" rel="noopener">
@@ -554,24 +554,24 @@
       <div data-a="right">
         <div class="sec-label">Riconosci le parole</div>
         <h2 class="sec-title">¿Qué palabras reconociste?</h2>
-        <p class="sec-desc">Haz clic en las palabras que crees haber escuchado en la canción. Luego verifica tu selección.</p>
+        <p class="sec-desc">Hacé clic en las palabras que crees haber escuchado en la canción. Luego verifica tu selección.</p>
       </div>
 
       <div class="mt2" data-a="up">
         <div class="sofia-row rev">
           <div class="sofia-av-wrap">
-            <div class="sofia-av" style="background:var(--green)">🤌</div>
+            <div class="sofia-av" style="background:#fde4e1">🤌</div>
             <div class="sofia-lbl" style="color:var(--green)">Tip</div>
           </div>
           <div class="bubble">
             Algunas de estas palabras <strong>sí aparecen</strong> en "Azzurro" y otras no.
-            Haz tu selección y luego haz clic en <em>"Verificar"</em> para ver cuántas acertaste.
+            Hacé tu selección y luego haz clic en <em>"Verificar"</em> para ver cuántas acertaste.
             Los resultados te darán feedback inmediato: ✅ correcto · ❌ falso positivo · ⚠️ la perdiste.
           </div>
         </div>
       </div>
 
-      <p class="word-hint mt2">Haz clic en las palabras que crees haber escuchado →</p>
+      <p class="word-hint mt2">Hacé clic en las palabras que crees haber escuchado →</p>
       <div class="word-grid" id="wordGrid" data-stagger></div>
 
       <div class="verify-row">
@@ -581,8 +581,8 @@
       </div>
       <div class="score-legend" id="scoreLegend" style="display:none">
         <span><span style="background:#28a745;width:10px;height:10px;border-radius:50%;display:inline-block"></span> Correcto: sí está en la canción</span>
-        <span><span style="background:var(--red);width:10px;height:10px;border-radius:50%;display:inline-block"></span> No está en la canción</span>
-        <span><span style="background:var(--amber);width:10px;height:10px;border-radius:50%;display:inline-block"></span> La perdiste — sí estaba</span>
+        <span><span style="background:#fde4e1;width:10px;height:10px;border-radius:50%;display:inline-block"></span> No está en la canción</span>
+        <span><span style="background:#fde4e1;width:10px;height:10px;border-radius:50%;display:inline-block"></span> La perdiste — sí estaba</span>
         <span><span style="background:#ddd;width:10px;height:10px;border-radius:50%;display:inline-block"></span> Correcto: tampoco está</span>
       </div>
     </section>
@@ -594,19 +594,19 @@
       <div data-a="left">
         <div class="sec-label">Mappa delle Città</div>
         <h2 class="sec-title">Italia de norte a sur</h2>
-        <p class="sec-desc">Haz clic en cada ciudad para descubrir su ubicación, su frase clave y un dato curioso</p>
+        <p class="sec-desc">Hacé clic en cada ciudad para descubrir su ubicación, su frase clave y un dato curioso</p>
       </div>
 
       <div class="map-legend mt2" data-a="fade">
-        <span><span class="dot" style="background:var(--teal)"></span> Norte — Nord</span>
-        <span><span class="dot" style="background:var(--green)"></span> Centro — Centro</span>
-        <span><span class="dot" style="background:var(--red)"></span> Sur — Sud</span>
+        <span><span class="dot" style="background:#fde4e1"></span> Norte — Nord</span>
+        <span><span class="dot" style="background:#fde4e1"></span> Centro — Centro</span>
+        <span><span class="dot" style="background:#fde4e1"></span> Sur — Sud</span>
       </div>
 
       <div class="map-container" data-a="up">
         <div class="map-grid" id="mapGrid" data-stagger></div>
         <div class="map-info-panel" id="mapInfo">
-          <p style="color:#bbb;font-style:italic">← Haz clic en una ciudad para ver información, su frase en italiano y un dato curioso</p>
+          <p style="color:#bbb;font-style:italic">← Hacé clic en una ciudad para ver información, su frase en italiano y un dato curioso</p>
         </div>
       </div>
 
@@ -624,12 +624,12 @@
       <div data-a="right">
         <div class="sec-label">Vocabolario</div>
         <h2 class="sec-title">I mezzi di trasporto</h2>
-        <p class="sec-desc">Haz clic en cada tarjeta para descubrir vocabulario adicional</p>
+        <p class="sec-desc">Hacé clic en cada tarjeta para descubrir vocabulario adicional</p>
       </div>
 
       <div class="sofia-row mt2" data-a="up">
         <div class="sofia-av-wrap">
-          <div class="sofia-av" style="background:var(--red)">🧳</div>
+          <div class="sofia-av" style="background:#fde4e1">🧳</div>
           <div class="sofia-lbl" style="color:var(--red)">Sofia</div>
         </div>
         <div class="bubble">
@@ -688,7 +688,7 @@
       <div data-a="left">
         <div class="sec-label">Conversazione</div>
         <h2 class="sec-title">In treno — un dialogo reale</h2>
-        <p class="sec-desc">Así suena el italiano en un tren. Lee el diálogo con atención a las frases en cursiva</p>
+        <p class="sec-desc">Así suena el italiano en un tren. Leé el diálogo con atención a las frases en cursiva</p>
       </div>
 
       <div class="card mt2" data-a="up">
@@ -718,7 +718,7 @@
             <div class="dspeaker sp-b">B</div>
             <div class="dbubble">
               <div class="d-it"><em>Sono di Milano. E tu?</em></div>
-              <div class="d-es">Soy de Milán. ¿Y tú?</div>
+              <div class="d-es">Soy de Milán. ¿Y vos?</div>
             </div>
           </div>
           <div class="dline">
@@ -732,7 +732,7 @@
             <div class="dspeaker sp-b">B</div>
             <div class="dbubble">
               <div class="d-it"><em>Vado a Venezia! È bellissima. E tu?</em></div>
-              <div class="d-es">¡Voy a Venecia! Es preciosa. ¿Y tú?</div>
+              <div class="d-es">¡Voy a Venecia! Es preciosa. ¿Y vos?</div>
             </div>
           </div>
           <div class="dline">
@@ -768,7 +768,7 @@
       <div data-a="up">
         <div class="sec-label">Pratica</div>
         <h2 class="sec-title">Completa le frasi</h2>
-        <p class="sec-desc">Usa las palabras del banco para completar las frases</p>
+        <p class="sec-desc">Usá las palabras del banco para completar las frases</p>
       </div>
 
       <div class="fill-block mt2" data-a="up">
@@ -816,6 +816,8 @@
   </footer>
 
   <script>
+(function(){
+
     /* ════════ DATA ════════ */
     const WORDS = [
       {it:'treno',       es:'tren',         icon:'🚂', inSong:true,  note:'"Il treno dei desideri" — el tren de los deseos'},
@@ -1014,6 +1016,8 @@
     /* ════════ INIT ════════ */
     buildWordGrid(); buildCityMap(); buildTransport();
     initAnims(); initParallax();
-  </script>
+  
+})();
+</script>
 </body>
 </html>

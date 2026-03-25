@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -36,7 +36,7 @@
       overflow: hidden;
     }
     .header::after {
-      content: '📚';
+      content: '\1F4DA';
       position: absolute;
       font-size: 9rem;
       opacity: 0.06;
@@ -261,7 +261,7 @@
       font-size: 0.95rem;
     }
     .verb-table th {
-      background: var(--verde);
+      background:#fde8a0;
       color: var(--giallo);
       padding: 0.7rem 1rem;
       text-align: left;
@@ -505,26 +505,37 @@
       font-size: 0.82rem;
       opacity: 0.75;
     }
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
   </style>
 </head>
 <body>
 
   <!-- ════ HEADER ════ -->
   <header class="header">
-    <div class="badge">Unità 0 · A1 · Etapa 3</div>
-    <h1>Gramática en sí 🇮🇹</h1>
-    <p>Come ti chiami? · L'alfabeto, i numeri, il verbo chiamarsi e i saluti</p>
+    <img src="../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img">
+    <div class="badge">Unit&#224; 0 &middot; A1 &middot; Etapa 3</div>
+    <h1>Gram&#225;tica</h1>
+    <p>Come ti chiami? &middot; L&#8217;alfabeto, i numeri, il verbo chiamarsi e i saluti</p>
   </header>
 
   <!-- ════ STICKY NAV ════ -->
   <nav class="sticky-nav">
-    <a href="#alfabeto">🔤 L'Alfabeto</a>
-    <a href="#straniere">🌍 Lettere Straniere</a>
-    <a href="#numeri">🔢 I Numeri</a>
-    <a href="#chiamarsi">💬 Chiamarsi</a>
-    <a href="#saluti">👋 I Saluti</a>
-    <a href="#espressioni">✨ Espressioni</a>
-    <a href="#quiz">🎯 Mini Quiz</a>
+    <a href="#alfabeto">L'Alfabeto</a>
+    <a href="#straniere">Lettere Straniere</a>
+    <a href="#numeri">I Numeri</a>
+    <a href="#chiamarsi">Chiamarsi</a>
+    <a href="#saluti">I Saluti</a>
+    <a href="#espressioni">Espressioni</a>
+    <a href="#quiz">Mini Quiz</a>
   </nav>
 
   <div class="container">
@@ -535,7 +546,7 @@
         <div class="sec-emoji">🔤</div>
         <div>
           <h2>L'Alfabeto Italiano</h2>
-          <p>21 letras · Haz clic en cada letra para ver cómo se pronuncia</p>
+          <p>21 letras · Hacé clic en cada letra para ver cómo se pronuncia</p>
         </div>
       </div>
 
@@ -590,9 +601,9 @@
       </div>
 
       <div class="info-box">
-        <strong>Recuerda:</strong> Cuando alguien te pregunta
+        <strong>Recordá:</strong> Cuando alguien te pregunta
         <em>"Come si scrive?"</em> (¿Cómo se escribe?), usas los nombres de las letras.
-        Por ejemplo: <em>Milano → emme-i-elle-a-enne-o</em>. ¡Practica tu nombre!
+        Por ejemplo: <em>Milano → emme-i-elle-a-enne-o</em>. ¡Practicá tu nombre!
       </div>
     </section>
 
@@ -604,7 +615,7 @@
         <div class="sec-emoji">🔢</div>
         <div>
           <h2>I Numeri — Da 1 a 30</h2>
-          <p>Haz clic en cada número para revelar cómo se dice en italiano</p>
+          <p>Hacé clic en cada número para revelar cómo se dice en italiano</p>
         </div>
       </div>
 
@@ -641,7 +652,7 @@
           <strong>CHIAMARSI</strong> significa "llamarse". Es un verbo <em>reflexivo</em>:
           el sujeto hace la acción sobre sí mismo. Por eso lleva una partícula reflexiva
           (<em>mi, ti, si</em>) delante del verbo.
-          Haz clic en cada fila para ver un ejemplo en contexto.
+          Hacé clic en cada fila para ver un ejemplo en contexto.
         </div>
 
         <table class="verb-table">
@@ -678,7 +689,7 @@
         <div class="dialog-box" id="dialogBox"></div>
 
         <div class="practice-block">
-          <p>✏️ Mini pratica: Haz clic en los espacios para completar las frases</p>
+          <p>✏️ Mini pratica: Hacé clic en los espacios para completar las frases</p>
           <div class="fill-row">
             <span>– Come ti chiami?</span><br />
             <span>– <strong>Io</strong></span>
@@ -694,7 +705,7 @@
             <span>– Si chiama Luca.</span>
           </div>
           <p style="font-size:0.8rem;color:#888;margin-top:0.75rem;font-style:italic">
-            * Haz clic en las líneas subrayadas para revelar la respuesta.
+            * Hacé clic en las líneas subrayadas para revelar la respuesta.
           </p>
         </div>
       </div>
@@ -815,7 +826,7 @@
 
       <div class="quiz-wrap">
         <h3>¿Cuánto recuerdas?</h3>
-        <p class="intro-q">Selecciona la respuesta correcta en cada pregunta.</p>
+        <p class="intro-q">Seleccioná la respuesta correcta en cada pregunta.</p>
 
         <!-- Q1 -->
         <div class="q-item" id="qi1">
@@ -864,11 +875,13 @@
   </div><!-- /container -->
 
   <footer class="footer">
-    🍷 <strong>Italiano Per Piacere</strong> &nbsp;·&nbsp; Unità 0 &nbsp;·&nbsp; Etapa 3: Gramática
+    <strong>Italiano Per Piacere</strong> &nbsp;&middot;&nbsp; Unit&#224; 0 &nbsp;&middot;&nbsp; Etapa 3: Gram&#225;tica
   </footer>
 
   <!-- ════ JAVASCRIPT ════ -->
   <script>
+(function(){
+
     /* ── ALPHABET DATA ── */
     const ALPHA_DATA = [
       { l:'A', name:'a',     ex:'Ancona'       },
@@ -959,7 +972,7 @@
     const DIALOGS = [
       `<strong>io mi chiamo</strong><br>
        – <em>Come ti chiami?</em> (¿Cómo te llamas?)<br>
-       – <em>Io mi chiamo Sofia. E tu?</em> (Me llamo Sofía. ¿Y tú?)`,
+       – <em>Io mi chiamo Sofia. E tu?</em> (Me llamo Sofía. ¿Y vos?)`,
 
       `<strong>tu ti chiami</strong><br>
        – <em>Tu ti chiami Marco, vero?</em> (Tú te llamas Marco, ¿verdad?)<br>
@@ -1083,6 +1096,8 @@
     buildAlpha();
     buildNums();
     buildSaluti();
-  </script>
+  
+})();
+</script>
 </body>
 </html>

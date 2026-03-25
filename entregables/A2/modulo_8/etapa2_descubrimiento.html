@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Módulo 8 A2 · Descubrimiento — Made in Italy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--teal:#78a6ba;--green:#528e74;--green-dk:#3d6b58;--black:#1a1a18;--white:#fff;
+  --mod:var(--amber);--mod-dk:var(--amber-dk);--mod-hero:#7a5500;
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.65;overflow-x:hidden}
+#toggle-btn{position:fixed;top:14px;right:16px;z-index:200;background:rgba(255,255,255,.92);border:2px solid var(--mod-dk);color:var(--mod-dk);padding:7px 16px;border-radius:20px;cursor:pointer;font-family:var(--fb);font-weight:700;font-size:.82rem;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+#toggle-btn:hover{background:var(--amber);color:#fff}
+body.hide-es .es{display:none}
+.hero{min-height:88vh;background:#fef9e8;border-bottom:3px solid #EFCF7F;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;position:relative;overflow:hidden}
+.hero-circle{display:none}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:clamp(2.4rem,6vw,4rem);color:var(--black);margin-bottom:14px;position:relative;z-index:1}
+.hero p{color:rgba(0,0,0,.75);font-size:1.1rem;max-width:580px;position:relative;z-index:1;margin-bottom:28px}
+.hero-badge{background:rgba(0,0,0,.12);border:2px solid rgba(0,0,0,.2);border-radius:14px;padding:14px 28px;color:var(--black);font-size:.95rem;position:relative;z-index:1;display:inline-block}
+.hero-badge strong{display:block;font-size:1.1rem;margin-bottom:2px}
+.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:rgba(0,0,0,.5);font-size:.82rem;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #EFCF7F;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#c8940a;border-bottom-color:#EFCF7F}
+.section{max-width:960px;margin:0 auto;padding:60px 20px}
+.section-alt{background:var(--cream-dk)}
+.section h2{font-family:var(--fh);font-style:italic;font-size:1.85rem;color:var(--mod-dk);margin-bottom:8px}
+.section .sub{color:#666;font-size:.92rem;margin-bottom:32px}
+.section-label{display:inline-block;background:#fde8a0;color:var(--black);font-size:.75rem;font-weight:700;padding:3px 12px;border-radius:10px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
+.word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin:20px 0}
+.wcard{background:#fff;border:2px solid var(--cream-dk);border-radius:12px;padding:14px 10px;text-align:center;cursor:pointer;transition:all .25s;font-size:.9rem;font-weight:600;user-select:none}
+.wcard:hover{border-color:var(--amber);transform:translateY(-2px)}
+.wcard.ok{background:#fff8e0;border-color:var(--amber);color:#7a5500}
+.wcard.trap{background:#fdf0ee;border-color:var(--red);color:var(--red)}
+.wcard .reveal{display:none;font-size:.75rem;font-weight:400;margin-top:4px;color:#888}
+.wcard.ok .reveal,.wcard.trap .reveal{display:block}
+.grid-legend{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:.85rem}
+.leg-dot{width:12px;height:12px;border-radius:50%}
+.leg-amber{background:var(--amber)}
+.leg-red{background:var(--red)}
+.grid-result{font-weight:600;margin-top:12px;font-size:.9rem;min-height:22px;color:var(--mod-dk)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:24px 0}
+.vcard{background:#fff;border-radius:14px;padding:18px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.08);transition:all .25s;border:2px solid transparent}
+.vcard:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(229,171,7,.25);border-color:var(--amber)}
+.vcard .ita{font-size:1.05rem;font-weight:700;color:var(--amber-dk)}
+.vcard .emoji{font-size:1.6rem;margin-bottom:8px;display:block}
+.vcard .vex{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--cream-dk);font-size:.86rem;color:#555;line-height:1.5}
+.vcard.open .vex{display:block}
+.vcard .hint{font-size:.75rem;color:#aaa;margin-top:6px}
+.disc-box{background:#fff;border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 3px 16px rgba(0,0,0,.09)}
+.disc-box h3{color:var(--mod-dk);font-size:1.1rem;font-weight:700;margin-bottom:16px}
+.hl-box{background:linear-gradient(135deg,#fff8e0,#fef3cc);border-left:4px solid var(--amber);padding:16px 20px;border-radius:0 10px 10px 0;margin:14px 0;font-size:.95rem;line-height:1.8}
+.hl-box .hl{background:var(--amber);padding:1px 5px;border-radius:4px;font-weight:700;color:#000}
+.hl-box .es{color:#666;font-size:.88rem}
+.gtable{width:100%;border-collapse:collapse;margin:16px 0;font-size:.9rem}
+.gtable th{background:#fde8a0;color:var(--black);padding:11px 14px;text-align:left;font-weight:600}
+.gtable td{padding:9px 14px;border-bottom:1px solid var(--cream-dk)}
+.gtable tr:nth-child(even){background:var(--cream)}
+.gtable tr:hover{background:#fff8e0}
+.schema{background:linear-gradient(135deg,#fef9e8 0%,#fde8a0 100%);color:var(--black);border-radius:14px;padding:22px 28px;margin:20px 0;font-family:monospace;font-size:.95rem}
+.schema .hl{color:var(--gold);font-weight:700}
+.schema .line{margin:7px 0}
+.fill-box{background:#fff;border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 3px 16px rgba(0,0,0,.09)}
+.fill-box h3{color:var(--mod-dk);font-weight:700;margin-bottom:8px}
+.fill-box .inst{font-size:.88rem;color:#666;margin-bottom:18px}
+.fill-item{margin:14px 0;font-size:.94rem;line-height:1.7}
+.fill-blank{border:none;border-bottom:2px solid var(--amber);background:transparent;font-family:var(--fb);font-size:.92rem;width:140px;padding:3px 6px;transition:border-color .2s}
+.fill-blank:focus{outline:none;border-color:var(--amber-dk)}
+.fill-blank.ok{border-color:var(--green);background:#edf7f2;border-radius:4px}
+.fill-blank.no{border-color:var(--red);background:#fdf0ee;border-radius:4px}
+.fill-btn{background:var(--amber);color:var(--black);border:none;border-radius:8px;padding:9px 22px;cursor:pointer;font-family:var(--fb);font-weight:700;font-size:.88rem;margin-top:14px;transition:background .2s}
+.fill-btn:hover{background:var(--amber-dk);color:#fff}
+.fill-fb{font-size:.82rem;margin-top:8px;font-weight:600;min-height:20px}
+.fill-fb.ok{color:var(--green)}
+.fill-fb.no{color:var(--red)}
+.dialogue{margin:28px 0}
+.dialogue h3{color:var(--mod-dk);font-weight:700;margin-bottom:16px;font-size:1rem}
+.bubble-wrap{margin:10px 0}
+.bubble{background:#fff;border-radius:16px 16px 16px 4px;padding:14px 18px;display:inline-block;max-width:75%;box-shadow:0 2px 8px rgba(0,0,0,.08);cursor:pointer;transition:box-shadow .2s}
+.bubble:hover{box-shadow:0 4px 16px rgba(229,171,7,.3)}
+.bubble.right-side{border-radius:16px 16px 4px 16px;background:#fde8a0;color:var(--black);margin-left:auto;display:block}
+.bubble .speaker{font-size:.75rem;font-weight:700;color:var(--amber-dk);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.bubble.right-side .speaker{color:rgba(0,0,0,.6)}
+.bubble .btext{font-size:.93rem}
+.bubble .btr{display:none;margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.1);font-size:.82rem;color:#888;font-style:italic}
+.bubble.right-side .btr{border-top-color:rgba(255,255,255,.2);color:rgba(255,255,255,.7)}
+.bubble.show .btr{display:block}
+.bubble-hint{font-size:.78rem;color:#aaa;text-align:center;margin:8px 0 16px}
+.reading-box{background:#fff;border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 3px 16px rgba(0,0,0,.09)}
+.reading-box h3{color:var(--mod-dk);font-weight:700;font-size:1rem;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
+.reading-text{font-size:.95rem;line-height:1.85;padding:16px;background:var(--cream);border-radius:10px;margin-bottom:20px}
+.reading-text .hl{background:var(--gold);padding:1px 4px;border-radius:3px;font-weight:600}
+.q-box{margin:12px 0}
+.q-box p{font-size:.9rem;font-weight:600;margin-bottom:8px}
+.q-opts{display:flex;flex-direction:column;gap:6px}
+.q-opt{background:var(--cream);border:2px solid var(--cream-dk);border-radius:8px;padding:8px 14px;cursor:pointer;font-size:.88rem;transition:all .2s}
+.q-opt:hover{border-color:var(--amber)}
+.q-opt.chosen{border-color:var(--amber);background:#fff8e0;font-weight:600}
+.q-opt.right{border-color:var(--green);background:#d4edda;color:var(--green-dk)}
+.q-opt.wrong{border-color:var(--red);background:#fde8e6;color:var(--red)}
+.check-btn{background:var(--amber);color:var(--black);border:none;border-radius:8px;padding:9px 22px;cursor:pointer;font-family:var(--fb);font-weight:700;font-size:.88rem;margin-top:14px;transition:background .2s}
+.check-btn:hover{background:var(--amber-dk);color:#fff}
+.brands-strip{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0;justify-content:center}
+.brand-pill{background:#fff;border:2px solid var(--cream-dk);border-radius:24px;padding:10px 22px;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .25s;color:var(--amber-dk)}
+.brand-pill:hover,.brand-pill.active{background:var(--amber);border-color:var(--amber);color:var(--black)}
+.brand-info{background:#fff;border-radius:14px;padding:20px;margin-top:12px;display:none;box-shadow:0 2px 8px rgba(0,0,0,.08);font-size:.92rem}
+.brand-info.show{display:block}
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:4px solid var(--amber-dk);padding:52px 20px}
+.culture-inner{max-width:760px;margin:0 auto}
+.culture-inner h3{font-family:var(--fh);font-style:italic;font-size:1.6rem;color:var(--black);margin-bottom:16px}
+.culture-inner p{font-size:.95rem;color:var(--black);margin-bottom:12px;max-width:680px}
+.culture-facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:24px}
+.fact-card{background:rgba(255,255,255,.65);border-radius:12px;padding:16px;font-size:.88rem;border-left:3px solid var(--amber-dk)}
+.fact-card strong{display:block;color:var(--amber-dk);margin-bottom:4px;font-size:.9rem}
+.progress-bar{position:fixed;bottom:0;left:0;right:0;height:5px;background:rgba(0,0,0,.1);z-index:300}
+.progress-fill{height:100%;background:var(--amber);width:0;transition:width .3s}
+[data-a]{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+[data-a].visible{opacity:1;transform:none}
+[data-stagger]>*{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
+[data-stagger].visible>*{opacity:1;transform:none}
+[data-stagger].visible>*:nth-child(2){transition-delay:.08s}
+[data-stagger].visible>*:nth-child(3){transition-delay:.16s}
+[data-stagger].visible>*:nth-child(4){transition-delay:.24s}
+[data-stagger].visible>*:nth-child(5){transition-delay:.32s}
+[data-stagger].visible>*:nth-child(6){transition-delay:.40s}
+[data-stagger].visible>*:nth-child(7){transition-delay:.48s}
+[data-stagger].visible>*:nth-child(8){transition-delay:.56s}
+</style>
+</head>
+<body>
+<button id="toggle-btn" onclick="document.body.classList.toggle('hide-es');this.textContent=document.body.classList.contains('hide-es')?'Mostrar ES':'Ocultar ES'">Ocultar ES</button>
+<div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=f5755ad" alt="Italiano Per Piacere" loading="lazy">
+    </a>
+    <div class="nav-links">
+      <a href="#">Vocabolario</a>
+      <a href="#">Pronomi combinati</a>
+      <a href="#">Stare per</a>
+      <a href="#">Dialogo</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero" id="hero">
+  <div class="hero-circle" style="width:360px;height:360px;top:-100px;right:-100px"></div>
+  <div class="hero-circle" style="width:220px;height:220px;bottom:40px;left:-60px"></div>
+  <p class="section-label" style="position:relative;z-index:2;margin-bottom:16px">Módulo 8 · A2</p>
+  <h1>Made in Italy</h1>
+  <p>Moda, design, gastronomia. Hoy descubres los pronomi combinati, <em>stare per</em> y cómo expresar necesidad con <em>avere bisogno di</em>.</p>
+  <div class="hero-badge">
+    <strong>🎬 RAI Cultura — Made in Italy</strong>
+    Pronomi combinati · Stare per · Avere bisogno di
+  </div>
+  <div class="scroll-hint">↓ Scopri il Made in Italy</div>
+</div>
+
+<!-- WORD GRID -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Warm-up</span>
+    <h2>Il lessico del Made in Italy</h2>
+    <p class="sub">Haz clic en las palabras relacionadas con moda, diseño y artesanía italiana.</p>
+  </div>
+  <div class="grid-legend">
+    <div class="leg-item"><div class="leg-dot leg-amber"></div><span>Made in Italy</span></div>
+    <div class="leg-item"><div class="leg-dot leg-red"></div><span>Altre categorie</span></div>
+  </div>
+  <div class="word-grid" id="grid1" data-stagger>
+    <div class="wcard" onclick="clickWord(this,'ok')">lo stilista<div class="reveal">✓ moda italiana</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il tessuto<div class="reveal">✓ artigianato</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il semaforo<div class="reveal">✗ è la strada</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la sartoria<div class="reveal">✓ alta costura</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il marchio<div class="reveal">✓ branding</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">l'elicottero<div class="reveal">✗ è il trasporto</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la qualità<div class="reveal">✓ Made in Italy</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il design<div class="reveal">✓ design italiano</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il sottomarino<div class="reveal">✗ è la marina</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">l'artigianato<div class="reveal">✓ fatto a mano</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la collezione<div class="reveal">✓ moda / design</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il dinosauro<div class="reveal">✗ è la preistoria</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la passerella<div class="reveal">✓ sfilata di moda</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il brand<div class="reveal">✓ marchio famoso</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il terremoto<div class="reveal">✗ è la geologia</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">l'abito su misura<div class="reveal">✓ alta sartoria</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la vetrina<div class="reveal">✓ negozio di moda</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il polipo<div class="reveal">✗ è il mare</div></div>
+  </div>
+  <div class="grid-result" id="grid1-res"></div>
+</div>
+
+<!-- VOCAB 1: MODA E DESIGN -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Vocabolario 1</span>
+    <h2>Moda e design italiano</h2>
+    <p class="sub">Toca cada tarjeta para descubrir el significado, el uso y un dato cultural.</p>
+  </div>
+  <div class="vocab-grid" data-stagger>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">👗</span>
+      <div class="ita">lo stilista / la stilista</div>
+      <div class="hint">el/la diseñador/a</div>
+      <div class="vex"><strong>es:</strong> diseñador/a de moda<br><em>Giorgio Armani è uno degli stilisti più famosi d'Italia.</em><br><span class="es">Giorgio Armani es uno de los diseñadores más famosos de Italia.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🧵</span>
+      <div class="ita">il tessuto / la seta</div>
+      <div class="hint">tejido / seda</div>
+      <div class="vex"><strong>es:</strong> el tejido / la seda<br><em>La seta italiana di Como è famosa in tutto il mondo.</em><br><span class="es">La seda italiana de Como es famosa en todo el mundo.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">✂️</span>
+      <div class="ita">la sartoria artigianale</div>
+      <div class="hint">sastrería artesanal</div>
+      <div class="vex"><strong>es:</strong> sastrería / taller de costura artesanal<br><em>Ho bisogno di un abito su misura: vado dalla sartoria.</em><br><span class="es">Necesito un traje a medida: voy a la sastrería.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">👟</span>
+      <div class="ita">la calzatura italiana</div>
+      <div class="hint">el calzado italiano</div>
+      <div class="vex"><strong>es:</strong> el calzado italiano<br><em>Le scarpe italiane sono note per la qualità della pelle.</em><br><span class="es">Los zapatos italianos son conocidos por la calidad del cuero.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🎨</span>
+      <div class="ita">il design industriale</div>
+      <div class="hint">diseño industrial</div>
+      <div class="vex"><strong>es:</strong> el diseño industrial<br><em>La Vespa è un capolavoro del design italiano.</em><br><span class="es">La Vespa es una obra maestra del diseño italiano.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">💎</span>
+      <div class="ita">l'oreficeria / la gioielleria</div>
+      <div class="hint">orfebrería / joyería</div>
+      <div class="vex"><strong>es:</strong> orfebrería / joyería<br><em>Il ponte Vecchio a Firenze è famoso per le sue gioiellerie.</em><br><span class="es">El Ponte Vecchio en Florencia es famoso por sus joyerías.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🛋️</span>
+      <div class="ita">il mobile di design</div>
+      <div class="hint">mueble de diseño</div>
+      <div class="vex"><strong>es:</strong> mueble de diseño<br><em>I mobili italiani sono esportati in tutto il mondo.</em><br><span class="es">Los muebles italianos se exportan a todo el mundo.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🏎️</span>
+      <div class="ita">l'automobile sportiva</div>
+      <div class="hint">coche deportivo</div>
+      <div class="vex"><strong>es:</strong> el coche deportivo<br><em>La Ferrari rappresenta il Made in Italy nel mondo dell'auto.</em><br><span class="es">Ferrari representa el Made in Italy en el mundo del automóvil.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- DISCOVERY: PRONOMI COMBINATI -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Scoperta grammaticale 1</span>
+    <h2>I pronomi combinati</h2>
+    <p class="sub">Cuando un verbo lleva dos pronombres (indirecto + directo), se unen. Observa cómo.</p>
+  </div>
+
+  <div class="disc-box" data-a>
+    <h3>🎬 Dal video — osserva le frasi</h3>
+    <div class="hl-box">
+      — Puoi mandarmi il catalogo? — Sì, <span class="hl">te lo</span> mando subito. <span class="es">— ¿Puedes enviarme el catálogo? — Sí, te lo envío enseguida.</span><br>
+      — Dai il numero a Marco? — Sì, <span class="hl">glielo</span> do adesso. <span class="es">— ¿Le das el número a Marco? — Sí, se lo doy ahora.</span><br>
+      — Porti le borse a noi? — Sì, <span class="hl">ve le</span> porto. <span class="es">— ¿Nos traes las bolsas? — Sí, os las traigo.</span><br>
+      — Mi dai il tessuto? — Sì, <span class="hl">te lo</span> do tra un momento. <span class="es">— ¿Me das el tejido? — Sí, te lo doy en un momento.</span>
+    </div>
+    <p style="font-size:.88rem;color:#666;margin-top:12px">💡 El pronombre indirecto va PRIMERO y cambia forma: mi→me, ti→te, ci→ce, vi→ve. Gli/le siempre → gli → glie-.</p>
+  </div>
+
+  <table class="gtable" data-a>
+    <tr><th>Ind.</th><th>+ lo</th><th>+ la</th><th>+ li</th><th>+ le</th><th class="es">Notas</th></tr>
+    <tr><td><strong>mi →</strong></td><td>me lo</td><td>me la</td><td>me li</td><td>me le</td><td class="es">mi → me delante de pronome dir.</td></tr>
+    <tr><td><strong>ti →</strong></td><td>te lo</td><td>te la</td><td>te li</td><td>te le</td><td class="es">ti → te</td></tr>
+    <tr><td><strong>gli/le →</strong></td><td>glielo</td><td>gliela</td><td>glieli</td><td>gliele</td><td class="es">gli/le → glie + lo/la/li/le (unido)</td></tr>
+    <tr><td><strong>ci →</strong></td><td>ce lo</td><td>ce la</td><td>ce li</td><td>ce le</td><td class="es">ci → ce</td></tr>
+    <tr><td><strong>vi →</strong></td><td>ve lo</td><td>ve la</td><td>ve li</td><td>ve le</td><td class="es">vi → ve</td></tr>
+  </table>
+
+  <div class="disc-box" data-a>
+    <h3>🔍 Pronomi combinati con passato prossimo</h3>
+    <div class="hl-box">
+      Con passato prossimo, el participio concuerda con el pronombre directo:<br><br>
+      <span class="hl">Te lo</span> ho mandat<span class="hl">o</span>. <span class="es">(lo → -o)</span><br>
+      <span class="hl">Te la</span> ho mandat<span class="hl">a</span>. <span class="es">(la → -a)</span><br>
+      <span class="hl">Ve li</span> ho portat<span class="hl">i</span>. <span class="es">(li → -i)</span><br>
+      <span class="hl">Ce le</span> ha dat<span class="hl">e</span>. <span class="es">(le → -e)</span>
+    </div>
+  </div>
+</div>
+
+<!-- FILL: PRONOMI COMBINATI -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Attività 1</span>
+    <h2>Pratica: pronomi combinati</h2>
+  </div>
+  <div class="fill-box" data-a>
+    <h3>Set A — Sostituisci con i pronomi combinati</h3>
+    <p class="inst">Trasforma le frasi usando pronomi combinati (ind.+dir.):</p>
+    <div class="fill-item">1. Do il numero a te. → <input class="fill-blank" id="pc1" data-ans="te lo do" style="width:130px"> .</div>
+    <div class="fill-item">2. Mando la foto a Marco. → <input class="fill-blank" id="pc2" data-ans="gliela mando" style="width:160px"> .</div>
+    <div class="fill-item">3. Porto le borse a voi. → <input class="fill-blank" id="pc3" data-ans="ve le porto" style="width:150px"> .</div>
+    <div class="fill-item">4. Mostro i modelli a noi. → <input class="fill-blank" id="pc4" data-ans="ce li mostro" style="width:160px"> .</div>
+    <button class="fill-btn" onclick="checkFillPc()">Controlla</button>
+    <div class="fill-fb" id="pc-fb"></div>
+  </div>
+  <div class="fill-box" data-a>
+    <h3>Set B — Nel dialogo</h3>
+    <p class="inst">Completa con il pronome combinato corretto:</p>
+    <div class="fill-item">A: Puoi darmi il catalogo?<br>B: Certo, <input class="fill-blank" id="pcd1" data-ans="te lo"> do subito.</div>
+    <div class="fill-item">A: Hai mandato la fattura a Giulia?<br>B: Sì, <input class="fill-blank" id="pcd2" data-ans="gliela"> ho mandata ieri.</div>
+    <div class="fill-item">A: Quando ci porti i campioni?<br>B: <input class="fill-blank" id="pcd3" data-ans="ve li"> porto domani mattina.</div>
+    <button class="fill-btn" onclick="checkFillPcd()">Controlla</button>
+    <div class="fill-fb" id="pcd-fb"></div>
+  </div>
+</div>
+
+<!-- VOCAB 2: STARE PER -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Scoperta grammaticale 2</span>
+    <h2>Stare per + infinito</h2>
+    <p class="sub">Esta perífrasis expresa que algo está a punto de ocurrir.</p>
+  </div>
+  <div class="disc-box" data-a>
+    <h3>🎬 Dal video — azioni imminenti</h3>
+    <div class="hl-box">
+      La sfilata <span class="hl">sta per</span> cominciare! <span class="es">— ¡El desfile está a punto de empezar!</span><br>
+      <span class="hl">Sto per</span> presentare la nuova collezione. <span class="es">— Estoy a punto de presentar la nueva colección.</span><br>
+      Il negozio <span class="hl">sta per</span> chiudere. <span class="es">— La tienda está a punto de cerrar.</span><br>
+      <span class="hl">Stanno per</span> iniziare le vendite. <span class="es">— Las ventas están a punto de empezar.</span>
+    </div>
+  </div>
+  <div class="schema" data-a>
+    <div class="line"><span class="hl">Struttura:</span> stare (coniugato) + per + infinito</div>
+    <div class="line">io <span class="hl">sto per</span> partire &nbsp;|&nbsp; tu <span class="hl">stai per</span> arrivare</div>
+    <div class="line">lui/lei <span class="hl">sta per</span> finire &nbsp;|&nbsp; noi <span class="hl">stiamo per</span> cominciare</div>
+    <div class="line">voi <span class="hl">state per</span> partire &nbsp;|&nbsp; loro <span class="hl">stanno per</span> iniziare</div>
+  </div>
+  <div class="fill-box" data-a>
+    <h3>Pratica — stare per</h3>
+    <p class="inst">Trasforma usando "stare per + infinito":</p>
+    <div class="fill-item">1. Il treno parte tra un minuto. → Il treno <input class="fill-blank" id="sp1" data-ans="sta per partire"> .</div>
+    <div class="fill-item">2. Apriamo il negozio adesso. → <input class="fill-blank" id="sp2" data-ans="stiamo per aprire"> il negozio.</div>
+    <div class="fill-item">3. Marco finisce il progetto. → Marco <input class="fill-blank" id="sp3" data-ans="sta per finire"> il progetto.</div>
+    <div class="fill-item">4. Gli stilisti iniziano la sfilata. → Gli stilisti <input class="fill-blank" id="sp4" data-ans="stanno per iniziare"> la sfilata.</div>
+    <button class="fill-btn" onclick="checkFillSp()">Controlla</button>
+    <div class="fill-fb" id="sp-fb"></div>
+  </div>
+</div>
+
+<!-- DISCOVERY: AVERE BISOGNO DI -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Scoperta grammaticale 3</span>
+    <h2>Avere bisogno di</h2>
+    <p class="sub">Para expresar necesidad en italiano se usa esta construcción fija.</p>
+  </div>
+  <div class="disc-box" data-a>
+    <h3>💡 Come si usa?</h3>
+    <div class="hl-box">
+      <span class="hl">Ho bisogno di</span> un consiglio. <span class="es">— Necesito un consejo.</span><br>
+      Lo stilista <span class="hl">ha bisogno di</span> nuovi tessuti. <span class="es">— El diseñador necesita nuevas telas.</span><br>
+      <span class="hl">Abbiamo bisogno di</span> più tempo. <span class="es">— Necesitamos más tiempo.</span><br>
+      <span class="hl">Hai bisogno di</span> aiuto? <span class="es">— ¿Necesitas ayuda?</span><br>
+      Non <span class="hl">ho bisogno di</span> niente. <span class="es">— No necesito nada.</span>
+    </div>
+    <p style="font-size:.88rem;color:#666;margin-top:12px">💡 Después de "avere bisogno di" va un <strong>sustantivo</strong> (di + nome) o un <strong>infinitivo</strong> (di + inf.)</p>
+  </div>
+  <div class="fill-box" data-a>
+    <h3>Pratica — avere bisogno di</h3>
+    <p class="inst">Costruisci frasi con "avere bisogno di":</p>
+    <div class="fill-item">1. Io / tempo → <input class="fill-blank" id="abd1" data-ans="ho bisogno di tempo" style="width:200px"> .</div>
+    <div class="fill-item">2. Lo stilista / nuovi modelli → Lo stilista <input class="fill-blank" id="abd2" data-ans="ha bisogno di nuovi modelli" style="width:260px"> .</div>
+    <div class="fill-item">3. Noi / una pausa → <input class="fill-blank" id="abd3" data-ans="abbiamo bisogno di una pausa" style="width:280px"> .</div>
+    <button class="fill-btn" onclick="checkFillAbd()">Controlla</button>
+    <div class="fill-fb" id="abd-fb"></div>
+  </div>
+</div>
+
+<!-- VOCAB 3: BRANDING -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Vocabolario 3</span>
+    <h2>Marchi italiani famosi</h2>
+    <p class="sub">Haz clic en cada marca para descubrir su historia y sector.</p>
+  </div>
+  <div class="brands-strip" data-a>
+    <div class="brand-pill" onclick="showBrand('gucci')">Gucci</div>
+    <div class="brand-pill" onclick="showBrand('ferrari')">Ferrari</div>
+    <div class="brand-pill" onclick="showBrand('prada')">Prada</div>
+    <div class="brand-pill" onclick="showBrand('vespa')">Vespa</div>
+    <div class="brand-pill" onclick="showBrand('armani')">Armani</div>
+    <div class="brand-pill" onclick="showBrand('parma')">Parma</div>
+  </div>
+  <div class="brand-info" id="brand-gucci">
+    🏆 <strong>Gucci</strong> — fondato a Firenze nel 1921 da Guccio Gucci. È uno dei marchi di lusso più famosi al mondo. Settore: pelletteria e moda. <em>Ha bisogno di maestri artigiani fiorentini.</em>
+  </div>
+  <div class="brand-info" id="brand-ferrari">
+    🏎️ <strong>Ferrari</strong> — fondata a Maranello (Modena) nel 1947 da Enzo Ferrari. Simbolo dell'eccellenza italiana nel settore automobilistico. <em>Sta per presentare il nuovo modello.</em>
+  </div>
+  <div class="brand-info" id="brand-prada">
+    👜 <strong>Prada</strong> — fondata a Milano nel 1913 da Mario Prada. Leader mondiale nella moda e nell'accessoristica di lusso. <em>Te lo mandano nel loro store online.</em>
+  </div>
+  <div class="brand-info" id="brand-vespa">
+    🛵 <strong>Vespa</strong> — prodotta da Piaggio dal 1946. Icona del design industriale italiano. <em>Gliela hanno regalata per il compleanno.</em>
+  </div>
+  <div class="brand-info" id="brand-armani">
+    🕴️ <strong>Giorgio Armani</strong> — nato a Piacenza nel 1934. Fondatore dell'omonimo empire della moda. <em>Ha bisogno di stoffe di altissima qualità.</em>
+  </div>
+  <div class="brand-info" id="brand-parma">
+    🧀 <strong>Parma</strong> — capitale del cibo italiano: Parmigiano Reggiano, Prosciutto di Parma, salame. Tutto a denominazione d'origine protetta (DOP). <em>Ce lo portano direttamente dal produttore.</em>
+  </div>
+</div>
+
+<!-- DIALOGUE 1 -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Dialogo 1</span>
+    <h2>In uno showroom di moda</h2>
+  </div>
+  <div class="dialogue" data-a>
+    <h3>Sofia (buyer) e Luca (stilista)</h3>
+    <div class="bubble-hint">👆 Toca cada burbuja para ver la traducción</div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Sofia</div>
+        <div class="btext">Luca, ho bisogno del catalogo della nuova collezione.</div>
+        <div class="btr es">Luca, necesito el catálogo de la nueva colección.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Luca</div>
+        <div class="btext">Certo, te lo mando via email oggi pomeriggio.</div>
+        <div class="btr es">Claro, te lo envío por email esta tarde.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Sofia</div>
+        <div class="btext">Perfetto. E i campioni del tessuto? Ne ho bisogno entro venerdì.</div>
+        <div class="btr es">Perfecto. ¿Y las muestras de tejido? Las necesito antes del viernes.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Luca</div>
+        <div class="btext">Ce li mando giovedì. Stiamo per ricevere i nuovi tessuti dalla fabbrica.</div>
+        <div class="btr es">Os los envío el jueves. Estamos a punto de recibir los nuevos tejidos de la fábrica.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Sofia</div>
+        <div class="btext">Ottimo! E il prezzo della seta? Puoi dirmelo adesso?</div>
+        <div class="btr es">¡Estupendo! ¿Y el precio de la seda? ¿Puedes decirme lo ahora?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Luca</div>
+        <div class="btext">Te lo dico appena ho i dati. Sto per chiamare il fornitore.</div>
+        <div class="btr es">Te lo digo en cuanto tenga los datos. Estoy a punto de llamar al proveedor.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- READING COMPREHENSION -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Lettura e comprensione</span>
+    <h2>Made in Italy — il testo</h2>
+  </div>
+  <div class="reading-box" data-a>
+    <h3>Leggi e rispondi</h3>
+    <div class="reading-text">
+      Marco è uno stilista milanese. <span class="hl">Ha bisogno di</span> tessuti pregiati per la sua nuova collezione. Chiama il suo fornitore: — Mi mandi i campioni? — Sì, <span class="hl">te li</span> mando oggi pomeriggio. Marco <span class="hl">sta per</span> presentare la collezione alla Milano Fashion Week. <span class="hl">Ha bisogno di</span> almeno dieci modelle e di uno showroom nel centro di Milano. La sua assistente Giulia lo aiuta: — Il contratto dello showroom? — <span class="hl">Te lo</span> mando via email. Tutto è pronto. La sfilata <span class="hl">sta per</span> cominciare.
+    </div>
+    <div class="q-box">
+      <p>1. Di cosa ha bisogno Marco per la nuova collezione?</p>
+      <div class="q-opts" id="rq1">
+        <div class="q-opt" onclick="chooseOpt(this,'rq1','a')">a) Di un catalogo online</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq1','b')">b) Di tessuti pregiati</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq1','c')">c) Di un nuovo negozio</div>
+      </div>
+    </div>
+    <div class="q-box">
+      <p>2. Come manda i campioni il fornitore?</p>
+      <div class="q-opts" id="rq2">
+        <div class="q-opt" onclick="chooseOpt(this,'rq2','a')">a) Per posta</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq2','b')">b) Oggi pomeriggio</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq2','c')">c) La settimana prossima</div>
+      </div>
+    </div>
+    <div class="q-box">
+      <p>3. Cosa sta per fare Marco?</p>
+      <div class="q-opts" id="rq3">
+        <div class="q-opt" onclick="chooseOpt(this,'rq3','a')">a) Aprire un negozio</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq3','b')">b) Presentare la collezione alla Fashion Week</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq3','c')">c) Andare a Parigi</div>
+      </div>
+    </div>
+    <div class="q-box">
+      <p>4. Come manda il contratto Giulia?</p>
+      <div class="q-opts" id="rq4">
+        <div class="q-opt" onclick="chooseOpt(this,'rq4','a')">a) Via email</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq4','b')">b) Per fax</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq4','c')">c) Di persona</div>
+      </div>
+    </div>
+    <button class="check-btn" onclick="checkReading()">Controlla le risposte</button>
+    <div class="fill-fb" id="reading-fb" style="margin-top:10px"></div>
+  </div>
+</div>
+
+<!-- DIALOGUE 2 -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Dialogo 2</span>
+    <h2>Backstage della sfilata</h2>
+  </div>
+  <div class="dialogue" data-a>
+    <h3>Elena (direttrice) e Paolo (addetto stampa)</h3>
+    <div class="bubble-hint">👆 Toca para ver la traducción</div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Elena</div>
+        <div class="btext">Paolo, ho bisogno delle foto della sfilata. Me le puoi mandare?</div>
+        <div class="btr es">Paolo, necesito las fotos del desfile. ¿Puedes enviármelas?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Paolo</div>
+        <div class="btext">Te le mando appena finisce il fotografo. Sta per finire.</div>
+        <div class="btr es">Te las envío en cuanto termine el fotógrafo. Está a punto de terminar.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Elena</div>
+        <div class="btext">Perfetto. E il comunicato stampa? L'hai scritto?</div>
+        <div class="btr es">Perfecto. ¿Y el comunicado de prensa? ¿Lo has escrito?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Paolo</div>
+        <div class="btext">Sì, te lo mando tra cinque minuti. Sto per finirlo.</div>
+        <div class="btr es">Sí, te lo envío en cinco minutos. Estoy a punto de terminarlo.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Elena</div>
+        <div class="btext">Bene! I giornalisti hanno bisogno di tutto entro le 18:00.</div>
+        <div class="btr es">¡Bien! Los periodistas necesitan todo antes de las 18:00.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CULTURE STRIP -->
+<div class="culture">
+  <div class="culture-inner">
+    <h3>🇮🇹 Made in Italy — molto più di un'etichetta</h3>
+    <p>"Made in Italy" vale il <strong>12% delle esportazioni italiane</strong> e rappresenta qualità, artigianato e stile in tutto il mondo. Non è solo moda: è anche cibo, design, automotive, musica, architettura.</p>
+    <p>Dietro ogni prodotto Made in Italy c'è una storia di <em>passione</em> e <em>competenza artigianale</em>. Quando dici <em>Ho bisogno di qualità</em>, pensi all'Italia.</p>
+    <div class="culture-facts">
+      <div class="fact-card"><strong>👗 La moda italiana</strong>Milano è la capitale mondiale della moda: ogni anno ospita la Fashion Week con stilisti da tutto il mondo.</div>
+      <div class="fact-card"><strong>🍝 Il cibo DOP</strong>L'Italia ha il maggior numero di prodotti DOP (Denominazione di Origine Protetta) in Europa.</div>
+      <div class="fact-card"><strong>🏎️ L'auto sportiva</strong>Ferrari, Lamborghini, Maserati: le auto sportive italiane sono simbolo di eccellenza tecnica e design.</div>
+      <div class="fact-card"><strong>🛵 La Vespa</strong>La Vespa di Piaggio (1946) è un'icona del design industriale italiano nel mondo.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Progress
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  document.getElementById('prog').style.width=((window.scrollY/(h.scrollHeight-h.clientHeight))*100)+'%';
+},{passive:true});
+// Hero parallax
+const circles=document.querySelectorAll('.hero-circle');
+document.addEventListener('mousemove',e=>{
+  const x=(e.clientX/window.innerWidth-.5)*20,y=(e.clientY/window.innerHeight-.5)*20;
+  circles.forEach((c,i)=>{const f=(i+1)*.4;c.style.transform=`translate(${x*f}px,${y*f}px)`;});
+});
+// IO
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.12});
+document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>io.observe(el));
+// Word grid
+function clickWord(el,type){
+  if(el.classList.contains('ok')||el.classList.contains('trap'))return;
+  el.classList.add(type);
+  const ok=document.querySelectorAll('#grid1 .ok').length;
+  const trap=document.querySelectorAll('#grid1 .trap').length;
+  if(ok+trap>0)document.getElementById('grid1-res').textContent=`✓ ${ok} corrette · ✗ ${trap} trappole`;
+}
+// Brand info
+function showBrand(id){
+  document.querySelectorAll('.brand-info').forEach(b=>b.classList.remove('show'));
+  document.querySelectorAll('.brand-pill').forEach(p=>p.classList.remove('active'));
+  document.getElementById('brand-'+id).classList.add('show');
+  event.target.classList.add('active');
+}
+// Fill checks
+function checkFillPc(){
+  const ids=['pc1','pc2','pc3','pc4'];let ok=0;
+  ids.forEach(id=>{const i=document.getElementById(id);i.classList.remove('ok','no');if(i.value.toLowerCase().trim()===i.dataset.ans.toLowerCase()){i.classList.add('ok');ok++;}else if(i.value)i.classList.add('no');});
+  const fb=document.getElementById('pc-fb');fb.className='fill-fb'+(ok===ids.length?' ok':' no');fb.textContent=ok===ids.length?'✓ Perfetto!':'✗ '+ok+'/'+ids.length+' corrette.';
+}
+function checkFillPcd(){
+  const ids=['pcd1','pcd2','pcd3'];let ok=0;
+  ids.forEach(id=>{const i=document.getElementById(id);i.classList.remove('ok','no');if(i.value.toLowerCase().trim()===i.dataset.ans.toLowerCase()){i.classList.add('ok');ok++;}else if(i.value)i.classList.add('no');});
+  const fb=document.getElementById('pcd-fb');fb.className='fill-fb'+(ok===ids.length?' ok':' no');fb.textContent=ok===ids.length?'✓ Perfetto!':'✗ '+ok+'/'+ids.length+' corrette.';
+}
+function checkFillSp(){
+  const ids=['sp1','sp2','sp3','sp4'];let ok=0;
+  ids.forEach(id=>{const i=document.getElementById(id);i.classList.remove('ok','no');if(i.value.toLowerCase().trim()===i.dataset.ans.toLowerCase()){i.classList.add('ok');ok++;}else if(i.value)i.classList.add('no');});
+  const fb=document.getElementById('sp-fb');fb.className='fill-fb'+(ok===ids.length?' ok':' no');fb.textContent=ok===ids.length?'✓ Perfetto!':'✗ '+ok+'/'+ids.length+' corrette.';
+}
+function checkFillAbd(){
+  const ids=['abd1','abd2','abd3'];let ok=0;
+  ids.forEach(id=>{const i=document.getElementById(id);i.classList.remove('ok','no');if(i.value.toLowerCase().trim()===i.dataset.ans.toLowerCase()){i.classList.add('ok');ok++;}else if(i.value)i.classList.add('no');});
+  const fb=document.getElementById('abd-fb');fb.className='fill-fb'+(ok===ids.length?' ok':' no');fb.textContent=ok===ids.length?'✓ Perfetto!':'✗ '+ok+'/'+ids.length+' corrette.';
+}
+// Reading quiz
+const rAns={rq1:'b',rq2:'b',rq3:'b',rq4:'a'};const rCh={};
+function chooseOpt(el,qid,opt){document.getElementById(qid).querySelectorAll('.q-opt').forEach(o=>o.classList.remove('chosen'));el.classList.add('chosen');rCh[qid]=opt;}
+function checkReading(){
+  let sc=0;
+  for(const[qid,ans] of Object.entries(rAns)){
+    const box=document.getElementById(qid);
+    box.querySelectorAll('.q-opt').forEach(o=>{
+      o.classList.remove('right','wrong');
+      const oc=o.getAttribute('onclick');const letter=oc.match(/'([a-c])'\)/)?.[1];
+      if(letter===ans)o.classList.add('right');
+      else if(o.classList.contains('chosen'))o.classList.add('wrong');
+    });
+    if(rCh[qid]===ans)sc++;
+  }
+  const fb=document.getElementById('reading-fb');
+  fb.className='fill-fb'+(sc>=3?' ok':' no');
+  fb.textContent=`${sc}/4 — ${sc===4?'Ottimo! 🎉':sc>=3?'Bene! 👍':'Rileggi il testo 💪'}`;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Módulo 7 A2 · Gramática — Fare la spesa</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;
+  --red:#cc4736;--teal:#78a6ba;--teal-dk:#5a8ea0;
+  --green:#528e74;--green-dk:#3d6b58;--black:#1a1a18;--white:#fff;
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+  --hdr:var(--green-dk);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #528e74;box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#3d6b58;border-bottom-color:#528e74}
+body.hide-es .es{display:none}
+.hero{background:#c8e8de;border-bottom:3px solid #528e74;color:var(--black);padding:48px 20px 40px;text-align:center}
+.hero::before,.hero::after{display:none}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:2.2rem;margin-bottom:8px;color:#1a1a18}
+.hero p{color:#1a1a18;opacity:.75;font-size:1.05rem;max-width:600px;margin:0 auto}
+.section{max-width:900px;margin:0 auto;padding:48px 20px}
+.section h2{font-family:var(--fh);font-style:italic;font-size:1.7rem;color:var(--hdr);margin-bottom:24px;padding-bottom:8px;border-bottom:2px solid var(--green)}
+.rule-card{background:#fff;border-left:5px solid var(--green);border-radius:0 12px 12px 0;padding:20px 24px;margin:20px 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.rule-card h3{color:var(--hdr);font-size:1rem;font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.rule-card p,.rule-card li{font-size:.95rem;margin-bottom:6px}
+.rule-card ul{padding-left:18px}
+.rule-card .es{color:#666;font-size:.88rem}
+.gtable{width:100%;border-collapse:collapse;margin:16px 0;font-size:.92rem}
+.gtable th{background:#a8d4c4;color:#2a4d3c;padding:10px 14px;text-align:left;font-weight:600}
+.gtable td{padding:9px 14px;border-bottom:1px solid var(--cream-dk)}
+.gtable tr:nth-child(even) td{background:#e8f5f0}
+.gtable tr:hover{background:#e8f4ee}
+.scheme{background:linear-gradient(135deg,#edf5f1 0%,#c8dfd5 100%);color:var(--black);border-radius:12px;padding:20px 24px;margin:20px 0;font-size:.95rem;font-family:monospace}
+.scheme .hl{color:var(--gold);font-weight:700}
+.scheme .line{margin:7px 0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+.col-box{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.col-box h4{color:var(--hdr);font-weight:700;font-size:.95rem;margin-bottom:10px;text-transform:uppercase;letter-spacing:.4px}
+.col-box .item{font-size:.9rem;margin:5px 0;padding:4px 0;border-bottom:1px solid var(--cream-dk)}
+.prac-box{background:#fff;border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 3px 12px rgba(0,0,0,.1)}
+.prac-box h3{color:var(--hdr);font-weight:700;margin-bottom:6px}
+.prac-box .inst{font-size:.88rem;color:#666;margin-bottom:18px}
+.prac-item{display:flex;align-items:center;gap:10px;margin:12px 0;flex-wrap:wrap}
+.prac-item span{font-size:.93rem}
+.prac-input{border:2px solid var(--cream-dk);border-radius:8px;padding:7px 12px;font-family:var(--fb);font-size:.92rem;width:190px;transition:border .2s}
+.prac-input:focus{outline:none;border-color:var(--green)}
+.prac-input.ok{border-color:var(--green);background:#edf7f2}
+.prac-input.no{border-color:var(--red);background:#fdf0ee}
+.prac-btn{background:#c8dfd5;color:var(--black);border:none;border-radius:8px;padding:8px 20px;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.88rem;transition:background .2s;margin-top:8px}
+.prac-btn:hover{background:var(--green-dk)}
+.prac-fb{font-size:.82rem;margin-top:8px;min-height:20px;font-weight:600}
+.prac-fb.ok{color:var(--green)}
+.prac-fb.no{color:var(--red)}
+.quiz-box{background:linear-gradient(135deg,#edf5f1 0%,#c8dfd5 100%);border-radius:16px;padding:32px;margin:24px 0;color:var(--black)}
+.quiz-box h3{font-family:var(--fh);font-style:italic;font-size:1.4rem;margin-bottom:20px}
+.q-item{background:rgba(0,0,0,.06);border-radius:10px;padding:16px 20px;margin:14px 0}
+.q-item p{font-size:.95rem;margin-bottom:12px;font-weight:600}
+.q-opts{display:flex;flex-direction:column;gap:8px}
+.q-opt{background:rgba(0,0,0,.05);border:2px solid transparent;border-radius:8px;padding:9px 16px;cursor:pointer;font-size:.9rem;transition:all .2s}
+.q-opt:hover{background:rgba(255,255,255,.25)}
+.q-opt.selected{border-color:var(--gold);background:rgba(239,207,127,.25)}
+.q-opt.correct{border-color:#6fcf97;background:rgba(111,207,151,.25)}
+.q-opt.wrong{border-color:#eb5757;background:rgba(235,87,87,.2)}
+.quiz-submit{display:block;margin:24px auto 0;background:var(--gold);color:var(--black);border:none;border-radius:10px;padding:12px 32px;font-family:var(--fb);font-weight:700;font-size:1rem;cursor:pointer;transition:opacity .2s}
+.quiz-submit:hover{opacity:.88}
+#quiz-result{text-align:center;margin-top:16px;font-size:1.1rem;font-weight:700;min-height:28px}
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:4px solid var(--green-dk);padding:40px 20px;margin-top:40px}
+.culture-inner{max-width:700px;margin:0 auto;text-align:center}
+.culture-inner h3{font-family:var(--fh);font-style:italic;font-size:1.5rem;color:var(--black);margin-bottom:12px}
+.culture-inner p{font-size:.95rem;color:var(--black);max-width:600px;margin:0 auto}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+nav > a:not(.nav-logo):hover,nav > a:not(.nav-logo).active{opacity:1;color:#3d6b58;border-bottom-color:#528e74}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#partitivo">Partitivo</a>
+      <a href="#ne">Pronome ne</a>
+      <a href="#disloc">Dislocazione</a>
+      <a href="#pratica">Pratica</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+<div class="hero">
+  <h1>Fare la spesa</h1>
+  <p>Articolo partitivo · Pronome "ne" · Dislocazione pronominale</p>
+</div>
+
+<!-- PARTITIVO -->
+<div class="section" id="partitivo">
+  <h2>L'articolo partitivo</h2>
+  <div class="rule-card">
+    <h3>Cosa esprime il partitivo?</h3>
+    <p>El artículo partitivo expresa <strong>una cantidad indefinida</strong>: <em>un poco de, algo de, algunos/as</em>. Es la contracción de <em>di + artículo determinado</em>.</p>
+    <p class="es">Se usa en frases afirmativas (no en negativas).</p>
+    <ul>
+      <li>Compra <strong>del</strong> pane. <span class="es">= di + il</span></li>
+      <li>Prendo <strong>della</strong> mozzarella. <span class="es">= di + la</span></li>
+      <li>Vuoi <strong>degli</strong> spaghetti? <span class="es">= di + gli</span></li>
+    </ul>
+  </div>
+  <table class="gtable">
+    <tr><th>Artículo</th><th>Formación</th><th>Uso</th><th>Ejemplo</th><th class="es">ES</th></tr>
+    <tr><td><strong>del</strong></td><td>di + il</td><td>m. sing.</td><td>del latte, del vino</td><td class="es">algo de leche</td></tr>
+    <tr><td><strong>dello</strong></td><td>di + lo</td><td>m. sing. (s+c, z)</td><td>dello zucchero</td><td class="es">algo de azúcar</td></tr>
+    <tr><td><strong>dell'</strong></td><td>di + l'</td><td>vocal (m/f)</td><td>dell'acqua, dell'olio</td><td class="es">algo de agua</td></tr>
+    <tr><td><strong>della</strong></td><td>di + la</td><td>f. sing.</td><td>della pasta, della farina</td><td class="es">algo de pasta</td></tr>
+    <tr><td><strong>dei</strong></td><td>di + i</td><td>m. plur.</td><td>dei pomodori</td><td class="es">algunos tomates</td></tr>
+    <tr><td><strong>degli</strong></td><td>di + gli</td><td>m. plur. (s+c, z, vocal)</td><td>degli spaghetti</td><td class="es">algunos espaguetis</td></tr>
+    <tr><td><strong>delle</strong></td><td>di + le</td><td>f. plur.</td><td>delle uova, delle mele</td><td class="es">algunos huevos</td></tr>
+  </table>
+  <div class="rule-card">
+    <h3>⚠️ Partitivo nella negazione</h3>
+    <p>En frases negativas, el partitivo <strong>desaparece</strong>:</p>
+    <ul>
+      <li>✅ Compro <strong>del</strong> latte. <span class="es">— Compro leche.</span></li>
+      <li>✅ Non compro <strong>latte</strong>. <span class="es">— No compro leche. (sin artículo)</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- NE -->
+<div class="section" id="ne" style="background:var(--cream-dk)">
+  <h2>Il pronome "ne"</h2>
+  <div class="rule-card">
+    <h3>Quando si usa "ne"?</h3>
+    <p>"Ne" sustituye a un <strong>complemento partitivo o de cantidad</strong>. Equivale a "de ello/de ellos/de eso".</p>
+    <ul>
+      <li>Posición: <strong>antes del verbo</strong> (pronombre atono)</li>
+      <li>Con <em>passato prossimo</em>: el participio concuerda con el sustantivo sustituido</li>
+    </ul>
+  </div>
+  <div class="scheme">
+    <div class="line"><span class="hl">Struttura base:</span></div>
+    <div class="line">Sogg. + <span class="hl">ne</span> + verbo + quantità</div>
+    <div class="line">— Quante uova prendi? — <span class="hl">Ne</span> prendo una dozzina.</div>
+    <div class="line" style="margin-top:10px"><span class="hl">Con passato prossimo:</span></div>
+    <div class="line"><span class="hl">Ne</span> ho comprat<span class="hl">i</span> tre etti. <span style="color:rgba(255,255,255,.6);">(prosciutto → masc.pl.)</span></div>
+    <div class="line"><span class="hl">Ne</span> ho pres<span class="hl">a</span> una bottiglia. <span style="color:rgba(255,255,255,.6);">(bottiglia → fem.sing.)</span></div>
+  </div>
+  <table class="gtable">
+    <tr><th>Frase intera</th><th>Con "ne"</th><th class="es">Concordanza pp</th></tr>
+    <tr><td>Prendo tre etti di salame.</td><td><strong>Ne</strong> prendo tre etti.</td><td class="es">—</td></tr>
+    <tr><td>Ho comprato del vino.</td><td><strong>Ne</strong> ho comprato.</td><td class="es">vino = m.s. → -o</td></tr>
+    <tr><td>Ho preso due bottiglie.</td><td><strong>Ne</strong> ho prese due.</td><td class="es">bottiglie = f.pl. → -e</td></tr>
+    <tr><td>Ha mangiato molti biscotti.</td><td><strong>Ne</strong> ha mangiati molti.</td><td class="es">biscotti = m.pl. → -i</td></tr>
+    <tr><td>Non ho abbastanza latte.</td><td>Non <strong>ne</strong> ho abbastanza.</td><td class="es">frase negativa</td></tr>
+  </table>
+</div>
+
+<!-- DISLOCAZIONE -->
+<div class="section" id="disloc">
+  <h2>La dislocazione pronominale</h2>
+  <div class="rule-card">
+    <h3>Struttura della dislocazione</h3>
+    <p>La dislocazione a sinistra sposta il complemento oggetto al <strong>principio</strong> della frase y añade un <strong>pronome clitico</strong> de referencia. Es muy típico del italiano hablado.</p>
+  </div>
+  <div class="scheme">
+    <div class="line"><span class="hl">Frase normale:</span> Compri tu il pane?</div>
+    <div class="line"><span class="hl">Dislocazione:</span> <span class="hl">Il pane</span>, <span class="hl">lo</span> compri tu?</div>
+    <div class="line" style="margin-top:8px"><span class="hl">Frase normale:</span> Porti tu le borse?</div>
+    <div class="line"><span class="hl">Dislocazione:</span> <span class="hl">Le borse</span>, <span class="hl">le</span> porti tu?</div>
+  </div>
+  <table class="gtable">
+    <tr><th>Oggetto</th><th>Pronome clitico</th><th>Esempio dislocato</th><th class="es">ES</th></tr>
+    <tr><td>il pane (m.s.)</td><td><strong>lo</strong></td><td>Il pane, <strong>lo</strong> compri tu?</td><td class="es">El pan, ¿lo compras tú?</td></tr>
+    <tr><td>la frutta (f.s.)</td><td><strong>la</strong></td><td>La frutta, <strong>la</strong> porti tu?</td><td class="es">La fruta, ¿la llevas tú?</td></tr>
+    <tr><td>i pomodori (m.pl.)</td><td><strong>li</strong></td><td>I pomodori, <strong>li</strong> compri tu?</td><td class="es">Los tomates, ¿los compras tú?</td></tr>
+    <tr><td>le borse (f.pl.)</td><td><strong>le</strong></td><td>Le borse, <strong>le</strong> porti tu?</td><td class="es">Las bolsas, ¿las llevas tú?</td></tr>
+    <tr><td>lo scontrino (m.s.)</td><td><strong>lo</strong></td><td>Lo scontrino, <strong>lo</strong> paghi tu?</td><td class="es">El ticket, ¿lo pagas tú?</td></tr>
+  </table>
+</div>
+
+<!-- PRATICA -->
+<div class="section" id="pratica" style="background:var(--cream-dk)">
+  <h2>Pratica</h2>
+
+  <div class="prac-box">
+    <h3>Esercizio 1 — Articolo partitivo</h3>
+    <p class="inst">Completa con del / della / dell' / dei / degli / delle:</p>
+    <div class="prac-item"><span>1. Compra _____ pane e _____ latte.</span>
+      <input class="prac-input" id="pr1a" data-ans="del"> <input class="prac-input" id="pr1b" data-ans="del"></div>
+    <div class="prac-item"><span>2. Vuoi _____ zucchero nel caffè?</span>
+      <input class="prac-input" id="pr1c" data-ans="dello"></div>
+    <div class="prac-item"><span>3. Ho preso _____ mozzarella e _____ uova.</span>
+      <input class="prac-input" id="pr1d" data-ans="della"> <input class="prac-input" id="pr1e" data-ans="delle"></div>
+    <div class="prac-item"><span>4. Cerco _____ spaghetti al grano duro.</span>
+      <input class="prac-input" id="pr1f" data-ans="degli"></div>
+    <button class="prac-btn" onclick="checkPrac('pr1',['pr1a','pr1b','pr1c','pr1d','pr1e','pr1f'])">Controlla</button>
+    <div class="prac-fb" id="pr1-fb"></div>
+  </div>
+
+  <div class="prac-box">
+    <h3>Esercizio 2 — Pronome "ne"</h3>
+    <p class="inst">Rispondi usando il pronome "ne" + la quantità indicata:</p>
+    <div class="prac-item"><span>— Quante uova prendi? (una dozzina) → _______________</span>
+      <input class="prac-input" id="pr2a" data-ans="ne prendo una dozzina" style="width:230px"></div>
+    <div class="prac-item"><span>— Vuoi del vino? (un po') → _______________</span>
+      <input class="prac-input" id="pr2b" data-ans="sì, ne voglio un po'" style="width:230px"></div>
+    <div class="prac-item"><span>— Hai dello zucchero? (non) → Non _______________</span>
+      <input class="prac-input" id="pr2c" data-ans="ne ho" style="width:160px"></div>
+    <button class="prac-btn" onclick="checkPrac('pr2',['pr2a','pr2b','pr2c'])">Controlla</button>
+    <div class="prac-fb" id="pr2-fb"></div>
+  </div>
+
+  <div class="prac-box">
+    <h3>Esercizio 3 — Dislocazione</h3>
+    <p class="inst">Trasforma usando la dislocazione pronominale:</p>
+    <div class="prac-item"><span>1. Porti tu la frutta? → La frutta, _______ tu?</span>
+      <input class="prac-input" id="pr3a" data-ans="la porti"></div>
+    <div class="prac-item"><span>2. Paghi tu lo scontrino? → Lo scontrino, _______ tu?</span>
+      <input class="prac-input" id="pr3b" data-ans="lo paghi"></div>
+    <div class="prac-item"><span>3. Porti tu le borse? → Le borse, _______ tu?</span>
+      <input class="prac-input" id="pr3c" data-ans="le porti"></div>
+    <button class="prac-btn" onclick="checkPrac('pr3',['pr3a','pr3b','pr3c'])">Controlla</button>
+    <div class="prac-fb" id="pr3-fb"></div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="quiz">
+  <div class="quiz-box">
+    <h3>Quiz finale — Fare la spesa</h3>
+    <div class="q-item" id="qq1">
+      <p>1. Compra _____ spaghetti per stasera!</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q1','a')">a) degli</div>
+        <div class="q-opt" onclick="selectOpt(this,'q1','b')">b) delle</div>
+        <div class="q-opt" onclick="selectOpt(this,'q1','c')">c) del</div>
+      </div>
+    </div>
+    <div class="q-item" id="qq2">
+      <p>2. — Quante mele compri? — _____ compro tre.</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q2','a')">a) Lo</div>
+        <div class="q-opt" onclick="selectOpt(this,'q2','b')">b) Ne</div>
+        <div class="q-opt" onclick="selectOpt(this,'q2','c')">c) La</div>
+      </div>
+    </div>
+    <div class="q-item" id="qq3">
+      <p>3. Ho preso due bottiglie di acqua. → _____ ho prese due.</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q3','a')">a) Le</div>
+        <div class="q-opt" onclick="selectOpt(this,'q3','b')">b) Ne</div>
+        <div class="q-opt" onclick="selectOpt(this,'q3','c')">c) Li</div>
+      </div>
+    </div>
+    <div class="q-item" id="qq4">
+      <p>4. Il carrello, _____ prendi tu? (dislocazione)</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q4','a')">a) la</div>
+        <div class="q-opt" onclick="selectOpt(this,'q4','b')">b) li</div>
+        <div class="q-opt" onclick="selectOpt(this,'q4','c')">c) lo</div>
+      </div>
+    </div>
+    <div class="q-item" id="qq5">
+      <p>5. Non ho _____ latte in frigo. (negazione)</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q5','a')">a) del</div>
+        <div class="q-opt" onclick="selectOpt(this,'q5','b')">b) — (nessun articolo)</div>
+        <div class="q-opt" onclick="selectOpt(this,'q5','c')">c) dello</div>
+      </div>
+    </div>
+    <button class="quiz-submit" onclick="submitQuiz()">Invia le risposte</button>
+    <div id="quiz-result"></div>
+  </div>
+</div>
+
+<div class="culture">
+  <div class="culture-inner">
+    <h3>🛒 Fare la spesa all'italiana</h3>
+    <p>Fare la spesa in Italia è un rituale. Si va dal fornaio per il pane, dal fruttivendolo per la frutta di stagione e al supermercato solo per i prodotti confezionati. E si usa moltissimo il pronome "ne" — <em>Ne prendo due etti, grazie!</em> — che dimostra una padronanza vera della lingua italiana.</p>
+  </div>
+</div>
+
+<script>
+const ANSWERS={q1:'a',q2:'b',q3:'b',q4:'c',q5:'b'};
+const selected={};
+function selectOpt(el,qid,opt){
+  const box=document.getElementById('qq'+qid.slice(1));
+  box.querySelectorAll('.q-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  selected[qid]=opt;
+}
+function submitQuiz(){
+  let score=0;
+  for(const[qid,ans] of Object.entries(ANSWERS)){
+    const box=document.getElementById('qq'+qid.slice(1));
+    box.querySelectorAll('.q-opt').forEach(o=>{
+      const oc=o.getAttribute('onclick');
+      const letter=oc.match(/'([a-c])'\)/)?.[1];
+      if(o.classList.contains('selected')){
+        if(selected[qid]===ans){o.classList.add('correct');score++;}
+        else o.classList.add('wrong');
+      }
+      if(letter===ans)o.style.borderColor='#6fcf97';
+    });
+  }
+  document.getElementById('quiz-result').textContent=`Risultato: ${score}/5 — ${score>=4?'Ottimo! 🎉':score>=3?'Bene! 👍':'Riprova! 💪'}`;
+}
+function checkPrac(id,ids){
+  let ok=0;
+  ids.forEach(pid=>{
+    const inp=document.getElementById(pid);
+    if(!inp)return;
+    inp.classList.remove('ok','no');
+    const v=inp.value.toLowerCase().trim();
+    const a=inp.dataset.ans.toLowerCase().trim();
+    if(v===a){inp.classList.add('ok');ok++;}
+    else if(v)inp.classList.add('no');
+  });
+  const fb=document.getElementById(id+'-fb');
+  fb.className='prac-fb'+(ok===ids.length?' ok':' no');
+  fb.textContent=ok===ids.length?'✓ Perfetto!':'✗ Ricontrolla le caselle in rosso.';
+}
+const secs=[...document.querySelectorAll('.section[id]')];
+const links=[...document.querySelectorAll('.nav-links a')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id;});
+  links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur);});
+},{passive:true});
+</script>
+</body>
+</html>

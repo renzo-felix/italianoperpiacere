@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Módulo 12 A2 — Etapa 2: Descubrimiento</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--red-dk:#a8382a;--teal:#78a6ba;--teal-dk:#5a8ea0;
+  --green:#528e74;--green-dk:#3d6b58;--black:#1a1a18;--white:#ffffff;
+  --mod:var(--amber);--mod-dk:var(--amber-dk);
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.7;overflow-x:hidden}
+
+/* PROGRESS */
+#prog-bar{position:fixed;bottom:0;left:0;width:0%;height:5px;
+  background:linear-gradient(90deg,var(--amber),var(--amber-dk));z-index:999;transition:width .3s}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #EFCF7F;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#c8940a;border-bottom-color:#EFCF7F}
+
+/* HERO */
+.hero{background:#fef9e8;border-bottom:3px solid #EFCF7F;
+  color:var(--black);padding:72px 32px 60px;text-align:center;position:relative;overflow:hidden;min-height:300px}
+.hero-circles span{display:none}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:2.6rem;margin-bottom:12px;
+  position:relative;z-index:1}
+.hero p{font-size:1.1rem;max-width:600px;margin:0 auto;position:relative;z-index:1;opacity:.85}
+.hero .mod-tag{display:inline-block;background:rgba(0,0,0,.12);border-radius:20px;
+  padding:4px 16px;font-size:.85rem;font-weight:700;margin-bottom:16px}
+
+/* SECTIONS */
+.sec{max-width:950px;margin:0 auto;padding:56px 24px}
+.sec h2{font-family:var(--fh);font-style:italic;font-size:2rem;color:var(--amber-dk);margin-bottom:8px}
+.sec-sub{color:#666;font-size:.95rem;margin-bottom:32px;padding-bottom:14px;
+  border-bottom:2px solid var(--cream-dk)}
+.divider{border:none;border-top:2px solid var(--cream-dk);margin:0}
+
+/* WORD GRID */
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px;margin:24px 0}
+.wcard{background:#fff;border:2px solid var(--cream-dk);border-radius:12px;
+  padding:14px 16px;cursor:pointer;transition:.25s;text-align:center;position:relative}
+.wcard:hover{border-color:var(--amber);transform:translateY(-2px)}
+.wcard.ok{border-color:var(--green);background:#e9f5f0}
+.wcard.trap{border-color:var(--red);background:#fde8e6}
+.wcard .it{font-style:italic;font-weight:700;font-size:1rem;color:var(--black)}
+.wcard .es{font-size:.8rem;color:#888;display:none;margin-top:4px}
+.wcard.ok .es,.wcard.trap .es{display:block}
+.wcard.trap .it{color:var(--red)}
+.wcard.ok .it{color:var(--green-dk)}
+.wgrid-legend{font-size:.82rem;color:#888;margin-top:8px}
+.wgrid-legend span{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:middle}
+
+/* VOCAB SETS */
+.vset{margin-bottom:36px}
+.vset h3{font-family:var(--fh);font-style:italic;color:var(--amber-dk);font-size:1.3rem;margin-bottom:16px}
+.vcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px}
+.vcard{background:#fff;border:2px solid var(--cream-dk);border-radius:14px;
+  padding:18px 16px;cursor:pointer;transition:.3s;min-height:100px;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.vcard:hover{border-color:var(--amber);box-shadow:0 4px 14px rgba(229,171,7,.2)}
+.vcard.open{border-color:var(--amber);background:linear-gradient(135deg,var(--gold),var(--cream))}
+.vcard .vit{font-style:italic;font-weight:700;font-size:1.05rem;color:var(--black)}
+.vcard .vex{font-size:.85rem;color:#555;margin-top:6px;display:none;line-height:1.4}
+.vcard.open .vex{display:block}
+.vcard .vicon{font-size:1.6rem;margin-bottom:6px}
+
+/* DISCOVERY BOX */
+.disc-box{background:linear-gradient(135deg,#fef9e8 0%,#fde8a0 100%);color:var(--black);border-radius:16px;padding:28px 32px;margin:28px 0}
+.disc-box h3{font-family:var(--fh);font-style:italic;font-size:1.4rem;margin-bottom:14px;color:var(--gold)}
+.disc-box p{font-size:.97rem;margin-bottom:10px}
+.disc-box strong{color:var(--gold)}
+.disc-box .ex-line{background:rgba(0,0,0,.05);border-radius:8px;padding:10px 16px;
+  margin:8px 0;font-style:italic;font-size:1rem;border-left:3px solid var(--gold)}
+.hl-box{background:var(--gold);color:var(--black);border-radius:10px;
+  padding:16px 20px;margin:20px 0;font-size:.97rem;font-weight:600;
+  border-left:4px solid var(--amber-dk);text-align:center;font-style:italic}
+
+/* FILL BLANKS */
+.fill-set{background:#fff;border:1px solid var(--cream-dk);border-radius:14px;padding:24px;margin:20px 0}
+.fill-set h4{font-family:var(--fh);font-style:italic;color:var(--amber-dk);font-size:1.1rem;margin-bottom:16px}
+.fill-item{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;font-size:.95rem}
+.fill-item label{flex:1;min-width:240px}
+.fill-item input{border:2px solid var(--cream-dk);border-radius:8px;padding:7px 12px;
+  font-family:var(--fb);font-size:.95rem;width:160px;transition:.2s}
+.fill-item input:focus{outline:none;border-color:var(--amber)}
+.fill-item input.ok{border-color:var(--green);background:#e8f5ee}
+.fill-item input.err{border-color:var(--red);background:#fde8e6}
+.fill-btn{background:var(--amber);color:var(--black);border:none;border-radius:8px;
+  padding:9px 22px;font-family:var(--fb);font-size:.9rem;font-weight:700;
+  cursor:pointer;transition:.2s;margin-top:4px}
+.fill-btn:hover{background:var(--amber-dk);color:#fff}
+.fill-fb{margin-top:10px;font-size:.9rem;font-weight:600;min-height:18px}
+.fill-fb.ok{color:var(--green-dk)}
+.fill-fb.err{color:var(--red)}
+
+/* DAY PLANNER */
+.planner{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin:24px 0}
+.plan-card{background:#fff;border:2px solid var(--cream-dk);border-radius:14px;
+  padding:18px 16px;cursor:pointer;transition:.3s;text-align:center}
+.plan-card:hover{border-color:var(--amber);transform:translateY(-2px)}
+.plan-card.active{border-color:var(--amber-dk);background:linear-gradient(135deg,var(--gold),var(--cream))}
+.plan-card .pc-icon{font-size:2rem;margin-bottom:8px}
+.plan-card .pc-time{font-size:.78rem;color:#888;font-weight:600;margin-bottom:4px}
+.plan-card .pc-it{font-style:italic;font-weight:700;color:var(--black);font-size:.95rem}
+.plan-card .pc-ex{font-size:.82rem;color:#666;margin-top:4px;display:none}
+.plan-card.active .pc-ex{display:block}
+.plan-card .pc-fut{font-size:.82rem;color:var(--amber-dk);margin-top:4px;font-weight:600;display:none}
+.plan-card.active .pc-fut{display:block}
+
+/* DIALOGUE */
+.dial{background:var(--cream-dk);border-radius:16px;padding:24px 28px;margin:24px 0}
+.dial h4{font-family:var(--fh);font-style:italic;color:var(--amber-dk);font-size:1.15rem;margin-bottom:16px}
+.bubble{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;cursor:pointer}
+.bubble.b{flex-direction:row-reverse}
+.bav{width:38px;height:38px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;color:var(--black)}
+.bubble:not(.b) .bav{background:#fde8a0}
+.bubble.b .bav{background:var(--cream-dk)}
+.btext{background:#fff;border-radius:12px;padding:10px 14px;font-size:.93rem;max-width:75%}
+.bubble.b .btext{background:var(--cream-dk);color:var(--black)}
+.btr{font-size:.82rem;color:#888;font-style:italic;margin-top:4px;display:none}
+.bubble.show .btr{display:block}
+.dial-hint{font-size:.8rem;color:#999;text-align:center;margin-top:10px}
+
+/* ESCLAMAZIONI */
+.escl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin:24px 0}
+.escl-card{background:#fff;border:2px solid var(--cream-dk);border-radius:14px;
+  padding:18px 16px;text-align:center;cursor:pointer;transition:.3s}
+.escl-card:hover{border-color:var(--amber);transform:scale(1.03)}
+.escl-card.open{border-color:var(--amber-dk);background:linear-gradient(135deg,var(--gold),var(--cream))}
+.escl-card .eword{font-style:italic;font-weight:700;font-size:1.15rem;color:var(--amber-dk)}
+.escl-card .eicon{font-size:1.8rem;margin-bottom:6px}
+.escl-card .euse{font-size:.82rem;color:#666;margin-top:6px;display:none;line-height:1.35}
+.escl-card.open .euse{display:block}
+
+/* MATCHING */
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0}
+@media(max-width:580px){.match-wrap{grid-template-columns:1fr}}
+.match-col h5{font-size:.85rem;font-weight:700;color:#888;text-transform:uppercase;
+  letter-spacing:.5px;margin-bottom:10px}
+.match-item{background:#fff;border:2px solid var(--cream-dk);border-radius:10px;
+  padding:10px 14px;margin-bottom:8px;cursor:pointer;transition:.2s;font-size:.93rem}
+.match-item:hover{border-color:var(--amber)}
+.match-item.sel{border-color:var(--amber-dk);background:var(--gold)}
+.match-item.ok{border-color:var(--green);background:#e8f5ee;cursor:default}
+.match-item.err{border-color:var(--red);background:#fde8e6}
+.match-result{text-align:center;font-size:.95rem;font-weight:700;margin-top:12px;min-height:20px;color:var(--amber-dk)}
+
+/* READING */
+.reading-box{background:#fff;border:1px solid var(--cream-dk);border-radius:14px;padding:24px 28px;margin:24px 0}
+.reading-box h4{font-family:var(--fh);font-style:italic;color:var(--amber-dk);font-size:1.15rem;margin-bottom:14px}
+.reading-text{background:var(--cream);border-radius:10px;padding:18px 20px;
+  font-size:.95rem;line-height:1.8;margin-bottom:20px;border-left:3px solid var(--amber)}
+.r-q{margin-bottom:18px}
+.r-q p{font-weight:600;font-size:.95rem;margin-bottom:8px}
+.r-opts label{display:block;cursor:pointer;padding:7px 12px;border-radius:8px;
+  font-size:.9rem;transition:.18s}
+.r-opts label:hover{background:var(--cream-dk)}
+.r-opts input{margin-right:8px;accent-color:var(--amber)}
+.r-opts label.ok{background:#e8f5ee;color:var(--green-dk);font-weight:700}
+.r-opts label.err{background:#fde8e6;color:var(--red)}
+.r-btn{background:var(--amber);color:var(--black);border:none;border-radius:8px;
+  padding:9px 24px;font-family:var(--fb);font-size:.9rem;font-weight:700;
+  cursor:pointer;transition:.2s;margin-top:8px}
+.r-btn:hover{background:var(--amber-dk);color:#fff}
+.r-result{margin-top:12px;font-weight:700;font-size:.95rem;min-height:18px;color:var(--amber-dk)}
+
+/* CULTURE STRIP */
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);
+  border-top:4px solid var(--amber-dk);padding:48px 24px;margin-top:0}
+.culture-inner{max-width:950px;margin:0 auto}
+.culture h2{font-family:var(--fh);font-style:italic;font-size:1.9rem;
+  color:var(--amber-dk);margin-bottom:8px}
+.culture p{color:#555;font-size:.95rem;margin-bottom:28px}
+.culture-facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.cf{background:#fff;border-radius:14px;padding:18px 20px;border:1px solid var(--cream-dk)}
+.cf .cf-icon{font-size:1.8rem;margin-bottom:8px}
+.cf h4{font-family:var(--fh);font-style:italic;color:var(--amber-dk);font-size:1.05rem;margin-bottom:6px}
+.cf p{font-size:.87rem;color:#555;margin:0;line-height:1.5}
+
+/* ANIM */
+[data-a]{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+[data-a].vis{opacity:1;transform:none}
+[data-stagger] [data-a]{transition-delay:calc(var(--i,0)*.08s)}
+
+/* PROGRESS BAR scrolled */
+footer{background:var(--cream-dk);color:var(--black);text-align:center;padding:24px;font-size:.85rem}
+</style>
+</head>
+<body>
+<div id="prog-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=f5755ad" alt="Italiano Per Piacere" loading="lazy">
+    </a>
+    <div class="nav-links">
+      <a href="#">Vocabolario</a>
+      <a href="#">Futuro</a>
+      <a href="#">Esclamazioni</a>
+      <a href="#">Dialogo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-circles"><span></span><span></span><span></span></div>
+  <div class="mod-tag">A2 · Módulo 12 · Descubrimiento</div>
+  <h1>Un giorno perfetto ☀️</h1>
+  <p>Futuro semplice · Esclamazioni · Fare + infinito · Ipotesi con "se"</p>
+</div>
+
+<!-- ══ 1. WORD GRID ══ -->
+<div class="sec">
+  <h2>Prima esplorazione</h2>
+  <p class="sec-sub">Haz clic en cada palabra — ¿reconoces cuáles son italianas auténticas y cuáles son trampas?</p>
+  <div class="wgrid" id="wgrid" data-stagger>
+    <div class="wcard" data-ok="true" data-es="el paseo" data-a><span class="it">la passeggiata</span><span class="es">el paseo</span></div>
+    <div class="wcard" data-ok="true" data-es="el atardecer" data-a><span class="it">il tramonto</span><span class="es">el atardecer</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'il pranzo')" data-a><span class="it">il lunch</span><span class="es">(trampa: es 'il pranzo')</span></div>
+    <div class="wcard" data-ok="true" data-es="el picnic" data-a><span class="it">il picnic</span><span class="es">el picnic</span></div>
+    <div class="wcard" data-ok="true" data-es="el desayuno" data-a><span class="it">la colazione</span><span class="es">el desayuno</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'il sole')" data-a><span class="it">il sun</span><span class="es">(trampa: es 'il sole')</span></div>
+    <div class="wcard" data-ok="true" data-es="la excursión" data-a><span class="it">la gita</span><span class="es">la excursión</span></div>
+    <div class="wcard" data-ok="true" data-es="el parque" data-a><span class="it">il parco</span><span class="es">el parque</span></div>
+    <div class="wcard" data-ok="true" data-es="el lago" data-a><span class="it">il lago</span><span class="es">el lago</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'la spiaggia')" data-a><span class="it">la beache</span><span class="es">(trampa: es 'la spiaggia')</span></div>
+    <div class="wcard" data-ok="true" data-es="el campo / la naturaleza" data-a><span class="it">la campagna</span><span class="es">el campo</span></div>
+    <div class="wcard" data-ok="true" data-es="la montaña" data-a><span class="it">la montagna</span><span class="es">la montaña</span></div>
+    <div class="wcard" data-ok="true" data-es="el pastel" data-a><span class="it">la torta</span><span class="es">el pastel</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'il gelato')" data-a><span class="it">il ice cream</span><span class="es">(trampa: es 'il gelato')</span></div>
+    <div class="wcard" data-ok="true" data-es="la puesta de sol" data-a><span class="it">il tramonto</span><span class="es">la puesta de sol</span></div>
+    <div class="wcard" data-ok="true" data-es="la comida / el almuerzo" data-a><span class="it">il pranzo</span><span class="es">el almuerzo</span></div>
+    <div class="wcard" data-ok="true" data-es="el viaje" data-a><span class="it">il viaggio</span><span class="es">el viaje</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'la cena')" data-a><span class="it">la dinner</span><span class="es">(trampa: es 'la cena')</span></div>
+  </div>
+  <p class="wgrid-legend"><span style="background:var(--green);border-radius:3px"></span>Palabra italiana auténtica &nbsp;&nbsp; <span style="background:var(--red);border-radius:3px"></span>Trampa (anglicismo o inventada)</p>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 2. VOCAB SET A: Attività del giorno ══ -->
+<div class="sec">
+  <h2>Vocabolario — Set A</h2>
+  <p class="sec-sub">Actividades del día perfecto — haz clic para ver la traducción y el uso</p>
+  <div class="vset">
+    <h3>🌅 Attività del giorno perfetto</h3>
+    <div class="vcards" data-stagger>
+      <div class="vcard" data-a onclick="this.classList.toggle('open')">
+        <div class="vicon">☕</div>
+        <div class="vit">fare colazione</div>
+        <div class="vex">desayunar<br><em>"Farò colazione al bar."</em></div>
+      </div>
+      <div class="vcard" data-a onclick="this.classList.toggle('open')">
+        <div class="vicon">🚶</div>
+        <div class="vit">fare una passeggiata</div>
+        <div class="vex">dar un paseo<br><em>"Faremo una passeggiata al parco."</em></div>
+      </div>
+      <div class="vcard" data-a onclick="this.classList.toggle('open')">
+        <div class="vicon">🏔️</div>
+        <div class="vit">fare una gita</div>
+        <div class="vex">hacer una excursión<br><em>"Faremo una gita in montagna."</em></div>
+      </div>
+      <div class="vcard" data-a onclick="this.classList.toggle('open')">
+        <div class="vicon">🧺</div>
+        <div class="vit">fare un picnic</div>
+        <div class="vex">hacer un picnic<br><em>"Se farà bello, faremo un picnic."</em></div>
+      </div>
+      <div class="vcard" data-a onclick="this.classList.toggle('open')">
+        <div class="vicon">🌅</div>
+        <div class="vit">guardare il tramonto</div>
+        <div class="vex">mirar el atardecer<br><em>"Guarderemo il tramonto insieme."</em></div>
+      </div>
+      <div class="vcard" data-a onclick="this.classList.toggle('open')">
+        <div class="vicon">🚴</div>
+        <div class="vit">andare in bicicletta</div>
+        <div class="vex">ir en bicicleta<br><em>"Andremo in bicicletta sul lago."</em></div>
+      </div>
+      <div class="vcard" data-a onclick="this.classList.toggle('open')">
+        <div class="vicon">🍕</div>
+        <div class="vit">mangiare fuori</div>
+        <div class="vex">comer fuera<br><em>"Mangeremo fuori in un bel ristorante."</em></div>
+      </div>
+      <div class="vcard" data-a onclick="this.classList.toggle('open')">
+        <div class="vicon">🌙</div>
+        <div class="vit">rilassarsi / riposarsi</div>
+        <div class="vex">relajarse / descansar<br><em>"La sera mi rilasserò sul divano."</em></div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 3. VOCAB SET B: Luoghi ══ -->
+<div class="sec">
+  <h2>Vocabolario — Set B</h2>
+  <p class="sec-sub">Lugares para el día perfecto — haz clic para explorar</p>
+  <div class="vset">
+    <h3>📍 Luoghi del giorno perfetto</h3>
+    <div class="vcards" data-stagger>
+      <div class="vcard" data-a onclick="this.classList.toggle('open')">
+        <div class="vicon">🏖️</div>
+        <div class="vit">la spiaggia</div>
+        <div class="vex">la playa<br><em>"Andremo in spiaggia."</em></div>
+      </div>
+      <div class="vcard" data-a onclick="this.classList.toggle('open')">
+        <div class="vicon">🌲</div>
+        <div class="vit">il bosco / il parco</div>
+        <div class="vex">el bosque / el parque<br><em>"Faremo un picnic nel bosco."</em></div>
+      </div>
+      <div class="vcard" data-a onclick="this.classList.toggle('open')">
+        <div class="vicon">⛵</div>
+        <div class="vit">il lago</div>
+        <div class="vex">el lago<br><em>"Andremo al lago Maggiore."</em></div>
+      </div>
+      <div class="vcard" data-a onclick="this.classList.toggle('open')">
+        <div class="vicon">🏘️</div>
+        <div class="vit">il centro storico</div>
+        <div class="vex">el centro histórico<br><em>"Visiteremo il centro storico."</em></div>
+      </div>
+      <div class="vcard" data-a onclick="this.classList.toggle('open')">
+        <div class="vicon">🍷</div>
+        <div class="vit">l'enoteca</div>
+        <div class="vex">la vinoteca<br><em>"Andremo in enoteca per l'aperitivo."</em></div>
+      </div>
+      <div class="vcard" data-a onclick="this.classList.toggle('open')">
+        <div class="vicon">🏔️</div>
+        <div class="vit">la montagna</div>
+        <div class="vex">la montaña<br><em>"In estate andiamo in montagna."</em></div>
+      </div>
+      <div class="vcard" data-a onclick="this.classList.toggle('open')">
+        <div class="vicon">🌿</div>
+        <div class="vit">la campagna</div>
+        <div class="vex">el campo / la campiña<br><em>"Un agriturismo in campagna."</em></div>
+      </div>
+      <div class="vcard" data-a onclick="this.classList.toggle('open')">
+        <div class="vicon">🎡</div>
+        <div class="vit">la piazza</div>
+        <div class="vex">la plaza<br><em>"Ci vediamo in piazza alle sei."</em></div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 4. VOCAB SET C: Esclamazioni ══ -->
+<div class="sec">
+  <h2>Esclamazioni italiane 😲</h2>
+  <p class="sec-sub">Las exclamaciones son el alma del italiano — haz clic para descubrir cómo y cuándo usarlas</p>
+  <div class="escl-grid" data-stagger>
+    <div class="escl-card" data-a onclick="this.classList.toggle('open')">
+      <div class="eicon">😍</div>
+      <div class="eword">Che bello!</div>
+      <div class="euse">¡Qué bonito!<br>Admiración ante algo hermoso.<br><em>"Che bello il tramonto!"</em></div>
+    </div>
+    <div class="escl-card" data-a onclick="this.classList.toggle('open')">
+      <div class="eicon">😱</div>
+      <div class="eword">Mamma mia!</div>
+      <div class="euse">¡Madre mía!<br>Sorpresa, asombro, exasperación.<br><em>"Mamma mia, che caldo!"</em></div>
+    </div>
+    <div class="escl-card" data-a onclick="this.classList.toggle('open')">
+      <div class="eicon">💪</div>
+      <div class="eword">Dai!</div>
+      <div class="euse">¡Vamos! / ¡Venga!<br>Animar, incredulidad, impaciencia.<br><em>"Dai, si parte!"</em></div>
+    </div>
+    <div class="escl-card" data-a onclick="this.classList.toggle('open')">
+      <div class="eicon">😤</div>
+      <div class="eword">Accidenti!</div>
+      <div class="euse">¡Caramba! / ¡Maldita sea!<br>Contratiempo, sorpresa negativa.<br><em>"Accidenti, ho dimenticato le chiavi!"</em></div>
+    </div>
+    <div class="escl-card" data-a onclick="this.classList.toggle('open')">
+      <div class="eicon">😮‍💨</div>
+      <div class="eword">Meno male!</div>
+      <div class="euse">¡Menos mal! / ¡Por fin!<br>Alivio ante algo que salió bien.<br><em>"Meno male che sei arrivato!"</em></div>
+    </div>
+    <div class="escl-card" data-a onclick="this.classList.toggle('open')">
+      <div class="eicon">😢</div>
+      <div class="eword">Che peccato!</div>
+      <div class="euse">¡Qué pena!<br>Decepción o lástima.<br><em>"Che peccato, non puoi venire!"</em></div>
+    </div>
+    <div class="escl-card" data-a onclick="this.classList.toggle('open')">
+      <div class="eicon">🥱</div>
+      <div class="eword">Che noia!</div>
+      <div class="euse">¡Qué aburrimiento!<br>Tedio, falta de interés.<br><em>"Che noia questo film!"</em></div>
+    </div>
+    <div class="escl-card" data-a onclick="this.classList.toggle('open')">
+      <div class="eicon">🤩</div>
+      <div class="eword">Fantastico!</div>
+      <div class="euse">¡Fantástico!<br>Entusiasmo máximo.<br><em>"Fantastico, andiamo!"</em></div>
+    </div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 5. DISCOVERY: Futuro semplice ══ -->
+<div class="sec">
+  <h2>Scoperta 1 — Futuro semplice 🔭</h2>
+  <p class="sec-sub">Observa las formas verbales — ¿qué notas?</p>
+
+  <div class="disc-box" data-a>
+    <h3>Programmazione del giorno perfetto</h3>
+    <p>Escucha cómo una persona italiana describe su día perfecto:</p>
+    <div class="ex-line">☕ "Domani mi <strong>sveglierò</strong> tardi e <strong>farò</strong> colazione al bar."</div>
+    <div class="ex-line">🌅 "Poi <strong>andremo</strong> al lago con gli amici."</div>
+    <div class="ex-line">🍕 "A pranzo <strong>mangeremo</strong> in un bel posto."</div>
+    <div class="ex-line">🌙 "La sera <strong>guarderemo</strong> il tramonto e <strong>staremo</strong> in piazza."</div>
+    <p style="margin-top:14px">¿Qué tienen en común todas estas formas verbales? Todas describen <strong>acciones futuras</strong> — ¡este es el futuro semplice!</p>
+  </div>
+
+  <!-- Day planner interactivo -->
+  <h3 style="font-family:var(--fh);font-style:italic;color:var(--amber-dk);font-size:1.3rem;margin-bottom:16px">📅 Il pianificatore del giorno perfetto</h3>
+  <p style="color:#666;font-size:.93rem;margin-bottom:16px">Haz clic en cada momento del día para ver qué actividad se planifica y cómo se dice en futuro:</p>
+  <div class="planner">
+    <div class="plan-card" onclick="this.classList.toggle('active')">
+      <div class="pc-icon">☕</div>
+      <div class="pc-time">7:00 — 9:00</div>
+      <div class="pc-it">la mattina</div>
+      <div class="pc-ex">Colazione al bar</div>
+      <div class="pc-fut">➜ <em>Farò colazione.</em><br>➜ <em>Berrò un cappuccino.</em></div>
+    </div>
+    <div class="plan-card" onclick="this.classList.toggle('active')">
+      <div class="pc-icon">🌿</div>
+      <div class="pc-time">10:00 — 12:00</div>
+      <div class="pc-it">la tarda mattina</div>
+      <div class="pc-ex">Gita o passeggiata</div>
+      <div class="pc-fut">➜ <em>Andremo al parco.</em><br>➜ <em>Faremo una gita.</em></div>
+    </div>
+    <div class="plan-card" onclick="this.classList.toggle('active')">
+      <div class="pc-icon">🍝</div>
+      <div class="pc-time">13:00 — 15:00</div>
+      <div class="pc-it">il pranzo</div>
+      <div class="pc-ex">Mangiare bene</div>
+      <div class="pc-fut">➜ <em>Mangeremo al ristorante.</em><br>➜ <em>Ordineremo la pasta.</em></div>
+    </div>
+    <div class="plan-card" onclick="this.classList.toggle('active')">
+      <div class="pc-icon">😴</div>
+      <div class="pc-time">15:00 — 17:00</div>
+      <div class="pc-it">il pomeriggio</div>
+      <div class="pc-ex">Relax</div>
+      <div class="pc-fut">➜ <em>Mi rilasserò.</em><br>➜ <em>Leggerò un libro.</em></div>
+    </div>
+    <div class="plan-card" onclick="this.classList.toggle('active')">
+      <div class="pc-icon">🌅</div>
+      <div class="pc-time">18:00 — 20:00</div>
+      <div class="pc-it">l'aperitivo</div>
+      <div class="pc-ex">Aperitivo in piazza</div>
+      <div class="pc-fut">➜ <em>Berremo un aperitivo.</em><br>➜ <em>Staremo in piazza.</em></div>
+    </div>
+    <div class="plan-card" onclick="this.classList.toggle('active')">
+      <div class="pc-icon">🍷</div>
+      <div class="pc-time">20:00 — 23:00</div>
+      <div class="pc-it">la cena</div>
+      <div class="pc-ex">Cena e tramonto</div>
+      <div class="pc-fut">➜ <em>Ceneremo fuori.</em><br>➜ <em>Guarderemo il tramonto.</em></div>
+    </div>
+  </div>
+
+  <div class="hl-box" data-a>
+    💡 ¿Lo notaste? En italiano cuando dices "cuando + futuro", la segunda parte también va en futuro:<br>
+    <em>"Quando <strong>arriverò</strong>, ti <strong>chiamerò</strong>."</em> — Cuando llegue, te llamo. ✅
+  </div>
+
+  <!-- Fill set A -->
+  <div class="fill-set" data-a>
+    <h4>Pratica A — Futuro semplice: pianifica la giornata</h4>
+    <div class="fill-item"><label>1. Domani (io/svegliarsi) _____ alle 8.</label><input id="fa1" data-ans="mi sveglierò" type="text" placeholder="futuro…"/></div>
+    <div class="fill-item"><label>2. Noi (fare) _____ una gita in montagna.</label><input id="fa2" data-ans="faremo" type="text" placeholder="futuro…"/></div>
+    <div class="fill-item"><label>3. Lui (venire) _____ con noi alla spiaggia.</label><input id="fa3" data-ans="verrà" type="text" placeholder="futuro…"/></div>
+    <div class="fill-item"><label>4. La sera (noi/mangiare) _____ fuori.</label><input id="fa4" data-ans="mangeremo" type="text" placeholder="futuro…"/></div>
+    <div class="fill-item"><label>5. Tu (guardare) _____ il tramonto con me?</label><input id="fa5" data-ans="guarderai" type="text" placeholder="futuro…"/></div>
+    <button class="fill-btn" onclick="checkFill(['fa1','fa2','fa3','fa4','fa5'],'fba')">Controlla ✓</button>
+    <div class="fill-fb" id="fba"></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 6. DISCOVERY: Se + futuro ══ -->
+<div class="sec">
+  <h2>Scoperta 2 — "Se" + futuro 🌦️</h2>
+  <p class="sec-sub">Hipótesis sobre el futuro — si hace buen tiempo...</p>
+
+  <div class="disc-box" data-a>
+    <h3>Ipotesi del giorno perfetto</h3>
+    <p>Observa cómo los italianos hacen planes condicionados al tiempo:</p>
+    <div class="ex-line">☀️ "Se <strong>farà</strong> bello, <strong>andremo</strong> al mare."</div>
+    <div class="ex-line">🌧️ "Se <strong>pioverà</strong>, <strong>resteremo</strong> a casa."</div>
+    <div class="ex-line">🌤️ "Se <strong>avremo</strong> tempo, <strong>faremo</strong> una gita."</div>
+    <div class="ex-line">⛅ "Quando <strong>arriverà</strong> l'estate, <strong>partiremo</strong>."</div>
+    <p style="margin-top:14px">La estructura es: <strong>Se + futuro, + futuro</strong> — ambas partes en futuro. Lo mismo con "quando".</p>
+  </div>
+
+  <div class="hl-box" data-a>
+    🇮🇹 vs 🇪🇸 — En español decimos "Si hace bueno, iremos al mar" (presente en la condición). En italiano ambas partes van en futuro:<br>
+    <em>"Se <strong>farà</strong> bello, <strong>andremo</strong> al mare."</em>
+  </div>
+
+  <!-- Fill set B -->
+  <div class="fill-set" data-a>
+    <h4>Pratica B — Completa con il futuro nella condizione "se"</h4>
+    <div class="fill-item"><label>1. Se (fare) _____ caldo, andremo al lago.</label><input id="fb1" data-ans="farà" type="text" placeholder="futuro…"/></div>
+    <div class="fill-item"><label>2. Se (piovere) _____, resteremo a casa.</label><input id="fb2" data-ans="pioverà" type="text" placeholder="futuro…"/></div>
+    <div class="fill-item"><label>3. Se (avere) _____ tempo, faremo una gita.</label><input id="fb3" data-ans="avremo" type="text" placeholder="futuro…"/></div>
+    <div class="fill-item"><label>4. Se tu (venire) _____, porterò il vino.</label><input id="fb4" data-ans="verrai" type="text" placeholder="futuro…"/></div>
+    <div class="fill-item"><label>5. Quando (arrivare) _____ l'estate, partiremo.</label><input id="fb5" data-ans="arriverà" type="text" placeholder="futuro…"/></div>
+    <button class="fill-btn" onclick="checkFill(['fb1','fb2','fb3','fb4','fb5'],'fbb')">Controlla ✓</button>
+    <div class="fill-fb" id="fbb"></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 7. DISCOVERY: Fare + infinito ══ -->
+<div class="sec">
+  <h2>Scoperta 3 — Fare + infinito 🤝</h2>
+  <p class="sec-sub">La construcción italiana para muchas actividades cotidianas</p>
+
+  <div class="disc-box" data-a>
+    <h3>Fare + infinito: il verbo tuttofare</h3>
+    <p><strong>Fare</strong> es uno de los verbos más utilizados en italiano. Se combina con infinitivos para crear expresiones fijas:</p>
+    <div class="ex-line">☕ <strong>fare colazione</strong> — desayunar</div>
+    <div class="ex-line">🛒 <strong>fare la spesa</strong> — hacer la compra</div>
+    <div class="ex-line">🚶 <strong>fare una passeggiata</strong> — dar un paseo</div>
+    <div class="ex-line">🏊 <strong>fare il bagno</strong> — bañarse / ducharse</div>
+    <div class="ex-line">📸 <strong>fare una foto</strong> — hacer/tomar una foto</div>
+    <div class="ex-line">😴 <strong>fare una dormita</strong> — echar una siesta</div>
+    <p style="margin-top:14px">¡Al futuro: <strong>farò, farai, farà, faremo, farete, faranno</strong>!</p>
+  </div>
+
+  <!-- Fill set C -->
+  <div class="fill-set" data-a>
+    <h4>Pratica C — Usa "fare" al futuro + l'attività giusta</h4>
+    <div class="fill-item"><label>1. Domani mattina (io) _____ colazione al bar.</label><input id="fc1" data-ans="farò" type="text" placeholder="fare al futuro…"/></div>
+    <div class="fill-item"><label>2. Dopo pranzo (noi) _____ una passeggiata.</label><input id="fc2" data-ans="faremo" type="text" placeholder="fare al futuro…"/></div>
+    <div class="fill-item"><label>3. Voi _____ la spesa prima di partire?</label><input id="fc3" data-ans="farete" type="text" placeholder="fare al futuro…"/></div>
+    <div class="fill-item"><label>4. Loro _____ molte foto al tramonto.</label><input id="fc4" data-ans="faranno" type="text" placeholder="fare al futuro…"/></div>
+    <button class="fill-btn" onclick="checkFill(['fc1','fc2','fc3','fc4'],'fbc')">Controlla ✓</button>
+    <div class="fill-fb" id="fbc"></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 8. MATCHING ══ -->
+<div class="sec">
+  <h2>Attività — Abbina 🔗</h2>
+  <p class="sec-sub">Conecta cada esclamazione con su situación</p>
+  <div class="match-wrap">
+    <div>
+      <h5>Situazione</h5>
+      <div class="match-item" id="mL1" data-id="1" onclick="selectMatch(this,'L','1')">Vedi un tramonto bellissimo.</div>
+      <div class="match-item" id="mL2" data-id="2" onclick="selectMatch(this,'L','2')">Dimentichi il portafoglio.</div>
+      <div class="match-item" id="mL3" data-id="3" onclick="selectMatch(this,'L','3')">Un amico non viene alla festa.</div>
+      <div class="match-item" id="mL4" data-id="4" onclick="selectMatch(this,'L','4')">Finisce il film noioso!</div>
+      <div class="match-item" id="mL5" data-id="5" onclick="selectMatch(this,'L','5')">Ti sfidano a fare qualcosa.</div>
+      <div class="match-item" id="mL6" data-id="6" onclick="selectMatch(this,'L','6')">Tutto va meglio del previsto!</div>
+    </div>
+    <div>
+      <h5>Esclamazione</h5>
+      <div class="match-item" id="mR1" data-id="1" onclick="selectMatch(this,'R','1')">Che bello!</div>
+      <div class="match-item" id="mR2" data-id="2" onclick="selectMatch(this,'R','2')">Accidenti!</div>
+      <div class="match-item" id="mR3" data-id="3" onclick="selectMatch(this,'R','3')">Che peccato!</div>
+      <div class="match-item" id="mR4" data-id="4" onclick="selectMatch(this,'R','4')">Meno male!</div>
+      <div class="match-item" id="mR5" data-id="5" onclick="selectMatch(this,'R','5')">Dai!</div>
+      <div class="match-item" id="mR6" data-id="6" onclick="selectMatch(this,'R','6')">Fantastico!</div>
+    </div>
+  </div>
+  <div class="match-result" id="match-result"></div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 9. DIALOGUES ══ -->
+<div class="sec">
+  <h2>Dialoghi 💬</h2>
+  <p class="sec-sub">Haz clic en cada burbuja para ver la traducción</p>
+
+  <div class="dial" data-a>
+    <h4>Dialogo 1 — Pianificazione del weekend</h4>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">S</div>
+      <div class="btext">Sofia: Che farai sabato? Hai già dei piani?
+        <div class="btr">¿Qué harás el sábado? ¿Tienes ya planes?</div></div>
+    </div>
+    <div class="bubble b" onclick="this.classList.toggle('show')">
+      <div class="bav">L</div>
+      <div class="btext">Luca: Se farà bello, andremo al lago. Veniresti anche tu?
+        <div class="btr">Si hace bueno, iremos al lago. ¿Vendrías tú también?</div></div>
+    </div>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">S</div>
+      <div class="btext">Sofia: Certo! Che bello! Porterò qualcosa da mangiare.
+        <div class="btr">¡Claro! ¡Qué bien! Llevaré algo de comer.</div></div>
+    </div>
+    <div class="bubble b" onclick="this.classList.toggle('show')">
+      <div class="bav">L</div>
+      <div class="btext">Luca: Perfetto! Partiremo alle dieci. Ti passo a prendere?
+        <div class="btr">¡Perfecto! Saldremos a las diez. ¿Te paso a buscar?</div></div>
+    </div>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">S</div>
+      <div class="btext">Sofia: Sì, grazie! Sarà un giorno fantastico!
+        <div class="btr">¡Sí, gracias! ¡Será un día fantástico!</div></div>
+    </div>
+    <p class="dial-hint">👆 Haz clic en cada burbuja para la traducción</p>
+  </div>
+
+  <div class="dial" data-a>
+    <h4>Dialogo 2 — Cambio di programma</h4>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">A</div>
+      <div class="btext">Anna: Domani pioverà. Che facciamo?
+        <div class="btr">Mañana lloverá. ¿Qué hacemos?</div></div>
+    </div>
+    <div class="bubble b" onclick="this.classList.toggle('show')">
+      <div class="bav">M</div>
+      <div class="btext">Marco: Che peccato! Allora resteremo a casa. Guarderemo un film?
+        <div class="btr">¡Qué pena! Entonces nos quedaremos en casa. ¿Vemos una película?</div></div>
+    </div>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">A</div>
+      <div class="btext">Anna: Sì! E cucineremo qualcosa di buono. Farò la pasta al forno!
+        <div class="btr">¡Sí! Y cocinaremos algo rico. ¡Haré pasta al horno!</div></div>
+    </div>
+    <div class="bubble b" onclick="this.classList.toggle('show')">
+      <div class="bav">M</div>
+      <div class="btext">Marco: Mamma mia, che buona idea! Comprerò il vino.
+        <div class="btr">¡Madre mía, qué buena idea! Compraré el vino.</div></div>
+    </div>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">A</div>
+      <div class="btext">Anna: Perfetto. Sarà comunque un giorno meraviglioso!
+        <div class="btr">Perfecto. ¡Igualmente será un día maravilloso!</div></div>
+    </div>
+    <p class="dial-hint">👆 Haz clic en cada burbuja para la traducción</p>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 10. READING ══ -->
+<div class="sec">
+  <h2>Comprensione — Leggi e rispondi 📖</h2>
+  <p class="sec-sub">Lee el texto y responde las preguntas</p>
+  <div class="reading-box" data-a>
+    <h4>Il mio giorno perfetto — di Martina, 27 anni, Milano</h4>
+    <div class="reading-text">
+      Se domani <em>farà bello</em>, il mio giorno perfetto inizierà così: mi <em>sveglierò</em> tardi, verso le nove, e <em>farò</em> una lunga colazione al bar sotto casa. <em>Berrò</em> due caffè e <em>leggerò</em> il giornale senza fretta.
+
+      Poi <em>chiamerò</em> la mia amica Giulia e <em>andremo</em> insieme al Parco Sempione. <em>Porteremo</em> un libro e qualcosa da mangiare. Se <em>avremo</em> voglia, <em>affitteremo</em> anche le biciclette.
+
+      Nel pomeriggio, <em>torneremo</em> in centro per fare shopping. Io <em>guarderò</em> le vetrine — non comprerò nulla, ma mi piacerà comunque! Verso le sette, <em>prenderemo</em> l'aperitivo in un bel posto vicino al Duomo.
+
+      La sera, <em>ceneremo</em> in un ristorante del Navigli. <em>Mangeremo</em> ottimo cibo, <em>berremo</em> buon vino e <em>rideremo</em> moltissimo. <em>Tornerò</em> a casa tardi, stanca ma felice. <em>Sarà</em> stato un giorno perfetto!
+    </div>
+    <div class="r-q">
+      <p>1. ¿Con quién pasará el día Martina?</p>
+      <div class="r-opts">
+        <label><input type="radio" name="rq1" value="a"/> Con su familia</label>
+        <label><input type="radio" name="rq1" value="b"/> Con su amiga Giulia</label>
+        <label><input type="radio" name="rq1" value="c"/> Sola</label>
+      </div>
+    </div>
+    <div class="r-q">
+      <p>2. ¿Qué harán por la tarde?</p>
+      <div class="r-opts">
+        <label><input type="radio" name="rq2" value="a"/> Irán al lago</label>
+        <label><input type="radio" name="rq2" value="b"/> Harán una gita</label>
+        <label><input type="radio" name="rq2" value="c"/> Irán de compras al centro</label>
+      </div>
+    </div>
+    <div class="r-q">
+      <p>3. ¿Dónde cenarán?</p>
+      <div class="r-opts">
+        <label><input type="radio" name="rq3" value="a"/> En un restaurante del Navigli</label>
+        <label><input type="radio" name="rq3" value="b"/> En casa de Giulia</label>
+        <label><input type="radio" name="rq3" value="c"/> En el Parco Sempione</label>
+      </div>
+    </div>
+    <div class="r-q">
+      <p>4. ¿Cuál es la condición para que sea el día perfecto?</p>
+      <div class="r-opts">
+        <label><input type="radio" name="rq4" value="a"/> Que no haya trabajo</label>
+        <label><input type="radio" name="rq4" value="b"/> Que haga buen tiempo</label>
+        <label><input type="radio" name="rq4" value="c"/> Que venga Giulia</label>
+      </div>
+    </div>
+    <button class="r-btn" onclick="checkReading()">Controlla le risposte →</button>
+    <div class="r-result" id="r-result"></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ CULTURE STRIP ══ -->
+<div class="culture">
+  <div class="culture-inner">
+    <h2>Cultura italiana ☀️</h2>
+    <p>La dolce vita — el arte italiano de disfrutar la vida</p>
+    <div class="culture-facts">
+      <div class="cf" data-a>
+        <div class="cf-icon">☕</div>
+        <h4>Il bar italiano</h4>
+        <p>El desayuno en el bar es sagrado. Un cappuccino con un cornetto consumido de pie en 5 minutos — así empieza el giorno perfetto de muchos italianos.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">🌅</div>
+        <h4>La passeggiata</h4>
+        <p>El ritual del paseo vespertino es parte esencial de la vida italiana, especialmente en ciudades pequeñas. Entre las 6 y las 8 de la tarde, todo el pueblo sale a caminar.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">🍷</div>
+        <h4>L'aperitivo</h4>
+        <p>No es solo una bebida — es un momento social. En Milán, el aperitivo incluye buffet de snacks. En toda Italia, es el rito que marca el fin del día laboral.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">🏖️</div>
+        <h4>Le vacanze estive</h4>
+        <p>Agosto es el mes de vacaciones por excelencia. Muchas tiendas y negocios cierran. "Siamo in ferie" (estamos de vacaciones) es la respuesta más italiana del verano.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">🏔️</div>
+        <h4>Mare o montagna?</h4>
+        <p>El eterno debate italiano. Las familias se dividen: los del norte prefieren la montagna, los del sur el mare. Muchos van a ambos en distintas semanas del verano.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">🎭</div>
+        <h4>La vita è bella</h4>
+        <p>La película de Roberto Benigni (1997) es una de las más amadas del cine italiano. Ganó 3 premios Oscar y muestra la filosofía italiana: el humor y el amor ante la adversidad.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>Italiano per piacere · A2 · Módulo 12 · Etapa 2 Descubrimiento</footer>
+
+<script>
+// Progress bar
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('prog-bar').style.width=pct+'%';
+});
+
+// Parallax hero
+document.querySelector('.hero').addEventListener('mousemove',e=>{
+  const circles=document.querySelectorAll('.hero-circles span');
+  const x=(e.clientX/window.innerWidth-.5)*20;
+  const y=(e.clientY/window.innerHeight-.5)*20;
+  circles.forEach((c,i)=>{c.style.transform=`translate(${x*(i+1)*.4}px,${y*(i+1)*.4}px)`});
+});
+
+// Word grid
+document.querySelectorAll('.wcard').forEach(c=>{
+  c.addEventListener('click',()=>{
+    if(c.dataset.ok==='true'){c.classList.remove('trap');c.classList.add('ok');}
+    else{c.classList.remove('ok');c.classList.add('trap');}
+  });
+});
+
+// Fill blanks
+function checkFill(ids,fbId){
+  let ok=0;
+  ids.forEach(id=>{
+    const el=document.getElementById(id);
+    const v=el.value.toLowerCase().trim();
+    const a=el.dataset.ans.toLowerCase().trim();
+    el.classList.remove('ok','err');
+    if(v===a){el.classList.add('ok');ok++;}
+    else el.classList.add('err');
+  });
+  const fb=document.getElementById(fbId);
+  fb.className='fill-fb '+(ok===ids.length?'ok':'err');
+  fb.textContent=ok===ids.length
+    ?'✅ Perfetto! Tutte corrette!'
+    :`${ok}/${ids.length} corrette — controlla quelle in rosso.`;
+}
+
+// Matching
+let matchSel={L:null,R:null};
+const matchPairs={1:1,2:2,3:3,4:4,5:5,6:6};
+function selectMatch(el,side,id){
+  if(el.classList.contains('ok'))return;
+  document.querySelectorAll('.match-item.sel').forEach(e=>{
+    if((side==='L'&&e.id.startsWith('mL'))||(side==='R'&&e.id.startsWith('mR')))
+      e.classList.remove('sel');
+  });
+  el.classList.add('sel');
+  matchSel[side]=id;
+  if(matchSel.L&&matchSel.R){
+    const lEl=document.getElementById('mL'+matchSel.L);
+    const rEl=document.getElementById('mR'+matchSel.R);
+    if(matchPairs[matchSel.L]==matchSel.R){
+      lEl.classList.add('ok');rEl.classList.add('ok');
+    } else {
+      lEl.classList.add('err');rEl.classList.add('err');
+      setTimeout(()=>{lEl.classList.remove('err','sel');rEl.classList.remove('err','sel');},700);
+    }
+    matchSel={L:null,R:null};
+    const done=document.querySelectorAll('.match-item.ok').length;
+    if(done===12)document.getElementById('match-result').textContent='🎉 Perfetto! Tutte le coppie corrette!';
+  }
+}
+
+// Reading comprehension
+function checkReading(){
+  const ans={rq1:'b',rq2:'c',rq3:'a',rq4:'b'};
+  let ok=0;
+  for(const q in ans){
+    const sel=document.querySelector(`input[name="${q}"]:checked`);
+    document.querySelectorAll(`input[name="${q}"]`).forEach(i=>{
+      i.parentElement.classList.remove('ok','err');
+    });
+    if(sel){
+      if(sel.value===ans[q]){sel.parentElement.classList.add('ok');ok++;}
+      else sel.parentElement.classList.add('err');
+    }
+  }
+  const r=document.getElementById('r-result');
+  r.textContent=ok===4?'🌟 Perfetto! Tutte corrette!':`${ok}/4 corrette — rileggi il testo.`;
+}
+
+// IntersectionObserver
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});
+},{threshold:.12});
+document.querySelectorAll('[data-a]').forEach((el,i)=>{
+  const par=el.closest('[data-stagger]');
+  if(par){el.style.setProperty('--i',i%8);}
+  obs.observe(el);
+});
+</script>
+</body>
+</html>

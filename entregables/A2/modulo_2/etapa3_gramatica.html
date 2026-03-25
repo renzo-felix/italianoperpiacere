@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unità 2 — Feste e tradizioni · Gramática | Italiano Per Piacere A2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;
+  --gold:#EFCF7F;--amber:#e5ab07;
+  --red:#cc4736;--teal:#78a6ba;--teal-dk:#5a8ea0;
+  --green:#528e74;--green-dk:#3d6b58;
+  --black:#1a1a18;--white:#ffffff;
+  --hdr:var(--teal-dk);
+  --fh:'Playfair Display',Georgia,serif;
+  --fb:'Outfit',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--fb);background:var(--cream);color:var(--black)}
+body.hide-es .es{display:none}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #78a6ba;box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#3d7a94;border-bottom-color:#78a6ba}
+#etoggle{position:fixed;top:.9rem;right:1rem;z-index:200;background:#c8e5f0;color:var(--black);border:none;border-radius:2rem;padding:.4rem 1rem;font-family:var(--fb);font-size:.8rem;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.section{max-width:860px;margin:0 auto;padding:3rem 1.5rem}
+.sec-title{font-family:var(--fh);font-style:italic;font-size:clamp(1.5rem,4vw,2rem);color:var(--hdr);margin-bottom:.3rem}
+.sec-sub{color:#666;font-size:.9rem;margin-bottom:1.8rem;line-height:1.5}
+.es{color:#888;font-size:.85rem;font-style:italic}
+.rule-card{background:var(--white);border-radius:.9rem;padding:1.4rem 1.6rem;margin-bottom:1.2rem;border-left:5px solid var(--hdr);box-shadow:0 3px 12px rgba(0,0,0,.07)}
+.rule-card h4{font-weight:700;color:var(--hdr);margin-bottom:.6rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.05em}
+.rule-card p,.rule-card li{font-size:.92rem;line-height:1.65;color:#444}
+.rule-card em{color:var(--black);font-style:italic;font-weight:600}
+.rule-card ul{padding-left:1.2rem;margin-top:.4rem}
+.gtable{width:100%;border-collapse:collapse;margin:1rem 0;border-radius:.7rem;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.gtable th{background:#b8d8e8;color:#1f4d60;padding:.7rem 1rem;text-align:center;font-size:.82rem;letter-spacing:.05em}
+.gtable td{padding:.65rem 1rem;border-bottom:1px solid var(--cream-dk);font-size:.9rem;text-align:center;background:var(--white)}
+.gtable tr:last-child td{border:none}
+.gtable tr:nth-child(even) td{background:#eef6fa}
+.gtable tr:hover td{background:var(--cream)}
+.gtable td:first-child{font-weight:700;color:var(--hdr);text-align:left}
+.hl{background:var(--gold);padding:.1rem .3rem;border-radius:.25rem;font-weight:700}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+.prac-block{background:var(--white);border-radius:1rem;padding:1.6rem;margin-bottom:1.5rem;box-shadow:0 3px 14px rgba(0,0,0,.07);border:1px solid var(--cream-dk)}
+.prac-block h4{font-family:var(--fh);font-style:italic;color:var(--hdr);margin-bottom:1rem;font-size:1.1rem}
+.prac-row{margin:.6rem 0;font-size:.93rem;line-height:1.9;display:flex;flex-wrap:wrap;align-items:center;gap:.3rem}
+.prac-input{border:none;border-bottom:2.5px solid var(--hdr);background:transparent;padding:.1rem .5rem;font-family:var(--fb);font-size:.92rem;width:180px;outline:none;color:var(--black)}
+.prac-input.ok{border-color:var(--green);color:var(--green-dk)}
+.prac-input.err{border-color:var(--red);color:var(--red)}
+.prac-btn{background:#c8e5f0;color:var(--black);border:none;border-radius:2rem;padding:.5rem 1.4rem;font-family:var(--fb);font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.8rem;transition:background .2s}
+.prac-btn:hover{background:var(--teal)}
+.prac-fb{font-size:.83rem;margin-top:.5rem;font-weight:600;color:var(--hdr);min-height:1.1rem}
+.quiz-section{background:var(--cream-dk);padding:3rem 1.5rem}
+.quiz-inner{max-width:700px;margin:0 auto}
+.quiz-title{font-family:var(--fh);font-style:italic;font-size:1.8rem;color:var(--hdr);margin-bottom:.4rem}
+.qcard{background:var(--white);border-radius:1rem;padding:1.4rem 1.6rem;margin-bottom:1.2rem;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.qcard .qtext{font-size:.95rem;font-weight:600;margin-bottom:.9rem;line-height:1.5}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.qopt{background:var(--cream);border:2px solid var(--cream-dk);border-radius:.6rem;padding:.6rem 1rem;cursor:pointer;font-size:.88rem;transition:all .2s;text-align:center}
+.qopt:hover{border-color:var(--hdr);background:var(--gold)}
+.qopt.selected{background:var(--gold);border-color:var(--hdr);font-weight:700}
+.qopt.correct{background:#d4edda;border-color:var(--green)}
+.qopt.wrong{background:#f8d7da;border-color:var(--red)}
+.quiz-submit{background:#c8e5f0;color:var(--black);border:none;border-radius:2rem;padding:.65rem 2rem;font-family:var(--fb);font-size:.92rem;font-weight:700;cursor:pointer;display:block;margin:1.5rem auto 0;box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.quiz-result{text-align:center;font-size:1.1rem;font-weight:700;margin-top:1.2rem;min-height:1.5rem;color:var(--hdr)}
+.irreg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.6rem;margin-top:.8rem}
+.irreg-item{background:var(--cream);border-radius:.5rem;padding:.6rem .9rem;font-size:.88rem;display:flex;gap:.5rem;align-items:center}
+.irreg-item strong{color:var(--hdr)}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+nav > a:not(.nav-logo):hover,nav > a:not(.nav-logo).active{opacity:1;color:#3d7a94;border-bottom-color:#78a6ba}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+
+<button id="etoggle" onclick="toggleEs()">ES 👁</button>
+
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#assoluto">Superl. assoluto</a>
+      <a href="#relativo">Superl. relativo</a>
+      <a href="#uno-dei">Uno dei più</a>
+      <a href="#avverbi">Avverbi</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+
+<!-- SUPERLATIVO ASSOLUTO -->
+<section class="section" id="assoluto">
+  <h2 class="sec-title">Il superlativo assoluto</h2>
+  <p class="sec-sub es">Expresa el grado máximo de una cualidad sin comparar con nadie. Equivale a "muy..." o "...ísimo/a".</p>
+
+  <div class="two-col">
+    <div class="rule-card">
+      <h4>Forma 1: -issimo/a/i/e</h4>
+      <p>Adjective stem + -issimo/a/i/e:</p>
+      <ul>
+        <li>bello → bell<span class="hl">issimo</span></li>
+        <li>famoso → famosissimo</li>
+        <li>antico → antich<span class="hl">issimo</span> <span style="font-size:.75rem;color:#888">(c→ch)</span></li>
+        <li>lungo → lungh<span class="hl">issimo</span> <span style="font-size:.75rem;color:#888">(g→gh)</span></li>
+      </ul>
+    </div>
+    <div class="rule-card">
+      <h4>Forma 2: molto + adj.</h4>
+      <p>Más sencillo, siempre válido:</p>
+      <ul>
+        <li>molto bello = bellissimo</li>
+        <li>molto famoso = famosissimo</li>
+        <li>molto divertente = divertentissimo</li>
+        <li style="font-size:.82rem;color:#888">💡 En la lengua hablada, ambas formas son igualmente correctas.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <h4>Superlativi irregolari</h4>
+    <p class="es">Estos adjetivos tienen formas propias (aunque también aceptan -issimo):</p>
+    <div class="irreg-grid">
+      <div class="irreg-item"><strong>buono</strong> → ottimo <span class="es">(= il migliore)</span></div>
+      <div class="irreg-item"><strong>cattivo</strong> → pessimo</div>
+      <div class="irreg-item"><strong>grande</strong> → massimo / grandissimo</div>
+      <div class="irreg-item"><strong>piccolo</strong> → minimo / piccolissimo</div>
+    </div>
+  </div>
+
+  <!-- PRACTICE 1 -->
+  <div class="prac-block" id="prac1" style="margin-top:1.5rem">
+    <h4>Pratica 1 — Superlativo assoluto</h4>
+    <p class="es" style="font-size:.83rem;margin-bottom:.8rem">Forma il superlativo assoluto con -issimo:</p>
+    <div class="prac-row">1. La maschera è bella → La maschera è <input class="prac-input" data-ans="bellissima" placeholder="-issima">.</div>
+    <div class="prac-row">2. I costumi sono colorati → I costumi sono <input class="prac-input" data-ans="coloratissimi" placeholder="-issimi">.</div>
+    <div class="prac-row">3. La tradizione è antica → La tradizione è <input class="prac-input" data-ans="antichissima" placeholder="-issima (c→ch)">.</div>
+    <div class="prac-row">4. Il Palio è famoso → Il Palio è <input class="prac-input" data-ans="famosissimo" placeholder="-issimo">.</div>
+    <button class="prac-btn" onclick="checkPrac('prac1')">Controlla ✓</button>
+    <div class="prac-fb" id="prac1-fb"></div>
+  </div>
+</section>
+
+<!-- SUPERLATIVO RELATIVO -->
+<section class="section" id="relativo" style="background:var(--cream-dk);padding:3rem 1.5rem">
+<div style="max-width:860px;margin:0 auto">
+  <h2 class="sec-title">Il superlativo relativo</h2>
+  <p class="sec-sub es">Compara dentro de un grupo. Equivale a "el/la más... de...".</p>
+
+  <div class="rule-card">
+    <h4>Struttura</h4>
+    <p><em>articolo determinativo + (sostantivo) + <span class="hl">più / meno</span> + aggettivo + <span class="hl">di / del / d'</span></em></p>
+    <p style="margin-top:.5rem">Esempi:</p>
+    <ul>
+      <li>Venezia è <em>la città <span class="hl">più romantica</span> d'Italia.</em></li>
+      <li>Il Palio è <em>la corsa <span class="hl">più emozionante</span> del mondo.</em></li>
+      <li>Agosto è <em>il mese <span class="hl">meno piovoso</span> dell'anno.</em></li>
+    </ul>
+  </div>
+
+  <table class="gtable" style="margin-top:1rem">
+    <thead><tr><th>Preposizione usata</th><th class="es">Cuando...</th><th class="es">Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>di</strong></td><td class="es">... de (Italia, Europa, etc.)</td><td class="es"><em>più bello d'Italia</em></td></tr>
+      <tr><td><strong>del/della/dei/delle</strong></td><td class="es">... del/de los/de las</td><td class="es"><em>più grande del mondo</em></td></tr>
+      <tr><td><strong>tra / fra</strong></td><td class="es">entre (un grupo específico)</td><td class="es"><em>la più bella tra tutte le feste</em></td></tr>
+    </tbody>
+  </table>
+
+  <!-- PRACTICE 2 -->
+  <div class="prac-block" id="prac2" style="margin-top:1.5rem">
+    <h4>Pratica 2 — Superlativo relativo</h4>
+    <div class="prac-row">1. Il Carnevale / famoso / Italia → <input class="prac-input" data-ans="il più famoso d'italia" placeholder="il più... d'Italia" style="width:210px">.</div>
+    <div class="prac-row">2. Roma / antica / Europa → Roma è <input class="prac-input" data-ans="la città più antica d'europa" placeholder="la città più... d'Europa" style="width:240px">.</div>
+    <div class="prac-row">3. La pizza / buona → La pizza napoletana è <input class="prac-input" data-ans="la migliore" placeholder="il migliore (irreg.)" style="width:160px"> del mondo.</div>
+    <button class="prac-btn" onclick="checkPrac('prac2')">Controlla ✓</button>
+    <div class="prac-fb" id="prac2-fb"></div>
+  </div>
+</div>
+</section>
+
+<!-- UNO DEI PIÙ -->
+<section class="section" id="uno-dei">
+  <h2 class="sec-title">La costruzione "uno dei più"</h2>
+  <p class="sec-sub es">Para decir "uno de los más..." en italiano, la estructura cambia según el género:</p>
+
+  <table class="gtable">
+    <thead><tr><th>Genere</th><th>Struttura</th><th class="es">Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td>masch. sing.</td><td><em>uno <span class="hl">dei</span> più + adj. (m.pl.)</em></td><td class="es"><em>uno dei piatti più famosi</em></td></tr>
+      <tr><td>masch. sing. (s+cons./z)</td><td><em>uno <span class="hl">degli</span> più + adj. (m.pl.)</em></td><td class="es"><em>uno degli spettacoli più belli</em></td></tr>
+      <tr><td>femm. sing.</td><td><em>una <span class="hl">delle</span> città più + adj. (f.pl.)</em></td><td class="es"><em>una delle feste più antiche</em></td></tr>
+      <tr><td>femm. sing. (voc.)</td><td><em>una <span class="hl">delle</span> isole più + adj. (f.pl.)</em></td><td class="es"><em>una delle isole più belle</em></td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-card" style="margin-top:1rem">
+    <h4>⚠️ Il verbo è singolare</h4>
+    <p>Anche se la costruzione usa un plurale, il verbo rimane al <em>singolare</em>: <em>Venezia <span class="hl">è</span> una delle città più belle del mondo.</em></p>
+  </div>
+
+  <!-- PRACTICE 3 -->
+  <div class="prac-block" id="prac3" style="margin-top:1.5rem">
+    <h4>Pratica 3 — Uno dei più / Una delle più</h4>
+    <div class="prac-row">1. Il Palio (spettacolo emozionante) → È <input class="prac-input" data-ans="uno degli spettacoli più emozionanti" placeholder="uno degli... più..." style="width:280px"> d'Italia.</div>
+    <div class="prac-row">2. La pizza (piatto famoso) → È <input class="prac-input" data-ans="uno dei piatti più famosi" placeholder="uno dei... più..." style="width:250px"> del mondo.</div>
+    <div class="prac-row">3. Venezia (città romantica) → È <input class="prac-input" data-ans="una delle città più romantiche" placeholder="una delle... più..." style="width:280px"> del mondo.</div>
+    <button class="prac-btn" onclick="checkPrac('prac3')">Controlla ✓</button>
+    <div class="prac-fb" id="prac3-fb"></div>
+  </div>
+</section>
+
+<!-- AVVERBI -->
+<section class="section" id="avverbi" style="background:var(--cream-dk);padding:3rem 1.5rem">
+<div style="max-width:860px;margin:0 auto">
+  <h2 class="sec-title">Avverbi di tempo con il passato prossimo</h2>
+  <p class="sec-sub es">Estos adverbios se colocan entre el auxiliar (avere/essere) y el participio pasado.</p>
+
+  <div class="rule-card">
+    <h4>Posizione: auxiliar + AVVERBIO + participio</h4>
+    <p><em>Ho <span class="hl">già</span> visitato Venezia. / Non sono <span class="hl">ancora</span> andato al Palio.</em></p>
+  </div>
+
+  <table class="gtable">
+    <thead><tr><th>Avverbio</th><th class="es">Significado</th><th class="es">Ejemplo</th><th>Negazione</th></tr></thead>
+    <tbody>
+      <tr><td><strong>già</strong></td><td class="es">ya</td><td class="es"><em>Ho già visto il Palio.</em></td><td>—</td></tr>
+      <tr><td><strong>ancora</strong></td><td class="es">aún / todavía</td><td class="es"><em>Non sono ancora partito.</em></td><td>non...ancora</td></tr>
+      <tr><td><strong>appena</strong></td><td class="es">acabar de / recién</td><td class="es"><em>Ho appena finito.</em></td><td>—</td></tr>
+      <tr><td><strong>mai</strong></td><td class="es">nunca</td><td class="es"><em>Non ho mai mangiato il panettone.</em></td><td>non...mai</td></tr>
+      <tr><td><strong>sempre</strong></td><td class="es">siempre</td><td class="es"><em>Ho sempre amato Venezia.</em></td><td>—</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz-section" id="quiz">
+  <div class="quiz-inner">
+    <h2 class="quiz-title">Quiz — Feste e tradizioni 🎭</h2>
+    <p class="es" style="color:#666;font-size:.88rem;margin-bottom:1.5rem">5 domande su superlativo, uno dei più e avverbi.</p>
+
+    <div class="qcard">
+      <div class="qtext">1. "Il Carnevale di Venezia è ___ festa ___ famosa d'Italia."</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q1','a')">a) la / più</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','b')">b) una / molto</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','c')">c) il / più</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','d')">d) la / molto</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">2. Superlativo assoluto di "antico": come si scrive?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q2','a')">a) anticissimo</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','b')">b) antichissimo</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','c')">c) antiquissimo</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','d')">d) anticossimo</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">3. "Venezia è ___ città più romantiche del mondo." (una delle)</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q3','a')">a) uno dei</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','b')">b) una dei</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','c')">c) una delle</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','d')">d) una degli</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">4. Dove va "già" in questa frase? "Ho visitato Roma." (già)</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q4','a')">a) Già ho visitato Roma.</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','b')">b) Ho già visitato Roma.</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','c')">c) Ho visitato già Roma.</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','d')">d) Ho visitato Roma già.</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">5. Qual è il superlativo irregolare di "buono"?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q5','a')">a) buonissimo</div>
+        <div class="qopt" onclick="selectOpt(this,'q5','b')">b) il più buono</div>
+        <div class="qopt" onclick="selectOpt(this,'q5','c')">c) ottimo</div>
+        <div class="qopt" onclick="selectOpt(this,'q5','d')">d) bondissimo</div>
+      </div>
+    </div>
+
+    <button class="quiz-submit" onclick="submitQuiz()">Controlla il quiz ✓</button>
+    <div class="quiz-result" id="quiz-result"></div>
+  </div>
+</section>
+
+<script>
+function toggleEs(){
+  document.body.classList.toggle('hide-es');
+  document.getElementById('etoggle').textContent=
+    document.body.classList.contains('hide-es')?'ES 🙈':'ES 👁';
+}
+function checkPrac(id){
+  const block=document.getElementById(id);
+  const inputs=block.querySelectorAll('.prac-input');
+  let ok=0;
+  inputs.forEach(inp=>{
+    inp.classList.remove('ok','err');
+    if(inp.value.toLowerCase().trim()===inp.dataset.ans){inp.classList.add('ok');ok++}
+    else if(inp.value.trim())inp.classList.add('err');
+  });
+  document.getElementById(id+'-fb').textContent=ok===inputs.length?'✅ Perfetto!':'👀 '+ok+'/'+inputs.length+' corretti.';
+}
+const ANSWERS={q1:'a',q2:'b',q3:'c',q4:'b',q5:'c'};
+const selected={};
+function selectOpt(el,qid,opt){
+  el.closest('.qcard').querySelectorAll('.qopt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');selected[qid]=opt;
+}
+function submitQuiz(){
+  let score=0;
+  document.querySelectorAll('.qcard').forEach((card,i)=>{
+    const qid='q'+(i+1);
+    card.querySelectorAll('.qopt').forEach(o=>{
+      const optLetter=o.textContent.trim()[0];
+      o.classList.remove('correct','wrong');
+      if(optLetter===ANSWERS[qid])o.classList.add('correct');
+      else if(o.classList.contains('selected'))o.classList.add('wrong');
+    });
+    if(selected[qid]===ANSWERS[qid])score++;
+  });
+  const res=document.getElementById('quiz-result');
+  res.textContent=score===5?'🎉 Perfetto! 5/5 — Superlativo dominato!':
+    score>=3?`✅ ${score}/5 — Brava! Ripasssa gli errori.`:
+    `👀 ${score}/5 — Rileggi la sezione e riprova!`;
+}
+</script>
+</body>
+</html>

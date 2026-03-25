@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gramática — Módulo 4 | Italiano Per Piacere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #e9e6d5;
+    --cream-dk: #ddd9c8;
+    --green: #528e74;
+    --green-dk: #3d6b58;
+    --green-hero: #c8e8de;
+    --green-border: #528e74;
+    --green-active: #3d6b58;
+    --green-th: #a8d4c4;
+    --green-th-text: #2a4d3c;
+    --red: #cc4736;
+    --black: #1a1a18;
+    --white: #ffffff;
+    --fh: 'Playfair Display', Georgia, serif;
+    --fb: 'Outfit', system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--fb); color: var(--black); background: var(--cream); }
+
+  nav { position: sticky; top: 0; z-index: 100; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,.08); display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+  .nav-inner { max-width: 1100px; margin: 0 auto; padding: .75rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .nav-logo img { height: 40px; display: block; }
+  .nav-links { display: flex; gap: .25rem; flex-wrap: wrap; }
+  .nav-links a { font-size: .82rem; font-weight: 600; color: var(--green-active); text-decoration: none; padding: .35rem .75rem; border-radius: 20px; transition: background .2s; }
+  .nav-links a:hover { background: var(--green-hero); }
+
+  .progress-wrap { background: var(--green-th); height: 6px; }
+  .progress-bar { height: 6px; background: var(--green-active); width: 0%; transition: width .4s; }
+
+  .hero { background: var(--green-hero); border-bottom: 4px solid var(--green-border); padding: 3rem 1.5rem 2.5rem; text-align: center; }
+  .hero-badge { display: inline-block; background: var(--green-th); color: var(--green-th-text); font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: .3rem .9rem; border-radius: 20px; margin-bottom: 1rem; }
+  .hero h1 { font-family: var(--fh); font-size: clamp(1.8rem,4vw,2.8rem); font-style: italic; color: var(--black); margin-bottom: .5rem; }
+  .hero p { font-size: 1rem; color: #334; max-width: 560px; margin: 0 auto; }
+
+  .section { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem; }
+  .section-title { font-family: var(--fh); font-size: 1.6rem; font-style: italic; color: var(--green-active); margin-bottom: 1.5rem; padding-bottom: .5rem; border-bottom: 2px solid var(--green-th); }
+
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .93rem; }
+  th { background: var(--green-th); color: var(--green-th-text); font-weight: 700; padding: .65rem .9rem; text-align: left; }
+  td { padding: .55rem .9rem; border-bottom: 1px solid var(--green-th); }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #f0f9f5; }
+  .hl { color: var(--green-active); font-weight: 700; }
+
+  .grammar-box { background: var(--white); border: 2px solid var(--green-th); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; }
+  .grammar-box h3 { font-family: var(--fh); font-style: italic; font-size: 1.2rem; color: var(--green-active); margin-bottom: 1rem; }
+
+  .rule-card { background: var(--green-hero); border-left: 4px solid var(--green-active); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; }
+  .rule-card .rl { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--green-dk); margin-bottom: .4rem; }
+  .rule-card .rt { font-size: .95rem; line-height: 1.6; }
+  .rule-card em { color: var(--green-active); font-style: normal; font-weight: 700; }
+
+  /* Number full table */
+  .num-full { display: grid; grid-template-columns: repeat(auto-fill,minmax(130px,1fr)); gap: .4rem; }
+  .nf-cell { display: flex; align-items: center; gap: .5rem; background: var(--white); border: 1px solid var(--green-th); border-radius: 6px; padding: .35rem .6rem; font-size: .87rem; }
+  .nf-n { font-weight: 700; color: var(--green-active); min-width: 28px; }
+  .nf-w { color: #334; }
+
+  /* Ora grid */
+  .ora-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: 1rem; margin: 1rem 0; }
+  .ora-card { background: var(--green-hero); border: 2px solid var(--green-th); border-radius: 12px; padding: 1rem; }
+  .ora-card .time { font-family: var(--fh); font-size: 1.3rem; font-style: italic; color: var(--green-active); }
+  .ora-card .formal { font-weight: 600; margin-top: .3rem; }
+  .ora-card .informal { font-size: .85rem; color: #557; font-style: italic; margin-top: .15rem; }
+
+  /* Verbs table */
+  .practice-block { background: var(--cream-dk); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; }
+  .practice-block h3 { font-family: var(--fh); font-style: italic; font-size: 1.2rem; color: var(--green-active); margin-bottom: 1rem; }
+  .fill-item { display: flex; align-items: center; gap: .5rem; margin-bottom: .75rem; flex-wrap: wrap; }
+  .fill-item span { font-size: .95rem; }
+  .fill-input { border: 2px solid var(--green-th); border-radius: 8px; padding: .3rem .6rem; font-family: var(--fb); font-size: .95rem; color: var(--black); background: var(--white); min-width: 80px; transition: border-color .2s; }
+  .fill-input:focus { outline: none; border-color: var(--green-active); }
+  .fill-input.correct { border-color: var(--green); background: #d8f0e8; }
+  .fill-input.wrong { border-color: var(--red); background: #fdf0ee; }
+  .check-btn { background: var(--green-active); color: var(--white); border: none; border-radius: 8px; padding: .55rem 1.3rem; font-family: var(--fb); font-weight: 600; cursor: pointer; transition: background .2s; margin-top: .5rem; }
+  .check-btn:hover { background: var(--green-dk); }
+  .feedback { font-size: .85rem; font-weight: 600; margin-top: .5rem; }
+  .feedback.ok { color: var(--green); }
+  .feedback.err { color: var(--red); }
+
+  /* Quiz */
+  .quiz-section { max-width: 760px; margin: 0 auto 4rem; padding: 0 1.5rem; }
+  .quiz-title { font-family: var(--fh); font-size: 1.5rem; font-style: italic; color: var(--green-active); margin-bottom: 1.5rem; }
+  .quiz-q { background: var(--white); border: 2px solid var(--green-th); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem; }
+  .quiz-q p { font-weight: 600; margin-bottom: 1rem; }
+  .quiz-opt { display: block; padding: .6rem .9rem; border-radius: 8px; border: 2px solid var(--green-th); margin-bottom: .5rem; cursor: pointer; transition: background .2s; font-size: .93rem; }
+  .quiz-opt:hover { background: var(--green-hero); border-color: var(--green); }
+  .quiz-opt.selected { background: var(--green-hero); border-color: var(--green-active); font-weight: 600; }
+  .quiz-opt.correct-ans { background: #d8f0e8; border-color: var(--green); color: var(--green-active); font-weight: 700; }
+  .quiz-opt.wrong-ans { background: #fdf0ee; border-color: var(--red); color: var(--red); }
+  .quiz-btn { background: var(--green-active); color: var(--white); border: none; border-radius: 8px; padding: .7rem 2rem; font-family: var(--fb); font-weight: 700; font-size: 1rem; cursor: pointer; display: block; margin: 1.5rem auto 0; transition: background .2s; }
+  .quiz-btn:hover { background: var(--green-dk); }
+  .quiz-result { text-align: center; font-size: 1.1rem; font-weight: 700; margin-top: 1rem; padding: 1rem; border-radius: 12px; }
+  .quiz-result.great { background: #d8f0e8; color: var(--green-active); }
+  .quiz-result.ok-r { background: var(--green-hero); color: var(--green-active); }
+  .quiz-result.low { background: #fdf0ee; color: var(--red); }
+
+  footer { background: var(--cream-dk); text-align: center; padding: 1.5rem; font-size: .82rem; color: #667; border-top: 1px solid var(--cream); }
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo) { font-size: .82rem; font-weight: 600; color: var(--green-active); text-decoration: none; padding: .35rem .75rem; border-radius: 20px; transition: background .2s; }
+nav > a:not(.nav-logo):hover { background: var(--green-hero); }
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+
+<nav class="sticky-nav">
+    <div class="nav-logo"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img">
+      <a href="#numeri">Numeri</a>
+      <a href="#ora">L'ora</a>
+      <a href="#biglietti">Biglietti</a>
+      <a href="#pratica">Práctica</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+<div class="progress-wrap"><div class="progress-bar" id="progress"></div></div>
+
+<header class="hero">
+  <div class="hero-badge">Gramática · Módulo 4</div>
+  <h1>Numeri, l'ora & i biglietti</h1>
+  <p>Todo lo que necesitás saber para no perderte ningún tren en Italia.</p>
+</header>
+
+<!-- NUMERI -->
+<section class="section" id="numeri">
+  <h2 class="section-title">I numeri 1–100</h2>
+
+  <div class="grammar-box">
+    <h3>La tabla completa</h3>
+    <div class="num-full">
+      <div class="nf-cell"><span class="nf-n">1</span><span class="nf-w">uno</span></div>
+      <div class="nf-cell"><span class="nf-n">2</span><span class="nf-w">due</span></div>
+      <div class="nf-cell"><span class="nf-n">3</span><span class="nf-w">tre</span></div>
+      <div class="nf-cell"><span class="nf-n">4</span><span class="nf-w">quattro</span></div>
+      <div class="nf-cell"><span class="nf-n">5</span><span class="nf-w">cinque</span></div>
+      <div class="nf-cell"><span class="nf-n">6</span><span class="nf-w">sei</span></div>
+      <div class="nf-cell"><span class="nf-n">7</span><span class="nf-w">sette</span></div>
+      <div class="nf-cell"><span class="nf-n">8</span><span class="nf-w">otto</span></div>
+      <div class="nf-cell"><span class="nf-n">9</span><span class="nf-w">nove</span></div>
+      <div class="nf-cell"><span class="nf-n">10</span><span class="nf-w">dieci</span></div>
+      <div class="nf-cell"><span class="nf-n">11</span><span class="nf-w">undici</span></div>
+      <div class="nf-cell"><span class="nf-n">12</span><span class="nf-w">dodici</span></div>
+      <div class="nf-cell"><span class="nf-n">13</span><span class="nf-w">tredici</span></div>
+      <div class="nf-cell"><span class="nf-n">14</span><span class="nf-w">quattordici</span></div>
+      <div class="nf-cell"><span class="nf-n">15</span><span class="nf-w">quindici</span></div>
+      <div class="nf-cell"><span class="nf-n">16</span><span class="nf-w">sedici</span></div>
+      <div class="nf-cell"><span class="nf-n">17</span><span class="nf-w">diciassette</span></div>
+      <div class="nf-cell"><span class="nf-n">18</span><span class="nf-w">diciotto</span></div>
+      <div class="nf-cell"><span class="nf-n">19</span><span class="nf-w">diciannove</span></div>
+      <div class="nf-cell"><span class="nf-n">20</span><span class="nf-w">venti</span></div>
+      <div class="nf-cell"><span class="nf-n">21</span><span class="nf-w">ventuno</span></div>
+      <div class="nf-cell"><span class="nf-n">22</span><span class="nf-w">ventidue</span></div>
+      <div class="nf-cell"><span class="nf-n">23</span><span class="nf-w">ventitré</span></div>
+      <div class="nf-cell"><span class="nf-n">25</span><span class="nf-w">venticinque</span></div>
+      <div class="nf-cell"><span class="nf-n">28</span><span class="nf-w">ventotto</span></div>
+      <div class="nf-cell"><span class="nf-n">30</span><span class="nf-w">trenta</span></div>
+      <div class="nf-cell"><span class="nf-n">31</span><span class="nf-w">trentuno</span></div>
+      <div class="nf-cell"><span class="nf-n">33</span><span class="nf-w">trentatré</span></div>
+      <div class="nf-cell"><span class="nf-n">40</span><span class="nf-w">quaranta</span></div>
+      <div class="nf-cell"><span class="nf-n">42</span><span class="nf-w">quarantadue</span></div>
+      <div class="nf-cell"><span class="nf-n">50</span><span class="nf-w">cinquanta</span></div>
+      <div class="nf-cell"><span class="nf-n">55</span><span class="nf-w">cinquantacinque</span></div>
+      <div class="nf-cell"><span class="nf-n">60</span><span class="nf-w">sessanta</span></div>
+      <div class="nf-cell"><span class="nf-n">66</span><span class="nf-w">sessantasei</span></div>
+      <div class="nf-cell"><span class="nf-n">70</span><span class="nf-w">settanta</span></div>
+      <div class="nf-cell"><span class="nf-n">77</span><span class="nf-w">settantasette</span></div>
+      <div class="nf-cell"><span class="nf-n">80</span><span class="nf-w">ottanta</span></div>
+      <div class="nf-cell"><span class="nf-n">88</span><span class="nf-w">ottantotto</span></div>
+      <div class="nf-cell"><span class="nf-n">90</span><span class="nf-w">novanta</span></div>
+      <div class="nf-cell"><span class="nf-n">99</span><span class="nf-w">novantanove</span></div>
+      <div class="nf-cell"><span class="nf-n">100</span><span class="nf-w">cento</span></div>
+    </div>
+
+    <div class="rule-card" style="margin-top:1.5rem;">
+      <div class="rl">Reglas de formación</div>
+      <div class="rt">
+        1. Las decenas (venti, trenta…) pierden la vocal final antes de -uno y -otto: <em>ventuno</em>, <em>ventotto</em>, <em>trentuno</em>, <em>trentotto</em>.<br>
+        2. El número <em>tre</em> al final lleva acento: <em>ventitré</em>, <em>trentatré</em>, <em>quarantatré</em>…<br>
+        3. <em>Cento</em> no lleva artículo: <em>ho cento euro</em> (no "un cento").
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- L'ORA -->
+<section class="section" id="ora">
+  <h2 class="section-title">L'ora — Cómo decir la hora</h2>
+
+  <div class="grammar-box">
+    <h3>Estructura básica</h3>
+    <table>
+      <thead><tr><th>Pregunta</th><th>Respuesta</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Che ore sono?</strong></td><td>Sono le <em>tre</em>. / È l'<em>una</em>. / È <em>mezzogiorno</em>. / È <em>mezzanotte</em>.</td></tr>
+        <tr><td><strong>A che ora parte?</strong></td><td>Parte alle <em>otto e venti</em>.</td></tr>
+        <tr><td><strong>Quando arriva?</strong></td><td>Arriva alle <em>tredici e quaranta</em>.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="rule-card">
+      <div class="rl">Regla clave</div>
+      <div class="rt"><em>Sono le</em> + número (plural para todas las horas excepto la 1) · <em>È l'una</em> (la 1 es singular) · <em>È mezzogiorno / mezzanotte</em> sin artículo.</div>
+    </div>
+
+    <div class="ora-grid" style="margin-top:1.5rem;">
+      <div class="ora-card"><div class="time">08:00</div><div class="formal">Sono le otto.</div><div class="informal">Colloquiale: le otto di mattina</div></div>
+      <div class="ora-card"><div class="time">08:15</div><div class="formal">Sono le otto e quindici.</div><div class="informal">le otto e un quarto</div></div>
+      <div class="ora-card"><div class="time">08:30</div><div class="formal">Sono le otto e trenta.</div><div class="informal">le otto e mezza</div></div>
+      <div class="ora-card"><div class="time">08:45</div><div class="formal">Sono le otto e quarantacinque.</div><div class="informal">le nove meno un quarto</div></div>
+      <div class="ora-card"><div class="time">13:00</div><div class="formal">Sono le tredici.</div><div class="informal">l'una di pomeriggio</div></div>
+      <div class="ora-card"><div class="time">21:30</div><div class="formal">Sono le ventuno e trenta.</div><div class="informal">le nove e mezza di sera</div></div>
+      <div class="ora-card"><div class="time">12:00</div><div class="formal">Sono le dodici / È mezzogiorno.</div><div class="informal">mezzogiorno</div></div>
+      <div class="ora-card"><div class="time">00:00</div><div class="formal">Sono le zero / È mezzanotte.</div><div class="informal">mezzanotte</div></div>
+    </div>
+
+    <div class="rule-card" style="margin-top:1rem;">
+      <div class="rl">Formato 12h vs 24h</div>
+      <div class="rt">En la estación se usa el formato 24h (come "le tredici e venti"). En la conversación diaria se prefiere el 12h con indicación de momento: <em>di mattina, di pomeriggio, di sera</em>.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BIGLIETTI -->
+<section class="section" id="biglietti">
+  <h2 class="section-title">Verbos útiles en la estación</h2>
+
+  <div class="grammar-box">
+    <h3>Los verbos que más usás en la stazione</h3>
+    <table>
+      <thead><tr><th>Infinitivo</th><th>Significado</th><th>Ejemplo</th><th>Conjugación clave</th></tr></thead>
+      <tbody>
+        <tr><td class="hl">prendere</td><td>tomar (un tren)</td><td>Prendo il Frecciarossa.</td><td>prendo / prendi / prende</td></tr>
+        <tr><td class="hl">partire</td><td>salir / partir</td><td>Il treno parte alle nove.</td><td>parto / parti / parte</td></tr>
+        <tr><td class="hl">arrivare</td><td>llegar</td><td>Arriviamo a Firenze alle undici.</td><td>arrivo / arrivi / arriva</td></tr>
+        <tr><td class="hl">comprare</td><td>comprar</td><td>Compro il biglietto online.</td><td>compro / compri / compra</td></tr>
+        <tr><td class="hl">convalidare</td><td>validar</td><td>Devo convalidare il biglietto.</td><td>convalido / convalidi / convalida</td></tr>
+        <tr><td class="hl">cambiare</td><td>hacer transbordo</td><td>Devo cambiare a Bologna.</td><td>cambio / cambi / cambia</td></tr>
+        <tr><td class="hl">salire</td><td>subir</td><td>Saliamo sul treno al binario 5.</td><td>salgo / sali / sale</td></tr>
+        <tr><td class="hl">scendere</td><td>bajar</td><td>Scendiamo alla prossima fermata.</td><td>scendo / scendi / scende</td></tr>
+        <tr><td class="hl">prenotare</td><td>reservar</td><td>Ho prenotato un posto in prima classe.</td><td>prenoto / prenoti / prenota</td></tr>
+      </tbody>
+    </table>
+
+    <div class="rule-card" style="margin-top:1rem;">
+      <div class="rl">Frases imprescindibles en la biglietteria</div>
+      <div class="rt">
+        Vorrei un biglietto per… · A che ora parte il prossimo treno? · Da quale binario? · C'è un ritardo? · È necessario prenotare? · Devo cambiare treno? · Quanto tempo ci vuole?
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRÁCTICA -->
+<section class="section" id="pratica">
+  <h2 class="section-title">Práctica</h2>
+
+  <div class="practice-block" id="p1">
+    <h3>Práctica 1 — Números en contexto</h3>
+    <div class="fill-item"><span>1. Il binario è il numero</span><input class="fill-input" data-answer="undici" placeholder="___"><span>. (11)</span></div>
+    <div class="fill-item"><span>2. Il biglietto costa</span><input class="fill-input" data-answer="quarantadue" placeholder="___"><span>euro. (42)</span></div>
+    <div class="fill-item"><span>3. Il treno è in ritardo di</span><input class="fill-input" data-answer="venticinque" placeholder="___"><span>minuti. (25)</span></div>
+    <div class="fill-item"><span>4. Il treno ha</span><input class="fill-input" data-answer="sette" placeholder="___"><span>carrozze. (7)</span></div>
+    <div class="fill-item"><span>5. Siamo al posto numero</span><input class="fill-input" data-answer="trentadue" placeholder="___"><span>. (32)</span></div>
+    <button class="check-btn" onclick="checkFill('p1')">Verificar</button>
+    <div class="feedback" id="p1-fb"></div>
+  </div>
+
+  <div class="practice-block" id="p2">
+    <h3>Práctica 2 — La hora (formato formal)</h3>
+    <div class="fill-item"><span>1. 10:00 → Sono</span><input class="fill-input" data-answer="le dieci" placeholder="___"></div>
+    <div class="fill-item"><span>2. 13:30 → Sono</span><input class="fill-input" data-answer="le tredici e trenta" placeholder="___"></div>
+    <div class="fill-item"><span>3. 8:15 → Sono</span><input class="fill-input" data-answer="le otto e quindici" placeholder="___"></div>
+    <div class="fill-item"><span>4. 1:00 PM → Sono</span><input class="fill-input" data-answer="le tredici" placeholder="___"></div>
+    <div class="fill-item"><span>5. 21:45 → Sono</span><input class="fill-input" data-answer="le ventuno e quarantacinque" placeholder="___"></div>
+    <button class="check-btn" onclick="checkFill('p2')">Verificar</button>
+    <div class="feedback" id="p2-fb"></div>
+  </div>
+
+  <div class="practice-block" id="p3">
+    <h3>Práctica 3 — Verbos en la estación</h3>
+    <div class="fill-item"><span>1. Ogni mattina</span><input class="fill-input" data-answer="prendo" placeholder="___"><span>il treno delle sette. (prendere)</span></div>
+    <div class="fill-item"><span>2. Il Frecciarossa</span><input class="fill-input" data-answer="parte" placeholder="___"><span>alle undici e venti. (partire)</span></div>
+    <div class="fill-item"><span>3. Dobbiamo</span><input class="fill-input" data-answer="convalidare" placeholder="___"><span>il biglietto prima di salire. (convalidare)</span></div>
+    <div class="fill-item"><span>4. A Bologna</span><input class="fill-input" data-answer="cambio" placeholder="___"><span>treno per Venezia. (cambiare, yo)</span></div>
+    <div class="fill-item"><span>5. Il treno</span><input class="fill-input" data-answer="arriva" placeholder="___"><span>a Firenze alle tredici. (arrivare)</span></div>
+    <button class="check-btn" onclick="checkFill('p3')">Verificar</button>
+    <div class="feedback" id="p3-fb"></div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<div class="quiz-section" id="quiz">
+  <h2 class="quiz-title">Quiz — 5 preguntas finales</h2>
+
+  <div class="quiz-q" id="qq1">
+    <p>1. ¿Cómo se dice "42" en italiano?</p>
+    <label class="quiz-opt" data-q="1" data-v="a">quarantauno</label>
+    <label class="quiz-opt" data-q="1" data-v="b" data-correct="true">quarantadue</label>
+    <label class="quiz-opt" data-q="1" data-v="c">quarantatre</label>
+  </div>
+
+  <div class="quiz-q" id="qq2">
+    <p>2. "Sono le tredici e trenta" en formato informal es:</p>
+    <label class="quiz-opt" data-q="2" data-v="a">la una di mattina e mezza</label>
+    <label class="quiz-opt" data-q="2" data-v="b" data-correct="true">l'una e mezza di pomeriggio</label>
+    <label class="quiz-opt" data-q="2" data-v="c">le tredici e mezzo</label>
+  </div>
+
+  <div class="quiz-q" id="qq3">
+    <p>3. ¿Qué verbo se usa para "validar el boleto"?</p>
+    <label class="quiz-opt" data-q="3" data-v="a">validare</label>
+    <label class="quiz-opt" data-q="3" data-v="b" data-correct="true">convalidare</label>
+    <label class="quiz-opt" data-q="3" data-v="c">timbrate</label>
+  </div>
+
+  <div class="quiz-q" id="qq4">
+    <p>4. ¿Cómo se pregunta "¿De qué andén sale?"</p>
+    <label class="quiz-opt" data-q="4" data-v="a">A quale ora parte?</label>
+    <label class="quiz-opt" data-q="4" data-v="b" data-correct="true">Da quale binario parte?</label>
+    <label class="quiz-opt" data-q="4" data-v="c">Dove cambia il treno?</label>
+  </div>
+
+  <div class="quiz-q" id="qq5">
+    <p>5. El tren más rápido de Italia se llama:</p>
+    <label class="quiz-opt" data-q="5" data-v="a">Regionale</label>
+    <label class="quiz-opt" data-q="5" data-v="b">Intercity</label>
+    <label class="quiz-opt" data-q="5" data-v="c" data-correct="true">Frecciarossa</label>
+  </div>
+
+  <button class="quiz-btn" id="quiz-submit" onclick="submitQuiz()">Ver resultado</button>
+  <div class="quiz-result" id="quiz-result" style="display:none;"></div>
+</div>
+
+<footer>
+  <p>Italiano Per Piacere · Viajeros · Módulo 4 — Gramática</p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const p = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+    document.getElementById('progress').style.width = p + '%';
+  });
+
+  function checkFill(id) {
+    const section = document.getElementById(id);
+    const inputs = section.querySelectorAll('.fill-input');
+    let correct = 0;
+    inputs.forEach(inp => {
+      const uv = inp.value.trim().toLowerCase();
+      const ans = inp.dataset.answer.toLowerCase();
+      const ok = uv === ans;
+      inp.classList.toggle('correct', ok);
+      inp.classList.toggle('wrong', !ok && uv !== '');
+      if (ok) correct++;
+    });
+    const fb = document.getElementById(id + '-fb');
+    if (correct === inputs.length) { fb.textContent = '✓ ¡Perfetto!'; fb.className = 'feedback ok'; }
+    else { fb.textContent = correct + '/' + inputs.length + ' correctas.'; fb.className = 'feedback err'; }
+  }
+
+  document.querySelectorAll('.quiz-opt').forEach(opt => {
+    opt.addEventListener('click', function() {
+      const q = this.dataset.q;
+      document.querySelectorAll('[data-q="' + q + '"]').forEach(o => o.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
+
+  function submitQuiz() {
+    let score = 0;
+    for (let q = 1; q <= 5; q++) {
+      const selected = document.querySelector('[data-q="' + q + '"].selected');
+      const correct = document.querySelector('[data-q="' + q + '"][data-correct="true"]');
+      if (correct) correct.classList.add('correct-ans');
+      if (selected) {
+        if (selected.dataset.correct === 'true') score++;
+        else selected.classList.add('wrong-ans');
+      }
+    }
+    const res = document.getElementById('quiz-result');
+    res.style.display = 'block';
+    if (score === 5) { res.textContent = '5/5 — Bravissimo/a! Già pronto/a per Firenze!'; res.className = 'quiz-result great'; }
+    else if (score >= 3) { res.textContent = score + '/5 — Molto bene! Ripassate un pochino.'; res.className = 'quiz-result ok-r'; }
+    else { res.textContent = score + '/5 — Ripassate ancora! Volvé a revisar los temas.'; res.className = 'quiz-result low'; }
+    document.getElementById('quiz-submit').disabled = true;
+  }
+</script>
+</body>
+</html>

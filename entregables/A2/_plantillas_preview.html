@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Plantillas Preview · Elige tu estilo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f0ede0;font-family:'Outfit',system-ui,sans-serif;padding:40px 20px}
+h1{font-family:'Playfair Display',serif;font-style:italic;font-size:2rem;text-align:center;margin-bottom:8px;color:#1a1a18}
+.subtitle{text-align:center;color:#666;font-size:.95rem;margin-bottom:48px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(480px,1fr));gap:40px;max-width:1100px;margin:0 auto}
+
+/* ─── LABEL ─── */
+.option{position:relative}
+.option-label{font-family:'Playfair Display',serif;font-style:italic;font-size:1.3rem;font-weight:700;margin-bottom:14px;color:#1a1a18;display:flex;align-items:center;gap:12px}
+.option-label span{background:#1a1a18;color:#EFCF7F;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;font-style:normal;font-family:'Outfit',sans-serif}
+.option-desc{font-size:.82rem;color:#777;margin-bottom:16px;line-height:1.5}
+
+/* ─── FRAME ─── */
+.frame{border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.13);pointer-events:none;user-select:none}
+
+/* ══════════ PLANTILLA 1 — IPP OFICIAL (como diapositivas.html) ══════════ */
+.p1-wrap{background:#e9e6d5}
+.p1-nav{background:#fff;border-bottom:3px solid #528e74;padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.p1-nav-logo{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:.85rem;color:#1a1a18}
+.p1-nav-links{display:flex;gap:16px}
+.p1-nav-links a{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#1a1a18;opacity:.5;text-decoration:none}
+.p1-nav-links a.on{opacity:1;color:#528e74}
+.p1-hero{background:#528e74;padding:28px 24px;text-align:center;position:relative;overflow:hidden}
+.p1-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 20v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/svg%3E")}
+.p1-badge{display:inline-block;background:rgba(239,207,127,.18);color:#EFCF7F;font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:8px}
+.p1-hero h2{font-family:'Playfair Display',serif;font-style:italic;font-size:1.4rem;color:#fff;position:relative;z-index:1}
+.p1-hero p{font-size:.72rem;color:rgba(255,255,255,.75);margin-top:6px;position:relative;z-index:1}
+.p1-body{padding:20px 24px}
+.p1-subnav{display:flex;gap:2px;background:#fff;border-radius:8px;padding:6px 10px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border-bottom:3px solid #528e74}
+.p1-subnav a{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:5px 10px;color:#1a1a18;text-decoration:none;opacity:.45;border-bottom:2px solid transparent}
+.p1-subnav a.on{opacity:1;color:#528e74;border-bottom-color:#528e74}
+.p1-card{background:#fff;border-radius:10px;padding:16px 18px;box-shadow:0 2px 10px rgba(0,0,0,.06);margin-bottom:12px}
+.p1-card h3{font-family:'Playfair Display',serif;font-style:italic;font-size:.85rem;color:#3d6b58;margin-bottom:10px}
+.p1-table{width:100%;border-collapse:collapse;font-size:.65rem}
+.p1-table th{background:#c8e8de;color:#1a1a18;padding:5px 8px;text-align:left;font-weight:700}
+.p1-table td{padding:5px 8px;border-bottom:1px solid #e9e6d5;color:#333}
+.p1-table tr:last-child td{border-bottom:none}
+.p1-footer{background:#fff;border-top:3px solid #528e74;padding:10px 24px;text-align:center;font-size:.6rem;color:#999}
+
+/* ══════════ PLANTILLA 2 — TARJETA PASTEL ══════════ */
+.p2-wrap{background:#fdf9ef}
+.p2-nav{background:#fdf9ef;border-bottom:2px solid #EFCF7F;padding:10px 20px;display:flex;align-items:center;gap:20px}
+.p2-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;font-weight:700;color:#1a1a18}
+.p2-logo span{color:#e5ab07}
+.p2-nav-links{display:flex;gap:14px;margin-left:auto}
+.p2-nav-links a{font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#1a1a18;opacity:.45;text-decoration:none}
+.p2-nav-links a.on{opacity:1;color:#c8940a}
+.p2-hero{background:linear-gradient(135deg,#fef9e8 0%,#fde8a0 100%);padding:28px 24px;text-align:left;border-bottom:3px solid #EFCF7F}
+.p2-badge{display:inline-block;background:#c8940a;color:#fff;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-bottom:8px}
+.p2-hero h2{font-family:'Playfair Display',serif;font-style:italic;font-size:1.5rem;color:#7a5500}
+.p2-hero p{font-size:.7rem;color:#8a6800;opacity:.85;margin-top:4px}
+.p2-body{padding:16px 20px;background:#fdf9ef}
+.p2-pills{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.p2-pill{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:4px 10px;border-radius:20px;background:#EFCF7F;color:#7a5500;border:none}
+.p2-pill.on{background:#e5ab07;color:#fff}
+.p2-card{background:#fff;border-radius:10px;padding:14px 16px;box-shadow:0 2px 12px rgba(228,171,7,.15);margin-bottom:10px;border:1.5px solid #fde8a0}
+.p2-card h3{font-family:'Playfair Display',serif;font-style:italic;font-size:.82rem;color:#c8940a;margin-bottom:8px}
+.p2-table{width:100%;border-collapse:collapse;font-size:.65rem}
+.p2-table th{background:#fef0c0;color:#7a5500;padding:5px 8px;text-align:left;font-weight:700}
+.p2-table td{padding:5px 8px;border-bottom:1px solid #fef0c0;color:#444}
+.p2-table tr:last-child td{border-bottom:none}
+.p2-tag{display:inline-block;background:#fde8a0;color:#7a5500;font-size:.55rem;font-weight:700;padding:1px 6px;border-radius:6px}
+.p2-footer{background:#fff;border-top:2px solid #EFCF7F;padding:10px 20px;text-align:center}
+.p2-footer p{font-size:.6rem;color:#bbb}
+.p2-footer em{font-family:'Playfair Display',serif;font-style:italic;color:#e5ab07;font-size:.7rem}
+
+/* ══════════ PLANTILLA 3 — EDITORIAL / LIBRO ══════════ */
+.p3-wrap{background:#fff}
+.p3-nav{background:#fff;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e0ddd0}
+.p3-nav-logo{display:flex;flex-direction:column;line-height:1.1}
+.p3-nav-logo span:first-child{font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;font-weight:700;color:#1a1a18}
+.p3-nav-logo span:last-child{font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:#cc4736;font-weight:700}
+.p3-nav-links{display:flex;gap:14px}
+.p3-nav-links a{font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:#1a1a18;opacity:.4;text-decoration:none;padding-bottom:2px;border-bottom:1.5px solid transparent}
+.p3-nav-links a.on{opacity:1;color:#cc4736;border-bottom-color:#cc4736}
+.p3-hero{background:#e9e6d5;padding:28px 28px 24px;display:flex;align-items:flex-start;gap:20px;border-bottom:4px solid #cc4736}
+.p3-num{font-family:'Playfair Display',serif;font-size:4rem;font-weight:900;color:rgba(204,71,54,.18);line-height:1;flex-shrink:0}
+.p3-htxt .eyebrow{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#cc4736;font-weight:700;margin-bottom:4px}
+.p3-htxt h2{font-family:'Playfair Display',serif;font-style:italic;font-size:1.4rem;color:#1a1a18;margin-bottom:4px}
+.p3-htxt p{font-size:.7rem;color:#666}
+.p3-body{padding:16px 24px;background:#fff}
+.p3-toc{display:flex;gap:0;margin-bottom:14px;border-bottom:2px solid #e0ddd0}
+.p3-toc a{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:6px 12px;color:#1a1a18;opacity:.4;text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-2px}
+.p3-toc a.on{opacity:1;color:#cc4736;border-bottom-color:#cc4736}
+.p3-card{padding:14px 0;border-bottom:1px solid #e0ddd0;margin-bottom:10px}
+.p3-card h3{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#cc4736;margin-bottom:8px}
+.p3-table{width:100%;border-collapse:collapse;font-size:.65rem}
+.p3-table th{background:#fde4e1;color:#7a1f14;padding:5px 8px;text-align:left;font-weight:700}
+.p3-table td{padding:5px 8px;border-bottom:1px solid #f5ede8;color:#444}
+.p3-rule{background:#f5ede8;border-left:3px solid #cc4736;border-radius:0 6px 6px 0;padding:8px 12px;font-size:.65rem;color:#7a1f14;margin:8px 0}
+.p3-footer{padding:10px 24px;background:#e9e6d5;text-align:center;font-size:.6rem;color:#888;border-top:1px solid #ddd9c8}
+
+/* ══════════ PLANTILLA 4 — BLOQUES DE COLOR ══════════ */
+.p4-wrap{background:#e9e6d5}
+.p4-topbar{background:#78a6ba;padding:8px 20px;display:flex;align-items:center;justify-content:space-between}
+.p4-topbar-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:.8rem;color:#fff;font-weight:700}
+.p4-topbar-links{display:flex;gap:12px}
+.p4-topbar-links a{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.65);text-decoration:none}
+.p4-topbar-links a.on{color:#fff}
+.p4-hero{background:#deeef5;padding:24px 24px 20px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;border-bottom:3px solid #78a6ba}
+.p4-hero-circle{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#78a6ba,#5a8ea0);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.p4-hero-circle span{font-family:'Playfair Display',serif;font-style:italic;font-size:1.4rem;font-weight:700;color:#fff}
+.p4-htxt .eyebrow{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:#5a8ea0;font-weight:700;margin-bottom:2px}
+.p4-htxt h2{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;color:#1a1a18}
+.p4-htxt p{font-size:.68rem;color:#555;margin-top:2px}
+.p4-subnav{background:#fff;display:flex;gap:0;border-bottom:3px solid #78a6ba}
+.p4-subnav a{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:7px 12px;color:#1a1a18;opacity:.4;text-decoration:none;border-bottom:3px solid transparent;margin-bottom:-3px}
+.p4-subnav a.on{opacity:1;color:#2d5f72;border-bottom-color:#78a6ba}
+.p4-body{padding:14px 18px;display:flex;flex-direction:column;gap:10px}
+.p4-block{border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.p4-block-head{background:#78a6ba;padding:8px 14px;display:flex;align-items:center;gap:8px}
+.p4-block-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.6)}
+.p4-block-title{font-family:'Playfair Display',serif;font-style:italic;font-size:.75rem;color:#fff;font-weight:700}
+.p4-block-body{background:#fff;padding:12px 14px}
+.p4-table{width:100%;border-collapse:collapse;font-size:.62rem}
+.p4-table th{background:#deeef5;color:#2d5f72;padding:4px 8px;text-align:left;font-weight:700}
+.p4-table td{padding:4px 8px;border-bottom:1px solid #eaf4f8;color:#444}
+.p4-table tr:last-child td{border-bottom:none}
+.p4-chips{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.p4-chip{background:#deeef5;color:#2d5f72;font-size:.6rem;font-weight:600;padding:3px 10px;border-radius:12px}
+.p4-footer{background:#5a8ea0;padding:10px 20px;text-align:center}
+.p4-footer p{font-size:.6rem;color:rgba(255,255,255,.75)}
+.p4-footer em{font-family:'Playfair Display',serif;font-style:italic;color:#EFCF7F}
+
+/* PICK BUTTON */
+.pick-btn{display:block;width:100%;margin-top:14px;background:#1a1a18;color:#EFCF7F;border:none;border-radius:8px;padding:12px;font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.pick-btn:hover{background:#333}
+</style>
+</head>
+<body>
+
+<h1>Elige tu plantilla</h1>
+<p class="subtitle">4 estilos para las etapas 2 y 3 del nivel A2 — mismos colores de marca, sin negro como fondo</p>
+
+<div class="grid">
+
+  <!-- ══ PLANTILLA 1 ══ -->
+  <div class="option">
+    <div class="option-label">Plantilla 1 — IPP Oficial <span>Como el sitio web</span></div>
+    <div class="option-desc">Idéntico al estilo de <em>diapositivas.html</em>: nav blanca con borde de color, hero sólido con patrón de puntos, tablas con cabecera pastel, tarjetas blancas con sombra. Muy limpio y coherente con el sitio web existente.</div>
+    <div class="frame">
+      <div class="p1-wrap">
+        <div class="p1-nav">
+          <div class="p1-nav-logo">Italiano Per Piacere</div>
+          <div class="p1-nav-links">
+            <a href="#">A2</a><a href="#">Módulo 16</a><a href="#" class="on">Gramática</a>
+          </div>
+        </div>
+        <div class="p1-hero">
+          <div class="p1-badge">Módulo 16 · A2 · Gramática</div>
+          <h2>Pronomi relativi &amp; Indefiniti</h2>
+          <p>Gli strumenti finali per raccontare storie con precisione.</p>
+        </div>
+        <div class="p1-body">
+          <div class="p1-subnav">
+            <a href="#" class="on">Relativi</a>
+            <a href="#">Indefiniti</a>
+            <a href="#">Riepilogo</a>
+            <a href="#">Pratica</a>
+            <a href="#">Quiz</a>
+          </div>
+          <div class="p1-card">
+            <h3>CHE vs CUI — comparación</h3>
+            <table class="p1-table">
+              <tr><th>Pronome</th><th>Uso</th><th>Ejemplo</th></tr>
+              <tr><td><strong>che</strong></td><td>Sujeto / Obj. directo</td><td><em>La ragazza che canta…</em></td></tr>
+              <tr><td><strong>cui</strong></td><td>Con preposición</td><td><em>La persona con cui parlo…</em></td></tr>
+              <tr><td><strong>il cui</strong></td><td>Posesión</td><td><em>La donna il cui figlio…</em></td></tr>
+            </table>
+          </div>
+          <div class="p1-card">
+            <h3>Indefiniti principali</h3>
+            <table class="p1-table">
+              <tr><th>Parola</th><th>Tipo</th><th>Ejemplo</th></tr>
+              <tr><td><strong>qualche</strong></td><td>Adj. + singular</td><td><em>qualche amico</em></td></tr>
+              <tr><td><strong>qualcuno</strong></td><td>Pronombre persona</td><td><em>C'è qualcuno?</em></td></tr>
+              <tr><td><strong>qualcosa</strong></td><td>Pronombre cosa</td><td><em>qualcosa di bello</em></td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="p1-footer">© Italiano Per Piacere · Nivel A2 · <em>Fine!</em></div>
+      </div>
+    </div>
+    <button class="pick-btn">→ Usar Plantilla 1</button>
+  </div>
+
+  <!-- ══ PLANTILLA 2 ══ -->
+  <div class="option">
+    <div class="option-label">Plantilla 2 — Tarjeta Cálida <span>Fondo crema dorado</span></div>
+    <div class="option-desc">Fondo muy cálido crema-dorado. Pills de navegación redondeadas. Tarjetas con borde suave en el color del módulo. Más íntimo y artesanal, como cuaderno de notas italiano.</div>
+    <div class="frame">
+      <div class="p2-wrap">
+        <div class="p2-nav">
+          <div class="p2-logo">Italiano <span>Per Piacere</span></div>
+          <div class="p2-nav-links">
+            <a href="#">A2</a><a href="#">Módulo 16</a><a href="#" class="on">Gramática</a>
+          </div>
+        </div>
+        <div class="p2-hero">
+          <div class="p2-badge">Módulo 16 · A2</div>
+          <h2>Pronomi relativi &amp; Indefiniti</h2>
+          <p>Gli strumenti finali per raccontare storie con precisione.</p>
+        </div>
+        <div class="p2-body">
+          <div class="p2-pills">
+            <span class="p2-pill on">Relativi</span>
+            <span class="p2-pill">Indefiniti</span>
+            <span class="p2-pill">Riepilogo</span>
+            <span class="p2-pill">Pratica</span>
+            <span class="p2-pill">Quiz</span>
+          </div>
+          <div class="p2-card">
+            <h3>CHE vs CUI — comparación</h3>
+            <table class="p2-table">
+              <tr><th>Pronome</th><th>Uso</th><th>Ejemplo</th></tr>
+              <tr><td><strong>che</strong></td><td>Sujeto / Obj. directo</td><td><em>La ragazza che canta…</em></td></tr>
+              <tr><td><strong>cui</strong></td><td>Con preposición</td><td><em>La persona con cui parlo…</em></td></tr>
+              <tr><td><strong>il cui</strong></td><td>Posesión <span class="p2-tag">avanzado</span></td><td><em>La donna il cui figlio…</em></td></tr>
+            </table>
+          </div>
+          <div class="p2-card">
+            <h3>Indefiniti principali</h3>
+            <table class="p2-table">
+              <tr><th>Parola</th><th>Tipo</th><th>Ejemplo</th></tr>
+              <tr><td><strong>qualche</strong></td><td>Adj. + singular</td><td><em>qualche amico</em></td></tr>
+              <tr><td><strong>qualcuno</strong></td><td>Pronombre persona</td><td><em>C'è qualcuno?</em></td></tr>
+              <tr><td><strong>qualcosa</strong></td><td>Pronombre cosa</td><td><em>qualcosa di bello</em></td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="p2-footer"><p>© Italiano Per Piacere</p><em>La lingua è cultura.</em></div>
+      </div>
+    </div>
+    <button class="pick-btn">→ Usar Plantilla 2</button>
+  </div>
+
+  <!-- ══ PLANTILLA 3 ══ -->
+  <div class="option">
+    <div class="option-label">Plantilla 3 — Editorial / Libro <span>Estilo revista</span></div>
+    <div class="option-desc">Inspirado en revistas culturales italianas. Fondo blanco limpio, gran número decorativo, líneas editoriales, color del módulo solo en detalles. Muy elegante y legible.</div>
+    <div class="frame">
+      <div class="p3-wrap">
+        <div class="p3-nav">
+          <div class="p3-nav-logo">
+            <span>Italiano Per Piacere</span>
+            <span>Nivel A2</span>
+          </div>
+          <div class="p3-nav-links">
+            <a href="#">Inicio</a><a href="#">Módulos</a><a href="#" class="on">Gramática</a>
+          </div>
+        </div>
+        <div class="p3-hero">
+          <div class="p3-num">16</div>
+          <div class="p3-htxt">
+            <div class="eyebrow">Módulo 16 · A2 · Gramática</div>
+            <h2>Pronomi relativi &amp; Indefiniti</h2>
+            <p>Gli strumenti finali per raccontare storie con precisione.</p>
+          </div>
+        </div>
+        <div class="p3-body">
+          <div class="p3-toc">
+            <a href="#" class="on">Relativi</a>
+            <a href="#">Indefiniti</a>
+            <a href="#">Riepilogo</a>
+            <a href="#">Pratica</a>
+            <a href="#">Quiz</a>
+          </div>
+          <div class="p3-card">
+            <h3>CHE vs CUI — comparación</h3>
+            <table class="p3-table">
+              <tr><th>Pronome</th><th>Uso</th><th>Ejemplo</th></tr>
+              <tr><td><strong>che</strong></td><td>Sujeto / Obj. directo</td><td><em>La ragazza che canta…</em></td></tr>
+              <tr><td><strong>cui</strong></td><td>Con preposición</td><td><em>La persona con cui parlo…</em></td></tr>
+            </table>
+            <div class="p3-rule">💡 Regola d'oro: ¿viene antes una preposición? → <strong>cui</strong>. ¿No? → <strong>che</strong>.</div>
+          </div>
+          <div class="p3-card">
+            <h3>Indefiniti principali</h3>
+            <table class="p3-table">
+              <tr><th>Parola</th><th>Tipo</th><th>Ejemplo</th></tr>
+              <tr><td><strong>qualche</strong></td><td>Adj. + singular</td><td><em>qualche amico</em></td></tr>
+              <tr><td><strong>qualcuno</strong></td><td>Pronombre persona</td><td><em>C'è qualcuno?</em></td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="p3-footer">© Italiano Per Piacere · A2 · Fine livello!</div>
+      </div>
+    </div>
+    <button class="pick-btn">→ Usar Plantilla 3</button>
+  </div>
+
+  <!-- ══ PLANTILLA 4 ══ -->
+  <div class="option">
+    <div class="option-label">Plantilla 4 — Bloques de Color <span>Más visual</span></div>
+    <div class="option-desc">Cada sección tiene cabecera de color del módulo. Barra top de color sólido con texto blanco. Muy visual y moderno, inspirado en la guía de marca con los bloques de color. Alto contraste sin usar negro.</div>
+    <div class="frame">
+      <div class="p4-wrap">
+        <div class="p4-topbar">
+          <div class="p4-topbar-logo">Italiano Per Piacere · A2</div>
+          <div class="p4-topbar-links">
+            <a href="#">Módulos</a><a href="#" class="on">Gramática</a><a href="#">Ejercicios</a>
+          </div>
+        </div>
+        <div class="p4-hero">
+          <div class="p4-hero-circle"><span>16</span></div>
+          <div class="p4-htxt">
+            <div class="eyebrow">A2 · Módulo 16 · Gramática</div>
+            <h2>Pronomi relativi &amp; Indefiniti</h2>
+            <p>Los últimos conectores para narrar con precisión en italiano.</p>
+          </div>
+        </div>
+        <div class="p4-subnav">
+          <a href="#" class="on">Relativi</a>
+          <a href="#">Indefiniti</a>
+          <a href="#">Riepilogo</a>
+          <a href="#">Pratica</a>
+          <a href="#">Quiz</a>
+        </div>
+        <div class="p4-body">
+          <div class="p4-block">
+            <div class="p4-block-head">
+              <div class="p4-block-dot"></div>
+              <div class="p4-block-title">CHE vs CUI — comparación</div>
+            </div>
+            <div class="p4-block-body">
+              <table class="p4-table">
+                <tr><th>Pronome</th><th>Uso</th><th>Ejemplo</th></tr>
+                <tr><td><strong>che</strong></td><td>Sujeto / Obj. directo</td><td><em>La ragazza che canta…</em></td></tr>
+                <tr><td><strong>cui</strong></td><td>Con preposición</td><td><em>La persona con cui parlo…</em></td></tr>
+                <tr><td><strong>il cui</strong></td><td>Posesión</td><td><em>La donna il cui figlio…</em></td></tr>
+              </table>
+              <div class="p4-chips">
+                <span class="p4-chip">a cui</span>
+                <span class="p4-chip">di cui</span>
+                <span class="p4-chip">con cui</span>
+                <span class="p4-chip">per cui</span>
+                <span class="p4-chip">in cui</span>
+              </div>
+            </div>
+          </div>
+          <div class="p4-block">
+            <div class="p4-block-head">
+              <div class="p4-block-dot"></div>
+              <div class="p4-block-title">Indefiniti principali</div>
+            </div>
+            <div class="p4-block-body">
+              <table class="p4-table">
+                <tr><th>Parola</th><th>Tipo</th><th>Ejemplo</th></tr>
+                <tr><td><strong>qualche</strong></td><td>Adj. + singular</td><td><em>qualche amico</em></td></tr>
+                <tr><td><strong>qualcuno</strong></td><td>Pron. persona</td><td><em>C'è qualcuno?</em></td></tr>
+                <tr><td><strong>qualcosa</strong></td><td>Pron. cosa</td><td><em>qualcosa di bello</em></td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="p4-footer"><p>© Italiano Per Piacere</p><em>La lingua è cultura.</em></div>
+      </div>
+    </div>
+    <button class="pick-btn">→ Usar Plantilla 4</button>
+  </div>
+
+</div>
+
+<p style="text-align:center;margin-top:48px;font-size:.85rem;color:#888">Abre este archivo en tu navegador y dime el número de la plantilla que prefieres. Luego actualizo las 34 páginas (etapa2 + etapa3) de todo el nivel A2.</p>
+
+</body>
+</html>

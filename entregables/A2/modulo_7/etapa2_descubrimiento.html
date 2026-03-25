@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Módulo 7 A2 · Descubrimiento — Fare la spesa</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;
+  --red:#cc4736;--teal:#78a6ba;--teal-dk:#5a8ea0;
+  --green:#528e74;--green-dk:#3d6b58;--black:#1a1a18;--white:#fff;
+  --mod:var(--green);--mod-dk:var(--green-dk);--mod-hero:#2d4d3c;
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.65;overflow-x:hidden}
+
+/* TOGGLE */
+#toggle-btn{position:fixed;top:14px;right:16px;z-index:200;background:rgba(255,255,255,.92);border:2px solid var(--mod);color:var(--mod-dk);padding:7px 16px;border-radius:20px;cursor:pointer;font-family:var(--fb);font-weight:700;font-size:.82rem;box-shadow:0 2px 10px rgba(0,0,0,.15);transition:all .2s}
+#toggle-btn:hover{background:#c8dfd5;color:var(--black)}
+body.hide-es .es{display:none}
+
+/* HERO */
+.hero{min-height:88vh;background:#c8e8de;border-bottom:3px solid #528e74;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;position:relative;overflow:hidden}
+.hero::before,.hero::after{display:none}
+.hero-circle{position:absolute;border-radius:50%;opacity:.12;background:#fff;pointer-events:none;transition:transform .08s ease-out}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:clamp(2.4rem,6vw,4rem);color:#1a1a18;margin-bottom:14px;position:relative;z-index:1}
+.hero p{color:#1a1a18;opacity:.75;font-size:1.1rem;max-width:580px;position:relative;z-index:1;margin-bottom:28px}
+.hero-badge{background:rgba(0,0,0,.07);color:#1a1a18;border:2px solid rgba(0,0,0,.08);border-radius:14px;padding:14px 28px;font-size:.95rem;position:relative;z-index:1;display:inline-block}
+.hero-badge strong{display:block;font-size:1.1rem;margin-bottom:2px}
+.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:.82rem;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+
+/* SECTIONS */
+.section{max-width:960px;margin:0 auto;padding:60px 20px}
+.section-alt{background:var(--cream-dk)}
+.section h2{font-family:var(--fh);font-style:italic;font-size:1.85rem;color:var(--mod-dk);margin-bottom:8px}
+.section .sub{color:#666;font-size:.92rem;margin-bottom:32px}
+.section-label{display:inline-block;background:#c8dfd5;color:var(--black);font-size:.75rem;font-weight:700;padding:3px 12px;border-radius:10px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
+
+/* WORD GRID */
+.word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin:20px 0}
+.wcard{background:#fff;border:2px solid var(--cream-dk);border-radius:12px;padding:14px 10px;text-align:center;cursor:pointer;transition:all .25s;font-size:.9rem;font-weight:600;user-select:none}
+.wcard:hover{border-color:var(--mod);transform:translateY(-2px)}
+.wcard.ok{background:#edf7f2;border-color:var(--green);color:var(--green-dk)}
+.wcard.trap{background:#fdf0ee;border-color:var(--red);color:var(--red)}
+.wcard .reveal{display:none;font-size:.75rem;font-weight:400;margin-top:4px;color:#666}
+.wcard.ok .reveal,.wcard.trap .reveal{display:block}
+.grid-legend{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:.85rem}
+.leg-dot{width:12px;height:12px;border-radius:50%}
+.leg-green{background:var(--green)}
+.leg-red{background:var(--red)}
+.grid-result{font-weight:600;margin-top:12px;font-size:.9rem;min-height:22px;color:var(--mod-dk)}
+
+/* VOCAB CARDS */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:24px 0}
+.vcard{background:#fff;border-radius:14px;padding:18px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.08);transition:all .25s;border:2px solid transparent;position:relative}
+.vcard:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(82,142,116,.2);border-color:var(--mod)}
+.vcard .ita{font-size:1.05rem;font-weight:700;color:var(--mod-dk)}
+.vcard .emoji{font-size:1.6rem;margin-bottom:8px;display:block}
+.vcard .vex{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--cream-dk);font-size:.86rem;color:#555;line-height:1.5}
+.vcard.open .vex{display:block}
+.vcard .hint{font-size:.75rem;color:#aaa;margin-top:6px}
+
+/* DISCOVERY BOX */
+.disc-box{background:#fff;border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 3px 16px rgba(0,0,0,.09)}
+.disc-box h3{color:var(--mod-dk);font-size:1.1rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.disc-box h3 .icon{font-size:1.3rem}
+.hl-box{background:linear-gradient(135deg,#eaf4ef,#f0f8f4);border-left:4px solid var(--green);padding:16px 20px;border-radius:0 10px 10px 0;margin:14px 0;font-size:.95rem;line-height:1.8}
+.hl-box .hl{background:var(--gold);padding:1px 5px;border-radius:4px;font-weight:700}
+.hl-box .es{color:#666;font-size:.88rem}
+
+/* GRAMMAR TABLE */
+.gtable{width:100%;border-collapse:collapse;margin:16px 0;font-size:.9rem}
+.gtable th{background:#a8d4c4;color:#2a4d3c;padding:11px 14px;text-align:left;font-weight:600}
+.gtable td{padding:9px 14px;border-bottom:1px solid var(--cream-dk)}
+.gtable tr:nth-child(even) td{background:#e8f5f0}
+.gtable tr:hover{background:#e8f4ee}
+.gtable .note{font-size:.78rem;color:#888;font-style:italic}
+.badge{display:inline-block;padding:2px 8px;border-radius:8px;font-size:.75rem;font-weight:700}
+.badge-g{background:#d4edda;color:var(--green-dk)}
+.badge-r{background:#fde8e6;color:var(--red)}
+.badge-t{background:#d4ecf5;color:var(--teal-dk)}
+
+/* SCHEMA */
+.schema{background:linear-gradient(135deg,#edf5f1 0%,#c8dfd5 100%);color:var(--black);border-radius:14px;padding:22px 28px;margin:20px 0;font-family:monospace;font-size:.95rem}
+.schema .hl{color:var(--gold);font-weight:700}
+.schema .line{margin:7px 0}
+
+/* FILL ACTIVITY */
+.fill-box{background:#fff;border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 3px 16px rgba(0,0,0,.09)}
+.fill-box h3{color:var(--mod-dk);font-weight:700;margin-bottom:8px}
+.fill-box .inst{font-size:.88rem;color:#666;margin-bottom:18px}
+.fill-item{margin:14px 0;font-size:.94rem;line-height:1.7}
+.fill-blank{border:none;border-bottom:2px solid var(--mod);background:transparent;font-family:var(--fb);font-size:.92rem;width:140px;padding:3px 6px;color:var(--black);transition:border-color .2s}
+.fill-blank:focus{outline:none;border-color:var(--green-dk)}
+.fill-blank.ok{border-color:var(--green);background:#edf7f2;border-radius:4px}
+.fill-blank.no{border-color:var(--red);background:#fdf0ee;border-radius:4px}
+.fill-btn{background:#c8dfd5;color:var(--black);border:none;border-radius:8px;padding:9px 22px;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.88rem;margin-top:14px;transition:background .2s}
+.fill-btn:hover{background:var(--mod-dk)}
+.fill-fb{font-size:.82rem;margin-top:8px;font-weight:600;min-height:20px}
+.fill-fb.ok{color:var(--green)}
+.fill-fb.no{color:var(--red)}
+
+/* MATCHING */
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+@media(max-width:580px){.match-grid{grid-template-columns:1fr}}
+.match-col h4{font-size:.85rem;text-transform:uppercase;color:#888;font-weight:700;margin-bottom:10px;letter-spacing:.5px}
+.match-item{background:#fff;border:2px solid var(--cream-dk);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:.9rem;transition:all .2s;margin:6px 0}
+.match-item.active{border-color:var(--mod);background:#eaf4ef}
+.match-item.matched{border-color:var(--green);background:#d4edda;color:var(--green-dk);font-weight:600}
+.match-item.wrong-match{border-color:var(--red);background:#fde8e6}
+.match-result{font-weight:600;font-size:.9rem;margin-top:10px;min-height:22px;color:var(--mod-dk)}
+
+/* ORDER ACTIVITY */
+.order-area{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0;min-height:48px;padding:12px;background:var(--cream-dk);border-radius:10px;border:2px dashed var(--mod)}
+.order-word{background:#fff;border:2px solid var(--mod);color:var(--mod-dk);padding:8px 16px;border-radius:8px;cursor:pointer;font-size:.9rem;font-weight:600;transition:all .2s;user-select:none}
+.order-word:hover{background:#c8dfd5;color:var(--black)}
+.order-word.used{opacity:.4;pointer-events:none}
+.order-sentence{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;min-height:48px;padding:12px;background:#fff;border-radius:10px;border:2px solid var(--cream-dk)}
+.order-slot{background:var(--cream);border:2px dashed var(--cream-dk);padding:8px 16px;border-radius:8px;font-size:.9rem;color:#aaa;cursor:pointer;min-width:60px;text-align:center}
+.order-slot.filled{background:#fff;border-color:var(--mod);color:var(--black);font-weight:600}
+
+/* DIALOGUE */
+.dialogue{margin:28px 0}
+.dialogue h3{color:var(--mod-dk);font-weight:700;margin-bottom:16px;font-size:1rem}
+.bubble-wrap{margin:10px 0}
+.bubble{background:#fff;border-radius:16px 16px 16px 4px;padding:14px 18px;display:inline-block;max-width:75%;box-shadow:0 2px 8px rgba(0,0,0,.08);cursor:pointer;transition:box-shadow .2s;position:relative}
+.bubble:hover{box-shadow:0 4px 16px rgba(82,142,116,.25)}
+.bubble.right-side{border-radius:16px 16px 4px 16px;background:#c8dfd5;color:var(--black);margin-left:auto;display:block}
+.bubble .speaker{font-size:.75rem;font-weight:700;color:var(--mod);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.bubble.right-side .speaker{color:rgba(255,255,255,.7)}
+.bubble .btext{font-size:.93rem}
+.bubble .btr{display:none;margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.1);font-size:.82rem;color:#888;font-style:italic}
+.bubble.right-side .btr{border-top-color:rgba(255,255,255,.2);color:rgba(255,255,255,.7)}
+.bubble.show .btr{display:block}
+.bubble-hint{font-size:.78rem;color:#aaa;text-align:center;margin:8px 0 16px}
+
+/* READING */
+.reading-box{background:#fff;border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 3px 16px rgba(0,0,0,.09)}
+.reading-box h3{color:var(--mod-dk);font-weight:700;font-size:1rem;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
+.reading-text{font-size:.95rem;line-height:1.85;color:var(--black);padding:16px;background:var(--cream);border-radius:10px;margin-bottom:20px}
+.reading-text .hl{background:var(--gold);padding:1px 4px;border-radius:3px;font-weight:600}
+.q-box{margin:12px 0}
+.q-box p{font-size:.9rem;font-weight:600;margin-bottom:8px}
+.q-opts{display:flex;flex-direction:column;gap:6px}
+.q-opt{background:var(--cream);border:2px solid var(--cream-dk);border-radius:8px;padding:8px 14px;cursor:pointer;font-size:.88rem;transition:all .2s}
+.q-opt:hover{border-color:var(--mod)}
+.q-opt.chosen{border-color:var(--mod);background:#eaf4ef;font-weight:600}
+.q-opt.right{border-color:var(--green);background:#d4edda;color:var(--green-dk)}
+.q-opt.wrong{border-color:var(--red);background:#fde8e6;color:var(--red)}
+.check-btn{background:#c8dfd5;color:var(--black);border:none;border-radius:8px;padding:9px 22px;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.88rem;margin-top:14px;transition:background .2s}
+.check-btn:hover{background:var(--mod-dk)}
+
+/* CULTURE STRIP */
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:4px solid var(--green-dk);padding:52px 20px}
+.culture-inner{max-width:760px;margin:0 auto}
+.culture-inner h3{font-family:var(--fh);font-style:italic;font-size:1.6rem;color:var(--black);margin-bottom:16px}
+.culture-inner p{font-size:.95rem;color:var(--black);margin-bottom:12px;max-width:680px}
+.culture-facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:24px}
+.fact-card{background:rgba(255,255,255,.65);border-radius:12px;padding:16px;font-size:.88rem;border-left:3px solid var(--green)}
+.fact-card strong{display:block;color:var(--green-dk);margin-bottom:4px;font-size:.9rem}
+
+/* PROGRESS TRACKER */
+.progress-bar{position:fixed;bottom:0;left:0;right:0;height:5px;background:rgba(0,0,0,.1);z-index:300}
+.progress-fill{height:100%;background:var(--green);width:0;transition:width .3s}
+
+/* ANIMATIONS */
+[data-a]{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+[data-a].visible{opacity:1;transform:none}
+[data-stagger]>*{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
+[data-stagger].visible>*{opacity:1;transform:none}
+[data-stagger].visible>*:nth-child(2){transition-delay:.08s}
+[data-stagger].visible>*:nth-child(3){transition-delay:.16s}
+[data-stagger].visible>*:nth-child(4){transition-delay:.24s}
+[data-stagger].visible>*:nth-child(5){transition-delay:.32s}
+[data-stagger].visible>*:nth-child(6){transition-delay:.40s}
+[data-stagger].visible>*:nth-child(7){transition-delay:.48s}
+[data-stagger].visible>*:nth-child(8){transition-delay:.56s}
+[data-stagger].visible>*:nth-child(n+9){transition-delay:.64s}
+</style>
+</head>
+<body>
+
+<button id="toggle-btn" onclick="document.body.classList.toggle('hide-es');this.textContent=document.body.classList.contains('hide-es')?'Mostrar ES':'Ocultar ES'">Ocultar ES</button>
+
+<div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-circle" id="c1" style="width:340px;height:340px;top:-80px;right:-80px"></div>
+  <div class="hero-circle" id="c2" style="width:200px;height:200px;bottom:60px;left:-40px"></div>
+  <div class="hero-circle" id="c3" style="width:120px;height:120px;top:40%;left:20%"></div>
+  <p class="section-label" style="position:relative;z-index:2;margin-bottom:16px">Módulo 7 · A2</p>
+  <h1>Fare la spesa</h1>
+  <p>Hoy vas al supermercato italiano. Aprenderás a pedir cantidades, usar "ne", el artículo partitivo y expresarte como un italiano de verdad.</p>
+  <div class="hero-badge">
+    <strong>🎧 Coffee Break Italian · S2 Ep.7</strong>
+    Al supermercato — escucha e descubre
+  </div>
+  <div class="scroll-hint">↓ Inizia il percorso</div>
+</div>
+
+<!-- SECTION 1: WARM-UP WORD GRID -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Warm-up</span>
+    <h2>Al supermercato — riconosci le parole</h2>
+    <p class="sub">Haz clic en las palabras que pertenecen a "fare la spesa". Las otras son palabras trampa.</p>
+  </div>
+  <div class="grid-legend">
+    <div class="leg-item"><div class="leg-dot leg-green"></div><span>Spesa / supermercato</span></div>
+    <div class="leg-item"><div class="leg-dot leg-red"></div><span>Altre categorie</span></div>
+  </div>
+  <div class="word-grid" id="grid1" data-stagger>
+    <div class="wcard" onclick="clickWord(this,'ok')">il carrello<div class="reveal">✓ es la spesa</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la farina<div class="reveal">✓ ingrediente</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il semaforo<div class="reveal">✗ è la strada</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">lo scontrino<div class="reveal">✓ es la spesa</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il reparto<div class="reveal">✓ del supermercato</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il pilota<div class="reveal">✗ è l'aviazione</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la lista della spesa<div class="reveal">✓ es la spesa</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il prosciutto<div class="reveal">✓ ingrediente</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il satellite<div class="reveal">✗ è la tecnologia</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la mozzarella<div class="reveal">✓ latticino</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">lo scaffale<div class="reveal">✓ del supermercato</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">la racchetta<div class="reveal">✗ è lo sport</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la cassa<div class="reveal">✓ si paga qui</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la bustina<div class="reveal">✓ per portare la spesa</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il campanile<div class="reveal">✗ è l'architettura</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il reparto fresco<div class="reveal">✓ del supermercato</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la data di scadenza<div class="reveal">✓ es la spesa</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il termosifone<div class="reveal">✗ è la casa</div></div>
+  </div>
+  <div class="grid-result" id="grid1-res"></div>
+</div>
+
+<!-- SECTION 2: VOCAB SET 1 — reparti del supermercato -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Vocabolario 1</span>
+    <h2>I reparti del supermercato</h2>
+    <p class="sub">Haz clic en cada tarjeta para ver el significado, el ejemplo y el secreto de uso.</p>
+  </div>
+  <div class="vocab-grid" data-stagger>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🥖</span>
+      <div class="ita">il reparto panetteria</div>
+      <div class="hint">toca para saber más</div>
+      <div class="vex">
+        <strong>es:</strong> sección de panadería<br>
+        <strong>ejemplo:</strong> <em>Vado al reparto panetteria a prendere il pane di casa.</em><br>
+        <span class="es">Voy a la sección de panadería a coger el pan casero.</span>
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🧀</span>
+      <div class="ita">il reparto latticini</div>
+      <div class="hint">toca para saber más</div>
+      <div class="vex">
+        <strong>es:</strong> sección de lácteos<br>
+        <strong>ejemplo:</strong> <em>Nel reparto latticini trovi latte, yogurt e formaggi.</em><br>
+        <span class="es">En la sección de lácteos encuentras leche, yogur y quesos.</span>
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🥩</span>
+      <div class="ita">il reparto macelleria</div>
+      <div class="hint">toca para saber más</div>
+      <div class="vex">
+        <strong>es:</strong> sección de carnicería<br>
+        <strong>ejemplo:</strong> <em>Ho preso del pollo al reparto macelleria.</em><br>
+        <span class="es">He cogido pollo en la sección de carnicería.</span>
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🐟</span>
+      <div class="ita">il reparto pescheria</div>
+      <div class="hint">toca para saber más</div>
+      <div class="vex">
+        <strong>es:</strong> sección de pescadería<br>
+        <strong>ejemplo:</strong> <em>Il venerdì compro il pesce fresco al reparto pescheria.</em><br>
+        <span class="es">Los viernes compro pescado fresco en la sección de pescadería.</span>
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🍅</span>
+      <div class="ita">il reparto ortofrutta</div>
+      <div class="hint">toca para saber más</div>
+      <div class="vex">
+        <strong>es:</strong> sección de frutas y verduras<br>
+        <strong>ejemplo:</strong> <em>La frutta di stagione è sempre al reparto ortofrutta.</em><br>
+        <span class="es">La fruta de temporada siempre está en la sección de frutas y verduras.</span>
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🍝</span>
+      <div class="ita">il reparto pasta e riso</div>
+      <div class="hint">toca para saber más</div>
+      <div class="vex">
+        <strong>es:</strong> sección de pasta y arroz<br>
+        <strong>ejemplo:</strong> <em>Cerco gli spaghetti nel reparto pasta e riso.</em><br>
+        <span class="es">Busco los espaguetis en la sección de pasta y arroz.</span>
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🧴</span>
+      <div class="ita">il reparto pulizia</div>
+      <div class="hint">toca para saber más</div>
+      <div class="vex">
+        <strong>es:</strong> sección de limpieza<br>
+        <strong>ejemplo:</strong> <em>Il detersivo è nel reparto pulizia, ultimo scaffale.</em><br>
+        <span class="es">El detergente está en la sección de limpieza, última estantería.</span>
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🥫</span>
+      <div class="ita">il reparto scatolame</div>
+      <div class="hint">toca para saber más</div>
+      <div class="vex">
+        <strong>es:</strong> sección de conservas / enlatados<br>
+        <strong>ejemplo:</strong> <em>I legumi in scatola sono nel reparto scatolame.</em><br>
+        <span class="es">Las legumbres en lata están en la sección de conservas.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: ARTICOLO PARTITIVO DISCOVERY -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Scoperta grammaticale 1</span>
+    <h2>L'articolo partitivo</h2>
+    <p class="sub">Observa estos textos y descubre cómo funciona el partitivo italiano.</p>
+  </div>
+
+  <div class="disc-box" data-a>
+    <h3><span class="icon">🎧</span> Dal podcast — ascolta e osserva</h3>
+    <div class="hl-box">
+      Hai <span class="hl">del</span> latte in casa? <span class="es">— ¿Tienes leche en casa?</span><br>
+      Prendo <span class="hl">della</span> frutta fresca. <span class="es">— Cojo fruta fresca.</span><br>
+      Compra <span class="hl">degli</span> spaghetti e <span class="hl">delle</span> uova. <span class="es">— Compra espaguetis y huevos.</span><br>
+      Vuoi <span class="hl">dell'</span>acqua naturale? <span class="es">— ¿Quieres agua natural?</span><br>
+      C'è <span class="hl">del</span> prosciutto nel frigo. <span class="es">— Hay jamón en la nevera.</span>
+    </div>
+    <p style="font-size:.88rem;color:#666;margin-top:12px">💡 ¿Qué notas? El partitivo cambia según el género y número del nombre que sigue.</p>
+  </div>
+
+  <table class="gtable" data-a>
+    <tr><th>Artículo</th><th>Uso</th><th>Ejemplo</th><th class="es">Significado</th></tr>
+    <tr><td><strong>del</strong></td><td>masc. sing.</td><td>del pane / del vino</td><td class="es">algo de pan / algo de vino</td></tr>
+    <tr><td><strong>dello</strong></td><td>masc. sing. (s+cons, z)</td><td>dello zucchero / dello yogurt</td><td class="es">algo de azúcar / algo de yogur</td></tr>
+    <tr><td><strong>dell'</strong></td><td>masc./fem. sing. (vocal)</td><td>dell'acqua / dell'olio</td><td class="es">algo de agua / algo de aceite</td></tr>
+    <tr><td><strong>della</strong></td><td>fem. sing.</td><td>della pasta / della farina</td><td class="es">algo de pasta / algo de harina</td></tr>
+    <tr><td><strong>dei</strong></td><td>masc. plur.</td><td>dei pomodori / dei biscotti</td><td class="es">algunos tomates / algunas galletas</td></tr>
+    <tr><td><strong>degli</strong></td><td>masc. plur. (s+cons, z, vocal)</td><td>degli spaghetti / degli gnocchi</td><td class="es">algunos espaguetis / algunos ñoquis</td></tr>
+    <tr><td><strong>delle</strong></td><td>fem. plur.</td><td>delle uova / delle mele</td><td class="es">algunos huevos / algunas manzanas</td></tr>
+  </table>
+
+  <div class="disc-box" data-a>
+    <h3><span class="icon">🔍</span> Partitivo vs. negativo</h3>
+    <div class="hl-box">
+      <strong>Affermativo:</strong> Compro <span class="hl">del</span> latte. <span class="es">— Compro leche.</span><br>
+      <strong>Negativo:</strong> Non compro <span class="hl">latte</span>. <span class="es">— No compro leche. (sin partitivo)</span><br><br>
+      ⚠️ <em>Nella frase negativa non si usa il partitivo!</em><br>
+      <span class="es">En la frase negativa no se usa el partitivo.</span>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: FILL ACTIVITY — PARTITIVO -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Attività 1</span>
+    <h2>Pratica: articolo partitivo</h2>
+    <p class="sub">Completa con el artículo partitivo correcto.</p>
+  </div>
+
+  <div class="fill-box" data-a>
+    <h3>Set A — Al supermercato</h3>
+    <p class="inst">Elige el artículo partitivo adecuado para cada espacio:</p>
+    <div class="fill-item">1. Prendo <input class="fill-blank" id="f1a" data-ans="del"> pane integrale e <input class="fill-blank" id="f1b" data-ans="delle"> olive nere.</div>
+    <div class="fill-item">2. C'è <input class="fill-blank" id="f1c" data-ans="dello"> zucchero in dispensa?</div>
+    <div class="fill-item">3. Vuoi <input class="fill-blank" id="f1d" data-ans="dell'"> acqua frizzante o naturale?</div>
+    <div class="fill-item">4. Ho comprato <input class="fill-blank" id="f1e" data-ans="dei"> pomodori e <input class="fill-blank" id="f1f" data-ans="della"> mozzarella.</div>
+    <div class="fill-item">5. Compra <input class="fill-blank" id="f1g" data-ans="degli"> spaghetti per stasera!</div>
+    <button class="fill-btn" onclick="checkFill('f1','g')">Controlla</button>
+    <div class="fill-fb" id="f1-fb"></div>
+  </div>
+
+  <div class="fill-box" data-a>
+    <h3>Set B — La lista della spesa di Marco</h3>
+    <p class="inst">Completa la lista con il partitivo giusto:</p>
+    <div class="fill-item">Marco deve comprare: <input class="fill-blank" id="f2a" data-ans="del"> latte, <input class="fill-blank" id="f2b" data-ans="delle"> uova, <input class="fill-blank" id="f2c" data-ans="del"> burro, <input class="fill-blank" id="f2d" data-ans="della"> farina, <input class="fill-blank" id="f2e" data-ans="dell'"> olio extravergine e <input class="fill-blank" id="f2f" data-ans="dei"> biscotti per i bambini.</div>
+    <button class="fill-btn" onclick="checkFill('f2','f')">Controlla</button>
+    <div class="fill-fb" id="f2-fb"></div>
+  </div>
+</div>
+
+<!-- SECTION 5: VOCAB SET 2 — quantità e misure -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Vocabolario 2</span>
+    <h2>Quantità e misure</h2>
+    <p class="sub">Haz clic para descubrir cómo se usan estas expresiones de cantidad.</p>
+  </div>
+  <div class="vocab-grid" data-stagger>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">⚖️</span>
+      <div class="ita">un etto / due etti</div>
+      <div class="hint">100g / 200g</div>
+      <div class="vex">
+        <strong>es:</strong> cien gramos / doscientos gramos<br>
+        <strong>ejemplo:</strong> <em>Mi dà tre etti di prosciutto crudo?</em><br>
+        <span class="es">¿Me da 300 gramos de jamón serrano?</span><br>
+        💡 "etto" = 100g, muy usado en el mercado
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">📦</span>
+      <div class="ita">un chilo / mezzo chilo</div>
+      <div class="hint">1000g / 500g</div>
+      <div class="vex">
+        <strong>es:</strong> un kilo / medio kilo<br>
+        <strong>ejemplo:</strong> <em>Un chilo di pomodori, per favore.</em><br>
+        <span class="es">Un kilo de tomates, por favor.</span>
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🥛</span>
+      <div class="ita">un litro / mezzo litro</div>
+      <div class="hint">líquidos</div>
+      <div class="vex">
+        <strong>es:</strong> un litro / medio litro<br>
+        <strong>ejemplo:</strong> <em>Prendo due litri di acqua minerale.</em><br>
+        <span class="es">Cojo dos litros de agua mineral.</span>
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🥚</span>
+      <div class="ita">una dozzina</div>
+      <div class="hint">una docena = 12</div>
+      <div class="vex">
+        <strong>es:</strong> una docena<br>
+        <strong>ejemplo:</strong> <em>Una dozzina di uova fresche, per favore.</em><br>
+        <span class="es">Una docena de huevos frescos, por favor.</span><br>
+        💡 También: <em>mezza dozzina</em> = media docena
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🍰</span>
+      <div class="ita">una fetta / una porzione</div>
+      <div class="hint">rodaja / ración</div>
+      <div class="vex">
+        <strong>es:</strong> una loncha / una ración<br>
+        <strong>ejemplo:</strong> <em>Una fetta di prosciutto, molto sottile.</em><br>
+        <span class="es">Una loncha de jamón, muy fina.</span>
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🫙</span>
+      <div class="ita">un barattolo / una scatola</div>
+      <div class="hint">tarro / caja</div>
+      <div class="vex">
+        <strong>es:</strong> un tarro / una lata o caja<br>
+        <strong>ejemplo:</strong> <em>Un barattolo di pomodori pelati.</em><br>
+        <span class="es">Un tarro de tomates pelados.</span>
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🧃</span>
+      <div class="ita">una bottiglia / un cartone</div>
+      <div class="hint">botella / tetrabrik</div>
+      <div class="vex">
+        <strong>es:</strong> una botella / un tetrabrik<br>
+        <strong>ejemplo:</strong> <em>Un cartone di latte e una bottiglia di vino.</em><br>
+        <span class="es">Un tetrabrik de leche y una botella de vino.</span>
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🛒</span>
+      <div class="ita">quanto basta (q.b.)</div>
+      <div class="hint">la cantidad necesaria</div>
+      <div class="vex">
+        <strong>es:</strong> lo que haga falta / al gusto<br>
+        <strong>ejemplo:</strong> <em>Sale: quanto basta.</em><br>
+        <span class="es">Sal: al gusto.</span><br>
+        💡 Expresión muy común en recetas italianas.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: PRONOME "NE" DISCOVERY -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Scoperta grammaticale 2</span>
+    <h2>Il pronome "ne" — la magia delle quantità</h2>
+    <p class="sub">Observa cómo "ne" evita repetir el sustantivo al hablar de cantidades.</p>
+  </div>
+
+  <div class="disc-box" data-a>
+    <h3><span class="icon">💡</span> Come funziona "ne"?</h3>
+    <div class="hl-box">
+      — Quanti spaghetti compri? — <span class="hl">Ne</span> compro un pacco. <span class="es">— ¿Cuántos espaguetis compras? — Compro un paquete (de ellos).</span><br>
+      — Quante uova prendi? — <span class="hl">Ne</span> prendo una dozzina. <span class="es">— ¿Cuántos huevos coges? — Cojo una docena.</span><br>
+      — Vuoi ancora del vino? — Sì, <span class="hl">ne</span> voglio ancora un po'. <span class="es">— ¿Quieres más vino? — Sí, quiero un poco más.</span><br>
+      — Hai del latte? — No, non <span class="hl">ne</span> ho. <span class="es">— ¿Tienes leche? — No, no tengo.</span>
+    </div>
+  </div>
+
+  <table class="gtable" data-a>
+    <tr><th>Frase completa</th><th>Con "ne"</th><th class="es">Nota</th></tr>
+    <tr><td>Compro <u>tre etti di salame</u>.</td><td><strong>Ne</strong> compro tre etti.</td><td class="es">ne = del salame</td></tr>
+    <tr><td>Voglio <u>un po' di formaggio</u>.</td><td><strong>Ne</strong> voglio un po'.</td><td class="es">ne = del formaggio</td></tr>
+    <tr><td>Ho preso <u>due bottiglie di vino</u>.</td><td><strong>Ne</strong> ho prese due.</td><td class="es">pp: concuerda en género</td></tr>
+    <tr><td>Ha mangiato <u>molti biscotti</u>.</td><td><strong>Ne</strong> ha mangiati molti.</td><td class="es">pp: mangiati (masc. pl.)</td></tr>
+    <tr><td>Non ho <u>abbastanza zucchero</u>.</td><td>Non <strong>ne</strong> ho abbastanza.</td><td class="es">ne en frase negativa</td></tr>
+  </table>
+
+  <div class="disc-box" data-a>
+    <h3><span class="icon">⚠️</span> Ne + passato prossimo — concordanza</h3>
+    <div class="hl-box">
+      Con <strong>ne</strong> + passato prossimo, el participio concuerda con el sustantivo al que se refiere "ne":<br><br>
+      Ho comprato <u>tre etti di prosciutto</u>. → <strong>Ne</strong> ho comprat<span class="hl">i</span> tre etti. <span class="es">(prosciutto = masc. plur.)</span><br>
+      Ho preso <u>una bottiglia</u>. → <strong>Ne</strong> ho pres<span class="hl">a</span> una. <span class="es">(bottiglia = fem. sing.)</span><br>
+      Ho mangiato <u>delle mele</u>. → <strong>Ne</strong> ho mangiat<span class="hl">e</span> alcune. <span class="es">(mele = fem. plur.)</span>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: FILL — NE -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Attività 2</span>
+    <h2>Pratica: il pronome "ne"</h2>
+  </div>
+
+  <div class="fill-box" data-a>
+    <h3>Set A — Risposta con "ne"</h3>
+    <p class="inst">Trasforma la frase usando "ne" (scrivi solo la risposta con "ne"):</p>
+    <div class="fill-item">1. Compro due chili di pomodori. → <input class="fill-blank" id="fn1" data-ans="ne compro due chili" style="width:220px"> .</div>
+    <div class="fill-item">2. Voglio un po' di burro. → <input class="fill-blank" id="fn2" data-ans="ne voglio un po'" style="width:220px"> .</div>
+    <div class="fill-item">3. Non ho abbastanza farina. → Non <input class="fill-blank" id="fn3" data-ans="ne ho abbastanza" style="width:200px"> .</div>
+    <div class="fill-item">4. Prendo una dozzina di uova. → <input class="fill-blank" id="fn4" data-ans="ne prendo una dozzina" style="width:230px"> .</div>
+    <button class="fill-btn" onclick="checkFill('fn','4')">Controlla</button>
+    <div class="fill-fb" id="fn-fb"></div>
+  </div>
+
+  <div class="fill-box" data-a>
+    <h3>Set B — "Ne" nel dialogo</h3>
+    <p class="inst">Completa il mini-dialogo con "ne" o l'articolo partitivo:</p>
+    <div class="fill-item">A: Hai <input class="fill-blank" id="fnd1" data-ans="del"> zucchero?</div>
+    <div class="fill-item">B: No, non <input class="fill-blank" id="fnd2" data-ans="ne"> ho. Devo comprarlo.</div>
+    <div class="fill-item">A: Prendine un chilo. <input class="fill-blank" id="fnd3" data-ans="ne"> prendi anche due pacchi di biscotti?</div>
+    <div class="fill-item">B: Quanti <input class="fill-blank" id="fnd4" data-ans="ne"> prendo?</div>
+    <div class="fill-item">A: <input class="fill-blank" id="fnd5" data-ans="ne"> prendi due.</div>
+    <button class="fill-btn" onclick="checkFill('fnd','5')">Controlla</button>
+    <div class="fill-fb" id="fnd-fb"></div>
+  </div>
+</div>
+
+<!-- SECTION 8: VOCAB SET 3 — verbi al supermercato -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Vocabolario 3</span>
+    <h2>Cosa si fa al supermercato?</h2>
+    <p class="sub">Verbos y expresiones esenciales para moverte como un nativo.</p>
+  </div>
+  <div class="vocab-grid" data-stagger>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🛒</span>
+      <div class="ita">fare la spesa</div>
+      <div class="hint">la compra diaria</div>
+      <div class="vex">
+        <strong>es:</strong> hacer la compra (de alimentos)<br>
+        <strong>ejemplo:</strong> <em>Faccio la spesa ogni giovedì.</em><br>
+        <span class="es">Hago la compra cada jueves.</span><br>
+        💡 Diferente de <em>fare shopping</em> (ropa/moda)
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🔍</span>
+      <div class="ita">cercare / trovare</div>
+      <div class="hint">buscar / encontrar</div>
+      <div class="vex">
+        <strong>ejemplo:</strong> <em>Cerco lo zucchero ma non lo trovo!</em><br>
+        <span class="es">Busco el azúcar pero no lo encuentro.</span>
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">⚖️</span>
+      <div class="ita">pesare / pesarsi</div>
+      <div class="hint">pesar / pesarse</div>
+      <div class="vex">
+        <strong>ejemplo:</strong> <em>Pesa la frutta prima di andare alla cassa.</em><br>
+        <span class="es">Pesa la fruta antes de ir a la caja.</span><br>
+        💡 In Italia spesso si pesa la frutta da soli!
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">💳</span>
+      <div class="ita">pagare in contanti / con carta</div>
+      <div class="hint">pagar en efectivo / tarjeta</div>
+      <div class="vex">
+        <strong>ejemplo:</strong> <em>Pago con la carta di credito, per favore.</em><br>
+        <span class="es">Pago con tarjeta de crédito, por favor.</span>
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">📋</span>
+      <div class="ita">controllare la lista</div>
+      <div class="hint">revisar la lista</div>
+      <div class="vex">
+        <strong>ejemplo:</strong> <em>Controlla la lista! Hai dimenticato il latte.</em><br>
+        <span class="es">¡Revisa la lista! Has olvidado la leche.</span>
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🏷️</span>
+      <div class="ita">controllare la data di scadenza</div>
+      <div class="hint">comprobar la fecha de caducidad</div>
+      <div class="vex">
+        <strong>ejemplo:</strong> <em>Controlla sempre la data di scadenza!</em><br>
+        <span class="es">¡Comprueba siempre la fecha de caducidad!</span>
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🎫</span>
+      <div class="ita">fare la fila / aspettare</div>
+      <div class="hint">hacer cola / esperar</div>
+      <div class="vex">
+        <strong>ejemplo:</strong> <em>Alla cassa c'è molta fila oggi!</em><br>
+        <span class="es">¡En caja hay mucha cola hoy!</span>
+      </div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🏠</span>
+      <div class="ita">portare a casa / consegnare</div>
+      <div class="hint">llevar a casa / entregar</div>
+      <div class="vex">
+        <strong>ejemplo:</strong> <em>Porto la spesa a casa e la metto in frigo.</em><br>
+        <span class="es">Llevo la compra a casa y la meto en la nevera.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 9: DIALOGUE 1 -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Ascolto e comprensione</span>
+    <h2>Dialogo 1 — Al supermercato</h2>
+    <p class="sub">Haz clic en cada burbuja para ver la traducción al español.</p>
+  </div>
+  <div class="dialogue" data-a>
+    <h3>Anna e Giulia fanno la spesa insieme</h3>
+    <div class="bubble-hint">👆 Toca cada burbuja para ver la traducción</div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Anna</div>
+        <div class="btext">Allora, hai preso la lista?</div>
+        <div class="btr es">¿Entonces, has cogido la lista?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Giulia</div>
+        <div class="btext">Sì, ce l'ho. Dobbiamo prendere del latte, delle uova e degli spaghetti.</div>
+        <div class="btr es">Sí, la tengo. Tenemos que coger leche, huevos y espaguetis.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Anna</div>
+        <div class="btext">Quante uova prendiamo?</div>
+        <div class="btr es">¿Cuántos huevos cogemos?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Giulia</div>
+        <div class="btext">Ne prendiamo una dozzina. E del formaggio?</div>
+        <div class="btr es">Cogemos una docena. ¿Y queso?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Anna</div>
+        <div class="btext">Sì, prendi del parmigiano. Ne prendo anche un po' di mozzarella.</div>
+        <div class="btr es">Sí, coge parmesano. Yo cojo también un poco de mozzarella.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Giulia</div>
+        <div class="btext">Perfetto! E il vino? Ne prendo una bottiglia?</div>
+        <div class="btr es">¡Perfecto! ¿Y el vino? ¿Cojo una botella?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Anna</div>
+        <div class="btext">Sì, ma solo una. Non esagerare!</div>
+        <div class="btr es">Sí, pero solo una. ¡No te pases!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 10: READING COMPREHENSION -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Lettura e comprensione</span>
+    <h2>Un italiano al supermercato</h2>
+  </div>
+  <div class="reading-box" data-a>
+    <h3>Leggi il testo e rispondi alle domande</h3>
+    <div class="reading-text">
+      Marco entra al supermercato con <span class="hl">la lista della spesa</span>. Per prima cosa va al <span class="hl">reparto ortofrutta</span> e prende <span class="hl">degli</span> spinaci e <span class="hl">dei</span> pomodori. <span class="hl">Ne</span> prende due chili. Poi va al reparto latticini: prende <span class="hl">della</span> mozzarella fresca e <span class="hl">dello</span> yogurt. Vuole anche <span class="hl">del</span> parmigiano ma <span class="hl">non ne ha</span> visto. Alla fine passa alla cassa. C'è molta fila ma Marco è paziente. Paga <span class="hl">con la carta</span> e prende lo scontrino.
+    </div>
+
+    <div class="q-box">
+      <p>1. Dove va Marco per primo?</p>
+      <div class="q-opts" id="rq1">
+        <div class="q-opt" onclick="chooseOpt(this,'rq1','a')">a) Al reparto latticini</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq1','b')">b) Al reparto ortofrutta</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq1','c')">c) Al reparto pasta</div>
+      </div>
+    </div>
+    <div class="q-box">
+      <p>2. Quanti chili di verdura prende?</p>
+      <div class="q-opts" id="rq2">
+        <div class="q-opt" onclick="chooseOpt(this,'rq2','a')">a) Un chilo</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq2','b')">b) Tre chili</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq2','c')">c) Due chili</div>
+      </div>
+    </div>
+    <div class="q-box">
+      <p>3. Perché non prende il parmigiano?</p>
+      <div class="q-opts" id="rq3">
+        <div class="q-opt" onclick="chooseOpt(this,'rq3','a')">a) Costa troppo</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq3','b')">b) Non ne ha visto</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq3','c')">c) Non gli piace</div>
+      </div>
+    </div>
+    <div class="q-box">
+      <p>4. Come paga Marco?</p>
+      <div class="q-opts" id="rq4">
+        <div class="q-opt" onclick="chooseOpt(this,'rq4','a')">a) In contanti</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq4','b')">b) Con la carta</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq4','c')">c) Con i buoni spesa</div>
+      </div>
+    </div>
+    <button class="check-btn" onclick="checkReading()">Controlla le risposte</button>
+    <div class="fill-fb" id="reading-fb" style="margin-top:10px"></div>
+  </div>
+</div>
+
+<!-- SECTION 11: DIALOGUE 2 — al banco del salumiere -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Dialogo 2</span>
+    <h2>Al banco del salumiere</h2>
+    <p class="sub">Escucha cómo pedir en el mostrador de charcutería.</p>
+  </div>
+  <div class="dialogue" data-a>
+    <h3>Chiara al banco del prosciutto</h3>
+    <div class="bubble-hint">👆 Toca cada burbuja para ver la traducción</div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Chiara</div>
+        <div class="btext">Buongiorno! Mi dà tre etti di prosciutto cotto, per favore?</div>
+        <div class="btr es">¡Buenos días! ¿Me da trescientos gramos de jamón cocido, por favor?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Salumiere</div>
+        <div class="btext">Certo, lo vuole affettato sottile o normale?</div>
+        <div class="btr es">Claro, ¿lo quiere en lonchas finas o normal?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Chiara</div>
+        <div class="btext">Sottile, grazie. E mi dà anche del parmigiano? Ne vorrei circa due etti.</div>
+        <div class="btr es">Finas, gracias. ¿Y me da también parmesano? Querría unos doscientos gramos.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Salumiere</div>
+        <div class="btext">Vuole il parmigiano stagionato 24 mesi o 36?</div>
+        <div class="btr es">¿Quiere el parmesano curado 24 meses o 36?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Chiara</div>
+        <div class="btext">Il 36 mesi, è più saporito! Quant'è in tutto?</div>
+        <div class="btr es">¡El de 36 meses, es más sabroso! ¿Cuánto es en total?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Salumiere</div>
+        <div class="btext">Fa €8,40 in tutto. Desidera altro?</div>
+        <div class="btr es">Son 8,40 € en total. ¿Desea algo más?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Chiara</div>
+        <div class="btext">No grazie, basta così. Arrivederci!</div>
+        <div class="btr es">No gracias, con eso es suficiente. ¡Hasta luego!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 12: MATCHING ACTIVITY -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Attività 3</span>
+    <h2>Abbina la quantità al prodotto</h2>
+    <p class="sub">Haz clic en la cantidad y luego en el producto para emparejarlos.</p>
+  </div>
+  <div data-a>
+    <div class="match-grid">
+      <div>
+        <div class="match-col"><h4>Quantità</h4></div>
+        <div class="match-item" onclick="selectMatch(this,'q','1')" id="mq1">un litro di</div>
+        <div class="match-item" onclick="selectMatch(this,'q','2')" id="mq2">tre etti di</div>
+        <div class="match-item" onclick="selectMatch(this,'q','3')" id="mq3">una dozzina di</div>
+        <div class="match-item" onclick="selectMatch(this,'q','4')" id="mq4">un chilo di</div>
+        <div class="match-item" onclick="selectMatch(this,'q','5')" id="mq5">una fetta di</div>
+        <div class="match-item" onclick="selectMatch(this,'q','6')" id="mq6">una bottiglia di</div>
+      </div>
+      <div>
+        <div class="match-col"><h4>Prodotto</h4></div>
+        <div class="match-item" onclick="selectMatch(this,'p','a')" id="mp_a">pomodori</div>
+        <div class="match-item" onclick="selectMatch(this,'p','b')" id="mp_b">torta al cioccolato</div>
+        <div class="match-item" onclick="selectMatch(this,'p','c')" id="mp_c">uova</div>
+        <div class="match-item" onclick="selectMatch(this,'p','d')" id="mp_d">vino rosso</div>
+        <div class="match-item" onclick="selectMatch(this,'p','e')" id="mp_e">prosciutto cotto</div>
+        <div class="match-item" onclick="selectMatch(this,'p','f')" id="mp_f">acqua minerale</div>
+      </div>
+    </div>
+    <div class="match-result" id="match-result"></div>
+  </div>
+</div>
+
+<!-- SECTION 13: DISLOCAZIONE PRONOMINALE -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Scoperta grammaticale 3</span>
+    <h2>La dislocazione pronominale</h2>
+    <p class="sub">Una estructura muy italiana: se pone el objeto al principio y se añade un pronombre.</p>
+  </div>
+
+  <div class="disc-box" data-a>
+    <h3><span class="icon">🔄</span> Struttura della dislocazione</h3>
+    <div class="hl-box">
+      Normale: <em>Compri tu il pane?</em> <span class="es">— ¿Compras tú el pan?</span><br>
+      Dislocata: <em><span class="hl">Il pane</span>, <span class="hl">lo</span> compri tu?</em> <span class="es">— El pan, ¿lo compras tú?</span><br><br>
+      Normale: <em>Porti le borse tu?</em> <span class="es">— ¿Llevas tú las bolsas?</span><br>
+      Dislocata: <em><span class="hl">Le borse</span>, <span class="hl">le</span> porti tu?</em> <span class="es">— Las bolsas, ¿las llevas tú?</span>
+    </div>
+    <p style="font-size:.88rem;color:#666;margin-top:12px">💡 Esta estructura sirve para enfatizar el objeto o para distribuir tareas entre personas.</p>
+  </div>
+
+  <div class="fill-box" data-a>
+    <h3>Pratica — dislocazione</h3>
+    <p class="inst">Trasforma usando la dislocazione pronominale:</p>
+    <div class="fill-item">1. Porti tu la frutta? → La frutta, <input class="fill-blank" id="dis1" data-ans="la porti tu" style="width:160px">?</div>
+    <div class="fill-item">2. Prendi tu il carrello? → Il carrello, <input class="fill-blank" id="dis2" data-ans="lo prendi tu" style="width:160px">?</div>
+    <div class="fill-item">3. Paghi tu lo scontrino? → Lo scontrino, <input class="fill-blank" id="dis3" data-ans="lo paghi tu" style="width:160px">?</div>
+    <div class="fill-item">4. Porti tu le borse? → Le borse, <input class="fill-blank" id="dis4" data-ans="le porti tu" style="width:160px">?</div>
+    <button class="fill-btn" onclick="checkFill('dis','4')">Controlla</button>
+    <div class="fill-fb" id="dis-fb"></div>
+  </div>
+</div>
+
+<!-- CULTURE STRIP -->
+<div class="culture">
+  <div class="culture-inner">
+    <h3>🛒 Il supermercato italiano — qualche sorpresa</h3>
+    <p>Fare la spesa in Italia può sorprenderti! Alcuni supermercati chiudono ancora per la pausa pranzo, e molti italiani preferiscono comprare prodotti freschi ai banchi del macellaio e del salumiere, dove si usa tantissimo il pronome "ne": <em>Ne prendo due etti.</em></p>
+    <p>In Italia esiste anche il concetto di <em>fare la spesa a km zero</em>: comprare prodotti locali direttamente dai contadini. Questo si fa nei <em>mercati del sabato</em> che si trovano in quasi tutte le piazze italiane.</p>
+    <div class="culture-facts">
+      <div class="fact-card">
+        <strong>🥩 Il banco del macellaio</strong>
+        En carnicería se pide siempre en etti: "Due etti di pancetta, per favore!"
+      </div>
+      <div class="fact-card">
+        <strong>🍅 Frutta di stagione</strong>
+        Los italianos son muy estrictos con los productos de temporada. Tomates en verano, castañas en otoño.
+      </div>
+      <div class="fact-card">
+        <strong>💳 Contanti o carta?</strong>
+        Aunque la tarjeta se usa más, muchos italianos mayores todavía prefieren pagar <em>in contanti</em> (en efectivo).
+      </div>
+      <div class="fact-card">
+        <strong>🏪 Supermercato vs. negozio</strong>
+        Los italianos suelen combinar ambos: supermercado para los básicos, tiendas de barrio para los productos especiales.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// HERO PARALLAX
+const hero=document.getElementById('hero');
+const circles=document.querySelectorAll('.hero-circle');
+document.addEventListener('mousemove',e=>{
+  const x=(e.clientX/window.innerWidth-.5)*20;
+  const y=(e.clientY/window.innerHeight-.5)*20;
+  circles.forEach((c,i)=>{const f=(i+1)*.4;c.style.transform=`translate(${x*f}px,${y*f}px)`;});
+});
+
+// PROGRESS BAR
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('prog').style.width=pct+'%';
+},{passive:true});
+
+// INTERSECTION OBSERVER
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:.12});
+document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>io.observe(el));
+
+// WORD GRID
+let gridClicks=0;const gridTotal=12; // 12 ok words
+function clickWord(el,type){
+  if(el.classList.contains('ok')||el.classList.contains('trap'))return;
+  el.classList.add(type);
+  if(type==='ok'){gridClicks++;}
+  const res=document.getElementById('grid1-res');
+  const correct=document.querySelectorAll('#grid1 .wcard.ok').length;
+  const wrong=document.querySelectorAll('#grid1 .wcard.trap').length;
+  if(correct+wrong>0)res.textContent=`✓ ${correct} corrette · ✗ ${wrong} trappole trovate`;
+}
+
+// VOCAB CARDS
+// already handled inline
+
+// FILL ACTIVITIES
+function checkFill(prefix,lastSuffix){
+  // find all inputs with id starting with prefix
+  const inputs=[];
+  // collect all matching inputs
+  if(prefix==='fn'){
+    const ids=['fn1','fn2','fn3','fn4'];
+    ids.forEach(id=>{const el=document.getElementById(id);if(el)inputs.push(el);});
+  } else if(prefix==='fnd'){
+    const ids=['fnd1','fnd2','fnd3','fnd4','fnd5'];
+    ids.forEach(id=>{const el=document.getElementById(id);if(el)inputs.push(el);});
+  } else if(prefix==='f1'){
+    const ids=['f1a','f1b','f1c','f1d','f1e','f1f','f1g'];
+    ids.forEach(id=>{const el=document.getElementById(id);if(el)inputs.push(el);});
+  } else if(prefix==='f2'){
+    const ids=['f2a','f2b','f2c','f2d','f2e','f2f'];
+    ids.forEach(id=>{const el=document.getElementById(id);if(el)inputs.push(el);});
+  } else if(prefix==='dis'){
+    const ids=['dis1','dis2','dis3','dis4'];
+    ids.forEach(id=>{const el=document.getElementById(id);if(el)inputs.push(el);});
+  }
+  let ok=0;
+  inputs.forEach(inp=>{
+    inp.classList.remove('ok','no');
+    const v=inp.value.toLowerCase().trim();
+    const a=inp.dataset.ans.toLowerCase().trim();
+    if(v===a){inp.classList.add('ok');ok++;}
+    else if(v)inp.classList.add('no');
+  });
+  const fbId=prefix+'-fb';
+  const fb=document.getElementById(fbId);
+  if(fb){
+    fb.className='fill-fb'+(ok===inputs.length?' ok':' no');
+    fb.textContent=ok===inputs.length?`✓ Perfetto! Tutte corrette!`:`✗ ${ok}/${inputs.length} corrette. Ricontrolla le caselle in rosso.`;
+  }
+}
+
+// READING QUIZ
+const rAnswers={rq1:'b',rq2:'c',rq3:'b',rq4:'b'};
+const rChosen={};
+function chooseOpt(el,qid,opt){
+  const box=document.getElementById(qid);
+  box.querySelectorAll('.q-opt').forEach(o=>o.classList.remove('chosen'));
+  el.classList.add('chosen');
+  rChosen[qid]=opt;
+}
+function checkReading(){
+  let score=0;
+  for(const[qid,ans] of Object.entries(rAnswers)){
+    const box=document.getElementById(qid);
+    if(!box)continue;
+    box.querySelectorAll('.q-opt').forEach(o=>{
+      o.classList.remove('right','wrong');
+      const oc=o.getAttribute('onclick');
+      const letter=oc.match(/'([a-c])'\)/)?.[1];
+      if(letter===ans)o.classList.add('right');
+      else if(o.classList.contains('chosen'))o.classList.add('wrong');
+    });
+    if(rChosen[qid]===ans)score++;
+  }
+  const fb=document.getElementById('reading-fb');
+  fb.className='fill-fb'+(score>=3?' ok':' no');
+  fb.textContent=`Risultato: ${score}/4 — ${score===4?'Ottimo! 🎉':score>=3?'Bene! 👍':'Rileggi il testo e riprova 💪'}`;
+}
+
+// MATCHING
+let matchSelected={q:null,p:null};
+const matchPairs={'1':'f','2':'e','3':'c','4':'a','5':'b','6':'d'};
+const matchDone=new Set();
+function selectMatch(el,side,id){
+  if(el.classList.contains('matched'))return;
+  // deselect prev
+  document.querySelectorAll(`.match-item.active`).forEach(m=>{
+    if(m.getAttribute('onclick').includes("'"+side+"'")){m.classList.remove('active');}
+  });
+  el.classList.add('active');
+  matchSelected[side]=id;
+  // try to pair
+  if(matchSelected.q && matchSelected.p){
+    const qEl=document.getElementById('mq'+matchSelected.q);
+    const pEl=document.getElementById('mp_'+matchSelected.p);
+    if(matchPairs[matchSelected.q]===matchSelected.p){
+      qEl.classList.remove('active');pEl.classList.remove('active');
+      qEl.classList.add('matched');pEl.classList.add('matched');
+      matchDone.add(matchSelected.q);
+      if(matchDone.size===6){
+        document.getElementById('match-result').textContent='✓ Perfetto! Tutte le coppie corrette! 🎉';
+      } else {
+        document.getElementById('match-result').textContent=`✓ Coppia corretta! (${matchDone.size}/6)`;
+      }
+    } else {
+      qEl.classList.remove('active');pEl.classList.remove('active');
+      qEl.classList.add('wrong-match');pEl.classList.add('wrong-match');
+      setTimeout(()=>{qEl.classList.remove('wrong-match');pEl.classList.remove('wrong-match');},700);
+      document.getElementById('match-result').textContent='✗ Non è la coppia giusta. Riprova!';
+    }
+    matchSelected={q:null,p:null};
+  }
+}
+</script>
+</body>
+</html>

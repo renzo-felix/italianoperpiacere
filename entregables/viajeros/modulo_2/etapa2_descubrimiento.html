@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>In aereo · Módulo 2 · Viajeros</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#cc4736;--red-dk:#a8382a;--red-hero:#fde4e1;
+  --red-border:#cc4736;--red-th:#fbc8c2;--red-hero-text:#7a1f14;
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;
+  --black:#1a1a18;--white:#ffffff;
+  --fh:'Playfair Display',Georgia,serif;
+  --fb:'Outfit',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);color:var(--black);background:var(--white);line-height:1.6}
+
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid var(--red-border);box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:.6rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-logo img{height:40px;width:auto}
+.nav-links{display:flex;gap:.5rem;flex-wrap:wrap}
+.nav-links a{font-family:var(--fb);font-size:.82rem;font-weight:600;color:var(--black);text-decoration:none;padding:.35rem .7rem;border-radius:20px;transition:background .2s,color .2s}
+.nav-links a:hover{background:var(--red-th);color:var(--red-hero-text)}
+
+#progress-bar{position:fixed;bottom:0;left:0;width:100%;height:6px;background:var(--red-th);z-index:200}
+#progress-fill{height:100%;width:0%;background:var(--red-dk);transition:width .3s}
+
+.hero{background:var(--red-hero);border-top:4px solid var(--red-border);padding:3.5rem 1.5rem 3rem;text-align:center}
+.hero .badge{display:inline-block;background:var(--red-th);color:var(--red-hero-text);font-size:.78rem;font-weight:700;padding:.3rem .9rem;border-radius:20px;letter-spacing:.05em;margin-bottom:1rem;text-transform:uppercase}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:clamp(2.2rem,5vw,3.4rem);color:var(--red-hero-text);margin-bottom:.5rem}
+.hero p{font-size:1.05rem;color:#5a1a0a;max-width:620px;margin:0 auto 1.5rem}
+.hero .song-card{background:var(--white);border:2px solid var(--red-th);border-radius:14px;max-width:500px;margin:0 auto;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:1rem;text-align:left}
+.hero .song-card .note{font-size:2.5rem}
+.hero .song-card h3{font-family:var(--fh);font-style:italic;color:var(--red-hero-text);font-size:1.1rem;margin-bottom:.2rem}
+.hero .song-card p{font-size:.85rem;color:#5a1a0a}
+.hero .song-card a{display:inline-block;margin-top:.5rem;background:var(--red-dk);color:var(--white);padding:.3rem .9rem;border-radius:20px;font-size:.82rem;font-weight:700;text-decoration:none;transition:background .2s}
+.hero .song-card a:hover{background:var(--red-hero-text)}
+
+section{max-width:1100px;margin:0 auto;padding:3rem 1.5rem}
+.section-title{font-family:var(--fh);font-style:italic;font-size:1.8rem;color:var(--red-hero-text);margin-bottom:.4rem}
+.section-sub{color:#5a1a0a;font-size:.95rem;margin-bottom:1.8rem}
+.divider{border:none;border-top:2px solid var(--red-th);margin:2.5rem 0}
+
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem}
+.vocab-card{background:var(--red-hero);border:2px solid var(--red-th);border-radius:12px;padding:1rem .8rem;text-align:center;cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative;min-height:80px;display:flex;align-items:center;justify-content:center}
+.vocab-card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(204,71,54,.3)}
+.vocab-card .it{font-weight:700;font-size:.95rem;color:var(--black);transition:opacity .2s}
+.vocab-card .es{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.82rem;color:var(--red-hero-text);font-weight:600;background:var(--red-th);border-radius:10px;opacity:0;transition:opacity .2s;padding:.5rem;text-align:center}
+.vocab-card.revealed .es{opacity:1}
+.vocab-card.revealed .it{opacity:0}
+
+.card-set-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.flip-card{perspective:600px;cursor:pointer;height:110px}
+.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .45s}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:.8rem;text-align:center}
+.flip-front{background:var(--red-hero);border:2px solid var(--red-th)}
+.flip-back{background:var(--red-th);border:2px solid var(--red-dk);transform:rotateY(180deg)}
+.flip-front .icon{font-size:1.6rem;margin-bottom:.3rem}
+.flip-front .word{font-weight:700;font-size:.93rem;color:var(--black)}
+.flip-back .trans{font-weight:600;font-size:.9rem;color:var(--red-hero-text)}
+.flip-back .example{font-size:.76rem;color:#5a1a0a;margin-top:.3rem;font-style:italic}
+
+.discovery-box{background:var(--red-hero);border:2px solid var(--red-th);border-radius:14px;padding:1.8rem;margin-bottom:1.5rem}
+.discovery-box h3{font-family:var(--fh);font-style:italic;font-size:1.3rem;color:var(--red-hero-text);margin-bottom:1rem}
+
+table{width:100%;border-collapse:collapse;margin:1rem 0;border-radius:10px;overflow:hidden}
+th{background:var(--red-th);color:var(--red-hero-text);font-weight:700;padding:.7rem 1rem;text-align:left;font-size:.9rem}
+td{padding:.65rem 1rem;font-size:.9rem;border-bottom:1px solid var(--red-th)}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#fff8f7}
+
+.fill-ex{background:#fff8f7;border:2px solid var(--red-th);border-radius:12px;padding:1.5rem;margin-bottom:1rem}
+.fill-ex p{margin-bottom:.8rem;font-size:.95rem}
+.fill-item{display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem;flex-wrap:wrap}
+.fill-item label{font-size:.9rem;flex:1;min-width:220px}
+.fill-item input{border:2px solid var(--red-th);border-radius:8px;padding:.35rem .7rem;font-family:var(--fb);font-size:.9rem;width:130px;background:var(--white)}
+.fill-item input:focus{outline:none;border-color:var(--red-dk)}
+.fill-item .result{font-size:.85rem;font-weight:700;min-width:80px}
+.fill-item .result.ok{color:#528e74}
+.fill-item .result.err{color:#cc4736}
+.check-btn{background:var(--red-dk);color:var(--white);border:none;padding:.55rem 1.4rem;border-radius:20px;font-family:var(--fb);font-weight:700;cursor:pointer;font-size:.9rem;transition:background .2s}
+.check-btn:hover{background:var(--red-hero-text)}
+
+.dialogo{background:#fff8f7;border:2px solid var(--red-th);border-radius:14px;padding:1.5rem;margin-bottom:1rem}
+.dialogo h4{font-family:var(--fh);font-style:italic;color:var(--red-hero-text);margin-bottom:1rem;font-size:1.1rem}
+.bubble-wrap{display:flex;flex-direction:column;gap:.8rem}
+.b{background:var(--cream-dk,#ddd9c8);border-radius:16px 16px 16px 4px;padding:.8rem 1.1rem;max-width:80%;cursor:pointer;transition:box-shadow .2s}
+.b:hover{box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.b.right{align-self:flex-end;border-radius:16px 16px 4px 16px;background:var(--red-th)}
+.b .speaker{font-size:.72rem;font-weight:700;color:var(--red-dk);margin-bottom:.2rem;text-transform:uppercase;letter-spacing:.05em}
+.b .it{font-weight:600;font-size:.95rem}
+.b .es{font-size:.82rem;color:#5a1a0a;margin-top:.3rem;font-style:italic;display:none}
+.b.open .es{display:block}
+
+.comprension{background:var(--red-hero);border:2px solid var(--red-th);border-radius:14px;padding:1.8rem;margin-bottom:1rem}
+.comprension h4{font-family:var(--fh);font-style:italic;color:var(--red-hero-text);margin-bottom:1rem}
+.anuncio-box{background:var(--white);border:3px solid var(--red-dk);border-radius:12px;padding:1.3rem;font-size:.93rem;margin-bottom:1.2rem;font-style:italic;line-height:1.8}
+.mc-question{margin-bottom:1.2rem}
+.mc-question p{font-weight:600;margin-bottom:.5rem;font-size:.92rem}
+.mc-option{display:block;padding:.4rem .8rem;border-radius:8px;cursor:pointer;font-size:.88rem;margin-bottom:.3rem;transition:background .2s}
+.mc-option:hover{background:var(--red-th)}
+.mc-option.sel{background:var(--red-th);font-weight:700}
+.mc-option.ok{background:#d4edda;color:#155724;font-weight:700}
+.mc-option.err{background:#f8d7da;color:#721c24}
+
+.matching-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.match-col h5{font-weight:700;margin-bottom:.8rem;color:var(--red-hero-text);font-size:.88rem;text-transform:uppercase;letter-spacing:.05em}
+.match-item{background:var(--red-hero);border:2px solid var(--red-th);border-radius:10px;padding:.6rem 1rem;font-size:.9rem;cursor:pointer;margin-bottom:.5rem;transition:background .2s,border-color .2s}
+.match-item:hover{background:var(--red-th)}
+.match-item.selected{background:var(--red-th);border-color:var(--red-dk);font-weight:700}
+.match-item.matched{background:#d4edda;border-color:#528e74;color:#155724;font-weight:700;pointer-events:none}
+.match-item.wrong{background:#f8d7da;border-color:#cc4736;animation:shake .3s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+/* FONÉTICA */
+.fonetica-section{background:var(--red-hero);border:2px solid var(--red-th);border-radius:14px;padding:1.8rem;margin-bottom:1rem}
+.fonetica-section h3{font-family:var(--fh);font-style:italic;font-size:1.3rem;color:var(--red-hero-text);margin-bottom:1rem}
+.sound-pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem}
+.sound-card{background:var(--white);border:2px solid var(--red-th);border-radius:12px;padding:1rem;text-align:center}
+.sound-card .letters{font-family:var(--fh);font-style:italic;font-size:1.6rem;color:var(--red-dk);margin-bottom:.3rem}
+.sound-card .pronunciation{font-size:.85rem;color:#5a1a0a;margin-bottom:.5rem}
+.sound-card .ex-list{font-size:.88rem;font-style:italic;color:var(--black)}
+
+.culture-strip{background:linear-gradient(135deg,#fbc8c2,#fde4e1);border-top:4px solid var(--red-dk);padding:2.5rem 1.5rem;margin-top:2rem}
+.culture-inner{max-width:900px;margin:0 auto;display:flex;gap:2rem;align-items:flex-start;flex-wrap:wrap}
+.culture-icon{font-size:3rem;flex-shrink:0}
+.culture-text h3{font-family:var(--fh);font-style:italic;color:var(--red-hero-text);font-size:1.4rem;margin-bottom:.6rem}
+.culture-text p{font-size:.95rem;color:#4a1000;line-height:1.7}
+
+[data-a]{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
+[data-a].visible{opacity:1;transform:none}
+
+footer{background:var(--white);border-top:3px solid var(--red-th);padding:1.5rem;text-align:center;font-size:.82rem;color:#888}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#"><img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=f5755ad" alt="Italiano Per Piacere" loading="lazy"></a>
+    <div class="nav-links">
+      <a href="#vocabulario">Vocabulario</a>
+      <a href="#modales">Modales</a>
+      <a href="#regulares">Regulares</a>
+      <a href="#dialogos">Diálogos</a>
+      <a href="#fonetica">Fonética</a>
+      <a href="#cultura">Cultura</a>
+    </div>
+  </div>
+</nav>
+
+<div id="progress-bar"><div id="progress-fill"></div></div>
+
+<div class="hero">
+  <div class="badge">Viajeros · Módulo 2</div>
+  <h1>In aereo 🛫</h1>
+  <p>Ya pasaste por el aeropuerto. Ahora estás en el avión rumbo a Milán. Aprendé a pedir lo que necesitás, con cortesía y estilo italiano.</p>
+  <div class="song-card">
+    <div class="note">🎵</div>
+    <div>
+      <h3>Volare — Domenico Modugno</h3>
+      <p>La canción italiana más famosa del mundo. ¿Cuántas palabras reconocés?</p>
+      <a href="https://youtu.be/yi4VsABhkH4" target="_blank" rel="noopener">Escuchar ▶</a>
+    </div>
+  </div>
+</div>
+
+<!-- VOCABULARIO PRINCIPAL -->
+<section id="vocabulario">
+  <h2 class="section-title" data-a>Il vocabolario dell'aereo</h2>
+  <p class="section-sub" data-a>Hacé clic en cada tarjeta para ver la traducción.</p>
+  <div class="vocab-grid" data-a>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">l'aereo</span><span class="es">el avión</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il finestrino</span><span class="es">la ventanilla</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il corridoio</span><span class="es">el pasillo</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il sedile</span><span class="es">el asiento</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">la cintura</span><span class="es">el cinturón de seguridad</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il bagaglio a mano</span><span class="es">el equipaje de mano</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il vano portabagagli</span><span class="es">el compartimento superior</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il tavolino</span><span class="es">la mesita plegable</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">lo schienale</span><span class="es">el respaldo del asiento</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">la maschera d'ossigeno</span><span class="es">la máscara de oxígeno</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il giubbotto di salvataggio</span><span class="es">el chaleco salvavidas</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il decollo</span><span class="es">el despegue</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">l'atterraggio</span><span class="es">el aterrizaje</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">la turbolenza</span><span class="es">la turbulencia</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il mal d'aria</span><span class="es">el mareo (en avión)</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il pilota</span><span class="es">el piloto</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">l'assistente di volo</span><span class="es">el/la auxiliar de vuelo</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il passeggero</span><span class="es">el pasajero</span></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SET A: OBJETOS DEL AVIÓN -->
+<section>
+  <h2 class="section-title" data-a>Oggetti dell'aereo 🛩️</h2>
+  <p class="section-sub" data-a>Objetos que encontrás en el avión. Hacé clic para ver más.</p>
+  <div class="card-set-wrap" data-a>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🪟</span><span class="word">il finestrino</span></div>
+        <div class="flip-back"><span class="trans">la ventanilla</span><span class="example">Posso sedermi al finestrino?</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🔒</span><span class="word">la cintura di sicurezza</span></div>
+        <div class="flip-back"><span class="trans">cinturón de seguridad</span><span class="example">Allaccia la cintura, per favore.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🎒</span><span class="word">il bagaglio a mano</span></div>
+        <div class="flip-back"><span class="trans">equipaje de mano</span><span class="example">Il bagaglio a mano va in alto.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🍽️</span><span class="word">il tavolino</span></div>
+        <div class="flip-back"><span class="trans">la mesita plegable</span><span class="example">Apro il tavolino per mangiare.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">💺</span><span class="word">lo schienale</span></div>
+        <div class="flip-back"><span class="trans">el respaldo</span><span class="example">Metti lo schienale dritto.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">😷</span><span class="word">la maschera d'ossigeno</span></div>
+        <div class="flip-back"><span class="trans">máscara de oxígeno</span><span class="example">Indossa prima la tua maschera.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🦺</span><span class="word">il giubbotto di salvataggio</span></div>
+        <div class="flip-back"><span class="trans">chaleco salvavidas</span><span class="example">Il giubbotto è sotto il sedile.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🚪</span><span class="word">il corridoio</span></div>
+        <div class="flip-back"><span class="trans">el pasillo</span><span class="example">Il posto corridoio è più comodo.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SET B: PERSONAL -->
+<section>
+  <h2 class="section-title" data-a>Le persone sull'aereo 👥</h2>
+  <p class="section-sub" data-a>¿Quiénes están en el avión con vos?</p>
+  <div class="card-set-wrap" data-a>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">👨‍✈️</span><span class="word">il pilota</span></div>
+        <div class="flip-back"><span class="trans">el piloto</span><span class="example">Il pilota è molto esperto.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🧑‍✈️</span><span class="word">il/la copilota</span></div>
+        <div class="flip-back"><span class="trans">el/la copiloto</span><span class="example">La copilota è bravissima.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">💁‍♀️</span><span class="word">l'assistente di volo</span></div>
+        <div class="flip-back"><span class="trans">auxiliar de vuelo</span><span class="example">L'assistente porta il caffè.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🧑‍🤝‍🧑</span><span class="word">i passeggeri</span></div>
+        <div class="flip-back"><span class="trans">los pasajeros</span><span class="example">I passeggeri sono 180.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SET C: CORTESÍA -->
+<section>
+  <h2 class="section-title" data-a>Espressioni di cortesia 🤝</h2>
+  <p class="section-sub" data-a>Las expresiones de cortesía que usás para pedir algo en el avión.</p>
+  <div class="card-set-wrap" data-a>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🙋</span><span class="word">vorrei</span></div>
+        <div class="flip-back"><span class="trans">quisiera / me gustaría</span><span class="example">Vorrei un caffè, per favore.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🤲</span><span class="word">potrei avere...?</span></div>
+        <div class="flip-back"><span class="trans">¿podría tener...?</span><span class="example">Potrei avere dell'acqua?</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🙏</span><span class="word">per favore / per piacere</span></div>
+        <div class="flip-back"><span class="trans">por favor</span><span class="example">Un bicchiere d'acqua, per favore.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">😊</span><span class="word">grazie / prego</span></div>
+        <div class="flip-back"><span class="trans">gracias / de nada</span><span class="example">— Grazie! — Prego!</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🚶</span><span class="word">scusi / scusa</span></div>
+        <div class="flip-back"><span class="trans">disculpe / disculpá</span><span class="example">Scusi, posso passare?</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">😔</span><span class="word">mi dispiace</span></div>
+        <div class="flip-back"><span class="trans">lo siento / lo lamento</span><span class="example">Mi dispiace, ho sbagliato posto.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🤒</span><span class="word">non mi sento bene</span></div>
+        <div class="flip-back"><span class="trans">no me siento bien</span><span class="example">Non mi sento bene, ho mal d'aria.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">❓</span><span class="word">mi può aiutare?</span></div>
+        <div class="flip-back"><span class="trans">¿me puede ayudar?</span><span class="example">Scusi, mi può aiutare col bagaglio?</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- DISCOVERY 1: VOLERE -->
+<section id="modales">
+  <h2 class="section-title" data-a>Il verbo VOLERE 💬</h2>
+  <p class="section-sub" data-a>El verbo "volere" (querer) es clave para pedir cosas con cortesía. La forma "vorrei" (quisiera) es la más elegante — ¡los italianos la usan todo el tiempo!</p>
+
+  <div class="discovery-box" data-a>
+    <h3>Conjugación de VOLERE</h3>
+    <table>
+      <tr><th>Persona</th><th>VOLERE</th><th>Ejemplo en el avión</th></tr>
+      <tr><td>io</td><td><strong>voglio</strong></td><td>Voglio il posto corridoio.</td></tr>
+      <tr><td>tu</td><td><strong>vuoi</strong></td><td>Vuoi del caffè?</td></tr>
+      <tr><td>lui/lei</td><td><strong>vuole</strong></td><td>Vuole qualcosa da bere?</td></tr>
+      <tr><td>noi</td><td><strong>vogliamo</strong></td><td>Vogliamo sederci insieme.</td></tr>
+      <tr><td>voi</td><td><strong>volete</strong></td><td>Volete il menù?</td></tr>
+      <tr><td>loro</td><td><strong>vogliono</strong></td><td>Vogliono arrivare presto.</td></tr>
+    </table>
+    <p style="margin-top:1rem;background:#fbc8c2;padding:.8rem 1rem;border-radius:8px;font-size:.9rem;color:#5a1a0a"><strong>Cortesía extra — vorrei:</strong> En vez de "voglio" (quiero, directo), los italianos usan "vorrei" (quisiera), que es el condicional. Es mucho más cortés. <em>Voglio un caffè</em> → directo | <em>Vorrei un caffè</em> → educado ✓</p>
+  </div>
+
+  <!-- FILL 1 -->
+  <div class="fill-ex" data-a>
+    <p><strong>Completá con la forma correcta de VOLERE:</strong></p>
+    <div class="fill-item"><label>1. Io _______ un posto al finestrino.</label><input type="text" id="f1a" placeholder="?"><span class="result" id="r1a"></span></div>
+    <div class="fill-item"><label>2. Tu _______ un caffè o un tè?</label><input type="text" id="f1b" placeholder="?"><span class="result" id="r1b"></span></div>
+    <div class="fill-item"><label>3. Lei _______ qualcosa da mangiare?</label><input type="text" id="f1c" placeholder="?"><span class="result" id="r1c"></span></div>
+    <div class="fill-item"><label>4. Noi _______ sederci vicino.</label><input type="text" id="f1d" placeholder="?"><span class="result" id="r1d"></span></div>
+    <div class="fill-item"><label>5. Loro _______ arrivare a Venezia.</label><input type="text" id="f1e" placeholder="?"><span class="result" id="r1e"></span></div>
+    <button class="check-btn" onclick="checkFill1()">Verificar ✓</button>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- DISCOVERY 2: POTERE y DOVERE -->
+<section>
+  <h2 class="section-title" data-a>POTERE y DOVERE 🔑</h2>
+  <p class="section-sub" data-a>Dos verbos modales más: "potere" (poder) para pedir permiso o hacer pedidos, y "dovere" (deber) para obligaciones.</p>
+
+  <div class="discovery-box" data-a>
+    <h3>Conjugación de POTERE y DOVERE</h3>
+    <table>
+      <tr><th>Persona</th><th>POTERE (poder)</th><th>DOVERE (deber)</th></tr>
+      <tr><td>io</td><td><strong>posso</strong></td><td><strong>devo</strong></td></tr>
+      <tr><td>tu</td><td><strong>puoi</strong></td><td><strong>devi</strong></td></tr>
+      <tr><td>lui/lei</td><td><strong>può</strong></td><td><strong>deve</strong></td></tr>
+      <tr><td>noi</td><td><strong>possiamo</strong></td><td><strong>dobbiamo</strong></td></tr>
+      <tr><td>voi</td><td><strong>potete</strong></td><td><strong>dovete</strong></td></tr>
+      <tr><td>loro</td><td><strong>possono</strong></td><td><strong>devono</strong></td></tr>
+    </table>
+    <p style="margin-top:1rem;font-size:.9rem;color:#5a1a0a"><strong>Usos:</strong> <em>Posso aprire il finestrino?</em> (¿Puedo abrir la ventanilla?) · <em>Devi allacciare la cintura.</em> (Tenés que abrocharte el cinturón.) · <em>Potrei avere dell'acqua?</em> (¿Podría traerme agua? — muy cortés)</p>
+  </div>
+
+  <!-- FILL 2 -->
+  <div class="fill-ex" data-a>
+    <p><strong>Completá con POTERE o DOVERE según el contexto:</strong></p>
+    <div class="fill-item"><label>1. _______ allacciare la cintura adesso. (Tenés que...)</label><input type="text" id="f2a" placeholder="?"><span class="result" id="r2a"></span></div>
+    <div class="fill-item"><label>2. _______ aprire il finestrino? (¿Puedo...?)</label><input type="text" id="f2b" placeholder="?"><span class="result" id="r2b"></span></div>
+    <div class="fill-item"><label>3. Noi _______ aspettare l'atterraggio. (debemos)</label><input type="text" id="f2c" placeholder="?"><span class="result" id="r2c"></span></div>
+    <div class="fill-item"><label>4. Voi _______ portare solo 10 kg. (pueden)</label><input type="text" id="f2d" placeholder="?"><span class="result" id="r2d"></span></div>
+    <div class="fill-item"><label>5. _______ avere un'altra coperta? (¿Podría...? — cortés)</label><input type="text" id="f2e" placeholder="?"><span class="result" id="r2e"></span></div>
+    <button class="check-btn" onclick="checkFill2()">Verificar ✓</button>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- DISCOVERY 3: VERBOS REGULARES -->
+<section id="regulares">
+  <h2 class="section-title" data-a>Verbos regulares: -are, -ere, -ire 📖</h2>
+  <p class="section-sub" data-a>La mayoría de los verbos italianos son regulares. Aprendés un patrón y podés conjugar cientos de verbos.</p>
+
+  <div class="discovery-box" data-a>
+    <h3>Presente de indicativo</h3>
+    <table>
+      <tr><th>Persona</th><th>parlare (-are)</th><th>prendere (-ere)</th><th>partire (-ire)</th></tr>
+      <tr><td>io</td><td>parl<strong>o</strong></td><td>prend<strong>o</strong></td><td>part<strong>o</strong></td></tr>
+      <tr><td>tu</td><td>parl<strong>i</strong></td><td>prend<strong>i</strong></td><td>part<strong>i</strong></td></tr>
+      <tr><td>lui/lei</td><td>parl<strong>a</strong></td><td>prend<strong>e</strong></td><td>part<strong>e</strong></td></tr>
+      <tr><td>noi</td><td>parl<strong>iamo</strong></td><td>prend<strong>iamo</strong></td><td>part<strong>iamo</strong></td></tr>
+      <tr><td>voi</td><td>parl<strong>ate</strong></td><td>prend<strong>ete</strong></td><td>part<strong>ite</strong></td></tr>
+      <tr><td>loro</td><td>parl<strong>ano</strong></td><td>prend<strong>ono</strong></td><td>part<strong>ono</strong></td></tr>
+    </table>
+    <p style="margin-top:1rem;font-size:.9rem;color:#5a1a0a"><strong>Verbos útiles en el avión:</strong> <em>volare</em> (volar), <em>atterrare</em> (aterrizar), <em>decollare</em> (despegar), <em>mangiare</em> (comer), <em>bere</em> (beber), <em>dormire</em> (dormir), <em>chiedere</em> (pedir/preguntar)</p>
+  </div>
+
+  <!-- FILL 3 -->
+  <div class="fill-ex" data-a>
+    <p><strong>Conjugá el verbo entre paréntesis en la persona indicada:</strong></p>
+    <div class="fill-item"><label>1. Il volo _______ alle 14:00. (partire – lui)</label><input type="text" id="f3a" placeholder="?"><span class="result" id="r3a"></span></div>
+    <div class="fill-item"><label>2. Io _______ italiano con l'assistente. (parlare – io)</label><input type="text" id="f3b" placeholder="?"><span class="result" id="r3b"></span></div>
+    <div class="fill-item"><label>3. Noi _______ il pasto sul tavolino. (prendere – noi)</label><input type="text" id="f3c" placeholder="?"><span class="result" id="r3c"></span></div>
+    <div class="fill-item"><label>4. I passeggeri _______ durante il volo. (dormire – loro)</label><input type="text" id="f3d" placeholder="?"><span class="result" id="r3d"></span></div>
+    <div class="fill-item"><label>5. Tu _______ il caffè o il tè? (volere – tu)</label><input type="text" id="f3e" placeholder="?"><span class="result" id="r3e"></span></div>
+    <button class="check-btn" onclick="checkFill3()">Verificar ✓</button>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- DIALOGOS -->
+<section id="dialogos">
+  <h2 class="section-title" data-a>Dialoghi in aereo 💬</h2>
+  <p class="section-sub" data-a>Hacé clic en cada burbuja para ver la traducción.</p>
+
+  <div class="dialogo" data-a>
+    <h4>Diálogo 1: Pidiendo algo al asistente de vuelo</h4>
+    <div class="bubble-wrap">
+      <div class="b" onclick="this.classList.toggle('open')">
+        <div class="speaker">Assistente</div>
+        <div class="it">Buongiorno! Desidera qualcosa da bere?</div>
+        <div class="es">¡Buenos días! ¿Desea algo de beber?</div>
+      </div>
+      <div class="b right" onclick="this.classList.toggle('open')">
+        <div class="speaker">Passeggero</div>
+        <div class="it">Sì, vorrei un caffè, per favore. E dell'acqua naturale.</div>
+        <div class="es">Sí, quisiera un café, por favor. Y agua sin gas.</div>
+      </div>
+      <div class="b" onclick="this.classList.toggle('open')">
+        <div class="speaker">Assistente</div>
+        <div class="it">Subito! Vuole anche qualcosa da mangiare?</div>
+        <div class="es">¡Enseguida! ¿Quiere también algo de comer?</div>
+      </div>
+      <div class="b right" onclick="this.classList.toggle('open')">
+        <div class="speaker">Passeggero</div>
+        <div class="it">No, grazie. Solo il caffè. Posso abbassare il tavolino?</div>
+        <div class="es">No, gracias. Solo el café. ¿Puedo bajar la mesita?</div>
+      </div>
+      <div class="b" onclick="this.classList.toggle('open')">
+        <div class="speaker">Assistente</div>
+        <div class="it">Certo! Prego.</div>
+        <div class="es">¡Por supuesto! De nada.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogo" data-a>
+    <h4>Diálogo 2: Reportando un malestar físico</h4>
+    <div class="bubble-wrap">
+      <div class="b right" onclick="this.classList.toggle('open')">
+        <div class="speaker">Passeggero</div>
+        <div class="it">Scusi, non mi sento bene. Ho il mal d'aria.</div>
+        <div class="es">Disculpe, no me siento bien. Tengo mareo.</div>
+      </div>
+      <div class="b" onclick="this.classList.toggle('open')">
+        <div class="speaker">Assistente</div>
+        <div class="it">Mi dispiace! Ha bisogno di un sacchetto?</div>
+        <div class="es">¡Lo siento! ¿Necesita una bolsita?</div>
+      </div>
+      <div class="b right" onclick="this.classList.toggle('open')">
+        <div class="speaker">Passeggero</div>
+        <div class="it">No, ma ho bisogno di acqua. Devo anche abbassare lo schienale?</div>
+        <div class="es">No, pero necesito agua. ¿También tengo que reclinar el respaldo?</div>
+      </div>
+      <div class="b" onclick="this.classList.toggle('open')">
+        <div class="speaker">Assistente</div>
+        <div class="it">Può abbassarlo pure. Le porto l'acqua subito. Si sente meglio così?</div>
+        <div class="es">Puede reclinarlo también. Le traigo el agua enseguida. ¿Se siente mejor así?</div>
+      </div>
+      <div class="b right" onclick="this.classList.toggle('open')">
+        <div class="speaker">Passeggero</div>
+        <div class="it">Sì, un po' meglio. Grazie mille!</div>
+        <div class="es">Sí, un poco mejor. ¡Muchas gracias!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- COMPRENSIÓN: ANUNCIO DEL PILOTO -->
+<section>
+  <h2 class="section-title" data-a>L'annuncio del pilota 📢</h2>
+  <p class="section-sub" data-a>Leé el anuncio del pilota y respondé las preguntas.</p>
+
+  <div class="comprension" data-a>
+    <div class="anuncio-box">
+      "Buongiorno a tutti. Sono il comandante Rossi. Benvenuti a bordo del volo AZ742 da Buenos Aires a Milano Malpensa. La durata del volo è di circa dodici ore. In questo momento stiamo volando a diecimila metri di altezza. La temperatura esterna è di meno quaranta gradi. Tra circa un'ora inizieremo il servizio pasti. Vi chiediamo di allacciare le cinture di sicurezza e di tenere lo schienale dritto durante il decollo. Buon volo!"
+    </div>
+
+    <div class="mc-question">
+      <p>1. ¿Cómo se llama el piloto?</p>
+      <span class="mc-option" onclick="checkMC2(this,'Rossi')">Comandante Bianchi</span>
+      <span class="mc-option" onclick="checkMC2(this,'Rossi')">Comandante Rossi</span>
+      <span class="mc-option" onclick="checkMC2(this,'Rossi')">Comandante Ferrari</span>
+    </div>
+    <div class="mc-question">
+      <p>2. ¿Cuánto dura el vuelo?</p>
+      <span class="mc-option" onclick="checkMC2(this,'dodici')">Ocho horas</span>
+      <span class="mc-option" onclick="checkMC2(this,'dodici')">Diez horas</span>
+      <span class="mc-option" onclick="checkMC2(this,'dodici')">Doce horas</span>
+    </div>
+    <div class="mc-question">
+      <p>3. ¿Cuándo inicia el servicio de comidas?</p>
+      <span class="mc-option" onclick="checkMC2(this,'ora')">En este momento</span>
+      <span class="mc-option" onclick="checkMC2(this,'ora')">En una hora</span>
+      <span class="mc-option" onclick="checkMC2(this,'ora')">En dos horas</span>
+    </div>
+    <div class="mc-question">
+      <p>4. ¿Qué les pide el piloto a los pasajeros?</p>
+      <span class="mc-option" onclick="checkMC2(this,'cinture')">Abrir las ventanillas</span>
+      <span class="mc-option" onclick="checkMC2(this,'cinture')">Abrocharse el cinturón y mantener el respaldo derecho</span>
+      <span class="mc-option" onclick="checkMC2(this,'cinture')">Apagar los teléfonos</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- MATCHING: MODALES CON SITUACIONES -->
+<section>
+  <h2 class="section-title" data-a>Abbina! 🧩</h2>
+  <p class="section-sub" data-a>Conectá cada situación con la frase correcta.</p>
+
+  <div class="matching-wrap" data-a>
+    <div class="match-col">
+      <h5>Situación</h5>
+      <div class="match-item" data-match="vorrei" onclick="matchSelect(this)">Querés pedir un café con cortesía</div>
+      <div class="match-item" data-match="posso" onclick="matchSelect(this)">Preguntás si podés pasar al baño</div>
+      <div class="match-item" data-match="devo" onclick="matchSelect(this)">Te dicen que debés abrocharte</div>
+      <div class="match-item" data-match="potrei" onclick="matchSelect(this)">Pedís agua de forma muy cortés</div>
+      <div class="match-item" data-match="voglio" onclick="matchSelect(this)">Decís directamente lo que querés</div>
+      <div class="match-item" data-match="dobbiamo" onclick="matchSelect(this)">Vos y tu compañero deben esperar</div>
+    </div>
+    <div class="match-col">
+      <h5>Frase italiana</h5>
+      <div class="match-item" data-match="voglio" onclick="matchSelect(this)">Voglio il posto corridoio.</div>
+      <div class="match-item" data-match="potrei" onclick="matchSelect(this)">Potrei avere dell'acqua?</div>
+      <div class="match-item" data-match="devo" onclick="matchSelect(this)">Devo allacciare la cintura.</div>
+      <div class="match-item" data-match="posso" onclick="matchSelect(this)">Posso andare al bagno?</div>
+      <div class="match-item" data-match="dobbiamo" onclick="matchSelect(this)">Dobbiamo aspettare l'atterraggio.</div>
+      <div class="match-item" data-match="vorrei" onclick="matchSelect(this)">Vorrei un caffè, per favore.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FONÉTICA: GN y GL -->
+<section id="fonetica">
+  <h2 class="section-title" data-a>Fonética: GN y GL 🔤</h2>
+  <p class="section-sub" data-a>Dos combinaciones de letras con sonidos especiales que se repiten mucho en italiano.</p>
+
+  <div class="fonetica-section" data-a>
+    <h3>GN — suena como "ñ" en español</h3>
+    <div class="sound-pair">
+      <div class="sound-card">
+        <div class="letters">GN</div>
+        <div class="pronunciation">Sonido: [ñ] — como en "España"</div>
+        <div class="ex-list">bagno [báñо] · gnocchi [ñóki] · signore [siñóre] · cognome [koñóme] · bisogno [bizoñо]</div>
+      </div>
+      <div class="sound-card">
+        <div class="letters">GL + i</div>
+        <div class="pronunciation">Sonido: [li] palatal — suave, como "ll" rioplatense</div>
+        <div class="ex-list">figlio [fíllo] · voglio [vóllo] · moglie [mólle] · meglio [méllo] · aglio [állo]</div>
+      </div>
+    </div>
+    <p style="margin-top:1rem;font-size:.88rem;color:#5a1a0a"><strong>Consejo:</strong> La GN y la GL+i son difíciles al principio pero muy consistentes — siempre suenan igual. Practicá: <em>bagno, figlio, bisogno, voglio</em>.</p>
+  </div>
+</section>
+
+<!-- CULTURE STRIP -->
+<div class="culture-strip" id="cultura">
+  <div class="culture-inner">
+    <div class="culture-icon">☕</div>
+    <div class="culture-text">
+      <h3>Cultura: Bebidas y comida en los vuelos italianos</h3>
+      <p>En los vuelos de Alitalia (hoy ITA Airways) y otras aerolíneas italianas, el <em>caffè</em> es casi un rito. El café italiano es espresso — pequeño, concentrado y sin leche por defecto. Si querés leche, pedís un <em>caffè macchiato</em>. También suelen servir <em>acqua naturale</em> (sin gas) o <em>acqua frizzante</em> (con gas) — ¡en Italia siempre te preguntan cuál preferís! Para comer, los vuelos largos suelen incluir <em>pasta</em> o <em>riso</em> (arroz) como opción típicamente italiana. Y si tenés suerte, hasta una <em>grappa</em> al final del viaje.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Italiano Per Piacere · Viajeros · Módulo 2 — In aereo</p>
+</footer>
+
+<script>
+// Progress
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement;
+  const pct=(s.scrollTop/(s.scrollHeight-s.clientHeight))*100;
+  document.getElementById('progress-fill').style.width=pct+'%';
+});
+
+// Animations
+const obs=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('visible');obs.unobserve(i.target)}})},{threshold:0.1});
+document.querySelectorAll('[data-a]').forEach(el=>obs.observe(el));
+
+// Fill 1 — Volere
+const fill1={f1a:'voglio',f1b:'vuoi',f1c:'vuole',f1d:'vogliamo',f1e:'vogliono'};
+function checkFill1(){
+  Object.entries(fill1).forEach(([id,ans])=>{
+    const val=document.getElementById(id).value.trim().toLowerCase();
+    const r=document.getElementById('r'+id.slice(1));
+    r.textContent=val===ans?'✓':'✗ '+ans;
+    r.className='result '+(val===ans?'ok':'err');
+  });
+}
+
+// Fill 2 — Potere/Dovere
+const fill2={f2a:'devi',f2b:'posso',f2c:'dobbiamo',f2d:'potete',f2e:'potrei'};
+function checkFill2(){
+  Object.entries(fill2).forEach(([id,ans])=>{
+    const val=document.getElementById(id).value.trim().toLowerCase();
+    const r=document.getElementById('r'+id.slice(1));
+    r.textContent=val===ans?'✓':'✗ '+ans;
+    r.className='result '+(val===ans?'ok':'err');
+  });
+}
+
+// Fill 3 — Regulares
+const fill3={f3a:'parte',f3b:'parlo',f3c:'prendiamo',f3d:'dormono',f3e:'vuoi'};
+function checkFill3(){
+  Object.entries(fill3).forEach(([id,ans])=>{
+    const val=document.getElementById(id).value.trim().toLowerCase();
+    const r=document.getElementById('r'+id.slice(1));
+    r.textContent=val===ans?'✓':'✗ '+ans;
+    r.className='result '+(val===ans?'ok':'err');
+  });
+}
+
+// MC comprensión
+function checkMC2(el,key){
+  const q=el.closest('.mc-question');
+  let correct=false;
+  if(key==='Rossi') correct=el.textContent.includes('Rossi');
+  else if(key==='dodici') correct=el.textContent.includes('Doce');
+  else if(key==='ora') correct=el.textContent.includes('una hora');
+  else if(key==='cinture') correct=el.textContent.includes('cinturón');
+  q.querySelectorAll('.mc-option').forEach(o=>o.classList.remove('ok','err','sel'));
+  el.classList.add(correct?'ok':'err');
+}
+
+// Matching
+let firstSel=null;
+function matchSelect(el){
+  if(el.classList.contains('matched')) return;
+  if(!firstSel){
+    document.querySelectorAll('.match-item').forEach(i=>i.classList.remove('selected'));
+    el.classList.add('selected');
+    firstSel=el;
+  } else {
+    if(el===firstSel){firstSel=null;el.classList.remove('selected');return;}
+    if(firstSel.dataset.match===el.dataset.match){
+      firstSel.classList.replace('selected','matched');
+      el.classList.add('matched');
+    } else {
+      firstSel.classList.add('wrong');
+      el.classList.add('wrong');
+      setTimeout(()=>{firstSel.classList.remove('wrong','selected');el.classList.remove('wrong');},600);
+    }
+    firstSel=null;
+  }
+}
+</script>
+</body>
+</html>

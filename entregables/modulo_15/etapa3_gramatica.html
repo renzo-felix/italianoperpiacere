@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -21,9 +21,9 @@ nav{position:sticky;top:0;z-index:100;background:var(--black);padding:.7rem 2rem
 nav .logo{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:1.05rem;margin-right:auto}
 nav a{color:var(--gold);text-decoration:none;font-size:.88rem;font-weight:600;opacity:.8;transition:opacity .2s}
 nav a:hover{opacity:1}
-#es-toggle{background:var(--hdr);color:#fff;border:none;padding:.35rem .9rem;border-radius:2rem;font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer}
+#es-toggle{background:#c8e8de;color:#fff;border:none;padding:.35rem .9rem;border-radius:2rem;font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer}
 
-.page-header{background:var(--hdr);color:#fff;padding:3rem 2rem 2.5rem;text-align:center}
+.page-header{background:#c8e8de;color:#1a1a18;padding:3rem 2rem 2.5rem;text-align:center}
 .page-header h1{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.9rem,5vw,3rem);margin-bottom:.4rem}
 .page-header p{font-size:1rem;opacity:.88;max-width:600px;margin:0 auto}
 
@@ -35,7 +35,7 @@ nav a:hover{opacity:1}
 
 .gram-table{width:100%;border-collapse:collapse;margin-top:.8rem;font-size:.93rem}
 .gram-table th,.gram-table td{padding:.65rem .85rem;border-bottom:1px solid var(--cream-dk);text-align:left}
-.gram-table th{background:var(--hdr);color:#fff;font-weight:700}
+.gram-table th{background:#c8e8de;color:#fff;font-weight:700}
 .gram-table tr:nth-child(even){background:var(--cream-dk)}
 .gram-table .it-cell{color:var(--hdr);font-weight:700;font-style:italic}
 .irreg-badge{background:rgba(204,71,54,.12);color:var(--red);font-size:.78rem;font-weight:700;padding:.1rem .4rem;border-radius:4px;margin-left:.3rem}
@@ -46,7 +46,7 @@ nav a:hover{opacity:1}
 /* CONJ TABLE */
 .conj-table{width:100%;border-collapse:collapse;font-size:.93rem;margin-top:.8rem}
 .conj-table th,.conj-table td{padding:.6rem .8rem;border-bottom:1px solid var(--cream-dk);text-align:center}
-.conj-table th{background:var(--hdr);color:#fff;font-weight:700}
+.conj-table th{background:#a8d4c4;color:#2a4d3c;font-weight:700}
 .conj-table tr:nth-child(even){background:var(--cream-dk)}
 .conj-table .it-cell{color:var(--hdr);font-weight:700;font-style:italic}
 .conj-table .pro{font-weight:700;text-align:left}
@@ -77,7 +77,7 @@ nav a:hover{opacity:1}
 .prac-input:focus{border-color:var(--hdr)}
 .prac-input.ok{border-color:var(--green);background:#d4edda}
 .prac-input.err{border-color:var(--red);background:#f8d7da}
-.check-btn{background:var(--hdr);color:#fff;border:none;padding:.45rem 1.1rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:.6rem}
+.check-btn{background:#c8e8de;color:#fff;border:none;padding:.45rem 1.1rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:.6rem}
 .check-btn:hover{opacity:.88}
 .prac-feedback{font-size:.88rem;margin-top:.5rem;min-height:1.2em;font-weight:600}
 
@@ -92,24 +92,28 @@ nav a:hover{opacity:1}
 .q-opt.selected{border-color:var(--hdr);background:rgba(61,107,88,.1)}
 .q-opt.correct{border-color:var(--green);background:#d4edda;font-weight:700}
 .q-opt.wrong{border-color:var(--red);background:#f8d7da}
-.submit-btn{background:var(--hdr);color:#fff;border:none;padding:.7rem 2rem;border-radius:2rem;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;margin-top:1rem}
+.submit-btn{background:#c8e8de;color:#fff;border:none;padding:.7rem 2rem;border-radius:2rem;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;margin-top:1rem}
 .submit-btn:hover{opacity:.88}
 #quiz-result{margin-top:1.2rem;padding:1rem 1.4rem;border-radius:10px;font-size:1rem;font-weight:700;display:none}
 footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
 </style>
 </head>
 <body class="hide-es">
 
-<nav>
-  <span class="logo">Unità 15 · Gramática</span>
-  <a href="#prossimo">Passato Prossimo</a>
-  <a href="#participio">Participio</a>
-  <a href="#ausiliare">Ausiliare</a>
-  <a href="#quiz-section">Quiz</a>
-  <button id="es-toggle" onclick="toggleEs()">ES ▾</button>
-</nav>
+
 
 <div class="page-header">
+
   <h1>Il concerto è andato bene!</h1>
   <p>Passato prossimo, participio passato (regolare e irregolare) e scelta dell'ausiliare</p>
 </div>
@@ -417,13 +421,15 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
     </div>
   </div>
 
-  <button class="submit-btn" onclick="submitQuiz()">Invia il quiz →</button>
+  
   <div id="quiz-result"></div>
 </div>
 
 <footer>Italiano Per Piacere · Unità 15 · Etapa 3 — Gramática</footer>
 
 <script>
+(function(){
+
 const ANSWERS={q1:'b',q2:'b',q3:'c',q4:'a',q5:'b'};
 const selected={};
 function toggleEs(){
@@ -464,6 +470,7 @@ function submitQuiz(){
   else if(score>=3){res.style.background='#fff3cd';res.style.color='#856404';res.textContent=`👍 Bene! ${score}/5 — Rileggi le sezioni segnate.`;}
   else{res.style.background='#f8d7da';res.style.color='#721c24';res.textContent=`💪 ${score}/5 — Ripassate e riprovate!`;}
 }
+})();
 </script>
 </body>
 </html>

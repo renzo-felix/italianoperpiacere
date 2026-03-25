@@ -13,6 +13,8 @@
       --amber:    #e5ab07;
       --red:      #cc4736;
       --teal:     #78a6ba;
+      --teal-dk:  #5a8ea0;
+      --teal-lt:  #deeef5;
       --green:    #528e74;
       --black:    #1a1a18;
       --white:    #ffffff;
@@ -54,14 +56,16 @@
 
     /* ─── HERO ─── */
     .hero {
-      min-height: 100vh;
-      background: var(--green);
+      background: var(--teal-lt);
+      border-bottom: 3px solid var(--teal);
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center; padding: 4rem 2rem;
       position: relative; overflow: hidden;
+      min-height: 55vh;
     }
     .hero-bg-circle {
+      display: none;
       position: absolute; border-radius: 50%;
       background: rgba(255,255,255,0.06);
       pointer-events: none; will-change: transform;
@@ -77,23 +81,23 @@
     }
     .hero h1 {
       font-family: var(--fh); font-size: clamp(3rem, 8vw, 6rem);
-      font-style: italic; color: var(--white); line-height: 1.05;
+      font-style: italic; color: var(--black); line-height: 1.05;
       margin-bottom: 1rem;
       opacity: 0; animation: slideUp .8s var(--ease) .4s forwards;
     }
     .hero-sub {
-      font-size: clamp(1rem, 2.5vw, 1.25rem); color: rgba(255,255,255,.8);
+      font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--black); opacity: .75;
       max-width: 520px; line-height: 1.6;
-      opacity: 0; animation: slideUp .8s var(--ease) .6s forwards;
+      animation: slideUp .8s var(--ease) .6s forwards;
     }
     .scroll-hint {
       position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: .5rem;
-      color: rgba(255,255,255,.6); font-size: .75rem; letter-spacing: 1.5px; text-transform: uppercase;
+      color: rgba(0,0,0,.4); font-size: .75rem; letter-spacing: 1.5px; text-transform: uppercase;
       opacity: 0; animation: fadeIn 1s var(--ease) 1.2s forwards;
     }
     .scroll-dot {
-      width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.6);
+      width: 6px; height: 6px; border-radius: 50%; background: var(--teal-dk);
       animation: scrollDot 1.5s ease infinite;
     }
 
@@ -112,13 +116,13 @@
 
     .section-label {
       font-size: .65rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--green); margin-bottom: .75rem;
+      color: var(--teal-dk); margin-bottom: .75rem;
     }
     .section-title {
       font-family: var(--fh); font-size: clamp(1.8rem, 4vw, 2.8rem);
       line-height: 1.15; margin-bottom: 1.25rem; color: var(--black);
     }
-    .section-title em { font-style: italic; color: var(--green); }
+    .section-title em { font-style: italic; color: var(--teal-dk); }
     .section-desc { font-size: 1rem; color: #555; line-height: 1.75; max-width: 640px; }
 
     /* ─── SOFIA MASCOT ─── */
@@ -129,12 +133,12 @@
     }
     .sofia-avatar {
       width: 60px; height: 60px; border-radius: 50%; flex-shrink: 0;
-      background: var(--gold); display: flex; align-items: center; justify-content: center;
-      font-size: 1.8rem;
+      background: var(--teal-lt); display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; font-weight: 700; color: var(--teal-dk);
       animation: floatAv 3.5s ease-in-out infinite;
     }
     .speech-bubble { flex: 1; }
-    .speech-bubble strong { display: block; font-size: .75rem; font-weight: 700; color: var(--green); margin-bottom: .4rem; letter-spacing: 1px; text-transform: uppercase; }
+    .speech-bubble strong { display: block; font-size: .75rem; font-weight: 700; color: var(--teal-dk); margin-bottom: .4rem; letter-spacing: 1px; text-transform: uppercase; }
     .speech-bubble p { font-size: .95rem; color: #333; line-height: 1.65; }
     .speech-bubble p + p { margin-top: .6rem; }
 
@@ -145,18 +149,16 @@
     }
     .resource-img-placeholder {
       width: 100%; aspect-ratio: 16/9;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--amber) 100%);
+      background: linear-gradient(135deg, var(--teal-lt) 0%, var(--teal) 100%);
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       color: var(--black); text-align: center; padding: 2rem;
     }
-    .resource-img-placeholder .big-icon { font-size: 5rem; margin-bottom: 1rem; }
+    .resource-img-placeholder .big-icon { font-size: 4rem; margin-bottom: 1rem; color: var(--teal-dk); }
     .resource-img-placeholder h3 { font-family: var(--fh); font-size: 1.6rem; font-style: italic; margin-bottom: .5rem; }
-    .resource-img-placeholder p { font-size: .85rem; opacity: .7; max-width: 380px; line-height: 1.5; }
+    .resource-img-placeholder p { font-size: .85rem; opacity: .75; max-width: 380px; line-height: 1.5; }
     .resource-img-placeholder img { width: 100%; height: 100%; object-fit: cover; }
-    .resource-caption {
-      padding: 1.25rem 1.75rem;
-    }
-    .resource-caption h4 { font-size: .8rem; font-weight: 700; color: var(--green); letter-spacing: 2px; text-transform: uppercase; margin-bottom: .4rem; }
+    .resource-caption { padding: 1.25rem 1.75rem; }
+    .resource-caption h4 { font-size: .8rem; font-weight: 700; color: var(--teal-dk); letter-spacing: 2px; text-transform: uppercase; margin-bottom: .4rem; }
     .resource-caption p { font-size: .9rem; color: #444; line-height: 1.6; }
     .resource-caption .copyright { font-size: .75rem; color: #888; margin-top: .75rem; font-style: italic; }
 
@@ -171,13 +173,13 @@
       border-radius: var(--r); padding: .9rem .75rem; text-align: center;
       cursor: pointer; user-select: none; position: relative;
       transition: border-color .2s, background .2s, transform .15s;
-      font-weight: 600; font-size: .95rem;
+      font-weight: 600; font-size: .95rem; color: var(--black);
     }
     .word-card:hover { transform: translateY(-2px); border-color: var(--teal); }
-    .word-card.selected { background: var(--teal); color: var(--white); border-color: var(--teal); }
-    .word-card.correct   { background: var(--green); color: var(--white); border-color: var(--green); }
-    .word-card.false-pos { background: var(--red);   color: var(--white); border-color: var(--red); }
-    .word-card.missed    { background: var(--amber);  color: var(--black); border-color: var(--amber); }
+    .word-card.selected  { background: var(--teal-lt); border-color: var(--teal); color: var(--black); }
+    .word-card.correct   { background: var(--teal); color: var(--white); border-color: var(--teal-dk); }
+    .word-card.false-pos { background: var(--red); color: var(--white); border-color: #a8382a; }
+    .word-card.missed    { background: var(--gold); color: var(--black); border-color: var(--amber); }
     .word-card.neutral   { background: var(--cream-dk); color: #888; border-color: transparent; }
     .word-badge {
       position: absolute; top: -8px; right: -8px;
@@ -185,8 +187,8 @@
       display: none; align-items: center; justify-content: center;
       font-size: .7rem; font-weight: 900; color: var(--white);
     }
-    .word-card.correct   .word-badge { display: flex; background: var(--green); }
-    .word-card.false-pos .word-badge { display: flex; background: var(--red); }
+    .word-card.correct   .word-badge { display: flex; background: var(--teal-dk); }
+    .word-card.false-pos .word-badge { display: flex; background: #a8382a; }
     .word-card.missed    .word-badge { display: flex; background: var(--amber); color: var(--black); }
     .word-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
     .btn {
@@ -195,9 +197,9 @@
       transition: opacity .2s, transform .15s;
     }
     .btn:hover { opacity: .85; transform: translateY(-1px); }
-    .btn-primary { background: var(--green); color: var(--white); }
+    .btn-primary { background: var(--teal); color: var(--white); }
     .btn-ghost   { background: transparent; color: var(--black); border: 2px solid var(--cream-dk); }
-    .score-display { font-size: .9rem; font-weight: 700; color: var(--green); }
+    .score-display { font-size: .9rem; font-weight: 700; color: var(--teal-dk); }
     .legend { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; font-size: .8rem; }
     .legend-item { display: flex; align-items: center; gap: .4rem; }
     .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
@@ -212,20 +214,22 @@
       transition: background .2s, border-color .2s, transform .15s;
       box-shadow: 0 2px 8px rgba(0,0,0,.05);
     }
-    .num-card:hover { transform: translateY(-2px); border-color: var(--gold); }
-    .num-card.active { background: var(--gold); border-color: var(--amber); }
-    .num-card .digit { font-size: 1.3rem; font-weight: 700; color: var(--green); }
+    .num-card:hover { transform: translateY(-2px); border-color: var(--teal); }
+    .num-card.active { background: var(--teal); border-color: var(--teal-dk); }
+    .num-card .digit { font-size: 1.3rem; font-weight: 700; color: var(--teal-dk); }
+    .num-card.active .digit { color: var(--white); }
     .num-card .word  { font-size: .75rem; color: #666; margin-top: .2rem; }
+    .num-card.active .word  { color: rgba(255,255,255,.85); }
 
     /* ─── PATTERN TABLE ─── */
     .pattern-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
     .pattern-table th {
-      background: var(--green); color: var(--white); padding: .7rem 1rem;
+      background: var(--teal); color: var(--white); padding: .7rem 1rem;
       text-align: left; font-weight: 600; font-size: .8rem; letter-spacing: 1px; text-transform: uppercase;
     }
     .pattern-table td { padding: .65rem 1rem; border-bottom: 1px solid var(--cream-dk); }
     .pattern-table tr:nth-child(even) td { background: rgba(0,0,0,.02); }
-    .pattern-table .it { font-weight: 700; color: var(--green); }
+    .pattern-table .it { font-weight: 700; color: var(--teal-dk); }
     .pattern-table .rule { font-size: .78rem; color: #888; }
 
     /* ─── VOCAB CARDS ─── */
@@ -238,12 +242,10 @@
       transition: transform .2s, box-shadow .2s; cursor: pointer;
     }
     .vocab-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,.12); }
-    .vocab-card .vc-top {
-      height: 6px;
-    }
+    .vocab-card .vc-top { height: 6px; }
     .vocab-card .vc-body { padding: 1.1rem 1.25rem 1.25rem; }
     .vocab-card .vc-it { font-size: 1.15rem; font-weight: 700; color: var(--black); margin-bottom: .2rem; }
-    .vocab-card .vc-art { font-size: .8rem; color: var(--green); font-weight: 600; margin-bottom: .35rem; }
+    .vocab-card .vc-art { font-size: .8rem; color: var(--teal-dk); font-weight: 600; margin-bottom: .35rem; }
     .vocab-card .vc-es { font-size: .85rem; color: #666; margin-bottom: .5rem; }
     .vocab-card .vc-ex { font-size: .8rem; color: #888; font-style: italic; border-top: 1px solid var(--cream-dk); padding-top: .5rem; margin-top: .5rem; display: none; }
     .vocab-card.open .vc-ex { display: block; }
@@ -254,10 +256,10 @@
     .dlg-line.b { flex-direction: row-reverse; }
     .dlg-speaker {
       font-size: .65rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-      color: var(--white); background: var(--green);
+      color: var(--white); background: var(--teal);
       padding: .2rem .6rem; border-radius: 20px; flex-shrink: 0; margin-top: .35rem;
     }
-    .dlg-line.b .dlg-speaker { background: var(--teal); }
+    .dlg-line.b .dlg-speaker { background: var(--teal-dk); }
     .dlg-bubble {
       background: var(--white); border-radius: 12px; padding: .9rem 1.1rem;
       box-shadow: 0 2px 10px rgba(0,0,0,.07); max-width: 480px;
@@ -268,18 +270,18 @@
     /* ─── AVERE TABLE ─── */
     .verb-table { width: 100%; border-collapse: collapse; }
     .verb-table th {
-      background: var(--green); color: var(--white); padding: .75rem 1.2rem;
+      background: var(--teal); color: var(--white); padding: .75rem 1.2rem;
       font-size: .85rem; font-weight: 700; text-align: left;
     }
     .verb-table td { padding: .65rem 1.2rem; border-bottom: 1px solid var(--cream-dk); font-size: .95rem; }
     .verb-table td:first-child { color: #666; width: 30%; }
-    .verb-table td:nth-child(2) { font-weight: 700; color: var(--green); }
+    .verb-table td:nth-child(2) { font-weight: 700; color: var(--teal-dk); }
     .verb-table td:last-child { color: #444; font-style: italic; font-size: .85rem; }
     .verb-table tr:nth-child(even) td { background: rgba(0,0,0,.02); }
 
     /* ─── FILL PRACTICE ─── */
     .fill-section { margin-top: 1.5rem; }
-    .fill-section h4 { font-size: .8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 1rem; }
+    .fill-section h4 { font-size: .8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal-dk); margin-bottom: 1rem; }
     .fill-list { display: flex; flex-direction: column; gap: .75rem; }
     .fill-item { display: flex; align-items: center; gap: .5rem; font-size: .95rem; flex-wrap: wrap; }
     .fill-input {
@@ -288,29 +290,30 @@
       width: 110px; padding: .2rem .3rem; outline: none; text-align: center;
       transition: border-color .2s;
     }
-    .fill-input:focus { border-color: var(--green); }
-    .fill-input.ok   { border-color: var(--green); color: var(--green); }
-    .fill-input.fail { border-color: var(--red);   color: var(--red); }
+    .fill-input:focus { border-color: var(--teal); }
+    .fill-input.ok   { border-color: var(--teal-dk); color: var(--teal-dk); }
+    .fill-input.fail { border-color: var(--red);     color: var(--red); }
     .fill-btn { margin-top: 1rem; }
 
     /* ─── CULTURAL STRIP ─── */
     .cultural-strip {
-      background: var(--black); color: var(--white);
+      background: linear-gradient(135deg, var(--teal-lt) 0%, var(--cream-dk) 100%);
+      border-top: 3px solid var(--teal);
       padding: 4rem 2rem; text-align: center;
     }
     .cultural-strip h2 {
       font-family: var(--fh); font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-      font-style: italic; color: var(--gold); margin-bottom: 1rem;
+      font-style: italic; color: var(--teal-dk); margin-bottom: 1rem;
     }
-    .cultural-strip p { font-size: .95rem; color: rgba(255,255,255,.75); line-height: 1.75; max-width: 600px; margin: 0 auto 1.5rem; }
+    .cultural-strip p { font-size: .95rem; color: #444; line-height: 1.75; max-width: 600px; margin: 0 auto 1.5rem; }
     .cultural-facts {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.5rem; max-width: 760px; margin: 2rem auto 0;
     }
-    .cf-item { background: rgba(255,255,255,.06); border-radius: 12px; padding: 1.5rem; }
-    .cf-item .cf-icon { font-size: 2rem; margin-bottom: .75rem; }
-    .cf-item h4 { font-size: .85rem; font-weight: 700; color: var(--gold); margin-bottom: .5rem; }
-    .cf-item p { font-size: .8rem; color: rgba(255,255,255,.65); line-height: 1.55; }
+    .cf-item { background: var(--white); border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,.07); }
+    .cf-item .cf-icon { font-size: 1.6rem; margin-bottom: .75rem; color: var(--teal-dk); }
+    .cf-item h4 { font-size: .85rem; font-weight: 700; color: var(--teal-dk); margin-bottom: .5rem; }
+    .cf-item p { font-size: .8rem; color: #555; line-height: 1.55; }
 
     /* ─── FOOTER ─── */
     .footer {
@@ -328,8 +331,8 @@
       border: 1px solid var(--cream-dk);
       transition: background .2s, color .2s;
     }
-    .nav-pill:hover { background: var(--green); color: var(--white); }
-    .nav-pill.active { background: var(--green); color: var(--white); }
+    .nav-pill:hover { background: var(--teal); color: var(--white); }
+    .nav-pill.active { background: var(--teal); color: var(--white); }
 
     @media (max-width: 600px) {
       .section { padding: 4rem 1.25rem; }
@@ -340,7 +343,7 @@
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════ HERO -->
+<!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-bg-circle" id="hbc1"></div>
   <div class="hero-bg-circle" id="hbc2"></div>
@@ -353,89 +356,86 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════ SOFIA INTRO -->
+<!-- SOFIA INTRO -->
 <section class="section bg-white">
   <div class="container">
     <div class="sofia-wrap" data-a="up">
-      <div class="sofia-avatar">👩‍🏫</div>
+      <div class="sofia-avatar">S</div>
       <div class="speech-bubble">
         <strong>Sofia · Tu guía italiana</strong>
-        <p>¡Ciao! Hoy aprendemos a pedir y dar información personal: el nombre, la edad, el número de teléfono...</p>
+        <p>Ciao! Hoy aprendemos a pedir y dar información personal: el nombre, la edad, el número de teléfono...</p>
         <p>Los <strong>números</strong> en italiano son tus mejores aliados. Y el verbo <em>avere</em> (tener) es clave: "Ho vent'anni" — Tengo veinte años. ¿Lista?</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════ RESOURCE IMAGE -->
+<!-- RESOURCE IMAGE -->
 <section class="section bg-alt">
   <div class="container">
     <p class="section-label" data-a="fade">Recurso · Imagen</p>
     <h2 class="section-title" data-a="up">La imagen de hoy</h2>
-    <p class="section-desc" data-a="up">Observa la imagen durante 30 segundos. ¿Qué ves? ¿Hay números o palabras italianas que reconoces?</p>
+    <p class="section-desc" data-a="up">Observá la imagen durante 30 segundos. ¿Qué ves? ¿Hay números o palabras italianas que reconoces?</p>
 
     <div class="resource-box" style="margin-top:2rem" data-a="scale">
       <div class="resource-img-placeholder">
-        <div class="big-icon">📱</div>
-        <h3>Il numero di telefono</h3>
-        <p>Inserta aquí la imagen elegida (agenda italiana, teléfono vintage, tarjeta de contacto). Busca en Unsplash: "italian vintage telephone" o "italian numbers".</p>
+        <img src="https://live.staticflickr.com/2167/2059150331_6b89b5b4cd_b.jpg"
+             alt="Telefono rosso vintage a disco — simbolo del telefono italiano"
+             loading="lazy" />
       </div>
       <div class="resource-caption">
-        <h4>Observa y reflexiona</h4>
-        <p>¿Cuántos números ves? ¿Reconoces alguna palabra? En italiano, para dar tu número de teléfono dices: <strong>"Il mio numero è..."</strong> — Mi número es...</p>
-        <p class="copyright">© Imagen de uso libre (CC0 / Unsplash License). Insertar enlace antes de publicar. Uso exclusivamente educativo.</p>
+        <h4>Observá y reflexiona</h4>
+        <p>¿Reconoces este objeto? En Italia, el teléfono de disco rojo era el símbolo de la conexión entre personas. ¿Cuántos números ves en el disco? En italiano, para dar tu número de teléfono dices: <strong>"Il mio numero è..."</strong> — Mi número es...</p>
+        <p class="copyright">Foto: "Red Telephone" · psd · CC BY 2.0 · Flickr · flickr.com/photos/psd/2059150331 · Uso educativo no comercial.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════ WORD RECOGNITION -->
+<!-- WORD RECOGNITION -->
 <section class="section bg-white">
   <div class="container">
     <p class="section-label" data-a="fade">Actividad 1</p>
     <h2 class="section-title" data-a="up">¿Qué palabras <em>reconoces</em>?</h2>
     <p class="section-desc word-intro" data-a="up">
-      Haz clic en todas las palabras que crees que están relacionadas con <strong>números, datos personales o teléfonos</strong> en italiano. Luego verifica tu selección.
+      Hacé clic en todas las palabras que crees que están relacionadas con <strong>números, datos personales o teléfonos</strong> en italiano. Luego verifica tu selección.
     </p>
 
-    <div class="word-grid" id="wordGrid" data-stagger>
-      <!-- Words injected by JS -->
-    </div>
+    <div class="word-grid" id="wordGrid" data-stagger></div>
 
     <div class="word-actions">
       <button class="btn btn-primary" onclick="verifyWords()">Verificar selección</button>
-      <button class="btn btn-ghost" onclick="resetWords()">Intentar de nuevo</button>
+      <button class="btn btn-ghost" onclick="resetWords()">Intentá de nuevo</button>
       <span class="score-display" id="scoreDisplay"></span>
     </div>
     <div class="legend" id="legend" style="display:none">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Correcto ✓</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> No está relacionado ✗</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div> La olvidaste !</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div> Correcto</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> No está relacionado</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div> La olvidaste</div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════ NUMBERS 0–20 -->
+<!-- NUMBERS 0–20 -->
 <section class="section bg-alt">
   <div class="container">
     <p class="section-label" data-a="fade">Los Números</p>
     <h2 class="section-title" data-a="up">I numeri: <em>0 – 20</em></h2>
-    <p class="section-desc" data-a="up">Haz clic en cada número para destacarlo. Repite en voz alta mientras aprendes el sonido.</p>
+    <p class="section-desc" data-a="up">Hacé clic en cada número para destacarlo. Repetí en voz alta mientras aprendes el sonido.</p>
 
-    <div class="number-grid" style="margin-top:2rem" data-stagger id="numGrid020">
-    </div>
+    <div class="number-grid" style="margin-top:2rem" data-stagger id="numGrid020"></div>
 
-    <div style="margin-top:2rem; background:var(--white); border-radius:12px; padding:1.25rem 1.5rem; border-left:4px solid var(--green);" data-a="left">
-      <strong style="color:var(--green); font-size:.85rem; text-transform:uppercase; letter-spacing:1px;">Truco de pronunciación</strong>
+    <div style="margin-top:2rem; background:var(--white); border-radius:12px; padding:1.25rem 1.5rem; border-left:4px solid var(--teal);" data-a="left">
+      <strong style="color:var(--teal-dk); font-size:.85rem; text-transform:uppercase; letter-spacing:1px;">Truco de pronunciación</strong>
       <p style="margin-top:.5rem; font-size:.9rem; color:#444; line-height:1.6;">
         Los números <strong>11–19</strong> son palabras únicas que debes memorizar: undici, dodici, tredici...<br>
-        El <strong>16</strong> es <em>sedici</em> (no "seici"). El <strong>17</strong> es <em>diciassette</em>. ¡Practícalos en voz alta!
+        El <strong>16</strong> es <em>sedici</em> (no "seici"). El <strong>17</strong> es <em>diciassette</em>. Practícalos en voz alta.
       </p>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════ NUMBERS 20–100 -->
+<!-- NUMBERS 20–100 -->
 <section class="section bg-white">
   <div class="container">
     <p class="section-label" data-a="fade">Los Números</p>
@@ -453,7 +453,7 @@
 
     <div style="margin-top:1.5rem; display:grid; grid-template-columns:1fr 1fr; gap:1rem;" data-stagger>
       <div style="background:var(--cream-dk); border-radius:var(--r); padding:1rem 1.25rem;">
-        <strong style="color:var(--black); font-size:.85rem;">Regla importante ⚡</strong>
+        <strong style="color:var(--black); font-size:.85rem;">Regla importante</strong>
         <p style="font-size:.85rem; margin-top:.4rem; color:#555; line-height:1.55;">
           Cuando la decena termina en vocal y añades 1 u 8, <strong>se pierde la vocal final</strong>:<br>
           ven<del>ti</del>+uno = <strong>ventuno</strong><br>
@@ -472,16 +472,16 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════ DATI ANAGRAFICI -->
+<!-- DATI ANAGRAFICI -->
 <section class="section bg-alt">
   <div class="container">
     <p class="section-label" data-a="fade">Vocabulario</p>
     <h2 class="section-title" data-a="up"><em>Dati anagrafici</em> — Datos personales</h2>
-    <p class="section-desc" data-a="up">Haz clic en cada tarjeta para ver un ejemplo de uso en contexto.</p>
+    <p class="section-desc" data-a="up">Hacé clic en cada tarjeta para ver un ejemplo de uso en contexto.</p>
 
     <div class="vocab-grid" style="margin-top:2rem" data-stagger>
       <div class="vocab-card" onclick="toggleCard(this)">
-        <div class="vc-top" style="background:var(--green)"></div>
+        <div class="vc-top" style="background:var(--teal)"></div>
         <div class="vc-body">
           <div class="vc-it">il nome</div>
           <div class="vc-art">sostantivo maschile</div>
@@ -499,7 +499,7 @@
         </div>
       </div>
       <div class="vocab-card" onclick="toggleCard(this)">
-        <div class="vc-top" style="background:var(--amber)"></div>
+        <div class="vc-top" style="background:var(--teal)"></div>
         <div class="vc-body">
           <div class="vc-it">l'età</div>
           <div class="vc-art">sostantivo femminile</div>
@@ -508,7 +508,7 @@
         </div>
       </div>
       <div class="vocab-card" onclick="toggleCard(this)">
-        <div class="vc-top" style="background:var(--red)"></div>
+        <div class="vc-top" style="background:var(--teal)"></div>
         <div class="vc-body">
           <div class="vc-it">il numero di telefono</div>
           <div class="vc-art">sostantivo maschile</div>
@@ -517,7 +517,7 @@
         </div>
       </div>
       <div class="vocab-card" onclick="toggleCard(this)">
-        <div class="vc-top" style="background:var(--green)"></div>
+        <div class="vc-top" style="background:var(--teal)"></div>
         <div class="vc-body">
           <div class="vc-it">l'indirizzo</div>
           <div class="vc-art">sostantivo maschile</div>
@@ -538,7 +538,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════ DIALOGUE -->
+<!-- DIALOGUE -->
 <section class="section bg-white">
   <div class="container">
     <p class="section-label" data-a="fade">Dialogo autentico</p>
@@ -571,7 +571,7 @@
         <div class="dlg-speaker">Giulia</div>
         <div class="dlg-bubble">
           <div class="it">Ho ventitre anni. E tu?</div>
-          <div class="es">Tengo veintitrés años. ¿Y tú?</div>
+          <div class="es">Tengo veintitrés años. ¿Y vos?</div>
         </div>
       </div>
       <div class="dlg-line">
@@ -606,13 +606,13 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════ AVERE -->
+<!-- AVERE -->
 <section class="section bg-alt">
   <div class="container">
     <p class="section-label" data-a="fade">Gramática · Verbo</p>
     <h2 class="section-title" data-a="up">Il verbo <em>AVERE</em> — Tener</h2>
     <p class="section-desc" data-a="up">
-      <em>Avere</em> es uno de los verbos más usados del italiano. Lo usas para decir la edad, tener objetos y mucho más. Aquí las formas principales:
+      <em>Avere</em> es uno de los verbos más usados del italiano. Lo usas para decir la edad, tener objetos y mucho más.
     </p>
 
     <div style="overflow-x:auto; margin-top:2rem" data-a="up">
@@ -625,7 +625,7 @@
           <tr><td>tu (tú)</td><td>hai</td><td>Hai un numero italiano?</td></tr>
           <tr><td>lui / lei (él / ella)</td><td>ha</td><td>Lei ha trent'anni.</td></tr>
           <tr><td>noi (nosotros)</td><td>abbiamo</td><td>Abbiamo la stessa età!</td></tr>
-          <tr><td>voi (vosotros)</td><td>avete</td><td>Avete un indirizzo email?</td></tr>
+          <tr><td>voi (ustedes)</td><td>avete</td><td>Avete un indirizzo email?</td></tr>
           <tr><td>loro (ellos)</td><td>hanno</td><td>Hanno due numeri di telefono.</td></tr>
         </tbody>
       </table>
@@ -633,20 +633,19 @@
 
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.5rem" data-stagger>
       <div style="background:var(--white); border-radius:var(--r); padding:1rem 1.25rem; border-left:4px solid var(--amber);">
-        <strong style="color:var(--amber); font-size:.85rem;">⚡ Atención</strong>
+        <strong style="color:var(--amber); font-size:.85rem;">Atención</strong>
         <p style="font-size:.85rem; color:#555; margin-top:.4rem; line-height:1.55;">
           "Ho" no tiene la h aspirada — ¡no se pronuncia! La <strong>h</strong> en italiano es muda en <em>ho, hai, ha, hanno</em>.
         </p>
       </div>
-      <div style="background:var(--white); border-radius:var(--r); padding:1rem 1.25rem; border-left:4px solid var(--green);">
-        <strong style="color:var(--green); font-size:.85rem;">🎯 Uso especial</strong>
+      <div style="background:var(--white); border-radius:var(--r); padding:1rem 1.25rem; border-left:4px solid var(--teal);">
+        <strong style="color:var(--teal-dk); font-size:.85rem;">Uso especial</strong>
         <p style="font-size:.85rem; color:#555; margin-top:.4rem; line-height:1.55;">
           En italiano se usa <em>avere</em> para la edad: <strong>Ho 25 anni</strong> (literalmente "Tengo 25 años"), no "Soy de 25 años".
         </p>
       </div>
     </div>
 
-    <!-- FILL PRACTICE -->
     <div class="fill-section" data-a="up">
       <h4>Pratica: completa con la forma correcta de AVERE</h4>
       <div class="fill-list" id="fillList">
@@ -665,24 +664,24 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════ CULTURAL STRIP -->
+<!-- CULTURAL STRIP -->
 <div class="cultural-strip">
   <div class="container">
-    <h2 data-a="up">Il cellulare in Italia 📱</h2>
+    <h2 data-a="up">Il cellulare in Italia</h2>
     <p data-a="up">En Italia, el teléfono móvil es indispensable en la vida social. Aquí algunos datos que te ayudarán a integrarte:</p>
     <div class="cultural-facts" data-stagger>
       <div class="cf-item">
-        <div class="cf-icon">💬</div>
+        <div class="cf-icon">&#9993;</div>
         <h4>WhatsApp es rey</h4>
         <p>En Italia se usa WhatsApp para todo: con amigos, familia, profesores e incluso médicos. Dar tu número = invitar al WhatsApp.</p>
       </div>
       <div class="cf-item">
-        <div class="cf-icon">📞</div>
+        <div class="cf-icon">&#9990;</div>
         <h4>Números italianos</h4>
         <p>Los móviles italianos empiezan por <strong>3xx</strong> (3, 33, 34, 36...). Los teléfonos fijos tienen un prefijo de área (Milano: 02, Roma: 06).</p>
       </div>
       <div class="cf-item">
-        <div class="cf-icon">🗣️</div>
+        <div class="cf-icon">&#9654;</div>
         <h4>¿Cómo dar el número?</h4>
         <p>Los italianos suelen decir los números de teléfono en grupos: <em>"tre-quattro-zero, sette-otto-nove..."</em> — nunca cifra por cifra.</p>
       </div>
@@ -690,7 +689,7 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════ FOOTER -->
+<!-- FOOTER -->
 <footer class="footer">
   <strong>Unità 2 · Mi dai il tuo numero?</strong><br>
   Italiano Per Piacere — Nivel A1
@@ -701,7 +700,9 @@
 </footer>
 
 <script>
-  /* ─── SCROLL ANIMATIONS ─── */
+(function(){
+
+  /* SCROLL ANIMATIONS */
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); }
@@ -709,7 +710,7 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('[data-a], [data-stagger]').forEach(el => observer.observe(el));
 
-  /* ─── PARALLAX HERO ─── */
+  /* PARALLAX HERO */
   const c1 = document.getElementById('hbc1');
   const c2 = document.getElementById('hbc2');
   window.addEventListener('scroll', () => {
@@ -718,7 +719,7 @@
     if (c2) c2.style.transform = `translateY(${y * -0.15}px)`;
   }, { passive: true });
 
-  /* ─── WORD RECOGNITION ─── */
+  /* WORD RECOGNITION */
   const WORDS = [
     { w: 'numero',    inCtx: true  },
     { w: 'telefono',  inCtx: true  },
@@ -757,9 +758,9 @@
       const card = cards[i];
       const badge = document.getElementById('badge' + i);
       card.classList.remove('selected');
-      if (w.inCtx && selected.has(i))       { card.classList.add('correct');   badge.textContent='✓'; correct++; }
-      else if (!w.inCtx && selected.has(i)) { card.classList.add('false-pos'); badge.textContent='✗'; }
-      else if (w.inCtx && !selected.has(i)) { card.classList.add('missed');    badge.textContent='!'; }
+      if (w.inCtx && selected.has(i))       { card.classList.add('correct');   badge.textContent = '+'; correct++; }
+      else if (!w.inCtx && selected.has(i)) { card.classList.add('false-pos'); badge.textContent = 'x'; }
+      else if (w.inCtx && !selected.has(i)) { card.classList.add('missed');    badge.textContent = '!'; }
       else                                   { card.classList.add('neutral'); }
     });
     document.getElementById('scoreDisplay').textContent = correct + '/6 palabras correctas';
@@ -768,14 +769,12 @@
 
   function resetWords() {
     verified = false; selected.clear();
-    grid.querySelectorAll('.word-card').forEach(c => {
-      c.className = 'word-card';
-    });
+    grid.querySelectorAll('.word-card').forEach(c => { c.className = 'word-card'; });
     document.getElementById('scoreDisplay').textContent = '';
     document.getElementById('legend').style.display = 'none';
   }
 
-  /* ─── NUMBERS 0–20 ─── */
+  /* NUMBERS 0–20 */
   const nums020 = [
     [0,'zero'],[1,'uno'],[2,'due'],[3,'tre'],[4,'quattro'],[5,'cinque'],
     [6,'sei'],[7,'sette'],[8,'otto'],[9,'nove'],[10,'dieci'],
@@ -791,7 +790,7 @@
     ng.appendChild(div);
   });
 
-  /* ─── DECENAS 20–100 ─── */
+  /* DECENAS 20–100 */
   const decenas = [
     [20,'venti','ventuno, ventitré, ventiquattro...'],
     [30,'trenta','trentuno, trentatré, trentadue...'],
@@ -810,10 +809,10 @@
     tbody.appendChild(tr);
   });
 
-  /* ─── VOCAB CARDS ─── */
+  /* VOCAB CARDS */
   function toggleCard(el) { el.classList.toggle('open'); }
 
-  /* ─── FILL PRACTICE ─── */
+  /* FILL PRACTICE */
   function checkFill() {
     document.querySelectorAll('#fillList .fill-item').forEach(item => {
       const inp = item.querySelector('.fill-input');
@@ -828,6 +827,7 @@
       inp.value = ''; inp.classList.remove('ok','fail');
     });
   }
+})();
 </script>
 </body>
 </html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Módulo 9 A2 · Gramática — Cerco casa</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--red:#cc4736;--red-dk:#a8382a;--green:#528e74;--black:#1a1a18;--fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;--hdr:var(--red-dk);}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #cc4736;box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#a8382a;border-bottom-color:#cc4736}
+#etoggle{background:rgba(0,0,0,.07);border:1px solid rgba(0,0,0,.12);color:var(--black);padding:6px 12px;border-radius:20px;cursor:pointer;font-size:.78rem;font-family:var(--fb);font-weight:600}
+body.hide-es .es{display:none}
+.hero{background:#fde4e1;border-bottom:3px solid #cc4736;color:var(--black);padding:48px 20px 40px;text-align:center}
+.hero::before,.hero::after{display:none}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:2.2rem;margin-bottom:8px}
+.hero p{opacity:.9;font-size:1.05rem;max-width:600px;margin:0 auto}
+.section{max-width:900px;margin:0 auto;padding:48px 20px}
+.section h2{font-family:var(--fh);font-style:italic;font-size:1.7rem;color:var(--hdr);margin-bottom:24px;padding-bottom:8px;border-bottom:2px solid var(--red)}
+.rule-card{background:#fff;border-left:5px solid var(--red);border-radius:0 12px 12px 0;padding:20px 24px;margin:20px 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.rule-card h3{color:var(--hdr);font-size:1rem;font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.rule-card p,.rule-card li{font-size:.95rem;margin-bottom:6px}
+.rule-card ul{padding-left:18px}
+.rule-card .es{color:#666;font-size:.88rem}
+.gtable{width:100%;border-collapse:collapse;margin:16px 0;font-size:.92rem}
+.gtable th{background:#fbc8c2;color:#7a1f14;padding:10px 14px;text-align:left;font-weight:600}
+.gtable td{padding:9px 14px;border-bottom:1px solid var(--cream-dk)}
+.gtable tr:nth-child(even) td{background:#fef0ee}
+.gtable tr:hover{background:#fde8e6}
+.scheme{background:linear-gradient(135deg,#fdf0ee 0%,#f5cdc8 100%);color:var(--black);border-radius:12px;padding:20px 24px;margin:20px 0;font-size:.95rem;font-family:monospace}
+.scheme .hl{color:var(--gold);font-weight:700}
+.scheme .line{margin:7px 0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+.col-box{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.col-box h4{color:var(--hdr);font-weight:700;font-size:.95rem;margin-bottom:10px;text-transform:uppercase;letter-spacing:.4px}
+.col-box p,.col-box li{font-size:.9rem;margin:5px 0}
+.col-box ul{padding-left:16px}
+.prac-box{background:#fff;border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 3px 12px rgba(0,0,0,.1)}
+.prac-box h3{color:var(--hdr);font-weight:700;margin-bottom:6px}
+.prac-box .inst{font-size:.88rem;color:#666;margin-bottom:18px}
+.prac-item{display:flex;align-items:center;gap:10px;margin:12px 0;flex-wrap:wrap}
+.prac-item span{font-size:.93rem}
+.prac-input{border:2px solid var(--cream-dk);border-radius:8px;padding:7px 12px;font-family:var(--fb);font-size:.92rem;width:200px;transition:border .2s}
+.prac-input:focus{outline:none;border-color:var(--red)}
+.prac-input.ok{border-color:var(--green);background:#edf7f2}
+.prac-input.no{border-color:var(--red);background:#fdf0ee}
+.prac-btn{background:#f5cdc8;color:var(--black);border:none;border-radius:8px;padding:8px 20px;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.88rem;transition:background .2s;margin-top:8px}
+.prac-btn:hover{background:var(--red-dk)}
+.prac-fb{font-size:.82rem;margin-top:8px;min-height:20px;font-weight:600}
+.prac-fb.ok{color:var(--green)}
+.prac-fb.no{color:var(--red)}
+.quiz-box{background:linear-gradient(135deg,#fdf0ee 0%,#f5cdc8 100%);border-radius:16px;padding:32px;margin:24px 0;color:var(--black)}
+.quiz-box h3{font-family:var(--fh);font-style:italic;font-size:1.4rem;margin-bottom:20px}
+.q-item{background:rgba(0,0,0,.06);border-radius:10px;padding:16px 20px;margin:14px 0}
+.q-item p{font-size:.95rem;margin-bottom:12px;font-weight:600}
+.q-opts{display:flex;flex-direction:column;gap:8px}
+.q-opt{background:rgba(0,0,0,.05);border:2px solid transparent;border-radius:8px;padding:9px 16px;cursor:pointer;font-size:.9rem;transition:all .2s}
+.q-opt:hover{background:rgba(255,255,255,.25)}
+.q-opt.selected{border-color:var(--gold);background:rgba(239,207,127,.25)}
+.q-opt.correct{border-color:#6fcf97;background:rgba(111,207,151,.25)}
+.q-opt.wrong{border-color:#eb5757;background:rgba(235,87,87,.2)}
+.quiz-submit{display:block;margin:24px auto 0;background:var(--gold);color:var(--black);border:none;border-radius:10px;padding:12px 32px;font-family:var(--fb);font-weight:700;font-size:1rem;cursor:pointer}
+.quiz-submit:hover{opacity:.88}
+#quiz-result{text-align:center;margin-top:16px;font-size:1.1rem;font-weight:700;min-height:28px}
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:4px solid var(--red-dk);padding:40px 20px;margin-top:40px}
+.culture-inner{max-width:700px;margin:0 auto;text-align:center}
+.culture-inner h3{font-family:var(--fh);font-style:italic;font-size:1.5rem;color:var(--black);margin-bottom:12px}
+.culture-inner p{font-size:.95rem;color:var(--black);max-width:600px;margin:0 auto}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+nav > a:not(.nav-logo):hover,nav > a:not(.nav-logo).active{opacity:1;color:#a8382a;border-bottom-color:#cc4736}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#form">Formazione</a>
+      <a href="#usi">Usi</a>
+      <a href="#irreg">Irregolari</a>
+      <a href="#pratica">Pratica</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+<div class="hero">
+  <h1>Cerco casa</h1>
+  <p>Il condizionale presente — formazione, usi e verbi irregolari</p>
+</div>
+
+<!-- FORMAZIONE -->
+<div class="section" id="form">
+  <h2>Formazione del condizionale presente</h2>
+  <div class="rule-card">
+    <h3>Come si forma?</h3>
+    <p>El condizionale se forma con la raíz del futuro + las desinencias del condizionale:</p>
+    <ul>
+      <li>Verbos en <strong>-ARE</strong>: cambia la -a- → -e- antes de las desinencias: parl<strong>er</strong>ei</li>
+      <li>Verbos en <strong>-ERE/-IRE</strong>: raíz regular + desinencias: avrei / partirei</li>
+    </ul>
+    <p class="es">Desinencias: -ei / -esti / -ebbe / -emmo / -este / -ebbero</p>
+  </div>
+  <div class="scheme">
+    <div class="line"><span class="hl">parlare → parler-</span> + desinenze</div>
+    <div class="line">io parler<span class="hl">ei</span> &nbsp;|&nbsp; tu parler<span class="hl">esti</span> &nbsp;|&nbsp; lui parler<span class="hl">ebbe</span></div>
+    <div class="line">noi parler<span class="hl">emmo</span> &nbsp;|&nbsp; voi parler<span class="hl">este</span> &nbsp;|&nbsp; loro parler<span class="hl">ebbero</span></div>
+  </div>
+  <table class="gtable">
+    <tr><th>Pronome</th><th>parlare</th><th>prendere</th><th>partire</th><th class="es">ES (prendere)</th></tr>
+    <tr><td>io</td><td>parlerei</td><td>prenderei</td><td>partirei</td><td class="es">cogería</td></tr>
+    <tr><td>tu</td><td>parleresti</td><td>prenderesti</td><td>partiresti</td><td class="es">cogerías</td></tr>
+    <tr><td>lui/lei</td><td>parlerebbe</td><td>prenderebbe</td><td>partirebbe</td><td class="es">cogería</td></tr>
+    <tr><td>noi</td><td>parleremmo</td><td>prenderemmo</td><td>partiremmo</td><td class="es">cogeríamos</td></tr>
+    <tr><td>voi</td><td>parlereste</td><td>prendereste</td><td>partireste</td><td class="es">cogeríais</td></tr>
+    <tr><td>loro</td><td>parlerebbero</td><td>prenderebbero</td><td>partirebbero</td><td class="es">cogerían</td></tr>
+  </table>
+</div>
+
+<!-- USI -->
+<div class="section" id="usi" style="background:var(--cream-dk)">
+  <h2>Usi del condizionale</h2>
+  <div class="two-col">
+    <div class="col-box">
+      <h4>1. Desideri e sogni</h4>
+      <ul>
+        <li><em>Vorrei una casa con giardino.</em> <span class="es">— Querría una casa con jardín.</span></li>
+        <li><em>Mi piacerebbe abitare al mare.</em> <span class="es">— Me gustaría vivir en el mar.</span></li>
+        <li><em>Sarebbe il mio sogno.</em> <span class="es">— Sería mi sueño.</span></li>
+      </ul>
+    </div>
+    <div class="col-box">
+      <h4>2. Richieste cortesi</h4>
+      <ul>
+        <li><em>Potresti mostrarmi la cucina?</em> <span class="es">— ¿Podrías mostrarme la cocina?</span></li>
+        <li><em>Vorrei vedere il terrazzo.</em> <span class="es">— Querría ver la terraza.</span></li>
+        <li><em>Potrebbe abbassare l'affitto?</em> <span class="es">— ¿Podría bajar el alquiler?</span></li>
+      </ul>
+    </div>
+    <div class="col-box">
+      <h4>3. Ipotesi / consigli</h4>
+      <ul>
+        <li><em>Al posto tuo, cercherei in periferia.</em> <span class="es">— En tu lugar, buscaría en las afueras.</span></li>
+        <li><em>Dovresti parlare con il proprietario.</em> <span class="es">— Deberías hablar con el propietario.</span></li>
+      </ul>
+    </div>
+    <div class="col-box">
+      <h4>4. Condizionale di cortesia</h4>
+      <ul>
+        <li><em>Sarebbe possibile visitarlo oggi?</em> <span class="es">— ¿Sería posible visitarlo hoy?</span></li>
+        <li><em>Ci sarebbe un problema con il contratto.</em> <span class="es">— Habría un problema con el contrato.</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- IRREGOLARI -->
+<div class="section" id="irreg">
+  <h2>Condizionale irregolare</h2>
+  <div class="rule-card">
+    <h3>Stessa radice del futuro irregolare</h3>
+    <p>Los verbos irregolari en condizionale tienen la <strong>misma raíz irregular que el futuro</strong> + las desinencias normales del condizionale.</p>
+  </div>
+  <table class="gtable">
+    <tr><th>Verbo</th><th>Radice</th><th>io</th><th>lui/lei</th><th>loro</th><th class="es">ES (io)</th></tr>
+    <tr><td>essere</td><td>sar-</td><td><strong>sarei</strong></td><td>sarebbe</td><td>sarebbero</td><td class="es">sería</td></tr>
+    <tr><td>avere</td><td>avr-</td><td><strong>avrei</strong></td><td>avrebbe</td><td>avrebbero</td><td class="es">tendría</td></tr>
+    <tr><td>volere</td><td>vorr-</td><td><strong>vorrei</strong></td><td>vorrebbe</td><td>vorrebbero</td><td class="es">querría</td></tr>
+    <tr><td>potere</td><td>potr-</td><td><strong>potrei</strong></td><td>potrebbe</td><td>potrebbero</td><td class="es">podría</td></tr>
+    <tr><td>dovere</td><td>dovr-</td><td><strong>dovrei</strong></td><td>dovrebbe</td><td>dovrebbero</td><td class="es">debería</td></tr>
+    <tr><td>andare</td><td>andr-</td><td><strong>andrei</strong></td><td>andrebbe</td><td>andrebbero</td><td class="es">iría</td></tr>
+    <tr><td>fare</td><td>far-</td><td><strong>farei</strong></td><td>farebbe</td><td>farebbero</td><td class="es">haría</td></tr>
+    <tr><td>venire</td><td>verr-</td><td><strong>verrei</strong></td><td>verrebbe</td><td>verrebbero</td><td class="es">vendría</td></tr>
+    <tr><td>stare</td><td>star-</td><td><strong>starei</strong></td><td>starebbe</td><td>starebbero</td><td class="es">estaría</td></tr>
+    <tr><td>sapere</td><td>sapr-</td><td><strong>saprei</strong></td><td>saprebbe</td><td>saprebbero</td><td class="es">sabría</td></tr>
+  </table>
+</div>
+
+<!-- PRATICA -->
+<div class="section" id="pratica" style="background:var(--cream-dk)">
+  <h2>Pratica</h2>
+  <div class="prac-box">
+    <h3>Esercizio 1 — Coniuga al condizionale</h3>
+    <p class="inst">Scrivi il condizionale del verbo tra parentesi:</p>
+    <div class="prac-item"><span>1. (io/volere) _____ un appartamento con balcone.</span>
+      <input class="prac-input" id="p1a" data-ans="vorrei"></div>
+    <div class="prac-item"><span>2. La casa (essere) _____ in centro storico.</span>
+      <input class="prac-input" id="p1b" data-ans="sarebbe"></div>
+    <div class="prac-item"><span>3. (tu/potere) _____ mostrarmi la cucina?</span>
+      <input class="prac-input" id="p1c" data-ans="potresti"></div>
+    <div class="prac-item"><span>4. Noi (cercare) _____ un trilocale arredato.</span>
+      <input class="prac-input" id="p1d" data-ans="cercheremmo"></div>
+    <div class="prac-item"><span>5. (loro/dovere) _____ abbassare l'affitto.</span>
+      <input class="prac-input" id="p1e" data-ans="dovrebbero"></div>
+    <button class="prac-btn" onclick="checkPrac('p1',['p1a','p1b','p1c','p1d','p1e'])">Controlla</button>
+    <div class="prac-fb" id="p1-fb"></div>
+  </div>
+  <div class="prac-box">
+    <h3>Esercizio 2 — Richieste cortesi</h3>
+    <p class="inst">Trasforma usando il condizionale (più cortese):</p>
+    <div class="prac-item"><span>1. Puoi mostrarmi il bagno? → _____?</span>
+      <input class="prac-input" id="p2a" data-ans="potresti mostrarmi il bagno"></div>
+    <div class="prac-item"><span>2. Voglio visitare l'appartamento. → _____.</span>
+      <input class="prac-input" id="p2b" data-ans="vorrei visitare l'appartamento"></div>
+    <div class="prac-item"><span>3. Puoi abbassare l'affitto? → _____?</span>
+      <input class="prac-input" id="p2c" data-ans="potresti abbassare l'affitto"></div>
+    <button class="prac-btn" onclick="checkPrac('p2',['p2a','p2b','p2c'])">Controlla</button>
+    <div class="prac-fb" id="p2-fb"></div>
+  </div>
+  <div class="prac-box">
+    <h3>Esercizio 3 — La casa ideale</h3>
+    <p class="inst">Descrivi la tua casa ideale con il condizionale (3 frasi libere):</p>
+    <div class="prac-item"><span>La mia casa ideale _______________</span>
+      <input class="prac-input" id="p3a" data-ans="" style="width:280px" placeholder="sarebbe..."></div>
+    <div class="prac-item"><span>Ci _______________</span>
+      <input class="prac-input" id="p3b" data-ans="" style="width:280px" placeholder="sarebbe / avrebbe..."></div>
+    <div class="prac-item"><span>Vorrei anche _______________</span>
+      <input class="prac-input" id="p3c" data-ans="" style="width:280px" placeholder="un giardino..."></div>
+    <p style="font-size:.82rem;color:#888;margin-top:10px">⚡ Esercizio libero — qualsiasi risposta è valida!</p>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="quiz">
+  <div class="quiz-box">
+    <h3>Quiz finale — Cerco casa</h3>
+    <div class="q-item" id="qq1">
+      <p>1. _____ un appartamento con terrazzo. (io/volere)</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q1','a')">a) Vorrei</div>
+        <div class="q-opt" onclick="selectOpt(this,'q1','b')">b) Voglio</div>
+        <div class="q-opt" onclick="selectOpt(this,'q1','c')">c) Vorrò</div>
+      </div>
+    </div>
+    <div class="q-item" id="qq2">
+      <p>2. _____ mostrarmi il bagno? (tu/potere — richiesta cortese)</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q2','a')">a) Puoi</div>
+        <div class="q-opt" onclick="selectOpt(this,'q2','b')">b) Potresti</div>
+        <div class="q-opt" onclick="selectOpt(this,'q2','c')">c) Potrai</div>
+      </div>
+    </div>
+    <div class="q-item" id="qq3">
+      <p>3. La casa _____ in centro storico. (essere)</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q3','a')">a) è</div>
+        <div class="q-opt" onclick="selectOpt(this,'q3','b')">b) sarà</div>
+        <div class="q-opt" onclick="selectOpt(this,'q3','c')">c) sarebbe</div>
+      </div>
+    </div>
+    <div class="q-item" id="qq4">
+      <p>4. Al posto tuo, _____ in periferia. (io/cercare)</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q4','a')">a) cercherei</div>
+        <div class="q-opt" onclick="selectOpt(this,'q4','b')">b) cerco</div>
+        <div class="q-opt" onclick="selectOpt(this,'q4','c')">c) cercherò</div>
+      </div>
+    </div>
+    <div class="q-item" id="qq5">
+      <p>5. ¿Cuál es el condizionale de "dovere" (io)?</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q5','a')">a) devo</div>
+        <div class="q-opt" onclick="selectOpt(this,'q5','b')">b) dovrò</div>
+        <div class="q-opt" onclick="selectOpt(this,'q5','c')">c) dovrei</div>
+      </div>
+    </div>
+    <button class="quiz-submit" onclick="submitQuiz()">Invia le risposte</button>
+    <div id="quiz-result"></div>
+  </div>
+</div>
+<div class="culture">
+  <div class="culture-inner">
+    <h3>🏠 Il condizionale dei sogni</h3>
+    <p>Il condizionale è il tempo dei sogni e dei desideri in italiano. Quando Andrea Bocelli canta <em>"Vorrei"</em>, usa questo tempo verbale per esprimere tutto ciò che il cuore desidera. Nella vita quotidiana, il condizionale rende il linguaggio più elegante e cortese — fondamentale per cercare casa, chiedere un favore o esprimere un desiderio senza sembrare arrogante.</p>
+  </div>
+</div>
+<script>
+const ANSWERS={q1:'a',q2:'b',q3:'c',q4:'a',q5:'c'};
+const selected={};
+function selectOpt(el,qid,opt){
+  document.getElementById('qq'+qid.slice(1)).querySelectorAll('.q-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');selected[qid]=opt;
+}
+function submitQuiz(){
+  let score=0;
+  for(const[qid,ans] of Object.entries(ANSWERS)){
+    const box=document.getElementById('qq'+qid.slice(1));
+    box.querySelectorAll('.q-opt').forEach(o=>{
+      const letter=o.getAttribute('onclick').match(/'([a-c])'\)/)?.[1];
+      if(o.classList.contains('selected')){if(selected[qid]===ans){o.classList.add('correct');score++;}else o.classList.add('wrong');}
+      if(letter===ans)o.style.borderColor='#6fcf97';
+    });
+  }
+  document.getElementById('quiz-result').textContent=`${score}/5 — ${score>=4?'Ottimo! 🎉':score>=3?'Bene! 👍':'Riprova! 💪'}`;
+}
+function checkPrac(id,ids){
+  let ok=0;
+  ids.forEach(pid=>{
+    const inp=document.getElementById(pid);if(!inp)return;
+    inp.classList.remove('ok','no');
+    if(!inp.dataset.ans){inp.classList.add('ok');ok++;return;}
+    if(inp.value.toLowerCase().trim()===inp.dataset.ans.toLowerCase()){inp.classList.add('ok');ok++;}
+    else if(inp.value)inp.classList.add('no');
+  });
+  const fb=document.getElementById(id+'-fb');
+  if(fb){fb.className='prac-fb'+(ok===ids.length?' ok':' no');fb.textContent=ok===ids.length?'✓ Perfetto!':'✗ Ricontrolla.';}
+}
+const secs=[...document.querySelectorAll('.section[id]')];
+const links=[...document.querySelectorAll('.nav-links a')];
+window.addEventListener('scroll',()=>{
+  let cur='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id;});
+  links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur));
+},{passive:true});
+</script>
+</body>
+</html>

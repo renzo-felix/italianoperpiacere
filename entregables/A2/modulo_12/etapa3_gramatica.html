@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Módulo 12 A2 — Etapa 3: Gramática</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--teal:#78a6ba;--green:#528e74;--green-dk:#3d6b58;--black:#1a1a18;--white:#ffffff;
+  --mod:var(--amber);--mod-dk:var(--amber-dk);--hdr:var(--amber-dk);
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.7}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #EFCF7F;box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#c8940a;border-bottom-color:#EFCF7F}
+.hero{background:#fef9e8;border-bottom:3px solid #EFCF7F;
+  color:var(--black);padding:56px 32px 48px;text-align:center}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:2.4rem;margin-bottom:8px}
+.hero p{font-size:1.05rem;opacity:.85;max-width:600px;margin:0 auto}
+section{max-width:900px;margin:0 auto;padding:48px 24px}
+section h2{font-family:var(--fh);font-style:italic;font-size:1.9rem;color:var(--mod-dk);margin-bottom:6px}
+.sec-sub{color:#555;font-size:.95rem;margin-bottom:28px;padding-bottom:12px;border-bottom:2px solid var(--cream-dk)}
+section+section{border-top:2px solid var(--cream-dk)}
+.scheme{background:linear-gradient(135deg,#fef9e8 0%,#fde8a0 100%);color:var(--black);border-radius:14px;padding:24px 28px;margin-bottom:24px;font-size:1.05rem}
+.scheme strong{color:var(--black)}
+.scheme .formula{font-size:1.2rem;font-weight:700;text-align:center;padding:12px;background:rgba(0,0,0,.06);border-radius:8px;margin:12px 0;letter-spacing:.5px}
+.info{background:var(--cream-dk);border-left:4px solid var(--mod);border-radius:0 10px 10px 0;padding:16px 20px;margin:20px 0;font-size:.95rem}
+.info strong{color:var(--mod-dk)}
+.tbl-wrap{overflow-x:auto;margin:20px 0}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th{background:#fde8a0;color:var(--black);padding:10px 14px;text-align:left}
+td{padding:9px 14px;border-bottom:1px solid var(--cream-dk)}
+tr:nth-child(even) td{background:var(--cream-dk)}
+tr:hover td{background:#d4d0be}
+.it{font-style:italic;font-weight:600;color:var(--amber-dk)}
+.es{color:#666;font-size:.88rem}
+.tag{display:inline-block;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:10px;background:var(--mod);color:var(--black);margin-left:6px}
+.tag.irr{background:var(--red);color:#fff}
+.hl{background:var(--gold);padding:2px 6px;border-radius:4px;font-weight:700;color:var(--black)}
+.hl-box{background:var(--gold);color:var(--black);border-radius:10px;padding:16px 20px;margin:20px 0;font-size:.97rem;font-weight:600;border-left:4px solid var(--amber-dk);text-align:center;font-style:italic}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:20px 0}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--cream-dk);border-radius:12px;padding:18px 20px}
+.card h4{font-family:var(--fh);font-style:italic;color:var(--mod-dk);font-size:1.1rem;margin-bottom:10px}
+.card ul{padding-left:18px;font-size:.92rem}
+.card ul li{margin-bottom:6px}
+.card ul li em{font-style:italic;color:var(--amber-dk)}
+/* Esclamazioni showcase */
+.escl-showcase{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:12px;margin:24px 0}
+.esc-card{background:#fff;border:2px solid var(--cream-dk);border-radius:12px;padding:16px;text-align:center}
+.esc-card .ew{font-style:italic;font-weight:700;font-size:1.1rem;color:var(--amber-dk)}
+.esc-card .ei{font-size:1.5rem;margin-bottom:6px}
+.esc-card .eu{font-size:.82rem;color:#666;margin-top:6px;line-height:1.35}
+/* Practice */
+.prac-block{background:#fff;border:1px solid var(--cream-dk);border-radius:14px;padding:24px;margin-bottom:20px}
+.prac-block h3{font-family:var(--fh);font-style:italic;color:var(--mod-dk);margin-bottom:16px;font-size:1.2rem}
+.prac-item{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.prac-item label{min-width:240px;font-size:.95rem}
+.prac-item input{border:2px solid var(--cream-dk);border-radius:8px;padding:7px 12px;font-family:var(--fb);font-size:.95rem;width:180px;transition:.2s}
+.prac-item input:focus{outline:none;border-color:var(--mod)}
+.prac-item input.ok{border-color:var(--green);background:#e8f5ee}
+.prac-item input.err{border-color:var(--red);background:#fde8e6}
+.check-btn{background:var(--mod);color:var(--black);border:none;border-radius:8px;padding:9px 22px;font-family:var(--fb);font-size:.9rem;font-weight:700;cursor:pointer;transition:.2s;margin-top:8px}
+.check-btn:hover{background:var(--amber-dk);color:#fff}
+.prac-fb{margin-top:10px;font-size:.9rem;font-weight:600;min-height:20px}
+.prac-fb.ok{color:var(--green-dk)}
+.prac-fb.err{color:var(--red)}
+#quiz{background:linear-gradient(135deg,#fef9e8 0%,#fde8a0 100%);color:var(--black);border-radius:16px;padding:32px;max-width:900px;margin:0 auto 40px;box-shadow:0 4px 20px rgba(0,0,0,.12)}
+#quiz h2{font-family:var(--fh);font-style:italic;color:var(--black);font-size:1.7rem;margin-bottom:24px}
+.q-block{background:rgba(0,0,0,.06);border-radius:10px;padding:18px 20px;margin-bottom:16px}
+.q-block p{font-weight:600;margin-bottom:12px;line-height:1.5;color:var(--black)}
+.q-opt{display:flex;flex-direction:column;gap:8px}
+.q-opt label{display:flex;align-items:center;gap:10px;cursor:pointer;background:rgba(0,0,0,.05);border-radius:8px;padding:9px 14px;transition:.2s;font-size:.95rem;color:var(--black)}
+.q-opt label:hover{background:rgba(255,255,255,.22)}
+.q-opt input{accent-color:var(--gold)}
+#quiz-btn{display:block;margin:24px auto 0;background:var(--gold);color:var(--black);border:none;border-radius:10px;padding:12px 36px;font-family:var(--fb);font-size:1rem;font-weight:700;cursor:pointer;transition:.2s}
+#quiz-btn:hover{background:var(--amber)}
+#quiz-result{text-align:center;margin-top:20px;font-size:1.1rem;font-weight:700;min-height:28px;color:var(--black)}
+footer{background:var(--cream-dk);color:var(--black);text-align:center;padding:24px;font-size:.85rem}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+nav > a:not(.nav-logo):hover,nav > a:not(.nav-logo).active{opacity:1;color:#c8940a;border-bottom-color:#EFCF7F}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#futuro" class="act">Futuro semplice</a>
+      <a href="#ipotesi">Se + futuro</a>
+      <a href="#esclamazioni">Esclamazioni</a>
+      <a href="#pratica">Pratica</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+<div class="hero">
+  <h1>Un giorno perfetto · Grammatica</h1>
+  <p>Futuro semplice · Ipotesi con "se" · Esclamazioni italiane</p>
+</div>
+
+<!-- FUTURO SEMPLICE -->
+<section id="futuro">
+  <h2>Futuro semplice</h2>
+  <p class="sec-sub">Formación y conjugación — verbos regulares e irregolari</p>
+  <div class="scheme">
+    <p style="margin-bottom:10px">Se forma eliminando la <strong>-e</strong> final del infinitivo. Los verbos en <strong>-are</strong> cambian la <em>a</em> en <em>e</em>:</p>
+    <div class="formula">parl-ARE → parler- &nbsp;|&nbsp; prend-ERE → prender- &nbsp;|&nbsp; part-IRE → partir-</div>
+    <p style="margin-top:10px">Terminaciones: <strong>-ò · -ai · -à · -emo · -ete · -anno</strong></p>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Pronome</th><th>parlare</th><th>prendere</th><th>partire</th><th>Terminazione</th></tr>
+      <tr><td>io</td><td class="it">parlerò</td><td class="it">prenderò</td><td class="it">partirò</td><td><span class="hl">-ò</span></td></tr>
+      <tr><td>tu</td><td class="it">parlerai</td><td class="it">prenderai</td><td class="it">partirai</td><td><span class="hl">-ai</span></td></tr>
+      <tr><td>lui/lei</td><td class="it">parlerà</td><td class="it">prenderà</td><td class="it">partirà</td><td><span class="hl">-à</span></td></tr>
+      <tr><td>noi</td><td class="it">parleremo</td><td class="it">prenderemo</td><td class="it">partiremo</td><td><span class="hl">-emo</span></td></tr>
+      <tr><td>voi</td><td class="it">parlerete</td><td class="it">prenderete</td><td class="it">partirete</td><td><span class="hl">-ete</span></td></tr>
+      <tr><td>loro</td><td class="it">parleranno</td><td class="it">prenderanno</td><td class="it">partiranno</td><td><span class="hl">-anno</span></td></tr>
+    </table>
+  </div>
+  <div class="info">
+    <strong>Ortografía:</strong> Verbos en <em>-care/-gare</em>: <em>cercare → cercherò</em>, <em>pagare → pagherò</em>. Verbos en <em>-ciare/-giare</em>: <em>cominciare → comincerò</em>, <em>mangiare → mangerò</em>.
+  </div>
+  <h3 style="font-family:var(--fh);font-style:italic;color:var(--mod-dk);margin:24px 0 14px;font-size:1.3rem">Futuro irregolare <span class="tag irr">Irregolari</span></h3>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Infinito</th><th>Radice</th><th>io</th><th>lui/lei</th><th>loro</th><th>Azione</th></tr>
+      <tr><td>essere</td><td class="it">sar-</td><td class="it">sarò</td><td class="it">sarà</td><td class="it">saranno</td><td class="es">ser/estar</td></tr>
+      <tr><td>avere</td><td class="it">avr-</td><td class="it">avrò</td><td class="it">avrà</td><td class="it">avranno</td><td class="es">tener</td></tr>
+      <tr><td>fare</td><td class="it">far-</td><td class="it">farò</td><td class="it">farà</td><td class="it">faranno</td><td class="es">hacer</td></tr>
+      <tr><td>andare</td><td class="it">andr-</td><td class="it">andrò</td><td class="it">andrà</td><td class="it">andranno</td><td class="es">ir</td></tr>
+      <tr><td>venire</td><td class="it">verr-</td><td class="it">verrò</td><td class="it">verrà</td><td class="it">verranno</td><td class="es">venir</td></tr>
+      <tr><td>potere</td><td class="it">potr-</td><td class="it">potrò</td><td class="it">potrà</td><td class="it">potranno</td><td class="es">poder</td></tr>
+      <tr><td>dovere</td><td class="it">dovr-</td><td class="it">dovrò</td><td class="it">dovrà</td><td class="it">dovranno</td><td class="es">deber</td></tr>
+      <tr><td>volere</td><td class="it">vorr-</td><td class="it">vorrò</td><td class="it">vorrà</td><td class="it">vorranno</td><td class="es">querer</td></tr>
+      <tr><td>stare</td><td class="it">star-</td><td class="it">starò</td><td class="it">starà</td><td class="it">staranno</td><td class="es">estar/quedarse</td></tr>
+      <tr><td>bere</td><td class="it">berr-</td><td class="it">berrò</td><td class="it">berrà</td><td class="it">berranno</td><td class="es">beber</td></tr>
+    </table>
+  </div>
+  <div class="two-col" style="margin-top:24px">
+    <div class="card">
+      <h4>Usi principali</h4>
+      <ul>
+        <li><strong>Evento futuro:</strong> <em>Domani <span class="hl">andrò</span> al mare.</em></li>
+        <li><strong>Previsione:</strong> <em>Domani <span class="hl">pioverà</span>.</em></li>
+        <li><strong>Proposito:</strong> <em><span class="hl">Imparerò</span> a cucinare.</em></li>
+        <li><strong>Dopo "quando":</strong> <em>Quando <span class="hl">avrò</span> tempo, <span class="hl">verrò</span>.</em></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Futuro di probabilità</h4>
+      <ul>
+        <li><em>Dov'è? — <span class="hl">Sarà</span> a casa.</em> <span class="es">(Estará en casa)</span></li>
+        <li><em>Quanti anni ha? — <span class="hl">Avrà</span> 30 anni.</em></li>
+        <li><em>Perché non risponde? — <span class="hl">Starà</span> dormendo.</em></li>
+        <li>→ El futuro puede expresar conjetura sobre el <strong>presente</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SE + FUTURO -->
+<section id="ipotesi">
+  <h2>Se + futuro</h2>
+  <p class="sec-sub">Hipótesis sobre el futuro — ambas partes en futuro</p>
+  <div class="scheme">
+    <div class="formula">Se + FUTURO → FUTURO &nbsp;&nbsp;&nbsp; Quando + FUTURO → FUTURO</div>
+    <p style="margin-top:12px">A diferencia del español (donde la condición va en presente), en italiano <strong>ambas partes</strong> de la frase condicional van en futuro:</p>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Condizione (se + futuro)</th><th>Conseguenza (futuro)</th><th>Español</th></tr>
+      <tr><td class="it">Se farà bello</td><td class="it">andremo al mare.</td><td class="es">Si hace bueno, iremos al mar.</td></tr>
+      <tr><td class="it">Se pioverà</td><td class="it">resteremo a casa.</td><td class="es">Si llueve, nos quedaremos en casa.</td></tr>
+      <tr><td class="it">Se avrò tempo</td><td class="it">verrò da te.</td><td class="es">Si tengo tiempo, vendré a verte.</td></tr>
+      <tr><td class="it">Se verrai</td><td class="it">ti preparo la pasta.</td><td class="es">Si vienes, te preparo la pasta.</td></tr>
+      <tr><td class="it">Quando arriverà l'estate</td><td class="it">partiremo per le vacanze.</td><td class="es">Cuando llegue el verano, nos iremos de vacaciones.</td></tr>
+      <tr><td class="it">Quando avrai finito</td><td class="it">chiamami.</td><td class="es">Cuando hayas terminado, llámame.</td></tr>
+    </table>
+  </div>
+  <div class="hl-box">
+    ⚠️ Regola d'oro: "Se / Quando" + futuro → entrambe le clausole al futuro!<br>
+    <em>"Se <strong>farà</strong> bello, <strong>andremo</strong> fuori."</em> ✅ &nbsp;&nbsp; (NO: Se fa bello, andremo fuori ✗)
+  </div>
+  <div class="info">
+    <strong>Eccezione:</strong> Con il condizionale (ipotesi improbable): <em>"Se facesse bello, andremmo fuori."</em> (Periodo ipotetico del 2° tipo — tema A2 avanzado/B1).
+  </div>
+</section>
+
+<!-- ESCLAMAZIONI -->
+<section id="esclamazioni">
+  <h2>Esclamazioni italiane</h2>
+  <p class="sec-sub">Expresiones exclamativas — el alma del italiano hablado</p>
+  <div class="escl-showcase">
+    <div class="esc-card"><div class="ei">😍</div><div class="ew">Che bello/a!</div><div class="eu">¡Qué bonito/a!<br>Admiración. <em>"Che bella giornata!"</em></div></div>
+    <div class="esc-card"><div class="ei">😱</div><div class="ew">Mamma mia!</div><div class="eu">¡Madre mía!<br>Sorpresa, asombro. <em>"Mamma mia, che caldo!"</em></div></div>
+    <div class="esc-card"><div class="ei">💪</div><div class="ew">Dai!</div><div class="eu">¡Vamos! / ¡Venga!<br>Ánimo. <em>"Dai, si parte!"</em></div></div>
+    <div class="esc-card"><div class="ei">😤</div><div class="ew">Accidenti!</div><div class="eu">¡Caramba!<br>Contratiempo. <em>"Accidenti!"</em></div></div>
+    <div class="esc-card"><div class="ei">😮‍💨</div><div class="ew">Meno male!</div><div class="eu">¡Menos mal!<br>Alivio. <em>"Meno male!"</em></div></div>
+    <div class="esc-card"><div class="ei">😢</div><div class="ew">Che peccato!</div><div class="eu">¡Qué pena!<br>Decepción. <em>"Che peccato!"</em></div></div>
+    <div class="esc-card"><div class="ei">🤩</div><div class="ew">Fantastico!</div><div class="eu">¡Fantástico!<br>Entusiasmo máximo.</div></div>
+    <div class="esc-card"><div class="ei">😬</div><div class="ew">Cavolo!</div><div class="eu">¡Mecachis! (suave)<br>Frustración leve.</div></div>
+  </div>
+  <div class="info">
+    <strong>Struttura "Che + aggettivo/nome":</strong> En italiano esta estructura es muy productiva: <em>Che bello! / Che caldo! / Che noia! / Che fortuna! / Che strano!</em> Equivale a "¡Qué + adjetivo/sustantivo!" en español.
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Esclamazione</th><th>Situazione tipica</th><th>Equivalente español</th></tr>
+      <tr><td class="it">Che bello/a!</td><td>Algo visualmente hermoso</td><td class="es">¡Qué bonito/a!</td></tr>
+      <tr><td class="it">Mamma mia!</td><td>Sorpresa / exasperación / admiración</td><td class="es">¡Madre mía! / ¡Ay!</td></tr>
+      <tr><td class="it">Dai!</td><td>Animar / incredulidad / impaciencia</td><td class="es">¡Vamos! / ¡Venga!</td></tr>
+      <tr><td class="it">Accidenti!</td><td>Contratiempo negativo</td><td class="es">¡Caramba! / ¡Vaya!</td></tr>
+      <tr><td class="it">Meno male!</td><td>Alivio — algo salió bien</td><td class="es">¡Menos mal!</td></tr>
+      <tr><td class="it">Che peccato!</td><td>Decepción / lástima</td><td class="es">¡Qué pena! / ¡Lástima!</td></tr>
+      <tr><td class="it">Che noia!</td><td>Aburrimiento</td><td class="es">¡Qué rollo! / ¡Qué aburrimiento!</td></tr>
+      <tr><td class="it">Fantastico!</td><td>Entusiasmo máximo</td><td class="es">¡Fantástico! / ¡Genial!</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- PRATICA -->
+<section id="pratica">
+  <h2>Pratica</h2>
+  <p class="sec-sub">Completa con la forma corretta · Controlla le risposte</p>
+
+  <div class="prac-block">
+    <h3>1 · Futuro semplice: forma corretta</h3>
+    <div class="prac-item"><label>1. (io / andare) _____ al lago sabato.</label><input type="text" id="p1a" data-ans="andrò" placeholder="futuro…"/></div>
+    <div class="prac-item"><label>2. (noi / fare) _____ un picnic nel parco.</label><input type="text" id="p1b" data-ans="faremo" placeholder="futuro…"/></div>
+    <div class="prac-item"><label>3. (loro / venire) _____ alla festa?</label><input type="text" id="p1c" data-ans="verranno" placeholder="futuro…"/></div>
+    <div class="prac-item"><label>4. (tu / stare) _____ a casa o uscirai?</label><input type="text" id="p1d" data-ans="starai" placeholder="futuro…"/></div>
+    <div class="prac-item"><label>5. (voi / bere) _____ qualcosa?</label><input type="text" id="p1e" data-ans="berrete" placeholder="futuro…"/></div>
+    <button class="check-btn" onclick="checkPrac('p1',['p1a','p1b','p1c','p1d','p1e'])">Controlla ✓</button>
+    <div class="prac-fb" id="p1-fb"></div>
+  </div>
+
+  <div class="prac-block">
+    <h3>2 · Ipotesi con "se" — completa entrambe</h3>
+    <div class="prac-item"><label>1. Se _____ bello, andremo fuori. (fare)</label><input type="text" id="p2a" data-ans="farà" placeholder="futuro…"/></div>
+    <div class="prac-item"><label>2. Se _____, resteremo a casa. (piovere)</label><input type="text" id="p2b" data-ans="pioverà" placeholder="futuro…"/></div>
+    <div class="prac-item"><label>3. Quando _____, ti chiamo. (arrivare)</label><input type="text" id="p2c" data-ans="arriverò" placeholder="futuro…"/></div>
+    <div class="prac-item"><label>4. Se tu _____, porterò il vino. (venire)</label><input type="text" id="p2d" data-ans="verrai" placeholder="futuro…"/></div>
+    <div class="prac-item"><label>5. Se _____ tempo, faremo una gita. (avere)</label><input type="text" id="p2e" data-ans="avremo" placeholder="futuro…"/></div>
+    <button class="check-btn" onclick="checkPrac('p2',['p2a','p2b','p2c','p2d','p2e'])">Controlla ✓</button>
+    <div class="prac-fb" id="p2-fb"></div>
+  </div>
+
+  <div class="prac-block">
+    <h3>3 · Esclamazioni — scegli quella giusta</h3>
+    <div class="prac-item"><label>1. Hai perso il treno! Dici: _____</label><input type="text" id="p3a" data-ans="accidenti!" placeholder="esclamazione…"/></div>
+    <div class="prac-item"><label>2. Vedi un panorama mozzafiato: _____</label><input type="text" id="p3b" data-ans="che bello!" placeholder="esclamazione…"/></div>
+    <div class="prac-item"><label>3. Non viene il tuo amico: _____</label><input type="text" id="p3c" data-ans="che peccato!" placeholder="esclamazione…"/></div>
+    <div class="prac-item"><label>4. Ti trovi in fila enorme al supermercato: _____</label><input type="text" id="p3d" data-ans="mamma mia!" placeholder="esclamazione…"/></div>
+    <div class="prac-item"><label>5. Finalmente il sole dopo una settimana di pioggia! _____</label><input type="text" id="p3e" data-ans="meno male!" placeholder="esclamazione…"/></div>
+    <button class="check-btn" onclick="checkPrac('p3',['p3a','p3b','p3c','p3d','p3e'])">Controlla ✓</button>
+    <div class="prac-fb" id="p3-fb"></div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" style="padding:0;border:none;max-width:100%">
+<div style="max-width:900px;margin:48px auto;padding:0 24px">
+<div id="quiz">
+  <h2>Quiz finale ☀️</h2>
+  <div class="q-block">
+    <p>1. ¿Cuál es el futuro correcto de <em>venire</em> para "loro"?</p>
+    <div class="q-opt">
+      <label><input type="radio" name="q1" value="a"/> veniranno</label>
+      <label><input type="radio" name="q1" value="b"/> verranno</label>
+      <label><input type="radio" name="q1" value="c"/> verrebbero</label>
+    </div>
+  </div>
+  <div class="q-block">
+    <p>2. "Si hace bueno, iremos al parque." → En italiano:</p>
+    <div class="q-opt">
+      <label><input type="radio" name="q2" value="a"/> Se fa bello, andremo al parco.</label>
+      <label><input type="radio" name="q2" value="b"/> Se farà bello, andremo al parco.</label>
+      <label><input type="radio" name="q2" value="c"/> Se farebbe bello, andremo al parco.</label>
+    </div>
+  </div>
+  <div class="q-block">
+    <p>3. ¿Qué exclamación usas cuando algo te decepciona?</p>
+    <div class="q-opt">
+      <label><input type="radio" name="q3" value="a"/> Meno male!</label>
+      <label><input type="radio" name="q3" value="b"/> Fantastico!</label>
+      <label><input type="radio" name="q3" value="c"/> Che peccato!</label>
+    </div>
+  </div>
+  <div class="q-block">
+    <p>4. ¿Cuál es el futuro de <em>fare</em> para "noi"?</p>
+    <div class="q-opt">
+      <label><input type="radio" name="q4" value="a"/> faremo</label>
+      <label><input type="radio" name="q4" value="b"/> faciamo</label>
+      <label><input type="radio" name="q4" value="c"/> facciamo</label>
+    </div>
+  </div>
+  <div class="q-block">
+    <p>5. — Dov'è Giulia? — _____ al bar. (expresar probabilidad)</p>
+    <div class="q-opt">
+      <label><input type="radio" name="q5" value="a"/> È al bar.</label>
+      <label><input type="radio" name="q5" value="b"/> Sarà al bar.</label>
+      <label><input type="radio" name="q5" value="c"/> Sarebbe al bar.</label>
+    </div>
+  </div>
+  <button id="quiz-btn" onclick="submitQuiz()">Invia le risposte →</button>
+  <div id="quiz-result"></div>
+</div>
+</div>
+</section>
+
+<footer>Italiano per piacere · A2 · Módulo 12 · Etapa 3 Gramática</footer>
+<script>
+const ANSWERS={q1:'b',q2:'b',q3:'c',q4:'a',q5:'b'};
+function checkPrac(id,ids){
+  let ok=0;
+  ids.forEach(i=>{
+    const el=document.getElementById(i);
+    const v=el.value.toLowerCase().trim();
+    const a=el.dataset.ans.toLowerCase().trim();
+    el.classList.remove('ok','err');
+    if(v===a){el.classList.add('ok');ok++;}else el.classList.add('err');
+  });
+  const fb=document.getElementById(id+'-fb');
+  fb.className='prac-fb '+(ok===ids.length?'ok':'err');
+  fb.textContent=ok===ids.length?'✅ Perfetto! Tutte corrette.':`${ok}/${ids.length} corrette — ricontrolla quelle in rosso.`;
+}
+function submitQuiz(){
+  let ok=0,tot=Object.keys(ANSWERS).length;
+  for(const q in ANSWERS){
+    const sel=document.querySelector(`input[name="${q}"]:checked`);
+    if(sel&&sel.value===ANSWERS[q])ok++;
+  }
+  const pct=Math.round(ok/tot*100);
+  const r=document.getElementById('quiz-result');
+  if(pct>=80)r.textContent=`🌟 ${ok}/${tot} — Benissimo! Ottimo lavoro!`;
+  else if(pct>=60)r.textContent=`👍 ${ok}/${tot} — Bene! Ripassi un po' il futuro irregolare.`;
+  else r.textContent=`💪 ${ok}/${tot} — Ripassi le tabelle e riprova!`;
+}
+document.querySelectorAll('nav a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const href=a.getAttribute('href');
+    if(href&&href.startsWith('#')){e.preventDefault();document.querySelector(href)?.scrollIntoView({behavior:'smooth'});}
+  });
+});
+</script>
+</body>
+</html>

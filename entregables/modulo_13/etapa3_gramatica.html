@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -18,30 +18,17 @@ body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--black)}
 body.hide-es .es{display:none}
 
 /* NAV */
-nav{
-  position:sticky;top:0;z-index:100;
-  background:var(--black);padding:.7rem 2rem;
-  display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap
-}
-nav .logo{
-  font-family:'Playfair Display',serif;font-style:italic;
-  color:var(--gold);font-size:1.05rem;margin-right:auto
-}
-nav a{
-  color:var(--gold);text-decoration:none;font-size:.88rem;
-  font-weight:600;opacity:.8;transition:opacity .2s
-}
-nav a:hover{opacity:1}
-#es-toggle{
-  background:var(--hdr);color:#fff;border:none;
-  padding:.35rem .9rem;border-radius:2rem;
-  font-family:'Outfit',sans-serif;font-size:.82rem;
-  font-weight:700;cursor:pointer
-}
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #cc4736;box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#a8382a;border-bottom-color:#cc4736}
 
 /* HEADER */
 .page-header{
-  background:var(--hdr);color:#fff;
+  background:#fde4e1;color:#1a1a18;
   padding:3rem 2rem 2.5rem;text-align:center
 }
 .page-header h1{
@@ -64,7 +51,7 @@ nav a:hover{opacity:1}
 /* GRAMMAR TABLES */
 .gram-table{width:100%;border-collapse:collapse;margin-top:.8rem;font-size:.95rem}
 .gram-table th,.gram-table td{padding:.65rem .85rem;border-bottom:1px solid var(--cream-dk);text-align:left}
-.gram-table th{background:var(--hdr);color:#fff;font-weight:700}
+.gram-table th{background:#fde4e1;color:#fff;font-weight:700}
 .gram-table tr:nth-child(even){background:var(--cream-dk)}
 .gram-table .it-cell{color:var(--hdr);font-weight:700;font-style:italic}
 .gram-table .note-cell{font-size:.82rem;color:#666;font-style:italic}
@@ -96,7 +83,7 @@ nav a:hover{opacity:1}
 /* PRONOMI DIRETTI TABLE */
 .pdir-table{width:100%;border-collapse:collapse;font-size:.95rem;margin-top:.8rem}
 .pdir-table th,.pdir-table td{padding:.65rem .85rem;border-bottom:1px solid var(--cream-dk)}
-.pdir-table th{background:var(--hdr);color:#fff}
+.pdir-table th{background:#fde4e1;color:#fff}
 .pdir-table .form{font-size:1.15rem;font-weight:700;color:var(--hdr)}
 
 /* PRACTICE */
@@ -114,7 +101,7 @@ nav a:hover{opacity:1}
 .prac-input.ok{border-color:var(--green);background:#d4edda}
 .prac-input.err{border-color:var(--red);background:#f8d7da}
 .check-btn{
-  background:var(--hdr);color:#fff;border:none;
+  background:#fde4e1;color:#fff;border:none;
   padding:.45rem 1.1rem;border-radius:8px;
   font-family:'Outfit',sans-serif;font-size:.88rem;
   font-weight:700;cursor:pointer;margin-top:.6rem
@@ -141,7 +128,7 @@ nav a:hover{opacity:1}
 .q-opt.correct{border-color:var(--green);background:#d4edda;font-weight:700}
 .q-opt.wrong{border-color:var(--red);background:#f8d7da}
 .submit-btn{
-  background:var(--hdr);color:#fff;border:none;
+  background:#fde4e1;color:#fff;border:none;
   padding:.7rem 2rem;border-radius:2rem;font-family:'Outfit',sans-serif;
   font-size:1rem;font-weight:700;cursor:pointer;margin-top:1rem
 }
@@ -151,20 +138,30 @@ nav a:hover{opacity:1}
   font-size:1rem;font-weight:700;display:none
 }
 footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+nav > a:not(.nav-logo):hover,nav > a:not(.nav-logo).active{opacity:1;color:#a8382a;border-bottom-color:#cc4736}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
 </style>
 </head>
 <body class="hide-es">
 
-<nav>
-  <span class="logo">Unità 13 · Gramática</span>
-  <a href="#imperativo">Imperativo</a>
-  <a href="#dimostrativi">Dimostrativi</a>
-  <a href="#diretti">Diretti</a>
-  <a href="#quiz-section">Quiz</a>
-  <button id="es-toggle" onclick="toggleEs()">ES ▾</button>
-</nav>
+
 
 <div class="page-header">
+  <img src="../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img">
   <h1>C'è anche questo!</h1>
   <p>Imperativo informale, pronomi dimostrativi <em>questo/quello</em> y pronomi diretti <em>lo, la, li, le</em></p>
 </div>
@@ -456,23 +453,24 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
     </div>
   </div>
 
-  <button class="submit-btn" onclick="submitQuiz()">Invia il quiz →</button>
+  
   <div id="quiz-result"></div>
 </div>
 
-<footer>Italiano Per Piacere · Unità 13 · Etapa 3 — Gramática</footer>
 
 <script>
+(function(){
+
 const ANSWERS={q1:'a',q2:'b',q3:'a',q4:'b',q5:'a'};
 const selected={};
 
-function toggleEs(){
+window.toggleEs=function(){
   document.body.classList.toggle('hide-es');
   document.getElementById('es-toggle').textContent=
     document.body.classList.contains('hide-es')? 'ES ▾':'ES ▴';
-}
+};
 
-function checkPrac(id){
+window.checkPrac=function(id){
   const block=document.getElementById(id);
   const inputs=block.querySelectorAll('.prac-input');
   let ok=0,tot=inputs.length;
@@ -486,15 +484,15 @@ function checkPrac(id){
   const fb=document.getElementById(id+'-fb');
   if(ok===tot){fb.innerHTML='<span style="color:var(--green)">✅ Perfetto!</span>';}
   else{fb.innerHTML=`<span style="color:var(--red)">❌ ${ok}/${tot} corretti. Riprova.</span>`;}
-}
+};
 
-function selectOpt(el,qid,opt){
+window.selectOpt=function(el,qid,opt){
   document.querySelectorAll(`#${qid} .q-opt`).forEach(b=>b.classList.remove('selected'));
   el.classList.add('selected');
   selected[qid]=opt;
-}
+};
 
-function submitQuiz(){
+window.submitQuiz=function(){
   let score=0;
   Object.keys(ANSWERS).forEach(qid=>{
     const opts=document.querySelectorAll(`#${qid} .q-opt`);
@@ -512,12 +510,13 @@ function submitQuiz(){
     res.textContent=`🎉 Perfetto! ${score}/5 — Hai capito tutto!`;
   } else if(score>=3){
     res.style.background='#fff3cd';res.style.color='#856404';
-    res.textContent=`👍 Bene! ${score}/5 — Quasi perfetto, rileggi le sezioni in rosso.`;
+    res.textContent=`👍 Bene! ${score}/5 — Quasi perfetto, rileggi le sezioni en rosso.`;
   } else {
     res.style.background='#f8d7da';res.style.color='#721c24';
     res.textContent=`💪 ${score}/5 — Ripassate la grammatica e riprovate!`;
   }
-}
+};
+})();
 </script>
 </body>
 </html>

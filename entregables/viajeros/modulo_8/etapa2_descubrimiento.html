@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 8 — In albergo | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #e9e6d5; --cream-dk: #ddd9c8;
+    --gold: #EFCF7F; --amber: #e5ab07;
+    --green: #528e74; --green-dk: #3d6b58;
+    --green-hero: #c8e8de; --green-th: #a8d4c4;
+    --green-active: #3d6b58; --green-text: #2a4d3c;
+    --red: #cc4736; --teal: #78a6ba;
+    --black: #1a1a18; --white: #ffffff;
+    --fh: 'Playfair Display', Georgia, serif;
+    --fb: 'Outfit', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--fb); color: var(--black); background: var(--cream); line-height: 1.6; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 0 1.5rem; }
+  .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+  .nav-logo img { height: 40px; }
+  .nav-links { display: flex; gap: 0.25rem; list-style: none; flex-wrap: wrap; }
+  .nav-links a { font-family: var(--fb); font-size: 0.82rem; font-weight: 600; color: var(--green-text); text-decoration: none; padding: 0.4rem 0.75rem; border-radius: 20px; transition: background 0.2s; }
+  .nav-links a:hover, .nav-links a.active { background: var(--green-hero); color: var(--green-active); }
+
+  .progress-container { background: var(--green-th); height: 6px; position: sticky; top: 64px; z-index: 99; }
+  .progress-bar { height: 100%; background: var(--green-active); width: 0%; transition: width 0.4s ease; }
+
+  .hero { background: var(--green-hero); border-bottom: 4px solid var(--green); padding: 3.5rem 1.5rem; text-align: center; }
+  .hero-badge { display: inline-block; background: var(--green-th); color: var(--green-text); font-size: 0.8rem; font-weight: 600; padding: 0.3rem 1rem; border-radius: 20px; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .hero h1 { font-family: var(--fh); font-size: clamp(2.2rem, 5vw, 3.5rem); font-style: italic; font-weight: 700; color: var(--green-text); margin-bottom: 0.75rem; }
+  .hero-sub { font-size: 1.1rem; color: var(--green-active); max-width: 600px; margin: 0 auto; }
+  .hero-meta { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.5rem; flex-wrap: wrap; }
+  .hero-meta span { background: var(--white); border: 1px solid var(--green); border-radius: 20px; padding: 0.3rem 1rem; font-size: 0.85rem; color: var(--green-text); font-weight: 500; }
+
+  section { padding: 3rem 1.5rem; scroll-margin-top: 80px; }
+  section:nth-child(even) { background: var(--cream-dk); }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-title { font-family: var(--fh); font-size: 1.9rem; font-style: italic; color: var(--green-active); margin-bottom: 0.5rem; }
+  .section-lead { font-size: 1rem; color: #4a4a44; margin-bottom: 2rem; max-width: 700px; }
+
+  .vocab-section-title { font-family: var(--fb); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green-active); margin: 1.5rem 0 0.75rem; }
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 0.5rem; }
+  .vocab-card { background: var(--white); border: 2px solid var(--green-th); border-radius: 12px; padding: 1rem; cursor: pointer; transition: all 0.25s; text-align: center; user-select: none; }
+  .vocab-card:hover { border-color: var(--green); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(82,142,116,0.2); }
+  .vocab-card.flipped { background: var(--green-hero); border-color: var(--green-active); }
+  .vocab-card .it { font-family: var(--fh); font-size: 1.05rem; font-style: italic; color: var(--green-active); font-weight: 700; }
+  .vocab-card .es { font-size: 0.88rem; color: #5a5a54; margin-top: 0.25rem; display: none; }
+  .vocab-card.flipped .es { display: block; }
+  .vocab-card .emoji { font-size: 1.3rem; margin-bottom: 0.3rem; display: block; }
+
+  .discovery-block { background: var(--white); border-left: 5px solid var(--green); border-radius: 0 12px 12px 0; padding: 1.5rem 1.75rem; margin-bottom: 1.5rem; }
+  .discovery-block h3 { font-family: var(--fh); font-size: 1.2rem; font-style: italic; color: var(--green-active); margin-bottom: 0.75rem; }
+  .discovery-block p { font-size: 0.95rem; margin-bottom: 0.75rem; color: #3a3a35; }
+  .discovery-block .formula { background: var(--green-hero); border: 1px solid var(--green); border-radius: 8px; padding: 0.75rem 1rem; font-family: monospace; font-size: 0.95rem; color: var(--green-text); margin: 0.75rem 0; }
+
+  .table-wrap { overflow-x: auto; margin: 1rem 0; border-radius: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  th { background: var(--green-th); color: var(--green-text); padding: 0.65rem 1rem; text-align: left; font-weight: 700; }
+  td { padding: 0.6rem 1rem; border-bottom: 1px solid var(--green-th); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f0faf6; }
+  .it-cell { font-family: var(--fh); font-style: italic; color: var(--green-active); font-weight: 600; }
+
+  .fill-exercise { background: var(--cream); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; }
+  .fill-exercise h4 { font-family: var(--fb); font-weight: 700; font-size: 0.95rem; color: var(--green-text); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .fill-item { margin-bottom: 1rem; font-size: 0.95rem; }
+  .fill-item label { display: block; margin-bottom: 0.3rem; color: #3a3a35; }
+  .fill-item input, .fill-item select { border: 2px solid var(--green-th); border-radius: 8px; padding: 0.4rem 0.75rem; font-family: var(--fb); font-size: 0.9rem; background: var(--white); color: var(--black); transition: border-color 0.2s; }
+  .fill-item input:focus, .fill-item select:focus { outline: none; border-color: var(--green-active); }
+  .fill-item input.correct { border-color: var(--green); background: #eef7f3; }
+  .fill-item input.incorrect { border-color: var(--red); background: #fdf0ee; }
+  .check-btn { background: var(--green-active); color: var(--white); border: none; border-radius: 8px; padding: 0.6rem 1.5rem; font-family: var(--fb); font-weight: 600; font-size: 0.9rem; cursor: pointer; margin-top: 0.5rem; transition: background 0.2s; }
+  .check-btn:hover { background: var(--green-text); }
+  .feedback { font-size: 0.85rem; margin-top: 0.5rem; font-weight: 600; min-height: 1.2em; }
+  .feedback.ok { color: var(--green); }
+  .feedback.err { color: var(--red); }
+
+  .dialog-container { margin: 1.5rem 0; }
+  .dialog-title { font-family: var(--fb); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green-active); margin-bottom: 0.75rem; }
+  .bubble-wrap { display: flex; flex-direction: column; gap: 0.6rem; }
+  .bubble { max-width: 78%; padding: 0.75rem 1.1rem; border-radius: 16px; font-size: 0.92rem; line-height: 1.5; }
+  .bubble.a { align-self: flex-start; background: var(--cream-dk); color: var(--black); border-bottom-left-radius: 4px; }
+  .bubble.b { align-self: flex-end; background: var(--green-hero); color: var(--black); border-bottom-right-radius: 4px; border: 1px solid var(--green); }
+  .bubble .speaker { font-size: 0.75rem; font-weight: 700; margin-bottom: 0.2rem; color: var(--green-active); text-transform: uppercase; letter-spacing: 0.05em; }
+  .bubble .it { font-style: italic; color: var(--green-text); }
+  .bubble .es { font-size: 0.82rem; color: #6a6a60; margin-top: 0.15rem; }
+
+  /* FORMULARIO CHECK-IN */
+  .checkin-form { background: var(--white); border: 2px solid var(--green); border-radius: 14px; padding: 1.75rem; margin: 1.5rem 0; }
+  .checkin-form h3 { font-family: var(--fh); font-style: italic; font-size: 1.3rem; color: var(--green-active); margin-bottom: 0.5rem; }
+  .checkin-form p { font-size: 0.88rem; color: #5a5a54; margin-bottom: 1.25rem; }
+  .form-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+  .form-field label { display: block; font-size: 0.82rem; font-weight: 700; color: var(--green-text); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .form-field input, .form-field select { width: 100%; border: 2px solid var(--green-th); border-radius: 8px; padding: 0.5rem 0.75rem; font-family: var(--fb); font-size: 0.9rem; background: var(--cream); color: var(--black); }
+  .form-field input:focus, .form-field select:focus { outline: none; border-color: var(--green-active); background: var(--white); }
+  .form-submit { background: var(--green-active); color: var(--white); border: none; border-radius: 8px; padding: 0.65rem 2rem; font-family: var(--fb); font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: background 0.2s; }
+  .form-submit:hover { background: var(--green-text); }
+  .checkin-success { display: none; background: #eef7f3; border: 2px solid var(--green); border-radius: 10px; padding: 1.25rem; margin-top: 1rem; color: var(--green-text); font-weight: 600; font-size: 0.95rem; }
+
+  .comprehension-block { background: var(--white); border-radius: 14px; padding: 1.5rem; margin: 1.5rem 0; border: 2px solid var(--green-th); }
+  .comprehension-block .passage { background: var(--green-hero); border-radius: 8px; padding: 1rem; font-size: 0.92rem; line-height: 1.7; margin-bottom: 1.25rem; color: var(--black); border-left: 4px solid var(--green); }
+  .compreh-q { margin-bottom: 1rem; }
+  .compreh-q p { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--green-text); }
+  .compreh-q label { display: block; font-size: 0.88rem; padding: 0.2rem 0; cursor: pointer; }
+  .compreh-q label input { margin-right: 0.5rem; accent-color: var(--green-active); }
+
+  .matching-game { background: var(--white); border-radius: 14px; padding: 1.5rem; margin: 1.5rem 0; border: 2px solid var(--green-th); }
+  .matching-game h4 { font-family: var(--fh); font-style: italic; font-size: 1.1rem; color: var(--green-active); margin-bottom: 1rem; }
+  .match-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .match-item { padding: 0.6rem 1rem; border-radius: 8px; border: 2px solid var(--green-th); font-size: 0.9rem; cursor: pointer; transition: all 0.2s; text-align: center; background: var(--cream); }
+  .match-item:hover { border-color: var(--green); }
+  .match-item.selected { border-color: var(--green-active); background: var(--green-hero); font-weight: 600; }
+  .match-item.matched { border-color: var(--green); background: #eef7f3; cursor: default; }
+  .match-item.error { border-color: var(--red); background: #fdf0ee; }
+
+  .culture-strip { background: linear-gradient(135deg, var(--green-th), var(--cream-dk)); border-top: 4px solid var(--green); padding: 2.5rem 1.5rem; }
+  .culture-strip .section-inner { max-width: 800px; }
+  .culture-strip h2 { font-family: var(--fh); font-style: italic; font-size: 1.6rem; color: var(--green-text); margin-bottom: 1rem; }
+  .culture-strip p { font-size: 0.95rem; color: #3a3a35; margin-bottom: 0.75rem; }
+  .culture-strip .tip-box { background: var(--white); border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem; border-left: 4px solid var(--green-active); font-size: 0.9rem; }
+  .culture-strip .tip-box strong { color: var(--green-active); }
+
+  footer { background: var(--cream-dk); border-top: 2px solid var(--green-th); padding: 1.5rem; text-align: center; font-size: 0.82rem; color: #6a6a60; }
+
+  .highlight { color: var(--green-active); font-weight: 700; font-style: italic; }
+
+  @media (max-width: 640px) {
+    .nav-links a { font-size: 0.75rem; padding: 0.35rem 0.55rem; }
+    .match-cols { grid-template-columns: 1fr; }
+    .bubble { max-width: 92%; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=f5755ad" alt="Italiano Per Piacere" loading="lazy">
+    </div>
+    <ul class="nav-links">
+      <li><a href="#vocab" class="active">Vocabulario</a></li>
+      <li><a href="#possessivi">Possessivi</a></li>
+      <li><a href="#problemi">Problemas</a></li>
+      <li><a href="#dialogos">Diálogos</a></li>
+      <li><a href="#cultura">Cultura</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="progress-container">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">Viajeros · Módulo 8</div>
+  <h1>In albergo 🏨</h1>
+  <p class="hero-sub">Hacé el check-in, pedí lo que necesitás y sabé cómo quejarte con cortesía. Hoy te hospedás en Palermo.</p>
+  <div class="hero-meta">
+    <span>📍 Palermo</span>
+    <span>🎧 Recurso: Audio</span>
+    <span>⏱️ ~30 minutos</span>
+  </div>
+</div>
+
+<!-- VOCAB -->
+<section id="vocab">
+  <div class="section-inner">
+    <h2 class="section-title">Vocabulario del albergo</h2>
+    <p class="section-lead">Hacé clic en cada tarjeta para ver la traducción. Estas son las palabras que vas a necesitar en cualquier hotel de Italia.</p>
+
+    <div class="vocab-section-title">A — Tipos de habitación y servicios</div>
+    <div class="vocab-grid" id="vocabA"></div>
+
+    <div class="vocab-section-title">B — El check-in</div>
+    <div class="vocab-grid" id="vocabB"></div>
+
+    <div class="vocab-section-title">C — Para reportar problemas</div>
+    <div class="vocab-grid" id="vocabC"></div>
+  </div>
+</section>
+
+<!-- POSSESSIVI -->
+<section id="possessivi">
+  <div class="section-inner">
+    <h2 class="section-title">Descubrimiento 1 — I possessivi</h2>
+    <p class="section-lead">Los posesivos en italiano son adjetivos (o pronombres) que concuerdan en género y número con la cosa poseída, no con el dueño. Además, llevan artículo delante.</p>
+
+    <div class="discovery-block">
+      <h3>La regla fundamental</h3>
+      <p>A diferencia del español, en italiano el posesivo lleva artículo. No se dice solo "mio fratello" — se dice <span class="highlight">il mio fratello</span> o simplemente <span class="highlight">mio fratello</span> (con familia, se omite el artículo en singular). Pero con objetos siempre lleva artículo.</p>
+      <div class="formula">La mia camera → mi habitación (f.)<br>Il mio documento → mi documento (m.)<br>Le mie valigie → mis valijas (f. pl.)</div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Persona</th><th>m. sg.</th><th>f. sg.</th><th>m. pl.</th><th>f. pl.</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>io</strong></td><td class="it-cell">il mio</td><td class="it-cell">la mia</td><td class="it-cell">i miei</td><td class="it-cell">le mie</td></tr>
+          <tr><td><strong>tu</strong></td><td class="it-cell">il tuo</td><td class="it-cell">la tua</td><td class="it-cell">i tuoi</td><td class="it-cell">le tue</td></tr>
+          <tr><td><strong>lui/lei</strong></td><td class="it-cell">il suo</td><td class="it-cell">la sua</td><td class="it-cell">i suoi</td><td class="it-cell">le sue</td></tr>
+          <tr><td><strong>noi</strong></td><td class="it-cell">il nostro</td><td class="it-cell">la nostra</td><td class="it-cell">i nostri</td><td class="it-cell">le nostre</td></tr>
+          <tr><td><strong>voi</strong></td><td class="it-cell">il vostro</td><td class="it-cell">la vostra</td><td class="it-cell">i vostri</td><td class="it-cell">le vostre</td></tr>
+          <tr><td><strong>loro</strong></td><td class="it-cell">il loro</td><td class="it-cell">la loro</td><td class="it-cell">i loro</td><td class="it-cell">le loro</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fill-exercise">
+      <h4>Ejercicio — Possessivi en el hotel</h4>
+      <div class="fill-item"><label>1. (mi habitación, f.) → <input type="text" class="fill-poss" data-answer="la mia camera" placeholder="..."></label></div>
+      <div class="fill-item"><label>2. (tu documento, m.) → <input type="text" class="fill-poss" data-answer="il tuo documento" placeholder="..."></label></div>
+      <div class="fill-item"><label>3. (nuestra llave, f.) → <input type="text" class="fill-poss" data-answer="la nostra chiave" placeholder="..."></label></div>
+      <div class="fill-item"><label>4. (sus valijas — di loro, f. pl.) → <input type="text" class="fill-poss" data-answer="le loro valigie" placeholder="..."></label></div>
+      <div class="fill-item"><label>5. (tu piso — il piano, m.) → <input type="text" class="fill-poss" data-answer="il tuo piano" placeholder="..."></label></div>
+      <button class="check-btn" onclick="checkFill('fill-poss','fbPoss')">Verificar</button>
+      <div class="feedback" id="fbPoss"></div>
+    </div>
+  </div>
+</section>
+
+<!-- AGGETTIVI / PROBLEMI -->
+<section id="problemi">
+  <div class="section-inner">
+    <h2 class="section-title">Descubrimiento 2 — Aggettivi per i problemi</h2>
+    <p class="section-lead">Para describir problemas en el hotel vas a necesitar adjetivos específicos. Estos se usan con las estructuras de queja cortés.</p>
+
+    <div class="discovery-block">
+      <h3>Adjetivos para describir problemas</h3>
+      <p>Estos adjetivos concuerdan en género y número con el sustantivo que describen. La mayoría terminan en <span class="highlight">-o/-a</span> (regulares), algunos en <span class="highlight">-e</span> (invariables).</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Italiano (m.)</th><th>Italiano (f.)</th><th>Español</th><th>Ejemplo</th></tr></thead>
+        <tbody>
+          <tr><td class="it-cell">rotto</td><td class="it-cell">rotta</td><td>roto/a</td><td class="it-cell">Il riscaldamento è rotto.</td></tr>
+          <tr><td class="it-cell">rumoroso</td><td class="it-cell">rumorosa</td><td>ruidoso/a</td><td class="it-cell">La camera è troppo rumorosa.</td></tr>
+          <tr><td class="it-cell">sporco</td><td class="it-cell">sporca</td><td>sucio/a</td><td class="it-cell">Il bagno è sporco.</td></tr>
+          <tr><td class="it-cell">freddo</td><td class="it-cell">fredda</td><td>frío/a</td><td class="it-cell">L'acqua è fredda.</td></tr>
+          <tr><td class="it-cell">piccolo</td><td class="it-cell">piccola</td><td>pequeño/a</td><td class="it-cell">La camera è troppo piccola.</td></tr>
+          <tr><td class="it-cell">lento</td><td class="it-cell">lenta</td><td>lento/a</td><td class="it-cell">Il wifi è lentissimo.</td></tr>
+          <tr><td class="it-cell">rumoroso</td><td class="it-cell">rumorosa</td><td>ruidoso/a</td><td class="it-cell">Il vicino è molto rumoroso.</td></tr>
+          <tr><td colspan="2" class="it-cell">non funziona</td><td>no funciona</td><td class="it-cell">La doccia non funziona.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="discovery-block" style="margin-top:1.5rem;">
+      <h3>Estructuras para quejarse cortésmente</h3>
+      <p>En Italia la queja directa puede sonar agresiva. Hay que combinar el vocabulario de problemas con fórmulas de cortesía.</p>
+      <div class="formula">Scusi, il/la mio/mia [cosa] non funziona.<br>Scusi, c'è un problema con [cosa].<br>Mi dispiace, ma la camera è [aggettivo].<br>Potrebbe mandare qualcuno? / Potrebbe cambiare la camera?</div>
+    </div>
+
+    <div class="fill-exercise">
+      <h4>Ejercicio — Describir y reportar problemas</h4>
+      <div class="fill-item"><label>1. La doccia (rotto, f.) → La doccia è <input type="text" class="fill-prob" data-answer="rotta" placeholder="...">.</label></div>
+      <div class="fill-item"><label>2. Il wifi (lento, m.) → Il wifi è <input type="text" class="fill-prob" data-answer="lento" placeholder="...">.</label></div>
+      <div class="fill-item"><label>3. Le lenzuola (sporco, f. pl.) → Le lenzuola sono <input type="text" class="fill-prob" data-answer="sporche" placeholder="...">.</label></div>
+      <div class="fill-item"><label>4. Il riscaldamento (rotto, m.) → Il riscaldamento è <input type="text" class="fill-prob" data-answer="rotto" placeholder="...">.</label></div>
+      <div class="fill-item"><label>5. La camera (rumoroso, f.) → La camera è troppo <input type="text" class="fill-prob" data-answer="rumorosa" placeholder="...">.</label></div>
+      <button class="check-btn" onclick="checkFill('fill-prob','fbProb')">Verificar</button>
+      <div class="feedback" id="fbProb"></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUEJAS CORTESES -->
+<section>
+  <div class="section-inner">
+    <h2 class="section-title">Descubrimiento 3 — Frasi utili per il hotel</h2>
+    <p class="section-lead">Un repertorio de frases listas para usar en el hotel, desde el check-in hasta el check-out.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Situación</th><th>Frase en italiano</th><th>Traducción</th></tr></thead>
+        <tbody>
+          <tr><td>Llegar al hotel</td><td class="it-cell">Buongiorno, ho una prenotazione a nome...</td><td>Buenos días, tengo una reserva a nombre de...</td></tr>
+          <tr><td>Confirmar habitación</td><td class="it-cell">Ho prenotato una camera doppia per tre notti.</td><td>Reservé una habitación doble por tres noches.</td></tr>
+          <tr><td>Pedir la llave</td><td class="it-cell">Potrebbe darmi la chiave magnetica?</td><td>¿Podría darme la llave magnética?</td></tr>
+          <tr><td>Preguntar el desayuno</td><td class="it-cell">A che ora è la colazione?</td><td>¿A qué hora es el desayuno?</td></tr>
+          <tr><td>Problema con la ducha</td><td class="it-cell">Scusi, la doccia non funziona.</td><td>Disculpe, la ducha no funciona.</td></tr>
+          <tr><td>Problema con el wifi</td><td class="it-cell">Il wifi non prende nella mia camera.</td><td>El wifi no llega a mi habitación.</td></tr>
+          <tr><td>Pedir cambio de habitación</td><td class="it-cell">Potrebbe cambiarci la camera? È troppo rumorosa.</td><td>¿Podría cambiarnos la habitación? Es muy ruidosa.</td></tr>
+          <tr><td>Preguntar el check-out</td><td class="it-cell">Entro che ora devo fare il checkout?</td><td>¿Hasta qué hora tengo que hacer el checkout?</td></tr>
+          <tr><td>Pagar la tassa</td><td class="it-cell">La tassa di soggiorno è inclusa nel prezzo?</td><td>¿La tasa de turismo está incluida en el precio?</td></tr>
+          <tr><td>Pedir el equipaje</td><td class="it-cell">Potete custodire i bagagli fino alle 18?</td><td>¿Pueden guardar el equipaje hasta las 6?</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FORMULARIO CHECK-IN -->
+    <div class="checkin-form">
+      <h3>🏨 Simulá tu check-in</h3>
+      <p>Completá el formulario como si fueras el huésped. Practicá cómo presentarte y dar tu información al portiere.</p>
+      <div class="form-row">
+        <div class="form-field"><label>Nome</label><input type="text" placeholder="Es: Marco"></div>
+        <div class="form-field"><label>Cognome</label><input type="text" placeholder="Es: Ferrari"></div>
+        <div class="form-field"><label>Tipo di camera</label>
+          <select>
+            <option value="">Scegli...</option>
+            <option>Singola</option>
+            <option>Doppia</option>
+            <option>Matrimoniale</option>
+            <option>Suite</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Numero di notti</label>
+          <select>
+            <option value="">Scegli...</option>
+            <option>1 notte</option>
+            <option>2 notti</option>
+            <option>3 notti</option>
+            <option>1 settimana</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Colazione inclusa?</label>
+          <select>
+            <option value="">Scegli...</option>
+            <option>Sì, inclusa</option>
+            <option>No, non inclusa</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Nazionalità</label><input type="text" placeholder="Es: argentina"></div>
+      </div>
+      <button class="form-submit" onclick="submitCheckin()">Conferma il check-in ✓</button>
+      <div class="checkin-success" id="checkinSuccess"></div>
+    </div>
+
+    <div class="fill-exercise">
+      <h4>Ejercicio — Quejas corteses completas</h4>
+      <div class="fill-item"><label>1. La ducha no funciona: "Scusi, <input type="text" class="fill-queja" data-answer="la doccia non funziona" placeholder="completá la frase...">."</label></div>
+      <div class="fill-item"><label>2. El wifi no llega: "Il wifi <input type="text" class="fill-queja" data-answer="non prende nella mia camera" placeholder="...">."</label></div>
+      <div class="fill-item"><label>3. ¿Podría cambiar la habitación?: "<input type="text" class="fill-queja" data-answer="Potrebbe cambiarci la camera" placeholder="...">?"</label></div>
+      <button class="check-btn" onclick="checkFill('fill-queja','fbQueja')">Verificar</button>
+      <div class="feedback" id="fbQueja"></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIÁLOGOS -->
+<section id="dialogos">
+  <div class="section-inner">
+    <h2 class="section-title">Diálogos reales</h2>
+    <p class="section-lead">Dos conversaciones típicas: el check-in y el reporte de un problema en la habitación.</p>
+
+    <div class="dialog-container">
+      <div class="dialog-title">Diálogo 1 — Check-in all'albergo 🏨</div>
+      <div class="bubble-wrap">
+        <div class="bubble a">
+          <div class="speaker">Portiere</div>
+          <div class="it">Buongiorno! Benvenuto all'Hotel dei Normanni. Come posso aiutarla?</div>
+          <div class="es">¡Buenos días! Bienvenido al Hotel dei Normanni. ¿En qué puedo ayudarle?</div>
+        </div>
+        <div class="bubble b">
+          <div class="speaker">Ospite</div>
+          <div class="it">Buongiorno. Ho una prenotazione a nome Moretti. Una camera matrimoniale per tre notti.</div>
+          <div class="es">Buenos días. Tengo una reserva a nombre de Moretti. Una habitación matrimonial por tres noches.</div>
+        </div>
+        <div class="bubble a">
+          <div class="speaker">Portiere</div>
+          <div class="it">Perfetto, la trovo subito. Moretti... eccola! Potrebbe mostrarmi un documento d'identità, per favore?</div>
+          <div class="es">Perfecto, la encuentro enseguida. Moretti... ¡aquí está! ¿Podría mostrarme un documento de identidad, por favor?</div>
+        </div>
+        <div class="bubble b">
+          <div class="speaker">Ospite</div>
+          <div class="it">Certo, eccolo il passaporto.</div>
+          <div class="es">Claro, acá tiene el pasaporte.</div>
+        </div>
+        <div class="bubble a">
+          <div class="speaker">Portiere</div>
+          <div class="it">Grazie. La sua camera è al terzo piano, numero 312. La colazione è inclusa, si serve dalle sette alle dieci. Ecco la chiave magnetica.</div>
+          <div class="es">Gracias. Su habitación está en el tercer piso, número 312. El desayuno está incluido, se sirve de siete a diez. Aquí tiene la llave magnética.</div>
+        </div>
+        <div class="bubble b">
+          <div class="speaker">Ospite</div>
+          <div class="it">Grazie mille. E il checkout? Entro che ora devo liberare la camera?</div>
+          <div class="es">Muchas gracias. ¿Y el checkout? ¿Hasta qué hora debo desocupar la habitación?</div>
+        </div>
+        <div class="bubble a">
+          <div class="speaker">Portiere</div>
+          <div class="it">Entro le undici, ma se ha bisogno di custodire i bagagli, possiamo tenerli fino alle sei di sera.</div>
+          <div class="es">Antes de las once, pero si necesita guardar el equipaje, podemos tenerlo hasta las seis de la tarde.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dialog-container" style="margin-top:2rem;">
+      <div class="dialog-title">Diálogo 2 — Problema con il wifi 📶</div>
+      <div class="bubble-wrap">
+        <div class="bubble b">
+          <div class="speaker">Ospite</div>
+          <div class="it">Scusi, mi può aiutare? Il wifi non funziona nella mia camera.</div>
+          <div class="es">Disculpe, ¿me puede ayudar? El wifi no funciona en mi habitación.</div>
+        </div>
+        <div class="bubble a">
+          <div class="speaker">Portiere</div>
+          <div class="it">Mi dispiace molto. Qual è il numero della sua camera?</div>
+          <div class="es">Lo siento mucho. ¿Cuál es el número de su habitación?</div>
+        </div>
+        <div class="bubble b">
+          <div class="speaker">Ospite</div>
+          <div class="it">Camera 312, al terzo piano. Inserisco la password ma non prende.</div>
+          <div class="es">Habitación 312, en el tercer piso. Pongo la contraseña pero no conecta.</div>
+        </div>
+        <div class="bubble a">
+          <div class="speaker">Portiere</div>
+          <div class="it">Capisco. Le mando un tecnico entro dieci minuti. Nel frattempo, provi con questa nuova password: Hotel2024.</div>
+          <div class="es">Entiendo. Le mando un técnico en diez minutos. Mientras tanto, pruebe con esta nueva contraseña: Hotel2024.</div>
+        </div>
+        <div class="bubble b">
+          <div class="speaker">Ospite</div>
+          <div class="it">Grazie. E un'altra cosa: la doccia è un po' fredda. C'è modo di regolarla?</div>
+          <div class="es">Gracias. Y otra cosa: la ducha está un poco fría. ¿Hay forma de regularla?</div>
+        </div>
+        <div class="bubble a">
+          <div class="speaker">Portiere</div>
+          <div class="it">Sì, il tecnico ci penserà anche a quello. Ci scusiamo per l'inconveniente.</div>
+          <div class="es">Sí, el técnico se ocupará de eso también. Pedimos disculpas por el inconveniente.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPRENSIÓN -->
+    <div class="comprehension-block" style="margin-top:2rem;">
+      <h3 style="font-family:var(--fh);font-style:italic;color:var(--green-active);margin-bottom:1rem;">Comprensión — Descrizione dell'albergo</h3>
+      <div class="passage">
+        <strong>Hotel dei Normanni — Palermo, Sicilia</strong><br><br>
+        L'Hotel dei Normanni si trova nel centro storico di Palermo, a cinque minuti dalla Cattedrale. Offre 45 camere tra singole, doppie e matrimoniali. Tutte le camere hanno bagno privato, aria condizionata, TV satellitare e wifi gratuito. La colazione è inclusa nel prezzo e si serve dalle 7:30 alle 10:30 nel salone al primo piano. Il checkout è alle 11:00. La tassa di soggiorno è di €2 a persona per notte e si paga direttamente in albergo. Il parcheggio non è disponibile ma l'hotel ha un accordo con un garage a 200 metri.
+      </div>
+      <div class="compreh-q">
+        <p>1. ¿Dónde se sirve el desayuno?</p>
+        <label><input type="radio" name="cq1" value="a"> En el restaurante del hotel</label>
+        <label><input type="radio" name="cq1" value="b"> En el salón del primer piso</label>
+        <label><input type="radio" name="cq1" value="c"> En las habitaciones</label>
+      </div>
+      <div class="compreh-q">
+        <p>2. ¿Cuánto cuesta la tassa di soggiorno por 2 personas, 3 noches?</p>
+        <label><input type="radio" name="cq2" value="a"> €6 en total</label>
+        <label><input type="radio" name="cq2" value="b"> €12 en total</label>
+        <label><input type="radio" name="cq2" value="c"> €4 en total</label>
+      </div>
+      <div class="compreh-q">
+        <p>3. ¿El estacionamiento está disponible en el hotel?</p>
+        <label><input type="radio" name="cq3" value="a"> Sí, en el sótano del hotel</label>
+        <label><input type="radio" name="cq3" value="b"> No, pero hay un garage cerca</label>
+        <label><input type="radio" name="cq3" value="c"> Sí, pero hay que reservarlo</label>
+      </div>
+      <div class="compreh-q">
+        <p>4. ¿Hasta qué hora se puede quedar en la habitación (checkout)?</p>
+        <label><input type="radio" name="cq4" value="a"> Las 12:00</label>
+        <label><input type="radio" name="cq4" value="b"> Las 10:30</label>
+        <label><input type="radio" name="cq4" value="c"> Las 11:00</label>
+      </div>
+      <button class="check-btn" onclick="checkCompreh()">Verificar respuestas</button>
+      <div class="feedback" id="fbCompreh"></div>
+    </div>
+
+    <!-- MATCHING -->
+    <div class="matching-game">
+      <h4>Matching — Problema y solución</h4>
+      <p style="font-size:0.85rem;color:#5a5a54;margin-bottom:1rem;">Uní el problema con la solución más adecuada.</p>
+      <div class="match-cols">
+        <div id="matchLeft"></div>
+        <div id="matchRight"></div>
+      </div>
+      <div class="feedback" id="fbMatch" style="margin-top:1rem;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURA -->
+<div class="culture-strip" id="cultura">
+  <div class="section-inner">
+    <h2>🇮🇹 Cultura italiana — El alojamiento en Italia</h2>
+    <p>La <strong>tassa di soggiorno</strong> (o "tassa di turismo") es un impuesto municipal que pagan los turistas por hospedarse en hoteles, B&B, hostels y apartamentos turísticos. Varía según la ciudad y la categoría del alojamiento: en Roma puede llegar a €7 por persona por noche en hoteles de 5 estrellas; en ciudades más pequeñas suele ser €1-2. Se paga en efectivo directamente al alojamiento y no está incluida en el precio reservado online.</p>
+    <p>El <strong>desayuno italiano</strong> en el hotel es bastante diferente al argentino: café (espresso o cappuccino), croissant (cornetto), jugos, fruta y algunos dulces. No hay huevos revueltos ni tostadas con queso — ese es el desayuno anglosajón. Muchos italianos de hecho no desayunan en el hotel y van directamente al bar de la esquina, que es más barato y, según ellos, mucho mejor.</p>
+    <div class="tip-box">
+      <strong>Tip viajero:</strong> En Italia el check-in obligatorio incluye mostrar el documento de identidad. Para argentinos, el DNI no siempre es suficiente en hoteles de categoría — llevar siempre el pasaporte. El hotel está obligado por ley a registrar los datos de los huéspedes con la questura (policía local).
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Italiano Per Piacere · Módulo 8 — In albergo · Nivel Viajeros</p>
+</footer>
+
+<script>
+// VOCAB DATA
+const vocabA = [
+  { it: 'singola', es: '🛏️ habitación individual (1 cama)', emoji: '🛏️' },
+  { it: 'doppia', es: '🛏️🛏️ habitación doble (2 camas)', emoji: '🛏️' },
+  { it: 'matrimoniale', es: '💑 habitación matrimonial (1 cama grande)', emoji: '💑' },
+  { it: 'suite', es: '🌟 suite (habitación de lujo)', emoji: '🌟' },
+  { it: 'bagno', es: '🚿 baño', emoji: '🚿' },
+  { it: 'doccia', es: '🚿 ducha', emoji: '🚿' },
+  { it: 'balcone', es: '🌅 balcón', emoji: '🌅' },
+  { it: 'aria condizionata', es: '❄️ aire acondicionado', emoji: '❄️' },
+];
+const vocabB = [
+  { it: 'prenotazione', es: '📅 reserva', emoji: '📅' },
+  { it: 'documento', es: '🪪 documento de identidad', emoji: '🪪' },
+  { it: 'chiave', es: '🗝️ llave (también: chiave magnetica)', emoji: '🗝️' },
+  { it: 'piano', es: '🏢 piso / planta del edificio', emoji: '🏢' },
+  { it: 'ascensore', es: '🛗 ascensor', emoji: '🛗' },
+  { it: 'reception', es: '🏨 recepción del hotel', emoji: '🏨' },
+  { it: 'portiere', es: '👔 recepcionista / portero', emoji: '👔' },
+  { it: 'colazione', es: '☕ desayuno (colazione inclusa = desayuno incluido)', emoji: '☕' },
+];
+const vocabC = [
+  { it: 'rotto/a', es: '🔧 roto/a', emoji: '🔧' },
+  { it: 'non funziona', es: '❌ no funciona', emoji: '❌' },
+  { it: 'rumoroso/a', es: '🔊 ruidoso/a', emoji: '🔊' },
+  { it: 'sporco/a', es: '🧹 sucio/a', emoji: '🧹' },
+  { it: 'freddo/a', es: '🥶 frío/a', emoji: '🥶' },
+  { it: 'piccolo/a', es: '📐 pequeño/a', emoji: '📐' },
+  { it: 'lento/a', es: '🐢 lento/a (wifi, ascensore...)', emoji: '🐢' },
+  { it: 'senza', es: '🚫 sin (senza wifi, senza riscaldamento)', emoji: '🚫' },
+];
+
+function buildVocabGrid(id, data) {
+  const grid = document.getElementById(id);
+  data.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'vocab-card';
+    card.innerHTML = `<span class="emoji">${item.emoji}</span><div class="it">${item.it}</div><div class="es">${item.es}</div>`;
+    card.addEventListener('click', () => { card.classList.toggle('flipped'); updateProgress(); });
+    grid.appendChild(card);
+  });
+}
+buildVocabGrid('vocabA', vocabA);
+buildVocabGrid('vocabB', vocabB);
+buildVocabGrid('vocabC', vocabC);
+
+// CHECK-IN FORM
+function submitCheckin() {
+  const inputs = document.querySelectorAll('.checkin-form input, .checkin-form select');
+  let allFilled = true;
+  let nome = '', cognome = '', camera = '', notti = '', colazione = '';
+  inputs.forEach(inp => {
+    if (!inp.value) allFilled = false;
+    if (inp.placeholder && inp.placeholder.includes('Marco')) nome = inp.value;
+    if (inp.placeholder && inp.placeholder.includes('Ferrari')) cognome = inp.value;
+    if (inp.tagName === 'SELECT') {
+      if (inp.previousElementSibling.textContent.includes('camera')) camera = inp.value;
+      if (inp.previousElementSibling.textContent.includes('notti')) notti = inp.value;
+      if (inp.previousElementSibling.textContent.includes('Colazione')) colazione = inp.value;
+    }
+  });
+  const el = document.getElementById('checkinSuccess');
+  if (allFilled) {
+    el.style.display = 'block';
+    el.innerHTML = `✓ Check-in confermato!<br><br>Benvenuto/a <em>${nome} ${cognome}</em>. Camera: <em>${camera}</em> — ${notti}. ${colazione}.<br><br>La chiave è pronta. Buon soggiorno! 🗝️`;
+  } else {
+    el.style.display = 'block';
+    el.style.background = '#fdf0ee';
+    el.style.borderColor = 'var(--red)';
+    el.style.color = 'var(--red)';
+    el.textContent = 'Compilate tutti i campi prima di confermare.';
+  }
+}
+
+// FILL CHECK
+function checkFill(cls, fbId) {
+  const inputs = document.querySelectorAll('.' + cls);
+  let ok = 0;
+  inputs.forEach(inp => {
+    const ans = inp.dataset.answer.toLowerCase().trim();
+    const val = inp.value.toLowerCase().trim();
+    if (val === ans) { inp.classList.add('correct'); inp.classList.remove('incorrect'); ok++; }
+    else { inp.classList.add('incorrect'); inp.classList.remove('correct'); }
+  });
+  const fb = document.getElementById(fbId);
+  if (ok === inputs.length) { fb.textContent = '✓ Perfetto!'; fb.className = 'feedback ok'; }
+  else { fb.textContent = `${ok}/${inputs.length} correctas.`; fb.className = 'feedback err'; }
+  updateProgress();
+}
+
+// COMPREHENSION
+const comprAns = { cq1: 'b', cq2: 'b', cq3: 'b', cq4: 'c' };
+function checkCompreh() {
+  let ok = 0;
+  Object.keys(comprAns).forEach(q => {
+    const sel = document.querySelector(`input[name="${q}"]:checked`);
+    if (sel && sel.value === comprAns[q]) ok++;
+  });
+  const fb = document.getElementById('fbCompreh');
+  if (ok === 4) { fb.textContent = '✓ Bravissimo/a! 4/4.'; fb.className = 'feedback ok'; }
+  else { fb.textContent = `${ok}/4 correctas.`; fb.className = 'feedback err'; }
+  updateProgress();
+}
+
+// MATCHING
+const matchPairs = [
+  { problem: 'La doccia è fredda', solution: 'Mandare un idraulico' },
+  { problem: 'Il wifi non funziona', solution: 'Dare la password nuova' },
+  { problem: 'Camera rumorosa', solution: 'Cambiare la camera' },
+  { problem: 'Lenzuola sporche', solution: 'Mandare le lenzuola pulite' },
+  { problem: 'Chiave non funziona', solution: 'Demagnetizzarsi — rifare la chiave' },
+];
+let matchSel = null;
+let matchDone = 0;
+function buildMatch() {
+  const left = document.getElementById('matchLeft');
+  const right = document.getElementById('matchRight');
+  const shuffled = [...matchPairs.map(p => p.solution)].sort(() => Math.random() - 0.5);
+  matchPairs.forEach(p => {
+    const d = document.createElement('div');
+    d.className = 'match-item'; d.dataset.prob = p.problem; d.dataset.type = 'prob';
+    d.textContent = p.problem;
+    d.addEventListener('click', () => handleMatch(d));
+    left.appendChild(d);
+  });
+  shuffled.forEach(sol => {
+    const d = document.createElement('div');
+    d.className = 'match-item'; d.dataset.sol = sol; d.dataset.type = 'sol';
+    d.textContent = sol;
+    d.addEventListener('click', () => handleMatch(d));
+    right.appendChild(d);
+  });
+}
+function handleMatch(el) {
+  if (el.classList.contains('matched')) return;
+  if (!matchSel) {
+    if (el.dataset.type !== 'prob') return;
+    matchSel = el; el.classList.add('selected');
+  } else {
+    if (el.dataset.type !== 'sol') { matchSel.classList.remove('selected'); matchSel = null; return; }
+    const correct = matchPairs.find(p => p.problem === matchSel.dataset.prob)?.solution;
+    if (el.dataset.sol === correct) {
+      matchSel.classList.remove('selected'); matchSel.classList.add('matched');
+      el.classList.add('matched'); matchDone++;
+      if (matchDone === matchPairs.length) {
+        document.getElementById('fbMatch').textContent = '✓ Perfetto! Tutti i problemi risolti.';
+        document.getElementById('fbMatch').className = 'feedback ok';
+        updateProgress();
+      }
+    } else {
+      matchSel.classList.remove('selected'); matchSel.classList.add('error');
+      el.classList.add('error');
+      setTimeout(() => { matchSel.classList.remove('error'); el.classList.remove('error'); }, 800);
+    }
+    matchSel = null;
+  }
+}
+buildMatch();
+
+// PROGRESS
+function updateProgress() {
+  const total = 24 + 5 + 5 + 3 + 4;
+  const done = document.querySelectorAll('.vocab-card.flipped').length
+    + document.querySelectorAll('.fill-poss.correct,.fill-prob.correct,.fill-queja.correct').length
+    + matchDone;
+  const pct = Math.min(100, Math.round((done / total) * 100));
+  document.getElementById('progressBar').style.width = pct + '%';
+}
+
+// NAV HIGHLIGHT
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const link = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -23,7 +23,7 @@
 
     /* TRANSLATION TOGGLE */
     .trans-toggle{position:fixed;top:1.2rem;right:1.2rem;z-index:999;background:var(--white);border:2px solid var(--teal);color:var(--teal);font-family:var(--fb);font-size:.78rem;font-weight:700;padding:.45rem 1rem;border-radius:30px;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.12);transition:background .2s,color .2s}
-    .trans-toggle:hover{background:var(--teal);color:var(--white)}
+    .trans-toggle:hover{background:#fef9e8;color:var(--white)}
 
     /* SCROLL ANIMATIONS */
     [data-a]{opacity:0;transition:opacity .9s var(--ease),transform .9s var(--ease)}
@@ -46,15 +46,15 @@
     [data-stagger]>*:nth-child(n+9){transition-delay:.64s}
 
     /* HERO */
-    .hero{min-height:100vh;background:var(--teal);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
-    .hero-bg-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none;will-change:transform}
+    .hero{min-height:100vh;background:#fef9e8;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
+    .hero-bg-circle{display:none;position:absolute;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none;will-change:transform}
     .hero-bg-circle:nth-child(1){width:600px;height:600px;top:-200px;right:-150px}
     .hero-bg-circle:nth-child(2){width:400px;height:400px;bottom:-100px;left:-100px}
     .hero-bg-circle:nth-child(3){width:200px;height:200px;top:30%;left:5%}
     .hero-badge{display:inline-block;background:var(--gold);color:var(--black);font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:.3rem 1.2rem;border-radius:20px;margin-bottom:1.5rem;opacity:0;animation:popIn .6s var(--ease) .2s forwards}
-    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-style:italic;color:var(--white);line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
-    .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:rgba(255,255,255,.85);max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
-    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.6);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
+    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-style:italic;color:#1a1a18;line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
+    .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:#1a1a18;opacity:.75;max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
+    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(0,0,0,.4);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
     .scroll-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6);animation:scrollDot 1.5s ease infinite}
     @keyframes popIn   {from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
     @keyframes slideUp {from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
@@ -84,19 +84,19 @@
     .word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;margin-bottom:1.5rem}
     .word-card{background:var(--white);border:2px solid transparent;border-radius:var(--r);padding:.9rem .75rem;text-align:center;cursor:pointer;user-select:none;position:relative;transition:border-color .2s,background .2s,transform .15s;font-weight:600;font-size:.95rem}
     .word-card:hover{transform:translateY(-2px);border-color:var(--teal)}
-    .word-card.selected{background:var(--teal);color:var(--white);border-color:var(--teal)}
-    .word-card.correct  {background:var(--green);color:var(--white);border-color:var(--green)}
-    .word-card.false-pos{background:var(--red);color:var(--white);border-color:var(--red)}
-    .word-card.missed   {background:var(--amber);color:var(--black);border-color:var(--amber)}
+    .word-card.selected{background:#fef9e8;color:var(--white);border-color:var(--teal)}
+    .word-card.correct  {background:#fef9e8;color:var(--white);border-color:var(--green)}
+    .word-card.false-pos{background:#fef9e8;color:var(--white);border-color:var(--red)}
+    .word-card.missed   {background:#fef9e8;color:var(--black);border-color:var(--amber)}
     .word-card.neutral  {background:var(--cream-dk);color:#888;border-color:transparent}
     .word-badge{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:var(--white)}
-    .word-card.correct   .word-badge{display:flex;background:var(--green)}
-    .word-card.false-pos .word-badge{display:flex;background:var(--red)}
-    .word-card.missed    .word-badge{display:flex;background:var(--amber);color:var(--black)}
+    .word-card.correct   .word-badge{display:flex;background:#fef9e8}
+    .word-card.false-pos .word-badge{display:flex;background:#fef9e8}
+    .word-card.missed    .word-badge{display:flex;background:#fef9e8;color:var(--black)}
     .word-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
     .btn{padding:.65rem 1.5rem;border-radius:30px;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.9rem;transition:opacity .2s,transform .15s}
     .btn:hover{opacity:.85;transform:translateY(-1px)}
-    .btn-primary{background:var(--teal);color:var(--white)}
+    .btn-primary{background:#fef9e8;color:var(--white)}
     .btn-ghost{background:transparent;color:var(--black);border:2px solid var(--cream-dk)}
     .score-display{font-size:.9rem;font-weight:700;color:var(--green)}
     .legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;font-size:.8rem}
@@ -117,7 +117,7 @@
 
     /* VERB TABLE */
     .verb-table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:1.5rem}
-    .verb-table th{background:var(--teal);color:var(--white);padding:.7rem 1.1rem;text-align:left;font-size:.78rem;letter-spacing:1px;text-transform:uppercase}
+    .verb-table th{background:#fde8a0;color:#7a5500;padding:.7rem 1.1rem;text-align:left;font-size:.78rem;letter-spacing:1px;text-transform:uppercase}
     .verb-table td{padding:.65rem 1.1rem;border-bottom:1px solid var(--cream-dk)}
     .verb-table tr:nth-child(even) td{background:rgba(0,0,0,.02)}
     .verb-form{font-weight:700;color:var(--teal)}
@@ -127,8 +127,8 @@
     .dialogue{display:flex;flex-direction:column;gap:.75rem}
     .dlg-line{display:flex;align-items:flex-start;gap:.75rem}
     .dlg-line.b{flex-direction:row-reverse}
-    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:var(--teal);padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
-    .dlg-line.b .dlg-speaker{background:var(--green)}
+    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:#fef9e8;padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
+    .dlg-line.b .dlg-speaker{background:#fef9e8}
     .dlg-bubble{background:var(--white);border-radius:12px;padding:.9rem 1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.07);max-width:480px}
     .dlg-bubble .it{font-weight:600;font-size:.95rem;color:var(--black)}
     .dlg-bubble .es{font-size:.8rem;color:#888;margin-top:.25rem;font-style:italic}
@@ -167,8 +167,8 @@
     .footer strong{color:var(--black)}
     .nav-pills{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
     .nav-pill{padding:.5rem 1.2rem;border-radius:30px;font-size:.8rem;font-weight:600;text-decoration:none;color:var(--black);background:var(--cream);border:1px solid var(--cream-dk);transition:background .2s,color .2s}
-    .nav-pill:hover{background:var(--teal);color:var(--white)}
-    .nav-pill.active{background:var(--teal);color:var(--white)}
+    .nav-pill:hover{background:#fef9e8;color:var(--white)}
+    .nav-pill.active{background:#fef9e8;color:var(--white)}
 
     @media(max-width:600px){
       .section{padding:4rem 1.25rem}
@@ -214,20 +214,20 @@
     <p class="section-label" data-a="fade">Actividad 1</p>
     <h2 class="section-title" data-a="up">¿Cuáles son palabras del <em>hotel</em>?</h2>
     <p class="section-desc" data-a="up">
-      Selecciona todas las palabras que crees que están relacionadas con <strong>el alojamiento en Italia</strong>. Luego verifica tu selección.
+      Seleccioná todas las palabras que crees que están relacionadas con <strong>el alojamiento en Italia</strong>. Luego verifica tu selección.
     </p>
 
     <div class="word-grid" id="wordGrid" style="margin-top:1.75rem" data-stagger></div>
 
     <div class="word-actions">
       <button class="btn btn-primary" onclick="verifyWords()">Verificar selección</button>
-      <button class="btn btn-ghost" onclick="resetWords()">Intentar de nuevo</button>
+      <button class="btn btn-ghost" onclick="resetWords()">Intentá́ de nuevo</button>
       <span class="score-display" id="scoreDisplay"></span>
     </div>
     <div class="legend" id="legend" style="display:none">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Correcto ✓</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> No está relacionado ✗</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div> La olvidaste !</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#fef9e8"></div> Correcto ✓</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#fef9e8"></div> No está relacionado ✗</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#fef9e8"></div> La olvidaste !</div>
     </div>
   </div>
 </section>
@@ -237,7 +237,7 @@
   <div class="container">
     <p class="section-label" data-a="fade">Vocabulario</p>
     <h2 class="section-title" data-a="up"><em>All'albergo</em> — En el hotel</h2>
-    <p class="section-desc" data-a="up">Las palabras clave para hospedarte en Italia. Haz clic en cada tarjeta para ver un ejemplo.</p>
+    <p class="section-desc" data-a="up">Las palabras clave para hospedarte en Italia. Hacé clic en cada tarjeta para ver un ejemplo.</p>
 
     <div class="vocab-grid" style="margin-top:2rem" data-stagger>
       <div class="vocab-card" onclick="this.classList.toggle('open')">
@@ -303,7 +303,7 @@
   <div class="container">
     <p class="section-label" data-a="fade">Gramática · Descubrimiento</p>
     <h2 class="section-title" data-a="up">Los verbos <em>regulares -ARE</em></h2>
-    <p class="section-desc" data-a="up">En italiano, los verbos terminados en -ARE siguen siempre el mismo patrón. Aprende uno y entiendes todos. Observa <strong>parlare</strong> (hablar):</p>
+    <p class="section-desc" data-a="up">En italiano, los verbos terminados en -ARE siguen siempre el mismo patrón. Aprende uno y entiendes todos. Observá <strong>parlare</strong> (hablar):</p>
 
     <div style="overflow-x:auto;margin-top:2rem" data-a="up">
       <table class="verb-table">
@@ -353,7 +353,7 @@
   <div class="container">
     <p class="section-label" data-a="fade">Dialogo autentico</p>
     <h2 class="section-title" data-a="up"><em>Alla reception</em></h2>
-    <p class="section-desc" data-a="up">Marco llega a Roma y se hospeda en su hotel. Escucha cómo se comunica con la recepcionista.</p>
+    <p class="section-desc" data-a="up">Marco llega a Roma y se hospeda en su hotel. Escuchá cómo se comunica con la recepcionista.</p>
 
     <div class="dialogue" style="margin-top:2rem" data-stagger>
       <div class="dlg-line">
@@ -487,6 +487,8 @@
 </footer>
 
 <script>
+(function(){
+
   /* SCROLL ANIMATIONS */
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); observer.unobserve(e.target); } });
@@ -577,6 +579,7 @@
   function resetFill(){
     document.querySelectorAll('#fillVerbs .fill-input').forEach(inp=>{inp.value='';inp.classList.remove('ok','fail');});
   }
+})();
 </script>
 </body>
 </html>

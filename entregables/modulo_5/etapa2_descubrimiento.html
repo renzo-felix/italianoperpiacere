@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -19,7 +19,7 @@
     .es{font-size:.8rem;color:#888;font-style:italic;margin-top:.2rem}
     .hide-es .es{display:none !important}
     .trans-toggle{position:fixed;top:1.2rem;right:1.2rem;z-index:999;background:var(--white);border:2px solid var(--amber);color:var(--amber);font-family:var(--fb);font-size:.78rem;font-weight:700;padding:.45rem 1rem;border-radius:30px;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.12);transition:background .2s,color .2s}
-    .trans-toggle:hover{background:var(--amber);color:var(--white)}
+    .trans-toggle:hover{background:#fde4e1;color:var(--white)}
 
     [data-a]{opacity:0;transition:opacity .9s var(--ease),transform .9s var(--ease)}
     [data-a="up"]   {transform:translateY(48px)}
@@ -41,15 +41,15 @@
     [data-stagger]>*:nth-child(n+9){transition-delay:.64s}
 
     /* HERO */
-    .hero{min-height:100vh;background:var(--amber);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
-    .hero-bg-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.1);pointer-events:none;will-change:transform}
+    .hero{min-height:100vh;background:#fde4e1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
+    .hero-bg-circle{display:none;position:absolute;border-radius:50%;background:rgba(255,255,255,.1);pointer-events:none;will-change:transform}
     .hero-bg-circle:nth-child(1){width:600px;height:600px;top:-200px;right:-150px}
     .hero-bg-circle:nth-child(2){width:400px;height:400px;bottom:-100px;left:-100px}
     .hero-bg-circle:nth-child(3){width:250px;height:250px;top:20%;left:8%}
     .hero-badge{display:inline-block;background:var(--white);color:var(--black);font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:.3rem 1.2rem;border-radius:20px;margin-bottom:1.5rem;opacity:0;animation:popIn .6s var(--ease) .2s forwards}
-    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-style:italic;color:var(--white);line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
-    .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:rgba(255,255,255,.9);max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
-    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.7);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
+    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-style:italic;color:#1a1a18;line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
+    .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:#1a1a18;opacity:.75;max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
+    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(0,0,0,.4);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
     .scroll-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.7);animation:scrollDot 1.5s ease infinite}
     @keyframes popIn   {from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
     @keyframes slideUp {from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
@@ -77,19 +77,19 @@
     .word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;margin-bottom:1.5rem}
     .word-card{background:var(--white);border:2px solid transparent;border-radius:var(--r);padding:.9rem .75rem;text-align:center;cursor:pointer;user-select:none;position:relative;transition:border-color .2s,background .2s,transform .15s;font-weight:600;font-size:.95rem}
     .word-card:hover{transform:translateY(-2px);border-color:var(--amber)}
-    .word-card.selected{background:var(--amber);color:var(--white);border-color:var(--amber)}
-    .word-card.correct  {background:var(--green);color:var(--white);border-color:var(--green)}
-    .word-card.false-pos{background:var(--red);color:var(--white);border-color:var(--red)}
-    .word-card.missed   {background:var(--teal);color:var(--white);border-color:var(--teal)}
+    .word-card.selected{background:#fde4e1;color:var(--white);border-color:var(--amber)}
+    .word-card.correct  {background:#fde4e1;color:var(--white);border-color:var(--green)}
+    .word-card.false-pos{background:#fde4e1;color:var(--white);border-color:var(--red)}
+    .word-card.missed   {background:#fde4e1;color:var(--white);border-color:var(--teal)}
     .word-card.neutral  {background:var(--cream-dk);color:#888;border-color:transparent}
     .word-badge{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:var(--white)}
-    .word-card.correct   .word-badge{display:flex;background:var(--green)}
-    .word-card.false-pos .word-badge{display:flex;background:var(--red)}
-    .word-card.missed    .word-badge{display:flex;background:var(--teal)}
+    .word-card.correct   .word-badge{display:flex;background:#fde4e1}
+    .word-card.false-pos .word-badge{display:flex;background:#fde4e1}
+    .word-card.missed    .word-badge{display:flex;background:#fde4e1}
     .word-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
     .btn{padding:.65rem 1.5rem;border-radius:30px;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.9rem;transition:opacity .2s,transform .15s}
     .btn:hover{opacity:.85;transform:translateY(-1px)}
-    .btn-primary{background:var(--amber);color:var(--white)}
+    .btn-primary{background:#fde4e1;color:var(--white)}
     .btn-ghost{background:transparent;color:var(--black);border:2px solid var(--cream-dk)}
     .score-display{font-size:.9rem;font-weight:700;color:var(--green)}
     .legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;font-size:.8rem}
@@ -126,8 +126,8 @@
     .dialogue{display:flex;flex-direction:column;gap:.75rem}
     .dlg-line{display:flex;align-items:flex-start;gap:.75rem}
     .dlg-line.b{flex-direction:row-reverse}
-    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:var(--amber);padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
-    .dlg-line.b .dlg-speaker{background:var(--teal)}
+    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:#fde4e1;padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
+    .dlg-line.b .dlg-speaker{background:#fde4e1}
     .dlg-bubble{background:var(--white);border-radius:12px;padding:.9rem 1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.07);max-width:480px}
     .dlg-bubble .it{font-weight:600;font-size:.95rem;color:var(--black)}
     .dlg-bubble .es{font-size:.8rem;color:#888;margin-top:.25rem;font-style:italic}
@@ -164,8 +164,8 @@
     .footer strong{color:var(--black)}
     .nav-pills{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
     .nav-pill{padding:.5rem 1.2rem;border-radius:30px;font-size:.8rem;font-weight:600;text-decoration:none;color:var(--black);background:var(--cream);border:1px solid var(--cream-dk);transition:background .2s,color .2s}
-    .nav-pill:hover{background:var(--amber);color:var(--white)}
-    .nav-pill.active{background:var(--amber);color:var(--white)}
+    .nav-pill:hover{background:#fde4e1;color:var(--white)}
+    .nav-pill.active{background:#fde4e1;color:var(--white)}
     @media(max-width:600px){.section{padding:4rem 1.25rem}.sofia-wrap{flex-direction:column}}
   </style>
 </head>
@@ -206,19 +206,19 @@
   <div class="container">
     <p class="section-label" data-a="fade">Actividad 1</p>
     <h2 class="section-title" data-a="up">Palabras del <em>tiempo</em></h2>
-    <p class="section-desc" data-a="up">Selecciona las palabras relacionadas con <strong>el tiempo y el horario</strong>. Luego verifica.</p>
+    <p class="section-desc" data-a="up">Seleccioná las palabras relacionadas con <strong>el tiempo y el horario</strong>. Luego verifica.</p>
 
     <div class="word-grid" id="wordGrid" style="margin-top:1.75rem" data-stagger></div>
 
     <div class="word-actions">
       <button class="btn btn-primary" onclick="verifyWords()">Verificar selección</button>
-      <button class="btn btn-ghost" onclick="resetWords()">Intentar de nuevo</button>
+      <button class="btn btn-ghost" onclick="resetWords()">Intentá́ de nuevo</button>
       <span class="score-display" id="scoreDisplay"></span>
     </div>
     <div class="legend" id="legend" style="display:none">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Correcto ✓</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> No está relacionado ✗</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div> La olvidaste !</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#fde4e1"></div> Correcto ✓</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#fde4e1"></div> No está relacionado ✗</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#fde4e1"></div> La olvidaste !</div>
     </div>
   </div>
 </section>
@@ -228,7 +228,7 @@
   <div class="container">
     <p class="section-label" data-a="fade">Vocabulario</p>
     <h2 class="section-title" data-a="up"><em>Il tempo</em> — El tiempo</h2>
-    <p class="section-desc" data-a="up">Palabras esenciales para hablar del horario. Haz clic para ver un ejemplo.</p>
+    <p class="section-desc" data-a="up">Palabras esenciales para hablar del horario. Hacé clic para ver un ejemplo.</p>
 
     <div class="vocab-grid" style="margin-top:2rem" data-stagger>
       <div class="vocab-card" onclick="this.classList.toggle('open')">
@@ -347,17 +347,17 @@
     <p class="section-desc" data-a="up">En italiano, el saludo cambia según el momento del día. ¡No puedes decir "buongiorno" a las diez de la noche!</p>
 
     <div class="greet-grid" style="margin-top:1.5rem" data-stagger>
-      <div class="greet-card" style="background:var(--amber)">
+      <div class="greet-card" style="background:#fde4e1">
         <div class="greet-time">6:00 — 12:00</div>
         <div class="greet-it">Buongiorno!</div>
         <div class="greet-es es">¡Buenos días!</div>
       </div>
-      <div class="greet-card" style="background:var(--teal)">
+      <div class="greet-card" style="background:#fde4e1">
         <div class="greet-time">12:00 — 18:00</div>
         <div class="greet-it">Buon pomeriggio!</div>
         <div class="greet-es es">¡Buenas tardes!</div>
       </div>
-      <div class="greet-card" style="background:var(--green)">
+      <div class="greet-card" style="background:#fde4e1">
         <div class="greet-time">18:00 — 21:00</div>
         <div class="greet-it">Buonasera!</div>
         <div class="greet-es es">¡Buenas tardes / noches!</div>
@@ -526,6 +526,8 @@
 </footer>
 
 <script>
+(function(){
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); observer.unobserve(e.target); } });
   }, { threshold: 0.12 });
@@ -610,6 +612,7 @@
   function resetFill(){
     document.querySelectorAll('#fillTime .fill-input').forEach(inp=>{inp.value='';inp.classList.remove('ok','fail');});
   }
+})();
 </script>
 </body>
 </html>

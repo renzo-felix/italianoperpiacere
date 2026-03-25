@@ -5,8 +5,9 @@
 ---
 
 TIPO: Video
-FUENTE SUGERIDA: YouTube — Clip de Roberto Benigni (teatro/spettacolo) o buscar "Roberto Benigni teatro italiano" / "spettacolo teatrale italiano clip"
-TÍTULO: Ieri sera a teatro — Roberto Benigni e la bellezza del racconto
+FUENTE: YouTube — Roberto Benigni (Tutto Dante / Tutto Leopardi)
+URL: https://www.youtube.com/watch?v=EHtvnzB4v_Q
+TÍTULO: Roberto Benigni — performance teatral italiana en pasado narrativo
 DESCRIPCIÓN: Un breve clip de un espectáculo de Roberto Benigni u otro artista teatral italiano, donde el estilo narrativo en pasado sea reconocible. Benigni es famoso por su narración expressiva y apasionada — ideal para la unidad final de A1 que trabaja el passato prossimo con ambos auxiliares y el pronome relativo *che*.
 
 ---

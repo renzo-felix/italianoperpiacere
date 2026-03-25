@@ -5,9 +5,9 @@
 ---
 
 TIPO: Canción
-FUENTE SUGERIDA: "Azzurro" (Adriano Celentano) — ya conocida del Módulo 1, pero esta vez enfocarse en las referencias temporales de la letra: *stasera, domani mattina, oggi*...
-URL ALTERNATIVA: Buscar en YouTube "Che ore sono canzone italiana" o "Mattina italiana canzone"
-TÍTULO: La musica e il tempo — Las horas y los momentos del día
+FUENTE: YouTube — Adriano Celentano (canal oficial / uploads clásicos)
+URL: https://www.youtube.com/watch?v=HCyzGuipTd4
+TÍTULO: "Azzurro" — Adriano Celentano (con foco en referencias temporales: *stasera, domani mattina, oggi*)
 DESCRIPCIÓN: Una canción italiana que mencione momentos del día o referencias temporales (*mattina, sera, notte, mezzogiorno*). Puede usarse un fragmento de "Azzurro" o buscar una canción popular que incluya referencias a las horas para activar el vocabulario de tiempo antes de la unidad.
 
 ---

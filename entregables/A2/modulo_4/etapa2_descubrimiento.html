@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unità 4 — Come eravamo · Descubrimiento | Italiano Per Piacere A2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;
+  --amber:#e5ab07;--amber-dk:#c8940a;--amber-txt:#7a5500;
+  --red:#cc4736;--green:#528e74;--green-dk:#3d6b58;
+  --black:#1a1a18;--white:#ffffff;
+  --hero:var(--amber);--hero-dk:var(--amber-dk);--hero-txt:var(--amber-txt);
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);overflow-x:hidden}
+body.hide-es .es{display:none}
+.hero{min-height:92vh;background:#fef9e8;border-bottom:3px solid #EFCF7F;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;text-align:center;padding:2rem 1.5rem}
+.hero-circle{display:none}
+.hero-badge{background:rgba(0,0,0,.05);color:var(--black);font-size:.75rem;font-weight:700;letter-spacing:.12em;padding:.4rem 1.1rem;border-radius:2rem;margin-bottom:1.2rem;backdrop-filter:blur(6px);text-transform:uppercase}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:clamp(2.4rem,7vw,4.5rem);color:var(--black);line-height:1.1;margin-bottom:.8rem;text-shadow:0 2px 12px rgba(255,255,255,.3)}
+.hero-sub{color:rgba(0,0,0,.75);font-size:clamp(.95rem,2.5vw,1.15rem);max-width:560px;line-height:1.6;margin-bottom:2rem}
+.video-box{background:rgba(255,255,255,.3);backdrop-filter:blur(10px);border-radius:1.2rem;padding:1.4rem 2rem;border:1px solid rgba(255,255,255,.5);max-width:460px;margin:0 auto}
+.video-box .vt{font-family:var(--fh);font-style:italic;font-size:1.3rem;color:var(--black);margin-bottom:.3rem}
+.video-box .vs{color:rgba(0,0,0,.7);font-size:.88rem;margin-bottom:.8rem}
+.video-box a{display:inline-block;background:#c8940a;color:#fff;font-weight:700;font-size:.85rem;padding:.55rem 1.4rem;border-radius:2rem;text-decoration:none;transition:transform .2s}
+.video-box a:hover{transform:translateY(-2px)}
+#toggle-btn{position:fixed;top:1rem;right:1rem;z-index:500;background:#fde8a0;color:var(--black);border:none;border-radius:2rem;padding:.45rem 1.1rem;font-family:var(--fb);font-size:.8rem;font-weight:700;cursor:pointer;box-shadow:0 3px 12px rgba(0,0,0,.2)}
+.section{max-width:880px;margin:0 auto;padding:4rem 1.5rem}
+.sec-tag{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--hero-dk);margin-bottom:.4rem}
+.sec-title{font-family:var(--fh);font-style:italic;font-size:clamp(1.6rem,4vw,2.2rem);color:var(--black);margin-bottom:.4rem;line-height:1.2}
+.sec-sub{color:#666;font-size:.9rem;line-height:1.6;margin-bottom:2rem}
+.es{color:#888;font-size:.85rem;font-style:italic}
+[data-a]{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+[data-a].visible{opacity:1;transform:none}
+[data-stagger]>*{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+[data-stagger].visible>*{opacity:1;transform:none}
+[data-stagger].visible>*:nth-child(1){transition-delay:.05s}[data-stagger].visible>*:nth-child(2){transition-delay:.12s}
+[data-stagger].visible>*:nth-child(3){transition-delay:.19s}[data-stagger].visible>*:nth-child(4){transition-delay:.26s}
+[data-stagger].visible>*:nth-child(5){transition-delay:.33s}[data-stagger].visible>*:nth-child(6){transition-delay:.40s}
+.word-grid{display:flex;flex-wrap:wrap;gap:.65rem;margin:1.2rem 0}
+.wcard{padding:.55rem 1.1rem;border-radius:2rem;border:2px solid var(--cream-dk);background:var(--white);font-size:.88rem;font-weight:600;cursor:pointer;transition:all .25s;user-select:none}
+.wcard:hover{border-color:var(--hero-dk);transform:translateY(-2px)}
+.wcard.ok{background:var(--hero);color:var(--black);border-color:var(--hero-dk)}
+.wcard.trap{background:#fde8e5;border-color:var(--red);text-decoration:line-through;color:#999}
+.grid-feedback{font-size:.85rem;font-weight:700;margin-top:.8rem;min-height:1.2rem;color:var(--hero-dk)}
+.grid-btn{background:#fde8a0;color:var(--black);border:none;border-radius:2rem;padding:.5rem 1.4rem;font-family:var(--fb);font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.6rem;transition:background .2s}
+.vcard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem;margin:1.2rem 0}
+.vcard{background:var(--white);border-radius:1rem;padding:1.3rem 1.2rem;border:2px solid var(--cream-dk);cursor:pointer;transition:all .25s;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.vcard:hover{border-color:var(--hero-dk);transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.1)}
+.vcard .vit{font-size:1.05rem;font-weight:700;color:var(--hero-dk);margin-bottom:.3rem}
+.vcard .ves{color:#777;font-size:.82rem;font-style:italic}
+.vcard .vex{font-size:.83rem;color:#555;margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--cream-dk);display:none}
+.vcard.open .vex{display:block}
+.vcard .vtag{font-size:.7rem;font-weight:700;background:var(--gold);border-radius:.25rem;padding:.1rem .4rem;display:inline-block;margin-bottom:.5rem;color:var(--black)}
+.disco-box{background:var(--white);border-radius:1.2rem;padding:1.6rem;border:2px solid var(--cream-dk);box-shadow:0 4px 16px rgba(0,0,0,.07)}
+.disco-box h4{font-family:var(--fh);font-style:italic;color:var(--hero-dk);margin-bottom:1rem;font-size:1.15rem}
+.gtable{width:100%;border-collapse:collapse;margin:1rem 0;border-radius:.7rem;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.gtable th{background:#fde8a0;color:var(--black);padding:.7rem 1rem;text-align:center;font-size:.82rem;letter-spacing:.05em}
+.gtable td{padding:.65rem 1rem;border-bottom:1px solid var(--cream-dk);font-size:.9rem;text-align:center;background:var(--white)}
+.gtable tr:last-child td{border:none}.gtable tr:hover td{background:var(--cream)}
+.gtable td:first-child{font-weight:700;color:var(--hero-dk);text-align:left}
+.fill-box{background:var(--white);border-radius:1.2rem;padding:1.6rem;border:2px solid var(--cream-dk);box-shadow:0 4px 16px rgba(0,0,0,.07)}
+.fill-box h4{font-family:var(--fh);font-style:italic;color:var(--hero-dk);margin-bottom:1rem;font-size:1.1rem}
+.fill-row{margin:.7rem 0;font-size:.92rem;line-height:1.9;display:flex;flex-wrap:wrap;align-items:center;gap:.3rem}
+.fill-input{border:none;border-bottom:2.5px solid var(--hero-dk);background:transparent;padding:.1rem .5rem;font-family:var(--fb);font-size:.9rem;width:140px;outline:none;color:var(--black)}
+.fill-input.ok{border-color:var(--green);color:var(--green-dk)}
+.fill-input.err{border-color:var(--red);color:var(--red)}
+.fill-btn{background:#fde8a0;color:var(--black);border:none;border-radius:2rem;padding:.5rem 1.4rem;font-family:var(--fb);font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.8rem;transition:background .2s}
+.fill-fb{font-size:.83rem;margin-top:.5rem;font-weight:600;color:var(--hero-dk);min-height:1.1rem}
+.bubble-row{margin:.7rem 0;display:flex;gap:.8rem;align-items:flex-start}
+.bubble-row.b{flex-direction:row-reverse}
+.bubble-avatar{width:36px;height:36px;border-radius:50%;background:#fde8a0;color:var(--black);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;flex-shrink:0}
+.bubble-row.b .bubble-avatar{background:var(--cream-dk);color:var(--black)}
+.bubble{background:var(--cream);border-radius:1rem;padding:.75rem 1rem;max-width:440px;font-size:.9rem;line-height:1.5;cursor:pointer}
+.bubble-row.b .bubble{background:var(--cream-dk)}
+.bubble .btr{display:none;font-size:.78rem;color:#888;font-style:italic;margin-top:.4rem;border-top:1px solid rgba(0,0,0,.08);padding-top:.4rem}
+.bubble.show .btr{display:block}
+.bubble strong{color:var(--hero-dk)}
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:4px solid var(--hero-dk);padding:3.5rem 1.5rem;text-align:center}
+.culture-inner{max-width:700px;margin:0 auto}
+.culture h3{font-family:var(--fh);font-style:italic;font-size:1.8rem;color:var(--hero-txt);margin-bottom:.8rem}
+.culture p{color:#555;font-size:.92rem;line-height:1.7;max-width:580px;margin:0 auto .6rem}
+.culture-facts{display:flex;justify-content:center;gap:2rem;margin-top:1.5rem;flex-wrap:wrap}
+.cfact{background:var(--white);border-radius:.8rem;padding:1rem 1.3rem;min-width:130px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.cfact .cnum{font-family:var(--fh);font-size:1.6rem;color:var(--hero-dk);font-style:italic}
+.cfact .clabel{font-size:.75rem;color:#777;margin-top:.2rem}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #EFCF7F;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#c8940a;border-bottom-color:#EFCF7F}
+/* TIMELINE */
+.timeline{display:grid;gap:1rem;margin:1.2rem 0}
+.titem{background:var(--white);border-radius:.8rem;padding:1rem 1.2rem;border-left:4px solid var(--hero-dk);display:grid;grid-template-columns:80px 1fr;gap:.5rem 1rem;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.titem .tyear{font-family:var(--fh);font-style:italic;font-size:1.2rem;color:var(--hero-dk);font-weight:700}
+.titem .tdesc{font-size:.88rem;line-height:1.5;color:#444}
+.titem .tdesc em{color:var(--black);font-weight:600;font-style:normal}
+</style>
+</head>
+<body>
+
+<button id="toggle-btn" onclick="toggleEs()">ES 👁</button>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=f5755ad" alt="Italiano Per Piacere" loading="lazy">
+    </a>
+    <div class="nav-links">
+      <a href="#">Vocabolario</a>
+      <a href="#">Imperfetto</a>
+      <a href="#">Dialogo</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-circle c1"></div>
+  <div class="hero-circle c2"></div>
+  <div class="hero-circle c3"></div>
+  <div class="hero-badge">A2 · Unità 4 · Video</div>
+  <h1>Come eravamo ✨</h1>
+  <p class="hero-sub">Un viaggio nel passato dell'Italia: la moda degli anni '70 e '80, il Carosello, e come si viveva "una volta".</p>
+  <div class="video-box" data-a>
+    <div class="vt">Carosello — RAI archivio storico</div>
+    <div class="vs">Pubblicità italiane degli anni '70 e '80</div>
+    <a href="https://www.youtube.com/results?search_query=carosello+rai+anni+70" target="_blank">▶ Cerca su YouTube</a>
+  </div>
+</section>
+
+<!-- WORD GRID -->
+<section style="background:var(--cream-dk);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Vocabolario</div>
+  <h2 class="sec-title" data-a>Abbigliamento — di ieri e di oggi</h2>
+  <p class="sec-sub es" data-a>¿Cuáles de estas prendas eran típicas de los años '70-'80 en Italia? Selecciona las que pertenecen a ese período de moda:</p>
+  <div class="word-grid" id="wg1" data-stagger>
+    <div class="wcard ok" data-ok>pantaloni a zampa</div>
+    <div class="wcard trap" data-trap>tuta da yoga</div>
+    <div class="wcard ok" data-ok>tailleur</div>
+    <div class="wcard ok" data-ok>maglione con colletto</div>
+    <div class="wcard trap" data-trap>leggings</div>
+    <div class="wcard ok" data-ok>giacca a quadri</div>
+    <div class="wcard ok" data-ok>gonna al ginocchio</div>
+    <div class="wcard trap" data-trap>hoodie con zip</div>
+    <div class="wcard ok" data-ok>cappotto di lana</div>
+    <div class="wcard ok" data-ok>scarpe con la zeppa</div>
+  </div>
+  <button class="grid-btn" onclick="checkGrid('wg1')">Verifica ✓</button>
+  <div class="grid-feedback" id="wg1-fb"></div>
+</div>
+</section>
+
+<!-- VOCAB CARDS -->
+<section style="background:var(--cream);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Lessico</div>
+  <h2 class="sec-title" data-a>La moda degli anni '70 e '80 👗</h2>
+  <p class="sec-sub es" data-a>Toca cada tarjeta para ver un ejemplo en imperfecto:</p>
+  <div class="vcard-grid" data-stagger>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">pantaloni</div>
+      <div class="vit">a zampa d'elefante</div>
+      <div class="ves">pantalones de campana</div>
+      <div class="vex"><em>"Negli anni '70 tutti portavano i pantaloni a zampa."</em> Erano di moda soprattutto tra i giovani.</div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">donna</div>
+      <div class="vit">il tailleur</div>
+      <div class="ves">el traje de chaqueta</div>
+      <div class="vex"><em>"Le donne in ufficio indossavano il tailleur."</em> Era il simbolo dell'emancipazione femminile negli anni '80.</div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">casual</div>
+      <div class="vit">il maglione</div>
+      <div class="ves">el jersey / suéter</div>
+      <div class="vex"><em>"D'inverno portavo un maglione di lana fatto a mano."</em> Molto comune nelle famiglie italiane.</div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">scarpe</div>
+      <div class="vit">scarpe con la zeppa</div>
+      <div class="ves">zapatos de plataforma</div>
+      <div class="vex"><em>"Nelle discoteche si ballava con le scarpe con la zeppa altissima!"</em> Anni '70 puri.</div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">colori</div>
+      <div class="vit">vivace / sgargiante</div>
+      <div class="ves">vivo / chillón / llamativo</div>
+      <div class="vex"><em>"I colori erano vivacissimi: arancione, giallo, viola..."</em> La moda degli anni '70 rifiutava i colori sobri.</div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">tendenza</div>
+      <div class="vit">di moda / fuori moda</div>
+      <div class="ves">de moda / pasado de moda</div>
+      <div class="vex"><em>"I pantaloni a zampa erano di moda allora, ma negli anni '90 erano fuori moda."</em></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- IMPERFETTO DISCOVERY -->
+<section style="background:var(--cream-dk);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Grammatica · Scoperta</div>
+  <h2 class="sec-title" data-a>Scopri l'imperfetto!</h2>
+  <p class="sec-sub es" data-a>Lee este texto sobre los años '70. ¿Qué tiempo verbal se usa para describir el pasado?</p>
+
+  <div class="disco-box" data-a>
+    <h4>Testo: Come eravamo negli anni '70</h4>
+    <p style="font-size:.93rem;line-height:1.8;margin-bottom:1.2rem;color:#444">
+      "Negli anni '70, la vita <strong style="color:var(--hero-dk)">era</strong> diversa. I giovani <strong style="color:var(--hero-dk)">portavano</strong> i pantaloni a zampa e le ragazze <strong style="color:var(--hero-dk)">avevano</strong> i capelli lunghi e lisci. Si <strong style="color:var(--hero-dk)">andava</strong> in discoteca il sabato sera. La televisione <strong style="color:var(--hero-dk)">trasmetteva</strong> solo due canali. Le famiglie si <strong style="color:var(--hero-dk)">riunivano</strong> davanti al televisore per guardare il Carosello."
+    </p>
+    <table class="gtable">
+      <thead><tr><th>Infinito</th><th>Imperfetto (lui/lei)</th><th class="es">Uso</th></tr></thead>
+      <tbody>
+        <tr><td>essere</td><td><strong>era</strong></td><td class="es">descripción de situación</td></tr>
+        <tr><td>portare</td><td><strong>portavano</strong></td><td class="es">hábito pasado</td></tr>
+        <tr><td>avere</td><td><strong>avevano</strong></td><td class="es">estado físico</td></tr>
+        <tr><td>andare</td><td><strong>si andava</strong></td><td class="es">hábito colectivo (si impersonale)</td></tr>
+        <tr><td>trasmettere</td><td><strong>trasmetteva</strong></td><td class="es">situación en curso</td></tr>
+        <tr><td>riunirsi</td><td><strong>si riunivano</strong></td><td class="es">hábito regular</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.82rem;color:#888;margin-top:.8rem">💡 El imperfetto describe situaciones, estados y hábitos del pasado — no acciones puntuales completadas.</p>
+  </div>
+
+  <!-- FILL ACTIVITY -->
+  <div class="fill-box" id="fill1" style="margin-top:1.5rem" data-a>
+    <h4>Prova tu! — Imperfetto</h4>
+    <p class="es" style="font-size:.83rem;margin-bottom:.8rem">Completa con l'imperfetto:</p>
+    <div class="fill-row">1. Negli anni '80, le donne <input class="fill-input" data-ans="portavano" placeholder="portare"> il tailleur in ufficio.</div>
+    <div class="fill-row">2. Mia nonna <input class="fill-input" data-ans="aveva" placeholder="avere"> i capelli ricci.</div>
+    <div class="fill-row">3. Noi <input class="fill-input" data-ans="guardavamo" placeholder="guardare"> il Carosello ogni sera.</div>
+    <div class="fill-row">4. La televisione <input class="fill-input" data-ans="trasmetteva" placeholder="trasmettere"> solo in bianco e nero.</div>
+    <div class="fill-row">5. I giovani <input class="fill-input" data-ans="si vestivano" placeholder="vestirsi"> in modo molto colorato.</div>
+    <button class="fill-btn" onclick="checkFill('fill1')">Controlla ✓</button>
+    <div class="fill-fb" id="fill1-fb"></div>
+  </div>
+</div>
+</section>
+
+<!-- TIMELINE -->
+<section style="background:var(--cream);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Cultura</div>
+  <h2 class="sec-title" data-a>La moda italiana nel tempo 📅</h2>
+  <p class="sec-sub es" data-a>¿Cómo cambiaba la moda italiana? Observa la evolución:</p>
+  <div class="timeline" data-a>
+    <div class="titem"><div class="tyear">'50-'60</div><div class="tdesc">Si <em>vestiva</em> molto formalmente. Le donne <em>indossavano</em> sempre la gonna. La moda <em>era</em> austera, post-guerra.</div></div>
+    <div class="titem"><div class="tyear">'70</div><div class="tdesc">I pantaloni a zampa <em>erano</em> di moda. I colori <em>erano</em> vivacissimi. Si <em>contestava</em> lo stile borghese tradizionale.</div></div>
+    <div class="titem"><div class="tyear">'80</div><div class="tdesc">Il made in Italy <em>conquistava</em> il mondo. Armani e Versace <em>dominavano</em>. Le spalle <em>erano</em> larghe, il tailleur <em>regnava</em>.</div></div>
+    <div class="titem"><div class="tyear">Oggi</div><div class="tdesc">La moda <em>è</em> più individuale. Milano <em>è</em> ancora capitale della moda. Il casual <em>convive</em> con l'eleganza.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- DIALOGUE -->
+<section style="background:var(--cream-dk);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Dialogo</div>
+  <h2 class="sec-title" data-a>Nonna, com'eri da giovane? 👵</h2>
+  <p class="sec-sub es" data-a>Toca cada burbuja para ver la traducción.</p>
+  <div style="background:var(--white);border-radius:1.2rem;padding:1.6rem;box-shadow:0 4px 16px rgba(0,0,0,.07);border:2px solid var(--cream-dk)" data-a>
+    <h4 style="font-family:var(--fh);font-style:italic;color:var(--hero-dk);margin-bottom:1rem">Sofia parla con la sua nonna Lucia</h4>
+    <div class="bubble-row">
+      <div class="bubble-avatar">S</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">Nonna, com'<strong>eri</strong> da giovane? Come ti <strong>vestivi</strong> negli anni '70?
+        <div class="btr">Abuela, ¿cómo eras de joven? ¿Cómo te vestías en los años '70?</div>
+      </div>
+    </div>
+    <div class="bubble-row b">
+      <div class="bubble-avatar">L</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">Ah, <strong>eravamo</strong> diversissimi! <strong>Portavo</strong> i pantaloni a zampa e <strong>aveva</strong>mo i capelli lunghissimi.
+        <div class="btr">¡Ah, éramos muy diferentes! Llevaba los pantalones de campana y teníamos el pelo larguísimo.</div>
+      </div>
+    </div>
+    <div class="bubble-row">
+      <div class="bubble-avatar">S</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">E che musica <strong>ascoltavate</strong>? E dove <strong>andavate</strong>?
+        <div class="btr">¿Y qué música escuchabais? ¿Y adónde ibais?</div>
+      </div>
+    </div>
+    <div class="bubble-row b">
+      <div class="bubble-avatar">L</div>
+      <div class="bubble" onclick="this.classList.toggle('show')"><strong>Ascoltavamo</strong> i Rolling Stones, i Pooh, Battisti... <strong>Andavamo</strong> in discoteca il sabato. Ma prima, guardavamo sempre il Carosello!
+        <div class="btr">Escuchábamos a los Rolling Stones, los Pooh, Battisti... Íbamos a la discoteca el sábado. ¡Pero antes, siempre veíamos el Carosello!</div>
+      </div>
+    </div>
+    <div class="bubble-row">
+      <div class="bubble-avatar">S</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">E com'<strong>era</strong> la vita allora? <strong>Eravate</strong> felici?
+        <div class="btr">¿Y cómo era la vida entonces? ¿Erais felices?</div>
+      </div>
+    </div>
+    <div class="bubble-row b">
+      <div class="bubble-avatar">L</div>
+      <div class="bubble" onclick="this.classList.toggle('show')"><strong>Eravamo</strong> poveri ma allegri! La vita <strong>era</strong> più semplice... <em>Come eravamo!</em>
+        <div class="btr">¡Éramos pobres pero alegres! La vida era más sencilla... ¡Cómo éramos!</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="culture">
+  <div class="culture-inner">
+    <h3>Il Carosello e la moda italiana 📺</h3>
+    <p>Il <em>Carosello</em> fu il programma pubblicitario della RAI dal 1957 al 1977. Ogni sera, prima del telegiornale delle 20:30, venivano trasmessi mini-sketch comici o drammatici che finivano con la pubblicità del prodotto. Era diventato un rituale familiare: i bambini potevano restare svegli "fino al Carosello".</p>
+    <p>Negli stessi anni, la moda italiana viveva una rivoluzione. Nel 1975 Giorgio Armani fondò la sua casa di moda. Nel 1978 nacque la prima sfilata di prêt-à-porter a Milano. L'Italia diventava capitale mondiale della moda.</p>
+    <div class="culture-facts">
+      <div class="cfact"><div class="cnum">1957</div><div class="clabel">inizio del Carosello</div></div>
+      <div class="cfact"><div class="cnum">20 anni</div><div class="clabel">in onda ininterrottamente</div></div>
+      <div class="cfact"><div class="cnum">1975</div><div class="clabel">nasce Armani</div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleEs(){
+  document.body.classList.toggle('hide-es');
+  document.getElementById('toggle-btn').textContent=
+    document.body.classList.contains('hide-es')?'ES 🙈':'ES 👁';
+}
+document.addEventListener('mousemove',e=>{
+  const x=(e.clientX/window.innerWidth-.5)*18,y=(e.clientY/window.innerHeight-.5)*18;
+  document.querySelectorAll('.hero-circle').forEach((c,i)=>{c.style.transform=`translate(${x*(i+1)*.4}px,${y*(i+1)*.4}px)`});
+});
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>io.observe(el));
+function checkGrid(id){
+  const grid=document.getElementById(id);let ok=0;
+  grid.querySelectorAll('.wcard').forEach(c=>{
+    c.classList.remove('ok','trap');
+    if(c.dataset.ok!==undefined){c.classList.add('ok');ok++}else c.classList.add('trap');
+  });
+  document.getElementById(id+'-fb').textContent='✅ '+ok+' capi di abbigliamento degli anni \'70-\'80!';
+}
+function checkFill(id){
+  const box=document.getElementById(id);const inputs=box.querySelectorAll('.fill-input');let ok=0;
+  inputs.forEach(inp=>{
+    inp.classList.remove('ok','err');
+    if(inp.value.toLowerCase().trim()===inp.dataset.ans){inp.classList.add('ok');ok++}
+    else if(inp.value.trim())inp.classList.add('err');
+  });
+  document.getElementById(id+'-fb').textContent=ok===inputs.length?'🎉 Perfetto!':'👀 '+ok+'/'+inputs.length+' corretti.';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Viajeros — Programa del Curso · Italiano Per Piacere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5; --cream-dk:#ddd9c8;
+  --gold:#EFCF7F;  --amber:#e5ab07; --amber-dk:#c8940a;
+  --red:#cc4736;   --red-dk:#a8382a;
+  --teal:#78a6ba;  --teal-dk:#5a8ea0;
+  --green:#528e74; --green-dk:#3d6b58;
+  --black:#1a1a18; --white:#ffffff;
+  --fh:'Playfair Display',Georgia,serif;
+  --fb:'Outfit',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:3px solid var(--gold);box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.nav-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--black);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:var(--amber-dk);border-bottom-color:var(--gold)}
+
+/* ── HERO ── */
+.hero{background:var(--cream);padding:72px 24px 56px;text-align:center;position:relative;overflow:hidden;border-bottom:3px solid var(--gold)}
+.hero-eyebrow{display:inline-block;background:var(--gold);color:var(--black);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:20px}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:clamp(3rem,8vw,5.5rem);color:var(--black);line-height:1;margin-bottom:8px}
+.hero h1 span{color:var(--amber)}
+.hero-tagline{font-size:1.15rem;color:#555;max-width:560px;margin:12px auto 32px;font-weight:300}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:40px}
+.pill{background:#fff;border:1.5px solid var(--cream-dk);color:var(--black);font-size:.8rem;font-weight:600;padding:6px 16px;border-radius:20px}
+.pill.amber{background:var(--gold);border-color:var(--gold);color:var(--black)}
+/* City strip */
+.city-strip{display:flex;overflow:hidden;border-top:3px solid var(--gold);border-bottom:3px solid var(--gold);margin-top:0}
+.city-chip{flex:1;padding:10px 4px;text-align:center;font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.city-chip .num{display:block;font-size:.6rem;opacity:.7;margin-bottom:2px}
+
+/* ── ABOUT STRIP ── */
+.about{background:#fff;padding:48px 24px}
+.about-inner{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.about h2{font-family:var(--fh);font-style:italic;font-size:2rem;color:var(--black);margin-bottom:16px}
+.about p{font-size:.98rem;color:#444;margin-bottom:12px;line-height:1.75}
+.about-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.about-card{background:var(--cream);border-radius:10px;padding:16px 18px;border-left:4px solid var(--gold)}
+.about-card .icon{font-size:1.4rem;margin-bottom:6px}
+.about-card strong{display:block;font-size:.85rem;font-weight:700;color:var(--black);margin-bottom:4px}
+.about-card span{font-size:.8rem;color:#555}
+@media(max-width:680px){.about-inner{grid-template-columns:1fr}}
+
+/* ── OBJETIVOS GENERALES ── */
+.objetivos{background:var(--cream-dk);padding:48px 24px}
+.objetivos-inner{max-width:860px;margin:0 auto}
+.sec-title{font-family:var(--fh);font-style:italic;font-size:1.8rem;color:var(--black);margin-bottom:24px}
+.obj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.obj-card{background:#fff;border-radius:10px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.obj-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px}
+.obj-text strong{display:block;font-size:.88rem;font-weight:700;color:var(--black);margin-bottom:4px}
+.obj-text span{font-size:.82rem;color:#555}
+
+/* ── GRAMMAR OVERVIEW ── */
+.grammar-strip{background:#fff;padding:48px 24px}
+.grammar-inner{max-width:860px;margin:0 auto}
+.grammar-table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:16px}
+.grammar-table th{background:var(--gold);color:var(--black);padding:9px 14px;text-align:left;font-weight:700;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase}
+.grammar-table td{padding:9px 14px;border-bottom:1px solid var(--cream-dk);vertical-align:top}
+.grammar-table tr:last-child td{border-bottom:none}
+.grammar-table tr:nth-child(even) td{background:var(--cream)}
+.grammar-table .unit-n{font-weight:700;color:var(--amber-dk);white-space:nowrap}
+
+/* ── UNIT CARDS ── */
+.units{padding:56px 24px;max-width:1000px;margin:0 auto}
+.units-title{font-family:var(--fh);font-style:italic;font-size:1.8rem;color:var(--black);margin-bottom:32px;text-align:center}
+
+.unit-card{border-radius:14px;overflow:hidden;margin-bottom:32px;box-shadow:0 4px 20px rgba(0,0,0,.08);background:#fff}
+.unit-header{padding:22px 28px 18px;display:flex;align-items:flex-start;gap:20px}
+.unit-num{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-bottom:4px}
+.unit-title-row{display:flex;align-items:center;gap:10px}
+.unit-icon{font-size:1.8rem;flex-shrink:0}
+.unit-title{font-family:var(--fh);font-style:italic;font-size:1.4rem;font-weight:700;color:var(--black);margin:0}
+.unit-city{font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.6;margin-top:4px}
+.unit-obj{font-size:.9rem;color:#444;margin-top:8px;font-weight:400;line-height:1.6;max-width:620px}
+
+.unit-body{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--cream-dk)}
+.unit-col{padding:0}
+.unit-row{padding:14px 20px;border-bottom:1px solid var(--cream-dk);display:flex;gap:14px;align-items:flex-start}
+.unit-row:last-child{border-bottom:none}
+.row-label{font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#888;min-width:90px;flex-shrink:0;margin-top:2px}
+.row-val{font-size:.85rem;color:var(--black);line-height:1.55}
+
+.unit-tip{padding:14px 20px;border-top:1px solid var(--cream-dk);display:flex;gap:12px;align-items:flex-start;background:var(--cream)}
+.tip-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px}
+.tip-label{font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--amber-dk);margin-bottom:3px}
+.tip-text{font-size:.85rem;color:var(--black)}
+
+.frases-row{background:var(--cream);border-top:1px solid var(--cream-dk);padding:16px 20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.frases-label{font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#888;flex-shrink:0}
+.frase-chip{background:#fff;border-radius:20px;padding:4px 12px;font-family:var(--fh);font-style:italic;font-size:.85rem;color:var(--black);border:1.5px solid var(--cream-dk)}
+
+/* unit colors */
+.uc-amber .unit-header{background:#fef9e8;border-bottom:3px solid var(--gold)}
+.uc-amber .unit-num{color:var(--amber-dk)}
+.uc-amber .row-label{color:var(--amber-dk)}
+.uc-amber .frase-chip{border-color:var(--gold)}
+.uc-amber .tip-label{color:var(--amber-dk)}
+
+.uc-red .unit-header{background:#fde4e1;border-bottom:3px solid var(--red)}
+.uc-red .unit-num{color:var(--red-dk)}
+.uc-red .row-label{color:var(--red-dk)}
+.uc-red .frase-chip{border-color:var(--red)}
+.uc-red .tip-label{color:var(--red-dk)}
+.uc-red .grammar-table .unit-n{color:var(--red-dk)}
+
+.uc-teal .unit-header{background:#deeef5;border-bottom:3px solid var(--teal)}
+.uc-teal .unit-num{color:var(--teal-dk)}
+.uc-teal .row-label{color:var(--teal-dk)}
+.uc-teal .frase-chip{border-color:var(--teal)}
+.uc-teal .tip-label{color:var(--teal-dk)}
+
+.uc-green .unit-header{background:#c8e8de;border-bottom:3px solid var(--green)}
+.uc-green .unit-num{color:var(--green-dk)}
+.uc-green .row-label{color:var(--green-dk)}
+.uc-green .frase-chip{border-color:var(--green)}
+.uc-green .tip-label{color:var(--green-dk)}
+
+@media(max-width:660px){.unit-body{grid-template-columns:1fr}.unit-col:first-child{border-bottom:1px solid var(--cream-dk)}}
+
+/* ── ESCAPE ROOM BANNER ── */
+.escape-banner{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:3px solid var(--amber);border-bottom:3px solid var(--amber);padding:48px 24px;text-align:center}
+.escape-banner h2{font-family:var(--fh);font-style:italic;font-size:2rem;color:var(--black);margin-bottom:12px}
+.escape-banner p{font-size:.98rem;color:var(--black);opacity:.8;max-width:600px;margin:0 auto 28px}
+.city-unlock{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.city-lock{background:rgba(255,255,255,.6);border:2px solid rgba(0,0,0,.1);border-radius:10px;padding:10px 18px;text-align:center;min-width:90px}
+.city-lock .lock-icon{font-size:1.3rem;display:block;margin-bottom:4px}
+.city-lock .city-name{font-size:.78rem;font-weight:700;color:var(--black)}
+.city-lock .city-unit{font-size:.68rem;color:#666;display:block;margin-top:2px}
+
+/* ── FOOTER ── */
+footer{background:#fff;border-top:3px solid var(--gold);padding:32px 24px;text-align:center}
+footer p{font-size:.82rem;color:#888;margin:4px 0}
+footer .brand{font-family:var(--fh);font-style:italic;color:var(--amber);font-size:1rem;font-weight:700}
+
+/* ── ANIMATIONS ── */
+[data-a]{opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s}
+[data-a].vis{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=f5755ad" alt="Italiano Per Piacere" loading="lazy">
+    </a>
+    <div class="nav-links">
+      <a href="#sobre" class="active">El curso</a>
+      <a href="#objetivos">Objetivos</a>
+      <a href="#gramatica">Gramática</a>
+      <a href="#unidades">Unidades</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Curso de Italiano · Nivel A1</div>
+  <h1><span>Viajeros</span></h1>
+  <p class="hero-tagline">Aprendé italiano viajando por Italia — de Roma a los mercados del sur, una situación real a la vez.</p>
+  <div class="hero-pills">
+    <span class="pill amber">10 unidades</span>
+    <span class="pill">Nivel A1</span>
+    <span class="pill">Escape room didáctico</span>
+    <span class="pill">Situaciones reales</span>
+    <span class="pill">Tips culturales</span>
+    <span class="pill">Juegos Genially</span>
+  </div>
+  <!-- city strip -->
+  <div class="city-strip">
+    <div class="city-chip" style="background:#fde8a0;color:#7a5500"><span class="num">U1</span>Roma</div>
+    <div class="city-chip" style="background:#fbc8c2;color:#7a1f14"><span class="num">U2</span>Milán</div>
+    <div class="city-chip" style="background:#b8d8e8;color:#1f4d60"><span class="num">U3</span>Nápoles</div>
+    <div class="city-chip" style="background:#a8d4c4;color:#2a4d3c"><span class="num">U4</span>Florencia</div>
+    <div class="city-chip" style="background:#fde8a0;color:#7a5500"><span class="num">U5</span>Venecia</div>
+    <div class="city-chip" style="background:#fbc8c2;color:#7a1f14"><span class="num">U6</span>Bolonia</div>
+    <div class="city-chip" style="background:#b8d8e8;color:#1f4d60"><span class="num">U7</span>Turín</div>
+    <div class="city-chip" style="background:#a8d4c4;color:#2a4d3c"><span class="num">U8</span>Palermo</div>
+    <div class="city-chip" style="background:#fde8a0;color:#7a5500"><span class="num">U9</span>Bari</div>
+    <div class="city-chip" style="background:#fbc8c2;color:#7a1f14"><span class="num">U10</span>Italia</div>
+  </div>
+</div>
+
+<!-- SOBRE EL CURSO -->
+<section class="about" id="sobre">
+  <div class="about-inner" data-a>
+    <div>
+      <h2>Un viaje real,<br>en italiano real</h2>
+      <p>Viajeros está pensado para vos: alguien que viaja (o sueña con viajar) a Italia y quiere poder manejarse con confianza en situaciones cotidianas. Nada de gramática abstracta — acá cada unidad es una etapa del viaje.</p>
+      <p>Empezás en el aeropuerto y terminás comprando en un mercado local. A medida que avanzás, desbloqueás nuevas ciudades y herramientas del idioma.</p>
+    </div>
+    <div class="about-cards">
+      <div class="about-card">
+        <div class="icon">🎮</div>
+        <strong>Escape room</strong>
+        <span>Cada unidad desbloquea una nueva ciudad italiana</span>
+      </div>
+      <div class="about-card">
+        <div class="icon">🔊</div>
+        <strong>Audio auténtico</strong>
+        <span>Anuncios, diálogos y conversaciones reales</span>
+      </div>
+      <div class="about-card">
+        <div class="icon">🇮🇹</div>
+        <strong>Tips culturales</strong>
+        <span>Costumbres locales que te sacan del paso</span>
+      </div>
+      <div class="about-card">
+        <div class="icon">✍</div>
+        <strong>Producción real</strong>
+        <span>Escribís, grabás y simulás situaciones reales</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESCAPE ROOM BANNER -->
+<div class="escape-banner" id="ciudades" data-a>
+  <h2>Desbloqueá Italia, ciudad por ciudad</h2>
+  <p>El recorrido funciona como un escape room: completás cada unidad y desbloqueás la siguiente ciudad. Aprendés el idioma moviéndote por el país.</p>
+  <div class="city-unlock">
+    <div class="city-lock"><span class="lock-icon">✈</span><span class="city-name">Roma</span><span class="city-unit">Unidad 1</span></div>
+    <div class="city-lock"><span class="lock-icon">🛫</span><span class="city-name">Milán</span><span class="city-unit">Unidad 2</span></div>
+    <div class="city-lock"><span class="lock-icon">🛃</span><span class="city-name">Nápoles</span><span class="city-unit">Unidad 3</span></div>
+    <div class="city-lock"><span class="lock-icon">🚄</span><span class="city-name">Florencia</span><span class="city-unit">Unidad 4</span></div>
+    <div class="city-lock"><span class="lock-icon">🗺</span><span class="city-name">Venecia</span><span class="city-unit">Unidad 5</span></div>
+    <div class="city-lock"><span class="lock-icon">☕</span><span class="city-name">Bolonia</span><span class="city-unit">Unidad 6</span></div>
+    <div class="city-lock"><span class="lock-icon">🍝</span><span class="city-name">Turín</span><span class="city-unit">Unidad 7</span></div>
+    <div class="city-lock"><span class="lock-icon">🏨</span><span class="city-name">Palermo</span><span class="city-unit">Unidad 8</span></div>
+    <div class="city-lock"><span class="lock-icon">🚨</span><span class="city-name">Bari</span><span class="city-unit">Unidad 9</span></div>
+    <div class="city-lock"><span class="lock-icon">🛍</span><span class="city-name">toda Italia</span><span class="city-unit">Unidad 10</span></div>
+  </div>
+</div>
+
+<!-- OBJETIVOS GENERALES -->
+<section class="objetivos" id="objetivos">
+  <div class="objetivos-inner" data-a>
+    <h2 class="sec-title">¿Qué vas a poder hacer al terminar el curso?</h2>
+    <div class="obj-grid">
+      <div class="obj-card"><div class="obj-icon">🛂</div><div class="obj-text"><strong>Moverte en el aeropuerto y la estación</strong><span>Entendés carteles, hacés preguntas y validás el boleto sin drama</span></div></div>
+      <div class="obj-card"><div class="obj-icon">☕</div><div class="obj-text"><strong>Pedir en el bar y el restaurante</strong><span>Sabés qué es un cornetto, cómo se paga en la barra y qué significa "coperto"</span></div></div>
+      <div class="obj-card"><div class="obj-icon">🗺</div><div class="obj-text"><strong>Orientarte en la ciudad</strong><span>Pedís y seguís indicaciones con el mapa en mano</span></div></div>
+      <div class="obj-card"><div class="obj-icon">🏨</div><div class="obj-text"><strong>Gestionar el alojamiento</strong><span>Hacés el check-in y reportás problemas sin quedarte sin palabras</span></div></div>
+      <div class="obj-card"><div class="obj-icon">🚨</div><div class="obj-text"><strong>Reaccionar ante imprevistos</strong><span>Sabés qué número llamar y cómo explicar un síntoma en la farmacia</span></div></div>
+      <div class="obj-card"><div class="obj-icon">🛍</div><div class="obj-text"><strong>Comprar con confianza</strong><span>Preguntás por tallas, pedís descuentos y reconocés el Made in Italy auténtico</span></div></div>
+      <div class="obj-card"><div class="obj-icon">🎧</div><div class="obj-text"><strong>Entender audios reales</strong><span>Carteles de estación, anuncios de aeropuerto, diálogos cotidianos</span></div></div>
+      <div class="obj-card"><div class="obj-icon">🇮🇹</div><div class="obj-text"><strong>Leer el contexto cultural</strong><span>Entendés las costumbres y no la embarrás sin querer</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GRAMÁTICA OVERVIEW -->
+<section class="grammar-strip" id="gramatica">
+  <div class="grammar-inner" data-a>
+    <h2 class="sec-title">Contenidos gramaticales por unidad</h2>
+    <table class="grammar-table">
+      <thead>
+        <tr>
+          <th>Unidad</th>
+          <th>Temas gramaticales</th>
+          <th>Fonética</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="unit-n">U1 · All'aeroporto</td><td>Presente de indicativo (ser/estar), artículos determinados e indeterminados singulares</td><td>Pronunciación de 'c' y 'g' ante a, o, u / e, i</td></tr>
+        <tr><td class="unit-n">U2 · In aereo</td><td>Verbos modales (volere), expresiones de cortesía, presente de verbos regulares</td><td>Sonidos 'gn' (bagno) y 'gl' (figli)</td></tr>
+        <tr><td class="unit-n">U3 · Finalmente in Italia</td><td>Preposiciones de lugar (a, in, da), interrogativos (quante, dove)</td><td>Vocales abiertas y cerradas</td></tr>
+        <tr><td class="unit-n">U4 · Alla stazione</td><td>Números del 1 al 100, la hora y horarios ferroviarios</td><td>Pronunciación de 'z' sorda y sonora (stazione, grazie)</td></tr>
+        <tr><td class="unit-n">U5 · In città</td><td>Imperativo formal para direcciones, preposiciones articuladas</td><td>Combinaciones de 'sc' (pesce, scusa)</td></tr>
+        <tr><td class="unit-n">U6 · Al bar</td><td>Verbo 'piacere', verbos irregulares (bere), uso de 'ci vuole'</td><td>Diptongos y sonidos de 'qu'</td></tr>
+        <tr><td class="unit-n">U7 · Al ristorante</td><td>Condicional de cortesía (vorrei), partitivos, plurales de sustantivos</td><td>Sonido de 'gh' (spaghetti)</td></tr>
+        <tr><td class="unit-n">U8 · In albergo</td><td>Posesivos (mio, tuo, suo), adjetivos para describir problemas</td><td>Acentos gráficos y tónicos</td></tr>
+        <tr><td class="unit-n">U9 · Imprevisti</td><td>Pasado próximo (acciones finalizadas), interrogativos complejos</td><td>Entonación en exclamativas de urgencia</td></tr>
+        <tr><td class="unit-n">U10 · L'ultima serata</td><td>Comparativos (más/menos que), demostrativos (questo/quello)</td><td>Consonantes dobles</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- UNIDADES -->
+<section class="units" id="unidades">
+  <h2 class="units-title">Las 10 unidades del viaje</h2>
+
+  <!-- U1 AMBER -->
+  <div class="unit-card uc-amber" data-a>
+    <div class="unit-header">
+      <div>
+        <div class="unit-num">Unidad 1 · Roma</div>
+        <div class="unit-title-row">
+          <span class="unit-icon">✈</span>
+          <h3 class="unit-title">All'aeroporto</h3>
+        </div>
+        <div class="unit-city">Ciudad desbloqueada: Roma</div>
+        <p class="unit-obj">Entendés el entorno del aeropuerto y te familiarizás con el vocabulario básico de viaje.</p>
+      </div>
+    </div>
+    <div class="unit-body">
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Vocabulario</span><span class="row-val">Aeropuerto, salida (uscita), pasaporte, carteles y anuncios</span></div>
+        <div class="unit-row"><span class="row-label">Gramática</span><span class="row-val">Presente de indicativo (ser/estar), artículos determinados e indeterminados singulares</span></div>
+        <div class="unit-row"><span class="row-label">Comunicación</span><span class="row-val">Preguntar por la salida, presentar documentos: "Dov'è l'uscita?" · "Ecco il mio passaporto"</span></div>
+      </div>
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Fonética</span><span class="row-val">Pronunciación de 'c' y 'g' ante a, o, u y ante e, i</span></div>
+        <div class="unit-row"><span class="row-label">Juego</span><span class="row-val">Escape Room: Desbloquea la salida del aeropuerto encontrando las palabras clave en los carteles</span></div>
+        <div class="unit-row"><span class="row-label">Producción</span><span class="row-val">Completar y leer un pasaporte ficticio; lectura de anuncios reales</span></div>
+      </div>
+    </div>
+    <div class="frases-row"><span class="frases-label">Frases clave</span><span class="frase-chip">Dov'è l'uscita?</span><span class="frase-chip">Ecco il mio passaporto.</span><span class="frase-chip">Dove si ritira il bagaglio?</span></div>
+    <div class="unit-tip"><span class="tip-icon">🇮🇹</span><div><div class="tip-label">Tip Cultural</div><div class="tip-text">Cómo son los controles de seguridad y aduana en Italia: qué podés y qué no podés llevar, y cómo comportarte ante la Polizia di Frontiera.</div></div></div>
+  </div>
+
+  <!-- U2 RED -->
+  <div class="unit-card uc-red" data-a>
+    <div class="unit-header">
+      <div>
+        <div class="unit-num">Unidad 2 · Milán</div>
+        <div class="unit-title-row">
+          <span class="unit-icon">🛫</span>
+          <h3 class="unit-title">In aereo</h3>
+        </div>
+        <div class="unit-city">Ciudad desbloqueada: Milán</div>
+        <p class="unit-obj">Interactuás con el personal de vuelo y comprendés el vocabulario de a bordo.</p>
+      </div>
+    </div>
+    <div class="unit-body">
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Vocabulario</span><span class="row-val">Objetos y personas en el avión, agua, malestar físico</span></div>
+        <div class="unit-row"><span class="row-label">Gramática</span><span class="row-val">Verbos modales (volere), expresiones de cortesía, presente de verbos regulares</span></div>
+        <div class="unit-row"><span class="row-label">Comunicación</span><span class="row-val">Pedir algo por favor, expresar necesidades básicas: "Vorrei dell'acqua" · "Mi sento male"</span></div>
+      </div>
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Fonética</span><span class="row-val">Sonidos de 'gn' (bagno) y 'gl' (figli)</span></div>
+        <div class="unit-row"><span class="row-label">Juego</span><span class="row-val">Tablero interactivo: Asociá imágenes de objetos del avión con su nombre en italiano</span></div>
+        <div class="unit-row"><span class="row-label">Producción</span><span class="row-val">Grabación de un mini diálogo simulando una interacción con el asistente de vuelo</span></div>
+      </div>
+    </div>
+    <div class="frases-row"><span class="frases-label">Frases clave</span><span class="frase-chip">Vorrei dell'acqua, per favore.</span><span class="frase-chip">Mi sento male.</span><span class="frase-chip">Scusi, posso passare?</span></div>
+    <div class="unit-tip"><span class="tip-icon">🇮🇹</span><div><div class="tip-label">Tip Cultural</div><div class="tip-text">Bebidas y costumbres típicas en los vuelos italianos: por qué el café de a bordo nunca es un espresso de verdad.</div></div></div>
+  </div>
+
+  <!-- U3 TEAL -->
+  <div class="unit-card uc-teal" data-a>
+    <div class="unit-header">
+      <div>
+        <div class="unit-num">Unidad 3 · Nápoles</div>
+        <div class="unit-title-row">
+          <span class="unit-icon">🛃</span>
+          <h3 class="unit-title">Finalmente in Italia</h3>
+        </div>
+        <div class="unit-city">Ciudad desbloqueada: Nápoles</div>
+        <p class="unit-obj">Completás los trámites de aduana y reconocés los medios de transporte público.</p>
+      </div>
+    </div>
+    <div class="unit-body">
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Vocabulario</span><span class="row-val">Medios de transporte, migraciones, motivo del viaje, duración de la estancia</span></div>
+        <div class="unit-row"><span class="row-label">Gramática</span><span class="row-val">Preposiciones de lugar (a, in, da), interrogativos (quante, dove)</span></div>
+        <div class="unit-row"><span class="row-label">Comunicación</span><span class="row-val">Responder preguntas en aduana, identificar transportes: "Sono in vacanza" · "Mi fermo dieci giorni"</span></div>
+      </div>
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Fonética</span><span class="row-val">Diferencia entre vocales abiertas y cerradas</span></div>
+        <div class="unit-row"><span class="row-label">Juego</span><span class="row-val">Misión: Respondé correctamente las preguntas del oficial de aduanas para entrar al país</span></div>
+        <div class="unit-row"><span class="row-label">Producción</span><span class="row-val">Escritura: Armá tus propias respuestas para una entrevista de entrada al país</span></div>
+      </div>
+    </div>
+    <div class="frases-row"><span class="frases-label">Frases clave</span><span class="frase-chip">Sono in vacanza.</span><span class="frase-chip">Mi fermo per dieci giorni.</span><span class="frase-chip">Non ho niente da dichiarare.</span></div>
+    <div class="unit-tip"><span class="tip-icon">🇮🇹</span><div><div class="tip-label">Tip Cultural</div><div class="tip-text">Normas de comportamiento ante la Polizia di Frontiera: cómo hablar, qué documentos tener a mano y qué esperan de vos.</div></div></div>
+  </div>
+
+  <!-- U4 GREEN -->
+  <div class="unit-card uc-green" data-a>
+    <div class="unit-header">
+      <div>
+        <div class="unit-num">Unidad 4 · Florencia</div>
+        <div class="unit-title-row">
+          <span class="unit-icon">🚄</span>
+          <h3 class="unit-title">Alla stazione</h3>
+        </div>
+        <div class="unit-city">Ciudad desbloqueada: Florencia</div>
+        <p class="unit-obj">Comprás pasajes, leés horarios y navegás la red ferroviaria italiana sin perderte.</p>
+      </div>
+    </div>
+    <div class="unit-body">
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Vocabulario</span><span class="row-val">Andén (binario), boleto (biglietto), validación (convalida), tipos de trenes (Regionale, Frecciarossa)</span></div>
+        <div class="unit-row"><span class="row-label">Gramática</span><span class="row-val">Números del 1 al 100, la hora y horarios ferroviarios</span></div>
+        <div class="unit-row"><span class="row-label">Comunicación</span><span class="row-val">Sacar un pasaje, preguntar por andenes, validar el boleto antes de subir</span></div>
+      </div>
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Fonética</span><span class="row-val">Pronunciación de 'z' sorda y sonora: stazione vs. grazie</span></div>
+        <div class="unit-row"><span class="row-label">Juego</span><span class="row-val">Simulador de compra: Seleccioná el tren correcto y el horario en una máquina virtual</span></div>
+        <div class="unit-row"><span class="row-label">Producción</span><span class="row-val">Escucha: Identificá información de partidas y cambios de vía en audios de estación reales</span></div>
+      </div>
+    </div>
+    <div class="frases-row"><span class="frases-label">Frases clave</span><span class="frase-chip">Un biglietto per Firenze, per favore.</span><span class="frase-chip">Da che binario parte?</span><span class="frase-chip">Devo fare il cambio?</span></div>
+    <div class="unit-tip"><span class="tip-icon">🇮🇹</span><div><div class="tip-label">Tip Cultural</div><div class="tip-text">¡No te olvidés de convalidar el boleto antes de subir al tren! La multa puede arruinarte el día. Dónde están las máquinas y cómo usarlas.</div></div></div>
+  </div>
+
+  <!-- U5 AMBER -->
+  <div class="unit-card uc-amber" data-a>
+    <div class="unit-header">
+      <div>
+        <div class="unit-num">Unidad 5 · Venecia</div>
+        <div class="unit-title-row">
+          <span class="unit-icon">🗺</span>
+          <h3 class="unit-title">In città</h3>
+        </div>
+        <div class="unit-city">Ciudad desbloqueada: Venecia</div>
+        <p class="unit-obj">Te orientás en una ciudad italiana, pedís y seguís indicaciones con soltura.</p>
+      </div>
+    </div>
+    <div class="unit-body">
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Vocabulario</span><span class="row-val">Direcciones (destra, sinistra, dritto), museo, plaza, semáforo, puente</span></div>
+        <div class="unit-row"><span class="row-label">Gramática</span><span class="row-val">Imperativo formal para dar direcciones, preposiciones articuladas (al, della, nel…)</span></div>
+        <div class="unit-row"><span class="row-label">Comunicación</span><span class="row-val">Pedir indicaciones, orientarse con un mapa, leer carteles callejeros</span></div>
+      </div>
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Fonética</span><span class="row-val">Combinaciones de 'sc': pesce (suave) vs. scuola (fuerte)</span></div>
+        <div class="unit-row"><span class="row-label">Juego</span><span class="row-val">Mapa interactivo: Seguí las instrucciones de audio para llegar a un monumento famoso</span></div>
+        <div class="unit-row"><span class="row-label">Producción</span><span class="row-val">Circuito turístico: Respondé preguntas basadas en un recorrido por una ciudad real</span></div>
+      </div>
+    </div>
+    <div class="frases-row"><span class="frases-label">Frases clave</span><span class="frase-chip">Scusi, dov'è il Colosseo?</span><span class="frase-chip">Giri a destra, poi dritto.</span><span class="frase-chip">È lontano da qui?</span></div>
+    <div class="unit-tip"><span class="tip-icon">🇮🇹</span><div><div class="tip-label">Tip Cultural</div><div class="tip-text">La organización urbanística de las ciudades italianas: qué es el "centro storico", por qué los autos no pueden entrar y cómo funciona la ZTL.</div></div></div>
+  </div>
+
+  <!-- U6 RED -->
+  <div class="unit-card uc-red" data-a>
+    <div class="unit-header">
+      <div>
+        <div class="unit-num">Unidad 6 · Bolonia</div>
+        <div class="unit-title-row">
+          <span class="unit-icon">☕</span>
+          <h3 class="unit-title">Al bar</h3>
+        </div>
+        <div class="unit-city">Ciudad desbloqueada: Bolonia</div>
+        <p class="unit-obj">Pedís y pagás en la barra italiana, dominando el ritual del café de principio a fin.</p>
+      </div>
+    </div>
+    <div class="unit-body">
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Vocabulario</span><span class="row-val">Espresso, macchiato, cornetto, aperitivo, barra, conto (cuenta)</span></div>
+        <div class="unit-row"><span class="row-label">Gramática</span><span class="row-val">Verbo 'piacere', verbos irregulares (bere), uso de 'ci vuole'</span></div>
+        <div class="unit-row"><span class="row-label">Comunicación</span><span class="row-val">Pedir y pagar en la barra, diferenciar tipos de café, pedir para llevar</span></div>
+      </div>
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Fonética</span><span class="row-val">Diptongos y sonidos de 'qu': quando, questo, qui</span></div>
+        <div class="unit-row"><span class="row-label">Juego</span><span class="row-val">Menú virtual: Arrastrá los ingredientes para preparar los distintos tipos de café italiano</span></div>
+        <div class="unit-row"><span class="row-label">Producción</span><span class="row-val">Simulación: Armá un pedido completo de desayuno o aperitivo en la barra</span></div>
+      </div>
+    </div>
+    <div class="frases-row"><span class="frases-label">Frases clave</span><span class="frase-chip">Un caffè, per favore.</span><span class="frase-chip">Quanto costa?</span><span class="frase-chip">Un cornetto con la crema, grazie.</span></div>
+    <div class="unit-tip"><span class="tip-icon">🇮🇹</span><div><div class="tip-label">Tip Cultural</div><div class="tip-text">El ritual del café en la barra: por qué se toma de pie, por qué el espresso no tiene leche a la tarde, y qué es el aperitivo a las 18hs.</div></div></div>
+  </div>
+
+  <!-- U7 TEAL -->
+  <div class="unit-card uc-teal" data-a>
+    <div class="unit-header">
+      <div>
+        <div class="unit-num">Unidad 7 · Turín</div>
+        <div class="unit-title-row">
+          <span class="unit-icon">🍝</span>
+          <h3 class="unit-title">Al ristorante</h3>
+        </div>
+        <div class="unit-city">Ciudad desbloqueada: Turín</div>
+        <p class="unit-obj">Reservás mesa, pedís platos y te manejás con el menú italiano de principio a fin.</p>
+      </div>
+    </div>
+    <div class="unit-body">
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Vocabulario</span><span class="row-val">Menú completo: antipasto, primo, secondo, contorno · reserva, cuenta, propina, coperto</span></div>
+        <div class="unit-row"><span class="row-label">Gramática</span><span class="row-val">Condicional de cortesía (vorrei), partitivos (un po' di), plurales de sustantivos</span></div>
+        <div class="unit-row"><span class="row-label">Comunicación</span><span class="row-val">Reservar una mesa, pedir sugerencias al camarero, pagar con tarjeta</span></div>
+      </div>
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Fonética</span><span class="row-val">Sonido de 'gh': spaghetti, ghiaccio, laghi</span></div>
+        <div class="unit-row"><span class="row-label">Juego</span><span class="row-val">Cena virtual: Ordená los platos de un menú típico italiano en la secuencia correcta</span></div>
+        <div class="unit-row"><span class="row-label">Producción</span><span class="row-val">Escritura: Redactá un mail para reservar mesa o simulá una reserva telefónica</span></div>
+      </div>
+    </div>
+    <div class="frases-row"><span class="frases-label">Frases clave</span><span class="frase-chip">Vorrei prenotare un tavolo.</span><span class="frase-chip">Cosa mi consiglia?</span><span class="frase-chip">Il conto, per favore.</span></div>
+    <div class="unit-tip"><span class="tip-icon">🇮🇹</span><div><div class="tip-label">Tip Cultural</div><div class="tip-text">El misterio del "coperto": qué es, cuánto cuesta y por qué no es la propina. Costumbres sobre las propinas en Italia (spoiler: no son obligatorias).</div></div></div>
+  </div>
+
+  <!-- U8 GREEN -->
+  <div class="unit-card uc-green" data-a>
+    <div class="unit-header">
+      <div>
+        <div class="unit-num">Unidad 8 · Palermo</div>
+        <div class="unit-title-row">
+          <span class="unit-icon">🏨</span>
+          <h3 class="unit-title">In albergo</h3>
+        </div>
+        <div class="unit-city">Ciudad desbloqueada: Palermo</div>
+        <p class="unit-obj">Gestionás el check-in, describís el alojamiento y resolvés imprevistos en el hotel.</p>
+      </div>
+    </div>
+    <div class="unit-body">
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Vocabulario</span><span class="row-val">Check-in, reservación, habitación singola/doppia, ducha, impuesto turístico (tassa di soggiorno)</span></div>
+        <div class="unit-row"><span class="row-label">Gramática</span><span class="row-val">Posesivos (mio, tuo, suo), adjetivos para describir problemas (rotto, rumoroso)</span></div>
+        <div class="unit-row"><span class="row-label">Comunicación</span><span class="row-val">Hacer el check-in, reportar que algo no funciona: "La doccia non funziona"</span></div>
+      </div>
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Fonética</span><span class="row-val">Acentos gráficos y tónicos: città, perché, caffè, però</span></div>
+        <div class="unit-row"><span class="row-label">Juego</span><span class="row-val">Recepcionista por un día: Completá los formularios de los huéspedes con la info que escuchás</span></div>
+        <div class="unit-row"><span class="row-label">Producción</span><span class="row-val">Completar un formulario de check-in real con datos personales</span></div>
+      </div>
+    </div>
+    <div class="frases-row"><span class="frases-label">Frases clave</span><span class="frase-chip">Ho una prenotazione.</span><span class="frase-chip">La doccia non funziona.</span><span class="frase-chip">A che ora è la colazione?</span></div>
+    <div class="unit-tip"><span class="tip-icon">🇮🇹</span><div><div class="tip-label">Tip Cultural</div><div class="tip-text">La tassa di soggiorno: qué es el impuesto turístico municipal, cuánto se paga por noche y por qué lo cobran en efectivo. Más: el desayuno de hotel italiano.</div></div></div>
+  </div>
+
+  <!-- U9 AMBER -->
+  <div class="unit-card uc-amber" data-a>
+    <div class="unit-header">
+      <div>
+        <div class="unit-num">Unidad 9 · Bari</div>
+        <div class="unit-title-row">
+          <span class="unit-icon">🚨</span>
+          <h3 class="unit-title">Imprevisti</h3>
+        </div>
+        <div class="unit-city">Ciudad desbloqueada: Bari</div>
+        <p class="unit-obj">Reaccionás ante emergencias, describís síntomas y pedís ayuda en situaciones inesperadas.</p>
+      </div>
+    </div>
+    <div class="unit-body">
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Vocabulario</span><span class="row-val">Emergencia, farmacia, síntomas (fiebre, náuseas), médico, pérdida y robo</span></div>
+        <div class="unit-row"><span class="row-label">Gramática</span><span class="row-val">Passato prossimo (acciones finalizadas), interrogativos complejos</span></div>
+        <div class="unit-row"><span class="row-label">Comunicación</span><span class="row-val">Expresar una emergencia, pedir ayuda médica, describir síntomas en la farmacia</span></div>
+      </div>
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Fonética</span><span class="row-val">Entonación en frases exclamativas de urgencia: ¡Aiuto! · ¡Al ladro!</span></div>
+        <div class="unit-row"><span class="row-label">Juego</span><span class="row-val">Trivia de emergencias: ¿A qué número llamás? Asociá el problema con el servicio correcto</span></div>
+        <div class="unit-row"><span class="row-label">Producción</span><span class="row-val">Repaso: Respondé situaciones de imprevistos presentadas en tarjetas de rol</span></div>
+      </div>
+    </div>
+    <div class="frases-row"><span class="frases-label">Frases clave</span><span class="frase-chip">Ho bisogno di un medico.</span><span class="frase-chip">Mi hanno rubato il portafoglio.</span><span class="frase-chip">Ho la febbre alta.</span></div>
+    <div class="unit-tip"><span class="tip-icon">🇮🇹</span><div><div class="tip-label">Tip Cultural</div><div class="tip-text">Los números de emergencia en Italia: 112 (emergencias general), 113 (Policía), 118 (ambulancia). Y cómo funcionan las farmacias de turno cuando necesitás algo a cualquier hora.</div></div></div>
+  </div>
+
+  <!-- U10 RED -->
+  <div class="unit-card uc-red" data-a>
+    <div class="unit-header">
+      <div>
+        <div class="unit-num">Unidad 10 · toda Italia</div>
+        <div class="unit-title-row">
+          <span class="unit-icon">🛍</span>
+          <h3 class="unit-title">L'ultima serata</h3>
+        </div>
+        <div class="unit-city">Italia desbloqueada completa</div>
+        <p class="unit-obj">Hacés compras, negociás precios y te llevás lo mejor del Made in Italy con las palabras justas.</p>
+      </div>
+    </div>
+    <div class="unit-body">
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Vocabulario</span><span class="row-val">Shopping, tallas (taglia), precios, descuentos, Made in Italy, mercados y ferias</span></div>
+        <div class="unit-row"><span class="row-label">Gramática</span><span class="row-val">Comparativos (più/meno di), demostrativos (questo/quello)</span></div>
+        <div class="unit-row"><span class="row-label">Comunicación</span><span class="row-val">Preguntar por tallas y colores, pedir descuento, preguntar si podés probarte una prenda</span></div>
+      </div>
+      <div class="unit-col">
+        <div class="unit-row"><span class="row-label">Fonética</span><span class="row-val">Consonantes dobles: palla vs. pala · notte vs. note · anno vs. ano</span></div>
+        <div class="unit-row"><span class="row-label">Juego</span><span class="row-val">Shopping Tour: Encontrá productos Made in Italy auténticos en un mercado virtual</span></div>
+        <div class="unit-row"><span class="row-label">Producción</span><span class="row-val">Actividad final: Simulación de compras en una feria típica como Campo de' Fiori en Roma</span></div>
+      </div>
+    </div>
+    <div class="frases-row"><span class="frases-label">Frases clave</span><span class="frase-chip">Quanto costa questo?</span><span class="frase-chip">Ce l'ha in taglia M?</span><span class="frase-chip">Posso provarlo?</span></div>
+    <div class="unit-tip"><span class="tip-icon">🇮🇹</span><div><div class="tip-label">Tip Cultural</div><div class="tip-text">El valor del Made in Italy: cómo reconocer productos auténticos de los imitados. Qué mirar en la etiqueta y por qué las marcas italianas cuidan tanto el origen.</div></div></div>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="brand">Italiano Per Piacere</p>
+  <p>Curso Viajeros · Nivel A1 · 10 Unidades</p>
+  <p style="margin-top:8px;font-size:.75rem">italianoperpiacere.com</p>
+</footer>
+
+<script>
+// Nav scroll active
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('section[id], div[id]');
+window.addEventListener('scroll', () => {
+  let cur = 'sobre';
+  sections.forEach(s => {
+    if (window.scrollY >= s.getBoundingClientRect().top + window.scrollY - 100) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+  });
+});
+
+// Scroll animations
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('[data-a]').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

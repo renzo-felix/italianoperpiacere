@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -17,23 +17,23 @@
     body{font-family:var(--fb);background:var(--cream);color:var(--black);overflow-x:hidden}
     .es{font-size:.8rem;color:#888;font-style:italic;margin-top:.2rem}
     .hide-es .es{display:none !important}
-    .trans-toggle{position:fixed;top:1.2rem;right:1.2rem;z-index:999;background:var(--white);border:2px solid var(--red);color:var(--red);font-family:var(--fb);font-size:.78rem;font-weight:700;padding:.45rem 1rem;border-radius:30px;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.12);transition:background .2s,color .2s}
-    .trans-toggle:hover{background:var(--red);color:var(--white)}
+    .trans-toggle{position:fixed;top:1.2rem;right:1.2rem;z-index:999;background:var(--white);border:2px solid var(--green);color:var(--green);font-family:var(--fb);font-size:.78rem;font-weight:700;padding:.45rem 1rem;border-radius:30px;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.12);transition:background .2s,color .2s}
+    .trans-toggle:hover{background:var(--green);color:var(--white)}
     [data-a]{opacity:0;transition:opacity .9s var(--ease),transform .9s var(--ease)}
     [data-a="up"]{transform:translateY(48px)}[data-a="left"]{transform:translateX(-56px)}[data-a="right"]{transform:translateX(56px)}[data-a="scale"]{transform:scale(0.86)}[data-a="fade"]{transform:none}
     [data-a].in{opacity:1;transform:none !important}
     [data-stagger].in > *{opacity:1;transform:none !important}
     [data-stagger] > *{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
     [data-stagger]>*:nth-child(1){transition-delay:.00s}[data-stagger]>*:nth-child(2){transition-delay:.08s}[data-stagger]>*:nth-child(3){transition-delay:.16s}[data-stagger]>*:nth-child(4){transition-delay:.24s}[data-stagger]>*:nth-child(5){transition-delay:.32s}[data-stagger]>*:nth-child(6){transition-delay:.40s}[data-stagger]>*:nth-child(7){transition-delay:.48s}[data-stagger]>*:nth-child(8){transition-delay:.56s}[data-stagger]>*:nth-child(n+9){transition-delay:.64s}
-    .hero{min-height:100vh;background:var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
-    .hero-bg-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.07);pointer-events:none;will-change:transform}
+    .hero{min-height:100vh;background:#d4ede4;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
+    .hero-bg-circle{display:none;position:absolute;border-radius:50%;background:rgba(255,255,255,.07);pointer-events:none;will-change:transform}
     .hero-bg-circle:nth-child(1){width:600px;height:600px;top:-200px;right:-150px}
     .hero-bg-circle:nth-child(2){width:400px;height:400px;bottom:-100px;left:-100px}
     .hero-bg-circle:nth-child(3){width:220px;height:220px;top:25%;left:6%}
     .hero-badge{display:inline-block;background:var(--gold);color:var(--black);font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:.3rem 1.2rem;border-radius:20px;margin-bottom:1.5rem;opacity:0;animation:popIn .6s var(--ease) .2s forwards}
-    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-style:italic;color:var(--white);line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
-    .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:rgba(255,255,255,.85);max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
-    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.6);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
+    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-style:italic;color:#1a1a18;line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
+    .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:#1a1a18;opacity:.75;max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
+    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(0,0,0,.4);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
     .scroll-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6);animation:scrollDot 1.5s ease infinite}
     @keyframes popIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
     @keyframes slideUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
@@ -42,38 +42,38 @@
     @keyframes floatAv{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
     .section{padding:6rem 2rem}.section.bg-alt{background:var(--cream-dk)}.section.bg-white{background:var(--white)}
     .container{max-width:860px;margin:0 auto}
-    .section-label{font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+    .section-label{font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:.75rem}
     .section-title{font-family:var(--fh);font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;margin-bottom:1.25rem}
-    .section-title em{font-style:italic;color:var(--red)}
+    .section-title em{font-style:italic;color:var(--green)}
     .section-desc{font-size:1rem;color:#555;line-height:1.75;max-width:640px}
     .sofia-wrap{display:flex;align-items:flex-start;gap:1.25rem;background:var(--white);border-radius:16px;padding:1.5rem 2rem;box-shadow:0 4px 24px rgba(0,0,0,.07);max-width:640px}
     .sofia-avatar{width:60px;height:60px;border-radius:50%;flex-shrink:0;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.8rem;animation:floatAv 3.5s ease-in-out infinite}
-    .speech-bubble{flex:1}.speech-bubble strong{display:block;font-size:.75rem;font-weight:700;color:var(--red);margin-bottom:.4rem;letter-spacing:1px;text-transform:uppercase}
+    .speech-bubble{flex:1}.speech-bubble strong{display:block;font-size:.75rem;font-weight:700;color:var(--green);margin-bottom:.4rem;letter-spacing:1px;text-transform:uppercase}
     .speech-bubble p{font-size:.95rem;color:#333;line-height:1.65}.speech-bubble p+p{margin-top:.6rem}
     /* WORD RECOGNITION */
     .word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;margin-bottom:1.5rem}
     .word-card{background:var(--white);border:2px solid transparent;border-radius:var(--r);padding:.9rem .75rem;text-align:center;cursor:pointer;user-select:none;position:relative;transition:border-color .2s,background .2s,transform .15s;font-weight:600;font-size:.95rem}
-    .word-card:hover{transform:translateY(-2px);border-color:var(--red)}
-    .word-card.selected{background:var(--red);color:var(--white);border-color:var(--red)}
-    .word-card.correct{background:var(--green);color:var(--white);border-color:var(--green)}
-    .word-card.false-pos{background:var(--teal);color:var(--white);border-color:var(--teal)}
-    .word-card.missed{background:var(--amber);color:var(--black);border-color:var(--amber)}
+    .word-card:hover{transform:translateY(-2px);border-color:var(--green)}
+    .word-card.selected{background:var(--green);color:var(--white);border-color:var(--green)}
+    .word-card.correct{background:#3d6b58;color:var(--white);border-color:#3d6b58}
+    .word-card.false-pos{background:rgba(204,71,54,.12);color:var(--red);border-color:var(--red)}
+    .word-card.missed{background:rgba(229,171,7,.12);color:var(--black);border-color:var(--amber)}
     .word-card.neutral{background:var(--cream-dk);color:#888;border-color:transparent}
     .word-badge{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:var(--white)}
-    .word-card.correct .word-badge{display:flex;background:var(--green)}
-    .word-card.false-pos .word-badge{display:flex;background:var(--teal)}
+    .word-card.correct .word-badge{display:flex;background:#3d6b58}
+    .word-card.false-pos .word-badge{display:flex;background:var(--red)}
     .word-card.missed .word-badge{display:flex;background:var(--amber);color:var(--black)}
     .word-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
     .btn{padding:.65rem 1.5rem;border-radius:30px;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.9rem;transition:opacity .2s,transform .15s}
     .btn:hover{opacity:.85;transform:translateY(-1px)}
-    .btn-primary{background:var(--red);color:var(--white)}.btn-ghost{background:transparent;color:var(--black);border:2px solid var(--cream-dk)}
+    .btn-primary{background:var(--green);color:var(--white)}.btn-ghost{background:transparent;color:var(--black);border:2px solid var(--cream-dk)}
     .score-display{font-size:.9rem;font-weight:700;color:var(--green)}
     .legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;font-size:.8rem}
     .legend-item{display:flex;align-items:center;gap:.4rem}
     .legend-dot{width:10px;height:10px;border-radius:50%}
     /* PROFESSIONS GRID */
     .prof-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:1rem;margin-top:1.5rem}
-    .prof-card{background:var(--white);border-radius:12px;padding:1.1rem 1.25rem;box-shadow:0 2px 12px rgba(0,0,0,.07);border-left:4px solid var(--red)}
+    .prof-card{background:var(--white);border-radius:12px;padding:1.1rem 1.25rem;box-shadow:0 2px 12px rgba(0,0,0,.07);border-left:4px solid var(--green)}
     .prof-icon{font-size:1.8rem;margin-bottom:.5rem}
     .prof-it-m{font-size:.95rem;font-weight:700;color:var(--black)}
     .prof-it-f{font-size:.85rem;color:var(--teal);font-style:italic;margin-bottom:.25rem}
@@ -89,18 +89,18 @@
     .dialogue{display:flex;flex-direction:column;gap:.75rem}
     .dlg-line{display:flex;align-items:flex-start;gap:.75rem}
     .dlg-line.b{flex-direction:row-reverse}
-    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:var(--red);padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
-    .dlg-line.b .dlg-speaker{background:var(--green)}
+    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:var(--green);padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
+    .dlg-line.b .dlg-speaker{background:#3d6b58}
     .dlg-bubble{background:var(--white);border-radius:12px;padding:.9rem 1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.07);max-width:480px}
     .dlg-bubble .it{font-weight:600;font-size:.95rem;color:var(--black)}
     .dlg-bubble .es{font-size:.8rem;color:#888;margin-top:.25rem;font-style:italic}
     /* FILL */
     .fill-section{margin-top:1.5rem}
-    .fill-section h4{font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:1rem}
+    .fill-section h4{font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:1rem}
     .fill-list{display:flex;flex-direction:column;gap:.75rem}
     .fill-item{display:flex;align-items:center;gap:.5rem;font-size:.95rem;flex-wrap:wrap}
     .fill-input{border:none;border-bottom:2px solid var(--cream-dk);background:transparent;font-family:var(--fb);font-size:.95rem;font-weight:600;color:var(--black);width:120px;padding:.2rem .3rem;outline:none;text-align:center;transition:border-color .2s}
-    .fill-input:focus{border-color:var(--red)}.fill-input.ok{border-color:var(--green);color:var(--green)}.fill-input.fail{border-color:var(--red);color:var(--red)}
+    .fill-input:focus{border-color:var(--green)}.fill-input.ok{border-color:var(--green);color:var(--green)}.fill-input.fail{border-color:var(--red);color:var(--red)}
     .fill-btn{margin-top:1rem;display:flex;gap:.75rem;flex-wrap:wrap}
     /* CINEMA */
     .cinema-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1rem;margin-top:1.5rem}
@@ -109,34 +109,44 @@
     .cinema-it{font-size:.95rem;font-weight:700;margin-bottom:.25rem}
     .cinema-es{font-size:.8rem;color:#888}
     /* CULTURAL */
-    .cultural-strip{background:var(--black);color:var(--white);padding:4rem 2rem;text-align:center}
-    .cultural-strip h2{font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.4rem);font-style:italic;color:var(--gold);margin-bottom:1rem}
-    .cultural-strip p{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.75;max-width:600px;margin:0 auto 1.5rem}
+    .cultural-strip{background:linear-gradient(135deg,#c8e8d8 0%,var(--cream-dk) 100%);border-top:3px solid var(--green);color:var(--black);padding:4rem 2rem;text-align:center}
+    .cultural-strip h2{font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.4rem);font-style:italic;color:var(--green);margin-bottom:1rem}
+    .cultural-strip p{font-size:.95rem;color:#444;line-height:1.75;max-width:600px;margin:0 auto 1.5rem}
     .cultural-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;max-width:760px;margin:2rem auto 0}
-    .cf-item{background:rgba(255,255,255,.06);border-radius:12px;padding:1.5rem}
+    .cf-item{background:rgba(255,255,255,.6);border-radius:12px;padding:1.5rem}
     .cf-icon{font-size:2rem;margin-bottom:.75rem}
-    .cf-item h4{font-size:.85rem;font-weight:700;color:var(--gold);margin-bottom:.5rem}
-    .cf-item p{font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.55}
+    .cf-item h4{font-size:.85rem;font-weight:700;color:var(--green);margin-bottom:.5rem}
+    .cf-item p{font-size:.8rem;color:#555;line-height:1.55}
     .footer{background:var(--cream-dk);padding:2.5rem 2rem;text-align:center;font-size:.82rem;color:#888}
     .footer strong{color:var(--black)}
     .nav-pills{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
     .nav-pill{padding:.5rem 1.2rem;border-radius:30px;font-size:.8rem;font-weight:600;text-decoration:none;color:var(--black);background:var(--cream);border:1px solid var(--cream-dk);transition:background .2s,color .2s}
-    .nav-pill:hover{background:var(--red);color:var(--white)}.nav-pill.active{background:var(--red);color:var(--white)}
+    .nav-pill:hover{background:var(--green);color:var(--white)}.nav-pill.active{background:var(--green);color:var(--white)}
     @media(max-width:600px){.section{padding:4rem 1.25rem}.sofia-wrap{flex-direction:column}}
   </style>
 </head>
-<body>
+<body class="hide-es">
 
-<button class="trans-toggle" id="transBtn" onclick="toggleTrans()">Ocultar traducciones</button>
+<button class="trans-toggle" id="transBtn" onclick="toggleTrans()">Mostra traduzioni</button>
 
 <section class="hero" id="top">
   <div class="hero-bg-circle" id="hbc1"></div>
   <div class="hero-bg-circle" id="hbc2"></div>
   <div class="hero-bg-circle" id="hbc3"></div>
-  <div class="hero-badge">Unità 7 · Descubrimiento</div>
+  <div class="hero-badge">Unità 7 · Scoperta</div>
   <h1>Che lavoro<br>fai?</h1>
   <p class="hero-sub">Le professioni, i verbi in -isco<br>e il verbo <em>fare</em></p>
   <div class="scroll-hint"><span>Scroll</span><div class="scroll-dot"></div></div>
+</section>
+
+<!-- AUDIO INPUT EMBED -->
+<section class="section bg-white" style="padding:2.5rem 2rem 2rem">
+  <div class="container">
+    <p class="section-label" style="margin-bottom:.5rem">🎧 Audio di riferimento</p>
+    <h2 class="section-title" style="font-size:1.35rem;margin-bottom:.5rem">Coffee Break Italian — <em>CBI 1-27</em></h2>
+    <p class="section-desc" style="margin-bottom:1.25rem;font-size:.9rem">Ascolta prima di iniziare: <em>"Talking about your job in Italian"</em>. Cerca l'episodio CBI 1-27 nello show.<br><a href="etapa1_input.html" style="color:var(--green);font-size:.82rem;font-weight:700">→ Vai alla pagina completa dell'audio</a></p>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/show/2PdBXXDEbSyR8fyd6RL5dR?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Coffee Break Italian"></iframe>
+  </div>
 </section>
 
 <section class="section bg-white">
@@ -144,9 +154,9 @@
     <div class="sofia-wrap" data-a="up">
       <div class="sofia-avatar">👩‍🏫</div>
       <div class="speech-bubble">
-        <strong>Sofia · Tu guía italiana</strong>
-        <p>In Italia, una delle prime domande che ti fanno è: <em>"Che lavoro fai?"</em> — ¿En qué trabajas? El trabajo forma parte de la identidad.</p>
-        <p>Hoy aprendemos las profesiones, cómo funciona el verbo <em>fare</em> (hacer) — ¡el más usado de todos — y los verbos en -isco.</p>
+        <strong>Sofia · La tua guida</strong>
+        <p>In Italia, una delle prime domande che ti fanno è: <em>"Che lavoro fai?"</em> <span class="es">— ¿En qué trabajas?</span> Il lavoro fa parte dell'identità italiana.</p>
+        <p>Oggi impariamo le professioni, come funziona il verbo <em>fare</em> — il più usato in assoluto — e i verbi in <em>-isco</em>. <span class="es">Hoy aprendemos las profesiones, cómo funciona el verbo fare (hacer) y los verbos en -isco.</span></p>
       </div>
     </div>
   </div>
@@ -155,19 +165,19 @@
 <!-- WORD RECOGNITION -->
 <section class="section bg-alt">
   <div class="container">
-    <p class="section-label" data-a="fade">Actividad 1</p>
-    <h2 class="section-title" data-a="up">¿Cuáles son <em>profesiones</em>?</h2>
-    <p class="section-desc" data-a="up">Selecciona las palabras que son profesiones en italiano.</p>
+    <p class="section-label" data-a="fade">Attività 1</p>
+    <h2 class="section-title" data-a="up">Quali sono le <em>professioni</em>?</h2>
+    <p class="section-desc" data-a="up">Seleziona le parole che indicano professioni in italiano. <span class="es">Seleccioná las palabras que son profesiones en italiano.</span></p>
     <div class="word-grid" id="wordGrid" style="margin-top:1.75rem" data-stagger></div>
     <div class="word-actions">
-      <button class="btn btn-primary" onclick="verifyWords()">Verificar selección</button>
-      <button class="btn btn-ghost" onclick="resetWords()">Intentar de nuevo</button>
+      <button class="btn btn-primary" onclick="verifyWords()">Verifica</button>
+      <button class="btn btn-ghost" onclick="resetWords()">Riprova</button>
       <span class="score-display" id="scoreDisplay"></span>
     </div>
     <div class="legend" id="legend" style="display:none">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Correcto ✓</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div> No es profesión ✗</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div> Lo olvidaste !</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#3d6b58"></div> Corretto ✓</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Non è professione ✗</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div> L'hai dimenticata !</div>
     </div>
   </div>
 </section>
@@ -177,7 +187,7 @@
   <div class="container">
     <p class="section-label" data-a="fade">Vocabolario</p>
     <h2 class="section-title" data-a="up"><em>Le professioni</em></h2>
-    <p class="section-desc" data-a="up">En italiano, las profesiones tienen forma masculina y femenina. La mayoría solo cambia la terminación.</p>
+    <p class="section-desc" data-a="up">In italiano le professioni hanno forma maschile e femminile. <span class="es">En italiano, las profesiones tienen forma masculina y femenina.</span> Nella maggior parte dei casi cambia solo la terminazione.</p>
     <div class="prof-grid" data-stagger>
       <div class="prof-card">
         <div class="prof-icon">⚕️</div>
@@ -234,27 +244,27 @@
 <!-- VERB TABLES -->
 <section class="section bg-alt">
   <div class="container">
-    <p class="section-label" data-a="fade">Gramática · Descubrimiento</p>
+    <p class="section-label" data-a="fade">Grammatica · Scoperta</p>
     <h2 class="section-title" data-a="up">Il verbo <em>fare</em> e i verbi in <em>-isco</em></h2>
-    <p class="section-desc" data-a="up">Dos estructuras verbales esenciales para hablar de trabajo y comprensión.</p>
+    <p class="section-desc" data-a="up">Due strutture verbali essenziali per parlare di lavoro e azioni quotidiane. <span class="es">Dos estructuras verbales esenciales para hablar de trabajo.</span></p>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem" data-stagger>
       <div>
-        <h3 style="font-family:var(--fh);font-style:italic;color:var(--red);margin-bottom:.75rem;font-size:1.4rem">fare — hacer</h3>
+        <h3 style="font-family:var(--fh);font-style:italic;color:var(--green);margin-bottom:.75rem;font-size:1.4rem">fare <span class="es">— hacer</span></h3>
         <table class="verb-table" style="background:var(--white);border-radius:8px;overflow:hidden">
-          <thead><tr style="background:var(--red)"><th style="color:var(--white)">Pronome</th><th style="color:var(--white)">Forma</th></tr></thead>
+          <thead><tr style="background:var(--green)"><th style="color:var(--white)">Pronome</th><th style="color:var(--white)">Forma</th></tr></thead>
           <tbody>
-            <tr><td class="verb-pron">io</td><td class="verb-form" style="color:var(--red)">faccio</td></tr>
-            <tr><td class="verb-pron">tu</td><td class="verb-form" style="color:var(--red)">fai</td></tr>
-            <tr><td class="verb-pron">lui/lei</td><td class="verb-form" style="color:var(--red)">fa</td></tr>
-            <tr><td class="verb-pron">noi</td><td class="verb-form" style="color:var(--red)">facciamo</td></tr>
-            <tr><td class="verb-pron">voi</td><td class="verb-form" style="color:var(--red)">fate</td></tr>
-            <tr><td class="verb-pron">loro</td><td class="verb-form" style="color:var(--red)">fanno</td></tr>
+            <tr><td class="verb-pron">io</td><td class="verb-form" style="color:var(--green)">faccio</td></tr>
+            <tr><td class="verb-pron">tu</td><td class="verb-form" style="color:var(--green)">fai</td></tr>
+            <tr><td class="verb-pron">lui/lei</td><td class="verb-form" style="color:var(--green)">fa</td></tr>
+            <tr><td class="verb-pron">noi</td><td class="verb-form" style="color:var(--green)">facciamo</td></tr>
+            <tr><td class="verb-pron">voi</td><td class="verb-form" style="color:var(--green)">fate</td></tr>
+            <tr><td class="verb-pron">loro</td><td class="verb-form" style="color:var(--green)">fanno</td></tr>
           </tbody>
         </table>
       </div>
       <div>
-        <h3 style="font-family:var(--fh);font-style:italic;color:var(--teal);margin-bottom:.75rem;font-size:1.4rem">capire — entender</h3>
+        <h3 style="font-family:var(--fh);font-style:italic;color:var(--teal);margin-bottom:.75rem;font-size:1.4rem">capire (con -isco) <span class="es">— entender</span></h3>
         <table class="verb-table" style="background:var(--white);border-radius:8px;overflow:hidden">
           <thead><tr style="background:var(--teal)"><th style="color:var(--white)">Pronome</th><th style="color:var(--white)">Forma</th></tr></thead>
           <tbody>
@@ -270,10 +280,10 @@
     </div>
 
     <div style="background:var(--white);border-radius:12px;padding:1.25rem;margin-top:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,.07)" data-a="up">
-      <strong style="color:var(--red)">💡 Nota:</strong>
+      <strong style="color:var(--green)">💡 Nota:</strong>
       <p style="font-size:.85rem;color:#555;margin-top:.4rem;line-height:1.65">
-        Otros verbos en -isco: <strong>finire</strong> (terminar), <strong>preferire</strong> (preferir), <strong>costruire</strong> (construir), <strong>pulire</strong> (limpiar).<br>
-        Para hacer una pregunta sobre el trabajo: <strong>"Che lavoro fai?"</strong> o <strong>"Cosa fai nella vita?"</strong> <span class="es">(¿A qué te dedicas en la vida?)</span>
+        Altri verbi con -isco: <strong>finire</strong> <span class="es">(terminar)</span>, <strong>preferire</strong> <span class="es">(preferir)</span>, <strong>costruire</strong> <span class="es">(construir)</span>, <strong>pulire</strong> <span class="es">(limpiar)</span>.<br>
+        Per chiedere del lavoro: <strong>"Che lavoro fai?"</strong> o <strong>"Cosa fai nella vita?"</strong> <span class="es">(¿A qué te dedicás?)</span>
       </p>
     </div>
 
@@ -289,8 +299,8 @@
         <div class="fill-item" data-ans="fanno">Cosa _____ i tuoi genitori? <span class="es">¿A qué se dedican tus padres?</span></div>
       </div>
       <div class="fill-btn">
-        <button class="btn btn-primary" onclick="checkFill()">Verificar</button>
-        <button class="btn btn-ghost" onclick="resetFill()">Limpiar</button>
+        <button class="btn btn-primary" onclick="checkFill()">Verifica</button>
+        <button class="btn btn-ghost" onclick="resetFill()">Azzera</button>
       </div>
     </div>
   </div>
@@ -299,9 +309,9 @@
 <!-- DIALOGUE -->
 <section class="section bg-white">
   <div class="container">
-    <p class="section-label" data-a="fade">Dialogo autentico</p>
+    <p class="section-label" data-a="fade">Dialogo</p>
     <h2 class="section-title" data-a="up"><em>Che lavoro fai?</em></h2>
-    <p class="section-desc" data-a="up">Luca y Valentina se conocen en una cena y hablan de su trabajo.</p>
+    <p class="section-desc" data-a="up">Luca e Valentina si conoscono a una cena e parlano del loro lavoro. <span class="es">Luca y Valentina se conocen en una cena y hablan de su trabajo.</span></p>
     <div class="dialogue" style="margin-top:2rem" data-stagger>
       <div class="dlg-line">
         <div class="dlg-speaker">Luca</div>
@@ -314,7 +324,7 @@
         <div class="dlg-speaker">Valentina</div>
         <div class="dlg-bubble">
           <div class="it">Sono architetta. E tu?</div>
-          <div class="es">Soy arquitecta. ¿Y tú?</div>
+          <div class="es">Soy arquitecta. ¿Y vos?</div>
         </div>
       </div>
       <div class="dlg-line">
@@ -354,7 +364,7 @@
   <div class="container">
     <p class="section-label" data-a="fade">Cultura</p>
     <h2 class="section-title" data-a="up">Il cinema <em>italiano</em></h2>
-    <p class="section-desc" data-a="up">Italia tiene una tradición cinematográfica extraordinaria. Aquí los géneros principales:</p>
+    <p class="section-desc" data-a="up">L'Italia ha una tradizione cinematografica straordinaria. Ecco i generi principali: <span class="es">Italia tiene una tradición cinematográfica extraordinaria.</span></p>
     <div class="cinema-grid" data-stagger>
       <div class="cinema-card">
         <div class="cinema-icon">😄</div>
@@ -388,22 +398,22 @@
 <div class="cultural-strip">
   <div class="container">
     <h2 data-a="up">Il cinema italiano nel mondo 🎬🇮🇹</h2>
-    <p data-a="up">El cine italiano es uno de los más influyentes de la historia. De Fellini a Sorrentino, Italia sigue siendo potencia cinematográfica.</p>
+    <p data-a="up">Il cinema italiano è uno dei più influenti della storia. Da Fellini a Sorrentino, l'Italia rimane una grande potenza cinematografica.</p>
     <div class="cultural-facts" data-stagger>
       <div class="cf-item">
         <div class="cf-icon">🏆</div>
         <h4>Oscar italiani</h4>
-        <p>Italia es el país con más Oscar a mejor película extranjera: La vita è bella, Cinema Paradiso, Amarcord, La grande bellezza...</p>
+        <p>L'Italia è il paese con più Oscar al miglior film straniero: <em>La vita è bella</em>, <em>Cinema Paradiso</em>, <em>Amarcord</em>, <em>La grande bellezza</em>...</p>
       </div>
       <div class="cf-item">
         <div class="cf-icon">🎭</div>
         <h4>Attori famosi</h4>
-        <p>Sophia Loren, Marcello Mastroianni, Roberto Benigni, Monica Bellucci... actores que han dejado huella mundial.</p>
+        <p>Sophia Loren, Marcello Mastroianni, Roberto Benigni, Monica Bellucci... attori che hanno lasciato il segno nel mondo del cinema.</p>
       </div>
       <div class="cf-item">
         <div class="cf-icon">🎵</div>
         <h4>La colonna sonora</h4>
-        <p>Ennio Morricone, compositor italiano, creó algunas de las bandas sonoras más famosas de la historia del cine mundial.</p>
+        <p>Ennio Morricone, compositore italiano, ha creato alcune delle colonne sonore più famose della storia del cinema mondiale.</p>
       </div>
     </div>
   </div>
@@ -414,27 +424,30 @@
   Italiano Per Piacere — Nivel A1
   <div class="nav-pills">
     <a href="../modulo_6/etapa2_descubrimiento.html" class="nav-pill">← Unità 6</a>
-    <a href="etapa3_gramatica.html" class="nav-pill active">Gramática →</a>
+    <a href="etapa3_gramatica.html" class="nav-pill active">Grammatica →</a>
   </div>
 </footer>
 
 <script>
+(function(){
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); observer.unobserve(e.target); } });
   }, { threshold: 0.12 });
   document.querySelectorAll('[data-a],[data-stagger]').forEach(el => observer.observe(el));
   const c1=document.getElementById('hbc1'),c2=document.getElementById('hbc2'),c3=document.getElementById('hbc3');
   window.addEventListener('scroll',()=>{const y=window.scrollY;if(c1)c1.style.transform=`translateY(${y*.25}px)`;if(c2)c2.style.transform=`translateY(${y*-.15}px)`;if(c3)c3.style.transform=`translateY(${y*.1}px)`;},{passive:true});
-  function toggleTrans(){document.body.classList.toggle('hide-es');const btn=document.getElementById('transBtn');btn.textContent=document.body.classList.contains('hide-es')?'Mostrar traducciones':'Ocultar traducciones';}
+  window.toggleTrans=function(){document.body.classList.toggle('hide-es');const btn=document.getElementById('transBtn');btn.textContent=document.body.classList.contains('hide-es')?'Mostra traduzioni':'Nascondi traduzioni';}
   const WORDS=[{w:'medico',inCtx:true},{w:'insegnante',inCtx:true},{w:'avvocato',inCtx:true},{w:'attore',inCtx:true},{w:'cuoco',inCtx:true},{w:'infermiere',inCtx:true},{w:'camera',inCtx:false},{w:'treno',inCtx:false},{w:'verde',inCtx:false},{w:'presto',inCtx:false},{w:'colazione',inCtx:false},{w:'blu',inCtx:false}];
   const selected=new Set();let verified=false;
   const grid=document.getElementById('wordGrid');
   WORDS.forEach((w,i)=>{const div=document.createElement('div');div.className='word-card';div.innerHTML=`${w.w}<span class="word-badge" id="badge${i}"></span>`;div.addEventListener('click',()=>{if(verified)return;if(selected.has(i)){selected.delete(i);div.classList.remove('selected');}else{selected.add(i);div.classList.add('selected');}});grid.appendChild(div);});
-  function verifyWords(){verified=true;let correct=0;const cards=grid.querySelectorAll('.word-card');WORDS.forEach((w,i)=>{const card=cards[i],badge=document.getElementById('badge'+i);card.classList.remove('selected');if(w.inCtx&&selected.has(i)){card.classList.add('correct');badge.textContent='✓';correct++;}else if(!w.inCtx&&selected.has(i)){card.classList.add('false-pos');badge.textContent='✗';}else if(w.inCtx&&!selected.has(i)){card.classList.add('missed');badge.textContent='!';}else{card.classList.add('neutral');}});document.getElementById('scoreDisplay').textContent=correct+'/6 palabras correctas';document.getElementById('legend').style.display='flex';}
-  function resetWords(){verified=false;selected.clear();grid.querySelectorAll('.word-card').forEach(c=>c.className='word-card');document.getElementById('scoreDisplay').textContent='';document.getElementById('legend').style.display='none';}
+  window.verifyWords=function(){verified=true;let correct=0;const cards=grid.querySelectorAll('.word-card');WORDS.forEach((w,i)=>{const card=cards[i],badge=document.getElementById('badge'+i);card.classList.remove('selected');if(w.inCtx&&selected.has(i)){card.classList.add('correct');badge.textContent='✓';correct++;}else if(!w.inCtx&&selected.has(i)){card.classList.add('false-pos');badge.textContent='✗';}else if(w.inCtx&&!selected.has(i)){card.classList.add('missed');badge.textContent='!';}else{card.classList.add('neutral');}});document.getElementById('scoreDisplay').textContent=correct+'/6 professioni corrette';document.getElementById('legend').style.display='flex';}
+  window.resetWords=function(){verified=false;selected.clear();grid.querySelectorAll('.word-card').forEach(c=>c.className='word-card');document.getElementById('scoreDisplay').textContent='';document.getElementById('legend').style.display='none';}
   document.querySelectorAll('#fillFare .fill-item').forEach(item=>{item.innerHTML=item.innerHTML.replace('_____','<input class="fill-input" placeholder="verbo">');});
-  function checkFill(){document.querySelectorAll('#fillFare .fill-item').forEach(item=>{const inp=item.querySelector('.fill-input');if(!inp)return;inp.classList.remove('ok','fail');if(inp.value.trim().toLowerCase()===item.dataset.ans)inp.classList.add('ok');else inp.classList.add('fail');});}
-  function resetFill(){document.querySelectorAll('#fillFare .fill-input').forEach(inp=>{inp.value='';inp.classList.remove('ok','fail');});}
+  window.checkFill=function(){document.querySelectorAll('#fillFare .fill-item').forEach(item=>{const inp=item.querySelector('.fill-input');if(!inp)return;inp.classList.remove('ok','fail');if(inp.value.trim().toLowerCase()===item.dataset.ans)inp.classList.add('ok');else inp.classList.add('fail');});}
+  window.resetFill=function(){document.querySelectorAll('#fillFare .fill-input').forEach(inp=>{inp.value='';inp.classList.remove('ok','fail');});}
+})();
 </script>
 </body>
 </html>

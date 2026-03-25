@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Unità 11 · Audio input | Italiano Per Piacere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --cream:#e9e6d5;--cream-dk:#ddd9c8;
+      --gold:#EFCF7F;--amber:#e5ab07;
+      --red:#cc4736;--red-dk:#a8382a;
+      --teal:#78a6ba;--green:#528e74;--green-dk:#3d6b58;
+      --black:#1a1a18;--white:#ffffff;
+      --font-head:'Playfair Display',Georgia,serif;
+      --font-body:'Outfit',system-ui,sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--cream);color:var(--black);font-family:var(--font-body);font-weight:400;line-height:1.6}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:var(--white);border-bottom:3px solid var(--green);box-shadow:0 2px 12px rgba(0,0,0,.08)}
+    .nav-logo{display:flex;align-items:center;gap:.8rem;text-decoration:none}
+    .nav-logo img{height:40px;width:auto}
+    nav ul{display:flex;gap:2rem;list-style:none}
+    nav a{color:var(--black);text-decoration:none;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;opacity:.65;transition:opacity .2s,color .2s}
+    nav a:hover,nav a.active{opacity:1;color:var(--green)}
+    @media(max-width:768px){nav ul{display:none}}
+
+    /* PAGE HEADER */
+    .page-header{margin-top:70px;background:var(--green);padding:3.5rem 2rem;text-align:center;position:relative;overflow:hidden}
+    .page-header::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+    .page-header-content{position:relative;z-index:1}
+    .page-eyebrow{display:inline-block;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:1rem;background:rgba(239,207,127,.15);padding:.5rem 1.2rem;border-radius:4px}
+    .page-header h1{font-family:var(--font-head);font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.1;color:var(--white);margin-bottom:1rem}
+    .page-header h1 em{color:var(--gold);font-style:italic}
+    .page-header p{font-size:1rem;font-weight:300;color:rgba(255,255,255,.85);max-width:600px;margin:0 auto}
+
+    /* EMBED SECTION */
+    .embed-section{padding:3rem 1.5rem 4rem}
+    .embed-container{max-width:900px;margin:0 auto}
+    .embed-card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(26,26,24,.12);border:2px solid rgba(82,142,116,.15)}
+    .embed-card-header{background:linear-gradient(135deg,var(--green),var(--green-dk));padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .embed-card-header-left{display:flex;align-items:center;gap:.8rem}
+    .embed-card-header-dots{display:flex;gap:.5rem}
+    .embed-card-header-dots span{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.3)}
+    .embed-card-header-title{font-family:var(--font-head);font-size:1rem;font-style:italic;color:var(--white);font-weight:700}
+    .spotify-icon{display:flex;align-items:center;gap:.5rem;color:var(--white);font-size:.8rem;font-weight:700;letter-spacing:.04em;opacity:.9}
+    .spotify-icon svg{width:22px;height:22px;fill:var(--white)}
+
+    /* Audio meta */
+    .audio-meta{padding:2rem 2rem 1.5rem;border-bottom:1px solid rgba(82,142,116,.12)}
+    .audio-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(82,142,116,.1);color:var(--green);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .9rem;border-radius:20px;margin-bottom:1rem}
+    .audio-badge svg{width:14px;height:14px;fill:var(--green)}
+    .audio-title{font-family:var(--font-head);font-size:1.35rem;font-weight:700;color:var(--black);margin-bottom:.3rem;line-height:1.3}
+    .audio-subtitle{font-size:.85rem;color:#666;margin-bottom:1.2rem}
+    .audio-desc{font-size:.9rem;color:#444;line-height:1.7;max-width:680px}
+
+    /* Spotify embed wrapper */
+    .spotify-wrapper{padding:1.5rem 2rem 2rem}
+    .spotify-wrapper iframe{border-radius:12px;display:block;width:100%}
+
+    /* Episode note */
+    .episode-note{margin:0 2rem .5rem;background:rgba(82,142,116,.08);border:1.5px solid rgba(82,142,116,.3);border-radius:8px;padding:1rem 1.4rem;display:flex;align-items:center;gap:1rem}
+    .episode-note-icon{font-size:1.6rem;flex-shrink:0}
+    .episode-note p{font-size:.87rem;color:#444;line-height:1.6}
+    .episode-note strong{color:var(--green)}
+
+    /* Teacher note */
+    .teacher-note{margin:1rem 2rem 2rem;background:rgba(82,142,116,.07);border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:1.2rem 1.5rem}
+    .teacher-note-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:.6rem}
+    .teacher-note p{font-size:.87rem;color:#444;line-height:1.7;margin-bottom:.5rem}
+    .teacher-note p:last-child{margin-bottom:0}
+    .teacher-note ol{font-size:.87rem;color:#444;line-height:1.7;padding-left:1.2rem}
+    .teacher-note ol li{margin-bottom:.3rem}
+
+    /* Vocab preview */
+    .vocab-preview{margin:0 2rem 2rem;background:var(--cream);border-radius:12px;padding:1.4rem 1.8rem}
+    .vocab-preview h4{font-family:var(--font-head);font-style:italic;font-size:1.1rem;color:var(--green-dk);margin-bottom:1.2rem}
+    .vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.7rem}
+    .vocab-item{background:var(--white);border-radius:8px;padding:.7rem 1rem;border-left:3px solid var(--green);display:flex;justify-content:space-between;align-items:center;font-size:.88rem}
+    .vocab-it{font-weight:700;color:var(--black)}
+    .vocab-es{color:#777;font-style:italic}
+
+    /* Cultural context */
+    .context-strip{background:linear-gradient(135deg,#c8e8d8 0%,var(--cream-dk) 100%);border-top:3px solid var(--green);padding:3rem 2rem;margin-top:2rem}
+    .context-strip h3{font-family:var(--font-head);font-style:italic;font-size:1.4rem;color:var(--green-dk);margin-bottom:1rem;text-align:center}
+    .context-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;max-width:900px;margin:0 auto}
+    .ctx-card{background:rgba(255,255,255,.75);border-radius:10px;padding:1.2rem 1.4rem;border:1px solid var(--cream-dk)}
+    .ctx-icon{font-size:1.8rem;margin-bottom:.6rem}
+    .ctx-card h5{font-size:.85rem;font-weight:700;color:var(--green);margin-bottom:.4rem}
+    .ctx-card p{font-size:.8rem;color:#555;line-height:1.55}
+
+    /* INFO STRIP */
+    .info-strip{margin-top:2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+    .info-chip{background:var(--white);border-radius:8px;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:.8rem;border-left:4px solid var(--green);box-shadow:0 2px 12px rgba(0,0,0,.06)}
+    .info-chip-icon{font-size:1.5rem}
+    .info-chip-text strong{display:block;font-size:.85rem;font-weight:700;color:var(--black)}
+    .info-chip-text span{font-size:.8rem;color:#666}
+
+    /* BACK BUTTON */
+    .back-bar{max-width:900px;margin:0 auto 1.5rem;padding:0 .5rem}
+    .back-btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green);text-decoration:none;opacity:.75;transition:opacity .2s}
+    .back-btn:hover{opacity:1}
+
+    /* DIVIDER */
+    .divider{height:3px;background:var(--green);margin:0}
+
+    /* FOOTER */
+    footer{padding:3rem 2rem;text-align:center;border-top:3px solid var(--green);background:var(--white)}
+    footer p{font-size:.85rem;opacity:.55;margin:.5rem 0}
+    footer .highlight{color:var(--amber);font-family:var(--font-head);font-style:italic;font-weight:700}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="../../inicio.html">
+    <img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=0c29000" alt="Italiano Per Piacere" loading="lazy">
+  </a>
+  <ul>
+    <li><a href="../../inicio.html">Inicio</a></li>
+    <li><a href="etapa2_descubrimiento.html" class="active">Unità 11</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-content">
+    <div class="page-eyebrow">🎧 Audio input · Unità 11</div>
+    <h1>La famiglia<br><em>italiana</em></h1>
+    <p>Un episodio di Coffee Break Italian per ascoltare come si presenta la propria famiglia in italiano autentico</p>
+  </div>
+</div>
+
+<!-- EMBED SECTION -->
+<section class="embed-section">
+  <div class="embed-container">
+
+    <div class="back-bar">
+      <a href="etapa2_descubrimiento.html" class="back-btn">← Vai alla Scoperta</a>
+    </div>
+
+    <div class="embed-card">
+      <!-- Card header -->
+      <div class="embed-card-header">
+        <div class="embed-card-header-left">
+          <div class="embed-card-header-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="embed-card-header-title">Coffee Break Italian · Season 1, Lesson 5</div>
+        </div>
+        <div class="spotify-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          Spotify
+        </div>
+      </div>
+
+      <!-- Audio metadata -->
+      <div class="audio-meta">
+        <div class="audio-badge">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+          Podcast · A1 · Coffee Break Italian
+        </div>
+        <div class="audio-title">CBI 1-05 — Introducing your family in Italian</div>
+        <div class="audio-subtitle">Coffee Break Italian · Radio Lingua Network · Season 1, Lesson 5</div>
+        <p class="audio-desc">Mark e Francesca si presentano e descrivono la propria famiglia in italiano. L'episodio usa i termini di parentela fondamentali — <em>mia madre, mio padre, mio fratello, mia sorella</em> — e introduce naturalmente gli aggettivi possessivi, che sono al centro dell'Unità 11. Ascoltare come suona la famiglia in italiano autentico prima di lavorare con le strutture grammaticali.</p>
+      </div>
+
+      <!-- Spotify embed -->
+      <div class="spotify-wrapper">
+        <iframe
+          style="border-radius:12px"
+          src="https://open.spotify.com/embed/show/2PdBXXDEbSyR8fyd6RL5dR?utm_source=generator&theme=0"
+          height="232"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+          title="Coffee Break Italian — Spotify Show">
+        </iframe>
+      </div>
+
+      <!-- Episode note -->
+      <div class="episode-note">
+        <div class="episode-note-icon">🔍</div>
+        <p>Cerca l'episodio <strong>"CBI 1-05 | Introducing your family in Italian"</strong> nello show Coffee Break Italian su Spotify. Oppure ascolta direttamente sul sito ufficiale: <strong>coffeebreaklanguages.com</strong></p>
+      </div>
+
+      <!-- Teacher note -->
+      <div class="teacher-note">
+        <div class="teacher-note-label">📋 Nota per il docente</div>
+        <p><em>Prima di ascoltare:</em> Chiedete agli studenti: come si chiama tua mamma? Quanti fratelli hai? Pensiamo alla nostra famiglia.</p>
+        <p><strong>Ascolto in due fasi:</strong></p>
+        <ol>
+          <li><strong>Prima volta:</strong> Quante persone ci sono nella famiglia che descrivono? Costruisci una lista mentale.</li>
+          <li><strong>Seconda volta:</strong> Riconosci i possessivi? → <em>mia madre, mio padre, mia sorella, mio fratello</em></li>
+        </ol>
+        <p style="margin-top:.6rem">Dopo l'ascolto: descrivi brevemente la tua famiglia a un compagno in italiano. Poi passate alla Scoperta per le attività!</p>
+      </div>
+
+      <!-- Vocabulary preview -->
+      <div class="vocab-preview">
+        <h4>👂 Parole da cercare nell'audio</h4>
+        <div class="vocab-grid">
+          <div class="vocab-item"><span class="vocab-it">mia madre</span><span class="vocab-es">mi mamá</span></div>
+          <div class="vocab-item"><span class="vocab-it">mio padre</span><span class="vocab-es">mi papá</span></div>
+          <div class="vocab-item"><span class="vocab-it">mia sorella</span><span class="vocab-es">mi hermana</span></div>
+          <div class="vocab-item"><span class="vocab-it">mio fratello</span><span class="vocab-es">mi hermano</span></div>
+          <div class="vocab-item"><span class="vocab-it">i miei nonni</span><span class="vocab-es">mis abuelos</span></div>
+          <div class="vocab-item"><span class="vocab-it">mio marito</span><span class="vocab-es">mi marido</span></div>
+          <div class="vocab-item"><span class="vocab-it">Ho una famiglia…</span><span class="vocab-es">Tengo una familia…</span></div>
+          <div class="vocab-item"><span class="vocab-it">C'è / Ci sono</span><span class="vocab-es">Hay</span></div>
+        </div>
+      </div>
+
+    </div><!-- /embed-card -->
+
+    <!-- Info chips -->
+    <div class="info-strip">
+      <div class="info-chip">
+        <div class="info-chip-icon">🎧</div>
+        <div class="info-chip-text">
+          <strong>Formato</strong>
+          <span>Podcast · conversazione</span>
+        </div>
+      </div>
+      <div class="info-chip">
+        <div class="info-chip-icon">🇮🇹</div>
+        <div class="info-chip-text">
+          <strong>Livello</strong>
+          <span>A1 · Principiante</span>
+        </div>
+      </div>
+      <div class="info-chip">
+        <div class="info-chip-icon">👨‍👩‍👧‍👦</div>
+        <div class="info-chip-text">
+          <strong>Tema</strong>
+          <span>La famiglia italiana</span>
+        </div>
+      </div>
+      <div class="info-chip">
+        <div class="info-chip-icon">✅</div>
+        <div class="info-chip-text">
+          <strong>Accesso</strong>
+          <span>Spotify · uso educativo</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CULTURAL CONTEXT -->
+<div class="context-strip">
+  <h3>La famiglia nella cultura italiana 👨‍👩‍👧‍👦🇮🇹</h3>
+  <div class="context-grid">
+    <div class="ctx-card">
+      <div class="ctx-icon">🏠</div>
+      <h5>La famiglia allargata</h5>
+      <p>In Italia è molto comune vivere vicino ai genitori e ai nonni. La famiglia allargata — nonni, zii, cugini — è parte centrale della vita sociale e quotidiana.</p>
+    </div>
+    <div class="ctx-card">
+      <div class="ctx-icon">🍝</div>
+      <h5>Il pranzo della domenica</h5>
+      <p>Ogni domenica, le famiglie italiane si riuniscono per un pranzo lungo e abbondante. È un rituale sacro: pasta, secondo, dolce, e tante chiacchiere. <em>La tavola unisce.</em></p>
+    </div>
+    <div class="ctx-card">
+      <div class="ctx-icon">👵</div>
+      <h5>Il ruolo dei nonni</h5>
+      <p>I nonni hanno un ruolo fondamentale in Italia: spesso si occupano dei nipoti, trasmettono ricette tradizionali e rappresentano la memoria storica della famiglia.</p>
+    </div>
+    <div class="ctx-card">
+      <div class="ctx-icon">❤️</div>
+      <h5>Mammismo</h5>
+      <p>Il legame madre-figlio è molto forte in Italia. La parola <em>mammismo</em> descrive proprio questo attaccamento speciale che gli italiani hanno per le loro mamme — celebrato, non criticato!</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Italiano Per Piacere</p>
+  <p class="highlight">La lingua è cultura.</p>
+  <p style="margin-top:1rem;opacity:.4;font-size:.8rem">Unità 11 · In famiglia · Nivel A1</p>
+</footer>
+
+</body>
+</html>

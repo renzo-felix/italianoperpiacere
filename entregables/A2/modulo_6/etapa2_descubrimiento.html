@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unità 6 — Buongiorno, desidera? · Descubrimiento | Italiano Per Piacere A2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;
+  --red:#cc4736;--teal:#78a6ba;--teal-dk:#5a8ea0;--teal-txt:#2d5f72;
+  --green:#528e74;--green-dk:#3d6b58;--black:#1a1a18;--white:#ffffff;
+  --hero:var(--teal);--hero-dk:var(--teal-dk);--hero-txt:var(--teal-txt);
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);overflow-x:hidden}
+body.hide-es .es{display:none}
+.hero{min-height:92vh;background:#deeef5;border-bottom:3px solid #78a6ba;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;text-align:center;padding:2rem 1.5rem}
+.hero::before,.hero::after{display:none}
+.hero-circle{position:absolute;border-radius:50%;opacity:.12;pointer-events:none;transition:transform .6s ease}
+.hero-circle.c1{width:500px;height:500px;background:var(--white);top:-150px;right:-150px}
+.hero-circle.c2{width:300px;height:300px;background:var(--gold);bottom:-80px;left:-80px}
+.hero-circle.c3{width:180px;height:180px;background:var(--white);top:25%;left:5%}
+.hero-badge{background:rgba(0,0,0,.07);color:#1a1a18;font-size:.75rem;font-weight:700;letter-spacing:.12em;padding:.4rem 1.1rem;border-radius:2rem;margin-bottom:1.2rem;backdrop-filter:blur(6px);text-transform:uppercase}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:clamp(2.4rem,7vw,4.5rem);color:#1a1a18;line-height:1.1;margin-bottom:.8rem}
+.hero-sub{color:#1a1a18;opacity:.75;font-size:clamp(.95rem,2.5vw,1.15rem);max-width:560px;line-height:1.6;margin-bottom:2rem}
+.img-box{background:rgba(255,255,255,.95);border-radius:1.2rem;padding:1.4rem 2rem;border:1px solid rgba(0,0,0,.08);max-width:460px;margin:0 auto}
+.img-box .it{font-family:var(--fh);font-style:italic;font-size:1.3rem;color:var(--gold);margin-bottom:.3rem}
+.img-box .is{color:rgba(0,0,0,.65);font-size:.88rem}
+#toggle-btn{position:fixed;top:1rem;right:1rem;z-index:500;background:#c8e5f0;color:var(--black);border:none;border-radius:2rem;padding:.45rem 1.1rem;font-family:var(--fb);font-size:.8rem;font-weight:700;cursor:pointer;box-shadow:0 3px 12px rgba(0,0,0,.2)}
+.section{max-width:880px;margin:0 auto;padding:4rem 1.5rem}
+.sec-tag{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--hero);margin-bottom:.4rem}
+.sec-title{font-family:var(--fh);font-style:italic;font-size:clamp(1.6rem,4vw,2.2rem);color:var(--black);margin-bottom:.4rem;line-height:1.2}
+.sec-sub{color:#666;font-size:.9rem;line-height:1.6;margin-bottom:2rem}
+.es{color:#888;font-size:.85rem;font-style:italic}
+[data-a]{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+[data-a].visible{opacity:1;transform:none}
+[data-stagger]>*{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+[data-stagger].visible>*{opacity:1;transform:none}
+[data-stagger].visible>*:nth-child(1){transition-delay:.05s}[data-stagger].visible>*:nth-child(2){transition-delay:.12s}
+[data-stagger].visible>*:nth-child(3){transition-delay:.19s}[data-stagger].visible>*:nth-child(4){transition-delay:.26s}
+[data-stagger].visible>*:nth-child(5){transition-delay:.33s}[data-stagger].visible>*:nth-child(6){transition-delay:.40s}
+.word-grid{display:flex;flex-wrap:wrap;gap:.65rem;margin:1.2rem 0}
+.wcard{padding:.55rem 1.1rem;border-radius:2rem;border:2px solid var(--cream-dk);background:var(--white);font-size:.88rem;font-weight:600;cursor:pointer;transition:all .25s;user-select:none}
+.wcard:hover{border-color:var(--hero);transform:translateY(-2px)}
+.wcard.ok{background:#c8e5f0;color:var(--black);border-color:var(--hero)}
+.wcard.trap{background:#fde8e5;border-color:var(--red);text-decoration:line-through;color:#999}
+.grid-feedback{font-size:.85rem;font-weight:700;margin-top:.8rem;min-height:1.2rem;color:var(--hero)}
+.grid-btn{background:#c8e5f0;color:var(--black);border:none;border-radius:2rem;padding:.5rem 1.4rem;font-family:var(--fb);font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.6rem;transition:background .2s}
+.grid-btn:hover{background:var(--teal-dk)}
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:1rem;margin:1.2rem 0}
+.shop-card{background:var(--white);border-radius:1rem;padding:1.2rem;border:2px solid var(--cream-dk);cursor:pointer;transition:all .25s;box-shadow:0 2px 8px rgba(0,0,0,.06);text-align:center}
+.shop-card:hover{border-color:var(--hero);transform:translateY(-3px)}
+.shop-card .si{font-size:1.8rem;margin-bottom:.4rem}
+.shop-card .sn{font-weight:700;color:var(--hero);font-size:.95rem;margin-bottom:.2rem}
+.shop-card .ss{color:#777;font-size:.78rem;font-style:italic}
+.shop-card .sx{font-size:.8rem;color:#555;margin-top:.5rem;border-top:1px solid var(--cream-dk);padding-top:.4rem;display:none}
+.shop-card.open .sx{display:block}
+.disco-box{background:var(--white);border-radius:1.2rem;padding:1.6rem;border:2px solid var(--cream-dk);box-shadow:0 4px 16px rgba(0,0,0,.07)}
+.disco-box h4{font-family:var(--fh);font-style:italic;color:var(--hero);margin-bottom:1rem;font-size:1.15rem}
+.gtable{width:100%;border-collapse:collapse;margin:1rem 0;border-radius:.7rem;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.gtable th{background:#b8d8e8;color:#1f4d60;padding:.7rem 1rem;text-align:center;font-size:.82rem;letter-spacing:.05em}
+.gtable td{padding:.65rem 1rem;border-bottom:1px solid var(--cream-dk);font-size:.9rem;text-align:center;background:var(--white)}
+.gtable tr:last-child td{border:none}
+.gtable tr:nth-child(even) td{background:#eef6fa}
+.gtable tr:hover td{background:var(--cream)}
+.gtable td:first-child{font-weight:700;color:var(--hero);text-align:left}
+.fill-box{background:var(--white);border-radius:1.2rem;padding:1.6rem;border:2px solid var(--cream-dk);box-shadow:0 4px 16px rgba(0,0,0,.07)}
+.fill-box h4{font-family:var(--fh);font-style:italic;color:var(--hero);margin-bottom:1rem;font-size:1.1rem}
+.fill-row{margin:.7rem 0;font-size:.92rem;line-height:1.9;display:flex;flex-wrap:wrap;align-items:center;gap:.3rem}
+.fill-input{border:none;border-bottom:2.5px solid var(--hero);background:transparent;padding:.1rem .5rem;font-family:var(--fb);font-size:.9rem;width:130px;outline:none;color:var(--black)}
+.fill-input.ok{border-color:var(--green);color:var(--green-dk)}
+.fill-input.err{border-color:var(--red);color:var(--red)}
+.fill-btn{background:#c8e5f0;color:var(--black);border:none;border-radius:2rem;padding:.5rem 1.4rem;font-family:var(--fb);font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.8rem;transition:background .2s}
+.fill-btn:hover{background:var(--teal-dk)}
+.fill-fb{font-size:.83rem;margin-top:.5rem;font-weight:600;color:var(--hero);min-height:1.1rem}
+.bubble-row{margin:.7rem 0;display:flex;gap:.8rem;align-items:flex-start}
+.bubble-row.b{flex-direction:row-reverse}
+.bubble-avatar{width:36px;height:36px;border-radius:50%;background:#c8e5f0;color:var(--black);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;flex-shrink:0}
+.bubble-row.b .bubble-avatar{background:var(--cream-dk);color:var(--black)}
+.bubble{background:var(--cream);border-radius:1rem;padding:.75rem 1rem;max-width:440px;font-size:.9rem;line-height:1.5;cursor:pointer}
+.bubble-row.b .bubble{background:var(--cream-dk)}
+.bubble .btr{display:none;font-size:.78rem;color:#888;font-style:italic;margin-top:.4rem;border-top:1px solid rgba(0,0,0,.08);padding-top:.4rem}
+.bubble.show .btr{display:block}
+.bubble strong{color:var(--hero)}
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:4px solid var(--hero-dk);padding:3.5rem 1.5rem;text-align:center}
+.culture-inner{max-width:700px;margin:0 auto}
+.culture h3{font-family:var(--fh);font-style:italic;font-size:1.8rem;color:var(--hero-txt);margin-bottom:.8rem}
+.culture p{color:#555;font-size:.92rem;line-height:1.7;max-width:580px;margin:0 auto .6rem}
+.culture-facts{display:flex;justify-content:center;gap:2rem;margin-top:1.5rem;flex-wrap:wrap}
+.cfact{background:var(--white);border-radius:.8rem;padding:1rem 1.3rem;min-width:130px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.cfact .cnum{font-family:var(--fh);font-size:1.5rem;color:var(--hero);font-style:italic}
+.cfact .clabel{font-size:.75rem;color:#777;margin-top:.2rem}
+</style>
+</head>
+<body>
+
+<button id="toggle-btn" onclick="toggleEs()">ES 👁</button>
+
+<section class="hero">
+  <div class="hero-circle c1"></div>
+  <div class="hero-circle c2"></div>
+  <div class="hero-circle c3"></div>
+  <div class="hero-badge">A2 · Unità 6 · Immagine</div>
+  <h1>Buongiorno, desidera? 🛒</h1>
+  <p class="hero-sub">Al mercato rionale, nella salumeria di fiducia — scopriamo come si fa la spesa all'italiana.</p>
+  <div class="img-box" data-a>
+    <div class="it">Il mercato rionale italiano</div>
+    <div class="is">Km zero, prodotti freschi, botteghe di quartiere</div>
+  </div>
+</section>
+
+<!-- WORD GRID -->
+<section style="background:var(--cream-dk);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Vocabolario</div>
+  <h2 class="sec-title" data-a>Negozi di alimentari — vero o non c'entra?</h2>
+  <p class="sec-sub es" data-a>Selecciona solo las palabras relacionadas con los negocios de alimentación:</p>
+  <div class="word-grid" id="wg1" data-stagger>
+    <div class="wcard ok" data-ok>salumeria</div>
+    <div class="wcard trap" data-trap>farmacia</div>
+    <div class="wcard ok" data-ok>fruttivendolo</div>
+    <div class="wcard ok" data-ok>panetteria</div>
+    <div class="wcard trap" data-trap>libreria</div>
+    <div class="wcard ok" data-ok>pescheria</div>
+    <div class="wcard ok" data-ok>macelleria</div>
+    <div class="wcard trap" data-trap>ferramenta</div>
+    <div class="wcard ok" data-ok>casearia</div>
+    <div class="wcard ok" data-ok>bottega</div>
+    <div class="wcard trap" data-trap>tabaccheria</div>
+    <div class="wcard ok" data-ok>forno</div>
+  </div>
+  <button class="grid-btn" onclick="checkGrid('wg1')">Verifica ✓</button>
+  <div class="grid-feedback" id="wg1-fb"></div>
+</div>
+</section>
+
+<!-- SHOP CARDS -->
+<section style="background:var(--cream);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Lessico</div>
+  <h2 class="sec-title" data-a>I negozi del quartiere 🏪</h2>
+  <p class="sec-sub es" data-a>Toca cada tienda para saber qué venden y cómo pedir:</p>
+  <div class="shop-grid" data-stagger>
+    <div class="shop-card" onclick="this.classList.toggle('open')">
+      <div class="si">🥖</div>
+      <div class="sn">Panetteria / Forno</div>
+      <div class="ss">la panadería</div>
+      <div class="sx"><em>"Mi dà due filoni di pane?"</em><br>Anche: focaccia, grissini, ciabatta.</div>
+    </div>
+    <div class="shop-card" onclick="this.classList.toggle('open')">
+      <div class="si">🥩</div>
+      <div class="sn">Salumeria</div>
+      <div class="ss">la charcutería</div>
+      <div class="sx"><em>"Due etti di prosciutto crudo, per favore."</em><br>Prosciutto, salame, mortadella...</div>
+    </div>
+    <div class="shop-card" onclick="this.classList.toggle('open')">
+      <div class="si">🍅</div>
+      <div class="sn">Fruttivendolo</div>
+      <div class="ss">el frutero / verdulero</div>
+      <div class="sx"><em>"Dammi un chilo di pomodori."</em><br>Frutta e verdura di stagione.</div>
+    </div>
+    <div class="shop-card" onclick="this.classList.toggle('open')">
+      <div class="si">🐟</div>
+      <div class="sn">Pescheria</div>
+      <div class="ss">la pescadería</div>
+      <div class="sx"><em>"Avete del branzino fresco oggi?"</em><br>Pesce, crostacei, molluschi freschi.</div>
+    </div>
+    <div class="shop-card" onclick="this.classList.toggle('open')">
+      <div class="si">🥩</div>
+      <div class="sn">Macelleria</div>
+      <div class="ss">la carnicería</div>
+      <div class="sx"><em>"500 grammi di manzo tritato, per favore."</em><br>Carne rossa, pollo, vitello.</div>
+    </div>
+    <div class="shop-card" onclick="this.classList.toggle('open')">
+      <div class="si">🧀</div>
+      <div class="sn">Casearia</div>
+      <div class="ss">la quesería / lechería</div>
+      <div class="sx"><em>"Ce l'avete la mozzarella di bufala?"</em><br>Formaggi locali e DOP.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CE L'HO DISCOVERY -->
+<section style="background:var(--cream-dk);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Grammatica · Scoperta</div>
+  <h2 class="sec-title" data-a>Ce l'ho! — scopri questa espressione</h2>
+  <p class="sec-sub es" data-a>Observa los diálogos del mercado. ¿Qué hace esta expresión tan particular?</p>
+
+  <div class="disco-box" data-a>
+    <h4>Dal mercato: dialoghi con "ce l'ho"</h4>
+    <div style="display:grid;gap:.7rem;margin-bottom:1.2rem;font-size:.92rem">
+      <div style="background:var(--cream);padding:.7rem 1rem;border-radius:.5rem;border-left:4px solid var(--hero)">— Hai la borsa? — Sì, <strong>ce l'ho</strong>. <span class="es">(= "lo tengo" / "sí la tengo")</span></div>
+      <div style="background:var(--cream);padding:.7rem 1rem;border-radius:.5rem;border-left:4px solid var(--hero)">— Avete il parmigiano? — Sì, <strong>ce l'abbiamo</strong>! <span class="es">(= "sí lo tenemos")</span></div>
+      <div style="background:var(--cream);padding:.7rem 1rem;border-radius:.5rem;border-left:4px solid var(--hero)">— Ha il resto? — No, non <strong>ce l'ho</strong>. <span class="es">(= "no lo tengo")</span></div>
+    </div>
+    <table class="gtable">
+      <thead><tr><th>Pronome</th><th>Forma</th><th class="es">Equivalente español</th></tr></thead>
+      <tbody>
+        <tr><td>io</td><td><strong>ce l'ho</strong></td><td class="es">lo tengo / sí lo tengo</td></tr>
+        <tr><td>tu</td><td><strong>ce l'hai</strong></td><td class="es">lo tienes</td></tr>
+        <tr><td>lui/lei</td><td><strong>ce l'ha</strong></td><td class="es">lo tiene</td></tr>
+        <tr><td>noi</td><td><strong>ce l'abbiamo</strong></td><td class="es">lo tenemos</td></tr>
+        <tr><td>voi</td><td><strong>ce l'avete</strong></td><td class="es">lo tenéis</td></tr>
+        <tr><td>loro</td><td><strong>ce l'hanno</strong></td><td class="es">lo tienen</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.82rem;color:#666;margin-top:.8rem">💡 "Ce" è una particella locativa/rafforzativa. "L'" è il pronome diretto. Insieme indicano possesso concreto di qualcosa.</p>
+  </div>
+
+  <div class="fill-box" id="fill1" style="margin-top:1.5rem" data-a>
+    <h4>Prova tu! — Ce l'ho</h4>
+    <div class="fill-row">1. — Hai il sale? — Sì, <input class="fill-input" data-ans="ce l'ho" placeholder="ce l'ho/hai..."> proprio qui.</div>
+    <div class="fill-row">2. — Avete il pane? — Sì, <input class="fill-input" data-ans="ce l'abbiamo" placeholder="ce l'..."> appena sfornato!</div>
+    <div class="fill-row">3. — Lui ha la ricetta? — No, non <input class="fill-input" data-ans="ce l'ha" placeholder="ce l'...">.</div>
+    <div class="fill-row">4. — I ragazzi hanno i soldi? — Sì, <input class="fill-input" data-ans="ce l'hanno" placeholder="ce l'..."> loro.</div>
+    <button class="fill-btn" onclick="checkFill('fill1')">Controlla ✓</button>
+    <div class="fill-fb" id="fill1-fb"></div>
+  </div>
+</div>
+</section>
+
+<!-- IMPERATIVO CON PRONOMI -->
+<section style="background:var(--cream);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Grammatica</div>
+  <h2 class="sec-title" data-a>Imperativo informale + pronomi 📢</h2>
+  <p class="sec-sub es" data-a>Al mercado se habla directamente. El imperativo con pronombre: el pronombre se une al verbo.</p>
+  <div class="disco-box" data-a>
+    <h4>Pronome DOPO l'imperativo (si attacca)</h4>
+    <table class="gtable">
+      <thead><tr><th>Imperativo</th><th>+ pronome</th><th class="es">Resultado</th><th class="es">Significado</th></tr></thead>
+      <tbody>
+        <tr><td>prendi</td><td>+ lo</td><td class="es"><strong>Prendilo!</strong></td><td class="es">¡Cógelo!</td></tr>
+        <tr><td>compra</td><td>+ la</td><td class="es"><strong>Comprala!</strong></td><td class="es">¡Cómprala!</td></tr>
+        <tr><td>da'</td><td>+ mi</td><td class="es"><strong>Dammi!</strong></td><td class="es">¡Dame!</td></tr>
+        <tr><td>di'</td><td>+ mi</td><td class="es"><strong>Dimmi!</strong></td><td class="es">¡Dime!</td></tr>
+        <tr><td>porta</td><td>+ gli + lo → glielo</td><td class="es"><strong>Portaglielo!</strong></td><td class="es">¡Lléveselo!</td></tr>
+        <tr><td>non comprare</td><td>+ lo</td><td class="es"><strong>Non comprarlo!</strong></td><td class="es">¡No lo compres! (negativo: separado)</td></tr>
+      </tbody>
+    </table>
+    <div style="background:var(--cream-dk);padding:.8rem 1rem;border-radius:.5rem;margin-top:.8rem;font-size:.85rem">
+      ⚠️ Con i verbi dare, dire, fare, stare, andare: la consonante iniziale del pronome si raddoppia:<br>
+      da' + mi = <strong>dàmmi</strong> | di' + mi = <strong>dìmmi</strong> | fa' + lo = <strong>fàllo</strong> | va' + ci = <strong>vàcci</strong>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- DIALOGUE -->
+<section style="background:var(--cream-dk);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Dialogo</div>
+  <h2 class="sec-title" data-a>Alla salumeria di fiducia 🧀</h2>
+  <p class="sec-sub es" data-a>Toca cada burbuja para ver la traducción.</p>
+  <div style="background:var(--white);border-radius:1.2rem;padding:1.6rem;box-shadow:0 4px 16px rgba(0,0,0,.07);border:2px solid var(--cream-dk)" data-a>
+    <h4 style="font-family:var(--fh);font-style:italic;color:var(--hero);margin-bottom:1rem">Chiara fa la spesa</h4>
+    <div class="bubble-row">
+      <div class="bubble-avatar">V</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">Buongiorno Chiara! <strong>Ce l'ha</strong> la lista?
+        <div class="btr">¡Buenos días Chiara! ¿Tiene la lista?</div>
+      </div>
+    </div>
+    <div class="bubble-row b">
+      <div class="bubble-avatar">C</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">Sì, sì! <strong>Dammi</strong> due etti di prosciutto San Daniele, per favore.
+        <div class="btr">¡Sí, sí! Dame doscientos gramos de jamón San Daniele, por favor.</div>
+      </div>
+    </div>
+    <div class="bubble-row">
+      <div class="bubble-avatar">V</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">Subito. Altro?
+        <div class="btr">Enseguida. ¿Algo más?</div>
+      </div>
+    </div>
+    <div class="bubble-row b">
+      <div class="bubble-avatar">C</div>
+      <div class="bubble" onclick="this.classList.toggle('show')"><strong>Ce l'avete</strong> la mozzarella di bufala oggi?
+        <div class="btr">¿Tienen hoy la mozzarella de búfala?</div>
+      </div>
+    </div>
+    <div class="bubble-row">
+      <div class="bubble-avatar">V</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">Certo, <strong>ce l'abbiamo</strong>! È arrivata stamattina dalla Campania. <strong>La vuole</strong> da 250 grammi?
+        <div class="btr">¡Claro que sí! Llegó esta mañana de Campania. ¿La quiere de 250 gramos?</div>
+      </div>
+    </div>
+    <div class="bubble-row b">
+      <div class="bubble-avatar">C</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">Sì perfetto. E <strong>dimmi</strong>: quanto viene tutto?
+        <div class="btr">Sí, perfecto. Y dime: ¿cuánto es todo?</div>
+      </div>
+    </div>
+    <div class="bubble-row">
+      <div class="bubble-avatar">V</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">Vengono 9,80 euro. <strong>Prendili</strong>, questi pomodori ciliegino — <strong>ce l'ho</strong> anche quelli, appena arrivati!
+        <div class="btr">Son 9,80 euros. Llévate estos tomatitos cherry — ¡también los tengo, recién llegados!</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="culture">
+  <div class="culture-inner">
+    <h3>La distribuzione a km zero 🌿</h3>
+    <p>In Italia cresce il movimento del <em>km zero</em>: comprare prodotti locali, freschi, dal produttore o dal negoziante di fiducia del quartiere. Non solo per qualità — ma per sostenere l'economia locale e ridurre l'impatto ambientale.</p>
+    <p>Le <em>botteghe di quartiere</em> — salumeria, panetteria, fruttivendolo — sopravvivono accanto ai supermercati perché offrono qualcosa che nessun supermercato può dare: la relazione personale. Il negoziante che ti conosce, ti consiglia, tiene da parte quel formaggio speciale che sai ti piace.</p>
+    <div class="culture-facts">
+      <div class="cfact"><div class="cnum">km 0</div><div class="clabel">filiera corta italiana</div></div>
+      <div class="cfact"><div class="cnum">300+</div><div class="clabel">DOP e IGP italiani</div></div>
+      <div class="cfact"><div class="cnum">sabato</div><div class="clabel">giorno del mercato</div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleEs(){
+  document.body.classList.toggle('hide-es');
+  document.getElementById('toggle-btn').textContent=
+    document.body.classList.contains('hide-es')?'ES 🙈':'ES 👁';
+}
+document.addEventListener('mousemove',e=>{
+  const x=(e.clientX/window.innerWidth-.5)*18,y=(e.clientY/window.innerHeight-.5)*18;
+  document.querySelectorAll('.hero-circle').forEach((c,i)=>{c.style.transform=`translate(${x*(i+1)*.4}px,${y*(i+1)*.4}px)`});
+});
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>io.observe(el));
+function checkGrid(id){
+  const grid=document.getElementById(id);let ok=0;
+  grid.querySelectorAll('.wcard').forEach(c=>{
+    c.classList.remove('ok','trap');
+    if(c.dataset.ok!==undefined){c.classList.add('ok');ok++}else c.classList.add('trap');
+  });
+  document.getElementById(id+'-fb').textContent='✅ '+ok+' negozi trovati!';
+}
+function checkFill(id){
+  const box=document.getElementById(id);const inputs=box.querySelectorAll('.fill-input');let ok=0;
+  inputs.forEach(inp=>{
+    inp.classList.remove('ok','err');
+    if(inp.value.toLowerCase().trim()===inp.dataset.ans){inp.classList.add('ok');ok++}
+    else if(inp.value.trim())inp.classList.add('err');
+  });
+  document.getElementById(id+'-fb').textContent=ok===inputs.length?'🎉 Perfetto!':'👀 '+ok+'/'+inputs.length+' corretti.';
+}
+</script>
+</body>
+</html>

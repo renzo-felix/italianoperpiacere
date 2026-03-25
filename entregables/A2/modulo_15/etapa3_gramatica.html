@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Módulo 15 A2 — Etapa 3: Gramática</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--teal:#78a6ba;--green:#528e74;--green-dk:#3d6b58;--black:#1a1a18;
+  --mod:var(--green);--mod-dk:var(--green-dk);--hdr:var(--green-dk);
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.7}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #528e74;box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#3d6b58;border-bottom-color:#528e74}
+.hero{background:#c8e8de;border-bottom:3px solid #528e74;color:var(--black);padding:56px 32px 48px;text-align:center}
+.hero::before,.hero::after{display:none}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:2.4rem;margin-bottom:8px;color:#1a1a18}
+.hero p{font-size:1.05rem;color:#1a1a18;opacity:.75;max-width:600px;margin:0 auto}
+section{max-width:900px;margin:0 auto;padding:48px 24px}
+section h2{font-family:var(--fh);font-style:italic;font-size:1.9rem;color:var(--mod-dk);margin-bottom:6px}
+.sec-sub{color:#555;font-size:.95rem;margin-bottom:28px;padding-bottom:12px;border-bottom:2px solid var(--cream-dk)}
+section+section{border-top:2px solid var(--cream-dk)}
+.scheme{background:linear-gradient(135deg,#edf5f1 0%,#c8dfd5 100%);color:var(--black);border-radius:14px;padding:24px 28px;margin-bottom:24px;font-size:1.05rem}
+.scheme strong{color:var(--black)}
+.scheme .formula{font-size:1.15rem;font-weight:700;text-align:center;padding:12px;background:rgba(0,0,0,.06);border-radius:8px;margin:12px 0}
+.info{background:var(--cream-dk);border-left:4px solid var(--mod);border-radius:0 10px 10px 0;padding:16px 20px;margin:20px 0;font-size:.95rem}
+.info strong{color:var(--mod-dk)}
+.tbl-wrap{overflow-x:auto;margin:20px 0}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th{background:#a8d4c4;color:#2a4d3c;padding:10px 14px;text-align:left}
+td{padding:9px 14px;border-bottom:1px solid var(--cream-dk)}
+tr:nth-child(even) td{background:#e8f5f0}
+tr:hover td{background:#d4d0be}
+.it{font-style:italic;font-weight:600;color:var(--green-dk)}
+.es{color:#666;font-size:.88rem}
+.hl{background:var(--gold);padding:2px 6px;border-radius:4px;font-weight:700;color:var(--black)}
+.hl-box{background:var(--gold);color:var(--black);border-radius:10px;padding:16px 20px;margin:20px 0;font-size:.97rem;font-weight:600;border-left:4px solid var(--amber-dk);text-align:center;font-style:italic}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:20px 0}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--cream-dk);border-radius:12px;padding:18px 20px}
+.card h4{font-family:var(--fh);font-style:italic;color:var(--mod-dk);font-size:1.1rem;margin-bottom:10px}
+.card ul{padding-left:18px;font-size:.92rem}
+.card ul li{margin-bottom:6px}
+.prac-block{background:#fff;border:1px solid var(--cream-dk);border-radius:14px;padding:24px;margin-bottom:20px}
+.prac-block h3{font-family:var(--fh);font-style:italic;color:var(--mod-dk);margin-bottom:16px;font-size:1.2rem}
+.prac-item{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.prac-item label{min-width:240px;font-size:.95rem}
+.prac-item input{border:2px solid var(--cream-dk);border-radius:8px;padding:7px 12px;font-family:var(--fb);font-size:.95rem;width:200px;transition:.2s}
+.prac-item input:focus{outline:none;border-color:var(--mod)}
+.prac-item input.ok{border-color:var(--green);background:#e8f5ee}
+.prac-item input.err{border-color:var(--red);background:#fde8e6}
+.check-btn{background:#c8dfd5;color:var(--black);border:none;border-radius:8px;padding:9px 22px;font-family:var(--fb);font-size:.9rem;font-weight:700;cursor:pointer;transition:.2s;margin-top:8px}
+.check-btn:hover{background:var(--mod-dk)}
+.prac-fb{margin-top:10px;font-size:.9rem;font-weight:600;min-height:20px}
+.prac-fb.ok{color:var(--green-dk)}
+.prac-fb.err{color:var(--red)}
+/* prefix table styles */
+.tag-in{display:inline-block;background:var(--red);color:#fff;font-size:.78rem;font-weight:700;padding:2px 8px;border-radius:8px;margin-left:4px}
+.tag-im{display:inline-block;background:var(--teal);color:#fff;font-size:.78rem;font-weight:700;padding:2px 8px;border-radius:8px;margin-left:4px}
+#quiz{background:linear-gradient(135deg,#edf5f1 0%,#c8dfd5 100%);color:var(--black);border-radius:16px;padding:32px;max-width:900px;margin:0 auto 40px;box-shadow:0 4px 20px rgba(0,0,0,.12)}
+#quiz h2{font-family:var(--fh);font-style:italic;color:var(--black);font-size:1.7rem;margin-bottom:24px}
+.q-block{background:rgba(255,255,255,.08);border-radius:10px;padding:18px 20px;margin-bottom:16px}
+.q-block p{font-weight:600;margin-bottom:12px;line-height:1.5}
+.q-opt{display:flex;flex-direction:column;gap:8px}
+.q-opt label{display:flex;align-items:center;gap:10px;cursor:pointer;background:rgba(255,255,255,.06);border-radius:8px;padding:9px 14px;transition:.2s;font-size:.95rem}
+.q-opt label:hover{background:rgba(255,255,255,.16)}
+.q-opt input{accent-color:var(--gold)}
+#quiz-btn{display:block;margin:24px auto 0;background:var(--gold);color:var(--black);border:none;border-radius:10px;padding:12px 36px;font-family:var(--fb);font-size:1rem;font-weight:700;cursor:pointer;transition:.2s}
+#quiz-btn:hover{background:var(--amber)}
+#quiz-result{text-align:center;margin-top:20px;font-size:1.1rem;font-weight:700;min-height:28px;color:var(--black)}
+footer{background:var(--cream-dk);color:var(--black);text-align:center;padding:24px;font-size:.85rem}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+nav > a:not(.nav-logo):hover,nav > a:not(.nav-logo).active{opacity:1;color:#3d6b58;border-bottom-color:#528e74}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#subordinate" class="active">Frasi subordinate</a>
+      <a href="#bile">Aggettivi -bile</a>
+      <a href="#prefisso">Prefisso in-</a>
+      <a href="#pratica">Pratica</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+<div class="hero">
+  <h1>Il mondo che voglio · Grammatica</h1>
+  <p>Frasi subordinate con "che" · Aggettivi in -bile · Prefisso in-</p>
+</div>
+
+<!-- SUBORDINATE -->
+<section id="subordinate">
+  <h2>Frasi subordinate con "che"</h2>
+  <p class="sec-sub">Unir frases mediante "che" — expresar opiniones y creencias</p>
+  <div class="scheme">
+    <p style="margin-bottom:10px">Las frases subordinadas se forman uniendo una <strong>frase principale</strong> (oración principal) con una <strong>frase subordinata</strong> (subordinada) mediante <strong>che</strong>:</p>
+    <div class="formula">Frase principale + CHE + frase subordinata</div>
+    <p style="margin-top:10px">Con verbos de opinión (pensare/credere/sperare) en registro formal se usa el <strong>congiuntivo</strong>. En registro coloquial se usa el <strong>indicativo</strong>.</p>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Verbo principale</th><th>Frase principale</th><th>Frase subordinata (indicativo)</th><th>Español</th></tr>
+      <tr><td>pensare</td><td class="it">Penso</td><td class="it">che tutto andrà bene.</td><td class="es">Creo que todo irá bien.</td></tr>
+      <tr><td>credere</td><td class="it">Credo</td><td class="it">che lui abbia ragione.</td><td class="es">Creo que él tiene razón.</td></tr>
+      <tr><td>sperare</td><td class="it">Spero</td><td class="it">che tu stia bene.</td><td class="es">Espero que estés bien.</td></tr>
+      <tr><td>sembrare</td><td class="it">Mi sembra</td><td class="it">che le cose migliorino.</td><td class="es">Me parece que las cosas mejoran.</td></tr>
+      <tr><td>essere convinto</td><td class="it">Sono convinto/a</td><td class="it">che cambierà.</td><td class="es">Estoy convencido/a de que cambiará.</td></tr>
+      <tr><td>essere importante</td><td class="it">È importante</td><td class="it">che tutti partecipino.</td><td class="es">Es importante que todos participen.</td></tr>
+    </table>
+  </div>
+  <div class="info">
+    <strong>Congiuntivo vs indicativo:</strong> En nivel A2/B1 es suficiente usar el indicativo con estos verbos. El congiuntivo (tema de B1) se forma así: <em>che io sia, che tu abbia, che lui vada</em> etc.
+  </div>
+  <div class="two-col">
+    <div class="card">
+      <h4>Connettivi utili</h4>
+      <ul>
+        <li><strong>però</strong> = sin embargo, pero</li>
+        <li><strong>quindi</strong> = por lo tanto, entonces</li>
+        <li><strong>perché</strong> = porque</li>
+        <li><strong>così</strong> = así que</li>
+        <li><strong>anche se</strong> = aunque</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Esprimere opinione</h4>
+      <ul>
+        <li><em><span class="hl">Secondo me</span>, è importante.</em></li>
+        <li><em><span class="hl">Penso che</span> sia possibile.</em></li>
+        <li><em><span class="hl">Sono convinta che</span> cambierà.</em></li>
+        <li><em><span class="hl">Mi sembra che</span> le cose migliorino.</em></li>
+        <li><em><span class="hl">È evidente che</span> tutti debbono partecipare.</em></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- AGGETTIVI -BILE -->
+<section id="bile">
+  <h2>Aggettivi in -bile</h2>
+  <p class="sec-sub">Una familia de adjetivos derivados de verbos — equivalen a los -ble del español</p>
+  <div class="scheme">
+    <p style="margin-bottom:10px">Los adjetivos en <strong>-bile</strong> se forman desde la raíz verbal:</p>
+    <div class="formula">radice del verbo + -abile (verbi in -are) &nbsp;|&nbsp; radice + -ibile (verbi in -ere/-ire)</div>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Verbo</th><th>Radice</th><th>Aggettivo -bile</th><th>Significado</th></tr>
+      <tr><td>amare (-are)</td><td>am-</td><td class="it">amabile</td><td class="es">amable</td></tr>
+      <tr><td>rispettare (-are)</td><td>rispett-</td><td class="it">rispettabile</td><td class="es">respetable</td></tr>
+      <tr><td>preferire (-ire)</td><td>prefer-</td><td class="it">preferibile</td><td class="es">preferible</td></tr>
+      <tr><td>sostenere (-ere)</td><td>sosten-</td><td class="it">sostenibile</td><td class="es">sostenible</td></tr>
+      <tr><td>credere (-ere)</td><td>cred-</td><td class="it">credibile → incredibile</td><td class="es">creíble → increíble</td></tr>
+      <tr><td>potere (-ere)</td><td>pot-</td><td class="it">possibile → impossibile</td><td class="es">posible → imposible</td></tr>
+      <tr><td>disporre (-orre)</td><td>dispon-</td><td class="it">disponibile</td><td class="es">disponible</td></tr>
+      <tr><td>comprendere (-ere)</td><td>comprens-</td><td class="it">comprensibile</td><td class="es">comprensible</td></tr>
+    </table>
+  </div>
+  <div class="hl-box">
+    💡 ¡Muchos son cognados perfectos con el español! -bile = -ble<br>
+    possibile = posible · incredibile = increíble · disponibile = disponible · sostenibile = sostenible
+  </div>
+</section>
+
+<!-- PREFISSO IN- -->
+<section id="prefisso">
+  <h2>Prefisso in- negativo</h2>
+  <p class="sec-sub">Crear el opuesto de un adjetivo — in- (o im- antes de p/b)</p>
+  <div class="scheme">
+    <p style="margin-bottom:10px">El prefijo <strong>in-</strong> niega el adjetivo. Equivale al español <strong>in-</strong> (injusto), <strong>im-</strong> (imposible), <strong>in-</strong> (incapaz):</p>
+    <div class="formula">in- + adjetivo → opuesto &nbsp;&nbsp;|&nbsp;&nbsp; im- (antes de p/b)</div>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Aggettivo (+)</th><th>Con prefisso (-)</th><th>Prefisso</th><th>Español</th></tr>
+      <tr><td class="it">felice</td><td class="it">infelice</td><td><span class="tag-in">in-</span></td><td class="es">infeliz</td></tr>
+      <tr><td class="it">giusto</td><td class="it">ingiusto</td><td><span class="tag-in">in-</span></td><td class="es">injusto</td></tr>
+      <tr><td class="it">capace</td><td class="it">incapace</td><td><span class="tag-in">in-</span></td><td class="es">incapaz</td></tr>
+      <tr><td class="it">certo</td><td class="it">incerto</td><td><span class="tag-in">in-</span></td><td class="es">incierto</td></tr>
+      <tr><td class="it">stabile</td><td class="it">instabile</td><td><span class="tag-in">in-</span></td><td class="es">inestable</td></tr>
+      <tr><td class="it">credibile</td><td class="it">incredibile</td><td><span class="tag-in">in-</span></td><td class="es">increíble</td></tr>
+      <tr><td class="it">possibile</td><td class="it">impossibile</td><td><span class="tag-im">im-</span></td><td class="es">imposible</td></tr>
+      <tr><td class="it">probabile</td><td class="it">improbabile</td><td><span class="tag-im">im-</span></td><td class="es">improbable</td></tr>
+      <tr><td class="it">morale</td><td class="it">immorale</td><td><span class="tag-im">im-</span></td><td class="es">inmoral</td></tr>
+      <tr><td class="it">paziente</td><td class="it">impaziente</td><td><span class="tag-im">im-</span></td><td class="es">impaciente</td></tr>
+    </table>
+  </div>
+  <div class="info">
+    <strong>Regola:</strong> in- se convierte en <strong>im-</strong> antes de <em>p</em> y <em>b</em>: <em>im</em>possibile, <em>im</em>probabile, <em>im</em>morale. Antes de todas las demás letras se mantiene <strong>in-</strong>: <em>in</em>giusto, <em>in</em>capace, <em>in</em>felice.
+  </div>
+</section>
+
+<!-- PRATICA -->
+<section id="pratica">
+  <h2>Pratica</h2>
+  <p class="sec-sub">Completa con la forma corretta · Controlla le risposte</p>
+  <div class="prac-block">
+    <h3>1 · Frasi subordinate con "che"</h3>
+    <div class="prac-item"><label>1. Penso _____ il problema è importante.</label><input type="text" id="p1a" data-ans="che" placeholder="congiunzione…"/></div>
+    <div class="prac-item"><label>2. Sono convinta _____ cambierà.</label><input type="text" id="p1b" data-ans="che" placeholder="congiunzione…"/></div>
+    <div class="prac-item"><label>3. Mi sembra _____ le cose migliorino.</label><input type="text" id="p1c" data-ans="che" placeholder="congiunzione…"/></div>
+    <div class="prac-item"><label>4. È importante _____ tutti partecipino.</label><input type="text" id="p1d" data-ans="che" placeholder="congiunzione…"/></div>
+    <div class="prac-item"><label>5. _____ me, dobbiamo agire subito.</label><input type="text" id="p1e" data-ans="secondo" placeholder="espressione…"/></div>
+    <button class="check-btn" onclick="checkPrac('p1',['p1a','p1b','p1c','p1d','p1e'])">Controlla ✓</button>
+    <div class="prac-fb" id="p1-fb"></div>
+  </div>
+  <div class="prac-block">
+    <h3>2 · Aggettivi in -bile</h3>
+    <div class="prac-item"><label>1. È _____ (possible) fare di meglio.</label><input type="text" id="p2a" data-ans="possibile" placeholder="-bile…"/></div>
+    <div class="prac-item"><label>2. È _____ (incredible) quella notizia!</label><input type="text" id="p2b" data-ans="incredibile" placeholder="-bile…"/></div>
+    <div class="prac-item"><label>3. Sono _____ (available) lunedì pomeriggio.</label><input type="text" id="p2c" data-ans="disponibile" placeholder="-bile…"/></div>
+    <div class="prac-item"><label>4. Lo sviluppo deve essere _____ (sustainable).</label><input type="text" id="p2d" data-ans="sostenibile" placeholder="-bile…"/></div>
+    <div class="prac-item"><label>5. È la soluzione più _____ (preferable).</label><input type="text" id="p2e" data-ans="preferibile" placeholder="-bile…"/></div>
+    <button class="check-btn" onclick="checkPrac('p2',['p2a','p2b','p2c','p2d','p2e'])">Controlla ✓</button>
+    <div class="prac-fb" id="p2-fb"></div>
+  </div>
+  <div class="prac-block">
+    <h3>3 · Prefisso in- o im-</h3>
+    <div class="prac-item"><label>1. Non è _____ (giusto)! È discriminatorio.</label><input type="text" id="p3a" data-ans="ingiusto" placeholder="in/im + base…"/></div>
+    <div class="prac-item"><label>2. La situazione è _____ (stabile) e cambia ogni giorno.</label><input type="text" id="p3b" data-ans="instabile" placeholder="in/im + base…"/></div>
+    <div class="prac-item"><label>3. Pensavo che fosse _____ (possibile), invece ce l'abbiamo fatta!</label><input type="text" id="p3c" data-ans="impossibile" placeholder="in/im + base…"/></div>
+    <div class="prac-item"><label>4. Sono _____ (paziente)! Non posso aspettare ancora.</label><input type="text" id="p3d" data-ans="impaziente" placeholder="in/im + base…"/></div>
+    <div class="prac-item"><label>5. Non sono mica _____ (capace)! Ho solo bisogno di tempo.</label><input type="text" id="p3e" data-ans="incapace" placeholder="in/im + base…"/></div>
+    <button class="check-btn" onclick="checkPrac('p3',['p3a','p3b','p3c','p3d','p3e'])">Controlla ✓</button>
+    <div class="prac-fb" id="p3-fb"></div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" style="padding:0;border:none;max-width:100%">
+<div style="max-width:900px;margin:48px auto;padding:0 24px">
+<div id="quiz">
+  <h2>Quiz finale 🌍</h2>
+  <div class="q-block">
+    <p>1. ¿Cuál es la frase correcta con "che" subordinado?</p>
+    <div class="q-opt">
+      <label><input type="radio" name="q1" value="a"/> Penso che è vero. ✓ (coloquial)</label>
+      <label><input type="radio" name="q1" value="b"/> Penso che sia vero. ✓ (formal)</label>
+      <label><input type="radio" name="q1" value="c"/> Ambas son aceptables.</label>
+    </div>
+  </div>
+  <div class="q-block">
+    <p>2. ¿Cuál es el adjetivo -bile correcto de "sostenere"?</p>
+    <div class="q-opt">
+      <label><input type="radio" name="q2" value="a"/> sostenabile</label>
+      <label><input type="radio" name="q2" value="b"/> sostenibile</label>
+      <label><input type="radio" name="q2" value="c"/> sostenebile</label>
+    </div>
+  </div>
+  <div class="q-block">
+    <p>3. ¿Cómo se niega "possibile" con el prefijo correcto?</p>
+    <div class="q-opt">
+      <label><input type="radio" name="q3" value="a"/> inpossibile</label>
+      <label><input type="radio" name="q3" value="b"/> impossibile</label>
+      <label><input type="radio" name="q3" value="c"/> nonpossibile</label>
+    </div>
+  </div>
+  <div class="q-block">
+    <p>4. ¿Qué significa "incredibile" en español?</p>
+    <div class="q-opt">
+      <label><input type="radio" name="q4" value="a"/> incréible (no existe)</label>
+      <label><input type="radio" name="q4" value="b"/> increíble</label>
+      <label><input type="radio" name="q4" value="c"/> incrédulo</label>
+    </div>
+  </div>
+  <div class="q-block">
+    <p>5. ¿Cómo se expresa "según yo" en italiano?</p>
+    <div class="q-opt">
+      <label><input type="radio" name="q5" value="a"/> Per me</label>
+      <label><input type="radio" name="q5" value="b"/> Secondo me</label>
+      <label><input type="radio" name="q5" value="c"/> Da me</label>
+    </div>
+  </div>
+  <button id="quiz-btn" onclick="submitQuiz()">Invia le risposte →</button>
+  <div id="quiz-result"></div>
+</div>
+</div>
+</section>
+<footer>Italiano per piacere · A2 · Módulo 15 · Etapa 3 Gramática</footer>
+<script>
+const ANSWERS={q1:'c',q2:'b',q3:'b',q4:'b',q5:'b'};
+function checkPrac(id,ids){
+  let ok=0;
+  ids.forEach(i=>{
+    const el=document.getElementById(i);
+    const v=el.value.toLowerCase().trim();
+    const a=el.dataset.ans.toLowerCase().trim();
+    el.classList.remove('ok','err');
+    if(v===a){el.classList.add('ok');ok++;}else el.classList.add('err');
+  });
+  const fb=document.getElementById(id+'-fb');
+  fb.className='prac-fb '+(ok===ids.length?'ok':'err');
+  fb.textContent=ok===ids.length?'✅ Perfetto! Tutte corrette.':`${ok}/${ids.length} corrette — ricontrolla quelle in rosso.`;
+}
+function submitQuiz(){
+  let ok=0,tot=Object.keys(ANSWERS).length;
+  for(const q in ANSWERS){const sel=document.querySelector(`input[name="${q}"]:checked`);if(sel&&sel.value===ANSWERS[q])ok++;}
+  const pct=Math.round(ok/tot*100);
+  const r=document.getElementById('quiz-result');
+  if(pct>=80)r.textContent=`🌟 ${ok}/${tot} — Benissimo! Complimenti!`;
+  else if(pct>=60)r.textContent=`👍 ${ok}/${tot} — Bene! Ripassi un po'.`;
+  else r.textContent=`💪 ${ok}/${tot} — Ripassi le tabelle!`;
+}
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const href=a.getAttribute('href');
+    if(href&&href.startsWith('#')){e.preventDefault();document.querySelector(href)?.scrollIntoView({behavior:'smooth'});}
+  });
+});
+</script>
+</body>
+</html>

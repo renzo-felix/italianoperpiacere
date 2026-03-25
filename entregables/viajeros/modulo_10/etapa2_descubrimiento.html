@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 10 · L'ultima serata — Viajeros · Italiano Per Piacere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mod: #cc4736; --mod-dk: #a8382a; --mod-hero: #fde4e1;
+    --mod-border: #cc4736; --mod-th: #fbc8c2; --mod-th-text: #7a1f14;
+    --mod-light: #fff5f4;
+    --cream: #e9e6d5; --cream-dk: #ddd9c8;
+    --gold: #EFCF7F; --amber: #e5ab07;
+    --green: #528e74; --teal: #78a6ba;
+    --black: #1a1a18; --white: #ffffff;
+    --fh: 'Playfair Display', Georgia, serif;
+    --fb: 'Outfit', system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--fb); color: var(--black); background: var(--cream); line-height: 1.6; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 2px solid var(--mod-border); box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: .7rem 1.5rem; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; gap: .5rem; }
+  .nav-logo img { height: 38px; display: block; }
+  .nav-links { display: flex; gap: .4rem; flex-wrap: wrap; }
+  .nav-links a { font-size: .78rem; font-weight: 600; text-decoration: none; color: var(--black); padding: .35rem .7rem; border-radius: 20px; transition: background .2s; }
+  .nav-links a:hover, .nav-links a.active { background: var(--mod); color: var(--white); }
+
+  /* PROGRESS */
+  .progress-wrap { background: var(--mod-hero); padding: .8rem 1.5rem; border-bottom: 1px solid var(--mod-border); }
+  .progress-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1rem; }
+  .progress-label { font-size: .8rem; font-weight: 600; color: var(--mod-dk); white-space: nowrap; }
+  .progress-bar { flex: 1; height: 8px; background: var(--mod-th); border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--mod); border-radius: 4px; width: 0%; transition: width .6s; }
+  .progress-pct { font-size: .8rem; font-weight: 700; color: var(--mod-dk); min-width: 36px; }
+
+  /* HERO */
+  .hero { background: var(--mod-hero); border-bottom: 3px solid var(--mod-border); padding: 3rem 1.5rem 2.5rem; text-align: center; }
+  .hero-badge { display: inline-flex; align-items: center; gap: .4rem; background: var(--mod); color: var(--white); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .3rem .9rem; border-radius: 20px; margin-bottom: 1rem; }
+  .finale-badge { background: linear-gradient(135deg, #cc4736, #a8382a); font-size: .9rem; letter-spacing: .12em; padding: .5rem 1.4rem; box-shadow: 0 4px 16px rgba(204,71,54,.4); }
+  .hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2.4rem, 5.5vw, 3.8rem); color: var(--mod-th-text); line-height: 1.1; margin-bottom: .6rem; }
+  .hero-sub { font-size: 1.1rem; color: #5a1a14; max-width: 640px; margin: 0 auto 1rem; line-height: 1.5; }
+  .hero-city { display: inline-flex; align-items: center; gap: .5rem; background: var(--white); border: 2px solid var(--mod-border); border-radius: 20px; padding: .4rem 1rem; font-size: .88rem; font-weight: 700; color: var(--mod-dk); margin: .3rem; }
+  .hero-quote { margin-top: 1.5rem; font-family: var(--fh); font-style: italic; font-size: 1.15rem; color: var(--mod-dk); }
+
+  /* LAYOUT */
+  .section { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+  .section-title { font-family: var(--fh); font-style: italic; font-size: 1.8rem; color: var(--mod-dk); margin-bottom: .3rem; }
+  .section-sub { font-size: .93rem; color: #666; margin-bottom: 1.5rem; }
+  .divider { border: none; border-top: 2px solid var(--mod-border); opacity: .4; margin: 0; }
+
+  /* SONG SECTION */
+  .song-box { background: var(--white); border: 2px solid var(--mod-border); border-radius: 16px; padding: 1.8rem; margin-bottom: 1.5rem; }
+  .song-header { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
+  .song-icon { font-size: 3rem; flex-shrink: 0; }
+  .song-info h3 { font-family: var(--fh); font-style: italic; font-size: 1.4rem; color: var(--mod-dk); margin-bottom: .3rem; }
+  .song-info p { font-size: .9rem; color: #555; }
+  .song-tag { display: inline-block; background: var(--mod-th); color: var(--mod-th-text); font-size: .75rem; font-weight: 700; padding: .2rem .6rem; border-radius: 20px; margin: .2rem; }
+  .song-activity { background: var(--mod-hero); border-radius: 10px; padding: 1rem 1.2rem; margin-top: 1rem; font-size: .9rem; }
+  .song-activity h4 { font-weight: 700; color: var(--mod-dk); margin-bottom: .5rem; font-size: .9rem; text-transform: uppercase; letter-spacing: .04em; }
+  .song-activity ul { padding-left: 1.2rem; }
+  .song-activity li { margin-bottom: .4rem; color: #444; }
+  .yt-link { display: inline-flex; align-items: center; gap: .5rem; background: #ff0000; color: var(--white); text-decoration: none; font-weight: 700; font-size: .85rem; padding: .5rem 1.1rem; border-radius: 20px; margin-top: .8rem; transition: background .2s; }
+  .yt-link:hover { background: #cc0000; }
+
+  /* VOCAB */
+  .vocab-label { font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--mod-dk); margin-bottom: .7rem; margin-top: 1.4rem; }
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: .9rem; }
+  .vocab-card { background: var(--white); border: 2px solid var(--mod-border); border-radius: 12px; padding: 1rem 1.1rem; cursor: pointer; transition: transform .2s, box-shadow .2s; }
+  .vocab-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(204,71,54,.2); }
+  .vocab-card .emoji { font-size: 1.5rem; display: block; margin-bottom: .3rem; }
+  .vocab-card .it { font-family: var(--fh); font-style: italic; font-size: 1.1rem; color: var(--mod-dk); display: block; }
+  .vocab-card .es { font-size: .85rem; color: #666; display: block; margin-top: .2rem; }
+  .vocab-card .ex { font-size: .78rem; color: #888; font-style: italic; margin-top: .5rem; display: none; border-top: 1px solid var(--mod-th); padding-top: .5rem; }
+  .vocab-card.open .ex { display: block; }
+  .vocab-card.open { background: var(--mod-hero); }
+
+  /* FLIPCARD SETS */
+  .cards-intro { font-size: .9rem; color: #555; margin-bottom: 1rem; }
+  .set-label { font-size: .9rem; font-weight: 700; color: var(--mod-dk); margin: 1.4rem 0 .6rem; padding-left: .2rem; border-left: 3px solid var(--mod); padding-left: .7rem; }
+  .flipcard-row { display: flex; flex-wrap: wrap; gap: .7rem; margin-bottom: .5rem; }
+  .flipcard { width: 160px; height: 100px; perspective: 600px; cursor: pointer; }
+  .flipcard-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform .45s; }
+  .flipcard.flipped .flipcard-inner { transform: rotateY(180deg); }
+  .flipcard-front, .flipcard-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 10px; display: flex; align-items: center; justify-content: center; text-align: center; padding: .5rem; font-size: .85rem; }
+  .flipcard-front { background: var(--white); border: 2px solid var(--mod-border); color: var(--mod-dk); font-family: var(--fh); font-style: italic; font-size: .95rem; }
+  .flipcard-back { background: var(--mod-th); border: 2px solid var(--mod-border); transform: rotateY(180deg); color: var(--mod-th-text); font-weight: 600; font-size: .82rem; }
+
+  /* DISCOVERY BOXES */
+  .discovery { background: var(--white); border-left: 4px solid var(--mod); border-radius: 0 12px 12px 0; padding: 1.4rem 1.6rem; margin: 1.5rem 0; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+  .discovery h3 { font-family: var(--fh); font-style: italic; font-size: 1.25rem; color: var(--mod-dk); margin-bottom: .8rem; }
+  .discovery p { font-size: .95rem; margin-bottom: .8rem; color: #444; }
+  .tag { display: inline-block; background: var(--mod-th); color: var(--mod-th-text); font-size: .78rem; font-weight: 700; padding: .2rem .6rem; border-radius: 20px; margin: .2rem; }
+
+  /* FILL */
+  .fill-block { background: var(--cream); border: 2px dashed var(--mod-border); border-radius: 12px; padding: 1.4rem; margin: 1.2rem 0; }
+  .fill-block h4 { font-weight: 700; font-size: .95rem; color: var(--mod-dk); margin-bottom: 1rem; }
+  .fill-item { display: flex; align-items: center; gap: .6rem; margin-bottom: .8rem; font-size: .93rem; flex-wrap: wrap; }
+  .fill-item input { border: none; border-bottom: 2px solid var(--mod); background: transparent; font-family: var(--fb); font-size: .93rem; font-style: italic; color: var(--mod-dk); width: 150px; outline: none; padding: .15rem .3rem; }
+  .fill-item input.correct { border-bottom-color: var(--green); color: var(--green); }
+  .fill-item input.wrong { border-bottom-color: var(--mod); color: var(--mod); }
+  .check-btn { background: var(--mod); color: var(--white); border: none; border-radius: 20px; padding: .5rem 1.2rem; font-family: var(--fb); font-weight: 600; font-size: .85rem; cursor: pointer; margin-top: .5rem; transition: background .2s; }
+  .check-btn:hover { background: var(--mod-dk); }
+  .fill-feedback { font-size: .85rem; margin-top: .5rem; font-weight: 600; display: none; }
+  .fill-feedback.show { display: block; }
+  .fill-feedback.ok { color: var(--green); }
+  .fill-feedback.err { color: var(--mod-dk); }
+
+  /* DIALOGUE */
+  .dialogue { background: var(--white); border-radius: 14px; padding: 1.4rem; margin: 1.2rem 0; border: 2px solid var(--mod-border); }
+  .dialogue h4 { font-weight: 700; font-size: .9rem; color: var(--mod-dk); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: .05em; }
+  .bubble-wrap { display: flex; flex-direction: column; gap: .7rem; }
+  .b { display: flex; gap: .7rem; align-items: flex-start; }
+  .b.r { flex-direction: row-reverse; }
+  .b-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--mod-th); border: 2px solid var(--mod-border); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .b.r .b-avatar { background: var(--cream-dk); }
+  .b-text { background: var(--cream-dk); border-radius: 0 12px 12px 12px; padding: .7rem 1rem; max-width: 72%; font-size: .9rem; }
+  .b.r .b-text { background: var(--mod-th); border-radius: 12px 0 12px 12px; text-align: right; }
+  .b-text .it { font-family: var(--fh); font-style: italic; color: var(--mod-dk); }
+  .b-text .es { font-size: .78rem; color: #888; margin-top: .2rem; }
+  .b-speaker { font-size: .72rem; font-weight: 700; color: #999; margin-bottom: .15rem; letter-spacing: .04em; }
+
+  /* READING */
+  .reading-box { background: var(--white); border: 2px solid var(--mod-border); border-radius: 14px; padding: 1.6rem; margin: 1.2rem 0; }
+  .reading-box h4 { font-weight: 700; color: var(--mod-dk); margin-bottom: 1rem; }
+  .reading-text { background: var(--cream); border-left: 3px solid var(--mod); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; font-size: .92rem; line-height: 1.75; margin-bottom: 1.2rem; color: #444; font-style: italic; }
+  .question { margin-bottom: 1rem; }
+  .question p { font-size: .92rem; font-weight: 600; margin-bottom: .5rem; }
+  .options { display: flex; flex-direction: column; gap: .4rem; }
+  .option-btn { background: var(--cream); border: 2px solid var(--cream-dk); border-radius: 8px; padding: .5rem 1rem; font-family: var(--fb); font-size: .85rem; cursor: pointer; text-align: left; transition: border-color .2s; }
+  .option-btn:hover { border-color: var(--mod); }
+  .option-btn.correct { border-color: var(--green); background: #eafaf3; color: var(--green); }
+  .option-btn.wrong { border-color: var(--mod); background: #fde4e1; color: var(--mod-dk); }
+
+  /* MATCHING */
+  .matching { background: var(--white); border-radius: 14px; padding: 1.4rem; margin: 1.2rem 0; border: 2px solid var(--mod-border); }
+  .matching h4 { font-weight: 700; font-size: .95rem; color: var(--mod-dk); margin-bottom: 1rem; }
+  .match-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .match-col h5 { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #999; margin-bottom: .6rem; }
+  .match-item { background: var(--cream); border: 2px solid var(--cream-dk); border-radius: 8px; padding: .5rem .8rem; font-size: .88rem; cursor: pointer; margin-bottom: .5rem; transition: border-color .2s; }
+  .match-item:hover { border-color: var(--mod); }
+  .match-item.selected { border-color: var(--mod); background: var(--mod-th); font-weight: 600; }
+  .match-item.matched { border-color: var(--green); background: #eafaf3; cursor: default; }
+  .match-item.wrong-match { border-color: var(--mod); background: #fde4e1; }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; margin: 1rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  th { background: var(--mod-th); color: var(--mod-th-text); font-weight: 700; padding: .65rem .9rem; text-align: left; }
+  td { padding: .6rem .9rem; border-bottom: 1px solid rgba(204,71,54,.15); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--mod-hero); }
+  .it-cell { font-family: var(--fh); font-style: italic; color: var(--mod-dk); font-weight: 600; }
+
+  /* JOURNEY SECTION */
+  .journey-wrap { background: linear-gradient(135deg, var(--mod-hero), var(--white)); border: 3px solid var(--mod-border); border-radius: 20px; padding: 2rem 1.8rem; text-align: center; }
+  .journey-wrap h2 { font-family: var(--fh); font-style: italic; font-size: 2rem; color: var(--mod-dk); margin-bottom: .5rem; }
+  .journey-wrap .sub { font-size: 1rem; color: #5a1a14; margin-bottom: 1.5rem; }
+  .journey-cities { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: .8rem; margin: 1rem 0; text-align: left; }
+  .journey-city { background: var(--white); border: 2px solid var(--mod-border); border-radius: 12px; padding: .9rem 1.1rem; }
+  .journey-city .num { font-size: .72rem; font-weight: 700; color: var(--mod-dk); letter-spacing: .08em; text-transform: uppercase; }
+  .journey-city .city-name { font-family: var(--fh); font-style: italic; font-size: 1.05rem; color: var(--mod-dk); margin: .2rem 0; }
+  .journey-city .city-phrase { font-size: .82rem; color: #555; font-style: italic; }
+  .journey-city .city-phrase em { color: var(--mod-dk); font-style: normal; font-weight: 600; }
+  .diploma-badge { display: inline-block; background: var(--mod); color: var(--white); font-size: 1.05rem; font-weight: 800; letter-spacing: .06em; padding: .8rem 2rem; border-radius: 30px; margin-top: 1.5rem; font-family: var(--fh); font-style: italic; }
+
+  /* CULTURE STRIP */
+  .culture-strip { background: linear-gradient(135deg, var(--mod-hero), var(--cream-dk)); border-top: 4px solid var(--mod); padding: 2rem 1.5rem; }
+  .culture-inner { max-width: 1100px; margin: 0 auto; }
+  .culture-strip h3 { font-family: var(--fh); font-style: italic; font-size: 1.4rem; color: var(--mod-dk); margin-bottom: .8rem; }
+  .culture-strip p { font-size: .93rem; color: #555; max-width: 760px; line-height: 1.7; }
+  .culture-strip strong { color: var(--mod-dk); }
+
+  /* ANIMATIONS */
+  [data-a] { opacity: 0; transform: translateY(22px); transition: opacity .55s, transform .55s; }
+  [data-a].visible { opacity: 1; transform: none; }
+
+  footer { background: var(--black); color: var(--cream); text-align: center; padding: 1.5rem; font-size: .82rem; margin-top: 0; }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .match-cols { grid-template-columns: 1fr; }
+    .flipcard { width: 140px; height: 90px; }
+    .journey-cities { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#"><img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=f5755ad" alt="Italiano Per Piacere" loading="lazy"></a>
+    <div class="nav-links">
+      <a href="#canzone">Azzurro</a>
+      <a href="#vocab">Vocab</a>
+      <a href="#dialogos">Diálogos</a>
+      <a href="#lectura">Made in Italy</a>
+      <a href="#viaggio">Il viaggio</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO ESPECIAL FINALE -->
+<div class="hero" id="top">
+  <div class="hero-badge finale-badge">✨ Viajeros · Módulo 10 · ¡FINALE! · Descubrimiento ✨</div>
+  <h1>L'ultima serata</h1>
+  <p class="hero-sub">La última noche en Italia antes de volver. El viaje terminó pero los recuerdos — y el italiano — se quedan para siempre. ¡Hora de comprar los regalos perfectos!</p>
+  <div>
+    <span class="hero-city">🇮🇹 Toda Italia</span>
+    <span class="hero-city">🛍 Shopping &amp; Made in Italy</span>
+    <span class="hero-city">🎵 Azzurro — Celentano</span>
+  </div>
+  <div class="hero-quote">"Azzurro, il pomeriggio è troppo azzurro e lungo per me..."</div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <span class="progress-label">Progreso del módulo final</span>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-pct" id="progressPct">0%</span>
+  </div>
+</div>
+
+<!-- CANCION AZZURRO -->
+<section class="section" id="canzone" data-a>
+  <h2 class="section-title">🎵 "Azzurro" — Adriano Celentano</h2>
+  <p class="section-sub">La canción que cierra el viaje. Antes de escuchar, hacete esta pregunta: ¿cuál fue tu ciudad favorita del recorrido?</p>
+
+  <div class="song-box">
+    <div class="song-header">
+      <div class="song-icon">🎤</div>
+      <div class="song-info">
+        <h3>"Azzurro" (1968) — Adriano Celentano</h3>
+        <p>Compuesta por Paolo Conte, "Azzurro" es uno de los himnos del pop italiano. Habla de un día de verano largo y vacío, del deseo de estar con alguien, de la belleza melancólica de Italia. El "azzurro" (azul cielo) es el color de Italia en verano — y es perfecto para cerrar nuestro viaje.</p>
+        <div style="margin-top:.7rem">
+          <span class="song-tag">Pop italiano</span>
+          <span class="song-tag">1968</span>
+          <span class="song-tag">Paolo Conte</span>
+          <span class="song-tag">Nostalgia</span>
+          <span class="song-tag">Verano</span>
+        </div>
+        <a href="https://youtu.be/KH3M3JVa3To" target="_blank" class="yt-link">▶ Escuchar en YouTube</a>
+      </div>
+    </div>
+
+    <div class="song-activity">
+      <h4>Antes de escuchar — reflexioná</h4>
+      <ul>
+        <li>¿Cuál fue tu ciudad favorita del viaje virtual por Italia?</li>
+        <li>¿Qué producto Made in Italy comprarías como recuerdo?</li>
+        <li>¿Qué palabras en italiano ya conocés relacionadas con el verano y el cielo?</li>
+      </ul>
+    </div>
+
+    <div class="song-activity" style="margin-top:.8rem; background: var(--cream);">
+      <h4>Vocabulario clave de la canción</h4>
+      <div style="display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.4rem">
+        <span class="tag">azzurro = azul cielo</span>
+        <span class="tag">il pomeriggio = la tarde</span>
+        <span class="tag">il mare = el mar</span>
+        <span class="tag">il sole = el sol</span>
+        <span class="tag">il vento = el viento</span>
+        <span class="tag">l'estate = el verano</span>
+        <span class="tag">lontano = lejos</span>
+        <span class="tag">tornare = volver</span>
+        <span class="tag">bella = hermosa</span>
+        <span class="tag">aspettare = esperar</span>
+      </div>
+    </div>
+
+    <div class="song-activity" style="margin-top:.8rem; background: var(--mod-hero);">
+      <h4>Después de escuchar — respondé</h4>
+      <ul>
+        <li>¿Qué palabras reconociste? Intentá anotar al menos 5.</li>
+        <li>¿Qué emociones te generó la canción? ¿Nostalgia, alegría, melancolía?</li>
+        <li>Practicá en voz alta: <em>"Questa estate sono andato/a in Italia. Ho visitato dieci città bellissime."</em></li>
+        <li>¿Qué tiene en común la nostalgia de la canción con el cierre de este curso?</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- VOCABULARIO -->
+<section class="section" id="vocab" data-a>
+  <h2 class="section-title">Vocabulario del shopping 🛍</h2>
+  <p class="section-sub">Hacé clic en cada tarjeta para ver un ejemplo de uso. ¡18 palabras esenciales para el último día de compras!</p>
+
+  <div class="vocab-label">🏪 Tiendas y lugares</div>
+  <div class="vocab-grid">
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🏬</span>
+      <span class="it">il negozio</span>
+      <span class="es">la tienda</span>
+      <span class="ex">Il negozio apre alle 9. — La tienda abre a las 9.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">👗</span>
+      <span class="it">la boutique</span>
+      <span class="es">la boutique</span>
+      <span class="ex">Questa boutique vende solo marche italiane. — Esta boutique vende solo marcas italianas.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🏪</span>
+      <span class="it">il mercato</span>
+      <span class="es">el mercado</span>
+      <span class="ex">Al mercato i prezzi sono meno cari. — En el mercado los precios son más baratos.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🏢</span>
+      <span class="it">il centro commerciale</span>
+      <span class="es">el shopping / centro comercial</span>
+      <span class="ex">Il centro commerciale è aperto fino alle 22. — El shopping está abierto hasta las 22.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🪞</span>
+      <span class="it">il camerino</span>
+      <span class="es">el probador</span>
+      <span class="ex">Posso usare il camerino? — ¿Puedo usar el probador?</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">💳</span>
+      <span class="it">la cassa</span>
+      <span class="es">la caja (registradora)</span>
+      <span class="ex">Pago alla cassa. — Pago en la caja.</span>
+    </div>
+  </div>
+
+  <div class="vocab-label">👚 Tallas y precios</div>
+  <div class="vocab-grid">
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">📏</span>
+      <span class="it">la taglia</span>
+      <span class="es">la talla (ropa)</span>
+      <span class="ex">Che taglia porta? Taglia M, grazie. — ¿Qué talla usa? Talla M, gracias.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">👟</span>
+      <span class="it">il numero</span>
+      <span class="es">el número (calzado)</span>
+      <span class="ex">Porto il numero 42. — Uso el número 42.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">💶</span>
+      <span class="it">lo sconto</span>
+      <span class="es">el descuento</span>
+      <span class="ex">Mi fa uno sconto? — ¿Me hace un descuento?</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🏷️</span>
+      <span class="it">il saldo / l'offerta</span>
+      <span class="es">liquidación / oferta</span>
+      <span class="ex">È periodo di saldi! Ci sono offerte fantastiche! — ¡Es época de liquidaciones! ¡Hay ofertas fantásticas!</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">💰</span>
+      <span class="it">il centesimo</span>
+      <span class="es">el centavo / céntimo</span>
+      <span class="ex">Costa 5 euro e 50 centesimi. — Cuesta 5 euros con 50 centavos.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🧾</span>
+      <span class="it">la ricevuta</span>
+      <span class="es">el recibo</span>
+      <span class="ex">Posso avere la ricevuta? — ¿Puedo tener el recibo?</span>
+    </div>
+  </div>
+
+  <div class="vocab-label">🇮🇹 Made in Italy</div>
+  <div class="vocab-grid">
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🐄</span>
+      <span class="it">il cuoio / la pelle</span>
+      <span class="es">el cuero (curtido / natural)</span>
+      <span class="ex">Il cuoio di Firenze è famoso nel mondo. — El cuero de Florencia es famoso en el mundo.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🧵</span>
+      <span class="it">la seta</span>
+      <span class="es">la seda</span>
+      <span class="ex">La seta di Como è meravigliosa. — La seda de Como es maravillosa.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🏺</span>
+      <span class="it">la ceramica</span>
+      <span class="es">la cerámica</span>
+      <span class="ex">La ceramica di Faenza è bellissima. — La cerámica de Faenza es hermosísima.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🫧</span>
+      <span class="it">il vetro di Murano</span>
+      <span class="es">el vidrio de Murano</span>
+      <span class="ex">Questo vaso è vetro autentico di Murano. — Este jarrón es vidrio auténtico de Murano.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">✅</span>
+      <span class="it">autentico / artigianale</span>
+      <span class="es">auténtico / artesanal</span>
+      <span class="ex">Cerca sempre il marchio autentico fatto a mano. — Buscá siempre el sello auténtico hecho a mano.</span>
+    </div>
+    <div class="vocab-card" onclick="this.classList.toggle('open');updateProgress()">
+      <span class="emoji">🛡️</span>
+      <span class="it">la garanzia</span>
+      <span class="es">la garantía</span>
+      <span class="ex">C'è una garanzia di due anni su questo prodotto. — Hay una garantía de dos años en este producto.</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SETS DE TARJETAS -->
+<section class="section" data-a>
+  <h2 class="section-title">Tarjetas de vocabulario 🃏</h2>
+  <p class="cards-intro">Hacé clic en cada tarjeta para ver la traducción. ¡Repasá antes de ir de shopping!</p>
+
+  <div class="set-label">Set 1 — Tiendas y mercados</div>
+  <div class="flipcard-row">
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">il negozio</div>
+        <div class="flipcard-back">la tienda</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">la boutique</div>
+        <div class="flipcard-back">boutique de ropa</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">il mercato</div>
+        <div class="flipcard-back">el mercado</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">la bancarella</div>
+        <div class="flipcard-back">el puesto (del mercado)</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">il camerino</div>
+        <div class="flipcard-back">el probador</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">la cassa</div>
+        <div class="flipcard-back">la caja</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">la vetrina</div>
+        <div class="flipcard-back">la vidriera</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">il commesso</div>
+        <div class="flipcard-back">el vendedor / dependiente</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="set-label">Set 2 — Made in Italy (productos auténticos)</div>
+  <div class="flipcard-row">
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">la pelle</div>
+        <div class="flipcard-back">el cuero</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">la seta</div>
+        <div class="flipcard-back">la seda</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">la ceramica</div>
+        <div class="flipcard-back">la cerámica</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">il vetro di Murano</div>
+        <div class="flipcard-back">vidrio de Murano</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">fatto a mano</div>
+        <div class="flipcard-back">hecho a mano</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">artigianale</div>
+        <div class="flipcard-back">artesanal</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">autentico</div>
+        <div class="flipcard-back">auténtico</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">la garanzia</div>
+        <div class="flipcard-back">la garantía</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="set-label">Set 3 — Frases de compras</div>
+  <div class="flipcard-row">
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">Che taglia porta?</div>
+        <div class="flipcard-back">¿Qué talla usa?</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">Mi fa uno sconto?</div>
+        <div class="flipcard-back">¿Me hace un descuento?</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">Posso provare?</div>
+        <div class="flipcard-back">¿Puedo probarme?</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">Quanto costa?</div>
+        <div class="flipcard-back">¿Cuánto cuesta?</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">Lo prendo!</div>
+        <div class="flipcard-back">¡Me lo llevo!</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">Ce l'avete in altri colori?</div>
+        <div class="flipcard-back">¿Lo tienen en otros colores?</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">È troppo caro!</div>
+        <div class="flipcard-back">¡Es demasiado caro!</div>
+      </div>
+    </div>
+    <div class="flipcard" onclick="this.classList.toggle('flipped');updateProgress()">
+      <div class="flipcard-inner">
+        <div class="flipcard-front">Pago in contanti.</div>
+        <div class="flipcard-back">Pago en efectivo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CAJAS DE DESCUBRIMIENTO -->
+<section class="section" data-a>
+  <h2 class="section-title">Descubrí cómo funciona 🔍</h2>
+
+  <div class="discovery">
+    <h3>Descubrimiento 1 — Pedir la talla</h3>
+    <p>Para preguntar qué talla necesita alguien o para decir cuál es la tuya:</p>
+    <span class="tag">Che taglia porta? (formal)</span>
+    <span class="tag">Che taglia porti? (informal)</span>
+    <span class="tag">Porto la taglia M / S / L / XL</span>
+    <p style="margin-top:.8rem">Para zapatos usás <em>numero</em> en vez de <em>taglia</em>: <strong>"Che numero porta? Porto il 41."</strong></p>
+  </div>
+
+  <div class="fill-block" id="fill1">
+    <h4>Completá las frases sobre tallas 🖊</h4>
+    <div class="fill-item">
+      <span>Porto la</span>
+      <input type="text" placeholder="taglia" data-answer="taglia" id="f1_1">
+      <span>XL, grazie.</span>
+    </div>
+    <div class="fill-item">
+      <span>Che</span>
+      <input type="text" placeholder="numero" data-answer="numero" id="f1_2">
+      <span>porta? Porto il 43.</span>
+    </div>
+    <div class="fill-item">
+      <span>Scusi, avete questa camicia in</span>
+      <input type="text" placeholder="taglia" data-answer="taglia" id="f1_3">
+      <span>S?</span>
+    </div>
+    <button class="check-btn" onclick="checkFill('fill1')">Verificar</button>
+    <div class="fill-feedback" id="fill1-feedback"></div>
+  </div>
+
+  <div class="discovery">
+    <h3>Descubrimiento 2 — Pedir descuento y comparar</h3>
+    <p>Los italianos (y los turistas listos) no tienen miedo de pedir un descuento — es parte de la cultura de los mercados:</p>
+    <span class="tag">Mi fa uno sconto? = ¿Me hace un descuento?</span>
+    <span class="tag">È troppo caro = Es demasiado caro</span>
+    <span class="tag">Le faccio il 10% = Le hago el 10%</span>
+    <p style="margin-top:.8rem">Para comparar: <strong>più caro di</strong> (más caro que), <strong>meno caro della boutique</strong> (más barato que la boutique).</p>
+  </div>
+
+  <div class="fill-block" id="fill2">
+    <h4>Completá los diálogos de negociación 🖊</h4>
+    <div class="fill-item">
+      <span>È bella, ma è troppo</span>
+      <input type="text" placeholder="cara" data-answer="cara" id="f2_1">
+      <span>. Mi fa uno sconto?</span>
+    </div>
+    <div class="fill-item">
+      <span>Questo mercato è</span>
+      <input type="text" placeholder="meno caro" data-answer="meno caro" id="f2_2">
+      <span>della boutique.</span>
+    </div>
+    <div class="fill-item">
+      <span>Questa borsa è</span>
+      <input type="text" placeholder="più bella" data-answer="più bella" id="f2_3">
+      <span>di quella.</span>
+    </div>
+    <button class="check-btn" onclick="checkFill('fill2')">Verificar</button>
+    <div class="fill-feedback" id="fill2-feedback"></div>
+  </div>
+
+  <div class="discovery">
+    <h3>Descubrimiento 3 — Questo vs. Quello</h3>
+    <p><strong>Questo/a/i/e</strong> señala algo CERCA de vos. <strong>Quello/a/i/e</strong> señala algo LEJOS. En una tienda es esencial para señalar prendas:</p>
+    <span class="tag">Questo vestito (aquí) — Quello vestito (allá)</span>
+    <span class="tag">Questa borsa (aquí) — Quella borsa (allá)</span>
+    <span class="tag">Questi guanti — Quei guanti</span>
+    <p style="margin-top:.8rem"><em>Atención:</em> quello cambia como el artículo: <strong>quel</strong> vestito, <strong>quella</strong> scarpa, <strong>quei</strong> guanti, <strong>quegli</strong> occhiali.</p>
+  </div>
+
+  <div class="fill-block" id="fill3">
+    <h4>Questo o quello — completá 🖊</h4>
+    <div class="fill-item">
+      <span>Vorrei provare</span>
+      <input type="text" placeholder="quella" data-answer="quella" id="f3_1">
+      <span>giacca rossa laggiù.</span>
+    </div>
+    <div class="fill-item">
+      <span>Prendo</span>
+      <input type="text" placeholder="questi" data-answer="questi" id="f3_2">
+      <span>guanti qui.</span>
+    </div>
+    <div class="fill-item">
+      <span>Quanto costa</span>
+      <input type="text" placeholder="quel" data-answer="quel" id="f3_3">
+      <span>vestito di seta?</span>
+    </div>
+    <button class="check-btn" onclick="checkFill('fill3')">Verificar</button>
+    <div class="fill-feedback" id="fill3-feedback"></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- DIÁLOGOS -->
+<section class="section" id="dialogos" data-a>
+  <h2 class="section-title">Diálogos reales 🗣</h2>
+  <p class="section-sub">Leé, escuchá mentalmente y practicá en voz alta. Estos son los diálogos del último día de compras.</p>
+
+  <div class="dialogue">
+    <h4>Diálogo 1 — En una boutique de Milán</h4>
+    <div class="bubble-wrap">
+      <div class="b">
+        <div class="b-avatar">👩‍💼</div>
+        <div class="b-text">
+          <div class="b-speaker">COMMESSA</div>
+          <div class="it">Buonasera! Posso aiutarla?</div>
+          <div class="es">¡Buenas tardes! ¿Puedo ayudarla?</div>
+        </div>
+      </div>
+      <div class="b r">
+        <div class="b-avatar">🧳</div>
+        <div class="b-text">
+          <div class="b-speaker">TURISTA</div>
+          <div class="it">Sì, grazie. Vorrei provare quella giacca di pelle in vetrina. Ce l'avete in taglia M?</div>
+          <div class="es">Sí, gracias. Quisiera probarme esa campera de cuero en la vidriera. ¿La tienen en talla M?</div>
+        </div>
+      </div>
+      <div class="b">
+        <div class="b-avatar">👩‍💼</div>
+        <div class="b-text">
+          <div class="b-speaker">COMMESSA</div>
+          <div class="it">Certo! Il camerino è là a destra. Questa giacca è fatta a mano — è la più bella del negozio!</div>
+          <div class="es">¡Claro! El probador está allá a la derecha. Esta campera está hecha a mano — ¡es la más linda de la tienda!</div>
+        </div>
+      </div>
+      <div class="b r">
+        <div class="b-avatar">🧳</div>
+        <div class="b-text">
+          <div class="b-speaker">TURISTA</div>
+          <div class="it">È bellissima davvero! Ma è un po' cara. Mi fa uno sconto?</div>
+          <div class="es">¡Es hermosísima de verdad! Pero es un poco cara. ¿Me hace un descuento?</div>
+        </div>
+      </div>
+      <div class="b">
+        <div class="b-avatar">👩‍💼</div>
+        <div class="b-text">
+          <div class="b-speaker">COMMESSA</div>
+          <div class="it">Per lei il 10%! Glielo assicuro, è il migliore acquisto del suo viaggio in Italia.</div>
+          <div class="es">¡Para usted el 10%! Se lo aseguro, es la mejor compra de su viaje a Italia.</div>
+        </div>
+      </div>
+      <div class="b r">
+        <div class="b-avatar">🧳</div>
+        <div class="b-text">
+          <div class="b-speaker">TURISTA</div>
+          <div class="it">Perfetto! La prendo! Posso pagare con carta?</div>
+          <div class="es">¡Perfecto! ¡Me la llevo! ¿Puedo pagar con tarjeta?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <h4>Diálogo 2 — Al mercato di Campo de' Fiori, Roma</h4>
+    <div class="bubble-wrap">
+      <div class="b">
+        <div class="b-avatar">🧑‍🌾</div>
+        <div class="b-text">
+          <div class="b-speaker">VENDITORE</div>
+          <div class="it">Prego! Tutto artigianale, tutto autentico! Cosa vuole?</div>
+          <div class="es">¡Por favor! ¡Todo artesanal, todo auténtico! ¿Qué quiere?</div>
+        </div>
+      </div>
+      <div class="b r">
+        <div class="b-avatar">🧳</div>
+        <div class="b-text">
+          <div class="b-speaker">TURISTA</div>
+          <div class="it">Quanto costano quei guanti di pelle? Quelli più scuri laggiù.</div>
+          <div class="es">¿Cuánto cuestan esos guantes de cuero? Los más oscuros de allá.</div>
+        </div>
+      </div>
+      <div class="b">
+        <div class="b-avatar">🧑‍🌾</div>
+        <div class="b-text">
+          <div class="b-speaker">VENDITORE</div>
+          <div class="it">Questi costano 45 euro. Quelli sono i più belli del mercato! Pelle di Firenze!</div>
+          <div class="es">Estos cuestan 45 euros. ¡Aquellos son los más lindos del mercado! ¡Cuero de Florencia!</div>
+        </div>
+      </div>
+      <div class="b r">
+        <div class="b-avatar">🧳</div>
+        <div class="b-text">
+          <div class="b-speaker">TURISTA</div>
+          <div class="it">Me li dà a 38? È il mio ultimo giorno a Roma. Pago in contanti.</div>
+          <div class="es">¿Me los da a 38? Es mi último día en Roma. Pago en efectivo.</div>
+        </div>
+      </div>
+      <div class="b">
+        <div class="b-avatar">🧑‍🌾</div>
+        <div class="b-text">
+          <div class="b-speaker">VENDITORE</div>
+          <div class="it">Va bene, 40 — ultimo prezzo! E torni presto in Italia!</div>
+          <div class="es">Bueno, 40 — ¡último precio! ¡Y vuelva pronto a Italia!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- LECTURA MADE IN ITALY -->
+<section class="section" id="lectura" data-a>
+  <h2 class="section-title">Il Made in Italy 📖</h2>
+  <p class="section-sub">Leé el texto y respondé. El Made in Italy es mucho más que una etiqueta.</p>
+
+  <div class="reading-box">
+    <h4>Leé y respondé las preguntas</h4>
+    <div class="reading-text">
+      Il "Made in Italy" è molto più di una semplice etichetta. Rappresenta una filosofia produttiva basata sulla qualità, sull'artigianato e sulla tradizione secolare. Nei settori della moda, del cibo, del design e dell'arredamento, i prodotti italiani sono considerati tra i migliori del mondo. La seta viene principalmente da Como (Lombardia), il cuoio pregiato da Firenze (Toscana), la ceramica da Faenza (Emilia-Romagna) e il vetro artistico da Murano (Venezia). Per riconoscere un prodotto autentico, cerca l'etichetta "Made in Italy" — non "Made in EU" o "Designed in Italy" — e preferibilmente un certificato di autenticità. Ricorda: comprare meno cose ma di qualità ottima è sempre la scelta migliore.
+    </div>
+
+    <div class="question">
+      <p>1. ¿Qué representa el Made in Italy según el texto?</p>
+      <div class="options">
+        <button class="option-btn" onclick="checkOption(this, false)">Solo una marca de ropa cara</button>
+        <button class="option-btn" onclick="checkOption(this, true)">Una filosofía de calidad, artesanía y tradición</button>
+        <button class="option-btn" onclick="checkOption(this, false)">Una etiqueta legal obligatoria por la UE</button>
+      </div>
+    </div>
+
+    <div class="question">
+      <p>2. ¿De qué región viene el cuero (cuoio) de calidad?</p>
+      <div class="options">
+        <button class="option-btn" onclick="checkOption(this, false)">Como, Lombardia</button>
+        <button class="option-btn" onclick="checkOption(this, false)">Murano, Venezia</button>
+        <button class="option-btn" onclick="checkOption(this, true)">Firenze, Toscana</button>
+      </div>
+    </div>
+
+    <div class="question">
+      <p>3. ¿Cómo reconocés un producto auténtico?</p>
+      <div class="options">
+        <button class="option-btn" onclick="checkOption(this, false)">Porque es el más caro del mercado</button>
+        <button class="option-btn" onclick="checkOption(this, true)">Con la etiqueta "Made in Italy" y certificado de autenticidad</button>
+        <button class="option-btn" onclick="checkOption(this, false)">Si dice "Designed in Italy"</button>
+      </div>
+    </div>
+
+    <div class="question">
+      <p>4. ¿Qué producto famoso viene de Faenza?</p>
+      <div class="options">
+        <button class="option-btn" onclick="checkOption(this, false)">La seta pregiata</button>
+        <button class="option-btn" onclick="checkOption(this, true)">La ceramica</button>
+        <button class="option-btn" onclick="checkOption(this, false)">Il vetro artistico</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- MATCHING PRODUCTOS Y REGIONES -->
+<section class="section" data-a>
+  <h2 class="section-title">Produto → Región 🔗</h2>
+  <p class="section-sub">Asociá cada producto con la región italiana donde se produce.</p>
+
+  <div class="matching">
+    <h4>¿De dónde viene cada producto famoso del Made in Italy?</h4>
+    <div class="match-cols">
+      <div class="match-col">
+        <h5>Producto</h5>
+        <div class="match-item" onclick="selectMatch(this,'A')" data-pair="A">🧵 Seta pregiata</div>
+        <div class="match-item" onclick="selectMatch(this,'B')" data-pair="B">🫧 Vetro artistico</div>
+        <div class="match-item" onclick="selectMatch(this,'C')" data-pair="C">👜 Cuoio di lusso</div>
+        <div class="match-item" onclick="selectMatch(this,'D')" data-pair="D">🏺 Ceramica artistica</div>
+      </div>
+      <div class="match-col">
+        <h5>Origen</h5>
+        <div class="match-item" onclick="selectMatch(this,'3')" data-pair="3">Firenze, Toscana</div>
+        <div class="match-item" onclick="selectMatch(this,'1')" data-pair="1">Como, Lombardia</div>
+        <div class="match-item" onclick="selectMatch(this,'4')" data-pair="4">Faenza, Emilia-Romagna</div>
+        <div class="match-item" onclick="selectMatch(this,'2')" data-pair="2">Murano, Venezia</div>
+      </div>
+    </div>
+    <div style="margin-top:.8rem">
+      <button class="check-btn" onclick="checkMatching()">Verificar</button>
+      <div class="fill-feedback" id="match-feedback"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SECCIÓN ESPECIAL: IL NOSTRO VIAGGIO -->
+<section class="section" id="viaggio" data-a>
+  <div class="journey-wrap">
+    <h2>Il nostro viaggio 🗺</h2>
+    <p class="sub">Recorrimos 10 ciudades de Italia. Cada una nos dejó una frase, una palabra, un recuerdo. Así fue nuestro viaje:</p>
+
+    <div class="journey-cities">
+      <div class="journey-city">
+        <div class="num">Módulo 1</div>
+        <div class="city-name">Milano 🏙</div>
+        <div class="city-phrase"><em>"Come ti chiami?"</em> — Los primeros pasos en italiano, en la ciudad de la moda.</div>
+      </div>
+      <div class="journey-city">
+        <div class="num">Módulo 2</div>
+        <div class="city-name">Roma 🏛</div>
+        <div class="city-phrase"><em>"Giri a destra, poi a sinistra."</em> — Nos perdimos y nos encontramos en la Ciudad Eterna.</div>
+      </div>
+      <div class="journey-city">
+        <div class="num">Módulo 3</div>
+        <div class="city-name">Venezia 🛶</div>
+        <div class="city-phrase"><em>"Questo palazzo è bellissimo!"</em> — El agua, los canales y la magia que no se olvida.</div>
+      </div>
+      <div class="journey-city">
+        <div class="num">Módulo 4</div>
+        <div class="city-name">Firenze 🎨</div>
+        <div class="city-phrase"><em>"Il David è il più famoso del mondo."</em> — Arte, historia y cuero auténtico de Toscana.</div>
+      </div>
+      <div class="journey-city">
+        <div class="num">Módulo 5</div>
+        <div class="city-name">Napoli 🍕</div>
+        <div class="city-phrase"><em>"Una pizza margherita, per favore!"</em> — La ciudad más apasionada y la mejor pizza del universo.</div>
+      </div>
+      <div class="journey-city">
+        <div class="num">Módulo 6</div>
+        <div class="city-name">Torino ☕</div>
+        <div class="city-phrase"><em>"Un caffè e una pasta, grazie."</em> — El café que despertó a toda Italia.</div>
+      </div>
+      <div class="journey-city">
+        <div class="num">Módulo 7</div>
+        <div class="city-name">Bologna 🍝</div>
+        <div class="city-phrase"><em>"Questo ragù è il migliore che abbia mai mangiato."</em> — La capital de la gastronomía italiana.</div>
+      </div>
+      <div class="journey-city">
+        <div class="num">Módulo 8</div>
+        <div class="city-name">Palermo 🐟</div>
+        <div class="city-phrase"><em>"Al mercato c'è di tutto!"</em> — Colores, aromas y la mezcla cultural del sur.</div>
+      </div>
+      <div class="journey-city">
+        <div class="num">Módulo 9</div>
+        <div class="city-name">Bari 🌊</div>
+        <div class="city-phrase"><em>"Aiuto, ho perso il passaporto!"</em> — Aprendimos a resolver imprevistos con calma (¡y en italiano!).</div>
+      </div>
+      <div class="journey-city">
+        <div class="num">Módulo 10</div>
+        <div class="city-name">Tutta Italia 🛍</div>
+        <div class="city-phrase"><em>"L'ultima serata — un ricordo per sempre."</em> — El último día de compras y el primero de una nueva vida en italiano.</div>
+      </div>
+    </div>
+
+    <p style="margin: 1.2rem 0 .5rem; font-size: 1rem; color: #5a1a14; font-style: italic;">"Azzurro, il pomeriggio è troppo azzurro e lungo per me... ma questo viaggio è stato perfetto."</p>
+
+    <div class="diploma-badge">Viajeros completado ✓</div>
+    <p style="margin-top: 1rem; font-size: .9rem; color: #888;">¿Querés seguir? El próximo nivel es <strong>A1 completo</strong> con <em>Italiano Per Piacere</em>.</p>
+  </div>
+</section>
+
+<!-- CULTURE STRIP -->
+<div class="culture-strip">
+  <div class="culture-inner">
+    <h3>Consiglio culturale — El Made in Italy: más que una etiqueta</h3>
+    <p>El <strong>Made in Italy</strong> es una de las marcas más respetadas del mundo. Los cuatro pilares son: <em>moda</em> (Gucci, Prada, Versace — moda que define épocas), <em>alimentazione</em> (parmigiano, prosciutto, aceto balsamico, vino — sabores que nadie imita), <em>design</em> (Ferrari, Vespa, Alessi — objetos que son obras de arte), <em>arredo</em> (mobiliario de diseño que vive en museos). Al comprar en mercados, pedí siempre la <em>ricevuta</em>, verificá que diga <strong>"Made in Italy"</strong> — no "Made in EU" o "Designed in Italy" — y buscá el sello de artesanía. Los mejores mercados para comprar productos auténticos: <em>Campo de' Fiori</em> (Roma), <em>Mercato di Sant'Ambrogio</em> (Firenze), <em>Porta Portese</em> (Roma, domingos), <em>Mercato Centrale</em> (Firenze). La contraffazione (falsificación) es el mayor enemigo del Made in Italy — siempre mejor comprar menos cosas pero con historia y calidad real.</p>
+  </div>
+</div>
+
+<footer>
+  <p>Módulo 10 · L'ultima serata · FINALE · Viajeros · <a href="https://italianoperpiacere.com">italianoperpiacere.com</a></p>
+</footer>
+
+<script>
+// PROGRESS
+function updateProgress() {
+  const opened = document.querySelectorAll('.vocab-card.open').length;
+  const flipped = document.querySelectorAll('.flipcard.flipped').length;
+  const correct = document.querySelectorAll('.option-btn.correct').length;
+  const fills = document.querySelectorAll('input.correct').length;
+  const total = 18 + 24 + 4 + 9; // vocab + flipcards + questions + fills
+  const score = Math.min(100, Math.round(((opened + flipped + correct + fills) / total) * 100));
+  document.getElementById('progressFill').style.width = score + '%';
+  document.getElementById('progressPct').textContent = score + '%';
+}
+
+// NAV ACTIVE
+window.addEventListener('scroll', () => {
+  const ids = ['canzone','vocab','dialogos','lectura','viaggio'];
+  let cur = '';
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 130) cur = id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+  });
+});
+
+// FILL CHECK
+function checkFill(blockId) {
+  const block = document.getElementById(blockId);
+  const inputs = block.querySelectorAll('input');
+  let correct = 0;
+  inputs.forEach(inp => {
+    const ans = inp.dataset.answer.toLowerCase().trim();
+    const val = inp.value.toLowerCase().trim();
+    inp.classList.remove('correct','wrong');
+    if (val === ans) { inp.classList.add('correct'); correct++; }
+    else if (val.length > 0) { inp.classList.add('wrong'); }
+  });
+  const fb = document.getElementById(blockId + '-feedback');
+  fb.classList.add('show');
+  if (correct === inputs.length) {
+    fb.textContent = '¡Perfecto! Todas correctas. ✓';
+    fb.className = 'fill-feedback show ok';
+  } else {
+    fb.textContent = correct + ' de ' + inputs.length + ' correctas. ¡Intentá de nuevo!';
+    fb.className = 'fill-feedback show err';
+  }
+  updateProgress();
+}
+
+// OPTION CHECK
+function checkOption(btn, isCorrect) {
+  const group = btn.closest('.options');
+  group.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    group.querySelectorAll('.option-btn').forEach(b => { if (b._isCorrect) b.classList.add('correct'); });
+  }
+  updateProgress();
+}
+// Mark correct answers
+document.querySelectorAll('.option-btn').forEach(btn => {
+  const onclick = btn.getAttribute('onclick');
+  btn._isCorrect = onclick && onclick.includes('true');
+});
+
+// MATCHING
+let matchSelected = null;
+let matchPairs = { A:'1', B:'2', C:'3', D:'4' };
+let matchDone = {};
+function selectMatch(el, id) {
+  if (el.classList.contains('matched')) return;
+  const isLeft = ['A','B','C','D'].includes(id);
+  if (!matchSelected) {
+    el.classList.add('selected');
+    matchSelected = { el, id, isLeft };
+  } else {
+    if (matchSelected.isLeft === isLeft) {
+      document.querySelectorAll('.match-item.selected').forEach(i => i.classList.remove('selected'));
+      el.classList.add('selected');
+      matchSelected = { el, id, isLeft };
+      return;
+    }
+    const leftId = matchSelected.isLeft ? matchSelected.id : id;
+    const rightId = matchSelected.isLeft ? id : matchSelected.id;
+    matchDone[leftId] = rightId;
+    matchSelected.el.classList.remove('selected');
+    el.classList.remove('selected');
+    matchSelected = null;
+  }
+}
+function checkMatching() {
+  let correct = 0;
+  document.querySelectorAll('.match-item').forEach(item => item.classList.remove('matched','wrong-match'));
+  Object.entries(matchDone).forEach(([left, right]) => {
+    const ok = matchPairs[left] === right;
+    document.querySelectorAll('.match-item').forEach(item => {
+      if (item.dataset.pair === left || item.dataset.pair === right) {
+        item.classList.add(ok ? 'matched' : 'wrong-match');
+      }
+    });
+    if (ok) correct++;
+  });
+  const fb = document.getElementById('match-feedback');
+  fb.classList.add('show');
+  if (correct === 4) {
+    fb.textContent = '¡Perfecto! Los 4 pares son correctos. ¡Ahora ya sabés de dónde viene cada producto! ✓';
+    fb.className = 'fill-feedback show ok';
+  } else {
+    fb.textContent = correct + ' de 4 pares correctos. ¡Seguí intentando!';
+    fb.className = 'fill-feedback show err';
+  }
+}
+
+// INTERSECTION OBSERVER
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('[data-a]').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

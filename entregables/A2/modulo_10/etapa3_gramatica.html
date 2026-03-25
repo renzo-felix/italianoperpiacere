@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Módulo 10 A2 · Gramática — Come ti senti?</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--teal:#78a6ba;--teal-dk:#5a8ea0;--red:#cc4736;--green:#528e74;--black:#1a1a18;--fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;--hdr:var(--teal-dk);}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #78a6ba;box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#3d7a94;border-bottom-color:#78a6ba}
+#etoggle{background:rgba(0,0,0,.07);border:1px solid rgba(0,0,0,.12);color:var(--black);padding:6px 12px;border-radius:20px;cursor:pointer;font-size:.78rem;font-family:var(--fb);font-weight:600}
+body.hide-es .es{display:none}
+.hero{background:#deeef5;border-bottom:3px solid #78a6ba;color:var(--black);padding:48px 20px 40px;text-align:center}
+.hero::before,.hero::after{display:none}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:2.2rem;margin-bottom:8px;color:#1a1a18}
+.hero p{color:#1a1a18;opacity:.75;font-size:1.05rem;max-width:600px;margin:0 auto}
+.section{max-width:900px;margin:0 auto;padding:48px 20px}
+.section h2{font-family:var(--fh);font-style:italic;font-size:1.7rem;color:var(--hdr);margin-bottom:24px;padding-bottom:8px;border-bottom:2px solid var(--teal)}
+.rule-card{background:#fff;border-left:5px solid var(--teal);border-radius:0 12px 12px 0;padding:20px 24px;margin:20px 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.rule-card h3{color:var(--hdr);font-size:1rem;font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.rule-card p,.rule-card li{font-size:.95rem;margin-bottom:6px}
+.rule-card ul{padding-left:18px}
+.rule-card .es{color:#666;font-size:.88rem}
+.gtable{width:100%;border-collapse:collapse;margin:16px 0;font-size:.92rem}
+.gtable th{background:#b8d8e8;color:#1f4d60;padding:10px 14px;text-align:left;font-weight:600}
+.gtable td{padding:9px 14px;border-bottom:1px solid var(--cream-dk)}
+.gtable tr:nth-child(even) td{background:#eef6fa}
+.gtable tr:hover{background:#d4ecf5}
+.scheme{background:#deeef5;color:var(--black);border-radius:12px;padding:20px 24px;margin:20px 0;font-size:.95rem;font-family:monospace}
+.scheme .hl{color:var(--gold);font-weight:700}
+.scheme .line{margin:7px 0}
+.prac-box{background:#fff;border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 3px 12px rgba(0,0,0,.1)}
+.prac-box h3{color:var(--hdr);font-weight:700;margin-bottom:6px}
+.prac-box .inst{font-size:.88rem;color:#666;margin-bottom:18px}
+.prac-item{display:flex;align-items:center;gap:10px;margin:12px 0;flex-wrap:wrap}
+.prac-item span{font-size:.93rem}
+.prac-input{border:2px solid var(--cream-dk);border-radius:8px;padding:7px 12px;font-family:var(--fb);font-size:.92rem;width:200px;transition:border .2s}
+.prac-input:focus{outline:none;border-color:var(--teal)}
+.prac-input.ok{border-color:var(--green);background:#edf7f2}
+.prac-input.no{border-color:var(--red);background:#fdf0ee}
+.prac-btn{background:#c8e5f0;color:var(--black);border:none;border-radius:8px;padding:8px 20px;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.88rem;transition:background .2s;margin-top:8px}
+.prac-btn:hover{background:var(--teal-dk)}
+.prac-fb{font-size:.82rem;margin-top:8px;min-height:20px;font-weight:600}
+.prac-fb.ok{color:var(--green)}
+.prac-fb.no{color:var(--red)}
+.quiz-box{background:#deeef5;border-radius:16px;padding:32px;margin:24px 0;color:var(--black)}
+.quiz-box h3{font-family:var(--fh);font-style:italic;font-size:1.4rem;margin-bottom:20px}
+.q-item{background:rgba(0,0,0,.06);border-radius:10px;padding:16px 20px;margin:14px 0}
+.q-item p{font-size:.95rem;margin-bottom:12px;font-weight:600}
+.q-opts{display:flex;flex-direction:column;gap:8px}
+.q-opt{background:rgba(0,0,0,.05);border:2px solid transparent;border-radius:8px;padding:9px 16px;cursor:pointer;font-size:.9rem;transition:all .2s}
+.q-opt:hover{background:rgba(255,255,255,.25)}
+.q-opt.selected{border-color:var(--gold);background:rgba(239,207,127,.25)}
+.q-opt.correct{border-color:#6fcf97;background:rgba(111,207,151,.25)}
+.q-opt.wrong{border-color:#eb5757;background:rgba(235,87,87,.2)}
+.quiz-submit{display:block;margin:24px auto 0;background:var(--gold);color:var(--black);border:none;border-radius:10px;padding:12px 32px;font-family:var(--fb);font-weight:700;font-size:1rem;cursor:pointer}
+.quiz-submit:hover{opacity:.88}
+#quiz-result{text-align:center;margin-top:16px;font-size:1.1rem;font-weight:700;min-height:28px}
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:4px solid var(--teal-dk);padding:40px 20px;margin-top:40px}
+.culture-inner{max-width:700px;margin:0 auto;text-align:center}
+.culture-inner h3{font-family:var(--fh);font-style:italic;font-size:1.5rem;color:var(--black);margin-bottom:12px}
+.culture-inner p{font-size:.95rem;color:var(--black);max-width:600px;margin:0 auto}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+nav > a:not(.nav-logo):hover,nav > a:not(.nav-logo).active{opacity:1;color:#3d7a94;border-bottom-color:#78a6ba}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#irreg">Nomi irregolari</a>
+      <a href="#si">Si impersonale</a>
+      <a href="#imp">Imperativo formale</a>
+      <a href="#pratica">Pratica</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+<div class="hero">
+  <h1>Come ti senti?</h1>
+  <p>Nomi irregolari · Si impersonale · Imperativo formale (Lei)</p>
+</div>
+
+<!-- NOMI IRREGOLARI -->
+<div class="section" id="irreg">
+  <h2>I nomi irregolari</h2>
+  <div class="rule-card">
+    <h3>Nomi con plurale irregolare</h3>
+    <p>Algunos nombres italianos forman el plural de forma irregular. Los más importantes son:</p>
+    <ul>
+      <li>Partes del cuerpo: singular masculino → plural <strong>femenino en -a</strong></li>
+      <li>Nombres en <strong>-co/-ca</strong>: cambian a <strong>-ci/-chi</strong></li>
+    </ul>
+  </div>
+  <table class="gtable">
+    <tr><th>Singolare</th><th>Plurale</th><th>Tipo</th><th class="es">ES</th></tr>
+    <tr><td>la mano (f.)</td><td><strong>le mani</strong></td><td>irregolare</td><td class="es">la mano → las manos</td></tr>
+    <tr><td>il braccio (m.)</td><td><strong>le braccia</strong> (f.pl.)</td><td>m. → f.pl.</td><td class="es">el brazo → los brazos</td></tr>
+    <tr><td>il ginocchio (m.)</td><td><strong>le ginocchia</strong> (f.pl.)</td><td>m. → f.pl.</td><td class="es">la rodilla → las rodillas</td></tr>
+    <tr><td>il dito (m.)</td><td><strong>le dita</strong> (f.pl.)</td><td>m. → f.pl.</td><td class="es">el dedo → los dedos</td></tr>
+    <tr><td>l'osso (m.)</td><td><strong>le ossa</strong> (f.pl.)</td><td>m. → f.pl.</td><td class="es">el hueso → los huesos</td></tr>
+    <tr><td>il labbro (m.)</td><td><strong>le labbra</strong> (f.pl.)</td><td>m. → f.pl.</td><td class="es">el labio → los labios</td></tr>
+    <tr><td>il medico (m.)</td><td><strong>i medici</strong></td><td>-co → -ci</td><td class="es">el médico → los médicos</td></tr>
+    <tr><td>il farmaco (m.)</td><td><strong>i farmaci</strong></td><td>-co → -ci</td><td class="es">el fármaco → los fármacos</td></tr>
+    <tr><td>l'uomo (m.)</td><td><strong>gli uomini</strong></td><td>irregolare</td><td class="es">el hombre → los hombres</td></tr>
+    <tr><td>l'uovo (m.)</td><td><strong>le uova</strong> (f.pl.)</td><td>m. → f.pl.</td><td class="es">el huevo → los huevos</td></tr>
+  </table>
+</div>
+
+<!-- SI IMPERSONALE -->
+<div class="section" id="si" style="background:var(--cream-dk)">
+  <h2>Il "si" impersonale</h2>
+  <div class="rule-card">
+    <h3>Come si usa?</h3>
+    <p>El "si impersonale" expresa acciones que hace "la gente", "uno", "se" de forma general, sin especificar quién.</p>
+    <p class="es">Equivale a las construcciones impersonales en español: <em>se dice, se come, uno va...</em></p>
+  </div>
+  <div class="scheme">
+    <div class="line"><span class="hl">si</span> + verbo 3ª sing. (oggetto sing. o verbo intrans.)</div>
+    <div class="line">Si mangia la pasta. / Si parla molto.</div>
+    <div class="line" style="margin-top:10px"><span class="hl">si</span> + verbo 3ª plur. (oggetto plurale)</div>
+    <div class="line">Si mangiano le verdure. / Si fanno le analisi.</div>
+  </div>
+  <table class="gtable">
+    <tr><th>Frase impersonale</th><th class="es">Significado</th><th>Nota</th></tr>
+    <tr><td><strong>Si va</strong> dal medico.</td><td class="es">Se va al médico.</td><td>intransitivo → sing.</td></tr>
+    <tr><td><strong>Si parla</strong> italiano qui.</td><td class="es">Se habla italiano aquí.</td><td>oggetto sing.</td></tr>
+    <tr><td><strong>Si comprano</strong> i farmaci in farmacia.</td><td class="es">Se compran los medicamentos.</td><td>oggetto plur.</td></tr>
+    <tr><td><strong>Non si fuma</strong> nei luoghi pubblici.</td><td class="es">No se fuma en lugares públicos.</td><td>negazione: non + si</td></tr>
+    <tr><td><strong>Si fanno</strong> le analisi a digiuno.</td><td class="es">Se hacen los análisis en ayunas.</td><td>oggetto plur.</td></tr>
+  </table>
+  <div class="rule-card">
+    <h3>⚠️ Si impersonale con aggettivi</h3>
+    <p>Cuando se usa el si impersonale con el verbo <em>essere</em> o con verbi riflessivi, el adjetivo va en <strong>plurale maschile</strong>:</p>
+    <ul>
+      <li><em>Quando <strong>si è stanchi</strong>, si va a dormire.</em> <span class="es">— Cuando uno está cansado, se va a dormir.</span></li>
+      <li><em><strong>Si è contenti</strong> di stare bene.</em> <span class="es">— Uno está contento de estar bien.</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- IMPERATIVO FORMALE -->
+<div class="section" id="imp">
+  <h2>L'imperativo formale (Lei)</h2>
+  <div class="rule-card">
+    <h3>Formazione dell'imperativo formale</h3>
+    <p>El imperativo formal (Lei) se forma a partir del <strong>congiuntivo presente</strong>:</p>
+    <ul>
+      <li>Verbos en <strong>-are</strong>: terminación <strong>-i</strong> → parli, torni, prenda</li>
+      <li>Verbos en <strong>-ere/-ire</strong>: terminación <strong>-a</strong> → prenda, apra</li>
+      <li>Verbos irregolari: faccia, stia, vada, sia, abbia, venga, dica</li>
+    </ul>
+  </div>
+  <table class="gtable">
+    <tr><th>Verbo</th><th>Imperativo informale (tu)</th><th>Imperativo formale (Lei)</th><th class="es">ES (Lei)</th></tr>
+    <tr><td>tornare</td><td>torna!</td><td><strong>torni!</strong></td><td class="es">¡Vuelva!</td></tr>
+    <tr><td>parlare</td><td>parla!</td><td><strong>parli!</strong></td><td class="es">¡Hable!</td></tr>
+    <tr><td>prendere</td><td>prendi!</td><td><strong>prenda!</strong></td><td class="es">¡Tome!</td></tr>
+    <tr><td>aprire</td><td>apri!</td><td><strong>apra!</strong></td><td class="es">¡Abra!</td></tr>
+    <tr><td>fare</td><td>fa'/fai!</td><td><strong>faccia!</strong></td><td class="es">¡Haga!</td></tr>
+    <tr><td>stare</td><td>sta'/stai!</td><td><strong>stia!</strong></td><td class="es">¡Esté! / ¡Quédese!</td></tr>
+    <tr><td>andare</td><td>va'/vai!</td><td><strong>vada!</strong></td><td class="es">¡Vaya!</td></tr>
+    <tr><td>essere</td><td>sii!</td><td><strong>sia!</strong></td><td class="es">¡Sea!</td></tr>
+    <tr><td>avere</td><td>abbi!</td><td><strong>abbia!</strong></td><td class="es">¡Tenga!</td></tr>
+    <tr><td>venire</td><td>vieni!</td><td><strong>venga!</strong></td><td class="es">¡Venga!</td></tr>
+    <tr><td>dire</td><td>di'!</td><td><strong>dica!</strong></td><td class="es">¡Diga!</td></tr>
+  </table>
+  <div class="rule-card">
+    <h3>⚠️ Pronomi con imperativo formale</h3>
+    <p>Con el imperativo formale, los pronombres van <strong>ANTES</strong> del verbo (al contrario que con el informal):</p>
+    <ul>
+      <li>Informale: Prendilo! <span class="es">(pronome dopo)</span></li>
+      <li>Formale: <strong>Lo prenda!</strong> <span class="es">(pronome prima)</span></li>
+      <li>Formale: <strong>Si accomodi!</strong> <span class="es">— ¡Siéntese! (si riflessivo prima)</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- PRATICA -->
+<div class="section" id="pratica" style="background:var(--cream-dk)">
+  <h2>Pratica</h2>
+  <div class="prac-box">
+    <h3>Esercizio 1 — Nomi irregolari</h3>
+    <p class="inst">Scrivi il plurale:</p>
+    <div class="prac-item"><span>1. la mano →</span><input class="prac-input" id="pr1a" data-ans="le mani"></div>
+    <div class="prac-item"><span>2. il braccio →</span><input class="prac-input" id="pr1b" data-ans="le braccia"></div>
+    <div class="prac-item"><span>3. il dito →</span><input class="prac-input" id="pr1c" data-ans="le dita"></div>
+    <div class="prac-item"><span>4. il medico →</span><input class="prac-input" id="pr1d" data-ans="i medici"></div>
+    <div class="prac-item"><span>5. l'osso →</span><input class="prac-input" id="pr1e" data-ans="le ossa"></div>
+    <button class="prac-btn" onclick="checkPrac('pr1',['pr1a','pr1b','pr1c','pr1d','pr1e'])">Controlla</button>
+    <div class="prac-fb" id="pr1-fb"></div>
+  </div>
+  <div class="prac-box">
+    <h3>Esercizio 2 — Si impersonale</h3>
+    <p class="inst">Trasforma usando il "si impersonale":</p>
+    <div class="prac-item"><span>1. Le persone bevono molto caffè in Italia. →</span>
+      <input class="prac-input" id="pr2a" data-ans="si beve molto caffè in italia"></div>
+    <div class="prac-item"><span>2. Le persone comprano i farmaci in farmacia. →</span>
+      <input class="prac-input" id="pr2b" data-ans="si comprano i farmaci in farmacia"></div>
+    <div class="prac-item"><span>3. Le persone parlano italiano in Toscana. →</span>
+      <input class="prac-input" id="pr2c" data-ans="si parla italiano in toscana"></div>
+    <button class="prac-btn" onclick="checkPrac('pr2',['pr2a','pr2b','pr2c'])">Controlla</button>
+    <div class="prac-fb" id="pr2-fb"></div>
+  </div>
+  <div class="prac-box">
+    <h3>Esercizio 3 — Imperativo formale</h3>
+    <p class="inst">Scrivi l'imperativo formale (Lei):</p>
+    <div class="prac-item"><span>1. aprire →</span><input class="prac-input" id="pr3a" data-ans="apra"></div>
+    <div class="prac-item"><span>2. prendere →</span><input class="prac-input" id="pr3b" data-ans="prenda"></div>
+    <div class="prac-item"><span>3. stare →</span><input class="prac-input" id="pr3c" data-ans="stia"></div>
+    <div class="prac-item"><span>4. andare →</span><input class="prac-input" id="pr3d" data-ans="vada"></div>
+    <div class="prac-item"><span>5. fare →</span><input class="prac-input" id="pr3e" data-ans="faccia"></div>
+    <button class="prac-btn" onclick="checkPrac('pr3',['pr3a','pr3b','pr3c','pr3d','pr3e'])">Controlla</button>
+    <div class="prac-fb" id="pr3-fb"></div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="quiz">
+  <div class="quiz-box">
+    <h3>Quiz finale — Come ti senti?</h3>
+    <div class="q-item" id="qq1">
+      <p>1. Qual è il plurale di "il braccio"?</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q1','a')">a) i bracci</div>
+        <div class="q-opt" onclick="selectOpt(this,'q1','b')">b) le braccia</div>
+        <div class="q-opt" onclick="selectOpt(this,'q1','c')">c) i braccia</div>
+      </div>
+    </div>
+    <div class="q-item" id="qq2">
+      <p>2. In Italia _____ molto caffè. (si impersonale / bere)</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q2','a')">a) si bevono</div>
+        <div class="q-opt" onclick="selectOpt(this,'q2','b')">b) si beve</div>
+        <div class="q-opt" onclick="selectOpt(this,'q2','c')">c) si bevi</div>
+      </div>
+    </div>
+    <div class="q-item" id="qq3">
+      <p>3. Il medico dice: "_____ questa medicina!" (imperativo formale / prendere)</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q3','a')">a) Prendi</div>
+        <div class="q-opt" onclick="selectOpt(this,'q3','b')">b) Prenda</div>
+        <div class="q-opt" onclick="selectOpt(this,'q3','c')">c) Prendete</div>
+      </div>
+    </div>
+    <div class="q-item" id="qq4">
+      <p>4. L'imperativo formale (Lei) di "fare" è:</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q4','a')">a) fa'</div>
+        <div class="q-opt" onclick="selectOpt(this,'q4','b')">b) faccia</div>
+        <div class="q-opt" onclick="selectOpt(this,'q4','c')">c) fate</div>
+      </div>
+    </div>
+    <div class="q-item" id="qq5">
+      <p>5. In farmacia _____ i farmaci. (si impersonale / vendere)</p>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,'q5','a')">a) si vende</div>
+        <div class="q-opt" onclick="selectOpt(this,'q5','b')">b) si vendono</div>
+        <div class="q-opt" onclick="selectOpt(this,'q5','c')">c) si vendete</div>
+      </div>
+    </div>
+    <button class="quiz-submit" onclick="submitQuiz()">Invia le risposte</button>
+    <div id="quiz-result"></div>
+  </div>
+</div>
+<div class="culture">
+  <div class="culture-inner">
+    <h3>🏥 Dal medico — un'esperienza tutta italiana</h3>
+    <p>Andare dal medico in Italia è una vera immersione linguistica. Il medico usa l'imperativo formale: <em>Si accomodi, apra la bocca, prenda questa medicina.</em> E il paziente usa il si impersonale: <em>Si va in farmacia, si prendono le medicine, si torna dopo una settimana.</em> Conoscere queste strutture ti permette di muoverti con sicurezza nel sistema sanitario italiano.</p>
+  </div>
+</div>
+<script>
+const ANSWERS={q1:'b',q2:'b',q3:'b',q4:'b',q5:'b'};
+const selected={};
+function selectOpt(el,qid,opt){document.getElementById('qq'+qid.slice(1)).querySelectorAll('.q-opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');selected[qid]=opt;}
+function submitQuiz(){
+  let score=0;
+  for(const[qid,ans] of Object.entries(ANSWERS)){
+    const box=document.getElementById('qq'+qid.slice(1));
+    box.querySelectorAll('.q-opt').forEach(o=>{
+      const letter=o.getAttribute('onclick').match(/'([a-c])'\)/)?.[1];
+      if(o.classList.contains('selected')){if(selected[qid]===ans){o.classList.add('correct');score++;}else o.classList.add('wrong');}
+      if(letter===ans)o.style.borderColor='#6fcf97';
+    });
+  }
+  document.getElementById('quiz-result').textContent=`${score}/5 — ${score>=4?'Ottimo! 🎉':score>=3?'Bene! 👍':'Riprova! 💪'}`;
+}
+function checkPrac(id,ids){
+  let ok=0;
+  ids.forEach(pid=>{const inp=document.getElementById(pid);if(!inp)return;inp.classList.remove('ok','no');if(inp.value.toLowerCase().trim()===inp.dataset.ans.toLowerCase()){inp.classList.add('ok');ok++;}else if(inp.value)inp.classList.add('no');});
+  const fb=document.getElementById(id+'-fb');
+  if(fb){fb.className='prac-fb'+(ok===ids.length?' ok':' no');fb.textContent=ok===ids.length?'✓ Perfetto!':'✗ Ricontrolla.';}
+}
+const secs=[...document.querySelectorAll('.section[id]')];
+const links=[...document.querySelectorAll('nav a')];
+window.addEventListener('scroll',()=>{let cur='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id;});links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur));},{passive:true});
+</script>
+</body>
+</html>

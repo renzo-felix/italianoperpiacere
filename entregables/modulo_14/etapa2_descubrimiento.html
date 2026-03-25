@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -25,7 +25,7 @@ body.hide-es .es{display:none}
 }
 
 .hero{
-  min-height:92vh;background:var(--hero);
+  min-height:72vh;background:var(--red);border-bottom:3px solid var(--amber);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:4rem 2rem;position:relative;overflow:hidden
 }
@@ -47,7 +47,7 @@ body.hide-es .es{display:none}
   letter-spacing:.05em;margin-bottom:1.5rem;display:inline-block
 }
 .hero p{font-size:1.1rem;max-width:600px;line-height:1.6;color:var(--white);opacity:.9}
-.hero .scroll-hint{margin-top:2.5rem;font-size:.9rem;opacity:.6;animation:bounce 2s infinite;color:#fff}
+.hero .scroll-hint{margin-top:2.5rem;font-size:.9rem;opacity:.6;animation:bounce 2s infinite;color:rgba(0,0,0,.4)}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
 section{padding:4rem 2rem;max-width:860px;margin:0 auto}
@@ -138,10 +138,57 @@ section .subtitle{font-size:.95rem;color:#555;margin-bottom:2rem}
 .bubble.open .btr{display:block}
 .bubble::after{content:'▾';font-size:.7rem;opacity:.5;margin-left:.4rem}
 
+/* RESOURCE IMAGE */
+.resource-box{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,.1);max-width:860px;margin:2rem auto 0}
+.resource-img{width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--cream-dk)}
+.resource-img img{width:100%;height:100%;object-fit:cover;display:block}
+.resource-caption{padding:1.25rem 1.75rem}
+.resource-caption h4{font-size:.8rem;font-weight:700;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:.4rem}
+.resource-caption p{font-size:.9rem;color:#444;line-height:1.6}
+.resource-caption .copyright{font-size:.75rem;color:#888;margin-top:.75rem;font-style:italic}
+
+/* QUANTO TI PIACE — RATING */
+.rating-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.8rem;margin-top:1rem}
+.rating-card{background:#fff;border-radius:12px;padding:1rem 1.2rem;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.rating-card .rit{font-size:.95rem;font-weight:700;color:var(--red);margin-bottom:.5rem}
+.rating-stars{display:flex;gap:.25rem;margin-top:.3rem}
+.star{font-size:1.4rem;cursor:pointer;color:#ddd;transition:color .15s,transform .15s;user-select:none}
+.star.active{color:var(--amber)}
+.rating-label{font-size:.78rem;color:#999;margin-top:.3rem;min-height:1em}
+
+/* PREFERISCO BOX */
+.prefer-box{background:#fff;border-radius:14px;padding:1.5rem;margin-top:1rem;border-left:5px solid var(--red)}
+.prefer-row{display:flex;align-items:center;gap:.8rem;margin:.65rem 0;flex-wrap:wrap;font-size:.93rem}
+.prefer-vs{font-weight:700;color:#bbb;padding:0 .2rem}
+.prefer-btn{padding:.35rem .9rem;border-radius:2rem;border:2px solid var(--cream-dk);background:var(--cream);cursor:pointer;font-size:.88rem;transition:all .2s;font-family:'Outfit',sans-serif;color:var(--black)}
+.prefer-btn:hover{border-color:var(--red);background:#fde4e1}
+.prefer-btn.chosen{background:var(--red);color:#fff;border-color:var(--red);font-weight:700}
+.prefer-result{font-size:.82rem;color:#888;font-style:italic;flex:1;text-align:right}
+.prefer-result.show{color:var(--red);font-weight:600;font-style:normal}
+
+/* FILL DIALOGUE */
+.fill-dialogue{background:#fff;border-radius:14px;padding:1.5rem;margin-top:1rem;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.fd-line{margin:.65rem 0;font-size:.95rem;line-height:1.8}
+.fd-speaker{font-weight:700;color:var(--red)}
+.fill-in{border:none;border-bottom:2px solid var(--red);background:transparent;font-family:'Outfit',sans-serif;font-size:.93rem;outline:none;padding:.1rem .3rem;width:100px;color:var(--red);font-weight:600;text-align:center}
+.fill-in:focus{border-bottom-color:var(--amber)}
+.word-bank{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.2rem;padding:.8rem;background:var(--cream-dk);border-radius:8px}
+.bank-word{padding:.3rem .8rem;background:#fff;border-radius:1rem;font-size:.88rem;font-style:italic;color:var(--red);font-weight:600;border:1.5px solid var(--cream-dk)}
+.reveal-btn{background:var(--red);color:#fff;border:none;padding:.4rem 1rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.8rem}
+.fd-answers{display:none;margin-top:.6rem;padding:.8rem;background:#d4edda;border-radius:8px;font-size:.87rem;line-height:1.7;color:#155724}
+.fd-answers.show{display:block}
+
+/* TOP 5 */
+.top5-box{background:#fff;border-radius:14px;padding:1.5rem;margin-top:1rem}
+.top5-item{display:flex;align-items:center;gap:.8rem;margin:.5rem 0}
+.top5-num{background:var(--red);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;flex-shrink:0}
+.top5-input{border:2px solid var(--cream-dk);border-radius:8px;padding:.35rem .7rem;font-family:'Outfit',sans-serif;font-size:.92rem;background:var(--cream);outline:none;flex:1;color:var(--black)}
+.top5-input:focus{border-color:var(--red)}
+
 /* CULTURAL STRIP */
-.cultural{background:var(--red);color:#fff;padding:3rem 2rem;margin-top:3rem}
-.cultural h3{font-family:'Playfair Display',serif;font-style:italic;font-size:1.6rem;margin-bottom:1rem}
-.cultural p{line-height:1.7;max-width:680px;font-size:.97rem}
+.cultural{background:linear-gradient(135deg,#fde4e1 0%,var(--cream-dk) 100%);border-top:3px solid var(--red);color:var(--black);padding:3rem 2rem;margin-top:3rem}
+.cultural h3{font-family:'Playfair Display',serif;font-style:italic;font-size:1.6rem;color:var(--red);margin-bottom:1rem}
+.cultural p{line-height:1.7;max-width:680px;font-size:.97rem;color:#444}
 
 footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 </style>
@@ -160,10 +207,28 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
   <div class="scroll-hint">↓ Scopri</div>
 </div>
 
+<!-- RESOURCE IMAGE -->
+<section data-a style="padding-top:3rem">
+  <h2>La imagen de hoy</h2>
+  <p class="subtitle">Observá esta fotografía durante 30 segundos. ¿Qué ves? ¿Qué escenas o actividades reconoces?</p>
+  <div class="resource-box">
+    <div class="resource-img">
+      <img src="https://live.staticflickr.com/4080/4809401837_b11e146f5d_b.jpg"
+           alt="The Arena di Verona — anfiteatro romano donde se celebran conciertos de ópera y festivales musicales"
+           loading="lazy" />
+    </div>
+    <div class="resource-caption">
+      <h4>Osserva e descivi</h4>
+      <p>Esta es la <em>Arena di Verona</em> — un anfiteatro romano del siglo I d.C. que hoy es uno de los escenarios musicales más famosos del mundo. ¿Qué tipos de música se hacen aquí? ¿Te <em>piace</em> la musica dal vivo?</p>
+      <p class="copyright">Foto: "The Arena, Piazza Bra, Verona" · ell brown · CC BY 2.0 · Flickr · flickr.com/photos/ell-r-brown/4809401837 · Uso educativo.</p>
+    </div>
+  </div>
+</section>
+
 <!-- WORD GRID -->
 <section data-a>
   <h2>Cosa fai nel tempo libero?</h2>
-  <p class="subtitle">Selecciona las <strong>actividades de ocio</strong>. ¡Las trampas son cosas que no son exactamente tiempo libre!</p>
+  <p class="subtitle">Seleccioná las <strong>actividades de ocio</strong>. ¡Las trampas son cosas que no son exactamente tiempo libre!</p>
   <div class="word-grid" id="word-grid">
     <button class="word-btn" onclick="toggleWord(this,'ok')">leggere</button>
     <button class="word-btn" onclick="toggleWord(this,'ok')">ascoltare musica</button>
@@ -180,14 +245,65 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
     <button class="word-btn" onclick="toggleWord(this,'ok')">cucinare</button>
     <button class="word-btn" onclick="toggleWord(this,'ok')">giocare a calcio</button>
   </div>
-  <button class="verify-btn" onclick="verifyGrid()">Verifica ✓</button>
+  <button class="verify-btn" onclick="verifyGrid()">Verificá ✓</button>
   <div id="grid-feedback"></div>
+</section>
+
+<!-- QUANTO TI PIACE? RATING -->
+<section data-a>
+  <h2>Quanto ti piace?</h2>
+  <p class="subtitle">Clicca le stelle per valutare ogni attività. <span class="es">Del 1 (per niente) al 5 (moltissimo) — ¡sé honesto/a!</span></p>
+  <div class="rating-grid" data-stagger>
+    <div class="rating-card">
+      <div class="rit">🎵 ascoltare musica</div>
+      <div class="rating-stars" id="r1"><span class="star" onclick="rate('r1',1)">★</span><span class="star" onclick="rate('r1',2)">★</span><span class="star" onclick="rate('r1',3)">★</span><span class="star" onclick="rate('r1',4)">★</span><span class="star" onclick="rate('r1',5)">★</span></div>
+      <div class="rating-label" id="r1-lbl"></div>
+    </div>
+    <div class="rating-card">
+      <div class="rit">📚 leggere</div>
+      <div class="rating-stars" id="r2"><span class="star" onclick="rate('r2',1)">★</span><span class="star" onclick="rate('r2',2)">★</span><span class="star" onclick="rate('r2',3)">★</span><span class="star" onclick="rate('r2',4)">★</span><span class="star" onclick="rate('r2',5)">★</span></div>
+      <div class="rating-label" id="r2-lbl"></div>
+    </div>
+    <div class="rating-card">
+      <div class="rit">💃 ballare</div>
+      <div class="rating-stars" id="r3"><span class="star" onclick="rate('r3',1)">★</span><span class="star" onclick="rate('r3',2)">★</span><span class="star" onclick="rate('r3',3)">★</span><span class="star" onclick="rate('r3',4)">★</span><span class="star" onclick="rate('r3',5)">★</span></div>
+      <div class="rating-label" id="r3-lbl"></div>
+    </div>
+    <div class="rating-card">
+      <div class="rit">✈️ viaggiare</div>
+      <div class="rating-stars" id="r4"><span class="star" onclick="rate('r4',1)">★</span><span class="star" onclick="rate('r4',2)">★</span><span class="star" onclick="rate('r4',3)">★</span><span class="star" onclick="rate('r4',4)">★</span><span class="star" onclick="rate('r4',5)">★</span></div>
+      <div class="rating-label" id="r4-lbl"></div>
+    </div>
+    <div class="rating-card">
+      <div class="rit">🎬 andare al cinema</div>
+      <div class="rating-stars" id="r5"><span class="star" onclick="rate('r5',1)">★</span><span class="star" onclick="rate('r5',2)">★</span><span class="star" onclick="rate('r5',3)">★</span><span class="star" onclick="rate('r5',4)">★</span><span class="star" onclick="rate('r5',5)">★</span></div>
+      <div class="rating-label" id="r5-lbl"></div>
+    </div>
+    <div class="rating-card">
+      <div class="rit">⚽ fare sport</div>
+      <div class="rating-stars" id="r6"><span class="star" onclick="rate('r6',1)">★</span><span class="star" onclick="rate('r6',2)">★</span><span class="star" onclick="rate('r6',3)">★</span><span class="star" onclick="rate('r6',4)">★</span><span class="star" onclick="rate('r6',5)">★</span></div>
+      <div class="rating-label" id="r6-lbl"></div>
+    </div>
+    <div class="rating-card">
+      <div class="rit">🎨 dipingere / disegnare</div>
+      <div class="rating-stars" id="r7"><span class="star" onclick="rate('r7',1)">★</span><span class="star" onclick="rate('r7',2)">★</span><span class="star" onclick="rate('r7',3)">★</span><span class="star" onclick="rate('r7',4)">★</span><span class="star" onclick="rate('r7',5)">★</span></div>
+      <div class="rating-label" id="r7-lbl"></div>
+    </div>
+    <div class="rating-card">
+      <div class="rit">🍳 cucinare</div>
+      <div class="rating-stars" id="r8"><span class="star" onclick="rate('r8',1)">★</span><span class="star" onclick="rate('r8',2)">★</span><span class="star" onclick="rate('r8',3)">★</span><span class="star" onclick="rate('r8',4)">★</span><span class="star" onclick="rate('r8',5)">★</span></div>
+      <div class="rating-label" id="r8-lbl"></div>
+    </div>
+  </div>
+  <p style="margin-top:1.2rem;font-size:.88rem;color:#666">
+    💬 5★ = <span class="it">mi piace moltissimo!</span> · 3★ = <span class="it">mi piace abbastanza</span> · 1★ = <span class="it">non mi piace per niente</span>
+  </p>
 </section>
 
 <!-- GENERI MUSICALI -->
 <section data-a>
   <h2>I generi musicali</h2>
-  <p class="subtitle">Haz clic en cada tarjeta para ver un artista o ejemplo italiano. <span class="es">¡Italia tiene una tradición musical increíble!</span></p>
+  <p class="subtitle">Hacé clic en cada tarjeta para ver un artista o ejemplo italiano. <span class="es">¡Italia tiene una tradición musical increíble!</span></p>
   <div class="vocab-grid" data-stagger>
     <div class="vcard" onclick="this.classList.toggle('open')">
       <div class="vit">il rock</div>
@@ -263,6 +379,45 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
   </p>
 </section>
 
+<!-- PREFERISCO... -->
+<section data-a>
+  <h2>Preferisco... o...?</h2>
+  <p class="subtitle">Scegli la tua preferenza e completa la frase con <span class="it">preferisco</span>. <span class="es">¡Haz clic en lo que más te gusta!</span></p>
+  <div class="prefer-box">
+    <p style="font-size:.88rem;color:#888;margin-bottom:1rem">👉 <em>Clicca su un'opzione — apparirà la frase completa</em></p>
+    <div class="prefer-row">
+      <button class="prefer-btn" onclick="preferSel(this,'Preferisco il rock.')">il rock</button>
+      <span class="prefer-vs">o</span>
+      <button class="prefer-btn" onclick="preferSel(this,'Preferisco il jazz.')">il jazz</button>
+      <span class="prefer-result"></span>
+    </div>
+    <div class="prefer-row">
+      <button class="prefer-btn" onclick="preferSel(this,'Preferisco andare al cinema.')">andare al cinema</button>
+      <span class="prefer-vs">o</span>
+      <button class="prefer-btn" onclick="preferSel(this,'Preferisco andare a teatro.')">andare a teatro</button>
+      <span class="prefer-result"></span>
+    </div>
+    <div class="prefer-row">
+      <button class="prefer-btn" onclick="preferSel(this,'Preferisco la musica classica.')">la musica classica</button>
+      <span class="prefer-vs">o</span>
+      <button class="prefer-btn" onclick="preferSel(this,'Preferisco la musica pop.')">la musica pop</button>
+      <span class="prefer-result"></span>
+    </div>
+    <div class="prefer-row">
+      <button class="prefer-btn" onclick="preferSel(this,'Preferisco leggere.')">leggere</button>
+      <span class="prefer-vs">o</span>
+      <button class="prefer-btn" onclick="preferSel(this,'Preferisco guardare la TV.')">guardare la TV</button>
+      <span class="prefer-result"></span>
+    </div>
+    <div class="prefer-row">
+      <button class="prefer-btn" onclick="preferSel(this,'Preferisco fare sport.')">fare sport</button>
+      <span class="prefer-vs">o</span>
+      <button class="prefer-btn" onclick="preferSel(this,'Preferisco cucinare.')">cucinare</button>
+      <span class="prefer-result"></span>
+    </div>
+  </div>
+</section>
+
 <!-- PREPOSIZIONI ARTICOLATE PREVIEW -->
 <section data-a>
   <h2>Preposizioni articolate — un'anteprima</h2>
@@ -331,7 +486,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <!-- DIALOGUE -->
 <section data-a>
   <h2>Cosa ti piace fare?</h2>
-  <p class="subtitle">Haz clic en cada globo para ver la traducción. <span class="es">¿Notas cómo funciona <em>piacere</em>?</span></p>
+  <p class="subtitle">Hacé clic en cada globo para ver la traducción. <span class="es">¿Notas cómo funciona <em>piacere</em>?</span></p>
   <div class="dialogue">
     <div class="bubble left" onclick="this.classList.toggle('open')">
       <strong>Marco:</strong> Ciao Anna! Sei stata al festival ieri sera?
@@ -357,22 +512,108 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
       <strong>Anna:</strong> Certo! Mi piacciono da morire! A che ora inizia?
       <div class="btr">¡Claro! ¡Me encantan! ¿A qué hora empieza?</div>
     </div>
+    <div class="bubble left" onclick="this.classList.toggle('open')">
+      <strong>Marco:</strong> Alle nove di sera. E dopo andiamo tutti al bar vicino alla piazza.
+      <div class="btr"><span class="es">A las nueve de la noche. Y después vamos todos al bar cerca de la plaza.</span></div>
+    </div>
+    <div class="bubble right" onclick="this.classList.toggle('open')">
+      <strong>Anna:</strong> Perfetto! Mi piace moltissimo stare con gli amici dopo i concerti. Ci vediamo lì!
+      <div class="btr">¡Perfecto! Me encanta estar con los amigos después de los conciertos. ¡Nos vemos ahí!</div>
+    </div>
   </div>
+</section>
+
+<!-- COMPLETA IL DIALOGO -->
+<section data-a>
+  <h2>Completa il dialogo</h2>
+  <p class="subtitle">Scegli la parola giusta dal riquadro e inseriscila negli spazi. <span class="es">¡Usa todo lo que aprendiste hoy!</span></p>
+  <div class="fill-dialogue">
+    <div class="word-bank">
+      <span class="bank-word">al</span>
+      <span class="bank-word">mi piace</span>
+      <span class="bank-word">ti piace</span>
+      <span class="bank-word">preferisco</span>
+      <span class="bank-word">piacciono</span>
+      <span class="bank-word">della</span>
+    </div>
+    <div class="fd-line">
+      <span class="fd-speaker">Giulia:</span> Ciao Marco! Vieni <input class="fill-in" data-ans="al" placeholder="___"> concerto stasera?
+    </div>
+    <div class="fd-line">
+      <span class="fd-speaker">Marco:</span> Non lo so… <input class="fill-in" data-ans="mi piace" placeholder="___"> molto la musica dal vivo, sì.
+    </div>
+    <div class="fd-line">
+      <span class="fd-speaker">Giulia:</span> È un concerto di musica folk! <input class="fill-in" data-ans="ti piace" placeholder="___"> la tarantella?
+    </div>
+    <div class="fd-line">
+      <span class="fd-speaker">Marco:</span> In realtà <input class="fill-in" data-ans="preferisco" placeholder="___"> il pop italiano… ma mi <input class="fill-in" data-ans="piacciono" placeholder="___"> anche le feste!
+    </div>
+    <div class="fd-line">
+      <span class="fd-speaker">Giulia:</span> Bello! Parliamo <input class="fill-in" data-ans="della" placeholder="___"> musica italiana mentre andiamo!
+    </div>
+    <button class="reveal-btn" onclick="revealFD()">Mostra le risposte ↓</button>
+    <div class="fd-answers" id="fd-answers">
+      ✅ al · mi piace · ti piace · preferisco · piacciono · della
+    </div>
+  </div>
+</section>
+
+<!-- LE MIE 5 COSE PREFERITE -->
+<section data-a>
+  <h2>Le mie 5 cose preferite</h2>
+  <p class="subtitle">
+    <span class="it">Cosa ami di più nel tempo libero?</span> <span class="es">Escribe tus 5 actividades favoritas en italiano usando piacere o preferisco.</span>
+  </p>
+  <div class="top5-box">
+    <p style="font-size:.88rem;color:#888;margin-bottom:1rem">
+      💬 <em>"Mi piace moltissimo..."</em> · <em>"Mi piacciono..."</em> · <em>"Preferisco..."</em> · <em>"Non mi piace per niente..."</em>
+    </p>
+    <div class="top5-item"><span class="top5-num">1</span><input class="top5-input" placeholder="Mi piace moltissimo..."></div>
+    <div class="top5-item"><span class="top5-num">2</span><input class="top5-input" placeholder="Mi piacciono..."></div>
+    <div class="top5-item"><span class="top5-num">3</span><input class="top5-input" placeholder="Preferisco..."></div>
+    <div class="top5-item"><span class="top5-num">4</span><input class="top5-input" placeholder="Mi piace anche..."></div>
+    <div class="top5-item"><span class="top5-num">5</span><input class="top5-input" placeholder="Non mi piace per niente..."></div>
+  </div>
+  <p style="margin-top:1rem;font-size:.85rem;color:#999">
+    📝 <span class="es">¡Guarda esta lista — en la Tappa 4 la usarás para escribir un texto completo!</span>
+  </p>
 </section>
 
 <!-- CULTURAL STRIP -->
 <div class="cultural" data-a>
   <h3>La musica italiana — patrimonio mondiale</h3>
-  <p>Italia es la cuna de la ópera, inventada en Florencia en el siglo XVII. Pero la tradición musical italiana no se detiene ahí: del <em>melodramma</em> de Verdi y Puccini al <em>cantautorato</em> de Fabrizio De André, pasando por los festivales de Sanremo que cada año reúnen a toda la nación frente al televisor. <em>La musica è nell'anima degli italiani</em> — la música está en el alma de los italianos. Y tú, ¿ya tienes tu canción italiana favorita?</p>
+  <p>Italia es la cuna de la ópera, inventada en Florencia en el siglo XVII. Pero la tradición musical italiana no se detiene ahí: del <em>melodramma</em> de Verdi y Puccini al <em>cantautorato</em> de Fabrizio De André, pasando por los festivales de Sanremo que cada año reúnen a toda la nación frente al televisor. <em>La musica è nell'anima degli italiani</em> — la música está en el alma de los italianos. Y vos, ¿ya tienes tu canción italiana favorita?</p>
 </div>
 
 <footer>Italiano Per Piacere · Unità 14 · Etapa 2 — Descubrimiento</footer>
 
 <script>
+(function(){
+
 function toggleEs(){
   document.body.classList.toggle('hide-es');
   document.getElementById('toggle-btn').textContent=
     document.body.classList.contains('hide-es')? '👁 Mostrar traducciones':'🙈 Ocultar traducciones';
+}
+const ratingLabels=['','Non mi piace per niente','Non mi piace molto','Mi piace abbastanza','Mi piace molto','Mi piace moltissimo!'];
+function rate(id,val){
+  const stars=document.querySelectorAll('#'+id+' .star');
+  stars.forEach((s,i)=>{s.classList.toggle('active',i<val);});
+  const lbl=document.getElementById(id+'-lbl');
+  if(lbl)lbl.textContent=ratingLabels[val]||'';
+}
+function preferSel(el,frase){
+  const row=el.closest('.prefer-row');
+  row.querySelectorAll('.prefer-btn').forEach(b=>b.classList.remove('chosen'));
+  el.classList.add('chosen');
+  const res=row.querySelector('.prefer-result');
+  if(res){res.textContent='→ '+frase;res.classList.add('show');}
+}
+function revealFD(){
+  const inputs=document.querySelectorAll('.fill-in');
+  inputs.forEach(inp=>{inp.value=inp.dataset.ans;inp.style.color='var(--green)';});
+  const ans=document.getElementById('fd-answers');
+  if(ans)ans.classList.add('show');
 }
 function toggleWord(el,type){
   if(el.classList.contains('correct')||el.classList.contains('wrong')||el.classList.contains('missed'))return;
@@ -413,6 +654,7 @@ const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
 },{threshold:.12});
 document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>obs.observe(el));
+})();
 </script>
 </body>
 </html>

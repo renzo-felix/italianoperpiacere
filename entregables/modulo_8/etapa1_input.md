@@ -5,8 +5,9 @@
 ---
 
 TIPO: Video
-FUENTE SUGERIDA: YouTube — buscar "al bar italiano dialogo A1" o "LearnAmo al bar italiano"
-TÍTULO: Al bar — La colazione italiana
+FUENTE: YouTube — LearnAmo (@LearnAmo · +1M suscriptores)
+URL: https://www.youtube.com/watch?v=A2o-puIDG6g
+TÍTULO: "Come ordinare un caffè in Italia (e tutti i tipi di caffè!)" — LearnAmo
 DESCRIPCIÓN: Un vídeo que muestre la rutina del bar italiano por la mañana: pedir un caffè, un cornetto, interactuar con el barista en registro formal o informal. Ideal para mostrar la diferencia entre *Lei* (formal) y *tu* (informal) en un contexto real y cotidiano.
 
 ---

@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 5 — In città | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#e9e6d5;--cream-dk:#ddd9c8;
+    --gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+    --red:#cc4736;--teal:#78a6ba;--teal-dk:#5a8ea0;
+    --green:#528e74;--green-dk:#3d6b58;
+    --black:#1a1a18;--white:#ffffff;
+    --mod:#e5ab07;--mod-dk:#c8940a;--mod-hero:#fef9e8;
+    --mod-th-bg:#fde8a0;--mod-th-color:#7a5500;
+    --mod-border:#EFCF7F;--mod-strip:#fef0c0;
+    --fh:'Playfair Display',Georgia,serif;
+    --fb:'Outfit',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--fb);color:var(--black);background:var(--cream);line-height:1.65}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:2px solid var(--mod-border);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  .nav-inner{max-width:1100px;margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+  .nav-logo img{height:40px;display:block}
+  .nav-links{display:flex;gap:.35rem;flex-wrap:wrap}
+  .nav-links a{font-family:var(--fb);font-size:.8rem;font-weight:600;color:var(--black);text-decoration:none;padding:.35rem .75rem;border-radius:20px;border:1.5px solid transparent;transition:all .2s}
+  .nav-links a:hover,.nav-links a.active{background:var(--mod);color:#7a5500;border-color:var(--mod-dk)}
+
+  /* HERO */
+  .hero{background:var(--mod-hero);border-bottom:3px solid var(--mod-border);padding:3.5rem 1.5rem 2.5rem;text-align:center}
+  .hero-badge{display:inline-block;background:var(--mod);color:#7a5500;font-family:var(--fb);font-size:.78rem;font-weight:700;letter-spacing:.08em;padding:.3rem .9rem;border-radius:20px;margin-bottom:1rem;text-transform:uppercase}
+  .hero h1{font-family:var(--fh);font-size:3rem;font-style:italic;color:var(--black);margin-bottom:.5rem}
+  .hero p{font-size:1.1rem;color:#5a4a00;max-width:600px;margin:0 auto 1.5rem}
+  .progress-bar-wrap{max-width:500px;margin:.5rem auto 0;background:var(--mod-th-bg);border-radius:10px;height:10px;overflow:hidden}
+  .progress-bar{height:100%;width:0%;background:var(--amber-dk);border-radius:10px;transition:width .8s ease}
+
+  /* SECTIONS */
+  .section{max-width:1100px;margin:0 auto;padding:3rem 1.5rem}
+  .section-title{font-family:var(--fh);font-size:1.8rem;font-style:italic;color:var(--black);margin-bottom:.4rem}
+  .section-subtitle{font-size:.95rem;color:#5a4800;margin-bottom:1.8rem}
+  .section-divider{border:none;border-top:2px solid var(--mod-border);margin:3rem 0}
+
+  /* VOCAB GRID */
+  .vocab-label{font-family:var(--fb);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mod-dk);margin-bottom:.8rem;margin-top:1.4rem}
+  .vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.8rem;margin-bottom:1.2rem}
+  .vocab-card{background:#fff;border:2px solid var(--mod-border);border-radius:12px;padding:.9rem .8rem;cursor:pointer;transition:all .2s;text-align:center;user-select:none}
+  .vocab-card:hover{border-color:var(--amber-dk);box-shadow:0 4px 14px rgba(229,171,7,.2);transform:translateY(-2px)}
+  .vocab-card.flipped{background:var(--mod-hero);border-color:var(--amber-dk)}
+  .vocab-card .it{font-family:var(--fh);font-style:italic;font-size:1.05rem;color:var(--black);display:block}
+  .vocab-card .es{font-size:.82rem;color:#7a5500;display:none;margin-top:.3rem}
+  .vocab-card.flipped .es{display:block}
+  .vocab-card .icon{font-size:1.4rem;margin-bottom:.3rem}
+
+  /* DISCOVERY BLOCKS */
+  .discovery-block{background:#fff;border:2px solid var(--mod-border);border-radius:16px;padding:1.8rem;margin-bottom:2rem}
+  .discovery-block h3{font-family:var(--fh);font-size:1.4rem;font-style:italic;margin-bottom:1rem;color:var(--black)}
+  .note-box{background:var(--mod-strip);border-left:4px solid var(--amber-dk);border-radius:0 8px 8px 0;padding:.9rem 1.2rem;margin:.8rem 0;font-size:.93rem}
+
+  /* TABLES */
+  table{width:100%;border-collapse:collapse;font-size:.93rem;margin:1rem 0}
+  th{background:var(--mod-th-bg);color:var(--mod-th-color);font-family:var(--fb);font-weight:700;padding:.65rem 1rem;text-align:left;border:1px solid var(--mod-border)}
+  td{padding:.6rem 1rem;border:1px solid #e8ddb0;vertical-align:top}
+  tr:nth-child(even) td{background:#fffdf0}
+  .it-cell{font-family:var(--fh);font-style:italic;color:var(--black)}
+  .highlight-cell{background:var(--mod-strip)!important;font-weight:600}
+
+  /* FILL EXERCISES */
+  .fill-exercise{background:var(--cream);border-radius:12px;padding:1.4rem;margin-top:1.2rem}
+  .fill-exercise h4{font-family:var(--fb);font-weight:700;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mod-dk);margin-bottom:.9rem}
+  .fill-item{display:flex;align-items:baseline;gap:.4rem;margin-bottom:.8rem;font-size:.95rem;flex-wrap:wrap}
+  .fill-item span{flex:1;min-width:200px}
+  .fill-item input{border:2px solid var(--mod-border);border-radius:8px;padding:.35rem .7rem;font-family:var(--fb);font-size:.95rem;background:#fff;min-width:130px;outline:none;transition:border .2s}
+  .fill-item input:focus{border-color:var(--amber-dk)}
+  .fill-item input.correct{border-color:var(--green);background:#f0faf5}
+  .fill-item input.wrong{border-color:var(--red);background:#fff0ee}
+  .check-btn{background:var(--amber-dk);color:#fff;border:none;border-radius:8px;padding:.55rem 1.4rem;font-family:var(--fb);font-weight:600;font-size:.9rem;cursor:pointer;margin-top:.6rem;transition:background .2s}
+  .check-btn:hover{background:var(--amber)}
+  .feedback{font-size:.85rem;margin-top:.5rem;font-weight:600;min-height:1.2em}
+  .feedback.ok{color:var(--green)}
+  .feedback.ko{color:var(--red)}
+
+  /* DIALOGUES */
+  .dialogue-wrap{background:#fff;border-radius:14px;border:2px solid var(--mod-border);padding:1.5rem;margin-bottom:1.2rem}
+  .dialogue-wrap h4{font-family:var(--fh);font-style:italic;font-size:1.1rem;margin-bottom:1rem;color:var(--black)}
+  .bubble-row{display:flex;gap:.8rem;margin-bottom:.8rem;align-items:flex-start}
+  .bubble-row.right{flex-direction:row-reverse}
+  .avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;background:var(--mod-th-bg)}
+  .bubble{background:var(--cream-dk);border-radius:12px;padding:.75rem 1rem;max-width:75%;font-size:.92rem;line-height:1.55}
+  .bubble-row.right .bubble{background:var(--mod-hero);border:1.5px solid var(--mod-border)}
+  .bubble .speaker{font-size:.75rem;font-weight:700;color:var(--mod-dk);margin-bottom:.2rem}
+  .bubble .it{font-family:var(--fh);font-style:italic;color:var(--black)}
+  .bubble .tr{font-size:.82rem;color:#5a4800;margin-top:.15rem}
+
+  /* MAP ACTIVITY */
+  .map-activity{background:#fff;border:2px solid var(--mod-border);border-radius:16px;padding:1.8rem}
+  .map-activity h3{font-family:var(--fh);font-style:italic;font-size:1.4rem;margin-bottom:.8rem}
+  .map-container{position:relative;background:var(--mod-hero);border-radius:12px;border:2px solid var(--mod-border);min-height:320px;overflow:hidden;margin:1rem 0}
+  .map-grid{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(4,80px);gap:2px;padding:1rem}
+  .map-cell{background:var(--cream);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.75rem;text-align:center;font-family:var(--fb);color:var(--black);padding:.2rem}
+  .map-cell.strada{background:#e0d8b0;font-size:.65rem;color:#7a6a20}
+  .map-cell.luogo{background:#fff;border:2px solid var(--mod-border);cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s}
+  .map-cell.luogo:hover,.map-cell.luogo.active{background:var(--mod);border-color:var(--amber-dk);transform:scale(1.05)}
+  .map-info{background:var(--cream);border-radius:10px;padding:1rem;margin-top:.8rem;font-size:.9rem;min-height:60px;border:1.5px solid var(--mod-border)}
+
+  /* COMPREHENSION */
+  .comprension{background:#fff;border-radius:14px;border:2px solid var(--mod-border);padding:1.5rem;margin-bottom:1.2rem}
+  .comprension h4{font-family:var(--fh);font-style:italic;font-size:1.15rem;margin-bottom:.8rem}
+  .cartel{background:var(--mod-hero);border:2px solid var(--amber);border-radius:10px;padding:1.2rem;font-family:var(--fb);font-size:.9rem;margin-bottom:1.2rem;line-height:1.8}
+  .cartel .linea{display:flex;gap:.5rem;align-items:center}
+  .cartel .arrow{color:var(--amber-dk);font-size:1.1rem}
+  .quiz-item{margin-bottom:1rem}
+  .quiz-item p{font-size:.93rem;margin-bottom:.45rem;font-weight:500}
+  .options{display:flex;flex-direction:column;gap:.3rem}
+  .opt-btn{background:var(--cream);border:1.5px solid var(--mod-border);border-radius:8px;padding:.5rem .9rem;font-family:var(--fb);font-size:.88rem;cursor:pointer;text-align:left;transition:all .2s}
+  .opt-btn:hover{border-color:var(--amber-dk);background:var(--mod-strip)}
+  .opt-btn.correct{background:#e8f8ee;border-color:var(--green);color:#2a5a38}
+  .opt-btn.wrong{background:#fef0ee;border-color:var(--red);color:#7a2020}
+
+  /* MATCHING */
+  .matching-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem}
+  .match-col h5{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mod-dk);margin-bottom:.6rem}
+  .match-item{background:var(--cream);border:2px solid var(--mod-border);border-radius:8px;padding:.6rem .9rem;font-size:.9rem;margin-bottom:.5rem;cursor:pointer;transition:all .2s;user-select:none}
+  .match-item:hover{border-color:var(--amber-dk)}
+  .match-item.selected{background:var(--mod-strip);border-color:var(--amber-dk)}
+  .match-item.matched{background:#e8f8ee;border-color:var(--green)}
+  .match-item.wrong{background:#fef0ee;border-color:var(--red)}
+  .match-btn{background:var(--amber-dk);color:#fff;border:none;border-radius:8px;padding:.5rem 1.2rem;font-family:var(--fb);font-weight:600;font-size:.88rem;cursor:pointer;margin-top:.6rem;transition:background .2s}
+  .match-btn:hover{background:var(--amber)}
+
+  /* CULTURE STRIP */
+  .culture-strip{background:linear-gradient(135deg,var(--mod-strip),var(--cream-dk));border-top:4px solid var(--mod);padding:2.5rem 1.5rem;margin-top:1rem}
+  .culture-inner{max-width:1100px;margin:0 auto}
+  .culture-inner h3{font-family:var(--fh);font-size:1.5rem;font-style:italic;margin-bottom:.8rem;color:var(--black)}
+  .culture-inner p{font-size:.95rem;max-width:800px;line-height:1.7;color:#3a2e00}
+
+  /* RESPONSIVE */
+  @media(max-width:700px){
+    .hero h1{font-size:2rem}
+    .matching-grid{grid-template-columns:1fr}
+    .nav-links a{font-size:.72rem;padding:.3rem .55rem}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <a href="#"><img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=f5755ad" alt="Italiano Per Piacere" loading="lazy"></a>
+    </div>
+    <div class="nav-links">
+      <a href="#vocab" class="active">Vocab</a>
+      <a href="#imperativo">Imperativo</a>
+      <a href="#preposizioni">Preposizioni</a>
+      <a href="#dialogos">Diálogos</a>
+      <a href="#cultura">Cultura</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Viajeros · Módulo 5</div>
+  <h1>In città 🗺</h1>
+  <p>Aprendé a moverte por Venecia y cualquier ciudad italiana. Pedí indicaciones con confianza y entendé respuestas reales.</p>
+  <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+</div>
+
+<!-- VOCAB -->
+<section class="section" id="vocab">
+  <h2 class="section-title">Vocabulario esencial</h2>
+  <p class="section-subtitle">Hacé clic en cada tarjeta para ver la traducción. ¡Tratá de adivinar antes!</p>
+
+  <div class="vocab-label">Grupo A — Direcciones</div>
+  <div class="vocab-grid" id="vocabA">
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">➡️</span><span class="it">destra</span><span class="es">derecha</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">⬅️</span><span class="it">sinistra</span><span class="es">izquierda</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">⬆️</span><span class="it">dritto / avanti</span><span class="es">derecho / adelante</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">↩️</span><span class="it">indietro</span><span class="es">atrás / hacia atrás</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">📐</span><span class="it">all'angolo</span><span class="es">en la esquina</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">↔️</span><span class="it">di fronte</span><span class="es">enfrente</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">🏠</span><span class="it">accanto (a)</span><span class="es">al lado (de)</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">🚪</span><span class="it">davanti (a)</span><span class="es">delante (de)</span></div>
+  </div>
+
+  <div class="vocab-label">Grupo B — Lugares de la ciudad</div>
+  <div class="vocab-grid" id="vocabB">
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">🏛️</span><span class="it">la piazza</span><span class="es">la plaza</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">🖼️</span><span class="it">il museo</span><span class="es">el museo</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">⛪</span><span class="it">la chiesa</span><span class="es">la iglesia</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">⛲</span><span class="it">la fontana</span><span class="es">la fuente</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">🌉</span><span class="it">il ponte</span><span class="es">el puente</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">🚉</span><span class="it">la stazione</span><span class="es">la estación</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">💊</span><span class="it">la farmacia</span><span class="es">la farmacia</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">🏥</span><span class="it">l'ospedale</span><span class="es">el hospital</span></div>
+  </div>
+
+  <div class="vocab-label">Grupo C — Verbos de movimiento</div>
+  <div class="vocab-grid" id="vocabC">
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">↩️</span><span class="it">girare</span><span class="es">girar / doblar</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">🚶</span><span class="it">andare</span><span class="es">ir</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">👣</span><span class="it">seguire</span><span class="es">seguir</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">🚸</span><span class="it">attraversare</span><span class="es">cruzar / atravesar</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">⬆️</span><span class="it">salire</span><span class="es">subir</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">⬇️</span><span class="it">scendere</span><span class="es">bajar</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">➡️</span><span class="it">continuare</span><span class="es">continuar</span></div>
+    <div class="vocab-card" onclick="flipCard(this)"><span class="icon">✋</span><span class="it">fermarsi</span><span class="es">pararse / detenerse</span></div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- IMPERATIVO FORMAL -->
+<section class="section" id="imperativo">
+  <h2 class="section-title">Descubrimiento 1 — El imperativo formal</h2>
+  <p class="section-subtitle">En Italia, cuando pedís indicaciones a un desconocido, la persona responde usando el imperativo formal (Lei). Fijate en los patrones.</p>
+
+  <div class="discovery-block">
+    <h3>¿Cómo se construye?</h3>
+    <div class="note-box">
+      📌 Para dar órdenes formales (a alguien de "usted"), usamos la <strong>3ª persona singular del presente</strong> como base. Los verbos <strong>-ARE</strong> terminan en <strong>-i</strong>, los verbos <strong>-ERE/-IRE</strong> terminan en <strong>-a</strong>.
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Infinitivo</th><th>Imperativo informal (tu)</th><th>Imperativo formal (Lei)</th><th>Significado en contexto</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="it-cell">girare</td><td>gira</td><td class="highlight-cell">giri</td><td>"Gire a la derecha"</td></tr>
+        <tr><td class="it-cell">continuare</td><td>continua</td><td class="highlight-cell">continui</td><td>"Continúe derecho"</td></tr>
+        <tr><td class="it-cell">attraversare</td><td>attraversa</td><td class="highlight-cell">attraversi</td><td>"Cruce el puente"</td></tr>
+        <tr><td class="it-cell">seguire</td><td>segui</td><td class="highlight-cell">segua</td><td>"Siga esta calle"</td></tr>
+        <tr><td class="it-cell">prendere</td><td>prendi</td><td class="highlight-cell">prenda</td><td>"Tome la segunda calle"</td></tr>
+        <tr><td class="it-cell">scendere</td><td>scendi</td><td class="highlight-cell">scenda</td><td>"Baje en la próxima parada"</td></tr>
+        <tr><td class="it-cell">andare ⚠️</td><td>vai</td><td class="highlight-cell">vada</td><td>"Vaya hasta la plaza"</td></tr>
+        <tr><td class="it-cell">essere ⚠️</td><td>sii</td><td class="highlight-cell">sia</td><td>"Sea paciente" (poco usual en direcciones)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note-box">
+      💡 <strong>Scusi</strong> (perdone) es también un imperativo formal de <em>scusare</em>. Se usa para llamar la atención antes de pedir ayuda: <em>"Scusi, come si arriva al Ponte di Rialto?"</em>
+    </div>
+
+    <div class="fill-exercise">
+      <h4>Ejercicio — Transformá al imperativo formal</h4>
+      <p style="font-size:.88rem;margin-bottom:1rem;color:#5a4800">Escribí la forma <strong>Lei</strong> de estos verbos:</p>
+      <div class="fill-item"><span>1. <em>girare</em> →</span> <input type="text" placeholder="Lei..."> <span style="color:#888;font-size:.8rem">(a destra)</span></div>
+      <div class="fill-item"><span>2. <em>andare</em> →</span> <input type="text" placeholder="Lei..."> <span style="color:#888;font-size:.8rem">(dritto)</span></div>
+      <div class="fill-item"><span>3. <em>prendere</em> →</span> <input type="text" placeholder="Lei..."> <span style="color:#888;font-size:.8rem">(la prima strada)</span></div>
+      <div class="fill-item"><span>4. <em>seguire</em> →</span> <input type="text" placeholder="Lei..."> <span style="color:#888;font-size:.8rem">(questa via)</span></div>
+      <div class="fill-item"><span>5. <em>attraversare</em> →</span> <input type="text" placeholder="Lei..."> <span style="color:#888;font-size:.8rem">(il ponte)</span></div>
+      <button class="check-btn" onclick="checkFill1()">Verificar</button>
+      <div class="feedback" id="fb1"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- PREPOSIZIONI ARTICOLATE -->
+<section class="section" id="preposizioni">
+  <h2 class="section-title">Descubrimiento 2 — Preposizioni articolate</h2>
+  <p class="section-subtitle">En italiano, las preposiciones se fusionan con el artículo determinado para formar una sola palabra. Son esenciales para dar y seguir indicaciones.</p>
+
+  <div class="discovery-block">
+    <h3>La tabla completa</h3>
+    <div class="note-box">📌 Las preposiciones que se combinan con el artículo son: <strong>a, di, da, in, su, con, per</strong>. Las más usadas en direcciones son <strong>a</strong> (al, allo, alla…) y <strong>in</strong> (nel, nella…).</div>
+
+    <table>
+      <thead>
+        <tr><th>Prep.</th><th>+ il</th><th>+ lo</th><th>+ la</th><th>+ l'</th><th>+ i</th><th>+ gli</th><th>+ le</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>a</strong></td><td class="it-cell highlight-cell">al</td><td class="it-cell">allo</td><td class="it-cell highlight-cell">alla</td><td class="it-cell">all'</td><td class="it-cell">ai</td><td class="it-cell">agli</td><td class="it-cell">alle</td></tr>
+        <tr><td><strong>di</strong></td><td class="it-cell">del</td><td class="it-cell">dello</td><td class="it-cell">della</td><td class="it-cell">dell'</td><td class="it-cell">dei</td><td class="it-cell">degli</td><td class="it-cell">delle</td></tr>
+        <tr><td><strong>da</strong></td><td class="it-cell">dal</td><td class="it-cell">dallo</td><td class="it-cell">dalla</td><td class="it-cell">dall'</td><td class="it-cell">dai</td><td class="it-cell">dagli</td><td class="it-cell">dalle</td></tr>
+        <tr><td><strong>in</strong></td><td class="it-cell highlight-cell">nel</td><td class="it-cell">nello</td><td class="it-cell highlight-cell">nella</td><td class="it-cell">nell'</td><td class="it-cell">nei</td><td class="it-cell">negli</td><td class="it-cell">nelle</td></tr>
+        <tr><td><strong>su</strong></td><td class="it-cell">sul</td><td class="it-cell">sullo</td><td class="it-cell">sulla</td><td class="it-cell">sull'</td><td class="it-cell">sui</td><td class="it-cell">sugli</td><td class="it-cell">sulle</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:1.5rem">Ejemplos en el contexto de la ciudad</h3>
+    <table>
+      <thead><tr><th>Preposizione articolata</th><th>Ejemplo en contexto</th><th>Traducción</th></tr></thead>
+      <tbody>
+        <tr><td class="it-cell">al</td><td class="it-cell">Giri al semaforo</td><td>Gire en el semáforo</td></tr>
+        <tr><td class="it-cell">alla</td><td class="it-cell">Arrivi alla piazza</td><td>Llegue a la plaza</td></tr>
+        <tr><td class="it-cell">all'</td><td class="it-cell">Si fermi all'incrocio</td><td>Párense en la intersección</td></tr>
+        <tr><td class="it-cell">nel</td><td class="it-cell">Nel centro storico</td><td>En el centro histórico</td></tr>
+        <tr><td class="it-cell">nella</td><td class="it-cell">Nella via principale</td><td>En la calle principal</td></tr>
+        <tr><td class="it-cell">sul</td><td class="it-cell">Sul ponte c'è un mercato</td><td>Sobre el puente hay un mercado</td></tr>
+        <tr><td class="it-cell">della</td><td class="it-cell">A destra della chiesa</td><td>A la derecha de la iglesia</td></tr>
+      </tbody>
+    </table>
+
+    <div class="fill-exercise">
+      <h4>Ejercicio — Completá con la preposizione articolata</h4>
+      <p style="font-size:.88rem;margin-bottom:1rem;color:#5a4800">Escribí la contracción correcta:</p>
+      <div class="fill-item"><span>1. Giri <em>a + il</em> semaforo →</span> <input type="text" placeholder="a+il=..."> <span style="color:#888;font-size:.8rem">semaforo</span></div>
+      <div class="fill-item"><span>2. Vada <em>a + la</em> stazione →</span> <input type="text" placeholder="a+la=..."> <span style="color:#888;font-size:.8rem">stazione</span></div>
+      <div class="fill-item"><span>3. È <em>di + la</em> piazza →</span> <input type="text" placeholder="di+la=..."> <span style="color:#888;font-size:.8rem">piazza</span></div>
+      <div class="fill-item"><span>4. <em>in + il</em> centro storico →</span> <input type="text" placeholder="in+il=..."> <span style="color:#888;font-size:.8rem">centro storico</span></div>
+      <div class="fill-item"><span>5. Sul ponte, poi <em>a + la</em> destra →</span> <input type="text" placeholder="a+la=..."> <span style="color:#888;font-size:.8rem">destra</span></div>
+      <button class="check-btn" onclick="checkFill2()">Verificar</button>
+      <div class="feedback" id="fb2"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- FRASES DE ORIENTACIÓN -->
+<section class="section">
+  <h2 class="section-title">Descubrimiento 3 — Frases completas de orientación</h2>
+  <p class="section-subtitle">Con el imperativo y las preposizioni articolate ya podés armar indicaciones completas. Mirá cómo se combinan.</p>
+
+  <div class="discovery-block">
+    <h3>Estructuras para dar indicaciones</h3>
+    <table>
+      <thead><tr><th>Estructura</th><th>Ejemplo</th><th>Traducción</th></tr></thead>
+      <tbody>
+        <tr><td>Verbo (imp. formal) + dirección</td><td class="it-cell">Giri a destra.</td><td>Gire a la derecha.</td></tr>
+        <tr><td>Verbo + dritto + referencia</td><td class="it-cell">Vada dritto fino al semaforo.</td><td>Vaya derecho hasta el semáforo.</td></tr>
+        <tr><td>Verbo + prep. art. + lugar</td><td class="it-cell">Attraversi il ponte e giri alla prima strada a sinistra.</td><td>Cruce el puente y gire en la primera calle a la izquierda.</td></tr>
+        <tr><td>È + avverbio</td><td class="it-cell">È qui vicino / È lontano.</td><td>Está acá cerca / Está lejos.</td></tr>
+        <tr><td>Ci vogliono + minuti</td><td class="it-cell">Ci vogliono cinque minuti a piedi.</td><td>Son cinco minutos a pie.</td></tr>
+        <tr><td>Non può sbagliare</td><td class="it-cell">Non può sbagliare, è proprio lì.</td><td>No puede equivocarse, está justo ahí.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="fill-exercise">
+      <h4>Ejercicio — Armá la indicación completa</h4>
+      <p style="font-size:.88rem;margin-bottom:1rem;color:#5a4800">Ordená las palabras para formar la indicación (escribila completa):</p>
+      <div class="fill-item" style="flex-direction:column;align-items:flex-start">
+        <span>1. <em>[destra / alla / giri / farmacia]</em></span>
+        <input type="text" placeholder="Escribí la oración..." style="width:100%;max-width:400px;margin-top:.3rem">
+      </div>
+      <div class="fill-item" style="flex-direction:column;align-items:flex-start;margin-top:.5rem">
+        <span>2. <em>[fino / vada / alla / dritto / piazza]</em></span>
+        <input type="text" placeholder="Escribí la oración..." style="width:100%;max-width:400px;margin-top:.3rem">
+      </div>
+      <div class="fill-item" style="flex-direction:column;align-items:flex-start;margin-top:.5rem">
+        <span>3. <em>[il / attraversi / poi / ponte / sinistra / giri / a]</em></span>
+        <input type="text" placeholder="Escribí la oración..." style="width:100%;max-width:400px;margin-top:.3rem">
+      </div>
+      <button class="check-btn" onclick="checkFill3()">Verificar</button>
+      <div class="feedback" id="fb3"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- MAPA INTERACTIVO -->
+<section class="section">
+  <h2 class="section-title">Actividad interactiva — Mapa de Venezia</h2>
+  <p class="section-subtitle">Hacé clic en los lugares del mapa para descubrir cómo llegar desde la stazione.</p>
+  <div class="map-activity">
+    <h3>¿Cómo llego desde la Stazione di Santa Lucia? 🚉</h3>
+    <div class="map-container">
+      <div class="map-grid">
+        <!-- Row 1 -->
+        <div class="map-cell luogo" onclick="showMapInfo('stazione')">🚉 Stazione</div>
+        <div class="map-cell strada">→ Lista di Spagna</div>
+        <div class="map-cell strada">→ via</div>
+        <div class="map-cell luogo" onclick="showMapInfo('canale')">🚤 Canal Grande</div>
+        <div class="map-cell strada">este</div>
+        <!-- Row 2 -->
+        <div class="map-cell strada">↓</div>
+        <div class="map-cell strada"></div>
+        <div class="map-cell luogo" onclick="showMapInfo('rialto')">🌉 Ponte di Rialto</div>
+        <div class="map-cell strada">↓</div>
+        <div class="map-cell strada">este</div>
+        <!-- Row 3 -->
+        <div class="map-cell luogo" onclick="showMapInfo('frari')">⛪ I Frari</div>
+        <div class="map-cell strada">← via</div>
+        <div class="map-cell strada">centro</div>
+        <div class="map-cell strada">→ via</div>
+        <div class="map-cell luogo" onclick="showMapInfo('marciana')">📚 Biblioteca Marciana</div>
+        <!-- Row 4 -->
+        <div class="map-cell strada">↓ sur</div>
+        <div class="map-cell strada"></div>
+        <div class="map-cell luogo" onclick="showMapInfo('accademia')">🖼️ Gallerie Accademia</div>
+        <div class="map-cell strada">→ este</div>
+        <div class="map-cell luogo" onclick="showMapInfo('piazzasanmarco')">🏛️ Piazza San Marco</div>
+      </div>
+    </div>
+    <div class="map-info" id="mapInfo">
+      <em>Hacé clic en un lugar para ver cómo llegar desde la Stazione Santa Lucia.</em>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- DIÁLOGOS -->
+<section class="section" id="dialogos">
+  <h2 class="section-title">Diálogos — En las calles de Venezia</h2>
+  <p class="section-subtitle">Leé los diálogos y prestá atención al imperativo formal y a las preposizioni articolate.</p>
+
+  <div class="dialogue-wrap">
+    <h4>Diálogo 1 — Turista y habitante</h4>
+    <div class="bubble-row right">
+      <div class="avatar">👤</div>
+      <div class="bubble">
+        <div class="speaker">Turista</div>
+        <div class="it">Scusi, come si arriva al Ponte di Rialto da qui?</div>
+        <div class="tr">Perdone, ¿cómo se llega al Puente de Rialto desde acá?</div>
+      </div>
+    </div>
+    <div class="bubble-row">
+      <div class="avatar">👨‍🦳</div>
+      <div class="bubble">
+        <div class="speaker">Veneziano</div>
+        <div class="it">Allora... vada dritto per questa calle fino all'incrocio, poi giri a destra e attraversi il ponte piccolo. Da lì segua i cartelli: troverà il Rialto in dieci minuti a piedi.</div>
+        <div class="tr">Bueno… vaya derecho por esta callecita hasta la intersección, después gire a la derecha y cruce el puente chico. Desde ahí siga los carteles: va a encontrar el Rialto en diez minutos a pie.</div>
+      </div>
+    </div>
+    <div class="bubble-row right">
+      <div class="avatar">👤</div>
+      <div class="bubble">
+        <div class="speaker">Turista</div>
+        <div class="it">È lontano?</div>
+        <div class="tr">¿Está lejos?</div>
+      </div>
+    </div>
+    <div class="bubble-row">
+      <div class="avatar">👨‍🦳</div>
+      <div class="bubble">
+        <div class="speaker">Veneziano</div>
+        <div class="it">No, no! Ci vogliono solo dieci minuti. Segua i cartelli gialli e non può sbagliare!</div>
+        <div class="tr">¡No, no! Son solo diez minutos. Siga los carteles amarillos y no puede equivocarse.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue-wrap">
+    <h4>Diálogo 2 — En la fermata del vaporetto</h4>
+    <div class="bubble-row right">
+      <div class="avatar">👩</div>
+      <div class="bubble">
+        <div class="speaker">Turista</div>
+        <div class="it">Scusi, mi sa dire quale vaporetto va a Piazza San Marco?</div>
+        <div class="tr">Perdone, ¿me puede decir qué vaporetto va a Piazza San Marco?</div>
+      </div>
+    </div>
+    <div class="bubble-row">
+      <div class="avatar">👨‍✈️</div>
+      <div class="bubble">
+        <div class="speaker">Addetto</div>
+        <div class="it">Prenda il linea 1 o il linea 2. Scenda alla fermata San Marco Vallaresso. Dal pontile, vada a sinistra e arriverà direttamente alla piazza.</div>
+        <div class="tr">Tome la línea 1 o la línea 2. Baje en la parada San Marco Vallaresso. Desde el pontón, vaya a la izquierda y llegará directamente a la plaza.</div>
+      </div>
+    </div>
+    <div class="bubble-row right">
+      <div class="avatar">👩</div>
+      <div class="bubble">
+        <div class="speaker">Turista</div>
+        <div class="it">Grazie mille! Quanto ci vuole?</div>
+        <div class="tr">¡Muchísimas gracias! ¿Cuánto tarda?</div>
+      </div>
+    </div>
+    <div class="bubble-row">
+      <div class="avatar">👨‍✈️</div>
+      <div class="bubble">
+        <div class="speaker">Addetto</div>
+        <div class="it">Con la linea 2, circa venti minuti. Buona visita!</div>
+        <div class="tr">Con la línea 2, unos veinte minutos. ¡Que disfrute la visita!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- COMPRENSIÓN -->
+<section class="section">
+  <h2 class="section-title">Comprensión — Leé el cartel turístico</h2>
+  <p class="section-subtitle">Este tipo de carteles es muy común en los centros históricos italianos. Respondé las preguntas.</p>
+
+  <div class="comprension">
+    <h4>Cartel turístico — Mappa del centro storico di Venezia</h4>
+    <div class="cartel">
+      <div class="linea"><span class="arrow">→</span> <strong>Piazza San Marco</strong> — 15 min. a piedi / vaporetto linea 1-2</div>
+      <div class="linea"><span class="arrow">→</span> <strong>Ponte di Rialto</strong> — 10 min. a piedi, seguite i cartelli gialli</div>
+      <div class="linea"><span class="arrow">→</span> <strong>Gallerie dell'Accademia</strong> — vaporetto linea 1, fermata Accademia</div>
+      <div class="linea"><span class="arrow">↑</span> <strong>Stazione S. Lucia</strong> — 20 min. a piedi / vaporetto linea 1-2</div>
+      <div class="linea"><span class="arrow">⚠️</span> <strong>Zona ZTL</strong> — accesso limitato ai veicoli</div>
+    </div>
+
+    <div class="quiz-item">
+      <p>1. ¿Cuánto se tarda a pie para llegar al Ponte di Rialto?</p>
+      <div class="options">
+        <button class="opt-btn" onclick="checkOpt(this,'wrong')">20 minutos</button>
+        <button class="opt-btn" onclick="checkOpt(this,'correct')">10 minutos</button>
+        <button class="opt-btn" onclick="checkOpt(this,'wrong')">15 minutos</button>
+      </div>
+    </div>
+    <div class="quiz-item">
+      <p>2. ¿Qué vaporetto va a las Gallerie dell'Accademia?</p>
+      <div class="options">
+        <button class="opt-btn" onclick="checkOpt(this,'wrong')">Línea 2</button>
+        <button class="opt-btn" onclick="checkOpt(this,'correct')">Línea 1</button>
+        <button class="opt-btn" onclick="checkOpt(this,'wrong')">Línea 3</button>
+      </div>
+    </div>
+    <div class="quiz-item">
+      <p>3. ¿Qué significa "ZTL"?</p>
+      <div class="options">
+        <button class="opt-btn" onclick="checkOpt(this,'wrong')">Zona turística libre</button>
+        <button class="opt-btn" onclick="checkOpt(this,'correct')">Zona de tráfico limitado</button>
+        <button class="opt-btn" onclick="checkOpt(this,'wrong')">Zona con transporte ligero</button>
+      </div>
+    </div>
+    <div class="quiz-item">
+      <p>4. ¿Qué color tienen los carteles que llevan al Rialto?</p>
+      <div class="options">
+        <button class="opt-btn" onclick="checkOpt(this,'wrong')">Rojos</button>
+        <button class="opt-btn" onclick="checkOpt(this,'wrong')">Azules</button>
+        <button class="opt-btn" onclick="checkOpt(this,'correct')">Amarillos</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- MATCHING -->
+<section class="section">
+  <h2 class="section-title">Matching — Lugar en el mapa con descripción</h2>
+  <p class="section-subtitle">Relacioná cada lugar de Venecia con su descripción. Hacé clic en un lugar y después en su descripción.</p>
+  <div class="comprension">
+    <div class="matching-grid">
+      <div>
+        <h5>Lugares</h5>
+        <div class="match-item" onclick="selectMatch(this,'L1')" data-id="L1">🌉 Ponte di Rialto</div>
+        <div class="match-item" onclick="selectMatch(this,'L2')" data-id="L2">🏛️ Piazza San Marco</div>
+        <div class="match-item" onclick="selectMatch(this,'L3')" data-id="L3">🚉 Stazione S. Lucia</div>
+        <div class="match-item" onclick="selectMatch(this,'L4')" data-id="L4">🖼️ Gallerie Accademia</div>
+      </div>
+      <div>
+        <h5>Descripciones</h5>
+        <div class="match-item" onclick="selectMatch(this,'D3')" data-id="D3">Punto de llegada y partida de trenes a Venezia</div>
+        <div class="match-item" onclick="selectMatch(this,'D1')" data-id="D1">Puente medieval famoso con tiendas encima</div>
+        <div class="match-item" onclick="selectMatch(this,'D4')" data-id="D4">Museo con las mejores pinturas del Renacimiento veneziano</div>
+        <div class="match-item" onclick="selectMatch(this,'D2')" data-id="D2">La plaza principal de Venezia con la Basílica</div>
+      </div>
+    </div>
+    <button class="match-btn" onclick="checkMatches()">Verificar matching</button>
+    <div class="feedback" id="fbMatch"></div>
+  </div>
+</section>
+
+<!-- CULTURA -->
+<div class="culture-strip" id="cultura">
+  <div class="culture-inner">
+    <h3>🏛️ Tip cultural — El centro storico italiano y las ZTL</h3>
+    <p>En muchas ciudades italianas, el corazón histórico (centro storico) es una zona de acceso restringido para vehículos. Estas áreas se llaman <strong>ZTL — Zona a Traffico Limitato</strong>. Si llegás en auto, tené cuidado: las cámaras capturan las patentes automáticamente y la multa puede llegarte al domicilio semanas después.</p>
+    <p style="margin-top:.8rem">Venezia es un caso extremo: en el centro histórico directamente no hay autos. Todo se hace a pie o en vaporetto (el colectivo acuático). Los carteles amarillos <em>per San Marco</em> y <em>per Rialto</em> son tus mejores amigos. Y si te perdés en una calle angosta llamada <strong>calle</strong> o <strong>sottoportego</strong> (pasaje cubierto), ¡bienvenido a la experiencia auténtica de Venezia!</p>
+  </div>
+</div>
+
+<script>
+// FLIP CARDS
+function flipCard(card){card.classList.toggle('flipped');updateProgress()}
+
+// PROGRESS
+let flipped=0,totalCards=24;
+function updateProgress(){
+  flipped=document.querySelectorAll('.vocab-card.flipped').length;
+  let pct=Math.min(100,Math.round((flipped/totalCards)*60));
+  document.getElementById('progressBar').style.width=pct+'%';
+}
+
+// FILL 1
+const answers1=['giri','vada','prenda','segua','attraversi'];
+function checkFill1(){
+  const inputs=document.querySelectorAll('.fill-exercise')[0].querySelectorAll('input');
+  let ok=0;
+  inputs.forEach((inp,i)=>{
+    const val=inp.value.trim().toLowerCase();
+    if(val===answers1[i]){inp.classList.add('correct');inp.classList.remove('wrong');ok++}
+    else{inp.classList.add('wrong');inp.classList.remove('correct')}
+  });
+  const fb=document.getElementById('fb1');
+  fb.className='feedback '+(ok===5?'ok':'ko');
+  fb.textContent=ok===5?'¡Perfecto! Dominás el imperativo formal.':'Revisá las respuestas: '+answers1.join(' | ');
+}
+
+// FILL 2
+const answers2=['al','alla','della','nel','alla'];
+function checkFill2(){
+  const inputs=document.querySelectorAll('.fill-exercise')[1].querySelectorAll('input');
+  let ok=0;
+  inputs.forEach((inp,i)=>{
+    const val=inp.value.trim().toLowerCase();
+    if(val===answers2[i]){inp.classList.add('correct');inp.classList.remove('wrong');ok++}
+    else{inp.classList.add('wrong');inp.classList.remove('correct')}
+  });
+  const fb=document.getElementById('fb2');
+  fb.className='feedback '+(ok===5?'ok':'ko');
+  fb.textContent=ok===5?'¡Excelente! Las preposizioni articolate ya son tuyas.':'Respuestas: '+answers2.join(' | ');
+}
+
+// FILL 3
+const answers3=['Giri alla destra della farmacia','Vada dritto fino alla piazza','Attraversi il ponte poi giri a sinistra'];
+function checkFill3(){
+  const inputs=document.querySelectorAll('.fill-exercise')[2].querySelectorAll('input');
+  let ok=0;
+  const correct=[
+    ['giri alla destra della farmacia','giri a destra della farmacia'],
+    ['vada dritto fino alla piazza'],
+    ['attraversi il ponte poi giri a sinistra']
+  ];
+  inputs.forEach((inp,i)=>{
+    const val=inp.value.trim().toLowerCase();
+    const isOk=correct[i].some(a=>val.includes(a.toLowerCase().split(' ').slice(0,3).join(' ')));
+    if(isOk){inp.classList.add('correct');inp.classList.remove('wrong');ok++}
+    else{inp.classList.add('wrong');inp.classList.remove('correct')}
+  });
+  const fb=document.getElementById('fb3');
+  fb.className='feedback '+(ok>=2?'ok':'ko');
+  fb.textContent=ok>=2?'¡Muy bien! Ya podés dar indicaciones completas.':'Posibles respuestas: 1) Giri alla destra della farmacia  2) Vada dritto fino alla piazza  3) Attraversi il ponte poi giri a sinistra';
+}
+
+// MAP INFO
+const mapData={
+  stazione:{text:'📍 Stazione di Santa Lucia — Il punto di partenza. Da qui prenda il vaporetto o cammini lungo la Lista di Spagna verso il centro.'},
+  canale:{text:'🚤 Canal Grande — Il "viale" principale di Venezia. Percorretelo in vaporetto per ammirare i palazzi veneziani.'},
+  rialto:{text:'🌉 Ponte di Rialto — A 10 minuti a piedi dalla stazione. Segua i cartelli gialli. È il ponte più famoso del Canal Grande.'},
+  frari:{text:'⛪ Basilica dei Frari — Una delle chiese più importanti di Venezia. Ci vogliono 20 minuti a piedi dalla stazione.'},
+  marciana:{text:'📚 Biblioteca Nazionale Marciana — Accanto a Piazza San Marco. Raggiungetela in vaporetto o a piedi (30-35 min).'},
+  accademia:{text:'🖼️ Gallerie dell\'Accademia — Le migliori opere rinascimentali veneziane. Prenda il vaporetto linea 1, fermata Accademia.'},
+  piazzasanmarco:{text:'🏛️ Piazza San Marco — Il cuore di Venezia! In vaporetto: linea 1 o 2. A piedi: circa 30-35 minuti dalla stazione.'}
+};
+function showMapInfo(id){
+  document.getElementById('mapInfo').innerHTML=mapData[id]?.text||'Info non disponibile.';
+  document.querySelectorAll('.map-cell.luogo').forEach(c=>c.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+// OPTION BUTTONS
+function checkOpt(btn,type){
+  const parent=btn.closest('.options');
+  parent.querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('correct','wrong'));
+  btn.classList.add(type);
+}
+
+// MATCHING
+let selectedL=null,selectedD=null;
+const correctPairs={L1:'D1',L2:'D2',L3:'D3',L4:'D4'};
+function selectMatch(el,id){
+  const isLeft=id.startsWith('L');
+  if(isLeft){
+    document.querySelectorAll('.match-item').forEach(m=>{if(m.dataset.id&&m.dataset.id.startsWith('L'))m.classList.remove('selected')});
+    el.classList.add('selected');selectedL=id;
+  }else{
+    document.querySelectorAll('.match-item').forEach(m=>{if(m.dataset.id&&m.dataset.id.startsWith('D'))m.classList.remove('selected')});
+    el.classList.add('selected');selectedD=id;
+  }
+}
+function checkMatches(){
+  if(!selectedL||!selectedD){document.getElementById('fbMatch').textContent='Seleccioná un lugar y una descripción primero.';return}
+  const correct=correctPairs[selectedL]===selectedD;
+  document.querySelector('[data-id="'+selectedL+'"]').classList.add(correct?'matched':'wrong');
+  document.querySelector('[data-id="'+selectedD+'"]').classList.add(correct?'matched':'wrong');
+  const fb=document.getElementById('fbMatch');
+  fb.className='feedback '+(correct?'ok':'ko');
+  fb.textContent=correct?'¡Par correcto! Seguí con los demás.':'No es ese par. Intentá de nuevo.';
+  selectedL=null;selectedD=null;
+}
+
+// NAV ACTIVE ON SCROLL
+const sections=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-80)current=s.id});
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+current);
+  });
+});
+</script>
+</body>
+</html>

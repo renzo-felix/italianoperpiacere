@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
@@ -18,15 +18,16 @@
     [data-stagger].in>*{opacity:1;transform:none!important}
     [data-stagger]>*{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
     [data-stagger]>*:nth-child(1){transition-delay:.00s}[data-stagger]>*:nth-child(2){transition-delay:.08s}[data-stagger]>*:nth-child(3){transition-delay:.16s}[data-stagger]>*:nth-child(4){transition-delay:.24s}[data-stagger]>*:nth-child(5){transition-delay:.32s}[data-stagger]>*:nth-child(6){transition-delay:.40s}[data-stagger]>*:nth-child(7){transition-delay:.48s}[data-stagger]>*:nth-child(8){transition-delay:.56s}
-    .hero{min-height:100vh;background:var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
-    .hero-bg-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none;will-change:transform}
+    .hero{min-height:100vh;background:#c8e8de;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
+    .hero-bg-circle{display:none;position:absolute;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none;will-change:transform}
     .hero-bg-circle:nth-child(1){width:600px;height:600px;top:-200px;right:-150px}
     .hero-bg-circle:nth-child(2){width:400px;height:400px;bottom:-100px;left:-100px}
-    .hero-badge{display:inline-block;background:rgba(0,0,0,.25);color:var(--white);font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:.3rem 1.2rem;border-radius:20px;margin-bottom:1.5rem;opacity:0;animation:popIn .6s var(--ease) .2s forwards}
-    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-style:italic;color:var(--white);line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
-    .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:rgba(255,255,255,.8);max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
-    .trans-btn{position:fixed;top:1rem;right:1rem;z-index:200;padding:.5rem 1rem;border-radius:20px;border:none;cursor:pointer;font-family:var(--fb);font-size:.78rem;font-weight:700;background:var(--black);color:var(--gold);box-shadow:0 2px 12px rgba(0,0,0,.2)}
-    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.6);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
+    .hero-badge{display:inline-block;background:var(--gold);color:var(--black);font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:.3rem 1.2rem;border-radius:20px;margin-bottom:1.5rem;opacity:0;animation:popIn .6s var(--ease) .2s forwards}
+    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-style:italic;color:#1a1a18;line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
+    .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:#1a1a18;opacity:.75;max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
+    .trans-btn{position:fixed;top:1rem;right:1rem;z-index:200;padding:.5rem 1rem;border-radius:20px;border:2px solid var(--green);cursor:pointer;font-family:var(--fb);font-size:.78rem;font-weight:700;background:var(--white);color:var(--green);box-shadow:0 2px 12px rgba(0,0,0,.12);transition:background .2s,color .2s}
+    .trans-btn:hover{background:var(--green);color:var(--white)}
+    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(0,0,0,.4);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
     .scroll-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);animation:scrollDot 1.5s ease infinite}
     @keyframes popIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
     @keyframes slideUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
@@ -35,30 +36,30 @@
     @keyframes floatAv{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
     .section{padding:6rem 2rem}.section.bg-alt{background:var(--cream-dk)}.section.bg-white{background:var(--white)}
     .container{max-width:860px;margin:0 auto}
-    .section-label{font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+    .section-label{font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:.75rem}
     .section-title{font-family:var(--fh);font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;margin-bottom:1.25rem}
-    .section-title em{font-style:italic;color:var(--red)}
+    .section-title em{font-style:italic;color:var(--green)}
     .section-desc{font-size:1rem;color:#555;line-height:1.75;max-width:640px}
     .sofia-wrap{display:flex;align-items:flex-start;gap:1.25rem;background:var(--white);border-radius:16px;padding:1.5rem 2rem;box-shadow:0 4px 24px rgba(0,0,0,.07);max-width:640px}
     .sofia-avatar{width:60px;height:60px;border-radius:50%;flex-shrink:0;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.8rem;animation:floatAv 3.5s ease-in-out infinite}
-    .speech-bubble{flex:1}.speech-bubble strong{display:block;font-size:.75rem;font-weight:700;color:var(--red);margin-bottom:.4rem;letter-spacing:1px;text-transform:uppercase}
+    .speech-bubble{flex:1}.speech-bubble strong{display:block;font-size:.75rem;font-weight:700;color:var(--green);margin-bottom:.4rem;letter-spacing:1px;text-transform:uppercase}
     .speech-bubble p{font-size:.95rem;color:#333;line-height:1.65}.speech-bubble p+p{margin-top:.6rem}
     .word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;margin-bottom:1.5rem}
     .word-card{background:var(--white);border:2px solid transparent;border-radius:var(--r);padding:.9rem .75rem;text-align:center;cursor:pointer;user-select:none;position:relative;transition:border-color .2s,background .2s,transform .15s;font-weight:600;font-size:.95rem}
-    .word-card:hover{transform:translateY(-2px);border-color:var(--red)}
-    .word-card.selected{background:var(--red);color:var(--white);border-color:var(--red)}
+    .word-card:hover{transform:translateY(-2px);border-color:var(--green)}
+    .word-card.selected{background:rgba(82,142,116,.18);color:var(--black);border-color:var(--green)}
     .word-card.correct{background:var(--green);color:var(--white);border-color:var(--green)}
-    .word-card.false-pos{background:var(--teal);color:var(--white);border-color:var(--teal)}
-    .word-card.missed{background:var(--red);color:var(--white);border-color:var(--red)}
+    .word-card.false-pos{background:rgba(204,71,54,.12);color:var(--black);border-color:var(--red)}
+    .word-card.missed{background:rgba(229,171,7,.12);color:var(--black);border-color:var(--amber)}
     .word-card.neutral{background:var(--cream-dk);color:#888;border-color:transparent}
     .word-badge{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:var(--white)}
-    .word-card.correct .word-badge{display:flex;background:var(--green)}
-    .word-card.false-pos .word-badge{display:flex;background:var(--teal)}
-    .word-card.missed .word-badge{display:flex;background:var(--red)}
+    .word-card.correct .word-badge{display:flex;background:#3d6b58;color:var(--white)}
+    .word-card.false-pos .word-badge{display:flex;background:var(--red);color:var(--white)}
+    .word-card.missed .word-badge{display:flex;background:var(--amber);color:var(--black)}
     .word-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
     .btn{padding:.65rem 1.5rem;border-radius:30px;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.9rem;transition:opacity .2s,transform .15s}
     .btn:hover{opacity:.85;transform:translateY(-1px)}
-    .btn-primary{background:var(--red);color:var(--white)}
+    .btn-primary{background:var(--green);color:var(--white)}
     .btn-ghost{background:transparent;color:var(--black);border:2px solid var(--cream-dk)}
     .score-display{font-size:.9rem;font-weight:700;color:var(--green)}
     .legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;font-size:.8rem}
@@ -67,24 +68,24 @@
     /* Family tree */
     .tree{display:flex;flex-direction:column;gap:2rem;align-items:center;margin-top:2rem}
     .tree-row{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center}
-    .person-card{background:var(--white);border-radius:12px;padding:1rem 1.2rem;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.08);min-width:110px;border-top:4px solid var(--red)}
+    .person-card{background:var(--white);border-radius:12px;padding:1rem 1.2rem;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.08);min-width:110px;border-top:4px solid var(--green)}
     .person-card.nonni{border-top-color:var(--amber)}
     .person-card.genitori{border-top-color:var(--teal)}
     .person-card.figli{border-top-color:var(--green)}
     .person-card .emoji{font-size:2rem;display:block;margin-bottom:.4rem}
     .person-card .nome{font-weight:700;font-size:.9rem}
     .person-card .anni{font-size:.75rem;color:#888}
-    .person-card .ruolo{font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--red);margin-top:.3rem}
+    .person-card .ruolo{font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-top:.3rem}
     .person-card.nonni .ruolo{color:var(--amber)}
     .person-card.genitori .ruolo{color:var(--teal)}
     .person-card.figli .ruolo{color:var(--green)}
     .tree-connector{width:2px;height:32px;background:var(--cream-dk);margin:0 auto}
     /* Possessives table */
     .poss-table{width:100%;border-collapse:collapse;margin-top:1.5rem;font-size:.9rem}
-    .poss-table th{background:var(--red);color:var(--white);padding:.6rem 1rem;text-align:left;font-weight:600}
+    .poss-table th{background:var(--green);color:var(--white);padding:.6rem 1rem;text-align:left;font-weight:600}
     .poss-table td{padding:.55rem 1rem;border-bottom:1px solid var(--cream-dk)}
     .poss-table tr:nth-child(even) td{background:var(--white)}
-    .poss-table .form{font-weight:700;color:var(--red)}
+    .poss-table .form{font-weight:700;color:var(--green)}
     .rule-box{background:var(--white);border-left:4px solid var(--amber);border-radius:0 12px 12px 0;padding:1.2rem 1.5rem;margin:1.5rem 0}
     .rule-box h4{font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:.6rem}
     .rule-box .good{color:var(--green);font-weight:700}
@@ -93,9 +94,9 @@
     .dialogue{display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem}
     .dlg-bubble{background:var(--white);border-radius:16px;padding:1rem 1.25rem;box-shadow:0 2px 12px rgba(0,0,0,.07);max-width:480px;cursor:pointer;transition:box-shadow .2s}
     .dlg-bubble:hover{box-shadow:0 4px 20px rgba(0,0,0,.12)}
-    .dlg-bubble.right{align-self:flex-end;background:var(--red);color:var(--white)}
-    .dlg-bubble .speaker{font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:.3rem}
-    .dlg-bubble.right .speaker{color:rgba(255,255,255,.7)}
+    .dlg-bubble.right{align-self:flex-end;background:var(--green);color:var(--white)}
+    .dlg-bubble .speaker{font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:.3rem}
+    .dlg-bubble.right .speaker{color:rgba(255,255,255,.8)}
     .dlg-bubble p{font-size:.95rem;line-height:1.5}
     .dlg-bubble .es{display:none;margin-top:.5rem;font-size:.8rem;color:#aaa;font-style:italic}
     .dlg-bubble.right .es{color:rgba(255,255,255,.6)}
@@ -103,8 +104,8 @@
     .dlg-hint{text-align:center;font-size:.75rem;color:#aaa;margin-top:.5rem;font-style:italic}
     /* Numbers */
     .num-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;margin-top:1.5rem}
-    .num-card{background:var(--white);border-radius:12px;padding:1.1rem 1rem;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.07);border-top:3px solid var(--red)}
-    .num-card .numeral{font-size:1.5rem;font-weight:700;font-family:var(--fh);color:var(--red)}
+    .num-card{background:var(--white);border-radius:12px;padding:1.1rem 1rem;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.07);border-top:3px solid var(--green)}
+    .num-card .numeral{font-size:1.5rem;font-weight:700;font-family:var(--fh);color:var(--green)}
     .num-card .letters{font-size:.85rem;font-weight:600;margin-top:.4rem;color:var(--black)}
     .num-card .es{font-size:.72rem}
     /* C'è practice */
@@ -112,15 +113,15 @@
     .cisce-box .sentence{font-size:1rem;margin-bottom:.75rem;line-height:1.5}
     .cisce-box .btns{display:flex;gap:.75rem}
     .cisce-opt{padding:.5rem 1.2rem;border-radius:20px;border:2px solid var(--cream-dk);background:transparent;cursor:pointer;font-family:var(--fb);font-size:.9rem;font-weight:600;transition:all .2s}
-    .cisce-opt:hover{border-color:var(--red)}
+    .cisce-opt:hover{border-color:var(--green)}
     .cisce-opt.correct{background:var(--green);color:var(--white);border-color:var(--green)}
-    .cisce-opt.wrong{background:var(--red);color:var(--white);border-color:var(--red);opacity:.6}
+    .cisce-opt.wrong{background:rgba(204,71,54,.12);color:var(--red);border-color:var(--red);opacity:.7}
     /* Cultural strip */
-    .cultural-strip{background:var(--teal);padding:4rem 2rem;color:var(--white)}
-    .cultural-strip .section-label{color:rgba(255,255,255,.7)}
-    .cultural-strip .section-title{color:var(--white)}
-    .cultural-strip .section-title em{color:var(--gold)}
-    .cultural-strip p{color:rgba(255,255,255,.85);line-height:1.8;font-size:.95rem}
+    .cultural-strip{background:linear-gradient(135deg,#c8e8d8 0%,var(--cream-dk) 100%);border-top:3px solid var(--green);padding:4rem 2rem;color:var(--black)}
+    .cultural-strip .section-label{color:var(--green)}
+    .cultural-strip .section-title{color:var(--black)}
+    .cultural-strip .section-title em{color:var(--green)}
+    .cultural-strip p{color:#555;line-height:1.8;font-size:.95rem}
   </style>
 </head>
 <body class="hide-es">
@@ -137,6 +138,16 @@
   <div class="scroll-hint">
     <span>Scorri</span>
     <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- AUDIO INPUT EMBED -->
+<section class="section bg-white" style="padding:2.5rem 2rem 2rem">
+  <div class="container">
+    <p class="section-label" style="margin-bottom:.5rem">🎧 Audio di riferimento</p>
+    <h2 class="section-title" style="font-size:1.35rem;margin-bottom:.5rem">Coffee Break Italian — <em>CBI 1-05</em></h2>
+    <p class="section-desc" style="margin-bottom:1.25rem;font-size:.9rem">Ascolta prima di iniziare: <em>"Introducing your family in Italian"</em>. Cerca l'episodio CBI 1-05 nello show.<br><a href="etapa1_input.html" style="color:var(--green);font-size:.82rem;font-weight:700">→ Vai alla pagina completa dell'audio</a></p>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/show/2PdBXXDEbSyR8fyd6RL5dR?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Coffee Break Italian"></iframe>
   </div>
 </section>
 
@@ -159,7 +170,7 @@
   <div class="container">
     <p class="section-label" data-a="up">Attività di ascolto</p>
     <h2 class="section-title" data-a="up">Riconosci le <em>parole di famiglia</em></h2>
-    <p class="section-desc" data-a="up">Seleziona solo le parole legate alla famiglia che senti o riconosci. <span class="es">Selecciona solo las palabras relacionadas con la familia.</span></p>
+    <p class="section-desc" data-a="up">Seleziona solo le parole legate alla famiglia che senti o riconosci. <span class="es">Seleccioná solo las palabras relacionadas con la familia.</span></p>
     <div class="word-grid" data-stagger id="wordGrid">
       <div class="word-card" data-correct="true" onclick="toggleWord(this)"><span class="word-badge">✓</span>nonno</div>
       <div class="word-card" onclick="toggleWord(this)"><span class="word-badge">✗</span>amico</div>
@@ -184,9 +195,9 @@
       <span class="score-display" id="wordScore"></span>
     </div>
     <div class="legend">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Corretta</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div> Falso positivo</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Mancata</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Corretta ✓</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Falso positivo ✗</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div> Mancata !</div>
     </div>
   </div>
 </section>
@@ -196,7 +207,7 @@
   <div class="container">
     <p class="section-label" data-a="up">La famiglia Rossi</p>
     <h2 class="section-title" data-a="up">L'albero <em>genealogico</em></h2>
-    <p class="section-desc" data-a="up">Guarda la famiglia di Marco. <span class="es">Mira la familia de Marco.</span></p>
+    <p class="section-desc" data-a="up">Guarda la famiglia di Marco. <span class="es">Mirá la familia de Marco.</span></p>
     <div class="tree" data-a="up">
       <div class="tree-row" data-stagger>
         <div class="person-card nonni">
@@ -336,7 +347,7 @@
         <tr><td>lui/lei</td><td class="form">suo figlio</td><td class="form">sua figlia</td><td class="form">i suoi nipoti</td><td class="form">le sue zie</td></tr>
         <tr><td>noi</td><td class="form">nostro cugino</td><td class="form">nostra zia</td><td class="form">i nostri genitori</td><td class="form">le nostre nonne</td></tr>
         <tr><td>voi</td><td class="form">vostro nonno</td><td class="form">vostra nonna</td><td class="form">i vostri figli</td><td class="form">le vostre figlie</td></tr>
-        <tr><td>loro</td><td colspan="4" style="text-align:center;font-weight:700;color:var(--red)">il loro padre / la loro madre / i loro fratelli (sempre con articolo!)</td></tr>
+        <tr><td>loro</td><td colspan="4" style="text-align:center;font-weight:700;color:var(--green)">il loro padre / la loro madre / i loro fratelli (sempre con articolo!)</td></tr>
       </tbody>
     </table>
     <p class="es" style="margin-top:1rem">Nota: "loro" siempre lleva artículo, incluso con parentesco singular</p>
@@ -419,19 +430,21 @@
 </section>
 
 <script>
+(function(){
+
   // Translation toggle
-  function toggleTrans(){
+  window.toggleTrans=function(){
     document.body.classList.toggle('hide-es');
     document.getElementById('transBtn').textContent =
       document.body.classList.contains('hide-es') ? 'Mostra traduzione' : 'Nascondi traduzione';
   }
 
   // Word recognition
-  function toggleWord(card){
+  window.toggleWord=function(card){
     if(card.classList.contains('correct')||card.classList.contains('missed')||card.classList.contains('false-pos')||card.classList.contains('neutral')) return;
     card.classList.toggle('selected');
   }
-  function verifyWords(){
+  window.verifyWords=function(){
     const cards = document.querySelectorAll('.word-card');
     let correct=0,total=0;
     cards.forEach(c=>{
@@ -446,7 +459,7 @@
     });
     document.getElementById('wordScore').textContent = `${correct}/${total} corrette`;
   }
-  function resetWords(){
+  window.resetWords=function(){
     document.querySelectorAll('.word-card').forEach(c=>{
       c.className='word-card';
       c.querySelector('.word-badge').textContent = c.dataset.correct==='true'?'✓':'✗';
@@ -455,7 +468,7 @@
   }
 
   // C'è / Ci sono practice
-  function checkCisce(btn, result){
+  window.checkCisce=function(btn, result){
     const box = btn.closest('.cisce-box');
     if(box.dataset.done) return;
     box.dataset.done='1';
@@ -481,6 +494,13 @@
     if(b1) b1.style.transform=`translateY(${y*0.25}px)`;
     if(b2) b2.style.transform=`translateY(${y*-0.15}px)`;
   });
+})();
 </script>
+
+<footer style="background:var(--cream-dk);padding:2.5rem 2rem;text-align:center;font-size:.82rem;color:#888">
+  <strong style="color:var(--black)">Unità 11 · In famiglia</strong><br>
+  Italiano Per Piacere — Nivel A1
+</footer>
+
 </body>
 </html>

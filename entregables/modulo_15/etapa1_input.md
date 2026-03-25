@@ -5,8 +5,13 @@
 ---
 
 TIPO: Audio
-FUENTE SUGERIDA: Intervista radio italiana semplice — buscar "RAI Radio italiano facile racconto passato" o "Coffee Break Italian passato prossimo"
-TÍTULO: Racconta! — Cosa hai fatto questo weekend?
+FUENTE: Coffee Break Italian — Podcast de Radio Lingua Network
+EPISODIO: Season 2, Lesson 16 — "CBI 2.16 | Abbiamo imparato molto!"
+URL ACAST: https://shows.acast.com/coffeebreakitalian/episodes/cbi2.16-abbiamoimparatomolto-
+URL SITIO OFICIAL: https://coffeebreaklanguages.com/2017/09/cbi-2-16-abbiamo-imparato-molto/
+URL SPOTIFY SHOW: https://open.spotify.com/show/2PdBXXDEbSyR8fyd6RL5dR (buscar "CBI 2.16" dentro del show)
+LICENCIA: Podcast gratuito para uso educativo · Radio Lingua Network
+TÍTULO: Racconta! — "CBI 2.16 | Abbiamo imparato molto!" — Coffee Break Italian
 DESCRIPCIÓN: Un audio donde un italiano cuenta en primera persona lo que hizo durante el fin de semana o un evento pasado (*sono andato al concerto, ho incontrato degli amici, abbiamo cenato insieme...*). El passato prossimo en contexto oral auténtico es el input ideal para esta unidad.
 
 ---

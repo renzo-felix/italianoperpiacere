@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -38,17 +38,17 @@
 
     /* HERO */
     .hero{
-      min-height:100vh;background:var(--red);
+      min-height:100vh;background:#c8e8de;
       display:flex;flex-direction:column;align-items:center;justify-content:center;
       text-align:center;padding:4rem 2rem;position:relative;overflow:hidden;
     }
-    .hero-bg-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.06);pointer-events:none;will-change:transform}
+    .hero-bg-circle{display:none;position:absolute;border-radius:50%;background:rgba(255,255,255,.06);pointer-events:none;will-change:transform}
     .hero-bg-circle:nth-child(1){width:600px;height:600px;top:-200px;right:-150px}
     .hero-bg-circle:nth-child(2){width:400px;height:400px;bottom:-100px;left:-100px}
     .hero-badge{display:inline-block;background:var(--gold);color:var(--black);font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:.3rem 1.2rem;border-radius:20px;margin-bottom:1.5rem;opacity:0;animation:popIn .6s var(--ease) .2s forwards}
-    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-style:italic;color:var(--white);line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
-    .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:rgba(255,255,255,.8);max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
-    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.6);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
+    .hero h1{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-style:italic;color:#1a1a18;line-height:1.05;margin-bottom:1rem;opacity:0;animation:slideUp .8s var(--ease) .4s forwards}
+    .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:#1a1a18;opacity:.75;max-width:520px;line-height:1.6;opacity:0;animation:slideUp .8s var(--ease) .6s forwards}
+    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(0,0,0,.4);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0;animation:fadeIn 1s var(--ease) 1.2s forwards}
     .scroll-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6);animation:scrollDot 1.5s ease infinite}
 
     @keyframes popIn   {from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
@@ -104,19 +104,19 @@
     .word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;margin-bottom:1.5rem}
     .word-card{background:var(--white);border:2px solid transparent;border-radius:var(--r);padding:.9rem .75rem;text-align:center;cursor:pointer;user-select:none;position:relative;transition:border-color .2s,background .2s,transform .15s;font-weight:600;font-size:.95rem}
     .word-card:hover{transform:translateY(-2px);border-color:var(--red)}
-    .word-card.selected{background:var(--red);color:var(--white);border-color:var(--red)}
-    .word-card.correct  {background:var(--green);color:var(--white);border-color:var(--green)}
-    .word-card.false-pos{background:var(--teal);color:var(--white);border-color:var(--teal)}
-    .word-card.missed   {background:var(--amber);color:var(--black);border-color:var(--amber)}
+    .word-card.selected{background:#c8e8de;color:var(--white);border-color:var(--red)}
+    .word-card.correct  {background:#c8e8de;color:var(--white);border-color:var(--green)}
+    .word-card.false-pos{background:#c8e8de;color:var(--white);border-color:var(--teal)}
+    .word-card.missed   {background:#c8e8de;color:var(--black);border-color:var(--amber)}
     .word-card.neutral  {background:var(--cream-dk);color:#888;border-color:transparent}
     .word-badge{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:var(--white)}
-    .word-card.correct   .word-badge{display:flex;background:var(--green)}
-    .word-card.false-pos .word-badge{display:flex;background:var(--teal)}
-    .word-card.missed    .word-badge{display:flex;background:var(--amber);color:var(--black)}
+    .word-card.correct   .word-badge{display:flex;background:#c8e8de}
+    .word-card.false-pos .word-badge{display:flex;background:#c8e8de}
+    .word-card.missed    .word-badge{display:flex;background:#c8e8de;color:var(--black)}
     .word-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
     .btn{padding:.65rem 1.5rem;border-radius:30px;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.9rem;transition:opacity .2s,transform .15s}
     .btn:hover{opacity:.85;transform:translateY(-1px)}
-    .btn-primary{background:var(--red);color:var(--white)}
+    .btn-primary{background:#c8e8de;color:var(--white)}
     .btn-ghost{background:transparent;color:var(--black);border:2px solid var(--cream-dk)}
     .score-display{font-size:.9rem;font-weight:700;color:var(--green)}
     .legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;font-size:.8rem}
@@ -137,7 +137,7 @@
 
     /* PLURAL DISCOVERY */
     .plural-table{width:100%;border-collapse:collapse;font-size:.9rem}
-    .plural-table th{background:var(--red);color:var(--white);padding:.7rem 1.1rem;text-align:left;font-size:.78rem;letter-spacing:1px;text-transform:uppercase}
+    .plural-table th{background:#c8e8de;color:var(--white);padding:.7rem 1.1rem;text-align:left;font-size:.78rem;letter-spacing:1px;text-transform:uppercase}
     .plural-table td{padding:.65rem 1.1rem;border-bottom:1px solid var(--cream-dk)}
     .plural-table tr:nth-child(even) td{background:rgba(0,0,0,.02)}
     .plural-table .form{font-weight:700}
@@ -151,8 +151,8 @@
     .dialogue{display:flex;flex-direction:column;gap:.75rem}
     .dlg-line{display:flex;align-items:flex-start;gap:.75rem}
     .dlg-line.b{flex-direction:row-reverse}
-    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:var(--green);padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
-    .dlg-line.b .dlg-speaker{background:var(--red)}
+    .dlg-speaker{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:#c8e8de;padding:.2rem .6rem;border-radius:20px;flex-shrink:0;margin-top:.35rem}
+    .dlg-line.b .dlg-speaker{background:#c8e8de}
     .dlg-bubble{background:var(--white);border-radius:12px;padding:.9rem 1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.07);max-width:480px}
     .dlg-bubble .it{font-weight:600;font-size:.95rem;color:var(--black)}
     .dlg-bubble .es{font-size:.8rem;color:#888;margin-top:.25rem;font-style:italic}
@@ -186,22 +186,22 @@
     .fon-ex .sound{font-size:.78rem;color:var(--red);font-weight:700;padding:.1rem .5rem;background:rgba(204,71,54,.1);border-radius:12px}
 
     /* CULTURAL STRIP */
-    .cultural-strip{background:var(--black);color:var(--white);padding:4rem 2rem;text-align:center}
-    .cultural-strip h2{font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.4rem);font-style:italic;color:var(--gold);margin-bottom:1rem}
-    .cultural-strip p{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.75;max-width:600px;margin:0 auto 1.5rem}
+    .cultural-strip{background:linear-gradient(135deg,#c8e8de 0%,var(--cream-dk) 100%);border-top:3px solid var(--green);color:var(--black);padding:4rem 2rem;text-align:center}
+    .cultural-strip h2{font-family:var(--fh);font-size:clamp(1.6rem,3.5vw,2.4rem);font-style:italic;color:var(--green);margin-bottom:1rem}
+    .cultural-strip p{font-size:.95rem;color:#444;line-height:1.75;max-width:600px;margin:0 auto 1.5rem}
     .cultural-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;max-width:760px;margin:2rem auto 0}
-    .cf-item{background:rgba(255,255,255,.06);border-radius:12px;padding:1.5rem}
+    .cf-item{background:rgba(255,255,255,.6);border-radius:12px;padding:1.5rem}
     .cf-icon{font-size:2rem;margin-bottom:.75rem}
-    .cf-item h4{font-size:.85rem;font-weight:700;color:var(--gold);margin-bottom:.5rem}
-    .cf-item p{font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.55}
+    .cf-item h4{font-size:.85rem;font-weight:700;color:var(--green);margin-bottom:.5rem}
+    .cf-item p{font-size:.8rem;color:#555;line-height:1.55}
 
     /* FOOTER */
     .footer{background:var(--cream-dk);padding:2.5rem 2rem;text-align:center;font-size:.82rem;color:#888}
     .footer strong{color:var(--black)}
     .nav-pills{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
     .nav-pill{padding:.5rem 1.2rem;border-radius:30px;font-size:.8rem;font-weight:600;text-decoration:none;color:var(--black);background:var(--cream);border:1px solid var(--cream-dk);transition:background .2s,color .2s}
-    .nav-pill:hover{background:var(--red);color:var(--white)}
-    .nav-pill.active{background:var(--red);color:var(--white)}
+    .nav-pill:hover{background:#c8e8de;color:var(--white)}
+    .nav-pill.active{background:#c8e8de;color:var(--white)}
 
     @media(max-width:600px){
       .section{padding:4rem 1.25rem}
@@ -244,23 +244,16 @@
   <div class="container">
     <p class="section-label" data-a="fade">Recurso · Audio</p>
     <h2 class="section-title" data-a="up">El audio de hoy</h2>
-    <p class="section-desc" data-a="up">Escucha el audio dos veces. La primera: solo para sentir el italiano. La segunda: intenta identificar 2–3 palabras.</p>
+    <p class="section-desc" data-a="up">Escuchá el audio dos veces. La primera: solo para sentir el italiano. La segunda: intenta identificar 2–3 palabras.</p>
 
     <div class="audio-box" style="margin-top:2rem" data-a="scale">
-      <div class="audio-vis">
-        <div class="audio-waves">
-          <div class="audio-wave"></div><div class="audio-wave"></div>
-          <div class="audio-wave"></div><div class="audio-wave"></div>
-          <div class="audio-wave"></div><div class="audio-wave"></div>
-          <div class="audio-wave"></div>
-        </div>
-        <h3>Una conversazione in piazza</h3>
-        <p>Inserta aquí el audio: Coffee Break Italian S1 Ep.3 (coffeebreakitalian.com) u otro recurso de audio auténtico sobre la ciudad italiana.</p>
+      <div style="padding:1.75rem 1.75rem 0">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/2jhjIf2FAdZK7JJl7McfJi?utm_source=generator" width="100%" height="232" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
       <div class="audio-caption">
         <h4>Mientras escuchas</h4>
         <p>¿Escuchas las palabras <em>piazza, caffè, chiesa</em>? ¿El ritmo del italiano te parece rápido o lento? ¿Hay palabras que suenan parecidas al español?</p>
-        <p class="copyright">© Coffee Break Italian — Radio Lingua Network. Recurso educativo de acceso libre. Verificar licencia de uso vigente en coffeebreakitalian.com. Uso exclusivamente educativo.</p>
+        <p class="copyright">Coffee Break Italian · Season 1, Lesson 3 — "CBI 1-03 | Talking about where you come from in Italian" · Radio Lingua Network · Podcast educativo gratuito · coffeebreakitalian.com</p>
       </div>
     </div>
   </div>
@@ -272,20 +265,20 @@
     <p class="section-label" data-a="fade">Actividad 1</p>
     <h2 class="section-title" data-a="up">¿Qué palabras <em>reconociste</em>?</h2>
     <p class="section-desc" data-a="up">
-      Selecciona todas las palabras que crees que están relacionadas con <strong>la ciudad y los lugares italianos</strong>. Luego verifica tu selección.
+      Seleccioná todas las palabras que crees que están relacionadas con <strong>la ciudad y los lugares italianos</strong>. Luego verifica tu selección.
     </p>
 
     <div class="word-grid" id="wordGrid" style="margin-top:1.75rem" data-stagger></div>
 
     <div class="word-actions">
       <button class="btn btn-primary" onclick="verifyWords()">Verificar selección</button>
-      <button class="btn btn-ghost" onclick="resetWords()">Intentar de nuevo</button>
+      <button class="btn btn-ghost" onclick="resetWords()">Intentá́ de nuevo</button>
       <span class="score-display" id="scoreDisplay"></span>
     </div>
     <div class="legend" id="legend" style="display:none">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Correcto ✓</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div> No está relacionado ✗</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div> La olvidaste !</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#c8e8de"></div> Correcto ✓</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#c8e8de"></div> No está relacionado ✗</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#c8e8de"></div> La olvidaste !</div>
     </div>
   </div>
 </section>
@@ -295,7 +288,7 @@
   <div class="container">
     <p class="section-label" data-a="fade">Vocabulario</p>
     <h2 class="section-title" data-a="up"><em>I luoghi della città</em></h2>
-    <p class="section-desc" data-a="up">Los lugares que dan vida a la ciudad italiana. Haz clic en cada tarjeta para ver un ejemplo de uso.</p>
+    <p class="section-desc" data-a="up">Los lugares que dan vida a la ciudad italiana. Hacé clic en cada tarjeta para ver un ejemplo de uso.</p>
 
     <div class="lugares-grid" style="margin-top:2rem" data-stagger>
       <div class="lugar-card" onclick="this.classList.toggle('open')">
@@ -431,7 +424,7 @@
   <div class="container">
     <p class="section-label" data-a="fade">Dialogo autentico</p>
     <h2 class="section-title" data-a="up"><em>Pronto? Chi parla?</em></h2>
-    <p class="section-desc" data-a="up">Escucha cómo los italianos abren y cierran una conversación telefónica.</p>
+    <p class="section-desc" data-a="up">Escuchá cómo los italianos abren y cierran una conversación telefónica.</p>
 
     <div class="dialogue" style="margin-top:2rem" data-stagger>
       <div class="dlg-line">
@@ -647,6 +640,8 @@
 </footer>
 
 <script>
+(function(){
+
   /* SCROLL ANIMATIONS */
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); observer.unobserve(e.target); } });
@@ -723,6 +718,7 @@
   function resetFill(){
     document.querySelectorAll('#fillPlural .fill-input').forEach(inp=>{inp.value='';inp.classList.remove('ok','fail');});
   }
+})();
 </script>
 </body>
 </html>

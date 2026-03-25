@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Módulo 15 A2 — Etapa 2: Descubrimiento</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--teal:#78a6ba;--teal-dk:#5a8ea0;
+  --green:#528e74;--green-dk:#3d6b58;--black:#1a1a18;--white:#ffffff;
+  --mod:var(--green);--mod-dk:var(--green-dk);
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.7;overflow-x:hidden}
+#prog-bar{position:fixed;bottom:0;left:0;width:0%;height:5px;
+  background:linear-gradient(90deg,var(--green),var(--green-dk));z-index:999;transition:width .3s}
+.hero{background:#c8e8de;border-bottom:3px solid #528e74;color:var(--black);padding:72px 32px 60px;text-align:center;position:relative;overflow:hidden;min-height:300px}
+.hero::before,.hero::after{display:none}
+.hero-circles span{position:absolute;border-radius:50%;opacity:.15;pointer-events:none}
+.hero-circles span:nth-child(1){width:280px;height:280px;background:#fff;top:-70px;right:-70px}
+.hero-circles span:nth-child(2){width:200px;height:200px;background:var(--gold);bottom:-50px;left:-50px}
+.hero-circles span:nth-child(3){width:130px;height:130px;background:#fff;top:35%;right:18%}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:2.6rem;margin-bottom:12px;position:relative;z-index:1;color:#1a1a18}
+.hero p{font-size:1.1rem;max-width:600px;margin:0 auto;position:relative;z-index:1;color:#1a1a18;opacity:.75}
+.hero .mod-tag{display:inline-block;background:rgba(0,0,0,.07);color:#1a1a18;border-radius:20px;padding:4px 16px;font-size:.85rem;font-weight:700;margin-bottom:16px}
+.sec{max-width:950px;margin:0 auto;padding:56px 24px}
+.sec h2{font-family:var(--fh);font-style:italic;font-size:2rem;color:var(--green-dk);margin-bottom:8px}
+.sec-sub{color:#666;font-size:.95rem;margin-bottom:32px;padding-bottom:14px;border-bottom:2px solid var(--cream-dk)}
+.divider{border:none;border-top:2px solid var(--cream-dk);margin:0}
+/* Word grid */
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:24px 0}
+.wcard{background:#fff;border:2px solid var(--cream-dk);border-radius:12px;padding:14px 16px;cursor:pointer;transition:.25s;text-align:center}
+.wcard:hover{border-color:var(--green);transform:translateY(-2px)}
+.wcard.ok{border-color:var(--green);background:#e9f5f0}
+.wcard.trap{border-color:var(--red);background:#fde8e6}
+.wcard .it{font-style:italic;font-weight:700;font-size:1rem}
+.wcard .es{font-size:.8rem;color:#888;display:none;margin-top:4px}
+.wcard.ok .es,.wcard.trap .es{display:block}
+.wcard.trap .it{color:var(--red)}
+.wcard.ok .it{color:var(--green-dk)}
+/* Vocab */
+.vset{margin-bottom:36px}
+.vset h3{font-family:var(--fh);font-style:italic;color:var(--green-dk);font-size:1.3rem;margin-bottom:16px}
+.vcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px}
+.vcard{background:#fff;border:2px solid var(--cream-dk);border-radius:14px;padding:18px 16px;cursor:pointer;transition:.3s;min-height:100px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.vcard:hover{border-color:var(--green);box-shadow:0 4px 14px rgba(82,142,116,.2)}
+.vcard.open{border-color:var(--green);background:linear-gradient(135deg,#d4eee4,var(--cream))}
+.vcard .vit{font-style:italic;font-weight:700;font-size:1.05rem}
+.vcard .vex{font-size:.85rem;color:#555;margin-top:6px;display:none;line-height:1.4}
+.vcard.open .vex{display:block}
+.vcard .vicon{font-size:1.6rem;margin-bottom:6px}
+/* Discovery box */
+.disc-box{background:linear-gradient(135deg,#edf5f1 0%,#c8dfd5 100%);color:var(--black);border-radius:16px;padding:28px 32px;margin:28px 0}
+.disc-box h3{font-family:var(--fh);font-style:italic;font-size:1.4rem;margin-bottom:14px;color:var(--gold)}
+.disc-box strong{color:var(--gold)}
+.disc-box .ex-line{background:rgba(0,0,0,.05);border-radius:8px;padding:10px 16px;margin:8px 0;font-style:italic;font-size:1rem;border-left:3px solid var(--gold)}
+.hl-box{background:var(--gold);color:var(--black);border-radius:10px;padding:16px 20px;margin:20px 0;font-size:.97rem;font-weight:600;border-left:4px solid var(--amber-dk);text-align:center;font-style:italic}
+/* Fill */
+.fill-set{background:#fff;border:1px solid var(--cream-dk);border-radius:14px;padding:24px;margin:20px 0}
+.fill-set h4{font-family:var(--fh);font-style:italic;color:var(--green-dk);font-size:1.1rem;margin-bottom:16px}
+.fill-item{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;font-size:.95rem}
+.fill-item label{flex:1;min-width:240px}
+.fill-item input{border:2px solid var(--cream-dk);border-radius:8px;padding:7px 12px;font-family:var(--fb);font-size:.95rem;width:180px;transition:.2s}
+.fill-item input:focus{outline:none;border-color:var(--green)}
+.fill-item input.ok{border-color:var(--green);background:#e8f5ee}
+.fill-item input.err{border-color:var(--red);background:#fde8e6}
+.fill-btn{background:var(--green);color:var(--black);border:none;border-radius:8px;padding:9px 22px;font-family:var(--fb);font-size:.9rem;font-weight:700;cursor:pointer;transition:.2s;margin-top:4px}
+.fill-btn:hover{background:var(--green-dk)}
+.fill-fb{margin-top:10px;font-size:.9rem;font-weight:600;min-height:18px}
+.fill-fb.ok{color:var(--green-dk)}
+.fill-fb.err{color:var(--red)}
+/* In- prefix transformer */
+.prefix-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:24px 0}
+.prefix-card{background:#fff;border:2px solid var(--cream-dk);border-radius:12px;padding:16px;text-align:center;cursor:pointer;transition:.3s}
+.prefix-card:hover{border-color:var(--green);transform:scale(1.02)}
+.prefix-card.open{border-color:var(--green-dk);background:linear-gradient(135deg,#d4eee4,var(--cream))}
+.prefix-card .pos{font-style:italic;font-weight:700;font-size:1.05rem;color:var(--black)}
+.prefix-card .neg{font-style:italic;font-weight:700;font-size:1.05rem;color:var(--green-dk);display:none}
+.prefix-card.open .neg{display:block}
+.prefix-card .arrow{color:var(--green);font-size:1.2rem;display:none}
+.prefix-card.open .arrow{display:block}
+.prefix-card .pex{font-size:.82rem;color:#666;margin-top:4px;display:none}
+.prefix-card.open .pex{display:block}
+/* -bile showcase */
+.bile-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin:24px 0}
+.bile-card{background:#fff;border:2px solid var(--cream-dk);border-radius:12px;padding:16px;text-align:center;cursor:pointer;transition:.3s}
+.bile-card:hover{border-color:var(--green)}
+.bile-card.open{border-color:var(--green-dk);background:linear-gradient(135deg,#d4eee4,var(--cream))}
+.bile-card .bw{font-style:italic;font-weight:700;font-size:1.1rem;color:var(--green-dk)}
+.bile-card .broot{font-size:.8rem;color:#888;margin-bottom:4px}
+.bile-card .bex{font-size:.82rem;color:#666;margin-top:6px;display:none;line-height:1.35}
+.bile-card.open .bex{display:block}
+/* Opinion builder */
+.opinion-box{background:var(--cream-dk);border-radius:14px;padding:24px;margin:24px 0}
+.opinion-box h4{font-family:var(--fh);font-style:italic;color:var(--green-dk);font-size:1.1rem;margin-bottom:16px}
+.op-exprs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.op-expr{background:var(--green);color:var(--black);border-radius:20px;padding:8px 16px;font-size:.9rem;font-weight:600;cursor:pointer;transition:.2s}
+.op-expr:hover{background:var(--green-dk)}
+.op-expr.sel{background:var(--green-dk);transform:scale(1.05)}
+.op-example{background:#fff;border-radius:10px;padding:14px 18px;font-size:.95rem;min-height:50px;border-left:3px solid var(--green);font-style:italic}
+/* Matching */
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0}
+@media(max-width:580px){.match-wrap{grid-template-columns:1fr}}
+.match-col h5{font-size:.85rem;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.match-item{background:#fff;border:2px solid var(--cream-dk);border-radius:10px;padding:10px 14px;margin-bottom:8px;cursor:pointer;transition:.2s;font-size:.93rem}
+.match-item:hover{border-color:var(--green)}
+.match-item.sel{border-color:var(--green-dk);background:#d4eee4}
+.match-item.ok{border-color:var(--green);background:#e8f5ee;cursor:default}
+.match-item.err{border-color:var(--red);background:#fde8e6}
+.match-result{text-align:center;font-size:.95rem;font-weight:700;margin-top:12px;min-height:20px;color:var(--green-dk)}
+/* Dialogue */
+.dial{background:var(--cream-dk);border-radius:16px;padding:24px 28px;margin:24px 0}
+.dial h4{font-family:var(--fh);font-style:italic;color:var(--green-dk);font-size:1.15rem;margin-bottom:16px}
+.bubble{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;cursor:pointer}
+.bubble.b{flex-direction:row-reverse}
+.bav{width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;color:var(--black)}
+.bubble:not(.b) .bav{background:#c8dfd5}
+.bubble.b .bav{background:var(--cream-dk)}
+.btext{background:#fff;border-radius:12px;padding:10px 14px;font-size:.93rem;max-width:75%}
+.bubble.b .btext{background:var(--cream-dk);color:var(--black)}
+.btr{font-size:.82rem;color:#888;font-style:italic;margin-top:4px;display:none}
+.bubble.show .btr{display:block}
+.dial-hint{font-size:.8rem;color:#999;text-align:center;margin-top:10px}
+/* Reading */
+.reading-box{background:#fff;border:1px solid var(--cream-dk);border-radius:14px;padding:24px 28px;margin:24px 0}
+.reading-box h4{font-family:var(--fh);font-style:italic;color:var(--green-dk);font-size:1.15rem;margin-bottom:14px}
+.reading-text{background:var(--cream);border-radius:10px;padding:18px 20px;font-size:.95rem;line-height:1.8;margin-bottom:20px;border-left:3px solid var(--green)}
+.r-q{margin-bottom:18px}
+.r-q p{font-weight:600;font-size:.95rem;margin-bottom:8px}
+.r-opts label{display:block;cursor:pointer;padding:7px 12px;border-radius:8px;font-size:.9rem;transition:.18s}
+.r-opts label:hover{background:var(--cream-dk)}
+.r-opts input{margin-right:8px;accent-color:var(--green)}
+.r-opts label.ok{background:#e8f5ee;color:var(--green-dk);font-weight:700}
+.r-opts label.err{background:#fde8e6;color:var(--red)}
+.r-btn{background:#c8dfd5;color:var(--black);border:none;border-radius:8px;padding:9px 24px;font-family:var(--fb);font-size:.9rem;font-weight:700;cursor:pointer;transition:.2s;margin-top:8px}
+.r-btn:hover{background:var(--green-dk)}
+.r-result{margin-top:12px;font-weight:700;font-size:.95rem;min-height:18px;color:var(--green-dk)}
+/* Culture */
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:4px solid var(--green-dk);padding:48px 24px;margin-top:0}
+.culture-inner{max-width:950px;margin:0 auto}
+.culture h2{font-family:var(--fh);font-style:italic;font-size:1.9rem;color:var(--green-dk);margin-bottom:8px}
+.culture p{color:#555;font-size:.95rem;margin-bottom:28px}
+.culture-facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.cf{background:#fff;border-radius:14px;padding:18px 20px;border:1px solid var(--cream-dk)}
+.cf .cf-icon{font-size:1.8rem;margin-bottom:8px}
+.cf h4{font-family:var(--fh);font-style:italic;color:var(--green-dk);font-size:1.05rem;margin-bottom:6px}
+.cf p{font-size:.87rem;color:#555;margin:0;line-height:1.5}
+[data-a]{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+[data-a].vis{opacity:1;transform:none}
+[data-stagger] [data-a]{transition-delay:calc(var(--i,0)*.08s)}
+footer{background:var(--cream-dk);color:var(--black);text-align:center;padding:24px;font-size:.85rem}
+</style>
+</head>
+<body>
+<div id="prog-bar"></div>
+
+<div class="hero">
+  <div class="hero-circles"><span></span><span></span><span></span></div>
+  <div class="mod-tag">A2 · Módulo 15 · Descubrimiento</div>
+  <h1>Il mondo che voglio 🌍</h1>
+  <p>Frasi subordinate · Aggettivi in -bile · Prefisso in-</p>
+</div>
+
+<!-- ══ 1. WORD GRID ══ -->
+<div class="sec">
+  <h2>Prima esplorazione</h2>
+  <p class="sec-sub">¿Cuáles son palabras italianas auténticas? Haz clic para descubrir</p>
+  <div class="wgrid" data-stagger>
+    <div class="wcard" data-ok="true" data-es="posible" data-a><span class="it">possibile</span><span class="es">posible</span></div>
+    <div class="wcard" data-ok="true" data-es="imposible" data-a><span class="it">impossibile</span><span class="es">imposible</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'incredibile')" data-a><span class="it">incredible</span><span class="es">(trampa)</span></div>
+    <div class="wcard" data-ok="true" data-es="increíble" data-a><span class="it">incredibile</span><span class="es">increíble</span></div>
+    <div class="wcard" data-ok="true" data-es="infeliz" data-a><span class="it">infelice</span><span class="es">infeliz</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'incapace')" data-a><span class="it">incapable</span><span class="es">(trampa)</span></div>
+    <div class="wcard" data-ok="true" data-es="incapaz" data-a><span class="it">incapace</span><span class="es">incapaz</span></div>
+    <div class="wcard" data-ok="true" data-es="injusto" data-a><span class="it">ingiusto</span><span class="es">injusto</span></div>
+    <div class="wcard" data-ok="true" data-es="según yo" data-a><span class="it">secondo me</span><span class="es">según yo</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'credere')" data-a><span class="it">to believe</span><span class="es">(trampa)</span></div>
+    <div class="wcard" data-ok="true" data-es="disponible / asequible" data-a><span class="it">disponibile</span><span class="es">disponible</span></div>
+    <div class="wcard" data-ok="true" data-es="preferable" data-a><span class="it">preferibile</span><span class="es">preferable</span></div>
+    <div class="wcard" data-ok="true" data-es="creo que" data-a><span class="it">penso che</span><span class="es">creo que</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'ingiusto')" data-a><span class="it">unjust</span><span class="es">(trampa)</span></div>
+    <div class="wcard" data-ok="true" data-es="sin embargo" data-a><span class="it">però</span><span class="es">sin embargo</span></div>
+    <div class="wcard" data-ok="true" data-es="por lo tanto" data-a><span class="it">quindi</span><span class="es">por lo tanto</span></div>
+    <div class="wcard" data-ok="true" data-es="amable" data-a><span class="it">amabile</span><span class="es">amable</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'instabile')" data-a><span class="it">unstable</span><span class="es">(trampa)</span></div>
+  </div>
+  <p style="font-size:.82rem;color:#888;margin-top:8px">
+    <span style="display:inline-block;width:12px;height:12px;background:var(--green);border-radius:3px;margin-right:4px;vertical-align:middle"></span>Italiana auténtica &nbsp;
+    <span style="display:inline-block;width:12px;height:12px;background:var(--red);border-radius:3px;margin-right:4px;margin-left:12px;vertical-align:middle"></span>Trampa
+  </p>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 2. VOCAB A: Aggettivi -bile ══ -->
+<div class="sec">
+  <h2>Vocabolario — Set A</h2>
+  <p class="sec-sub">Aggettivi in -bile — haz clic para ver raíz, formación y ejemplos</p>
+  <div class="vset">
+    <h3>🔤 Aggettivi in -bile</h3>
+    <div class="bile-grid" data-stagger>
+      <div class="bile-card" data-a onclick="this.classList.toggle('open')">
+        <div class="broot">potere →</div><div class="bw">possibile</div>
+        <div class="bex">posible<br><em>"È possibile fare di meglio."</em></div>
+      </div>
+      <div class="bile-card" data-a onclick="this.classList.toggle('open')">
+        <div class="broot">credere →</div><div class="bw">incredibile</div>
+        <div class="bex">increíble (in- + credibile)<br><em>"È incredibile!"</em></div>
+      </div>
+      <div class="bile-card" data-a onclick="this.classList.toggle('open')">
+        <div class="broot">disporre →</div><div class="bw">disponibile</div>
+        <div class="bex">disponible<br><em>"Sono disponibile domani."</em></div>
+      </div>
+      <div class="bile-card" data-a onclick="this.classList.toggle('open')">
+        <div class="broot">preferire →</div><div class="bw">preferibile</div>
+        <div class="bex">preferible<br><em>"È preferibile aspettare."</em></div>
+      </div>
+      <div class="bile-card" data-a onclick="this.classList.toggle('open')">
+        <div class="broot">amare →</div><div class="bw">amabile</div>
+        <div class="bex">amable<br><em>"È una persona amabile."</em></div>
+      </div>
+      <div class="bile-card" data-a onclick="this.classList.toggle('open')">
+        <div class="broot">rispettare →</div><div class="bw">rispettabile</div>
+        <div class="bex">respetable<br><em>"Un uomo rispettabile."</em></div>
+      </div>
+      <div class="bile-card" data-a onclick="this.classList.toggle('open')">
+        <div class="broot">comprendere →</div><div class="bw">comprensibile</div>
+        <div class="bex">comprensible<br><em>"La situazione è comprensibile."</em></div>
+      </div>
+      <div class="bile-card" data-a onclick="this.classList.toggle('open')">
+        <div class="broot">sostenere →</div><div class="bw">sostenibile</div>
+        <div class="bex">sostenible<br><em>"Sviluppo sostenibile."</em></div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 3. VOCAB B: Prefisso in- ══ -->
+<div class="sec">
+  <h2>Vocabolario — Set B</h2>
+  <p class="sec-sub">El prefijo negativo in- — haz clic para ver el opuesto</p>
+  <div class="vset">
+    <h3>➕ / ➖ Prefisso in- negativo</h3>
+    <div class="prefix-grid" data-stagger>
+      <div class="prefix-card" data-a onclick="this.classList.toggle('open')">
+        <div class="pos">felice</div>
+        <div class="arrow">↓ in- →</div>
+        <div class="neg">infelice</div>
+        <div class="pex">infeliz<br><em>"È infelice al lavoro."</em></div>
+      </div>
+      <div class="prefix-card" data-a onclick="this.classList.toggle('open')">
+        <div class="pos">giusto</div>
+        <div class="arrow">↓ in- →</div>
+        <div class="neg">ingiusto</div>
+        <div class="pex">injusto<br><em>"Non è ingiusto!"</em></div>
+      </div>
+      <div class="prefix-card" data-a onclick="this.classList.toggle('open')">
+        <div class="pos">capace</div>
+        <div class="arrow">↓ in- →</div>
+        <div class="neg">incapace</div>
+        <div class="pex">incapaz<br><em>"Non è incapace."</em></div>
+      </div>
+      <div class="prefix-card" data-a onclick="this.classList.toggle('open')">
+        <div class="pos">stabile</div>
+        <div class="arrow">↓ in- →</div>
+        <div class="neg">instabile</div>
+        <div class="pex">inestable<br><em>"La situazione è instabile."</em></div>
+      </div>
+      <div class="prefix-card" data-a onclick="this.classList.toggle('open')">
+        <div class="pos">certo</div>
+        <div class="arrow">↓ in- →</div>
+        <div class="neg">incerto</div>
+        <div class="pex">incierto<br><em>"Il futuro è incerto."</em></div>
+      </div>
+      <div class="prefix-card" data-a onclick="this.classList.toggle('open')">
+        <div class="pos">possibile</div>
+        <div class="arrow">↓ im- →</div>
+        <div class="neg">impossibile</div>
+        <div class="pex">imposible<br><em>⚠️ in- → im- antes de p/b</em></div>
+      </div>
+      <div class="prefix-card" data-a onclick="this.classList.toggle('open')">
+        <div class="pos">probabile</div>
+        <div class="arrow">↓ im- →</div>
+        <div class="neg">improbabile</div>
+        <div class="pex">improbable<br><em>⚠️ im- antes de p</em></div>
+      </div>
+      <div class="prefix-card" data-a onclick="this.classList.toggle('open')">
+        <div class="pos">credibile</div>
+        <div class="arrow">↓ in- →</div>
+        <div class="neg">incredibile</div>
+        <div class="pex">increíble<br><em>"È incredibile!"</em></div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 4. VOCAB C: Espressioni di opinione ══ -->
+<div class="sec">
+  <h2>Vocabolario — Set C</h2>
+  <p class="sec-sub">Formas de expresar opinión en italiano — haz clic para explorar</p>
+  <div class="vcards" data-stagger>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">🧠</div><div class="vit">Secondo me...</div>
+      <div class="vex">Según yo... / En mi opinión...<br><em>"Secondo me, è importante."</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">💭</div><div class="vit">Penso che...</div>
+      <div class="vex">Creo que...<br><em>"Penso che sia possibile."</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">🤔</div><div class="vit">Credo che...</div>
+      <div class="vex">Creo que... (más firme)<br><em>"Credo che abbiano ragione."</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">✅</div><div class="vit">Sono convinto/a che...</div>
+      <div class="vex">Estoy convencido/a de que...<br><em>"Sono convinta che cambierà."</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">👀</div><div class="vit">Mi sembra che...</div>
+      <div class="vex">Me parece que...<br><em>"Mi sembra che le cose stiano migliorando."</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">⚖️</div><div class="vit">È importante che...</div>
+      <div class="vex">Es importante que...<br><em>"È importante che tutti partecipino."</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">🔄</div><div class="vit">però / quindi</div>
+      <div class="vex">sin embargo / por lo tanto<br><em>"È difficile, però possibile."</em><br><em>"Studio, quindi capisco."</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">❓</div><div class="vit">Cosa ne pensi?</div>
+      <div class="vex">¿Qué piensas (de ello)?<br><em>"Ti ho spiegato il problema. Cosa ne pensi?"</em></div>
+    </div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 5. DISCOVERY: Subordinate con che ══ -->
+<div class="sec">
+  <h2>Scoperta 1 — Frasi subordinate con "che" 🔭</h2>
+  <p class="sec-sub">Unir dos frases con "che" — la subordinada italiana</p>
+
+  <div class="disc-box" data-a>
+    <h3>Penso che... / Credo che... / È importante che...</h3>
+    <p>Observa cómo se unen dos frases en italiano:</p>
+    <div class="ex-line">💭 "È importante." + "Tutti studiamo." → "È importante <strong>che</strong> tutti studino."</div>
+    <div class="ex-line">🧠 "Penso." + "Ha ragione." → "Penso <strong>che</strong> abbia ragione."</div>
+    <div class="ex-line">✅ "Sono convinta." + "Cambierà." → "Sono convinta <strong>che</strong> cambierà."</div>
+    <div class="ex-line">👀 "Mi sembra." + "Tutto è possibile." → "Mi sembra <strong>che</strong> tutto sia possibile."</div>
+    <p style="margin-top:12px">En italiano moderno coloquial, muchos hablantes usan el indicativo después de "penso/credo": <strong>Penso che è vero</strong> (correcto coloquial) / <strong>Penso che sia vero</strong> (correcto formal).</p>
+  </div>
+
+  <div class="hl-box" data-a>
+    💡 La estructura es igual que en español: "Creo <strong>que</strong> + frase" = "Credo <strong>che</strong> + frase"<br>
+    La diferencia: en italiano formal se usa subjuntivo (congiuntivo) — tema de B1.
+  </div>
+
+  <div class="fill-set" data-a>
+    <h4>Pratica A — Unisci con "che"</h4>
+    <div class="fill-item"><label>1. Penso. Il problema è grave. → Penso _____</label><input id="fa1" data-ans="che il problema è grave" type="text" placeholder="che + frase…"/></div>
+    <div class="fill-item"><label>2. Credo. Loro hanno ragione. → Credo _____</label><input id="fa2" data-ans="che loro hanno ragione" type="text" placeholder="che + frase…"/></div>
+    <div class="fill-item"><label>3. Secondo me, è importante _____. (studiare la lingua)</label><input id="fa3" data-ans="studiare la lingua" type="text" placeholder="infinito…"/></div>
+    <div class="fill-item"><label>4. Mi sembra. Le cose stanno migliorando. → Mi sembra _____</label><input id="fa4" data-ans="che le cose stanno migliorando" type="text" placeholder="che + frase…"/></div>
+    <button class="fill-btn" onclick="checkFill(['fa1','fa2','fa3','fa4'],'fba')">Controlla ✓</button>
+    <div class="fill-fb" id="fba"></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 6. DISCOVERY: -bile ══ -->
+<div class="sec">
+  <h2>Scoperta 2 — Aggettivi in -bile 🔤</h2>
+  <p class="sec-sub">Una familia de adjetivos muy productiva en italiano</p>
+
+  <div class="disc-box" data-a>
+    <h3>La fabbrica degli aggettivi -bile</h3>
+    <p>Los adjetivos en <strong>-bile</strong> corresponden a los adjetivos en <strong>-ble</strong> del español. Se forman desde un verbo (en la raíz del infinitivo):</p>
+    <div class="ex-line">potere → pot-<strong>ibile</strong> → possibile (posible)</div>
+    <div class="ex-line">credere → cred-<strong>ibile</strong> → credibile → in-credibile</div>
+    <div class="ex-line">rispettare → rispett-<strong>abile</strong> → rispettabile</div>
+    <div class="ex-line">sostenere → sosten-<strong>ibile</strong> → sostenibile (sostenible)</div>
+    <p style="margin-top:12px">Muchos son cognados perfectos con el español: <strong>possibile = posible</strong>, <strong>incredibile = increíble</strong>, <strong>disponibile = disponible</strong>.</p>
+  </div>
+
+  <div class="fill-set" data-a>
+    <h4>Pratica B — Usa l'aggettivo -bile corretto</h4>
+    <div class="fill-item"><label>1. Non è _____ (incredible) che non abbia vinto!</label><input id="fb1" data-ans="incredibile" type="text" placeholder="-bile…"/></div>
+    <div class="fill-item"><label>2. Sono _____ (available) lunedì pomeriggio.</label><input id="fb2" data-ans="disponibile" type="text" placeholder="-bile…"/></div>
+    <div class="fill-item"><label>3. Lo sviluppo deve essere _____ (sustainable).</label><input id="fb3" data-ans="sostenibile" type="text" placeholder="-bile…"/></div>
+    <div class="fill-item"><label>4. È _____ (possible) fare di meglio.</label><input id="fb4" data-ans="possibile" type="text" placeholder="-bile…"/></div>
+    <button class="fill-btn" onclick="checkFill(['fb1','fb2','fb3','fb4'],'fbb')">Controlla ✓</button>
+    <div class="fill-fb" id="fbb"></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 7. DISCOVERY: Prefisso in- ══ -->
+<div class="sec">
+  <h2>Scoperta 3 — Prefisso in- ➖</h2>
+  <p class="sec-sub">Crear el opuesto con in- (o im- antes de p/b)</p>
+
+  <div class="disc-box" data-a>
+    <h3>In- = il prefisso della negazione</h3>
+    <p>El prefijo <strong>in-</strong> niega el significado del adjetivo base. Se convierte en <strong>im-</strong> antes de <em>p</em> y <em>b</em>:</p>
+    <div class="ex-line">felice → <strong>in</strong>felice &nbsp;&nbsp; giusto → <strong>in</strong>giusto &nbsp;&nbsp; certo → <strong>in</strong>certo</div>
+    <div class="ex-line">possibile → <strong>im</strong>possibile &nbsp;&nbsp; probabile → <strong>im</strong>probabile</div>
+    <div class="ex-line">⚠️ Atención: in- + c → <strong>in</strong>capace (NO <em>imcapace</em>) — la regla im- solo aplica antes de p y b</div>
+  </div>
+
+  <div class="fill-set" data-a>
+    <h4>Pratica C — Aggiungi il prefisso negativo</h4>
+    <div class="fill-item"><label>1. Non è _____ (giusto)! È discriminatorio.</label><input id="fc1" data-ans="ingiusto" type="text" placeholder="in- + base…"/></div>
+    <div class="fill-item"><label>2. La situazione è _____ (stabile) adesso.</label><input id="fc2" data-ans="instabile" type="text" placeholder="in- + base…"/></div>
+    <div class="fill-item"><label>3. È _____ (possibile) fare tutto da soli.</label><input id="fc3" data-ans="impossibile" type="text" placeholder="im- + base…"/></div>
+    <div class="fill-item"><label>4. Non sono mica _____ (capace)!</label><input id="fc4" data-ans="incapace" type="text" placeholder="in- + base…"/></div>
+    <button class="fill-btn" onclick="checkFill(['fc1','fc2','fc3','fc4'],'fbc')">Controlla ✓</button>
+    <div class="fill-fb" id="fbc"></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 8. OPINION BUILDER ══ -->
+<div class="sec">
+  <h2>Il costruttore di opinioni 🗣️</h2>
+  <p class="sec-sub">Haz clic en una expresión para ver cómo se usa en contexto</p>
+  <div class="opinion-box">
+    <h4>Seleziona un'espressione:</h4>
+    <div class="op-exprs">
+      <span class="op-expr" onclick="showOpinion(this,'Secondo me, il cambiamento climatico è il problema più importante del nostro tempo.')">Secondo me...</span>
+      <span class="op-expr" onclick="showOpinion(this,'Penso che tutti abbiano diritto all\'istruzione. È fondamentale per una società giusta.')">Penso che...</span>
+      <span class="op-expr" onclick="showOpinion(this,'Credo che sia possibile costruire un mondo migliore, però ognuno deve fare la sua parte.')">Credo che...</span>
+      <span class="op-expr" onclick="showOpinion(this,'È importante che le persone siano più disponibili ad ascoltarsi. Il dialogo è incredibile.')">È importante che...</span>
+      <span class="op-expr" onclick="showOpinion(this,'Mi sembra che le cose stiano migliorando. Non è mica impossibile essere ottimisti!')">Mi sembra che...</span>
+    </div>
+    <div class="op-example" id="op-example">← Haz clic en una expresión para ver un ejemplo en contexto</div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 9. MATCHING ══ -->
+<div class="sec">
+  <h2>Attività — Abbina 🔗</h2>
+  <p class="sec-sub">Conecta el adjetivo base con su forma negativa en in-</p>
+  <div class="match-wrap">
+    <div>
+      <h5>Aggettivo base</h5>
+      <div class="match-item" id="mL1" data-id="1" onclick="selectMatch(this,'L','1')">felice</div>
+      <div class="match-item" id="mL2" data-id="2" onclick="selectMatch(this,'L','2')">giusto</div>
+      <div class="match-item" id="mL3" data-id="3" onclick="selectMatch(this,'L','3')">possibile</div>
+      <div class="match-item" id="mL4" data-id="4" onclick="selectMatch(this,'L','4')">capace</div>
+      <div class="match-item" id="mL5" data-id="5" onclick="selectMatch(this,'L','5')">credibile</div>
+      <div class="match-item" id="mL6" data-id="6" onclick="selectMatch(this,'L','6')">certo</div>
+    </div>
+    <div>
+      <h5>Con prefisso negativo</h5>
+      <div class="match-item" id="mR1" data-id="1" onclick="selectMatch(this,'R','1')">infelice</div>
+      <div class="match-item" id="mR2" data-id="2" onclick="selectMatch(this,'R','2')">ingiusto</div>
+      <div class="match-item" id="mR3" data-id="3" onclick="selectMatch(this,'R','3')">impossibile</div>
+      <div class="match-item" id="mR4" data-id="4" onclick="selectMatch(this,'R','4')">incapace</div>
+      <div class="match-item" id="mR5" data-id="5" onclick="selectMatch(this,'R','5')">incredibile</div>
+      <div class="match-item" id="mR6" data-id="6" onclick="selectMatch(this,'R','6')">incerto</div>
+    </div>
+  </div>
+  <div class="match-result" id="match-result"></div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 10. DIALOGUES ══ -->
+<div class="sec">
+  <h2>Dialoghi 💬</h2>
+  <p class="sec-sub">Haz clic en cada burbuja para la traducción</p>
+
+  <div class="dial" data-a>
+    <h4>Dialogo 1 — Il dibattito</h4>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">M</div>
+      <div class="btext">Marco: Secondo me, la situazione ambientale è incredibile. Come possiamo continuare così?
+        <div class="btr">Según yo, la situación medioambiental es increíble. ¿Cómo podemos seguir así?</div></div>
+    </div>
+    <div class="bubble b" onclick="this.classList.toggle('show')">
+      <div class="bav">S</div>
+      <div class="btext">Sofia: Hai ragione, però non è mica impossibile cambiare le cose. Penso che ognuno possa fare qualcosa.
+        <div class="btr">Tienes razón, pero no es para nada imposible cambiar las cosas. Creo que cada uno puede hacer algo.</div></div>
+    </div>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">M</div>
+      <div class="btext">Marco: Sono convinto che sia ingiusto lasciare il problema alle generazioni future.
+        <div class="btr">Estoy convencido de que es injusto dejarle el problema a las generaciones futuras.</div></div>
+    </div>
+    <div class="bubble b" onclick="this.classList.toggle('show')">
+      <div class="bav">S</div>
+      <div class="btext">Sofia: Mi sembra che le persone siano sempre più disponibili a cambiare. Quindi sono ottimista!
+        <div class="btr">Me parece que la gente está cada vez más dispuesta a cambiar. ¡Por eso soy optimista!</div></div>
+    </div>
+    <p class="dial-hint">👆 Haz clic en cada burbuja para la traducción</p>
+  </div>
+
+  <div class="dial" data-a>
+    <h4>Dialogo 2 — Cosa ne pensi?</h4>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">L</div>
+      <div class="btext">Luca: Ho letto un articolo incredibile sull'intelligenza artificiale. Cosa ne pensi?
+        <div class="btr">Leí un artículo increíble sobre la inteligencia artificial. ¿Qué piensas?</div></div>
+    </div>
+    <div class="bubble b" onclick="this.classList.toggle('show')">
+      <div class="bav">A</div>
+      <div class="btext">Anna: Credo che l'IA sia possibile sia utile che pericolosa. È importante che la usiamo in modo sostenibile.
+        <div class="btr">Creo que la IA puede ser tanto útil como peligrosa. Es importante que la usemos de forma sostenible.</div></div>
+    </div>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">L</div>
+      <div class="btext">Luca: Sono d'accordo. Non è mica incerto il futuro — dipende da noi!
+        <div class="btr">Estoy de acuerdo. ¡El futuro no es para nada incierto — depende de nosotros!</div></div>
+    </div>
+    <p class="dial-hint">👆 Haz clic en cada burbuja para la traducción</p>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 11. READING ══ -->
+<div class="sec">
+  <h2>Comprensione 📖</h2>
+  <p class="sec-sub">Lee y responde</p>
+  <div class="reading-box" data-a>
+    <h4>Il mondo che voglio — di Elena, studentessa universitaria</h4>
+    <div class="reading-text">
+      <em>Secondo me</em>, il mondo che voglio è un posto dove ogni persona si sente <em>felice</em> e rispettata. <em>Penso che</em> sia <em>possibile</em> costruire una società più giusta, però non è semplice.
+
+      Credo che l'ambiente sia la sfida più importante. Non è <em>impossibile</em> cambiare le abitudini quotidiane — è solo necessario volerlo. <em>Mi sembra che</em> sempre più persone siano disponibili a fare piccoli gesti: usare meno plastica, mangiare meno carne, risparmiare energia.
+
+      Sono convinta che l'istruzione sia fondamentale. È <em>incredibile</em> come ancora nel 2025 milioni di bambini non abbiano accesso alle scuole. Questo è <em>ingiusto</em> e <em>instabile</em> per il futuro del pianeta.
+
+      <em>Quindi</em>, voglio un mondo più equo, più verde e più educato. Non è mica un sogno <em>impossibile</em>!
+    </div>
+    <div class="r-q">
+      <p>1. Según Elena, ¿cuál es el desafío más importante?</p>
+      <div class="r-opts">
+        <label><input type="radio" name="rq1" value="a"/> La tecnología</label>
+        <label><input type="radio" name="rq1" value="b"/> El medio ambiente</label>
+        <label><input type="radio" name="rq1" value="c"/> La economía</label>
+      </div>
+    </div>
+    <div class="r-q">
+      <p>2. ¿Qué ejemplos de pequeños gestos menciona Elena?</p>
+      <div class="r-opts">
+        <label><input type="radio" name="rq2" value="a"/> Usar el transporte público</label>
+        <label><input type="radio" name="rq2" value="b"/> Usar menos plástico, comer menos carne, ahorrar energía</label>
+        <label><input type="radio" name="rq2" value="c"/> Estudiar más y trabajar menos</label>
+      </div>
+    </div>
+    <div class="r-q">
+      <p>3. ¿Qué dice sobre la educación?</p>
+      <div class="r-opts">
+        <label><input type="radio" name="rq3" value="a"/> Que no es tan importante</label>
+        <label><input type="radio" name="rq3" value="b"/> Que es fundamental y que es injusto que millones de niños no tengan acceso</label>
+        <label><input type="radio" name="rq3" value="c"/> Que hay demasiadas escuelas</label>
+      </div>
+    </div>
+    <div class="r-q">
+      <p>4. ¿Cómo describe Elena su sueño al final?</p>
+      <div class="r-opts">
+        <label><input type="radio" name="rq4" value="a"/> Como algo imposible</label>
+        <label><input type="radio" name="rq4" value="b"/> Como algo aburrido</label>
+        <label><input type="radio" name="rq4" value="c"/> Como un sueño que no es para nada imposible</label>
+      </div>
+    </div>
+    <button class="r-btn" onclick="checkReading()">Controlla →</button>
+    <div class="r-result" id="r-result"></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- CULTURE STRIP -->
+<div class="culture">
+  <div class="culture-inner">
+    <h2>Cultura italiana 🌍</h2>
+    <p>L'Italia e i grandi valori — dal dibattito antico ai giorni nostri</p>
+    <div class="culture-facts">
+      <div class="cf" data-a>
+        <div class="cf-icon">🏛️</div>
+        <h4>La tradizione del dibattito</h4>
+        <p>Desde los foros romanos hasta los programas de RAI, los italianos tienen una tradición milenaria de debate público. El foro romano fue literalmente la plaza donde se debatía el destino de Roma.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">📰</div>
+        <h4>La stampa italiana</h4>
+        <p>La Repubblica y Corriere della Sera son los diarios más leídos. Italia tiene una prensa libre con una larga tradición de periodismo de opinión y análisis político profundo.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">🌿</div>
+        <h4>Sostenibilità in Italia</h4>
+        <p>Italia es uno de los líderes europeos en economía circular. El concepto de "chilometro zero" (km 0) — comer productos locales — es parte del movimiento slow food nacido en Bra, Piemonte.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">📚</div>
+        <h4>L'istruzione italiana</h4>
+        <p>El sistema educativo italiano incluye 5 años de scuola elementare, 3 di scuola media y 5 di scuola superiore. L'università più antica del mondo è a Bologna: fondata nel 1088.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">🎙️</div>
+        <h4>Coffee Break Italian</h4>
+        <p>Uno de los podcasts de idiomas más exitosos del mundo, producido en Escocia pero con hablantes nativos italianos. Ha enseñado italiano a millones de personas en todo el mundo.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">🤝</div>
+        <h4>Solidarietà italiana</h4>
+        <p>El voluntariado es muy fuerte en Italia. El tercer sector (nonprofit) emplea a más de 800,000 personas. "Fare del bene" es un valor central de la cultura italiana, especialmente en el sur.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>Italiano per piacere · A2 · Módulo 15 · Etapa 2 Descubrimiento</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  document.getElementById('prog-bar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+});
+document.querySelector('.hero').addEventListener('mousemove',e=>{
+  const circles=document.querySelectorAll('.hero-circles span');
+  const x=(e.clientX/window.innerWidth-.5)*20;
+  const y=(e.clientY/window.innerHeight-.5)*20;
+  circles.forEach((c,i)=>{c.style.transform=`translate(${x*(i+1)*.4}px,${y*(i+1)*.4}px)`});
+});
+document.querySelectorAll('.wcard').forEach(c=>{
+  c.addEventListener('click',()=>{
+    if(c.dataset.ok==='true'){c.classList.remove('trap');c.classList.add('ok');}
+    else{c.classList.remove('ok');c.classList.add('trap');}
+  });
+});
+function checkFill(ids,fbId){
+  let ok=0;
+  ids.forEach(id=>{
+    const el=document.getElementById(id);
+    const v=el.value.toLowerCase().trim();
+    const a=el.dataset.ans.toLowerCase().trim();
+    el.classList.remove('ok','err');
+    if(v===a){el.classList.add('ok');ok++;}else el.classList.add('err');
+  });
+  const fb=document.getElementById(fbId);
+  fb.className='fill-fb '+(ok===ids.length?'ok':'err');
+  fb.textContent=ok===ids.length?'✅ Perfetto! Tutte corrette!':`${ok}/${ids.length} corrette — controlla quelle in rosso.`;
+}
+function showOpinion(el,text){
+  document.querySelectorAll('.op-expr').forEach(e=>e.classList.remove('sel'));
+  el.classList.add('sel');
+  document.getElementById('op-example').textContent=text;
+}
+let matchSel={L:null,R:null};
+const matchPairs={1:1,2:2,3:3,4:4,5:5,6:6};
+function selectMatch(el,side,id){
+  if(el.classList.contains('ok'))return;
+  document.querySelectorAll('.match-item.sel').forEach(e=>{
+    if((side==='L'&&e.id.startsWith('mL'))||(side==='R'&&e.id.startsWith('mR')))e.classList.remove('sel');
+  });
+  el.classList.add('sel');matchSel[side]=id;
+  if(matchSel.L&&matchSel.R){
+    const lEl=document.getElementById('mL'+matchSel.L);
+    const rEl=document.getElementById('mR'+matchSel.R);
+    if(matchPairs[matchSel.L]==matchSel.R){lEl.classList.add('ok');rEl.classList.add('ok');}
+    else{lEl.classList.add('err');rEl.classList.add('err');setTimeout(()=>{lEl.classList.remove('err','sel');rEl.classList.remove('err','sel');},700);}
+    matchSel={L:null,R:null};
+    if(document.querySelectorAll('.match-item.ok').length===12)document.getElementById('match-result').textContent='🎉 Perfetto! Tutte le coppie corrette!';
+  }
+}
+function checkReading(){
+  const ans={rq1:'b',rq2:'b',rq3:'b',rq4:'c'};
+  let ok=0;
+  for(const q in ans){
+    const sel=document.querySelector(`input[name="${q}"]:checked`);
+    document.querySelectorAll(`input[name="${q}"]`).forEach(i=>i.parentElement.classList.remove('ok','err'));
+    if(sel){if(sel.value===ans[q]){sel.parentElement.classList.add('ok');ok++;}else sel.parentElement.classList.add('err');}
+  }
+  document.getElementById('r-result').textContent=ok===4?'🌟 Perfetto! Tutte corrette!':`${ok}/4 corrette.`;
+}
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});
+},{threshold:.12});
+document.querySelectorAll('[data-a]').forEach((el,i)=>{
+  const par=el.closest('[data-stagger]');
+  if(par)el.style.setProperty('--i',i%8);
+  obs.observe(el);
+});
+</script>
+</body>
+</html>

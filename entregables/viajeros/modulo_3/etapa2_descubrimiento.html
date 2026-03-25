@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finalmente in Italia — Módulo 3 | Italiano Per Piacere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #e9e6d5;
+    --cream-dk: #ddd9c8;
+    --gold: #EFCF7F;
+    --amber: #e5ab07;
+    --teal: #78a6ba;
+    --teal-dk: #5a8ea0;
+    --teal-hero: #deeef5;
+    --teal-border: #78a6ba;
+    --teal-active: #3d7a94;
+    --teal-th: #b8d8e8;
+    --teal-th-text: #1f4d60;
+    --green: #528e74;
+    --black: #1a1a18;
+    --white: #ffffff;
+    --fh: 'Playfair Display', Georgia, serif;
+    --fb: 'Outfit', system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--fb); color: var(--black); background: var(--cream); }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white);
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto; padding: .75rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .nav-logo img { height: 40px; display: block; }
+  .nav-links { display: flex; gap: .25rem; flex-wrap: wrap; }
+  .nav-links a {
+    font-family: var(--fb); font-size: .82rem; font-weight: 600;
+    color: var(--teal-active); text-decoration: none;
+    padding: .35rem .75rem; border-radius: 20px;
+    transition: background .2s, color .2s;
+  }
+  .nav-links a:hover { background: var(--teal-hero); }
+
+  /* PROGRESS */
+  .progress-wrap { background: var(--teal-th); height: 6px; }
+  .progress-bar { height: 6px; background: var(--teal-active); width: 0%; transition: width .4s; }
+
+  /* HERO */
+  .hero {
+    background: var(--teal-hero);
+    border-bottom: 4px solid var(--teal-border);
+    padding: 3.5rem 1.5rem 3rem;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--teal-th); color: var(--teal-th-text);
+    font-family: var(--fb); font-size: .78rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .08em;
+    padding: .3rem .9rem; border-radius: 20px; margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-family: var(--fh); font-size: clamp(2rem,5vw,3.2rem);
+    font-style: italic; color: var(--black); line-height: 1.2;
+    margin-bottom: .6rem;
+  }
+  .hero p { font-size: 1.05rem; color: #334; max-width: 600px; margin: 0 auto; }
+
+  /* SECTIONS */
+  .section { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem; }
+  .section-title {
+    font-family: var(--fh); font-size: 1.7rem; font-style: italic;
+    color: var(--teal-active); margin-bottom: 1.5rem;
+    padding-bottom: .5rem; border-bottom: 2px solid var(--teal-th);
+  }
+
+  /* VOCAB GRID */
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(170px,1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .vocab-card {
+    background: var(--white); border: 2px solid var(--teal-th);
+    border-radius: 12px; padding: 1rem; text-align: center;
+    cursor: pointer; transition: transform .2s, box-shadow .2s, border-color .2s;
+    position: relative;
+  }
+  .vocab-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(120,166,186,.25); border-color: var(--teal); }
+  .vocab-card .it { font-weight: 700; font-size: 1rem; color: var(--teal-active); }
+  .vocab-card .es { font-size: .85rem; color: #557; margin-top: .3rem; }
+  .vocab-card .emoji { font-size: 1.6rem; margin-bottom: .4rem; }
+  .vocab-label {
+    font-family: var(--fb); font-size: .72rem; font-weight: 700; text-transform: uppercase;
+    color: var(--teal-th-text); background: var(--teal-th);
+    padding: .2rem .6rem; border-radius: 20px; display: inline-block; margin-bottom: .75rem;
+  }
+
+  /* DISCOVERY BOX */
+  .discovery {
+    background: var(--white); border-radius: 16px;
+    border: 2px solid var(--teal-th); padding: 2rem; margin-bottom: 2rem;
+  }
+  .discovery h3 { font-family: var(--fh); font-style: italic; font-size: 1.25rem; color: var(--teal-active); margin-bottom: 1rem; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .93rem; }
+  th { background: var(--teal-th); color: var(--teal-th-text); font-weight: 700; padding: .6rem .9rem; text-align: left; }
+  td { padding: .55rem .9rem; border-bottom: 1px solid var(--teal-th); }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #f4f9fb; }
+
+  /* FILL EXERCISE */
+  .fill-exercise { margin-bottom: 2rem; }
+  .fill-exercise h4 { font-weight: 700; color: var(--teal-active); margin-bottom: 1rem; }
+  .fill-item { display: flex; align-items: center; gap: .5rem; margin-bottom: .75rem; flex-wrap: wrap; }
+  .fill-item span { font-size: .95rem; }
+  .fill-input {
+    border: 2px solid var(--teal-th); border-radius: 8px;
+    padding: .3rem .6rem; font-family: var(--fb); font-size: .95rem;
+    color: var(--black); background: var(--teal-hero); min-width: 80px;
+    transition: border-color .2s;
+  }
+  .fill-input:focus { outline: none; border-color: var(--teal-active); }
+  .fill-input.correct { border-color: var(--green); background: #e6f4ef; }
+  .fill-input.wrong { border-color: #cc4736; background: #fdf0ee; }
+  .check-btn {
+    background: var(--teal-active); color: var(--white);
+    border: none; border-radius: 8px; padding: .55rem 1.3rem;
+    font-family: var(--fb); font-weight: 600; cursor: pointer;
+    transition: background .2s; margin-top: .5rem;
+  }
+  .check-btn:hover { background: var(--teal-dk); }
+  .feedback { font-size: .85rem; font-weight: 600; margin-top: .5rem; }
+  .feedback.ok { color: var(--green); }
+  .feedback.err { color: #cc4736; }
+
+  /* DIALOGO */
+  .dialogo { margin-bottom: 2rem; }
+  .dialogo h4 { font-weight: 700; color: var(--teal-active); margin-bottom: 1rem; }
+  .bubble-wrap { display: flex; flex-direction: column; gap: .75rem; }
+  .bubble { max-width: 80%; padding: .9rem 1.1rem; border-radius: 16px; font-size: .95rem; line-height: 1.5; }
+  .bubble.a { align-self: flex-start; background: var(--teal-hero); border: 2px solid var(--teal-th); border-bottom-left-radius: 4px; }
+  .bubble.b { align-self: flex-end; background: var(--cream-dk); border: 2px solid var(--cream); border-bottom-right-radius: 4px; }
+  .bubble .speaker { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--teal-active); margin-bottom: .3rem; }
+  .bubble.b .speaker { color: #6b5e3a; }
+  .bubble .it { font-weight: 600; }
+  .bubble .es { font-size: .82rem; color: #556; font-style: italic; margin-top: .2rem; }
+
+  /* COMPRENSION */
+  .comprension { background: var(--white); border: 2px solid var(--teal-th); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; }
+  .comprension h4 { font-weight: 700; color: var(--teal-active); margin-bottom: 1rem; }
+  .airport-sign {
+    background: #1a3a4a; color: var(--white);
+    border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;
+    font-family: var(--fb); font-size: .9rem; line-height: 1.8;
+  }
+  .sign-row { display: flex; align-items: center; gap: 1rem; padding: .3rem 0; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .sign-row:last-child { border-bottom: none; }
+  .sign-arrow { font-size: 1.2rem; }
+  .sign-text-it { font-weight: 700; color: var(--gold); }
+  .sign-text-en { color: #adc8d8; font-size: .82rem; }
+  .comprension-q { margin-bottom: .75rem; }
+  .comprension-q label { font-size: .9rem; font-weight: 600; display: block; margin-bottom: .3rem; }
+  .comprension-q input[type="text"] {
+    width: 100%; border: 2px solid var(--teal-th); border-radius: 8px;
+    padding: .4rem .8rem; font-family: var(--fb); font-size: .9rem;
+    background: var(--teal-hero);
+  }
+
+  /* MATCHING */
+  .matching { background: var(--white); border: 2px solid var(--teal-th); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; }
+  .matching h4 { font-weight: 700; color: var(--teal-active); margin-bottom: 1rem; }
+  .match-row { display: flex; align-items: center; gap: .75rem; margin-bottom: .75rem; flex-wrap: wrap; }
+  .match-item { font-weight: 600; color: var(--teal-active); }
+  .match-select {
+    border: 2px solid var(--teal-th); border-radius: 8px;
+    padding: .35rem .6rem; font-family: var(--fb); font-size: .9rem;
+    background: var(--teal-hero); color: var(--black);
+  }
+
+  /* CULTURE STRIP */
+  .culture-strip {
+    background: linear-gradient(135deg, #deeef5 0%, var(--cream-dk) 100%);
+    border-top: 4px solid var(--teal);
+    padding: 2.5rem 1.5rem; text-align: center;
+  }
+  .culture-strip .cs-inner { max-width: 760px; margin: 0 auto; }
+  .culture-strip h3 { font-family: var(--fh); font-style: italic; font-size: 1.5rem; color: var(--teal-active); margin-bottom: 1rem; }
+  .culture-strip p { font-size: .97rem; line-height: 1.7; color: #334; }
+  .culture-strip .cs-badge {
+    display: inline-block; background: var(--teal-th); color: var(--teal-th-text);
+    font-weight: 700; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em;
+    padding: .25rem .8rem; border-radius: 20px; margin-bottom: .75rem;
+  }
+
+  /* FOOTER */
+  footer { background: var(--cream-dk); text-align: center; padding: 1.5rem; font-size: .82rem; color: #667; border-top: 1px solid var(--cream); }
+
+  @media (max-width: 600px) {
+    .nav-links a { font-size: .75rem; padding: .3rem .55rem; }
+    .vocab-grid { grid-template-columns: repeat(auto-fill,minmax(140px,1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=f5755ad" alt="Italiano Per Piacere" loading="lazy">
+    </div>
+    <div class="nav-links">
+      <a href="#vocab">Vocabulario</a>
+      <a href="#preposizioni">Preposizioni</a>
+      <a href="#interrogativi">Interrogativi</a>
+      <a href="#dialogos">Diálogos</a>
+      <a href="#cultura">Cultura</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PROGRESS -->
+<div class="progress-wrap"><div class="progress-bar" id="progress"></div></div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">Viajeros · Módulo 3</div>
+  <h1>Finalmente in Italia ✈️</h1>
+  <p>Llegaste. Ahora navegá el aeropuerto, respondé en aduana y tomá el transporte hacia Nápoles. ¡Benvenuto/a!</p>
+</header>
+
+<!-- ====== VOCABULARIO ====== -->
+<section class="section" id="vocab">
+  <h2 class="section-title">Vocabulario del módulo</h2>
+
+  <p class="vocab-label">A — Medios de transporte</p>
+  <div class="vocab-grid">
+    <div class="vocab-card"><div class="emoji">✈️</div><div class="it">l'aereo</div><div class="es">el avión</div></div>
+    <div class="vocab-card"><div class="emoji">🚂</div><div class="it">il treno</div><div class="es">el tren</div></div>
+    <div class="vocab-card"><div class="emoji">🚌</div><div class="it">l'autobus</div><div class="es">el colectivo / bus</div></div>
+    <div class="vocab-card"><div class="emoji">🚇</div><div class="it">la metropolitana</div><div class="es">el subte / metro</div></div>
+    <div class="vocab-card"><div class="emoji">🚕</div><div class="it">il taxi</div><div class="es">el taxi</div></div>
+    <div class="vocab-card"><div class="emoji">⛴️</div><div class="it">il traghetto</div><div class="es">el ferry / barco</div></div>
+    <div class="vocab-card"><div class="emoji">🚋</div><div class="it">il tram</div><div class="es">el tranvía</div></div>
+    <div class="vocab-card"><div class="emoji">🚲</div><div class="it">la bicicletta</div><div class="es">la bicicleta</div></div>
+  </div>
+
+  <p class="vocab-label">B — Trámites de entrada</p>
+  <div class="vocab-grid">
+    <div class="vocab-card"><div class="emoji">🛂</div><div class="it">il passaporto</div><div class="es">el pasaporte</div></div>
+    <div class="vocab-card"><div class="emoji">📋</div><div class="it">il visto</div><div class="es">la visa</div></div>
+    <div class="vocab-card"><div class="emoji">🏛️</div><div class="it">la dogana</div><div class="es">la aduana</div></div>
+    <div class="vocab-card"><div class="emoji">📄</div><div class="it">la dichiarazione</div><div class="es">la declaración</div></div>
+    <div class="vocab-card"><div class="emoji">📦</div><div class="it">la merce</div><div class="es">la mercadería</div></div>
+    <div class="vocab-card"><div class="emoji">🚧</div><div class="it">la frontiera</div><div class="es">la frontera</div></div>
+    <div class="vocab-card"><div class="emoji">🔍</div><div class="it">il controllo</div><div class="es">el control</div></div>
+    <div class="vocab-card"><div class="emoji">🔖</div><div class="it">il timbro</div><div class="es">el sello</div></div>
+  </div>
+
+  <p class="vocab-label">C — Motivos y duración</p>
+  <div class="vocab-grid">
+    <div class="vocab-card"><div class="emoji">🏖️</div><div class="it">la vacanza</div><div class="es">las vacaciones</div></div>
+    <div class="vocab-card"><div class="emoji">💼</div><div class="it">il lavoro</div><div class="es">el trabajo</div></div>
+    <div class="vocab-card"><div class="emoji">📚</div><div class="it">lo studio</div><div class="es">el estudio</div></div>
+    <div class="vocab-card"><div class="emoji">🗺️</div><div class="it">il turismo</div><div class="es">el turismo</div></div>
+    <div class="vocab-card"><div class="emoji">📅</div><div class="it">una settimana</div><div class="es">una semana</div></div>
+    <div class="vocab-card"><div class="emoji">📅</div><div class="it">due settimane</div><div class="es">dos semanas</div></div>
+    <div class="vocab-card"><div class="emoji">🗓️</div><div class="it">un mese</div><div class="es">un mes</div></div>
+    <div class="vocab-card"><div class="emoji">🔄</div><div class="it">di passaggio</div><div class="es">de paso</div></div>
+  </div>
+</section>
+
+<!-- ====== PREPOSIZIONI ====== -->
+<section class="section" id="preposizioni">
+  <h2 class="section-title">Preposizioni di luogo</h2>
+
+  <div class="discovery">
+    <h3>¿A, IN o DA? — Las tres preposiciones clave del viajero</h3>
+    <p style="margin-bottom:1rem;">En italiano, la elección entre <strong>a</strong>, <strong>in</strong> y <strong>da</strong> depende del tipo de lugar. Fijate en la tabla:</p>
+    <table>
+      <thead><tr><th>Preposición</th><th>Se usa con</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>a</strong></td><td>Ciudades y pueblos</td><td>Vado <em>a</em> Napoli. / Sono <em>a</em> Roma.</td></tr>
+        <tr><td><strong>in</strong></td><td>Países, regiones, continentes</td><td>Vivo <em>in</em> Argentina. / Vado <em>in</em> Italia.</td></tr>
+        <tr><td><strong>in</strong></td><td>Lugares sin artículo (aeroporto, banca, ufficio…)</td><td>Sono <em>in</em> aeroporto. / Vado <em>in</em> dogana.</td></tr>
+        <tr><td><strong>da</strong></td><td>Origen ("vengo de…") o destino personal ("voy a lo de…")</td><td>Vengo <em>da</em> Buenos Aires. / Vado <em>dall'</em>amico.</td></tr>
+        <tr><td><strong>da</strong></td><td>Tiempo ("desde hace…")</td><td>Aspetto <em>da</em> un'ora.</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:1rem;font-size:.9rem;color:#446;"><strong>Truco:</strong> Si podés poner "el/la/los/las" antes del lugar en español, en italiano probablemente va con artículo + preposición (→ <em>al/allo/alla/nel/nella…</em>). Si no lleva artículo, usá la preposición sola.</p>
+  </div>
+
+  <!-- FILL 1 -->
+  <div class="fill-exercise" id="fill1">
+    <h4>Ejercicio 1 — Completá con A, IN o DA</h4>
+    <div class="fill-item"><span>1. Vivo</span><input class="fill-input" data-answer="in" placeholder="___"><span>Argentina e vado</span><input class="fill-input" data-answer="in" placeholder="___"><span>Italia ogni estate.</span></div>
+    <div class="fill-item"><span>2. L'aereo arriva</span><input class="fill-input" data-answer="a" placeholder="___"><span>Roma alle 14:30.</span></div>
+    <div class="fill-item"><span>3. Vengo</span><input class="fill-input" data-answer="da" placeholder="___"><span>Buenos Aires.</span></div>
+    <div class="fill-item"><span>4. Siamo</span><input class="fill-input" data-answer="in" placeholder="___"><span>aeroporto da due ore.</span></div>
+    <div class="fill-item"><span>5. Domani andiamo</span><input class="fill-input" data-answer="a" placeholder="___"><span>Napoli</span><input class="fill-input" data-answer="in" placeholder="___"><span>treno.</span></div>
+    <div class="fill-item"><span>6. Il taxi va</span><input class="fill-input" data-answer="in" placeholder="___"><span>centro città.</span></div>
+    <div class="fill-item"><span>7. Marco è</span><input class="fill-input" data-answer="in" placeholder="___"><span>dogana adesso.</span></div>
+    <div class="fill-item"><span>8. Aspetto il pullman</span><input class="fill-input" data-answer="da" placeholder="___"><span>venti minuti.</span></div>
+    <button class="check-btn" onclick="checkFill('fill1')">Verificar respuestas</button>
+    <div class="feedback" id="fill1-fb"></div>
+  </div>
+</section>
+
+<!-- ====== INTERROGATIVI ====== -->
+<section class="section" id="interrogativi">
+  <h2 class="section-title">Interrogativi</h2>
+
+  <div class="discovery">
+    <h3>Las preguntas esenciales del viajero</h3>
+    <table>
+      <thead><tr><th>Interrogativo</th><th>Significado</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Dove?</strong></td><td>¿Dónde?</td><td>— <em>Dove va?</em> (¿A dónde va?)</td></tr>
+        <tr><td><strong>Quando?</strong></td><td>¿Cuándo?</td><td>— <em>Quando parte il treno?</em></td></tr>
+        <tr><td><strong>Come?</strong></td><td>¿Cómo?</td><td>— <em>Come si chiama?</em></td></tr>
+        <tr><td><strong>Perché?</strong></td><td>¿Por qué?</td><td>— <em>Perché viene in Italia?</em></td></tr>
+        <tr><td><strong>Chi?</strong></td><td>¿Quién?</td><td>— <em>Chi aspetta?</em></td></tr>
+        <tr><td><strong>Quanto/a?</strong></td><td>¿Cuánto/a?</td><td>— <em>Quanto tempo si ferma?</em></td></tr>
+        <tr><td><strong>Quanti/e?</strong></td><td>¿Cuántos/as?</td><td>— <em>Quante settimane rimane?</em></td></tr>
+        <tr><td><strong>Quale?</strong></td><td>¿Cuál?</td><td>— <em>Quale passaporto ha?</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FILL 2 -->
+  <div class="fill-exercise" id="fill2">
+    <h4>Ejercicio 2 — Elegí el interrogativo correcto</h4>
+    <p style="font-size:.85rem;color:#557;margin-bottom:1rem;">Opciones: dove / quando / come / perché / chi / quanto / quante / quale</p>
+    <div class="fill-item"><span>1.</span><input class="fill-input" data-answer="perché" placeholder="___"><span>viene in Italia? — Per lavoro.</span></div>
+    <div class="fill-item"><span>2.</span><input class="fill-input" data-answer="quante" placeholder="___"><span>settimane rimane? — Due settimane.</span></div>
+    <div class="fill-item"><span>3.</span><input class="fill-input" data-answer="dove" placeholder="___"><span>va dopo l'aeroporto? — A Napoli.</span></div>
+    <div class="fill-item"><span>4.</span><input class="fill-input" data-answer="quale" placeholder="___"><span>passaporto ha? — Quello argentino.</span></div>
+    <div class="fill-item"><span>5.</span><input class="fill-input" data-answer="quando" placeholder="___"><span>torna in Argentina? — Fra un mese.</span></div>
+    <div class="fill-item"><span>6.</span><input class="fill-input" data-answer="come" placeholder="___"><span>si chiama? — Mi chiamo Valentina.</span></div>
+    <button class="check-btn" onclick="checkFill('fill2')">Verificar respuestas</button>
+    <div class="feedback" id="fill2-fb"></div>
+  </div>
+
+  <!-- FILL 3: Simulación aduana -->
+  <div class="fill-exercise" id="fill3">
+    <h4>Ejercicio 3 — Simulación de aduana: respondé las preguntas del oficial</h4>
+    <p style="font-size:.9rem;color:#334;margin-bottom:1.2rem;line-height:1.6;">El oficial te hace preguntas. Completá tus respuestas con las palabras dadas entre paréntesis.</p>
+    <div class="fill-item"><span>Ufficiale: Come si chiama? — Risposta: Mi chiamo</span><input class="fill-input" data-answer="valentina" placeholder="(tu nombre)"><span>.</span></div>
+    <div class="fill-item"><span>Ufficiale: Di dove è? — Risposta: Sono</span><input class="fill-input" data-answer="da" placeholder="___"><span>Buenos Aires,</span><input class="fill-input" data-answer="in" placeholder="___"><span>Argentina.</span></div>
+    <div class="fill-item"><span>Ufficiale: Perché viene in Italia? — Risposta: Vengo per</span><input class="fill-input" data-answer="vacanza" placeholder="(vacanza/lavoro/studio)"><span>.</span></div>
+    <div class="fill-item"><span>Ufficiale: Quanto tempo si ferma? — Risposta: Mi fermo per</span><input class="fill-input" data-answer="due settimane" placeholder="(duración)"><span>.</span></div>
+    <div class="fill-item"><span>Ufficiale: Ha qualcosa da dichiarare? — Risposta:</span><input class="fill-input" data-answer="no" placeholder="___"><span>, niente da dichiarare.</span></div>
+    <button class="check-btn" onclick="checkFill('fill3')">Verificar respuestas</button>
+    <div class="feedback" id="fill3-fb"></div>
+  </div>
+</section>
+
+<!-- ====== DIALOGOS ====== -->
+<section class="section" id="dialogos">
+  <h2 class="section-title">Diálogos</h2>
+
+  <div class="dialogo">
+    <h4>Diálogo 1 — En la aduana (Dogana)</h4>
+    <div class="bubble-wrap">
+      <div class="bubble a"><div class="speaker">Ufficiale di dogana</div><div class="it">Buongiorno. Il passaporto, prego.</div><div class="es">Buenos días. El pasaporte, por favor.</div></div>
+      <div class="bubble b"><div class="speaker">Valentina (viajera)</div><div class="it">Buongiorno. Eccolo.</div><div class="es">Buenos días. Aquí está.</div></div>
+      <div class="bubble a"><div class="speaker">Ufficiale di dogana</div><div class="it">Di dove è?</div><div class="es">¿De dónde es usted?</div></div>
+      <div class="bubble b"><div class="speaker">Valentina</div><div class="it">Sono argentina, di Buenos Aires.</div><div class="es">Soy argentina, de Buenos Aires.</div></div>
+      <div class="bubble a"><div class="speaker">Ufficiale di dogana</div><div class="it">Perché viene in Italia?</div><div class="es">¿Por qué viene a Italia?</div></div>
+      <div class="bubble b"><div class="speaker">Valentina</div><div class="it">Per vacanza. Sono turista.</div><div class="es">De vacaciones. Soy turista.</div></div>
+      <div class="bubble a"><div class="speaker">Ufficiale di dogana</div><div class="it">Quante settimane rimane?</div><div class="es">¿Cuántas semanas se queda?</div></div>
+      <div class="bubble b"><div class="speaker">Valentina</div><div class="it">Due settimane, poi torno in Argentina.</div><div class="es">Dos semanas, luego vuelvo a Argentina.</div></div>
+      <div class="bubble a"><div class="speaker">Ufficiale di dogana</div><div class="it">Ha qualcosa da dichiarare?</div><div class="es">¿Tiene algo que declarar?</div></div>
+      <div class="bubble b"><div class="speaker">Valentina</div><div class="it">No, niente da dichiarare.</div><div class="es">No, nada que declarar.</div></div>
+      <div class="bubble a"><div class="speaker">Ufficiale di dogana</div><div class="it">Perfetto. Benvenuta in Italia!</div><div class="es">Perfecto. ¡Bienvenida a Italia!</div></div>
+      <div class="bubble b"><div class="speaker">Valentina</div><div class="it">Grazie mille!</div><div class="es">¡Muchas gracias!</div></div>
+    </div>
+  </div>
+
+  <div class="dialogo">
+    <h4>Diálogo 2 — Buscando el transporte al hotel</h4>
+    <div class="bubble-wrap">
+      <div class="bubble a"><div class="speaker">Valentina</div><div class="it">Scusi, come vado in centro da qui?</div><div class="es">Disculpe, ¿cómo voy al centro desde acá?</div></div>
+      <div class="bubble b"><div class="speaker">Addetto all'informazioni</div><div class="it">Può prendere il treno Leonardo Express oppure l'autobus.</div><div class="es">Puede tomar el tren Leonardo Express o el colectivo.</div></div>
+      <div class="bubble a"><div class="speaker">Valentina</div><div class="it">Quanto costa il treno?</div><div class="es">¿Cuánto cuesta el tren?</div></div>
+      <div class="bubble b"><div class="speaker">Addetto</div><div class="it">Quattordici euro. Parte ogni trenta minuti.</div><div class="es">Catorce euros. Sale cada treinta minutos.</div></div>
+      <div class="bubble a"><div class="speaker">Valentina</div><div class="it">E l'autobus?</div><div class="es">¿Y el colectivo?</div></div>
+      <div class="bubble b"><div class="speaker">Addetto</div><div class="it">L'autobus è più economico ma ci vuole più tempo. Circa un'ora.</div><div class="es">El colectivo es más económico pero tarda más. Como una hora.</div></div>
+      <div class="bubble a"><div class="speaker">Valentina</div><div class="it">Prendo il treno, grazie. Dove compro il biglietto?</div><div class="es">Tomo el tren, gracias. ¿Dónde compro el boleto?</div></div>
+      <div class="bubble b"><div class="speaker">Addetto</div><div class="it">Alle macchinette automatiche, lì a destra.</div><div class="es">En las máquinas automáticas, allá a la derecha.</div></div>
+    </div>
+  </div>
+
+  <!-- COMPRENSION -->
+  <div class="comprension">
+    <h4>Comprensión — Leé el cartel y respondé</h4>
+    <div class="airport-sign">
+      <div class="sign-row"><div class="sign-arrow">→</div><div><div class="sign-text-it">Arrivi / Arrivals</div><div class="sign-text-en">Sala arrivi, piano 0</div></div></div>
+      <div class="sign-row"><div class="sign-arrow">↓</div><div><div class="sign-text-it">Dogana / Customs</div><div class="sign-text-en">Niente da dichiarare · Merce da dichiarare</div></div></div>
+      <div class="sign-row"><div class="sign-arrow">→</div><div><div class="sign-text-it">Controllo Passaporti / Passport Control</div><div class="sign-text-en">Passaporti UE — Extracomunitari</div></div></div>
+      <div class="sign-row"><div class="sign-arrow">↗</div><div><div class="sign-text-it">Trasporti / Transport</div><div class="sign-text-en">Treni · Bus · Taxi</div></div></div>
+    </div>
+    <div class="comprension-q">
+      <label>1. ¿Dónde están las llegadas? (piano…)</label>
+      <input type="text" placeholder="Tu respuesta...">
+    </div>
+    <div class="comprension-q">
+      <label>2. Si no tenés nada que declarar, ¿por dónde pasás en la dogana?</label>
+      <input type="text" placeholder="Tu respuesta...">
+    </div>
+    <div class="comprension-q">
+      <label>3. ¿Qué diferencia hacen en el control de pasaportes?</label>
+      <input type="text" placeholder="Tu respuesta...">
+    </div>
+    <div class="comprension-q">
+      <label>4. ¿Cuántas opciones de transporte ves en el cartel?</label>
+      <input type="text" placeholder="Tu respuesta...">
+    </div>
+  </div>
+
+  <!-- MATCHING -->
+  <div class="matching">
+    <h4>Matching — Preposición + destino</h4>
+    <p style="font-size:.88rem;color:#557;margin-bottom:1rem;">Elegí A, IN o DA para cada destino:</p>
+    <div class="match-row"><span class="match-item">Vado ___</span><select class="match-select"><option>---</option><option>a</option><option>in</option><option>da</option></select><span>Roma.</span></div>
+    <div class="match-row"><span class="match-item">Vengo ___</span><select class="match-select"><option>---</option><option>a</option><option>in</option><option>da</option></select><span>Napoli.</span></div>
+    <div class="match-row"><span class="match-item">Abito ___</span><select class="match-select"><option>---</option><option>a</option><option>in</option><option>da</option></select><span>Italia.</span></div>
+    <div class="match-row"><span class="match-item">Torno ___</span><select class="match-select"><option>---</option><option>a</option><option>in</option><option>da</option></select><span>Argentina fra due settimane.</span></div>
+    <div class="match-row"><span class="match-item">Sono ___</span><select class="match-select"><option>---</option><option>a</option><option>in</option><option>da</option></select><span>aeroporto.</span></div>
+    <div class="match-row"><span class="match-item">Vado ___</span><select class="match-select"><option>---</option><option>a</option><option>in</option><option>da</option></select><span>dogana.</span></div>
+  </div>
+</section>
+
+<!-- CULTURE STRIP -->
+<div class="culture-strip" id="cultura">
+  <div class="cs-inner">
+    <div class="cs-badge">Tip Cultural</div>
+    <h3>Ante la Polizia di Frontiera: calma e rispetto</h3>
+    <p>En Italia, el control de fronteras lo maneja la <em>Polizia di Frontiera</em>. A diferencia de otros países, los oficiales italianos suelen ser formales pero cordiales. Acordate de estos puntos clave: siempre hablá de usted (<em>Lei</em>) con el oficial; tené el pasaporte listo antes de llegar a la ventanilla; si te preguntan algo que no entendés, podés decir <em>"Scusi, può ripetere?"</em> (¿puede repetir?). Si viajás desde Argentina, necesitás visa Schengen para ingresar a Italia — revisá la vigencia antes de viajar. Con actitud tranquila y documentación en orden, el trámite es rapidísimo. ¡La parte difícil ya pasó: llegaste!</p>
+  </div>
+</div>
+
+<footer>
+  <p>Italiano Per Piacere · Viajeros · Módulo 3 — <em>Finalmente in Italia</em></p>
+</footer>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const progress = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+    document.getElementById('progress').style.width = progress + '%';
+  });
+
+  // Check fill exercises
+  function checkFill(id) {
+    const section = document.getElementById(id);
+    const inputs = section.querySelectorAll('.fill-input');
+    let correct = 0;
+    inputs.forEach(inp => {
+      const userVal = inp.value.trim().toLowerCase();
+      const answer = inp.dataset.answer.toLowerCase();
+      // Accept "da" answers loosely, also accept name inputs loosely
+      const ok = userVal === answer || (id === 'fill3' && inp.dataset.answer === 'valentina' && userVal.length > 1);
+      inp.classList.toggle('correct', ok);
+      inp.classList.toggle('wrong', !ok && userVal !== '');
+      if (ok) correct++;
+    });
+    const fb = document.getElementById(id + '-fb');
+    if (correct === inputs.length) {
+      fb.textContent = '✓ ¡Perfecto! Todas correctas.';
+      fb.className = 'feedback ok';
+    } else {
+      fb.textContent = correct + ' de ' + inputs.length + ' correctas. Revisá las marcadas en rojo.';
+      fb.className = 'feedback err';
+    }
+  }
+</script>
+</body>
+</html>

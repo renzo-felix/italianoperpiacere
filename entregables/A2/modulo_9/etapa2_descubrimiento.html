@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Módulo 9 A2 · Descubrimiento — Cerco casa</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;
+  --red:#cc4736;--red-dk:#a8382a;--teal:#78a6ba;--green:#528e74;--green-dk:#3d6b58;--black:#1a1a18;--white:#fff;
+  --mod:var(--red);--mod-dk:var(--red-dk);
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.65;overflow-x:hidden}
+#toggle-btn{position:fixed;top:14px;right:16px;z-index:200;background:rgba(255,255,255,.92);border:2px solid var(--mod-dk);color:var(--mod-dk);padding:7px 16px;border-radius:20px;cursor:pointer;font-family:var(--fb);font-weight:700;font-size:.82rem;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+#toggle-btn:hover{background:var(--red);color:#fff}
+body.hide-es .es{display:none}
+.hero{min-height:88vh;background:#fde4e1;border-bottom:3px solid #cc4736;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;position:relative;overflow:hidden}
+.hero::before,.hero::after{display:none}
+.hero-circle{position:absolute;border-radius:50%;opacity:.1;background:#fff;pointer-events:none}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:clamp(2.4rem,6vw,4rem);color:var(--black);margin-bottom:14px;position:relative;z-index:1}
+.hero p{color:rgba(0,0,0,.7);font-size:1.1rem;max-width:580px;position:relative;z-index:1;margin-bottom:28px}
+.hero-badge{background:rgba(0,0,0,.05);border:2px solid rgba(0,0,0,.07);border-radius:14px;padding:14px 28px;color:var(--black);font-size:.95rem;position:relative;z-index:1;display:inline-block}
+.hero-badge strong{display:block;font-size:1.1rem;margin-bottom:2px}
+.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.55);font-size:.82rem;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+.section{max-width:960px;margin:0 auto;padding:60px 20px}
+.section-alt{background:var(--cream-dk)}
+.section h2{font-family:var(--fh);font-style:italic;font-size:1.85rem;color:var(--mod-dk);margin-bottom:8px}
+.section .sub{color:#666;font-size:.92rem;margin-bottom:32px}
+.section-label{display:inline-block;background:#fbc8c2;color:#7a1f14;font-size:.75rem;font-weight:700;padding:3px 12px;border-radius:10px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
+/* word grid */
+.word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin:20px 0}
+.wcard{background:#fff;border:2px solid var(--cream-dk);border-radius:12px;padding:14px 10px;text-align:center;cursor:pointer;transition:all .25s;font-size:.9rem;font-weight:600;user-select:none}
+.wcard:hover{border-color:var(--red);transform:translateY(-2px)}
+.wcard.ok{background:#fde8e6;border-color:var(--red);color:var(--red-dk)}
+.wcard.trap{background:#fdf0ee;border-color:#888;color:#888}
+.wcard .reveal{display:none;font-size:.75rem;font-weight:400;margin-top:4px}
+.wcard.ok .reveal,.wcard.trap .reveal{display:block}
+.grid-legend{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:.85rem}
+.leg-dot{width:12px;height:12px;border-radius:50%}
+.leg-red{background:var(--red)}
+.leg-gray{background:#aaa}
+.grid-result{font-weight:600;margin-top:12px;font-size:.9rem;min-height:22px;color:var(--mod-dk)}
+/* vocab */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:24px 0}
+.vcard{background:#fff;border-radius:14px;padding:18px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.08);transition:all .25s;border:2px solid transparent}
+.vcard:hover{transform:translateY(-3px);border-color:var(--red)}
+.vcard .ita{font-size:1.05rem;font-weight:700;color:var(--red-dk)}
+.vcard .emoji{font-size:1.6rem;margin-bottom:8px;display:block}
+.vcard .vex{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--cream-dk);font-size:.86rem;color:#555;line-height:1.5}
+.vcard.open .vex{display:block}
+.vcard .hint{font-size:.75rem;color:#aaa;margin-top:6px}
+/* discovery box */
+.disc-box{background:#fff;border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 3px 16px rgba(0,0,0,.09)}
+.disc-box h3{color:var(--mod-dk);font-size:1.1rem;font-weight:700;margin-bottom:16px}
+.hl-box{background:linear-gradient(135deg,#fde8e6,#fdf6f5);border-left:4px solid var(--red);padding:16px 20px;border-radius:0 10px 10px 0;margin:14px 0;font-size:.95rem;line-height:1.85}
+.hl-box .hl{background:#f8b4ae;padding:1px 5px;border-radius:4px;font-weight:700}
+.hl-box .es{color:#666;font-size:.88rem}
+.gtable{width:100%;border-collapse:collapse;margin:16px 0;font-size:.9rem}
+.gtable th{background:#fbc8c2;color:#7a1f14;padding:11px 14px;text-align:left;font-weight:600}
+.gtable td{padding:9px 14px;border-bottom:1px solid var(--cream-dk)}
+.gtable tr:nth-child(even) td{background:#fef0ee}
+.gtable tr:hover{background:#fde8e6}
+.schema{background:linear-gradient(135deg,#fdf0ee 0%,#f5cdc8 100%);color:var(--black);border-radius:14px;padding:22px 28px;margin:20px 0;font-family:monospace;font-size:.95rem}
+.schema .hl{color:var(--gold);font-weight:700}
+.schema .line{margin:7px 0}
+/* fill */
+.fill-box{background:#fff;border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 3px 16px rgba(0,0,0,.09)}
+.fill-box h3{color:var(--mod-dk);font-weight:700;margin-bottom:8px}
+.fill-box .inst{font-size:.88rem;color:#666;margin-bottom:18px}
+.fill-item{margin:14px 0;font-size:.94rem;line-height:1.7}
+.fill-blank{border:none;border-bottom:2px solid var(--red);background:transparent;font-family:var(--fb);font-size:.92rem;width:150px;padding:3px 6px;transition:border-color .2s}
+.fill-blank:focus{outline:none;border-color:var(--red-dk)}
+.fill-blank.ok{border-color:var(--green);background:#edf7f2;border-radius:4px}
+.fill-blank.no{border-color:var(--red);background:#fdf0ee;border-radius:4px}
+.fill-btn{background:var(--red);color:var(--black);border:none;border-radius:8px;padding:9px 22px;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.88rem;margin-top:14px;transition:background .2s}
+.fill-btn:hover{background:var(--red-dk)}
+.fill-fb{font-size:.82rem;margin-top:8px;font-weight:600;min-height:20px}
+.fill-fb.ok{color:var(--green)}
+.fill-fb.no{color:var(--red)}
+/* dialogue */
+.dialogue{margin:28px 0}
+.dialogue h3{color:var(--mod-dk);font-weight:700;margin-bottom:16px;font-size:1rem}
+.bubble-wrap{margin:10px 0}
+.bubble{background:#fff;border-radius:16px 16px 16px 4px;padding:14px 18px;display:inline-block;max-width:75%;box-shadow:0 2px 8px rgba(0,0,0,.08);cursor:pointer}
+.bubble:hover{box-shadow:0 4px 16px rgba(204,71,54,.2)}
+.bubble.right-side{border-radius:16px 16px 4px 16px;background:#f5cdc8;color:var(--black);margin-left:auto;display:block}
+.bubble .speaker{font-size:.75rem;font-weight:700;color:var(--red-dk);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.bubble.right-side .speaker{color:rgba(0,0,0,.6)}
+.bubble .btext{font-size:.93rem}
+.bubble .btr{display:none;margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.1);font-size:.82rem;color:#888;font-style:italic}
+.bubble.right-side .btr{border-top-color:rgba(255,255,255,.2);color:rgba(255,255,255,.7)}
+.bubble.show .btr{display:block}
+.bubble-hint{font-size:.78rem;color:#aaa;text-align:center;margin:8px 0 16px}
+/* annuncio card */
+.annunci-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin:24px 0}
+.annuncio{background:#fff;border-radius:14px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.09);border-top:4px solid var(--red);cursor:pointer;transition:all .2s}
+.annuncio:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(204,71,54,.15)}
+.annuncio .tipo{font-size:.8rem;text-transform:uppercase;font-weight:700;color:var(--red-dk);margin-bottom:8px}
+.annuncio .prezzo{font-size:1.3rem;font-weight:700;color:var(--black);margin:8px 0}
+.annuncio .desc{font-size:.88rem;color:#666;line-height:1.5}
+.annuncio .details{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.annuncio .detail{font-size:.8rem;background:var(--cream);border-radius:8px;padding:4px 10px;color:#555}
+/* reading */
+.reading-box{background:#fff;border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 3px 16px rgba(0,0,0,.09)}
+.reading-box h3{color:var(--mod-dk);font-weight:700;font-size:1rem;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
+.reading-text{font-size:.95rem;line-height:1.85;padding:16px;background:var(--cream);border-radius:10px;margin-bottom:20px}
+.reading-text .hl{background:#f8b4ae;padding:1px 4px;border-radius:3px;font-weight:600}
+.q-box{margin:12px 0}
+.q-box p{font-size:.9rem;font-weight:600;margin-bottom:8px}
+.q-opts{display:flex;flex-direction:column;gap:6px}
+.q-opt{background:var(--cream);border:2px solid var(--cream-dk);border-radius:8px;padding:8px 14px;cursor:pointer;font-size:.88rem;transition:all .2s}
+.q-opt:hover{border-color:var(--red)}
+.q-opt.chosen{border-color:var(--red);background:#fde8e6;font-weight:600}
+.q-opt.right{border-color:var(--green);background:#d4edda;color:var(--green-dk)}
+.q-opt.wrong{border-color:var(--red-dk);background:#fde8e6;color:var(--red-dk)}
+.check-btn{background:#f5cdc8;color:var(--black);border:none;border-radius:8px;padding:9px 22px;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.88rem;margin-top:14px;transition:background .2s}
+.check-btn:hover{background:var(--red-dk)}
+/* culture */
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:4px solid var(--red-dk);padding:52px 20px}
+.culture-inner{max-width:760px;margin:0 auto}
+.culture-inner h3{font-family:var(--fh);font-style:italic;font-size:1.6rem;color:var(--black);margin-bottom:16px}
+.culture-inner p{font-size:.95rem;color:var(--black);margin-bottom:12px;max-width:680px}
+.culture-facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:24px}
+.fact-card{background:rgba(255,255,255,.65);border-radius:12px;padding:16px;font-size:.88rem;border-left:3px solid var(--red-dk)}
+.fact-card strong{display:block;color:var(--red-dk);margin-bottom:4px;font-size:.9rem}
+.progress-bar{position:fixed;bottom:0;left:0;right:0;height:5px;background:rgba(0,0,0,.1);z-index:300}
+.progress-fill{height:100%;background:var(--red);width:0;transition:width .3s}
+[data-a]{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+[data-a].visible{opacity:1;transform:none}
+[data-stagger]>*{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
+[data-stagger].visible>*{opacity:1;transform:none}
+[data-stagger].visible>*:nth-child(n+1){transition-delay:calc(var(--i,0) * .08s)}
+[data-stagger].visible>*:nth-child(2){transition-delay:.08s}
+[data-stagger].visible>*:nth-child(3){transition-delay:.16s}
+[data-stagger].visible>*:nth-child(4){transition-delay:.24s}
+[data-stagger].visible>*:nth-child(5){transition-delay:.32s}
+[data-stagger].visible>*:nth-child(6){transition-delay:.40s}
+[data-stagger].visible>*:nth-child(7){transition-delay:.48s}
+[data-stagger].visible>*:nth-child(8){transition-delay:.56s}
+</style>
+</head>
+<body>
+<button id="toggle-btn" onclick="document.body.classList.toggle('hide-es');this.textContent=document.body.classList.contains('hide-es')?'Mostrar ES':'Ocultar ES'">Ocultar ES</button>
+<div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+
+<div class="hero" id="hero">
+  <div class="hero-circle" style="width:360px;height:360px;top:-100px;right:-80px"></div>
+  <div class="hero-circle" style="width:200px;height:200px;bottom:60px;left:-40px"></div>
+  <p class="section-label" style="position:relative;z-index:2;margin-bottom:16px">Módulo 9 · A2</p>
+  <h1>Cerco casa</h1>
+  <p>Con Andrea Bocelli descubres el condizionale italiano: el tiempo de los sueños, los deseos y las peticiones corteses.</p>
+  <div class="hero-badge">
+    <strong>🎵 "Vorrei" — Andrea Bocelli</strong>
+    Condizionale presente · Deseos · Richieste cortesi
+  </div>
+  <div class="scroll-hint">↓ Inizia il percorso</div>
+</div>
+
+<!-- WORD GRID -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Warm-up</span>
+    <h2>Riconosci il lessico della casa</h2>
+    <p class="sub">Haz clic en las palabras relacionadas con "cercare casa" en Italia. Las otras son trampa.</p>
+  </div>
+  <div class="grid-legend">
+    <div class="leg-item"><div class="leg-dot leg-red"></div><span>Casa / affitto</span></div>
+    <div class="leg-item"><div class="leg-dot leg-gray"></div><span>Altre categorie</span></div>
+  </div>
+  <div class="word-grid" id="grid1" data-stagger>
+    <div class="wcard" onclick="clickWord(this,'ok')">l'affitto<div class="reveal">✓ cercare casa</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il monolocale<div class="reveal">✓ tipo di casa</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il sottomarino<div class="reveal">✗ è la marina</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la cucina arredata<div class="reveal">✓ stanze di casa</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il balcone<div class="reveal">✓ casa</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il fossile<div class="reveal">✗ è la geologia</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il condominio<div class="reveal">✓ edificio di appartamenti</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il box auto<div class="reveal">✓ garage privato</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il microscopio<div class="reveal">✗ è la scienza</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il proprietario<div class="reveal">✓ chi affitta la casa</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il contratto d'affitto<div class="reveal">✓ documento legale</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">il cacciavite<div class="reveal">✗ è l'attrezzo</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">la caparra<div class="reveal">✓ deposito per l'affitto</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">arredato/a<div class="reveal">✓ con mobili</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">la cometa<div class="reveal">✗ è l'astronomia</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">il trilocale<div class="reveal">✓ 3 locali</div></div>
+    <div class="wcard" onclick="clickWord(this,'ok')">l'agenzia immobiliare<div class="reveal">✓ cercare casa</div></div>
+    <div class="wcard" onclick="clickWord(this,'trap')">l'alce<div class="reveal">✗ è l'animale</div></div>
+  </div>
+  <div class="grid-result" id="grid1-res"></div>
+</div>
+
+<!-- VOCAB 1: TIPI DI CASA -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Vocabolario 1</span>
+    <h2>Tipi di casa in Italia</h2>
+    <p class="sub">Haz clic en cada tarjeta para descubrir el tipo de vivienda, su uso y cómo pedirla.</p>
+  </div>
+  <div class="vocab-grid" data-stagger>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🏠</span>
+      <div class="ita">il monolocale</div>
+      <div class="hint">el estudio</div>
+      <div class="vex"><strong>es:</strong> estudio (piso de una sola habitación)<br><em>Vorrei un monolocale vicino all'università.</em><br><span class="es">Me gustaría un estudio cerca de la universidad.</span><br>💡 Muy buscado por estudiantes y jóvenes trabajadores.</div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🏡</span>
+      <div class="ita">il bilocale</div>
+      <div class="hint">dos habitaciones</div>
+      <div class="vex"><strong>es:</strong> piso de dos habitaciones (salón + dormitorio)<br><em>Cerco un bilocale arredato in centro.</em><br><span class="es">Busco un piso de dos habitaciones amueblado en el centro.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🏘️</span>
+      <div class="ita">il trilocale</div>
+      <div class="hint">tres habitaciones</div>
+      <div class="vex"><strong>es:</strong> piso de tres habitaciones<br><em>Vorremmo un trilocale per tutta la famiglia.</em><br><span class="es">Nos gustaría un piso de tres habitaciones para toda la familia.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🏰</span>
+      <div class="ita">la villa</div>
+      <div class="hint">casa independiente</div>
+      <div class="vex"><strong>es:</strong> villa, casa independiente con jardín<br><em>Sogno una villa con piscina sul lago di Como.</em><br><span class="es">Sueño con una villa con piscina en el lago de Como.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🌾</span>
+      <div class="ita">il casale / l'agriturismo</div>
+      <div class="hint">casa rural</div>
+      <div class="vex"><strong>es:</strong> casa rural / alojamiento rural<br><em>Vorrei un casale in Toscana tra le colline.</em><br><span class="es">Me gustaría una casa rural en la Toscana entre colinas.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🏙️</span>
+      <div class="ita">l'attico</div>
+      <div class="hint">ático con terraza</div>
+      <div class="vex"><strong>es:</strong> ático (último piso con terraza)<br><em>Il suo attico ha una vista bellissima sulla città.</em><br><span class="es">Su ático tiene una vista preciosa de la ciudad.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🏢</span>
+      <div class="ita">il condominio</div>
+      <div class="hint">edificio de pisos</div>
+      <div class="vex"><strong>es:</strong> comunidad de propietarios / edificio de apartamentos<br><em>Viviamo in un condominio di otto piani.</em><br><span class="es">Vivimos en un edificio de ocho pisos.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🔑</span>
+      <div class="ita">in affitto / di proprietà</div>
+      <div class="hint">alquiler / en propiedad</div>
+      <div class="vex"><strong>es:</strong> de alquiler / en propiedad<br><em>Preferiresti abitare in affitto o comprare casa?</em><br><span class="es">¿Preferirías vivir de alquiler o comprar casa?</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ANNUNCI IMMOBILIARI -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Annunci immobiliari</span>
+    <h2>Cerco casa — gli annunci</h2>
+    <p class="sub">Lee estos anuncios inmobiliarios y fíjate en el vocabulario clave.</p>
+  </div>
+  <div class="annunci-grid" data-stagger>
+    <div class="annuncio">
+      <div class="tipo">Milano · Affitto</div>
+      <div class="prezzo">€900 / mese</div>
+      <p class="desc">Bilocale luminoso, cucina separata, bagno, riscaldamento autonomo. Quinto piano con ascensore.</p>
+      <div class="details">
+        <span class="detail">🛏️ 2 locali</span><span class="detail">🛁 1 bagno</span><span class="detail">🚿 arredato</span>
+      </div>
+    </div>
+    <div class="annuncio">
+      <div class="tipo">Roma · Affitto</div>
+      <div class="prezzo">€650 / mese</div>
+      <p class="desc">Monolocale in centro storico, vicino al Colosseo. Ideale per studente o giovane lavoratore.</p>
+      <div class="details">
+        <span class="detail">🛏️ 1 locale</span><span class="detail">🚿 parzialmente arredato</span>
+      </div>
+    </div>
+    <div class="annuncio">
+      <div class="tipo">Firenze · Vendita</div>
+      <div class="prezzo">€280.000</div>
+      <p class="desc">Trilocale in Oltrarno, con terrazzo e vista panoramica. Da ristrutturare. Zona tranquilla.</p>
+      <div class="details">
+        <span class="detail">🛏️ 3 locali</span><span class="detail">🌿 terrazzo</span><span class="detail">🔨 da ristrutturare</span>
+      </div>
+    </div>
+    <div class="annuncio">
+      <div class="tipo">Toscana · Affitto vacanza</div>
+      <div class="prezzo">€1.200 / settimana</div>
+      <p class="desc">Casale toscano tra le colline del Chianti. 4 camere, piscina, giardino privato. Vista sulle vigne.</p>
+      <div class="details">
+        <span class="detail">🛏️ 4 camere</span><span class="detail">🏊 piscina</span><span class="detail">🌿 giardino</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DISCOVERY: CONDIZIONALE -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Scoperta grammaticale 1</span>
+    <h2>Il condizionale presente</h2>
+    <p class="sub">Escucha las frases de la canción y descubre cómo se forma el condizionale.</p>
+  </div>
+  <div class="disc-box" data-a>
+    <h3>🎵 Dalla canzone "Vorrei" — osserva</h3>
+    <div class="hl-box">
+      <span class="hl">Vorrei</span> una casa vicino al mare. <span class="es">— Querría una casa cerca del mar.</span><br>
+      <span class="hl">Sarebbe</span> bellissima con un giardino. <span class="es">— Sería preciosa con un jardín.</span><br>
+      <span class="hl">Potrei</span> abitarci tutto l'anno. <span class="es">— Podría vivir allí todo el año.</span><br>
+      <span class="hl">Avrei</span> tutto quello che voglio. <span class="es">— Tendría todo lo que quiero.</span><br>
+      Ti <span class="hl">chiederei</span> di venire con me. <span class="es">— Te pediría que vinieras conmigo.</span>
+    </div>
+    <p style="font-size:.88rem;color:#666;margin-top:12px">💡 Notasi el patrón: todas las formas terminan en <strong>-ei, -esti, -ebbe, -emmo, -este, -ebbero</strong>.</p>
+  </div>
+
+  <div class="schema" data-a>
+    <div class="line"><span class="hl">Condizionale = radice + desinenze:</span></div>
+    <div class="line">parlare → parler<span class="hl">ei</span> / parler<span class="hl">esti</span> / parler<span class="hl">ebbe</span>...</div>
+    <div class="line">avere → avr<span class="hl">ei</span> / avr<span class="hl">esti</span> / avr<span class="hl">ebbe</span>...</div>
+    <div class="line">essere → sar<span class="hl">ei</span> / sar<span class="hl">esti</span> / sar<span class="hl">ebbe</span>...</div>
+  </div>
+
+  <table class="gtable" data-a>
+    <tr><th>Pronome</th><th>parlare</th><th>avere</th><th>essere</th><th>volere</th><th>potere</th></tr>
+    <tr><td>io</td><td>parlerei</td><td>avrei</td><td>sarei</td><td><strong>vorrei</strong></td><td><strong>potrei</strong></td></tr>
+    <tr><td>tu</td><td>parleresti</td><td>avresti</td><td>saresti</td><td>vorresti</td><td>potresti</td></tr>
+    <tr><td>lui/lei</td><td>parlerebbe</td><td>avrebbe</td><td>sarebbe</td><td><strong>vorrebbe</strong></td><td>potrebbe</td></tr>
+    <tr><td>noi</td><td>parleremmo</td><td>avremmo</td><td>saremmo</td><td>vorremmo</td><td>potremmo</td></tr>
+    <tr><td>voi</td><td>parlereste</td><td>avreste</td><td>sareste</td><td>vorreste</td><td>potreste</td></tr>
+    <tr><td>loro</td><td>parlerebbero</td><td>avrebbero</td><td>sarebbero</td><td>vorrebbero</td><td>potrebbero</td></tr>
+  </table>
+</div>
+
+<!-- FILL: CONDIZIONALE -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Attività 1</span>
+    <h2>Pratica: il condizionale dei desideri</h2>
+  </div>
+  <div class="fill-box" data-a>
+    <h3>Set A — La casa dei sogni</h3>
+    <p class="inst">Completa con il condizionale del verbo tra parentesi:</p>
+    <div class="fill-item">1. (io/volere) <input class="fill-blank" id="c1" data-ans="vorrei"> una casa con piscina.</div>
+    <div class="fill-item">2. La casa (essere) <input class="fill-blank" id="c2" data-ans="sarebbe"> in campagna, tra le colline.</div>
+    <div class="fill-item">3. (noi/abitare) <input class="fill-blank" id="c3" data-ans="abiteremmo"> lì tutto l'anno.</div>
+    <div class="fill-item">4. Mio fratello (preferire) <input class="fill-blank" id="c4" data-ans="preferirebbe"> una casa in città.</div>
+    <div class="fill-item">5. Voi (avere) <input class="fill-blank" id="c5" data-ans="avreste"> anche un giardino grande.</div>
+    <button class="fill-btn" onclick="checkFill(['c1','c2','c3','c4','c5'],'cA')">Controlla</button>
+    <div class="fill-fb" id="cA-fb"></div>
+  </div>
+  <div class="fill-box" data-a>
+    <h3>Set B — Richieste cortesi</h3>
+    <p class="inst">Rendi più cortesi queste richieste usando il condizionale:</p>
+    <div class="fill-item">1. Puoi mostrarmi la cucina? → <input class="fill-blank" id="cc1" data-ans="potresti" style="width:110px"> mostrarmi la cucina?</div>
+    <div class="fill-item">2. Puoi abbassare l'affitto? → <input class="fill-blank" id="cc2" data-ans="potresti" style="width:110px"> abbassare l'affitto?</div>
+    <div class="fill-item">3. Puoi chiamarmi domani? → <input class="fill-blank" id="cc3" data-ans="potresti" style="width:110px"> chiamarmi domani?</div>
+    <div class="fill-item">4. Voglio vedere l'appartamento. → <input class="fill-blank" id="cc4" data-ans="vorrei" style="width:110px"> vedere l'appartamento.</div>
+    <button class="fill-btn" onclick="checkFill(['cc1','cc2','cc3','cc4'],'cB')">Controlla</button>
+    <div class="fill-fb" id="cB-fb"></div>
+  </div>
+</div>
+
+<!-- VOCAB 2: STANZE E ARREDO -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Vocabolario 2</span>
+    <h2>Le stanze e l'arredo</h2>
+    <p class="sub">Haz clic para descubrir el vocabulario de las habitaciones y el mobiliario.</p>
+  </div>
+  <div class="vocab-grid" data-stagger>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🛋️</span>
+      <div class="ita">il soggiorno / il salotto</div>
+      <div class="hint">sala de estar</div>
+      <div class="vex"><strong>es:</strong> salón / sala de estar<br><em>Il soggiorno è luminoso con grandi finestre.</em><br><span class="es">El salón es luminoso con grandes ventanas.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🛏️</span>
+      <div class="ita">la camera da letto</div>
+      <div class="hint">dormitorio</div>
+      <div class="vex"><strong>es:</strong> dormitorio<br><em>La camera da letto principale ha il bagno en suite.</em><br><span class="es">El dormitorio principal tiene baño en suite.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🍳</span>
+      <div class="ita">la cucina / il cucinino</div>
+      <div class="hint">cocina</div>
+      <div class="vex"><strong>es:</strong> cocina / cocinita<br><em>Vorrei una cucina grande dove cucinare con gli amici.</em><br><span class="es">Me gustaría una cocina grande donde cocinar con amigos.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🚿</span>
+      <div class="ita">il bagno / la doccia</div>
+      <div class="hint">cuarto de baño</div>
+      <div class="vex"><strong>es:</strong> baño / ducha<br><em>L'appartamento ha due bagni: uno con vasca e uno con doccia.</em><br><span class="es">El apartamento tiene dos baños: uno con bañera y uno con ducha.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🌿</span>
+      <div class="ita">il terrazzo / il balcone</div>
+      <div class="hint">terraza / balcón</div>
+      <div class="vex"><strong>es:</strong> terraza / balcón<br><em>Con un terrazzo così grande, farei colazione all'aperto ogni giorno!</em><br><span class="es">¡Con una terraza tan grande, desayunaría al aire libre cada día!</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🔑</span>
+      <div class="ita">l'ingresso / il corridoio</div>
+      <div class="hint">entrada / pasillo</div>
+      <div class="vex"><strong>es:</strong> entrada / pasillo<br><em>L'ingresso è spazioso con un armadio a muro.</em><br><span class="es">La entrada es espaciosa con un armario empotrado.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">📚</span>
+      <div class="ita">lo studio / la libreria</div>
+      <div class="hint">despacho / biblioteca</div>
+      <div class="vex"><strong>es:</strong> despacho / estantería de libros<br><em>Avrei bisogno di uno studio tranquillo per lavorare da casa.</em><br><span class="es">Necesitaría un despacho tranquilo para trabajar desde casa.</span></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <span class="emoji">🌳</span>
+      <div class="ita">il giardino / il cortile</div>
+      <div class="hint">jardín / patio</div>
+      <div class="vex"><strong>es:</strong> jardín / patio<br><em>Vorrei un giardino dove i bambini possano giocare.</em><br><span class="es">Querría un jardín donde los niños puedan jugar.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- DIALOGUE 1 -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Dialogo 1</span>
+    <h2>All'agenzia immobiliare</h2>
+  </div>
+  <div class="dialogue" data-a>
+    <h3>Sara e l'agente immobiliare</h3>
+    <div class="bubble-hint">👆 Toca para ver la traducción</div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Agente</div>
+        <div class="btext">Buongiorno! Come posso aiutarla?</div>
+        <div class="btr es">¡Buenos días! ¿En qué puedo ayudarla?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Sara</div>
+        <div class="btext">Vorrei cercare un appartamento in affitto. Preferibilmente un bilocale in centro.</div>
+        <div class="btr es">Me gustaría buscar un apartamento de alquiler. Preferiblemente un piso de dos habitaciones en el centro.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Agente</div>
+        <div class="btext">Certo. Avrebbe un budget mensile?</div>
+        <div class="btr es">Por supuesto. ¿Tendría un presupuesto mensual?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Sara</div>
+        <div class="btext">Dovrei stare sotto gli €800. E vorrei un balcone, se possibile.</div>
+        <div class="btr es">Tendría que mantenerme por debajo de los 800€. Y querría un balcón, si es posible.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Agente</div>
+        <div class="btext">Ho qualcosa di interessante. Potrebbe venire a vederlo giovedì?</div>
+        <div class="btr es">Tengo algo interesante. ¿Podría venir a verlo el jueves?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Sara</div>
+        <div class="btext">Certamente! Giovedì mattina sarebbe perfetto.</div>
+        <div class="btr es">¡Claro! El jueves por la mañana sería perfecto.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- READING COMPREHENSION -->
+<div class="section section-alt">
+  <div data-a>
+    <span class="section-label">Lettura e comprensione</span>
+    <h2>Marco cerca casa</h2>
+  </div>
+  <div class="reading-box" data-a>
+    <h3>Leggi il testo e rispondi</h3>
+    <div class="reading-text">
+      Marco ha 28 anni e <span class="hl">vorrebbe</span> lasciare la casa dei genitori. Cerca un appartamento in affitto a Bologna. <span class="hl">Preferirebbe</span> un bilocale arredato, non lontano dal centro. Il suo budget <span class="hl">sarebbe</span> di circa €700 al mese. Ha chiamato un'agenzia: — <span class="hl">Potreste</span> mostrarmi qualcosa sotto gli €700? L'agente gli risponde: — <span class="hl">Avrebbe</span> bisogno di qualcosa con o senza garage? — Solo l'appartamento, il garage non mi serve. Giovedì Marco <span class="hl">andrebbe</span> a vedere tre appartamenti. Spera che uno <span class="hl">sarebbe</span> quello giusto.
+    </div>
+    <div class="q-box">
+      <p>1. Perché Marco cerca casa?</p>
+      <div class="q-opts" id="rq1">
+        <div class="q-opt" onclick="chooseOpt(this,'rq1','a')">a) Vuole comprare una villa</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq1','b')">b) Vuole lasciare la casa dei genitori</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq1','c')">c) Si trasferisce all'estero</div>
+      </div>
+    </div>
+    <div class="q-box">
+      <p>2. Quale tipo di appartamento cerca?</p>
+      <div class="q-opts" id="rq2">
+        <div class="q-opt" onclick="chooseOpt(this,'rq2','a')">a) Un monolocale</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq2','b')">b) Un trilocale</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq2','c')">c) Un bilocale arredato</div>
+      </div>
+    </div>
+    <div class="q-box">
+      <p>3. Qual è il suo budget mensile?</p>
+      <div class="q-opts" id="rq3">
+        <div class="q-opt" onclick="chooseOpt(this,'rq3','a')">a) €800</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq3','b')">b) €700</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq3','c')">c) €600</div>
+      </div>
+    </div>
+    <div class="q-box">
+      <p>4. Ha bisogno del garage?</p>
+      <div class="q-opts" id="rq4">
+        <div class="q-opt" onclick="chooseOpt(this,'rq4','a')">a) Sì, è indispensabile</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq4','b')">b) No, non gli serve</div>
+        <div class="q-opt" onclick="chooseOpt(this,'rq4','c')">c) Dipende dal prezzo</div>
+      </div>
+    </div>
+    <button class="check-btn" onclick="checkReading()">Controlla le risposte</button>
+    <div class="fill-fb" id="reading-fb" style="margin-top:10px"></div>
+  </div>
+</div>
+
+<!-- DIALOGUE 2 -->
+<div class="section">
+  <div data-a>
+    <span class="section-label">Dialogo 2</span>
+    <h2>Visita all'appartamento</h2>
+  </div>
+  <div class="dialogue" data-a>
+    <h3>Chiara (inquilina) e il proprietario</h3>
+    <div class="bubble-hint">👆 Toca para ver la traducción</div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Proprietario</div>
+        <div class="btext">Benvenuta! Questo sarebbe l'appartamento. Tre locali, cucina, due bagni.</div>
+        <div class="btr es">¡Bienvenida! Este sería el apartamento. Tres habitaciones, cocina, dos baños.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Chiara</div>
+        <div class="btext">Bellissimo! Potrei vedere il terrazzo?</div>
+        <div class="btr es">¡Precioso! ¿Podría ver la terraza?</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Proprietario</div>
+        <div class="btext">Certo, è qui. Sarebbe disponibile dal primo del mese.</div>
+        <div class="btr es">Claro, está aquí. Estaría disponible desde el primero del mes.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Chiara</div>
+        <div class="btext">Perfetto. Potrebbe abbassare un po' l'affitto? Pagherei €750 al mese.</div>
+        <div class="btr es">Perfecto. ¿Podría bajar un poco el alquiler? Pagaría 750€ al mes.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap">
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        <div class="speaker">Proprietario</div>
+        <div class="btext">Potremmo fare €780. Sarebbe il minimo.</div>
+        <div class="btr es">Podríamos hacer 780€. Sería el mínimo.</div>
+      </div>
+    </div>
+    <div class="bubble-wrap" style="text-align:right">
+      <div class="bubble right-side" onclick="this.classList.toggle('show')">
+        <div class="speaker">Chiara</div>
+        <div class="btext">Affare fatto! Quando potrei avere le chiavi?</div>
+        <div class="btr es">¡Trato hecho! ¿Cuándo podría tener las llaves?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CULTURE -->
+<div class="culture">
+  <div class="culture-inner">
+    <h3>🏠 Casa, dolce casa — la casa in Italia</h3>
+    <p>Trovare casa in Italia, soprattutto nelle grandi città come Milano e Roma, non è facile. Gli affitti sono molto alti e molti giovani italiani aspettano fino ai 30 anni prima di lasciare la casa dei genitori — un fenomeno chiamato <em>"mammoni"</em> dalla stampa estera.</p>
+    <p>Ma il sogno della casa propria è ancora molto vivo: <em>la casa di proprietà</em> è un traguardo simbolico nella vita italiana, spesso al primo posto tra i desideri espressi con il condizionale: <em>"Vorrei una casa tutta mia."</em></p>
+    <div class="culture-facts">
+      <div class="fact-card"><strong>🏙️ Affitti a Milano</strong>Un bilocale a Milano costa in media €1.200-1.500 al mese. Tra le città più care d'Europa.</div>
+      <div class="fact-card"><strong>🌾 La Toscana dei sogni</strong>Il casale toscano è il sogno degli stranieri che si trasferiscono in Italia — con vista sulle colline e le vigne.</div>
+      <div class="fact-card"><strong>🔑 Di proprietà</strong>Circa il 72% degli italiani vive in una casa di proprietà — uno dei tassi più alti d'Europa.</div>
+      <div class="fact-card"><strong>💙 I "mammoni"</strong>Molti giovani italiani vivono con i genitori fino a 30+ anni, sia per cultura che per ragioni economiche.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  document.getElementById('prog').style.width=((window.scrollY/(h.scrollHeight-h.clientHeight))*100)+'%';
+},{passive:true});
+const circles=document.querySelectorAll('.hero-circle');
+document.addEventListener('mousemove',e=>{
+  const x=(e.clientX/window.innerWidth-.5)*20,y=(e.clientY/window.innerHeight-.5)*20;
+  circles.forEach((c,i)=>{const f=(i+1)*.4;c.style.transform=`translate(${x*f}px,${y*f}px)`;});
+});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.12});
+document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>io.observe(el));
+function clickWord(el,type){
+  if(el.classList.contains('ok')||el.classList.contains('trap'))return;
+  el.classList.add(type);
+  const ok=document.querySelectorAll('#grid1 .ok').length;
+  const trap=document.querySelectorAll('#grid1 .trap').length;
+  if(ok+trap>0)document.getElementById('grid1-res').textContent=`✓ ${ok} corrette · ✗ ${trap} trappole`;
+}
+function checkFill(ids,fbId){
+  let ok=0;
+  ids.forEach(id=>{
+    const inp=document.getElementById(id);if(!inp)return;
+    inp.classList.remove('ok','no');
+    if(inp.value.toLowerCase().trim()===inp.dataset.ans.toLowerCase()){inp.classList.add('ok');ok++;}
+    else if(inp.value)inp.classList.add('no');
+  });
+  const fb=document.getElementById(fbId+'-fb');
+  if(fb){fb.className='fill-fb'+(ok===ids.length?' ok':' no');fb.textContent=ok===ids.length?'✓ Perfetto!':'✗ '+ok+'/'+ids.length+' corrette.';}
+}
+const rAns={rq1:'b',rq2:'c',rq3:'b',rq4:'b'};const rCh={};
+function chooseOpt(el,qid,opt){document.getElementById(qid).querySelectorAll('.q-opt').forEach(o=>o.classList.remove('chosen'));el.classList.add('chosen');rCh[qid]=opt;}
+function checkReading(){
+  let sc=0;
+  for(const[qid,ans] of Object.entries(rAns)){
+    const box=document.getElementById(qid);
+    box.querySelectorAll('.q-opt').forEach(o=>{
+      o.classList.remove('right','wrong');
+      const letter=o.getAttribute('onclick').match(/'([a-c])'\)/)?.[1];
+      if(letter===ans)o.classList.add('right');
+      else if(o.classList.contains('chosen'))o.classList.add('wrong');
+    });
+    if(rCh[qid]===ans)sc++;
+  }
+  const fb=document.getElementById('reading-fb');
+  fb.className='fill-fb'+(sc>=3?' ok':' no');
+  fb.textContent=`${sc}/4 — ${sc===4?'Ottimo! 🎉':sc>=3?'Bene! 👍':'Rileggi il testo 💪'}`;
+}
+</script>
+</body>
+</html>

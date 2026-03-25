@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gramática: Modales y Verbos Regulares · Módulo 2 · Viajeros</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#cc4736;--red-dk:#a8382a;--red-hero:#fde4e1;
+  --red-border:#cc4736;--red-th:#fbc8c2;--red-hero-text:#7a1f14;
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;
+  --black:#1a1a18;--white:#ffffff;
+  --fh:'Playfair Display',Georgia,serif;
+  --fb:'Outfit',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);color:var(--black);background:var(--white);line-height:1.6}
+
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid var(--red-border);box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+.nav-inner{max-width:1100px;margin:0 auto;padding:.6rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.nav-logo img{height:40px;width:auto}
+.nav-links{display:flex;gap:.4rem;flex-wrap:wrap}
+.nav-links a{font-family:var(--fb);font-size:.8rem;font-weight:600;color:var(--black);text-decoration:none;padding:.3rem .65rem;border-radius:20px;transition:background .2s,color .2s}
+.nav-links a:hover{background:var(--red-th);color:var(--red-hero-text)}
+
+.hero{background:var(--red-hero);border-top:4px solid var(--red-border);padding:3rem 1.5rem 2.5rem;text-align:center}
+.hero .badge{display:inline-block;background:var(--red-th);color:var(--red-hero-text);font-size:.78rem;font-weight:700;padding:.3rem .9rem;border-radius:20px;letter-spacing:.05em;margin-bottom:1rem;text-transform:uppercase}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:clamp(2rem,4vw,3rem);color:var(--red-hero-text);margin-bottom:.5rem}
+.hero p{font-size:1rem;color:#5a1a0a;max-width:620px;margin:0 auto}
+
+section{max-width:1000px;margin:0 auto;padding:3rem 1.5rem}
+.section-title{font-family:var(--fh);font-style:italic;font-size:1.7rem;color:var(--red-hero-text);margin-bottom:.4rem}
+.section-sub{color:#5a1a0a;font-size:.93rem;margin-bottom:1.5rem}
+.divider{border:none;border-top:2px solid var(--red-th);margin:2rem 0}
+
+.grammar-box{background:var(--red-hero);border:2px solid var(--red-th);border-radius:14px;padding:1.8rem;margin-bottom:1.5rem}
+.grammar-box h3{font-family:var(--fh);font-style:italic;font-size:1.25rem;color:var(--red-hero-text);margin-bottom:1rem}
+
+table{width:100%;border-collapse:collapse;margin:1rem 0;border-radius:10px;overflow:hidden}
+th{background:var(--red-th);color:var(--red-hero-text);font-weight:700;padding:.7rem 1rem;text-align:left;font-size:.88rem}
+td{padding:.65rem 1rem;font-size:.88rem;border-bottom:1px solid var(--red-th)}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#fff8f7}
+td.highlight{font-weight:700;color:var(--red-dk)}
+td em{color:var(--red-hero-text)}
+
+.tip-box{background:var(--red-th);border-left:4px solid var(--red-dk);border-radius:0 10px 10px 0;padding:.9rem 1.2rem;margin:1rem 0;font-size:.9rem;color:#4a1000}
+.tip-box strong{color:var(--red-hero-text)}
+
+.uso-grid{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:.8rem}
+.uso-chip{background:var(--cream);border-radius:10px;padding:.5rem 1rem;font-size:.85rem}
+.uso-chip strong{color:var(--red-dk)}
+
+/* MODAL COMPARE */
+.modal-compare{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
+.modal-card{background:var(--white);border:2px solid var(--red-th);border-radius:12px;padding:1.2rem;text-align:center}
+.modal-card .verb-name{font-family:var(--fh);font-style:italic;font-size:1.2rem;color:var(--red-dk);margin-bottom:.3rem}
+.modal-card .meaning{font-size:.82rem;color:#5a1a0a;margin-bottom:.6rem}
+.modal-card .ex{font-size:.83rem;font-style:italic;color:var(--black)}
+
+/* CORTESÍA TABLE */
+.cortesia-table{width:100%;border-collapse:collapse;margin:1rem 0}
+.cortesia-table th{background:var(--red-th);color:var(--red-hero-text);padding:.6rem 1rem;text-align:left;font-size:.85rem;font-weight:700}
+.cortesia-table td{padding:.6rem 1rem;border-bottom:1px solid var(--red-th);font-size:.87rem}
+.cortesia-table tr:last-child td{border-bottom:none}
+.cortesia-table .level{display:inline-block;padding:.2rem .6rem;border-radius:10px;font-size:.75rem;font-weight:700}
+.level.formal{background:#d4edda;color:#155724}
+.level.informal{background:#fff3cd;color:#856404}
+.level.directo{background:#f8d7da;color:#721c24}
+
+/* PRACTICE */
+.prac-block{background:#fff8f7;border:2px solid var(--red-th);border-radius:12px;padding:1.5rem;margin-bottom:1.2rem}
+.prac-block h4{font-weight:700;margin-bottom:1rem;color:var(--red-hero-text);font-size:.95rem}
+.prac-q{margin-bottom:1rem}
+.prac-q p{font-size:.9rem;margin-bottom:.5rem;font-weight:500}
+.radio-group{display:flex;flex-direction:column;gap:.35rem}
+.radio-group label{display:flex;align-items:center;gap:.5rem;font-size:.88rem;cursor:pointer;padding:.3rem .6rem;border-radius:8px;transition:background .2s}
+.radio-group label:hover{background:var(--red-th)}
+.radio-group label.ok{background:#d4edda;color:#155724;font-weight:700}
+.radio-group label.err{background:#f8d7da;color:#721c24}
+.check-btn{background:var(--red-dk);color:var(--white);border:none;padding:.5rem 1.3rem;border-radius:20px;font-family:var(--fb);font-weight:700;cursor:pointer;font-size:.88rem;margin-top:.8rem;transition:background .2s}
+.check-btn:hover{background:var(--red-hero-text)}
+.score-msg{margin-top:.8rem;font-weight:700;font-size:.92rem;color:var(--red-dk);min-height:1.2rem}
+
+/* QUIZ */
+.quiz-wrap{background:var(--red-hero);border:2px solid var(--red-th);border-radius:14px;padding:2rem}
+.quiz-wrap h3{font-family:var(--fh);font-style:italic;font-size:1.4rem;color:var(--red-hero-text);margin-bottom:1.5rem}
+.quiz-q{margin-bottom:1.5rem}
+.quiz-q p{font-weight:600;margin-bottom:.6rem;font-size:.93rem}
+.quiz-result{text-align:center;padding:1.5rem;background:var(--red-th);border-radius:12px;margin-top:1rem;display:none}
+.quiz-result .score{font-family:var(--fh);font-style:italic;font-size:2.5rem;color:var(--red-hero-text)}
+.quiz-result p{font-size:.95rem;color:#4a1000;margin-top:.5rem}
+.submit-btn{display:block;margin:1rem auto 0;background:var(--red-dk);color:var(--white);border:none;padding:.7rem 2rem;border-radius:24px;font-family:var(--fb);font-weight:700;font-size:1rem;cursor:pointer;transition:background .2s}
+.submit-btn:hover{background:var(--red-hero-text)}
+
+[data-a]{opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s}
+[data-a].visible{opacity:1;transform:none}
+
+footer{background:var(--white);border-top:3px solid var(--red-th);padding:1.5rem;text-align:center;font-size:.82rem;color:#888}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){font-family:var(--fb);font-size:.8rem;font-weight:600;color:var(--black);text-decoration:none;padding:.3rem .65rem;border-radius:20px;transition:background .2s,color .2s}
+nav > a:not(.nav-logo):hover{background:var(--red-th);color:var(--red-hero-text)}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#modales">Verbos modales</a>
+      <a href="#regulares">Regulares</a>
+      <a href="#cortesia">Cortesía</a>
+      <a href="#pratica">Pratica</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+
+<div class="hero">
+  <div class="badge">Viajeros · Módulo 2 · Gramática</div>
+  <h1>Modales y Verbos Regulares</h1>
+  <p>Con estos verbos podés pedir, dar permiso, expresar obligaciones y comunicarte con elegancia en cualquier vuelo italiano.</p>
+</div>
+
+<!-- VERBOS MODALES -->
+<section id="modales">
+  <h2 class="section-title" data-a>I verbi modali</h2>
+  <p class="section-sub" data-a>Los verbos modales (volere, potere, dovere) son auxiliares: siempre van seguidos de un infinitivo. Son irregulares — hay que aprenderlos de memoria.</p>
+
+  <div class="grammar-box" data-a>
+    <h3>Los tres modales en acción</h3>
+    <div class="modal-compare">
+      <div class="modal-card">
+        <div class="verb-name">VOLERE</div>
+        <div class="meaning">querer / desear</div>
+        <div class="ex">Voglio dormire.<br>Voglio un caffè.</div>
+      </div>
+      <div class="modal-card">
+        <div class="verb-name">POTERE</div>
+        <div class="meaning">poder / tener permiso</div>
+        <div class="ex">Posso aprire il finestrino?<br>Puoi passare.</div>
+      </div>
+      <div class="modal-card">
+        <div class="verb-name">DOVERE</div>
+        <div class="meaning">deber / tener que</div>
+        <div class="ex">Devo allacciare la cintura.<br>Devi aspettare.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grammar-box" data-a>
+    <h3>Conjugación completa de VOLERE</h3>
+    <table>
+      <tr><th>Persona</th><th>VOLERE</th><th>+ infinitivo</th><th>Ejemplo</th></tr>
+      <tr><td>io</td><td class="highlight">voglio</td><td>+ verbo</td><td>Voglio dormire. Voglio dell'acqua.</td></tr>
+      <tr><td>tu</td><td class="highlight">vuoi</td><td>+ verbo</td><td>Vuoi mangiare qualcosa?</td></tr>
+      <tr><td>lui/lei</td><td class="highlight">vuole</td><td>+ verbo</td><td>Vuole il posto corridoio.</td></tr>
+      <tr><td>noi</td><td class="highlight">vogliamo</td><td>+ verbo</td><td>Vogliamo arrivare presto.</td></tr>
+      <tr><td>voi</td><td class="highlight">volete</td><td>+ verbo</td><td>Volete qualcosa da bere?</td></tr>
+      <tr><td>loro</td><td class="highlight">vogliono</td><td>+ verbo</td><td>Vogliono sedersi vicino.</td></tr>
+    </table>
+    <div class="tip-box"><strong>Forma cortés — VORREI:</strong> El condicional de volere (<em>vorrei</em>, <em>vorresti</em>, <em>vorrebbe</em>...) es mucho más educado que el presente. Siempre preferí <em>vorrei</em> cuando pedís algo a alguien.</div>
+  </div>
+
+  <div class="grammar-box" data-a>
+    <h3>Conjugación completa de POTERE</h3>
+    <table>
+      <tr><th>Persona</th><th>POTERE</th><th>Ejemplo</th></tr>
+      <tr><td>io</td><td class="highlight">posso</td><td>Posso sedermi al finestrino?</td></tr>
+      <tr><td>tu</td><td class="highlight">puoi</td><td>Puoi passare, non c'è nessuno.</td></tr>
+      <tr><td>lui/lei</td><td class="highlight">può</td><td>Il pilota può parlare con noi.</td></tr>
+      <tr><td>noi</td><td class="highlight">possiamo</td><td>Possiamo usare il telefono adesso.</td></tr>
+      <tr><td>voi</td><td class="highlight">potete</td><td>Potete portare solo un bagaglio.</td></tr>
+      <tr><td>loro</td><td class="highlight">possono</td><td>I passeggeri possono alzarsi.</td></tr>
+    </table>
+    <div class="tip-box"><strong>Cortesía extra con POTERE:</strong> El condicional <em>potrei</em> (¿podría yo...?) es la forma más elegante para hacer pedidos: <em>Potrei avere un'altra coperta?</em> (¿Podría traerme otra manta?)</div>
+  </div>
+
+  <div class="grammar-box" data-a>
+    <h3>Conjugación completa de DOVERE</h3>
+    <table>
+      <tr><th>Persona</th><th>DOVERE</th><th>Ejemplo</th></tr>
+      <tr><td>io</td><td class="highlight">devo</td><td>Devo allacciare la cintura.</td></tr>
+      <tr><td>tu</td><td class="highlight">devi</td><td>Devi tenere lo schienale dritto.</td></tr>
+      <tr><td>lui/lei</td><td class="highlight">deve</td><td>Il passeggero deve spegnere il telefono.</td></tr>
+      <tr><td>noi</td><td class="highlight">dobbiamo</td><td>Dobbiamo aspettare l'atterraggio.</td></tr>
+      <tr><td>voi</td><td class="highlight">dovete</td><td>Dovete rimanere seduti.</td></tr>
+      <tr><td>loro</td><td class="highlight">devono</td><td>Devono mostrare il passaporto.</td></tr>
+    </table>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- VERBOS REGULARES -->
+<section id="regulares">
+  <h2 class="section-title" data-a>Verbi regolari al presente 📖</h2>
+  <p class="section-sub" data-a>La mayoría de los verbos italianos son regulares. Aprendés las terminaciones de cada grupo y podés conjugar miles de verbos.</p>
+
+  <div class="grammar-box" data-a>
+    <h3>Tabla maestra — Las tres conjugaciones</h3>
+    <table>
+      <tr><th>Persona</th><th>-ARE<br><em>parlare</em></th><th>-ERE<br><em>prendere</em></th><th>-IRE tipo 1<br><em>partire</em></th><th>-IRE tipo 2 (isc)<br><em>capire</em></th></tr>
+      <tr><td>io</td><td>parl<strong>o</strong></td><td>prend<strong>o</strong></td><td>part<strong>o</strong></td><td>cap<strong>isco</strong></td></tr>
+      <tr><td>tu</td><td>parl<strong>i</strong></td><td>prend<strong>i</strong></td><td>part<strong>i</strong></td><td>cap<strong>isci</strong></td></tr>
+      <tr><td>lui/lei</td><td>parl<strong>a</strong></td><td>prend<strong>e</strong></td><td>part<strong>e</strong></td><td>cap<strong>isce</strong></td></tr>
+      <tr><td>noi</td><td>parl<strong>iamo</strong></td><td>prend<strong>iamo</strong></td><td>part<strong>iamo</strong></td><td>cap<strong>iamo</strong></td></tr>
+      <tr><td>voi</td><td>parl<strong>ate</strong></td><td>prend<strong>ete</strong></td><td>part<strong>ite</strong></td><td>cap<strong>ite</strong></td></tr>
+      <tr><td>loro</td><td>parl<strong>ano</strong></td><td>prend<strong>ono</strong></td><td>part<strong>ono</strong></td><td>cap<strong>iscono</strong></td></tr>
+    </table>
+    <div class="tip-box"><strong>Verbos -ire con isc:</strong> capire, finire, preferire, pulire, costruire usan el sufijo -isc- en singular y tercera plural. <em>Capisci l'italiano?</em> ¡Es una pregunta que te van a hacer seguido!</div>
+  </div>
+
+  <div class="grammar-box" data-a>
+    <h3>Verbos útiles para el viaje</h3>
+    <table>
+      <tr><th>-ARE</th><th>Significado</th><th>-ERE / -IRE</th><th>Significado</th></tr>
+      <tr><td><em>volare</em></td><td>volar</td><td><em>prendere</em></td><td>tomar / agarrar</td></tr>
+      <tr><td><em>atterrare</em></td><td>aterrizar</td><td><em>chiedere</em></td><td>preguntar / pedir</td></tr>
+      <tr><td><em>decollare</em></td><td>despegar</td><td><em>dormire</em></td><td>dormir</td></tr>
+      <tr><td><em>mangiare</em></td><td>comer</td><td><em>partire</em></td><td>partir / salir</td></tr>
+      <tr><td><em>aspettare</em></td><td>esperar</td><td><em>capire</em></td><td>entender</td></tr>
+      <tr><td><em>cercare</em></td><td>buscar</td><td><em>sentire</em></td><td>sentir / oír</td></tr>
+      <tr><td><em>portare</em></td><td>llevar / traer</td><td><em>finire</em></td><td>terminar</td></tr>
+      <tr><td><em>controllare</em></td><td>controlar</td><td><em>preferire</em></td><td>preferir</td></tr>
+    </table>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPRESIONES DE CORTESÍA -->
+<section id="cortesia">
+  <h2 class="section-title" data-a>Espressioni di cortesia 🤝</h2>
+  <p class="section-sub" data-a>En Italia la cortesía es fundamental. Hay niveles de formalidad que cambian según con quién hablás.</p>
+
+  <div class="grammar-box" data-a>
+    <h3>Cómo pedir algo: niveles de cortesía</h3>
+    <table class="cortesia-table">
+      <tr><th>Frase</th><th>Nivel</th><th>Contexto</th></tr>
+      <tr>
+        <td><em>Voglio un caffè.</em></td>
+        <td><span class="level directo">Directo</span></td>
+        <td>Correcto pero un poco brusco para una petición</td>
+      </tr>
+      <tr>
+        <td><em>Vorrei un caffè.</em></td>
+        <td><span class="level formal">Cortés</span></td>
+        <td>Lo más común para pedir algo — usar siempre</td>
+      </tr>
+      <tr>
+        <td><em>Potrei avere un caffè?</em></td>
+        <td><span class="level formal">Muy cortés</span></td>
+        <td>Muy formal — ideal en restaurantes y vuelos</td>
+      </tr>
+      <tr>
+        <td><em>Mi dà un caffè, per favore?</em></td>
+        <td><span class="level formal">Cortés</span></td>
+        <td>Muy usado en bares — formal y directo a la vez</td>
+      </tr>
+      <tr>
+        <td><em>Scusi, ha un caffè?</em></td>
+        <td><span class="level formal">Cortés</span></td>
+        <td>Con "scusi" para llamar la atención primero</td>
+      </tr>
+    </table>
+
+    <div class="tip-box"><strong>Lei o tu:</strong> Con el personal de servicio (asistentes, camareros) usás <em>Lei</em> (formal). Con amigos y familia usás <em>tu</em> (informal). En el avión: <em>"Scusi, vorrei un caffè"</em> — perfecto.</div>
+  </div>
+
+  <div class="grammar-box" data-a>
+    <h3>Frases esenciales de cortesía</h3>
+    <table>
+      <tr><th>Italiano</th><th>Español</th><th>Cuándo la usás</th></tr>
+      <tr><td><em>Scusi / Scusa</em></td><td>Disculpe / Disculpá</td><td>Para llamar la atención (formal/informal)</td></tr>
+      <tr><td><em>Per favore / Per piacere</em></td><td>Por favor</td><td>Al final de cualquier pedido</td></tr>
+      <tr><td><em>Grazie / Grazie mille</em></td><td>Gracias / Mil gracias</td><td>Al recibir algo</td></tr>
+      <tr><td><em>Prego</em></td><td>De nada / Adelante / Por favor</td><td>Como respuesta a gracias, o al invitar a pasar</td></tr>
+      <tr><td><em>Mi dispiace</em></td><td>Lo siento / Lamento</td><td>Para disculparse</td></tr>
+      <tr><td><em>Non capisco</em></td><td>No entiendo</td><td>Cuando no entendés</td></tr>
+      <tr><td><em>Può ripetere?</em></td><td>¿Puede repetir?</td><td>Para pedir que repitan algo</td></tr>
+      <tr><td><em>Parla spagnolo?</em></td><td>¿Habla español?</td><td>Cuando necesitás ayuda en tu idioma</td></tr>
+    </table>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PRATICA -->
+<section id="pratica">
+  <h2 class="section-title" data-a>Pratica guidata 📝</h2>
+  <p class="section-sub" data-a>Tres bloques para practicar lo que aprendiste.</p>
+
+  <div class="prac-block" data-a>
+    <h4>Bloque 1 — Verbos modales</h4>
+    <div class="prac-q">
+      <p>1. Io _____ sedermi al finestrino. (quiero)</p>
+      <div class="radio-group" id="p1q1">
+        <label><input type="radio" name="p1q1" value="a"> devo</label>
+        <label><input type="radio" name="p1q1" value="b"> voglio</label>
+        <label><input type="radio" name="p1q1" value="c"> posso</label>
+      </div>
+    </div>
+    <div class="prac-q">
+      <p>2. Noi _____ aspettare il decollo. (debemos)</p>
+      <div class="radio-group" id="p1q2">
+        <label><input type="radio" name="p1q2" value="a"> possiamo</label>
+        <label><input type="radio" name="p1q2" value="b"> vogliamo</label>
+        <label><input type="radio" name="p1q2" value="c"> dobbiamo</label>
+      </div>
+    </div>
+    <div class="prac-q">
+      <p>3. _____ aprire il finestrino? (¿Puedo...?)</p>
+      <div class="radio-group" id="p1q3">
+        <label><input type="radio" name="p1q3" value="a"> Posso</label>
+        <label><input type="radio" name="p1q3" value="b"> Devo</label>
+        <label><input type="radio" name="p1q3" value="c"> Voglio</label>
+      </div>
+    </div>
+    <div class="prac-q">
+      <p>4. I passeggeri _____ allacciare la cintura. (deben)</p>
+      <div class="radio-group" id="p1q4">
+        <label><input type="radio" name="p1q4" value="a"> possono</label>
+        <label><input type="radio" name="p1q4" value="b"> devono</label>
+        <label><input type="radio" name="p1q4" value="c"> vogliono</label>
+      </div>
+    </div>
+    <button class="check-btn" onclick="checkPrac(1,{p1q1:'b',p1q2:'c',p1q3:'a',p1q4:'b'})">Verificar ✓</button>
+    <p class="score-msg" id="score1"></p>
+  </div>
+
+  <div class="prac-block" data-a>
+    <h4>Bloque 2 — Verbos regulares</h4>
+    <div class="prac-q">
+      <p>1. Io _____ italiano con l'assistente. (parlare)</p>
+      <div class="radio-group" id="p2q1">
+        <label><input type="radio" name="p2q1" value="a"> parli</label>
+        <label><input type="radio" name="p2q1" value="b"> parlo</label>
+        <label><input type="radio" name="p2q1" value="c"> parlano</label>
+      </div>
+    </div>
+    <div class="prac-q">
+      <p>2. Il volo _____ alle 14:00. (partire)</p>
+      <div class="radio-group" id="p2q2">
+        <label><input type="radio" name="p2q2" value="a"> parto</label>
+        <label><input type="radio" name="p2q2" value="b"> partono</label>
+        <label><input type="radio" name="p2q2" value="c"> parte</label>
+      </div>
+    </div>
+    <div class="prac-q">
+      <p>3. Voi _____ bene l'italiano? (capire – tipo isc)</p>
+      <div class="radio-group" id="p2q3">
+        <label><input type="radio" name="p2q3" value="a"> capite</label>
+        <label><input type="radio" name="p2q3" value="b"> capisce</label>
+        <label><input type="radio" name="p2q3" value="c"> capisco</label>
+      </div>
+    </div>
+    <div class="prac-q">
+      <p>4. I passeggeri _____ il pasto. (prendere)</p>
+      <div class="radio-group" id="p2q4">
+        <label><input type="radio" name="p2q4" value="a"> prendo</label>
+        <label><input type="radio" name="p2q4" value="b"> prendete</label>
+        <label><input type="radio" name="p2q4" value="c"> prendono</label>
+      </div>
+    </div>
+    <button class="check-btn" onclick="checkPrac(2,{p2q1:'b',p2q2:'c',p2q3:'a',p2q4:'c'})">Verificar ✓</button>
+    <p class="score-msg" id="score2"></p>
+  </div>
+
+  <div class="prac-block" data-a>
+    <h4>Bloque 3 — Cortesía y situaciones</h4>
+    <div class="prac-q">
+      <p>1. Querés pedir un vaso de agua de forma muy cortés. Decís:</p>
+      <div class="radio-group" id="p3q1">
+        <label><input type="radio" name="p3q1" value="a"> Voglio dell'acqua!</label>
+        <label><input type="radio" name="p3q1" value="b"> Potrei avere dell'acqua, per favore?</label>
+        <label><input type="radio" name="p3q1" value="c"> Devo bere acqua.</label>
+      </div>
+    </div>
+    <div class="prac-q">
+      <p>2. No entendiste lo que dijo el asistente. Preguntás:</p>
+      <div class="radio-group" id="p3q2">
+        <label><input type="radio" name="p3q2" value="a"> Mi dispiace!</label>
+        <label><input type="radio" name="p3q2" value="b"> Non capisco — può ripetere?</label>
+        <label><input type="radio" name="p3q2" value="c"> Grazie mille!</label>
+      </div>
+    </div>
+    <div class="prac-q">
+      <p>3. Para pedir permiso para pasar al baño, decís:</p>
+      <div class="radio-group" id="p3q3">
+        <label><input type="radio" name="p3q3" value="a"> Scusi, posso andare al bagno?</label>
+        <label><input type="radio" name="p3q3" value="b"> Devo andare al bagno subito!</label>
+        <label><input type="radio" name="p3q3" value="c"> Voglio il bagno.</label>
+      </div>
+    </div>
+    <div class="prac-q">
+      <p>4. El asistente te dice "Grazie". Respondés:</p>
+      <div class="radio-group" id="p3q4">
+        <label><input type="radio" name="p3q4" value="a"> Mi dispiace.</label>
+        <label><input type="radio" name="p3q4" value="b"> Per favore.</label>
+        <label><input type="radio" name="p3q4" value="c"> Prego!</label>
+      </div>
+    </div>
+    <button class="check-btn" onclick="checkPrac(3,{p3q1:'b',p3q2:'b',p3q3:'a',p3q4:'c'})">Verificar ✓</button>
+    <p class="score-msg" id="score3"></p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- QUIZ -->
+<section id="quiz">
+  <h2 class="section-title" data-a>Quiz finale 🏆</h2>
+  <p class="section-sub" data-a>¡5 preguntas para cerrar el módulo!</p>
+
+  <div class="quiz-wrap" data-a>
+    <h3>Quiz: Modales y regulares</h3>
+
+    <div class="quiz-q">
+      <p>1. ¿Cuál es la forma cortés para pedir algo con VOLERE?</p>
+      <div class="radio-group" id="q1">
+        <label><input type="radio" name="q1" value="a"> voglio</label>
+        <label><input type="radio" name="q1" value="b"> vorrei</label>
+        <label><input type="radio" name="q1" value="c"> vuole</label>
+        <label><input type="radio" name="q1" value="d"> vogliamo</label>
+      </div>
+    </div>
+    <div class="quiz-q">
+      <p>2. "Tenés que abrocharte el cinturón." ¿Cómo se dice?</p>
+      <div class="radio-group" id="q2">
+        <label><input type="radio" name="q2" value="a"> Puoi allacciare la cintura.</label>
+        <label><input type="radio" name="q2" value="b"> Vuoi allacciare la cintura.</label>
+        <label><input type="radio" name="q2" value="c"> Devi allacciare la cintura.</label>
+        <label><input type="radio" name="q2" value="d"> Allacciare la cintura.</label>
+      </div>
+    </div>
+    <div class="quiz-q">
+      <p>3. "Il volo _____ alle 10." ¿Qué forma de PARTIRE va?</p>
+      <div class="radio-group" id="q3">
+        <label><input type="radio" name="q3" value="a"> parto</label>
+        <label><input type="radio" name="q3" value="b"> partono</label>
+        <label><input type="radio" name="q3" value="c"> parte</label>
+        <label><input type="radio" name="q3" value="d"> partiamo</label>
+      </div>
+    </div>
+    <div class="quiz-q">
+      <p>4. "GN" en italiano suena como…</p>
+      <div class="radio-group" id="q4">
+        <label><input type="radio" name="q4" value="a"> gn (como en inglés)</label>
+        <label><input type="radio" name="q4" value="b"> ñ (como en "España")</label>
+        <label><input type="radio" name="q4" value="c"> ng (como en "mango" inglés)</label>
+        <label><input type="radio" name="q4" value="d"> n + g separadas</label>
+      </div>
+    </div>
+    <div class="quiz-q">
+      <p>5. "Capire" (entender) es un verbo -ire tipo isc. ¿Cómo se conjuga en "tu"?</p>
+      <div class="radio-group" id="q5">
+        <label><input type="radio" name="q5" value="a"> capi</label>
+        <label><input type="radio" name="q5" value="b"> capisci</label>
+        <label><input type="radio" name="q5" value="c"> capisce</label>
+        <label><input type="radio" name="q5" value="d"> capite</label>
+      </div>
+    </div>
+
+    <button class="submit-btn" onclick="submitQuiz()">Ver resultados 🎯</button>
+
+    <div class="quiz-result" id="quiz-result">
+      <div class="score" id="quiz-score">0/5</div>
+      <p id="quiz-msg"></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Italiano Per Piacere · Viajeros · Módulo 2 — Gramática</p>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('visible');obs.unobserve(i.target)}})},{threshold:0.1});
+document.querySelectorAll('[data-a]').forEach(el=>obs.observe(el));
+
+function checkPrac(num,answers){
+  let score=0,total=Object.keys(answers).length;
+  Object.entries(answers).forEach(([qid,correct])=>{
+    const sel=document.querySelector(`input[name="${qid}"]:checked`);
+    const labels=document.querySelectorAll(`#${qid} label`);
+    labels.forEach(l=>{
+      l.classList.remove('ok','err');
+      const inp=l.querySelector('input');
+      if(inp.value===correct) l.classList.add('ok');
+      else if(sel&&inp.value===sel.value&&inp.value!==correct) l.classList.add('err');
+    });
+    if(sel&&sel.value===correct) score++;
+  });
+  document.getElementById('score'+num).textContent=`${score}/${total} respuestas correctas ${score===total?'🎉':'— revisá las marcadas en rojo'}`;
+}
+
+const ANSWERS={q1:'b',q2:'c',q3:'c',q4:'b',q5:'b'};
+function submitQuiz(){
+  let score=0;
+  Object.entries(ANSWERS).forEach(([qid,correct])=>{
+    const sel=document.querySelector(`input[name="${qid}"]:checked`);
+    const labels=document.querySelectorAll(`#${qid} label`);
+    labels.forEach(l=>{
+      l.classList.remove('ok','err');
+      const inp=l.querySelector('input');
+      if(inp.value===correct) l.classList.add('ok');
+      else if(sel&&inp.value===sel.value) l.classList.add('err');
+    });
+    if(sel&&sel.value===correct) score++;
+  });
+  const res=document.getElementById('quiz-result');
+  document.getElementById('quiz-score').textContent=score+'/5';
+  const msgs=['Seguí practicando 💪','¡Bien! Casi 🙌','¡Muy bien! 👏','¡Casi perfecto! 🌟','¡Perfecto! ¡Bravissimo/a! 🏆'];
+  document.getElementById('quiz-msg').textContent=msgs[score]||'';
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

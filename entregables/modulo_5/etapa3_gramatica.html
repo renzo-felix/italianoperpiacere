@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -23,7 +23,7 @@ nav::-webkit-scrollbar{display:none}
 nav a{color:var(--gold);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.75rem 1.1rem;white-space:nowrap;transition:background .2s}
 nav a:hover{background:rgba(255,255,255,.1)}
 nav a.active{background:#c8940a;color:var(--white)}
-.page-header{background:var(--amber);color:var(--white);padding:3rem 1.5rem 2.5rem;text-align:center;position:relative}
+.page-header{background:#fde4e1;color:#1a1a18;padding:3rem 1.5rem 2.5rem;text-align:center;position:relative}
 .page-header .badge{display:inline-block;background:rgba(255,255,255,.2);border-radius:20px;padding:.25rem .85rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.85rem}
 .page-header h1{font-family:var(--fh);font-style:italic;font-size:2.4rem;margin-bottom:.5rem}
 .page-header p{opacity:.9;font-size:1.05rem}
@@ -34,7 +34,7 @@ section{margin-bottom:3rem}
 .section-title{font-family:var(--fh);font-style:italic;font-size:1.6rem;color:#c8940a;margin-bottom:1.25rem;padding-bottom:.4rem;border-bottom:2px solid var(--cream-dk)}
 .section-intro{margin-bottom:1.1rem;font-size:.97rem}
 .gram-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
-.gram-table th{background:var(--amber);color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
+.gram-table th{background:#fde4e1;color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
 .gram-table td{padding:.5rem .75rem;border-bottom:1px solid var(--cream-dk)}
 .gram-table tr:nth-child(even) td{background:rgba(0,0,0,.03)}
 .gram-table tr:hover td{background:rgba(229,171,7,.08)}
@@ -54,10 +54,10 @@ section{margin-bottom:3rem}
 .prac-item.correct .prac-fb{color:var(--green)}
 .prac-item.wrong .prac-fb{color:var(--red)}
 .btn{border:none;border-radius:var(--r);padding:.5rem 1.1rem;font-family:var(--fb);font-size:.87rem;font-weight:600;cursor:pointer;transition:all .2s}
-.btn-primary{background:var(--amber);color:var(--white)}
+.btn-primary{background:#fde4e1;color:var(--white)}
 .btn-primary:hover{filter:brightness(1.1)}
 .btn-ghost{background:transparent;border:1.5px solid var(--amber);color:#c8940a}
-.btn-ghost:hover{background:var(--amber);color:var(--white)}
+.btn-ghost:hover{background:#fde4e1;color:var(--white)}
 .quiz-wrap{background:var(--white);border-radius:var(--r);padding:1.5rem;border:1px solid var(--cream-dk)}
 .quiz-q{margin-bottom:1.5rem}
 .quiz-q p{font-weight:600;margin-bottom:.7rem;font-size:.97rem}
@@ -85,11 +85,25 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
 .gr-card{background:var(--white);border-radius:var(--r);padding:.85rem;text-align:center;border:1px solid var(--cream-dk)}
 .gr-card .phrase{font-weight:700;color:#c8940a;font-size:.97rem}
 .gr-card .time{font-size:.8rem;color:#777;margin-top:.3rem;font-style:italic}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
 </style>
 </head>
 <body>
-<nav id="main-nav">
-  <a href="#lora" class="active">L'Ora</a>
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#lora" class="active">L'Ora</a>
   <a href="#saluti">Saluti</a>
   <a href="#interrogativi">Interrogativi</a>
   <a href="#articoli">Articoli</a>
@@ -97,6 +111,7 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
 </nav>
 
 <header class="page-header">
+  <img src="../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img">
   <button class="toggle-btn" id="toggleEs" onclick="toggleEs()">Ocultar traducciones</button>
   <div class="badge">Módulo 5 · Gramática</div>
   <h1>Che ore sono?</h1>
@@ -167,7 +182,7 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
       <div class="prac-item" data-ans="sono le sei e mezza">Son las seis y media → <input class="prac-input" placeholder="..."></div>
     </div>
     <div style="margin-top:.85rem;display:flex;gap:.75rem">
-      <button class="btn btn-primary" onclick="checkPrac('prac1')">Verifica</button>
+      <button class="btn btn-primary" onclick="checkPrac('prac1')">Verificá</button>
       <button class="btn btn-ghost" onclick="resetPrac('prac1')">Ripristina</button>
     </div>
   </div>
@@ -276,7 +291,7 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
       <div class="prac-item" data-ans="dove">___ abiti? (¿Dónde vives?) <input class="prac-input" placeholder="..."></div>
     </div>
     <div style="margin-top:.85rem;display:flex;gap:.75rem">
-      <button class="btn btn-primary" onclick="checkPrac('prac2')">Verifica</button>
+      <button class="btn btn-primary" onclick="checkPrac('prac2')">Verificá</button>
       <button class="btn btn-ghost" onclick="resetPrac('prac2')">Ripristina</button>
     </div>
   </div>
@@ -302,7 +317,7 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
   <div class="rule-box">
     <strong>LO / GLI</strong> se usan ante: <em>s + consonante</em> (lo studente), <em>z</em> (lo zaino), <em>ps/gn/x/y</em> (lo psicologo).
     <br><strong>L' / UN'</strong> se usan ante vocales: <em>l'amico</em>, <em>un'amica</em>. Solo <em>un'</em> (con apostrofo) es femenino.
-    <span class="es">Recuerda: el artículo indeterminativo no tiene plural (se usa la partícula "dei/delle" o nada).</span>
+    <span class="es">Recordá: el artículo indeterminativo no tiene plural (se usa la partícula "dei/delle" o nada).</span>
   </div>
 
   <div class="example-box"><span class="it">Ho un appuntamento alle tre. — Prendo il treno delle sei.</span><span class="tr-small">Tengo una cita a las tres. — Tomo el tren de las seis.</span></div>
@@ -363,9 +378,11 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
 <footer><p>Italiano Per Piacere · Módulo 5 · <em>Che ore sono?</em></p></footer>
 
 <script>
+(function(){
+
 let esVisible=true;
 function toggleEs(){esVisible=!esVisible;document.body.classList.toggle('hide-es',!esVisible);document.getElementById('toggleEs').textContent=esVisible?'Ocultar traducciones':'Mostrar traducciones';}
-const secs=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('nav a');
+const secs=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)c=s.id});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)});});
 function checkPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{const inp=item.querySelector('.prac-input');const ans=item.dataset.ans;const val=inp.value.trim().toLowerCase();item.classList.remove('correct','wrong');let fb=item.querySelector('.prac-fb');if(!fb){fb=document.createElement('span');fb.className='prac-fb';item.appendChild(fb);}if(val===ans){item.classList.add('correct');fb.textContent='✓';}else{item.classList.add('wrong');fb.textContent='✗ '+ans;}});}
 function resetPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{item.classList.remove('correct','wrong');item.querySelector('.prac-input').value='';const fb=item.querySelector('.prac-fb');if(fb)fb.textContent='';});}
@@ -373,6 +390,7 @@ const answers={q1:'b',q2:'c',q3:'b',q4:'b',q5:'c'};
 let selected={};
 function selectOpt(el,qid,opt){if(selected[qid])return;selected[qid]=opt;const opts=el.parentElement.querySelectorAll('.quiz-opt');opts.forEach(o=>o.style.pointerEvents='none');const correct=answers[qid];opts.forEach((o,i)=>{const k=['a','b','c'][i];if(k===correct)o.classList.add('correct');else if(k===opt)o.classList.add('wrong');});}
 function submitQuiz(){let score=0;Object.keys(answers).forEach(q=>{if(selected[q]===answers[q])score++;});const res=document.getElementById('quiz-result');res.classList.add('show');if(score>=4){res.className='quiz-result show good';res.textContent=`Bravissimo/a! ${score}/5 ✓`;}else if(score>=2){res.className='quiz-result show ok';res.textContent=`Bene! ${score}/5 — continua a studiare.`;}else{res.className='quiz-result show try';res.textContent=`${score}/5 — Riprova! Torna alle sezioni.`;}}
+})();
 </script>
 </body>
 </html>

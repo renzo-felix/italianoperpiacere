@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unità 5 — Io mi ricordo · Descubrimiento | Italiano Per Piacere A2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;
+  --red:#cc4736;--red-dk:#a8382a;--red-txt:#7a1f14;
+  --amber:#e5ab07;--green:#528e74;--green-dk:#3d6b58;
+  --black:#1a1a18;--white:#ffffff;
+  --hero:var(--red);--hero-dk:var(--red-dk);--hero-txt:var(--red-txt);
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);overflow-x:hidden}
+body.hide-es .es{display:none}
+.hero{min-height:92vh;background:#fde4e1;border-bottom:3px solid #cc4736;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;text-align:center;padding:2rem 1.5rem}
+.hero::before,.hero::after{display:none}
+.hero-circle{position:absolute;border-radius:50%;opacity:.12;pointer-events:none;transition:transform .6s ease}
+.hero-circle.c1{width:500px;height:500px;background:var(--white);top:-150px;right:-150px}
+.hero-circle.c2{width:300px;height:300px;background:var(--gold);bottom:-80px;left:-80px}
+.hero-circle.c3{width:180px;height:180px;background:var(--white);top:25%;left:5%}
+.hero-badge{background:rgba(0,0,0,.07);color:var(--black);font-size:.75rem;font-weight:700;letter-spacing:.12em;padding:.4rem 1.1rem;border-radius:2rem;margin-bottom:1.2rem;backdrop-filter:blur(6px);text-transform:uppercase}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:clamp(2.4rem,7vw,4.5rem);color:var(--black);line-height:1.1;margin-bottom:.8rem;text-shadow:0 3px 20px rgba(0,0,0,.2)}
+.hero-sub{color:rgba(0,0,0,.65);font-size:clamp(.95rem,2.5vw,1.15rem);max-width:560px;line-height:1.6;margin-bottom:2rem}
+.song-box{background:rgba(255,255,255,.95);border-radius:1.2rem;padding:1.4rem 2rem;border:1px solid rgba(0,0,0,.08);max-width:460px;margin:0 auto}
+.song-box .st{font-family:var(--fh);font-style:italic;font-size:1.3rem;color:var(--gold);margin-bottom:.3rem}
+.song-box .sa{color:rgba(0,0,0,.7);font-size:.88rem;margin-bottom:.8rem}
+.song-box a{display:inline-block;background:var(--gold);color:var(--black);font-weight:700;font-size:.85rem;padding:.55rem 1.4rem;border-radius:2rem;text-decoration:none;transition:transform .2s}
+.song-box a:hover{transform:translateY(-2px)}
+#toggle-btn{position:fixed;top:1rem;right:1rem;z-index:500;background:#f5cdc8;color:var(--black);border:none;border-radius:2rem;padding:.45rem 1.1rem;font-family:var(--fb);font-size:.8rem;font-weight:700;cursor:pointer;box-shadow:0 3px 12px rgba(0,0,0,.2)}
+.section{max-width:880px;margin:0 auto;padding:4rem 1.5rem}
+.sec-tag{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--hero);margin-bottom:.4rem}
+.sec-title{font-family:var(--fh);font-style:italic;font-size:clamp(1.6rem,4vw,2.2rem);color:var(--black);margin-bottom:.4rem;line-height:1.2}
+.sec-sub{color:#666;font-size:.9rem;line-height:1.6;margin-bottom:2rem}
+.es{color:#888;font-size:.85rem;font-style:italic}
+[data-a]{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+[data-a].visible{opacity:1;transform:none}
+[data-stagger]>*{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+[data-stagger].visible>*{opacity:1;transform:none}
+[data-stagger].visible>*:nth-child(1){transition-delay:.05s}[data-stagger].visible>*:nth-child(2){transition-delay:.12s}
+[data-stagger].visible>*:nth-child(3){transition-delay:.19s}[data-stagger].visible>*:nth-child(4){transition-delay:.26s}
+[data-stagger].visible>*:nth-child(5){transition-delay:.33s}[data-stagger].visible>*:nth-child(6){transition-delay:.40s}
+[data-stagger].visible>*:nth-child(7){transition-delay:.47s}[data-stagger].visible>*:nth-child(8){transition-delay:.54s}
+.word-grid{display:flex;flex-wrap:wrap;gap:.65rem;margin:1.2rem 0}
+.wcard{padding:.55rem 1.1rem;border-radius:2rem;border:2px solid var(--cream-dk);background:var(--white);font-size:.88rem;font-weight:600;cursor:pointer;transition:all .25s;user-select:none}
+.wcard:hover{border-color:var(--hero);transform:translateY(-2px)}
+.wcard.ok{background:#f5cdc8;color:var(--black);border-color:var(--hero)}
+.wcard.trap{background:#fde8e5;border-color:var(--red-dk);text-decoration:line-through;color:#999}
+.grid-feedback{font-size:.85rem;font-weight:700;margin-top:.8rem;min-height:1.2rem;color:var(--hero)}
+.grid-btn{background:#f5cdc8;color:var(--black);border:none;border-radius:2rem;padding:.5rem 1.4rem;font-family:var(--fb);font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.6rem;transition:background .2s}
+.grid-btn:hover{background:var(--red-dk)}
+.vcard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem;margin:1.2rem 0}
+.vcard{background:var(--white);border-radius:1rem;padding:1.3rem 1.2rem;border:2px solid var(--cream-dk);cursor:pointer;transition:all .25s;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.vcard:hover{border-color:var(--hero);transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.1)}
+.vcard .vit{font-size:1.05rem;font-weight:700;color:var(--hero);margin-bottom:.3rem}
+.vcard .ves{color:#777;font-size:.82rem;font-style:italic}
+.vcard .vex{font-size:.83rem;color:#555;margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--cream-dk);display:none}
+.vcard.open .vex{display:block}
+.vcard .vtag{font-size:.7rem;font-weight:700;background:var(--cream-dk);border-radius:.25rem;padding:.1rem .4rem;display:inline-block;margin-bottom:.5rem;color:#666}
+.compare-box{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.2rem 0}
+@media(max-width:580px){.compare-box{grid-template-columns:1fr}}
+.comp-col{background:var(--white);border-radius:1rem;padding:1.3rem;border:2px solid var(--cream-dk);box-shadow:0 3px 12px rgba(0,0,0,.07)}
+.comp-col h5{font-weight:700;font-size:.88rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:2px solid var(--cream-dk)}
+.comp-col.imp h5{color:var(--hero);border-color:var(--hero)}
+.comp-col.pp h5{color:var(--green-dk);border-color:var(--green-dk)}
+.comp-col li{font-size:.87rem;line-height:1.7;padding:.2rem 0;list-style:none;display:flex;align-items:flex-start;gap:.4rem}
+.comp-col li::before{content:'•';color:inherit;font-weight:900;margin-top:.05rem}
+.fill-box{background:var(--white);border-radius:1.2rem;padding:1.6rem;border:2px solid var(--cream-dk);box-shadow:0 4px 16px rgba(0,0,0,.07)}
+.fill-box h4{font-family:var(--fh);font-style:italic;color:var(--hero);margin-bottom:1rem;font-size:1.1rem}
+.fill-row{margin:.7rem 0;font-size:.92rem;line-height:1.9;display:flex;flex-wrap:wrap;align-items:center;gap:.3rem}
+.fill-input{border:none;border-bottom:2.5px solid var(--hero);background:transparent;padding:.1rem .5rem;font-family:var(--fb);font-size:.9rem;width:140px;outline:none;color:var(--black)}
+.fill-input.ok{border-color:var(--green);color:var(--green-dk)}
+.fill-input.err{border-color:var(--red);color:var(--red)}
+.fill-btn{background:#f5cdc8;color:var(--black);border:none;border-radius:2rem;padding:.5rem 1.4rem;font-family:var(--fb);font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.8rem;transition:background .2s}
+.fill-btn:hover{background:var(--red-dk)}
+.fill-fb{font-size:.83rem;margin-top:.5rem;font-weight:600;color:var(--hero);min-height:1.1rem}
+.bubble-row{margin:.7rem 0;display:flex;gap:.8rem;align-items:flex-start}
+.bubble-row.b{flex-direction:row-reverse}
+.bubble-avatar{width:36px;height:36px;border-radius:50%;background:#f5cdc8;color:var(--black);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;flex-shrink:0}
+.bubble-row.b .bubble-avatar{background:var(--cream-dk);color:var(--black)}
+.bubble{background:var(--cream);border-radius:1rem;padding:.75rem 1rem;max-width:440px;font-size:.9rem;line-height:1.5;cursor:pointer}
+.bubble-row.b .bubble{background:var(--cream-dk)}
+.bubble .btr{display:none;font-size:.78rem;color:#888;font-style:italic;margin-top:.4rem;border-top:1px solid rgba(0,0,0,.08);padding-top:.4rem}
+.bubble.show .btr{display:block}
+.bubble strong{color:var(--hero)}
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:4px solid var(--hero-dk);padding:3.5rem 1.5rem;text-align:center}
+.culture-inner{max-width:700px;margin:0 auto}
+.culture h3{font-family:var(--fh);font-style:italic;font-size:1.8rem;color:var(--hero-txt);margin-bottom:.8rem}
+.culture p{color:#555;font-size:.92rem;line-height:1.7;max-width:580px;margin:0 auto .6rem}
+.culture-facts{display:flex;justify-content:center;gap:2rem;margin-top:1.5rem;flex-wrap:wrap}
+.cfact{background:var(--white);border-radius:.8rem;padding:1rem 1.3rem;min-width:130px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.cfact .cnum{font-family:var(--fh);font-size:1.6rem;color:var(--hero);font-style:italic}
+.cfact .clabel{font-size:.75rem;color:#777;margin-top:.2rem}
+</style>
+</head>
+<body>
+
+<button id="toggle-btn" onclick="toggleEs()">ES 👁</button>
+
+<section class="hero">
+  <div class="hero-circle c1"></div>
+  <div class="hero-circle c2"></div>
+  <div class="hero-circle c3"></div>
+  <div class="hero-badge">A2 · Unità 5 · Canzone</div>
+  <h1>Io mi ricordo... 🎵</h1>
+  <p class="hero-sub">Ricordi del passato, descrizioni fisiche e psicologiche — con Toto Cutugno e i connettivi del racconto.</p>
+  <div class="song-box" data-a>
+    <div class="st">L'italiano</div>
+    <div class="sa">Toto Cutugno · Sanremo 1983</div>
+    <a href="https://youtu.be/rGUDmOKLsn4" target="_blank">▶ Ascolta su YouTube</a>
+  </div>
+</section>
+
+<!-- WORD GRID -->
+<section style="background:var(--cream-dk);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Vocabolario</div>
+  <h2 class="sec-title" data-a>Aggettivi — fisica o psicologia?</h2>
+  <p class="sec-sub es" data-a>Selecciona solo los adjetivos que describen el aspecto FÍSICO de una persona:</p>
+  <div class="word-grid" id="wg1" data-stagger>
+    <div class="wcard ok" data-ok>alto</div>
+    <div class="wcard trap" data-trap>simpatico</div>
+    <div class="wcard ok" data-ok>capelli ricci</div>
+    <div class="wcard trap" data-trap>generoso</div>
+    <div class="wcard ok" data-ok>magro</div>
+    <div class="wcard ok" data-ok>occhi azzurri</div>
+    <div class="wcard trap" data-trap>timido</div>
+    <div class="wcard ok" data-ok>capelli biondi</div>
+    <div class="wcard ok" data-ok>robusto</div>
+    <div class="wcard trap" data-trap>allegro</div>
+    <div class="wcard ok" data-ok>sulla cinquantina</div>
+    <div class="wcard trap" data-trap>coraggioso</div>
+  </div>
+  <button class="grid-btn" onclick="checkGrid('wg1')">Verifica ✓</button>
+  <div class="grid-feedback" id="wg1-fb"></div>
+</div>
+</section>
+
+<!-- VOCAB CARDS -->
+<section style="background:var(--cream);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Lessico</div>
+  <h2 class="sec-title" data-a>Come si descrive una persona 👤</h2>
+  <p class="sec-sub es" data-a>Toca cada tarjeta para ver un ejemplo de descripción:</p>
+  <div class="vcard-grid" data-stagger>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">fisico</div>
+      <div class="vit">di statura media</div>
+      <div class="ves">de estatura mediana</div>
+      <div class="vex"><em>"Era di statura media, né alto né basso."</em> Per la statura: basso / di statura media / alto / altissimo.</div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">capelli</div>
+      <div class="vit">capelli lisci / ricci / ondulati</div>
+      <div class="ves">pelo liso / rizado / ondulado</div>
+      <div class="vex"><em>"Da giovane aveva i capelli ricci e biondi. Ora li ha lisci e grigi."</em></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">carattere</div>
+      <div class="vit">estroverso / introverso</div>
+      <div class="ves">extrovertido / introvertido</div>
+      <div class="vex"><em>"Mio fratello era molto introverso da bambino, ma ora è estroversissimo."</em></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">età</div>
+      <div class="vit">sulla trentina / quarantina</div>
+      <div class="ves">alrededor de los 30 / 40</div>
+      <div class="vex"><em>"Era sulla quarantina, forse un po' di più."</em> Expresión muy italiana para aproximar la edad.</div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">psicologia</div>
+      <div class="vit">di buon umore / di cattivo umore</div>
+      <div class="ves">de buen humor / de mal humor</div>
+      <div class="vex"><em>"Quella mattina era di ottimo umore — cantava mentre faceva colazione."</em></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">connettivo</div>
+      <div class="vit">mentre / allora / poi</div>
+      <div class="ves">mientras / entonces / luego</div>
+      <div class="vex"><em>"Studiavo <strong>mentre</strong> ascoltavo la musica. <strong>Poi</strong> ho fatto una pausa. <strong>Allora</strong>, negli anni '80, era diverso."</em></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- IMP vs PP DISCOVERY -->
+<section style="background:var(--cream-dk);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Grammatica · Scoperta</div>
+  <h2 class="sec-title" data-a>Imperfetto vs Passato prossimo</h2>
+  <p class="sec-sub es" data-a>La diferencia clave: el imperfecto describe el "fondo" del pasado; el passato prossimo marca los eventos que ocurrieron.</p>
+
+  <div class="compare-box" data-a>
+    <div class="comp-col imp">
+      <h5>🌊 Imperfetto — il "fondale"</h5>
+      <ul>
+        <li>Accione abituali e ripetute: <em>"giocavo ogni giorno"</em></li>
+        <li>Descrizioni: <em>"era bello, faceva caldo"</em></li>
+        <li>Stati fisici o emotivi: <em>"avevo fame / ero stanco"</em></li>
+        <li>Azione in corso: <em>"dormivo quando..."</em></li>
+        <li>Parole segnale: <em>sempre, ogni, di solito, da bambino, mentre</em></li>
+      </ul>
+    </div>
+    <div class="comp-col pp">
+      <h5>⚡ Passato prossimo — gli "eventi"</h5>
+      <ul>
+        <li>Azione puntuale e completata: <em>"ho mangiato"</em></li>
+        <li>Evento con data precisa: <em>"ieri ho visto..."</em></li>
+        <li>Interruzione di un'azione: <em>"...ha suonato il telefono"</em></li>
+        <li>Sequenza di eventi: <em>"prima ho fatto X, poi ho fatto Y"</em></li>
+        <li>Parole segnale: <em>ieri, stamattina, l'anno scorso, una volta, quando (puntuale)</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="background:var(--white);border-radius:1rem;padding:1.4rem;margin:1.2rem 0;border:2px solid var(--cream-dk);box-shadow:0 3px 12px rgba(0,0,0,.07)" data-a>
+    <h4 style="font-family:var(--fh);font-style:italic;color:var(--hero);margin-bottom:.8rem">Il contrasto classico: Imperfetto + Passato prossimo</h4>
+    <div style="display:grid;gap:.6rem;font-size:.92rem">
+      <div style="background:var(--cream);padding:.65rem 1rem;border-radius:.5rem;border-left:4px solid var(--hero)"><span style="color:var(--hero);font-weight:700">Dormivo</span> [imp. = in corso] quando <span style="color:var(--green-dk);font-weight:700">è suonato</span> [pp. = evento] il telefono.</div>
+      <div style="background:var(--cream);padding:.65rem 1rem;border-radius:.5rem;border-left:4px solid var(--hero)"><span style="color:var(--hero);font-weight:700">Leggevo</span> [imp.] quando <span style="color:var(--green-dk);font-weight:700">è entrato</span> [pp.] Marco.</div>
+      <div style="background:var(--cream);padding:.65rem 1rem;border-radius:.5rem;border-left:4px solid var(--hero)"><span style="color:var(--hero);font-weight:700">Faceva</span> [imp.] freddo, ma <span style="color:var(--green-dk);font-weight:700">ho deciso</span> [pp.] di uscire lo stesso.</div>
+    </div>
+  </div>
+
+  <!-- FILL ACTIVITY -->
+  <div class="fill-box" id="fill1" data-a>
+    <h4>Prova tu! — Imperfetto o Passato prossimo?</h4>
+    <div class="fill-row">1. Da bambino <input class="fill-input" data-ans="giocavo" placeholder="giocare imp."> ogni pomeriggio in giardino.</div>
+    <div class="fill-row">2. Ieri <input class="fill-input" data-ans="ho incontrato" placeholder="incontrare pp."> un vecchio amico.</div>
+    <div class="fill-row">3. <input class="fill-input" data-ans="leggevo" placeholder="leggere imp."> quando <input class="fill-input" data-ans="è arrivata" placeholder="arrivare pp. (f.)"> Sofia.</div>
+    <div class="fill-row">4. Di solito <input class="fill-input" data-ans="mi alzavo" placeholder="alzarsi imp."> tardi, ma ieri <input class="fill-input" data-ans="mi sono alzato" placeholder="alzarsi pp. m."> alle 6.</div>
+    <button class="fill-btn" onclick="checkFill('fill1')">Controlla ✓</button>
+    <div class="fill-fb" id="fill1-fb"></div>
+  </div>
+</div>
+</section>
+
+<!-- DIALOGUE -->
+<section style="background:var(--cream);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Dialogo</div>
+  <h2 class="sec-title" data-a>Com'era Marco da bambino? 👦</h2>
+  <p class="sec-sub es" data-a>Toca cada burbuja para ver la traducción.</p>
+  <div style="background:var(--white);border-radius:1.2rem;padding:1.6rem;box-shadow:0 4px 16px rgba(0,0,0,.07);border:2px solid var(--cream-dk)" data-a>
+    <h4 style="font-family:var(--fh);font-style:italic;color:var(--hero);margin-bottom:1rem">Anna e Giulia guardano vecchie foto</h4>
+    <div class="bubble-row">
+      <div class="bubble-avatar">A</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">Guarda questa foto! Com'<strong>era</strong> Marco da bambino? <strong>Aveva</strong> i capelli ricci!
+        <div class="btr">¡Mira esta foto! ¿Cómo era Marco de niño? ¡Tenía el pelo rizado!</div>
+      </div>
+    </div>
+    <div class="bubble-row b">
+      <div class="bubble-avatar">G</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">Sì! <strong>Era</strong> molto timido allora. Ma <strong>giocava</strong> sempre a calcio — <strong>era</strong> bravo.
+        <div class="btr">¡Sí! Era muy tímido entonces. Pero siempre jugaba al fútbol — era bueno.</div>
+      </div>
+    </div>
+    <div class="bubble-row">
+      <div class="bubble-avatar">A</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">E un giorno <strong>ha vinto</strong> una gara regionale — <strong>aveva</strong> solo dodici anni!
+        <div class="btr">¡Y un día ganó una competición regional — solo tenía doce años!</div>
+      </div>
+    </div>
+    <div class="bubble-row b">
+      <div class="bubble-avatar">G</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">Io <strong>mi ricordo</strong> quella volta. <strong>Pioveva</strong> fortissimo <strong>mentre</strong> lui <strong>correva</strong>... e poi <strong>è arrivato</strong> primo!
+        <div class="btr">Yo me acuerdo de aquella vez. Llovía fortísimo mientras él corría... ¡y llegó el primero!</div>
+      </div>
+    </div>
+    <div class="bubble-row">
+      <div class="bubble-avatar">A</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">Com'eravamo! <strong>Eravamo</strong> così giovani... e adesso siamo qui a guardare le foto con la chitarra di Toto Cutugno in testa!
+        <div class="btr">¡Cómo éramos! Éramos tan jóvenes... ¡y ahora estamos aquí mirando fotos con la canción de Toto Cutugno en la cabeza!</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="culture">
+  <div class="culture-inner">
+    <h3>Il calcio e la cultura italiana ⚽</h3>
+    <p>Toto Cutugno descriveva nell'italiano "un uomo tranquillo" che ama la sua famiglia, il caffè, il Mediterraneo. Il calcio era — ed è — una parte fondamentale di questa identità.</p>
+    <p>L'Italia ha vinto quattro volte il Mondiale di calcio (1934, 1938, 1982, 2006). La vittoria del 1982, con Rossi, Zoff e Tardelli, rimane nella memoria collettiva come uno dei momenti più emozionanti della storia italiana. Il grido di Tardelli dopo il gol in finale è ancora oggi uno dei video più guardati d'Italia.</p>
+    <div class="culture-facts">
+      <div class="cfact"><div class="cnum">4</div><div class="clabel">Mondiali vinti dall'Italia</div></div>
+      <div class="cfact"><div class="cnum">1982</div><div class="clabel">vittoria più memorabile</div></div>
+      <div class="cfact"><div class="cnum">Tardelli</div><div class="clabel">urlo più famoso del calcio</div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleEs(){
+  document.body.classList.toggle('hide-es');
+  document.getElementById('toggle-btn').textContent=
+    document.body.classList.contains('hide-es')?'ES 🙈':'ES 👁';
+}
+document.addEventListener('mousemove',e=>{
+  const x=(e.clientX/window.innerWidth-.5)*18,y=(e.clientY/window.innerHeight-.5)*18;
+  document.querySelectorAll('.hero-circle').forEach((c,i)=>{c.style.transform=`translate(${x*(i+1)*.4}px,${y*(i+1)*.4}px)`});
+});
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>io.observe(el));
+function checkGrid(id){
+  const grid=document.getElementById(id);let ok=0;
+  grid.querySelectorAll('.wcard').forEach(c=>{
+    c.classList.remove('ok','trap');
+    if(c.dataset.ok!==undefined){c.classList.add('ok');ok++}else c.classList.add('trap');
+  });
+  document.getElementById(id+'-fb').textContent='✅ '+ok+' aggettivi fisici trovati!';
+}
+function checkFill(id){
+  const box=document.getElementById(id);const inputs=box.querySelectorAll('.fill-input');let ok=0;
+  inputs.forEach(inp=>{
+    inp.classList.remove('ok','err');
+    if(inp.value.toLowerCase().trim()===inp.dataset.ans){inp.classList.add('ok');ok++}
+    else if(inp.value.trim())inp.classList.add('err');
+  });
+  document.getElementById(id+'-fb').textContent=ok===inputs.length?'🎉 Perfetto!':'👀 '+ok+'/'+inputs.length+' corretti.';
+}
+</script>
+</body>
+</html>

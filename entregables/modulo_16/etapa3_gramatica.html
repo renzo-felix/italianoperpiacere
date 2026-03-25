@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -11,20 +11,20 @@
   --gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
   --red:#cc4736;--teal:#78a6ba;--teal-dk:#5a8ea0;
   --green:#528e74;--black:#1a1a18;--white:#ffffff;
-  --hdr:var(--teal-dk);
+  --hdr:var(--amber-dk);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--black)}
 body.hide-es .es{display:none}
 
-nav{position:sticky;top:0;z-index:100;background:var(--black);padding:.7rem 2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
-nav .logo{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:1.05rem;margin-right:auto}
-nav a{color:var(--gold);text-decoration:none;font-size:.88rem;font-weight:600;opacity:.8;transition:opacity .2s}
+nav{position:sticky;top:0;z-index:100;background:var(--amber-dk);padding:.7rem 2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+nav .logo{font-family:'Playfair Display',serif;font-style:italic;color:#fff;font-size:1.05rem;margin-right:auto}
+nav a{color:#fff;text-decoration:none;font-size:.88rem;font-weight:600;opacity:.85;transition:opacity .2s}
 nav a:hover{opacity:1}
-#es-toggle{background:var(--hdr);color:#fff;border:none;padding:.35rem .9rem;border-radius:2rem;font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer}
+#es-toggle{background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.4);padding:.35rem .9rem;border-radius:2rem;font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer}
 
-.page-header{background:var(--hdr);color:#fff;padding:3rem 2rem 2.5rem;text-align:center}
-.page-header h1{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.9rem,5vw,3rem);margin-bottom:.4rem}
+.page-header{background:linear-gradient(135deg,var(--gold),var(--cream-dk));color:var(--black);padding:3rem 2rem 2.5rem;text-align:center;border-top:4px solid var(--amber)}
+.page-header h1{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.9rem,5vw,3rem);margin-bottom:.4rem;color:var(--amber-dk)}
 .page-header p{font-size:1rem;opacity:.88;max-width:600px;margin:0 auto}
 
 .sec{padding:3.5rem 2rem;max-width:820px;margin:0 auto;border-bottom:1px solid var(--cream-dk)}
@@ -35,7 +35,7 @@ nav a:hover{opacity:1}
 
 .gram-table{width:100%;border-collapse:collapse;margin-top:.8rem;font-size:.93rem}
 .gram-table th,.gram-table td{padding:.65rem .85rem;border-bottom:1px solid var(--cream-dk);text-align:left}
-.gram-table th{background:var(--hdr);color:#fff;font-weight:700}
+.gram-table th{background:var(--amber-dk);color:#fff;font-weight:700}
 .gram-table tr:nth-child(even){background:var(--cream-dk)}
 .gram-table .it-cell{color:var(--hdr);font-weight:700;font-style:italic}
 
@@ -45,18 +45,18 @@ nav a:hover{opacity:1}
 /* AUSILIARE FULL TABLE */
 .aux-table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:.8rem}
 .aux-table th,.aux-table td{padding:.6rem .8rem;border-bottom:1px solid var(--cream-dk);text-align:left}
-.aux-table th{background:var(--hdr);color:#fff;font-weight:700}
+.aux-table th{background:var(--amber-dk);color:#fff;font-weight:700}
 .aux-table tr:nth-child(even){background:var(--cream-dk)}
-.aux-table .avere-cell{color:var(--teal-dk);font-weight:700;font-style:italic}
+.aux-table .avere-cell{color:var(--amber-dk);font-weight:700;font-style:italic}
 .aux-table .essere-cell{color:var(--red);font-weight:700;font-style:italic}
 
 /* CHE BOX */
 .che-scheme{background:#fff;border-radius:14px;padding:1.4rem;margin-top:1rem;box-shadow:0 2px 10px rgba(0,0,0,.06)}
 .che-step{display:flex;gap:.8rem;margin:.7rem 0;font-size:.93rem;line-height:1.6;align-items:flex-start}
-.che-num{background:var(--hdr);color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;margin-top:.1rem}
+.che-num{background:var(--amber);color:#7a5500;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;margin-top:.1rem}
 .che-before{color:#999;text-decoration:line-through;font-size:.88rem}
 .che-after{color:var(--hdr);font-weight:600;font-style:italic}
-.che-label{background:var(--teal);color:#fff;border-radius:4px;padding:.05rem .4rem;font-size:.8rem;font-weight:700}
+.che-label{background:var(--amber);color:#7a5500;border-radius:4px;padding:.05rem .4rem;font-size:.8rem;font-weight:700}
 
 /* DATA BOX */
 .data-scheme{background:#fff;border-radius:12px;padding:1.3rem;margin-top:1rem;border-left:4px solid var(--hdr)}
@@ -67,7 +67,7 @@ nav a:hover{opacity:1}
 /* CONCORDANZA BOX */
 .concord-table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:.8rem}
 .concord-table th,.concord-table td{padding:.6rem .8rem;border-bottom:1px solid var(--cream-dk);text-align:center}
-.concord-table th{background:var(--hdr);color:#fff;font-weight:700}
+.concord-table th{background:var(--amber-dk);color:#fff;font-weight:700}
 .concord-table .it-cell{color:var(--hdr);font-weight:700;font-style:italic}
 .concord-table .note{font-size:.8rem;color:#666}
 
@@ -86,7 +86,7 @@ nav a:hover{opacity:1}
 .prac-input:focus{border-color:var(--hdr)}
 .prac-input.ok{border-color:var(--green);background:#d4edda}
 .prac-input.err{border-color:var(--red);background:#f8d7da}
-.check-btn{background:var(--hdr);color:#fff;border:none;padding:.45rem 1.1rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:.6rem}
+.check-btn{background:var(--amber-dk);color:#fff;border:none;padding:.45rem 1.1rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:.6rem}
 .check-btn:hover{opacity:.88}
 .prac-feedback{font-size:.88rem;margin-top:.5rem;min-height:1.2em;font-weight:600}
 
@@ -98,19 +98,28 @@ nav a:hover{opacity:1}
 .q-opts{display:flex;flex-direction:column;gap:.45rem}
 .q-opt{padding:.55rem .9rem;border-radius:8px;border:2px solid var(--cream-dk);background:var(--cream);cursor:pointer;font-size:.93rem;transition:all .2s;text-align:left}
 .q-opt:hover{border-color:var(--hdr)}
-.q-opt.selected{border-color:var(--hdr);background:rgba(90,142,160,.1)}
+.q-opt.selected{border-color:var(--hdr);background:rgba(200,148,10,.1)}
 .q-opt.correct{border-color:var(--green);background:#d4edda;font-weight:700}
 .q-opt.wrong{border-color:var(--red);background:#f8d7da}
-.submit-btn{background:var(--hdr);color:#fff;border:none;padding:.7rem 2rem;border-radius:2rem;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;margin-top:1rem}
+.submit-btn{background:var(--amber-dk);color:#fff;border:none;padding:.7rem 2rem;border-radius:2rem;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;margin-top:1rem}
 .submit-btn:hover{opacity:.88}
 #quiz-result{margin-top:1.2rem;padding:1rem 1.4rem;border-radius:10px;font-size:1rem;font-weight:700;display:none}
 footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: none;
+      opacity: 0.85;
+    }
 </style>
 </head>
 <body class="hide-es">
 
-<nav>
-  <span class="logo">Unità 16 · Gramática</span>
+<nav class="sticky-nav">
   <a href="#ausiliare">Essere/Avere</a>
   <a href="#concordanza">Concordanza</a>
   <a href="#che">Pron. che</a>
@@ -121,6 +130,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 </nav>
 
 <div class="page-header">
+  <img src="../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img">
   <h1>Ieri sera</h1>
   <p>Essere vs avere nel passato prossimo, concordanza del participio, pronome relativo <em>che</em>, la data, e intonazione</p>
 </div>
@@ -415,7 +425,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
   <h2>Fonetica — l'accento e l'intonazione</h2>
   <p class="desc">
     La entonación italiana es expressiva y musical. Cada tipo de oración tiene su propia curva melódica.
-    <span class="es">¡Practica leyendo en voz alta y exagerando un poco!</span>
+    <span class="es">¡Practicá leyendo en voz alta y exagerando un poco!</span>
   </p>
   <div class="fon-box">
     <h4>🎵 Tre tipi di frase — tre melodie:</h4>
@@ -496,7 +506,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 </div>
 
 <!-- FINALE BLOCK -->
-<div style="background:var(--hdr);color:#fff;text-align:center;padding:3rem 2rem;margin-top:2rem">
+<div style="background:linear-gradient(135deg,var(--gold),var(--cream-dk));color:var(--black);text-align:center;padding:3rem 2rem;margin-top:2rem;border-top:4px solid var(--amber)">
   <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:2rem;margin-bottom:.8rem">Complimenti! 🎉</div>
   <p style="font-size:1rem;opacity:.9;max-width:560px;margin:0 auto;line-height:1.7">
     Hai completato il livello A1 di <em>Italiano Per Piacere</em>.<br>
@@ -508,6 +518,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <footer>Italiano Per Piacere · Unità 16 · Etapa 3 — Gramática · Fine livello A1</footer>
 
 <script>
+(function(){
+
 const ANSWERS={q1:'b',q2:'b',q3:'c',q4:'b',q5:'b'};
 const selected={};
 function toggleEs(){
@@ -548,6 +560,7 @@ function submitQuiz(){
   else if(score>=3){res.style.background='#fff3cd';res.style.color='#856404';res.textContent=`👍 Bene! ${score}/5 — Quasi perfetto!`;}
   else{res.style.background='#f8d7da';res.style.color='#721c24';res.textContent=`💪 ${score}/5 — Ripassate e riprovate!`;}
 }
+})();
 </script>
 </body>
 </html>

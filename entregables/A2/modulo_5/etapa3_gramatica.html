@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unità 5 — Io mi ricordo · Gramática | Italiano Per Piacere A2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;
+  --red:#cc4736;--red-dk:#a8382a;
+  --green:#528e74;--green-dk:#3d6b58;
+  --black:#1a1a18;--white:#ffffff;--hdr:var(--red-dk);
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--fb);background:var(--cream);color:var(--black)}
+body.hide-es .es{display:none}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #cc4736;box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#a8382a;border-bottom-color:#cc4736}
+#etoggle{position:fixed;top:.9rem;right:1rem;z-index:200;background:#f5cdc8;color:var(--black);border:none;border-radius:2rem;padding:.4rem 1rem;font-family:var(--fb);font-size:.8rem;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.section{max-width:860px;margin:0 auto;padding:3rem 1.5rem}
+.sec-title{font-family:var(--fh);font-style:italic;font-size:clamp(1.5rem,4vw,2rem);color:var(--hdr);margin-bottom:.3rem}
+.sec-sub{color:#666;font-size:.9rem;margin-bottom:1.8rem;line-height:1.5}
+.es{color:#888;font-size:.85rem;font-style:italic}
+.rule-card{background:var(--white);border-radius:.9rem;padding:1.4rem 1.6rem;margin-bottom:1.2rem;border-left:5px solid var(--hdr);box-shadow:0 3px 12px rgba(0,0,0,.07)}
+.rule-card h4{font-weight:700;color:var(--hdr);margin-bottom:.6rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.05em}
+.rule-card p,.rule-card li{font-size:.92rem;line-height:1.65;color:#444}
+.rule-card em{font-style:italic;font-weight:600;color:var(--black)}
+.rule-card ul{padding-left:1.2rem;margin-top:.4rem}
+.gtable{width:100%;border-collapse:collapse;margin:1rem 0;border-radius:.7rem;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.gtable th{background:#fbc8c2;color:#7a1f14;padding:.7rem 1rem;text-align:center;font-size:.82rem;letter-spacing:.05em}
+.gtable td{padding:.65rem 1rem;border-bottom:1px solid var(--cream-dk);font-size:.9rem;text-align:center;background:var(--white)}
+.gtable tr:nth-child(even) td{background:#fef0ee}
+.gtable tr:last-child td{border:none}.gtable tr:hover td{background:var(--cream)}
+.gtable td:first-child{font-weight:700;color:var(--hdr);text-align:left}
+.hl{background:var(--gold);padding:.1rem .3rem;border-radius:.25rem;font-weight:700}
+.contrast-box{background:var(--white);border-radius:1rem;overflow:hidden;box-shadow:0 3px 14px rgba(0,0,0,.07);margin:1.2rem 0}
+.contrast-header{display:grid;grid-template-columns:1fr 1fr}
+.contrast-header div{padding:.8rem 1.2rem;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;text-align:center}
+.contrast-header .imp-h{background:#f5cdc8;color:var(--black)}
+.contrast-header .pp-h{background:#c8dfd5;color:var(--black)}
+.contrast-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--cream-dk)}
+.contrast-row div{padding:.7rem 1.1rem;font-size:.88rem;line-height:1.5}
+.contrast-row .imp-c{background:#fff5f5;border-right:1px solid var(--cream-dk);color:#5a2020}
+.contrast-row .pp-c{background:#f0fff4;color:#1a4a30}
+.prac-block{background:var(--white);border-radius:1rem;padding:1.6rem;margin-bottom:1.5rem;box-shadow:0 3px 14px rgba(0,0,0,.07);border:1px solid var(--cream-dk)}
+.prac-block h4{font-family:var(--fh);font-style:italic;color:var(--hdr);margin-bottom:1rem;font-size:1.1rem}
+.prac-row{margin:.6rem 0;font-size:.93rem;line-height:1.9;display:flex;flex-wrap:wrap;align-items:center;gap:.3rem}
+.prac-input{border:none;border-bottom:2.5px solid var(--hdr);background:transparent;padding:.1rem .5rem;font-family:var(--fb);font-size:.92rem;width:150px;outline:none;color:var(--black)}
+.prac-input.ok{border-color:var(--green);color:var(--green-dk)}
+.prac-input.err{border-color:var(--red);color:var(--red)}
+.prac-btn{background:#f5cdc8;color:var(--black);border:none;border-radius:2rem;padding:.5rem 1.4rem;font-family:var(--fb);font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.8rem;transition:background .2s}
+.prac-btn:hover{background:var(--red)}
+.prac-fb{font-size:.83rem;margin-top:.5rem;font-weight:600;color:var(--hdr);min-height:1.1rem}
+.quiz-section{background:var(--cream-dk);padding:3rem 1.5rem}
+.quiz-inner{max-width:700px;margin:0 auto}
+.quiz-title{font-family:var(--fh);font-style:italic;font-size:1.8rem;color:var(--hdr);margin-bottom:.4rem}
+.qcard{background:var(--white);border-radius:1rem;padding:1.4rem 1.6rem;margin-bottom:1.2rem;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.qcard .qtext{font-size:.95rem;font-weight:600;margin-bottom:.9rem;line-height:1.5}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.qopt{background:var(--cream);border:2px solid var(--cream-dk);border-radius:.6rem;padding:.6rem 1rem;cursor:pointer;font-size:.88rem;transition:all .2s;text-align:center}
+.qopt:hover{border-color:var(--hdr);background:var(--gold)}
+.qopt.selected{background:var(--gold);border-color:var(--hdr);font-weight:700}
+.qopt.correct{background:#d4edda;border-color:var(--green)}
+.qopt.wrong{background:#f8d7da;border-color:var(--red)}
+.quiz-submit{background:#f5cdc8;color:var(--black);border:none;border-radius:2rem;padding:.65rem 2rem;font-family:var(--fb);font-size:.92rem;font-weight:700;cursor:pointer;display:block;margin:1.5rem auto 0;box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.quiz-result{text-align:center;font-size:1.1rem;font-weight:700;margin-top:1.2rem;min-height:1.5rem;color:var(--hdr)}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+nav > a:not(.nav-logo):hover,nav > a:not(.nav-logo).active{opacity:1;color:#a8382a;border-bottom-color:#cc4736}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+
+<button id="etoggle" onclick="toggleEs()">ES 👁</button>
+
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#contrasto">Contrasto Imp/PP</a>
+      <a href="#connettivi">Connettivi</a>
+      <a href="#descrizione">Descrizione</a>
+      <a href="#pratica">Pratica</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+
+<!-- CONTRASTO -->
+<section class="section" id="contrasto">
+  <h2 class="sec-title">Imperfetto vs Passato prossimo</h2>
+  <p class="sec-sub es">La distinción más importante del italiano intermedio. Ambos hablan del pasado, pero con funciones muy diferentes.</p>
+
+  <div class="contrast-box">
+    <div class="contrast-header">
+      <div class="imp-h">🌊 Imperfetto</div>
+      <div class="pp-h">⚡ Passato prossimo</div>
+    </div>
+    <div class="contrast-row">
+      <div class="imp-c"><em>Descrizione / stato</em><br>"La casa era grande."</div>
+      <div class="pp-c"><em>Evento puntuale</em><br>"Ho comprato una casa."</div>
+    </div>
+    <div class="contrast-row">
+      <div class="imp-c"><em>Abitudine / ripetizione</em><br>"Ogni giorno leggevo."</div>
+      <div class="pp-c"><em>Azione completata</em><br>"Ho letto il libro."</div>
+    </div>
+    <div class="contrast-row">
+      <div class="imp-c"><em>Azione in corso (sfondo)</em><br>"Dormivo quando..."</div>
+      <div class="pp-c"><em>Interruzione (evento)</em><br>"...è suonato il telefono."</div>
+    </div>
+    <div class="contrast-row">
+      <div class="imp-c"><em>Parole segnale</em><br><em>sempre · ogni · di solito · da bambino · mentre</em></div>
+      <div class="pp-c"><em>Parole segnale</em><br><em>ieri · stamattina · una volta · all'improvviso · poi</em></div>
+    </div>
+  </div>
+
+  <div class="rule-card" style="margin-top:1rem">
+    <h4>La metafora del cinema</h4>
+    <p>Immagina di guardare un film: l'<em>imperfetto</em> è come lo <span class="hl">sfondo</span> — la scenografia, il tempo, i costumi. Il <em>passato prossimo</em> è come le <span class="hl">azioni dei personaggi</span> — quello che succede davvero nella scena.</p>
+    <p style="margin-top:.5rem"><em>"<strong>Faceva</strong> caldo, <strong>c'era</strong> la musica in lontananza — poi all'improvviso <strong>è entrato</strong> un uomo misterioso."</em></p>
+  </div>
+
+  <!-- PRACTICE 1 -->
+  <div class="prac-block" id="prac1" style="margin-top:1.5rem">
+    <h4>Pratica 1 — Scelta del tempo</h4>
+    <p class="es" style="font-size:.83rem;margin-bottom:.8rem">Elige imperfetto o passato prossimo:</p>
+    <div class="prac-row">1. Quando ero bambino, (giocare) <input class="prac-input" data-ans="giocavo" placeholder="imp./pp."> ogni pomeriggio.</div>
+    <div class="prac-row">2. Ieri (incontrare) <input class="prac-input" data-ans="ho incontrato" placeholder="imp./pp."> un vecchio amico.</div>
+    <div class="prac-row">3. (Leggere) <input class="prac-input" data-ans="leggevo" placeholder="imp."> quando (suonare) <input class="prac-input" data-ans="ha suonato" placeholder="pp."> il campanello.</div>
+    <div class="prac-row">4. Di solito (alzarsi) <input class="prac-input" data-ans="mi alzavo" placeholder="imp."> tardi, ma ieri (alzarsi) <input class="prac-input" data-ans="mi sono alzato" placeholder="pp."> alle sei.</div>
+    <button class="prac-btn" onclick="checkPrac('prac1')">Controlla ✓</button>
+    <div class="prac-fb" id="prac1-fb"></div>
+  </div>
+</section>
+
+<!-- CONNETTIVI -->
+<section class="section" id="connettivi" style="background:var(--cream-dk);padding:3rem 1.5rem">
+<div style="max-width:860px;margin:0 auto">
+  <h2 class="sec-title">I connettivi del racconto</h2>
+  <p class="sec-sub es">Para narrar bien en italiano necesitas conectar las frases. Estos conectores organizan el relato.</p>
+
+  <table class="gtable">
+    <thead><tr><th>Connettivo</th><th class="es">Significado</th><th class="es">Uso</th><th class="es">Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>quando</strong></td><td class="es">cuando</td><td class="es">evento puntual + estado</td><td class="es"><em>Quando ero piccola, vivevo a Roma.</em></td></tr>
+      <tr><td><strong>mentre</strong></td><td class="es">mientras</td><td class="es">dos acciones simultáneas</td><td class="es"><em>Studiavo mentre lui guardava la TV.</em></td></tr>
+      <tr><td><strong>allora</strong></td><td class="es">entonces / en aquella época</td><td class="es">referencia temporal al pasado</td><td class="es"><em>Allora si andava al cinema il sabato.</em></td></tr>
+      <tr><td><strong>poi</strong></td><td class="es">luego / después</td><td class="es">secuencia de eventos</td><td class="es"><em>Prima ho mangiato, poi sono uscito.</em></td></tr>
+      <tr><td><strong>ma</strong></td><td class="es">pero</td><td class="es">contraste/corrección</td><td class="es"><em>Ero timido, ma con gli amici ero allegro.</em></td></tr>
+      <tr><td><strong>all'improvviso</strong></td><td class="es">de repente</td><td class="es">evento inesperado</td><td class="es"><em>All'improvviso è entrato Marco.</em></td></tr>
+      <tr><td><strong>alla fine</strong></td><td class="es">al final</td><td class="es">conclusión del relato</td><td class="es"><em>Alla fine siamo tornati a casa.</em></td></tr>
+    </tbody>
+  </table>
+
+  <!-- PRACTICE 2 -->
+  <div class="prac-block" id="prac2" style="margin-top:1.2rem">
+    <h4>Pratica 2 — Connettivi nel racconto</h4>
+    <p class="es" style="font-size:.83rem;margin-bottom:.8rem">Completa con il connettivo giusto (quando · mentre · poi · ma · allora · all'improvviso):</p>
+    <div class="prac-row">1. <input class="prac-input" data-ans="mentre" placeholder="connettivo"> studiavo, ascoltavo la radio.</div>
+    <div class="prac-row">2. <input class="prac-input" data-ans="all'improvviso" placeholder="connettivo"> ha cominciato a piovere e siamo rientrati.</div>
+    <div class="prac-row">3. <input class="prac-input" data-ans="allora" placeholder="connettivo">, negli anni '80, non c'era internet.</div>
+    <div class="prac-row">4. Prima ho fatto i compiti, <input class="prac-input" data-ans="poi" placeholder="connettivo"> sono uscita con le amiche.</div>
+    <div class="prac-row">5. Era stanca, <input class="prac-input" data-ans="ma" placeholder="connettivo"> ha continuato a studiare.</div>
+    <button class="prac-btn" onclick="checkPrac('prac2')">Controlla ✓</button>
+    <div class="prac-fb" id="prac2-fb"></div>
+  </div>
+</div>
+</section>
+
+<!-- DESCRIZIONE -->
+<section class="section" id="descrizione">
+  <h2 class="sec-title">Descrivere una persona</h2>
+  <p class="sec-sub es">Per raccontare il passato hai bisogno di descrivere le persone — fisicamente e psicologicamente.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+    <div class="rule-card">
+      <h4>Descrizione fisica</h4>
+      <ul>
+        <li><em>Era alto / di statura media / basso.</em></li>
+        <li><em>Aveva i capelli biondi / castani / neri.</em></li>
+        <li><em>Aveva gli occhi azzurri / verdi / scuri.</em></li>
+        <li><em>Era robusto / magro / sulla quarantina.</em></li>
+        <li><em>Portava gli occhiali / la barba.</em></li>
+      </ul>
+    </div>
+    <div class="rule-card">
+      <h4>Descrizione psicologica</h4>
+      <ul>
+        <li><em>Era simpatico / antipatico / timido.</em></li>
+        <li><em>Era allegro / triste / nervoso.</em></li>
+        <li><em>Sembrava gentile / arrogante.</em></li>
+        <li><em>Di solito era tranquillo, ma...</em></li>
+        <li><em>Aveva un carattere forte / dolce.</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PRACTICE 3 -->
+  <div class="prac-block" id="prac3">
+    <h4>Pratica 3 — Descrizione al passato</h4>
+    <p class="es" style="font-size:.83rem;margin-bottom:.8rem">Completa la descrizione con l'imperfetto:</p>
+    <div class="prac-row">1. Marco (essere) <input class="prac-input" data-ans="era" placeholder="imp."> alto e robusto.</div>
+    <div class="prac-row">2. (Avere) <input class="prac-input" data-ans="aveva" placeholder="imp."> gli occhi chiari e i capelli corti.</div>
+    <div class="prac-row">3. Da bambino (sembrare) <input class="prac-input" data-ans="sembrava" placeholder="imp."> timido, ma in realtà (essere) <input class="prac-input" data-ans="era" placeholder="imp."> molto curioso.</div>
+    <div class="prac-row">4. Le persone che lo (conoscere) <input class="prac-input" data-ans="conoscevano" placeholder="imp."> lo (trovare) <input class="prac-input" data-ans="trovavano" placeholder="imp."> simpaticissimo.</div>
+    <button class="prac-btn" onclick="checkPrac('prac3')">Controlla ✓</button>
+    <div class="prac-fb" id="prac3-fb"></div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz-section" id="quiz">
+  <div class="quiz-inner">
+    <h2 class="quiz-title">Quiz — Io mi ricordo 🎵</h2>
+
+    <div class="qcard">
+      <div class="qtext">1. "Ogni estate da bambino io ___ (andare) al mare con la famiglia." Quale tempo?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q1','a')">a) andavo</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','b')">b) sono andato</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','c')">c) vado</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','d')">d) andrò</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">2. "___ studiavo, ___ suonato il campanello." (mentre / passato prossimo)</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q2','a')">a) Quando / è</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','b')">b) Mentre / è</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','c')">c) Poi / ha</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','d')">d) Allora / era</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">3. "Ieri ___ (vedere) un bel film." (azione puntuale)</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q3','a')">a) vedevo</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','b')">b) ho visto</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','c')">c) vedo</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','d')">d) vedei</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">4. Descrizione fisica: "Da giovane aveva i capelli ___". Quale NON è corretto?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q4','a')">a) biondi</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','b')">b) ricci</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','c')">c) simpatico</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','d')">d) corti</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">5. Connettivo di sequenza: "Prima ho fatto la spesa, ___ sono tornata a casa."</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q5','a')">a) mentre</div>
+        <div class="qopt" onclick="selectOpt(this,'q5','b')">b) allora</div>
+        <div class="qopt" onclick="selectOpt(this,'q5','c')">c) poi</div>
+        <div class="qopt" onclick="selectOpt(this,'q5','d')">d) ma</div>
+      </div>
+    </div>
+
+    <button class="quiz-submit" onclick="submitQuiz()">Controlla il quiz ✓</button>
+    <div class="quiz-result" id="quiz-result"></div>
+  </div>
+</section>
+
+<script>
+function toggleEs(){
+  document.body.classList.toggle('hide-es');
+  document.getElementById('etoggle').textContent=
+    document.body.classList.contains('hide-es')?'ES 🙈':'ES 👁';
+}
+function checkPrac(id){
+  const block=document.getElementById(id);const inputs=block.querySelectorAll('.prac-input');let ok=0;
+  inputs.forEach(inp=>{
+    inp.classList.remove('ok','err');
+    if(inp.value.toLowerCase().trim()===inp.dataset.ans){inp.classList.add('ok');ok++}
+    else if(inp.value.trim())inp.classList.add('err');
+  });
+  document.getElementById(id+'-fb').textContent=ok===inputs.length?'✅ Perfetto!':'👀 '+ok+'/'+inputs.length+' corretti.';
+}
+const ANSWERS={q1:'a',q2:'b',q3:'b',q4:'c',q5:'c'};
+const selected={};
+function selectOpt(el,qid,opt){
+  el.closest('.qcard').querySelectorAll('.qopt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');selected[qid]=opt;
+}
+function submitQuiz(){
+  let score=0;
+  document.querySelectorAll('.qcard').forEach((card,i)=>{
+    const qid='q'+(i+1);
+    card.querySelectorAll('.qopt').forEach(o=>{
+      const optLetter=o.textContent.trim()[0];
+      o.classList.remove('correct','wrong');
+      if(optLetter===ANSWERS[qid])o.classList.add('correct');
+      else if(o.classList.contains('selected'))o.classList.add('wrong');
+    });
+    if(selected[qid]===ANSWERS[qid])score++;
+  });
+  const res=document.getElementById('quiz-result');
+  res.textContent=score===5?'🎉 Perfetto! 5/5 — Imperfetto vs PP: dominato!':
+    score>=3?`✅ ${score}/5 — Ottimo! Ripassa gli errori.`:
+    `👀 ${score}/5 — Rileggi il contrasto e riprova!`;
+}
+</script>
+</body>
+</html>

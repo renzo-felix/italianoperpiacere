@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>All'aeroporto · Módulo 1 · Viajeros</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --amber:#EFCF7F;--amber-dk:#c8940a;--amber-hero:#fef9e8;
+  --amber-border:#EFCF7F;--amber-th:#fde8a0;--amber-hero-text:#7a5500;
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;
+  --black:#1a1a18;--white:#ffffff;
+  --fh:'Playfair Display',Georgia,serif;
+  --fb:'Outfit',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);color:var(--black);background:var(--white);line-height:1.6}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid var(--amber-border);box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:.6rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-logo img{height:40px;width:auto}
+.nav-links{display:flex;gap:.5rem;flex-wrap:wrap}
+.nav-links a{font-family:var(--fb);font-size:.82rem;font-weight:600;color:var(--black);text-decoration:none;padding:.35rem .7rem;border-radius:20px;transition:background .2s,color .2s}
+.nav-links a:hover{background:var(--amber-th);color:var(--amber-hero-text)}
+
+/* PROGRESS BAR */
+#progress-bar{position:fixed;bottom:0;left:0;width:100%;height:6px;background:var(--amber-th);z-index:200}
+#progress-fill{height:100%;width:0%;background:var(--amber-dk);transition:width .3s}
+
+/* HERO */
+.hero{background:var(--amber-hero);border-top:4px solid var(--amber-border);padding:3.5rem 1.5rem 3rem;text-align:center}
+.hero .badge{display:inline-block;background:var(--amber-th);color:var(--amber-hero-text);font-size:.78rem;font-weight:700;padding:.3rem .9rem;border-radius:20px;letter-spacing:.05em;margin-bottom:1rem;text-transform:uppercase}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:clamp(2.2rem,5vw,3.4rem);color:var(--amber-hero-text);margin-bottom:.5rem}
+.hero p{font-size:1.05rem;color:#5a4200;max-width:600px;margin:0 auto 1.2rem}
+.hero .video-wrap{margin-top:1.5rem;max-width:720px;margin-left:auto;margin-right:auto}
+.hero .video-wrap iframe{width:100%;aspect-ratio:16/9;border-radius:12px;border:none}
+
+/* SECTION */
+section{max-width:1100px;margin:0 auto;padding:3rem 1.5rem}
+.section-title{font-family:var(--fh);font-style:italic;font-size:1.8rem;color:var(--amber-hero-text);margin-bottom:.4rem}
+.section-sub{color:#5a4200;font-size:.95rem;margin-bottom:1.8rem}
+.divider{border:none;border-top:2px solid var(--amber-th);margin:2.5rem 0}
+
+/* VOCAB GRID */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem}
+.vocab-card{background:var(--amber-hero);border:2px solid var(--amber-border);border-radius:12px;padding:1rem .8rem;text-align:center;cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative;min-height:80px;display:flex;align-items:center;justify-content:center}
+.vocab-card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(239,207,127,.45)}
+.vocab-card .it{font-weight:700;font-size:1rem;color:var(--black);transition:opacity .2s}
+.vocab-card .es{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.88rem;color:var(--amber-hero-text);font-weight:600;background:var(--amber-th);border-radius:10px;opacity:0;transition:opacity .2s;padding:.5rem}
+.vocab-card.revealed .es{opacity:1}
+.vocab-card.revealed .it{opacity:0}
+
+/* CARD SETS */
+.card-set-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.flip-card{perspective:600px;cursor:pointer;height:110px}
+.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .45s}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:.8rem;text-align:center}
+.flip-front{background:var(--amber-hero);border:2px solid var(--amber-border)}
+.flip-back{background:var(--amber-th);border:2px solid var(--amber-dk);transform:rotateY(180deg)}
+.flip-front .icon{font-size:1.6rem;margin-bottom:.3rem}
+.flip-front .word{font-weight:700;font-size:.95rem;color:var(--black)}
+.flip-back .trans{font-weight:600;font-size:.9rem;color:var(--amber-hero-text)}
+.flip-back .example{font-size:.76rem;color:#5a4200;margin-top:.3rem;font-style:italic}
+
+/* DISCOVERY BOXES */
+.discovery-box{background:var(--amber-hero);border:2px solid var(--amber-border);border-radius:14px;padding:1.8rem;margin-bottom:1.5rem}
+.discovery-box h3{font-family:var(--fh);font-style:italic;font-size:1.3rem;color:var(--amber-hero-text);margin-bottom:1rem}
+
+/* TABLES */
+table{width:100%;border-collapse:collapse;margin:1rem 0;border-radius:10px;overflow:hidden}
+th{background:var(--amber-th);color:var(--amber-hero-text);font-weight:700;padding:.7rem 1rem;text-align:left;font-size:.9rem}
+td{padding:.65rem 1rem;font-size:.9rem;border-bottom:1px solid var(--amber-border)}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#fffdf5}
+
+/* FILL EXERCISES */
+.fill-ex{background:#fffdf5;border:2px solid var(--amber-border);border-radius:12px;padding:1.5rem;margin-bottom:1rem}
+.fill-ex p{margin-bottom:.8rem;font-size:.95rem}
+.fill-item{display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem;flex-wrap:wrap}
+.fill-item label{font-size:.9rem;flex:1;min-width:200px}
+.fill-item input{border:2px solid var(--amber-border);border-radius:8px;padding:.35rem .7rem;font-family:var(--fb);font-size:.9rem;width:120px;background:var(--white)}
+.fill-item input:focus{outline:none;border-color:var(--amber-dk)}
+.fill-item .result{font-size:.85rem;font-weight:700;min-width:60px}
+.fill-item .result.ok{color:#528e74}
+.fill-item .result.err{color:#cc4736}
+.check-btn{background:var(--amber-dk);color:var(--white);border:none;padding:.55rem 1.4rem;border-radius:20px;font-family:var(--fb);font-weight:700;cursor:pointer;font-size:.9rem;transition:background .2s}
+.check-btn:hover{background:var(--amber-hero-text)}
+
+/* DIALOGO */
+.dialogo{background:#fffdf5;border:2px solid var(--amber-border);border-radius:14px;padding:1.5rem;margin-bottom:1rem}
+.dialogo h4{font-family:var(--fh);font-style:italic;color:var(--amber-hero-text);margin-bottom:1rem;font-size:1.1rem}
+.bubble-wrap{display:flex;flex-direction:column;gap:.8rem}
+.b{background:var(--cream-dk, #ddd9c8);border-radius:16px 16px 16px 4px;padding:.8rem 1.1rem;max-width:80%;cursor:pointer;transition:box-shadow .2s}
+.b:hover{box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.b.right{align-self:flex-end;border-radius:16px 16px 4px 16px;background:var(--amber-th)}
+.b .speaker{font-size:.72rem;font-weight:700;color:var(--amber-dk);margin-bottom:.2rem;text-transform:uppercase;letter-spacing:.05em}
+.b .it{font-weight:600;font-size:.95rem}
+.b .es{font-size:.82rem;color:#5a4200;margin-top:.3rem;font-style:italic;display:none}
+.b.open .es{display:block}
+
+/* COMPRENSION */
+.comprension{background:var(--amber-hero);border:2px solid var(--amber-border);border-radius:14px;padding:1.8rem;margin-bottom:1rem}
+.comprension h4{font-family:var(--fh);font-style:italic;color:var(--amber-hero-text);margin-bottom:1rem}
+.cartel{background:var(--white);border:3px solid var(--amber-dk);border-radius:12px;padding:1.2rem;font-size:.95rem;margin-bottom:1.2rem;font-weight:500}
+.cartel strong{color:var(--amber-hero-text)}
+.mc-question{margin-bottom:1.2rem}
+.mc-question p{font-weight:600;margin-bottom:.5rem;font-size:.92rem}
+.mc-option{display:block;padding:.4rem .8rem;border-radius:8px;cursor:pointer;font-size:.88rem;margin-bottom:.3rem;transition:background .2s}
+.mc-option:hover{background:var(--amber-th)}
+.mc-option.sel{background:var(--amber-th);font-weight:700}
+.mc-option.ok{background:#d4edda;color:#155724}
+.mc-option.err{background:#f8d7da;color:#721c24}
+
+/* MATCHING */
+.matching-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.match-col h5{font-weight:700;margin-bottom:.8rem;color:var(--amber-hero-text);font-size:.88rem;text-transform:uppercase;letter-spacing:.05em}
+.match-item{background:var(--amber-hero);border:2px solid var(--amber-border);border-radius:10px;padding:.6rem 1rem;font-size:.9rem;cursor:pointer;margin-bottom:.5rem;transition:background .2s,border-color .2s}
+.match-item:hover{background:var(--amber-th)}
+.match-item.selected{background:var(--amber-th);border-color:var(--amber-dk);font-weight:700}
+.match-item.matched{background:#d4edda;border-color:#528e74;color:#155724;font-weight:700;pointer-events:none}
+.match-item.wrong{background:#f8d7da;border-color:#cc4736;animation:shake .3s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+/* CULTURE STRIP */
+.culture-strip{background:linear-gradient(135deg,#fde8a0,#fef9e8);border-top:4px solid var(--amber-dk);padding:2.5rem 1.5rem;margin-top:2rem}
+.culture-inner{max-width:900px;margin:0 auto;display:flex;gap:2rem;align-items:flex-start;flex-wrap:wrap}
+.culture-icon{font-size:3rem;flex-shrink:0}
+.culture-text h3{font-family:var(--fh);font-style:italic;color:var(--amber-hero-text);font-size:1.4rem;margin-bottom:.6rem}
+.culture-text p{font-size:.95rem;color:#4a3800;line-height:1.7}
+
+/* ANIMATIONS */
+[data-a]{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
+[data-a].visible{opacity:1;transform:none}
+
+/* FOOTER */
+footer{background:var(--white);border-top:3px solid var(--amber-border);padding:1.5rem;text-align:center;font-size:.82rem;color:#888}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#"><img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=f5755ad" alt="Italiano Per Piacere" loading="lazy"></a>
+    <div class="nav-links">
+      <a href="#vocabulario">Vocabulario</a>
+      <a href="#articulos">Artículos</a>
+      <a href="#essere">Essere</a>
+      <a href="#avere">Avere</a>
+      <a href="#dialogos">Diálogos</a>
+      <a href="#cultura">Cultura</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PROGRESS BAR -->
+<div id="progress-bar"><div id="progress-fill"></div></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">Viajeros · Módulo 1</div>
+  <h1>All'aeroporto ✈</h1>
+  <p>Llegaste a Roma. El aeropuerto te espera con carteles, pasaportes y miles de palabras nuevas. ¡Vamos a descubrirlas juntos!</p>
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/7hM0U9Ei0Kk" title="All'aeroporto – Vocabolario italiano" allowfullscreen loading="lazy"></iframe>
+  </div>
+</div>
+
+<!-- VOCABULARIO PRINCIPAL -->
+<section id="vocabulario">
+  <h2 class="section-title" data-a>Il vocabolario dell'aeroporto</h2>
+  <p class="section-sub" data-a>Hacé clic en cada tarjeta para ver la traducción al español.</p>
+  <div class="vocab-grid" data-a>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">l'aeroporto</span><span class="es">el aeropuerto</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il passaporto</span><span class="es">el pasaporte</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il biglietto</span><span class="es">el boleto / billete</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il volo</span><span class="es">el vuelo</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">l'uscita</span><span class="es">la salida</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">gli arrivi</span><span class="es">las llegadas</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">le partenze</span><span class="es">las salidas</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">la dogana</span><span class="es">la aduana</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il controllo</span><span class="es">el control</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il gate</span><span class="es">la puerta de embarque</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">l'imbarco</span><span class="es">el embarque</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il bagaglio</span><span class="es">el equipaje</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">la valigia</span><span class="es">la valija / maleta</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il terminal</span><span class="es">la terminal</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">la carta d'imbarco</span><span class="es">la tarjeta de embarque</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il ritiro bagagli</span><span class="es">la cinta de equipaje</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">il binario</span><span class="es">el andén / la vía</span></div>
+    <div class="vocab-card" onclick="this.classList.toggle('revealed')"><span class="it">l'atterraggio</span><span class="es">el aterrizaje</span></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SET A: DOCUMENTOS -->
+<section>
+  <h2 class="section-title" data-a>Documenti e pratiche 📄</h2>
+  <p class="section-sub" data-a>Documentos y trámites. Hacé clic para ver la traducción y un ejemplo.</p>
+  <div class="card-set-wrap" data-a>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">📘</span><span class="word">il passaporto</span></div>
+        <div class="flip-back"><span class="trans">el pasaporte</span><span class="example">Il mio passaporto è valido.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🎫</span><span class="word">il biglietto</span></div>
+        <div class="flip-back"><span class="trans">el boleto/billete</span><span class="example">Ho il biglietto per Roma.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🪪</span><span class="word">la carta d'identità</span></div>
+        <div class="flip-back"><span class="trans">el documento de identidad</span><span class="example">Ecco la mia carta d'identità.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">✈️</span><span class="word">la carta d'imbarco</span></div>
+        <div class="flip-back"><span class="trans">tarjeta de embarque</span><span class="example">Dov'è la mia carta d'imbarco?</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🧳</span><span class="word">il visto</span></div>
+        <div class="flip-back"><span class="trans">la visa</span><span class="example">Ho il visto per l'Italia.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🔍</span><span class="word">il controllo</span></div>
+        <div class="flip-back"><span class="trans">el control</span><span class="example">C'è il controllo dei passaporti.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">📋</span><span class="word">la dichiarazione</span></div>
+        <div class="flip-back"><span class="trans">la declaración</span><span class="example">Ho una dichiarazione doganale.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🛃</span><span class="word">la dogana</span></div>
+        <div class="flip-back"><span class="trans">la aduana</span><span class="example">Passiamo dalla dogana.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SET B: UBICACIONES -->
+<section>
+  <h2 class="section-title" data-a>Dove siamo? 🗺️</h2>
+  <p class="section-sub" data-a>Ubicaciones dentro del aeropuerto. Hacé clic para descubrir.</p>
+  <div class="card-set-wrap" data-a>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🚪</span><span class="word">l'uscita</span></div>
+        <div class="flip-back"><span class="trans">la salida</span><span class="example">Dov'è l'uscita?</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">⬇️</span><span class="word">gli arrivi</span></div>
+        <div class="flip-back"><span class="trans">las llegadas</span><span class="example">Il volo è agli arrivi.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">⬆️</span><span class="word">le partenze</span></div>
+        <div class="flip-back"><span class="trans">las salidas (vuelos)</span><span class="example">Le partenze sono al piano 2.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🛫</span><span class="word">il gate</span></div>
+        <div class="flip-back"><span class="trans">la puerta de embarque</span><span class="example">Il gate è il B12.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🏢</span><span class="word">il terminal</span></div>
+        <div class="flip-back"><span class="trans">la terminal</span><span class="example">Siamo al Terminal 1.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🛄</span><span class="word">il ritiro bagagli</span></div>
+        <div class="flip-back"><span class="trans">cinta de equipajes</span><span class="example">La valigia è al ritiro bagagli.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🔒</span><span class="word">la sicurezza</span></div>
+        <div class="flip-back"><span class="trans">la seguridad</span><span class="example">Il controllo di sicurezza è qui.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">ℹ️</span><span class="word">l'informazioni</span></div>
+        <div class="flip-back"><span class="trans">la información</span><span class="example">Dov'è l'ufficio informazioni?</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SET C: VERBOS -->
+<section>
+  <h2 class="section-title" data-a>Verbi utili 💬</h2>
+  <p class="section-sub" data-a>Verbos que necesitás en el aeropuerto.</p>
+  <div class="card-set-wrap" data-a>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🔍</span><span class="word">cercare</span></div>
+        <div class="flip-back"><span class="trans">buscar</span><span class="example">Cerco il gate B12.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🗣️</span><span class="word">chiedere</span></div>
+        <div class="flip-back"><span class="trans">preguntar / pedir</span><span class="example">Chiedo informazioni.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">📸</span><span class="word">mostrare</span></div>
+        <div class="flip-back"><span class="trans">mostrar</span><span class="example">Mostro il passaporto.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🚶</span><span class="word">andare</span></div>
+        <div class="flip-back"><span class="trans">ir</span><span class="example">Andiamo al gate!</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">⏳</span><span class="word">aspettare</span></div>
+        <div class="flip-back"><span class="trans">esperar</span><span class="example">Aspetto il volo.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">🎒</span><span class="word">portare</span></div>
+        <div class="flip-back"><span class="trans">llevar / traer</span><span class="example">Porto una valigia.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">✅</span><span class="word">controllare</span></div>
+        <div class="flip-back"><span class="trans">controlar / revisar</span><span class="example">Controllo il biglietto.</span></div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front"><span class="icon">📍</span><span class="word">trovare</span></div>
+        <div class="flip-back"><span class="trans">encontrar</span><span class="example">Trovo l'uscita!</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- DISCOVERY 1: ARTICULOS -->
+<section id="articulos">
+  <h2 class="section-title" data-a>Gli articoli 📐</h2>
+  <p class="section-sub" data-a>En italiano, todos los sustantivos tienen género (masculino o femenino) y el artículo cambia según el sonido inicial de la palabra. Mirá la tabla y encontrá el patrón.</p>
+
+  <div class="discovery-box" data-a>
+    <h3>Artículos determinados — "el / la / los / las"</h3>
+    <table>
+      <tr><th>Género</th><th>Singular</th><th>Cuándo se usa</th><th>Ejemplo</th></tr>
+      <tr><td>Masc.</td><td><strong>il</strong></td><td>Consonante común</td><td>il passaporto, il volo, il gate</td></tr>
+      <tr><td>Masc.</td><td><strong>lo</strong></td><td>s+cons., z, gn, ps, x</td><td>lo zaino, lo studente</td></tr>
+      <tr><td>Masc.</td><td><strong>l'</strong></td><td>Vocal</td><td>l'aeroporto, l'imbarco</td></tr>
+      <tr><td>Fem.</td><td><strong>la</strong></td><td>Consonante</td><td>la valigia, la dogana</td></tr>
+      <tr><td>Fem.</td><td><strong>l'</strong></td><td>Vocal</td><td>l'uscita, l'informazione</td></tr>
+      <tr><td>Masc. pl.</td><td><strong>i</strong></td><td>Consonante común</td><td>i passaporti, i voli</td></tr>
+      <tr><td>Masc. pl.</td><td><strong>gli</strong></td><td>Vocal / s+cons. / z</td><td>gli arrivi, gli zaini</td></tr>
+      <tr><td>Fem. pl.</td><td><strong>le</strong></td><td>Todas las fem. pl.</td><td>le partenze, le valigie</td></tr>
+    </table>
+    <p style="margin-top:1rem;font-size:.9rem;color:#5a4200"><strong>Truco:</strong> Si la palabra empieza con vocal, siempre usás <em>l'</em> (masc. y fem. singular). ¡Escuchalo: l'aeroporto, l'uscita!</p>
+  </div>
+
+  <div class="discovery-box" data-a>
+    <h3>Artículos indeterminados — "un / una"</h3>
+    <table>
+      <tr><th>Género</th><th>Artículo</th><th>Cuándo se usa</th><th>Ejemplo</th></tr>
+      <tr><td>Masc.</td><td><strong>un</strong></td><td>Consonante o vocal</td><td>un biglietto, un aereo</td></tr>
+      <tr><td>Masc.</td><td><strong>uno</strong></td><td>s+cons., z, gn, ps</td><td>uno zaino, uno studente</td></tr>
+      <tr><td>Fem.</td><td><strong>una</strong></td><td>Consonante</td><td>una valigia, una carta</td></tr>
+      <tr><td>Fem.</td><td><strong>un'</strong></td><td>Vocal</td><td>un'uscita, un'informazione</td></tr>
+    </table>
+  </div>
+
+  <!-- FILL 1 -->
+  <div class="fill-ex" data-a>
+    <p><strong>Completá con el artículo correcto</strong> (il / la / l' / i / le / un / una / un'):</p>
+    <div class="fill-item"><label>1. ______ passaporto (masc. sing., consonante)</label><input type="text" id="f1a" placeholder="?"><span class="result" id="r1a"></span></div>
+    <div class="fill-item"><label>2. ______ uscita (fem. sing., vocal)</label><input type="text" id="f1b" placeholder="?"><span class="result" id="r1b"></span></div>
+    <div class="fill-item"><label>3. ______ arrivi (masc. plur., vocal)</label><input type="text" id="f1c" placeholder="?"><span class="result" id="r1c"></span></div>
+    <div class="fill-item"><label>4. ______ valigia (fem. sing., consonante)</label><input type="text" id="f1d" placeholder="?"><span class="result" id="r1d"></span></div>
+    <div class="fill-item"><label>5. ______ aeroporto (masc. sing., vocal)</label><input type="text" id="f1e" placeholder="?"><span class="result" id="r1e"></span></div>
+    <div class="fill-item"><label>6. ______ partenze (fem. plur.)</label><input type="text" id="f1f" placeholder="?"><span class="result" id="r1f"></span></div>
+    <div class="fill-item"><label>7. ______ biglietto (indet. masc.)</label><input type="text" id="f1g" placeholder="?"><span class="result" id="r1g"></span></div>
+    <div class="fill-item"><label>8. ______ uscita (indet. fem. vocal)</label><input type="text" id="f1h" placeholder="?"><span class="result" id="r1h"></span></div>
+    <button class="check-btn" onclick="checkFill1()">Verificar ✓</button>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- DISCOVERY 2: ESSERE -->
+<section id="essere">
+  <h2 class="section-title" data-a>Il verbo ESSERE 🌟</h2>
+  <p class="section-sub" data-a>El verbo "essere" (ser/estar) es fundamental. Lo usás para presentarte, decir tu nacionalidad y describir dónde está algo.</p>
+
+  <div class="discovery-box" data-a>
+    <h3>Conjugación completa de ESSERE</h3>
+    <table>
+      <tr><th>Persona</th><th>Verbo</th><th>Ejemplo en el aeropuerto</th></tr>
+      <tr><td><strong>io</strong> (yo)</td><td><strong>sono</strong></td><td>Io sono argentino/a.</td></tr>
+      <tr><td><strong>tu</strong> (vos/tú)</td><td><strong>sei</strong></td><td>Tu sei italiano?</td></tr>
+      <tr><td><strong>lui/lei</strong> (él/ella)</td><td><strong>è</strong></td><td>Lui è il pilota.</td></tr>
+      <tr><td><strong>noi</strong> (nosotros)</td><td><strong>siamo</strong></td><td>Siamo in Italia!</td></tr>
+      <tr><td><strong>voi</strong> (ustedes)</td><td><strong>siete</strong></td><td>Voi siete in partenza?</td></tr>
+      <tr><td><strong>loro</strong> (ellos/as)</td><td><strong>sono</strong></td><td>Loro sono turisti.</td></tr>
+    </table>
+    <p style="margin-top:1rem;font-size:.9rem;color:#5a4200"><strong>Usos principales:</strong> nacionalidad (Sono argentino), origen (Sono di Buenos Aires), profesión (È il pilota), ubicación de cosas (L'uscita è a destra).</p>
+  </div>
+
+  <!-- FILL 2 -->
+  <div class="fill-ex" data-a>
+    <p><strong>Completá con la forma correcta de ESSERE:</strong></p>
+    <div class="fill-item"><label>1. Io ______ di Buenos Aires.</label><input type="text" id="f2a" placeholder="?"><span class="result" id="r2a"></span></div>
+    <div class="fill-item"><label>2. Il gate ______ il B7.</label><input type="text" id="f2b" placeholder="?"><span class="result" id="r2b"></span></div>
+    <div class="fill-item"><label>3. Noi ______ turisti.</label><input type="text" id="f2c" placeholder="?"><span class="result" id="r2c"></span></div>
+    <div class="fill-item"><label>4. Tu ______ italiano?</label><input type="text" id="f2d" placeholder="?"><span class="result" id="r2d"></span></div>
+    <div class="fill-item"><label>5. Loro ______ in partenza.</label><input type="text" id="f2e" placeholder="?"><span class="result" id="r2e"></span></div>
+    <div class="fill-item"><label>6. Lei ______ la hostess.</label><input type="text" id="f2f" placeholder="?"><span class="result" id="r2f"></span></div>
+    <button class="check-btn" onclick="checkFill2()">Verificar ✓</button>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- DISCOVERY 3: AVERE -->
+<section id="avere">
+  <h2 class="section-title" data-a>Il verbo AVERE 🎒</h2>
+  <p class="section-sub" data-a>Con "avere" (tener) podés decir qué documentos tenés, cuántas valijas llevás y mucho más.</p>
+
+  <div class="discovery-box" data-a>
+    <h3>Conjugación completa de AVERE</h3>
+    <table>
+      <tr><th>Persona</th><th>Verbo</th><th>Ejemplo en el aeropuerto</th></tr>
+      <tr><td><strong>io</strong></td><td><strong>ho</strong></td><td>Ho il passaporto.</td></tr>
+      <tr><td><strong>tu</strong></td><td><strong>hai</strong></td><td>Hai il biglietto?</td></tr>
+      <tr><td><strong>lui/lei</strong></td><td><strong>ha</strong></td><td>Ha una valigia grande.</td></tr>
+      <tr><td><strong>noi</strong></td><td><strong>abbiamo</strong></td><td>Abbiamo due bagagli.</td></tr>
+      <tr><td><strong>voi</strong></td><td><strong>avete</strong></td><td>Avete la carta d'imbarco?</td></tr>
+      <tr><td><strong>loro</strong></td><td><strong>hanno</strong></td><td>Hanno il visto.</td></tr>
+    </table>
+    <p style="margin-top:1rem;font-size:.9rem;color:#5a4200"><strong>Ojo:</strong> La h en ho, hai, ha, hanno es <em>muda</em> — ¡no se pronuncia! Es solo para distinguirlo de otras palabras.</p>
+  </div>
+
+  <!-- FILL 3: MIXTO -->
+  <div class="fill-ex" data-a>
+    <p><strong>Essere o Avere? Completá según corresponda:</strong></p>
+    <div class="fill-item"><label>1. Io ______ il passaporto argentino. (tener)</label><input type="text" id="f3a" placeholder="?"><span class="result" id="r3a"></span></div>
+    <div class="fill-item"><label>2. Noi ______ a Roma! (estar)</label><input type="text" id="f3b" placeholder="?"><span class="result" id="r3b"></span></div>
+    <div class="fill-item"><label>3. Tu ______ due valigie? (tener)</label><input type="text" id="f3c" placeholder="?"><span class="result" id="r3c"></span></div>
+    <div class="fill-item"><label>4. Lei ______ spagnola. (ser)</label><input type="text" id="f3d" placeholder="?"><span class="result" id="r3d"></span></div>
+    <div class="fill-item"><label>5. Voi ______ la carta d'imbarco? (tener)</label><input type="text" id="f3e" placeholder="?"><span class="result" id="r3e"></span></div>
+    <div class="fill-item"><label>6. Il volo ______ in ritardo. (estar)</label><input type="text" id="f3f" placeholder="?"><span class="result" id="r3f"></span></div>
+    <button class="check-btn" onclick="checkFill3()">Verificar ✓</button>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- DIALOGOS -->
+<section id="dialogos">
+  <h2 class="section-title" data-a>Dialoghi all'aeroporto 💬</h2>
+  <p class="section-sub" data-a>Hacé clic en cada burbuja para ver la traducción.</p>
+
+  <div class="dialogo" data-a>
+    <h4>Diálogo 1: Al control de pasaportes</h4>
+    <div class="bubble-wrap">
+      <div class="b" onclick="this.classList.toggle('open')">
+        <div class="speaker">Agente</div>
+        <div class="it">Buongiorno. Il passaporto, per favore.</div>
+        <div class="es">Buenos días. El pasaporte, por favor.</div>
+      </div>
+      <div class="b right" onclick="this.classList.toggle('open')">
+        <div class="speaker">Turista</div>
+        <div class="it">Eccolo. Sono argentino/a.</div>
+        <div class="es">Aquí está. Soy argentino/a.</div>
+      </div>
+      <div class="b" onclick="this.classList.toggle('open')">
+        <div class="speaker">Agente</div>
+        <div class="it">Qual è il motivo del viaggio?</div>
+        <div class="es">¿Cuál es el motivo del viaje?</div>
+      </div>
+      <div class="b right" onclick="this.classList.toggle('open')">
+        <div class="speaker">Turista</div>
+        <div class="it">Sono qui per turismo. Ho una prenotazione in hotel.</div>
+        <div class="es">Estoy aquí de turismo. Tengo una reserva en el hotel.</div>
+      </div>
+      <div class="b" onclick="this.classList.toggle('open')">
+        <div class="speaker">Agente</div>
+        <div class="it">Quanti giorni rimane in Italia?</div>
+        <div class="es">¿Cuántos días se queda en Italia?</div>
+      </div>
+      <div class="b right" onclick="this.classList.toggle('open')">
+        <div class="speaker">Turista</div>
+        <div class="it">Dieci giorni. Grazie!</div>
+        <div class="es">Diez días. ¡Gracias!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogo" data-a>
+    <h4>Diálogo 2: Pidiendo información en el aeropuerto</h4>
+    <div class="bubble-wrap">
+      <div class="b right" onclick="this.classList.toggle('open')">
+        <div class="speaker">Turista</div>
+        <div class="it">Scusi, dov'è l'uscita B?</div>
+        <div class="es">Disculpe, ¿dónde está la salida B?</div>
+      </div>
+      <div class="b" onclick="this.classList.toggle('open')">
+        <div class="speaker">Impiegato</div>
+        <div class="it">È dritto, poi a sinistra.</div>
+        <div class="es">Es recto, luego a la izquierda.</div>
+      </div>
+      <div class="b right" onclick="this.classList.toggle('open')">
+        <div class="speaker">Turista</div>
+        <div class="it">Grazie! E il ritiro bagagli?</div>
+        <div class="es">¡Gracias! ¿Y la cinta de equipajes?</div>
+      </div>
+      <div class="b" onclick="this.classList.toggle('open')">
+        <div class="speaker">Impiegato</div>
+        <div class="it">Il ritiro bagagli è al piano -1, a destra degli ascensori.</div>
+        <div class="es">La cinta de equipajes está en el piso -1, a la derecha de los ascensores.</div>
+      </div>
+      <div class="b right" onclick="this.classList.toggle('open')">
+        <div class="speaker">Turista</div>
+        <div class="it">Perfetto! Ho anche una valigia grossa.</div>
+        <div class="es">¡Perfecto! También tengo una valija grande.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- COMPRENSION LECTORA -->
+<section>
+  <h2 class="section-title" data-a>Leggi i cartelli ✈️</h2>
+  <p class="section-sub" data-a>Leé el cartel del aeropuerto y respondé las preguntas.</p>
+
+  <div class="comprension" data-a>
+    <div class="cartel">
+      <p>🛫 <strong>AEROPORTO INTERNAZIONALE DI ROMA — FIUMICINO</strong></p>
+      <p>————————————————</p>
+      <p>➡ <strong>PARTENZE</strong> · Piano 2 · Gate A / B / C</p>
+      <p>⬅ <strong>ARRIVI</strong> · Piano 0 · Uscite 1–8</p>
+      <p>⬇ <strong>RITIRO BAGAGLI</strong> · Piano -1 · Nastri 1–12</p>
+      <p>🛃 <strong>DOGANA E CONTROLLO PASSAPORTI</strong> · Piano 0</p>
+      <p>ℹ️ <strong>INFORMAZIONI TURISTICHE</strong> · Hall centrale</p>
+    </div>
+
+    <div class="mc-question">
+      <p>1. ¿En qué piso están las partenze (salidas)?</p>
+      <span class="mc-option" onclick="checkMC(this,'Piano 2')">Piano 2</span>
+      <span class="mc-option" onclick="checkMC(this,'Piano 2')">Piano 0</span>
+      <span class="mc-option" onclick="checkMC(this,'Piano 2')">Piano -1</span>
+    </div>
+    <div class="mc-question">
+      <p>2. ¿Dónde está el ritiro bagagli (cinta de equipajes)?</p>
+      <span class="mc-option" onclick="checkMC(this,'Piano -1')">Piano 2</span>
+      <span class="mc-option" onclick="checkMC(this,'Piano -1')">Piano 0</span>
+      <span class="mc-option" onclick="checkMC(this,'Piano -1')">Piano -1</span>
+    </div>
+    <div class="mc-question">
+      <p>3. ¿Qué hay en la Hall centrale?</p>
+      <span class="mc-option" onclick="checkMC(this,'Hall centrale')">Dogana</span>
+      <span class="mc-option" onclick="checkMC(this,'Hall centrale')">Informazioni turistiche</span>
+      <span class="mc-option" onclick="checkMC(this,'Hall centrale')">Gate A/B/C</span>
+    </div>
+    <div class="mc-question">
+      <p>4. Si llegás a Roma y tenés que mostrar el pasaporte, ¿adónde vas?</p>
+      <span class="mc-option" onclick="checkMC(this,'dogana')">Piano 2 — Partenze</span>
+      <span class="mc-option" onclick="checkMC(this,'dogana')">Piano 0 — Dogana e Controllo Passaporti</span>
+      <span class="mc-option" onclick="checkMC(this,'dogana')">Piano -1 — Ritiro Bagagli</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- MATCHING -->
+<section>
+  <h2 class="section-title" data-a>Abbina! 🧩</h2>
+  <p class="section-sub" data-a>Seleccioná una palabra de la izquierda y luego su traducción de la derecha.</p>
+
+  <div class="matching-wrap" data-a>
+    <div class="match-col">
+      <h5>Italiano</h5>
+      <div class="match-item" data-match="el vuelo" onclick="matchSelect(this)">il volo</div>
+      <div class="match-item" data-match="el equipaje" onclick="matchSelect(this)">il bagaglio</div>
+      <div class="match-item" data-match="la aduana" onclick="matchSelect(this)">la dogana</div>
+      <div class="match-item" data-match="las llegadas" onclick="matchSelect(this)">gli arrivi</div>
+      <div class="match-item" data-match="la tarjeta de embarque" onclick="matchSelect(this)">la carta d'imbarco</div>
+      <div class="match-item" data-match="la salida" onclick="matchSelect(this)">l'uscita</div>
+    </div>
+    <div class="match-col">
+      <h5>Español</h5>
+      <div class="match-item" data-match="la aduana" onclick="matchSelect(this)">la aduana</div>
+      <div class="match-item" data-match="la tarjeta de embarque" onclick="matchSelect(this)">la tarjeta de embarque</div>
+      <div class="match-item" data-match="el vuelo" onclick="matchSelect(this)">el vuelo</div>
+      <div class="match-item" data-match="las llegadas" onclick="matchSelect(this)">las llegadas</div>
+      <div class="match-item" data-match="la salida" onclick="matchSelect(this)">la salida</div>
+      <div class="match-item" data-match="el equipaje" onclick="matchSelect(this)">el equipaje</div>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURE STRIP -->
+<div class="culture-strip" id="cultura">
+  <div class="culture-inner">
+    <div class="culture-icon">🛃</div>
+    <div class="culture-text">
+      <h3>Cultura: La dogana italiana</h3>
+      <p>Cuando llegás a Italia desde un país fuera de la Unión Europea (como Argentina), pasás por el <em>controllo passaporti</em> y luego por la <em>dogana</em>. Los vuelos de Schengen tienen salidas separadas: "niente da dichiarare" (nada que declarar, señal verde) o "merci da dichiarare" (señal roja). En el aeropuerto de Fiumicino (Roma) o Malpensa (Milán), hay carteles en italiano e inglés — ¡ahora podés leer los que están solo en italiano! Y acordate: el personal de aduana dice "Buongiorno" y espera que mostrés el pasaporte abierto en la foto.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Italiano Per Piacere · Viajeros · Módulo 1 — All'aeroporto</p>
+</footer>
+
+<script>
+// Progress bar
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement;
+  const pct=(s.scrollTop/(s.scrollHeight-s.clientHeight))*100;
+  document.getElementById('progress-fill').style.width=pct+'%';
+});
+
+// IntersectionObserver
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:0.1});
+document.querySelectorAll('[data-a]').forEach(el=>obs.observe(el));
+
+// Fill 1 — Articulos
+const fill1={f1a:'il',f1b:"l'",f1c:'gli',f1d:'la',f1e:"l'",f1f:'le',f1g:'un',f1h:"un'"};
+function checkFill1(){
+  Object.entries(fill1).forEach(([id,ans])=>{
+    const val=document.getElementById(id).value.trim().toLowerCase();
+    const r=document.getElementById('r'+id.slice(1));
+    r.textContent=val===ans?'✓':'✗ '+ans;
+    r.className='result '+(val===ans?'ok':'err');
+  });
+}
+
+// Fill 2 — Essere
+const fill2={f2a:'sono',f2b:'è',f2c:'siamo',f2d:'sei',f2e:'sono',f2f:'è'};
+function checkFill2(){
+  Object.entries(fill2).forEach(([id,ans])=>{
+    const val=document.getElementById(id).value.trim().toLowerCase();
+    const r=document.getElementById('r'+id.slice(1));
+    r.textContent=val===ans?'✓':'✗ '+ans;
+    r.className='result '+(val===ans?'ok':'err');
+  });
+}
+
+// Fill 3 — Essere/Avere mixto
+const fill3={f3a:'ho',f3b:'siamo',f3c:'hai',f3d:'è',f3e:'avete',f3f:'è'};
+function checkFill3(){
+  Object.entries(fill3).forEach(([id,ans])=>{
+    const val=document.getElementById(id).value.trim().toLowerCase();
+    const r=document.getElementById('r'+id.slice(1));
+    r.textContent=val===ans?'✓':'✗ '+ans;
+    r.className='result '+(val===ans?'ok':'err');
+  });
+}
+
+// Multiple choice
+function checkMC(el,correctKey){
+  const q=el.closest('.mc-question');
+  q.querySelectorAll('.mc-option').forEach(o=>{
+    o.classList.remove('sel','ok','err');
+    if(o.textContent.trim()===el.textContent.trim()||o===el) o.classList.add('sel');
+  });
+  const isOk=el.getAttribute('onclick').includes(correctKey)?
+    el.textContent.includes(correctKey.split(' ').slice(-1)[0]) : false;
+  // Simplified check: correct if it contains key phrase
+  let correct=false;
+  if(correctKey==='Piano 2') correct=el.textContent.includes('Piano 2');
+  else if(correctKey==='Piano -1') correct=el.textContent.includes('Piano -1');
+  else if(correctKey==='Hall centrale') correct=el.textContent.includes('Informazioni');
+  else if(correctKey==='dogana') correct=el.textContent.includes('Dogana');
+  el.classList.add(correct?'ok':'err');
+}
+
+// Matching
+let firstSel=null;
+function matchSelect(el){
+  if(el.classList.contains('matched')) return;
+  if(!firstSel){
+    document.querySelectorAll('.match-item').forEach(i=>i.classList.remove('selected'));
+    el.classList.add('selected');
+    firstSel=el;
+  } else {
+    if(el===firstSel){firstSel=null;el.classList.remove('selected');return;}
+    if(firstSel.dataset.match===el.dataset.match){
+      firstSel.classList.replace('selected','matched');
+      el.classList.add('matched');
+    } else {
+      firstSel.classList.add('wrong');
+      el.classList.add('wrong');
+      setTimeout(()=>{
+        firstSel.classList.remove('wrong','selected');
+        el.classList.remove('wrong');
+      },600);
+    }
+    firstSel=null;
+  }
+}
+</script>
+</body>
+</html>

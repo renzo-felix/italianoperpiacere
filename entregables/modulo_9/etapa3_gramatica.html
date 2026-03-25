@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="it">
 <head>
 <meta charset="UTF-8">
@@ -10,7 +10,7 @@
 :root{
   --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;
   --red:#cc4736;--teal:#78a6ba;--green:#528e74;--black:#1a1a18;--white:#ffffff;
-  --hdr:var(--green);--r:8px;
+  --hdr:var(--red);--r:8px;
   --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -18,50 +18,50 @@ html{scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6}
 body:not(.show-es) .es{display:none!important}
 .es{font-size:.82rem;color:#666;font-style:italic;display:block;margin-top:.2rem}
-nav{position:sticky;top:0;z-index:100;background:var(--black);display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:3px solid var(--red);box-shadow:0 2px 8px rgba(0,0,0,.06);display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
 nav::-webkit-scrollbar{display:none}
-nav a{color:var(--gold);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.75rem 1.1rem;white-space:nowrap;transition:background .2s}
-nav a:hover{background:rgba(255,255,255,.1)}
-nav a.active{background:var(--green);color:var(--white)}
-.page-header{background:var(--green);color:var(--white);padding:3rem 1.5rem 2.5rem;text-align:center;position:relative}
+nav a{color:var(--black);opacity:.55;text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.75rem 1.1rem;white-space:nowrap;transition:background .2s,opacity .2s}
+nav a:hover{opacity:1;background:rgba(204,71,54,.07)}
+nav a.active{opacity:1;color:var(--red);border-bottom:3px solid var(--red);margin-bottom:-3px}
+.page-header{background:#fde4e1;color:#1a1a18;padding:3rem 1.5rem 2.5rem;text-align:center;position:relative}
 .page-header .badge{display:inline-block;background:rgba(255,255,255,.2);border-radius:20px;padding:.25rem .85rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.85rem}
 .page-header h1{font-family:var(--fh);font-style:italic;font-size:2.4rem;margin-bottom:.5rem}
 .page-header p{opacity:.9;font-size:1.05rem}
-.toggle-btn{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:var(--white);border-radius:var(--r);padding:.45rem .9rem;font-family:var(--fb);font-size:.78rem;font-weight:600;cursor:pointer;transition:background .2s}
-.toggle-btn:hover{background:rgba(255,255,255,.35)}
+.toggle-btn{position:absolute;top:1rem;right:1rem;background:var(--red);border:1px solid #a8382a;color:var(--white);border-radius:var(--r);padding:.45rem .9rem;font-family:var(--fb);font-size:.78rem;font-weight:600;cursor:pointer;transition:background .2s}
+.toggle-btn:hover{background:#a8382a}
 main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem}
 section{margin-bottom:3rem}
-.section-title{font-family:var(--fh);font-style:italic;font-size:1.6rem;color:var(--green);margin-bottom:1.25rem;padding-bottom:.4rem;border-bottom:2px solid var(--cream-dk)}
+.section-title{font-family:var(--fh);font-style:italic;font-size:1.6rem;color:var(--red);margin-bottom:1.25rem;padding-bottom:.4rem;border-bottom:2px solid var(--cream-dk)}
 .section-intro{margin-bottom:1.1rem;font-size:.97rem}
 .gram-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
-.gram-table th{background:var(--green);color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
+.gram-table th{background:var(--red);color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
 .gram-table td{padding:.5rem .75rem;border-bottom:1px solid var(--cream-dk)}
 .gram-table tr:nth-child(even) td{background:rgba(0,0,0,.03)}
-.form{font-weight:600;color:var(--green)}
-.example-box{background:var(--white);border-left:4px solid var(--green);border-radius:0 var(--r) var(--r) 0;padding:.75rem 1rem;margin:.6rem 0;font-size:.95rem}
+.form{font-weight:600;color:var(--red)}
+.example-box{background:var(--white);border-left:4px solid var(--red);border-radius:0 var(--r) var(--r) 0;padding:.75rem 1rem;margin:.6rem 0;font-size:.95rem}
 .example-box .it{font-weight:600}
 .example-box .tr-small{font-size:.82rem;color:#777;font-style:italic}
 .inline-prac{background:var(--cream-dk);border-radius:var(--r);padding:1.1rem 1.25rem;margin-top:1.25rem}
-.inline-prac h4{font-family:var(--fh);font-style:italic;color:var(--green);margin-bottom:.85rem;font-size:1.1rem}
+.inline-prac h4{font-family:var(--fh);font-style:italic;color:var(--red);margin-bottom:.85rem;font-size:1.1rem}
 .prac-item{margin-bottom:.65rem;font-size:.95rem;display:flex;align-items:center;flex-wrap:wrap;gap:.4rem}
 .prac-input{border:1.5px solid var(--cream-dk);border-radius:6px;padding:.3rem .55rem;font-family:var(--fb);font-size:.92rem;background:var(--white);width:110px;transition:border .2s}
-.prac-input:focus{outline:none;border-color:var(--green)}
+.prac-input:focus{outline:none;border-color:var(--red)}
 .prac-item.correct .prac-input{border-color:var(--green);background:rgba(82,142,116,.1)}
 .prac-item.wrong .prac-input{border-color:var(--red);background:rgba(204,71,54,.08)}
 .prac-fb{font-size:.8rem;margin-left:.3rem}
 .prac-item.correct .prac-fb{color:var(--green)}
 .prac-item.wrong .prac-fb{color:var(--red)}
 .btn{border:none;border-radius:var(--r);padding:.5rem 1.1rem;font-family:var(--fb);font-size:.87rem;font-weight:600;cursor:pointer;transition:all .2s}
-.btn-primary{background:var(--green);color:var(--white)}
-.btn-primary:hover{filter:brightness(1.1)}
-.btn-ghost{background:transparent;border:1.5px solid var(--green);color:var(--green)}
-.btn-ghost:hover{background:var(--green);color:var(--white)}
+.btn-primary{background:var(--red);color:var(--white)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ghost{background:transparent;border:1.5px solid var(--red);color:var(--red)}
+.btn-ghost:hover{background:rgba(204,71,54,.1);color:var(--red)}
 .quiz-wrap{background:var(--white);border-radius:var(--r);padding:1.5rem;border:1px solid var(--cream-dk)}
 .quiz-q{margin-bottom:1.5rem}
 .quiz-q p{font-weight:600;margin-bottom:.7rem;font-size:.97rem}
 .quiz-opts{display:flex;flex-direction:column;gap:.45rem}
 .quiz-opt{background:var(--cream);border-radius:6px;padding:.6rem .9rem;cursor:pointer;font-size:.92rem;border:1.5px solid transparent;transition:all .2s}
-.quiz-opt:hover{border-color:var(--green)}
+.quiz-opt:hover{border-color:var(--red)}
 .quiz-opt.correct{background:rgba(82,142,116,.15);border-color:var(--green);color:var(--green)}
 .quiz-opt.wrong{background:rgba(204,71,54,.1);border-color:var(--red);color:var(--red)}
 .quiz-result{text-align:center;padding:1.25rem;font-size:1.1rem;font-weight:600;border-radius:var(--r);margin-top:1rem;display:none}
@@ -69,13 +69,13 @@ section{margin-bottom:3rem}
 .quiz-result.good{background:rgba(82,142,116,.15);color:var(--green)}
 .quiz-result.ok{background:rgba(239,207,127,.3);color:#7a5e00}
 .quiz-result.try{background:rgba(204,71,54,.1);color:var(--red)}
-.rule-box{background:rgba(82,142,116,.1);border:1px solid rgba(82,142,116,.3);border-radius:var(--r);padding:.85rem 1.1rem;margin:.8rem 0;font-size:.93rem}
-.rule-box strong{color:var(--green)}
+.rule-box{background:rgba(204,71,54,.07);border:1px solid rgba(204,71,54,.25);border-radius:var(--r);padding:.85rem 1.1rem;margin:.8rem 0;font-size:.93rem}
+.rule-box strong{color:var(--red)}
 footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px solid var(--cream-dk)}
 /* Bar vocab grid */
 .bar-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;margin:1rem 0}
-.bar-cat{background:var(--white);border-radius:var(--r);padding:.85rem;border:1px solid var(--cream-dk);border-top:3px solid var(--green)}
-.bar-cat h5{color:var(--green);font-weight:700;margin-bottom:.6rem;font-size:.9rem;text-transform:uppercase;letter-spacing:.03em}
+.bar-cat{background:var(--white);border-radius:var(--r);padding:.85rem;border:1px solid var(--cream-dk);border-top:3px solid var(--red)}
+.bar-cat h5{color:var(--red);font-weight:700;margin-bottom:.6rem;font-size:.9rem;text-transform:uppercase;letter-spacing:.03em}
 .bar-item{font-size:.88rem;padding:.2rem 0;border-bottom:1px solid var(--cream-dk);display:flex;justify-content:space-between}
 .bar-item:last-child{border-bottom:none}
 .bar-item .it{font-weight:600}
@@ -84,18 +84,32 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
 .pair-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;margin:1rem 0}
 .pair-card{background:var(--white);border-radius:var(--r);padding:.85rem;border:1px solid var(--cream-dk);text-align:center}
 .pair-card .row{display:flex;justify-content:space-around;margin:.4rem 0}
-.pair-card .word{font-size:1.1rem;font-weight:700;color:var(--green);background:var(--cream);padding:.3rem .7rem;border-radius:6px}
+.pair-card .word{font-size:1.1rem;font-weight:700;color:var(--red);background:var(--cream);padding:.3rem .7rem;border-radius:6px}
 .pair-card .meaning{font-size:.78rem;color:#888;margin-top:.15rem}
 /* Expressions */
 .expr-list{display:flex;flex-direction:column;gap:.5rem;margin:1rem 0}
 .expr-item{background:var(--white);border-radius:var(--r);padding:.75rem 1rem;border:1px solid var(--cream-dk);display:flex;gap:1rem;align-items:flex-start}
-.expr-phrase{font-weight:700;color:var(--green);min-width:160px;font-size:.97rem}
+.expr-phrase{font-weight:700;color:var(--red);min-width:160px;font-size:.97rem}
 .expr-use{font-size:.88rem;color:#555}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
 </style>
 </head>
 <body>
-<nav id="main-nav">
-  <a href="#articoli" class="active">Articoli Indet.</a>
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#articoli" class="active">Articoli Indet.</a>
   <a href="#bar">Al Bar</a>
   <a href="#doppie">Le Doppie</a>
   <a href="#espressioni">Espressioni</a>
@@ -103,6 +117,7 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
 </nav>
 
 <header class="page-header">
+  <img src="../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img">
   <button class="toggle-btn" id="toggleEs" onclick="toggleEs()">Mostra traduzioni</button>
   <div class="badge">Modulo 9 · Grammatica</div>
   <h1>Al bar</h1>
@@ -143,7 +158,7 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
       <div class="prac-item" data-ans="uno">___ spumante secco. <input class="prac-input" placeholder="..."></div>
     </div>
     <div style="margin-top:.85rem;display:flex;gap:.75rem">
-      <button class="btn btn-primary" onclick="checkPrac('prac1')">Verifica</button>
+      <button class="btn btn-primary" onclick="checkPrac('prac1')">Verificá</button>
       <button class="btn btn-ghost" onclick="resetPrac('prac1')">Ripristina</button>
     </div>
   </div>
@@ -272,7 +287,7 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
       <div class="prac-item" data-ans="prego">— Grazie! — ___! <input class="prac-input" placeholder="..."></div>
     </div>
     <div style="margin-top:.85rem;display:flex;gap:.75rem">
-      <button class="btn btn-primary" onclick="checkPrac('prac2')">Verifica</button>
+      <button class="btn btn-primary" onclick="checkPrac('prac2')">Verificá</button>
       <button class="btn btn-ghost" onclick="resetPrac('prac2')">Ripristina</button>
     </div>
   </div>
@@ -333,16 +348,19 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
 <footer><p>Italiano Per Piacere · Modulo 9 · <em>Al bar</em></p></footer>
 
 <script>
+(function(){
+
 let esVisible=false;
-function toggleEs(){esVisible=!esVisible;document.body.classList.toggle('show-es',esVisible);document.getElementById('toggleEs').textContent=esVisible?'Nascondi traduzioni':'Mostra traduzioni';}
-const secs=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('nav a');
+window.toggleEs=function(){esVisible=!esVisible;document.body.classList.toggle('show-es',esVisible);document.getElementById('toggleEs').textContent=esVisible?'Nascondi traduzioni':'Mostra traduzioni';}
+const secs=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('nav a:not(.nav-logo)');
 window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)c=s.id});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)});});
-function checkPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{const inp=item.querySelector('.prac-input');const ans=item.dataset.ans;const val=inp.value.trim().toLowerCase();item.classList.remove('correct','wrong');let fb=item.querySelector('.prac-fb');if(!fb){fb=document.createElement('span');fb.className='prac-fb';item.appendChild(fb);}if(val===ans){item.classList.add('correct');fb.textContent='✓';}else{item.classList.add('wrong');fb.textContent='✗ '+ans;}});}
-function resetPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{item.classList.remove('correct','wrong');item.querySelector('.prac-input').value='';const fb=item.querySelector('.prac-fb');if(fb)fb.textContent='';});}
+window.checkPrac=function(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{const inp=item.querySelector('.prac-input');const ans=item.dataset.ans;const val=inp.value.trim().toLowerCase();item.classList.remove('correct','wrong');let fb=item.querySelector('.prac-fb');if(!fb){fb=document.createElement('span');fb.className='prac-fb';item.appendChild(fb);}if(val===ans){item.classList.add('correct');fb.textContent='✓';}else{item.classList.add('wrong');fb.textContent='✗ '+ans;}});}
+window.resetPrac=function(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{item.classList.remove('correct','wrong');item.querySelector('.prac-input').value='';const fb=item.querySelector('.prac-fb');if(fb)fb.textContent='';});}
 const answers={q1:'c',q2:'b',q3:'c',q4:'b',q5:'b'};
 let selected={};
-function selectOpt(el,qid,opt){if(selected[qid])return;selected[qid]=opt;const opts=el.parentElement.querySelectorAll('.quiz-opt');opts.forEach(o=>o.style.pointerEvents='none');const correct=answers[qid];opts.forEach((o,i)=>{const k=['a','b','c'][i];if(k===correct)o.classList.add('correct');else if(k===opt)o.classList.add('wrong');});}
-function submitQuiz(){let score=0;Object.keys(answers).forEach(q=>{if(selected[q]===answers[q])score++;});const res=document.getElementById('quiz-result');res.classList.add('show');if(score>=4){res.className='quiz-result show good';res.textContent=`Bravissimo/a! ${score}/5 ✓`;}else if(score>=2){res.className='quiz-result show ok';res.textContent=`Bene! ${score}/5 — continua così.`;}else{res.className='quiz-result show try';res.textContent=`${score}/5 — Riprova! Rivedi le sezioni.`;}}
+window.selectOpt=function(el,qid,opt){if(selected[qid])return;selected[qid]=opt;const opts=el.parentElement.querySelectorAll('.quiz-opt');opts.forEach(o=>o.style.pointerEvents='none');const correct=answers[qid];opts.forEach((o,i)=>{const k=['a','b','c'][i];if(k===correct)o.classList.add('correct');else if(k===opt)o.classList.add('wrong');});}
+window.submitQuiz=function(){let score=0;Object.keys(answers).forEach(q=>{if(selected[q]===answers[q])score++;});const res=document.getElementById('quiz-result');res.classList.add('show');if(score>=4){res.className='quiz-result show good';res.textContent=`Bravissimo/a! ${score}/5 ✓`;}else if(score>=2){res.className='quiz-result show ok';res.textContent=`Bene! ${score}/5 — continua così.`;}else{res.className='quiz-result show try';res.textContent=`${score}/5 — Riprova! Rivedi le sezioni.`;}}
+})();
 </script>
 </body>
 </html>

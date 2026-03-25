@@ -5,10 +5,10 @@
 ---
 
 TIPO: Video
-FUENTE SUGERIDA: YouTube — buscar "prenotare hotel in italiano A1" o "Coffee Break Italian hotel"
-URL SUGERIDA: https://www.youtube.com/results?search_query=prenotare+camera+hotel+italiano+A1
-TÍTULO: Una notte a Roma — Prenotare una camera d'albergo
-DESCRIPCIÓN: Un vídeo donde se muestra una conversación en la recepción de un hotel italiano: cómo pedir una habitación, preguntar el precio, dar datos personales (nombre, nacionalidad, número de noches). Ideal para activar vocabulario de alojamiento y los números 100–1000 antes de la unidad.
+FUENTE: YouTube — LearnAmo (@LearnAmo · +1M suscriptores)
+URL: https://www.youtube.com/watch?v=dCuXLEapz0k
+TÍTULO: "Dialogo in HOTEL: Come Prenotare una Camera d'ALBERGO in Italia (Vocabolario, Espressioni, Verbi)" — LearnAmo
+DESCRIPCIÓN: Vídeo de LearnAmo sobre cómo prenotare una camera d'albergo en Italia: vocabulario, expresiones y verbos clave en un diálogo completo en la recepción del hotel. Cubre exactamente el contenido de la unidad: tipos de habitación (singola/doppia/matrimoniale), precios (números 100–1000), datos personales y los verbos regulares en -ARE/-ERE/-IRE. LearnAmo es el canal de italiano más grande de YouTube, con explicaciones claras y accesibles para todos los niveles.
 
 ---
 

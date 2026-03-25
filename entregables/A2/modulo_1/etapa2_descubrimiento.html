@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unità 1 — W gli sposi! · Descubrimiento | Italiano Per Piacere A2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;
+  --gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--red-dk:#a8382a;--red-txt:#7a1f14;
+  --teal:#78a6ba;--green:#528e74;--green-dk:#3d6b58;
+  --black:#1a1a18;--white:#ffffff;
+  --hero:var(--red);--hero-dk:var(--red-dk);--hero-txt:var(--red-txt);
+  --fh:'Playfair Display',Georgia,serif;
+  --fb:'Outfit',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);overflow-x:hidden}
+body.hide-es .es{display:none}
+
+/* HERO */
+.hero{min-height:92vh;background:#fde4e1;border-bottom:3px solid #cc4736;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;text-align:center;padding:2rem 1.5rem}
+.hero::before,.hero::after{display:none}
+.hero-circle{position:absolute;border-radius:50%;opacity:.12;pointer-events:none;transition:transform .6s ease}
+.hero-circle.c1{width:500px;height:500px;background:var(--white);top:-150px;right:-150px}
+.hero-circle.c2{width:320px;height:320px;background:var(--gold);bottom:-80px;left:-80px}
+.hero-circle.c3{width:200px;height:200px;background:var(--white);top:30%;left:5%}
+.hero-badge{background:rgba(0,0,0,.07);color:var(--black);font-size:.75rem;font-weight:700;letter-spacing:.12em;padding:.4rem 1.1rem;border-radius:2rem;margin-bottom:1.2rem;backdrop-filter:blur(6px);text-transform:uppercase}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:clamp(2.4rem,7vw,4.5rem);color:var(--black);line-height:1.1;margin-bottom:.8rem;text-shadow:0 3px 20px rgba(0,0,0,.2)}
+.hero-sub{color:rgba(0,0,0,.65);font-size:clamp(.95rem,2.5vw,1.15rem);max-width:560px;line-height:1.6;margin-bottom:2rem}
+.song-box{background:rgba(255,255,255,.95);border-radius:1.2rem;padding:1.4rem 2rem;border:1px solid rgba(0,0,0,.08);max-width:460px;margin:0 auto}
+.song-box .song-title{font-family:var(--fh);font-style:italic;font-size:1.4rem;color:var(--black);margin-bottom:.2rem}
+.song-box .song-artist{color:rgba(0,0,0,.7);font-size:.92rem;margin-bottom:.8rem}
+.song-box a{display:inline-block;background:var(--gold);color:var(--black);font-weight:700;font-size:.85rem;padding:.55rem 1.4rem;border-radius:2rem;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.song-box a:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.2)}
+
+/* TOGGLE */
+#toggle-btn{position:fixed;top:1rem;right:1rem;z-index:500;background:#f5cdc8;color:var(--black);border:none;border-radius:2rem;padding:.45rem 1.1rem;font-family:var(--fb);font-size:.8rem;font-weight:700;cursor:pointer;box-shadow:0 3px 12px rgba(0,0,0,.2)}
+
+/* SECTIONS */
+.section{max-width:880px;margin:0 auto;padding:4rem 1.5rem}
+.sec-tag{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--hero);margin-bottom:.4rem}
+.sec-title{font-family:var(--fh);font-style:italic;font-size:clamp(1.6rem,4vw,2.2rem);color:var(--black);margin-bottom:.4rem;line-height:1.2}
+.sec-sub{color:#666;font-size:.9rem;line-height:1.6;margin-bottom:2rem}
+.es{color:#888;font-size:.85rem;font-style:italic}
+[data-a]{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+[data-a].visible{opacity:1;transform:none}
+[data-stagger]>*{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+[data-stagger].visible>*{opacity:1;transform:none}
+[data-stagger].visible>*:nth-child(1){transition-delay:.05s}
+[data-stagger].visible>*:nth-child(2){transition-delay:.12s}
+[data-stagger].visible>*:nth-child(3){transition-delay:.19s}
+[data-stagger].visible>*:nth-child(4){transition-delay:.26s}
+[data-stagger].visible>*:nth-child(5){transition-delay:.33s}
+[data-stagger].visible>*:nth-child(6){transition-delay:.40s}
+[data-stagger].visible>*:nth-child(7){transition-delay:.47s}
+[data-stagger].visible>*:nth-child(8){transition-delay:.54s}
+
+/* WORD GRID */
+.word-grid{display:flex;flex-wrap:wrap;gap:.65rem;margin:1.2rem 0}
+.wcard{padding:.55rem 1.1rem;border-radius:2rem;border:2px solid var(--cream-dk);background:var(--white);font-size:.88rem;font-weight:600;cursor:pointer;transition:all .25s;user-select:none}
+.wcard:hover{border-color:var(--hero);transform:translateY(-2px)}
+.wcard.ok{background:#f5cdc8;color:var(--black);border-color:var(--hero)}
+.wcard.trap{background:#fde8e5;border-color:var(--red-dk);text-decoration:line-through;color:#999}
+.grid-feedback{font-size:.85rem;font-weight:700;margin-top:.8rem;min-height:1.2rem;color:var(--hero)}
+.grid-btn{background:#f5cdc8;color:var(--black);border:none;border-radius:2rem;padding:.5rem 1.4rem;font-family:var(--fb);font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.6rem;transition:background .2s}
+.grid-btn:hover{background:var(--red-dk)}
+
+/* VOCAB CARDS */
+.vcard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:1.2rem 0}
+.vcard{background:var(--white);border-radius:1rem;padding:1.3rem 1.2rem;border:2px solid var(--cream-dk);cursor:pointer;transition:all .25s;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.vcard:hover{border-color:var(--hero);transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.1)}
+.vcard .vit{font-size:1.15rem;font-weight:700;color:var(--hero);margin-bottom:.3rem}
+.vcard .ves{color:#777;font-size:.82rem;font-style:italic}
+.vcard .vex{font-size:.83rem;color:#555;margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--cream-dk);display:none}
+.vcard.open .vex{display:block}
+.vcard .vtag{font-size:.7rem;font-weight:700;background:var(--cream-dk);border-radius:.25rem;padding:.1rem .4rem;display:inline-block;margin-bottom:.5rem;color:#666}
+
+/* DISCOVERY BOX */
+.disco-box{background:var(--white);border-radius:1.2rem;padding:1.6rem;border:2px solid var(--cream-dk);box-shadow:0 4px 16px rgba(0,0,0,.07)}
+.disco-box h4{font-family:var(--fh);font-style:italic;color:var(--hero);margin-bottom:1rem;font-size:1.15rem}
+.disco-scheme{display:grid;grid-template-columns:auto 1fr;gap:.5rem 1rem;align-items:center;font-size:.9rem}
+.disco-scheme .label{font-weight:700;color:var(--hero);text-align:right;white-space:nowrap}
+.disco-scheme .val{background:var(--cream);border-radius:.4rem;padding:.4rem .8rem;font-size:.88rem}
+.disco-scheme .val em{color:var(--hero);font-style:normal;font-weight:700}
+
+/* TABLE */
+.gtable{width:100%;border-collapse:collapse;margin:1.2rem 0;border-radius:.7rem;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.gtable th{background:#fbc8c2;color:#7a1f14;padding:.7rem 1rem;text-align:center;font-size:.82rem;letter-spacing:.05em}
+.gtable td{padding:.65rem 1rem;border-bottom:1px solid var(--cream-dk);font-size:.9rem;text-align:center;background:var(--white)}
+.gtable tr:nth-child(even) td{background:#fef0ee}
+.gtable tr:last-child td{border:none}
+.gtable tr:hover td{background:var(--cream)}
+.gtable td:first-child{font-weight:700;color:var(--hero);text-align:left}
+
+/* FILL BLANKS */
+.fill-box{background:var(--white);border-radius:1.2rem;padding:1.6rem;border:2px solid var(--cream-dk);box-shadow:0 4px 16px rgba(0,0,0,.07)}
+.fill-box h4{font-family:var(--fh);font-style:italic;color:var(--hero);margin-bottom:1rem;font-size:1.1rem}
+.fill-row{margin:.7rem 0;font-size:.92rem;line-height:1.9;display:flex;flex-wrap:wrap;align-items:center;gap:.3rem}
+.fill-input{border:none;border-bottom:2.5px solid var(--hero);background:transparent;padding:.1rem .5rem;font-family:var(--fb);font-size:.9rem;width:130px;outline:none;color:var(--black)}
+.fill-input.ok{border-color:var(--green);color:var(--green-dk)}
+.fill-input.err{border-color:var(--red);color:var(--red)}
+.fill-btn{background:#f5cdc8;color:var(--black);border:none;border-radius:2rem;padding:.5rem 1.4rem;font-family:var(--fb);font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.8rem;transition:background .2s}
+.fill-btn:hover{background:var(--red-dk)}
+.fill-fb{font-size:.83rem;margin-top:.5rem;font-weight:600;color:var(--hero);min-height:1.1rem}
+
+/* DIALOGUE */
+.dial-box{background:var(--white);border-radius:1.2rem;padding:1.6rem;box-shadow:0 4px 16px rgba(0,0,0,.07);border:2px solid var(--cream-dk)}
+.dial-box h4{font-family:var(--fh);font-style:italic;color:var(--hero);margin-bottom:1rem;font-size:1.1rem}
+.bubble-row{margin:.7rem 0;display:flex;gap:.8rem;align-items:flex-start}
+.bubble-row.b{flex-direction:row-reverse}
+.bubble-avatar{width:36px;height:36px;border-radius:50%;background:#f5cdc8;color:var(--black);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;flex-shrink:0}
+.bubble-row.b .bubble-avatar{background:var(--cream-dk);color:var(--black)}
+.bubble{background:var(--cream);border-radius:1rem;padding:.75rem 1rem;max-width:420px;font-size:.9rem;line-height:1.5;cursor:pointer}
+.bubble-row.b .bubble{background:var(--cream-dk)}
+.bubble .btr{display:none;font-size:.78rem;color:#888;font-style:italic;margin-top:.4rem;border-top:1px solid rgba(0,0,0,.08);padding-top:.4rem}
+.bubble.show .btr{display:block}
+.bubble strong{color:var(--hero)}
+
+/* CULTURE STRIP */
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:4px solid var(--hero-dk);padding:3.5rem 1.5rem;text-align:center}
+.culture-inner{max-width:700px;margin:0 auto}
+.culture h3{font-family:var(--fh);font-style:italic;font-size:1.8rem;color:var(--hero-txt);margin-bottom:.8rem}
+.culture p{color:#555;font-size:.92rem;line-height:1.7;max-width:580px;margin:0 auto .6rem}
+.culture-facts{display:flex;justify-content:center;gap:2rem;margin-top:1.5rem;flex-wrap:wrap}
+.cfact{background:var(--white);border-radius:.8rem;padding:1rem 1.3rem;min-width:130px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.cfact .cnum{font-family:var(--fh);font-size:1.8rem;color:var(--hero);font-style:italic}
+.cfact .clabel{font-size:.75rem;color:#777;margin-top:.2rem}
+</style>
+</head>
+<body>
+
+<button id="toggle-btn" onclick="toggleEs()">ES 👁</button>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-circle c1"></div>
+  <div class="hero-circle c2"></div>
+  <div class="hero-circle c3"></div>
+  <div class="hero-badge">A2 · Unità 1 · Canzone</div>
+  <h1>W gli sposi! 💍</h1>
+  <p class="hero-sub">Festeggiamo, facciamo auguri e impariamo come funziona il matrimonio all'italiana.</p>
+  <div class="song-box" data-a>
+    <div class="song-title">Felicità</div>
+    <div class="song-artist">Al Bano &amp; Romina Power · Sanremo 1982</div>
+    <a href="https://youtu.be/O9vbFtqfLl4" target="_blank">▶ Ascolta su YouTube</a>
+  </div>
+</section>
+
+<!-- SECTION 1: Word grid — festività -->
+<section style="background:var(--cream-dk);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Vocabolario</div>
+  <h2 class="sec-title" data-a>Le parole delle feste</h2>
+  <p class="sec-sub es" data-a>¿Cuáles de estas palabras tienen relación con celebraciones y eventos especiales? Selecciona solo las que pertenecen al mundo de las fiestas.</p>
+  <div class="word-grid" id="wg1" data-stagger>
+    <div class="wcard ok" data-ok>matrimonio</div>
+    <div class="wcard trap" data-trap>autobus</div>
+    <div class="wcard ok" data-ok>festeggiare</div>
+    <div class="wcard ok" data-ok>auguri</div>
+    <div class="wcard trap" data-trap>semaforo</div>
+    <div class="wcard ok" data-ok>regalo</div>
+    <div class="wcard ok" data-ok>sposi</div>
+    <div class="wcard trap" data-trap>scaffale</div>
+    <div class="wcard ok" data-ok>cerimonia</div>
+    <div class="wcard ok" data-ok>brindisi</div>
+    <div class="wcard trap" data-trap>fattura</div>
+    <div class="wcard ok" data-ok>compleanno</div>
+  </div>
+  <button class="grid-btn" onclick="checkGrid('wg1')">Verifica ✓</button>
+  <div class="grid-feedback" id="wg1-fb"></div>
+</div>
+</section>
+
+<!-- SECTION 2: Vocab cards — mesi, stagioni, auguri -->
+<section style="background:var(--cream);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Lessico</div>
+  <h2 class="sec-title" data-a>Auguri per ogni occasione 🎉</h2>
+  <p class="sec-sub es" data-a>Toca cada tarjeta para ver un ejemplo de uso en contexto.</p>
+  <div class="vcard-grid" data-stagger>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">auguri</div>
+      <div class="vit">Auguri!</div>
+      <div class="ves">¡Felicidades! / ¡Que te vaya bien!</div>
+      <div class="vex">Uso general para cualquier ocasión. — <em>"Auguri per il tuo compleanno!"</em></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">matrimonio</div>
+      <div class="vit">Congratulazioni!</div>
+      <div class="ves">¡Enhorabuena! / ¡Felicitaciones!</div>
+      <div class="vex">Para logros importantes: laurea, matrimonio, promozione. — <em>"Congratulazioni, sposi!"</em></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">esame</div>
+      <div class="vit">In bocca al lupo!</div>
+      <div class="ves">¡Buena suerte! (lit. "en la boca del lobo")</div>
+      <div class="vex">Respuesta: <em>"Crepi!"</em> (¡Que reviente!). Se usa antes de exámenes o pruebas difíciles.</div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">brindisi</div>
+      <div class="vit">Cin cin! / Salute!</div>
+      <div class="ves">¡Salud! (al brindar)</div>
+      <div class="vex">En brindis formales: <em>"Salute!"</em>. Entre amigos: <em>"Cin cin!"</em>. También: <em>"Alla salute!"</em></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">regalo</div>
+      <div class="vit">fare un regalo</div>
+      <div class="ves">hacer un regalo</div>
+      <div class="vex"><em>"Ti ho fatto un regalo!"</em> — ¡Te hice un regalo! Verbo: <strong>regalare</strong> = regalar.</div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">festività</div>
+      <div class="vit">il brindisi</div>
+      <div class="ves">el brindis</div>
+      <div class="vex"><em>"Facciamo un brindisi agli sposi!"</em> — ¡Brindemos por los novios! Verbo: <strong>brindare</strong>.</div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">stagioni</div>
+      <div class="vit">la bomboniera</div>
+      <div class="ves">el regalo de recuerdo de la boda</div>
+      <div class="vex">Pequeño regalo que los novios dan a sus invitados. <em>"Che bella bomboniera!"</em></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">cerimonia</div>
+      <div class="vit">la lista nozze</div>
+      <div class="ves">la lista de boda</div>
+      <div class="vex">Equivalente a la lista de bodas española. <em>"Hanno fatto la lista nozze in quel negozio."</em></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- SECTION 3: quello e bello discovery -->
+<section style="background:var(--cream-dk);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Grammatica · Scoperta</div>
+  <h2 class="sec-title" data-a>Quello e bello — le forme speciali</h2>
+  <p class="sec-sub es" data-a>Observa los patrones: ¿ves cómo cambian según el artículo del sustantivo?</p>
+  <div class="disco-box" data-a>
+    <h4>Schema: quello / bello + sostantivo</h4>
+    <table class="gtable">
+      <thead><tr><th>Articolo</th><th>quello</th><th>bello</th><th class="es">Ejemplo</th></tr></thead>
+      <tbody>
+        <tr><td>il</td><td><strong>quel</strong></td><td><strong>bel</strong></td><td class="es"><em>quel vestito / un bel vestito</em></td></tr>
+        <tr><td>lo / l' (m.)</td><td><strong>quello / quell'</strong></td><td><strong>bello / bell'</strong></td><td class="es"><em>quello sposo / bell'uomo</em></td></tr>
+        <tr><td>la / l' (f.)</td><td><strong>quella / quell'</strong></td><td><strong>bella / bell'</strong></td><td class="es"><em>quella sposa / bell'amica</em></td></tr>
+        <tr><td>i</td><td><strong>quei</strong></td><td><strong>bei</strong></td><td class="es"><em>quei fiori / bei fiori</em></td></tr>
+        <tr><td>gli</td><td><strong>quegli</strong></td><td><strong>begli</strong></td><td class="es"><em>quegli sposi / begli occhi</em></td></tr>
+        <tr><td>le</td><td><strong>quelle</strong></td><td><strong>belle</strong></td><td class="es"><em>quelle scarpe / belle scarpe</em></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.82rem;color:#666;margin-top:.8rem">💡 <em>Regola:</em> le forme cambiano SOLO quando <strong>precedono</strong> il sostantivo. Dopo il verbo essere, si usano le forme normali: <em>Il vestito è bello / Lo sposo è quello.</em></p>
+  </div>
+
+  <!-- Fill blanks: quello e bello -->
+  <div class="fill-box" id="fill1" style="margin-top:1.5rem" data-a>
+    <h4>Prova tu! — Quello e bello</h4>
+    <p class="es" style="font-size:.83rem;margin-bottom:.8rem">Completa con la forma correcta:</p>
+    <div class="fill-row">1. Guarda <input class="fill-input" data-ans="quell'" placeholder="quello+l'"> abito bianco! È stupendo.</div>
+    <div class="fill-row">2. Che <input class="fill-input" data-ans="bei" placeholder="bello+i"> fiori hai portato!</div>
+    <div class="fill-row">3. <input class="fill-input" data-ans="quegli" placeholder="quello+gli"> sposi si sono conosciuti all'università.</div>
+    <div class="fill-row">4. Ho comprato un <input class="fill-input" data-ans="bel" placeholder="bello+il"> regalo per loro.</div>
+    <div class="fill-row">5. <input class="fill-input" data-ans="quella" placeholder="quello+la"> cerimonia è stata bellissima.</div>
+    <button class="fill-btn" onclick="checkFill('fill1')">Controlla ✓</button>
+    <div class="fill-fb" id="fill1-fb"></div>
+  </div>
+</div>
+</section>
+
+<!-- SECTION 4: Pronomi diretti -->
+<section style="background:var(--cream);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Grammatica · Pronomi</div>
+  <h2 class="sec-title" data-a>I pronomi diretti a A2</h2>
+  <p class="sec-sub es" data-a>Ya los conoces del A1. Ahora los usamos con el passato prossimo — ¡y el participio cambia!</p>
+
+  <div class="disco-box" data-a>
+    <h4>Pronomi diretti — posizione e concordanza</h4>
+    <table class="gtable">
+      <thead><tr><th>Pronome</th><th>Prima del verbo</th><th>Con infinito</th><th>Con pp (concordanza)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>lo</strong> (it/lo masch.)</td><td><em>Lo chiamo.</em></td><td><em>Voglio chiamarlo.</em></td><td><em>L'ho chiamato.</em></td></tr>
+        <tr><td><strong>la</strong> (lei/la femm.)</td><td><em>La cerco.</em></td><td><em>Devo cercarla.</em></td><td><em>L'ho cercata.</em></td></tr>
+        <tr><td><strong>li</strong> (loro masch.)</td><td><em>Li vedo.</em></td><td><em>Posso vederli.</em></td><td><em>Li ho visti.</em></td></tr>
+        <tr><td><strong>le</strong> (loro femm.)</td><td><em>Le compro.</em></td><td><em>Vuole comprarle.</em></td><td><em>Le ho comprate.</em></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.82rem;color:#666;margin-top:.8rem">⚠️ <strong>Concordanza al passato:</strong> quando il pronome diretto precede il verbo, il participio concorda in genere e numero con il pronome. <em>Ho comprat<strong>o</strong> i fiori → Li ho comprat<strong>i</strong>.</em></p>
+  </div>
+</div>
+</section>
+
+<!-- SECTION 5: Verbi riflessivi al passato -->
+<section style="background:var(--cream-dk);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Grammatica · Riflessivi</div>
+  <h2 class="sec-title" data-a>I riflessivi al passato prossimo</h2>
+  <p class="sec-sub es" data-a>Los verbos reflexivos SIEMPRE usan ESSERE como auxiliar al passato prossimo.</p>
+
+  <div class="disco-box" data-a>
+    <h4>Struttura: ESSERE + participio (concorda con soggetto)</h4>
+    <table class="gtable">
+      <thead><tr><th>Pronome</th><th>alzarsi (esempio)</th><th class="es">¿Qué pasa con el participio?</th></tr></thead>
+      <tbody>
+        <tr><td>io (m.)</td><td><em>mi sono alzat<strong>o</strong></em></td><td class="es">concuerda: masculino singular</td></tr>
+        <tr><td>io (f.)</td><td><em>mi sono alzat<strong>a</strong></em></td><td class="es">concuerda: femenino singular</td></tr>
+        <tr><td>tu (m.)</td><td><em>ti sei alzat<strong>o</strong></em></td><td class="es">mismo patrón</td></tr>
+        <tr><td>noi (misti)</td><td><em>ci siamo alzat<strong>i</strong></em></td><td class="es">plural masculino por defecto</td></tr>
+        <tr><td>voi (f.)</td><td><em>vi siete alzat<strong>e</strong></em></td><td class="es">plural femenino</td></tr>
+        <tr><td>loro (misti)</td><td><em>si sono alzat<strong>i</strong></em></td><td class="es">plural masculino por defecto</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="vcard-grid" style="margin-top:1.5rem" data-stagger>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">riflessivo</div>
+      <div class="vit">svegliarsi</div>
+      <div class="ves">despertarse</div>
+      <div class="vex"><em>"Mi sono svegliata presto per il matrimonio."</em></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">riflessivo</div>
+      <div class="vit">vestirsi</div>
+      <div class="ves">vestirse</div>
+      <div class="vex"><em>"Si è vestita con un abito lungo bianco."</em></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">riflessivo</div>
+      <div class="vit">innamorarsi</div>
+      <div class="ves">enamorarse</div>
+      <div class="vex"><em>"Si sono innamorati a Venezia tre anni fa."</em></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">riflessivo</div>
+      <div class="vit">sposarsi</div>
+      <div class="ves">casarse</div>
+      <div class="vex"><em>"Si sono sposati in giugno, la stagione dei matrimoni."</em></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">riflessivo</div>
+      <div class="vit">divertirsi</div>
+      <div class="ves">divertirse / pasarlo bien</div>
+      <div class="vex"><em>"Ci siamo divertiti tantissimo alla festa!"</em></div>
+    </div>
+    <div class="vcard" onclick="this.classList.toggle('open')">
+      <div class="vtag">riflessivo</div>
+      <div class="vit">salutarsi</div>
+      <div class="ves">saludarse / despedirse</div>
+      <div class="vex"><em>"Alla fine ci siamo salutati con un abbraccio."</em></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- SECTION 6: Dialogue -->
+<section style="background:var(--cream);padding:4rem 0">
+<div class="section">
+  <div class="sec-tag">Dialogo</div>
+  <h2 class="sec-title" data-a>Alla festa di matrimonio 💒</h2>
+  <p class="sec-sub es" data-a>Toca cada burbuja para ver la traducción.</p>
+  <div class="dial-box" data-a>
+    <h4>Giulia incontra Carlo al matrimonio di Sofia e Marco</h4>
+    <div class="bubble-row">
+      <div class="bubble-avatar">G</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        Ciao Carlo! Che bel matrimonio! Ti sei divertito?
+        <div class="btr">¡Hola Carlo! ¡Qué boda tan bonita! ¿Lo pasaste bien?</div>
+      </div>
+    </div>
+    <div class="bubble-row b">
+      <div class="bubble-avatar">C</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        Sì, tantissimo! Mi sono emozionato durante la cerimonia. <strong>Quell'</strong>abbraccio degli sposi era bellissimo!
+        <div class="btr">¡Sí, muchísimo! Me emocioné durante la ceremonia. ¡Ese abrazo de los novios era precioso!</div>
+      </div>
+    </div>
+    <div class="bubble-row">
+      <div class="bubble-avatar">G</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        Anch'io! E hai visto la torta? <strong>L'</strong>ha fatta la mamma di Sofia — <strong>l'</strong>ho mangiata tutta!
+        <div class="btr">¡Yo también! ¿Y viste la tarta? La hizo la mamá de Sofia — ¡me la comí entera!</div>
+      </div>
+    </div>
+    <div class="bubble-row b">
+      <div class="bubble-avatar">C</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        Haha! Hai comprato un regalo? Io ho preso <strong>quei</strong> <strong>bei</strong> bicchieri di cristallo dalla lista nozze.
+        <div class="btr">¡Haha! ¿Compraste un regalo? Yo tomé esas bonitas copas de cristal de la lista de bodas.</div>
+      </div>
+    </div>
+    <div class="bubble-row">
+      <div class="bubble-avatar">G</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        Che buon'idea! Io invece <strong>li</strong> ho sorpresi con un viaggio a Venezia. <strong>Lo</strong> sapevi che si sono conosciuti lì?
+        <div class="btr">¡Qué buena idea! Yo en cambio los sorprendí con un viaje a Venecia. ¿Sabías que se conocieron allí?</div>
+      </div>
+    </div>
+    <div class="bubble-row b">
+      <div class="bubble-avatar">C</div>
+      <div class="bubble" onclick="this.classList.toggle('show')">
+        No, non <strong>lo</strong> sapevo! Davvero romantico. Comunque — <strong>auguri</strong> a loro, e in bocca al lupo a noi per trovare parcheggio!
+        <div class="btr">¡No, no lo sabía! Verdaderamente romántico. De todas formas — ¡felicidades a ellos, y buena suerte a nosotros para encontrar aparcamiento!</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CULTURE STRIP -->
+<section class="culture">
+  <div class="culture-inner">
+    <h3>Il matrimonio in Italia 💍</h3>
+    <p>Sposarsi in Italia è un evento molto elaborato. La tradizione vuole che la cerimonia sia seguita da un banchetto lunghissimo — spesso 5 o 6 portate — con musica e balli fino a tarda notte.</p>
+    <p>Esistono precise regole non scritte: gli invitati portano buste con soldi invece di regali fisici, le bomboniere vengono consegnate a ogni ospite, e il "lancio del riso" (o dei petali) all'uscita dalla chiesa è un rituale immancabile.</p>
+    <p>La <em>lista nozze</em> è comune nei centri commerciali o negozi specializzati. Non è maleducazione regalarci qualcosa dalla lista — è anzi molto apprezzato!</p>
+    <div class="culture-facts">
+      <div class="cfact"><div class="cnum">~200</div><div class="clabel">invitati in media</div></div>
+      <div class="cfact"><div class="cnum">giugno</div><div class="clabel">mese preferito</div></div>
+      <div class="cfact"><div class="cnum">10h+</div><div class="clabel">durata del ricevimento</div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleEs(){
+  document.body.classList.toggle('hide-es');
+  document.getElementById('toggle-btn').textContent=
+    document.body.classList.contains('hide-es')?'ES 🙈':'ES 👁';
+}
+
+// Parallax hero circles
+document.addEventListener('mousemove',e=>{
+  const x=(e.clientX/window.innerWidth-.5)*18;
+  const y=(e.clientY/window.innerHeight-.5)*18;
+  document.querySelectorAll('.hero-circle').forEach((c,i)=>{
+    const f=(i+1)*.4;
+    c.style.transform=`translate(${x*f}px,${y*f}px)`;
+  });
+});
+
+// Intersection Observer
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}
+  });
+},{threshold:.12});
+document.querySelectorAll('[data-a],[data-stagger]').forEach(el=>io.observe(el));
+
+// Word grid
+function checkGrid(id){
+  const grid=document.getElementById(id);
+  const cards=grid.querySelectorAll('.wcard');
+  let ok=0,tot=grid.querySelectorAll('.wcard[data-ok]').length;
+  cards.forEach(c=>{
+    c.classList.remove('ok','trap');
+    if(c.dataset.ok!==undefined){c.classList.add('ok');ok++}
+    else{c.classList.add('trap')}
+  });
+  document.getElementById(id+'-fb').textContent='✅ '+ok+' parole delle feste trovate!';
+}
+
+// Fill blanks
+function checkFill(id){
+  const box=document.getElementById(id);
+  const inputs=box.querySelectorAll('.fill-input');
+  let ok=0;
+  inputs.forEach(inp=>{
+    inp.classList.remove('ok','err');
+    if(inp.value.toLowerCase().trim()===inp.dataset.ans){inp.classList.add('ok');ok++}
+    else if(inp.value.trim()){inp.classList.add('err')}
+  });
+  document.getElementById(id+'-fb').textContent=ok===inputs.length?'🎉 Perfetto!':'👀 '+ok+'/'+inputs.length+' corretti.';
+}
+</script>
+</body>
+</html>

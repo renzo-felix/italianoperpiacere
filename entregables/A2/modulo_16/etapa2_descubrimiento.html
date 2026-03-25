@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Módulo 16 A2 — Etapa 2: Descubrimiento</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--teal:#78a6ba;--teal-dk:#5a8ea0;
+  --green:#528e74;--green-dk:#3d6b58;--black:#1a1a18;--white:#ffffff;
+  --mod:var(--amber);--mod-dk:var(--amber-dk);
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.7;overflow-x:hidden}
+#prog-bar{position:fixed;bottom:0;left:0;width:0%;height:5px;
+  background:linear-gradient(90deg,var(--amber),var(--amber-dk));z-index:999;transition:width .3s}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #EFCF7F;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#c8940a;border-bottom-color:#EFCF7F}
+.hero{background:#fef9e8;border-bottom:3px solid #EFCF7F;
+  color:var(--black);padding:72px 32px 60px;text-align:center;position:relative;overflow:hidden;min-height:300px}
+.hero-circles span{display:none}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:2.6rem;margin-bottom:12px;position:relative;z-index:1}
+.hero p{font-size:1.1rem;max-width:640px;margin:0 auto;position:relative;z-index:1;opacity:.85}
+.hero .mod-tag{display:inline-block;background:rgba(0,0,0,.1);border-radius:20px;padding:4px 16px;font-size:.85rem;font-weight:700;margin-bottom:16px}
+.hero .fin-badge{display:inline-block;background:rgba(0,0,0,.08);color:var(--black);border-radius:20px;padding:6px 20px;font-size:.95rem;font-weight:700;margin-top:16px}
+.sec{max-width:950px;margin:0 auto;padding:56px 24px}
+.sec h2{font-family:var(--fh);font-style:italic;font-size:2rem;color:var(--amber-dk);margin-bottom:8px}
+.sec-sub{color:#666;font-size:.95rem;margin-bottom:32px;padding-bottom:14px;border-bottom:2px solid var(--cream-dk)}
+.divider{border:none;border-top:2px solid var(--cream-dk);margin:0}
+/* Word grid */
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:24px 0}
+.wcard{background:#fff;border:2px solid var(--cream-dk);border-radius:12px;padding:14px 16px;cursor:pointer;transition:.25s;text-align:center}
+.wcard:hover{border-color:var(--amber);transform:translateY(-2px)}
+.wcard.ok{border-color:var(--green);background:#e9f5f0}
+.wcard.trap{border-color:var(--red);background:#fde8e6}
+.wcard .it{font-style:italic;font-weight:700;font-size:1rem}
+.wcard .es{font-size:.8rem;color:#888;display:none;margin-top:4px}
+.wcard.ok .es,.wcard.trap .es{display:block}
+.wcard.trap .it{color:var(--red)}
+.wcard.ok .it{color:var(--green-dk)}
+/* Vocab */
+.vset{margin-bottom:36px}
+.vset h3{font-family:var(--fh);font-style:italic;color:var(--amber-dk);font-size:1.3rem;margin-bottom:16px}
+.vcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px}
+.vcard{background:#fff;border:2px solid var(--cream-dk);border-radius:14px;padding:18px 16px;cursor:pointer;transition:.3s;min-height:100px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.vcard:hover{border-color:var(--amber);box-shadow:0 4px 14px rgba(229,171,7,.2)}
+.vcard.open{border-color:var(--amber);background:linear-gradient(135deg,var(--gold),var(--cream))}
+.vcard .vit{font-style:italic;font-weight:700;font-size:1.05rem}
+.vcard .vex{font-size:.85rem;color:#555;margin-top:6px;display:none;line-height:1.4}
+.vcard.open .vex{display:block}
+.vcard .vicon{font-size:1.6rem;margin-bottom:6px}
+/* Discovery box */
+.disc-box{background:linear-gradient(135deg,#fef9e8 0%,#fde8a0 100%);color:var(--black);border-radius:16px;padding:28px 32px;margin:28px 0}
+.disc-box h3{font-family:var(--fh);font-style:italic;font-size:1.4rem;margin-bottom:14px;color:var(--gold)}
+.disc-box strong{color:var(--gold)}
+.disc-box .ex-line{background:rgba(0,0,0,.05);border-radius:8px;padding:10px 16px;margin:8px 0;font-style:italic;font-size:1rem;border-left:3px solid var(--gold)}
+.hl-box{background:var(--gold);color:var(--black);border-radius:10px;padding:16px 20px;margin:20px 0;font-size:.97rem;font-weight:600;border-left:4px solid var(--amber-dk);text-align:center;font-style:italic}
+/* Fill */
+.fill-set{background:#fff;border:1px solid var(--cream-dk);border-radius:14px;padding:24px;margin:20px 0}
+.fill-set h4{font-family:var(--fh);font-style:italic;color:var(--amber-dk);font-size:1.1rem;margin-bottom:16px}
+.fill-item{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;font-size:.95rem}
+.fill-item label{flex:1;min-width:240px}
+.fill-item input{border:2px solid var(--cream-dk);border-radius:8px;padding:7px 12px;font-family:var(--fb);font-size:.95rem;width:160px;transition:.2s}
+.fill-item input:focus{outline:none;border-color:var(--amber)}
+.fill-item input.ok{border-color:var(--green);background:#e8f5ee}
+.fill-item input.err{border-color:var(--red);background:#fde8e6}
+.fill-btn{background:var(--amber);color:var(--black);border:none;border-radius:8px;padding:9px 22px;font-family:var(--fb);font-size:.9rem;font-weight:700;cursor:pointer;transition:.2s;margin-top:4px}
+.fill-btn:hover{background:var(--amber-dk);color:#fff}
+.fill-fb{margin-top:10px;font-size:.9rem;font-weight:600;min-height:18px}
+.fill-fb.ok{color:var(--green-dk)}
+.fill-fb.err{color:var(--red)}
+/* Relative pronoun visual */
+.rel-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+@media(max-width:580px){.rel-grid{grid-template-columns:1fr}}
+.rel-card{border-radius:14px;padding:20px;text-align:center}
+.rel-card.che{background:linear-gradient(135deg,var(--gold),var(--cream))}
+.rel-card.cui{background:linear-gradient(135deg,#fde8e6,var(--cream));border:2px solid var(--red)}
+.rel-card h4{font-family:var(--fh);font-style:italic;font-size:1.2rem;margin-bottom:8px}
+.rel-card .rc-rule{font-size:.85rem;color:#555;margin-bottom:10px}
+.rel-card ul{list-style:none;font-size:.9rem;font-style:italic}
+.rel-card ul li{padding:4px 0;border-bottom:1px solid rgba(0,0,0,.08)}
+/* Story timeline */
+.story-tl{position:relative;padding-left:36px;margin:24px 0}
+.story-tl::before{content:'';position:absolute;left:14px;top:0;bottom:0;width:3px;background:var(--amber);border-radius:3px}
+.stl-item{position:relative;margin-bottom:24px;cursor:pointer}
+.stl-dot{position:absolute;left:-28px;top:6px;width:20px;height:20px;border-radius:50%;background:var(--amber);border:3px solid #fff;box-shadow:0 0 0 2px var(--amber);transition:.2s}
+.stl-item:hover .stl-dot{transform:scale(1.3);background:var(--amber-dk)}
+.stl-phase{font-size:.78rem;font-weight:700;color:var(--amber-dk);margin-bottom:2px}
+.stl-it{font-style:italic;font-weight:700;font-size:.97rem}
+.stl-es{font-size:.85rem;color:#888}
+.stl-rel{font-size:.82rem;color:var(--amber-dk);font-weight:600;margin-top:3px}
+/* Indefiniti showcase */
+.indef-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:24px 0}
+.indef-card{background:#fff;border:2px solid var(--cream-dk);border-radius:12px;padding:16px;text-align:center;cursor:pointer;transition:.3s}
+.indef-card:hover{border-color:var(--amber);transform:scale(1.02)}
+.indef-card.open{border-color:var(--amber-dk);background:linear-gradient(135deg,var(--gold),var(--cream))}
+.indef-card .iw{font-style:italic;font-weight:700;font-size:1.15rem;color:var(--amber-dk)}
+.indef-card .irule{font-size:.78rem;color:#888;margin-bottom:6px}
+.indef-card .iex{font-size:.82rem;color:#666;margin-top:6px;display:none;line-height:1.35}
+.indef-card.open .iex{display:block}
+/* Matching */
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0}
+@media(max-width:580px){.match-wrap{grid-template-columns:1fr}}
+.match-col h5{font-size:.85rem;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.match-item{background:#fff;border:2px solid var(--cream-dk);border-radius:10px;padding:10px 14px;margin-bottom:8px;cursor:pointer;transition:.2s;font-size:.93rem}
+.match-item:hover{border-color:var(--amber)}
+.match-item.sel{border-color:var(--amber-dk);background:var(--gold)}
+.match-item.ok{border-color:var(--green);background:#e8f5ee;cursor:default}
+.match-item.err{border-color:var(--red);background:#fde8e6}
+.match-result{text-align:center;font-size:.95rem;font-weight:700;margin-top:12px;min-height:20px;color:var(--amber-dk)}
+/* Dialogue */
+.dial{background:var(--cream-dk);border-radius:16px;padding:24px 28px;margin:24px 0}
+.dial h4{font-family:var(--fh);font-style:italic;color:var(--amber-dk);font-size:1.15rem;margin-bottom:16px}
+.bubble{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;cursor:pointer}
+.bubble.b{flex-direction:row-reverse}
+.bav{width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;color:var(--black)}
+.bubble:not(.b) .bav{background:#fde8a0}
+.bubble.b .bav{background:var(--cream-dk)}
+.btext{background:#fff;border-radius:12px;padding:10px 14px;font-size:.93rem;max-width:75%}
+.bubble.b .btext{background:var(--cream-dk);color:var(--black)}
+.btr{font-size:.82rem;color:#888;font-style:italic;margin-top:4px;display:none}
+.bubble.show .btr{display:block}
+.dial-hint{font-size:.8rem;color:#999;text-align:center;margin-top:10px}
+/* Reading */
+.reading-box{background:#fff;border:1px solid var(--cream-dk);border-radius:14px;padding:24px 28px;margin:24px 0}
+.reading-box h4{font-family:var(--fh);font-style:italic;color:var(--amber-dk);font-size:1.15rem;margin-bottom:14px}
+.reading-text{background:var(--cream);border-radius:10px;padding:18px 20px;font-size:.95rem;line-height:1.8;margin-bottom:20px;border-left:3px solid var(--amber)}
+.r-q{margin-bottom:18px}
+.r-q p{font-weight:600;font-size:.95rem;margin-bottom:8px}
+.r-opts label{display:block;cursor:pointer;padding:7px 12px;border-radius:8px;font-size:.9rem;transition:.18s}
+.r-opts label:hover{background:var(--cream-dk)}
+.r-opts input{margin-right:8px;accent-color:var(--amber)}
+.r-opts label.ok{background:#e8f5ee;color:var(--green-dk);font-weight:700}
+.r-opts label.err{background:#fde8e6;color:var(--red)}
+.r-btn{background:var(--amber);color:var(--black);border:none;border-radius:8px;padding:9px 24px;font-family:var(--fb);font-size:.9rem;font-weight:700;cursor:pointer;transition:.2s;margin-top:8px}
+.r-btn:hover{background:var(--amber-dk);color:#fff}
+.r-result{margin-top:12px;font-weight:700;font-size:.95rem;min-height:18px;color:var(--amber-dk)}
+/* Final celebration */
+.celebration{background:linear-gradient(135deg,var(--amber-dk),var(--gold));color:var(--black);padding:56px 24px;text-align:center;border-top:4px solid var(--gold)}
+.cel-inner{max-width:800px;margin:0 auto}
+.cel-inner h2{font-family:var(--fh);font-style:italic;font-size:2.2rem;margin-bottom:16px}
+.cel-inner p{font-size:1.05rem;margin-bottom:28px;opacity:.85}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:32px}
+.skill-badge{background:#fff;border-radius:12px;padding:12px 16px;font-size:.9rem;font-weight:600;text-align:center;border:2px solid rgba(0,0,0,.1)}
+.skill-badge .sk-icon{font-size:1.4rem;display:block;margin-bottom:4px}
+/* Culture */
+.culture{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-top:4px solid var(--amber-dk);padding:48px 24px;margin-top:0}
+.culture-inner{max-width:950px;margin:0 auto}
+.culture h2{font-family:var(--fh);font-style:italic;font-size:1.9rem;color:var(--amber-dk);margin-bottom:8px}
+.culture p{color:#555;font-size:.95rem;margin-bottom:28px}
+.culture-facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.cf{background:#fff;border-radius:14px;padding:18px 20px;border:1px solid var(--cream-dk)}
+.cf .cf-icon{font-size:1.8rem;margin-bottom:8px}
+.cf h4{font-family:var(--fh);font-style:italic;color:var(--amber-dk);font-size:1.05rem;margin-bottom:6px}
+.cf p{font-size:.87rem;color:#555;margin:0;line-height:1.5}
+[data-a]{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+[data-a].vis{opacity:1;transform:none}
+[data-stagger] [data-a]{transition-delay:calc(var(--i,0)*.08s)}
+footer{background:var(--cream-dk);color:var(--black);text-align:center;padding:24px;font-size:.85rem;font-weight:600}
+</style>
+</head>
+<body>
+<div id="prog-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <img src="https://italianoperpiacere.com/web/image/website/1/logo/Italiano%20Per%20Piacere?unique=f5755ad" alt="Italiano Per Piacere" loading="lazy">
+    </a>
+    <div class="nav-links">
+      <a href="#">Pronomi relativi</a>
+      <a href="#">Indefiniti</a>
+      <a href="#">Narrativa</a>
+      <a href="#">Dialogo</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-circles"><span></span><span></span><span></span></div>
+  <div class="mod-tag">A2 · Módulo 16 · Descubrimiento · ÚLTIMA UNIDAD</div>
+  <h1>Persone e storie 🌍</h1>
+  <p>Pronomi relativi (che/cui) · Indefiniti qualche/qualcuno · Narrativa personale</p>
+  <div class="fin-badge">🏆 Fine del livello A2!</div>
+</div>
+
+<!-- ══ 1. WORD GRID ══ -->
+<div class="sec">
+  <h2>Prima esplorazione</h2>
+  <p class="sec-sub">¿Cuáles son palabras italianas auténticas? — ¡última exploración del A2!</p>
+  <div class="wgrid" data-stagger>
+    <div class="wcard" data-ok="true" data-es="que / quien (relativo)" data-a><span class="it">cui</span><span class="es">que / quien (prep.)</span></div>
+    <div class="wcard" data-ok="true" data-es="alguien" data-a><span class="it">qualcuno</span><span class="es">alguien</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'qualcosa')" data-a><span class="it">something</span><span class="es">(trampa)</span></div>
+    <div class="wcard" data-ok="true" data-es="algo" data-a><span class="it">qualcosa</span><span class="es">algo</span></div>
+    <div class="wcard" data-ok="true" data-es="algún/a" data-a><span class="it">qualche</span><span class="es">algún/a</span></div>
+    <div class="wcard" data-ok="true" data-es="cada uno" data-a><span class="it">ognuno</span><span class="es">cada uno</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'emigrare')" data-a><span class="it">to emigrate</span><span class="es">(trampa)</span></div>
+    <div class="wcard" data-ok="true" data-es="emigrar" data-a><span class="it">emigrare</span><span class="es">emigrar</span></div>
+    <div class="wcard" data-ok="true" data-es="la nostalgia" data-a><span class="it">la nostalgia</span><span class="es">la nostalgia</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'il quale')" data-a><span class="it">the which</span><span class="es">(trampa)</span></div>
+    <div class="wcard" data-ok="true" data-es="el cual / la cual" data-a><span class="it">il quale</span><span class="es">el cual</span></div>
+    <div class="wcard" data-ok="true" data-es="la historia" data-a><span class="it">la storia</span><span class="es">la historia</span></div>
+    <div class="wcard" data-ok="true" data-es="el sueño" data-a><span class="it">il sogno</span><span class="es">el sueño</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'la patria')" data-a><span class="it">the homeland</span><span class="es">(trampa)</span></div>
+    <div class="wcard" data-ok="true" data-es="la patria" data-a><span class="it">la patria</span><span class="es">la patria</span></div>
+    <div class="wcard" data-ok="true" data-es="la raíz" data-a><span class="it">la radice</span><span class="es">la raíz</span></div>
+    <div class="wcard" data-ok="true" data-es="el viaje" data-a><span class="it">il viaggio</span><span class="es">el viaje</span></div>
+    <div class="wcard" data-ok="false" data-es="(trampa: es 'il futuro')" data-a><span class="it">il futur</span><span class="es">(trampa)</span></div>
+  </div>
+  <p style="font-size:.82rem;color:#888;margin-top:8px">
+    <span style="display:inline-block;width:12px;height:12px;background:var(--green);border-radius:3px;margin-right:4px;vertical-align:middle"></span>Italiana auténtica &nbsp;
+    <span style="display:inline-block;width:12px;height:12px;background:var(--red);border-radius:3px;margin-right:4px;margin-left:12px;vertical-align:middle"></span>Trampa
+  </p>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 2. VOCAB A: Relative pronoun visual ══ -->
+<div class="sec">
+  <h2>Vocabolario — Set A</h2>
+  <p class="sec-sub">Pronomi relativi: "che" vs "cui" — la diferencia fundamental</p>
+  <div class="rel-grid">
+    <div class="rel-card che" data-a>
+      <h4 style="color:var(--amber-dk)">CHE</h4>
+      <div class="rc-rule">→ sujeto o objeto directo (sin preposición)</div>
+      <ul>
+        <li>"La persona <strong>che</strong> lavora lì..."</li>
+        <li>"Il libro <strong>che</strong> ho letto..."</li>
+        <li>"L'italiano <strong>che</strong> ho incontrato..."</li>
+        <li>"Il giorno <strong>che</strong> sono partito..."</li>
+      </ul>
+    </div>
+    <div class="rel-card cui" data-a>
+      <h4 style="color:var(--red)">CUI</h4>
+      <div class="rc-rule">→ después de preposición (di, a, in, con, per...)</div>
+      <ul>
+        <li>"La persona <strong>di cui</strong> parlo..."</li>
+        <li>"Il paese <strong>in cui</strong> sono nato..."</li>
+        <li>"L'amico <strong>con cui</strong> esco..."</li>
+        <li>"Il motivo <strong>per cui</strong> sono venuto..."</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 3. VOCAB B: Indefiniti ══ -->
+<div class="sec">
+  <h2>Vocabolario — Set B</h2>
+  <p class="sec-sub">Indefiniti — haz clic para ver la regla y ejemplos</p>
+  <div class="indef-grid" data-stagger>
+    <div class="indef-card" data-a onclick="this.classList.toggle('open')">
+      <div class="irule">+ sustantivo singular</div>
+      <div class="iw">qualche</div>
+      <div class="iex">algún / alguna<br><em>"qualche anno fa"</em> = hace algunos años<br><em>"qualche persona"</em> = algunas personas<br>⚠️ Siempre con singular aunque signifique plural</div>
+    </div>
+    <div class="indef-card" data-a onclick="this.classList.toggle('open')">
+      <div class="irule">para personas</div>
+      <div class="iw">qualcuno</div>
+      <div class="iex">alguien<br><em>"Qualcuno mi ha aiutato."</em><br><em>"C'è qualcuno?"</em> = ¿Hay alguien?<br>Solo para personas</div>
+    </div>
+    <div class="indef-card" data-a onclick="this.classList.toggle('open')">
+      <div class="irule">para cosas</div>
+      <div class="iw">qualcosa</div>
+      <div class="iex">algo<br><em>"Ho qualcosa da dirti."</em><br><em>"Vuoi qualcosa?"</em> = ¿Quieres algo?<br>Solo para cosas (invariabile)</div>
+    </div>
+    <div class="indef-card" data-a onclick="this.classList.toggle('open')">
+      <div class="irule">cada uno / distributivo</div>
+      <div class="iw">ognuno</div>
+      <div class="iex">cada uno<br><em>"Ognuno deve fare la sua parte."</em><br><em>"Ognuno ha la sua storia."</em><br>Uso formal / letterario</div>
+    </div>
+    <div class="indef-card" data-a onclick="this.classList.toggle('open')">
+      <div class="irule">partitivo / distributivo</div>
+      <div class="iw">alcuni/e</div>
+      <div class="iex">algunos / algunas<br><em>"Alcuni italiani vivono all'estero."</em><br><em>"Alcune storie sono incredibili."</em><br>Concorda con el sustantivo</div>
+    </div>
+    <div class="indef-card" data-a onclick="this.classList.toggle('open')">
+      <div class="irule">negativo</div>
+      <div class="iw">nessuno</div>
+      <div class="iex">nadie / ninguno<br><em>"Non è venuto nessuno."</em><br><em>"Nessuno lo sapeva."</em><br>Con negación: non + verbo + nessuno</div>
+    </div>
+    <div class="indef-card" data-a onclick="this.classList.toggle('open')">
+      <div class="irule">interrogativo / relativo</div>
+      <div class="iw">chiunque</div>
+      <div class="iex">cualquiera / quien sea<br><em>"Chiunque può farcela."</em><br><em>"Parla con chiunque."</em><br>Uso più formale</div>
+    </div>
+    <div class="indef-card" data-a onclick="this.classList.toggle('open')">
+      <div class="irule">totalità</div>
+      <div class="iw">tutti / tutto</div>
+      <div class="iex">todos / todo<br><em>"Tutti gli italiani amano il caffè."</em><br><em>"Tutto è possibile."</em><br>Il più comune degli indefiniti</div>
+    </div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 4. VOCAB C: Connettivi narrativi ══ -->
+<div class="sec">
+  <h2>Vocabolario — Set C</h2>
+  <p class="sec-sub">Conectores para narrar historias — haz clic para explorar</p>
+  <div class="vcards" data-stagger>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">⏮️</div><div class="vit">prima</div>
+      <div class="vex">antes / primero<br><em>"Prima viveva a Napoli."</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">➡️</div><div class="vit">poi</div>
+      <div class="vex">después / luego<br><em>"Poi si è trasferito in Argentina."</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">📅</div><div class="vit">un giorno</div>
+      <div class="vex">un día (en una historia)<br><em>"Un giorno ha deciso di partire."</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">🔄</div><div class="vit">però / quindi</div>
+      <div class="vex">sin embargo / por eso<br><em>"Era difficile, però ne valeva la pena."</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">🎬</div><div class="vit">alla fine</div>
+      <div class="vex">al final<br><em>"Alla fine è rimasto in Argentina."</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">⏩</div><div class="vit">dopo</div>
+      <div class="vex">después<br><em>"Dopo qualche anno si è sposato."</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">🕐</div><div class="vit">qualche anno fa</div>
+      <div class="vex">hace algunos años<br><em>"Qualche anno fa ho lasciato l'Italia."</em></div>
+    </div>
+    <div class="vcard" data-a onclick="this.classList.toggle('open')">
+      <div class="vicon">✅</div><div class="vit">infine</div>
+      <div class="vex">finalmente / por último<br><em>"Infine ha trovato la sua strada."</em></div>
+    </div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 5. DISCOVERY: Relative "che" ══ -->
+<div class="sec">
+  <h2>Scoperta 1 — Pronome relativo "che" 🔭</h2>
+  <p class="sec-sub">El relativo más frecuente del italiano</p>
+
+  <div class="disc-box" data-a>
+    <h3>Che = sujeto o complemento diretto</h3>
+    <p>El pronombre relativo <strong>che</strong> sustituye a una persona o cosa ya mencionada y conecta dos frases:</p>
+    <div class="ex-line">👤 "Ho incontrato un italiano. L'italiano abita a Buenos Aires." → "Ho incontrato un italiano <strong>che</strong> abita a Buenos Aires."</div>
+    <div class="ex-line">📖 "Ho letto un libro. Il libro è bellissimo." → "Ho letto un libro <strong>che</strong> è bellissimo."</div>
+    <div class="ex-line">🌍 "Questo è il paese. Il paese si chiama Napoli." → "Questo è il paese <strong>che</strong> si chiama Napoli."</div>
+  </div>
+
+  <!-- Story timeline with relative "che" -->
+  <h3 style="font-family:var(--fh);font-style:italic;color:var(--amber-dk);font-size:1.3rem;margin:24px 0 14px">📖 La storia di Mario — uso del "che"</h3>
+  <div class="story-tl">
+    <div class="stl-item">
+      <div class="stl-dot"></div>
+      <div class="stl-phase">1960 — partenza</div>
+      <div class="stl-it">Mario era un giovane napoletano che sognava un futuro migliore.</div>
+      <div class="stl-es">Mario era un joven napolitano que soñaba con un futuro mejor.</div>
+      <div class="stl-rel">→ "che" = sujeto (que soñaba)</div>
+    </div>
+    <div class="stl-item">
+      <div class="stl-dot"></div>
+      <div class="stl-phase">1961 — arrivo</div>
+      <div class="stl-it">Ha trovato un lavoro che lo rendeva felice.</div>
+      <div class="stl-es">Encontró un trabajo que le hacía feliz.</div>
+      <div class="stl-rel">→ "che" = sujeto</div>
+    </div>
+    <div class="stl-item">
+      <div class="stl-dot"></div>
+      <div class="stl-phase">1965 — famiglia</div>
+      <div class="stl-it">Ha conosciuto una donna argentina che è diventata sua moglie.</div>
+      <div class="stl-es">Conoció a una mujer argentina que se convirtió en su esposa.</div>
+    </div>
+    <div class="stl-item">
+      <div class="stl-dot"></div>
+      <div class="stl-phase">Oggi — nostalgia</div>
+      <div class="stl-it">Guarda le foto che ricordano la sua vita a Napoli.</div>
+      <div class="stl-es">Mira las fotos que recuerdan su vida en Nápoles.</div>
+      <div class="stl-rel">→ "che" = objeto directo</div>
+    </div>
+  </div>
+
+  <div class="fill-set" data-a>
+    <h4>Pratica A — Inserisci "che" relativo</h4>
+    <div class="fill-item"><label>1. L'italiano _____ ho incontrato si chiama Marco.</label><input id="fa1" data-ans="che" type="text" placeholder="relativo…"/></div>
+    <div class="fill-item"><label>2. Il film _____ abbiamo visto era bellissimo.</label><input id="fa2" data-ans="che" type="text" placeholder="relativo…"/></div>
+    <div class="fill-item"><label>3. La storia _____ racconta è incredibile.</label><input id="fa3" data-ans="che" type="text" placeholder="relativo…"/></div>
+    <div class="fill-item"><label>4. Le persone _____ emigrano hanno molto coraggio.</label><input id="fa4" data-ans="che" type="text" placeholder="relativo…"/></div>
+    <button class="fill-btn" onclick="checkFill(['fa1','fa2','fa3','fa4'],'fba')">Controlla ✓</button>
+    <div class="fill-fb" id="fba"></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 6. DISCOVERY: "Cui" ══ -->
+<div class="sec">
+  <h2>Scoperta 2 — Pronome relativo "cui" 🔭</h2>
+  <p class="sec-sub">El relativo después de preposición — il più elegante</p>
+
+  <div class="disc-box" data-a>
+    <h3>Cui = dopo preposizione (di / a / in / con / per...)</h3>
+    <p>Cuando el relativo va precedido por una preposición, se usa <strong>cui</strong> (nunca "che"):</p>
+    <div class="ex-line">📍 "Il paese <strong>in cui</strong> sono nato si chiama Napoli." — El país en el que nací se llama Nápoles.</div>
+    <div class="ex-line">💬 "La persona <strong>di cui</strong> parlo è mio nonno." — La persona de la que hablo es mi abuelo.</div>
+    <div class="ex-line">🤝 "L'amico <strong>con cui</strong> sono partito..." — El amigo con quien partí...</div>
+    <div class="ex-line">❓ "Il motivo <strong>per cui</strong> sono venuto..." — La razón por la que vine...</div>
+  </div>
+
+  <div class="hl-box" data-a>
+    ⚠️ Regola: preposizione + CHE è SBAGLIATO! &nbsp;&nbsp; preposizione + CUI è CORRETTO.<br>
+    ❌ <em>"Il paese in <strong>che</strong> sono nato"</em> &nbsp;&nbsp; ✅ <em>"Il paese in <strong>cui</strong> sono nato"</em>
+  </div>
+
+  <div class="fill-set" data-a>
+    <h4>Pratica B — "Che" o "cui" (con preposizione)?</h4>
+    <div class="fill-item"><label>1. Il paese in _____ sono nato è Napoli.</label><input id="fb1" data-ans="cui" type="text" placeholder="relativo…"/></div>
+    <div class="fill-item"><label>2. La persona di _____ ti ho parlato è partita.</label><input id="fb2" data-ans="cui" type="text" placeholder="relativo…"/></div>
+    <div class="fill-item"><label>3. L'amico _____ ho incontrato abita qui. (no prep.)</label><input id="fb3" data-ans="che" type="text" placeholder="relativo…"/></div>
+    <div class="fill-item"><label>4. Il motivo per _____ sono partito è il lavoro.</label><input id="fb4" data-ans="cui" type="text" placeholder="relativo…"/></div>
+    <div class="fill-item"><label>5. Le storie _____ racconta sono bellissime. (no prep.)</label><input id="fb5" data-ans="che" type="text" placeholder="relativo…"/></div>
+    <button class="fill-btn" onclick="checkFill(['fb1','fb2','fb3','fb4','fb5'],'fbb')">Controlla ✓</button>
+    <div class="fill-fb" id="fbb"></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 7. DISCOVERY: Indefiniti ══ -->
+<div class="sec">
+  <h2>Scoperta 3 — Indefiniti 🔍</h2>
+  <p class="sec-sub">Qualche / qualcuno / qualcosa — la clave está en qué modifican</p>
+
+  <div class="disc-box" data-a>
+    <h3>Il segreto degli indefiniti</h3>
+    <p>Tres palabras muy similares pero con usos distintos:</p>
+    <div class="ex-line">📦 <strong>qualche</strong> + SUSTANTIVO SINGULAR: <em>"qualche anno"</em> / <em>"qualche persona"</em></div>
+    <div class="ex-line">👤 <strong>qualcuno</strong> = alguien (SIN sustantivo): <em>"Qualcuno è arrivato."</em></div>
+    <div class="ex-line">🎁 <strong>qualcosa</strong> = algo (SIN sustantivo): <em>"Ho qualcosa per te."</em></div>
+    <p style="margin-top:12px">⚠️ <strong>Qualche</strong> siempre va con sustantivo en SINGULAR aunque el significado sea plural: <em>"qualche anno"</em> = algunos años (no: qualchi anni).</p>
+  </div>
+
+  <div class="fill-set" data-a>
+    <h4>Pratica C — qualche / qualcuno / qualcosa</h4>
+    <div class="fill-item"><label>1. _____ mi ha telefonato stamattina. (alguien)</label><input id="fc1" data-ans="qualcuno" type="text" placeholder="indefinito…"/></div>
+    <div class="fill-item"><label>2. Ho _____ da dirti. (algo)</label><input id="fc2" data-ans="qualcosa" type="text" placeholder="indefinito…"/></div>
+    <div class="fill-item"><label>3. Sono andato _____ volta in Italia. (alguna)</label><input id="fc3" data-ans="qualche" type="text" placeholder="indefinito…"/></div>
+    <div class="fill-item"><label>4. _____ anno fa vivevo a Milano. (hace algunos)</label><input id="fc4" data-ans="qualche" type="text" placeholder="indefinito…"/></div>
+    <div class="fill-item"><label>5. C'è _____ che può aiutarmi? (alguien)</label><input id="fc5" data-ans="qualcuno" type="text" placeholder="indefinito…"/></div>
+    <button class="fill-btn" onclick="checkFill(['fc1','fc2','fc3','fc4','fc5'],'fbc')">Controlla ✓</button>
+    <div class="fill-fb" id="fbc"></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 8. MATCHING ══ -->
+<div class="sec">
+  <h2>Attività — Abbina 🔗</h2>
+  <p class="sec-sub">Conecta la frase con la preposición correcta para usar "cui"</p>
+  <div class="match-wrap">
+    <div>
+      <h5>Frase con buco</h5>
+      <div class="match-item" id="mL1" data-id="1" onclick="selectMatch(this,'L','1')">Il paese ___ cui sono nato</div>
+      <div class="match-item" id="mL2" data-id="2" onclick="selectMatch(this,'L','2')">La persona ___ cui parlo</div>
+      <div class="match-item" id="mL3" data-id="3" onclick="selectMatch(this,'L','3')">L'amico ___ cui esco</div>
+      <div class="match-item" id="mL4" data-id="4" onclick="selectMatch(this,'L','4')">Il motivo ___ cui sono venuto</div>
+      <div class="match-item" id="mL5" data-id="5" onclick="selectMatch(this,'L','5')">La città ___ cui vivo</div>
+      <div class="match-item" id="mL6" data-id="6" onclick="selectMatch(this,'L','6')">Il libro ___ cui mi hai parlato</div>
+    </div>
+    <div>
+      <h5>Preposizione giusta</h5>
+      <div class="match-item" id="mR1" data-id="1" onclick="selectMatch(this,'R','1')">in cui (luogo nascita)</div>
+      <div class="match-item" id="mR2" data-id="2" onclick="selectMatch(this,'R','2')">di cui (parlare di)</div>
+      <div class="match-item" id="mR3" data-id="3" onclick="selectMatch(this,'R','3')">con cui (uscire con)</div>
+      <div class="match-item" id="mR4" data-id="4" onclick="selectMatch(this,'R','4')">per cui (motivo per)</div>
+      <div class="match-item" id="mR5" data-id="5" onclick="selectMatch(this,'R','5')">in cui (luogo in cui)</div>
+      <div class="match-item" id="mR6" data-id="6" onclick="selectMatch(this,'R','6')">di cui (parlare di)</div>
+    </div>
+  </div>
+  <div class="match-result" id="match-result"></div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 9. DIALOGUES ══ -->
+<div class="sec">
+  <h2>Dialoghi 💬</h2>
+  <p class="sec-sub">Haz clic para la traducción</p>
+
+  <div class="dial" data-a>
+    <h4>Dialogo 1 — La storia di Rosaria</h4>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">G</div>
+      <div class="btext">Giornalista: Rosaria, può raccontarci il paese in cui è nata?
+        <div class="btr">Rosaria, ¿puede contarnos el pueblo en el que nació?</div></div>
+    </div>
+    <div class="bubble b" onclick="this.classList.toggle('show')">
+      <div class="bav">R</div>
+      <div class="btext">Rosaria: Sono nata a Palermo. Era un posto bellissimo, di cui ho ancora molta nostalgia.
+        <div class="btr">Nací en Palermo. Era un sitio precioso, del que tengo todavía mucha nostalgia.</div></div>
+    </div>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">G</div>
+      <div class="btext">Giornalista: E c'è qualcuno che l'ha aiutata quando è arrivata in Argentina?
+        <div class="btr">¿Y hay alguien que la ayudó cuando llegó a Argentina?</div></div>
+    </div>
+    <div class="bubble b" onclick="this.classList.toggle('show')">
+      <div class="bav">R</div>
+      <div class="btext">Rosaria: Sì! Un vicino che si chiamava Antonio — un italiano con cui ho ancora contatti. Qualche volta ci vediamo ancora.
+        <div class="btr">¡Sí! Un vecino que se llamaba Antonio — un italiano con quien todavía tengo contacto. Alguna vez nos vemos todavía.</div></div>
+    </div>
+    <p class="dial-hint">👆 Haz clic en cada burbuja para la traducción</p>
+  </div>
+
+  <div class="dial" data-a>
+    <h4>Dialogo 2 — Ognuno ha la sua storia</h4>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">P</div>
+      <div class="btext">Paolo: Sai, c'è qualcosa che mi manca ogni giorno: la voce di mia madre.
+        <div class="btr">Sabes, hay algo que me falta cada día: la voz de mi madre.</div></div>
+    </div>
+    <div class="bubble b" onclick="this.classList.toggle('show')">
+      <div class="bav">L</div>
+      <div class="btext">Lucia: È normale! Ognuno porta con sé qualcosa del paese in cui è cresciuto.
+        <div class="btr">¡Es normal! Cada uno lleva consigo algo del país en el que creció.</div></div>
+    </div>
+    <div class="bubble" onclick="this.classList.toggle('show')">
+      <div class="bav">P</div>
+      <div class="btext">Paolo: Il motivo per cui sono rimasto qui è semplice: i miei figli. Sono argentini e italiani allo stesso tempo.
+        <div class="btr">La razón por la que me quedé aquí es sencilla: mis hijos. Son argentinos e italianos al mismo tiempo.</div></div>
+    </div>
+    <p class="dial-hint">👆 Haz clic en cada burbuja para la traducción</p>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- ══ 10. READING ══ -->
+<div class="sec">
+  <h2>Comprensione finale 📖</h2>
+  <p class="sec-sub">Última comprensión del nivel A2 — ¡tú puedes!</p>
+  <div class="reading-box" data-a>
+    <h4>La storia di Vincenzo Ferrara — italiano a Sydney</h4>
+    <div class="reading-text">
+      Vincenzo è un italiano <em>che</em> vive a Sydney da trent'anni. È nato in un piccolo paese della Calabria, il paese <em>in cui</em> ha trascorso la sua infanzia. <em>Qualche anno fa</em>, durante un'intervista per la RAI, ha raccontato la sua storia.
+
+      "Il motivo <em>per cui</em> sono partito era semplice: non c'era lavoro. Un giorno un amico, <em>con cui</em> avevo studiato da bambino, mi ha detto: 'In Australia cercano lavoratori italiani.' Così ho preso la decisione."
+
+      In Australia, <em>qualcuno</em> lo ha aiutato all'inizio: un'altra famiglia calabrese <em>che</em> viveva lì da anni. Poi, piano piano, ha trovato la sua strada.
+
+      "<em>Qualcosa</em> di Calabria porto sempre con me: la pasta, la musica e soprattutto i ricordi del paese <em>di cui</em> sono originario. <em>Ognuno</em> ha le sue radici."
+    </div>
+    <div class="r-q">
+      <p>1. ¿De dónde es originario Vincenzo?</p>
+      <div class="r-opts">
+        <label><input type="radio" name="rq1" value="a"/> De Sicilia</label>
+        <label><input type="radio" name="rq1" value="b"/> De un pequeño pueblo de Calabria</label>
+        <label><input type="radio" name="rq1" value="c"/> De Nápoles</label>
+      </div>
+    </div>
+    <div class="r-q">
+      <p>2. ¿Cuál fue el motivo de su partida?</p>
+      <div class="r-opts">
+        <label><input type="radio" name="rq2" value="a"/> La aventura</label>
+        <label><input type="radio" name="rq2" value="b"/> El amor</label>
+        <label><input type="radio" name="rq2" value="c"/> La falta de trabajo</label>
+      </div>
+    </div>
+    <div class="r-q">
+      <p>3. ¿Quién le ayudó al llegar a Australia?</p>
+      <div class="r-opts">
+        <label><input type="radio" name="rq3" value="a"/> Una familia calabresa que ya vivía allí</label>
+        <label><input type="radio" name="rq3" value="b"/> El gobierno italiano</label>
+        <label><input type="radio" name="rq3" value="c"/> Un australiano</label>
+      </div>
+    </div>
+    <div class="r-q">
+      <p>4. ¿Qué lleva siempre de Calabria?</p>
+      <div class="r-opts">
+        <label><input type="radio" name="rq4" value="a"/> Sus padres</label>
+        <label><input type="radio" name="rq4" value="b"/> La pasta, la música y los recuerdos del pueblo</label>
+        <label><input type="radio" name="rq4" value="c"/> Fotos y ropa</label>
+      </div>
+    </div>
+    <button class="r-btn" onclick="checkReading()">Controlla →</button>
+    <div class="r-result" id="r-result"></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<!-- CELEBRACIÓN FINAL A2 -->
+<div class="celebration">
+  <div class="cel-inner">
+    <h2>🏆 Complimenti! Hai completato il livello A2!</h2>
+    <p>Has dominado los fundamentos del italiano con 16 módulos de contenido real, gramática interactiva y práctica comunicativa.</p>
+    <div class="skills-grid">
+      <div class="skill-badge"><span class="sk-icon">✅</span>Passato prossimo & imperfetto</div>
+      <div class="skill-badge"><span class="sk-icon">✅</span>Condizionale presente</div>
+      <div class="skill-badge"><span class="sk-icon">✅</span>Futuro semplice</div>
+      <div class="skill-badge"><span class="sk-icon">✅</span>Pronomi combinati</div>
+      <div class="skill-badge"><span class="sk-icon">✅</span>Imperativo + pronomi</div>
+      <div class="skill-badge"><span class="sk-icon">✅</span>Verbi modali al passato</div>
+      <div class="skill-badge"><span class="sk-icon">✅</span>Avverbi in -mente</div>
+      <div class="skill-badge"><span class="sk-icon">✅</span>Periodo ipotetico del 1° tipo</div>
+      <div class="skill-badge"><span class="sk-icon">✅</span>Pronomi relativi (che/cui)</div>
+      <div class="skill-badge"><span class="sk-icon">✅</span>Indefiniti (qualche/qualcuno)</div>
+    </div>
+    <p style="font-size:1.1rem;font-weight:700">🚀 Prossimo passo: Livello B1 — Italiano intermedio</p>
+  </div>
+</div>
+
+<!-- CULTURE STRIP -->
+<div class="culture">
+  <div class="culture-inner">
+    <h2>Cultura italiana 🌍</h2>
+    <p>La diaspora italiana — 80 milioni di italiani nel mondo</p>
+    <div class="culture-facts">
+      <div class="cf" data-a>
+        <div class="cf-icon">🇦🇷</div>
+        <h4>Italia in Argentina</h4>
+        <p>Más de 20 millones de argentinos tienen ascendencia italiana. Buenos Aires tiene más habitantes de origen italiano que muchas ciudades de Italia. "Ci vediamo al bar" se convirtió en "Nos vemos en el café".</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">🇧🇷</div>
+        <h4>Italia in Brasile</h4>
+        <p>São Paulo tiene la mayor concentración de personas de origen italiano fuera de Italia. El barrio del Bexiga (también llamado Bixiga) es el "Piccola Itália" paulistana.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">📺</div>
+        <h4>Italiani nel mondo — RAI</h4>
+        <p>El programa de la RAI "Italiani nel mondo" lleva desde 1971 documentando las historias de los emigrantes italianos en todo el planeta. Es uno de los programas más longevos de la televisión italiana.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">🏠</div>
+        <h4>La nostalgia italiana</h4>
+        <p>La nostalgia del "paese" (el pueblo natal) es un sentimiento profundamente italiano. Incluso quienes se fueron hace décadas siguen enviando dinero, volviendo en verano y manteniendo vivas las tradiciones.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">🎭</div>
+        <h4>L'identità italiana</h4>
+        <p>"Essere italiani" va más allá del pasaporte — es una identidad cultural basada en el idioma, la gastronomía, la arte y el modo de vivir. Hay más "italiani" fuera que dentro del país.</p>
+      </div>
+      <div class="cf" data-a>
+        <div class="cf-icon">🔑</div>
+        <h4>Jus sanguinis</h4>
+        <p>En Italia rige el "jus sanguinis": si tienes un abuelo o bisabuelo italiano, puedes obtener la ciudadanía italiana. Millones de latinoamericanos tramitan hoy la ciudadanía italiana.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>🎉 Italiano per piacere · A2 COMPLETO · 16 Módulos · Ottimo lavoro! 🎉</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  document.getElementById('prog-bar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+});
+document.querySelector('.hero').addEventListener('mousemove',e=>{
+  const circles=document.querySelectorAll('.hero-circles span');
+  const x=(e.clientX/window.innerWidth-.5)*20;
+  const y=(e.clientY/window.innerHeight-.5)*20;
+  circles.forEach((c,i)=>{c.style.transform=`translate(${x*(i+1)*.4}px,${y*(i+1)*.4}px)`});
+});
+document.querySelectorAll('.wcard').forEach(c=>{
+  c.addEventListener('click',()=>{
+    if(c.dataset.ok==='true'){c.classList.remove('trap');c.classList.add('ok');}
+    else{c.classList.remove('ok');c.classList.add('trap');}
+  });
+});
+function checkFill(ids,fbId){
+  let ok=0;
+  ids.forEach(id=>{
+    const el=document.getElementById(id);
+    const v=el.value.toLowerCase().trim();
+    const a=el.dataset.ans.toLowerCase().trim();
+    el.classList.remove('ok','err');
+    if(v===a){el.classList.add('ok');ok++;}else el.classList.add('err');
+  });
+  const fb=document.getElementById(fbId);
+  fb.className='fill-fb '+(ok===ids.length?'ok':'err');
+  fb.textContent=ok===ids.length?'✅ Perfetto! Tutte corrette!':`${ok}/${ids.length} corrette — controlla quelle in rosso.`;
+}
+let matchSel={L:null,R:null};
+const matchPairs={1:1,2:2,3:3,4:4,5:5,6:6};
+function selectMatch(el,side,id){
+  if(el.classList.contains('ok'))return;
+  document.querySelectorAll('.match-item.sel').forEach(e=>{
+    if((side==='L'&&e.id.startsWith('mL'))||(side==='R'&&e.id.startsWith('mR')))e.classList.remove('sel');
+  });
+  el.classList.add('sel');matchSel[side]=id;
+  if(matchSel.L&&matchSel.R){
+    const lEl=document.getElementById('mL'+matchSel.L);
+    const rEl=document.getElementById('mR'+matchSel.R);
+    if(matchPairs[matchSel.L]==matchSel.R){lEl.classList.add('ok');rEl.classList.add('ok');}
+    else{lEl.classList.add('err');rEl.classList.add('err');setTimeout(()=>{lEl.classList.remove('err','sel');rEl.classList.remove('err','sel');},700);}
+    matchSel={L:null,R:null};
+    if(document.querySelectorAll('.match-item.ok').length===12)document.getElementById('match-result').textContent='🎉 Perfetto! Tutte le coppie corrette!';
+  }
+}
+function checkReading(){
+  const ans={rq1:'b',rq2:'c',rq3:'a',rq4:'b'};
+  let ok=0;
+  for(const q in ans){
+    const sel=document.querySelector(`input[name="${q}"]:checked`);
+    document.querySelectorAll(`input[name="${q}"]`).forEach(i=>i.parentElement.classList.remove('ok','err'));
+    if(sel){if(sel.value===ans[q]){sel.parentElement.classList.add('ok');ok++;}else sel.parentElement.classList.add('err');}
+  }
+  document.getElementById('r-result').textContent=ok===4?'🌟 PERFETTO! Hai completato il livello A2! Benvenuto al B1!':`${ok}/4 corrette. Quasi! Rileggi e riprova.`;
+}
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});
+},{threshold:.12});
+document.querySelectorAll('[data-a]').forEach((el,i)=>{
+  const par=el.closest('[data-stagger]');
+  if(par)el.style.setProperty('--i',i%8);
+  obs.observe(el);
+});
+</script>
+</body>
+</html>

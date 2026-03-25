@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unità 3 — Al ristorante · Gramática | Italiano Per Piacere A2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;--gold:#EFCF7F;
+  --red:#cc4736;--teal:#78a6ba;
+  --green:#528e74;--green-dk:#3d6b58;
+  --black:#1a1a18;--white:#ffffff;--hdr:var(--green-dk);
+  --fh:'Playfair Display',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--fb);background:var(--cream);color:var(--black)}
+body.hide-es .es{display:none}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #528e74;box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#3d6b58;border-bottom-color:#528e74}
+#etoggle{position:fixed;top:.9rem;right:1rem;z-index:200;background:#c8dfd5;color:var(--black);border:none;border-radius:2rem;padding:.4rem 1rem;font-family:var(--fb);font-size:.8rem;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.section{max-width:860px;margin:0 auto;padding:3rem 1.5rem}
+.sec-title{font-family:var(--fh);font-style:italic;font-size:clamp(1.5rem,4vw,2rem);color:var(--hdr);margin-bottom:.3rem}
+.sec-sub{color:#666;font-size:.9rem;margin-bottom:1.8rem;line-height:1.5}
+.es{color:#888;font-size:.85rem;font-style:italic}
+.rule-card{background:var(--white);border-radius:.9rem;padding:1.4rem 1.6rem;margin-bottom:1.2rem;border-left:5px solid var(--hdr);box-shadow:0 3px 12px rgba(0,0,0,.07)}
+.rule-card h4{font-weight:700;color:var(--hdr);margin-bottom:.6rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.05em}
+.rule-card p,.rule-card li{font-size:.92rem;line-height:1.65;color:#444}
+.rule-card em{font-style:italic;font-weight:600;color:var(--black)}
+.rule-card ul{padding-left:1.2rem;margin-top:.4rem}
+.gtable{width:100%;border-collapse:collapse;margin:1rem 0;border-radius:.7rem;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.gtable th{background:#a8d4c4;color:#2a4d3c;padding:.7rem 1rem;text-align:center;font-size:.82rem;letter-spacing:.05em}
+.gtable td{padding:.65rem 1rem;border-bottom:1px solid var(--cream-dk);font-size:.9rem;text-align:center;background:var(--white)}
+.gtable tr:last-child td{border:none}.gtable tr:hover td{background:var(--cream)}
+.gtable tr:nth-child(even) td{background:#e8f5f0}
+.gtable td:first-child{font-weight:700;color:var(--hdr);text-align:left}
+.hl{background:var(--gold);padding:.1rem .3rem;border-radius:.25rem;font-weight:700}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+.comp-scheme{display:grid;grid-template-columns:auto 1fr auto;gap:.5rem 1rem;align-items:center;background:var(--cream);border-radius:.7rem;padding:1rem 1.2rem;margin:.8rem 0;font-size:.9rem}
+.comp-scheme .op{font-weight:900;color:var(--hdr);font-size:1.1rem;text-align:center}
+.prac-block{background:var(--white);border-radius:1rem;padding:1.6rem;margin-bottom:1.5rem;box-shadow:0 3px 14px rgba(0,0,0,.07);border:1px solid var(--cream-dk)}
+.prac-block h4{font-family:var(--fh);font-style:italic;color:var(--hdr);margin-bottom:1rem;font-size:1.1rem}
+.prac-row{margin:.6rem 0;font-size:.93rem;line-height:1.9;display:flex;flex-wrap:wrap;align-items:center;gap:.3rem}
+.prac-input{border:none;border-bottom:2.5px solid var(--hdr);background:transparent;padding:.1rem .5rem;font-family:var(--fb);font-size:.92rem;width:160px;outline:none;color:var(--black)}
+.prac-input.ok{border-color:var(--green);color:var(--green-dk)}
+.prac-input.err{border-color:var(--red);color:var(--red)}
+.prac-btn{background:#c8dfd5;color:var(--black);border:none;border-radius:2rem;padding:.5rem 1.4rem;font-family:var(--fb);font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.8rem;transition:background .2s}
+.prac-btn:hover{background:var(--green)}
+.prac-fb{font-size:.83rem;margin-top:.5rem;font-weight:600;color:var(--hdr);min-height:1.1rem}
+.quiz-section{background:var(--cream-dk);padding:3rem 1.5rem}
+.quiz-inner{max-width:700px;margin:0 auto}
+.quiz-title{font-family:var(--fh);font-style:italic;font-size:1.8rem;color:var(--hdr);margin-bottom:.4rem}
+.qcard{background:var(--white);border-radius:1rem;padding:1.4rem 1.6rem;margin-bottom:1.2rem;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.qcard .qtext{font-size:.95rem;font-weight:600;margin-bottom:.9rem;line-height:1.5}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.qopt{background:var(--cream);border:2px solid var(--cream-dk);border-radius:.6rem;padding:.6rem 1rem;cursor:pointer;font-size:.88rem;transition:all .2s;text-align:center}
+.qopt:hover{border-color:var(--hdr);background:var(--gold)}
+.qopt.selected{background:var(--gold);border-color:var(--hdr);font-weight:700}
+.qopt.correct{background:#d4edda;border-color:var(--green)}
+.qopt.wrong{background:#f8d7da;border-color:var(--red)}
+.quiz-submit{background:#c8dfd5;color:var(--black);border:none;border-radius:2rem;padding:.65rem 2rem;font-family:var(--fb);font-size:.92rem;font-weight:700;cursor:pointer;display:block;margin:1.5rem auto 0;box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.quiz-result{text-align:center;font-size:1.1rem;font-weight:700;margin-top:1.2rem;min-height:1.5rem;color:var(--hdr)}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+nav > a:not(.nav-logo):hover,nav > a:not(.nav-logo).active{opacity:1;color:#3d6b58;border-bottom-color:#528e74}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+
+<button id="etoggle" onclick="toggleEs()">ES 👁</button>
+
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#maggioranza">Maggioranza</a>
+      <a href="#minoranza">Minoranza</a>
+      <a href="#uguaglianza">Uguaglianza</a>
+      <a href="#di-che">Di / Che</a>
+      <a href="#irregolari">Irregolari</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+
+<!-- MAGGIORANZA -->
+<section class="section" id="maggioranza">
+  <h2 class="sec-title">Comparativo di maggioranza</h2>
+  <p class="sec-sub es">Para decir "más... que" en italiano.</p>
+
+  <div class="rule-card">
+    <h4>Struttura</h4>
+    <p><em>soggetto + verbo + <span class="hl">più</span> + aggettivo + <span class="hl">di / che</span> + termine di paragone</em></p>
+  </div>
+
+  <div class="comp-scheme">
+    <span style="color:var(--hdr);font-weight:700">La pasta</span>
+    <span style="text-align:center">è <span class="hl">più</span> saporita</span>
+    <span style="color:var(--hdr);font-weight:700">del risotto.</span>
+  </div>
+
+  <table class="gtable">
+    <thead><tr><th class="es">Ejemplo</th><th class="es">Traducción</th></tr></thead>
+    <tbody>
+      <tr><td class="es" style="text-align:left;font-style:normal"><em>Il pesce è più leggero della carne.</em></td><td class="es">El pescado es más ligero que la carne.</td></tr>
+      <tr><td class="es" style="text-align:left;font-style:normal"><em>Roma è più grande di Milano.</em></td><td class="es">Roma es más grande que Milán.</td></tr>
+      <tr><td class="es" style="text-align:left;font-style:normal"><em>È più bello mangiare qui che a casa.</em></td><td class="es">Es más bonito comer aquí que en casa.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="prac-block" id="prac1" style="margin-top:1.5rem">
+    <h4>Pratica 1 — Comparativo di maggioranza</h4>
+    <div class="prac-row">1. Il ristorante / caro / la trattoria → <input class="prac-input" data-ans="il ristorante è più caro della trattoria" placeholder="il ristorante..." style="width:300px">.</div>
+    <div class="prac-row">2. Il risotto / saporito / la minestra → <input class="prac-input" data-ans="il risotto è più saporito della minestra" placeholder="il risotto..." style="width:300px">.</div>
+    <div class="prac-row">3. È più facile ordinare / telefonare → È più facile ordinare <input class="prac-input" data-ans="che" placeholder="di/che"> telefonare.</div>
+    <button class="prac-btn" onclick="checkPrac('prac1')">Controlla ✓</button>
+    <div class="prac-fb" id="prac1-fb"></div>
+  </div>
+</section>
+
+<!-- MINORANZA -->
+<section class="section" id="minoranza" style="background:var(--cream-dk);padding:3rem 1.5rem">
+<div style="max-width:860px;margin:0 auto">
+  <h2 class="sec-title">Comparativo di minoranza</h2>
+  <p class="sec-sub es">Para decir "menos... que" en italiano.</p>
+
+  <div class="rule-card">
+    <h4>Struttura</h4>
+    <p><em>soggetto + verbo + <span class="hl">meno</span> + aggettivo + <span class="hl">di / che</span> + termine di paragone</em></p>
+  </div>
+
+  <div class="comp-scheme">
+    <span style="color:var(--hdr);font-weight:700">Questo vino</span>
+    <span style="text-align:center">è <span class="hl">meno</span> costoso</span>
+    <span style="color:var(--hdr);font-weight:700">di quello.</span>
+  </div>
+
+  <div class="prac-block" id="prac2" style="margin-top:1.2rem">
+    <h4>Pratica 2 — Comparativo di minoranza</h4>
+    <div class="prac-row">1. La trattoria è <input class="prac-input" data-ans="meno cara" placeholder="meno+cara"> del ristorante stellato.</div>
+    <div class="prac-row">2. Il contorno è <input class="prac-input" data-ans="meno pesante" placeholder="meno+pesante"> del secondo.</div>
+    <div class="prac-row">3. È <input class="prac-input" data-ans="meno" placeholder="più/meno"> complicato fare la pasta fresca che comprare quella secca.</div>
+    <button class="prac-btn" onclick="checkPrac('prac2')">Controlla ✓</button>
+    <div class="prac-fb" id="prac2-fb"></div>
+  </div>
+</div>
+</section>
+
+<!-- UGUAGLIANZA -->
+<section class="section" id="uguaglianza">
+  <h2 class="sec-title">Comparativo di uguaglianza</h2>
+  <p class="sec-sub es">Para decir "tan... como" en italiano — dos formas equivalentes.</p>
+
+  <div class="two-col">
+    <div class="rule-card">
+      <h4>Forma 1: tanto...quanto</h4>
+      <p><em>tanto + aggettivo + quanto</em></p>
+      <p style="margin-top:.5rem"><em>La pasta è <span class="hl">tanto buona</span> quanto il risotto.</em></p>
+      <p style="font-size:.8rem;color:#888;margin-top:.4rem">💡 "tanto" è spesso omesso nel parlato: <em>"È buona quanto il risotto."</em></p>
+    </div>
+    <div class="rule-card">
+      <h4>Forma 2: così...come</h4>
+      <p><em>così + aggettivo + come</em></p>
+      <p style="margin-top:.5rem"><em>La pasta è <span class="hl">così buona</span> come il risotto.</em></p>
+      <p style="font-size:.8rem;color:#888;margin-top:.4rem">Meno comune nel parlato quotidiano, ma corretta.</p>
+    </div>
+  </div>
+
+  <div class="prac-block" id="prac3" style="margin-top:1rem">
+    <h4>Pratica 3 — Uguaglianza</h4>
+    <div class="prac-row">1. Il tiramisù è <input class="prac-input" data-ans="tanto buono quanto" placeholder="tanto...quanto"> la panna cotta.</div>
+    <div class="prac-row">2. Questo ristorante è elegante <input class="prac-input" data-ans="quanto" placeholder="quanto/come"> quello in centro.</div>
+    <div class="prac-row">3. Mangiare qui è <input class="prac-input" data-ans="così bello come" placeholder="così...come"> stare a casa nostra.</div>
+    <button class="prac-btn" onclick="checkPrac('prac3')">Controlla ✓</button>
+    <div class="prac-fb" id="prac3-fb"></div>
+  </div>
+</section>
+
+<!-- DI / CHE -->
+<section class="section" id="di-che" style="background:var(--cream-dk);padding:3rem 1.5rem">
+<div style="max-width:860px;margin:0 auto">
+  <h2 class="sec-title">Di o Che? — la regola</h2>
+  <p class="sec-sub es">Esta es la confusión más frecuente con los comparativos en italiano.</p>
+
+  <div class="two-col">
+    <div class="rule-card">
+      <h4>Si usa DI (del/della/dei/delle)</h4>
+      <p>Quando si confrontano <strong>due nomi o pronomi diversi</strong>:</p>
+      <ul>
+        <li><em>Il pesce è più leggero <span class="hl">della</span> carne.</em></li>
+        <li><em>Roma è più grande <span class="hl">di</span> Milano.</em></li>
+        <li><em>Questo è più caro <span class="hl">di</span> quello.</em></li>
+      </ul>
+    </div>
+    <div class="rule-card">
+      <h4>Si usa CHE</h4>
+      <p>Quando si confrontano <strong>due aggettivi, avverbi o verbi</strong> riferiti alla stessa persona/cosa:</p>
+      <ul>
+        <li><em>È più facile mangiare <span class="hl">che</span> cucinare.</em></li>
+        <li><em>Mangia più lentamente <span class="hl">che</span> velocemente.</em></li>
+        <li><em>È più buono <span class="hl">che</span> bello.</em> (stesso soggetto)</li>
+      </ul>
+    </div>
+  </div>
+
+  <table class="gtable">
+    <thead><tr><th>Frase</th><th>di o che?</th><th class="es">Perché?</th></tr></thead>
+    <tbody>
+      <tr><td><em>Più caro ___ quello.</em></td><td><strong>di</strong></td><td class="es">due pronomi diversi</td></tr>
+      <tr><td><em>È più utile studiare ___ guardare la TV.</em></td><td><strong>che</strong></td><td class="es">due verbi (stessa azione)</td></tr>
+      <tr><td><em>Il risotto è più saporito ___ la pasta.</em></td><td><strong>della</strong></td><td class="es">due nomi diversi</td></tr>
+      <tr><td><em>Parla più velocemente ___ chiaramente.</em></td><td><strong>che</strong></td><td class="es">due avverbi</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<!-- IRREGOLARI -->
+<section class="section" id="irregolari">
+  <h2 class="sec-title">Comparativi e superlativi irregolari</h2>
+  <p class="sec-sub es">Cuatro adjetivos muy comunes tienen formas propias para el comparativo.</p>
+
+  <table class="gtable">
+    <thead><tr><th>Aggettivo</th><th>Comparativo</th><th>Superlativo rel.</th><th>Superlativo ass.</th></tr></thead>
+    <tbody>
+      <tr><td><strong>buono</strong> <span class="es">(bueno)</span></td><td><strong>migliore</strong> <span class="es">(mejor)</span></td><td>il/la migliore</td><td>ottimo</td></tr>
+      <tr><td><strong>cattivo</strong> <span class="es">(malo)</span></td><td><strong>peggiore</strong> <span class="es">(peor)</span></td><td>il/la peggiore</td><td>pessimo</td></tr>
+      <tr><td><strong>grande</strong> <span class="es">(grande)</span></td><td><strong>maggiore</strong> <span class="es">(mayor)</span></td><td>il/la maggiore</td><td>massimo</td></tr>
+      <tr><td><strong>piccolo</strong> <span class="es">(pequeño)</span></td><td><strong>minore</strong> <span class="es">(menor)</span></td><td>il/la minore</td><td>minimo</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-card" style="margin-top:1rem">
+    <h4>💡 Nota pratica</h4>
+    <ul>
+      <li><em>buonissimo</em> = <em>ottimo</em> — entrambe le forme sono accettate e usate.</li>
+      <li><em>più buono / più cattivo</em> = anche queste forme esistono nel parlato! Solo le forme irregolari sono più formali.</li>
+      <li><em>Migliore / peggiore</em> si usano per comparare: <em>"Questo vino è migliore di quello."</em></li>
+    </ul>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz-section" id="quiz">
+  <div class="quiz-inner">
+    <h2 class="quiz-title">Quiz — Al ristorante 🍝</h2>
+
+    <div class="qcard">
+      <div class="qtext">1. "Il pesce è ___ leggero ___ la carne."</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q1','a')">a) più / di</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','b')">b) più / che</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','c')">c) meno / che</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','d')">d) tanto / quanto</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">2. "È più semplice mangiare fuori ___ cucinare ogni giorno."</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q2','a')">a) di</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','b')">b) che</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','c')">c) quanto</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','d')">d) come</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">3. Comparativo irregolare di "buono":</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q3','a')">a) più buono</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','b')">b) migliore</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','c')">c) ottimo</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','d')">d) buonissimo</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">4. "Questa trattoria è ___ elegante ___ quel ristorante." (uguaglianza)</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q4','a')">a) più / di</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','b')">b) tanto / quanto</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','c')">c) meno / di</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','d')">d) più / che</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">5. "Il cappuccino è ___ dolce del caffè americano."</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q5','a')">a) tanto</div>
+        <div class="qopt" onclick="selectOpt(this,'q5','b')">b) meno</div>
+        <div class="qopt" onclick="selectOpt(this,'q5','c')">c) più</div>
+        <div class="qopt" onclick="selectOpt(this,'q5','d')">d) così</div>
+      </div>
+    </div>
+
+    <button class="quiz-submit" onclick="submitQuiz()">Controlla il quiz ✓</button>
+    <div class="quiz-result" id="quiz-result"></div>
+  </div>
+</section>
+
+<script>
+function toggleEs(){
+  document.body.classList.toggle('hide-es');
+  document.getElementById('etoggle').textContent=
+    document.body.classList.contains('hide-es')?'ES 🙈':'ES 👁';
+}
+function checkPrac(id){
+  const block=document.getElementById(id);const inputs=block.querySelectorAll('.prac-input');let ok=0;
+  inputs.forEach(inp=>{
+    inp.classList.remove('ok','err');
+    if(inp.value.toLowerCase().trim()===inp.dataset.ans){inp.classList.add('ok');ok++}
+    else if(inp.value.trim())inp.classList.add('err');
+  });
+  document.getElementById(id+'-fb').textContent=ok===inputs.length?'✅ Perfetto!':'👀 '+ok+'/'+inputs.length+' corretti.';
+}
+const ANSWERS={q1:'a',q2:'b',q3:'b',q4:'b',q5:'c'};
+const selected={};
+function selectOpt(el,qid,opt){
+  el.closest('.qcard').querySelectorAll('.qopt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');selected[qid]=opt;
+}
+function submitQuiz(){
+  let score=0;
+  document.querySelectorAll('.qcard').forEach((card,i)=>{
+    const qid='q'+(i+1);
+    card.querySelectorAll('.qopt').forEach(o=>{
+      const optLetter=o.textContent.trim()[0];
+      o.classList.remove('correct','wrong');
+      if(optLetter===ANSWERS[qid])o.classList.add('correct');
+      else if(o.classList.contains('selected'))o.classList.add('wrong');
+    });
+    if(selected[qid]===ANSWERS[qid])score++;
+  });
+  const res=document.getElementById('quiz-result');
+  res.textContent=score===5?'🎉 Perfetto! 5/5 — Comparativi dominati!':
+    score>=3?`✅ ${score}/5 — Ottimo! Ripasssa gli errori.`:
+    `👀 ${score}/5 — Rileggi la sezione di/che e riprova!`;
+}
+</script>
+</body>
+</html>

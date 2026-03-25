@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -22,8 +22,8 @@ nav{position:sticky;top:0;z-index:100;background:var(--black);display:flex;gap:0
 nav::-webkit-scrollbar{display:none}
 nav a{color:var(--gold);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.75rem 1.1rem;white-space:nowrap;transition:background .2s}
 nav a:hover{background:rgba(255,255,255,.1)}
-nav a.active{background:var(--red);color:var(--white)}
-.page-header{background:var(--red);color:var(--white);padding:3rem 1.5rem 2.5rem;text-align:center;position:relative}
+nav a.active{background:#c8e8de;color:var(--white)}
+.page-header{background:#c8e8de;color:#1a1a18;padding:3rem 1.5rem 2.5rem;text-align:center;position:relative}
 .page-header .badge{display:inline-block;background:rgba(255,255,255,.2);border-radius:20px;padding:.25rem .85rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.85rem}
 .page-header h1{font-family:var(--fh);font-style:italic;font-size:2.4rem;margin-bottom:.5rem}
 .page-header p{opacity:.9;font-size:1.05rem}
@@ -34,7 +34,7 @@ section{margin-bottom:3rem}
 .section-title{font-family:var(--fh);font-style:italic;font-size:1.6rem;color:var(--red);margin-bottom:1.25rem;padding-bottom:.4rem;border-bottom:2px solid var(--cream-dk)}
 .section-intro{margin-bottom:1.1rem;font-size:.97rem}
 .gram-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.93rem}
-.gram-table th{background:var(--red);color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
+.gram-table th{background:#c8e8de;color:var(--white);padding:.55rem .75rem;text-align:left;font-weight:600}
 .gram-table td{padding:.5rem .75rem;border-bottom:1px solid var(--cream-dk)}
 .gram-table tr:nth-child(even) td{background:rgba(0,0,0,.03)}
 .gram-table .highlight td{background:rgba(204,71,54,.12);font-weight:700}
@@ -55,10 +55,10 @@ section{margin-bottom:3rem}
 .prac-item.correct .prac-fb{color:var(--green)}
 .prac-item.wrong .prac-fb{color:var(--red)}
 .btn{border:none;border-radius:var(--r);padding:.5rem 1.1rem;font-family:var(--fb);font-size:.87rem;font-weight:600;cursor:pointer;transition:all .2s}
-.btn-primary{background:var(--red);color:var(--white)}
+.btn-primary{background:#c8e8de;color:var(--white)}
 .btn-primary:hover{filter:brightness(1.1)}
 .btn-ghost{background:transparent;border:1.5px solid var(--red);color:var(--red)}
-.btn-ghost:hover{background:var(--red);color:var(--white)}
+.btn-ghost:hover{background:#c8e8de;color:var(--white)}
 .quiz-wrap{background:var(--white);border-radius:var(--r);padding:1.5rem;border:1px solid var(--cream-dk)}
 .quiz-q{margin-bottom:1.5rem}
 .quiz-q p{font-weight:600;margin-bottom:.7rem;font-size:.97rem}
@@ -87,11 +87,25 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
 .fon-card h5{color:var(--red);font-weight:700;margin-bottom:.5rem;font-size:.9rem}
 .fon-pair{display:flex;gap:.8rem;margin:.3rem 0;font-size:.93rem}
 .fon-word{background:var(--cream);border-radius:5px;padding:.2rem .5rem;font-weight:600}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
 </style>
 </head>
 <body>
-<nav id="main-nav">
-  <a href="#isco" class="active">Verbi -ISCO</a>
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#isco" class="active">Verbi -ISCO</a>
   <a href="#fare">FARE</a>
   <a href="#articoli">Articoli det.</a>
   <a href="#concordanza">Concordanza</a>
@@ -100,6 +114,7 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
 </nav>
 
 <header class="page-header">
+  <img src="../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img">
   <button class="toggle-btn" id="toggleEs" onclick="toggleEs()">Ocultar traducciones</button>
   <div class="badge">Módulo 7 · Gramática</div>
   <h1>Che lavoro fai?</h1>
@@ -157,7 +172,7 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
       <div class="prac-item" data-ans="capite">Voi ___ il problema? (capire) <input class="prac-input" placeholder="..."></div>
     </div>
     <div style="margin-top:.85rem;display:flex;gap:.75rem">
-      <button class="btn btn-primary" onclick="checkPrac('prac1')">Verifica</button>
+      <button class="btn btn-primary" onclick="checkPrac('prac1')">Verificá</button>
       <button class="btn btn-ghost" onclick="resetPrac('prac1')">Ripristina</button>
     </div>
   </div>
@@ -198,7 +213,7 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
       <div class="prac-item" data-ans="fa">Mia sorella ___ l'infermiera. <input class="prac-input" placeholder="..."></div>
     </div>
     <div style="margin-top:.85rem;display:flex;gap:.75rem">
-      <button class="btn btn-primary" onclick="checkPrac('prac2')">Verifica</button>
+      <button class="btn btn-primary" onclick="checkPrac('prac2')">Verificá</button>
       <button class="btn btn-ghost" onclick="resetPrac('prac2')">Ripristina</button>
     </div>
   </div>
@@ -326,9 +341,11 @@ footer{text-align:center;padding:2rem;color:#888;font-size:.82rem;border-top:1px
 <footer><p>Italiano Per Piacere · Módulo 7 · <em>Che lavoro fai?</em></p></footer>
 
 <script>
+(function(){
+
 let esVisible=true;
 function toggleEs(){esVisible=!esVisible;document.body.classList.toggle('hide-es',!esVisible);document.getElementById('toggleEs').textContent=esVisible?'Ocultar traducciones':'Mostrar traducciones';}
-const secs=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('nav a');
+const secs=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)c=s.id});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)});});
 function checkPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{const inp=item.querySelector('.prac-input');const ans=item.dataset.ans;const val=inp.value.trim().toLowerCase();item.classList.remove('correct','wrong');let fb=item.querySelector('.prac-fb');if(!fb){fb=document.createElement('span');fb.className='prac-fb';item.appendChild(fb);}if(val===ans){item.classList.add('correct');fb.textContent='✓';}else{item.classList.add('wrong');fb.textContent='✗ '+ans;}});}
 function resetPrac(id){document.querySelectorAll('#'+id+' .prac-item').forEach(item=>{item.classList.remove('correct','wrong');item.querySelector('.prac-input').value='';const fb=item.querySelector('.prac-fb');if(fb)fb.textContent='';});}
@@ -336,6 +353,7 @@ const answers={q1:'b',q2:'a',q3:'b',q4:'b',q5:'b'};
 let selected={};
 function selectOpt(el,qid,opt){if(selected[qid])return;selected[qid]=opt;const opts=el.parentElement.querySelectorAll('.quiz-opt');opts.forEach(o=>o.style.pointerEvents='none');const correct=answers[qid];opts.forEach((o,i)=>{const k=['a','b','c'][i];if(k===correct)o.classList.add('correct');else if(k===opt)o.classList.add('wrong');});}
 function submitQuiz(){let score=0;Object.keys(answers).forEach(q=>{if(selected[q]===answers[q])score++;});const res=document.getElementById('quiz-result');res.classList.add('show');if(score>=4){res.className='quiz-result show good';res.textContent=`Bravissimo/a! ${score}/5 ✓`;}else if(score>=2){res.className='quiz-result show ok';res.textContent=`Bene! ${score}/5 — continua a studiare.`;}else{res.className='quiz-result show try';res.textContent=`${score}/5 — Riprova! Torna alle sezioni.`;}}
+})();
 </script>
 </body>
 </html>

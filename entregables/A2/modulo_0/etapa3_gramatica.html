@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unità 0 — In classe · Gramática | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;
+  --gold:#EFCF7F;--amber:#e5ab07;--amber-dk:#c8940a;
+  --red:#cc4736;--teal:#78a6ba;--teal-dk:#5a8ea0;
+  --green:#528e74;--green-dk:#3d6b58;
+  --black:#1a1a18;--white:#ffffff;
+  --hdr:var(--amber-dk);
+  --fh:'Playfair Display',Georgia,serif;
+  --fb:'Outfit',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--fb);background:var(--cream);color:var(--black)}
+body.hide-es .es{display:none}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #EFCF7F;box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#c8940a;border-bottom-color:#EFCF7F}
+
+/* ES TOGGLE */
+#etoggle{position:fixed;top:.9rem;right:1rem;z-index:200;background:#fde8a0;color:var(--black);border:none;border-radius:2rem;padding:.4rem 1rem;font-family:var(--fb);font-size:.8rem;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+
+/* SECTIONS */
+.section{max-width:860px;margin:0 auto;padding:3rem 1.5rem}
+.sec-title{font-family:var(--fh);font-style:italic;font-size:clamp(1.5rem,4vw,2rem);color:var(--hdr);margin-bottom:.3rem}
+.sec-sub{color:#666;font-size:.9rem;margin-bottom:1.8rem;line-height:1.5}
+.es{color:#888;font-size:.85rem;font-style:italic}
+
+/* RULE CARD */
+.rule-card{background:var(--white);border-radius:.9rem;padding:1.4rem 1.6rem;margin-bottom:1.2rem;border-left:5px solid var(--hdr);box-shadow:0 3px 12px rgba(0,0,0,.07)}
+.rule-card h4{font-weight:700;color:var(--hdr);margin-bottom:.6rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.05em}
+.rule-card p,.rule-card li{font-size:.92rem;line-height:1.65;color:#444}
+.rule-card em{color:var(--black);font-style:italic;font-weight:600}
+.rule-card ul{padding-left:1.2rem;margin-top:.4rem}
+
+/* GRAMMAR TABLE */
+.gtable{width:100%;border-collapse:collapse;margin:1rem 0;border-radius:.7rem;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.gtable th{background:#fde8a0;color:var(--black);padding:.7rem 1rem;text-align:center;font-size:.82rem;letter-spacing:.05em}
+.gtable td{padding:.65rem 1rem;border-bottom:1px solid var(--cream-dk);font-size:.9rem;text-align:center;background:var(--white)}
+.gtable tr:last-child td{border:none}
+.gtable tr:hover td{background:var(--cream)}
+.gtable td:first-child{font-weight:700;color:var(--hdr);text-align:left}
+.gtable .irreg{color:var(--red);font-weight:700}
+.gtable .note{font-size:.75rem;color:#888}
+
+/* PRACTICE */
+.prac-block{background:var(--white);border-radius:1rem;padding:1.6rem;margin-bottom:1.5rem;box-shadow:0 3px 14px rgba(0,0,0,.07);border:1px solid var(--cream-dk)}
+.prac-block h4{font-family:var(--fh);font-style:italic;color:var(--hdr);margin-bottom:1rem;font-size:1.1rem}
+.prac-row{margin:.6rem 0;font-size:.93rem;line-height:1.9;display:flex;flex-wrap:wrap;align-items:center;gap:.3rem}
+.prac-input{border:none;border-bottom:2.5px solid var(--hdr);background:transparent;padding:.1rem .5rem;font-family:var(--fb);font-size:.92rem;width:130px;outline:none;color:var(--black);transition:border-color .2s}
+.prac-input:focus{border-color:var(--amber-dk)}
+.prac-input.ok{border-color:var(--green);color:var(--green-dk)}
+.prac-input.err{border-color:var(--red);color:var(--red)}
+.prac-btn{background:#fde8a0;color:var(--black);border:none;border-radius:2rem;padding:.5rem 1.4rem;font-family:var(--fb);font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.8rem;transition:background .2s}
+.prac-btn:hover{background:var(--amber)}
+.prac-fb{font-size:.83rem;margin-top:.5rem;font-weight:600;color:var(--hdr);min-height:1.1rem}
+
+/* QUIZ */
+.quiz-section{background:var(--cream-dk);padding:3rem 1.5rem}
+.quiz-inner{max-width:700px;margin:0 auto}
+.quiz-title{font-family:var(--fh);font-style:italic;font-size:1.8rem;color:var(--hdr);margin-bottom:.4rem}
+.qcard{background:var(--white);border-radius:1rem;padding:1.4rem 1.6rem;margin-bottom:1.2rem;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.qcard .qtext{font-size:.95rem;font-weight:600;margin-bottom:.9rem;line-height:1.5}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.qopt{background:var(--cream);border:2px solid var(--cream-dk);border-radius:.6rem;padding:.6rem 1rem;cursor:pointer;font-size:.88rem;transition:all .2s;text-align:center}
+.qopt:hover{border-color:var(--hdr);background:var(--gold)}
+.qopt.selected{background:var(--gold);border-color:var(--hdr);font-weight:700}
+.qopt.correct{background:#d4edda;border-color:var(--green)}
+.qopt.wrong{background:#f8d7da;border-color:var(--red)}
+.quiz-submit{background:#fde8a0;color:var(--black);border:none;border-radius:2rem;padding:.65rem 2rem;font-family:var(--fb);font-size:.92rem;font-weight:700;cursor:pointer;display:block;margin:1.5rem auto 0;transition:background .2s;box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.quiz-submit:hover{background:var(--amber)}
+.quiz-result{text-align:center;font-size:1.1rem;font-weight:700;margin-top:1.2rem;min-height:1.5rem;color:var(--hdr)}
+
+/* HIGHLIGHT */
+.hl{background:var(--gold);padding:.1rem .3rem;border-radius:.25rem;font-weight:700}
+.badge-irreg{background:#fde8e5;color:var(--red);font-size:.72rem;font-weight:700;border-radius:.3rem;padding:.1rem .4rem;margin-left:.3rem}
+.badge-reg{background:#e8f5e9;color:var(--green-dk);font-size:.72rem;font-weight:700;border-radius:.3rem;padding:.1rem .4rem;margin-left:.3rem}
+
+    /* ── LOGO IPP ── */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+nav > a:not(.nav-logo):hover,nav > a:not(.nav-logo).active{opacity:1;color:#c8940a;border-bottom-color:#EFCF7F}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+
+<button id="etoggle" onclick="toggleEs()">ES 👁</button>
+
+<!-- NAV -->
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#presente">Presente</a>
+      <a href="#passato">Pass. Prossimo</a>
+      <a href="#aggettivi">Aggettivi</a>
+      <a href="#pronomi">Pronomi</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+
+<!-- PRESENTE -->
+<section class="section" id="presente">
+  <h2 class="sec-title">Il Presente Indicativo</h2>
+  <p class="sec-sub es">Repaso completo de las conjugaciones del presente — la base de todo.</p>
+
+  <div class="rule-card">
+    <h4>Le tre coniugazioni</h4>
+    <p>Los verbos regulares se agrupan según su terminación en infinitivo: <em>-ARE / -ERE / -IRE</em></p>
+  </div>
+
+  <table class="gtable">
+    <thead><tr><th>Pronome</th><th>parlare (-ARE)</th><th>leggere (-ERE)</th><th>partire (-IRE)</th><th>finire (-IRE isc)</th></tr></thead>
+    <tbody>
+      <tr><td>io</td><td>parl<strong>o</strong></td><td>legg<strong>o</strong></td><td>part<strong>o</strong></td><td>fin<strong>isco</strong></td></tr>
+      <tr><td>tu</td><td>parl<strong>i</strong></td><td>legg<strong>i</strong></td><td>part<strong>i</strong></td><td>fin<strong>isci</strong></td></tr>
+      <tr><td>lui/lei</td><td>parl<strong>a</strong></td><td>legg<strong>e</strong></td><td>part<strong>e</strong></td><td>fin<strong>isce</strong></td></tr>
+      <tr><td>noi</td><td>parl<strong>iamo</strong></td><td>legg<strong>iamo</strong></td><td>part<strong>iamo</strong></td><td>fin<strong>iamo</strong></td></tr>
+      <tr><td>voi</td><td>parl<strong>ate</strong></td><td>legg<strong>ete</strong></td><td>part<strong>ite</strong></td><td>fin<strong>ite</strong></td></tr>
+      <tr><td>loro</td><td>parl<strong>ano</strong></td><td>legg<strong>ono</strong></td><td>part<strong>ono</strong></td><td>fin<strong>iscono</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-card" style="margin-top:1.5rem">
+    <h4>Verbi irregolari fondamentali <span class="badge-irreg">irregolari</span></h4>
+    <p class="es">Estos verbos son esenciales — hay que memorizarlos:</p>
+  </div>
+
+  <table class="gtable">
+    <thead><tr><th>Pronome</th><th class="irreg">essere</th><th class="irreg">avere</th><th class="irreg">fare</th><th class="irreg">stare</th><th class="irreg">venire</th></tr></thead>
+    <tbody>
+      <tr><td>io</td><td class="irreg">sono</td><td class="irreg">ho</td><td class="irreg">faccio</td><td class="irreg">sto</td><td class="irreg">vengo</td></tr>
+      <tr><td>tu</td><td class="irreg">sei</td><td class="irreg">hai</td><td class="irreg">fai</td><td class="irreg">stai</td><td class="irreg">vieni</td></tr>
+      <tr><td>lui/lei</td><td class="irreg">è</td><td class="irreg">ha</td><td class="irreg">fa</td><td class="irreg">sta</td><td class="irreg">viene</td></tr>
+      <tr><td>noi</td><td class="irreg">siamo</td><td class="irreg">abbiamo</td><td class="irreg">facciamo</td><td class="irreg">stiamo</td><td class="irreg">veniamo</td></tr>
+      <tr><td>voi</td><td class="irreg">siete</td><td class="irreg">avete</td><td class="irreg">fate</td><td class="irreg">state</td><td class="irreg">venite</td></tr>
+      <tr><td>loro</td><td class="irreg">sono</td><td class="irreg">hanno</td><td class="irreg">fanno</td><td class="irreg">stanno</td><td class="irreg">vengono</td></tr>
+    </tbody>
+  </table>
+
+  <!-- PRACTICE 1 -->
+  <div class="prac-block" id="prac1" style="margin-top:2rem">
+    <h4>Pratica 1 — Presente indicativo</h4>
+    <p class="es" style="font-size:.83rem;margin-bottom:.8rem">Completa con el presente correcto:</p>
+    <div class="prac-row">1. Io <input class="prac-input" data-ans="studio" placeholder="studiare"> italiano ogni giorno.</div>
+    <div class="prac-row">2. Lei <input class="prac-input" data-ans="legge" placeholder="leggere"> un libro interessante.</div>
+    <div class="prac-row">3. Noi <input class="prac-input" data-ans="veniamo" placeholder="venire"> dalla Spagna.</div>
+    <div class="prac-row">4. Voi <input class="prac-input" data-ans="fate" placeholder="fare"> molte domande!</div>
+    <div class="prac-row">5. Marco e Sofia <input class="prac-input" data-ans="parlano" placeholder="parlare"> bene l'italiano.</div>
+    <button class="prac-btn" onclick="checkPrac('prac1')">Controlla ✓</button>
+    <div class="prac-fb" id="prac1-fb"></div>
+  </div>
+</section>
+
+<!-- PASSATO PROSSIMO -->
+<section class="section" id="passato" style="background:var(--cream)">
+  <h2 class="sec-title">Il Passato Prossimo</h2>
+  <p class="sec-sub es">Repaso: acción pasada completada = AUXILIAR (avere/essere) + PARTICIPIO PASSATO</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.5rem">
+    <div class="rule-card">
+      <h4>Con AVERE <span class="badge-reg">transitivi</span></h4>
+      <p><em>ho / hai / ha / abbiamo / avete / hanno + participio</em></p>
+      <ul><li>Ho mangiato la pizza.</li><li>Hai letto il libro?</li><li>Abbiamo visto un film.</li></ul>
+    </div>
+    <div class="rule-card">
+      <h4>Con ESSERE <span class="badge-irreg">movimento+stato</span></h4>
+      <p><em>sono / sei / è / siamo / siete / sono + participio</em></p>
+      <ul><li>Sono andata al cinema.</li><li>Sei partito presto.</li><li>Siamo tornati tardi.</li></ul>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <h4>Participio passato irregolari fondamentali</h4>
+  </div>
+  <table class="gtable">
+    <thead><tr><th>Infinito</th><th>Participio</th><th class="es">Es</th><th>Infinito</th><th>Participio</th></tr></thead>
+    <tbody>
+      <tr><td>fare</td><td class="irreg">fatto</td><td class="es">hecho</td><td>leggere</td><td class="irreg">letto</td></tr>
+      <tr><td>dire</td><td class="irreg">detto</td><td class="es">dicho</td><td>scrivere</td><td class="irreg">scritto</td></tr>
+      <tr><td>vedere</td><td class="irreg">visto</td><td class="es">visto</td><td>mettere</td><td class="irreg">messo</td></tr>
+      <tr><td>venire</td><td class="irreg">venuto</td><td class="es">venido</td><td>aprire</td><td class="irreg">aperto</td></tr>
+      <tr><td>essere</td><td class="irreg">stato</td><td class="es">sido/estado</td><td>prendere</td><td class="irreg">preso</td></tr>
+      <tr><td>bere</td><td class="irreg">bevuto</td><td class="es">bebido</td><td>chiedere</td><td class="irreg">chiesto</td></tr>
+    </tbody>
+  </table>
+
+  <!-- PRACTICE 2 -->
+  <div class="prac-block" id="prac2" style="margin-top:2rem">
+    <h4>Pratica 2 — Passato prossimo</h4>
+    <div class="prac-row">1. Ieri io <input class="prac-input" data-ans="ho letto" placeholder="leggere"> un articolo.</div>
+    <div class="prac-row">2. Maria <input class="prac-input" data-ans="è andata" placeholder="andare (f.)"> in centro.</div>
+    <div class="prac-row">3. Noi <input class="prac-input" data-ans="abbiamo fatto" placeholder="fare"> i compiti.</div>
+    <div class="prac-row">4. I ragazzi <input class="prac-input" data-ans="sono partiti" placeholder="partire (m.pl.)"> stamattina.</div>
+    <button class="prac-btn" onclick="checkPrac('prac2')">Controlla ✓</button>
+    <div class="prac-fb" id="prac2-fb"></div>
+  </div>
+</section>
+
+<!-- AGGETTIVI -->
+<section class="section" id="aggettivi">
+  <h2 class="sec-title">Gli Aggettivi — Concordanza</h2>
+  <p class="sec-sub es">Los adjetivos concuerdan en género y número con el sustantivo.</p>
+
+  <table class="gtable">
+    <thead><tr><th>Tipo</th><th>Masch. Sing.</th><th>Femm. Sing.</th><th>Masch. Plur.</th><th>Femm. Plur.</th></tr></thead>
+    <tbody>
+      <tr><td>-o/-a</td><td>bello</td><td>bell<strong>a</strong></td><td>bell<strong>i</strong></td><td>bell<strong>e</strong></td></tr>
+      <tr><td>-e/-e</td><td>grande</td><td>grand<strong>e</strong></td><td>grand<strong>i</strong></td><td>grand<strong>i</strong></td></tr>
+      <tr><td>nazionalità</td><td>italiano</td><td>italian<strong>a</strong></td><td>italian<strong>i</strong></td><td>italian<strong>e</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-card" style="margin-top:1.5rem">
+    <h4>BELLO e QUELLO — forme speciali</h4>
+    <p class="es">Funcionan como los artículos determinados cuando van ANTES del sustantivo:</p>
+    <table class="gtable" style="margin-top:.8rem">
+      <thead><tr><th>Articolo</th><th>bello/quello</th><th class="es">ejemplo</th></tr></thead>
+      <tbody>
+        <tr><td>il</td><td>bel / quel</td><td class="es">un bel ragazzo / quel libro</td></tr>
+        <tr><td>lo / l'</td><td>bello / bell' / quello / quell'</td><td class="es">un bell'uomo / quell'anno</td></tr>
+        <tr><td>la / l'</td><td>bella / bell' / quella / quell'</td><td class="es">una bella città</td></tr>
+        <tr><td>i</td><td>bei / quei</td><td class="es">bei fiori / quei ragazzi</td></tr>
+        <tr><td>gli</td><td>begli / quegli</td><td class="es">begli occhi / quegli uomini</td></tr>
+        <tr><td>le</td><td>belle / quelle</td><td class="es">belle scarpe / quelle ragazze</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PRACTICE 3 -->
+  <div class="prac-block" id="prac3" style="margin-top:2rem">
+    <h4>Pratica 3 — Aggettivi e concordanza</h4>
+    <div class="prac-row">1. Ho visto <input class="prac-input" data-ans="un bel" placeholder="bello+il"> film ieri.</div>
+    <div class="prac-row">2. <input class="prac-input" data-ans="quella" placeholder="quello+la"> studentessa è brava.</div>
+    <div class="prac-row">3. Che <input class="prac-input" data-ans="belle" placeholder="bello+le pl."> scarpe!</div>
+    <div class="prac-row">4. <input class="prac-input" data-ans="quegli" placeholder="quello+gli"> amici sono simpatici.</div>
+    <button class="prac-btn" onclick="checkPrac('prac3')">Controlla ✓</button>
+    <div class="prac-fb" id="prac3-fb"></div>
+  </div>
+</section>
+
+<!-- PRONOMI DIRETTI -->
+<section class="section" id="pronomi" style="background:var(--cream)">
+  <h2 class="sec-title">I Pronomi Diretti</h2>
+  <p class="sec-sub es">Los pronombres de objeto directo reemplazan al complemento directo (lo que recibe la acción).</p>
+
+  <table class="gtable">
+    <thead><tr><th>Pronome</th><th>Persona</th><th class="es">Equivalente ES</th><th class="es">Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>mi</strong></td><td>me (io)</td><td class="es">me</td><td class="es"><em>Mi chiami stasera?</em></td></tr>
+      <tr><td><strong>ti</strong></td><td>te (tu)</td><td class="es">te</td><td class="es"><em>Ti vedo domani.</em></td></tr>
+      <tr><td><strong>lo</strong></td><td>lui / oggetto masch.</td><td class="es">lo</td><td class="es"><em>Lo compro io.</em></td></tr>
+      <tr><td><strong>la</strong></td><td>lei / oggetto femm.</td><td class="es">la</td><td class="es"><em>La chiamo dopo.</em></td></tr>
+      <tr><td><strong>ci</strong></td><td>noi</td><td class="es">nos</td><td class="es"><em>Ci invitano alla festa.</em></td></tr>
+      <tr><td><strong>vi</strong></td><td>voi</td><td class="es">os</td><td class="es"><em>Vi aspetto alle otto.</em></td></tr>
+      <tr><td><strong>li</strong></td><td>loro masch. plur.</td><td class="es">los</td><td class="es"><em>Li compro al mercato.</em></td></tr>
+      <tr><td><strong>le</strong></td><td>loro femm. plur.</td><td class="es">las</td><td class="es"><em>Le leggo ogni sera.</em></td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-card" style="margin-top:1.5rem">
+    <h4>Posizione del pronome</h4>
+    <ul>
+      <li>Va <strong>PRIMA</strong> del verbo coniugato: <em>Lo mangio.</em></li>
+      <li>Va <strong>DOPO</strong> l'infinito (senza -e): <em>Voglio mangiarlo.</em></li>
+      <li>Con il passato prossimo: <em>L'ho mangiato / Le ho comprate.</em> <span class="badge-irreg">concordanza!</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz-section" id="quiz">
+  <div class="quiz-inner">
+    <h2 class="quiz-title">Quiz di ripasso A1 🎯</h2>
+    <p class="es" style="color:#666;font-size:.88rem;margin-bottom:1.5rem">5 preguntas para confirmar que el A1 está sólido.</p>
+
+    <div class="qcard">
+      <div class="qtext">1. Qual è la forma corretta del verbo? — "Ieri Marco ___ al cinema." (andare)</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q1','a')">a) è andato</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','b')">b) ha andato</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','c')">c) andava</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','d')">d) andrà</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">2. Scegli il pronome diretto corretto: "Hai visto Giulia? — Sì, ___ ho vista ieri."</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q2','a')">a) lo</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','b')">b) la</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','c')">c) li</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','d')">d) le</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">3. Quale frase è corretta con "bello"?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q3','a')">a) un bello ragazzo</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','b')">b) un bel ragazzo</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','c')">c) un bella ragazzo</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','d')">d) un beli ragazzo</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">4. "Ho ___ la pizza e ___ un film." (mangiare / vedere)</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q4','a')">a) mangiato / visto</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','b')">b) mangiuto / veduto</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','c')">c) mangiare / vedere</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','d')">d) mangiai / viddi</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">5. Come si chiama il participio di "fare"?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q5','a')">a) farito</div>
+        <div class="qopt" onclick="selectOpt(this,'q5','b')">b) fatto</div>
+        <div class="qopt" onclick="selectOpt(this,'q5','c')">c) facito</div>
+        <div class="qopt" onclick="selectOpt(this,'q5','d')">d) fato</div>
+      </div>
+    </div>
+
+    <button class="quiz-submit" onclick="submitQuiz()">Controlla il quiz ✓</button>
+    <div class="quiz-result" id="quiz-result"></div>
+  </div>
+</section>
+
+<script>
+function toggleEs(){
+  document.body.classList.toggle('hide-es');
+  document.getElementById('etoggle').textContent=
+    document.body.classList.contains('hide-es')?'ES 🙈':'ES 👁';
+}
+
+function checkPrac(id){
+  const block=document.getElementById(id);
+  const inputs=block.querySelectorAll('.prac-input');
+  let ok=0;
+  inputs.forEach(inp=>{
+    inp.classList.remove('ok','err');
+    if(inp.value.toLowerCase().trim()===inp.dataset.ans){inp.classList.add('ok');ok++}
+    else if(inp.value.trim()){inp.classList.add('err')}
+  });
+  const fb=document.getElementById(id+'-fb');
+  fb.textContent=ok===inputs.length?'✅ Perfetto!':'👀 '+ok+'/'+inputs.length+' corretti. Riprova!';
+}
+
+const ANSWERS={q1:'a',q2:'b',q3:'b',q4:'a',q5:'b'};
+const selected={};
+function selectOpt(el,qid,opt){
+  const card=el.closest('.qcard');
+  card.querySelectorAll('.qopt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  selected[qid]=opt;
+}
+function submitQuiz(){
+  let score=0;
+  ['q1','q2','q3','q4','q5'].forEach(q=>{
+    const card=document.querySelectorAll('.qcard')[parseInt(q[1])-1];
+    card.querySelectorAll('.qopt').forEach(o=>{
+      const optLetter=o.onclick.toString().match(/'([a-e])'\)$/)?.[1];
+      o.classList.remove('correct','wrong');
+      if(optLetter===ANSWERS[q])o.classList.add('correct');
+      else if(o.classList.contains('selected'))o.classList.add('wrong');
+    });
+    if(selected[q]===ANSWERS[q])score++;
+  });
+  const res=document.getElementById('quiz-result');
+  res.textContent=score===5?'🎉 Perfetto! 5/5 — Sei pronta per il livello A2!':
+    score>=3?`✅ ${score}/5 — Brava! Ripasssa ciò che hai sbagliato.`:
+    `👀 ${score}/5 — Ripassa ancora il livello A1.`;
+}
+</script>
+</body>
+</html>

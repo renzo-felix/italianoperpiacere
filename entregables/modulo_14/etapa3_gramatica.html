@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -19,20 +19,20 @@ body.hide-es .es{display:none}
 
 nav{
   position:sticky;top:0;z-index:100;
-  background:var(--black);padding:.7rem 2rem;
+  background:var(--red);padding:.7rem 2rem;
   display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap
 }
-nav .logo{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:1.05rem;margin-right:auto}
-nav a{color:var(--gold);text-decoration:none;font-size:.88rem;font-weight:600;opacity:.8;transition:opacity .2s}
+nav .logo{font-family:'Playfair Display',serif;font-style:italic;color:#fff;font-size:1.05rem;margin-right:auto}
+nav a{color:#fff;text-decoration:none;font-size:.88rem;font-weight:600;opacity:.85;transition:opacity .2s}
 nav a:hover{opacity:1}
 #es-toggle{
-  background:var(--hdr);color:#fff;border:none;
+  background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.4);
   padding:.35rem .9rem;border-radius:2rem;
   font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer
 }
 
-.page-header{background:var(--hdr);color:#fff;padding:3rem 2rem 2.5rem;text-align:center}
-.page-header h1{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.9rem,5vw,3rem);margin-bottom:.4rem}
+.page-header{background:linear-gradient(135deg,#fde4e1,var(--cream-dk));color:var(--black);padding:3rem 2rem 2.5rem;text-align:center;border-top:4px solid var(--red)}
+.page-header h1{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.9rem,5vw,3rem);margin-bottom:.4rem;color:var(--red)}
 .page-header p{font-size:1rem;opacity:.88;max-width:580px;margin:0 auto}
 
 .sec{padding:3.5rem 2rem;max-width:820px;margin:0 auto;border-bottom:1px solid var(--cream-dk)}
@@ -43,7 +43,7 @@ nav a:hover{opacity:1}
 
 .gram-table{width:100%;border-collapse:collapse;margin-top:.8rem;font-size:.92rem}
 .gram-table th,.gram-table td{padding:.65rem .85rem;border-bottom:1px solid var(--cream-dk);text-align:left}
-.gram-table th{background:var(--hdr);color:#fff;font-weight:700}
+.gram-table th{background:var(--red);color:#fff;font-weight:700}
 .gram-table tr:nth-child(even){background:var(--cream-dk)}
 .gram-table .it-cell{color:var(--hdr);font-weight:700;font-style:italic}
 .gram-table td:first-child{font-weight:700}
@@ -61,7 +61,7 @@ nav a:hover{opacity:1}
 /* PREP TABLE */
 .prep-table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:.8rem}
 .prep-table th,.prep-table td{padding:.55rem .65rem;border:1px solid var(--cream-dk);text-align:center}
-.prep-table th{background:var(--hdr);color:#fff;font-weight:700}
+.prep-table th{background:var(--red);color:#fff;font-weight:700}
 .prep-table .prep-head{background:var(--cream-dk);font-weight:700;font-style:italic}
 .prep-table .it-cell{color:var(--hdr);font-weight:700;font-size:.92rem}
 
@@ -73,7 +73,7 @@ nav a:hover{opacity:1}
 .indir-card .ex{font-size:.8rem;font-style:italic;color:var(--black);margin-top:.3rem}
 
 /* FONETICA */
-.fon-box{background:var(--black);color:#fff;border-radius:14px;padding:1.5rem;margin-top:1rem}
+.fon-box{background:#4a0e08;color:#fff;border-radius:14px;padding:1.5rem;margin-top:1rem}
 .fon-box h4{color:var(--gold);font-size:1rem;margin-bottom:.8rem}
 .fon-row{display:flex;gap:1.5rem;flex-wrap:wrap;margin:.5rem 0;align-items:center}
 .fon-word{font-size:1.15rem;font-weight:700;letter-spacing:.05em}
@@ -88,7 +88,7 @@ nav a:hover{opacity:1}
 .prac-input:focus{border-color:var(--hdr)}
 .prac-input.ok{border-color:var(--green);background:#d4edda}
 .prac-input.err{border-color:var(--red);background:#f8d7da}
-.check-btn{background:var(--hdr);color:#fff;border:none;padding:.45rem 1.1rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:.6rem}
+.check-btn{background:var(--red);color:#fff;border:none;padding:.45rem 1.1rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:.6rem}
 .check-btn:hover{opacity:.88}
 .prac-feedback{font-size:.88rem;margin-top:.5rem;min-height:1.2em;font-weight:600}
 
@@ -103,16 +103,25 @@ nav a:hover{opacity:1}
 .q-opt.selected{border-color:var(--hdr);background:rgba(204,71,54,.1)}
 .q-opt.correct{border-color:var(--green);background:#d4edda;font-weight:700}
 .q-opt.wrong{border-color:var(--red);background:#f8d7da}
-.submit-btn{background:var(--hdr);color:#fff;border:none;padding:.7rem 2rem;border-radius:2rem;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;margin-top:1rem}
+.submit-btn{background:var(--red);color:#fff;border:none;padding:.7rem 2rem;border-radius:2rem;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;margin-top:1rem}
 .submit-btn:hover{opacity:.88}
 #quiz-result{margin-top:1.2rem;padding:1rem 1.4rem;border-radius:10px;font-size:1rem;font-weight:700;display:none}
 footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: none;
+      opacity: 0.85;
+    }
 </style>
 </head>
 <body class="hide-es">
 
-<nav>
-  <span class="logo">Unità 14 · Gramática</span>
+<nav class="sticky-nav">
   <a href="#piacere">Piacere</a>
   <a href="#preposizioni">Preposizioni</a>
   <a href="#indiretti">Indiretti</a>
@@ -122,6 +131,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 </nav>
 
 <div class="page-header">
+  <img src="../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img">
   <h1>Mi piace moltissimo!</h1>
   <p>Verbo <em>piacere</em>, preposizioni articolate, pronomi indiretti e accento della frase</p>
 </div>
@@ -130,13 +140,14 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <div class="sec" id="piacere">
   <h2>Il verbo piacere</h2>
   <p class="desc">
-    <em>Piacere</em> funciona al revés que en español: el <strong>sujeto es la cosa que gusta</strong>, no la persona.
-    <span class="es">En italiano se dice literalmente "me place el jazz" (= il jazz mi piace a me).</span>
+    Il verbo <em>piacere</em> funziona al contrario: il <strong>soggetto è la cosa che piace</strong>, non la persona.
+    <span class="es">En español se dice "me gusta el jazz", pero en italiano el sujeto gramatical es "el jazz".</span>
   </p>
 
   <div class="rule-card">
-    📌 <strong>La estructura:</strong><br>
+    📌 <strong>La struttura:</strong><br>
     <em>pronome indiretto + <strong>piace</strong> (sing.) / <strong>piacciono</strong> (plur.) + soggetto</em><br>
+    Il verbo si accorda con <strong>la cosa che piace</strong>, non con la persona.<br>
     <span class="es">El verbo concuerda con lo que gusta, no con la persona.</span>
   </div>
 
@@ -176,7 +187,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
   <div class="rule-card" style="margin-top:1.2rem">
     💡 Con il <strong>verbo all'infinito</strong> → sempre <em>piace</em> (singolare):<br>
     <em>Mi piace <strong>ballare</strong>. Ti piace <strong>cucinare</strong>? Le piace <strong>nuotare</strong>.</em><br>
-    <span class="es">Cuando lo que gusta es una acción (verbo infinitivo), siempre va <em>piace</em>.</span>
+    Quando la cosa che piace è un'azione (verbo all'infinito) → sempre <em>piace</em>.<br>
+    <span class="es">Con verbos en infinitivo siempre singular.</span>
   </div>
 
   <div class="practice-block" id="prac1">
@@ -194,7 +206,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <div class="sec" id="preposizioni">
   <h2>Le preposizioni articolate</h2>
   <p class="desc">
-    Las preposiciones <em>a, di, da, in, su</em> se fusionan con el artículo determinativo.
+    Le preposizioni <em>a, di, da, in, su</em> si fondono con l'articolo determinativo formando un'unica parola.
     <span class="es">¡Es una de las características más típicas del italiano!</span>
   </p>
 
@@ -262,7 +274,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
   </table>
 
   <div class="rule-card" style="margin-top:1.2rem">
-    📌 <strong>Exemplos en contexto:</strong><br>
+    📌 <strong>Esempi in contesto:</strong><br>
     <em>Vado <strong>al</strong> concerto.</em> <span class="es">(a + il)</span> &nbsp;|&nbsp;
     <em>Sono <strong>dalla</strong> musica.</em> <span class="es">(da + la)</span> &nbsp;|&nbsp;
     <em>Libri <strong>sul</strong> tavolo.</em> <span class="es">(su + il)</span><br>
@@ -285,8 +297,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <div class="sec" id="indiretti">
   <h2>I pronomi indiretti</h2>
   <p class="desc">
-    Los pronombres de objeto indirecto responden a la pregunta <em>"a chi?"</em> (¿a quién?).
-    <span class="es">Con <em>piacere</em> ya los hemos visto: <em>mi, ti, gli/le, ci, vi, gli</em>.</span>
+    I pronomi indiretti rispondono alla domanda <em>"a chi?"</em> e indicano il destinatario dell'azione.
+    <span class="es">Con piacere ya los conociste: mi, ti, gli/le, ci, vi, gli.</span>
   </p>
 
   <div class="indir-grid">
@@ -328,7 +340,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
   </div>
 
   <div class="rule-card" style="margin-top:1.2rem">
-    💡 <strong>Verbos que se usan con pronomi indiretti:</strong><br>
+    💡 <strong>Verbi che si usano con i pronomi indiretti:</strong><br>
     <em>scrivere a, telefonare a, mandare a, dire a, chiedere a, rispondere a, regalare a, <strong>piacere a</strong></em>
   </div>
 
@@ -347,11 +359,11 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
 <div class="sec" id="fonetica">
   <h2>Fonetica — L'accento della frase</h2>
   <p class="desc">
-    En italiano, el acento recae sobre la palabra más importante de la oración.
-    <span class="es">Cambiando qué palabra acentúas, ¡puedes cambiar el significado!</span>
+    In italiano, l'accento cade sulla parola più importante della frase.
+    <span class="es">Cambiando qué palabra enfatizas, ¡puedes cambiar el significado de la frase!</span>
   </p>
   <div class="fon-box">
-    <h4>🎵 Lee en voz alta — la sílaba subrayada lleva más énfasis</h4>
+    <h4>🎵 Leggi ad alta voce — la parola sottolineata ha più enfasi</h4>
     <div class="fon-row">
       <span class="fon-word"><span class="fon-accent">MI</span> piace la musica.</span>
       <span class="fon-rule"><span class="es">→ énfasis en "a mí" (no a otro)</span></span>
@@ -370,7 +382,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
     </div>
   </div>
   <p style="margin-top:1rem;font-size:.9rem;color:#555">
-    💡 <span class="es">En italiano la entonación es muy musical. La curva melódica sube hacia el pico de información y baja al final de la frase.</span>
+    💡 In italiano l'intonazione è molto musicale. La curva melodica <em>sale</em> verso il picco dell'informazione e <em>scende</em> alla fine della frase.
+    <span class="es">La curva melódica sube al pico informativo y baja al final.</span>
   </p>
 </div>
 
@@ -428,9 +441,11 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:#888}
   <div id="quiz-result"></div>
 </div>
 
-<footer>Italiano Per Piacere · Unità 14 · Etapa 3 — Gramática</footer>
+<footer>Italiano Per Piacere · Unità 14 · Tappa 3 — Grammatica</footer>
 
 <script>
+(function(){
+
 const ANSWERS={q1:'b',q2:'b',q3:'a',q4:'b',q5:'b'};
 const selected={};
 function toggleEs(){
@@ -471,6 +486,7 @@ function submitQuiz(){
   else if(score>=3){res.style.background='#fff3cd';res.style.color='#856404';res.textContent=`👍 Bene! ${score}/5 — Rileggi le sezioni in rosso.`;}
   else{res.style.background='#f8d7da';res.style.color='#721c24';res.textContent=`💪 ${score}/5 — Ripassate e riprovate!`;}
 }
+})();
 </script>
 </body>
 </html>

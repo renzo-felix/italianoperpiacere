@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 6 — Gramática | Al bar | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#e9e6d5;--cream-dk:#ddd9c8;
+    --red:#cc4736;--red-dk:#a8382a;
+    --black:#1a1a18;--white:#ffffff;
+    --green:#528e74;
+    --mod:#cc4736;--mod-dk:#a8382a;--mod-hero:#fde4e1;
+    --mod-th-bg:#fbc8c2;--mod-th-color:#7a1f14;
+    --mod-border:#cc4736;--mod-strip:#fde4e1;
+    --fh:'Playfair Display',Georgia,serif;
+    --fb:'Outfit',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--fb);color:var(--black);background:var(--cream);line-height:1.65}
+
+  nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:2px solid var(--mod-border);box-shadow:0 2px 8px rgba(0,0,0,.08);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+  .nav-inner{max-width:1100px;margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+  .nav-logo img{height:40px;display:block}
+  .nav-links{display:flex;gap:.35rem;flex-wrap:wrap}
+  .nav-links a{font-family:var(--fb);font-size:.8rem;font-weight:600;color:var(--black);text-decoration:none;padding:.35rem .75rem;border-radius:20px;border:1.5px solid transparent;transition:all .2s}
+  .nav-links a:hover,.nav-links a.active{background:var(--mod-th-bg);color:var(--mod-th-color);border-color:var(--mod-dk)}
+
+  .hero{background:var(--mod-hero);border-bottom:3px solid var(--mod-border);padding:3.5rem 1.5rem 2.5rem;text-align:center}
+  .hero-badge{display:inline-block;background:var(--mod);color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.08em;padding:.3rem .9rem;border-radius:20px;margin-bottom:1rem;text-transform:uppercase}
+  .hero h1{font-family:var(--fh);font-size:2.8rem;font-style:italic;color:var(--black);margin-bottom:.5rem}
+  .hero p{font-size:1.05rem;color:#5a1a14;max-width:600px;margin:0 auto}
+
+  .section{max-width:1100px;margin:0 auto;padding:3rem 1.5rem}
+  .section-title{font-family:var(--fh);font-size:1.8rem;font-style:italic;color:var(--black);margin-bottom:.4rem}
+  .section-sub{font-size:.95rem;color:#5a1a14;margin-bottom:1.8rem}
+  hr.div{border:none;border-top:2px solid var(--mod-border);opacity:.4;margin:2.5rem 0}
+
+  .grammar-block{background:#fff;border:2px solid var(--mod-border);border-radius:16px;padding:1.8rem;margin-bottom:2rem}
+  .grammar-block h3{font-family:var(--fh);font-size:1.4rem;font-style:italic;margin-bottom:1rem;color:var(--black)}
+  .note{background:var(--mod-strip);border-left:4px solid var(--mod-dk);border-radius:0 8px 8px 0;padding:.85rem 1.1rem;margin:.8rem 0;font-size:.92rem}
+
+  table{width:100%;border-collapse:collapse;font-size:.92rem;margin:1rem 0}
+  th{background:var(--mod-th-bg);color:var(--mod-th-color);font-weight:700;padding:.65rem 1rem;text-align:left;border:1px solid var(--mod-border)}
+  td{padding:.6rem 1rem;border:1px solid #f0c0bb;vertical-align:top}
+  tr:nth-child(even) td{background:#fff8f7}
+  .it{font-family:var(--fh);font-style:italic}
+  .hl{background:var(--mod-strip)!important;font-weight:700}
+  .neg{color:#a8382a;font-weight:600}
+
+  .practice-block{background:var(--cream);border-radius:12px;padding:1.4rem;margin-top:1.2rem}
+  .practice-block h4{font-size:.88rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--mod-dk);margin-bottom:.9rem}
+  .p-item{margin-bottom:.9rem;font-size:.94rem}
+  .p-item p{margin-bottom:.35rem;font-weight:500}
+  .p-item input,.p-item select{border:2px solid var(--mod-border);border-radius:8px;padding:.35rem .7rem;font-family:var(--fb);font-size:.93rem;background:#fff;min-width:140px;outline:none;transition:border .2s}
+  .p-item input:focus,.p-item select:focus{border-color:var(--mod-dk)}
+  .p-item input.ok{border-color:var(--green);background:#f0faf5}
+  .p-item input.ko{border-color:var(--red);background:#fff0ee}
+  .check{background:var(--mod-dk);color:#fff;border:none;border-radius:8px;padding:.5rem 1.3rem;font-family:var(--fb);font-weight:600;font-size:.88rem;cursor:pointer;margin-top:.4rem;transition:background .2s}
+  .check:hover{background:var(--mod)}
+  .fb{font-size:.84rem;margin-top:.45rem;font-weight:600;min-height:1.1em}
+  .fb.ok{color:var(--green)}.fb.ko{color:var(--red)}
+
+  /* COMPARISON TABLE */
+  .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
+  .compare-box{background:var(--cream);border-radius:10px;padding:1.2rem;border:2px solid var(--mod-border)}
+  .compare-box h5{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--mod-dk);margin-bottom:.7rem}
+  .compare-box p{font-size:.9rem;margin-bottom:.4rem;line-height:1.6}
+  .compare-box .it{font-family:var(--fh);font-style:italic;color:var(--black)}
+
+  /* QUIZ */
+  .quiz-section{background:#fff;border:2px solid var(--mod-border);border-radius:16px;padding:1.8rem}
+  .quiz-section h3{font-family:var(--fh);font-style:italic;font-size:1.4rem;margin-bottom:1.2rem}
+  .q-item{margin-bottom:1.4rem;padding-bottom:1.4rem;border-bottom:1px dashed var(--mod-border)}
+  .q-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+  .q-item p{font-weight:600;margin-bottom:.6rem;font-size:.95rem}
+  .q-opts{display:flex;flex-direction:column;gap:.3rem}
+  .q-opt{background:var(--cream);border:1.5px solid var(--mod-border);border-radius:8px;padding:.5rem .9rem;font-size:.88rem;cursor:pointer;text-align:left;transition:all .2s;font-family:var(--fb)}
+  .q-opt:hover{border-color:var(--mod-dk);background:var(--mod-strip)}
+  .q-opt.correct{background:#e8f8ee;border-color:var(--green);color:#2a5a38;cursor:default}
+  .q-opt.wrong{background:#fef0ee;border-color:var(--red);color:#7a2020;cursor:default}
+  .quiz-score{background:var(--mod-strip);border-radius:10px;padding:1rem 1.5rem;margin-top:1.2rem;font-weight:700;font-size:1rem;text-align:center;display:none}
+
+  @media(max-width:700px){
+    .hero h1{font-size:2rem}
+    table{font-size:.8rem}
+    .nav-links a{font-size:.7rem;padding:.28rem .5rem}
+    .compare-grid{grid-template-columns:1fr}
+  }
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){font-family:var(--fb);font-size:.8rem;font-weight:600;color:var(--black);text-decoration:none;padding:.35rem .75rem;border-radius:20px;border:1.5px solid transparent;transition:all .2s}
+nav > a:not(.nav-logo):hover,nav > a:not(.nav-logo).active{background:var(--mod-th-bg);color:var(--mod-th-color);border-color:var(--mod-dk)}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+
+<nav class="sticky-nav">
+    <div class="nav-logo">
+      <a href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#piacere" class="active">Piacere</a>
+      <a href="#bere">Bere</a>
+      <a href="#civuole">Ci vuole</a>
+      <a href="#pratica">Práctica</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Gramática · Módulo 6</div>
+  <h1>Al bar — Gramática</h1>
+  <p>Verbo PIACERE, verbo BERE y la estructura CI VUOLE / CI VOGLIONO. Todo lo que necesitás para comunicarte en el bar italiano.</p>
+</div>
+
+<!-- PIACERE -->
+<section class="section" id="piacere">
+  <h2 class="section-title">1. Verbo PIACERE</h2>
+  <p class="section-sub">La gran diferencia con el español: en italiano el sujeto es la cosa que gusta, no la persona. El verbo "concuerda" con la cosa.</p>
+
+  <div class="grammar-block">
+    <h3>La estructura inversa explicada</h3>
+    <div class="compare-grid">
+      <div class="compare-box">
+        <h5>En español</h5>
+        <p><strong>Yo</strong> gusto el café.</p>
+        <p>Sujeto = YO (la persona)</p>
+        <p>Verbo concuerda con: YO</p>
+      </div>
+      <div class="compare-box">
+        <h5>En italiano</h5>
+        <p class="it">A me piace <strong>il caffè</strong>.</p>
+        <p>Sujeto = IL CAFFÈ (la cosa)</p>
+        <p>Verbo concuerda con: IL CAFFÈ</p>
+      </div>
+    </div>
+    <div class="note">
+      📌 Regla simple:<br>
+      → Una cosa o un infinitivo = <strong>piace</strong><br>
+      → Varias cosas = <strong>piacciono</strong><br><br>
+      <em>Mi piace il cappuccino.</em> (1 cosa) | <em>Mi piacciono i cornetti.</em> (varias cosas) | <em>Mi piace bere caffè.</em> (infinitivo)
+    </div>
+
+    <h3 style="margin-top:1.3rem">Tabla completa de PIACERE</h3>
+    <table>
+      <thead>
+        <tr><th>Pronombre clítico</th><th>Forma tónica</th><th>+ piace (sing./inf.)</th><th>+ piacciono (pl.)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>mi</td><td>a me</td><td class="it hl">mi piace il caffè</td><td class="it">mi piacciono i cornetti</td></tr>
+        <tr><td>ti</td><td>a te</td><td class="it">ti piace lo Spritz?</td><td class="it">ti piacciono le brioche?</td></tr>
+        <tr><td>gli</td><td>a lui</td><td class="it">gli piace il Negroni</td><td class="it">gli piacciono i tramezzini</td></tr>
+        <tr><td>le</td><td>a lei</td><td class="it">le piace il macchiato</td><td class="it">le piacciono i biscotti</td></tr>
+        <tr><td>ci</td><td>a noi</td><td class="it">ci piace l'aperitivo</td><td class="it">ci piacciono gli spritz</td></tr>
+        <tr><td>vi</td><td>a voi</td><td class="it">vi piace il bar?</td><td class="it">vi piacciono i panini?</td></tr>
+        <tr><td>gli</td><td>a loro</td><td class="it">gli piace l'espresso</td><td class="it">gli piacciono le torte</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:1.3rem">La negación</h3>
+    <table>
+      <thead><tr><th>Afirmativo</th><th>Negativo</th><th>Traducción</th></tr></thead>
+      <tbody>
+        <tr><td class="it">Mi piace il cappuccino.</td><td class="it neg">Non mi piace il cappuccino.</td><td>No me gusta el capuchino.</td></tr>
+        <tr><td class="it">Ti piacciono i dolci.</td><td class="it neg">Non ti piacciono i dolci.</td><td>No te gustan los dulces.</td></tr>
+        <tr><td class="it">Gli piace l'amaro.</td><td class="it neg">Non gli piace l'amaro.</td><td>No le gusta el amaro.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      💡 Para <strong>enfatizar el contraste</strong> entre personas usamos la forma tónica:<br>
+      <em>"A me piace il caffè, ma a lei non piace."</em> — A mí me gusta el café, pero a ella no le gusta.
+    </div>
+
+    <div class="practice-block">
+      <h4>Práctica — Piace o Piacciono</h4>
+      <div class="p-item">
+        <p>1. A me ________ lo Spritz freddo.</p>
+        <input type="text" placeholder="piace / piacciono">
+      </div>
+      <div class="p-item">
+        <p>2. Ti ________ i tramezzini del bar?</p>
+        <input type="text" placeholder="piace / piacciono">
+      </div>
+      <div class="p-item">
+        <p>3. Non ci ________ il cappuccino amaro.</p>
+        <input type="text" placeholder="piace / piacciono">
+      </div>
+      <div class="p-item">
+        <p>4. Gli ________ i cornetti alla crema.</p>
+        <input type="text" placeholder="piace / piacciono">
+      </div>
+      <div class="p-item">
+        <p>5. Vi ________ bere caffè al mattino?</p>
+        <input type="text" placeholder="piace / piacciono">
+      </div>
+      <button class="check" onclick="checkP1()">Verificar</button>
+      <div class="fb" id="fb1p"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- BERE -->
+<section class="section" id="bere">
+  <h2 class="section-title">2. Verbo BERE y verbos irregolari del bar</h2>
+  <p class="section-sub">BERE es irregular porque viene del latín BIBERE. Recepté su conjugación en contexto de bar. También repasamos otros irregolari útiles.</p>
+
+  <div class="grammar-block">
+    <h3>BERE — Presente indicativo</h3>
+    <div class="note">📌 La raíz es <strong>bev-</strong> para la mayoría de las formas. Solo en la 1ª y 3ª plural cambia el acento.</div>
+    <table>
+      <thead><tr><th>Pronombre</th><th>BERE</th><th>Ejemplo en el bar</th></tr></thead>
+      <tbody>
+        <tr><td>io</td><td class="it hl">bevo</td><td><em>Bevo un espresso ogni mattina.</em></td></tr>
+        <tr><td>tu</td><td class="it hl">bevi</td><td><em>Cosa bevi, un cappuccino?</em></td></tr>
+        <tr><td>lui/lei</td><td class="it hl">beve</td><td><em>Marco beve il caffè senza zucchero.</em></td></tr>
+        <tr><td>noi</td><td class="it hl">beviamo</td><td><em>Stasera beviamo uno Spritz?</em></td></tr>
+        <tr><td>voi</td><td class="it hl">bevete</td><td><em>Bevete sempre in piedi?</em></td></tr>
+        <tr><td>loro</td><td class="it hl">bevono</td><td><em>I turisti bevono il cappuccino a pranzo.</em></td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:1.5rem">Comparativa — Verbos irregolari del cotidiano</h3>
+    <div class="note">Estos verbos tienen raíces alternantes en el presente. Es útil aprenderlos juntos.</div>
+    <table>
+      <thead><tr><th>Verbo</th><th>io</th><th>tu</th><th>lui/lei</th><th>noi</th><th>voi</th><th>loro</th></tr></thead>
+      <tbody>
+        <tr><td class="it">bere</td><td class="it hl">bevo</td><td class="it">bevi</td><td class="it">beve</td><td class="it">beviamo</td><td class="it">bevete</td><td class="it">bevono</td></tr>
+        <tr><td class="it">fare</td><td class="it">faccio</td><td class="it">fai</td><td class="it">fa</td><td class="it">facciamo</td><td class="it">fate</td><td class="it">fanno</td></tr>
+        <tr><td class="it">dare</td><td class="it">do</td><td class="it">dai</td><td class="it">dà</td><td class="it">diamo</td><td class="it">date</td><td class="it">danno</td></tr>
+        <tr><td class="it">stare</td><td class="it">sto</td><td class="it">stai</td><td class="it">sta</td><td class="it">stiamo</td><td class="it">state</td><td class="it">stanno</td></tr>
+        <tr><td class="it">venire</td><td class="it">vengo</td><td class="it">vieni</td><td class="it">viene</td><td class="it">veniamo</td><td class="it">venite</td><td class="it">vengono</td></tr>
+      </tbody>
+    </table>
+
+    <div class="practice-block">
+      <h4>Práctica — Conjugá BERE</h4>
+      <div class="p-item">
+        <p>1. Io ________ un caffè corretto. (bere)</p>
+        <input type="text" placeholder="conjugá...">
+      </div>
+      <div class="p-item">
+        <p>2. Tu cosa ________ di solito? (bere)</p>
+        <input type="text" placeholder="conjugá...">
+      </div>
+      <div class="p-item">
+        <p>3. Loro ________ il vino rosso. (bere)</p>
+        <input type="text" placeholder="conjugá...">
+      </div>
+      <div class="p-item">
+        <p>4. Noi ________ un aperitivo stasera? (bere)</p>
+        <input type="text" placeholder="conjugá...">
+      </div>
+      <div class="p-item">
+        <p>5. Voi ________ al banco o al tavolo? (bere)</p>
+        <input type="text" placeholder="conjugá...">
+      </div>
+      <button class="check" onclick="checkP2()">Verificar</button>
+      <div class="fb" id="fb2p"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- CI VUOLE -->
+<section class="section" id="civuole">
+  <h2 class="section-title">3. CI VUOLE / CI VOGLIONO</h2>
+  <p class="section-sub">Para expresar necesidad, tiempo o costo. Viene del verbo <em>volere</em> y concuerda con lo que "hace falta".</p>
+
+  <div class="grammar-block">
+    <h3>La estructura</h3>
+    <div class="note">
+      📌 <strong>CI VUOLE</strong> + singular / no contable → "Hace falta una cosa"<br>
+      📌 <strong>CI VOGLIONO</strong> + plural → "Hacen falta varias cosas"<br><br>
+      ⚠️ Ojo: <em>ci vuole</em> no es <em>ci vuole il caffè</em> (querer algo), sino <em>"hacen falta"</em>.
+    </div>
+
+    <h3 style="margin-top:1.2rem">Usos principales</h3>
+    <table>
+      <thead><tr><th>Uso</th><th>Ejemplo</th><th>Traducción</th></tr></thead>
+      <tbody>
+        <tr><td>Costo (€)</td><td class="it">Ci vuole un euro per l'espresso.</td><td>El espresso cuesta un euro.</td></tr>
+        <tr><td>Costo (€) plural</td><td class="it">Ci vogliono tre euro per il cornetto e il caffè.</td><td>El cornetto y el café son tres euros.</td></tr>
+        <tr><td>Tiempo</td><td class="it">Ci vuole un minuto.</td><td>Falta/tarda un minuto.</td></tr>
+        <tr><td>Tiempo plural</td><td class="it">Ci vogliono venti minuti.</td><td>Faltan/tardan veinte minutos.</td></tr>
+        <tr><td>Cosas abstractas</td><td class="it">Ci vuole pazienza al bar!</td><td>¡Hay que tener paciencia en el bar!</td></tr>
+        <tr><td>Ingredientes</td><td class="it">Per il cappuccino ci vogliono latte e caffè.</td><td>Para el capuchino hacen falta leche y café.</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:1.3rem">Comparativa: CI VUOLE vs. VOLERE</h3>
+    <table>
+      <thead><tr><th>CI VUOLE (impersonal)</th><th>VOLERE (personal)</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><em class="it">Ci vuole il latte per il cappuccino.</em><br><small>Hace falta leche para el capuchino.</small></td>
+          <td><em class="it">Voglio un cappuccino, per favore.</em><br><small>Quiero un capuchino, por favor.</small></td>
+        </tr>
+        <tr>
+          <td><em class="it">Ci vogliono cinque minuti.</em><br><small>Faltan cinco minutos.</small></td>
+          <td><em class="it">Vogliono due caffè.</em><br><small>Quieren dos cafés.</small></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="practice-block">
+      <h4>Práctica — CI VUOLE o CI VOGLIONO</h4>
+      <div class="p-item">
+        <p>1. ________ un euro e cinquanta per il macchiato.</p>
+        <select id="s1">
+          <option value="">-- elegí --</option>
+          <option value="Ci vuole">Ci vuole</option>
+          <option value="Ci vogliono">Ci vogliono</option>
+        </select>
+      </div>
+      <div class="p-item">
+        <p>2. ________ tre minuti per fare il cappuccino perfetto.</p>
+        <select id="s2">
+          <option value="">-- elegí --</option>
+          <option value="Ci vuole">Ci vuole</option>
+          <option value="Ci vogliono">Ci vogliono</option>
+        </select>
+      </div>
+      <div class="p-item">
+        <p>3. ________ molta pratica per fare un buon espresso.</p>
+        <select id="s3">
+          <option value="">-- elegí --</option>
+          <option value="Ci vuole">Ci vuole</option>
+          <option value="Ci vogliono">Ci vogliono</option>
+        </select>
+      </div>
+      <div class="p-item">
+        <p>4. ________ due euro per il tramezzino.</p>
+        <select id="s4">
+          <option value="">-- elegí --</option>
+          <option value="Ci vuole">Ci vuole</option>
+          <option value="Ci vogliono">Ci vogliono</option>
+        </select>
+      </div>
+      <div class="p-item">
+        <p>5. Per l'aperitivo ________ Prosecco e Aperol.</p>
+        <select id="s5">
+          <option value="">-- elegí --</option>
+          <option value="ci vuole">ci vuole</option>
+          <option value="ci vogliono">ci vogliono</option>
+        </select>
+      </div>
+      <button class="check" onclick="checkP3()">Verificar</button>
+      <div class="fb" id="fb3p"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- PRATICA INTEGRATA -->
+<section class="section" id="pratica">
+  <h2 class="section-title">Práctica integrada — Al bar</h2>
+  <p class="section-sub">Ejercicios que combinan piacere, bere y ci vuole en situaciones reales del bar italiano.</p>
+
+  <div class="grammar-block">
+    <h3>Completá el diálogo</h3>
+    <div class="note">Elegí la opción correcta para cada espacio.</div>
+    <div class="practice-block">
+      <h4>Completá con la forma correcta</h4>
+      <div class="p-item">
+        <p>Barista: "Cosa ________ (bere — tu) di solito, un caffè o un cappuccino?"</p>
+        <input type="text" placeholder="conjugá bere...">
+      </div>
+      <div class="p-item">
+        <p>Cliente: "Di solito ________ (bere — io) un macchiato caldo."</p>
+        <input type="text" placeholder="conjugá bere...">
+      </div>
+      <div class="p-item">
+        <p>Barista: "________ qualcosa da mangiare? (piacere — ti) i cornetti alla crema?"</p>
+        <input type="text" placeholder="ti piace/piacciono...">
+      </div>
+      <div class="p-item">
+        <p>Cliente: "Sì! Mi ________ (piacere) moltissimo. Quanto fa?"</p>
+        <input type="text" placeholder="piace / piacciono">
+      </div>
+      <div class="p-item">
+        <p>Barista: "________ (ci vuole/vogliono) due euro e ottanta in tutto."</p>
+        <select id="ss1">
+          <option value="">-- elegí --</option>
+          <option value="Ci vuole">Ci vuole</option>
+          <option value="Ci vogliono">Ci vogliono</option>
+        </select>
+      </div>
+      <button class="check" onclick="checkP4()">Verificar</button>
+      <div class="fb" id="fb4p"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- QUIZ -->
+<section class="section" id="quiz">
+  <h2 class="section-title">Quiz final — Módulo 6</h2>
+  <p class="section-sub">5 preguntas finales. ¡A ver cuántas acertás antes del espresso!</p>
+
+  <div class="quiz-section">
+    <h3>¡Quiz al bar! ☕</h3>
+
+    <div class="q-item">
+      <p>1. ¿Cómo se dice "No me gustan los cappuccini"?</p>
+      <div class="q-opts">
+        <button class="q-opt" onclick="quizOpt(this,'wrong')">Non mi piace i cappuccini.</button>
+        <button class="q-opt" onclick="quizOpt(this,'correct')">Non mi piacciono i cappuccini.</button>
+        <button class="q-opt" onclick="quizOpt(this,'wrong')">Non mi piacono i cappuccini.</button>
+        <button class="q-opt" onclick="quizOpt(this,'wrong')">Non piacciono a me cappuccini.</button>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <p>2. ¿Cuál es la forma correcta de BERE para "loro"?</p>
+      <div class="q-opts">
+        <button class="q-opt" onclick="quizOpt(this,'wrong')">bevono</button>
+        <button class="q-opt" onclick="quizOpt(this,'correct')">bevono</button>
+        <button class="q-opt" onclick="quizOpt(this,'wrong')">beviamo</button>
+        <button class="q-opt" onclick="quizOpt(this,'wrong')">bevete</button>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <p>3. "El Spritz cuesta 5 euros." ¿Cómo se traduce?</p>
+      <div class="q-opts">
+        <button class="q-opt" onclick="quizOpt(this,'wrong')">Ci vogliono 5 euro per uno Spritz.</button>
+        <button class="q-opt" onclick="quizOpt(this,'correct')">Ci vogliono 5 euro per uno Spritz.</button>
+        <button class="q-opt" onclick="quizOpt(this,'wrong')">Ci vuole 5 euro per uno Spritz.</button>
+        <button class="q-opt" onclick="quizOpt(this,'wrong')">Costa ci 5 euro uno Spritz.</button>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <p>4. ¿Qué significa "A lei piace il macchiato"?</p>
+      <div class="q-opts">
+        <button class="q-opt" onclick="quizOpt(this,'wrong')">A ellos les gusta el macchiato.</button>
+        <button class="q-opt" onclick="quizOpt(this,'correct')">A ella le gusta el macchiato.</button>
+        <button class="q-opt" onclick="quizOpt(this,'wrong')">A mí me gusta el macchiato.</button>
+        <button class="q-opt" onclick="quizOpt(this,'wrong')">¿A usted le gusta el macchiato?</button>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <p>5. ¿Cuándo NO se debe pedir cappuccino en Italia?</p>
+      <div class="q-opts">
+        <button class="q-opt" onclick="quizOpt(this,'wrong')">Antes del desayuno</button>
+        <button class="q-opt" onclick="quizOpt(this,'wrong')">En bares pequeños</button>
+        <button class="q-opt" onclick="quizOpt(this,'correct')">Después del almuerzo o la cena</button>
+        <button class="q-opt" onclick="quizOpt(this,'wrong')">En verano</button>
+      </div>
+    </div>
+
+    <div class="quiz-score" id="quizScore"></div>
+  </div>
+</section>
+
+<div style="background:linear-gradient(135deg,var(--mod-strip),var(--cream-dk));border-top:4px solid var(--mod);padding:2rem 1.5rem;text-align:center">
+  <p style="font-family:var(--fh);font-style:italic;font-size:1.2rem;color:var(--black)">¡Benissimo! Ahora ya podés entrar a cualquier bar italiano y pedir como un local. <em>Un espresso, per favore!</em> ☕</p>
+  <p style="font-size:.88rem;color:#7a1f14;margin-top:.5rem">Viajeros · Módulo 6 — Italiano Per Piacere</p>
+</div>
+
+<script>
+// P1 — piacere
+const a1=['piace','piacciono','piace','piacciono','piace'];
+function checkP1(){
+  const inp=document.querySelectorAll('.practice-block')[0].querySelectorAll('input');
+  let ok=0;
+  inp.forEach((el,i)=>{
+    const v=el.value.trim().toLowerCase();
+    if(v===a1[i]){el.classList.add('ok');el.classList.remove('ko');ok++}
+    else{el.classList.add('ko');el.classList.remove('ok')}
+  });
+  const fb=document.getElementById('fb1p');
+  fb.className='fb '+(ok===5?'ok':'ko');
+  fb.textContent=ok===5?'¡Perfecto! Piacere dominado.':'Respuestas: '+a1.join(' | ');
+}
+
+// P2 — bere
+const a2=['bevo','bevi','bevono','beviamo','bevete'];
+function checkP2(){
+  const inp=document.querySelectorAll('.practice-block')[1].querySelectorAll('input');
+  let ok=0;
+  inp.forEach((el,i)=>{
+    const v=el.value.trim().toLowerCase();
+    if(v===a2[i]){el.classList.add('ok');el.classList.remove('ko');ok++}
+    else{el.classList.add('ko');el.classList.remove('ok')}
+  });
+  const fb=document.getElementById('fb2p');
+  fb.className='fb '+(ok===5?'ok':'ko');
+  fb.textContent=ok===5?'¡Excelente! Bere conjugado a la perfección.':'Respuestas: '+a2.join(' | ');
+}
+
+// P3 — ci vuole/vogliono
+const a3=['Ci vuole','Ci vogliono','Ci vuole','Ci vogliono','ci vogliono'];
+function checkP3(){
+  const sels=['s1','s2','s3','s4','s5'];
+  let ok=0;
+  sels.forEach((id,i)=>{
+    const sel=document.getElementById(id);
+    if(sel.value===a3[i]){sel.style.borderColor='var(--green)';ok++}
+    else{sel.style.borderColor='var(--red)'}
+  });
+  const fb=document.getElementById('fb3p');
+  fb.className='fb '+(ok===5?'ok':'ko');
+  fb.textContent=ok===5?'¡Perfecto! CI VUOLE/VOGLIONO controlado.':'Respuestas: Ci vuole | Ci vogliono | Ci vuole | Ci vogliono | ci vogliono';
+}
+
+// P4 — integrada
+const a4_text=['bevi','bevo','piacciono','piace'];
+function checkP4(){
+  const inp=document.querySelectorAll('.practice-block')[2].querySelectorAll('input');
+  let ok=0;
+  inp.forEach((el,i)=>{
+    const v=el.value.trim().toLowerCase();
+    if(v===a4_text[i]){el.classList.add('ok');el.classList.remove('ko');ok++}
+    else{el.classList.add('ko');el.classList.remove('ok')}
+  });
+  const selVal=document.getElementById('ss1').value;
+  const selOk=selVal==='Ci vogliono';
+  document.getElementById('ss1').style.borderColor=selOk?'var(--green)':'var(--red)';
+  if(selOk)ok++;
+  const fb=document.getElementById('fb4p');
+  fb.className='fb '+(ok>=4?'ok':'ko');
+  fb.textContent=ok>=4?'¡Excellent! Sabés usar todo en contexto.':'Respuestas: bevi | bevo | piacciono | piace | Ci vogliono';
+}
+
+// QUIZ
+let answers={};
+function quizOpt(btn,type){
+  const item=btn.closest('.q-item');
+  item.querySelectorAll('.q-opt').forEach(b=>b.classList.remove('correct','wrong'));
+  btn.classList.add(type);
+  const idx=Array.from(document.querySelectorAll('.q-item')).indexOf(item);
+  answers[idx]=type==='correct';
+  if(Object.keys(answers).length===5){
+    const score=Object.values(answers).filter(Boolean).length;
+    const el=document.getElementById('quizScore');
+    el.style.display='block';
+    el.textContent='Puntaje: '+score+'/5. '+(score===5?'¡Perfecto! Sos un experto del bar italiano.':(score>=3?'¡Muy bien! Seguís aprendiendo.':'Seguí practicando, ¡ya vas a llegar!'));
+  }
+}
+
+window.addEventListener('scroll',()=>{
+  const secs=document.querySelectorAll('section[id]');
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-90)cur=s.id});
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+});
+</script>
+</body>
+</html>

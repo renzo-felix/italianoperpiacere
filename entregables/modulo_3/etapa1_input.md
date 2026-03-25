@@ -5,9 +5,13 @@
 ---
 
 TIPO: Audio
-FUENTE SUGERIDA: Coffee Break Italian — Season 1, Lesson 3 (disponible gratuitamente en coffeebreakitalian.com o Spotify: "Coffee Break Italian")
+FUENTE: Coffee Break Italian — Podcast de Radio Lingua Network
+EPISODIO: Season 1, Lesson 3 — "CBI 1-03 | Talking about where you come from in Italian"
+URL SPOTIFY: https://open.spotify.com/episode/2jhjIf2FAdZK7JJl7McfJi
+URL SITIO OFICIAL: https://coffeebreakacademy.com/p/coffee-break-italian-season-1
+LICENCIA: Podcast gratuito para uso educativo · Radio Lingua Network
 TÍTULO: Una conversazione in piazza — Sonidos de la ciudad italiana
-DESCRIPCIÓN: Un breve audio de una conversación cotidiana en una piazza italiana, o el episodio introductorio de un podcast italiano para principiantes. Se escuchan referencias a lugares de la ciudad, expresiones para acordar encuentros y el ritmo natural del italiano oral. Ideal para esta unidad porque activa la comprensión auditiva de lugares (_piazza_, _caffè_, _mercato_) y la melodía de la lengua antes de entrar al vocabulario urbano.
+DESCRIPCIÓN: Episodio 3 de la primera temporada de Coffee Break Italian — el podcast de italiano más popular del mundo para principiantes. En este episodio, Mark y Francesca practican cómo presentarse y hablar de sus orígenes, con conversación natural en italiano auténtico. El ritmo pausado y los comentarios en inglés/español lo hacen ideal para A1. Activa la escucha activa y la melodía del italiano antes de explorar el vocabulario urbano de la unidad.
 
 ---
 
@@ -27,4 +31,4 @@ Luego comparten lo que capturaron con el grupo antes de pasar a la Etapa 2.
 
 **Alternativa:** Si no se dispone del audio, puede proyectarse un clip de YouTube de una piazza italiana animada (mercado de Campo de' Fiori en Roma, por ejemplo) con el sonido ambiente. La imagen de una piazza italiana en plena actividad sirve igualmente como disparador.
 
-**Derechos:** Coffee Break Italian es un recurso de acceso libre con fines educativos, producido por Radio Lingua Network. Enlace: coffeebreakitalian.com. Para uso en clase, verificar la licencia vigente del episodio seleccionado.
+**Derechos:** Coffee Break Italian es un podcast gratuito producido por Radio Lingua Network. Disponible libremente en Spotify, Apple Podcasts y en el sitio oficial. Uso educativo no comercial. Verificar términos de uso en coffeebreakacademy.com.

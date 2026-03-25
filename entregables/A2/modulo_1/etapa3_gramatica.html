@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unità 1 — W gli sposi! · Gramática | Italiano Per Piacere A2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#e9e6d5;--cream-dk:#ddd9c8;
+  --gold:#EFCF7F;--amber:#e5ab07;
+  --red:#cc4736;--red-dk:#a8382a;
+  --green:#528e74;--green-dk:#3d6b58;
+  --black:#1a1a18;--white:#ffffff;
+  --hdr:var(--red-dk);
+  --fh:'Playfair Display',Georgia,serif;
+  --fb:'Outfit',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--fb);background:var(--cream);color:var(--black)}
+body.hide-es .es{display:none}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:3px solid #cc4736;box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;padding:8px 0;text-decoration:none}
+.nav-logo img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:2px;overflow-x:auto}
+.nav-links a{display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:#a8382a;border-bottom-color:#cc4736}
+#etoggle{position:fixed;top:.9rem;right:1rem;z-index:200;background:#f5cdc8;color:var(--black);border:none;border-radius:2rem;padding:.4rem 1rem;font-family:var(--fb);font-size:.8rem;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.section{max-width:860px;margin:0 auto;padding:3rem 1.5rem}
+.sec-title{font-family:var(--fh);font-style:italic;font-size:clamp(1.5rem,4vw,2rem);color:var(--hdr);margin-bottom:.3rem}
+.sec-sub{color:#666;font-size:.9rem;margin-bottom:1.8rem;line-height:1.5}
+.es{color:#888;font-size:.85rem;font-style:italic}
+.rule-card{background:var(--white);border-radius:.9rem;padding:1.4rem 1.6rem;margin-bottom:1.2rem;border-left:5px solid var(--hdr);box-shadow:0 3px 12px rgba(0,0,0,.07)}
+.rule-card h4{font-weight:700;color:var(--hdr);margin-bottom:.6rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.05em}
+.rule-card p,.rule-card li{font-size:.92rem;line-height:1.65;color:#444}
+.rule-card em{color:var(--black);font-style:italic;font-weight:600}
+.rule-card ul{padding-left:1.2rem;margin-top:.4rem}
+.gtable{width:100%;border-collapse:collapse;margin:1rem 0;border-radius:.7rem;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.gtable th{background:#fbc8c2;color:#7a1f14;padding:.7rem 1rem;text-align:center;font-size:.82rem;letter-spacing:.05em}
+.gtable td{padding:.65rem 1rem;border-bottom:1px solid var(--cream-dk);font-size:.9rem;text-align:center;background:var(--white)}
+.gtable tr:nth-child(even) td{background:#fef0ee}
+.gtable tr:last-child td{border:none}
+.gtable tr:hover td{background:var(--cream)}
+.gtable td:first-child{font-weight:700;color:var(--hdr);text-align:left}
+.hl{background:var(--gold);padding:.1rem .3rem;border-radius:.25rem;font-weight:700}
+.badge{font-size:.72rem;font-weight:700;border-radius:.3rem;padding:.1rem .4rem;margin-left:.3rem}
+.badge-a{background:#fde8e5;color:var(--red-dk)}
+.badge-b{background:#e8f5e9;color:var(--green-dk)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+.prac-block{background:var(--white);border-radius:1rem;padding:1.6rem;margin-bottom:1.5rem;box-shadow:0 3px 14px rgba(0,0,0,.07);border:1px solid var(--cream-dk)}
+.prac-block h4{font-family:var(--fh);font-style:italic;color:var(--hdr);margin-bottom:1rem;font-size:1.1rem}
+.prac-row{margin:.6rem 0;font-size:.93rem;line-height:1.9;display:flex;flex-wrap:wrap;align-items:center;gap:.3rem}
+.prac-input{border:none;border-bottom:2.5px solid var(--hdr);background:transparent;padding:.1rem .5rem;font-family:var(--fb);font-size:.92rem;width:140px;outline:none;color:var(--black)}
+.prac-input.ok{border-color:var(--green);color:var(--green-dk)}
+.prac-input.err{border-color:var(--red);color:var(--red)}
+.prac-btn{background:#f5cdc8;color:var(--black);border:none;border-radius:2rem;padding:.5rem 1.4rem;font-family:var(--fb);font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.8rem;transition:background .2s}
+.prac-btn:hover{background:var(--red)}
+.prac-fb{font-size:.83rem;margin-top:.5rem;font-weight:600;color:var(--hdr);min-height:1.1rem}
+.quiz-section{background:var(--cream-dk);padding:3rem 1.5rem}
+.quiz-inner{max-width:700px;margin:0 auto}
+.quiz-title{font-family:var(--fh);font-style:italic;font-size:1.8rem;color:var(--hdr);margin-bottom:.4rem}
+.qcard{background:var(--white);border-radius:1rem;padding:1.4rem 1.6rem;margin-bottom:1.2rem;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.qcard .qtext{font-size:.95rem;font-weight:600;margin-bottom:.9rem;line-height:1.5}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.qopt{background:var(--cream);border:2px solid var(--cream-dk);border-radius:.6rem;padding:.6rem 1rem;cursor:pointer;font-size:.88rem;transition:all .2s;text-align:center}
+.qopt:hover{border-color:var(--hdr);background:var(--gold)}
+.qopt.selected{background:var(--gold);border-color:var(--hdr);font-weight:700}
+.qopt.correct{background:#d4edda;border-color:var(--green)}
+.qopt.wrong{background:#f8d7da;border-color:var(--red)}
+.quiz-submit{background:#f5cdc8;color:var(--black);border:none;border-radius:2rem;padding:.65rem 2rem;font-family:var(--fb);font-size:.92rem;font-weight:700;cursor:pointer;display:block;margin:1.5rem auto 0;box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.quiz-result{text-align:center;font-size:1.1rem;font-weight:700;margin-top:1.2rem;min-height:1.5rem;color:var(--hdr)}
+
+    /* == LOGO IPP == */
+    .header-logo-img {
+      display: block;
+      margin: 0 auto 0.75rem;
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.90;
+    }
+
+nav > a:not(.nav-logo){display:block;padding:11px 13px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#1a1a18;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;opacity:.5;transition:opacity .2s,border-color .2s,color .2s}
+nav > a:not(.nav-logo):hover,nav > a:not(.nav-logo).active{opacity:1;color:#a8382a;border-bottom-color:#cc4736}
+
+    /* logo en nav: sin filtro blanco */
+    .nav-logo .header-logo-img, .nav-logo img { filter:none; opacity:1; height:36px; width:auto; display:block; }
+</style>
+</head>
+<body>
+
+<button id="etoggle" onclick="toggleEs()">ES 👁</button>
+
+<nav class="sticky-nav">
+    <a class="nav-logo" href="#"><img src="../../assets/logo.png" alt="Italiano Per Piacere" class="header-logo-img"></a>
+      <a href="#pronomi">Pronomi diretti</a>
+      <a href="#bello">Quello / Bello</a>
+      <a href="#riflessivi">Riflessivi</a>
+      <a href="#quiz">Quiz</a>
+</nav>
+
+<!-- PRONOMI DIRETTI -->
+<section class="section" id="pronomi">
+  <h2 class="sec-title">I pronomi diretti — livello A2</h2>
+  <p class="sec-sub es">Ya los conoces. Ahora dominas su uso con el passato prossimo, donde el participio debe concordar.</p>
+
+  <div class="rule-card">
+    <h4>Pronomi diretti — tabella completa</h4>
+    <p class="es">Mira bien las formas: <em>mi/ti/ci/vi</em> son invariables. <em>lo/la/li/le</em> cambian según género y número.</p>
+  </div>
+
+  <table class="gtable">
+    <thead><tr><th>Pronome</th><th>Persona</th><th class="es">Ejemplo presente</th><th class="es">Ejemplo passato</th></tr></thead>
+    <tbody>
+      <tr><td><strong>mi</strong></td><td>me — io</td><td class="es"><em>Mi chiami?</em></td><td class="es"><em>Mi hai chiamato?</em></td></tr>
+      <tr><td><strong>ti</strong></td><td>te — tu</td><td class="es"><em>Ti vedo domani.</em></td><td class="es"><em>Ti ho visto ieri.</em></td></tr>
+      <tr><td><strong>lo</strong></td><td>lui / masch. sing.</td><td class="es"><em>Lo compro.</em></td><td class="es"><em>L'ho comprat<span class="hl">o</span>.</em></td></tr>
+      <tr><td><strong>la</strong></td><td>lei / femm. sing.</td><td class="es"><em>La cerco.</em></td><td class="es"><em>L'ho cercat<span class="hl">a</span>.</em></td></tr>
+      <tr><td><strong>ci</strong></td><td>noi</td><td class="es"><em>Ci invitano.</em></td><td class="es"><em>Ci hanno invitat<span class="hl">i</span>.</em></td></tr>
+      <tr><td><strong>vi</strong></td><td>voi</td><td class="es"><em>Vi aspetto.</em></td><td class="es"><em>Vi ho aspettat<span class="hl">i</span>.</em></td></tr>
+      <tr><td><strong>li</strong></td><td>loro masch. plur.</td><td class="es"><em>Li chiamo.</em></td><td class="es"><em>Li ho chiamat<span class="hl">i</span>.</em></td></tr>
+      <tr><td><strong>le</strong></td><td>loro femm. plur.</td><td class="es"><em>Le vedo.</em></td><td class="es"><em>Le ho vist<span class="hl">e</span>.</em></td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-card" style="margin-top:1.2rem">
+    <h4>Regola: concordanza del participio</h4>
+    <ul>
+      <li>Con <em>lo/la → l'</em> davanti a vocale: <em>L'ho <span class="hl">comprata</span> (la torta).</em></li>
+      <li>Con <em>li</em> → participio in <em>-i</em>: <em>Li ho <span class="hl">visti</span> (i fiori).</em></li>
+      <li>Con <em>le</em> → participio in <em>-e</em>: <em>Le ho <span class="hl">comprate</span> (le scarpe).</em></li>
+      <li><em>mi/ti/ci/vi</em>: concordanza <strong>facoltativa</strong> (opzionale in parola parlata).</li>
+    </ul>
+  </div>
+
+  <!-- PRACTICE 1 -->
+  <div class="prac-block" id="prac1" style="margin-top:2rem">
+    <h4>Pratica 1 — Pronomi diretti con concordanza</h4>
+    <p class="es" style="font-size:.83rem;margin-bottom:.8rem">Completa con il pronome corretto e la forma giusta del participio:</p>
+    <div class="prac-row">1. Hai visto la sposa? — Sì, <input class="prac-input" data-ans="l'ho vista" placeholder="la / vedere"> ieri.</div>
+    <div class="prac-row">2. Hai comprato i fiori? — Sì, <input class="prac-input" data-ans="li ho comprati" placeholder="li / comprare"> al mercato.</div>
+    <div class="prac-row">3. Hai chiamato le amiche? — Sì, <input class="prac-input" data-ans="le ho chiamate" placeholder="le / chiamare"> stamattina.</div>
+    <div class="prac-row">4. Marco ti ha invitato? — Sì, <input class="prac-input" data-ans="mi ha invitato" placeholder="mi / invitare"> la settimana scorsa.</div>
+    <button class="prac-btn" onclick="checkPrac('prac1')">Controlla ✓</button>
+    <div class="prac-fb" id="prac1-fb"></div>
+  </div>
+</section>
+
+<!-- QUELLO / BELLO -->
+<section class="section" id="bello" style="background:var(--cream-dk);padding:3rem 1.5rem">
+<div style="max-width:860px;margin:0 auto">
+  <h2 class="sec-title">Quello e Bello — forme speciali</h2>
+  <p class="sec-sub es">Funciona como los artículos determinados cuando preceden al sustantivo. Aprende los pares:</p>
+
+  <div class="two-col">
+    <div class="rule-card">
+      <h4>QUELLO <span class="badge badge-a">demostrativo</span></h4>
+      <p class="es">Equivale a "ese/aquel". Cambia forma según el artículo del sustantivo siguiente.</p>
+    </div>
+    <div class="rule-card">
+      <h4>BELLO <span class="badge badge-b">aggettivo</span></h4>
+      <p class="es">Equivale a "bonito/a". Las mismas reglas de quello se aplican a bello antes del nombre.</p>
+    </div>
+  </div>
+
+  <table class="gtable">
+    <thead><tr><th>Articolo det.</th><th>quello</th><th>bello</th><th class="es">Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td>il</td><td><strong>quel</strong></td><td><strong>bel</strong></td><td class="es"><em>quel fiore / un bel fiore</em></td></tr>
+      <tr><td>lo / l' (m.)</td><td><strong>quello / quell'</strong></td><td><strong>bello / bell'</strong></td><td class="es"><em>quello sposo / bell'uomo</em></td></tr>
+      <tr><td>la / l' (f.)</td><td><strong>quella / quell'</strong></td><td><strong>bella / bell'</strong></td><td class="es"><em>quella cerimonia / bell'idea</em></td></tr>
+      <tr><td>i</td><td><strong>quei</strong></td><td><strong>bei</strong></td><td class="es"><em>quei regali / bei fiori</em></td></tr>
+      <tr><td>gli</td><td><strong>quegli</strong></td><td><strong>begli</strong></td><td class="es"><em>quegli sposi / begli occhi</em></td></tr>
+      <tr><td>le</td><td><strong>quelle</strong></td><td><strong>belle</strong></td><td class="es"><em>quelle bomboniere / belle scarpe</em></td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-card" style="margin-top:1rem">
+    <h4>⚠️ Attenzione!</h4>
+    <ul>
+      <li>Dopo il verbo <em>essere</em>: si usano le forme normali. <em>Questo fiore è <span class="hl">bello</span>. Lo sposo è <span class="hl">quello</span> in cravatta nera.</em></li>
+      <li><em>Bello</em> in posizione predicativa non cambia: <em>I fiori sono belli. La torta è bella.</em></li>
+    </ul>
+  </div>
+
+  <!-- PRACTICE 2 -->
+  <div class="prac-block" id="prac2" style="margin-top:1.5rem">
+    <h4>Pratica 2 — Quello e bello</h4>
+    <div class="prac-row">1. <input class="prac-input" data-ans="quegli" placeholder="quello+gli"> occhi azzurri sono bellissimi.</div>
+    <div class="prac-row">2. Ho visto un <input class="prac-input" data-ans="bel" placeholder="bello+il"> matrimonio ieri.</div>
+    <div class="prac-row">3. <input class="prac-input" data-ans="quell'" placeholder="quello+l'"> abito bianco costa molto.</div>
+    <div class="prac-row">4. Che <input class="prac-input" data-ans="belle" placeholder="bello+le pl."> bomboniere!</div>
+    <div class="prac-row">5. <input class="prac-input" data-ans="quel" placeholder="quello+il"> ristorante è eccellente.</div>
+    <button class="prac-btn" onclick="checkPrac('prac2')">Controlla ✓</button>
+    <div class="prac-fb" id="prac2-fb"></div>
+  </div>
+</div>
+</section>
+
+<!-- RIFLESSIVI AL PASSATO -->
+<section class="section" id="riflessivi">
+  <h2 class="sec-title">Verbi riflessivi al passato prossimo</h2>
+  <p class="sec-sub es">Los verbos reflexivos SIEMPRE se conjugan con ESSERE al passato prossimo. El participio concuerda con el sujeto.</p>
+
+  <div class="rule-card">
+    <h4>Struttura</h4>
+    <p><em>soggetto + pronome riflessivo + ESSERE coniugato + participio (concordato)</em></p>
+    <p style="margin-top:.5rem">Esempio: <span class="hl">Giulia si è vestita</span> elegantemente. / <span class="hl">I ragazzi si sono divertiti</span> molto.</p>
+  </div>
+
+  <table class="gtable" style="margin-top:1.2rem">
+    <thead><tr><th>Pronome</th><th>alzarsi (m.)</th><th>alzarsi (f.)</th><th class="es">Participio</th></tr></thead>
+    <tbody>
+      <tr><td>io</td><td><em>mi sono alzat<span class="hl">o</span></em></td><td><em>mi sono alzat<span class="hl">a</span></em></td><td class="es">concorda col soggetto</td></tr>
+      <tr><td>tu</td><td><em>ti sei alzat<span class="hl">o</span></em></td><td><em>ti sei alzat<span class="hl">a</span></em></td><td class="es">—</td></tr>
+      <tr><td>lui/lei</td><td><em>si è alzat<span class="hl">o</span></em></td><td><em>si è alzat<span class="hl">a</span></em></td><td class="es">—</td></tr>
+      <tr><td>noi</td><td><em>ci siamo alzat<span class="hl">i</span></em></td><td><em>ci siamo alzat<span class="hl">e</span></em></td><td class="es">plurale</td></tr>
+      <tr><td>voi</td><td><em>vi siete alzat<span class="hl">i</span></em></td><td><em>vi siete alzat<span class="hl">e</span></em></td><td class="es">plurale</td></tr>
+      <tr><td>loro</td><td><em>si sono alzat<span class="hl">i</span></em></td><td><em>si sono alzat<span class="hl">e</span></em></td><td class="es">plurale</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule-card" style="margin-top:1.2rem">
+    <h4>Verbi riflessivi comuni delle feste</h4>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.6rem;margin-top:.6rem;font-size:.88rem">
+      <div style="background:var(--cream);padding:.5rem .8rem;border-radius:.5rem"><strong>svegliarsi</strong> → <em>mi sono svegliato/a</em></div>
+      <div style="background:var(--cream);padding:.5rem .8rem;border-radius:.5rem"><strong>vestirsi</strong> → <em>mi sono vestito/a</em></div>
+      <div style="background:var(--cream);padding:.5rem .8rem;border-radius:.5rem"><strong>sposarsi</strong> → <em>si sono sposati</em></div>
+      <div style="background:var(--cream);padding:.5rem .8rem;border-radius:.5rem"><strong>innamorarsi</strong> → <em>si sono innamorati</em></div>
+      <div style="background:var(--cream);padding:.5rem .8rem;border-radius:.5rem"><strong>divertirsi</strong> → <em>ci siamo divertiti</em></div>
+      <div style="background:var(--cream);padding:.5rem .8rem;border-radius:.5rem"><strong>salutarsi</strong> → <em>ci siamo salutati</em></div>
+      <div style="background:var(--cream);padding:.5rem .8rem;border-radius:.5rem"><strong>emozionarsi</strong> → <em>mi sono emozionato/a</em></div>
+      <div style="background:var(--cream);padding:.5rem .8rem;border-radius:.5rem"><strong>abbracciarsi</strong> → <em>si sono abbracciati</em></div>
+    </div>
+  </div>
+
+  <!-- PRACTICE 3 -->
+  <div class="prac-block" id="prac3" style="margin-top:1.5rem">
+    <h4>Pratica 3 — Riflessivi al passato</h4>
+    <p class="es" style="font-size:.83rem;margin-bottom:.8rem">Conjuga el verbo reflexivo en passato prossimo:</p>
+    <div class="prac-row">1. Ieri Marco (vestirsi) <input class="prac-input" data-ans="si è vestito" placeholder="passato pross."> elegantemente.</div>
+    <div class="prac-row">2. Gli sposi (innamorarsi) <input class="prac-input" data-ans="si sono innamorati" placeholder="passato pross."> a Roma.</div>
+    <div class="prac-row">3. Io (divertirsi) <input class="prac-input" data-ans="mi sono divertito" placeholder="passato pross. m."> molto alla festa.</div>
+    <div class="prac-row">4. Voi (svegliarsi) <input class="prac-input" data-ans="vi siete svegliati" placeholder="passato pross."> tardi?</div>
+    <button class="prac-btn" onclick="checkPrac('prac3')">Controlla ✓</button>
+    <div class="prac-fb" id="prac3-fb"></div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz-section" id="quiz">
+  <div class="quiz-inner">
+    <h2 class="quiz-title">Quiz — W gli sposi! 💍</h2>
+    <p class="es" style="color:#666;font-size:.88rem;margin-bottom:1.5rem">5 domande su pronomi, quello/bello e riflessivi.</p>
+
+    <div class="qcard">
+      <div class="qtext">1. "Hai visto Marco?" — "Sì, ___ ho ___ ieri al matrimonio." (vederlo)</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q1','a')">a) lo / visto</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','b')">b) la / vista</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','c')">c) li / visti</div>
+        <div class="qopt" onclick="selectOpt(this,'q1','d')">d) le / viste</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">2. "Che ___ fiori hai comprato per la sposa!" (bello, masc. pl. con F-)</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q2','a')">a) bello</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','b')">b) bei</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','c')">c) bella</div>
+        <div class="qopt" onclick="selectOpt(this,'q2','d')">d) begli</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">3. "___ sposi si sono conosciuti tre anni fa." (quello + gli)</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q3','a')">a) Quei</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','b')">b) Quegli</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','c')">c) Quello</div>
+        <div class="qopt" onclick="selectOpt(this,'q3','d')">d) Quelli</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">4. Sofia (svegliarsi) alle 6 per prepararsi per il matrimonio. Come si dice al passato?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q4','a')">a) si ha svegliata</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','b')">b) si è svegliata</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','c')">c) ha svegliata</div>
+        <div class="qopt" onclick="selectOpt(this,'q4','d')">d) è svegliato</div>
+      </div>
+    </div>
+
+    <div class="qcard">
+      <div class="qtext">5. "Hai comprato le bomboniere?" — "Sì, ___ ho ___." (comprarle)</div>
+      <div class="qopts">
+        <div class="qopt" onclick="selectOpt(this,'q5','a')">a) li ho comprati</div>
+        <div class="qopt" onclick="selectOpt(this,'q5','b')">b) le ho comprate</div>
+        <div class="qopt" onclick="selectOpt(this,'q5','c')">c) la ho comprata</div>
+        <div class="qopt" onclick="selectOpt(this,'q5','d')">d) lo ho comprato</div>
+      </div>
+    </div>
+
+    <button class="quiz-submit" onclick="submitQuiz()">Controlla il quiz ✓</button>
+    <div class="quiz-result" id="quiz-result"></div>
+  </div>
+</section>
+
+<script>
+function toggleEs(){
+  document.body.classList.toggle('hide-es');
+  document.getElementById('etoggle').textContent=
+    document.body.classList.contains('hide-es')?'ES 🙈':'ES 👁';
+}
+function checkPrac(id){
+  const block=document.getElementById(id);
+  const inputs=block.querySelectorAll('.prac-input');
+  let ok=0;
+  inputs.forEach(inp=>{
+    inp.classList.remove('ok','err');
+    if(inp.value.toLowerCase().trim()===inp.dataset.ans){inp.classList.add('ok');ok++}
+    else if(inp.value.trim()){inp.classList.add('err')}
+  });
+  const fb=document.getElementById(id+'-fb');
+  fb.textContent=ok===inputs.length?'✅ Perfetto!':'👀 '+ok+'/'+inputs.length+' corretti. Riprova!';
+}
+const ANSWERS={q1:'a',q2:'b',q3:'b',q4:'b',q5:'b'};
+const selected={};
+function selectOpt(el,qid,opt){
+  const card=el.closest('.qcard');
+  card.querySelectorAll('.qopt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  selected[qid]=opt;
+}
+function submitQuiz(){
+  let score=0;
+  const cards=document.querySelectorAll('.qcard');
+  cards.forEach((card,i)=>{
+    const qid='q'+(i+1);
+    card.querySelectorAll('.qopt').forEach(o=>{
+      const txt=o.textContent.trim();
+      const optLetter=txt[0];
+      o.classList.remove('correct','wrong');
+      if(optLetter===ANSWERS[qid])o.classList.add('correct');
+      else if(o.classList.contains('selected'))o.classList.add('wrong');
+    });
+    if(selected[qid]===ANSWERS[qid])score++;
+  });
+  const res=document.getElementById('quiz-result');
+  res.textContent=score===5?'🎉 Perfetto! 5/5 — Pronomi e riflessivi dominati!':
+    score>=3?`✅ ${score}/5 — Brava! Ripassa gli errori.`:
+    `👀 ${score}/5 — Rileggi la sezione e riprova!`;
+}
+</script>
+</body>
+</html>

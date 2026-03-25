@@ -5,8 +5,9 @@
 ---
 
 TIPO: Video
-FUENTE SUGERIDA: YouTube — buscar "indicazioni stradali italiano A1" o "mezzi di trasporto italiano video"
-TÍTULO: Come si va? — Trasporti e indicazioni stradali in Italia
+FUENTE: YouTube — LearnAmo (@LearnAmo · +1M suscriptores)
+URL: https://www.youtube.com/watch?v=3tsZXpYbf9s
+TÍTULO: "Come chiedere e dare indicazioni stradali in italiano" — LearnAmo
 DESCRIPCIÓN: Un vídeo que muestre cómo pedir y dar indicaciones en italiano: en la calle, en la estación, en el coche. Ideal si incluye expresiones como *gira a destra, vai dritto, prendi la prima a sinistra* y referencias a medios de transporte (*treno, autobus, tram, macchina*).
 
 ---

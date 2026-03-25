@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Preview Estilos Finales · Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f0ede0;font-family:'Outfit',system-ui,sans-serif;padding:0}
+
+/* ── SELECTOR BAR ── */
+.selector{position:sticky;top:0;z-index:200;background:#1a1a18;display:flex;gap:0;overflow-x:auto}
+.sel-btn{flex:1;min-width:160px;padding:14px 10px;font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border:none;cursor:pointer;color:rgba(255,255,255,.5);background:transparent;border-bottom:3px solid transparent;transition:all .2s}
+.sel-btn:hover{color:#fff}
+.sel-btn[data-color="amber"].active{color:#EFCF7F;border-bottom-color:#EFCF7F;background:rgba(239,207,127,.08)}
+.sel-btn[data-color="red"].active{color:#f5a89e;border-bottom-color:#cc4736;background:rgba(204,71,54,.08)}
+.sel-btn[data-color="teal"].active{color:#a8d4e6;border-bottom-color:#78a6ba;background:rgba(120,166,186,.08)}
+.sel-btn[data-color="green"].active{color:#a0d4bc;border-bottom-color:#528e74;background:rgba(82,142,116,.08)}
+
+/* ── INTRO ── */
+.intro{max-width:900px;margin:0 auto;padding:40px 24px 20px;text-align:center}
+.intro h1{font-family:'Playfair Display',serif;font-style:italic;font-size:2rem;color:#1a1a18;margin-bottom:8px}
+.intro p{color:#666;font-size:.9rem;line-height:1.6;max-width:600px;margin:0 auto}
+
+/* ── SECTION ── */
+.style-section{display:none;padding:32px 24px 60px}
+.style-section.show{display:block}
+
+.section-intro{max-width:900px;margin:0 auto 32px;display:flex;align-items:center;gap:20px;background:#fff;border-radius:12px;padding:20px 24px;box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.section-dot{width:48px;height:48px;border-radius:50%;flex-shrink:0}
+.section-intro h2{font-family:'Playfair Display',serif;font-style:italic;font-size:1.3rem;color:#1a1a18;margin-bottom:4px}
+.section-intro p{font-size:.83rem;color:#666}
+.section-intro .modules{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.mod-badge{font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:12px;letter-spacing:.05em}
+
+/* ── DUAL PREVIEW ── */
+.dual{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:860px){.dual{grid-template-columns:1fr}}
+.preview-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:10px}
+.frame{border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.14);pointer-events:none}
+
+/* ════════════════════════════════════════
+   AMBER — Plantilla 2: Tarjeta Cálida
+════════════════════════════════════════ */
+/* ETAPA 2 AMBER */
+.a2e2{background:#fef9ee}
+.a2e2-nav{background:#fff;border-bottom:3px solid #e5ab07;padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.a2e2-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:.85rem;font-weight:700;color:#1a1a18}
+.a2e2-logo span{color:#e5ab07}
+.a2e2-nav-links{display:flex;gap:14px}
+.a2e2-nav-links a{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#1a1a18;opacity:.45;text-decoration:none}
+.a2e2-nav-links a.on{opacity:1;color:#c8940a}
+.a2e2-hero{background:#fef0c0;padding:26px 24px;border-bottom:3px solid #e5ab07}
+.a2e2-badge{display:inline-block;background:#e5ab07;color:#fff;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-bottom:8px}
+.a2e2-hero h2{font-family:'Playfair Display',serif;font-style:italic;font-size:1.4rem;color:#7a5500}
+.a2e2-hero p{font-size:.7rem;color:#8a6800;margin-top:4px}
+.a2e2-body{padding:16px 20px}
+/* word grid */
+.a2e2-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:14px}
+.a2e2-word{background:#EFCF7F;border-radius:6px;padding:6px 4px;text-align:center;font-size:.6rem;font-weight:600;color:#7a5500;cursor:pointer}
+.a2e2-word.trap{background:#fde4e1;color:#a8382a}
+/* vocab cards */
+.a2e2-vcards{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:14px}
+.a2e2-vcard{background:#fff;border:1.5px solid #EFCF7F;border-radius:8px;padding:8px 6px;text-align:center}
+.a2e2-vcard .it{font-family:'Playfair Display',serif;font-style:italic;font-size:.75rem;color:#c8940a;font-weight:700}
+.a2e2-vcard .es{font-size:.6rem;color:#888;margin-top:2px}
+/* disc box */
+.a2e2-disc{background:#fff;border-radius:10px;border:1.5px solid #fde8a0;padding:12px 14px;margin-bottom:10px}
+.a2e2-disc h4{font-family:'Playfair Display',serif;font-style:italic;font-size:.8rem;color:#c8940a;margin-bottom:8px}
+.a2e2-disc p{font-size:.65rem;color:#555;margin-bottom:6px}
+.a2e2-rule{background:#fef0c0;border-left:3px solid #e5ab07;border-radius:0 6px 6px 0;padding:6px 10px;font-size:.62rem;color:#7a5500}
+.a2e2-footer{background:#fff;border-top:2px solid #EFCF7F;padding:10px 20px;text-align:center}
+.a2e2-footer p{font-size:.6rem;color:#bbb}
+.a2e2-footer em{font-family:'Playfair Display',serif;font-style:italic;color:#e5ab07}
+
+/* ETAPA 3 AMBER */
+.a3e3{background:#fef9ee}
+.a3e3-nav{background:#fff;border-bottom:3px solid #e5ab07;padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.a3e3-subnav{background:#fff;display:flex;gap:0;border-bottom:3px solid #EFCF7F;padding:0 20px}
+.a3e3-subnav a{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:7px 12px;color:#1a1a18;opacity:.4;text-decoration:none;border-bottom:3px solid transparent;margin-bottom:-3px}
+.a3e3-subnav a.on{opacity:1;color:#c8940a;border-bottom-color:#e5ab07}
+.a3e3-hero{background:#fef0c0;padding:24px;border-bottom:3px solid #e5ab07}
+.a3e3-body{padding:16px 20px}
+.a3e3-card{background:#fff;border-radius:10px;border:1.5px solid #fde8a0;padding:14px 16px;margin-bottom:10px}
+.a3e3-card h3{font-family:'Playfair Display',serif;font-style:italic;font-size:.82rem;color:#c8940a;margin-bottom:8px}
+.a3e3-table{width:100%;border-collapse:collapse;font-size:.62rem}
+.a3e3-table th{background:#fef0c0;color:#7a5500;padding:5px 8px;text-align:left;font-weight:700}
+.a3e3-table td{padding:5px 8px;border-bottom:1px solid #fef5d8;color:#444}
+.a3e3-rule{background:#fef0c0;border-left:3px solid #e5ab07;border-radius:0 6px 6px 0;padding:7px 10px;font-size:.62rem;color:#7a5500;margin:8px 0}
+.a3e3-opt{display:flex;gap:6px;margin-top:6px}
+.a3e3-opt span{background:#fef0c0;border:1.5px solid #EFCF7F;border-radius:6px;padding:4px 10px;font-size:.6rem;color:#7a5500;cursor:pointer}
+.a3e3-opt span.on{background:#e5ab07;color:#fff;border-color:#e5ab07}
+
+/* ════════════════════════════════════════
+   RED — Plantilla 3: Editorial / Libro
+════════════════════════════════════════ */
+.r2e2{background:#fff}
+.r2e2-nav{background:#fff;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0e4e2}
+.r2e2-logo-wrap{display:flex;flex-direction:column;line-height:1.1}
+.r2e2-logo-wrap span:first-child{font-family:'Playfair Display',serif;font-style:italic;font-size:.85rem;font-weight:700;color:#1a1a18}
+.r2e2-logo-wrap span:last-child{font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;color:#cc4736;font-weight:700}
+.r2e2-nav-links{display:flex;gap:14px}
+.r2e2-nav-links a{font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#1a1a18;opacity:.4;text-decoration:none;padding-bottom:2px;border-bottom:1.5px solid transparent}
+.r2e2-nav-links a.on{opacity:1;color:#cc4736;border-bottom-color:#cc4736}
+.r2e2-hero{background:#fde4e1;padding:26px 28px;display:flex;align-items:flex-start;gap:16px;border-bottom:4px solid #cc4736}
+.r2e2-num{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:900;color:rgba(204,71,54,.2);line-height:1;flex-shrink:0}
+.r2e2-htxt .eyebrow{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:#cc4736;font-weight:700;margin-bottom:4px}
+.r2e2-htxt h2{font-family:'Playfair Display',serif;font-style:italic;font-size:1.3rem;color:#1a1a18;margin-bottom:2px}
+.r2e2-htxt p{font-size:.68rem;color:#666}
+.r2e2-body{padding:16px 24px;background:#fff}
+/* word strip */
+.r2e2-words{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
+.r2e2-word{background:#fde4e1;border-radius:20px;padding:4px 10px;font-size:.62rem;font-weight:600;color:#7a1f14;cursor:pointer}
+.r2e2-word.ok{background:#d4edda;color:#276c3a}
+/* cards */
+.r2e2-vcards{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:14px}
+.r2e2-vcard{background:#fde4e1;border-radius:8px;padding:8px 6px;text-align:center;border-top:3px solid #cc4736}
+.r2e2-vcard .it{font-family:'Playfair Display',serif;font-style:italic;font-size:.75rem;color:#a8382a;font-weight:700}
+.r2e2-vcard .es{font-size:.6rem;color:#888;margin-top:2px}
+/* disc */
+.r2e2-disc{padding:12px 0;border-bottom:1px solid #f0e4e2;margin-bottom:8px}
+.r2e2-disc h4{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#cc4736;margin-bottom:6px}
+.r2e2-disc p{font-size:.65rem;color:#555;margin-bottom:4px}
+.r2e2-rule{background:#fde4e1;border-left:3px solid #cc4736;border-radius:0 6px 6px 0;padding:6px 10px;font-size:.62rem;color:#7a1f14;margin-top:6px}
+.r2e2-footer{padding:10px 24px;background:#fde4e1;text-align:center;font-size:.6rem;color:#a8382a;border-top:1px solid #f5c0ba}
+
+/* ETAPA 3 RED */
+.r3e3{background:#fff}
+.r3e3-nav-top{background:#fff;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0e4e2}
+.r3e3-toc{display:flex;gap:0;border-bottom:2px solid #f0e4e2;padding:0 24px;background:#fff}
+.r3e3-toc a{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:6px 10px;color:#1a1a18;opacity:.4;text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-2px}
+.r3e3-toc a.on{opacity:1;color:#cc4736;border-bottom-color:#cc4736}
+.r3e3-hero{background:#fde4e1;padding:22px 28px;display:flex;align-items:flex-start;gap:16px;border-bottom:4px solid #cc4736}
+.r3e3-body{padding:16px 24px;background:#fff}
+.r3e3-section{padding:12px 0;border-bottom:1px solid #f0e4e2;margin-bottom:8px}
+.r3e3-section h3{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#cc4736;margin-bottom:8px}
+.r3e3-table{width:100%;border-collapse:collapse;font-size:.62rem}
+.r3e3-table th{background:#fde4e1;color:#7a1f14;padding:5px 8px;text-align:left;font-weight:700}
+.r3e3-table td{padding:5px 8px;border-bottom:1px solid #fdf0ee;color:#444}
+.r3e3-prac{background:#fde4e1;border-radius:8px;padding:10px 12px;font-size:.62rem}
+.r3e3-prac p{color:#555;margin-bottom:6px}
+.r3e3-prac-opts{display:flex;gap:5px;flex-wrap:wrap}
+.r3e3-prac-opt{background:#fff;border:1.5px solid #f5c0ba;border-radius:6px;padding:3px 10px;font-size:.6rem;color:#7a1f14;cursor:pointer}
+.r3e3-prac-opt.on{background:#cc4736;color:#fff;border-color:#cc4736}
+
+/* ════════════════════════════════════════
+   TEAL — Plantilla 4: Bloques de Color
+════════════════════════════════════════ */
+.t2e2{background:#eef5f8}
+.t2e2-topbar{background:#78a6ba;padding:8px 20px;display:flex;align-items:center;justify-content:space-between}
+.t2e2-topbar-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:.8rem;color:#fff;font-weight:700}
+.t2e2-topbar-links{display:flex;gap:12px}
+.t2e2-topbar-links a{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.6);text-decoration:none}
+.t2e2-topbar-links a.on{color:#fff}
+.t2e2-hero{background:#deeef5;padding:22px 24px;border-bottom:3px solid #78a6ba;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
+.t2e2-circle{width:52px;height:52px;border-radius:50%;background:#78a6ba;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.t2e2-circle span{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;font-weight:700;color:#fff}
+.t2e2-htxt .eyebrow{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#5a8ea0;font-weight:700}
+.t2e2-htxt h2{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;color:#1a1a18}
+.t2e2-htxt p{font-size:.65rem;color:#555;margin-top:2px}
+.t2e2-subnav{background:#fff;display:flex;gap:0;border-bottom:3px solid #78a6ba}
+.t2e2-subnav a{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:6px 10px;color:#1a1a18;opacity:.4;text-decoration:none;border-bottom:3px solid transparent;margin-bottom:-3px}
+.t2e2-subnav a.on{opacity:1;color:#2d5f72;border-bottom-color:#78a6ba}
+.t2e2-body{padding:12px 16px;display:flex;flex-direction:column;gap:8px;background:#eef5f8}
+/* word grid teal */
+.t2e2-wordgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.t2e2-word{background:#deeef5;border-radius:6px;padding:5px 3px;text-align:center;font-size:.58rem;font-weight:600;color:#2d5f72}
+.t2e2-word.trap{background:#fde4e1;color:#a8382a}
+/* block */
+.t2e2-block{border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.t2e2-block-head{background:#78a6ba;padding:7px 12px;display:flex;align-items:center;gap:6px}
+.t2e2-block-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.5)}
+.t2e2-block-title{font-family:'Playfair Display',serif;font-style:italic;font-size:.75rem;color:#fff;font-weight:700}
+.t2e2-block-body{background:#fff;padding:10px 12px}
+.t2e2-vcards{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.t2e2-vcard{background:#deeef5;border-radius:7px;padding:6px 4px;text-align:center}
+.t2e2-vcard .it{font-family:'Playfair Display',serif;font-style:italic;font-size:.7rem;color:#2d5f72;font-weight:700}
+.t2e2-vcard .es{font-size:.58rem;color:#888;margin-top:1px}
+.t2e2-chips{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
+.t2e2-chip{background:#deeef5;color:#2d5f72;font-size:.58rem;font-weight:600;padding:3px 8px;border-radius:10px}
+.t2e2-footer{background:#5a8ea0;padding:10px 20px;text-align:center}
+.t2e2-footer p{font-size:.6rem;color:rgba(255,255,255,.75)}
+.t2e2-footer em{font-family:'Playfair Display',serif;font-style:italic;color:#EFCF7F}
+
+/* ETAPA 3 TEAL */
+.t3e3{background:#eef5f8}
+.t3e3-topbar{background:#78a6ba;padding:8px 20px;display:flex;align-items:center;justify-content:space-between}
+.t3e3-subnav{background:#fff;display:flex;gap:0;border-bottom:3px solid #78a6ba}
+.t3e3-subnav a{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:6px 10px;color:#1a1a18;opacity:.4;text-decoration:none;border-bottom:3px solid transparent;margin-bottom:-3px}
+.t3e3-subnav a.on{opacity:1;color:#2d5f72;border-bottom-color:#78a6ba}
+.t3e3-hero{background:#deeef5;padding:22px 24px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;border-bottom:3px solid #78a6ba}
+.t3e3-body{padding:12px 16px;display:flex;flex-direction:column;gap:8px;background:#eef5f8}
+.t3e3-gram-block{border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.t3e3-gram-head{background:#78a6ba;padding:7px 12px;display:flex;align-items:center;gap:6px}
+.t3e3-gram-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.5)}
+.t3e3-gram-title{font-family:'Playfair Display',serif;font-style:italic;font-size:.75rem;color:#fff;font-weight:700}
+.t3e3-gram-body{background:#fff;padding:10px 12px}
+.t3e3-table{width:100%;border-collapse:collapse;font-size:.6rem}
+.t3e3-table th{background:#deeef5;color:#2d5f72;padding:4px 8px;text-align:left;font-weight:700}
+.t3e3-table td{padding:4px 8px;border-bottom:1px solid #eaf4f8;color:#444}
+.t3e3-rule{background:#deeef5;border-left:3px solid #78a6ba;border-radius:0 6px 6px 0;padding:6px 10px;font-size:.6rem;color:#2d5f72;margin:6px 0}
+.t3e3-quiz{background:#fff;border-radius:10px;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.t3e3-quiz p{font-size:.65rem;font-weight:600;margin-bottom:6px;color:#1a1a18}
+.t3e3-quiz-opts{display:flex;flex-direction:column;gap:3px}
+.t3e3-quiz-opt{background:#eef5f8;border-radius:6px;padding:4px 10px;font-size:.6rem;cursor:pointer;color:#1a1a18}
+.t3e3-quiz-opt.on{background:#78a6ba;color:#fff}
+
+/* ════════════════════════════════════════
+   GREEN — Plantilla 1: IPP Oficial
+════════════════════════════════════════ */
+.g2e2{background:#e9e6d5}
+.g2e2-nav{background:#fff;border-bottom:3px solid #528e74;padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.g2e2-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:.85rem;font-weight:700;color:#1a1a18}
+.g2e2-nav-links{display:flex;gap:14px}
+.g2e2-nav-links a{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#1a1a18;opacity:.45;text-decoration:none}
+.g2e2-nav-links a.on{opacity:1;color:#528e74}
+.g2e2-hero{background:#c8e8de;padding:26px 24px;border-bottom:3px solid #528e74}
+.g2e2-badge{display:inline-block;background:#528e74;color:#fff;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-bottom:8px}
+.g2e2-hero h2{font-family:'Playfair Display',serif;font-style:italic;font-size:1.4rem;color:#1a1a18}
+.g2e2-hero p{font-size:.7rem;color:#3d6b58;margin-top:4px}
+.g2e2-body{padding:16px 20px}
+.g2e2-subnav{display:flex;gap:2px;background:#fff;border-radius:8px;padding:4px 8px;margin-bottom:12px;box-shadow:0 2px 6px rgba(0,0,0,.06);border-bottom:3px solid #528e74}
+.g2e2-subnav a{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:4px 8px;color:#1a1a18;text-decoration:none;opacity:.4;border-bottom:2px solid transparent}
+.g2e2-subnav a.on{opacity:1;color:#528e74;border-bottom-color:#528e74}
+/* word grid */
+.g2e2-wordgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-bottom:10px}
+.g2e2-word{background:#c8e8de;border-radius:6px;padding:5px 3px;text-align:center;font-size:.58rem;font-weight:600;color:#276c3a;cursor:pointer}
+.g2e2-word.trap{background:#fde4e1;color:#a8382a}
+/* vcards */
+.g2e2-vcards{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:10px}
+.g2e2-vcard{background:#fff;border:1.5px solid #c8e8de;border-radius:8px;padding:7px 5px;text-align:center}
+.g2e2-vcard .it{font-family:'Playfair Display',serif;font-style:italic;font-size:.72rem;color:#3d6b58;font-weight:700}
+.g2e2-vcard .es{font-size:.58rem;color:#888;margin-top:1px}
+/* disc */
+.g2e2-disc{background:#fff;border-radius:8px;border:1.5px solid #c8e8de;padding:10px 12px;margin-bottom:8px;box-shadow:0 2px 6px rgba(0,0,0,.05)}
+.g2e2-disc h4{font-family:'Playfair Display',serif;font-style:italic;font-size:.78rem;color:#3d6b58;margin-bottom:6px}
+.g2e2-disc p{font-size:.63rem;color:#555;margin-bottom:4px}
+.g2e2-rule{background:#c8e8de;border-left:3px solid #528e74;border-radius:0 6px 6px 0;padding:6px 10px;font-size:.62rem;color:#1a1a18}
+.g2e2-footer{background:#fff;border-top:3px solid #528e74;padding:10px 20px;text-align:center;font-size:.6rem;color:#aaa}
+
+/* ETAPA 3 GREEN */
+.g3e3{background:#e9e6d5}
+.g3e3-nav{background:#fff;border-bottom:3px solid #528e74;padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.g3e3-subnav{display:flex;gap:0;background:#fff;padding:0 20px;border-bottom:3px solid #528e74}
+.g3e3-subnav a{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:6px 10px;color:#1a1a18;opacity:.4;text-decoration:none;border-bottom:3px solid transparent;margin-bottom:-3px}
+.g3e3-subnav a.on{opacity:1;color:#3d6b58;border-bottom-color:#528e74}
+.g3e3-hero{background:#c8e8de;padding:22px 24px;border-bottom:3px solid #528e74}
+.g3e3-body{padding:14px 20px}
+.g3e3-gram{background:#fff;border-radius:10px;border:1.5px solid #c8e8de;padding:12px 14px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.g3e3-gram h3{font-family:'Playfair Display',serif;font-style:italic;font-size:.8rem;color:#3d6b58;margin-bottom:8px}
+.g3e3-table{width:100%;border-collapse:collapse;font-size:.62rem}
+.g3e3-table th{background:#c8e8de;color:#1a1a18;padding:5px 8px;text-align:left;font-weight:700}
+.g3e3-table td{padding:5px 8px;border-bottom:1px solid #e4f3ed;color:#444}
+.g3e3-rule{background:#c8e8de;border-left:3px solid #528e74;border-radius:0 6px 6px 0;padding:7px 10px;font-size:.62rem;color:#1a1a18;margin:6px 0}
+.g3e3-quiz{background:#fff;border-radius:10px;border:1.5px solid #c8e8de;padding:12px 14px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.g3e3-quiz p{font-size:.65rem;font-weight:600;margin-bottom:6px}
+.g3e3-quiz-opts{display:flex;flex-direction:column;gap:3px}
+.g3e3-quiz-opt{background:#e9e6d5;border-radius:6px;padding:4px 10px;font-size:.6rem;color:#1a1a18;cursor:pointer}
+.g3e3-quiz-opt.on{background:#528e74;color:#fff}
+.g3e3-footer{background:#fff;border-top:3px solid #528e74;padding:10px 20px;text-align:center;font-size:.6rem;color:#aaa}
+
+/* ── APPLY BUTTON ── */
+.apply-bar{max-width:1100px;margin:32px auto 0;background:#fff;border-radius:12px;padding:20px 28px;box-shadow:0 2px 12px rgba(0,0,0,.07);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.apply-bar p{font-size:.88rem;color:#555}
+.apply-bar strong{color:#1a1a18}
+.apply-ok{background:#1a1a18;color:#EFCF7F;border:none;border-radius:8px;padding:12px 28px;font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+
+/* ── BOTTOM SUMMARY ── */
+.summary{max-width:1100px;margin:28px auto 60px;background:#1a1a18;border-radius:14px;padding:28px 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:720px){.summary{grid-template-columns:1fr 1fr}}
+.sum-card{text-align:center}
+.sum-dot{width:36px;height:36px;border-radius:50%;margin:0 auto 10px}
+.sum-card h4{font-family:'Playfair Display',serif;font-style:italic;font-size:.85rem;color:#fff;margin-bottom:4px}
+.sum-card p{font-size:.68rem;color:rgba(255,255,255,.5);line-height:1.4}
+</style>
+</head>
+<body>
+
+<!-- SELECTOR -->
+<div class="selector">
+  <button class="sel-btn active" data-color="amber" onclick="show('amber',this)">🟡 Amber — M0,4,8,12,16</button>
+  <button class="sel-btn" data-color="red" onclick="show('red',this)">🔴 Red — M1,5,9,13</button>
+  <button class="sel-btn" data-color="teal" onclick="show('teal',this)">🔵 Teal — M2,6,10,14</button>
+  <button class="sel-btn" data-color="green" onclick="show('green',this)">🟢 Green — M3,7,11,15</button>
+</div>
+
+<div class="intro">
+  <h1>Preview de estilos finales</h1>
+  <p>Cada color de módulo tiene su propia plantilla. Sin degradados, solo colores sólidos pastel. Nunca negro como fondo.</p>
+</div>
+
+<!-- ═══════════ AMBER ═══════════ -->
+<div class="style-section show" id="sec-amber">
+  <div class="section-intro" style="max-width:1100px;margin:0 auto 24px">
+    <div class="section-dot" style="background:#EFCF7F"></div>
+    <div>
+      <h2>Amber · Plantilla 2 — Tarjeta Cálida</h2>
+      <p>Fondo crema-dorado sólido. Tarjetas blancas con borde gold. Tipografía cálida. Sensación de cuaderno artesanal italiano.</p>
+      <div class="modules">
+        <span class="mod-badge" style="background:#fef0c0;color:#7a5500">M0 Come ti chiami?</span>
+        <span class="mod-badge" style="background:#fef0c0;color:#7a5500">M4 Una notte a Roma</span>
+        <span class="mod-badge" style="background:#fef0c0;color:#7a5500">M8 Andiamo al mercato</span>
+        <span class="mod-badge" style="background:#fef0c0;color:#7a5500">M12 Che lavoro fai?</span>
+        <span class="mod-badge" style="background:#fef0c0;color:#7a5500">M16 Persone e storie</span>
+      </div>
+    </div>
+  </div>
+  <div class="dual">
+    <!-- ETAPA 2 -->
+    <div>
+      <div class="preview-label">Etapa 2 — Descubrimiento</div>
+      <div class="frame">
+        <div class="a2e2">
+          <div class="a2e2-nav">
+            <div class="a2e2-logo">Italiano <span>Per Piacere</span></div>
+            <div class="a2e2-nav-links"><a href="#">A1</a><a href="#">M4</a><a href="#" class="on">Descubrimiento</a></div>
+          </div>
+          <div class="a2e2-hero">
+            <div class="a2e2-badge">Módulo 4 · A1 · Descubrimiento</div>
+            <h2>Una notte a Roma</h2>
+            <p>¿Qué hacemos esta noche en la ciudad eterna?</p>
+          </div>
+          <div class="a2e2-body">
+            <div class="a2e2-grid">
+              <div class="a2e2-word">ristorante</div>
+              <div class="a2e2-word">piazza</div>
+              <div class="a2e2-word">fontana</div>
+              <div class="a2e2-word trap">bibliothèque</div>
+              <div class="a2e2-word">passeggiare</div>
+              <div class="a2e2-word">cenare</div>
+              <div class="a2e2-word trap">playa</div>
+              <div class="a2e2-word">gelato</div>
+              <div class="a2e2-word">tramonto</div>
+              <div class="a2e2-word">serata</div>
+            </div>
+            <div class="a2e2-vcards">
+              <div class="a2e2-vcard"><div class="it">cenare</div><div class="es">cenar</div></div>
+              <div class="a2e2-vcard"><div class="it">passeggiare</div><div class="es">pasear</div></div>
+              <div class="a2e2-vcard"><div class="it">serata</div><div class="es">velada</div></div>
+              <div class="a2e2-vcard"><div class="it">tramonto</div><div class="es">atardecer</div></div>
+            </div>
+            <div class="a2e2-disc">
+              <h4>💡 Scoperta: il presente dei verbi -are</h4>
+              <p>Observa estas frases de la canción. ¿Qué notas en los verbos?</p>
+              <div class="a2e2-rule">Io <strong>ceno</strong> alle otto · Tu <strong>passeggi</strong> in piazza · Noi <strong>parliamo</strong> molto</div>
+            </div>
+          </div>
+          <div class="a2e2-footer"><p>© Italiano Per Piacere</p><em>La lingua è cultura.</em></div>
+        </div>
+      </div>
+    </div>
+    <!-- ETAPA 3 -->
+    <div>
+      <div class="preview-label">Etapa 3 — Gramática</div>
+      <div class="frame">
+        <div class="a3e3">
+          <div class="a3e3-nav">
+            <div class="a2e2-logo">Italiano <span>Per Piacere</span></div>
+            <div class="a2e2-nav-links"><a href="#">A1</a><a href="#">M4</a><a href="#" class="on">Gramática</a></div>
+          </div>
+          <div class="a3e3-subnav">
+            <a href="#" class="on">Presente</a>
+            <a href="#">Irregolari</a>
+            <a href="#">Preposizioni</a>
+            <a href="#">Pratica</a>
+            <a href="#">Quiz</a>
+          </div>
+          <div class="a3e3-hero">
+            <div class="a2e2-badge">Módulo 4 · A1 · Gramática</div>
+            <h2>Il presente indicativo</h2>
+            <p>La base de todo. Conjugar en italiano es más fácil de lo que parece.</p>
+          </div>
+          <div class="a3e3-body">
+            <div class="a3e3-card">
+              <h3>Verbi regolari -ARE</h3>
+              <table class="a3e3-table">
+                <tr><th>Persona</th><th>parlare</th><th>mangiare</th></tr>
+                <tr><td>io</td><td>parl<strong>o</strong></td><td>mangi<strong>o</strong></td></tr>
+                <tr><td>tu</td><td>parl<strong>i</strong></td><td>mangi<strong>i</strong></td></tr>
+                <tr><td>lui/lei</td><td>parl<strong>a</strong></td><td>mangi<strong>a</strong></td></tr>
+                <tr><td>noi</td><td>parl<strong>iamo</strong></td><td>mangi<strong>amo</strong></td></tr>
+              </table>
+              <div class="a3e3-rule">💡 La desinencia <strong>-o</strong> siempre es "yo". ¡Nunca cambia!</div>
+            </div>
+            <div class="a3e3-card">
+              <h3>Pratica rapida</h3>
+              <p style="font-size:.65rem;margin-bottom:6px">Noi _____ in un ristorante stasera. (mangiare)</p>
+              <div class="a3e3-opt">
+                <span>mangio</span><span class="on">mangiamo</span><span>mangiate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ RED ═══════════ -->
+<div class="style-section" id="sec-red">
+  <div class="section-intro" style="max-width:1100px;margin:0 auto 24px">
+    <div class="section-dot" style="background:#f5a89e"></div>
+    <div>
+      <h2>Red · Plantilla 3 — Editorial / Libro</h2>
+      <p>Fondo blanco limpio. Número de módulo decorativo. Detalle rojo solo en bordes y encabezados. Estilo revista cultural italiana.</p>
+      <div class="modules">
+        <span class="mod-badge" style="background:#fde4e1;color:#7a1f14">M1 Di dove sei?</span>
+        <span class="mod-badge" style="background:#fde4e1;color:#7a1f14">M5 Che ore sono?</span>
+        <span class="mod-badge" style="background:#fde4e1;color:#7a1f14">M9 La mia famiglia</span>
+        <span class="mod-badge" style="background:#fde4e1;color:#7a1f14">M13 In città</span>
+      </div>
+    </div>
+  </div>
+  <div class="dual">
+    <div>
+      <div class="preview-label">Etapa 2 — Descubrimiento</div>
+      <div class="frame">
+        <div class="r2e2">
+          <div class="r2e2-nav">
+            <div class="r2e2-logo-wrap"><span>Italiano Per Piacere</span><span>Nivel A1</span></div>
+            <div class="r2e2-nav-links"><a href="#">Módulos</a><a href="#" class="on">Descubrimiento</a></div>
+          </div>
+          <div class="r2e2-hero">
+            <div class="r2e2-num">1</div>
+            <div class="r2e2-htxt">
+              <div class="eyebrow">Módulo 1 · A1 · Descubrimiento</div>
+              <h2>Di dove sei?</h2>
+              <p>Una canzone per viaggiare senza muoversi.</p>
+            </div>
+          </div>
+          <div class="r2e2-body">
+            <div class="r2e2-words">
+              <span class="r2e2-word">nord</span><span class="r2e2-word ok">italiano</span><span class="r2e2-word">strano</span><span class="r2e2-word ok">città</span><span class="r2e2-word">viaggio</span><span class="r2e2-word trap">ciudad</span><span class="r2e2-word">regione</span><span class="r2e2-word ok">paese</span>
+            </div>
+            <div class="r2e2-vcards">
+              <div class="r2e2-vcard"><div class="it">venire</div><div class="es">venir</div></div>
+              <div class="r2e2-vcard"><div class="it">abitare</div><div class="es">vivir</div></div>
+              <div class="r2e2-vcard"><div class="it">nascere</div><div class="es">nacer</div></div>
+              <div class="r2e2-vcard"><div class="it">capire</div><div class="es">entender</div></div>
+            </div>
+            <div class="r2e2-disc">
+              <h4>Di dove sei? — Essere + preposizioni</h4>
+              <p>¿Puedes encontrar el patrón? Observa estas frases:</p>
+              <div class="r2e2-rule">Sono <strong>di</strong> Roma · Vengo <strong>dall'</strong>Italia · Abito <strong>a</strong> Milano</div>
+            </div>
+            <div class="r2e2-disc">
+              <h4>Nazionalità — come si forma?</h4>
+              <p>En italiano la nacionalidad concuerda con el género.</p>
+              <div class="r2e2-rule">italiano → italian<strong>a</strong> | francese → frances<strong>e</strong> (invariable)</div>
+            </div>
+          </div>
+          <div class="r2e2-footer">© Italiano Per Piacere · A1 · M1</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="preview-label">Etapa 3 — Gramática</div>
+      <div class="frame">
+        <div class="r3e3">
+          <div class="r3e3-nav-top">
+            <div class="r2e2-logo-wrap"><span>Italiano Per Piacere</span><span>Nivel A1</span></div>
+            <div class="r2e2-nav-links"><a href="#">Módulos</a><a href="#" class="on">Gramática</a></div>
+          </div>
+          <div class="r3e3-toc">
+            <a href="#" class="on">Essere</a><a href="#">Di dove</a><a href="#">Nazionalità</a><a href="#">Pratica</a><a href="#">Quiz</a>
+          </div>
+          <div class="r3e3-hero">
+            <div class="r2e2-num">1</div>
+            <div class="r2e2-htxt">
+              <div class="eyebrow" style="color:#cc4736">Módulo 1 · A1 · Gramática</div>
+              <h2 style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.3rem;color:#1a1a18">Essere e provenienza</h2>
+              <p style="font-size:.68rem;color:#666">El verbo más importante del italiano, en el contexto más natural.</p>
+            </div>
+          </div>
+          <div class="r3e3-body">
+            <div class="r3e3-section">
+              <h3>Essere — conjugación completa</h3>
+              <table class="r3e3-table">
+                <tr><th>Persona</th><th>Essere</th><th>Ejemplo</th></tr>
+                <tr><td>io</td><td><strong>sono</strong></td><td>Sono di Buenos Aires.</td></tr>
+                <tr><td>tu</td><td><strong>sei</strong></td><td>Di dove sei?</td></tr>
+                <tr><td>lui/lei</td><td><strong>è</strong></td><td>È italiana.</td></tr>
+                <tr><td>noi</td><td><strong>siamo</strong></td><td>Siamo spagnoli.</td></tr>
+              </table>
+            </div>
+            <div class="r3e3-prac">
+              <p>— _____ di Milano? Sì, sono lombardo.</p>
+              <div class="r3e3-prac-opts">
+                <span class="r3e3-prac-opt">Sono</span><span class="r3e3-prac-opt on">Sei</span><span class="r3e3-prac-opt">Siamo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ TEAL ═══════════ -->
+<div class="style-section" id="sec-teal">
+  <div class="section-intro" style="max-width:1100px;margin:0 auto 24px">
+    <div class="section-dot" style="background:#78a6ba"></div>
+    <div>
+      <h2>Teal · Plantilla 4 — Bloques de Color</h2>
+      <p>Barra top teal sólida. Fondo azul muy pálido. Cada sección tiene cabecera de color. Inspirado en el manual de marca con los bloques.</p>
+      <div class="modules">
+        <span class="mod-badge" style="background:#deeef5;color:#2d5f72">M2 Mi dai il tuo numero?</span>
+        <span class="mod-badge" style="background:#deeef5;color:#2d5f72">M6 A tavola!</span>
+        <span class="mod-badge" style="background:#deeef5;color:#2d5f72">M10 Casa dolce casa</span>
+        <span class="mod-badge" style="background:#deeef5;color:#2d5f72">M14 Tempo libero</span>
+      </div>
+    </div>
+  </div>
+  <div class="dual">
+    <div>
+      <div class="preview-label">Etapa 2 — Descubrimiento</div>
+      <div class="frame">
+        <div class="t2e2">
+          <div class="t2e2-topbar">
+            <div class="t2e2-topbar-logo">Italiano Per Piacere · A1</div>
+            <div class="t2e2-topbar-links"><a href="#">Módulos</a><a href="#" class="on">Descubrimiento</a></div>
+          </div>
+          <div class="t2e2-hero">
+            <div class="t2e2-circle"><span>6</span></div>
+            <div class="t2e2-htxt">
+              <div class="eyebrow">A1 · Módulo 6 · Descubrimiento</div>
+              <h2>A tavola!</h2>
+              <p>El italiano en su salsa: comida, familia y conversación.</p>
+            </div>
+          </div>
+          <div class="t2e2-subnav">
+            <a href="#" class="on">Vocabulario</a><a href="#">Descoberta</a><a href="#">Diálogo</a><a href="#">Actividad</a>
+          </div>
+          <div class="t2e2-body">
+            <div class="t2e2-wordgrid">
+              <div class="t2e2-word">tavola</div><div class="t2e2-word">forchetta</div><div class="t2e2-word trap">tenedor</div><div class="t2e2-word">coltello</div><div class="t2e2-word">piatto</div>
+              <div class="t2e2-word">bicchiere</div><div class="t2e2-word">primo</div><div class="t2e2-word">secondo</div><div class="t2e2-word trap">mesa</div><div class="t2e2-word">dolce</div>
+            </div>
+            <div class="t2e2-block">
+              <div class="t2e2-block-head"><div class="t2e2-block-dot"></div><div class="t2e2-block-title">Vocabolario — A tavola</div></div>
+              <div class="t2e2-block-body">
+                <div class="t2e2-vcards">
+                  <div class="t2e2-vcard"><div class="it">primo</div><div class="es">primer plato</div></div>
+                  <div class="t2e2-vcard"><div class="it">secondo</div><div class="es">segundo</div></div>
+                  <div class="t2e2-vcard"><div class="it">contorno</div><div class="es">guarnición</div></div>
+                  <div class="t2e2-vcard"><div class="it">dolce</div><div class="es">postre/dulce</div></div>
+                </div>
+                <div class="t2e2-chips"><span class="t2e2-chip">antipasto</span><span class="t2e2-chip">caffè</span><span class="t2e2-chip">conto</span><span class="t2e2-chip">cameriere</span></div>
+              </div>
+            </div>
+            <div class="t2e2-block">
+              <div class="t2e2-block-head"><div class="t2e2-block-dot"></div><div class="t2e2-block-title">Scoperta — Verbi al ristorante</div></div>
+              <div class="t2e2-block-body" style="font-size:.63rem;color:#555">
+                <p>Ordina · Porta · Preferisce · Vuole · Consiglia</p>
+                <div class="t2e2-chips" style="margin-top:6px"><span class="t2e2-chip" style="background:#fde4e1;color:#a8382a">Avere fame / sete</span><span class="t2e2-chip">Prendere</span><span class="t2e2-chip">Portare il conto</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="t2e2-footer"><p>© Italiano Per Piacere</p><em>La lingua è cultura.</em></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="preview-label">Etapa 3 — Gramática</div>
+      <div class="frame">
+        <div class="t3e3">
+          <div class="t3e3-topbar">
+            <div class="t2e2-topbar-logo">Italiano Per Piacere · A1 · M6</div>
+            <div class="t2e2-topbar-links"><a href="#">Descubrimiento</a><a href="#" class="on">Gramática</a></div>
+          </div>
+          <div class="t3e3-subnav">
+            <a href="#" class="on">Articoli</a><a href="#">Verbi</a><a href="#">Quantità</a><a href="#">Pratica</a><a href="#">Quiz</a>
+          </div>
+          <div class="t3e3-hero">
+            <div class="t2e2-circle"><span>6</span></div>
+            <div class="t2e2-htxt">
+              <div class="eyebrow">A1 · Módulo 6 · Gramática</div>
+              <h2>Articoli e verbi al ristorante</h2>
+            </div>
+          </div>
+          <div class="t3e3-body">
+            <div class="t3e3-gram-block">
+              <div class="t3e3-gram-head"><div class="t3e3-gram-dot"></div><div class="t3e3-gram-title">Articoli indeterminativi</div></div>
+              <div class="t3e3-gram-body">
+                <table class="t3e3-table">
+                  <tr><th>Artículo</th><th>Uso</th><th>Ejemplo</th></tr>
+                  <tr><td><strong>un</strong></td><td>M. consonante</td><td>un caffè</td></tr>
+                  <tr><td><strong>uno</strong></td><td>M. s+cons / z</td><td>uno spaghetto</td></tr>
+                  <tr><td><strong>una</strong></td><td>F. consonante</td><td>una pizza</td></tr>
+                  <tr><td><strong>un'</strong></td><td>F. vocal</td><td>un'aranciata</td></tr>
+                </table>
+                <div class="t3e3-rule">💡 Después de "Vorrei..." siempre artículo <strong>indeterminativo</strong>.</div>
+              </div>
+            </div>
+            <div class="t3e3-quiz">
+              <p>"_____ acqua minerale, per favore." ¿Qué artículo?</p>
+              <div class="t3e3-quiz-opts">
+                <div class="t3e3-quiz-opt">Un</div>
+                <div class="t3e3-quiz-opt on">Un'</div>
+                <div class="t3e3-quiz-opt">Una</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ GREEN ═══════════ -->
+<div class="style-section" id="sec-green">
+  <div class="section-intro" style="max-width:1100px;margin:0 auto 24px">
+    <div class="section-dot" style="background:#528e74"></div>
+    <div>
+      <h2>Green · Plantilla 1 — IPP Oficial</h2>
+      <p>Fondo crema de marca. Hero verde pastel con borde. Tarjetas blancas. Coherente al 100% con el sitio web oficial de Italiano Per Piacere.</p>
+      <div class="modules">
+        <span class="mod-badge" style="background:#c8e8de;color:#276c3a">M3 Tutti in piazza!</span>
+        <span class="mod-badge" style="background:#c8e8de;color:#276c3a">M7 Com'è il tempo?</span>
+        <span class="mod-badge" style="background:#c8e8de;color:#276c3a">M11 Mi sento così</span>
+        <span class="mod-badge" style="background:#c8e8de;color:#276c3a">M15 Il weekend scorso</span>
+      </div>
+    </div>
+  </div>
+  <div class="dual">
+    <div>
+      <div class="preview-label">Etapa 2 — Descubrimiento</div>
+      <div class="frame">
+        <div class="g2e2">
+          <div class="g2e2-nav">
+            <div class="g2e2-logo">Italiano Per Piacere</div>
+            <div class="g2e2-nav-links"><a href="#">A1</a><a href="#">M7</a><a href="#" class="on">Descubrimiento</a></div>
+          </div>
+          <div class="g2e2-hero">
+            <div class="g2e2-badge">Módulo 7 · A1 · Descubrimiento</div>
+            <h2>Com'è il tempo?</h2>
+            <p>Hablar del clima es la primera conversación con un desconocido.</p>
+          </div>
+          <div class="g2e2-body">
+            <div class="g2e2-subnav">
+              <a href="#" class="on">Vocab</a><a href="#">Scoperta</a><a href="#">Dialogo</a><a href="#">Attività</a><a href="#">Cultura</a>
+            </div>
+            <div class="g2e2-wordgrid">
+              <div class="g2e2-word">sole</div><div class="g2e2-word">pioggia</div><div class="g2e2-word trap">lluvia</div><div class="g2e2-word">nuvola</div><div class="g2e2-word">vento</div>
+              <div class="g2e2-word">neve</div><div class="g2e2-word">caldo</div><div class="g2e2-word">freddo</div><div class="g2e2-word trap">froid</div><div class="g2e2-word">temporale</div>
+            </div>
+            <div class="g2e2-vcards">
+              <div class="g2e2-vcard"><div class="it">fa caldo</div><div class="es">hace calor</div></div>
+              <div class="g2e2-vcard"><div class="it">fa freddo</div><div class="es">hace frío</div></div>
+              <div class="g2e2-vcard"><div class="it">piove</div><div class="es">llueve</div></div>
+              <div class="g2e2-vcard"><div class="it">nevica</div><div class="es">nieva</div></div>
+            </div>
+            <div class="g2e2-disc">
+              <h4>💡 Scoperta: verbi impersonali</h4>
+              <p>¿Notas algo especial? Estos verbos solo se usan en 3ª persona singular.</p>
+              <div class="g2e2-rule">Piove · Nevica · Fa caldo · C'è il sole · Tira vento</div>
+            </div>
+          </div>
+          <div class="g2e2-footer">© Italiano Per Piacere · A1 · Módulo 7</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="preview-label">Etapa 3 — Gramática</div>
+      <div class="frame">
+        <div class="g3e3">
+          <div class="g3e3-nav">
+            <div class="g2e2-logo">Italiano Per Piacere</div>
+            <div class="g2e2-nav-links"><a href="#">A1</a><a href="#">M7</a><a href="#" class="on">Gramática</a></div>
+          </div>
+          <div class="g3e3-subnav">
+            <a href="#" class="on">Impersonali</a><a href="#">Stagioni</a><a href="#">Avverbi</a><a href="#">Pratica</a><a href="#">Quiz</a>
+          </div>
+          <div class="g3e3-hero">
+            <div class="g2e2-badge">Módulo 7 · A1 · Gramática</div>
+            <h2>Verbi impersonali e stagioni</h2>
+            <p>El clima italiano en gramática. Sencillo y muy útil.</p>
+          </div>
+          <div class="g3e3-body">
+            <div class="g3e3-gram">
+              <h3>Verbi impersonali — presente</h3>
+              <table class="g3e3-table">
+                <tr><th>Verbo</th><th>Presente</th><th>Passato</th></tr>
+                <tr><td>piovere</td><td><strong>piove</strong></td><td>è piovuto</td></tr>
+                <tr><td>nevicare</td><td><strong>nevica</strong></td><td>è nevicato</td></tr>
+                <tr><td>fare caldo</td><td><strong>fa caldo</strong></td><td>ha fatto caldo</td></tr>
+                <tr><td>tirare vento</td><td><strong>tira vento</strong></td><td>ha tirato vento</td></tr>
+              </table>
+              <div class="g3e3-rule">💡 Solo 3ª persona singular. ¡Nunca cambias la desinencia!</div>
+            </div>
+            <div class="g3e3-quiz">
+              <p>Ieri _____ tutto il giorno. (piovere)</p>
+              <div class="g3e3-quiz-opts">
+                <div class="g3e3-quiz-opt">ha piovuto</div>
+                <div class="g3e3-quiz-opt on">è piovuto</div>
+                <div class="g3e3-quiz-opt">piove</div>
+              </div>
+            </div>
+          </div>
+          <div class="g3e3-footer">© Italiano Per Piacere · A1 · Módulo 7</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div style="padding:0 24px">
+<div class="summary">
+  <div class="sum-card">
+    <div class="sum-dot" style="background:#EFCF7F"></div>
+    <h4>Amber</h4>
+    <p>Plantilla 2<br>Tarjeta Cálida<br><small style="opacity:.4">M0,4,8,12,16 (A1+A2)</small></p>
+  </div>
+  <div class="sum-card">
+    <div class="sum-dot" style="background:#f5a89e"></div>
+    <h4>Red</h4>
+    <p>Plantilla 3<br>Editorial<br><small style="opacity:.4">M1,5,9,13 (A1+A2)</small></p>
+  </div>
+  <div class="sum-card">
+    <div class="sum-dot" style="background:#78a6ba"></div>
+    <h4>Teal</h4>
+    <p>Plantilla 4<br>Bloques<br><small style="opacity:.4">M2,6,10,14 (A1+A2)</small></p>
+  </div>
+  <div class="sum-card">
+    <div class="sum-dot" style="background:#528e74"></div>
+    <h4>Green</h4>
+    <p>Plantilla 1<br>IPP Oficial<br><small style="opacity:.4">M3,7,11,15 (A1+A2)</small></p>
+  </div>
+</div>
+</div>
+
+<p style="text-align:center;padding:40px 20px 60px;font-size:.88rem;color:#888">¿Te gustan los 4 estilos? Dime <strong style="color:#1a1a18">SÍ</strong> y actualizo todas las etapas 2 y 3 de A1 + A2.</p>
+
+<script>
+function show(color, btn){
+  document.querySelectorAll('.style-section').forEach(s=>s.classList.remove('show'));
+  document.querySelectorAll('.sel-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('sec-'+color).classList.add('show');
+  btn.classList.add('active');
+  window.scrollTo({top:80,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
