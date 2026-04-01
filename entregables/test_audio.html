@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Audio — Drive vs Web Speech</title>
+<style>
+  body { font-family: sans-serif; max-width: 700px; margin: 2rem auto; padding: 1rem; background: #f5f3ea; }
+  h2 { color: #cc4736; }
+  .test-block {
+    background: white; border-radius: 12px; padding: 1.5rem;
+    margin-bottom: 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  }
+  .label { font-weight: 700; margin-bottom: 0.5rem; color: #333; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  .status { font-size: 0.82rem; color: #888; margin-top: 0.5rem; }
+  .status.ok  { color: #3d6b58; font-weight: 700; }
+  .status.err { color: #cc4736; font-weight: 700; }
+  button {
+    background: #cc4736; color: white; border: none; padding: 0.5rem 1.4rem;
+    border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600;
+    margin-top: 0.5rem;
+  }
+  button:hover { background: #a8382a; }
+  .badge { display: inline-block; padding: 0.2rem 0.7rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-left: 0.5rem; }
+  .badge-green { background: #d4edda; color: #2d5a3d; }
+  .badge-orange { background: #fff3cd; color: #7a5500; }
+  iframe { width: 100%; height: 60px; border: none; border-radius: 8px; margin-top: 0.5rem; }
+  audio { width: 100%; margin-top: 0.5rem; }
+  code { background: #f0ede0; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85rem; color: #7a1f14; }
+</style>
+</head>
+<body>
+
+<h1>🎧 Test de Audio — Italiano Per Piacere</h1>
+<p>Este archivo prueba los tres métodos de audio disponibles. Reemplazá <code>TU_FILE_ID</code> con el ID real del archivo de Drive.</p>
+
+<!-- ═══════════════════════════════════════════
+     MÉTODO 1 — Google Drive iframe embed
+     ═══════════════════════════════════════════ -->
+<div class="test-block">
+  <div class="label">Método 1 — Google Drive iframe <span class="badge badge-orange">requiere FILE_ID</span></div>
+  <p style="font-size:0.88rem;color:#555;">Reemplazá <code>TU_FILE_ID</code> en el HTML con el ID real. Si el audio se escucha abajo, este método funciona.</p>
+
+  <!-- ⬇️ REEMPLAZÁ TU_FILE_ID con el ID real del archivo -->
+  <iframe src="https://drive.google.com/file/d/TU_FILE_ID/preview" allow="autoplay"></iframe>
+
+  <div class="status" id="s1">Esperando reproducción...</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     MÉTODO 2 — Google Drive src directo en <audio>
+     ═══════════════════════════════════════════ -->
+<div class="test-block">
+  <div class="label">Método 2 — Drive URL directa en &lt;audio&gt; <span class="badge badge-orange">requiere FILE_ID</span></div>
+  <p style="font-size:0.88rem;color:#555;">Método más simple, pero Google puede bloquearlo por quota. Probamos igual.</p>
+
+  <!-- ⬇️ REEMPLAZÁ TU_FILE_ID con el ID real del archivo -->
+  <audio id="audio2" controls>
+    <source src="https://drive.google.com/uc?export=open&id=TU_FILE_ID" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+  <div class="status" id="s2">Si no carga, Google bloqueó el acceso directo.</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     MÉTODO 3 — Web Speech API (sin archivos externos)
+     ═══════════════════════════════════════════ -->
+<div class="test-block">
+  <div class="label">Método 3 — Web Speech API (TTS nativa del navegador) <span class="badge badge-green">funciona ya</span></div>
+  <p style="font-size:0.88rem;color:#555;">Sin archivos, sin Drive. El navegador habla. Podés elegir voz italiana si está instalada.</p>
+
+  <div style="margin-bottom:0.5rem;">
+    <label style="font-size:0.85rem;color:#555;">Voz:</label>
+    <select id="voiceSelect" style="margin-left:0.5rem;font-size:0.85rem;padding:0.2rem 0.5rem;border-radius:6px;border:1px solid #ddd;"></select>
+  </div>
+
+  <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+    <button onclick="speak('Ciao! Come ti chiami?', 'slow')">▶ Frase 1 lenta</button>
+    <button onclick="speak('Ciao! Come ti chiami?', 'normal')">▶ Frase 1 normal</button>
+    <button onclick="speak('Mi chiamo Sofia. Sono di Milano.', 'normal')">▶ Frase 2</button>
+    <button onclick="speak('Di dove sei tu?', 'normal')">▶ Frase 3</button>
+    <button id="btnStop" onclick="stopSpeak()" style="background:#888;">⏹ Stop</button>
+  </div>
+
+  <div class="status ok" id="s3">Listo — hacé clic en un botón para probar</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     MÉTODO 4 — Frase a frase (demo completa)
+     ═══════════════════════════════════════════ -->
+<div class="test-block">
+  <div class="label">Método 4 — Escuchar completo → frase a frase <span class="badge badge-green">demo con Web Speech</span></div>
+  <p style="font-size:0.88rem;color:#555;">Así funciona en las unidades: primero escuchás el diálogo entero, luego podés repetir frase por frase.</p>
+
+  <div id="dialogue" style="margin:0.75rem 0;">
+    <div class="frase" data-text="Ciao! Come ti chiami?" style="background:#fbeae8;border-radius:8px;padding:0.6rem 1rem;margin-bottom:0.4rem;display:flex;justify-content:space-between;align-items:center;">
+      <span>🗣 <em>Marco:</em> "Ciao! Come ti chiami?"</span>
+      <button onclick="speak(this.closest('.frase').dataset.text)" style="padding:0.3rem 0.8rem;font-size:0.78rem;">▶</button>
+    </div>
+    <div class="frase" data-text="Mi chiamo Sofia. E tu?" style="background:#e8f4ef;border-radius:8px;padding:0.6rem 1rem;margin-bottom:0.4rem;display:flex;justify-content:space-between;align-items:center;">
+      <span>🗣 <em>Sofia:</em> "Mi chiamo Sofia. E tu?"</span>
+      <button onclick="speak(this.closest('.frase').dataset.text)" style="padding:0.3rem 0.8rem;font-size:0.78rem;">▶</button>
+    </div>
+    <div class="frase" data-text="Mi chiamo Marco. Di dove sei?" style="background:#fbeae8;border-radius:8px;padding:0.6rem 1rem;margin-bottom:0.4rem;display:flex;justify-content:space-between;align-items:center;">
+      <span>🗣 <em>Marco:</em> "Mi chiamo Marco. Di dove sei?"</span>
+      <button onclick="speak(this.closest('.frase').dataset.text)" style="padding:0.3rem 0.8rem;font-size:0.78rem;">▶</button>
+    </div>
+    <div class="frase" data-text="Sono di Milano. E tu, Marco?" style="background:#e8f4ef;border-radius:8px;padding:0.6rem 1rem;margin-bottom:0.4rem;display:flex;justify-content:space-between;align-items:center;">
+      <span>🗣 <em>Sofia:</em> "Sono di Milano. E tu, Marco?"</span>
+      <button onclick="speak(this.closest('.frase').dataset.text)" style="padding:0.3rem 0.8rem;font-size:0.78rem;">▶</button>
+    </div>
+    <div class="frase" data-text="Sono di Roma. Piacere!" style="background:#fbeae8;border-radius:8px;padding:0.6rem 1rem;margin-bottom:0.4rem;display:flex;justify-content:space-between;align-items:center;">
+      <span>🗣 <em>Marco:</em> "Sono di Roma. Piacere!"</span>
+      <button onclick="speak(this.closest('.frase').dataset.text)" style="padding:0.3rem 0.8rem;font-size:0.78rem;">▶</button>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:0.5rem;">
+    <button onclick="playAll()">▶▶ Escuchar diálogo completo</button>
+    <button onclick="stopSpeak()" style="background:#888;">⏹ Stop</button>
+  </div>
+  <div class="status" id="s4">Hacé clic en "Escuchar diálogo completo" primero.</div>
+</div>
+
+<script>
+// ─── Web Speech API ───────────────────────────────────────────
+const synth = window.speechSynthesis;
+let voices = [];
+let currentVoice = null;
+
+function loadVoices() {
+  voices = synth.getVoices();
+  const sel = document.getElementById('voiceSelect');
+  sel.innerHTML = '';
+
+  // Priorizar voces italianas
+  const itVoices = voices.filter(v => v.lang.startsWith('it'));
+  const otherVoices = voices.filter(v => !v.lang.startsWith('it'));
+  const sorted = [...itVoices, ...otherVoices];
+
+  sorted.forEach((v, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = `${v.name} (${v.lang})${v.lang.startsWith('it') ? ' 🇮🇹' : ''}`;
+    if (v.lang.startsWith('it')) opt.style.fontWeight = '700';
+    sel.appendChild(opt);
+  });
+
+  // Seleccionar primera voz italiana si existe
+  const firstIt = sorted.findIndex(v => v.lang.startsWith('it'));
+  if (firstIt >= 0) sel.value = firstIt;
+}
+
+if (synth.onvoiceschanged !== undefined) synth.onvoiceschanged = loadVoices;
+loadVoices();
+
+function getSelectedVoice() {
+  const idx = document.getElementById('voiceSelect').value;
+  const sorted = [
+    ...voices.filter(v => v.lang.startsWith('it')),
+    ...voices.filter(v => !v.lang.startsWith('it'))
+  ];
+  return sorted[idx] || null;
+}
+
+function speak(text, speed = 'normal') {
+  synth.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.voice = getSelectedVoice();
+  utter.lang = 'it-IT';
+  utter.rate = speed === 'slow' ? 0.72 : 0.95;
+  utter.pitch = 1.05;
+  synth.speak(utter);
+  document.getElementById('s3').textContent = `Reproduciendo: "${text}"`;
+}
+
+function stopSpeak() { synth.cancel(); }
+
+// ─── Play All (diálogo completo) ──────────────────────────────
+function playAll() {
+  synth.cancel();
+  const frases = document.querySelectorAll('.frase');
+  const s4 = document.getElementById('s4');
+  let i = 0;
+
+  function next() {
+    if (i >= frases.length) {
+      s4.textContent = '✅ Diálogo completo. Ahora podés escuchar frase por frase.';
+      s4.className = 'status ok';
+      return;
+    }
+    const text = frases[i].dataset.text;
+    frases.forEach(f => f.style.opacity = '0.4');
+    frases[i].style.opacity = '1';
+    frases[i].style.transform = 'scale(1.02)';
+
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.voice = getSelectedVoice();
+    utter.lang = 'it-IT';
+    utter.rate = 0.9;
+    utter.onend = () => {
+      frases[i].style.transform = '';
+      i++;
+      setTimeout(next, 400);
+    };
+    synth.speak(utter);
+    s4.textContent = `Reproduciendo frase ${i + 1} de ${frases.length}...`;
+    s4.className = 'status';
+  }
+
+  next();
+}
+
+// ─── Detectar si iframe de Drive carga ───────────────────────
+const iframe = document.querySelector('iframe');
+iframe.onload = () => {
+  const src = iframe.src;
+  if (src.includes('TU_FILE_ID')) {
+    document.getElementById('s1').textContent = '⚠️ Reemplazá TU_FILE_ID con el ID real del archivo.';
+    document.getElementById('s1').className = 'status err';
+  } else {
+    document.getElementById('s1').textContent = '✅ iframe cargado — probá si reproduce.';
+    document.getElementById('s1').className = 'status ok';
+  }
+};
+</script>
+</body>
+</html>

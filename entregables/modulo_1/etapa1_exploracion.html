@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M1 · Di dove sei? — Exploración</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:    #e9e6d5;
+    --cream-dk: #ddd9c8;
+    --mc:       #cc4736;
+    --mc-dk:    #a8382a;
+    --mc-text:  #7a1f14;
+    --mc-bg:    #fbeae8;
+    --gold:     #EFCF7F;
+    --amber:    #e5ab07;
+    --teal:     #78a6ba;
+    --green:    #528e74;
+    --black:    #1a1a18;
+    --white:    #ffffff;
+    --fh: 'Playfair Display', Georgia, serif;
+    --fb: 'Outfit', system-ui, sans-serif;
+    --radius: 12px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--fb);
+    background: var(--cream);
+    color: var(--black);
+    line-height: 1.6;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%);
+    color: var(--white);
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .module-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    color: var(--white);
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 0.3rem 1rem; border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-family: var(--fh);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-style: italic;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+  .hero .subtitle {
+    font-size: 1rem; opacity: 0.88;
+    margin-bottom: 1.5rem;
+  }
+  .stage-pills {
+    display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;
+  }
+  .stage-pill {
+    padding: 0.3rem 1rem; border-radius: 20px;
+    font-size: 0.78rem; font-weight: 600;
+    background: rgba(255,255,255,0.15); color: var(--white);
+    text-decoration: none; transition: background 0.2s;
+  }
+  .stage-pill.active { background: var(--white); color: var(--mc); }
+  .stage-pill:hover:not(.active) { background: rgba(255,255,255,0.28); }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  .section { margin-bottom: 2.5rem; }
+
+  /* ── SECTION HEADER ── */
+  .sec-header {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .sec-icon {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--mc); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .sec-title {
+    font-family: var(--fh);
+    font-size: 1.45rem; font-style: italic;
+    color: var(--mc-text);
+  }
+  .sec-sub { font-size: 0.85rem; color: #777; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.75rem;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    margin-bottom: 1rem;
+  }
+
+  /* ── SOFIA CHAT ── */
+  .sofia-row {
+    display: flex; align-items: flex-start; gap: 0.9rem;
+    margin-bottom: 1.1rem;
+  }
+  .sofia-row.right { flex-direction: row-reverse; }
+  .sofia-avatar {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--mc), var(--mc-dk));
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 14px rgba(204,71,54,0.3);
+    animation: float 3.5s ease-in-out infinite;
+  }
+  .sofia-bubble {
+    background: var(--cream-dk);
+    border-radius: var(--radius) var(--radius) var(--radius) 0;
+    padding: 1rem 1.4rem;
+    font-size: 0.92rem; line-height: 1.7;
+    max-width: 82%;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  }
+  .sofia-row.right .sofia-bubble {
+    border-radius: var(--radius) var(--radius) 0 var(--radius);
+    background: var(--mc-bg);
+  }
+  .sofia-bubble strong { color: var(--mc); }
+  .sofia-bubble em { color: var(--mc-dk); font-style: italic; }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+  }
+
+  /* ── MOTIVACIÓN ── */
+  .motivation-box {
+    background: linear-gradient(135deg, var(--mc-bg), var(--cream));
+    border-radius: var(--radius);
+    border-left: 5px solid var(--mc);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.93rem; line-height: 1.7;
+  }
+
+  /* ── VIDEO CARD ── */
+  .song-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    border-top: 5px solid var(--mc);
+  }
+  .song-header {
+    background: linear-gradient(135deg, var(--mc), var(--mc-dk));
+    color: var(--white);
+    padding: 1.1rem 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .song-header .icon { font-size: 1.8rem; }
+  .song-header h3 {
+    font-family: var(--fh);
+    font-size: 1.1rem; font-style: italic;
+  }
+  .song-header p { font-size: 0.82rem; opacity: 0.85; margin-top: 0.1rem; }
+  .song-body { padding: 1.25rem 1.5rem; }
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0; overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  .video-wrap iframe {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; border: none;
+  }
+  .video-note {
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    font-size: 0.83rem; color: #666;
+    line-height: 1.55;
+  }
+
+  /* ── LYRICS CARD ── */
+  .lyrics-strip {
+    background: var(--mc-bg);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    border-left: 5px solid var(--mc);
+    margin-top: 1.2rem;
+  }
+  .lyrics-strip h4 {
+    font-family: var(--fh);
+    font-size: 1rem; font-style: italic;
+    color: var(--mc-text);
+    margin-bottom: 0.9rem;
+  }
+  .lyric-line {
+    display: flex; align-items: baseline; gap: 0.75rem;
+    margin-bottom: 0.55rem;
+    font-size: 0.92rem;
+    padding: 0.4rem 0.5rem;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+  .lyric-line:hover { background: rgba(204,71,54,0.06); }
+  .lyric-it { font-style: italic; color: var(--mc-dk); font-weight: 600; }
+  .lyric-es { font-size: 0.8rem; color: #888; }
+
+  /* ── TASK BOXES ── */
+  .task-box {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.6rem;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    margin-bottom: 1.1rem;
+  }
+  .task-label {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--mc); color: var(--white);
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    padding: 0.25rem 0.8rem; border-radius: 20px;
+    margin-bottom: 0.85rem;
+  }
+  .task-q {
+    font-size: 0.95rem; font-weight: 600;
+    color: var(--black); margin-bottom: 0.8rem;
+    line-height: 1.45;
+  }
+
+  /* ── TRUE/FALSE ── */
+  .tf-item {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    background: var(--cream);
+    cursor: default;
+  }
+  .tf-text { font-size: 0.9rem; flex: 1; line-height: 1.5; }
+  .tf-btns { display: flex; gap: 0.4rem; flex-shrink: 0; }
+  .tf-btn {
+    padding: 0.3rem 0.9rem; border: 2px solid transparent;
+    border-radius: 20px; cursor: pointer; font-size: 0.8rem; font-weight: 700;
+    font-family: var(--fb);
+    transition: all 0.18s;
+  }
+  .tf-btn.v { border-color: var(--green); color: var(--green); background: transparent; }
+  .tf-btn.f { border-color: var(--mc);    color: var(--mc);    background: transparent; }
+  .tf-btn.v:hover, .tf-btn.v.selected { background: var(--green); color: var(--white); }
+  .tf-btn.f:hover, .tf-btn.f.selected { background: var(--mc);    color: var(--white); }
+  .tf-feedback { font-size: 0.78rem; margin-top: 0.3rem; display: none; padding: 0.3rem 0.6rem; border-radius: 6px; }
+  .tf-feedback.correct { background: #d4edda; color: #1e4d2b; display: block; }
+  .tf-feedback.wrong   { background: #fde8e6; color: #7a1f14; display: block; }
+
+  /* ── MULTIPLE CHOICE ── */
+  .mc-options { display: flex; flex-direction: column; gap: 0.5rem; }
+  .mc-opt {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    border-radius: 8px; border: 2px solid var(--cream-dk);
+    cursor: pointer; background: var(--cream);
+    font-size: 0.9rem; transition: all 0.18s;
+  }
+  .mc-opt:hover { border-color: var(--mc); background: var(--mc-bg); }
+  .mc-opt.correct { border-color: var(--green); background: #e8f4ef; color: #1e4d2b; }
+  .mc-opt.wrong   { border-color: var(--mc); background: var(--mc-bg); color: var(--mc-dk); }
+  .mc-opt .opt-letter {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--cream-dk); color: #777;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 700; flex-shrink: 0;
+    transition: all 0.18s;
+  }
+  .mc-opt.correct .opt-letter { background: var(--green); color: var(--white); }
+  .mc-opt.wrong   .opt-letter { background: var(--mc);    color: var(--white); }
+
+  /* ── VOCAB SPOTTING ── */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+  }
+  .vocab-chip {
+    padding: 0.55rem 0.75rem;
+    border-radius: 8px;
+    border: 2px solid var(--cream-dk);
+    background: var(--cream);
+    font-size: 0.88rem; font-style: italic;
+    cursor: pointer; text-align: center;
+    transition: all 0.2s;
+  }
+  .vocab-chip:hover    { border-color: var(--mc); background: var(--mc-bg); }
+  .vocab-chip.found    { border-color: var(--green); background: #e8f4ef; color: #1e4d2b; font-weight: 700; }
+  .vocab-chip.not-song { border-color: #ddd; background: #f9f9f9; color: #bbb; cursor: not-allowed; }
+
+  /* ── SCORE BAR ── */
+  .score-bar {
+    background: var(--cream-dk);
+    border-radius: 50px; height: 8px; overflow: hidden;
+    margin-bottom: 0.35rem;
+  }
+  .score-fill {
+    height: 100%; background: var(--mc);
+    border-radius: 50px; width: 0;
+    transition: width 0.5s ease;
+  }
+  .score-label { font-size: 0.8rem; color: #888; text-align: center; }
+
+  /* ── CHECK BUTTON ── */
+  .btn-check {
+    margin-top: 1rem;
+    padding: 0.55rem 1.6rem;
+    background: var(--mc); color: var(--white);
+    border: none; border-radius: 30px;
+    font-family: var(--fb); font-size: 0.88rem; font-weight: 700;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-check:hover { background: var(--mc-dk); transform: translateY(-2px); }
+
+  /* ── CULTURE STRIP ── */
+  .culture-strip {
+    background: linear-gradient(135deg, var(--gold), var(--cream-dk));
+    border-radius: var(--radius);
+    border-top: 4px solid var(--mc);
+    padding: 1.25rem 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    margin-top: 2rem;
+  }
+  .culture-icon { font-size: 2rem; flex-shrink: 0; }
+  .culture-title { font-weight: 700; color: var(--mc-text); margin-bottom: 0.25rem; font-size: 0.95rem; }
+  .culture-text  { font-size: 0.86rem; line-height: 1.65; color: #555; }
+
+  /* ── NAV ── */
+  .nav-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 3rem; padding-top: 1.5rem;
+    border-top: 2px solid var(--cream-dk);
+  }
+  .btn-nav {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.6rem 1.5rem; border-radius: 30px;
+    font-family: var(--fb); font-size: 0.9rem; font-weight: 700;
+    text-decoration: none; cursor: pointer; border: none;
+    transition: all 0.2s;
+  }
+  .btn-nav.primary { background: var(--mc); color: var(--white); }
+  .btn-nav.primary:hover { background: var(--mc-dk); transform: translateY(-2px); }
+  .btn-nav.ghost { background: transparent; color: var(--mc); border: 2px solid var(--mc); }
+  .btn-nav.ghost:hover { background: var(--mc-bg); }
+
+  .progress-wrap { text-align: center; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 2rem 1rem 1.75rem; }
+    .card, .task-box { padding: 1.1rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<header class="hero">
+  <div class="module-badge">Módulo 1 · A1 · Exploración</div>
+  <h1>Di dove sei?</h1>
+  <p class="subtitle">¿De dónde sos? — La canción como puerta de entrada</p>
+  <nav class="stage-pills">
+    <span class="stage-pill active">1 · Exploración</span>
+    <a href="etapa2_descubrimiento.html" class="stage-pill">2 · Descubrimiento</a>
+    <a href="etapa3_gramatica.html" class="stage-pill">3 · Gramática</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <!-- ═══════════════ MOTIVACIÓN ═══════════════ -->
+  <section class="section">
+    <div class="sofia-row">
+      <div class="sofia-avatar">🎤</div>
+      <div class="sofia-bubble">
+        Hoy arrancamos con una de las canciones más famosas de la historia italiana.
+        Se llama <strong>«Azzurro»</strong> y la cantó <em>Adriano Celentano</em> en 1968.
+        Casi 60 años después, todos los italianos la conocen de memoria.
+        <br><br>
+        Antes de escucharla… ¿qué te imaginás cuando ves esa palabra? <strong>Azzurro</strong>.
+        ¿Qué color es? ¿Qué te genera?
+      </div>
+    </div>
+
+    <div class="motivation-box">
+      <strong>Tu misión en esta etapa:</strong> escuchar la canción con atención y explorar su contenido.
+      No te preocupés por entender todo — dejate llevar por el sonido, las palabras que reconocés y las que intuís.
+      Después vas a hacer algunas actividades basadas en lo que escuchaste.
+    </div>
+  </section>
+
+  <!-- ═══════════════ ANTES DE ESCUCHAR ═══════════════ -->
+  <section class="section">
+    <div class="sec-header">
+      <div class="sec-icon">👁</div>
+      <div>
+        <div class="sec-title">Antes de escuchar</div>
+        <div class="sec-sub">Activá lo que ya sabés</div>
+      </div>
+    </div>
+
+    <div class="task-box">
+      <span class="task-label">⚡ Activación</span>
+      <p class="task-q">Mirá estas palabras. ¿Cuáles creés que podés encontrar en una canción italiana de verano?
+      Hacé clic en las que elegiría tu intuición.</p>
+
+      <div class="vocab-grid" id="preGrid">
+        <div class="vocab-chip" onclick="togglePre(this)">sole</div>
+        <div class="vocab-chip" onclick="togglePre(this)">treno</div>
+        <div class="vocab-chip" onclick="togglePre(this)">mare</div>
+        <div class="vocab-chip" onclick="togglePre(this)">città</div>
+        <div class="vocab-chip" onclick="togglePre(this)">estate</div>
+        <div class="vocab-chip" onclick="togglePre(this)">aeroporto</div>
+        <div class="vocab-chip" onclick="togglePre(this)">pomeriggio</div>
+        <div class="vocab-chip" onclick="togglePre(this)">televisione</div>
+        <div class="vocab-chip" onclick="togglePre(this)">stazione</div>
+        <div class="vocab-chip" onclick="togglePre(this)">spiagge</div>
+      </div>
+      <p style="font-size:0.8rem;color:#999;margin-top:0.75rem;">
+        Guardá tu selección mental — después de escuchar, ¡vas a comprobar cuántas acertaste!
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ LA CANCIÓN ═══════════════ -->
+  <section class="section">
+    <div class="sec-header">
+      <div class="sec-icon">🎵</div>
+      <div>
+        <div class="sec-title">Azzurro — Adriano Celentano</div>
+        <div class="sec-sub">Escuchá al menos dos veces antes de hacer las actividades</div>
+      </div>
+    </div>
+
+    <div class="song-card">
+      <div class="song-header">
+        <div class="icon">🎬</div>
+        <div>
+          <h3>Azzurro · Adriano Celentano (1968)</h3>
+          <p>Canzone italiana · Video oficial con letra</p>
+        </div>
+      </div>
+      <div class="song-body">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/HCyzGuipTd4?rel=0"
+                  title="Azzurro - Adriano Celentano"
+                  allowfullscreen></iframe>
+        </div>
+        <div class="video-note">
+          🎧 <strong>Primera escucha:</strong> cerrá los ojos y dejate llevar. No busques entender todo, sentí el ritmo y el clima de la canción.<br>
+          🔍 <strong>Segunda escucha:</strong> prestá atención a las palabras que reconocés. ¿Qué lugares menciona? ¿Qué emociones transmite?
+        </div>
+
+        <!-- FRAGMENTOS DE LETRA -->
+        <div class="lyrics-strip">
+          <h4>📜 Fragmentos clave — para leer mientras escuchás</h4>
+
+          <div class="lyric-line">
+            <span class="lyric-it">«Azzurro, il pomeriggio è troppo azzurro e lungo per me»</span>
+            <span class="lyric-es">La tarde es demasiado azzurra y larga para mí</span>
+          </div>
+          <div class="lyric-line">
+            <span class="lyric-it">«Sono solo qua in città»</span>
+            <span class="lyric-es">Estoy solo aquí en la ciudad</span>
+          </div>
+          <div class="lyric-line">
+            <span class="lyric-it">«Cerco l'estate tutto l'anno»</span>
+            <span class="lyric-es">Busco el verano todo el año</span>
+          </div>
+          <div class="lyric-line">
+            <span class="lyric-it">«Lei è partita per le spiagge»</span>
+            <span class="lyric-es">Ella se fue a las playas</span>
+          </div>
+          <div class="lyric-line">
+            <span class="lyric-it">«Cerco un po' di te, ma il treno mi porta via»</span>
+            <span class="lyric-es">Te busco un poco, pero el tren me lleva lejos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ DESPUÉS DE ESCUCHAR ═══════════════ -->
+  <section class="section">
+    <div class="sec-header">
+      <div class="sec-icon">✅</div>
+      <div>
+        <div class="sec-title">Después de escuchar</div>
+        <div class="sec-sub">Comprobá tu comprensión</div>
+      </div>
+    </div>
+
+    <!-- Actividad 1 — Vocabulario real -->
+    <div class="task-box">
+      <span class="task-label">🔍 Actividad 1 — Vocabulario en la canción</span>
+      <p class="task-q">Ahora que escuchaste, ¿cuáles de estas palabras aparecen realmente en la canción?
+      Hacé clic solo en las que escuchaste.</p>
+
+      <div class="vocab-grid" id="vocabGrid">
+        <div class="vocab-chip" data-in="true"  onclick="checkVocab(this)">sole</div>
+        <div class="vocab-chip" data-in="true"  onclick="checkVocab(this)">treno</div>
+        <div class="vocab-chip" data-in="true"  onclick="checkVocab(this)">mare</div>
+        <div class="vocab-chip" data-in="true"  onclick="checkVocab(this)">città</div>
+        <div class="vocab-chip" data-in="true"  onclick="checkVocab(this)">estate</div>
+        <div class="vocab-chip" data-in="false" onclick="checkVocab(this)">aeroporto</div>
+        <div class="vocab-chip" data-in="true"  onclick="checkVocab(this)">pomeriggio</div>
+        <div class="vocab-chip" data-in="true"  onclick="checkVocab(this)">televisione</div>
+        <div class="vocab-chip" data-in="false" onclick="checkVocab(this)">stazione</div>
+        <div class="vocab-chip" data-in="true"  onclick="checkVocab(this)">spiagge</div>
+      </div>
+      <div id="vocabFeedback" style="margin-top:0.75rem;font-size:0.85rem;display:none;"></div>
+      <button class="btn-check" onclick="revealVocab()">Ver resultados</button>
+    </div>
+
+    <!-- Actividad 2 — V/F -->
+    <div class="task-box">
+      <span class="task-label">✔✘ Actividad 2 — Verdadero o Falso</span>
+      <p class="task-q">Leé las afirmaciones sobre la canción y marcá V o F según lo que escuchaste.</p>
+
+      <div id="tf-container">
+
+        <div class="tf-item" id="tf1">
+          <div class="tf-text">«Azzurro» es una canción alegre sobre una fiesta de verano.</div>
+          <div class="tf-btns">
+            <button class="tf-btn v" onclick="answerTF('tf1','V','F')">V</button>
+            <button class="tf-btn f" onclick="answerTF('tf1','F','F')">F</button>
+          </div>
+        </div>
+        <div class="tf-feedback" id="fb-tf1">❌ Falso. La canción habla de soledad y nostalgia — el narrador está solo en la ciudad mientras ella se fue al mar.</div>
+
+        <div class="tf-item" id="tf2">
+          <div class="tf-text">En la canción se menciona un tren (<em>treno</em>).</div>
+          <div class="tf-btns">
+            <button class="tf-btn v" onclick="answerTF('tf2','V','V')">V</button>
+            <button class="tf-btn f" onclick="answerTF('tf2','F','V')">F</button>
+          </div>
+        </div>
+        <div class="tf-feedback" id="fb-tf2">✅ Verdadero. «…ma il treno mi porta via» — el tren lo lleva lejos.</div>
+
+        <div class="tf-item" id="tf3">
+          <div class="tf-text">El narrador está con sus amigos en la playa.</div>
+          <div class="tf-btns">
+            <button class="tf-btn v" onclick="answerTF('tf3','V','F')">V</button>
+            <button class="tf-btn f" onclick="answerTF('tf3','F','F')">F</button>
+          </div>
+        </div>
+        <div class="tf-feedback" id="fb-tf3">❌ Falso. Dice «Sono solo qua in città» — está solo en la ciudad.</div>
+
+        <div class="tf-item" id="tf4">
+          <div class="tf-text">La canción fue lanzada en la década de 1960.</div>
+          <div class="tf-btns">
+            <button class="tf-btn v" onclick="answerTF('tf4','V','V')">V</button>
+            <button class="tf-btn f" onclick="answerTF('tf4','F','V')">F</button>
+          </div>
+        </div>
+        <div class="tf-feedback" id="fb-tf4">✅ Verdadero. «Azzurro» fue lanzada en 1968.</div>
+
+        <div class="tf-item" id="tf5">
+          <div class="tf-text">La palabra «azzurro» en italiano significa «rojo».</div>
+          <div class="tf-btns">
+            <button class="tf-btn v" onclick="answerTF('tf5','V','F')">V</button>
+            <button class="tf-btn f" onclick="answerTF('tf5','F','F')">F</button>
+          </div>
+        </div>
+        <div class="tf-feedback" id="fb-tf5">❌ Falso. «Azzurro» significa <em>celeste / azul cielo</em>. ¡Es el color de la camiseta de la selección italiana de fútbol!</div>
+
+      </div>
+    </div>
+
+    <!-- Actividad 3 — Opción múltiple -->
+    <div class="task-box">
+      <span class="task-label">🔘 Actividad 3 — Opción múltiple</span>
+      <p class="task-q">Elegí la respuesta correcta.</p>
+
+      <!-- MC 1 -->
+      <div style="margin-bottom:1.5rem;">
+        <p style="font-size:0.9rem;font-weight:600;margin-bottom:0.6rem;">
+          1. En la canción, ¿dónde está el narrador?
+        </p>
+        <div class="mc-options" id="mc1">
+          <div class="mc-opt" onclick="answerMC('mc1',this,'wrong')">
+            <span class="opt-letter">A</span> En la playa con sus amigos
+          </div>
+          <div class="mc-opt" onclick="answerMC('mc1',this,'correct')">
+            <span class="opt-letter">B</span> Solo en la ciudad
+          </div>
+          <div class="mc-opt" onclick="answerMC('mc1',this,'wrong')">
+            <span class="opt-letter">C</span> En el aeropuerto
+          </div>
+          <div class="mc-opt" onclick="answerMC('mc1',this,'wrong')">
+            <span class="opt-letter">D</span> En un hotel de Roma
+          </div>
+        </div>
+      </div>
+
+      <!-- MC 2 -->
+      <div style="margin-bottom:1.5rem;">
+        <p style="font-size:0.9rem;font-weight:600;margin-bottom:0.6rem;">
+          2. ¿Qué medio de transporte se menciona en la canción?
+        </p>
+        <div class="mc-options" id="mc2">
+          <div class="mc-opt" onclick="answerMC('mc2',this,'wrong')">
+            <span class="opt-letter">A</span> El avión (aereo)
+          </div>
+          <div class="mc-opt" onclick="answerMC('mc2',this,'wrong')">
+            <span class="opt-letter">B</span> El auto (macchina)
+          </div>
+          <div class="mc-opt" onclick="answerMC('mc2',this,'correct')">
+            <span class="opt-letter">C</span> El tren (treno)
+          </div>
+          <div class="mc-opt" onclick="answerMC('mc2',this,'wrong')">
+            <span class="opt-letter">D</span> El barco (nave)
+          </div>
+        </div>
+      </div>
+
+      <!-- MC 3 -->
+      <div>
+        <p style="font-size:0.9rem;font-weight:600;margin-bottom:0.6rem;">
+          3. La frase «Sono solo qua in città». ¿Qué significa <em>solo</em> en este contexto?
+        </p>
+        <div class="mc-options" id="mc3">
+          <div class="mc-opt" onclick="answerMC('mc3',this,'wrong')">
+            <span class="opt-letter">A</span> Solo / únicamente
+          </div>
+          <div class="mc-opt" onclick="answerMC('mc3',this,'correct')">
+            <span class="opt-letter">B</span> Solo / sin compañía
+          </div>
+          <div class="mc-opt" onclick="answerMC('mc3',this,'wrong')">
+            <span class="opt-letter">C</span> Suelo / piso
+          </div>
+          <div class="mc-opt" onclick="answerMC('mc3',this,'wrong')">
+            <span class="opt-letter">D</span> Sol / sunlight
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actividad 4 — Emoción y reflexión -->
+    <div class="task-box">
+      <span class="task-label">💬 Actividad 4 — Reflexión</span>
+      <p class="task-q">¿Qué emoción principal transmite «Azzurro»? Seleccioná la que más se acerca.</p>
+      <div class="mc-options" id="mc4">
+        <div class="mc-opt" onclick="answerMC('mc4',this,'wrong')">
+          <span class="opt-letter">A</span> Alegría y celebración
+        </div>
+        <div class="mc-opt" onclick="answerMC('mc4',this,'correct')">
+          <span class="opt-letter">B</span> Nostalgia y soledad en verano
+        </div>
+        <div class="mc-opt" onclick="answerMC('mc4',this,'wrong')">
+          <span class="opt-letter">C</span> Enojo y frustración
+        </div>
+        <div class="mc-opt" onclick="answerMC('mc4',this,'wrong')">
+          <span class="opt-letter">D</span> Miedo al viaje
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CULTURA ═══════════════ -->
+  <div class="culture-strip">
+    <div class="culture-icon">🇮🇹</div>
+    <div>
+      <div class="culture-title">¿Sabías que…?</div>
+      <div class="culture-text">
+        En Italia, el color <strong>azzurro</strong> (celeste) no es solo un color — es una identidad.
+        La selección nacional de fútbol se llama <em>«gli Azzurri»</em> y juega con camiseta celeste desde 1911.
+        Cuando Celentano cantó «Azzurro» en 1968, la palabra ya cargaba toda esa emoción colectiva.
+        Hoy la canción es himno no oficial del verano italiano.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ SCORE ═══════════════ -->
+  <div class="card" style="margin-top:2rem;text-align:center;">
+    <div class="score-label" style="margin-bottom:0.5rem;">Tu progreso en esta etapa</div>
+    <div class="score-bar"><div class="score-fill" id="scoreFill"></div></div>
+    <div class="score-label" id="scoreText">Completá las actividades para ver tu progreso</div>
+  </div>
+
+  <!-- ═══════════════ NAV ═══════════════ -->
+  <div class="nav-footer">
+    <span style="font-size:0.82rem;color:#aaa;">Etapa 1 de 3</span>
+    <a href="etapa2_descubrimiento.html" class="btn-nav primary">
+      Continuar a Descubrimiento →
+    </a>
+  </div>
+
+</div><!-- /container -->
+
+<script>
+// ── Pre-activación ────────────────────────────────────────────
+function togglePre(el) {
+  el.classList.toggle('found');
+}
+
+// ── Vocabulario real ──────────────────────────────────────────
+let vocabDone = false;
+function checkVocab(el) {
+  if (vocabDone) return;
+  el.classList.toggle('found');
+}
+
+function revealVocab() {
+  vocabDone = true;
+  const chips = document.querySelectorAll('#vocabGrid .vocab-chip');
+  let correct = 0;
+  chips.forEach(chip => {
+    const inSong = chip.dataset.in === 'true';
+    const selected = chip.classList.contains('found');
+    chip.onclick = null;
+    if (inSong && selected)  { chip.classList.add('found'); correct++; }
+    else if (inSong && !selected) { chip.style.border = '2px dashed #528e74'; chip.style.opacity='0.7'; }
+    else if (!inSong && selected) { chip.classList.remove('found'); chip.classList.add('not-song'); }
+    else { chip.classList.add('not-song'); }
+  });
+  const fb = document.getElementById('vocabFeedback');
+  const total = 7; // palabras que sí están
+  fb.style.display = 'block';
+  fb.style.background = correct >= 5 ? '#e8f4ef' : '#fdf4dc';
+  fb.style.padding = '0.5rem 0.75rem';
+  fb.style.borderRadius = '8px';
+  fb.textContent = correct >= 5
+    ? `¡Muy bien! Encontraste ${correct} de ${total} palabras de la canción. Las bordeadas en verde son las que te faltaron.`
+    : `Encontraste ${correct} de ${total}. ¡No te preocupés! Es normal en la primera escucha. Las bordeadas en verde son las que estaban.`;
+  updateScore();
+}
+
+// ── True/False ────────────────────────────────────────────────
+const tfAnswers = {};
+function answerTF(id, chosen, correct) {
+  const btns = document.querySelectorAll(`#${id} .tf-btn`);
+  btns.forEach(b => { b.classList.remove('selected'); b.style.pointerEvents='none'; });
+  const clicked = event.target;
+  clicked.classList.add('selected');
+  const fb = document.getElementById(`fb-${id}`);
+  const isCorrect = chosen === correct;
+  fb.className = `tf-feedback ${isCorrect ? 'correct' : 'wrong'}`;
+  tfAnswers[id] = isCorrect;
+  updateScore();
+}
+
+// ── Multiple Choice ───────────────────────────────────────────
+const mcAnswers = {};
+function answerMC(groupId, el, result) {
+  const opts = document.querySelectorAll(`#${groupId} .mc-opt`);
+  opts.forEach(o => { o.classList.remove('correct','wrong'); o.style.pointerEvents='none'; });
+  el.classList.add(result);
+  mcAnswers[groupId] = result === 'correct';
+  updateScore();
+}
+
+// ── Score ─────────────────────────────────────────────────────
+function updateScore() {
+  const total = 4; // mc1, mc2, mc3, mc4
+  const tfTotal = 5;
+  const mcScore = Object.values(mcAnswers).filter(Boolean).length;
+  const tfScore = Object.values(tfAnswers).filter(Boolean).length;
+  const vocabScore = vocabDone ? 1 : 0;
+  const done = mcScore + tfScore + vocabScore;
+  const max = total + tfTotal + 1;
+  const pct = Math.round((done / max) * 100);
+  document.getElementById('scoreFill').style.width = pct + '%';
+  document.getElementById('scoreText').textContent = `${pct}% completado · ${done}/${max} actividades`;
+}
+</script>
+</body>
+</html>

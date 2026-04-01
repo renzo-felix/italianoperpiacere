@@ -1,6 +1,12 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Italiano Per Piacere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/ingrid-martinussen-kETozqIC2hM-unsplash.jpg" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
 :root {
@@ -817,8 +823,29 @@
   .ipp__galeria-strip { height:120px; }
   .ipp__modal-body { padding:1.5rem; }
 }
+/* RESPONSIVE — PANTALLAS ANCHAS */
+@media(min-width:1400px){
+  .ipp__container{ max-width: 1320px }
+  .ipp__section{ padding: 6rem 2rem }
+  .ipp__cursos-grid{ grid-template-columns: repeat(3,1fr) }
+}
+@media(min-width:1800px){
+  .ipp__container{ max-width: 1600px }
+}
+/* PERF: will-change para animaciones continuas */
+.ipp__bar-inner { will-change: transform; }
+.ipp__cta-main, .ipp__cta-big, .ipp__modal-cta { will-change: transform; }
+/* Respeta preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .ipp__bar-inner { animation: none; }
+  .ipp__anim { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .ipp__cta-main, .ipp__cta-big, .ipp__modal-cta { animation: none; }
+  .ipp__cta-main .ipp__arrow { animation: none; }
+  .ipp__badge-float { animation: none; opacity: 1; transform: scale(1) rotate(0); }
+}
 </style>
-
+</head>
+<body>
 
 <div class="ipp__reset">
 
@@ -1448,3 +1475,5 @@
   }
 })();
 </script>
+</body>
+</html>

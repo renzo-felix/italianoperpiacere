@@ -1,811 +1,893 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Unità 0 · Descubrimiento | Italiano Per Piacere</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ipp-cream:    #e9e6d5;
-      --ipp-cream-dk: #ddd9c8;
-      --ipp-gold:     #EFCF7F;
-      --ipp-amber:    #e5ab07;
-      --ipp-red:      #cc4736;
-      --ipp-teal:     #78a6ba;
-      --ipp-green:    #528e74;
-      --ipp-black:    #1a1a18;
-      --ipp-white:    #ffffff;
-      --radius:       8px;
-      --font-head:    'Playfair Display', Georgia, serif;
-      --font-body:    'Outfit', system-ui, sans-serif;
+      --cream:    #e9e6d5;
+      --cream-dk: #ddd9c8;
+      --gold:     #EFCF7F;
+      --amber:    #e5ab07;
+      --amber-dk: #c8940a;
+      --red:      #cc4736;
+      --teal:     #78a6ba;
+      --green:    #528e74;
+      --black:    #1a1a18;
+      --white:    #ffffff;
+      --fh: 'Playfair Display', Georgia, serif;
+      --fb: 'Outfit', system-ui, sans-serif;
+      --r: 10px;
+      --mc:      #e5ab07;
+      --mc-dk:   #c8940a;
+      --mc-text: #7a5500;
+      --mc-bg:   #fdf3d0;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      background: var(--ipp-cream);
-      color: var(--ipp-black);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+    body { font-family: var(--fb); background: var(--cream); color: var(--black); min-height: 100vh; }
 
-    /* ── HEADER ── */
-    .header {
-      background: var(--ipp-green);
-      padding: 3rem 1.5rem 2rem;
-      text-align: center;
-      color: var(--ipp-white);
-      position: relative;
-      overflow: hidden;
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%);
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center; color: var(--white);
+      position: relative; overflow: hidden;
     }
-    .header::before {
-      content: '🇮🇹';
-      position: absolute;
-      font-size: 14rem;
-      opacity: 0.05;
-      bottom: -3rem;
-      right: -1rem;
-      pointer-events: none;
+    .hero::before {
+      content: '?';
+      position: absolute; font-family: var(--fh); font-size: 18rem;
+      font-style: italic; opacity: 0.05;
+      bottom: -4rem; right: -1rem; pointer-events: none;
     }
-    .header-badge {
-      display: inline-block;
-      background: var(--ipp-gold);
-      color: var(--ipp-black);
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      padding: 0.3rem 1.2rem;
-      border-radius: 20px;
-      margin-bottom: 1rem;
+    .hero-badge {
+      display: inline-block; background: rgba(255,255,255,0.22);
+      color: var(--white); font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      padding: 0.3rem 1.2rem; border-radius: 20px; margin-bottom: 1rem;
     }
-    .header h1 {
-      font-family: var(--font-head);
-      font-size: 2.5rem;
-      font-style: italic;
-      line-height: 1.1;
-      margin-bottom: 0.5rem;
-    }
-    .header p { font-size: 0.95rem; opacity: 0.82; font-weight: 300; }
+    .hero h1 { font-family: var(--fh); font-size: clamp(2rem,5vw,3rem); font-style: italic; margin-bottom: 0.5rem; }
+    .hero p { font-size: 0.95rem; opacity: 0.85; font-weight: 300; }
 
-    /* ── CONTAINER ── */
-    .container { max-width: 940px; margin: 0 auto; padding: 2.5rem 1.2rem; }
+    /* STAGE NAV */
+    .stage-nav { background: var(--white); border-bottom: 2px solid var(--cream-dk); display: flex; justify-content: center; }
+    .stage-link {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0.85rem 1.8rem; text-decoration: none;
+      font-size: 0.72rem; font-weight: 600; color: #aaa;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap;
+    }
+    .stage-link .sn { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.1rem; color: inherit; }
+    .stage-link.active { color: var(--mc-dk); border-bottom-color: var(--mc); }
+    .stage-link.done { color: var(--green); }
+    .stage-link.done .sn::after { content: ' ✓'; font-size: 0.8rem; }
+    .stage-link:hover:not(.active) { color: var(--black); background: var(--cream); }
+
+    /* CONTAINER */
+    .container { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.2rem 4rem; }
     .sec { margin-bottom: 3.5rem; }
 
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateX(-36px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
+    /* SOFIA */
+    .sofia-row { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+    .sofia-col { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .sofia-avatar {
+      width: 58px; height: 58px; border-radius: 50%;
+      background: var(--mc); display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; box-shadow: 0 4px 16px rgba(229,171,7,0.35);
     }
-    .reveal.from-right { transform: translateX(36px); }
-    .reveal.from-bottom { transform: translateY(28px); }
-    .reveal.visible { opacity: 1; transform: translate(0); }
+    .sofia-name { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--mc-dk); margin-top: 0.3rem; }
+    .sofia-bubble {
+      background: var(--white); border-radius: 0 var(--r) var(--r) var(--r);
+      padding: 1rem 1.4rem; box-shadow: 0 3px 14px rgba(0,0,0,0.07);
+      font-size: 0.92rem; line-height: 1.75;
+    }
+    .sofia-bubble strong { color: var(--mc-dk); }
+    .sofia-bubble em { color: var(--red); font-style: italic; }
 
-    /* ── SOFIA MASCOT ── */
-    .sofia-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
+    /* TITLES */
+    .sec-title { font-family: var(--fh); font-size: 1.55rem; font-style: italic; color: var(--mc-dk); margin-bottom: 0.25rem; }
+    .sec-sub { font-size: 0.84rem; color: #777; margin-bottom: 1.2rem; }
+
+    /* INFO BOX */
+    .info-box {
+      background: var(--mc-bg); border-left: 4px solid var(--mc);
+      border-radius: var(--r); padding: 1rem 1.4rem;
+      font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.2rem;
+    }
+    .info-box strong { color: var(--mc-text); }
+
+    /* CARD */
+    .card {
+      background: var(--white); border-radius: var(--r);
+      padding: 1.5rem 1.75rem; box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+      margin-bottom: 1.2rem;
+    }
+    .card-title {
+      font-family: var(--fh); font-size: 1.05rem; font-style: italic;
+      color: var(--mc-dk); margin-bottom: 1rem;
+      padding-bottom: 0.5rem; border-bottom: 1px solid var(--cream-dk);
+    }
+
+    /* ALFABETO TABLE */
+    .alfa-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 0.55rem;
+    }
+    .alfa-row {
+      display: flex; align-items: center; gap: 0.6rem;
+      background: var(--cream); border-radius: 8px;
+      padding: 0.5rem 0.75rem;
+    }
+    .alfa-ltr {
+      font-family: var(--fh); font-size: 1.6rem; font-weight: 900;
+      color: var(--mc-dk); min-width: 28px; text-align: center;
+    }
+    .alfa-sep { color: var(--mc); font-weight: 700; flex-shrink: 0; }
+    .alfa-city { font-size: 0.87rem; color: #444; font-weight: 500; }
+    .alfa-blank {
+      flex: 1; padding: 0.25rem 0.4rem;
+      border: 2px solid var(--cream-dk); border-radius: 6px;
+      font-family: var(--fb); font-size: 0.85rem;
+      background: var(--white);
+    }
+    .alfa-blank.ok  { border-color: #52a670; background: #e8f5ec; color: #1f5c35; }
+    .alfa-blank.err { border-color: var(--red); background: #fdecea; }
+    .alfa-icon { font-size: 1rem; min-width: 18px; text-align: center; }
+
+    /* LETRAS EXTRANJERAS */
+    .letter-grid {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;
+    }
+    .ltr-chip {
+      font-family: var(--fh); font-size: 1.5rem; font-weight: 900;
+      width: 52px; height: 52px;
+      border-radius: 10px; border: 2px solid var(--cream-dk);
+      background: var(--white); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--black); transition: all 0.2s;
+      user-select: none;
+    }
+    .ltr-chip:hover { border-color: var(--mc); background: var(--mc-bg); }
+    .ltr-chip.selected { background: var(--mc-bg); border-color: var(--mc); color: var(--mc-dk); }
+    .ltr-chip.correct-pick { background: #e8f5ec; border-color: #52a670; color: #1f5c35; }
+    .ltr-chip.wrong-pick   { background: #fdecea; border-color: var(--red); color: #7a1f14; }
+    .ltr-chip.missed       { background: #fff3cd; border-color: #c8940a; color: #7a5500; }
+    .check-btn {
+      padding: 0.5rem 1.4rem; border: none; border-radius: 30px;
+      background: var(--mc-dk); color: var(--white);
+      font-family: var(--fb); font-size: 0.87rem; font-weight: 700;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .check-btn:hover { background: var(--mc); }
+    .check-btn:disabled { opacity: 0.5; pointer-events: none; }
+
+    /* DELETREAR */
+    .spell-name {
+      font-family: var(--fh); font-size: 3rem; font-weight: 900;
+      color: var(--mc-dk); letter-spacing: 0.3em; text-align: center;
       margin-bottom: 1.5rem;
     }
-    .sofia-row.right { flex-direction: row-reverse; }
-    .sofia-avatar-wrap { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
-    .sofia-avatar {
-      width: 64px; height: 64px;
-      border-radius: 50%;
-      background: var(--ipp-green);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2rem;
-      animation: float 3.5s ease-in-out infinite;
-      box-shadow: 0 6px 24px rgba(82,142,116,0.35);
-    }
-    .sofia-label {
-      font-size: 0.62rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 1px;
-      color: var(--ipp-green); margin-top: 0.3rem; text-align: center;
-    }
-    .sofia-bubble {
-      background: var(--ipp-white);
-      border-radius: var(--radius) var(--radius) var(--radius) 0;
-      padding: 1.1rem 1.5rem;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.07);
-      font-size: 0.93rem; line-height: 1.72;
-      max-width: 82%;
-      animation: popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;
-    }
-    .sofia-row.right .sofia-bubble {
-      border-radius: var(--radius) var(--radius) 0 var(--radius);
-    }
-    .sofia-bubble strong { color: var(--ipp-green); }
-    .sofia-bubble em { color: var(--ipp-red); font-style: italic; }
-
-    @keyframes float {
-      0%,100% { transform: translateY(0) rotate(0deg); }
-      40%      { transform: translateY(-9px) rotate(-3deg); }
-      70%      { transform: translateY(-4px) rotate(2deg); }
-    }
-    @keyframes popIn {
-      from { opacity:0; transform: scale(0.82) translateY(8px); }
-      to   { opacity:1; transform: scale(1)    translateY(0); }
-    }
-
-    /* ── SECTION TITLES ── */
-    .sec-title {
-      font-family: var(--font-head);
-      font-size: 1.6rem; font-style: italic;
-      color: var(--ipp-green); margin-bottom: 0.35rem;
-    }
-    .sec-sub { font-size: 0.87rem; color: #666; margin-bottom: 1.25rem; font-weight: 400; }
-
-    /* ── CARD ── */
-    .card {
-      background: var(--ipp-white);
-      border-radius: var(--radius);
-      padding: 1.5rem 1.75rem;
-      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
-    }
-
-    /* ── ACCENT BORDERS ── */
-    .b-green { border-left: 5px solid var(--ipp-green); }
-    .b-teal  { border-left: 5px solid var(--ipp-teal);  }
-    .b-red   { border-left: 5px solid var(--ipp-red);   }
-    .b-gold  { border-left: 5px solid var(--ipp-amber); }
-
-    /* ── INFO BANNERS ── */
-    .info {
-      border-radius: var(--radius); padding: 1rem 1.4rem;
-      font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.2rem;
-    }
-    .info-green { background:#e8f4ef; color:#1f4d38; border-left:4px solid var(--ipp-green); }
-    .info-teal  { background:#e5f1f5; color:#1a3c48; border-left:4px solid var(--ipp-teal);  }
-    .info-gold  { background:#fdf4dc; color:#5a4200; border-left:4px solid var(--ipp-amber); }
-    .info-red   { background:#fbeae8; color:#6b1e17; border-left:4px solid var(--ipp-red);   }
-    .info strong { font-weight:700; }
-
-    /* ── REFLECTION ITEMS ── */
-    .reflect-item {
-      background: var(--ipp-white);
-      border-radius: var(--radius);
-      padding: 1rem 1.3rem;
-      margin-bottom: 0.75rem;
-      display: flex; gap: 1rem; align-items: flex-start;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    }
-    .reflect-num {
-      background: var(--ipp-green); color: var(--ipp-white);
-      border-radius: 50%; width: 30px; height: 30px;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 0.88rem; flex-shrink: 0;
-    }
-    .reflect-text { font-size: 0.91rem; line-height: 1.65; color: #444; padding-top: 0.15rem; }
-
-    /* ── VIDEO CARD ── */
-    .video-card {
-      background: var(--ipp-white);
-      border-radius: var(--radius);
-      padding: 1.5rem 2rem;
-      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
-      border-left: 5px solid var(--ipp-red);
-    }
-    .video-card h3 {
-      font-family: var(--font-head);
-      color: var(--ipp-green); font-size: 1.15rem; margin-bottom: 0.5rem;
-    }
-    .video-card p { font-size: 0.9rem; color: #555; line-height: 1.65; margin-bottom: 1rem; }
-
-    .watch-table { width:100%; border-collapse:collapse; font-size:0.87rem; margin-bottom:1rem; }
-    .watch-table th {
-      background: var(--ipp-green); color: var(--ipp-white);
-      padding: 0.55rem 0.9rem; text-align:left;
-      font-size:0.78rem; text-transform:uppercase; letter-spacing:0.5px;
-    }
-    .watch-table th:first-child { border-radius:6px 0 0 0; }
-    .watch-table th:last-child  { border-radius:0 6px 0 0; }
-    .watch-table td { padding:0.6rem 0.9rem; border-bottom:1px solid var(--ipp-cream-dk); color:#555; }
-    .watch-table tr:last-child td { border-bottom:none; }
-    .watch-table tr:nth-child(even) td { background: var(--ipp-cream); }
-
-    .btn-video {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--ipp-red); color: var(--ipp-white);
-      padding: 0.6rem 1.5rem; border-radius: 30px;
-      text-decoration: none; font-weight: 600; font-size: 0.9rem;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .btn-video:hover { background: #a93828; transform: translateY(-2px); }
-
-    .copyright-notice {
-      background: var(--ipp-cream); border-radius: var(--radius);
-      padding: 0.75rem 1.1rem; font-size: 0.76rem; color: #777;
-      line-height: 1.55; margin-top: 0.85rem;
-    }
-    .copyright-notice a { color: var(--ipp-teal); }
-
-    /* ── PROGRESS ── */
-    .progress-wrap { margin-bottom: 1.4rem; }
-    .progress-label { font-size: 0.82rem; color: #888; text-align:center; margin-bottom:0.35rem; }
-    .progress-bar { background:var(--ipp-cream-dk); border-radius:50px; height:8px; overflow:hidden; }
-    .progress-fill { height:100%; background:var(--ipp-green); border-radius:50px; width:0; transition:width 0.4s ease; }
-
-    /* ── CONTROLS ── */
-    .controls { display:flex; gap:0.7rem; margin-bottom:1.3rem; flex-wrap:wrap; }
-    .btn {
-      padding:0.5rem 1.3rem; border:none; border-radius:30px;
-      cursor:pointer; font-family:var(--font-body); font-size:0.87rem;
-      font-weight:600; transition:opacity 0.2s, transform 0.15s;
-    }
-    .btn:hover { opacity:0.85; transform:translateY(-2px); }
-    .btn-green { background:var(--ipp-green); color:var(--ipp-white); }
-    .btn-red   { background:var(--ipp-red);   color:var(--ipp-white); }
-
-    /* ── FLIP CARDS ── */
-    .alphabet-grid {
+    .spell-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-      gap: 0.75rem;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.6rem; margin-bottom: 1rem;
     }
-    .flip-wrap { height: 108px; cursor: pointer; perspective: 900px; }
-    .flip-inner {
-      position:relative; width:100%; height:100%;
-      transition:transform 0.5s ease; transform-style:preserve-3d;
+    .spell-item {
+      background: var(--cream); border-radius: var(--r);
+      padding: 0.7rem 0.9rem;
+      display: flex; align-items: center; gap: 0.6rem;
     }
-    .flip-wrap.flipped .flip-inner { transform: rotateY(180deg); }
-    .flip-front, .flip-back {
-      position:absolute; inset:0; border-radius:var(--radius);
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      -webkit-backface-visibility:hidden; backface-visibility:hidden;
-      padding:0.4rem; text-align:center;
+    .spell-ltr { font-family: var(--fh); font-size: 1.8rem; font-weight: 900; color: var(--mc-dk); min-width: 30px; }
+    .spell-come { font-size: 0.75rem; color: #999; font-style: italic; margin-right: 0.1rem; }
+    .spell-sel {
+      flex: 1; padding: 0.3rem 0.4rem;
+      border: 2px solid var(--cream-dk); border-radius: 6px;
+      font-family: var(--fb); font-size: 0.84rem; background: var(--white); cursor: pointer;
     }
-    .flip-front { background:var(--ipp-green); color:var(--ipp-gold); }
-    .flip-front .big-ltr { font-family:var(--font-head); font-size:2.5rem; font-weight:900; line-height:1; }
-    .flip-front .hint-lbl { font-size:0.62rem; opacity:0.75; margin-top:0.2rem; }
-    .flip-back { background:var(--ipp-gold); color:var(--ipp-black); transform:rotateY(180deg); }
-    .flip-back .city-nm  { font-size:0.8rem; font-weight:700; line-height:1.25; }
-    .flip-back .pron-nm  { font-size:0.68rem; opacity:0.65; margin-top:0.2rem; font-style:italic; }
-    .flip-back .lsm      { font-family:var(--font-head); font-size:1.2rem; font-weight:900; margin-bottom:0.15rem; }
+    .spell-icon { font-size: 1rem; min-width: 18px; text-align: center; }
 
-    /* ── FUN FACTS GRID ── */
-    .facts-grid {
-      display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
-      gap:0.85rem; margin-top:1.5rem;
+    /* DISCOVERY CHIAMARSI */
+    .discover-quote {
+      background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk));
+      border-left: 5px solid var(--mc);
+      border-radius: var(--r); padding: 1.1rem 1.5rem;
+      font-family: var(--fh); font-size: 1.15rem; font-style: italic;
+      color: var(--mc-text); margin-bottom: 1.5rem; line-height: 1.6;
     }
-    .fact-card {
-      background:var(--ipp-white); border-radius:var(--radius);
-      padding:1rem 1.2rem; font-size:0.87rem; line-height:1.6;
-      box-shadow:0 2px 8px rgba(0,0,0,0.05);
-      display:flex; gap:0.75rem; align-items:flex-start;
-    }
-    .fact-icon { font-size:1.6rem; flex-shrink:0; }
-    .fact-title { color:var(--ipp-green); font-weight:700; margin-bottom:0.2rem; font-size:0.88rem; }
+    .discover-quote span { color: var(--red); }
 
-    /* ── CITIES GRID ── */
-    .cities-grid {
-      display:grid; grid-template-columns:repeat(auto-fill, minmax(162px, 1fr));
-      gap:0.75rem; margin-top:1rem;
+    .conj-rows { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.25rem; }
+    .conj-row {
+      display: flex; align-items: center; gap: 0.75rem;
+      background: var(--cream); border-radius: var(--r); padding: 0.75rem 1.1rem;
+      font-size: 0.92rem;
     }
-    .city-card {
-      background:var(--ipp-white); border-radius:var(--radius);
-      padding:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.05);
-      text-align:center; cursor:pointer;
-      border-top:3px solid var(--ipp-teal);
-      transition:transform 0.2s, box-shadow 0.2s;
+    .conj-pro  { font-weight: 700; color: var(--mc-dk); min-width: 40px; }
+    .conj-refl {
+      padding: 0.3rem 0.6rem;
+      border: 2px solid var(--cream-dk); border-radius: 20px;
+      font-family: var(--fb); font-size: 0.88rem;
+      background: var(--white); cursor: pointer; min-width: 70px;
     }
-    .city-card:hover { transform:translateY(-3px); box-shadow:0 6px 18px rgba(0,0,0,0.09); }
-    .city-card .c-flag  { font-size:2rem; margin-bottom:0.3rem; }
-    .city-card .c-name  { font-weight:700; font-size:0.95rem; color:var(--ipp-green); }
-    .city-card .c-region{ font-size:0.72rem; color:#999; margin-top:0.1rem; }
-    .city-card .c-fact  { font-size:0.76rem; color:#555; margin-top:0.45rem; line-height:1.5; display:none; }
-    .city-card.open .c-fact { display:block; }
-    .city-card.open { background:var(--ipp-cream); }
+    .conj-refl.ok  { border-color: #52a670; background: #e8f5ec; color: #1f5c35; }
+    .conj-refl.err { border-color: var(--red); background: #fdecea; }
+    .conj-verb { color: #555; }
+    .conj-icon { font-size: 1rem; }
 
-    /* ── NAMES ── */
-    .names-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-    .names-col h4 {
-      font-weight:700; color:var(--ipp-green); font-size:0.88rem;
-      text-transform:uppercase; letter-spacing:1px;
-      margin-bottom:0.75rem; padding-bottom:0.4rem;
-      border-bottom:2px solid var(--ipp-green);
+    .pattern-table {
+      width: 100%; border-collapse: collapse; margin-top: 1rem;
+      font-size: 0.9rem;
     }
-    .name-chip {
-      display:inline-block; background:var(--ipp-cream);
-      border-radius:20px; padding:0.3rem 0.85rem;
-      font-size:0.87rem; margin:0.2rem 0.15rem;
-      cursor:pointer; transition:all 0.2s;
-      border:1.5px solid transparent;
+    .pattern-table th {
+      background: var(--mc); color: var(--white);
+      padding: 0.55rem 1rem; text-align: left;
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;
     }
-    .name-chip:hover { background:var(--ipp-green); color:var(--ipp-white); }
-    .name-chip.sel   { background:var(--ipp-teal);  color:var(--ipp-white); border-color:var(--ipp-teal); }
+    .pattern-table th:first-child { border-radius: 8px 0 0 0; }
+    .pattern-table th:last-child  { border-radius: 0 8px 0 0; }
+    .pattern-table td { padding: 0.55rem 1rem; border-bottom: 1px solid var(--cream-dk); }
+    .pattern-table tr:last-child td { border-bottom: none; }
+    .pattern-table tr:nth-child(even) td { background: var(--cream); }
+    .pattern-table .blank-cell {
+      background: var(--mc-bg); font-style: italic; color: #aaa; text-align: center;
+    }
+    .pattern-table.revealed .blank-cell { color: var(--mc-dk); font-weight: 700; font-style: normal; }
 
-    /* ── SPELLING QUIZ ── */
-    .q-block {
-      background:var(--ipp-white); border-radius:var(--radius);
-      padding:1.2rem 1.4rem; margin-bottom:0.85rem;
-      box-shadow:0 2px 8px rgba(0,0,0,0.04);
+    /* DIALOGO */
+    .dial-intro {
+      background: var(--mc-bg); border-left: 4px solid var(--mc);
+      border-radius: var(--r); padding: 1rem 1.4rem;
+      font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.25rem;
     }
-    .q-block p { font-weight:600; font-size:0.95rem; color:var(--ipp-green); margin-bottom:0.7rem; }
-    .input-row { display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap; }
-    .input-row input {
-      flex:1; min-width:180px; padding:0.5rem 1rem;
-      border:2px solid var(--ipp-cream-dk); border-radius:var(--radius);
-      font-family:var(--font-body); font-size:0.92rem; background:var(--ipp-white);
-      transition:border-color 0.2s;
-    }
-    .input-row input:focus { outline:none; border-color:var(--ipp-teal); }
-    .btn-check {
-      background:var(--ipp-teal); color:var(--ipp-white); border:none;
-      border-radius:20px; padding:0.5rem 1.2rem; cursor:pointer;
-      font-family:var(--font-body); font-weight:600; font-size:0.85rem;
-      transition:background 0.2s;
-    }
-    .btn-check:hover { background:#5e8fa2; }
-    .feedback {
-      display:none; margin-top:0.6rem; padding:0.5rem 0.9rem;
-      border-radius:var(--radius); font-size:0.87rem; font-weight:600;
-    }
-    .feedback.ok   { display:block; background:#d4edda; color:#155724; }
-    .feedback.fail { display:block; background:#fbeae8; color:#6b1e17; }
+    .dial-intro strong { color: var(--mc-text); }
 
-    /* ── CLOSING ── */
-    .closing-card {
-      background:var(--ipp-green); color:var(--ipp-white);
-      border-radius:var(--radius); padding:2.5rem 2rem; text-align:center;
+    .dial-audio-hint {
+      font-size: 0.8rem; color: #888; font-style: italic; margin-bottom: 1rem;
     }
-    .closing-card h2 {
-      font-family:var(--font-head); font-size:1.7rem;
-      font-style:italic; margin-bottom:0.6rem;
+    .dial-line {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      margin-bottom: 0.85rem;
     }
-    .closing-card p { opacity:0.9; line-height:1.7; font-size:0.93rem; }
+    .dial-speaker {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.5px; min-width: 80px;
+      padding-top: 0.2rem; color: #888;
+    }
+    .dial-speaker.a { color: var(--mc-dk); }
+    .dial-speaker.b { color: var(--teal); }
+    .dial-text-wrap { flex: 1; }
+    .dial-text {
+      background: var(--cream-dk); border-radius: 0 var(--r) var(--r) var(--r);
+      padding: 0.7rem 1rem; font-size: 0.92rem; line-height: 1.6;
+      font-style: italic; color: var(--black);
+    }
+    .dial-line.right .dial-speaker { order: 2; }
+    .dial-line.right .dial-text-wrap { order: 1; }
+    .dial-line.right .dial-text { border-radius: var(--r) 0 var(--r) var(--r); background: #e5f1f5; }
+    .dial-audio-btn {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      background: none; border: 1.5px solid var(--mc-dk);
+      color: var(--mc-dk); padding: 0.2rem 0.7rem;
+      border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+      cursor: pointer; font-family: var(--fb); margin-top: 0.35rem;
+      transition: all 0.2s;
+    }
+    .dial-audio-btn:hover { background: var(--mc-bg); }
+    .dial-audio-btn.teal { border-color: var(--teal); color: var(--teal); }
+    .dial-audio-btn.teal:hover { background: #e5f1f5; }
 
-    /* ── FOOTER ── */
-    .footer { text-align:center; padding:2rem 1rem; font-size:0.77rem; color:#aaa; }
+    .dial-hidden { filter: blur(5px); user-select: none; transition: filter 0.4s; }
+    .dial-hidden.shown { filter: none; }
+    .reveal-btn {
+      display: block; width: fit-content;
+      margin: 1rem auto 0; padding: 0.5rem 1.5rem;
+      background: var(--mc-dk); color: var(--white);
+      border: none; border-radius: 30px; font-family: var(--fb);
+      font-size: 0.87rem; font-weight: 700; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .reveal-btn:hover { background: var(--mc); }
+
+    /* MC simple */
+    .mc-simple { margin-top: 1.25rem; }
+    .mc-simple p { font-size: 0.91rem; margin-bottom: 0.6rem; font-weight: 600; color: var(--mc-text); }
+    .mc-opts { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .mc-opt {
+      padding: 0.45rem 1.1rem; border: 2px solid var(--cream-dk);
+      border-radius: 30px; background: var(--white);
+      font-family: var(--fb); font-size: 0.86rem;
+      cursor: pointer; transition: all 0.2s; color: var(--black);
+    }
+    .mc-opt:hover:not(.disabled) { border-color: var(--mc); background: var(--mc-bg); }
+    .mc-opt.correct { background: #e8f5ec; border-color: #52a670; color: #1f5c35; font-weight: 700; }
+    .mc-opt.wrong   { background: #fdecea; border-color: var(--red); color: #7a1f14; }
+    .mc-opt.disabled { pointer-events: none; opacity: 0.6; }
+    .mc-fb { font-size: 0.81rem; margin-top: 0.5rem; font-weight: 600; display:none; }
+    .mc-fb.ok  { color: #2a7a4a; display: block; }
+    .mc-fb.err { color: var(--red); display: block; }
+
+    /* CTA */
+    .cta-block {
+      background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk));
+      border-top: 3px solid var(--mc); border-radius: var(--r);
+      padding: 1.75rem 2rem; text-align: center; margin-top: 2.5rem;
+    }
+    .cta-block p { font-size: 0.9rem; color: #666; margin-bottom: 1.1rem; line-height: 1.6; }
+    .btn-next {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--mc-dk); color: var(--white);
+      padding: 0.75rem 2.2rem; border-radius: 30px;
+      text-decoration: none; font-weight: 700; font-size: 0.93rem;
+      transition: all 0.2s;
+    }
+    .btn-next:hover { background: var(--mc); transform: translateY(-2px); box-shadow: 0 4px 14px rgba(229,171,7,0.4); }
+
+    .reveal-table-btn {
+      margin-top: 1rem; padding: 0.45rem 1.3rem;
+      background: var(--cream-dk); border: 2px solid var(--amber-dk);
+      border-radius: 30px; font-family: var(--fb); font-size: 0.84rem;
+      font-weight: 600; color: var(--mc-text); cursor: pointer; transition: all 0.2s;
+    }
+    .reveal-table-btn:hover { background: var(--mc-bg); }
+
+    @media (max-width: 600px) {
+      .stage-link { padding: 0.7rem 0.9rem; font-size: 0.65rem; }
+      .container { padding: 1.5rem 0.85rem 3rem; }
+    }
   </style>
 </head>
 <body>
 
-  <header class="header">
-    <div class="header-badge">Unità 0 · A1 · Etapa 2</div>
-    <h1>Come ti chiami?</h1>
-    <p>Descubrimiento — El alfabeto, las ciudades y los nombres italianos</p>
-  </header>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">Unità 0 · A1 · Descubrimiento</div>
+  <h1>Come ti chiami?</h1>
+  <p>Fase de elaboración · Trabajamos desde el video</p>
+</header>
 
-  <div class="container">
 
-    <!-- ══ 1. SOFIA BIENVENIDA ══ -->
-    <section class="sec">
-      <div class="sofia-row reveal from-bottom">
-        <div class="sofia-avatar-wrap">
-          <div class="sofia-avatar">👩‍🏫</div>
-          <div class="sofia-label">Sofia · guida</div>
-        </div>
-        <div class="sofia-bubble">
-          <strong>Benvenuta/o!</strong> Sono Sofia, la tua guida di oggi. 🍷<br><br>
-          Ya llegaste aquí después del video — eso ya es un primer paso enorme. Ahora es cuando de verdad empieza la magia: <em>explorar, descubrir y conectar</em> lo que escuchaste con el idioma real. Tómate tu tiempo. Hay mucho para disfrutar, y sin prisa. <strong>Piacere di conoscerti!</strong> 🇮🇹
-        </div>
+<main class="container">
+
+  <!-- INTRO -->
+  <section class="sec">
+    <div class="sofia-row">
+      <div class="sofia-col">
+        <div class="sofia-avatar">👩‍🏫</div>
+        <div class="sofia-name">Sofia</div>
       </div>
-    </section>
-
-    <!-- ══ 2. ANTES DE VER ══ -->
-    <section class="sec">
-      <h2 class="sec-title reveal">Prima di cominciare...</h2>
-      <p class="sec-sub reveal">Tres preguntas para activar lo que ya sabes — reflexiona antes de ver el video</p>
-
-      <div class="reflect-item reveal">
-        <div class="reflect-num">1</div>
-        <div class="reflect-text">
-          <strong>¿Cuántas ciudades italianas conoces?</strong> Piénsalo un momento sin ayuda.
-          Roma, Milano, Venezia... ¿llegas a 5? ¿a 10? Spoiler: Italia tiene más de 8.000 municipios. 🏙️
-          Cada uno tiene nombre propio, historia propia, y en el alfabeto fonético, cada letra <em>lleva el nombre de una de ellas</em>.
-        </div>
+      <div class="sofia-bubble">
+        Ahora que ya viste el video, vamos a <strong>trabajar directamente con lo que escuchaste</strong>.
+        Cada actividad parte del alfabeto y las ciudades del video. No te voy a dar las reglas todavía —
+        <em>vos las vas a descubrir</em> solo con los ejemplos.
       </div>
-      <div class="reflect-item reveal">
-        <div class="reflect-num">2</div>
-        <div class="reflect-text">
-          <strong>¿Cómo se llama la letra M en italiano?</strong> En español decimos "eme".
-          En italiano se dice algo diferente. ¿Lo adivinas? Pista: tiene que ver con la ciudad de Milano.
-          Sigue leyendo para confirmarlo... 🤔
-        </div>
+    </div>
+  </section>
+
+  <!-- ACTIVIDAD 1: COMPLETAR ALFABETO -->
+  <section class="sec">
+    <h2 class="sec-title">① Il alfabeto — completalo vos</h2>
+    <p class="sec-sub">Del video recordás las ciudades. Completá las que faltan (sin mirar el video).</p>
+    <div class="info-box">
+      <strong>Instrucción:</strong> Escribí la ciudad que corresponde a cada letra. Cuando terminés, hacé clic en <em>Verificar</em>.
+      Las ciudades del video son: Ancona · Bologna · Como · Domodossola · Empoli · Firenze · Genova · Hotel · Imola · Livorno · Milano · Napoli · Otranto · Palermo · Quarto · Roma · Savona · Torino · Udine · Venezia · Zara
+    </div>
+    <div class="card">
+      <div class="card-title">Le lettere dell'alfabeto italiano</div>
+      <div class="alfa-grid" id="alfaGrid"></div>
+      <div style="display:flex;gap:0.75rem;margin-top:1.25rem;flex-wrap:wrap;">
+        <button class="check-btn" onclick="checkAlfa()">Verificar</button>
+        <button class="check-btn" style="background:var(--green);" onclick="revealAlfa()">Ver solución</button>
       </div>
-      <div class="reflect-item reveal">
-        <div class="reflect-num">3</div>
-        <div class="reflect-text">
-          <strong>¿El italiano tiene la misma cantidad de letras que el español?</strong>
-          El español tiene 27 letras (incluyendo la Ñ). El italiano, sorprendentemente, tiene menos.
-          ¿Cuántas crees que tiene? La respuesta te la da el alfabeto fonético. 🔤
-        </div>
+      <div id="alfaResult" style="margin-top:0.75rem;font-size:0.87rem;display:none;"></div>
+    </div>
+  </section>
+
+  <!-- ACTIVIDAD 2: LETRAS EXTRANJERAS -->
+  <section class="sec">
+    <h2 class="sec-title">② ¿Cuáles son las letras extranjeras?</h2>
+    <p class="sec-sub">En el video mencionaron 5 letras que no pertenecen al alfabeto italiano original. ¿Las encontrás?</p>
+
+    <div class="card">
+      <div class="card-title">🔊 Escuchá las 5 lettere straniere</div>
+      <p style="font-size:0.87rem;color:#777;margin-bottom:1rem;">
+        Hacé clic en el botón de cada letra para escucharla con su palabra de referencia italiana.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;" id="foreignAudioRow"></div>
+      <p style="font-size:0.78rem;color:#aaa;margin-top:0.75rem;font-style:italic;">
+        🔊 Usa la síntesis de voz del navegador en italiano.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Hacé clic en las 5 letras "extranjeras"</div>
+      <div class="letter-grid" id="foreignGrid"></div>
+      <div style="display:flex;gap:0.75rem;margin-top:1rem;flex-wrap:wrap;">
+        <button class="check-btn" id="foreignCheckBtn" onclick="checkForeign()">Verificar selección</button>
       </div>
-    </section>
+      <div id="foreignResult" style="margin-top:0.75rem;font-size:0.87rem;display:none;"></div>
+    </div>
+  </section>
 
-    <!-- ══ 3. EL VIDEO ══ -->
-    <section class="sec">
-      <h2 class="sec-title reveal">🎬 Il Video — L'Alfabeto Italiano</h2>
-      <p class="sec-sub reveal">Antes de continuar con las actividades, mira el video</p>
-
-      <div class="video-card reveal">
-        <h3>L'Alfabeto Italiano | LearnAmo</h3>
-        <p>
-          Un video de <strong>LearnAmo</strong> de aproximadamente 5 minutos donde recorren
-          las 21 letras del alfabeto italiano, asociando cada una con una ciudad italiana famosa.
-          Escuchá con atención cómo suena el <em>nombre</em> de cada letra — eso es exactamente
-          lo que necesitarás cuando alguien te pregunte "Come si scrive il tuo nome?"
-        </p>
-
-        <table class="watch-table">
-          <thead>
-            <tr><th>Visualización</th><th>¿Qué hacer?</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>🎧 1.ª vez</td><td>Solo escucha y disfruta. No tomes notas todavía. Deja que los sonidos entren.</td></tr>
-            <tr><td>✏️ 2.ª vez</td><td>Intentá anotar mentalmente cuántas ciudades reconoces por letra. ¿Cuántas ya conocías?</td></tr>
-          </tbody>
-        </table>
-
-        <a class="btn-video" href="https://www.youtube.com/watch?v=6R_4YRTshIg" target="_blank" rel="noopener">
-          ▶ Ver en YouTube
-        </a>
-
-        <div class="copyright-notice">
-          ℹ️ <strong>Uso educativo:</strong> Este video es contenido de terceros publicado en YouTube por el canal <em>LearnAmo</em>. Italiano Per Piacere no tiene afiliación con el canal y enlaza el recurso únicamente con fines pedagógicos, sin reproducir ni modificar el contenido original. Todos los derechos de autor pertenecen a sus creadores.
-          <a href="https://www.youtube.com/c/learnamo" target="_blank" rel="noopener">→ Canal LearnAmo</a>
-        </div>
+  <!-- ACTIVIDAD 3: DELETREAR -->
+  <section class="sec">
+    <h2 class="sec-title">③ Deletreá el nombre</h2>
+    <p class="sec-sub">Así es como los italianos dan su nombre por teléfono o cuando hay que aclarar la ortografía.</p>
+    <div class="card">
+      <div class="card-title">¿Cómo se deletrea <em>SOFIA</em> en italiano?</div>
+      <div class="spell-name">S · O · F · I · A</div>
+      <p style="font-size:0.88rem;color:#777;margin-bottom:1rem;">Seleccioná la ciudad que corresponde a cada letra:</p>
+      <div class="spell-grid" id="spellGrid"></div>
+      <div id="spellResult" style="margin-top:0.75rem;font-size:0.87rem;display:none;"></div>
+      <div style="margin-top:1rem;">
+        <p style="font-size:0.85rem;color:#777;margin-bottom:0.5rem;font-style:italic;">Ahora intentá vos: ¿cómo deletrearías tu nombre? Practicá en voz alta usando el modelo de arriba.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ══ 4. FLIP CARDS ══ -->
-    <section class="sec">
-      <h2 class="sec-title reveal">🃏 Scopri le Lettere!</h2>
-      <p class="sec-sub reveal">Hacé clic en cada letra para revelar su ciudad y su pronunciación</p>
+  <!-- ACTIVIDAD 4: DESCUBRIR CHIAMARSI -->
+  <section class="sec">
+    <h2 class="sec-title">④ Descubrí el verbo</h2>
+    <p class="sec-sub">En el video escuchaste la presentadora decir su nombre. Veamos cómo funciona.</p>
 
-      <div class="sofia-row right reveal from-right">
-        <div class="sofia-avatar-wrap">
-          <div class="sofia-avatar" style="background:var(--ipp-teal)">🤌</div>
-          <div class="sofia-label" style="color:var(--ipp-teal)">Tip de Sofia</div>
-        </div>
-        <div class="sofia-bubble">
-          El <strong>alfabeto fonético italiano</strong> sirve para deletrear con claridad por teléfono o en persona.
-          Si alguien te pregunta <em>"come si scrive il tuo cognome?"</em> (¿cómo se escribe tu apellido?),
-          respondes letra a letra usando el nombre de cada una: Marco → <em>emme – a – erre – ci – o</em>.
-          ¡Inténtalo con tu nombre después de explorar las tarjetas! 🗣️
-        </div>
+    <div class="discover-quote">
+      En el video escuchamos: <span>«Mi chiamo Graziana. Come ti chiami?»</span>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Completá con la partícula correcta: <em>mi · ti · si</em></div>
+      <p style="font-size:0.87rem;color:#777;margin-bottom:1rem;">
+        Estos son más ejemplos del mismo verbo. Observá el patrón y elegí la opción correcta para cada oración.
+      </p>
+
+      <div class="conj-rows" id="conjRows"></div>
+
+      <p style="font-size:0.87rem;color:#666;margin-top:0.5rem;margin-bottom:0.75rem;">
+        ¿Ya lo ves? La partícula cambia según quién habla. Completá la tabla de abajo:
+      </p>
+
+      <table class="pattern-table" id="patternTable">
+        <thead>
+          <tr>
+            <th>Pronombre</th>
+            <th>Partícula reflexiva</th>
+            <th>Verbo</th>
+            <th>Ejemplo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>io</td>    <td class="blank-cell" id="pt0">?</td><td>chiamo</td> <td>Io ___ chiamo Sofia.</td></tr>
+          <tr><td>tu</td>    <td class="blank-cell" id="pt1">?</td><td>chiami</td> <td>Tu ___ chiami Marco.</td></tr>
+          <tr><td>lui/lei</td><td class="blank-cell" id="pt2">?</td><td>chiama</td><td>Lei ___ chiama Anna.</td></tr>
+        </tbody>
+      </table>
+
+      <button class="reveal-table-btn" onclick="revealTable()">Ver la tabla completa →</button>
+      <div id="tableRevealMsg" style="display:none;margin-top:0.75rem;font-size:0.85rem;color:#2a7a4a;font-weight:600;">
+        ✓ ¡Lo descubriste! En la Etapa 3 vas a ver la conjugación completa con todos los pronombres.
       </div>
+    </div>
+  </section>
 
-      <div class="progress-wrap">
-        <div class="progress-label" id="progLabel">0 de 21 letras descubiertas</div>
-        <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
+  <!-- ACTIVIDAD 5: DIÁLOGO -->
+  <section class="sec">
+    <h2 class="sec-title">⑤ Un dialogo — prima ascolta, poi leggi</h2>
+    <p class="sec-sub">Este diálogo usa exactamente lo que aprendiste: el alfabeto y el verbo <em>chiamarsi</em>.</p>
+
+    <div class="card">
+      <div class="card-title">Graziana incontra Marco</div>
+
+      <div class="dial-intro">
+        <strong>Instrucción:</strong> Primero escuchá cada línea haciendo clic en el botón de audio
+        (el texto aparece borroso). Intentá entender sin leer. Después podés revelar el texto completo.
       </div>
-      <div class="controls">
-        <button class="btn btn-green" onclick="flipAll()">Revelar todas</button>
-        <button class="btn btn-red"   onclick="resetAll()">Reiniciar</button>
+      <p class="dial-audio-hint">🔊 El audio usa la síntesis de voz del navegador en italiano — asegurate de tener el volumen activado.</p>
+
+      <div id="dialogueLines"></div>
+
+      <button class="reveal-btn" id="revealDialBtn" onclick="revealDialogue()">Mostrar texto completo</button>
+
+      <div class="mc-simple" id="dialQuestion" style="display:none;">
+        <p>¿Cómo se deletrea el nombre de Marco en el diálogo?</p>
+        <div class="mc-opts">
+          <button class="mc-opt" onclick="checkDialMC(this,false,'No — revisá la parte donde Marco deletrea su nombre.')">
+            M-A-R-C-O con Mantova, Ancona, Roma, Como, Otranto
+          </button>
+          <button class="mc-opt" onclick="checkDialMC(this,true,'¡Perfetto! Milano · Ancona · Roma · Como · Otranto — el alfabeto fonético del video.')">
+            M-A-R-C-O con Milano, Ancona, Roma, Como, Otranto
+          </button>
+          <button class="mc-opt" onclick="checkDialMC(this,false,'No — Marco usa las ciudades del alfabeto fonético que viste en el video.')">
+            M-A-R-C-O con Milano, Arezzo, Roma, Catania, Oristano
+          </button>
+        </div>
+        <div class="mc-fb" id="dialFb"></div>
       </div>
+    </div>
+  </section>
 
-      <div class="alphabet-grid" id="alphabetGrid"></div>
+  <!-- CTA -->
+  <div class="cta-block">
+    <p>
+      Excelente trabajo. Llegaste a las reglas <em>por tus propios medios</em>.<br>
+      En la siguiente etapa las vamos a <strong>confirmar y expandir</strong> con la gramática completa.
+    </p>
+    <a class="btn-next" href="etapa3_gramatica.html">Continuar → Gramática</a>
+  </div>
 
-      <div class="facts-grid">
-        <div class="fact-card reveal">
-          <div class="fact-icon">🔢</div>
-          <div>
-            <div class="fact-title">Solo 21 letras nativas</div>
-            El italiano tiene 5 letras menos que el español. Las letras J, K, W, X, Y son
-            "straniere" (extranjeras) y solo aparecen en palabras importadas de otros idiomas como
-            <em>jeans, karaoke, weekend, taxi, yoga</em>.
-          </div>
-        </div>
-        <div class="fact-card reveal from-right">
-          <div class="fact-icon">🏛️</div>
-          <div>
-            <div class="fact-title">Ciudades como anclas de memoria</div>
-            Asociar cada letra con una ciudad activa más zonas del cerebro que solo memorizar
-            listas. ¡La memoria visual y emocional trabaja junto con la auditiva! Es uno de los
-            trucos mnemotécnicos más efectivos del italiano.
-          </div>
-        </div>
-        <div class="fact-card reveal">
-          <div class="fact-icon">🎵</div>
-          <div>
-            <div class="fact-title">Vocales puras — la clave del italiano</div>
-            El italiano es el idioma de la ópera justamente porque sus vocales (a, e, i, o, u) son
-            siempre claras y puras, sin excepciones. Cada vocal suena igual en todas las palabras,
-            al contrario del inglés o el francés.
-          </div>
-        </div>
-        <div class="fact-card reveal from-right">
-          <div class="fact-icon">🤫</div>
-          <div>
-            <div class="fact-title">La H nunca suena</div>
-            La letra H en italiano se llama "acca" pero es completamente muda en todas las palabras.
-            <em>Hotel, hanno, ho</em>... la H no se pronuncia nunca. ¡Todo lo contrario que en español,
-            donde puede aspirarse!
-          </div>
-        </div>
-      </div>
-    </section>
+</main>
 
-    <!-- ══ 5. CIUDADES ══ -->
-    <section class="sec">
-      <h2 class="sec-title reveal">🗺️ Le Città Italiane</h2>
-      <p class="sec-sub reveal">Hacé clic en cada ciudad para descubrir un dato curioso</p>
+<script>
+  /* ═══ ALFABETO ═══ */
+  const alfaData = [
+    { l:'A', city:'Ancona',      blank:false },
+    { l:'B', city:'Bologna',     blank:true  },
+    { l:'C', city:'Como',        blank:false },
+    { l:'D', city:'Domodossola', blank:true  },
+    { l:'E', city:'Empoli',      blank:false },
+    { l:'F', city:'Firenze',     blank:true  },
+    { l:'G', city:'Genova',      blank:false },
+    { l:'H', city:'Hotel',       blank:true  },
+    { l:'I', city:'Imola',       blank:false },
+    { l:'L', city:'Livorno',     blank:true  },
+    { l:'M', city:'Milano',      blank:false },
+    { l:'N', city:'Napoli',      blank:true  },
+    { l:'O', city:'Otranto',     blank:false },
+    { l:'P', city:'Palermo',     blank:true  },
+    { l:'Q', city:'Quarto',      blank:false },
+    { l:'R', city:'Roma',        blank:true  },
+    { l:'S', city:'Savona',      blank:false },
+    { l:'T', city:'Torino',      blank:true  },
+    { l:'U', city:'Udine',       blank:false },
+    { l:'V', city:'Venezia',     blank:true  },
+    { l:'Z', city:'Zara',        blank:false },
+  ];
 
-      <div class="sofia-row reveal">
-        <div class="sofia-avatar-wrap">
-          <div class="sofia-avatar" style="background:var(--ipp-red)">🧳</div>
-          <div class="sofia-label" style="color:var(--ipp-red)">Sofia viajera</div>
-        </div>
-        <div class="sofia-bubble">
-          Conocer las ciudades italianas no sirve solo para el alfabeto fonético — te abre las puertas
-          a la <strong>cultura, la historia y la gastronomía</strong> de Italia. Cada ciudad es un mundo aparte.
-          La gente de Roma y la de Milano hablan el mismo idioma pero con ritmos y expresiones
-          completamente distintas. <em>L'Italia è bella e diversa!</em> 🍕🎨⛵
-        </div>
-      </div>
-
-      <div class="cities-grid" id="citiesGrid"></div>
-
-      <div class="info info-gold reveal" style="margin-top:1.5rem">
-        <strong>¡Ojo cultural!</strong> En italiano se dice <em>"Sono di Roma"</em> (Soy de Roma) para el origen,
-        y <em>"Vado a Milano"</em> (Voy a Milán) para el destino. Dos verbos clave — <em>essere</em> y <em>andare</em> —
-        que trabajaremos muy pronto en la Etapa 3.
-      </div>
-    </section>
-
-    <!-- ══ 6. NOMI ITALIANI ══ -->
-    <section class="sec">
-      <h2 class="sec-title reveal">👤 I Nomi Italiani</h2>
-      <p class="sec-sub reveal">Los nombres más comunes — haz clic para ver cómo se deletrean</p>
-
-      <div class="sofia-row right reveal from-right">
-        <div class="sofia-avatar-wrap">
-          <div class="sofia-avatar" style="background:var(--ipp-amber)">😊</div>
-          <div class="sofia-label" style="color:var(--ipp-amber)">Sofia</div>
-        </div>
-        <div class="sofia-bubble">
-          Los nombres italianos son muy musicales porque terminan casi siempre en vocal.
-          Los nombres masculinos suelen terminar en <strong>-o</strong> (Marco, Lorenzo, Matteo)
-          y los femeninos en <strong>-a</strong> (Sofia, Giulia, Laura). Hacé clic en los nombres
-          que te gusten — ¡luego practica deletrearlos usando los nombres de las letras que acabas de aprender!
-        </div>
-      </div>
-
-      <div class="card b-teal reveal">
-        <div class="names-grid" id="namesGrid">
-          <div class="names-col">
-            <h4>♂ Nomi Maschili</h4>
-            <div id="maleNames"></div>
-          </div>
-          <div class="names-col">
-            <h4>♀ Nomi Femminili</h4>
-            <div id="femaleNames"></div>
-          </div>
-        </div>
-        <div class="info info-teal" style="margin-top:1.25rem" id="nameSpellingBox">
-          <strong>Come si scrive?</strong><br>
-          <span id="nameSpellingText">Hacé clic en cualquier nombre de arriba para ver cómo se deletrea en italiano.</span>
-        </div>
-      </div>
-
-      <div class="info info-green reveal" style="margin-top:1rem">
-        <strong>Practicá en voz alta:</strong> Una vez que hagas clic en un nombre, intenta leer su deletreo
-        en voz alta antes de ver la respuesta. Es el mejor ejercicio para la pronunciación. 🎤
-      </div>
-    </section>
-
-    <!-- ══ 7. SPELLING QUIZ ══ -->
-    <section class="sec">
-      <h2 class="sec-title reveal">✏️ Come si scrive?</h2>
-      <p class="sec-sub reveal">Practicá deletrear palabras en italiano — escribe el nombre de cada letra separado por guiones</p>
-
-      <div class="info info-green reveal">
-        <strong>Cómo funciona:</strong> Escribí el nombre de cada letra usando los que aprendiste en las tarjetas,
-        separados por guiones o espacios. Ejemplo: <em>BENE → bi – e – enne – e</em>.
-        No importa si usas guiones, comas o espacios — lo que importa es el nombre correcto de cada letra.
-      </div>
-
-      <div id="spellingQuiz"></div>
-    </section>
-
-    <!-- ══ 8. CIERRE ══ -->
-    <section class="sec">
-      <div class="closing-card reveal from-bottom">
-        <div style="font-size:3rem; margin-bottom:0.75rem">🍷</div>
-        <h2>Bravissimo/a!</h2>
-        <p style="margin-top:0.75rem; max-width:560px; margin-left:auto; margin-right:auto">
-          Acabas de explorar el alfabeto fonético italiano, descubrir ciudades, conocer nombres
-          y practicar el deletreo. Es mucho para una sola sesión — y todo con tu propio ritmo. 🎉
-          <br><br>
-          En la <strong>Etapa 3</strong> verás la gramática organizada de forma visual e interactiva.
-          ¡Vai avanti con entusiasmo!
-        </p>
-        <div style="margin-top:1.5rem; font-family:var(--font-head); font-size:1.15rem; font-style:italic; opacity:0.85">
-          "L'italiano è musica per le orecchie." 🎶
-        </div>
-      </div>
-    </section>
-
-  </div><!-- /container -->
-
-  <footer class="footer">
-    🍷 <strong>Italiano Per Piacere</strong> &nbsp;·&nbsp; Unità 0 &nbsp;·&nbsp; Etapa 2: Descubrimiento
-  </footer>
-
-  <script>
-(function(){
-
-    /* ── DATA ── */
-    const ALPHABET = [
-      {l:'A',city:'Ancona',      pron:'a'    },
-      {l:'B',city:'Bologna',     pron:'bi'   },
-      {l:'C',city:'Como',        pron:'ci'   },
-      {l:'D',city:'Domodossola', pron:'di'   },
-      {l:'E',city:'Empoli',      pron:'e'    },
-      {l:'F',city:'Firenze',     pron:'effe' },
-      {l:'G',city:'Genova',      pron:'gi'   },
-      {l:'H',city:'Hotel',       pron:'acca' },
-      {l:'I',city:'Imola',       pron:'i'    },
-      {l:'L',city:'Livorno',     pron:'elle' },
-      {l:'M',city:'Milano',      pron:'emme' },
-      {l:'N',city:'Napoli',      pron:'enne' },
-      {l:'O',city:'Otranto',     pron:'o'    },
-      {l:'P',city:'Palermo',     pron:'pi'   },
-      {l:'Q',city:'Quarto',      pron:'cu'   },
-      {l:'R',city:'Roma',        pron:'erre' },
-      {l:'S',city:'Savona',      pron:'esse' },
-      {l:'T',city:'Torino',      pron:'ti'   },
-      {l:'U',city:'Udine',       pron:'u'    },
-      {l:'V',city:'Venezia',     pron:'vu'   },
-      {l:'Z',city:'Zara',        pron:'zeta' },
-    ];
-
-    const CITIES = [
-      {name:'Roma',    region:'Lazio',         flag:'🏛️',fact:'La Città Eterna. Fundada en el 753 a.C. según la leyenda. Capital de Italia y hogar del Vaticano, el Coliseo y la Fontana di Trevi.'},
-      {name:'Milano',  region:'Lombardia',     flag:'👗',fact:'Capital de la moda y las finanzas. Sede del Duomo, La Scala y el Cenacolo de Leonardo. La ciudad más cosmopolita de Italia.'},
-      {name:'Venezia', region:'Veneto',        flag:'🚤',fact:'Construida sobre 118 islotes. Sin coches, solo barcos, gondole y canales. Cada año se hunde unos milímetros. ¡Un milagro arquitectónico!'},
-      {name:'Firenze', region:'Toscana',       flag:'🎨',fact:'Cuna del Renacimiento. Aquí vivieron Dante, Leonardo y Michelangelo. El David de Michelangelo y Los Uffizi están aquí.'},
-      {name:'Napoli',  region:'Campania',      flag:'🍕',fact:'¡Cuna de la pizza! La margherita nació aquí en 1889. El Vesuvio vigila la ciudad. Tiene la mejor pizza del mundo según sus habitantes.'},
-      {name:'Torino',  region:'Piemonte',      flag:'🏎️',fact:'Primera capital de Italia (1861). Sede de FIAT y la Juventus. Capital del cioccolato y del bicerin. Elegante y discreta.'},
-      {name:'Bologna', region:'Emilia-Romagna',flag:'🍝',fact:'"La grassa" (la gorda) por su cocina incomparable. Aquí nacieron los tortellini, la mortadella y el ragù bolognese que el mundo llama "boloñesa".'},
-      {name:'Palermo', region:'Sicilia',       flag:'🌊',fact:'Capital de Sicilia, la mayor isla del Mediterráneo. Mezcla única de culturas árabe, normanda y española. El arancino es su emblema gastronómico.'},
-      {name:'Genova',  region:'Liguria',       flag:'⛵',fact:'Ciudad natal de Cristoforo Colombo. Puerto histórico de marineros y exploradores. El pesto genovese con albahaca fresca nació aquí.'},
-      {name:'Bari',    region:'Puglia',        flag:'🌅',fact:'Puerta de Oriente. Famosa por las orecchiette (pasta con forma de orejitas) y los trulli de Alberobello, patrimonio UNESCO a pocos kilómetros.'},
-    ];
-
-    const MALE_NAMES = [
-      {name:'Marco',      spell:'emme – a – erre – ci – o'},
-      {name:'Lorenzo',    spell:'elle – o – erre – e – enne – zeta – o'},
-      {name:'Alessandro', spell:'a – elle – e – esse – esse – a – enne – di – erre – o'},
-      {name:'Matteo',     spell:'emme – a – ti – ti – e – o'},
-      {name:'Francesco',  spell:'effe – erre – a – enne – ci – e – esse – ci – o'},
-      {name:'Luca',       spell:'elle – u – ci – a'},
-      {name:'Giovanni',   spell:'gi – i – o – vu – a – enne – enne – i'},
-      {name:'Davide',     spell:'di – a – vu – i – di – e'},
-    ];
-
-    const FEMALE_NAMES = [
-      {name:'Sofia',    spell:'esse – o – effe – i – a'},
-      {name:'Giulia',   spell:'gi – i – u – elle – i – a'},
-      {name:'Chiara',   spell:'ci – acca – i – a – erre – a'},
-      {name:'Martina',  spell:'emme – a – erre – ti – i – enne – a'},
-      {name:'Laura',    spell:'elle – a – u – erre – a'},
-      {name:'Elena',    spell:'e – elle – e – enne – a'},
-      {name:'Sara',     spell:'esse – a – erre – a'},
-      {name:'Valentina',spell:'vu – a – elle – e – enne – ti – i – enne – a'},
-    ];
-
-    const SPELLING_Q = [
-      {q:'¿Cómo se deletrea "CIAO"?',   hint:'ci – i – a – o',          ok:['ci i a o','ci-i-a-o','ci – i – a – o']},
-      {q:'¿Cómo se deletrea "NOME"?',   hint:'enne – o – emme – e',     ok:['enne o emme e','enne-o-emme-e','enne – o – emme – e']},
-      {q:'¿Cómo se deletrea "ITALIA"?', hint:'i – ti – a – elle – i – a',ok:['i ti a elle i a','i-ti-a-elle-i-a','i – ti – a – elle – i – a']},
-      {q:'¿Cómo se deletrea "PIZZA"?',  hint:'pi – i – zeta – zeta – a', ok:['pi i zeta zeta a','pi-i-zeta-zeta-a','pi – i – zeta – zeta – a']},
-      {q:'¿Cómo se deletrea "BELLO"?',  hint:'bi – e – elle – elle – o', ok:['bi e elle elle o','bi-e-elle-elle-o','bi – e – elle – elle – o']},
-    ];
-
-    /* ── FLIP CARDS ── */
-    let flipped = 0;
-    function buildGrid() {
-      const grid = document.getElementById('alphabetGrid');
-      ALPHABET.forEach((item, i) => {
-        const wrap = document.createElement('div');
-        wrap.className = 'flip-wrap'; wrap.id = `card-${i}`;
-        wrap.title = 'Hacé clic para revelar';
-        wrap.innerHTML = `
-          <div class="flip-inner">
-            <div class="flip-front">
-              <div class="big-ltr">${item.l}</div>
-              <div class="hint-lbl">¿qué ciudad?</div>
-            </div>
-            <div class="flip-back">
-              <div class="lsm">${item.l}</div>
-              <div class="city-nm">${item.city}</div>
-              <div class="pron-nm">[${item.pron}]</div>
-            </div>
-          </div>`;
-        wrap.addEventListener('click', () => flipOne(i));
-        grid.appendChild(wrap);
-      });
-    }
-    function flipOne(i) {
-      const c = document.getElementById(`card-${i}`);
-      if (!c.classList.contains('flipped')) { c.classList.add('flipped'); flipped++; updateProg(); }
-    }
-    function flipAll()  { ALPHABET.forEach((_,i)=>{ const c=document.getElementById(`card-${i}`); if(!c.classList.contains('flipped')){c.classList.add('flipped');flipped++;} }); updateProg(); }
-    function resetAll() { ALPHABET.forEach((_,i)=>document.getElementById(`card-${i}`).classList.remove('flipped')); flipped=0; updateProg(); }
-    function updateProg() {
-      const pct = Math.round((flipped/ALPHABET.length)*100);
-      document.getElementById('progFill').style.width = pct+'%';
-      document.getElementById('progLabel').textContent = `${flipped} de ${ALPHABET.length} letras descubiertas`;
-    }
-
-    /* ── CITIES ── */
-    function buildCities() {
-      const grid = document.getElementById('citiesGrid');
-      const tops = ['var(--ipp-green)','var(--ipp-teal)','var(--ipp-red)','var(--ipp-amber)'];
-      CITIES.forEach((c,i) => {
-        const card = document.createElement('div');
-        card.className = 'city-card';
-        card.style.borderTopColor = tops[i % tops.length];
-        card.innerHTML = `<div class="c-flag">${c.flag}</div><div class="c-name">${c.name}</div><div class="c-region">${c.region}</div><div class="c-fact">${c.fact}</div>`;
-        card.addEventListener('click', () => card.classList.toggle('open'));
-        grid.appendChild(card);
-      });
-    }
-
-    /* ── NAMES ── */
-    function buildNames() {
-      function chips(containerId, arr) {
-        const cont = document.getElementById(containerId);
-        arr.forEach(n => {
-          const chip = document.createElement('span');
-          chip.className = 'name-chip'; chip.textContent = n.name;
-          chip.addEventListener('click', () => {
-            document.querySelectorAll('.name-chip').forEach(c=>c.classList.remove('sel'));
-            chip.classList.add('sel');
-            document.getElementById('nameSpellingText').innerHTML =
-              `<strong>${n.name}</strong> → <em>${n.spell}</em>`;
-          });
-          cont.appendChild(chip);
-        });
+  function buildAlfa() {
+    const grid = document.getElementById('alfaGrid');
+    alfaData.forEach((item, i) => {
+      const row = document.createElement('div');
+      row.className = 'alfa-row';
+      row.innerHTML = `<span class="alfa-ltr">${item.l}</span><span class="alfa-sep">come</span>`;
+      if (item.blank) {
+        const inp = document.createElement('input');
+        inp.className = 'alfa-blank';
+        inp.placeholder = '…';
+        inp.dataset.idx = i;
+        inp.addEventListener('keypress', e => { if (e.key === 'Enter') checkAlfa(); });
+        row.appendChild(inp);
+      } else {
+        const span = document.createElement('span');
+        span.className = 'alfa-city';
+        span.textContent = item.city;
+        row.appendChild(span);
       }
-      chips('maleNames',   MALE_NAMES);
-      chips('femaleNames', FEMALE_NAMES);
-    }
+      const icon = document.createElement('span');
+      icon.className = 'alfa-icon';
+      icon.id = 'alfa-icon-' + i;
+      row.appendChild(icon);
+      grid.appendChild(row);
+    });
+  }
 
-    /* ── SPELLING QUIZ ── */
-    function buildSpelling() {
-      const wrap = document.getElementById('spellingQuiz');
-      SPELLING_Q.forEach((q,i) => {
-        const n = i+1;
-        const block = document.createElement('div');
-        block.className = 'q-block reveal';
-        block.innerHTML = `
-          <p>${n}. ${q.q}</p>
-          <div class="input-row">
-            <input type="text" id="sq${n}" placeholder="Ej: ${q.hint}" />
-            <button class="btn-check" onclick="checkSp(${n})">Verificar</button>
-          </div>
-          <div class="feedback" id="sf${n}"></div>`;
-        wrap.appendChild(block);
+  function checkAlfa() {
+    let correct = 0, total = 0;
+    alfaData.forEach((item, i) => {
+      if (!item.blank) return;
+      total++;
+      const inp = document.querySelector(`.alfa-blank[data-idx="${i}"]`);
+      const icon = document.getElementById('alfa-icon-' + i);
+      const val = (inp.value || '').trim().toLowerCase();
+      if (val === item.city.toLowerCase()) {
+        inp.classList.add('ok'); inp.classList.remove('err');
+        icon.textContent = '✓'; correct++;
+      } else {
+        inp.classList.add('err'); inp.classList.remove('ok');
+        icon.textContent = '✗';
+      }
+    });
+    const res = document.getElementById('alfaResult');
+    res.style.display = 'block';
+    res.innerHTML = `<strong>${correct}/${total}</strong> correctas. ${correct === total ? '¡Perfetto!' : 'Revisá las marcadas en rojo.'}`;
+    res.style.color = correct === total ? '#2a7a4a' : '#cc4736';
+  }
+
+  function revealAlfa() {
+    alfaData.forEach((item, i) => {
+      if (!item.blank) return;
+      const inp = document.querySelector(`.alfa-blank[data-idx="${i}"]`);
+      const icon = document.getElementById('alfa-icon-' + i);
+      inp.value = item.city;
+      inp.classList.add('ok');
+      icon.textContent = '✓';
+    });
+    const res = document.getElementById('alfaResult');
+    res.style.display = 'block';
+    res.innerHTML = 'Solución revelada. ¡Practicá en voz alta!';
+    res.style.color = '#c8940a';
+  }
+
+  /* ═══ LETRAS EXTRANJERAS ═══ */
+  const allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const foreignLetters = new Set(['J','K','W','X','Y']);
+  const selectedForeign = new Set();
+
+  function buildForeign() {
+    const grid = document.getElementById('foreignGrid');
+    allLetters.forEach(ltr => {
+      const chip = document.createElement('div');
+      chip.className = 'ltr-chip';
+      chip.textContent = ltr;
+      chip.dataset.ltr = ltr;
+      chip.addEventListener('click', () => {
+        if (chip.classList.contains('correct-pick') || chip.classList.contains('wrong-pick')) return;
+        if (selectedForeign.has(ltr)) {
+          selectedForeign.delete(ltr);
+          chip.classList.remove('selected');
+        } else {
+          selectedForeign.add(ltr);
+          chip.classList.add('selected');
+        }
+      });
+      grid.appendChild(chip);
+    });
+  }
+
+  function checkForeign() {
+    const chips = document.querySelectorAll('.ltr-chip');
+    let correct = 0;
+    chips.forEach(chip => {
+      const ltr = chip.dataset.ltr;
+      const isForeign = foreignLetters.has(ltr);
+      const wasSelected = selectedForeign.has(ltr);
+      chip.classList.remove('selected');
+      if (isForeign && wasSelected)  { chip.classList.add('correct-pick'); correct++; }
+      if (isForeign && !wasSelected) { chip.classList.add('missed'); }
+      if (!isForeign && wasSelected) { chip.classList.add('wrong-pick'); }
+    });
+    const res = document.getElementById('foreignResult');
+    res.style.display = 'block';
+    res.innerHTML = correct === 5
+      ? '<strong>¡Perfetto!</strong> Las 5 letras extranjeras son J, K, W, X e Y. Los italianos las llaman "lettere straniere".'
+      : `Encontraste ${correct}/5. Las resaltadas en amarillo son las que te faltaron. Son: J, K, W, X, Y.`;
+    res.style.color = correct === 5 ? '#2a7a4a' : '#cc4736';
+    document.getElementById('foreignCheckBtn').disabled = true;
+  }
+
+  /* ═══ DELETREAR SOFIA ═══ */
+  const sofiaLetters = [
+    { l:'S', correct:'Savona',  opts:['Salerno','Savona','Siena']   },
+    { l:'O', correct:'Otranto', opts:['Otranto','Ortona','Ostuni']  },
+    { l:'F', correct:'Firenze', opts:['Ferrara','Foggia','Firenze'] },
+    { l:'I', correct:'Imola',   opts:['Imola','Ivrea','Iglesias']   },
+    { l:'A', correct:'Ancona',  opts:['Ancona','Arezzo','Aosta']    },
+  ];
+
+  function buildSpell() {
+    const grid = document.getElementById('spellGrid');
+    let allCorrect = 0;
+    sofiaLetters.forEach((item, i) => {
+      const div = document.createElement('div');
+      div.className = 'spell-item';
+      const shuffled = [...item.opts].sort(() => Math.random() - 0.5);
+      div.innerHTML = `
+        <span class="spell-ltr">${item.l}</span>
+        <span class="spell-come">come</span>
+        <select class="spell-sel" id="spell-${i}">
+          <option value="">— elegí —</option>
+          ${shuffled.map(o => `<option value="${o}">${o}</option>`).join('')}
+        </select>
+        <span class="spell-icon" id="spell-icon-${i}"></span>
+      `;
+      grid.appendChild(div);
+
+      document.getElementById(`spell-${i}`).addEventListener('change', () => {
+        const sel = document.getElementById(`spell-${i}`);
+        const icon = document.getElementById(`spell-icon-${i}`);
+        const ok = sel.value === item.correct;
+        sel.style.borderColor = ok ? '#52a670' : '#cc4736';
+        icon.textContent = ok ? '✓' : '✗';
+        // check if all done
+        const allDone = sofiaLetters.every((_, j) => document.getElementById(`spell-${j}`).value !== '');
+        if (allDone) {
+          const total = sofiaLetters.filter((it,j) => document.getElementById(`spell-${j}`).value === it.correct).length;
+          const res = document.getElementById('spellResult');
+          res.style.display = 'block';
+          res.innerHTML = `<strong>${total}/${sofiaLetters.length}</strong> correctas. ${total === sofiaLetters.length ? '¡Bravissima/o! S come Savona, O come Otranto, F come Firenze, I come Imola, A come Ancona.' : 'Revisá las marcadas en rojo.'}`;
+          res.style.color = total === sofiaLetters.length ? '#2a7a4a' : '#cc4736';
+        }
+      });
+    });
+  }
+
+  /* ═══ CHIAMARSI DISCOVERY ═══ */
+  const conjData = [
+    { pro:'io',      refl:'mi', verb:'chiamo', example:'Io ___ chiamo Marco.' },
+    { pro:'tu',      refl:'ti', verb:'chiami', example:'Tu ___ chiami Graziana.' },
+    { pro:'lui/lei', refl:'si', verb:'chiama', example:'Lei ___ chiama Sofia.' },
+    { pro:'noi',     refl:'ci', verb:'chiamiamo', example:'Noi ___ chiamiamo italiani.' },
+  ];
+  const conjAnswered = {};
+
+  function buildConj() {
+    const container = document.getElementById('conjRows');
+    conjData.forEach((item, i) => {
+      const row = document.createElement('div');
+      row.className = 'conj-row';
+      row.id = 'cr' + i;
+      const opts = ['mi','ti','si','ci','vi'].sort(() => Math.random() - 0.5);
+      row.innerHTML = `
+        <span class="conj-pro">${item.pro}</span>
+        <select class="conj-refl" id="cr-sel-${i}">
+          <option value="">?</option>
+          ${opts.map(o => `<option value="${o}">${o}</option>`).join('')}
+        </select>
+        <span class="conj-verb">${item.verb}</span>
+        <span style="flex:1;font-size:0.82rem;color:#888;font-style:italic;">${item.example.replace('___', '_')}</span>
+        <span class="conj-icon" id="cr-icon-${i}"></span>
+      `;
+      container.appendChild(row);
+
+      document.getElementById(`cr-sel-${i}`).addEventListener('change', () => {
+        const sel = document.getElementById(`cr-sel-${i}`);
+        const icon = document.getElementById(`cr-icon-${i}`);
+        const ok = sel.value === item.refl;
+        sel.classList.toggle('ok', ok);
+        sel.classList.toggle('err', !ok);
+        icon.textContent = ok ? '✓' : '✗';
+        conjAnswered[i] = ok;
+        const allDone = conjData.every((_, j) => document.getElementById(`cr-sel-${j}`).value !== '');
+        if (allDone) {
+          const n = Object.values(conjAnswered).filter(Boolean).length;
+          if (n === conjData.length) {
+            document.getElementById('tableRevealMsg').style.display = 'block';
+            revealTable();
+          }
+        }
+      });
+    });
+  }
+
+  function revealTable() {
+    const cells = ['mi','ti','si'];
+    cells.forEach((val, i) => {
+      const cell = document.getElementById('pt' + i);
+      if (cell) { cell.textContent = val; }
+    });
+    document.getElementById('patternTable').classList.add('revealed');
+    document.getElementById('tableRevealMsg').style.display = 'block';
+  }
+
+  /* ═══ DIÁLOGO ═══ */
+  const dialogue = [
+    { speaker:'Graziana', side:'a', text:'Ciao! Come ti chiami?' },
+    { speaker:'Marco',    side:'b', text:'Mi chiamo Marco. E tu?' },
+    { speaker:'Graziana', side:'a', text:'Io mi chiamo Graziana. Piacere! Come si scrive il tuo nome?' },
+    { speaker:'Marco',    side:'b', text:'M come Milano, A come Ancona, R come Roma, C come Como, O come Otranto.' },
+    { speaker:'Graziana', side:'a', text:'Perfetto! Benvenuto, Marco.' },
+    { speaker:'Marco',    side:'b', text:'Grazie! Piacere, Graziana.' },
+  ];
+
+  function buildDialogue() {
+    const container = document.getElementById('dialogueLines');
+    dialogue.forEach((line, i) => {
+      const div = document.createElement('div');
+      div.className = `dial-line ${line.side === 'b' ? 'right' : ''}`;
+      div.innerHTML = `
+        <div class="dial-speaker ${line.side}">${line.speaker}</div>
+        <div class="dial-text-wrap">
+          <div class="dial-text dial-hidden" id="dial-text-${i}">${line.text}</div>
+          <button class="dial-audio-btn ${line.side === 'b' ? 'teal' : ''}" onclick="speakLine(${i})">
+            🔊 Escuchar
+          </button>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  function speakLine(i) {
+    if (!window.speechSynthesis) { alert('Tu navegador no soporta síntesis de voz. Probá con Chrome.'); return; }
+    window.speechSynthesis.cancel();
+    const utt = new SpeechSynthesisUtterance(dialogue[i].text);
+    utt.lang = 'it-IT';
+    utt.rate = 0.82;
+    // try to find an Italian voice
+    const voices = speechSynthesis.getVoices();
+    const itVoice = voices.find(v => v.lang.startsWith('it'));
+    if (itVoice) utt.voice = itVoice;
+    // reveal text after speaking
+    utt.onend = () => {
+      const el = document.getElementById('dial-text-' + i);
+      if (el) el.classList.add('shown');
+    };
+    speechSynthesis.speak(utt);
+    // also reveal after 1s fallback
+    setTimeout(() => {
+      const el = document.getElementById('dial-text-' + i);
+      if (el) el.classList.add('shown');
+    }, 3500);
+  }
+
+  function revealDialogue() {
+    dialogue.forEach((_, i) => {
+      const el = document.getElementById('dial-text-' + i);
+      if (el) el.classList.add('shown');
+    });
+    document.getElementById('revealDialBtn').style.display = 'none';
+    document.getElementById('dialQuestion').style.display = 'block';
+  }
+
+  function checkDialMC(btn, isCorrect, msg) {
+    const opts = document.querySelectorAll('.mc-opt');
+    opts.forEach(b => b.classList.add('disabled'));
+    const fb = document.getElementById('dialFb');
+    if (isCorrect) {
+      btn.classList.add('correct');
+      fb.textContent = '✓ ' + msg;
+      fb.className = 'mc-fb ok';
+    } else {
+      btn.classList.add('wrong');
+      fb.textContent = '✗ ' + msg;
+      fb.className = 'mc-fb err';
+      opts.forEach(b => {
+        if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(',true,')) b.classList.add('correct');
       });
     }
+  }
 
-    function norm(s){ return s.toLowerCase().replace(/[–—-]/g,' ').replace(/\s+/g,' ').trim(); }
-    function checkSp(n) {
-      const val = norm(document.getElementById(`sq${n}`).value);
-      const q   = SPELLING_Q[n-1];
-      const ok  = q.ok.some(a => norm(a)===val);
-      const fb  = document.getElementById(`sf${n}`);
-      fb.textContent = ok ? `✅ Perfetto! → ${q.hint}` : `❌ Quasi! La risposta: ${q.hint}`;
-      fb.className   = `feedback ${ok?'ok':'fail'}`;
-    }
+  // ═══ SPEAK genérico (elige mejor voz italiana disponible) ═══
+  let _voices = [];
+  function _loadVoices() { _voices = window.speechSynthesis.getVoices(); }
+  _loadVoices();
+  if (window.speechSynthesis) {
+    speechSynthesis.onvoiceschanged = _loadVoices;
+  }
+  function speak(text) {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'it-IT'; u.rate = 0.82; u.pitch = 1.05;
+    const v = _voices.find(v => v.lang === 'it-IT' && v.name.toLowerCase().includes('google'))
+           || _voices.find(v => v.lang.startsWith('it') && !v.localService)
+           || _voices.find(v => v.lang.startsWith('it'));
+    if (v) u.voice = v;
+    window.speechSynthesis.speak(u);
+  }
 
-    /* ── SCROLL REVEAL ── */
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-    }, {threshold:0.1});
-    function initReveal(){ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el)); }
+  // ═══ AUDIO LETRAS EXTRANJERAS ═══
+  const FOREIGN_DATA = [
+    {l:'J', phrase:'J come Jersey — jeans'},
+    {l:'K', phrase:'K come Kursaal — karaoke'},
+    {l:'W', phrase:'W come Washington — weekend'},
+    {l:'X', phrase:'X come Xilofono — taxi'},
+    {l:'Y', phrase:'Y come York — yoga'},
+  ];
+  function buildForeignAudio() {
+    const row = document.getElementById('foreignAudioRow');
+    if (!row) return;
+    FOREIGN_DATA.forEach(item => {
+      const div = document.createElement('div');
+      div.style.cssText = 'display:flex;align-items:center;gap:0.4rem;background:var(--cream);border-radius:10px;padding:0.5rem 0.85rem;';
+      div.innerHTML = `
+        <span style="font-family:var(--fh);font-size:1.5rem;font-weight:900;color:var(--mc-dk);">${item.l}</span>
+        <button onclick="speak('${item.phrase}')"
+          style="background:none;border:1.5px solid var(--mc-dk);color:var(--mc-dk);padding:0.18rem 0.6rem;border-radius:20px;font-size:0.73rem;font-weight:600;cursor:pointer;font-family:var(--fb);transition:all 0.2s;"
+          onmouseover="this.style.background='var(--mc-bg)'" onmouseout="this.style.background='none'">
+          🔊 Escuchar
+        </button>
+      `;
+      row.appendChild(div);
+    });
+  }
 
-    buildGrid(); buildCities(); buildNames(); buildSpelling(); initReveal();
-  
-})();
+  buildAlfa();
+  buildForeign();
+  buildForeignAudio();
+  buildSpell();
+  buildConj();
+  buildDialogue();
 </script>
 </body>
 </html>
