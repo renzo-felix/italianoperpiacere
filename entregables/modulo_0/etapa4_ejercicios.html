@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unità 0 · Ejercicios | Italiano Per Piacere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:    #e9e6d5;
+      --cream-dk: #ddd9c8;
+      --gold:     #EFCF7F;
+      --amber:    #e5ab07;
+      --amber-dk: #c8940a;
+      --red:      #cc4736;
+      --teal:     #78a6ba;
+      --green:    #528e74;
+      --black:    #1a1a18;
+      --white:    #ffffff;
+      --fh: 'Playfair Display', Georgia, serif;
+      --fb: 'Outfit', system-ui, sans-serif;
+      --r: 10px;
+      --mc:      #528e74;
+      --mc-dk:   #3d6b58;
+      --mc-text: #2d4d3c;
+      --mc-bg:   #e4f0e9;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body { font-family: var(--fb); background: var(--cream); color: var(--black); display: flex; flex-direction: column; min-height: 100vh; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%);
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .hero::before {
+      content: '✏️';
+      position: absolute;
+      font-size: 12rem;
+      opacity: 0.05;
+      bottom: -3rem;
+      right: -1rem;
+      pointer-events: none;
+      line-height: 1;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.22);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 0.3rem 1.2rem;
+      border-radius: 20px;
+      margin-bottom: 0.8rem;
+    }
+    .hero h1 {
+      font-family: var(--fh);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-style: italic;
+      margin-bottom: 0.4rem;
+    }
+    .hero p { font-size: 0.9rem; opacity: 0.85; font-weight: 300; }
+
+    /* STAGE NAV */
+    .stage-nav {
+      background: var(--white);
+      border-bottom: 2px solid var(--cream-dk);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+    .stage-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.85rem 1.8rem;
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #aaa;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .stage-link .sn { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.1rem; color: inherit; }
+    .stage-link.active { color: var(--mc-dk); border-bottom-color: var(--mc); }
+    .stage-link.done   { color: var(--green); }
+    .stage-link:hover:not(.active) { color: var(--black); background: var(--cream); }
+
+    /* GENIALLY WRAPPER */
+    .genially-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem 1.2rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .genially-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .genially-badge {
+      display: inline-block;
+      background: var(--mc);
+      color: var(--white);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.25rem 0.9rem;
+      border-radius: 20px;
+    }
+    .genially-title {
+      font-family: var(--fh);
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--mc-dk);
+    }
+
+    .genially-wrap {
+      flex: 1;
+      position: relative;
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: 0 6px 32px rgba(0,0,0,0.13);
+      background: #fff;
+      min-height: 520px;
+    }
+    .genially-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.6rem;
+      font-size: 0.76rem;
+      color: #999;
+    }
+    .info-row a {
+      color: var(--mc-dk);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .info-row a:hover { text-decoration: underline; }
+
+    /* NAV BOTTOM */
+    .nav-bottom {
+      background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk));
+      border-top: 3px solid var(--mc);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+    .nav-bottom p {
+      font-size: 0.87rem;
+      color: #666;
+      line-height: 1.5;
+    }
+    .nav-bottom p strong { color: var(--mc-text); }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--white);
+      color: var(--mc-dk);
+      border: 2px solid var(--mc-dk);
+      padding: 0.6rem 1.4rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.87rem;
+      transition: all 0.2s;
+    }
+    .btn-back:hover { background: var(--mc-bg); }
+    .btn-inicio {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--mc-dk);
+      color: var(--white);
+      padding: 0.6rem 1.4rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.87rem;
+      transition: all 0.2s;
+    }
+    .btn-inicio:hover { background: var(--mc); }
+
+    @media (max-width: 600px) {
+      .stage-link { padding: 0.75rem 1.1rem; }
+      .genially-section { padding: 1rem 0.75rem 1.5rem; }
+      .genially-wrap { min-height: 380px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">Unità 0 · A1 · Ejercicios</div>
+  <h1>Come ti chiami?</h1>
+  <p>Ripasso — Repaso interactivo de la unidad</p>
+</header>
+
+
+
+<!-- GENIALLY -->
+<section class="genially-section">
+  <div class="genially-label">
+    <span class="genially-badge">Repaso interactivo</span>
+    <span class="genially-title">Ripasso — Unità 0</span>
+  </div>
+
+  <div class="genially-wrap">
+    <iframe
+      src="https://view.genially.com/69b1daf6acdffaf94fe55ec8/presentation-ripasso-unita-0"
+      title="Ripasso Unità 0 — Italiano Per Piacere"
+      allowfullscreen
+      allow="fullscreen">
+    </iframe>
+  </div>
+
+  <div class="info-row">
+    <span>Presentación interactiva · Genially</span>
+    <a href="https://view.genially.com/69b1daf6acdffaf94fe55ec8/presentation-ripasso-unita-0" target="_blank" rel="noopener">
+      🔗 Abrir en pantalla completa
+    </a>
+  </div>
+</section>
+
+<!-- NAV BOTTOM -->
+
+</body>
+</html>

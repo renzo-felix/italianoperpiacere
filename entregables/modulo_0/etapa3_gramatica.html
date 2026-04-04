@@ -20,10 +20,10 @@
       --fh: 'Playfair Display', Georgia, serif;
       --fb: 'Outfit', system-ui, sans-serif;
       --r: 10px;
-      --mc:      #e5ab07;
-      --mc-dk:   #c8940a;
-      --mc-text: #7a5500;
-      --mc-bg:   #fdf3d0;
+      --mc:      #528e74;
+      --mc-dk:   #3d6b58;
+      --mc-text: #2d4d3c;
+      --mc-bg:   #e4f0e9;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -534,17 +534,12 @@
   </div>
 
   <!-- CTA -->
-  <div class="cta-block">
-    <p>
-      ¡Ottimo! Ya tenés todas las herramientas de la Unità 0.<br>
-      En la siguiente etapa vas a <strong>practicar con juegos y ejercicios</strong> usando exactamente este vocabulario.
-    </p>
-    <a class="btn-next" href="etapa4_ejercicios.html">Continuar → Ejercicios y Juegos</a>
-  </div>
+ 
 
 </main>
 
 <script>
+(function() {
   /* ═══ ALFABETO DATA ═══ */
   const ALFA = [
     ['A','Ancona'],['B','Bologna'],['C','Como'],['D','Domodossola'],['E','Empoli'],
@@ -675,14 +670,15 @@
       row.innerHTML = `
         <span style="flex:1;line-height:1.5;">${i+1}. ${item[0]}</span>
         <div style="display:flex;gap:0.4rem;flex-shrink:0;">
-          <button style="padding:0.3rem 0.85rem;border:2px solid var(--cream-dk);border-radius:20px;background:var(--white);font-size:0.82rem;font-weight:700;cursor:pointer;font-family:var(--fb);" onclick="checkExVF(${i},this,'V',${item[1]},'${item[2]}')">V</button>
-          <button style="padding:0.3rem 0.85rem;border:2px solid var(--cream-dk);border-radius:20px;background:var(--white);font-size:0.82rem;font-weight:700;cursor:pointer;font-family:var(--fb);" onclick="checkExVF(${i},this,'F',${!item[1]},'${item[2]}')">F</button>
+          <button style="padding:0.3rem 0.85rem;border:2px solid var(--cream-dk);border-radius:20px;background:var(--white);font-size:0.82rem;font-weight:700;cursor:pointer;font-family:var(--fb);" onclick="checkExVF(${i},this,${item[1]})">V</button>
+          <button style="padding:0.3rem 0.85rem;border:2px solid var(--cream-dk);border-radius:20px;background:var(--white);font-size:0.82rem;font-weight:700;cursor:pointer;font-family:var(--fb);" onclick="checkExVF(${i},this,${!item[1]})">F</button>
         </div>
       `;
       card.appendChild(row);
     });
   }
-  function checkExVF(i, btn, pressed, isCorrect, msg) {
+  function checkExVF(i, btn, isCorrect) {
+    const msg = vfData[i][2];
     const row = document.getElementById('exvf-' + i);
     if (row.dataset.done) return;
     row.dataset.done = '1';
@@ -692,7 +688,7 @@
     btn.style.borderColor = isCorrect ? '#52a670' : '#cc4736';
     btn.style.color = isCorrect ? '#1f5c35' : '#7a1f14';
     const fb = document.createElement('p');
-    fb.style.cssText = 'font-size:0.79rem;color:#555;margin:0.25rem 0 0 1rem;font-style:italic;grid-column:1/-1;';
+    fb.style.cssText = 'font-size:0.79rem;color:#555;margin:0.25rem 0 0 1rem;font-style:italic;';
     fb.textContent = (isCorrect ? '✓ ' : '✗ ') + msg;
     row.appendChild(fb);
   }
@@ -716,7 +712,7 @@
       div.innerHTML = `
         <p style="font-size:0.91rem;margin-bottom:0.4rem;">${i+1}. <em>${item.sentence}</em></p>
         <div class="opts-row">
-          ${opts.map(o => `<button class="opt" onclick="checkOpt('exchi-${i}',this,'${o}','${item.blank}','${item.note}')">${o}</button>`).join('')}
+          ${opts.map(o => `<button class="opt" onclick="checkOptChi(${i},this,'${o}')">${o}</button>`).join('')}
         </div>
         <div class="opt-fb" id="exchi-fb-${i}"></div>
       `;
@@ -744,15 +740,17 @@
       div.innerHTML = `
         <span style="flex:1;font-style:italic;font-weight:600;">${item[0]}</span>
         <div style="display:flex;gap:0.4rem;">
-          <button class="opt" style="padding:0.3rem 0.9rem;" onclick="checkSaluto(${i},this,'F','${item[1]}','${item[2]}')">Formal</button>
-          <button class="opt" style="padding:0.3rem 0.9rem;" onclick="checkSaluto(${i},this,'I','${item[1]}','${item[2]}')">Informal</button>
+          <button class="opt" style="padding:0.3rem 0.9rem;" onclick="checkSaluto(${i},this,'F')">Formal</button>
+          <button class="opt" style="padding:0.3rem 0.9rem;" onclick="checkSaluto(${i},this,'I')">Informal</button>
         </div>
         <div class="opt-fb" id="exsal-fb-${i}" style="width:100%;margin-top:0.25rem;"></div>
       `;
       card.appendChild(div);
     });
   }
-  function checkSaluto(i, btn, pressed, correct, note) {
+  function checkSaluto(i, btn, pressed) {
+    const correct = salutiData[i][1];
+    const note    = salutiData[i][2];
     const row = document.getElementById('exsal-' + i);
     if (row.dataset.done) return;
     row.dataset.done = '1';
@@ -762,6 +760,11 @@
     const fb = document.getElementById('exsal-fb-' + i);
     fb.textContent = (ok ? '✓ ' : '✗ ') + note;
     fb.className = 'opt-fb ' + (ok ? 'ok' : 'err');
+  }
+
+  function checkOptChi(i, btn, pressed) {
+    const item = chiData[i];
+    checkOpt('exchi-' + i, btn, pressed, item.blank, item.note);
   }
 
   /* ═══ EJ E: NUMERI ═══ */
@@ -867,6 +870,16 @@
   buildExSaluti();
   buildExNumeri();
   buildOrden();
+
+  // Exponer funciones para onclick handlers (necesario en Odoo DOMEval)
+  window.speak = speak;
+  window.checkExAlfa = checkExAlfa;
+  window.checkOrden = checkOrden;
+  window.checkExVF = checkExVF;
+  window.checkOptChi = checkOptChi;
+  window.checkSaluto = checkSaluto;
+  window.checkOpt = checkOpt;
+})();
 </script>
 </body>
 </html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unità 0 · Exploración | Italiano Per Piacere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:    #e9e6d5;
+      --cream-dk: #ddd9c8;
+      --gold:     #EFCF7F;
+      --amber:    #e5ab07;
+      --amber-dk: #c8940a;
+      --red:      #cc4736;
+      --teal:     #78a6ba;
+      --green:    #528e74;
+      --black:    #1a1a18;
+      --white:    #ffffff;
+      --fh: 'Playfair Display', Georgia, serif;
+      --fb: 'Outfit', system-ui, sans-serif;
+      --r: 10px;
+      --mc:      #528e74;
+      --mc-dk:   #3d6b58;
+      --mc-text: #2d4d3c;
+      --mc-bg:   #e4f0e9;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--fb); background: var(--cream); color: var(--black); min-height: 100vh; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%);
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '▶';
+      position: absolute;
+      font-size: 18rem;
+      opacity: 0.05;
+      bottom: -4rem;
+      right: -2rem;
+      pointer-events: none;
+      line-height: 1;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.22);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 0.3rem 1.2rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: var(--fh);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      font-weight: 300;
+    }
+
+    /* STAGE NAV */
+    .stage-nav {
+      background: var(--white);
+      border-bottom: 2px solid var(--cream-dk);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .stage-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.85rem 1.8rem;
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #aaa;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .stage-link .sn {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.1rem;
+      color: inherit;
+    }
+    .stage-link.active { color: var(--mc-dk); border-bottom-color: var(--mc); }
+    .stage-link.done   { color: var(--green); }
+    .stage-link:hover:not(.active) { color: var(--black); background: var(--cream); }
+
+    /* CONTAINER */
+    .container { max-width: 820px; margin: 0 auto; padding: 2.5rem 1.2rem 5rem; }
+
+    /* CARD */
+    .card {
+      background: var(--white);
+      border-radius: var(--r);
+      padding: 1.5rem 1.75rem;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+      margin-bottom: 1.5rem;
+    }
+
+    /* SOFIA */
+    .sofia-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .sofia-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .sofia-avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: var(--mc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 4px 16px rgba(229,171,7,0.35);
+    }
+    .sofia-name {
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--mc-dk);
+      margin-top: 0.3rem;
+    }
+    .sofia-bubble {
+      background: var(--white);
+      border-radius: 0 var(--r) var(--r) var(--r);
+      padding: 1rem 1.4rem;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.07);
+      font-size: 0.93rem;
+      line-height: 1.8;
+    }
+    .sofia-bubble strong { color: var(--mc-dk); }
+    .sofia-bubble em { color: var(--red); font-style: italic; }
+
+    /* VIDEO */
+    .video-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: 0 6px 28px rgba(0,0,0,0.15);
+      margin-bottom: 0.75rem;
+      background: #111;
+    }
+    .video-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+    .video-note {
+      font-size: 0.75rem;
+      color: #999;
+      margin-top: 0.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .video-yt-link {
+      color: var(--mc-dk);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.78rem;
+    }
+    .video-yt-link:hover { text-decoration: underline; }
+
+    /* INFO BOX */
+    .info-box {
+      background: #f0f6f9;
+      border-left: 4px solid var(--teal);
+      border-radius: var(--r);
+      padding: 0.9rem 1.3rem;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+      color: #2d5f72;
+    }
+
+    /* TASK BOX */
+    .task-box {
+      background: var(--mc-bg);
+      border-left: 4px solid var(--mc);
+      border-radius: var(--r);
+      padding: 1rem 1.4rem;
+      font-size: 0.9rem;
+      line-height: 1.75;
+      margin-bottom: 1.2rem;
+    }
+    .task-box strong { color: var(--mc-text); }
+
+    /* SEC LABEL */
+    .sec-label {
+      display: inline-block;
+      background: var(--mc);
+      color: var(--white);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.25rem 0.9rem;
+      border-radius: 20px;
+      margin-bottom: 0.6rem;
+    }
+    .sec-title {
+      font-family: var(--fh);
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--mc-dk);
+      margin-bottom: 0.2rem;
+    }
+    .sec-sub {
+      font-size: 0.84rem;
+      color: #777;
+      margin-bottom: 1.2rem;
+      line-height: 1.5;
+    }
+
+    /* STEPS */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: var(--cream);
+      border-radius: var(--r);
+      padding: 0.9rem 1.1rem;
+    }
+    .step-num {
+      background: var(--mc);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.85rem;
+      min-width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-txt { font-size: 0.91rem; line-height: 1.6; }
+    .step-txt strong { color: var(--mc-dk); }
+
+    /* CTA */
+    .cta-block {
+      background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk));
+      border-top: 3px solid var(--mc);
+      border-radius: var(--r);
+      padding: 1.75rem 2rem;
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+    .cta-block p {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1.1rem;
+      line-height: 1.6;
+    }
+    .btn-next {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--mc-dk);
+      color: var(--white);
+      padding: 0.75rem 2.2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.93rem;
+      transition: all 0.2s;
+    }
+    .btn-next:hover {
+      background: var(--mc);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(229,171,7,0.4);
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 1.5rem 0.9rem 4rem; }
+      .stage-link { padding: 0.75rem 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">Unità 0 · A1 · Exploración</div>
+  <h1>Come ti chiami?</h1>
+  <p>L'alfabeto italiano — LearnAmo</p>
+</header>
+
+
+
+<main class="container">
+
+  <!-- SOFIA -->
+  <div class="sofia-row">
+    <div class="sofia-col">
+      <div class="sofia-avatar">👩‍🏫</div>
+      <div class="sofia-name">Sofia</div>
+    </div>
+    <div class="sofia-bubble">
+      <em>Benvenuti!</em> Hoy empezamos con algo muy simple: <strong>¿cómo te llamás?</strong><br><br>
+      Pero antes de presentarnos, hay algo que los italianos hacen siempre: <strong>deletrear el nombre</strong>.
+      Y para eso, <strong>cada letra tiene su propia ciudad</strong>.<br><br>
+      Mirá este video de <em>LearnAmo</em> — es cortito, claro y vas a reconocer muchas ciudades.
+      Miralo <strong>dos veces</strong> usando los pasos de abajo.
+    </div>
+  </div>
+
+  <!-- INSTRUCCIONES -->
+  <section style="margin-bottom: 2rem;">
+    <div class="sec-label">Antes de mirar</div>
+    <h2 class="sec-title">Prima di guardare…</h2>
+    <p class="sec-sub">Activá lo que ya sabés</p>
+
+    <div class="task-box">
+      <strong>Pensá un momento antes de ver el video:</strong><br><br>
+      ① ¿Cuántas letras creés que tiene el alfabeto italiano — igual que el español (27) o diferente?<br>
+      ② ¿Existen letras del español que tal vez no existan en italiano?<br>
+      ③ ¿Cómo harías vos para deletrear tu nombre en un idioma extranjero?
+    </div>
+
+    <div class="card">
+      <p style="font-size:0.9rem;font-weight:600;color:var(--mc-text);margin-bottom:0.75rem;">
+        📋 Cómo mirar el video:
+      </p>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">1</span>
+          <span class="step-txt"><strong>Primera vez:</strong> solo escuchás y disfrutás. No te preocupes por entender todo. Dejate llevar por el ritmo del italiano.</span>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <span class="step-txt"><strong>Segunda vez:</strong> intentá anotar tantas ciudades italianas como puedas — una por letra. ¿Cuántas reconocés?</span>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <span class="step-txt"><strong>Prestá atención a:</strong> ¿Con qué ciudad se asocia cada letra? ¿Hay letras "extranjeras"? ¿Cómo se presenta la conductora?</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section style="margin-bottom: 2.5rem;">
+    <div class="sec-label">El video</div>
+    <h2 class="sec-title">L'Alfabeto Italiano</h2>
+    <p class="sec-sub">LearnAmo · ~5 minutos · en italiano</p>
+
+    <div class="video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/6R_4YRTshIg?rel=0"
+        title="L'Alfabeto Italiano – Da A come Ancona a Z come Zara | LearnAmo"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+    <div class="video-note">
+      <span>Video: LearnAmo · Todos los derechos pertenecen a sus autores.</span>
+      <a class="video-yt-link" href="https://www.youtube.com/watch?v=6R_4YRTshIg" target="_blank" rel="noopener">
+        🔗 Ver directamente en YouTube
+      </a>
+    </div>
+
+    <div class="info-box" style="margin-top:0.75rem;">
+      💡 Si el video no carga (puede pasar en redes escolares o al abrir el archivo localmente),
+      usá el link de arriba para verlo en YouTube y después volvé acá para continuar.
+    </div>
+  </section>
+
+  <!-- DESPUÉS DEL VIDEO -->
+  <section style="margin-bottom: 2rem;">
+    <div class="sec-label">Después de mirar</div>
+    <h2 class="sec-title">Dopo il video</h2>
+    <p class="sec-sub">Reflexioná antes de pasar a Descubrimiento</p>
+
+    <div class="task-box">
+      <strong>Antes de continuar, pensá:</strong><br><br>
+      ① ¿Cuántas letras tiene el alfabeto italiano? ¿Más o menos que el español?<br>
+      ② ¿Cómo se presenta la conductora? ¿Qué frase usa para decir su nombre?<br>
+      ③ ¿Cuáles son las letras que describió como "extranjeras"?<br><br>
+      Vas a encontrar las respuestas en la siguiente etapa 👇
+    </div>
+  </section>
+
+
+</main>
+
+</body>
+</html>

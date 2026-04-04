@@ -6,6 +6,8 @@
 <title>Sobre nosotros · Italiano Per Piacere</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://wsrv.nl">
+<link rel="preload" as="image" href="https://wsrv.nl/?url=raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/anton-ivanov-SlnoOiprQPI-unsplash.jpg&w=1200&q=85&output=webp" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -171,9 +173,25 @@ img{max-width:100%;height:auto;display:block}
 .ipp-collage-overlay{position:absolute;inset:0;background:rgba(82,142,116,.38);opacity:0;transition:opacity .3s}
 .ipp-collage-item:hover .ipp-collage-overlay{opacity:1}
 
+/* VIDEOS SHORTS */
+.ipp-videos{background:var(--ipp-cream);padding:5rem 1.5rem}
+.ipp-videos-exp{margin-bottom:3.5rem}
+.ipp-videos-exp:last-child{margin-bottom:0}
+.ipp-videos-exp-label{display:inline-flex;align-items:center;gap:.45rem;background:var(--ipp-white);color:var(--ipp-green);padding:.3rem .9rem;border-radius:2px;border-left:3px solid var(--ipp-green);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem}
+.ipp-shorts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:520px}
+.ipp-short{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:9/16;background:#c8d8cc;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.12);transition:transform .3s,box-shadow .3s}
+.ipp-short:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(0,0,0,.2)}
+.ipp-short img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .35s}
+.ipp-short:hover img{transform:scale(1.05)}
+.ipp-short-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,26,24,.5) 0%,transparent 55%)}
+.ipp-short-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.ipp-short-play span{width:46px;height:46px;background:var(--ipp-amber);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(229,171,7,.45)}
+.ipp-short-play svg{width:18px;height:18px;fill:#fff;margin-left:2px}
+@media(max-width:480px){.ipp-shorts-grid{max-width:100%}}
+
 /* CTA */
 .ipp-cta-section{background:var(--ipp-red);padding:5rem 1.5rem;text-align:center;position:relative;overflow:hidden}
-.ipp-cta-section::before{content:'';position:absolute;inset:0;background:url('https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/andreas-weilguny-VIWnpzyokpU-unsplash.jpg') center/cover no-repeat;opacity:.07}
+.ipp-cta-section::before{content:'';position:absolute;inset:0;background:url('https://wsrv.nl/?url=raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/andreas-weilguny-VIWnpzyokpU-unsplash.jpg&w=1200&q=50&output=webp') center/cover no-repeat;opacity:.07}
 .ipp-cta-section>*{position:relative;z-index:2}
 .ipp-cta-section h2{font-family:var(--ipp-font-head);font-size:clamp(1.5rem,4vw,2.6rem);color:#fff;margin-bottom:.9rem;font-weight:900}
 .ipp-cta-section h2 em{color:var(--ipp-gold);font-style:italic}
@@ -248,7 +266,7 @@ img{max-width:100%;height:auto;display:block}
     <p>Desde 2012, Carolina lleva el idioma y la cultura de Italia a corazones argentinos — con calidez, sin presiones y con mucho piacere.</p>
   </div>
   <div class="ipp-hero-car" aria-hidden="true">
-    <img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/anton-ivanov-SlnoOiprQPI-unsplash.jpg" alt="Fiat 500 naranja vintage" loading="eager">
+    <img src="https://wsrv.nl/?url=raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/anton-ivanov-SlnoOiprQPI-unsplash.jpg&w=1200&q=85&output=webp" alt="Fiat 500 naranja vintage" loading="eager" fetchpriority="high">
   </div>
 </section>
 
@@ -271,7 +289,7 @@ img{max-width:100%;height:auto;display:block}
     </div>
     <div class="ipp-origin ipp-reveal">
       <div class="ipp-origin-img">
-        <img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/johanna-schrag-ziY-tPmCW2g-unsplash.jpg" alt="Mercado italiano" loading="lazy">
+        <img src="https://wsrv.nl/?url=raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/johanna-schrag-ziY-tPmCW2g-unsplash.jpg&w=900&q=80&output=webp" alt="Mercado italiano" loading="lazy">
       </div>
       <div>
         <div class="ipp-quote-block">El tiempo en los primeros años de vida de mi hijo era valiosísimo — decidí transformar la enseñanza en algo propio, cercano y verdadero.</div>
@@ -416,7 +434,7 @@ img{max-width:100%;height:auto;display:block}
           </a>
         </div>
         <button class="ipp-diploma-card" id="diplBtn" type="button">
-          <img class="ipp-diploma-thumb" src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Diploma.png" alt="Diploma Ca' Foscari">
+          <img class="ipp-diploma-thumb" src="https://wsrv.nl/?url=raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Diploma.png&w=800&q=90&output=webp" alt="Diploma Ca' Foscari">
           <div class="ipp-diploma-info">
             <strong>Master Ca' Foscari · Venezia</strong>
             <small>Ver título completo →</small>
@@ -468,21 +486,52 @@ img{max-width:100%;height:auto;display:block}
   </div>
 </section>
 
-<!-- COLLAGE -->
-<section class="ipp-section-alt">
+
+<!-- VIDEOS -->
+<section class="ipp-videos" aria-label="Videos">
   <div class="ipp-container">
-    <div class="ipp-reveal ipp-text-center" style="margin-bottom:2rem">
-      <h2 class="ipp-section-title">Italia <span>nos inspira</span></h2>
-      <div class="ipp-divider ipp-divider-c"></div>
+    <div style="text-align:center;margin-bottom:3rem">
+      <div class="ipp-videos-exp-label" style="margin-bottom:1rem">Nuestros momentos</div>
+      <h2 class="ipp-section-title">Así se <span>vive</span> el italiano</h2>
+      <p style="color:#555;font-size:.95rem;max-width:480px;margin:.8rem auto 0;line-height:1.7">Clases, eventos y testimonios — todo en menos de un minuto.</p>
+      <a href="https://www.youtube.com/playlist?list=PLOe6KsOWkawIdyrUtZQ-2-1zf-FerBDfj" target="_blank" rel="noopener"
+         style="display:inline-flex;align-items:center;gap:.5rem;margin-top:1.2rem;background:var(--ipp-red);color:#fff;padding:.6rem 1.4rem;border-radius:6px;font-weight:700;font-size:.85rem;text-decoration:none;transition:background .2s"
+         onmouseover="this.style.background='#b83d2e'" onmouseout="this.style.background='var(--ipp-red)'">
+        <svg width="16" height="16" viewBox="0 0 256 256" fill="#fff"><path d="M234.33,69.52a24,24,0,0,0-14.49-16.4C185.56,40,128,40,128,40S70.44,40,36.16,53.12A24,24,0,0,0,21.67,69.52,251.15,251.15,0,0,0,16,128a251.15,251.15,0,0,0,5.67,58.48,24,24,0,0,0,14.49,16.41C70.44,216,128,216,128,216s57.56,0,91.84-13.12a24,24,0,0,0,14.49-16.41A251.15,251.15,0,0,0,240,128,251.15,251.15,0,0,0,234.33,69.52Zm-96.43,93.44L104,128l33.9-34.94Z"/></svg>
+        Ver playlist completa →
+      </a>
     </div>
-    <div class="ipp-collage ipp-reveal">
-      <div class="ipp-collage-item"><img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/bjorn-agerbeek-k0SMpuGKSFE-unsplash.jpg" alt="Bicicleta italiana" loading="lazy"><div class="ipp-collage-overlay"></div></div>
-      <div class="ipp-collage-item"><img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/matilda-bellman-QGNl98tDIlk-unsplash.jpg" alt="Limones italianos" loading="lazy"><div class="ipp-collage-overlay"></div></div>
-      <div class="ipp-collage-item"><img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/massimo-virgilio-q8i702UM1CA-unsplash.jpg" alt="Pimientos rojos" loading="lazy"><div class="ipp-collage-overlay"></div></div>
-      <div class="ipp-collage-item"><img src="https://raw.githubusercontent.com/estebansergio618/italianoperpiacere/main/danni-brehme-1AQ3cCjmfow-unsplash.jpg" alt="Calle italiana" loading="lazy"><div class="ipp-collage-overlay"></div></div>
+
+    <div class="ipp-shorts-grid ipp-reveal" style="max-width:520px;margin:0 auto">
+      <div class="ipp-short" data-vid="dbY3IfGDZcc">
+        <img src="https://img.youtube.com/vi/dbY3IfGDZcc/hqdefault.jpg" alt="Video 1" loading="lazy">
+        <div class="ipp-short-ov"></div>
+        <div class="ipp-short-play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+      </div>
+      <div class="ipp-short" data-vid="H6HHj9wihjY">
+        <img src="https://img.youtube.com/vi/H6HHj9wihjY/hqdefault.jpg" alt="Video 2" loading="lazy">
+        <div class="ipp-short-ov"></div>
+        <div class="ipp-short-play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+      </div>
+      <div class="ipp-short" data-vid="IdbPtvv5VlA">
+        <img src="https://img.youtube.com/vi/IdbPtvv5VlA/hqdefault.jpg" alt="Video 3" loading="lazy">
+        <div class="ipp-short-ov"></div>
+        <div class="ipp-short-play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+      </div>
     </div>
+
   </div>
 </section>
+
+<!-- Lightbox YouTube Shorts -->
+<div id="sn-yt-lb" style="display:none;position:fixed;inset:0;background:rgba(233,230,213,.97);z-index:9999;align-items:center;justify-content:center;flex-direction:column"
+     onclick="this.style.display='none';document.getElementById('sn-yt-fr').src=''">
+  <button onclick="document.getElementById('sn-yt-lb').style.display='none';document.getElementById('sn-yt-fr').src=''"
+          style="position:absolute;top:1.2rem;right:1.5rem;background:var(--ipp-red);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10000">✕</button>
+  <iframe id="sn-yt-fr" src="" width="360" height="640"
+          style="border:none;border-radius:12px;max-width:90vw;max-height:80vh"
+          allow="autoplay; fullscreen" allowfullscreen onclick="event.stopPropagation()"></iframe>
+</div>
 
 <!-- CTA -->
 <section class="ipp-cta-section">
@@ -501,7 +550,7 @@ img{max-width:100%;height:auto;display:block}
 <div class="ipp-lightbox" id="diplLightbox" role="dialog" aria-modal="true" aria-label="Diploma">
   <div class="ipp-lightbox-inner">
     <button class="ipp-lightbox-close" id="diplClose" aria-label="Cerrar">&times;</button>
-    <img src="https://raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Diploma.png" alt="Master en Didáctica y Promoción de la Lengua y Cultura Italiana — Ca' Foscari Venezia">
+    <img src="https://wsrv.nl/?url=raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Diploma.png&w=800&q=90&output=webp" alt="Master en Didáctica y Promoción de la Lengua y Cultura Italiana — Ca' Foscari Venezia">
   </div>
 </div>
 
@@ -535,6 +584,15 @@ img{max-width:100%;height:auto;display:block}
   document.getElementById('diplClose').addEventListener('click',function(){lb.classList.remove('ipp-open');document.body.style.overflow='';});
   lb.addEventListener('click',function(e){if(e.target===lb){lb.classList.remove('ipp-open');document.body.style.overflow='';}});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'){lb.classList.remove('ipp-open');document.body.style.overflow='';}});
+
+  /* YouTube Shorts lightbox */
+  document.querySelectorAll('.ipp-short').forEach(function(card){
+    card.addEventListener('click',function(){
+      document.getElementById('sn-yt-fr').src='https://www.youtube.com/embed/'+this.dataset.vid+'?autoplay=1&rel=0';
+      var lb=document.getElementById('sn-yt-lb');
+      lb.style.display='flex';
+    });
+  });
 
   /* Flip cards */
   document.querySelectorAll('.ipp-flip-wrap').forEach(function(c){
