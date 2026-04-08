@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unità 0 · Gramática | Italiano Per Piacere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:    #e9e6d5;
+      --cream-dk: #ddd9c8;
+      --gold:     #EFCF7F;
+      --amber:    #e5ab07;
+      --amber-dk: #c8940a;
+      --red:      #cc4736;
+      --teal:     #78a6ba;
+      --green:    #528e74;
+      --black:    #1a1a18;
+      --white:    #ffffff;
+      --fh: 'Playfair Display', Georgia, serif;
+      --fb: 'Outfit', system-ui, sans-serif;
+      --r: 10px;
+      --mc:      #528e74;
+      --mc-dk:   #3d6b58;
+      --mc-text: #2d4d3c;
+      --mc-bg:   #e4f0e9;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--fb); background: var(--cream); color: var(--black); min-height: 100vh; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%);
+      padding: 3rem 1.5rem 2.5rem; text-align: center; color: var(--white);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: 'G';
+      position: absolute; font-family: var(--fh); font-size: 20rem;
+      font-style: italic; opacity: 0.05;
+      bottom: -5rem; right: -1rem; pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block; background: rgba(255,255,255,0.22); color: var(--white);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+      padding: 0.3rem 1.2rem; border-radius: 20px; margin-bottom: 1rem;
+    }
+    .hero h1 { font-family: var(--fh); font-size: clamp(2rem,5vw,3rem); font-style: italic; margin-bottom: 0.5rem; }
+    .hero p { font-size: 0.95rem; opacity: 0.85; font-weight: 300; }
+
+    /* STAGE NAV */
+    .stage-nav { background: var(--white); border-bottom: 2px solid var(--cream-dk); display: flex; justify-content: center; }
+    .stage-link {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0.85rem 1.8rem; text-decoration: none;
+      font-size: 0.72rem; font-weight: 600; color: #aaa;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap;
+    }
+    .stage-link .sn { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.1rem; color: inherit; }
+    .stage-link.active { color: var(--mc-dk); border-bottom-color: var(--mc); }
+    .stage-link.done { color: var(--green); }
+    .stage-link:hover:not(.active) { color: var(--black); background: var(--cream); }
+
+    /* STICKY NAV */
+    .sticky-nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.96); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--cream-dk);
+      display: flex; justify-content: center; gap: 0.3rem;
+      padding: 0.5rem 1rem; flex-wrap: wrap;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .sticky-nav a {
+      color: var(--mc-dk); text-decoration: none;
+      font-size: 0.75rem; font-weight: 600;
+      padding: 0.3rem 0.85rem; border-radius: 20px;
+      transition: all 0.2s; border: 1.5px solid transparent;
+    }
+    .sticky-nav a:hover { background: var(--mc-bg); border-color: var(--mc); }
+
+    /* CONTAINER */
+    .container { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.2rem 4rem; }
+    .sec { margin-bottom: 3.5rem; scroll-margin-top: 60px; }
+
+    /* SOFIA */
+    .sofia-row { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+    .sofia-col { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .sofia-avatar {
+      width: 58px; height: 58px; border-radius: 50%;
+      background: var(--mc); display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; box-shadow: 0 4px 16px rgba(229,171,7,0.35);
+    }
+    .sofia-name { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--mc-dk); margin-top: 0.3rem; }
+    .sofia-bubble {
+      background: var(--white); border-radius: 0 var(--r) var(--r) var(--r);
+      padding: 1rem 1.4rem; box-shadow: 0 3px 14px rgba(0,0,0,0.07);
+      font-size: 0.92rem; line-height: 1.75;
+    }
+    .sofia-bubble strong { color: var(--mc-dk); }
+    .sofia-bubble em { color: var(--red); font-style: italic; }
+
+    /* TITLES */
+    .sec-title { font-family: var(--fh); font-size: 1.7rem; font-style: italic; color: var(--mc-dk); margin-bottom: 0.25rem; }
+    .sec-sub { font-size: 0.84rem; color: #777; margin-bottom: 1.25rem; }
+
+    /* RULE BOX */
+    .rule-box {
+      background: var(--white); border-radius: var(--r);
+      padding: 1.4rem 1.75rem; box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+      margin-bottom: 1.2rem; border-top: 4px solid var(--mc);
+    }
+    .rule-box h3 { font-family: var(--fh); font-size: 1.05rem; font-style: italic; color: var(--mc-dk); margin-bottom: 0.75rem; }
+
+    /* GRAMMAR TABLE */
+    .g-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-bottom: 0.75rem; }
+    .g-table th {
+      background: var(--mc); color: var(--white);
+      padding: 0.55rem 1rem; text-align: left;
+      font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .g-table th:first-child { border-radius: 8px 0 0 0; }
+    .g-table th:last-child  { border-radius: 0 8px 0 0; }
+    .g-table td { padding: 0.6rem 1rem; border-bottom: 1px solid var(--cream-dk); }
+    .g-table tr:last-child td { border-bottom: none; }
+    .g-table tr:nth-child(even) td { background: var(--cream); }
+    .g-table .hl { color: var(--red); font-weight: 700; }
+    .g-table .it { font-style: italic; color: #555; }
+
+    /* ALPHABET FULL */
+    .alfa-full {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(155px,1fr));
+      gap: 0.5rem; margin-bottom: 1rem;
+    }
+    .alfa-cell {
+      background: var(--cream); border-radius: 8px;
+      padding: 0.55rem 0.85rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .alfa-cell.foreign { background: #fdf3d0; border: 1px dashed var(--amber-dk); }
+    .alfa-cell .ltr { font-family: var(--fh); font-size: 1.5rem; font-weight: 900; color: var(--mc-dk); min-width: 24px; }
+    .alfa-cell .sep { font-size: 0.7rem; color: #aaa; }
+    .alfa-cell .cit { font-size: 0.85rem; font-weight: 500; }
+    .alfa-legend { font-size: 0.78rem; color: #888; margin-bottom: 0.75rem; }
+    .alfa-legend span { display: inline-block; width: 14px; height: 14px; background: #fdf3d0; border: 1px dashed var(--amber-dk); border-radius: 3px; vertical-align: middle; margin-right: 4px; }
+
+    /* CONJUGATION */
+    .conj-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; margin-bottom: 0.75rem; }
+    .conj-table th { background: var(--mc); color: var(--white); padding: 0.55rem 1.1rem; text-align: left; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .conj-table th:first-child { border-radius: 8px 0 0 0; }
+    .conj-table th:last-child  { border-radius: 0 8px 0 0; }
+    .conj-table td { padding: 0.65rem 1.1rem; border-bottom: 1px solid var(--cream-dk); }
+    .conj-table tr:last-child td { border-bottom: none; }
+    .conj-table tr:nth-child(even) td { background: var(--cream); }
+    .conj-table .pro { font-weight: 700; color: var(--mc-dk); }
+    .conj-table .refl { color: var(--red); font-weight: 700; }
+    .conj-table .stem { color: var(--black); }
+    .conj-table .end  { color: var(--teal); font-weight: 700; }
+    .conj-note { font-size: 0.82rem; color: #666; font-style: italic; padding: 0.6rem 0; }
+
+    /* GREETINGS GRID */
+    .greet-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-bottom: 1rem;
+    }
+    .greet-card {
+      background: var(--cream); border-radius: var(--r); padding: 1rem 1.2rem;
+    }
+    .greet-card h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem; color: #888; }
+    .greet-card h4.formal { color: var(--teal); }
+    .greet-card h4.informal { color: var(--green); }
+    .greet-row { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--cream-dk); font-size: 0.88rem; }
+    .greet-row:last-child { border-bottom: none; }
+    .greet-row .it-phrase { font-weight: 700; color: var(--black); }
+    .greet-row .es-phrase { color: #777; font-style: italic; font-size: 0.83rem; }
+
+    /* NUMBERS */
+    .num-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(90px,1fr)); gap: 0.5rem;
+    }
+    .num-cell {
+      background: var(--cream); border-radius: 8px;
+      padding: 0.55rem 0.5rem; text-align: center;
+    }
+    .num-cell .num { font-family: var(--fh); font-size: 1.3rem; font-weight: 700; color: var(--mc-dk); }
+    .num-cell .word { font-size: 0.78rem; color: #555; margin-top: 0.1rem; }
+
+    /* ESPRESSIONI */
+    .espr-list { display: flex; flex-direction: column; gap: 0.6rem; }
+    .espr-item {
+      background: var(--cream); border-radius: var(--r); padding: 0.8rem 1.1rem;
+      display: grid; grid-template-columns: 1fr 1fr auto; align-items: center; gap: 1rem;
+    }
+    .espr-it { font-weight: 700; font-size: 0.92rem; color: var(--mc-dk); }
+    .espr-es { font-style: italic; font-size: 0.87rem; color: #666; }
+    .espr-audio {
+      background: none; border: 1.5px solid var(--mc-dk); color: var(--mc-dk);
+      padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+      cursor: pointer; font-family: var(--fb); transition: all 0.2s; white-space: nowrap;
+    }
+    .espr-audio:hover { background: var(--mc-bg); }
+
+    /* ═══ EXERCISES ═══ */
+    .ex-section { margin-bottom: 2.5rem; }
+    .ex-title {
+      font-family: var(--fh); font-size: 1.15rem; font-style: italic;
+      color: var(--mc-dk); margin-bottom: 0.25rem;
+    }
+    .ex-desc { font-size: 0.84rem; color: #777; margin-bottom: 1rem; }
+    .ex-card {
+      background: var(--white); border-radius: var(--r);
+      padding: 1.5rem 1.75rem; box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+
+    /* Fill-in-the-blank */
+    .fill-rows { display: flex; flex-direction: column; gap: 0.7rem; }
+    .fill-row {
+      background: var(--cream); border-radius: var(--r);
+      padding: 0.75rem 1rem; font-size: 0.91rem; line-height: 1.7;
+      display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+    }
+    .fill-row span { color: var(--black); }
+    .fill-inp {
+      border: 2px solid var(--cream-dk); border-radius: 6px;
+      padding: 0.2rem 0.5rem; font-family: var(--fb); font-size: 0.88rem;
+      background: var(--white); min-width: 100px; text-align: center;
+    }
+    .fill-inp.ok  { border-color: #52a670; background: #e8f5ec; color: #1f5c35; }
+    .fill-inp.err { border-color: var(--red); background: #fdecea; }
+    .fill-num { font-size: 0.75rem; color: #aaa; min-width: 20px; }
+
+    /* Options */
+    .opts-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+    .opt {
+      padding: 0.4rem 1rem; border: 2px solid var(--cream-dk);
+      border-radius: 30px; background: var(--white);
+      font-family: var(--fb); font-size: 0.85rem; cursor: pointer;
+      transition: all 0.2s; color: var(--black);
+    }
+    .opt:hover:not(.disabled) { border-color: var(--mc); background: var(--mc-bg); }
+    .opt.correct  { background: #e8f5ec; border-color: #52a670; color: #1f5c35; font-weight: 700; }
+    .opt.wrong    { background: #fdecea; border-color: var(--red); color: #7a1f14; }
+    .opt.disabled { pointer-events: none; opacity: 0.6; }
+    .opt-fb { font-size: 0.8rem; margin-top: 0.3rem; font-weight: 600; display:none; }
+    .opt-fb.ok  { color: #2a7a4a; display: block; }
+    .opt-fb.err { color: var(--red); display: block; }
+
+    /* Buttons */
+    .check-btn {
+      margin-top: 1rem; padding: 0.5rem 1.4rem; border: none; border-radius: 30px;
+      background: var(--mc-dk); color: var(--white);
+      font-family: var(--fb); font-size: 0.87rem; font-weight: 700;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .check-btn:hover { background: var(--mc); }
+    .ex-result { margin-top: 0.75rem; font-size: 0.87rem; font-weight: 600; display:none; }
+    .ex-result.ok  { color: #2a7a4a; display: block; }
+    .ex-result.err { color: var(--red); display: block; }
+
+    /* Culture strip */
+    .culture-strip {
+      background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk));
+      border-top: 3px solid var(--mc); border-radius: var(--r);
+      padding: 1.5rem 1.75rem; margin-bottom: 2rem;
+    }
+    .culture-strip h3 { font-family: var(--fh); font-size: 1.1rem; font-style: italic; color: var(--mc-dk); margin-bottom: 0.75rem; }
+    .culture-strip p { font-size: 0.88rem; line-height: 1.7; color: #555; }
+    .culture-strip strong { color: var(--mc-text); }
+
+    /* CTA */
+    .cta-block {
+      background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk));
+      border-top: 3px solid var(--mc); border-radius: var(--r);
+      padding: 1.75rem 2rem; text-align: center; margin-top: 2.5rem;
+    }
+    .cta-block p { font-size: 0.9rem; color: #666; margin-bottom: 1.1rem; line-height: 1.6; }
+    .btn-next {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--mc-dk); color: var(--white);
+      padding: 0.75rem 2.2rem; border-radius: 30px;
+      text-decoration: none; font-weight: 700; font-size: 0.93rem; transition: all 0.2s;
+    }
+    .btn-next:hover { background: var(--mc); transform: translateY(-2px); box-shadow: 0 4px 14px rgba(229,171,7,0.4); }
+
+    @media (max-width: 600px) {
+      .stage-link { padding: 0.7rem 0.9rem; font-size: 0.65rem; }
+      .container { padding: 1.5rem 0.85rem 3rem; }
+      .greet-grid { grid-template-columns: 1fr; }
+      .espr-item { grid-template-columns: 1fr 1fr; }
+      .espr-audio { grid-column: span 2; justify-self: start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">Unità 0 · A1 · Gramática</div>
+  <h1>Come ti chiami?</h1>
+  <p>Fase expositiva · Las reglas confirmadas</p>
+</header>
+
+
+<!-- STICKY NAV -->
+<div class="sticky-nav">
+  <a href="#alfabeto">El alfabeto</a>
+  <a href="#chiamarsi">Chiamarsi</a>
+  <a href="#saluti">Saludos</a>
+  <a href="#numeri">Números</a>
+  <a href="#espressioni">Expresiones</a>
+  <a href="#ejercicios">Ejercicios</a>
+</div>
+
+<main class="container">
+
+  <!-- INTRO SOFIA -->
+  <section class="sec">
+    <div class="sofia-row">
+      <div class="sofia-col">
+        <div class="sofia-avatar">👩‍🏫</div>
+        <div class="sofia-name">Sofia</div>
+      </div>
+      <div class="sofia-bubble">
+        En la etapa anterior <strong>descubriste las reglas por tu cuenta</strong>. Ahora las confirmamos y completamos.
+        Esta etapa es para leer, escuchar y fijar. Al final hay ejercicios — <em>mínimo uno de cada tema</em>.
+      </div>
+    </div>
+  </section>
+
+  <!-- ① ALFABETO -->
+  <section class="sec" id="alfabeto">
+    <h2 class="sec-title">① L'alfabeto italiano</h2>
+    <p class="sec-sub">21 letras propias + 5 letras "straniere" — las que viste en el video</p>
+
+    <div class="rule-box">
+      <h3>Las 21 letras del alfabeto italiano</h3>
+      <p class="alfa-legend">
+        <span></span> Letras extranjeras (usadas en palabras importadas como <em>jeans, weekend, taxi</em>)
+      </p>
+      <div class="alfa-full" id="alfaFull"></div>
+      <p style="font-size:0.84rem;color:#666;line-height:1.6;">
+        ⚠️ <strong>Letras que no existen en italiano:</strong> J · K · W · X · Y<br>
+        Son "lettere straniere" — aparecen en préstamos del inglés, francés y alemán.<br>
+        ⚠️ <strong>La H es muda:</strong> no se pronuncia sola. Aparece en <em>ho, hai, ha, hanno</em> (verbo avere) y en combinaciones como <em>ch</em> y <em>gh</em>.
+      </p>
+    </div>
+
+    <div class="rule-box">
+      <h3>¿Cómo se dice? — Pronunciación clave</h3>
+      <table class="g-table">
+        <thead><tr><th>Letra / Combo</th><th>Suena como…</th><th>Ejemplo</th></tr></thead>
+        <tbody>
+          <tr><td><strong>C + a/o/u</strong></td><td>K (come Como)</td><td><em>casa, cosa, cura</em></td></tr>
+          <tr><td><strong>C + e/i</strong></td><td>CH de "chico"</td><td><em>ciao, cinema</em></td></tr>
+          <tr><td><strong>G + a/o/u</strong></td><td>G de "gato"</td><td><em>gatto, gonna</em></td></tr>
+          <tr><td><strong>G + e/i</strong></td><td>Y de "yo" (suave)</td><td><em>gelato, giro</em></td></tr>
+          <tr><td><strong>CH</strong></td><td>K (come Como)</td><td><em>che, chi</em></td></tr>
+          <tr><td><strong>GH</strong></td><td>G de "gato"</td><td><em>ghiaccio</em></td></tr>
+          <tr><td><strong>SC + e/i</strong></td><td>SH de "show"</td><td><em>scena, sci</em></td></tr>
+          <tr><td><strong>GL + i</strong></td><td>LL de "llave"</td><td><em>gli, famiglia</em></td></tr>
+          <tr><td><strong>GN</strong></td><td>Ñ de "año"</td><td><em>gnocchi, bagno</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ② CHIAMARSI -->
+  <section class="sec" id="chiamarsi">
+    <h2 class="sec-title">② Il verbo <em>chiamarsi</em></h2>
+    <p class="sec-sub">El verbo reflexivo para decir cómo te llamás — el primero que aprendés en italiano</p>
+
+    <div class="rule-box">
+      <h3>Conjugación completa</h3>
+      <p style="font-size:0.85rem;color:#666;margin-bottom:0.85rem;">
+        <em>Chiamarsi</em> es un verbo reflexivo: la partícula (mi/ti/si…) cambia con cada persona
+        y va <strong>antes</strong> del verbo.
+      </p>
+      <table class="conj-table">
+        <thead><tr><th>Pronombre</th><th>Forma completa</th><th>Ejemplo</th></tr></thead>
+        <tbody>
+          <tr><td class="pro">io</td>      <td><span class="refl">mi</span> <span class="stem">chiam</span><span class="end">o</span></td>    <td class="it">Io mi chiamo Sofia.</td></tr>
+          <tr><td class="pro">tu</td>      <td><span class="refl">ti</span> <span class="stem">chiam</span><span class="end">i</span></td>    <td class="it">Tu ti chiami Marco.</td></tr>
+          <tr><td class="pro">lui/lei</td> <td><span class="refl">si</span> <span class="stem">chiam</span><span class="end">a</span></td>    <td class="it">Lei si chiama Anna.</td></tr>
+          <tr><td class="pro">noi</td>     <td><span class="refl">ci</span> <span class="stem">chiam</span><span class="end">iamo</span></td> <td class="it">Noi ci chiamiamo ragazzi.</td></tr>
+          <tr><td class="pro">voi</td>     <td><span class="refl">vi</span> <span class="stem">chiam</span><span class="end">ate</span></td>  <td class="it">Come vi chiamate?</td></tr>
+          <tr><td class="pro">loro</td>    <td><span class="refl">si</span> <span class="stem">chiam</span><span class="end">ano</span></td>  <td class="it">Si chiamano Paolo e Luca.</td></tr>
+        </tbody>
+      </table>
+      <p class="conj-note">
+        🔴 La partícula reflexiva (<em>mi, ti, si, ci, vi, si</em>) es la parte que cambia.<br>
+        🔵 La raíz <em>chiam-</em> es siempre la misma. Las desinencias (-o, -i, -a…) son las de los verbos en -ARE.
+      </p>
+    </div>
+
+    <div class="rule-box">
+      <h3>Preguntas y respuestas</h3>
+      <table class="g-table">
+        <thead><tr><th>Pregunta</th><th>Respuesta</th></tr></thead>
+        <tbody>
+          <tr><td><em>Come ti chiami?</em> (informal)</td><td><em>Mi chiamo [nombre].</em></td></tr>
+          <tr><td><em>Come si chiama?</em> (formal)</td><td><em>Mi chiamo [nombre].</em></td></tr>
+          <tr><td><em>Come si chiama lui/lei?</em></td><td><em>Si chiama [nombre].</em></td></tr>
+          <tr><td><em>Come vi chiamate?</em></td><td><em>Ci chiamiamo [nombres].</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ③ SALUTI -->
+  <section class="sec" id="saluti">
+    <h2 class="sec-title">③ I saluti</h2>
+    <p class="sec-sub">Saludos formales e informales — la diferencia importa en Italia</p>
+
+    <div class="rule-box">
+      <div class="greet-grid">
+        <div class="greet-card">
+          <h4 class="informal">Informale — con amigos, familia, jóvenes</h4>
+          <div class="greet-row"><span class="it-phrase">Ciao!</span><span class="es-phrase">¡Hola! / ¡Chau!</span></div>
+          <div class="greet-row"><span class="it-phrase">Salve!</span><span class="es-phrase">¡Hola! (neutro)</span></div>
+          <div class="greet-row"><span class="it-phrase">Come stai?</span><span class="es-phrase">¿Cómo estás?</span></div>
+          <div class="greet-row"><span class="it-phrase">Bene, grazie!</span><span class="es-phrase">¡Bien, gracias!</span></div>
+          <div class="greet-row"><span class="it-phrase">Arrivederci</span><span class="es-phrase">Hasta luego</span></div>
+          <div class="greet-row"><span class="it-phrase">A presto!</span><span class="es-phrase">¡Hasta pronto!</span></div>
+        </div>
+        <div class="greet-card">
+          <h4 class="formal">Formale — con adultos, clientes, desconocidos</h4>
+          <div class="greet-row"><span class="it-phrase">Buongiorno</span><span class="es-phrase">Buenos días</span></div>
+          <div class="greet-row"><span class="it-phrase">Buon pomeriggio</span><span class="es-phrase">Buenas tardes</span></div>
+          <div class="greet-row"><span class="it-phrase">Buonasera</span><span class="es-phrase">Buenas noches (desde las 18hs)</span></div>
+          <div class="greet-row"><span class="it-phrase">Buonanotte</span><span class="es-phrase">Buenas noches (al irse a dormir)</span></div>
+          <div class="greet-row"><span class="it-phrase">Come sta?</span><span class="es-phrase">¿Cómo está usted?</span></div>
+          <div class="greet-row"><span class="it-phrase">Arrivederla</span><span class="es-phrase">Hasta luego (muy formal)</span></div>
+        </div>
+      </div>
+      <p style="font-size:0.83rem;color:#666;margin-top:0.5rem;font-style:italic;">
+        💡 <strong>Piacere!</strong> = ¡Mucho gusto! — se usa siempre al presentarse.
+      </p>
+    </div>
+  </section>
+
+  <!-- ④ NUMERI -->
+  <section class="sec" id="numeri">
+    <h2 class="sec-title">④ I numeri — da 1 a 30</h2>
+    <p class="sec-sub">Los números del 1 al 30 — fundamentales para dar tu número de teléfono y tu edad</p>
+
+    <div class="rule-box">
+      <div class="num-grid" id="numGrid"></div>
+      <div style="margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--cream-dk);">
+        <p style="font-size:0.84rem;color:#666;line-height:1.65;">
+          ⚠️ <strong>Atención:</strong> <em>uno → un / una</em> según el género.<br>
+          ⚠️ <em>Tre</em> sola lleva acento: <strong>tré</strong> (para distinguirla de la preposición <em>tre</em>).<br>
+          ⚠️ <em>Ventuno, ventotto</em> — se pierde la vocal cuando el número termina en vocal + <em>uno/otto</em>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ ESPRESSIONI -->
+  <section class="sec" id="espressioni">
+    <h2 class="sec-title">⑤ Espressioni utili</h2>
+    <p class="sec-sub">Frases que ya podés usar desde hoy</p>
+
+    <div class="rule-box">
+      <div class="espr-list" id="esprList"></div>
+    </div>
+  </section>
+
+  <!-- ════════════ EJERCICIOS ════════════ -->
+  <section class="sec" id="ejercicios">
+    <h2 class="sec-title">Esercizi — Poné a prueba lo aprendido</h2>
+    <p class="sec-sub">Ejercicios organizados por tema — todos los contenidos de esta unidad</p>
+
+    <!-- EJ 1: Completar alfabeto -->
+    <div class="ex-section">
+      <h3 class="ex-title">A · El alfabeto — completá con la ciudad correcta</h3>
+      <p class="ex-desc">Escribí la ciudad que corresponde a cada letra del alfabeto fonético italiano.</p>
+      <div class="ex-card">
+        <div class="fill-rows" id="exAlfa"></div>
+        <button class="check-btn" onclick="checkExAlfa()">Verificar</button>
+        <div class="ex-result" id="exAlfaRes"></div>
+      </div>
+    </div>
+
+    <!-- EJ 2: Letras extranjeras V/F -->
+    <div class="ex-section">
+      <h3 class="ex-title">B · Verdadero o Falso — las letras</h3>
+      <p class="ex-desc">¿Son correctas estas afirmaciones sobre el alfabeto italiano?</p>
+      <div class="ex-card" id="exVF"></div>
+    </div>
+
+    <!-- EJ 3: Chiamarsi — elegir partícula -->
+    <div class="ex-section">
+      <h3 class="ex-title">C · Chiamarsi — completá con mi / ti / si / ci / vi</h3>
+      <p class="ex-desc">Seleccioná la partícula reflexiva correcta para cada oración.</p>
+      <div class="ex-card" id="exChiamarsi"></div>
+    </div>
+
+    <!-- EJ 4: Saludos — ¿formal o informal? -->
+    <div class="ex-section">
+      <h3 class="ex-title">D · Saludos — ¿formal o informal?</h3>
+      <p class="ex-desc">Clasificá cada saludo: ¿se usa en contexto formal (F) o informal (I)?</p>
+      <div class="ex-card" id="exSaluti"></div>
+    </div>
+
+    <!-- EJ 5: Números — escribir la palabra -->
+    <div class="ex-section">
+      <h3 class="ex-title">E · Números — ¿cómo se escribe?</h3>
+      <p class="ex-desc">Seleccioná la opción correcta para cada número.</p>
+      <div class="ex-card" id="exNumeri"></div>
+    </div>
+
+    <!-- EJ 6: Diálogo — ordenar -->
+    <div class="ex-section">
+      <h3 class="ex-title">F · Ordenar el diálogo</h3>
+      <p class="ex-desc">Numerá estas frases del 1 al 5 para reconstruir una presentación correcta.</p>
+      <div class="ex-card" id="exOrdenar">
+        <div id="ordenLines"></div>
+        <button class="check-btn" onclick="checkOrden()">Verificar orden</button>
+        <div class="ex-result" id="exOrdenRes"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CULTURA -->
+  <div class="culture-strip">
+    <h3>🇮🇹 Nota culturale — Come si scrive il tuo nome?</h3>
+    <p>
+      En Italia, cuando das tu nombre por teléfono o en una ventanilla, siempre deletreás usando las ciudades del
+      alfabeto fonético. Esta costumbre viene de los años en que las comunicaciones eran poco claras y había que
+      evitar confusiones entre letras que suenan parecido (M/N, B/P, D/T).
+      <strong>Tip práctico:</strong> aprendé de memoria al menos 10 ciudades — te van a salir naturalmente muy pronto.
+    </p>
+  </div>
+
+  <!-- CTA -->
+ 
+
+</main>
+
+<script>
+(function() {
+  /* ═══ ALFABETO DATA ═══ */
+  const ALFA = [
+    ['A','Ancona'],['B','Bologna'],['C','Como'],['D','Domodossola'],['E','Empoli'],
+    ['F','Firenze'],['G','Genova'],['H','Hotel'],['I','Imola'],['L','Livorno'],
+    ['M','Milano'],['N','Napoli'],['O','Otranto'],['P','Palermo'],['Q','Quarto'],
+    ['R','Roma'],['S','Savona'],['T','Torino'],['U','Udine'],['V','Venezia'],['Z','Zara'],
+  ];
+  const FOREIGN = new Set(['J','K','W','X','Y']);
+
+  /* ═══ BUILD ALFABETO TABLE ═══ */
+  function buildAlfaFull() {
+    const all = [...ALFA.map(([l,c]) => [l,c,false])];
+    // Insert foreign letters in alphabetical position
+    [['J','Jersey'],['K','Kursaal'],['W','Washington'],['X','Xilofono'],['Y','York']].forEach(([l,c]) => all.push([l,c,true]));
+    all.sort((a,b) => a[0].localeCompare(b[0]));
+    const grid = document.getElementById('alfaFull');
+    all.forEach(([ltr, city, isForeign]) => {
+      const div = document.createElement('div');
+      div.className = 'alfa-cell' + (isForeign ? ' foreign' : '');
+      div.innerHTML = `<span class="ltr">${ltr}</span><span class="sep">·</span><span class="cit">${city}</span>`;
+      grid.appendChild(div);
+    });
+  }
+
+  /* ═══ BUILD NUMERI ═══ */
+  const NUMS = [
+    [1,'uno'],[2,'due'],[3,'tre'],[4,'quattro'],[5,'cinque'],
+    [6,'sei'],[7,'sette'],[8,'otto'],[9,'nove'],[10,'dieci'],
+    [11,'undici'],[12,'dodici'],[13,'tredici'],[14,'quattordici'],[15,'quindici'],
+    [16,'sedici'],[17,'diciassette'],[18,'diciotto'],[19,'diciannove'],[20,'venti'],
+    [21,'ventuno'],[22,'ventidue'],[23,'ventitré'],[24,'ventiquattro'],[25,'venticinque'],
+    [26,'ventisei'],[27,'ventisette'],[28,'ventotto'],[29,'ventinove'],[30,'trenta'],
+  ];
+  function buildNums() {
+    const grid = document.getElementById('numGrid');
+    NUMS.forEach(([n, w]) => {
+      const div = document.createElement('div');
+      div.className = 'num-cell';
+      div.innerHTML = `<div class="num">${n}</div><div class="word">${w}</div>`;
+      grid.appendChild(div);
+    });
+  }
+
+  /* ═══ BUILD ESPRESSIONI ═══ */
+  const ESPR = [
+    ['Come ti chiami?',     '¿Cómo te llamás?'],
+    ['Mi chiamo…',          'Me llamo…'],
+    ['Come si scrive?',     '¿Cómo se escribe?'],
+    ['Che significa?',      '¿Qué significa?'],
+    ['Piacere!',            '¡Mucho gusto!'],
+    ['Di dove sei?',        '¿De dónde sos?'],
+    ['Sono di…',            'Soy de…'],
+    ['Quanti anni hai?',    '¿Cuántos años tenés?'],
+    ['Ho… anni.',           'Tengo… años.'],
+    ['Scusa / Scusi',       'Perdón (inf./form.)'],
+  ];
+  function buildEspr() {
+    const list = document.getElementById('esprList');
+    ESPR.forEach(([it, es]) => {
+      const div = document.createElement('div');
+      div.className = 'espr-item';
+      div.innerHTML = `
+        <span class="espr-it">${it}</span>
+        <span class="espr-es">${es}</span>
+        <button class="espr-audio" onclick="speak('${it.replace(/'/g,"\\'")}')">🔊 Escuchar</button>
+      `;
+      list.appendChild(div);
+    });
+  }
+
+  /* ═══ SPEECH ═══ */
+  function speak(text, rate) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.lang = 'it-IT'; utt.rate = rate || 0.82;
+    const voices = speechSynthesis.getVoices();
+    const itVoice = voices.find(v => v.lang.startsWith('it'));
+    if (itVoice) utt.voice = itVoice;
+    speechSynthesis.speak(utt);
+  }
+  if (window.speechSynthesis) speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+
+  /* ═══ EJ A: FILL ALFA ═══ */
+  const exAlfaData = [
+    ['G','Genova'],['L','Livorno'],['N','Napoli'],['Q','Quarto'],['U','Udine'],
+  ];
+  function buildExAlfa() {
+    const rows = document.getElementById('exAlfa');
+    exAlfaData.forEach((item, i) => {
+      const row = document.createElement('div');
+      row.className = 'fill-row';
+      row.innerHTML = `
+        <span class="fill-num">${i+1}.</span>
+        <span><strong>${item[0]}</strong> come</span>
+        <input class="fill-inp" id="exAlfa-${i}" placeholder="ciudad…" data-ans="${item[1]}">
+      `;
+      rows.appendChild(row);
+    });
+  }
+  function checkExAlfa() {
+    let ok = 0;
+    exAlfaData.forEach((item, i) => {
+      const inp = document.getElementById('exAlfa-' + i);
+      const val = (inp.value || '').trim().toLowerCase();
+      if (val === item[1].toLowerCase()) { inp.classList.add('ok'); inp.classList.remove('err'); ok++; }
+      else { inp.classList.add('err'); inp.classList.remove('ok'); inp.placeholder = item[1]; }
+    });
+    const res = document.getElementById('exAlfaRes');
+    res.textContent = `${ok}/${exAlfaData.length} correctas. ${ok === exAlfaData.length ? '¡Perfetto!' : 'Las incorrectas muestran la respuesta como placeholder.'}`;
+    res.className = 'ex-result ' + (ok === exAlfaData.length ? 'ok' : 'err');
+  }
+
+  /* ═══ EJ B: V/F ═══ */
+  const vfData = [
+    ['El alfabeto italiano tiene 21 letras propias.', true, 'Correcto. Las 5 extranjeras (J,K,W,X,Y) son extra.'],
+    ['La H en italiano suena fuerte, como en inglés.', false, 'No — la H es completamente muda en italiano.'],
+    ['C + i suena como "K" (come Como).', false, 'No — C+e/i suena como "CH" de chico. C+a/o/u suena como K.'],
+    ['En italiano "gnocchi" lleva el sonido Ñ de "año".', true, 'Correcto — GN se pronuncia como la Ñ española.'],
+    ['La letra Z existe en el alfabeto italiano original.', true, 'Sí — Z come Zara es parte del alfabeto de 21 letras.'],
+  ];
+  function buildExVF() {
+    const card = document.getElementById('exVF');
+    vfData.forEach((item, i) => {
+      const row = document.createElement('div');
+      row.id = 'exvf-' + i;
+      row.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1rem;background:var(--cream);border-radius:var(--r);margin-bottom:0.5rem;gap:1rem;font-size:0.91rem;';
+      row.innerHTML = `
+        <span style="flex:1;line-height:1.5;">${i+1}. ${item[0]}</span>
+        <div style="display:flex;gap:0.4rem;flex-shrink:0;">
+          <button style="padding:0.3rem 0.85rem;border:2px solid var(--cream-dk);border-radius:20px;background:var(--white);font-size:0.82rem;font-weight:700;cursor:pointer;font-family:var(--fb);" onclick="checkExVF(${i},this,${item[1]})">V</button>
+          <button style="padding:0.3rem 0.85rem;border:2px solid var(--cream-dk);border-radius:20px;background:var(--white);font-size:0.82rem;font-weight:700;cursor:pointer;font-family:var(--fb);" onclick="checkExVF(${i},this,${!item[1]})">F</button>
+        </div>
+      `;
+      card.appendChild(row);
+    });
+  }
+  function checkExVF(i, btn, isCorrect) {
+    const msg = vfData[i][2];
+    const row = document.getElementById('exvf-' + i);
+    if (row.dataset.done) return;
+    row.dataset.done = '1';
+    row.querySelectorAll('button').forEach(b => { b.disabled = true; b.style.opacity = '0.55'; });
+    btn.style.opacity = '1';
+    btn.style.background = isCorrect ? '#e8f5ec' : '#fdecea';
+    btn.style.borderColor = isCorrect ? '#52a670' : '#cc4736';
+    btn.style.color = isCorrect ? '#1f5c35' : '#7a1f14';
+    const fb = document.createElement('p');
+    fb.style.cssText = 'font-size:0.79rem;color:#555;margin:0.25rem 0 0 1rem;font-style:italic;';
+    fb.textContent = (isCorrect ? '✓ ' : '✗ ') + msg;
+    row.appendChild(fb);
+  }
+
+  /* ═══ EJ C: CHIAMARSI ═══ */
+  const chiData = [
+    { sentence: '______ chiamo Lucia. Sono italiana.', blank:'mi', opts:['mi','ti','si','ci','vi'], note:'1ª persona singular: io mi chiamo.' },
+    { sentence: 'Come ______ chiami? Non ho capito!', blank:'ti', opts:['mi','ti','si','ci','vi'], note:'2ª persona singular: tu ti chiami.' },
+    { sentence: 'Il professore ______ chiama Rossi.', blank:'si', opts:['mi','ti','si','ci','vi'], note:'3ª persona: lui/lei si chiama.' },
+    { sentence: 'Come ______ chiamate, ragazzi?', blank:'vi', opts:['mi','ti','si','ci','vi'], note:'2ª persona plural: voi vi chiamate.' },
+    { sentence: 'Noi ______ chiamiamo "Gli Amici dell\'italiano".',blank:'ci',opts:['mi','ti','si','ci','vi'], note:'1ª persona plural: noi ci chiamiamo.' },
+    { sentence: 'Loro ______ chiamano Marco e Luca.', blank:'si', opts:['mi','ti','si','ci','vi'], note:'3ª persona plural: loro si chiamano.' },
+  ];
+  function buildExChiamarsi() {
+    const card = document.getElementById('exChiamarsi');
+    chiData.forEach((item, i) => {
+      const div = document.createElement('div');
+      div.id = 'exchi-' + i;
+      div.style.cssText = 'margin-bottom:0.9rem;';
+      const opts = [...item.opts].sort(() => Math.random() - 0.5);
+      div.innerHTML = `
+        <p style="font-size:0.91rem;margin-bottom:0.4rem;">${i+1}. <em>${item.sentence}</em></p>
+        <div class="opts-row">
+          ${opts.map(o => `<button class="opt" onclick="checkOptChi(${i},this,'${o}')">${o}</button>`).join('')}
+        </div>
+        <div class="opt-fb" id="exchi-fb-${i}"></div>
+      `;
+      card.appendChild(div);
+    });
+  }
+
+  /* ═══ EJ D: SALUTI ═══ */
+  const salutiData = [
+    ['Buongiorno!',    'F', 'Saludo formal — se usa por la mañana con desconocidos o en contextos profesionales.'],
+    ['Ciao!',          'I', 'Saludo informal — con amigos y conocidos.'],
+    ['Buonasera!',     'F', 'Formal — desde las 18hs aproximadamente.'],
+    ['Come stai?',     'I', 'Informal — "stai" es la forma tu del verbo stare.'],
+    ['Come sta?',      'F', 'Formal — "sta" es la forma lei/Lei del verbo stare.'],
+    ['Arrivederla!',   'F', 'Muy formal — la -La es el pronombre de cortesía.'],
+    ['A presto!',      'I', 'Informal — "¡Hasta pronto!"'],
+    ['Buonanotte!',    'N', 'Neutro — se usa al irse a dormir, tanto formal como informalmente.'],
+  ];
+  function buildExSaluti() {
+    const card = document.getElementById('exSaluti');
+    salutiData.forEach((item, i) => {
+      const div = document.createElement('div');
+      div.id = 'exsal-' + i;
+      div.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1rem;background:var(--cream);border-radius:var(--r);margin-bottom:0.5rem;gap:1rem;font-size:0.91rem;flex-wrap:wrap;';
+      div.innerHTML = `
+        <span style="flex:1;font-style:italic;font-weight:600;">${item[0]}</span>
+        <div style="display:flex;gap:0.4rem;">
+          <button class="opt" style="padding:0.3rem 0.9rem;" onclick="checkSaluto(${i},this,'F')">Formal</button>
+          <button class="opt" style="padding:0.3rem 0.9rem;" onclick="checkSaluto(${i},this,'I')">Informal</button>
+        </div>
+        <div class="opt-fb" id="exsal-fb-${i}" style="width:100%;margin-top:0.25rem;"></div>
+      `;
+      card.appendChild(div);
+    });
+  }
+  function checkSaluto(i, btn, pressed) {
+    const correct = salutiData[i][1];
+    const note    = salutiData[i][2];
+    const row = document.getElementById('exsal-' + i);
+    if (row.dataset.done) return;
+    row.dataset.done = '1';
+    row.querySelectorAll('.opt').forEach(b => b.classList.add('disabled'));
+    const ok = pressed === correct || correct === 'N';
+    btn.classList.add(ok ? 'correct' : 'wrong');
+    const fb = document.getElementById('exsal-fb-' + i);
+    fb.textContent = (ok ? '✓ ' : '✗ ') + note;
+    fb.className = 'opt-fb ' + (ok ? 'ok' : 'err');
+  }
+
+  function checkOptChi(i, btn, pressed) {
+    const item = chiData[i];
+    checkOpt('exchi-' + i, btn, pressed, item.blank, item.note);
+  }
+
+  /* ═══ EJ E: NUMERI ═══ */
+  const numExData = [
+    [7,  'sette',       ['sette','sei','otto']],
+    [13, 'tredici',     ['quattordici','tredici','dodici']],
+    [21, 'ventuno',     ['ventiuno','ventuno','ventisette']],
+    [28, 'ventotto',    ['ventotto','ventotto','ventotto'].map((v,i)=>i===0?'ventiotto':i===1?'ventotto':'ventohotto')],
+    [15, 'quindici',    ['quinici','quindice','quindici']],
+    [23, 'ventitré',    ['ventitre','ventitré','ventisette']],
+    [30, 'trenta',      ['trenta','trentuno','trentadue'].map((v,i)=>i===0?'trenta':i===1?'trentuno':'treinta')],
+  ];
+  function buildExNumeri() {
+    const card = document.getElementById('exNumeri');
+    numExData.forEach((item, i) => {
+      const [num, correct, opts] = item;
+      const shuffled = [...opts].sort(() => Math.random() - 0.5);
+      const div = document.createElement('div');
+      div.id = 'exnum-' + i;
+      div.style.marginBottom = '1rem';
+      div.innerHTML = `
+        <p style="font-size:0.95rem;margin-bottom:0.4rem;font-weight:600;">
+          ${i+1}. ¿Cómo se escribe el número <strong>${num}</strong>?
+        </p>
+        <div class="opts-row">
+          ${shuffled.map(o => `<button class="opt" onclick="checkOpt('exnum-${i}',this,'${o}','${correct}','${num} = ${correct}')">${o}</button>`).join('')}
+        </div>
+        <div class="opt-fb" id="exnum-fb-${i}"></div>
+      `;
+      card.appendChild(div);
+    });
+  }
+
+  /* ═══ EJ F: ORDENAR DIÁLOGO ═══ */
+  const ordenData = [
+    { text: 'Piacere, Marco! Io mi chiamo Sofia.',  correct: 3 },
+    { text: 'Ciao! Come ti chiami?',                correct: 1 },
+    { text: 'Mi chiamo Marco. E tu?',               correct: 2 },
+    { text: 'Come si scrive, Sofia?',               correct: 4 },
+    { text: 'S come Savona, O come Otranto, F come Firenze, I come Imola, A come Ancona.',  correct: 5 },
+  ];
+  const shuffledOrden = [...ordenData].sort(() => Math.random() - 0.5);
+  function buildOrden() {
+    const cont = document.getElementById('ordenLines');
+    shuffledOrden.forEach((item, i) => {
+      const div = document.createElement('div');
+      div.style.cssText = 'display:flex;align-items:center;gap:0.75rem;background:var(--cream);border-radius:var(--r);padding:0.7rem 1rem;margin-bottom:0.5rem;';
+      div.innerHTML = `
+        <select id="ord-sel-${i}" style="padding:0.3rem 0.4rem;border:2px solid var(--cream-dk);border-radius:6px;font-family:var(--fb);font-size:0.86rem;background:var(--white);">
+          <option value="">—</option>
+          ${[1,2,3,4,5].map(n=>`<option value="${n}">${n}</option>`).join('')}
+        </select>
+        <span style="font-size:0.91rem;font-style:italic;">${item.text}</span>
+      `;
+      cont.appendChild(div);
+    });
+  }
+  function checkOrden() {
+    let ok = 0;
+    shuffledOrden.forEach((item, i) => {
+      const sel = document.getElementById('ord-sel-' + i);
+      const val = parseInt(sel.value);
+      const correct = val === item.correct;
+      sel.style.borderColor = correct ? '#52a670' : '#cc4736';
+      sel.style.background = correct ? '#e8f5ec' : '#fdecea';
+      if (correct) ok++;
+    });
+    const res = document.getElementById('exOrdenRes');
+    res.textContent = ok === shuffledOrden.length
+      ? '¡Perfetto! Orden correcto: Ciao → Mi chiamo → Piacere → Come si scrive → Deletreo.'
+      : `${ok}/${shuffledOrden.length} correctas. Revisá el orden y volvé a intentarlo.`;
+    res.className = 'ex-result ' + (ok === shuffledOrden.length ? 'ok' : 'err');
+  }
+
+  /* ═══ GENERIC CHECK OPT ═══ */
+  function checkOpt(containerId, btn, pressed, correct, note) {
+    const container = document.getElementById(containerId);
+    if (container.dataset.done) return;
+    container.dataset.done = '1';
+    container.querySelectorAll('.opt').forEach(b => b.classList.add('disabled'));
+    const ok = pressed === correct;
+    btn.classList.add(ok ? 'correct' : 'wrong');
+    if (!ok) {
+      container.querySelectorAll('.opt').forEach(b => {
+        if (b.textContent.trim() === correct) b.classList.add('correct');
+      });
+    }
+    const fbId = containerId.replace('exchi-','exchi-fb-').replace('exnum-','exnum-fb-');
+    const fb = document.getElementById(fbId);
+    if (fb) {
+      fb.textContent = (ok ? '✓ ' : '✗ ') + note;
+      fb.className = 'opt-fb ' + (ok ? 'ok' : 'err');
+    }
+  }
+
+  /* ═══ INIT ═══ */
+  buildAlfaFull();
+  buildNums();
+  buildEspr();
+  buildExAlfa();
+  buildExVF();
+  buildExChiamarsi();
+  buildExSaluti();
+  buildExNumeri();
+  buildOrden();
+
+  // Exponer funciones para onclick handlers (necesario en Odoo DOMEval)
+  window.speak = speak;
+  window.checkExAlfa = checkExAlfa;
+  window.checkOrden = checkOrden;
+  window.checkExVF = checkExVF;
+  window.checkOptChi = checkOptChi;
+  window.checkSaluto = checkSaluto;
+  window.checkOpt = checkOpt;
+})();
+</script>
+</body>
+</html>

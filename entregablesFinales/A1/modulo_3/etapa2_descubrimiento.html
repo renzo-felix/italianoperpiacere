@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Todos in piazza! — Etapa 2 | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #e9e6d5; --cream-dk: #ddd9c8; --gold: #EFCF7F;
+  --amber: #e5ab07; --amber-dk: #c8940a; --red: #cc4736;
+  --teal: #78a6ba; --green: #528e74; --black: #1a1a18; --white: #ffffff;
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+  --r: 10px;
+  --mc: #528e74; --mc-dk: #3d6b58; --mc-text: #2d4d3c; --mc-bg: #e8f4ef;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--cream); font-family: var(--fb); color: var(--black); line-height: 1.6; }
+
+/* ── STAGE NAV ── */
+.stage-nav {
+  background: var(--white); border-bottom: 2px solid var(--cream-dk);
+  padding: 12px 24px; display: flex; align-items: center; gap: 8px;
+  flex-wrap: wrap; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.stage-nav .logo { font-family: var(--fh); font-style: italic; color: var(--mc); font-size: 1rem; font-weight: 700; margin-right: 12px; }
+.stage-pill {
+  padding: 5px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 600;
+  border: 1.5px solid transparent; text-decoration: none; transition: all 0.2s;
+}
+.stage-pill.done { background: var(--mc-bg); color: var(--mc-dk); border-color: var(--mc); }
+.stage-pill.active { background: var(--mc); color: var(--white); border-color: var(--mc-dk); }
+.stage-pill.pending { background: var(--cream-dk); color: #888; border-color: #ccc; cursor: default; }
+.stage-sep { color: #bbb; font-size: 0.8rem; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%);
+  color: var(--white); padding: 56px 24px 48px; text-align: center;
+}
+.hero .modulo-tag {
+  display: inline-block; background: rgba(255,255,255,.18);
+  border-radius: 20px; padding: 4px 16px; font-size: 0.78rem; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase; margin-bottom: 18px;
+}
+.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2rem,5vw,3.2rem); line-height: 1.1; margin-bottom: 14px; }
+.hero .sub { font-size: 1rem; opacity: .88; max-width: 560px; margin: 0 auto; }
+
+/* ── MAIN CONTAINER ── */
+.container { max-width: 820px; margin: 0 auto; padding: 40px 20px 60px; }
+
+/* ── SECTION HEADERS ── */
+.sec-header { margin: 48px 0 22px; }
+.sec-header h2 { font-family: var(--fh); font-style: italic; color: var(--mc-dk); font-size: 1.55rem; margin-bottom: 6px; }
+.sec-header p { font-size: 0.92rem; color: #555; }
+.sec-num { display: inline-block; background: var(--mc); color: var(--white); border-radius: 50%; width: 28px; height: 28px; line-height: 28px; text-align: center; font-size: 0.8rem; font-weight: 700; margin-right: 8px; vertical-align: middle; }
+
+/* ── SOFIA BUBBLE ── */
+.sofia-block { display: flex; gap: 16px; align-items: flex-start; margin: 32px 0; }
+.sofia-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--mc); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; border: 3px solid var(--mc-dk); }
+.sofia-bubble {
+  background: var(--cream-dk); border-radius: 0 16px 16px 16px;
+  padding: 16px 20px; flex: 1; position: relative; font-size: 0.93rem;
+  border-left: 3px solid var(--mc);
+}
+.sofia-bubble::before { content: ''; position: absolute; left: -9px; top: 16px; border: 8px solid transparent; border-right-color: var(--mc); border-left: none; }
+.sofia-name { font-weight: 700; color: var(--mc-dk); font-size: 0.8rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: .05em; }
+
+/* ── PHRASE CARDS ── */
+.phrase-grid { display: grid; gap: 12px; }
+.phrase-card {
+  background: var(--white); border: 1px solid var(--cream-dk); border-radius: var(--r);
+  padding: 14px 18px; display: flex; align-items: center; gap: 14px;
+  transition: box-shadow 0.2s;
+}
+.phrase-card:hover { box-shadow: 0 3px 12px rgba(82,142,116,.15); }
+.phrase-text { flex: 1; }
+.phrase-it { font-size: 1rem; font-weight: 600; font-style: italic; color: var(--mc-dk); }
+.phrase-context { font-size: 0.78rem; color: #777; margin-top: 2px; }
+.btn-audio {
+  background: var(--mc-bg); border: 1.5px solid var(--mc); border-radius: 50%;
+  width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.2s; flex-shrink: 0; font-size: 1rem;
+}
+.btn-audio:hover { background: var(--mc); color: var(--white); }
+.btn-audio.playing { background: var(--mc); color: var(--white); animation: pulse 0.8s infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.12)} }
+
+/* ── CLOCK GRID ── */
+.clock-wrapper { background: var(--white); border-radius: 16px; padding: 28px; border: 1px solid var(--cream-dk); }
+.clock-label { text-align: center; font-size: 0.85rem; color: #666; margin-bottom: 20px; font-style: italic; }
+.clock-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+}
+.clock-btn {
+  background: var(--cream-dk); border: 2px solid transparent; border-radius: var(--r);
+  padding: 12px 6px; text-align: center; cursor: pointer; transition: all 0.2s;
+  font-family: var(--fb);
+}
+.clock-btn:hover { background: var(--mc-bg); border-color: var(--mc); }
+.clock-btn.active { background: var(--mc); border-color: var(--mc-dk); color: var(--white); }
+.clock-btn .hour-num { font-size: 1.3rem; font-weight: 700; display: block; }
+.clock-btn .hour-label { font-size: 0.68rem; color: inherit; opacity: .75; display: block; margin-top: 2px; }
+.clock-display {
+  margin-top: 20px; background: var(--mc-bg); border-radius: var(--r);
+  padding: 16px 20px; text-align: center; min-height: 56px;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+}
+.clock-display .disp-it { font-size: 1.2rem; font-weight: 700; color: var(--mc-dk); font-style: italic; }
+.clock-display .disp-note { font-size: 0.78rem; color: var(--mc-text); background: var(--white); padding: 3px 10px; border-radius: 20px; border: 1px solid var(--mc); }
+
+/* ── PATTERN TABLE ── */
+.pattern-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--r); overflow: hidden; border: 1px solid var(--cream-dk); }
+.pattern-table th { background: var(--mc); color: var(--white); padding: 10px 14px; font-size: 0.82rem; font-weight: 600; text-align: left; }
+.pattern-table td { padding: 11px 14px; border-bottom: 1px solid var(--cream-dk); font-size: 0.92rem; vertical-align: middle; }
+.pattern-table tr:last-child td { border-bottom: none; }
+.pattern-table tr:nth-child(even) td { background: var(--cream); }
+.pattern-table td em { color: var(--mc-dk); font-weight: 600; }
+.pattern-table .time-badge { font-size: 0.8rem; font-weight: 700; background: var(--mc-bg); color: var(--mc-dk); padding: 2px 8px; border-radius: 20px; }
+
+/* ── FORMAL TABLE ── */
+.formal-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--r); overflow: hidden; border: 1px solid var(--cream-dk); }
+.formal-table th { padding: 10px 14px; font-size: 0.8rem; font-weight: 600; text-align: left; }
+.formal-table th:first-child { background: var(--cream-dk); width: 80px; }
+.formal-table th:nth-child(2) { background: var(--mc); color: var(--white); }
+.formal-table th:last-child { background: var(--mc-dk); color: var(--white); }
+.formal-table td { padding: 11px 14px; border-bottom: 1px solid var(--cream-dk); font-size: 0.88rem; vertical-align: middle; }
+.formal-table tr:last-child td { border-bottom: none; }
+.formal-table .time-col { font-weight: 700; font-size: 0.9rem; color: var(--mc-dk); }
+
+/* ── SALUTI CARDS ── */
+.saluti-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; }
+.saluto-card {
+  background: var(--white); border-radius: 14px; padding: 20px 16px; text-align: center;
+  border: 2px solid var(--cream-dk); transition: all 0.2s; cursor: pointer;
+}
+.saluto-card:hover { border-color: var(--mc); box-shadow: 0 4px 14px rgba(82,142,116,.18); transform: translateY(-2px); }
+.saluto-emoji { font-size: 2.2rem; margin-bottom: 8px; display: block; }
+.saluto-word { font-family: var(--fh); font-style: italic; font-size: 1.25rem; color: var(--mc-dk); font-weight: 700; margin-bottom: 4px; }
+.saluto-time { font-size: 0.75rem; color: #777; margin-bottom: 10px; }
+.saluto-card .btn-audio { margin: 0 auto; }
+
+/* ── DIALOG ── */
+.dial-container { background: var(--white); border-radius: 14px; border: 1px solid var(--cream-dk); padding: 24px; margin-bottom: 24px; }
+.dial-title { font-family: var(--fh); font-style: italic; color: var(--mc-dk); font-size: 1rem; margin-bottom: 16px; font-weight: 700; }
+.btn-play-all {
+  width: 100%; padding: 14px; background: var(--mc); color: var(--white);
+  border: none; border-radius: var(--r); font-family: var(--fb); font-size: 1rem;
+  font-weight: 700; cursor: pointer; margin-bottom: 20px; transition: background 0.2s;
+}
+.btn-play-all:hover { background: var(--mc-dk); }
+.dial-speaker-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.dial-speaker { font-size: 0.75rem; font-weight: 700; color: var(--mc-dk); text-transform: uppercase; letter-spacing: .04em; }
+.f-bubble { background: var(--mc-bg); border-left: 3px solid var(--mc); padding: 12px 16px; border-radius: 0 10px 10px 10px; margin-bottom: 16px; }
+.m-bubble { background: #e8f0eb; border-left: 3px solid #3d6b58; padding: 12px 16px; border-radius: 0 10px 10px 10px; margin-bottom: 16px; }
+.hidden-text { opacity: 0; max-height: 0; overflow: hidden; transition: all 0.4s ease; font-size: 0.95rem; font-style: italic; color: var(--mc-text); font-weight: 600; }
+.hidden-text.revealed { opacity: 1; max-height: 200px; }
+.btn-line-play {
+  padding: 4px 12px; background: var(--white); border: 1.5px solid var(--mc);
+  border-radius: 20px; color: var(--mc-dk); font-family: var(--fb); font-size: 0.78rem;
+  font-weight: 600; cursor: pointer; transition: all 0.2s;
+}
+.btn-line-play:hover { background: var(--mc-bg); }
+
+/* ── ACTIVITY ── */
+.activity-card { background: var(--white); border-radius: 12px; border: 1px solid var(--cream-dk); padding: 18px 20px; margin-bottom: 12px; }
+.activity-q { font-size: 0.95rem; font-weight: 600; margin-bottom: 12px; color: var(--mc-text); }
+.activity-opts { display: flex; gap: 10px; flex-wrap: wrap; }
+.opt-btn {
+  padding: 8px 18px; border-radius: 20px; border: 1.5px solid var(--mc);
+  background: var(--white); color: var(--mc-dk); font-family: var(--fb); font-size: 0.85rem;
+  font-weight: 600; cursor: pointer; transition: all 0.2s;
+}
+.opt-btn:hover:not(:disabled) { background: var(--mc-bg); }
+.opt-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; pointer-events: none; }
+.opt-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; pointer-events: none; }
+.activity-feedback { margin-top: 10px; font-size: 0.85rem; font-weight: 600; display: none; }
+.activity-feedback.show { display: block; }
+.activity-feedback.ok { color: #155724; }
+.activity-feedback.no { color: #721c24; }
+
+/* ── EXPRESIONES ── */
+.expr-grid { display: grid; gap: 10px; }
+.expr-row {
+  background: var(--white); border-radius: var(--r); border: 1px solid var(--cream-dk);
+  padding: 12px 16px; display: flex; align-items: center; gap: 14px;
+}
+.expr-it { font-style: italic; font-weight: 600; color: var(--mc-dk); font-size: 0.95rem; flex: 1; }
+.expr-es { font-size: 0.82rem; color: #666; flex: 1; }
+
+/* ── FONETICA ── */
+.fonetica-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--r); overflow: hidden; border: 1px solid var(--cream-dk); }
+.fonetica-table th { background: var(--mc); color: var(--white); padding: 10px 14px; font-size: 0.82rem; }
+.fonetica-table td { padding: 11px 14px; border-bottom: 1px solid var(--cream-dk); text-align: center; vertical-align: middle; font-size: 0.95rem; }
+.fonetica-table tr:last-child td { border-bottom: none; }
+.fonetica-table .fl { font-style: italic; font-weight: 700; color: var(--mc-dk); }
+.fonetica-table .fr { font-style: italic; font-weight: 700; color: var(--red); }
+.fonetica-table .fn { font-size: 0.75rem; color: #aaa; font-style: italic; }
+
+.fonetic-activity { background: var(--white); border-radius: 14px; border: 1px solid var(--cream-dk); padding: 24px; margin-top: 20px; }
+.fonetic-activity h3 { font-family: var(--fh); font-style: italic; color: var(--mc-dk); margin-bottom: 14px; }
+.fonetic-word-row { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.fonetic-word-row .word-num { font-weight: 700; color: var(--mc-dk); width: 22px; }
+.fonetic-answer { display: flex; gap: 8px; }
+.lr-btn {
+  padding: 6px 18px; border-radius: 20px; border: 1.5px solid var(--mc);
+  background: var(--white); color: var(--mc-dk); font-family: var(--fb); font-size: 0.88rem;
+  font-weight: 700; cursor: pointer; transition: all 0.2s;
+}
+.lr-btn:hover:not(:disabled) { background: var(--mc-bg); }
+.lr-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; pointer-events: none; }
+.lr-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; pointer-events: none; }
+.fonetic-fb { font-size: 0.8rem; font-weight: 600; display: none; }
+.fonetic-fb.show { display: inline-block; }
+.fonetic-fb.ok { color: #155724; }
+.fonetic-fb.no { color: #721c24; }
+
+/* ── CULTURE STRIP ── */
+.culture-strip {
+  background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk));
+  border-top: 3px solid var(--mc); border-radius: var(--r);
+  padding: 24px 28px; margin: 40px 0;
+}
+.culture-icon { font-size: 2rem; margin-bottom: 8px; }
+.culture-strip h3 { font-family: var(--fh); font-style: italic; color: var(--mc-dk); margin-bottom: 12px; font-size: 1.2rem; }
+.culture-strip p { font-size: 0.9rem; line-height: 1.75; color: #444; margin-bottom: 10px; }
+.btn-translate {
+  margin-top: 12px; padding: 8px 20px; background: var(--white);
+  border: 1.5px solid var(--mc); border-radius: 20px; color: var(--mc-dk);
+  font-family: var(--fb); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+}
+.btn-translate:hover { background: var(--mc-bg); }
+.culture-es { margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--mc); }
+
+/* ── CTA ── */
+.cta-section { text-align: center; padding: 40px 0 20px; }
+.btn-cta {
+  display: inline-block; padding: 16px 40px; background: var(--mc);
+  color: var(--white); border-radius: 30px; font-family: var(--fb); font-size: 1.05rem;
+  font-weight: 700; text-decoration: none; transition: all 0.25s;
+  box-shadow: 0 4px 16px rgba(82,142,116,.35);
+}
+.btn-cta:hover { background: var(--mc-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(82,142,116,.45); }
+.btn-cta-sub { font-size: 0.82rem; color: #888; margin-top: 10px; }
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 44px 0; }
+
+/* ── CALLOUT ── */
+.callout { background: var(--mc-bg); border-left: 4px solid var(--mc); border-radius: 0 var(--r) var(--r) 0; padding: 14px 18px; margin: 18px 0; font-size: 0.88rem; color: var(--mc-text); }
+.callout strong { color: var(--mc-dk); }
+
+/* ── RESPONSIVE ── */
+@media(max-width: 600px) {
+  .clock-grid { grid-template-columns: repeat(3, 1fr); }
+  .saluti-grid { grid-template-columns: repeat(2, 1fr); }
+  .formal-table { font-size: 0.78rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- STAGE NAV -->
+<nav class="stage-nav">
+  <span class="logo">🇮🇹 Italiano Per Piacere</span>
+  <a class="stage-pill done" href="etapa1_exploracion.html">✓ 1 Input</a>
+  <span class="stage-sep">›</span>
+  <span class="stage-pill active">2 Descubrimiento</span>
+  <span class="stage-sep">›</span>
+  <span class="stage-pill pending">3 Gramática</span>
+  <span class="stage-sep">›</span>
+  <span class="stage-pill pending">4 Ejercicios</span>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="modulo-tag">Módulo 3 · A1</div>
+  <h1>Tutti in piazza!</h1>
+  <p class="sub">Descubrí cómo los italianos hablan del tiempo — sin memorizar reglas, solo escuchando y observando.</p>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="container">
+
+  <!-- ── SECCIÓN 1: APERTURA SOFIA ── -->
+  <section>
+    <div class="sofia-block">
+      <div class="sofia-avatar">👩‍🏫</div>
+      <div class="sofia-bubble">
+        <div class="sofia-name">Sofia · tu guía</div>
+        <p>¿Cuántas veces preguntamos la hora al día? En italiano hay formas muy específicas de decirla... y una forma muy divertida de aprenderlas: <strong>¡con una barzelletta!</strong></p>
+        <p style="margin-top:10px">En el video escuchamos <em>«Mi sa dire l'ora?»</em> y <em>«Sono le sette e quindici spaccate!»</em> — ¿notaste esas frases? En esta etapa las vamos a explorar juntos, pasito a pasito.</p>
+        <p style="margin-top:10px">Ah, y si pensás que el chiste era sobre un burro y un campanario... pues sí. Y resulta que los italianos usaban los campanarios como relojes. ¡La historia es mejor de lo que parece! 🔔</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECCIÓN 2: FRASES DE LA BARZELLETTA ── -->
+  <section>
+    <div class="sec-header">
+      <h2><span class="sec-num">2</span>Frases reales de la barzelletta</h2>
+      <p>Estas son las frases exactas del video. Hacé clic en el botón de audio para escucharlas tal como suenan.</p>
+    </div>
+
+    <div class="phrase-grid">
+      <div class="phrase-card">
+        <div class="phrase-text">
+          <div class="phrase-it">Mi scusi, mi sa dire l'ora per favore?</div>
+          <div class="phrase-context">Cómo pedir la hora formalmente</div>
+        </div>
+        <button class="btn-audio" onclick="speak('Mi scusi, mi sa dire l\'ora per favore?', 0.82, 'm')" title="Escuchar">▶</button>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-text">
+          <div class="phrase-it">Le 5:35.</div>
+          <div class="phrase-context">Respuesta directa — solo la hora</div>
+        </div>
+        <button class="btn-audio" onclick="speak('Le cinque e trentacinque.', 0.82, 'm')" title="Escuchar">▶</button>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-text">
+          <div class="phrase-it">Ma è sicuro?</div>
+          <div class="phrase-context">¿Pero está seguro? — duda graciosa</div>
+        </div>
+        <button class="btn-audio" onclick="speak('Ma è sicuro?', 0.82, 'm')" title="Escuchar">▶</button>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-text">
+          <div class="phrase-it">Senta, mi sa dire che ore sono?</div>
+          <div class="phrase-context">Otra forma de pedir la hora</div>
+        </div>
+        <button class="btn-audio" onclick="speak('Senta, mi sa dire che ore sono?', 0.82, 'm')" title="Escuchar">▶</button>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-text">
+          <div class="phrase-it">Sono le 7:15 spaccate!</div>
+          <div class="phrase-context"><em>Spaccate</em> = exactas, en punto ✓</div>
+        </div>
+        <button class="btn-audio" onclick="speak('Sono le sette e quindici spaccate!', 0.82, 'm')" title="Escuchar">▶</button>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-text">
+          <div class="phrase-it">Sotto c'è il campanile!</div>
+          <div class="phrase-context">El gran chiste final — ¡había un campanario abajo!</div>
+        </div>
+        <button class="btn-audio" onclick="speak('Sotto c\'è il campanile!', 0.82, 'm')" title="Escuchar">▶</button>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:18px">
+      <strong>Observá:</strong> ¿Hay dos formas de preguntar la hora en esas frases? <em>«mi sa dire l'ora»</em> y <em>«che ore sono»</em> son las dos más comunes. Las irás usando naturalmente.
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── SECCIÓN 3: RELOJ INTERACTIVO ── -->
+  <section>
+    <div class="sec-header">
+      <h2><span class="sec-num">3</span>Il reloj — hacé clic para descubrir</h2>
+      <p>Cada número es una hora. Tocá para escuchar cómo se dice en italiano. ¿Notás algo raro en el 1?</p>
+    </div>
+
+    <div class="clock-wrapper">
+      <p class="clock-label">⬇ Hacé clic en cualquier hora</p>
+      <div class="clock-grid">
+        <div class="clock-btn" onclick="playHour(this, 'È l\'una.', 'Es la una', '¡Es la ÚNICA hora en singular!')" id="h1">
+          <span class="hour-num">1</span><span class="hour-label">l'una</span>
+        </div>
+        <div class="clock-btn" onclick="playHour(this, 'Sono le due.', 'Son las dos', '')" id="h2">
+          <span class="hour-num">2</span><span class="hour-label">le due</span>
+        </div>
+        <div class="clock-btn" onclick="playHour(this, 'Sono le tre.', 'Son las tres', '')" id="h3">
+          <span class="hour-num">3</span><span class="hour-label">le tre</span>
+        </div>
+        <div class="clock-btn" onclick="playHour(this, 'Sono le quattro.', 'Son las cuatro', '')" id="h4">
+          <span class="hour-num">4</span><span class="hour-label">le quattro</span>
+        </div>
+        <div class="clock-btn" onclick="playHour(this, 'Sono le cinque.', 'Son las cinco', '')" id="h5">
+          <span class="hour-num">5</span><span class="hour-label">le cinque</span>
+        </div>
+        <div class="clock-btn" onclick="playHour(this, 'Sono le sei.', 'Son las seis', '')" id="h6">
+          <span class="hour-num">6</span><span class="hour-label">le sei</span>
+        </div>
+        <div class="clock-btn" onclick="playHour(this, 'Sono le sette.', 'Son las siete', '')" id="h7">
+          <span class="hour-num">7</span><span class="hour-label">le sette</span>
+        </div>
+        <div class="clock-btn" onclick="playHour(this, 'Sono le otto.', 'Son las ocho', '')" id="h8">
+          <span class="hour-num">8</span><span class="hour-label">le otto</span>
+        </div>
+        <div class="clock-btn" onclick="playHour(this, 'Sono le nove.', 'Son las nueve', '')" id="h9">
+          <span class="hour-num">9</span><span class="hour-label">le nove</span>
+        </div>
+        <div class="clock-btn" onclick="playHour(this, 'Sono le dieci.', 'Son las diez', '')" id="h10">
+          <span class="hour-num">10</span><span class="hour-label">le dieci</span>
+        </div>
+        <div class="clock-btn" onclick="playHour(this, 'Sono le undici.', 'Son las once', '')" id="h11">
+          <span class="hour-num">11</span><span class="hour-label">le undici</span>
+        </div>
+        <div class="clock-btn" onclick="playHour(this, 'Sono le dodici.', 'Son las doce', '')" id="h12">
+          <span class="hour-num">12</span><span class="hour-label">le dodici</span>
+        </div>
+        <div class="clock-btn" onclick="playHour(this, 'È mezzogiorno.', 'Es mediodía', 'Especial: mezzogiorno = mediodía')" id="hmezz" style="grid-column: span 2">
+          <span class="hour-num">☀️</span><span class="hour-label">mezzogiorno</span>
+        </div>
+        <div class="clock-btn" onclick="playHour(this, 'È mezzanotte.', 'Es medianoche', 'Especial: mezzanotte = medianoche')" id="hmn" style="grid-column: span 2">
+          <span class="hour-num">🌙</span><span class="hour-label">mezzanotte</span>
+        </div>
+      </div>
+      <div class="clock-display" id="clock-display">
+        <span style="color:#aaa; font-size:0.88rem">← Tocá una hora para escucharla</span>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>¿Lo notaste?</strong> El 1 es especial: <em>«È l'una»</em> — usa <strong>È</strong> (singular) en vez de <em>Sono</em>. Igual que el mediodía y la medianoche. ¡El italiano ama los singulares especiales!
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── SECCIÓN 4: CÓMO SE CONSTRUYE LA HORA ── -->
+  <section>
+    <div class="sec-header">
+      <h2><span class="sec-num">4</span>¿Cómo se construye la hora?</h2>
+      <p>Escuchá los ejemplos y observá el patrón. No hay que memorizar nada — el patrón se va a revelar solo.</p>
+    </div>
+
+    <table class="pattern-table">
+      <thead>
+        <tr>
+          <th>Hora</th>
+          <th>En italiano</th>
+          <th>Parte clave</th>
+          <th>▶</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="time-badge">7:00</span></td>
+          <td>Sono le <em>sette</em></td>
+          <td>Solo la hora</td>
+          <td><button class="btn-audio" onclick="speak('Sono le sette.', 0.82, 'f')">▶</button></td>
+        </tr>
+        <tr>
+          <td><span class="time-badge">7:15</span></td>
+          <td>Sono le sette <em>e un quarto</em></td>
+          <td>+ e un quarto</td>
+          <td><button class="btn-audio" onclick="speak('Sono le sette e un quarto.', 0.82, 'f')">▶</button></td>
+        </tr>
+        <tr>
+          <td><span class="time-badge">7:30</span></td>
+          <td>Sono le sette <em>e mezza</em></td>
+          <td>+ e mezza</td>
+          <td><button class="btn-audio" onclick="speak('Sono le sette e mezza.', 0.82, 'f')">▶</button></td>
+        </tr>
+        <tr>
+          <td><span class="time-badge">7:45</span></td>
+          <td>Sono le sette <em>e quarantacinque</em></td>
+          <td>+ e + minutos</td>
+          <td><button class="btn-audio" onclick="speak('Sono le sette e quarantacinque.', 0.82, 'f')">▶</button></td>
+        </tr>
+        <tr>
+          <td><span class="time-badge">7:45</span></td>
+          <td>Sono le <em>otto meno un quarto</em></td>
+          <td>siguiente hora − quarto</td>
+          <td><button class="btn-audio" onclick="speak('Sono le otto meno un quarto.', 0.82, 'f')">▶</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout" style="margin-top:18px">
+      <strong>¿Notaste el patrón?</strong> Primero va la hora (<em>le sette</em>), luego se agrega <em>«e»</em> + los minutos. Para la última parte de la hora, los italianos usan la hora siguiente con <em>«meno»</em> (menos). ¡Exactamente como en español informal!
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── SECCIÓN 5: ORARIO FORMALE VS INFORMALE ── -->
+  <section>
+    <div class="sec-header">
+      <h2><span class="sec-num">5</span>Orario formale vs. informale</h2>
+      <p>En una estación de tren o aeropuerto se usa el horario de 24h. En la calle, el informal. Escuchá ambas versiones.</p>
+    </div>
+
+    <table class="formal-table">
+      <thead>
+        <tr>
+          <th>Hora</th>
+          <th>🏛 Formal (24h)</th>
+          <th>🗣 Informal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="time-col">14:00</td>
+          <td>
+            <em>le quattordici</em>
+            <button class="btn-audio" onclick="speak('le quattordici', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
+          </td>
+          <td>
+            <em>le due del pomeriggio</em>
+            <button class="btn-audio" onclick="speak('le due del pomeriggio', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-col">15:30</td>
+          <td>
+            <em>le quindici e trenta</em>
+            <button class="btn-audio" onclick="speak('le quindici e trenta', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
+          </td>
+          <td>
+            <em>le tre e mezza</em>
+            <button class="btn-audio" onclick="speak('le tre e mezza', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-col">7:15</td>
+          <td>
+            <em>le sette e quindici</em>
+            <button class="btn-audio" onclick="speak('le sette e quindici', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
+          </td>
+          <td>
+            <em>le sette e un quarto</em>
+            <button class="btn-audio" onclick="speak('le sette e un quarto', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-col">20:45</td>
+          <td>
+            <em>le venti e quarantacinque</em>
+            <button class="btn-audio" onclick="speak('le venti e quarantacinque', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
+          </td>
+          <td>
+            <em>le nove meno un quarto</em>
+            <button class="btn-audio" onclick="speak('le nove meno un quarto', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-col">12:00</td>
+          <td>
+            <em>le dodici</em>
+            <button class="btn-audio" onclick="speak('le dodici', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
+          </td>
+          <td>
+            <em>mezzogiorno</em>
+            <button class="btn-audio" onclick="speak('mezzogiorno', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
+          </td>
+        </tr>
+        <tr>
+          <td class="time-col">0:00</td>
+          <td>
+            <em>le zero / la zero</em>
+            <button class="btn-audio" onclick="speak('le zero', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
+          </td>
+          <td>
+            <em>mezzanotte</em>
+            <button class="btn-audio" onclick="speak('mezzanotte', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── SECCIÓN 6: SALUTI DELLA GIORNATA ── -->
+  <section>
+    <div class="sec-header">
+      <h2><span class="sec-num">6</span>Saluti della giornata</h2>
+      <p>En italiano el saludo cambia según la hora del día. Hacé clic en cualquier tarjeta para escucharlo.</p>
+    </div>
+
+    <div class="saluti-grid">
+      <div class="saluto-card" onclick="speak('Buongiorno!', 0.82, 'f')">
+        <span class="saluto-emoji">🌅</span>
+        <div class="saluto-word">Buongiorno</div>
+        <div class="saluto-time">6:00 – 12:00</div>
+        <small style="color:#888;font-size:0.72rem">buenos días</small>
+      </div>
+      <div class="saluto-card" onclick="speak('Buon pomeriggio!', 0.82, 'f')">
+        <span class="saluto-emoji">☀️</span>
+        <div class="saluto-word">Buon pomeriggio</div>
+        <div class="saluto-time">12:00 – 18:00</div>
+        <small style="color:#888;font-size:0.72rem">buenas tardes</small>
+      </div>
+      <div class="saluto-card" onclick="speak('Buonasera!', 0.82, 'f')">
+        <span class="saluto-emoji">🌆</span>
+        <div class="saluto-word">Buonasera</div>
+        <div class="saluto-time">18:00 – 22:00</div>
+        <small style="color:#888;font-size:0.72rem">buenas noches (al llegar)</small>
+      </div>
+      <div class="saluto-card" onclick="speak('Buonanotte!', 0.82, 'f')">
+        <span class="saluto-emoji">🌙</span>
+        <div class="saluto-word">Buonanotte</div>
+        <div class="saluto-time">22:00 – 6:00</div>
+        <small style="color:#888;font-size:0.72rem">buenas noches (al despedirse)</small>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Dato:</strong> <em>Buonasera</em> se usa al <strong>llegar</strong> por la tarde-noche; <em>buonanotte</em> es para <strong>despedirse</strong> antes de dormir. ¡No son intercambiables!
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── SECCIÓN 7: DIÁLOGOS ── -->
+  <section>
+    <div class="sec-header">
+      <h2><span class="sec-num">7</span>Diálogo en la calle</h2>
+      <p>Ahora sí, sin barzelletta — pedir la hora como se hace normalmente. Primero escuchá todo, luego descubrí cada línea.</p>
+    </div>
+
+    <!-- Diálogo 1: dos hombres -->
+    <div class="dial-container">
+      <div class="dial-title">🗣 Diálogo 1 — Due uomini</div>
+      <button class="btn-play-all" onclick="playAllDialog('dial1')">▶ Escuchar todo el diálogo</button>
+
+      <div class="dial-line" data-text="Scusi, mi sa dire che ore sono?" data-gender="m" data-dialog="dial1">
+        <div class="dial-speaker-row">
+          <span class="dial-speaker">👤 Uomo 1</span>
+          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+        <div class="m-bubble">
+          <div class="hidden-text dial-bubble">Scusi, mi sa dire che ore sono?</div>
+        </div>
+      </div>
+
+      <div class="dial-line" data-text="Certo! Sono le dieci e mezza." data-gender="m" data-dialog="dial1">
+        <div class="dial-speaker-row">
+          <span class="dial-speaker">👤 Uomo 2</span>
+          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+        <div class="m-bubble">
+          <div class="hidden-text dial-bubble">Certo! Sono le dieci e mezza.</div>
+        </div>
+      </div>
+
+      <div class="dial-line" data-text="Grazie mille!" data-gender="m" data-dialog="dial1">
+        <div class="dial-speaker-row">
+          <span class="dial-speaker">👤 Uomo 1</span>
+          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+        <div class="m-bubble">
+          <div class="hidden-text dial-bubble">Grazie mille!</div>
+        </div>
+      </div>
+
+      <div class="dial-line" data-text="Prego, buona giornata!" data-gender="m" data-dialog="dial1">
+        <div class="dial-speaker-row">
+          <span class="dial-speaker">👤 Uomo 2</span>
+          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+        <div class="m-bubble">
+          <div class="hidden-text dial-bubble">Prego, buona giornata!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diálogo 2: mujer y hombre -->
+    <div class="dial-container">
+      <div class="dial-title">🗣 Diálogo 2 — Donna e Uomo</div>
+      <button class="btn-play-all" onclick="playAllDialog('dial2')">▶ Escuchar todo el diálogo</button>
+
+      <div class="dial-line" data-text="Mi scusi, sa dirmi l'ora per favore?" data-gender="f" data-dialog="dial2">
+        <div class="dial-speaker-row">
+          <span class="dial-speaker">👩 Donna</span>
+          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+        <div class="f-bubble">
+          <div class="hidden-text dial-bubble">Mi scusi, sa dirmi l'ora per favore?</div>
+        </div>
+      </div>
+
+      <div class="dial-line" data-text="Sì, certo! Sono le tre e un quarto." data-gender="m" data-dialog="dial2">
+        <div class="dial-speaker-row">
+          <span class="dial-speaker">👤 Uomo</span>
+          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+        <div class="m-bubble">
+          <div class="hidden-text dial-bubble">Sì, certo! Sono le tre e un quarto.</div>
+        </div>
+      </div>
+
+      <div class="dial-line" data-text="Perfetto, grazie!" data-gender="f" data-dialog="dial2">
+        <div class="dial-speaker-row">
+          <span class="dial-speaker">👩 Donna</span>
+          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+        <div class="f-bubble">
+          <div class="hidden-text dial-bubble">Perfetto, grazie!</div>
+        </div>
+      </div>
+
+      <div class="dial-line" data-text="Figurati!" data-gender="m" data-dialog="dial2">
+        <div class="dial-speaker-row">
+          <span class="dial-speaker">👤 Uomo</span>
+          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+        <div class="m-bubble">
+          <div class="hidden-text dial-bubble">Figurati!</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── SECCIÓN 8: ¿A QUÉ HORA...? ── -->
+  <section>
+    <div class="sec-header">
+      <h2><span class="sec-num">8</span>¿A qué hora...? — Vita italiana</h2>
+      <p>¿Sabés a qué hora pasan las cosas en Italia? Elegí la hora correcta. ¡Cuidado, los horarios italianos tienen su lógica!</p>
+    </div>
+
+    <div class="activity-card">
+      <div class="activity-q">☕ <em>Il bar apre alle...</em> (El bar / café abre a las...)</div>
+      <div class="activity-opts">
+        <button class="opt-btn" onclick="checkActivity(this, true, 'act1')">7:00</button>
+        <button class="opt-btn" onclick="checkActivity(this, false, 'act1')">8:00</button>
+        <button class="opt-btn" onclick="checkActivity(this, false, 'act1')">9:00</button>
+      </div>
+      <div class="activity-feedback" id="act1-fb"></div>
+    </div>
+
+    <div class="activity-card">
+      <div class="activity-q">🍝 <em>Il pranzo è a...</em> (El almuerzo es a las...)</div>
+      <div class="activity-opts">
+        <button class="opt-btn" onclick="checkActivity(this, false, 'act2')">12:00</button>
+        <button class="opt-btn" onclick="checkActivity(this, true, 'act2')">13:00</button>
+        <button class="opt-btn" onclick="checkActivity(this, false, 'act2')">14:00</button>
+      </div>
+      <div class="activity-feedback" id="act2-fb"></div>
+    </div>
+
+    <div class="activity-card">
+      <div class="activity-q">🍽 <em>La cena è a...</em> (La cena es a las...)</div>
+      <div class="activity-opts">
+        <button class="opt-btn" onclick="checkActivity(this, false, 'act3')">19:00</button>
+        <button class="opt-btn" onclick="checkActivity(this, true, 'act3')">20:00</button>
+        <button class="opt-btn" onclick="checkActivity(this, false, 'act3')">21:00</button>
+      </div>
+      <div class="activity-feedback" id="act3-fb"></div>
+    </div>
+
+    <div class="activity-card">
+      <div class="activity-q">🏛 <em>Il museo chiude alle...</em> (El museo cierra a las...)</div>
+      <div class="activity-opts">
+        <button class="opt-btn" onclick="checkActivity(this, false, 'act4')">17:00</button>
+        <button class="opt-btn" onclick="checkActivity(this, true, 'act4')">18:00</button>
+        <button class="opt-btn" onclick="checkActivity(this, false, 'act4')">19:00</button>
+      </div>
+      <div class="activity-feedback" id="act4-fb"></div>
+    </div>
+
+    <div class="activity-card">
+      <div class="activity-q">💼 <em>L'ufficio apre alle...</em> (La oficina abre a las...)</div>
+      <div class="activity-opts">
+        <button class="opt-btn" onclick="checkActivity(this, false, 'act5')">8:00</button>
+        <button class="opt-btn" onclick="checkActivity(this, true, 'act5')">9:00</button>
+        <button class="opt-btn" onclick="checkActivity(this, false, 'act5')">10:00</button>
+      </div>
+      <div class="activity-feedback" id="act5-fb"></div>
+    </div>
+
+    <div class="activity-card">
+      <div class="activity-q">💊 <em>La farmacia è aperta fino alle...</em> (La farmacia está abierta hasta las...)</div>
+      <div class="activity-opts">
+        <button class="opt-btn" onclick="checkActivity(this, true, 'act6')">19:00/19:30</button>
+        <button class="opt-btn" onclick="checkActivity(this, false, 'act6')">20:00</button>
+        <button class="opt-btn" onclick="checkActivity(this, false, 'act6')">21:00</button>
+      </div>
+      <div class="activity-feedback" id="act6-fb"></div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── SECCIÓN 9: ESPRESSIONI DI TEMPO ── -->
+  <section>
+    <div class="sec-header">
+      <h2><span class="sec-num">9</span>Espressioni di tempo</h2>
+      <p>Más allá de decir la hora exacta, los italianos usan estas expresiones constantemente. Escuchalas.</p>
+    </div>
+
+    <div class="expr-grid">
+      <div class="expr-row">
+        <button class="btn-audio" onclick="speak('alle otto', 0.82, 'f')">▶</button>
+        <div class="expr-it">alle otto</div>
+        <div class="expr-es">a las ocho</div>
+      </div>
+      <div class="expr-row">
+        <button class="btn-audio" onclick="speak('verso le dieci', 0.82, 'm')">▶</button>
+        <div class="expr-it">verso le dieci</div>
+        <div class="expr-es">hacia las diez (aproximado)</div>
+      </div>
+      <div class="expr-row">
+        <button class="btn-audio" onclick="speak('dalle sette alle undici', 0.82, 'f')">▶</button>
+        <div class="expr-it">dalle sette alle undici</div>
+        <div class="expr-es">de las siete a las once</div>
+      </div>
+      <div class="expr-row">
+        <button class="btn-audio" onclick="speak('tra un\'ora', 0.82, 'm')">▶</button>
+        <div class="expr-it">tra un'ora</div>
+        <div class="expr-es">en una hora (en el futuro)</div>
+      </div>
+      <div class="expr-row">
+        <button class="btn-audio" onclick="speak('a mezzogiorno in punto', 0.82, 'f')">▶</button>
+        <div class="expr-it">a mezzogiorno in punto</div>
+        <div class="expr-es">al mediodía en punto</div>
+      </div>
+      <div class="expr-row">
+        <button class="btn-audio" onclick="speak('prima di cena', 0.82, 'm')">▶</button>
+        <div class="expr-it">prima di cena</div>
+        <div class="expr-es">antes de cenar</div>
+      </div>
+      <div class="expr-row">
+        <button class="btn-audio" onclick="speak('dopo pranzo', 0.82, 'f')">▶</button>
+        <div class="expr-it">dopo pranzo</div>
+        <div class="expr-es">después del almuerzo</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:18px">
+      <strong>Tip cultural:</strong> <em>«Verso le dieci»</em> es clave en Italia. Los italianos raramente son puntuales al minuto — <em>verso</em> (hacia, alrededor de) es la palabra que suaviza todo compromiso de hora. ¡Adoptala!
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── SECCIÓN 10: FONETICA L y R ── -->
+  <section>
+    <div class="sec-header">
+      <h2><span class="sec-num">10</span>Fonetica: i suoni L e R</h2>
+      <p>La L y la R en italiano suenan muy diferentes a la del español. La R italiana es vibrante (rolada), como la R doble del español. Practicá escuchando estos pares.</p>
+    </div>
+
+    <table class="fonetica-table">
+      <thead>
+        <tr>
+          <th>Con L</th>
+          <th>▶</th>
+          <th>Con R</th>
+          <th>▶</th>
+          <th>Nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fl">luna</td>
+          <td><button class="btn-audio" onclick="speak('luna', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
+          <td class="fr">runa</td>
+          <td><button class="btn-audio" onclick="speak('runa', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
+          <td class="fn">luna / (palabra inventada)</td>
+        </tr>
+        <tr>
+          <td class="fl">letto</td>
+          <td><button class="btn-audio" onclick="speak('letto', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
+          <td class="fr">retto</td>
+          <td><button class="btn-audio" onclick="speak('retto', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
+          <td class="fn">cama / recto, derecho</td>
+        </tr>
+        <tr>
+          <td class="fl">lago</td>
+          <td><button class="btn-audio" onclick="speak('lago', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
+          <td class="fr">rago</td>
+          <td><button class="btn-audio" onclick="speak('rago', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
+          <td class="fn">lago / (poco común)</td>
+        </tr>
+        <tr>
+          <td class="fl">lana</td>
+          <td><button class="btn-audio" onclick="speak('lana', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
+          <td class="fr">rana</td>
+          <td><button class="btn-audio" onclick="speak('rana', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
+          <td class="fn">lana / rana</td>
+        </tr>
+        <tr>
+          <td class="fl">losa</td>
+          <td><button class="btn-audio" onclick="speak('losa', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
+          <td class="fr">rosa</td>
+          <td><button class="btn-audio" onclick="speak('rosa', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
+          <td class="fn">losa / rosa</td>
+        </tr>
+        <tr>
+          <td class="fl">luce</td>
+          <td><button class="btn-audio" onclick="speak('luce', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
+          <td class="fr">ruce</td>
+          <td><button class="btn-audio" onclick="speak('ruce', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
+          <td class="fn">luz / (práctica)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Actividad: escuchar y elegir L o R -->
+    <div class="fonetic-activity">
+      <h3>¿L o R? — Escuchá y decidí</h3>
+      <p style="font-size:0.85rem;color:#666;margin-bottom:18px">Hacé clic en "▶ Escuchar" y luego decidí si empieza con L o con R.</p>
+
+      <div class="fonetic-word-row">
+        <span class="word-num">1.</span>
+        <button class="btn-audio" onclick="speak('lago', 0.8, 'm')" style="margin-right:10px">▶ Escuchar</button>
+        <div class="fonetic-answer">
+          <button class="lr-btn" onclick="checkLR(this, 'L', 'L', 'lr1')">L</button>
+          <button class="lr-btn" onclick="checkLR(this, 'R', 'L', 'lr1')">R</button>
+        </div>
+        <span class="fonetic-fb" id="lr1-fb"></span>
+      </div>
+
+      <div class="fonetic-word-row">
+        <span class="word-num">2.</span>
+        <button class="btn-audio" onclick="speak('rana', 0.8, 'm')" style="margin-right:10px">▶ Escuchar</button>
+        <div class="fonetic-answer">
+          <button class="lr-btn" onclick="checkLR(this, 'L', 'R', 'lr2')">L</button>
+          <button class="lr-btn" onclick="checkLR(this, 'R', 'R', 'lr2')">R</button>
+        </div>
+        <span class="fonetic-fb" id="lr2-fb"></span>
+      </div>
+
+      <div class="fonetic-word-row">
+        <span class="word-num">3.</span>
+        <button class="btn-audio" onclick="speak('letto', 0.8, 'm')" style="margin-right:10px">▶ Escuchar</button>
+        <div class="fonetic-answer">
+          <button class="lr-btn" onclick="checkLR(this, 'L', 'L', 'lr3')">L</button>
+          <button class="lr-btn" onclick="checkLR(this, 'R', 'L', 'lr3')">R</button>
+        </div>
+        <span class="fonetic-fb" id="lr3-fb"></span>
+      </div>
+
+      <div class="fonetic-word-row">
+        <span class="word-num">4.</span>
+        <button class="btn-audio" onclick="speak('rosa', 0.8, 'm')" style="margin-right:10px">▶ Escuchar</button>
+        <div class="fonetic-answer">
+          <button class="lr-btn" onclick="checkLR(this, 'L', 'R', 'lr4')">L</button>
+          <button class="lr-btn" onclick="checkLR(this, 'R', 'R', 'lr4')">R</button>
+        </div>
+        <span class="fonetic-fb" id="lr4-fb"></span>
+      </div>
+
+      <div class="fonetic-word-row">
+        <span class="word-num">5.</span>
+        <button class="btn-audio" onclick="speak('luna', 0.8, 'm')" style="margin-right:10px">▶ Escuchar</button>
+        <div class="fonetic-answer">
+          <button class="lr-btn" onclick="checkLR(this, 'L', 'L', 'lr5')">L</button>
+          <button class="lr-btn" onclick="checkLR(this, 'R', 'L', 'lr5')">R</button>
+        </div>
+        <span class="fonetic-fb" id="lr5-fb"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CULTURE STRIP ── -->
+  <div class="culture-strip">
+    <div class="culture-icon">🔔</div>
+    <h3>Il campanile: l'orologio del villaggio</h3>
+    <div class="culture-it">
+      <p>Prima degli orologi da polso, gli italiani usavano i <strong>rintocchi del campanile</strong> per sapere l'ora. Ogni paese aveva il suo campanile, e le campane suonavano per segnare le ore del giorno: la sveglia al mattino, il pranzo a mezzogiorno, il vespro la sera.</p>
+      <p>In molti borghi italiani, questa tradizione esiste ancora! A volte, passeggiando per un paese toscano o umbro, si sente ancora il campanile suonare le <em>«dodici spaccate»</em> a mezzogiorno. Proprio come nella barzelletta!</p>
+      <p><strong>Curiosità:</strong> La parola <em>campanile</em> viene da <em>campana</em>. Il campanile più famoso del mondo è probabilmente quello di Pisa — la <strong>Torre pendente</strong>!</p>
+    </div>
+    <button class="btn-translate" onclick="toggleCulture(this)">🇪🇸 Ver en español</button>
+    <div class="culture-es" style="display:none">
+      <p>Antes de los relojes de pulsera, los italianos usaban los <strong>repiques del campanario</strong> para saber la hora. Cada pueblo tenía su campanario, y las campanas sonaban para marcar las horas del día: el despertar por la mañana, el almuerzo al mediodía, las vísperas por la tarde.</p>
+      <p>¡En muchos pueblos italianos esta tradición sigue viva! A veces, caminando por un pueblo toscano o umbro, se escucha el campanario dar las <em>«doce en punto»</em> al mediodía. ¡Justo como en la barzelletta!</p>
+      <p><strong>Curiosidad:</strong> La palabra <em>campanile</em> viene de <em>campana</em>. ¡El campanario más famoso del mundo es probablemente el de Pisa — la <strong>Torre inclinada</strong>!</p>
+    </div>
+  </div>
+
+  <!-- ── CTA ── -->
+  <div class="cta-section">
+    <a href="etapa3_gramatica.html" class="btn-cta">Continuar a la Gramática →</a>
+    <p class="btn-cta-sub">Etapa 3 — Verstire le regole de l'ora</p>
+  </div>
+
+</main>
+
+<script>
+// ── AUDIO ENGINE ──
+function speak(text, rate, gender) {
+  rate = rate || 0.82; gender = gender || 'f';
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.lang = 'it-IT'; utt.rate = rate;
+  const voices = speechSynthesis.getVoices();
+  const itV = voices.filter(v => v.lang.startsWith('it'));
+  let voice;
+  if (gender === 'm') {
+    voice = itV.find(v => /cosimo|luca|giorgio|male/i.test(v.name)) || itV[itV.length-1];
+  } else {
+    voice = itV.find(v => /elsa|alice|giulia|female/i.test(v.name)) || itV[0];
+  }
+  if (!voice && itV.length) voice = itV[0];
+  if (voice) utt.voice = voice;
+  speechSynthesis.speak(utt);
+}
+if (window.speechSynthesis) speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+
+// ── CLOCK INTERACTION ──
+const clockData = {
+  'h1':    { text: 'È l\'una.',       label: 'È l\'una',          note: '¡Singular especial!' },
+  'h2':    { text: 'Sono le due.',    label: 'Sono le due',       note: '' },
+  'h3':    { text: 'Sono le tre.',    label: 'Sono le tre',       note: '' },
+  'h4':    { text: 'Sono le quattro.',label: 'Sono le quattro',   note: '' },
+  'h5':    { text: 'Sono le cinque.', label: 'Sono le cinque',    note: '' },
+  'h6':    { text: 'Sono le sei.',    label: 'Sono le sei',       note: '' },
+  'h7':    { text: 'Sono le sette.',  label: 'Sono le sette',     note: '' },
+  'h8':    { text: 'Sono le otto.',   label: 'Sono le otto',      note: '' },
+  'h9':    { text: 'Sono le nove.',   label: 'Sono le nove',      note: '' },
+  'h10':   { text: 'Sono le dieci.',  label: 'Sono le dieci',     note: '' },
+  'h11':   { text: 'Sono le undici.', label: 'Sono le undici',    note: '' },
+  'h12':   { text: 'Sono le dodici.', label: 'Sono le dodici',    note: '' },
+  'hmezz': { text: 'È mezzogiorno.',  label: 'È mezzogiorno',     note: 'Especial: mezzogiorno' },
+  'hmn':   { text: 'È mezzanotte.',   label: 'È mezzanotte',      note: 'Especial: mezzanotte' },
+};
+
+function playHour(el, text, label, note) {
+  // Remove active from all
+  document.querySelectorAll('.clock-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  speak(text, 0.82, 'f');
+  const disp = document.getElementById('clock-display');
+  let html = '<span class="disp-it">' + label + '</span>';
+  if (note) html += ' <span class="disp-note">' + note + '</span>';
+  disp.innerHTML = html;
+}
+
+// ── DIALOG SYSTEM ──
+function playLine(btn) {
+  const line = btn.closest('.dial-line');
+  const text = line.dataset.text;
+  const gender = line.dataset.gender;
+  const bubble = line.querySelector('.dial-bubble');
+  speak(text, 0.82, gender);
+  setTimeout(() => bubble.classList.add('revealed'), 300);
+}
+
+function playAllDialog(dialogId) {
+  const lines = Array.from(document.querySelectorAll('[data-dialog="' + dialogId + '"]'));
+  let index = 0;
+  window.speechSynthesis.cancel();
+  function playNext() {
+    if (index >= lines.length) return;
+    const line = lines[index];
+    const utt = new SpeechSynthesisUtterance(line.dataset.text);
+    utt.lang = 'it-IT'; utt.rate = 0.82;
+    const voices = speechSynthesis.getVoices();
+    const itV = voices.filter(v => v.lang.startsWith('it'));
+    const g = line.dataset.gender;
+    let voice = g === 'm'
+      ? (itV.find(v => /cosimo|luca|male/i.test(v.name)) || itV[itV.length-1])
+      : (itV.find(v => /elsa|alice|female/i.test(v.name)) || itV[0]);
+    if (!voice && itV.length) voice = itV[0];
+    if (voice) utt.voice = voice;
+    utt.onend = () => { index++; setTimeout(playNext, 500); };
+    speechSynthesis.speak(utt);
+  }
+  playNext();
+}
+
+// ── ACTIVITIES ──
+const actFeedback = {
+  'act1': { ok: '¡Correcto! Los bares italianos abren muy temprano para el espresso matutino. ☕', no: 'No exactamente — los bares italianos abren a las 7:00.' },
+  'act2': { ok: '¡Correcto! El pranzo italiano es entre la 1 y las 2 del mediodía. 🍝', no: 'En Italia el almuerzo es a las 13:00 (la una).' },
+  'act3': { ok: '¡Correcto! La cena italiana es bastante tarde — entre las 20:00 y las 21:00. 🍽', no: 'Los italianos cenan tarde — alrededor de las 20:00.' },
+  'act4': { ok: '¡Correcto! La mayoría de museos cierran a las 18:00. 🏛', no: 'Los museos suelen cerrar a las 18:00.' },
+  'act5': { ok: '¡Correcto! Las oficinas italianas abren a las 9:00. 💼', no: 'Las oficinas italianas abren a las 9:00.' },
+  'act6': { ok: '¡Correcto! Las farmacias cierran alrededor de las 19:00–19:30. 💊', no: 'Las farmacias suelen cerrar a las 19:00–19:30.' },
+};
+
+function checkActivity(btn, isCorrect, actId) {
+  const card = btn.closest('.activity-card');
+  const allBtns = card.querySelectorAll('.opt-btn');
+  allBtns.forEach(b => b.disabled = true);
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    // Show which was correct
+    allBtns.forEach(b => {
+      if (b.onclick.toString().includes('true')) b.classList.add('correct');
+    });
+  }
+  const fb = document.getElementById(actId + '-fb');
+  fb.textContent = isCorrect ? actFeedback[actId].ok : actFeedback[actId].no;
+  fb.className = 'activity-feedback show ' + (isCorrect ? 'ok' : 'no');
+}
+
+// ── FONETICA ──
+function checkLR(btn, answer, correct, id) {
+  const row = btn.closest('.fonetic-word-row');
+  const allBtns = row.querySelectorAll('.lr-btn');
+  allBtns.forEach(b => b.disabled = true);
+  const isCorrect = answer === correct;
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    allBtns.forEach(b => {
+      if (b.textContent.trim() === correct) b.classList.add('correct');
+    });
+  }
+  const fb = document.getElementById(id + '-fb');
+  fb.textContent = isCorrect ? '✓ ¡Bien!' : '✗ Era ' + correct;
+  fb.className = 'fonetic-fb show ' + (isCorrect ? 'ok' : 'no');
+}
+
+// ── CULTURE TOGGLE ──
+function toggleCulture(btn) {
+  const strip = btn.closest('.culture-strip');
+  const es = strip.querySelector('.culture-es');
+  if (es.style.display === 'none') {
+    es.style.display = 'block';
+    btn.textContent = '🇮🇹 Leggere in italiano';
+  } else {
+    es.style.display = 'none';
+    btn.textContent = '🇪🇸 Ver en español';
+  }
+}
+</script>
+</body>
+</html>

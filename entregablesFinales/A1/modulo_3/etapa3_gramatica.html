@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Che ore sono? — Etapa 3 | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:    #e9e6d5;
+  --cream-dk: #ddd9c8;
+  --gold:     #EFCF7F;
+  --amber:    #e5ab07;
+  --amber-dk: #c8940a;
+  --red:      #cc4736;
+  --teal:     #78a6ba;
+  --green:    #528e74;
+  --black:    #1a1a18;
+  --white:    #ffffff;
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+  --r: 10px;
+  --mc:      #528e74;
+  --mc-dk:   #3d6b58;
+  --mc-text: #2d4d3c;
+  --mc-bg:   #e8f4ef;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--cream); font-family: var(--fb); color: var(--black); line-height: 1.6; }
+
+.hero {
+  background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%);
+  padding: 56px 24px 48px;
+  text-align: center;
+  color: var(--white);
+}
+.badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--fh); font-style: italic;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700; margin-bottom: 8px;
+}
+.hero p { font-size: 1.05rem; opacity: 0.9; }
+
+.stage-nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--cream-dk);
+  padding: 0 24px;
+  display: flex; justify-content: center;
+  overflow-x: auto;
+}
+.stage-nav a {
+  display: flex; align-items: center; gap: 8px;
+  padding: 14px 20px;
+  text-decoration: none; font-size: 13px; font-weight: 600;
+  color: #888; border-bottom: 3px solid transparent;
+  white-space: nowrap; transition: all 0.2s;
+}
+.stage-nav a.active { color: var(--mc-text); border-bottom-color: var(--mc); }
+.stage-nav a .num {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: #ddd; color: #666;
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.stage-nav a.active .num { background: var(--mc); color: var(--white); }
+.stage-nav a.done .num { background: var(--green); color: var(--white); }
+.stage-nav a.done { color: var(--green); }
+
+/* STICKY INNER NAV */
+.sticky-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--mc-dk);
+  padding: 0 24px;
+  display: flex; justify-content: center; flex-wrap: wrap;
+  gap: 0; overflow-x: auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.sticky-nav a {
+  color: rgba(255,255,255,0.75);
+  text-decoration: none; font-size: 12px; font-weight: 600;
+  padding: 10px 14px;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap; transition: all 0.2s;
+  letter-spacing: 0.3px;
+}
+.sticky-nav a:hover { color: var(--white); border-bottom-color: var(--gold); }
+
+.container { max-width: 880px; margin: 0 auto; padding: 40px 24px; }
+
+.section-anchor { scroll-margin-top: 90px; }
+
+.section-title {
+  font-family: var(--fh); font-style: italic; font-size: 1.6rem;
+  color: var(--mc-text); margin-bottom: 6px;
+}
+.section-label {
+  display: inline-block;
+  background: var(--mc); color: var(--white);
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; border-radius: 4px;
+  padding: 2px 10px; margin-bottom: 10px;
+}
+.section-header { margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--mc-bg); }
+
+.card {
+  background: var(--white); border-radius: var(--r);
+  padding: 28px; margin-bottom: 36px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.rule-box {
+  background: var(--mc-bg); border-radius: 8px;
+  padding: 16px 20px; margin-bottom: 20px;
+  border-left: 4px solid var(--mc);
+  font-size: 0.95rem; line-height: 1.65;
+}
+.rule-box strong { color: var(--mc-text); }
+
+/* GRAMMAR TABLE */
+.gram-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+.gram-table th {
+  background: var(--mc); color: var(--white);
+  padding: 10px 14px; text-align: left;
+  font-size: 13px; font-weight: 700;
+}
+.gram-table th:first-child { border-radius: 8px 0 0 0; }
+.gram-table th:last-child  { border-radius: 0 8px 0 0; }
+.gram-table td {
+  padding: 10px 14px; border-bottom: 1px solid var(--cream-dk);
+  font-size: 0.93rem;
+}
+.gram-table tr:last-child td { border-bottom: none; }
+.gram-table tr:nth-child(even) td { background: var(--cream); }
+.td-it { font-style: italic; font-weight: 600; color: var(--mc-text); }
+.td-es { color: #555; font-size: 0.87rem; }
+
+.btn-sm {
+  background: var(--mc); color: var(--white);
+  border: none; border-radius: 5px;
+  padding: 5px 10px; font-size: 14px;
+  cursor: pointer; transition: background 0.2s;
+}
+.btn-sm:hover { background: var(--mc-dk); }
+
+/* FONETICA */
+.fonetica-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px; margin-bottom: 20px;
+}
+.fonetica-pair {
+  background: var(--cream); border-radius: 8px;
+  padding: 14px 16px;
+  display: flex; align-items: center; gap: 12px;
+  border: 1px solid var(--cream-dk);
+}
+.fp-col { flex: 1; text-align: center; }
+.fp-word { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.5px; }
+.fp-word .hl { color: var(--mc); }
+.fp-trans { font-size: 0.8rem; color: #666; }
+.fp-vs { font-weight: 700; color: #aaa; font-size: 0.9rem; }
+
+/* EXERCISES */
+.ex-card {
+  background: var(--white); border-radius: var(--r);
+  padding: 24px; margin-bottom: 20px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+  border-top: 3px solid var(--mc);
+}
+.ex-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.ex-num {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--mc); color: var(--white);
+  font-weight: 700; font-size: 14px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.ex-title { font-weight: 700; font-size: 1rem; color: var(--black); }
+.ex-subtitle { font-size: 12px; color: #666; margin-top: 2px; }
+
+/* Fill in blank */
+.fib-item { margin-bottom: 16px; }
+.fib-item label { display: block; font-size: 0.95rem; margin-bottom: 6px; }
+.fib-input {
+  border: 2px solid var(--cream-dk); border-radius: 6px;
+  padding: 7px 12px; font-family: var(--fb); font-size: 0.95rem;
+  width: 100%; max-width: 320px;
+  transition: border-color 0.2s;
+}
+.fib-input:focus { outline: none; border-color: var(--mc); }
+.fib-input.correct { border-color: #2d7a4f; background: #d4edda; }
+.fib-input.wrong   { border-color: var(--red); background: #fde8e8; }
+.fib-feedback { font-size: 13px; margin-top: 4px; font-weight: 500; }
+
+.btn-check {
+  background: var(--mc); color: var(--white);
+  border: none; border-radius: 8px;
+  padding: 10px 24px; font-family: var(--fb);
+  font-size: 0.9rem; font-weight: 700;
+  cursor: pointer; margin-top: 8px; transition: background 0.2s;
+}
+.btn-check:hover { background: var(--mc-dk); }
+
+/* MC */
+.mc-item { padding: 14px 0; border-bottom: 1px solid var(--cream-dk); }
+.mc-item:last-child { border-bottom: none; }
+.mc-question { font-weight: 600; margin-bottom: 10px; font-size: 0.95rem; }
+.mc-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn-mc {
+  padding: 7px 16px; border: 2px solid var(--cream-dk);
+  border-radius: 6px; background: var(--cream);
+  font-family: var(--fb); font-size: 13px; cursor: pointer; transition: all 0.2s;
+}
+.btn-mc:hover { border-color: var(--mc); }
+.btn-mc.correct { background: #d4edda; border-color: #2d7a4f; color: #2d7a4f; font-weight: 700; }
+.btn-mc.wrong   { background: #fde8e8; border-color: var(--red); color: var(--red); }
+.mc-feedback { font-size: 13px; margin-top: 8px; min-height: 18px; font-weight: 500; }
+
+/* Sort exercise */
+.sort-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.sort-word {
+  padding: 7px 14px; background: var(--mc-bg);
+  border: 2px solid var(--mc); border-radius: 6px;
+  font-weight: 600; font-size: 0.9rem; cursor: pointer;
+  color: var(--mc-text); transition: all 0.2s;
+  user-select: none;
+}
+.sort-word.used { opacity: 0.35; pointer-events: none; }
+.sort-answer {
+  min-height: 44px; background: var(--cream);
+  border: 2px dashed var(--cream-dk); border-radius: 8px;
+  padding: 8px 12px; display: flex; flex-wrap: wrap; gap: 8px;
+  align-items: center; margin-bottom: 8px;
+}
+.sort-placed {
+  padding: 5px 12px; background: var(--mc);
+  color: var(--white); border-radius: 5px;
+  font-size: 0.9rem; font-weight: 600; cursor: pointer;
+}
+.sort-placed:hover { background: var(--mc-dk); }
+
+/* Formal/Informal classify */
+.fi-options { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.fi-item {
+  padding: 8px 16px; border-radius: 6px;
+  border: 2px solid var(--cream-dk); background: var(--cream);
+  font-size: 0.9rem; font-style: italic; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; color: var(--mc-text);
+}
+.fi-item:hover { border-color: var(--mc); }
+.fi-item.done-formal { background: #d4edda; border-color: #2d7a4f; color: #2d7a4f; }
+.fi-item.done-informal { background: #e6f0ff; border-color: #5a7bd4; color: #3d5ab5; }
+.fi-item.wrong-pick { background: #fde8e8; border-color: var(--red); color: var(--red); }
+.fi-buckets { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.fi-bucket {
+  background: var(--cream); border: 2px dashed var(--cream-dk);
+  border-radius: 8px; padding: 12px; min-height: 60px;
+  text-align: center;
+}
+.fi-bucket-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #888; margin-bottom: 8px; }
+.fi-placed {
+  display: inline-block; margin: 3px; padding: 4px 10px;
+  border-radius: 5px; font-size: 0.85rem; font-style: italic; font-weight: 600;
+}
+.fi-placed.formal   { background: #d4edda; color: #2d7a4f; }
+.fi-placed.informal { background: #e6f0ff; color: #3d5ab5; }
+
+/* VF */
+.vf-item {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 12px 0; border-bottom: 1px solid var(--cream-dk);
+}
+.vf-item:last-child { border-bottom: none; }
+.vf-statement { font-size: 0.95rem; }
+.vf-buttons { display: flex; gap: 10px; }
+.btn-vf {
+  padding: 6px 18px; border: 2px solid var(--cream-dk);
+  border-radius: 6px; background: var(--cream);
+  font-family: var(--fb); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-vf:hover { border-color: var(--mc); }
+.btn-vf.correct { background: #d4edda; border-color: #2d7a4f; color: #2d7a4f; }
+.btn-vf.wrong   { background: #fde8e8; border-color: var(--red); color: var(--red); }
+.vf-feedback { font-size: 13px; min-height: 16px; font-weight: 500; }
+
+/* Culture strip */
+.culture-strip {
+  background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk));
+  border-top: 3px solid var(--mc);
+  border-radius: var(--r); padding: 28px;
+  margin-bottom: 36px;
+}
+.culture-title {
+  font-family: var(--fh); font-style: italic; font-size: 1.3rem;
+  color: var(--mc-text); margin-bottom: 12px;
+}
+.culture-body { font-size: 0.95rem; line-height: 1.7; color: #333; }
+.culture-body p { margin-bottom: 10px; }
+.culture-body p:last-child { margin-bottom: 0; }
+
+/* CTA */
+.cta-wrap {
+  text-align: center; margin-top: 40px; padding: 36px;
+  background: var(--white); border-radius: var(--r);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.cta-wrap p { color: #555; margin-bottom: 16px; font-size: 1rem; }
+.btn-cta {
+  display: inline-block; padding: 14px 36px;
+  background: var(--mc); color: var(--white);
+  text-decoration: none; border-radius: 8px;
+  font-weight: 700; font-size: 1rem; transition: background 0.2s;
+}
+.btn-cta:hover { background: var(--mc-dk); }
+
+@media (max-width: 600px) {
+  .stage-nav a { padding: 12px 12px; font-size: 12px; }
+  .stage-nav a span:not(.num) { display: none; }
+  .sticky-nav a { padding: 8px 10px; font-size: 11px; }
+  .mc-options { flex-direction: column; }
+  .fi-buckets { grid-template-columns: 1fr; }
+  .fonetica-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">A1 · Unità 3</div>
+  <h1>Che ore sono?</h1>
+  <p>Gramática completa — las reglas de la hora, los saludos y la fonética</p>
+</div>
+
+<nav class="stage-nav">
+  <a href="etapa1_exploracion.html" class="done">
+    <span class="num">✓</span><span>Exploración</span>
+  </a>
+  <a href="etapa2_descubrimiento.html" class="done">
+    <span class="num">✓</span><span>Descubrimiento</span>
+  </a>
+  <a href="etapa3_gramatica.html" class="active">
+    <span class="num">3</span><span>Gramática</span>
+  </a>
+</nav>
+
+<div class="sticky-nav">
+  <a href="#lora">A. La hora</a>
+  <a href="#formale">B. Formal/Informal</a>
+  <a href="#saluti">C. Saludos</a>
+  <a href="#preposizioni">D. Preposiciones</a>
+  <a href="#fonetica">E. Fonética L/R</a>
+  <a href="#ejercicios">F. Ejercicios</a>
+</div>
+
+<div class="container">
+
+  <!-- ===================== A. COME SI DICE L'ORA ===================== -->
+  <div class="section-anchor" id="lora">
+    <div class="section-header">
+      <div class="section-label">A</div>
+      <h2 class="section-title">Come si dice l'ora — Cómo se dice la hora</h2>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rule-box">
+      <strong>Regla fundamental:</strong> La hora en italiano usa el verbo <em>essere</em> (ser). Se dice <strong><em>È l'una</em></strong> (singular) solo para la 1:00, y <strong><em>Sono le + número</em></strong> (plural) para el resto. ¡Igual que en español: "es la una" vs "son las dos"!
+    </div>
+
+    <table class="gram-table">
+      <thead>
+        <tr><th>Hora</th><th>Italiano</th><th>Español</th><th>🔊</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1:00</td>
+          <td class="td-it">È l'una</td>
+          <td class="td-es">Es la una</td>
+          <td><button class="btn-sm" onclick="speak('È l\'una',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>1:30</td>
+          <td class="td-it">È l'una e mezza</td>
+          <td class="td-es">Es la una y media</td>
+          <td><button class="btn-sm" onclick="speak('È l\'una e mezza',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>1:15</td>
+          <td class="td-it">È l'una e un quarto</td>
+          <td class="td-es">Es la una y cuarto</td>
+          <td><button class="btn-sm" onclick="speak('È l\'una e un quarto',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>2:00</td>
+          <td class="td-it">Sono le due</td>
+          <td class="td-es">Son las dos</td>
+          <td><button class="btn-sm" onclick="speak('Sono le due',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>3:20</td>
+          <td class="td-it">Sono le tre e venti</td>
+          <td class="td-es">Son las tres y veinte</td>
+          <td><button class="btn-sm" onclick="speak('Sono le tre e venti',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>4:45</td>
+          <td class="td-it">Sono le cinque meno un quarto</td>
+          <td class="td-es">Son las cinco menos cuarto</td>
+          <td><button class="btn-sm" onclick="speak('Sono le cinque meno un quarto',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>7:15</td>
+          <td class="td-it">Sono le sette e un quarto</td>
+          <td class="td-es">Son las siete y cuarto</td>
+          <td><button class="btn-sm" onclick="speak('Sono le sette e un quarto',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>10:50</td>
+          <td class="td-it">Sono le undici meno dieci</td>
+          <td class="td-es">Son las once menos diez</td>
+          <td><button class="btn-sm" onclick="speak('Sono le undici meno dieci',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>12:00</td>
+          <td class="td-it">È mezzogiorno</td>
+          <td class="td-es">Es mediodía</td>
+          <td><button class="btn-sm" onclick="speak('È mezzogiorno',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>0:00</td>
+          <td class="td-it">È mezzanotte</td>
+          <td class="td-es">Es medianoche</td>
+          <td><button class="btn-sm" onclick="speak('È mezzanotte',0.82,'f')">🔊</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="rule-box" style="margin-bottom:0">
+      <strong>Expresiones clave:</strong><br>
+      <em>in punto</em> / <em>spaccate</em> = en punto (exacto) &nbsp;·&nbsp;
+      <em>e mezza</em> = y media &nbsp;·&nbsp;
+      <em>e un quarto</em> = y cuarto &nbsp;·&nbsp;
+      <em>meno un quarto</em> = menos cuarto &nbsp;·&nbsp;
+      <em>circa / verso</em> = aproximadamente
+    </div>
+  </div>
+
+  <!-- ===================== B. ORARIO FORMALE vs INFORMALE ===================== -->
+  <div class="section-anchor" id="formale">
+    <div class="section-header">
+      <div class="section-label">B</div>
+      <h2 class="section-title">Orario formale e informale</h2>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rule-box">
+      <strong>Orario formale (24h):</strong> se usa en trenes, aeropuertos, oficinas, horarios escritos. Solo se dicen los minutos exactos.<br>
+      <strong>Orario informale (12h):</strong> se usa en la conversación cotidiana. Se añade <em>di mattina / di pomeriggio / di sera / di notte</em> si hay ambigüedad.
+    </div>
+
+    <table class="gram-table">
+      <thead>
+        <tr>
+          <th>Hora</th>
+          <th>Formal (24h)</th>
+          <th>🔊</th>
+          <th>Informal (12h)</th>
+          <th>🔊</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>6:00</strong></td>
+          <td class="td-it">le sei</td>
+          <td><button class="btn-sm" onclick="speak('le sei',0.82,'f')">🔊</button></td>
+          <td class="td-it">le sei di mattina</td>
+          <td><button class="btn-sm" onclick="speak('le sei di mattina',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td><strong>7:15</strong></td>
+          <td class="td-it">le sette e quindici</td>
+          <td><button class="btn-sm" onclick="speak('le sette e quindici',0.82,'f')">🔊</button></td>
+          <td class="td-it">le sette e un quarto</td>
+          <td><button class="btn-sm" onclick="speak('le sette e un quarto',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td><strong>14:30</strong></td>
+          <td class="td-it">le quattordici e trenta</td>
+          <td><button class="btn-sm" onclick="speak('le quattordici e trenta',0.82,'f')">🔊</button></td>
+          <td class="td-it">le due e mezza (del pomeriggio)</td>
+          <td><button class="btn-sm" onclick="speak('le due e mezza del pomeriggio',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td><strong>16:45</strong></td>
+          <td class="td-it">le sedici e quarantacinque</td>
+          <td><button class="btn-sm" onclick="speak('le sedici e quarantacinque',0.82,'f')">🔊</button></td>
+          <td class="td-it">le cinque meno un quarto</td>
+          <td><button class="btn-sm" onclick="speak('le cinque meno un quarto',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td><strong>20:45</strong></td>
+          <td class="td-it">le venti e quarantacinque</td>
+          <td><button class="btn-sm" onclick="speak('le venti e quarantacinque',0.82,'f')">🔊</button></td>
+          <td class="td-it">le nove meno un quarto (di sera)</td>
+          <td><button class="btn-sm" onclick="speak('le nove meno un quarto di sera',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td><strong>22:00</strong></td>
+          <td class="td-it">le ventidue</td>
+          <td><button class="btn-sm" onclick="speak('le ventidue',0.82,'f')">🔊</button></td>
+          <td class="td-it">le dieci di sera</td>
+          <td><button class="btn-sm" onclick="speak('le dieci di sera',0.82,'f')">🔊</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===================== C. SALUTI DELLA GIORNATA ===================== -->
+  <div class="section-anchor" id="saluti">
+    <div class="section-header">
+      <div class="section-label">C</div>
+      <h2 class="section-title">I saluti della giornata — Saludos del día</h2>
+    </div>
+  </div>
+
+  <div class="card">
+    <table class="gram-table">
+      <thead>
+        <tr><th>Saludo</th><th>Horario</th><th>Uso</th><th>🔊</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-it">Buongiorno!</td>
+          <td>6:00–12:00</td>
+          <td class="td-es">Buenos días — al llegar y al despedirse por la mañana</td>
+          <td><button class="btn-sm" onclick="speak('Buongiorno!',0.85,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it">Buon pomeriggio!</td>
+          <td>12:00–17:00</td>
+          <td class="td-es">Buenas tardes — menos común, más formal</td>
+          <td><button class="btn-sm" onclick="speak('Buon pomeriggio!',0.85,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it">Buonasera!</td>
+          <td>17:00–22:00</td>
+          <td class="td-es">Buenas tardes/noches — al llegar Y al marcharse por la tarde</td>
+          <td><button class="btn-sm" onclick="speak('Buonasera!',0.85,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it">Buonanotte!</td>
+          <td>22:00–6:00</td>
+          <td class="td-es">Buenas noches — SOLO al despedirse (antes de dormir)</td>
+          <td><button class="btn-sm" onclick="speak('Buonanotte!',0.85,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it">Salve!</td>
+          <td>todo el día</td>
+          <td class="td-es">Hola (formal, a cualquier hora)</td>
+          <td><button class="btn-sm" onclick="speak('Salve!',0.85,'f')">🔊</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="rule-box" style="margin-bottom:0">
+      <strong>Atención:</strong> En italiano <em>buonasera</em> se usa también para despedirse — al igual que en España con "buenas noches" al salir de un restaurante a las 20:00. <em>Buonanotte</em> es exclusivo para irse a dormir.
+    </div>
+  </div>
+
+  <!-- ===================== D. PREPOSIZIONI DI TEMPO ===================== -->
+  <div class="section-anchor" id="preposizioni">
+    <div class="section-header">
+      <div class="section-label">D</div>
+      <h2 class="section-title">Le preposizioni di tempo</h2>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rule-box">
+      Para situar eventos en el tiempo, los italianos usan preposiciones específicas. ¡Son fundamentales para hablar de horarios!
+    </div>
+
+    <table class="gram-table">
+      <thead>
+        <tr><th>Preposición</th><th>Uso</th><th>Ejemplo</th><th>🔊</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-it" style="font-size:1.1rem;font-weight:700">alle</td>
+          <td class="td-es">a las (hora exacta)</td>
+          <td class="td-it">Il treno parte alle otto.</td>
+          <td><button class="btn-sm" onclick="speak('Il treno parte alle otto.',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.1rem;font-weight:700">verso</td>
+          <td class="td-es">hacia / alrededor de (aproximado)</td>
+          <td class="td-it">Arrivo verso le dieci.</td>
+          <td><button class="btn-sm" onclick="speak('Arrivo verso le dieci.',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.1rem;font-weight:700">fino alle</td>
+          <td class="td-es">hasta las</td>
+          <td class="td-it">Il negozio è aperto fino alle venti.</td>
+          <td><button class="btn-sm" onclick="speak('Il negozio è aperto fino alle venti.',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.1rem;font-weight:700">dalle...alle</td>
+          <td class="td-es">de... a... (horario)</td>
+          <td class="td-it">Il museo è aperto dalle nove alle diciotto.</td>
+          <td><button class="btn-sm" onclick="speak('Il museo è aperto dalle nove alle diciotto.',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.1rem;font-weight:700">tra</td>
+          <td class="td-es">dentro de (tiempo futuro)</td>
+          <td class="td-it">Ci vediamo tra un'ora.</td>
+          <td><button class="btn-sm" onclick="speak('Ci vediamo tra un\'ora.',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.1rem;font-weight:700">prima di</td>
+          <td class="td-es">antes de</td>
+          <td class="td-it">Mangio prima delle otto.</td>
+          <td><button class="btn-sm" onclick="speak('Mangio prima delle otto.',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.1rem;font-weight:700">dopo</td>
+          <td class="td-es">después de</td>
+          <td class="td-it">Vado al bar dopo il lavoro.</td>
+          <td><button class="btn-sm" onclick="speak('Vado al bar dopo il lavoro.',0.82,'f')">🔊</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===================== E. FONETICA: L / R ===================== -->
+  <div class="section-anchor" id="fonetica">
+    <div class="section-header">
+      <div class="section-label">E</div>
+      <h2 class="section-title">Fonetica — i suoni L e R</h2>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rule-box">
+      En italiano la <strong>L</strong> se pronuncia con la lengua tocando el paladar, igual que en español. La <strong>R</strong> italiana es vibrante (como la "r" española en "carro") — se pronuncia con la punta de la lengua vibrando rápidamente. ¡Escucha y repite!
+    </div>
+
+    <div class="fonetica-grid">
+      <div class="fonetica-pair">
+        <div class="fp-col">
+          <div class="fp-word"><span class="hl">L</span>ago</div>
+          <div class="fp-trans">lago</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="speak('Lago',0.75,'f')">🔊</button>
+        </div>
+        <div class="fp-vs">vs</div>
+        <div class="fp-col">
+          <div class="fp-word"><span class="hl">R</span>ago</div>
+          <div class="fp-trans">araña</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="speak('Rago',0.75,'f')">🔊</button>
+        </div>
+      </div>
+      <div class="fonetica-pair">
+        <div class="fp-col">
+          <div class="fp-word"><span class="hl">L</span>etto</div>
+          <div class="fp-trans">cama</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="speak('Letto',0.75,'f')">🔊</button>
+        </div>
+        <div class="fp-vs">vs</div>
+        <div class="fp-col">
+          <div class="fp-word"><span class="hl">R</span>etto</div>
+          <div class="fp-trans">recto</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="speak('Retto',0.75,'f')">🔊</button>
+        </div>
+      </div>
+      <div class="fonetica-pair">
+        <div class="fp-col">
+          <div class="fp-word"><span class="hl">L</span>una</div>
+          <div class="fp-trans">luna</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="speak('Luna',0.75,'f')">🔊</button>
+        </div>
+        <div class="fp-vs">vs</div>
+        <div class="fp-col">
+          <div class="fp-word"><span class="hl">R</span>una</div>
+          <div class="fp-trans">runa</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="speak('Runa',0.75,'f')">🔊</button>
+        </div>
+      </div>
+      <div class="fonetica-pair">
+        <div class="fp-col">
+          <div class="fp-word"><span class="hl">L</span>ana</div>
+          <div class="fp-trans">lana</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="speak('Lana',0.75,'f')">🔊</button>
+        </div>
+        <div class="fp-vs">vs</div>
+        <div class="fp-col">
+          <div class="fp-word"><span class="hl">R</span>ana</div>
+          <div class="fp-trans">rana</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="speak('Rana',0.75,'f')">🔊</button>
+        </div>
+      </div>
+      <div class="fonetica-pair">
+        <div class="fp-col">
+          <div class="fp-word">o<span class="hl">l</span>io</div>
+          <div class="fp-trans">aceite</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="speak('Olio',0.75,'f')">🔊</button>
+        </div>
+        <div class="fp-vs">vs</div>
+        <div class="fp-col">
+          <div class="fp-word">o<span class="hl">r</span>io</div>
+          <div class="fp-trans">horario</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="speak('Orario',0.75,'f')">🔊</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mini ejercicio fonético -->
+    <div style="border-top:1px solid var(--cream-dk);padding-top:16px;margin-top:8px">
+      <div style="font-weight:700;font-size:0.9rem;color:var(--mc-text);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px">¿L o R? — elige la letra correcta</div>
+      <div id="fon-score" style="font-size:13px;color:#888;margin-bottom:12px">Aciertos: 0 / 5</div>
+
+      <div class="mc-item" id="fon1" data-correct="0">
+        <div class="mc-question">1. ¿Qué letra? → <em>___etto</em> (cama en italiano)</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkFon(this,'fon1',0)">L → <em>letto</em></button>
+          <button class="btn-mc" onclick="checkFon(this,'fon1',1)">R → <em>retto</em></button>
+        </div>
+        <div class="mc-feedback" id="fb-fon1"></div>
+      </div>
+      <div class="mc-item" id="fon2" data-correct="1">
+        <div class="mc-question">2. ¿Qué letra? → <em>o___ologio</em> (reloj)</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkFon(this,'fon2',0)">L → <em>orologio</em></button>
+          <button class="btn-mc" onclick="checkFon(this,'fon2',1)">R → <em>orologio</em></button>
+        </div>
+        <div class="mc-feedback" id="fb-fon2"></div>
+      </div>
+      <div class="mc-item" id="fon3" data-correct="0">
+        <div class="mc-question">3. ¿Qué letra? → <em>___una</em> (luna)</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkFon(this,'fon3',0)">L → <em>luna</em></button>
+          <button class="btn-mc" onclick="checkFon(this,'fon3',1)">R → <em>runa</em></button>
+        </div>
+        <div class="mc-feedback" id="fb-fon3"></div>
+      </div>
+      <div class="mc-item" id="fon4" data-correct="1">
+        <div class="mc-question">4. ¿Qué letra? → <em>cam___anile</em> (campanario)</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkFon(this,'fon4',0)">L → <em>camlanile</em></button>
+          <button class="btn-mc" onclick="checkFon(this,'fon4',1)">R → <em>campanile</em></button>
+        </div>
+        <div class="mc-feedback" id="fb-fon4"></div>
+      </div>
+      <div class="mc-item" id="fon5" data-correct="0">
+        <div class="mc-question">5. ¿Qué letra? → <em>___ana</em> (lana — tejido)</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkFon(this,'fon5',0)">L → <em>lana</em></button>
+          <button class="btn-mc" onclick="checkFon(this,'fon5',1)">R → <em>rana</em></button>
+        </div>
+        <div class="mc-feedback" id="fb-fon5"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== F. EJERCICIOS ===================== -->
+  <div class="section-anchor" id="ejercicios">
+    <div class="section-header">
+      <div class="section-label">F</div>
+      <h2 class="section-title">Esercizi — Ejercicios</h2>
+    </div>
+  </div>
+
+  <!-- EX 1: Escribe la hora en palabras -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num">1</div>
+      <div>
+        <div class="ex-title">Escribe la hora en palabras</div>
+        <div class="ex-subtitle">Escribe cómo se dice cada hora en italiano (informal)</div>
+      </div>
+    </div>
+    <div class="fib-item">
+      <label>3:00 → <em>Sono le...</em></label>
+      <input class="fib-input" id="fib1" placeholder="escribe aquí..." autocomplete="off">
+      <div class="fib-feedback" id="ffb1"></div>
+    </div>
+    <div class="fib-item">
+      <label>7:15 → <em>Sono le sette e...</em></label>
+      <input class="fib-input" id="fib2" placeholder="escribe aquí..." autocomplete="off">
+      <div class="fib-feedback" id="ffb2"></div>
+    </div>
+    <div class="fib-item">
+      <label>12:00 → <em>È...</em></label>
+      <input class="fib-input" id="fib3" placeholder="escribe aquí..." autocomplete="off">
+      <div class="fib-feedback" id="ffb3"></div>
+    </div>
+    <div class="fib-item">
+      <label>2:30 → <em>Sono le due e...</em></label>
+      <input class="fib-input" id="fib4" placeholder="escribe aquí..." autocomplete="off">
+      <div class="fib-feedback" id="ffb4"></div>
+    </div>
+    <div class="fib-item">
+      <label>9:45 → <em>Sono le dieci meno...</em></label>
+      <input class="fib-input" id="fib5" placeholder="escribe aquí..." autocomplete="off">
+      <div class="fib-feedback" id="ffb5"></div>
+    </div>
+    <button class="btn-check" onclick="checkFib()">Verificar respuestas</button>
+  </div>
+
+  <!-- EX 2: Selección múltiple — ¿cómo se dice? -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num">2</div>
+      <div>
+        <div class="ex-title">¿Cómo se dice?</div>
+        <div class="ex-subtitle">Elige la opción correcta</div>
+      </div>
+    </div>
+
+    <div class="mc-item" id="ex2a" data-correct="1">
+      <div class="mc-question">¿Cómo se dice "son las 2 y media"?</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'ex2a',0)">sono le due mezza</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2a',1)">sono le due e mezza</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2a',2)">è le due e mezza</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2a',3)">è due e mezza</button>
+      </div>
+      <div class="mc-feedback" id="fb-ex2a"></div>
+    </div>
+
+    <div class="mc-item" id="ex2b" data-correct="0">
+      <div class="mc-question">¿Cómo se dice "es la una en punto"?</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'ex2b',0)">è l'una in punto</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2b',1)">sono le una in punto</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2b',2)">è la una in punto</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2b',3)">sono l'una in punto</button>
+      </div>
+      <div class="mc-feedback" id="fb-ex2b"></div>
+    </div>
+
+    <div class="mc-item" id="ex2c" data-correct="2">
+      <div class="mc-question">¿Cuál de estas expresa "aproximadamente las 3"?</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'ex2c',0)">alle tre in punto</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2c',1)">dalle tre</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2c',2)">verso le tre</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2c',3)">fino alle tre</button>
+      </div>
+      <div class="mc-feedback" id="fb-ex2c"></div>
+    </div>
+  </div>
+
+  <!-- EX 3: Fill-in-the-blank con preposizioni -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num">3</div>
+      <div>
+        <div class="ex-title">Completa con la preposición correcta</div>
+        <div class="ex-subtitle">Usa: alle / dalle...alle / verso / fino alle / tra</div>
+      </div>
+    </div>
+
+    <div class="mc-item" id="ex3a" data-correct="1">
+      <div class="mc-question">1. Il museo è aperto ___ 9 ___ 17. → usa <em>dalle...alle</em></div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'ex3a',0)">alle 9 alle 17</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex3a',1)">dalle 9 alle 17</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex3a',2)">tra 9 e 17</button>
+      </div>
+      <div class="mc-feedback" id="fb-ex3a"></div>
+    </div>
+
+    <div class="mc-item" id="ex3b" data-correct="0">
+      <div class="mc-question">2. Il treno parte ___ le otto e mezza.</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'ex3b',0)">alle</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex3b',1)">dalle</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex3b',2)">tra</button>
+      </div>
+      <div class="mc-feedback" id="fb-ex3b"></div>
+    </div>
+
+    <div class="mc-item" id="ex3c" data-correct="2">
+      <div class="mc-question">3. Ci vediamo ___ un'ora. (dentro de una hora)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'ex3c',0)">alle</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex3c',1)">verso</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex3c',2)">tra</button>
+      </div>
+      <div class="mc-feedback" id="fb-ex3c"></div>
+    </div>
+
+    <div class="mc-item" id="ex3d" data-correct="1">
+      <div class="mc-question">4. Arrivo ___ le undici. (aproximadamente las 11)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'ex3d',0)">alle</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex3d',1)">verso</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex3d',2)">fino alle</button>
+      </div>
+      <div class="mc-feedback" id="fb-ex3d"></div>
+    </div>
+  </div>
+
+  <!-- EX 4: Completar el diálogo de la barzelletta -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num">4</div>
+      <div>
+        <div class="ex-title">Completa el diálogo de la barzelletta</div>
+        <div class="ex-subtitle">Elige la palabra correcta para cada espacio</div>
+      </div>
+    </div>
+
+    <div style="background:var(--mc-bg);border-radius:8px;padding:16px;margin-bottom:16px;font-size:0.95rem;line-height:2">
+      <p><strong>Uomo 1:</strong> Mi (1)___ , mi sa (2)___ l'ora per favore?</p>
+      <p><strong>Uomo 2:</strong> Le (3)___ .</p>
+      <p><strong>Uomo 1:</strong> Ma è (4)___ ?</p>
+      <p><strong>Uomo 2:</strong> 36. Grazie.</p>
+      <p><strong>Uomo 1:</strong> Sono le 7:15 (5)___ ! Incredibile!</p>
+    </div>
+
+    <div class="mc-item" id="bz1" data-correct="0">
+      <div class="mc-question">(1) Mi ___ , (disculpe)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'bz1',0)">scusi</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz1',1)">sento</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz1',2)">chiamo</button>
+      </div>
+      <div class="mc-feedback" id="fb-bz1"></div>
+    </div>
+    <div class="mc-item" id="bz2" data-correct="1">
+      <div class="mc-question">(2) mi sa ___ l'ora (decir/explicar)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'bz2',0)">fare</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz2',1)">dire</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz2',2)">leggere</button>
+      </div>
+      <div class="mc-feedback" id="fb-bz2"></div>
+    </div>
+    <div class="mc-item" id="bz3" data-correct="2">
+      <div class="mc-question">(3) Le ___ (5:35)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'bz3',0)">tre e trenta</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz3',1)">sette e quindici</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz3',2)">cinque e trentacinque</button>
+      </div>
+      <div class="mc-feedback" id="fb-bz3"></div>
+    </div>
+    <div class="mc-item" id="bz4" data-correct="0">
+      <div class="mc-question">(4) Ma è ___ ? (¿está seguro?)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'bz4',0)">sicuro</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz4',1)">pronto</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz4',2)">certo</button>
+      </div>
+      <div class="mc-feedback" id="fb-bz4"></div>
+    </div>
+    <div class="mc-item" id="bz5" data-correct="2">
+      <div class="mc-question">(5) 7:15 ___ ! (en punto exacto)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'bz5',0)">circa</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz5',1)">quasi</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz5',2)">spaccate</button>
+      </div>
+      <div class="mc-feedback" id="fb-bz5"></div>
+    </div>
+  </div>
+
+  <!-- EX 5: ¿Formal o Informal? -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num">5</div>
+      <div>
+        <div class="ex-title">¿Formal o Informal?</div>
+        <div class="ex-subtitle">Haz clic en cada expresión para clasificarla</div>
+      </div>
+    </div>
+
+    <div class="fi-buckets">
+      <div class="fi-bucket" id="bucket-formal">
+        <div class="fi-bucket-label">Formal (24h)</div>
+        <div id="placed-formal"></div>
+      </div>
+      <div class="fi-bucket" id="bucket-informal">
+        <div class="fi-bucket-label">Informal (12h)</div>
+        <div id="placed-informal"></div>
+      </div>
+    </div>
+
+    <div class="fi-options" id="fi-options">
+      <div class="fi-item" onclick="classifyFI(this,'formal')" data-type="formal"><em>le quattordici e trenta</em></div>
+      <div class="fi-item" onclick="classifyFI(this,'informal')" data-type="informal"><em>le due e mezza</em></div>
+      <div class="fi-item" onclick="classifyFI(this,'formal')" data-type="formal"><em>le venti e quarantacinque</em></div>
+      <div class="fi-item" onclick="classifyFI(this,'informal')" data-type="informal"><em>le nove meno un quarto</em></div>
+      <div class="fi-item" onclick="classifyFI(this,'formal')" data-type="formal"><em>le diciassette e quindici</em></div>
+      <div class="fi-item" onclick="classifyFI(this,'informal')" data-type="informal"><em>le cinque e un quarto di sera</em></div>
+    </div>
+    <div id="fi-feedback" style="font-size:13px;margin-top:10px;min-height:18px;font-weight:500"></div>
+  </div>
+
+  <!-- EX 6: Saludo según la hora -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num">6</div>
+      <div>
+        <div class="ex-title">¿Qué saludo corresponde?</div>
+        <div class="ex-subtitle">Son las... ¿qué dices al llegar?</div>
+      </div>
+    </div>
+
+    <div class="mc-item" id="sal1" data-correct="0">
+      <div class="mc-question">Son las 9:00 de la mañana y llegas a la oficina. Dices:</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'sal1',0)">Buongiorno!</button>
+        <button class="btn-mc" onclick="checkMC(this,'sal1',1)">Buonanotte!</button>
+        <button class="btn-mc" onclick="checkMC(this,'sal1',2)">Buonasera!</button>
+      </div>
+      <div class="mc-feedback" id="fb-sal1"></div>
+    </div>
+    <div class="mc-item" id="sal2" data-correct="2">
+      <div class="mc-question">Son las 19:30. Entras a un restaurante. Dices:</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'sal2',0)">Buongiorno!</button>
+        <button class="btn-mc" onclick="checkMC(this,'sal2',1)">Buon pomeriggio!</button>
+        <button class="btn-mc" onclick="checkMC(this,'sal2',2)">Buonasera!</button>
+      </div>
+      <div class="mc-feedback" id="fb-sal2"></div>
+    </div>
+    <div class="mc-item" id="sal3" data-correct="1">
+      <div class="mc-question">Son las 23:00. Te vas a dormir. Le dices a tu compañero:</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'sal3',0)">Buonasera!</button>
+        <button class="btn-mc" onclick="checkMC(this,'sal3',1)">Buonanotte!</button>
+        <button class="btn-mc" onclick="checkMC(this,'sal3',2)">Buongiorno!</button>
+      </div>
+      <div class="mc-feedback" id="fb-sal3"></div>
+    </div>
+  </div>
+
+  <!-- EX 7: Ordenar palabras -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num">7</div>
+      <div>
+        <div class="ex-title">Ordena las palabras</div>
+        <div class="ex-subtitle">Haz clic en las palabras en el orden correcto. Haz clic en una colocada para quitarla.</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:20px">
+      <div style="font-size:0.9rem;color:#666;margin-bottom:8px">Forma la pregunta: "¿Me puede decir qué hora es?"</div>
+      <div class="sort-wrap" id="sort1-words">
+        <div class="sort-word" onclick="addWord(this,'sort1','mi')">mi</div>
+        <div class="sort-word" onclick="addWord(this,'sort1','sa')">sa</div>
+        <div class="sort-word" onclick="addWord(this,'sort1','dire')">dire</div>
+        <div class="sort-word" onclick="addWord(this,'sort1','che')">che</div>
+        <div class="sort-word" onclick="addWord(this,'sort1','ore')">ore</div>
+        <div class="sort-word" onclick="addWord(this,'sort1','sono')">sono</div>
+        <div class="sort-word" onclick="addWord(this,'sort1','lei')">lei</div>
+      </div>
+      <div class="sort-answer" id="sort1-answer"></div>
+      <button class="btn-check" onclick="checkSort('sort1', ['mi','sa','dire','che','ore','sono'])">Verificar</button>
+      <div id="sort1-feedback" style="font-size:13px;margin-top:6px;font-weight:500"></div>
+    </div>
+
+    <div>
+      <div style="font-size:0.9rem;color:#666;margin-bottom:8px">Forma la frase: "El museo está abierto de 9 a 18."</div>
+      <div class="sort-wrap" id="sort2-words">
+        <div class="sort-word" onclick="addWord(this,'sort2','Il')">Il</div>
+        <div class="sort-word" onclick="addWord(this,'sort2','museo')">museo</div>
+        <div class="sort-word" onclick="addWord(this,'sort2','è')">è</div>
+        <div class="sort-word" onclick="addWord(this,'sort2','aperto')">aperto</div>
+        <div class="sort-word" onclick="addWord(this,'sort2','dalle')">dalle</div>
+        <div class="sort-word" onclick="addWord(this,'sort2','nove')">nove</div>
+        <div class="sort-word" onclick="addWord(this,'sort2','alle')">alle</div>
+        <div class="sort-word" onclick="addWord(this,'sort2','diciotto')">diciotto</div>
+      </div>
+      <div class="sort-answer" id="sort2-answer"></div>
+      <button class="btn-check" onclick="checkSort('sort2', ['Il','museo','è','aperto','dalle','nove','alle','diciotto'])">Verificar</button>
+      <div id="sort2-feedback" style="font-size:13px;margin-top:6px;font-weight:500"></div>
+    </div>
+  </div>
+
+  <!-- EX 8: Transformar formal → informal -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num">8</div>
+      <div>
+        <div class="ex-title">Formal → Informal</div>
+        <div class="ex-subtitle">¿Cómo se diría en la vida diaria?</div>
+      </div>
+    </div>
+
+    <div class="mc-item" id="tr1" data-correct="1">
+      <div class="mc-question">Formal: <em>"le tredici e trenta"</em> → Informal:</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'tr1',0)">le tredici e mezza</button>
+        <button class="btn-mc" onclick="checkMC(this,'tr1',1)">l'una e mezza del pomeriggio</button>
+        <button class="btn-mc" onclick="checkMC(this,'tr1',2)">le undici e mezza</button>
+      </div>
+      <div class="mc-feedback" id="fb-tr1"></div>
+    </div>
+    <div class="mc-item" id="tr2" data-correct="0">
+      <div class="mc-question">Formal: <em>"le diciotto e quarantacinque"</em> → Informal:</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'tr2',0)">le sette meno un quarto di sera</button>
+        <button class="btn-mc" onclick="checkMC(this,'tr2',1)">le sei e un quarto di sera</button>
+        <button class="btn-mc" onclick="checkMC(this,'tr2',2)">le otto meno un quarto</button>
+      </div>
+      <div class="mc-feedback" id="fb-tr2"></div>
+    </div>
+    <div class="mc-item" id="tr3" data-correct="2">
+      <div class="mc-question">Formal: <em>"le ventiquattro"</em> → Informal:</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'tr3',0)">le dodici di notte</button>
+        <button class="btn-mc" onclick="checkMC(this,'tr3',1)">le undici di notte</button>
+        <button class="btn-mc" onclick="checkMC(this,'tr3',2)">mezzanotte</button>
+      </div>
+      <div class="mc-feedback" id="fb-tr3"></div>
+    </div>
+  </div>
+
+  <!-- EX 9: Completa con alle / verso / dalle...alle -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num">9</div>
+      <div>
+        <div class="ex-title">Mini diálogo — ¿a qué hora?</div>
+        <div class="ex-subtitle">Selecciona la opción lógica</div>
+      </div>
+    </div>
+    <div class="mc-item" id="dial9a" data-correct="0">
+      <div class="mc-question">— A che ora apre la farmacia? — Apre ___ le otto e mezza.</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'dial9a',0)">alle</button>
+        <button class="btn-mc" onclick="checkMC(this,'dial9a',1)">dalle</button>
+        <button class="btn-mc" onclick="checkMC(this,'dial9a',2)">fino alle</button>
+      </div>
+      <div class="mc-feedback" id="fb-dial9a"></div>
+    </div>
+    <div class="mc-item" id="dial9b" data-correct="2">
+      <div class="mc-question">— Quando chiude la banca? — Chiude ___ le sedici.</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'dial9b',0)">alle</button>
+        <button class="btn-mc" onclick="checkMC(this,'dial9b',1)">verso</button>
+        <button class="btn-mc" onclick="checkMC(this,'dial9b',2)">fino alle</button>
+      </div>
+      <div class="mc-feedback" id="fb-dial9b"></div>
+    </div>
+    <div class="mc-item" id="dial9c" data-correct="1">
+      <div class="mc-question">— A che ora arrivi? — Arrivo ___ le tre, non sono sicuro.</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'dial9c',0)">alle</button>
+        <button class="btn-mc" onclick="checkMC(this,'dial9c',1)">verso</button>
+        <button class="btn-mc" onclick="checkMC(this,'dial9c',2)">fino alle</button>
+      </div>
+      <div class="mc-feedback" id="fb-dial9c"></div>
+    </div>
+  </div>
+
+  <!-- EX 10: VF Verdadero o Falso — reglas gramaticales -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num">10</div>
+      <div>
+        <div class="ex-title">Verdadero o Falso — reglas gramaticales</div>
+        <div class="ex-subtitle">Pon a prueba tu comprensión de las reglas</div>
+      </div>
+    </div>
+
+    <div class="vf-item" data-answer="false">
+      <div class="vf-statement">1. Para la 1:00 se dice <em>"Sono l'una"</em>.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="vf-item" data-answer="true">
+      <div class="vf-statement">2. <em>"Verso le cinque"</em> significa "alrededor de las 5".</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="vf-item" data-answer="false">
+      <div class="vf-statement">3. <em>"Buonanotte"</em> se puede usar al llegar a un lugar por la noche.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="vf-item" data-answer="true">
+      <div class="vf-statement">4. El horario de 24h se usa en estaciones y aeropuertos.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="vf-item" data-answer="true">
+      <div class="vf-statement">5. <em>"Spaccate"</em> y <em>"in punto"</em> significan lo mismo: en punto exacto.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+  </div>
+
+  <!-- ===================== CULTURE STRIP ===================== -->
+  <div class="culture-strip">
+    <div class="culture-title">Il campanile — el reloj de todos</div>
+    <div class="culture-body">
+      <p>El chiste de la barzelletta no es tan absurdo si conoces la historia italiana. Durante siglos, el <strong><em>campanile</em></strong> (campanario) fue el reloj público de cada pueblo y ciudad. Los <em>rintocchi</em> (repiques de campana) marcaban las horas y los momentos importantes del día — el inicio del trabajo, la hora del almuerzo, el angelus al atardecer.</p>
+      <p>Hoy en día, muchos pueblos italianos siguen teniendo el campanile como símbolo central. Y los italianos son famosos por tener horarios muy específicos: la <strong><em>pausa pranzo</em></strong> (pausa del almuerzo) entre las 13:00 y las 15:00 hace que muchos negocios cierren. Nada de ir a comprar a las 13:30 — ¡el <em>negozio è chiuso</em>!</p>
+      <p>Curiosidad: Italia tiene una larga tradición de <strong><em>barzellette</em></strong> como género oral. Se cuentan en familia, en el bar, en el trabajo. El humor juega con situaciones cotidianas — como pedir la hora — y lo lleva al absurdo. <em>È un classico!</em></p>
+    </div>
+  </div>
+
+  <div class="cta-wrap">
+    <p>¡Completaste el módulo 3! Ahora ya sabes pedir la hora, decirla en italiano, saludar según el momento del día y usar las preposiciones de tiempo. <em>Bravo / Brava!</em></p>
+    <a href="../modulo_4/etapa1_exploracion.html" class="btn-cta">Siguiente módulo → Unità 4</a>
+  </div>
+
+</div>
+
+<script>
+// ---- SPEECH ----
+function speak(text, rate, gender) {
+  rate = rate || 0.82;
+  gender = gender || 'f';
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  var utt = new SpeechSynthesisUtterance(text);
+  utt.lang = 'it-IT';
+  utt.rate = rate;
+  var voices = speechSynthesis.getVoices();
+  var itVoices = voices.filter(function(v){ return v.lang.startsWith('it'); });
+  var voice;
+  if (gender === 'm') {
+    voice = itVoices.find(function(v){ return /cosimo|luca|giorgio|male/i.test(v.name); });
+    if (!voice && itVoices.length > 1) voice = itVoices[itVoices.length - 1];
+  } else {
+    voice = itVoices.find(function(v){ return /elsa|alice|giulia|female/i.test(v.name); });
+    if (!voice) voice = itVoices[0];
+  }
+  if (!voice && itVoices.length) voice = itVoices[0];
+  if (voice) utt.voice = voice;
+  speechSynthesis.speak(utt);
+}
+if (window.speechSynthesis) {
+  speechSynthesis.onvoiceschanged = function(){ speechSynthesis.getVoices(); };
+}
+
+// ---- MC ----
+function checkMC(btn, id, idx) {
+  var item = document.getElementById(id);
+  var correct = parseInt(item.dataset.correct);
+  var buttons = item.querySelectorAll('.btn-mc');
+  var feedback = document.getElementById('fb-' + id);
+  buttons.forEach(function(b){ b.disabled = true; });
+  if (idx === correct) {
+    btn.classList.add('correct');
+    feedback.style.color = '#2d7a4f';
+    feedback.textContent = '✓ ¡Correcto!';
+  } else {
+    btn.classList.add('wrong');
+    buttons[correct].classList.add('correct');
+    feedback.style.color = '#cc4736';
+    feedback.textContent = '✗ La respuesta correcta es "' + buttons[correct].textContent + '".';
+  }
+}
+
+// ---- FONETICA ----
+var fonScore = 0;
+function checkFon(btn, id, idx) {
+  var item = document.getElementById(id);
+  var correct = parseInt(item.dataset.correct);
+  var buttons = item.querySelectorAll('.btn-mc');
+  var feedback = document.getElementById('fb-' + id);
+  buttons.forEach(function(b){ b.disabled = true; });
+  if (idx === correct) {
+    btn.classList.add('correct');
+    feedback.style.color = '#2d7a4f';
+    feedback.textContent = '✓ ¡Correcto!';
+    fonScore++;
+  } else {
+    btn.classList.add('wrong');
+    buttons[correct].classList.add('correct');
+    feedback.style.color = '#cc4736';
+    feedback.textContent = '✗ La respuesta correcta es "' + buttons[correct].textContent + '".';
+  }
+  document.getElementById('fon-score').textContent = 'Aciertos: ' + fonScore + ' / 5';
+}
+
+// ---- VF ----
+function checkVF(btn, userAnswer) {
+  var item = btn.closest('.vf-item');
+  var correct = item.dataset.answer === 'true';
+  var buttons = item.querySelectorAll('.btn-vf');
+  var feedback = item.querySelector('.vf-feedback');
+  buttons.forEach(function(b){ b.disabled = true; });
+  if (userAnswer === correct) {
+    btn.classList.add('correct');
+    feedback.style.color = '#2d7a4f';
+    feedback.textContent = '✓ ¡Correcto!';
+  } else {
+    btn.classList.add('wrong');
+    feedback.style.color = '#cc4736';
+    feedback.textContent = '✗ La respuesta es ' + (correct ? 'Verdadero' : 'Falso') + '.';
+  }
+}
+
+// ---- FIB (Fill in blank) ----
+var fibAnswers = {
+  fib1: ['tre','le tre','sono le tre'],
+  fib2: ['un quarto','e un quarto','sette e un quarto'],
+  fib3: ['mezzogiorno','è mezzogiorno'],
+  fib4: ['mezza','e mezza','due e mezza'],
+  fib5: ['un quarto','meno un quarto','dieci meno un quarto']
+};
+function checkFib() {
+  for (var i = 1; i <= 5; i++) {
+    var inp = document.getElementById('fib' + i);
+    var fb = document.getElementById('ffb' + i);
+    var val = inp.value.trim().toLowerCase();
+    inp.classList.remove('correct','wrong');
+    fb.textContent = '';
+    var answers = fibAnswers['fib' + i];
+    var found = answers.some(function(a){ return val === a.toLowerCase() || val.indexOf(a.toLowerCase()) >= 0; });
+    if (found) {
+      inp.classList.add('correct');
+      fb.style.color = '#2d7a4f';
+      fb.textContent = '✓ ¡Correcto!';
+    } else {
+      inp.classList.add('wrong');
+      fb.style.color = '#cc4736';
+      fb.textContent = '✗ Revisa. Una respuesta posible: "' + answers[0] + '"';
+    }
+  }
+}
+
+// ---- SORT ----
+var sortBuilt = { sort1: [], sort2: [] };
+function addWord(el, id, word) {
+  if (el.classList.contains('used')) return;
+  el.classList.add('used');
+  sortBuilt[id].push(word);
+  var answerDiv = document.getElementById(id + '-answer');
+  var placed = document.createElement('span');
+  placed.className = 'sort-placed';
+  placed.textContent = word;
+  placed.dataset.word = word;
+  placed.onclick = function() { removeWord(this, id, el); };
+  answerDiv.appendChild(placed);
+  document.getElementById(id + '-feedback').textContent = '';
+}
+function removeWord(placedEl, id, origEl) {
+  var word = placedEl.dataset.word;
+  sortBuilt[id] = sortBuilt[id].filter(function(w, i, arr){
+    var idx = arr.indexOf(word); if(i === idx){ arr.splice(idx,1); return false; } return true;
+  });
+  // simpler: just remove last occurrence
+  var idx = sortBuilt[id].lastIndexOf(word);
+  if (idx > -1) sortBuilt[id].splice(idx, 1);
+  placedEl.remove();
+  origEl.classList.remove('used');
+}
+function checkSort(id, correct) {
+  var built = sortBuilt[id];
+  var fb = document.getElementById(id + '-feedback');
+  var isCorrect = built.length === correct.length && built.every(function(w,i){ return w === correct[i]; });
+  if (isCorrect) {
+    fb.style.color = '#2d7a4f';
+    fb.textContent = '✓ ¡Perfecto! La frase es correcta.';
+  } else {
+    fb.style.color = '#cc4736';
+    fb.textContent = '✗ No exactamente. Orden correcto: ' + correct.join(' ');
+  }
+}
+
+// ---- FORMAL / INFORMAL CLASSIFY ----
+var fiCounts = { formal: 0, informal: 0 };
+var fiTotal  = { formal: 3, informal: 3 };
+function classifyFI(el, chosen) {
+  var actual = el.dataset.type;
+  if (el.classList.contains('done-formal') || el.classList.contains('done-informal') || el.classList.contains('wrong-pick')) return;
+  var text = el.querySelector('em').textContent;
+  if (chosen === actual) {
+    el.classList.add('done-' + actual);
+    var bucket = document.getElementById('placed-' + actual);
+    var span = document.createElement('span');
+    span.className = 'fi-placed ' + actual;
+    span.textContent = text;
+    bucket.appendChild(span);
+    fiCounts[actual]++;
+    var total = fiCounts.formal + fiCounts.informal;
+    if (total === 6) {
+      document.getElementById('fi-feedback').style.color = '#2d7a4f';
+      document.getElementById('fi-feedback').textContent = '✓ ¡Excelente! Clasificaste todas correctamente.';
+    }
+  } else {
+    el.classList.add('wrong-pick');
+    document.getElementById('fi-feedback').style.color = '#cc4736';
+    document.getElementById('fi-feedback').textContent = '✗ Esa no va ahí. Pista: ¿los números llegan al 24?';
+    setTimeout(function(){ el.classList.remove('wrong-pick'); }, 1200);
+  }
+}
+</script>
+</body>
+</html>

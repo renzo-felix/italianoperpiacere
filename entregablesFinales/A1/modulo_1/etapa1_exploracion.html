@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 1 · Di dove sei? — Exploración | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:    #e9e6d5;
+  --cream-dk: #ddd9c8;
+  --gold:     #EFCF7F;
+  --amber:    #e5ab07;
+  --amber-dk: #c8940a;
+  --red:      #cc4736;
+  --teal:     #78a6ba;
+  --green:    #528e74;
+  --black:    #1a1a18;
+  --white:    #ffffff;
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+  --r: 10px;
+  --mc:      #cc4736;
+  --mc-dk:   #a8382a;
+  --mc-text: #7a1f14;
+  --mc-bg:   #fbeae8;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--fb); background: var(--cream); color: var(--black); line-height: 1.6; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%);
+  color: var(--white);
+  padding: 56px 24px 48px;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-family: var(--fb);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--fh);
+  font-style: italic;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.hero-sub {
+  font-size: 1.05rem;
+  opacity: 0.88;
+  font-weight: 300;
+}
+
+/* STAGE NAV */
+.stage-nav {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 18px 16px;
+  background: var(--white);
+  border-bottom: 1px solid var(--cream-dk);
+  flex-wrap: wrap;
+}
+.stage-link {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-family: var(--fb);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #888;
+  background: var(--cream);
+  border: 1.5px solid transparent;
+  transition: all 0.2s;
+}
+.stage-link .sn {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: #ccc;
+  color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; font-weight: 700;
+}
+.stage-link.active {
+  background: var(--mc-bg);
+  color: var(--mc-text);
+  border-color: var(--mc);
+}
+.stage-link.active .sn { background: var(--mc); }
+.stage-link.done { color: var(--green); }
+.stage-link.done .sn { background: var(--green); }
+
+/* MAIN */
+.main { max-width: 860px; margin: 0 auto; padding: 40px 20px 80px; }
+.section { margin-bottom: 40px; }
+
+/* SOFIA */
+.sofia-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  margin-bottom: 28px;
+}
+.sofia-col { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
+.sofia-avatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--mc-bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  border: 2px solid var(--mc);
+}
+.sofia-name { font-size: 0.7rem; font-weight: 700; color: var(--mc); text-transform: uppercase; letter-spacing: 0.05em; }
+.sofia-bubble {
+  background: var(--cream-dk);
+  border-radius: 0 var(--r) var(--r) var(--r);
+  padding: 16px 20px;
+  font-size: 0.96rem;
+  line-height: 1.65;
+  flex: 1;
+}
+
+/* TASK BOX */
+.task-box {
+  background: var(--mc-bg);
+  border-left: 4px solid var(--mc);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 18px 22px;
+  margin-bottom: 28px;
+}
+.task-box h3 { font-family: var(--fb); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mc); margin-bottom: 10px; font-weight: 700; }
+.task-box ul { padding-left: 20px; }
+.task-box li { margin-bottom: 6px; font-size: 0.94rem; }
+
+/* VIDEO */
+.video-wrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  margin-bottom: 28px;
+}
+.video-wrap iframe {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+/* EXERCISE CARD */
+.ex-card {
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  margin-bottom: 28px;
+}
+.ex-card h2 {
+  font-family: var(--fh);
+  font-style: italic;
+  font-size: 1.35rem;
+  color: var(--mc-text);
+  margin-bottom: 6px;
+}
+.ex-tag {
+  display: inline-block;
+  background: var(--mc);
+  color: var(--white);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 18px;
+}
+.ex-instr {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+/* TRUE/FALSE */
+.tf-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--cream);
+}
+.tf-item:last-child { border-bottom: none; }
+.tf-stmt { flex: 1; font-size: 0.94rem; padding-top: 2px; }
+.tf-btns { display: flex; gap: 8px; flex-shrink: 0; }
+.btn-tf {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1.5px solid var(--cream-dk);
+  background: var(--cream);
+  font-family: var(--fb);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-tf:hover { border-color: var(--mc); color: var(--mc); }
+.btn-tf.selected-correct { background: #d4edda; border-color: #28a745; color: #155724; }
+.btn-tf.selected-wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+.tf-feedback { font-size: 0.78rem; margin-top: 6px; font-weight: 600; display: none; }
+.tf-feedback.show { display: block; }
+.tf-feedback.ok { color: #155724; }
+.tf-feedback.ko { color: #721c24; }
+
+/* MULTIPLE CHOICE */
+.mc-item { margin-bottom: 22px; }
+.mc-question { font-size: 0.96rem; font-weight: 600; margin-bottom: 12px; }
+.mc-options { display: flex; flex-direction: column; gap: 8px; }
+.btn-mc {
+  padding: 10px 16px;
+  border-radius: var(--r);
+  border: 1.5px solid var(--cream-dk);
+  background: var(--cream);
+  font-family: var(--fb);
+  font-size: 0.88rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+}
+.btn-mc:hover:not(:disabled) { border-color: var(--mc); background: var(--mc-bg); }
+.btn-mc.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: 600; }
+.btn-mc.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+.mc-feedback { font-size: 0.8rem; margin-top: 8px; font-weight: 600; display: none; }
+.mc-feedback.show { display: block; }
+.mc-feedback.ok { color: #155724; }
+.mc-feedback.ko { color: #721c24; }
+
+/* MATCHING */
+.match-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+@media (max-width: 520px) { .match-grid { grid-template-columns: 1fr; } }
+.match-col h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: #888; margin-bottom: 10px; font-weight: 600; }
+.match-item {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1.5px solid var(--cream-dk);
+  background: var(--cream);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  user-select: none;
+}
+.match-item:hover { border-color: var(--mc); }
+.match-item.selected { border-color: var(--mc); background: var(--mc-bg); color: var(--mc-text); font-weight: 600; }
+.match-item.matched { border-color: #28a745; background: #d4edda; color: #155724; font-weight: 600; cursor: default; }
+.match-item.wrong-anim { animation: shake 0.3s ease; border-color: #dc3545; background: #f8d7da; }
+@keyframes shake {
+  0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)}
+}
+#match-feedback { margin-top: 10px; font-size: 0.88rem; font-weight: 600; min-height: 22px; }
+#match-feedback.ok { color: #155724; }
+#match-feedback.ko { color: #721c24; }
+
+/* SCORE */
+.score-bar {
+  background: var(--cream-dk);
+  border-radius: 20px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.88rem;
+  margin-top: 16px;
+}
+.score-num { font-size: 1.3rem; font-weight: 700; color: var(--mc); }
+
+/* CTA */
+.cta-wrap { text-align: center; margin-top: 48px; }
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--mc);
+  color: var(--white);
+  padding: 16px 36px;
+  border-radius: 30px;
+  font-family: var(--fb);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(204,71,54,0.35);
+  transition: all 0.25s;
+}
+.btn-cta:hover { background: var(--mc-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(204,71,54,0.4); }
+.btn-cta .arrow { font-size: 1.2rem; }
+
+/* Section title */
+.sec-title {
+  font-family: var(--fh);
+  font-style: italic;
+  font-size: 1.6rem;
+  color: var(--mc-text);
+  margin-bottom: 6px;
+}
+.sec-divider {
+  width: 48px; height: 3px;
+  background: var(--mc);
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+
+/* Numero badge */
+.ex-num {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--mc);
+  color: var(--white);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.9rem;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+.ex-header { display: flex; align-items: center; margin-bottom: 6px; }
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">A1 · Unità 1</div>
+  <h1>Di dove sei?</h1>
+  <p class="hero-sub">Etapa 1 — Exploración · Canción & video</p>
+</header>
+
+<!-- STAGE NAV -->
+<nav class="stage-nav">
+  <a class="stage-link active" href="etapa1_exploracion.html"><span class="sn">1</span>Exploración</a>
+  <a class="stage-link" href="etapa2_descubrimiento.html"><span class="sn">2</span>Descubrimiento</a>
+  <a class="stage-link" href="etapa3_gramatica.html"><span class="sn">3</span>Gramática</a>
+  <a class="stage-link" href="etapa4_ejercicios.html"><span class="sn">4</span>Ejercicios</a>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- SOFIA INTRO -->
+  <div class="sofia-row">
+    <div class="sofia-col">
+      <div class="sofia-avatar">👩‍🏫</div>
+      <div class="sofia-name">Sofia</div>
+    </div>
+    <div class="sofia-bubble">
+      ¡<em>Benvenuto/a</em> a la Unità 1! Esta vez viajamos por Italia con una pregunta muy importante: <strong><em>Di dove sei?</em></strong> (¿De dónde eres?). <br><br>
+      Antes de ver el video, piensa: <em>¿de dónde eres tú? ¿conoces alguna ciudad italiana?</em> Anota en tu mente y luego compara con lo que vas a escuchar. ¡Vamos!
+    </div>
+  </div>
+
+  <!-- VIDEO -->
+  <section class="section">
+    <h2 class="sec-title">Il video</h2>
+    <div class="sec-divider"></div>
+
+    <div class="task-box">
+      <h3>🎬 Mientras ves el video, presta atención a...</h3>
+      <ul>
+        <li>¿Qué ciudades italianas se mencionan o aparecen?</li>
+        <li>¿Qué medios de transporte aparecen (aeropuerto, tren, estación)?</li>
+        <li>¿Cómo se presentan los personajes? ¿Qué se preguntan?</li>
+        <li>¿Escuchas las palabras <em>sono</em>, <em>sei</em>, <em>vado</em>, <em>vai</em>? ¿En qué momentos?</li>
+        <li>¿Qué números aparecen en el video?</li>
+      </ul>
+    </div>
+
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/s7MBSo0E71o" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    </div>
+  </section>
+
+  <!-- EJ 1: VERDADERO/FALSO -->
+  <div class="ex-card" id="ex1">
+    <div class="ex-header">
+      <div class="ex-num">1</div>
+      <h2 class="sec-title" style="margin-bottom:0">Verdadero o Falso</h2>
+    </div>
+    <div class="ex-tag">Comprensión del video</div>
+    <p class="ex-instr">Lee cada afirmación y decide si es <strong>V</strong> (Verdadero) o <strong>F</strong> (Falso) según lo que viste y escuchaste en el video.</p>
+
+    <div id="tf-list"></div>
+
+    <div class="score-bar" id="tf-score" style="display:none">
+      <span class="score-num" id="tf-score-num">0/6</span>
+      <span>respuestas correctas en Verdadero/Falso</span>
+    </div>
+  </div>
+
+  <!-- EJ 2: SELECCIÓN MÚLTIPLE -->
+  <div class="ex-card" id="ex2">
+    <div class="ex-header">
+      <div class="ex-num">2</div>
+      <h2 class="sec-title" style="margin-bottom:0">Selección múltiple</h2>
+    </div>
+    <div class="ex-tag">Comprensión auditiva</div>
+    <p class="ex-instr">Elige la respuesta correcta para cada pregunta sobre el video.</p>
+
+    <div id="mc-list"></div>
+
+    <div class="score-bar" id="mc-score" style="display:none">
+      <span class="score-num" id="mc-score-num">0/5</span>
+      <span>respuestas correctas en Selección múltiple</span>
+    </div>
+  </div>
+
+  <!-- EJ 3: ASOCIACIÓN -->
+  <div class="ex-card" id="ex3">
+    <div class="ex-header">
+      <div class="ex-num">3</div>
+      <h2 class="sec-title" style="margin-bottom:0">Une las columnas</h2>
+    </div>
+    <div class="ex-tag">Vocabulario del video</div>
+    <p class="ex-instr">Haz clic en una ciudad italiana (columna izquierda) y luego en su región o descripción (columna derecha) para emparejarlas.</p>
+
+    <div class="match-grid">
+      <div class="match-col">
+        <h4>Ciudad</h4>
+        <div id="cities-col"></div>
+      </div>
+      <div class="match-col">
+        <h4>Región / descripción</h4>
+        <div id="regions-col"></div>
+      </div>
+    </div>
+    <div id="match-feedback"></div>
+    <div class="score-bar" id="match-score" style="display:none">
+      <span class="score-num" id="match-score-num">0/6</span>
+      <span>pares correctos</span>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-wrap">
+    <div class="sofia-row" style="text-align:left">
+      <div class="sofia-col">
+        <div class="sofia-avatar">👩‍🏫</div>
+        <div class="sofia-name">Sofia</div>
+      </div>
+      <div class="sofia-bubble">
+        ¡<em>Bravissimo/a!</em> Ya tienes el primer contacto con el italiano de viaje. Ahora en la Etapa 2 vamos a explorar el vocabulario del video con más detalle — ciudades, transporte y cómo presentarte. ¡Te espero allí! 🇮🇹
+      </div>
+    </div>
+    <a href="etapa2_descubrimiento.html" class="btn-cta">
+      Ir a Etapa 2 — Descubrimiento <span class="arrow">→</span>
+    </a>
+  </div>
+
+</main>
+
+<script>
+// ─── TRUE / FALSE DATA ───────────────────────────────────────────────
+const tfData = [
+  { stmt: "En el video aparecen personajes que se conocen en una estación de tren o en el aeropuerto.", answer: true, explanation: "¡Correcto! El contexto del video es de viaje y transporte." },
+  { stmt: "Los personajes del video nunca mencionan a qué ciudad van o de dónde vienen.", answer: false, explanation: "No — los personajes hablan de su origen y destino, usando frases como <em>Di dove sei?</em> y <em>Vado a…</em>" },
+  { stmt: "En el video se puede escuchar la expresión <em>Di dove sei?</em> (¿De dónde eres?).", answer: true, explanation: "¡Correcto! Es la pregunta central de todo el módulo." },
+  { stmt: "El video no incluye ningún número en italiano.", answer: false, explanation: "Incorrecto — los números aparecen (teléfonos, edades, etc.) a lo largo del video." },
+  { stmt: "Se pueden identificar ciudades italianas como Roma, Milano o Napoli en el video.", answer: true, explanation: "¡Muy bien! Varias ciudades italianas aparecen o se mencionan." },
+  { stmt: "Los personajes hablan exclusivamente en inglés durante todo el video.", answer: false, explanation: "¡No! El video está en italiano — por eso es nuestro recurso principal." }
+];
+
+// ─── MULTIPLE CHOICE DATA ────────────────────────────────────────────
+const mcData = [
+  {
+    q: "¿Cuál es la pregunta principal que se hace en el video para preguntar el origen de alguien?",
+    opts: ["Come stai?", "Di dove sei?", "Dove vai?", "Come ti chiami?"],
+    correct: 1,
+    feedback: "¡Exacto! <em>Di dove sei?</em> significa '¿De dónde eres?'"
+  },
+  {
+    q: "¿En qué tipo de lugar se desarrolla principalmente la acción del video?",
+    opts: ["En un restaurante italiano", "En una universidad", "En una estación / aeropuerto (lugar de viaje)", "En una playa"],
+    correct: 2,
+    feedback: "Correcto — el contexto es de transporte y viaje, muy típico para practicar <em>andare</em> y <em>essere</em>."
+  },
+  {
+    q: "¿Qué idioma se habla en el video?",
+    opts: ["Inglés con subtítulos en italiano", "Italiano", "Español", "Francés"],
+    correct: 1,
+    feedback: "¡Sí! El video está en italiano, nuestro input auténtico."
+  },
+  {
+    q: "¿Para qué sirve la expresión <em>Vado a Roma</em> que se puede escuchar en contextos similares al video?",
+    opts: ["Para decir de dónde eres", "Para decir a dónde vas", "Para preguntar la edad", "Para saludar"],
+    correct: 1,
+    feedback: "¡Correcto! <em>Vado a</em> + ciudad = 'Voy a…' (verbo <em>andare</em>)."
+  },
+  {
+    q: "¿Cuál de estas expresiones NO esperarías escuchar en el video de este módulo?",
+    opts: ["Sono di Milano.", "Di dove sei?", "Vado a Napoli.", "Voglio una pizza."],
+    correct: 3,
+    feedback: "Exacto — <em>Voglio una pizza</em> pertenece al vocabulario de comida, no al de origen y destino."
+  }
+];
+
+// ─── MATCHING DATA ───────────────────────────────────────────────────
+const matchData = [
+  { city: "Roma",    region: "Capital de Italia, en el centro" },
+  { city: "Milano",  region: "Capital de la moda, en el norte" },
+  { city: "Napoli",  region: "Ciudad del sur, famosa por la pizza" },
+  { city: "Venezia", region: "Ciudad de canales y góndolas" },
+  { city: "Firenze", region: "Ciudad del Renacimiento, en la Toscana" },
+  { city: "Torino",  region: "Ciudad del norte, antigua capital de Italia" }
+];
+
+// ─── RENDER TRUE/FALSE ───────────────────────────────────────────────
+let tfCorrect = 0, tfAnswered = 0;
+const tfList = document.getElementById('tf-list');
+
+tfData.forEach((item, i) => {
+  const div = document.createElement('div');
+  div.className = 'tf-item';
+  div.innerHTML = `
+    <div class="tf-stmt">${item.stmt}</div>
+    <div>
+      <div class="tf-btns">
+        <button class="btn-tf" data-i="${i}" data-val="true">V</button>
+        <button class="btn-tf" data-i="${i}" data-val="false">F</button>
+      </div>
+      <div class="tf-feedback" id="tf-fb-${i}"></div>
+    </div>
+  `;
+  tfList.appendChild(div);
+});
+
+tfList.addEventListener('click', e => {
+  const btn = e.target.closest('.btn-tf');
+  if (!btn) return;
+  const i = parseInt(btn.dataset.i);
+  const item = tfData[i];
+  const val = btn.dataset.val === 'true';
+  const row = tfList.querySelectorAll('.tf-item')[i];
+  if (row.querySelector('.selected-correct') || row.querySelector('.selected-wrong')) return;
+
+  const isCorrect = val === item.answer;
+  btn.classList.add(isCorrect ? 'selected-correct' : 'selected-wrong');
+
+  // Mark the correct button too if wrong
+  if (!isCorrect) {
+    row.querySelectorAll('.btn-tf').forEach(b => {
+      if ((b.dataset.val === 'true') === item.answer) b.classList.add('selected-correct');
+    });
+  }
+
+  const fb = document.getElementById(`tf-fb-${i}`);
+  fb.innerHTML = (isCorrect ? '✓ ' : '✗ ') + item.explanation;
+  fb.className = `tf-feedback show ${isCorrect ? 'ok' : 'ko'}`;
+
+  if (isCorrect) tfCorrect++;
+  tfAnswered++;
+
+  if (tfAnswered === tfData.length) {
+    const sc = document.getElementById('tf-score');
+    document.getElementById('tf-score-num').textContent = `${tfCorrect}/${tfData.length}`;
+    sc.style.display = 'flex';
+  }
+});
+
+// ─── RENDER MULTIPLE CHOICE ──────────────────────────────────────────
+let mcCorrect = 0, mcAnswered = 0;
+const mcList = document.getElementById('mc-list');
+
+mcData.forEach((item, qi) => {
+  const div = document.createElement('div');
+  div.className = 'mc-item';
+  const optsHtml = item.opts.map((o, oi) =>
+    `<button class="btn-mc" data-qi="${qi}" data-oi="${oi}">${o}</button>`
+  ).join('');
+  div.innerHTML = `
+    <div class="mc-question">${qi + 1}. ${item.q}</div>
+    <div class="mc-options">${optsHtml}</div>
+    <div class="mc-feedback" id="mc-fb-${qi}"></div>
+  `;
+  mcList.appendChild(div);
+});
+
+mcList.addEventListener('click', e => {
+  const btn = e.target.closest('.btn-mc');
+  if (!btn) return;
+  const qi = parseInt(btn.dataset.qi);
+  const oi = parseInt(btn.dataset.oi);
+  const item = mcData[qi];
+  const wrapper = mcList.querySelectorAll('.mc-item')[qi];
+  if (wrapper.querySelector('.correct') || wrapper.querySelector('.wrong')) return;
+
+  const isCorrect = oi === item.correct;
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    wrapper.querySelectorAll('.btn-mc')[item.correct].classList.add('correct');
+  }
+  wrapper.querySelectorAll('.btn-mc').forEach(b => b.disabled = true);
+
+  const fb = document.getElementById(`mc-fb-${qi}`);
+  fb.innerHTML = (isCorrect ? '✓ ' : '✗ ') + item.feedback;
+  fb.className = `mc-feedback show ${isCorrect ? 'ok' : 'ko'}`;
+
+  if (isCorrect) mcCorrect++;
+  mcAnswered++;
+  if (mcAnswered === mcData.length) {
+    document.getElementById('mc-score-num').textContent = `${mcCorrect}/${mcData.length}`;
+    document.getElementById('mc-score').style.display = 'flex';
+  }
+});
+
+// ─── RENDER MATCHING ─────────────────────────────────────────────────
+let selectedCity = null, matchedCount = 0;
+const citiesCol = document.getElementById('cities-col');
+const regionsCol = document.getElementById('regions-col');
+
+// Shuffle regions
+const shuffledRegions = [...matchData].sort(() => Math.random() - 0.5);
+
+matchData.forEach((item, i) => {
+  const cDiv = document.createElement('div');
+  cDiv.className = 'match-item';
+  cDiv.dataset.city = item.city;
+  cDiv.dataset.type = 'city';
+  cDiv.textContent = item.city;
+  citiesCol.appendChild(cDiv);
+});
+
+shuffledRegions.forEach(item => {
+  const rDiv = document.createElement('div');
+  rDiv.className = 'match-item';
+  rDiv.dataset.city = item.city;
+  rDiv.dataset.type = 'region';
+  rDiv.textContent = item.region;
+  regionsCol.appendChild(rDiv);
+});
+
+document.getElementById('ex3').addEventListener('click', e => {
+  const item = e.target.closest('.match-item');
+  if (!item || item.classList.contains('matched')) return;
+
+  if (item.dataset.type === 'city') {
+    document.querySelectorAll('[data-type="city"].selected').forEach(el => el.classList.remove('selected'));
+    item.classList.add('selected');
+    selectedCity = item;
+  } else if (item.dataset.type === 'region') {
+    if (!selectedCity) return;
+    const correct = selectedCity.dataset.city === item.dataset.city;
+    const fb = document.getElementById('match-feedback');
+
+    if (correct) {
+      selectedCity.classList.remove('selected');
+      selectedCity.classList.add('matched');
+      item.classList.add('matched');
+      matchedCount++;
+      fb.textContent = `✓ ¡Correcto! ${selectedCity.dataset.city} — ${item.textContent}`;
+      fb.className = 'ok';
+      selectedCity = null;
+
+      if (matchedCount === matchData.length) {
+        document.getElementById('match-score-num').textContent = `${matchedCount}/${matchData.length}`;
+        document.getElementById('match-score').style.display = 'flex';
+        fb.textContent = '🎉 ¡Perfetto! Emparejaste todas las ciudades correctamente.';
+      }
+    } else {
+      item.classList.add('wrong-anim');
+      fb.textContent = '✗ No es el par correcto. Intenta con otra región.';
+      fb.className = 'ko';
+      setTimeout(() => item.classList.remove('wrong-anim'), 400);
+    }
+  }
+});
+</script>
+</body>
+</html>

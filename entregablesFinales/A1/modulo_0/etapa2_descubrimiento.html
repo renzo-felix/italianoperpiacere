@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unità 0 · Descubrimiento | Italiano Per Piacere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:    #e9e6d5;
+      --cream-dk: #ddd9c8;
+      --gold:     #EFCF7F;
+      --amber:    #e5ab07;
+      --amber-dk: #c8940a;
+      --red:      #cc4736;
+      --teal:     #78a6ba;
+      --green:    #528e74;
+      --black:    #1a1a18;
+      --white:    #ffffff;
+      --fh: 'Playfair Display', Georgia, serif;
+      --fb: 'Outfit', system-ui, sans-serif;
+      --r: 10px;
+      --mc:      #528e74;
+      --mc-dk:   #3d6b58;
+      --mc-text: #2d4d3c;
+      --mc-bg:   #e4f0e9;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--fb); background: var(--cream); color: var(--black); min-height: 100vh; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%);
+      padding: 3rem 1.5rem 2.5rem; text-align: center; color: var(--white);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: 'A B C';
+      position: absolute; font-family: var(--fh); font-size: 10rem;
+      font-style: italic; opacity: 0.07;
+      bottom: -2.5rem; right: -2rem; letter-spacing: 1rem; pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block; background: rgba(255,255,255,0.22);
+      color: var(--white); font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      padding: 0.3rem 1.2rem; border-radius: 20px; margin-bottom: 1rem;
+    }
+    .hero h1 { font-family: var(--fh); font-size: clamp(2rem,5vw,3rem); font-style: italic; margin-bottom: 0.5rem; }
+    .hero p { font-size: 0.95rem; opacity: 0.85; font-weight: 300; }
+
+    /* CONTAINER */
+    .container { max-width: 880px; margin: 0 auto; padding: 2.5rem 1.2rem 5rem; }
+    .sec { margin-bottom: 4rem; }
+
+    /* SOFIA */
+    .sofia-row { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+    .sofia-col { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .sofia-avatar {
+      width: 58px; height: 58px; border-radius: 50%;
+      background: var(--mc); display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; box-shadow: 0 4px 16px rgba(229,171,7,0.35);
+    }
+    .sofia-name { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--mc-dk); margin-top: 0.3rem; }
+    .sofia-bubble {
+      background: var(--white); border-radius: 0 var(--r) var(--r) var(--r);
+      padding: 1rem 1.4rem; box-shadow: 0 3px 14px rgba(0,0,0,0.07);
+      font-size: 0.93rem; line-height: 1.8;
+    }
+    .sofia-bubble strong { color: var(--mc-dk); }
+    .sofia-bubble em { color: var(--red); font-style: italic; }
+
+    /* SECTION TITLES */
+    .sec-title { font-family: var(--fh); font-size: 1.6rem; font-style: italic; color: var(--mc-dk); margin-bottom: 0.2rem; }
+    .sec-sub { font-size: 0.84rem; color: #777; margin-bottom: 1.2rem; line-height: 1.5; }
+    .sec-label {
+      display: inline-block; background: var(--mc); color: var(--white);
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 0.25rem 0.9rem; border-radius: 20px; margin-bottom: 0.6rem;
+    }
+
+    /* CARD */
+    .card {
+      background: var(--white); border-radius: var(--r);
+      padding: 1.5rem 1.75rem; box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+      margin-bottom: 1.2rem;
+    }
+    .card-title {
+      font-family: var(--fh); font-size: 1.05rem; font-style: italic;
+      color: var(--mc-dk); margin-bottom: 1rem;
+      padding-bottom: 0.5rem; border-bottom: 1px solid var(--cream-dk);
+    }
+
+    /* TASK BOX */
+    .task-box {
+      background: var(--mc-bg); border-left: 4px solid var(--mc);
+      border-radius: var(--r); padding: 1rem 1.4rem;
+      font-size: 0.9rem; line-height: 1.75; margin-bottom: 1.2rem;
+    }
+    .task-box strong { color: var(--mc-text); }
+
+    /* INFO BOX */
+    .info-box {
+      background: #f0f6f9; border-left: 4px solid var(--teal);
+      border-radius: var(--r); padding: 0.9rem 1.3rem;
+      font-size: 0.88rem; line-height: 1.7; margin-bottom: 1rem;
+      color: #2d5f72;
+    }
+
+    /* VIDEO */
+    .video-wrap {
+      position: relative; padding-bottom: 56.25%; height: 0;
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 6px 28px rgba(0,0,0,0.15); margin-bottom: 0.6rem;
+      background: #111;
+    }
+    .video-wrap iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:0; }
+    .video-fallback {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      position: absolute; inset: 0; background: #1a1a18; color: #fff;
+      font-size: 0.9rem; gap: 0.75rem; padding: 1.5rem; text-align: center;
+    }
+    .video-fallback a {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--red); color: var(--white); padding: 0.6rem 1.4rem;
+      border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 0.87rem;
+      transition: opacity 0.2s;
+    }
+    .video-fallback a:hover { opacity: 0.85; }
+    .video-note {
+      font-size: 0.75rem; color: #999; margin-top: 0.3rem;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .video-yt-link {
+      color: var(--mc-dk); text-decoration: none; font-weight: 600; font-size: 0.78rem;
+    }
+    .video-yt-link:hover { text-decoration: underline; }
+
+    /* V/F */
+    .vf-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 1rem; border-radius: var(--r);
+      margin-bottom: 0.5rem; background: var(--cream); gap: 1rem;
+    }
+    .vf-text { flex:1; font-size: 0.91rem; line-height: 1.55; }
+    .vf-text em { color: var(--mc-dk); font-style: italic; font-weight: 600; }
+    .vf-btns { display: flex; gap: 0.4rem; flex-shrink: 0; }
+    .vf-btn {
+      padding: 0.35rem 0.95rem; border: 2px solid var(--cream-dk);
+      border-radius: 20px; background: var(--white);
+      font-size: 0.83rem; font-weight: 700; cursor: pointer; font-family: var(--fb); transition: all 0.2s;
+    }
+    .vf-btn:hover:not(.disabled) { border-color: var(--mc); background: var(--mc-bg); }
+    .vf-btn.correct { background: #e8f5ec; border-color: #52a670; color: #1f5c35; }
+    .vf-btn.wrong   { background: #fdecea; border-color: var(--red); color: #7a1f14; }
+    .vf-btn.disabled { pointer-events: none; opacity: 0.55; }
+    .vf-explic { font-size: 0.79rem; color: #555; margin: 0.2rem 0 0.5rem 1rem; display: none; font-style: italic; }
+    .vf-explic.show { display: block; }
+
+    /* ALPHABET GRID WITH AUDIO */
+    .alfa-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(195px, 1fr)); gap: 0.5rem;
+    }
+    .alfa-item {
+      background: var(--cream); border-radius: 8px;
+      padding: 0.5rem 0.75rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      transition: background 0.15s;
+    }
+    .alfa-item:hover { background: var(--mc-bg); }
+    .alfa-ltr {
+      font-family: var(--fh); font-size: 1.55rem; font-weight: 900;
+      color: var(--mc-dk); min-width: 26px; text-align: center;
+    }
+    .alfa-speak {
+      background: none; border: 1.5px solid var(--mc-dk); color: var(--mc-dk);
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      cursor: pointer; font-size: 0.75rem; display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s; padding: 0;
+    }
+    .alfa-speak:hover { background: var(--mc-bg); }
+    .alfa-speak.playing { background: var(--mc); border-color: var(--mc); color: var(--white); }
+    .alfa-como { font-size: 0.72rem; color: #aaa; flex-shrink: 0; }
+    .alfa-city { font-size: 0.88rem; font-weight: 500; color: #444; flex: 1; }
+
+    /* FILL ACTIVITY */
+    .fill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(195px, 1fr)); gap: 0.5rem; margin-bottom: 1rem; }
+    .fill-item {
+      background: var(--cream); border-radius: 8px;
+      padding: 0.5rem 0.75rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .fill-ltr { font-family: var(--fh); font-size: 1.55rem; font-weight: 900; color: var(--mc-dk); min-width: 26px; text-align: center; }
+    .fill-inp {
+      flex: 1; border: 2px solid var(--cream-dk); border-radius: 6px;
+      padding: 0.2rem 0.5rem; font-family: var(--fb); font-size: 0.85rem;
+      background: var(--white); text-align: center;
+    }
+    .fill-inp.ok  { border-color: #52a670; background: #e8f5ec; color: #1f5c35; }
+    .fill-inp.err { border-color: var(--red); background: #fdecea; }
+    .fill-icon { font-size: 0.95rem; min-width: 18px; text-align: center; }
+
+    /* FOREIGN LETTERS */
+    .foreign-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1rem; }
+    .foreign-chip {
+      display: flex; align-items: center; gap: 0.4rem;
+      background: var(--cream); border-radius: 10px;
+      padding: 0.5rem 0.85rem; cursor: pointer;
+      border: 2px solid transparent; transition: all 0.2s;
+    }
+    .foreign-chip:hover { border-color: var(--mc); background: var(--mc-bg); }
+    .foreign-chip.selected { background: var(--mc-bg); border-color: var(--mc); }
+    .foreign-chip.correct { background: #e8f5ec; border-color: #52a670; }
+    .foreign-chip.wrong   { background: #fdecea; border-color: var(--red); }
+    .foreign-chip.missed  { background: #fff3cd; border-color: var(--amber-dk); }
+    .fc-ltr { font-family: var(--fh); font-size: 1.4rem; font-weight: 900; color: var(--mc-dk); }
+    .fc-audio {
+      background: none; border: none; cursor: pointer;
+      color: var(--mc-dk); font-size: 0.85rem; padding: 0; line-height: 1;
+      transition: transform 0.15s;
+    }
+    .fc-audio:hover { transform: scale(1.2); }
+
+    /* FONETICA TABLE */
+    .fon-table { width: 100%; border-collapse: collapse; font-size: 0.89rem; }
+    .fon-table th {
+      background: var(--mc); color: var(--white);
+      padding: 0.5rem 0.9rem; text-align: left; font-size: 0.73rem;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .fon-table th:first-child { border-radius: 8px 0 0 0; }
+    .fon-table th:last-child  { border-radius: 0 8px 0 0; }
+    .fon-table td { padding: 0.55rem 0.9rem; border-bottom: 1px solid var(--cream-dk); }
+    .fon-table tr:last-child td { border-bottom: none; }
+    .fon-table tr:nth-child(even) td { background: var(--cream); }
+    .fon-table .hl { color: var(--red); font-weight: 700; }
+    .fon-table .it { font-style: italic; color: #555; }
+    .fon-audio-btn {
+      background: none; border: 1.5px solid var(--mc-dk); color: var(--mc-dk);
+      padding: 0.15rem 0.6rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600;
+      cursor: pointer; font-family: var(--fb); white-space: nowrap; transition: all 0.2s;
+    }
+    .fon-audio-btn:hover { background: var(--mc-bg); }
+
+    /* SALUDOS */
+    .greet-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+    .greet-card { background: var(--cream); border-radius: var(--r); padding: 1rem; }
+    .greet-head {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; margin-bottom: 0.75rem;
+    }
+    .greet-head.info { color: var(--teal); }
+    .greet-head.fml  { color: var(--green); }
+    .greet-row-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.45rem 0; border-bottom: 1px solid var(--cream-dk); gap: 0.5rem;
+    }
+    .greet-row-item:last-child { border-bottom: none; }
+    .greet-it { font-weight: 700; font-size: 0.9rem; }
+    .greet-es { font-style: italic; font-size: 0.82rem; color: #777; flex: 1; text-align: right; }
+    .greet-play {
+      background: none; border: 1.5px solid var(--mc-dk); color: var(--mc-dk);
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      cursor: pointer; font-size: 0.7rem; display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s; padding: 0;
+    }
+    .greet-play:hover { background: var(--mc-bg); }
+
+    /* CHIAMARSI */
+    .discover-quote {
+      background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk));
+      border-left: 5px solid var(--mc); border-radius: var(--r);
+      padding: 1.1rem 1.5rem; font-family: var(--fh);
+      font-size: 1.15rem; font-style: italic; color: var(--mc-text);
+      margin-bottom: 1.5rem; line-height: 1.6; display: flex; align-items: center; gap: 0.75rem;
+    }
+    .discover-quote .dq-play {
+      background: var(--mc); border: none; color: var(--white);
+      width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+      font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 3px 10px rgba(229,171,7,0.4); transition: all 0.2s;
+    }
+    .discover-quote .dq-play:hover { background: var(--mc-dk); transform: scale(1.05); }
+
+    .conj-rows { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.25rem; }
+    .conj-row {
+      display: flex; align-items: center; gap: 0.75rem;
+      background: var(--cream); border-radius: var(--r); padding: 0.7rem 1rem; font-size: 0.91rem;
+    }
+    .conj-pro { font-weight: 700; color: var(--mc-dk); min-width: 55px; }
+    .conj-sel {
+      padding: 0.3rem 0.5rem; border: 2px solid var(--cream-dk); border-radius: 20px;
+      font-family: var(--fb); font-size: 0.87rem; background: var(--white); cursor: pointer;
+    }
+    .conj-sel.ok  { border-color: #52a670; background: #e8f5ec; color: #1f5c35; }
+    .conj-sel.err { border-color: var(--red); background: #fdecea; }
+    .conj-verb { color: #555; }
+    .conj-example { flex: 1; font-size: 0.81rem; color: #999; font-style: italic; }
+    .conj-icon { font-size: 0.9rem; min-width: 18px; }
+
+    .pattern-box {
+      background: var(--cream); border-radius: var(--r); overflow: hidden; margin-top: 0.75rem;
+    }
+    .pattern-row {
+      display: grid; grid-template-columns: 80px 90px 1fr; align-items: center;
+      padding: 0.55rem 1rem; border-bottom: 1px solid var(--cream-dk); font-size: 0.9rem;
+    }
+    .pattern-row:last-child { border-bottom: none; }
+    .pattern-row .pr-pro { font-weight: 700; color: var(--mc-dk); }
+    .pattern-row .pr-blank {
+      background: var(--white); border: 2px dashed var(--cream-dk);
+      border-radius: 6px; padding: 0.2rem 0.5rem; font-style: italic; color: #bbb;
+      text-align: center; font-size: 0.85rem;
+    }
+    .pattern-row .pr-blank.revealed { color: var(--red); font-weight: 700; font-style: normal; border-style: solid; border-color: var(--red); background: #fdecea; }
+    .pattern-row .pr-ex { font-style: italic; color: #666; font-size: 0.85rem; }
+
+    .mc-opts { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.6rem; }
+    .mc-opt {
+      padding: 0.45rem 1.1rem; border: 2px solid var(--cream-dk); border-radius: 30px;
+      background: var(--white); font-family: var(--fb); font-size: 0.86rem;
+      cursor: pointer; transition: all 0.2s; color: var(--black);
+    }
+    .mc-opt:hover:not(.disabled) { border-color: var(--mc); background: var(--mc-bg); }
+    .mc-opt.correct { background: #e8f5ec; border-color: #52a670; color: #1f5c35; font-weight: 700; }
+    .mc-opt.wrong   { background: #fdecea; border-color: var(--red); color: #7a1f14; }
+    .mc-opt.disabled { pointer-events: none; opacity: 0.6; }
+    .mc-fb { font-size: 0.81rem; margin-top: 0.5rem; font-weight: 600; display: none; }
+    .mc-fb.ok  { color: #2a7a4a; display: block; }
+    .mc-fb.err { color: var(--red); display: block; }
+
+    /* SUBTITULO OCULTO */
+    .dial-sub { opacity: 0; transition: opacity 0.4s; }
+    .dial-sub.visible { opacity: 1; }
+
+    /* DIALOGO */
+    .listen-all-btn {
+      display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+      width: 100%; padding: 1rem 1.5rem; border: none; border-radius: var(--r);
+      background: var(--mc-dk); color: var(--white);
+      font-family: var(--fb); font-size: 1rem; font-weight: 700; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(229,171,7,0.35); transition: all 0.2s; margin-bottom: 1.5rem;
+    }
+    .listen-all-btn:hover:not(:disabled) { background: var(--mc); transform: translateY(-2px); }
+    .listen-all-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
+    .listen-all-btn .btn-icon { font-size: 1.3rem; }
+
+    .dial-hint { font-size: 0.8rem; color: #888; font-style: italic; margin-bottom: 1rem; }
+
+    .dial-line {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      margin-bottom: 1rem; opacity: 0.5; transition: opacity 0.3s;
+    }
+    .dial-line.ready { opacity: 1; }
+    .dial-line.playing { opacity: 1; }
+
+    .dial-speaker {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.5px; min-width: 80px; padding-top: 0.5rem; color: #888;
+    }
+    .dial-speaker.a { color: var(--mc-dk); }
+    .dial-speaker.b { color: var(--teal); }
+
+    .dial-wrap { flex: 1; }
+    .dial-bubble {
+      background: var(--cream-dk); border-radius: 0 var(--r) var(--r) var(--r);
+      padding: 0.8rem 1.1rem; font-size: 0.93rem; line-height: 1.65;
+      font-style: italic; min-height: 2.5rem; position: relative;
+    }
+    .dial-line.right .dial-speaker { order: 2; }
+    .dial-line.right .dial-wrap    { order: 1; }
+    .dial-line.right .dial-bubble  { border-radius: var(--r) 0 var(--r) var(--r); background: #e0eff5; }
+
+    .dial-typewriter { color: var(--black); }
+    .dial-typewriter.empty::before { content: '• • •'; color: #ccc; font-style: normal; }
+    .dial-typewriter.typing::after {
+      content: '▌'; color: var(--mc); animation: cur 0.7s infinite;
+    }
+    @keyframes cur { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+
+    .dial-actions { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.4rem; }
+    .dial-play-btn {
+      background: none; border: 1.5px solid var(--mc-dk); color: var(--mc-dk);
+      padding: 0.2rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+      cursor: pointer; font-family: var(--fb); transition: all 0.2s;
+    }
+    .dial-play-btn:hover:not(:disabled) { background: var(--mc-bg); }
+    .dial-play-btn.teal { border-color: var(--teal); color: var(--teal); }
+    .dial-play-btn.teal:hover { background: #e5f1f5; }
+    .dial-play-btn:disabled { opacity: 0.4; cursor: default; }
+
+    /* NUMEROS */
+    .num-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 0.45rem;
+    }
+    .num-item {
+      background: var(--cream); border-radius: 8px; padding: 0.55rem 0.4rem;
+      text-align: center; cursor: pointer; transition: all 0.2s; border: 2px solid transparent;
+    }
+    .num-item:hover { background: var(--mc-bg); border-color: var(--mc); }
+    .num-item.playing { background: var(--mc); border-color: var(--mc-dk); }
+    .num-item .n-num { font-family: var(--fh); font-size: 1.2rem; font-weight: 700; color: var(--mc-dk); }
+    .num-item .n-word { font-size: 0.73rem; color: #555; margin-top: 0.1rem; }
+    .num-item.playing .n-num,
+    .num-item.playing .n-word { color: var(--white); }
+    .num-hint { font-size: 0.8rem; color: #888; margin-bottom: 0.75rem; font-style: italic; }
+
+    /* MATCH ACTIVITY */
+    .match-row {
+      display: flex; align-items: center; gap: 0.75rem;
+      background: var(--cream); border-radius: var(--r);
+      padding: 0.6rem 1rem; margin-bottom: 0.5rem; font-size: 0.9rem;
+    }
+    .match-num { font-family: var(--fh); font-size: 1.3rem; font-weight: 700; color: var(--mc-dk); min-width: 30px; }
+    .match-sel {
+      flex: 1; padding: 0.3rem 0.5rem; border: 2px solid var(--cream-dk);
+      border-radius: 6px; font-family: var(--fb); font-size: 0.87rem; background: var(--white); cursor: pointer;
+    }
+    .match-sel.ok  { border-color: #52a670; background: #e8f5ec; color: #1f5c35; }
+    .match-sel.err { border-color: var(--red); background: #fdecea; }
+    .match-icon { font-size: 0.95rem; min-width: 18px; }
+
+    /* ESPRESSIONI */
+    .espr-list { display: flex; flex-direction: column; gap: 0.6rem; }
+    .espr-item {
+      background: var(--cream); border-radius: var(--r);
+      padding: 0.85rem 1.1rem;
+      display: grid; grid-template-columns: 1fr 1fr auto; align-items: center; gap: 1rem;
+    }
+    .espr-it { font-weight: 700; font-size: 0.93rem; color: var(--mc-dk); }
+    .espr-es { font-style: italic; font-size: 0.87rem; color: #666; }
+    .espr-btn {
+      background: none; border: 1.5px solid var(--mc-dk); color: var(--mc-dk);
+      padding: 0.2rem 0.7rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+      cursor: pointer; font-family: var(--fb); transition: all 0.2s; white-space: nowrap;
+    }
+    .espr-btn:hover { background: var(--mc-bg); }
+
+    /* CHECK BTN */
+    .check-btn {
+      padding: 0.5rem 1.4rem; border: none; border-radius: 30px;
+      background: var(--mc-dk); color: var(--white);
+      font-family: var(--fb); font-size: 0.87rem; font-weight: 700;
+      cursor: pointer; transition: all 0.2s; margin-top: 0.75rem;
+    }
+    .check-btn:hover { background: var(--mc); }
+    .reveal-btn {
+      padding: 0.45rem 1.2rem; border: 2px solid var(--amber-dk);
+      border-radius: 30px; background: var(--cream-dk);
+      font-family: var(--fb); font-size: 0.84rem; font-weight: 600;
+      color: var(--mc-text); cursor: pointer; transition: all 0.2s; margin-top: 0.75rem; margin-left: 0.5rem;
+    }
+    .reveal-btn:hover { background: var(--mc-bg); }
+    .activity-result { margin-top: 0.75rem; font-size: 0.87rem; font-weight: 600; display: none; }
+    .activity-result.ok  { color: #2a7a4a; display: block; }
+    .activity-result.err { color: var(--red); display: block; }
+
+    /* DIVIDER */
+    .sec-divider {
+      text-align: center; margin: 3rem 0 2rem;
+      position: relative;
+    }
+    .sec-divider::before {
+      content: ''; display: block; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--mc), transparent);
+      position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);
+    }
+    .sec-divider span {
+      background: var(--cream); position: relative;
+      padding: 0 1.2rem; font-family: var(--fh); font-style: italic;
+      font-size: 1rem; color: var(--mc-dk);
+    }
+
+    /* CULTURA */
+    .culture-strip {
+      background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk));
+      border-top: 3px solid var(--mc); border-radius: var(--r);
+      padding: 1.3rem 1.6rem; margin-bottom: 1.5rem;
+    }
+    .culture-strip h4 { font-family: var(--fh); font-size: 1rem; font-style: italic; color: var(--mc-dk); margin-bottom: 0.5rem; }
+    .culture-strip p { font-size: 0.87rem; line-height: 1.7; color: #555; }
+    .culture-strip strong { color: var(--mc-text); }
+
+    /* TTS NOTE */
+    .tts-note {
+      font-size: 0.76rem; color: #999; font-style: italic; margin-top: 0.5rem;
+      display: flex; align-items: flex-start; gap: 0.4rem;
+    }
+
+    /* CTA */
+    .cta-block {
+      background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk));
+      border-top: 3px solid var(--mc); border-radius: var(--r);
+      padding: 1.75rem 2rem; text-align: center; margin-top: 2.5rem;
+    }
+    .cta-block p { font-size: 0.9rem; color: #666; margin-bottom: 1.1rem; line-height: 1.6; }
+    .btn-next {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--mc-dk); color: var(--white);
+      padding: 0.75rem 2.2rem; border-radius: 30px;
+      text-decoration: none; font-weight: 700; font-size: 0.93rem; transition: all 0.2s;
+    }
+    .btn-next:hover { background: var(--mc); transform: translateY(-2px); box-shadow: 0 4px 14px rgba(229,171,7,0.4); }
+
+    /* PROGRESS BAR */
+    .progress-strip {
+      background: var(--white); border-bottom: 1px solid var(--cream-dk);
+      padding: 0.6rem 1.2rem; display: flex; align-items: center;
+      justify-content: space-between; font-size: 0.78rem; color: #888;
+      position: sticky; top: 0; z-index: 40;
+    }
+    .prog-label { font-weight: 600; color: var(--mc-dk); }
+    .prog-bar-wrap { flex: 1; margin: 0 1rem; height: 6px; background: var(--cream-dk); border-radius: 10px; overflow: hidden; }
+    .prog-bar-fill { height: 100%; background: linear-gradient(90deg, var(--mc), var(--mc-dk)); border-radius: 10px; width: 0; transition: width 0.5s ease; }
+
+    /* STAGE NAV */
+    .stage-nav {
+      background: var(--white); border-bottom: 2px solid var(--cream-dk);
+      display: flex; justify-content: center; flex-wrap: wrap;
+    }
+    .stage-link {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0.85rem 1.8rem; text-decoration: none;
+      font-size: 0.72rem; font-weight: 600; color: #aaa;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap;
+    }
+    .stage-link .sn { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.1rem; color: inherit; }
+    .stage-link.active { color: var(--mc-dk); border-bottom-color: var(--mc); }
+    .stage-link.done { color: var(--green); }
+    .stage-link:hover:not(.active) { color: var(--black); background: var(--cream); }
+
+    @media (max-width: 600px) {
+      .container { padding: 1.5rem 0.9rem 4rem; }
+      .greet-cols { grid-template-columns: 1fr; }
+      .espr-item { grid-template-columns: 1fr 1fr; }
+      .espr-btn { grid-column: span 2; justify-self: start; }
+      .num-grid { grid-template-columns: repeat(auto-fill, minmax(65px,1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">Unità 0 · A1 · Descubrimiento</div>
+  <h1>Come ti chiami?</h1>
+</header>
+
+
+
+<main class="container">
+
+  <!-- MOTIVACIÓN -->
+  <section class="sec" id="s-intro">
+    <div class="sofia-row">
+      <div class="sofia-col">
+        <div class="sofia-avatar">👩‍🏫</div>
+        <div class="sofia-name">Sofia</div>
+      </div>
+      <div class="sofia-bubble">
+        <em>Benvenuti!</em> Hoy empezamos con algo muy simple: <strong>¿cómo te llamás?</strong>
+        Pero antes de responder, hay algo que los italianos hacen siempre: <strong>deletrear el nombre</strong>.
+        Y para deletrear en italiano, <strong>cada letra tiene su propia ciudad</strong>.<br><br>
+        En esta etapa vas a explorar el video, el alfabeto, los saludos, los números y las expresiones clave
+        — <em>todo desde los ejemplos, sin reglas todavía</em>. Las reglas las vemos en Gramática.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ DESPUÉS DE MIRAR ══════════ -->
+  <section class="sec" id="s-pre">
+    <div class="sec-label">Recordás el video</div>
+    <h2 class="sec-title">Dopo aver guardato…</h2>
+    <p class="sec-sub">Activá lo que viste en la Exploración antes de continuar</p>
+    <div class="task-box">
+      <strong>Ya miraste el video en la Etapa 1. Ahora reflexioná:</strong><br><br>
+      ① ¿Cuántas letras tiene el alfabeto italiano? ¿Más o menos que el español (27)?<br>
+      ② ¿Qué letras mencionó la conductora como <em>straniere</em> (extranjeras)?<br>
+      ③ ¿Cómo se presentó la conductora? ¿Qué frase exacta usó para decir su nombre?<br><br>
+      <strong>Vas a encontrar las respuestas en las actividades que siguen. El video también está disponible abajo si querés repasar alguna parte.</strong>
+    </div>
+  </section>
+
+  <!-- ══════════ EL VIDEO ══════════ -->
+  <section class="sec" id="s-video">
+    <div class="sec-label">Input</div>
+    <h2 class="sec-title">Il video</h2>
+    <p class="sec-sub">L'Alfabeto Italiano – LearnAmo · ~5 minutos · en italiano</p>
+    <div class="video-wrap" id="videoWrap">
+      <iframe
+        id="yt-iframe"
+        src="https://www.youtube.com/embed/6R_4YRTshIg?rel=0"
+        title="L'Alfabeto Italiano – LearnAmo"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+    <div class="video-note">
+      <span>Video: LearnAmo · Todos los derechos pertenecen a sus autores.</span>
+      <a class="video-yt-link" href="https://www.youtube.com/watch?v=6R_4YRTshIg" target="_blank" rel="noopener">
+        🔗 Ver directamente en YouTube
+      </a>
+    </div>
+    <div class="info-box" style="margin-top:0.75rem;">
+      💡 Si el video no carga (puede pasar en redes escolares o al abrir el archivo localmente),
+      usá el link de arriba para verlo en YouTube y después volvé acá.
+    </div>
+  </section>
+
+  <div class="sec-divider"><span>Dopo il video</span></div>
+
+  <!-- ══════════ ① V/F COMPRENSIÓN ══════════ -->
+  <section class="sec" id="s-vf">
+    <div class="sec-label">① Comprensión</div>
+    <h2 class="sec-title">¿Qué viste?</h2>
+    <p class="sec-sub">Cuatro afirmaciones sobre el video — Verdadero o Falso</p>
+    <div class="card">
+      <div class="card-title">Verdadero (V) o Falso (F)</div>
+
+      <div class="vf-row" id="vf0">
+        <span class="vf-text">El alfabeto italiano tiene <em>26 letras</em>, igual que el inglés.</span>
+        <div class="vf-btns">
+          <button class="vf-btn" onclick="checkVF('vf0',this,'V',false)">V</button>
+          <button class="vf-btn" onclick="checkVF('vf0',this,'F',true)">F</button>
+        </div>
+      </div>
+      <div class="vf-explic" id="vf0-ex">El alfabeto italiano tiene <strong>21 letras</strong>. Las letras J, K, W, X e Y son "straniere" — extranjeras, usadas solo en palabras importadas.</div>
+
+      <div class="vf-row" id="vf1">
+        <span class="vf-text">En el video, la letra <em>B</em> se asocia con la ciudad de <em>Bologna</em>.</span>
+        <div class="vf-btns">
+          <button class="vf-btn" onclick="checkVF('vf1',this,'V',true)">V</button>
+          <button class="vf-btn" onclick="checkVF('vf1',this,'F',false)">F</button>
+        </div>
+      </div>
+      <div class="vf-explic" id="vf1-ex">Sí: <strong>B come Bologna</strong>. Bologna es famosa por su cocina y por tener la universidad más antigua de Europa, fundada en 1088.</div>
+
+      <div class="vf-row" id="vf2">
+        <span class="vf-text">La letra <em>J</em> existe en el alfabeto italiano original.</span>
+        <div class="vf-btns">
+          <button class="vf-btn" onclick="checkVF('vf2',this,'V',false)">V</button>
+          <button class="vf-btn" onclick="checkVF('vf2',this,'F',true)">F</button>
+        </div>
+      </div>
+      <div class="vf-explic" id="vf2-ex">Falso. La J (junto con K, W, X, Y) es una <strong>lettera straniera</strong>. Aparece en palabras de origen extranjero como <em>jeans</em> o <em>yoga</em>.</div>
+
+      <div class="vf-row" id="vf3">
+        <span class="vf-text">La presentadora dice <em>"Mi chiamo Graziana"</em> para presentarse.</span>
+        <div class="vf-btns">
+          <button class="vf-btn" onclick="checkVF('vf3',this,'V',true)">V</button>
+          <button class="vf-btn" onclick="checkVF('vf3',this,'F',false)">F</button>
+        </div>
+      </div>
+      <div class="vf-explic" id="vf3-ex"><strong>¡Sí!</strong> "Mi chiamo" = me llamo. Es la frase clave de esta unidad. Vas a trabajarla en detalle más abajo.</div>
+
+      <div class="vf-row" id="vf4">
+        <span class="vf-text">La letra <em>H</em> en italiano se pronuncia igual que en español.</span>
+        <div class="vf-btns">
+          <button class="vf-btn" onclick="checkVF('vf4',this,'V',false)">V</button>
+          <button class="vf-btn" onclick="checkVF('vf4',this,'F',true)">F</button>
+        </div>
+      </div>
+      <div class="vf-explic" id="vf4-ex">Falso. La H italiana es <strong>muda</strong> — no se pronuncia sola. Aparece en <em>ho, hai, ha</em> (verbo avere) y en las combinaciones <em>ch</em> y <em>gh</em>.</div>
+    </div>
+  </section>
+
+  <!-- ══════════ ② ALFABETO ══════════ -->
+  <section class="sec" id="s-alfa">
+    <div class="sec-label">② El alfabeto</div>
+    <h2 class="sec-title">L'alfabeto italiano</h2>
+    <p class="sec-sub">21 letras — hacé clic en 🔊 para escuchar cada una</p>
+
+    <div class="info-box">
+      🎧 <strong>Cómo usar esta sección:</strong> Hacé clic en el botón de audio junto a cada letra
+      para escucharla pronunciada en italiano. Después completá la actividad de abajo.
+    </div>
+
+    <div class="card">
+      <div class="card-title">Las 21 letras — clic para escuchar</div>
+      <div class="alfa-grid" id="alfaListenGrid"></div>
+      <div class="tts-note">🔊 Usa la síntesis de voz de tu navegador. En Chrome con voz italiana instalada suena mejor.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Actividad — completá las ciudades que faltan</div>
+      <p style="font-size:0.87rem;color:#777;margin-bottom:1rem;">
+        Del video recordás las ciudades. Escribí la que corresponde a cada letra en blanco.
+        Las ciudades son: Ancona · Bologna · Como · Domodossola · Empoli · Firenze · Genova · Hotel · Imola · Livorno · Milano · Napoli · Otranto · Palermo · Quarto · Roma · Savona · Torino · Udine · Venezia · Zara
+      </p>
+      <div class="fill-grid" id="alfaFillGrid"></div>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+        <button class="check-btn" onclick="checkFill()">Verificar</button>
+        <button class="reveal-btn" onclick="revealFill()">Ver solución</button>
+      </div>
+      <div class="activity-result" id="fillResult"></div>
+    </div>
+  </section>
+
+  <!-- ══════════ ③ LETRAS EXTRANJERAS ══════════ -->
+  <section class="sec" id="s-foreign">
+    <div class="sec-label">③ Letras extranjeras</div>
+    <h2 class="sec-title">Le lettere straniere</h2>
+    <p class="sec-sub">5 letras que no pertenecen al alfabeto italiano original — hacé clic para escucharlas</p>
+
+    <div class="task-box">
+      <strong>Recordás del video:</strong> la conductora mencionó letras que vienen de otros idiomas.
+      Hacé clic en cada letra para escucharla y su palabra de referencia.
+      Después, en la actividad, identificá cuáles son las 5 "straniere".
+    </div>
+
+    <div class="card">
+      <div class="card-title">Escuchá y reconocé las letras extranjeras</div>
+      <div class="foreign-grid" id="foreignAudioGrid"></div>
+      <div class="tts-note">🔊 Clic en la letra para escucharla con su palabra de referencia italiana.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Actividad — hacé clic en las 5 letras "straniere"</div>
+      <div class="foreign-grid" id="foreignPickGrid"></div>
+      <button class="check-btn" id="foreignCheckBtn" onclick="checkForeign()">Verificar selección</button>
+      <div class="activity-result" id="foreignResult"></div>
+    </div>
+
+    <div class="culture-strip">
+      <h4>🇮🇹 ¿Por qué existen letras "straniere"?</h4>
+      <p>
+        El italiano tomó muchas palabras del inglés, francés y alemán durante el siglo XX.
+        Palabras como <strong><em>jeans</em></strong> (inglés), <strong><em>weekend</em></strong> (inglés),
+        <strong><em>taxi</em></strong> (inglés) y <strong><em>karaoke</em></strong> (japonés vía inglés)
+        necesitaron letras que el italiano original no usaba.
+        En los textos formales, estas letras llevan a veces una nota <em>(lett. straniera)</em>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════ ④ FONETICA ══════════ -->
+  <section class="sec" id="s-fon">
+    <div class="sec-label">④ Fonética</div>
+    <h2 class="sec-title">Come si pronuncia?</h2>
+    <p class="sec-sub">Patrones de pronunciación clave del italiano — con ejemplos del video</p>
+
+    <div class="task-box">
+      <strong>Observá este patrón:</strong> En italiano, la letra <em>C</em> suena distinto según qué vocal le sigue.
+      Lo mismo pasa con <em>G</em>. Escuchá los ejemplos con el botón de audio y tratá de notar la diferencia.
+    </div>
+
+    <div class="card">
+      <table class="fon-table">
+        <thead>
+          <tr><th>Combinación</th><th>Suena como…</th><th>Ejemplo</th><th>Audio</th></tr>
+        </thead>
+        <tbody id="fonTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════ ⑤ SALUDOS ══════════ -->
+  <section class="sec" id="s-saluti">
+    <div class="sec-label">⑤ Saludos</div>
+    <h2 class="sec-title">I saluti</h2>
+    <p class="sec-sub">En italiano el contexto cambia todo — escuchá y notá la diferencia</p>
+
+    <div class="task-box">
+      <strong>Antes de ver las listas:</strong> ¿qué palabras de saludo reconociste en el video?
+      ¿Escuchaste <em>ciao</em>? ¿<em>Buongiorno</em>?
+      En italiano hay una diferencia importante entre hablarle a un amigo y hablarle a un adulto desconocido.
+    </div>
+
+    <div class="card">
+      <div class="card-title">Escuchá cada saludo — hacé clic en 🔊</div>
+      <div class="greet-cols" id="greetGrid"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Actividad — ¿formal o informal?</div>
+      <p style="font-size:0.87rem;color:#777;margin-bottom:1rem;">Indicá si cada situación pide un saludo formal (F) o informal (I):</p>
+      <div id="greetContext"></div>
+    </div>
+  </section>
+
+  <!-- ══════════ ⑥ CHIAMARSI ══════════ -->
+  <section class="sec" id="s-chiama">
+    <div class="sec-label">⑥ Come ti chiami?</div>
+    <h2 class="sec-title">Scopriamo il verbo</h2>
+    <p class="sec-sub">Descubrí el patrón de <em>chiamarsi</em> sin que nadie te lo explique</p>
+
+    <div class="discover-quote">
+      <button class="dq-play" onclick="speak('Mi chiamo Graziana. Come ti chiami?')" title="Escuchar">▶</button>
+      <span>En el video escuchamos: <span style="color:var(--red);">«Mi chiamo Graziana. Come ti chiami?»</span></span>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Más ejemplos — ¿notás el patrón?</div>
+      <p style="font-size:0.87rem;color:#777;margin-bottom:1rem;">
+        Observá estas oraciones. Hay una partícula que cambia según quién habla.
+        Elegí <em>mi · ti · si</em> para cada oración:
+      </p>
+      <div class="conj-rows" id="conjRows"></div>
+
+      <p style="font-size:0.87rem;color:#666;margin-top:0.5rem;margin-bottom:0.75rem;">
+        ¿Ya lo ves? Completá la tabla de abajo según lo que descubriste:
+      </p>
+      <div class="pattern-box" id="patternBox">
+        <div class="pattern-row">
+          <span class="pr-pro">io</span>
+          <span class="pr-blank" id="pb0">?</span>
+          <span class="pr-ex">chiamo — <em>Io ___ chiamo Sofia.</em></span>
+        </div>
+        <div class="pattern-row">
+          <span class="pr-pro">tu</span>
+          <span class="pr-blank" id="pb1">?</span>
+          <span class="pr-ex">chiami — <em>Tu ___ chiami Marco.</em></span>
+        </div>
+        <div class="pattern-row">
+          <span class="pr-pro">lui/lei</span>
+          <span class="pr-blank" id="pb2">?</span>
+          <span class="pr-ex">chiama — <em>Lei ___ chiama Anna.</em></span>
+        </div>
+      </div>
+      <button class="reveal-btn" style="margin-top:0.75rem;margin-left:0;" onclick="revealPattern()">Ver respuestas →</button>
+      <div id="patternMsg" style="display:none;margin-top:0.75rem;font-size:0.85rem;color:#2a7a4a;font-weight:600;">
+        ✓ ¡Lo descubriste! En Gramática vas a ver la conjugación completa con todos los pronombres.
+      </div>
+    </div>
+
+    <div class="card">
+  <div class="card-title">¿Cómo le preguntarías a alguien su nombre?</div>
+  <p style="font-size:0.88rem;color:#777;margin-bottom:0.75rem;">Seleccioná la opción correcta:</p>
+  <p style="font-size:0.91rem;margin-bottom:0.5rem;font-weight:600;color:var(--mc-text);">
+    Querés preguntarle a tu nuevo amigo Marco cómo se llama. ¿Qué decís?
+  </p>
+  <div class="mc-opts">
+    <button class="mc-opt" onclick="checkMC(this, false, 'Eso significaría &quot;¿Cómo me llamo yo?&quot; — querés preguntar por él, no por vos.', 'chiamarsiMCfb')">
+      Come mi chiamo?
+    </button>
+    <button class="mc-opt" onclick="checkMC(this, true, '¡Perfecto! «Come ti chiami?» = ¿Cómo te llamás? La usás con amigos y conocidos.', 'chiamarsiMCfb')">
+      Come ti chiami?
+    </button>
+    <button class="mc-opt" onclick="checkMC(this, false, '«Come si chiama?» es la forma formal — se usa con adultos desconocidos o en contextos de respeto.', 'chiamarsiMCfb')">
+      Come si chiama?
+    </button>
+  </div>
+  <div class="mc-fb" id="chiamarsiMCfb"></div>
+</div>
+  </section>
+
+  <!-- ══════════ ⑦ IL DIALOGO ══════════ -->
+  <section class="sec" id="s-dial">
+    <div class="sec-label">⑦ El diálogo</div>
+    <h2 class="sec-title">Il dialogo completo</h2>
+    <p class="sec-sub">Leé el diálogo y después escuchalo de corrido</p>
+
+    <div class="card">
+      <button class="listen-all-btn" onclick="speakAllDialog()">
+        <span class="btn-icon">🎧</span>
+        Escuchar todo el diálogo
+      </button>
+
+      <div style="display:flex;flex-direction:column;gap:0.85rem;margin-bottom:1.5rem;">
+
+        <div class="dial-line">
+          <div class="dial-speaker a">Graziana</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble"><span class="dial-sub" id="sub-0">Ciao! Mi chiamo Graziana. E tu, come ti chiami?</span></div>
+            <div class="dial-actions"><button class="dial-play-btn" onclick="playLine(0)">▶ Escuchar</button></div>
+          </div>
+        </div>
+
+        <div class="dial-line right">
+          <div class="dial-speaker b">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble"><span class="dial-sub" id="sub-1">Ciao! Piacere! Mi chiamo Marco.</span></div>
+            <div class="dial-actions"><button class="dial-play-btn teal" onclick="playLine(1)">▶ Escuchar</button></div>
+          </div>
+        </div>
+
+        <div class="dial-line">
+          <div class="dial-speaker a">Graziana</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble"><span class="dial-sub" id="sub-2">Bello! Come si scrive il tuo nome?</span></div>
+            <div class="dial-actions"><button class="dial-play-btn" onclick="playLine(2)">▶ Escuchar</button></div>
+          </div>
+        </div>
+
+        <div class="dial-line right">
+          <div class="dial-speaker b">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble"><span class="dial-sub" id="sub-3">M come Milano, A come Ancona, R come Roma, C come Como, O come Otranto. Marco!</span></div>
+            <div class="dial-actions"><button class="dial-play-btn teal" onclick="playLine(3)">▶ Escuchar</button></div>
+          </div>
+        </div>
+
+        <div class="dial-line">
+          <div class="dial-speaker a">Graziana</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble"><span class="dial-sub" id="sub-4">Perfetto! E tu, come si scrive il mio nome?</span></div>
+            <div class="dial-actions"><button class="dial-play-btn" onclick="playLine(4)">▶ Escuchar</button></div>
+          </div>
+        </div>
+
+        <div class="dial-line right">
+          <div class="dial-speaker b">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble"><span class="dial-sub" id="sub-5">Mmm… G come Genova, R come Roma, A come Ancona, Z come Zara, I come Imola, A come Ancona. Graziana! Giusto?</span></div>
+            <div class="dial-actions"><button class="dial-play-btn teal" onclick="playLine(5)">▶ Escuchar</button></div>
+          </div>
+        </div>
+
+        <div class="dial-line">
+          <div class="dial-speaker a">Graziana</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble"><span class="dial-sub" id="sub-6">Bravissimo! Arrivederci, Marco!</span></div>
+            <div class="dial-actions"><button class="dial-play-btn" onclick="playLine(6)">▶ Escuchar</button></div>
+          </div>
+        </div>
+
+        <div class="dial-line right">
+          <div class="dial-speaker b">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble"><span class="dial-sub" id="sub-7">A presto, Graziana! Buonasera!</span></div>
+            <div class="dial-actions"><button class="dial-play-btn teal" onclick="playLine(7)">▶ Escuchar</button></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="margin-top:0.5rem;">
+        <p style="font-size:0.91rem;font-weight:600;color:var(--mc-text);margin-bottom:0.6rem;">
+          ¿Cómo deletrea Marco su nombre en el diálogo?
+        </p>
+        <div class="mc-opts">
+          <button class="mc-opt" onclick="checkMC(this,false,'No — revisá la línea donde Marco deletrea su nombre.')">
+            M-A-R-C-O con Mantova, Arezzo, Roma, Catania, Ortona
+          </button>
+          <button class="mc-opt" onclick="checkMC(this,true,'¡Perfetto! M como Milano, A como Ancona, R como Roma, C como Como, O como Otranto.')">
+            M-A-R-C-O con Milano, Ancona, Roma, Como, Otranto
+          </button>
+          <button class="mc-opt" onclick="checkMC(this,false,'No — usa exactamente las ciudades del alfabeto fonético del video.')">
+            M-A-R-C-O con Milano, Ancona, Ravenna, Como, Otranto
+          </button>
+        </div>
+        <div class="mc-fb" id="dialFb"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ⑧ NUMEROS ══════════ -->
+  <section class="sec" id="s-numeri">
+    <div class="sec-label">⑧ Los números</div>
+    <h2 class="sec-title">I numeri — da 1 a 30</h2>
+    <p class="sec-sub">Hacé clic en cualquier número para escucharlo en italiano</p>
+
+    <div class="task-box">
+      <strong>¿Para qué sirven los números en esta unidad?</strong><br>
+      Para dar tu número de teléfono letra a letra, tu edad, o el número de tu documento.
+      Son los primeros que necesitás cuando te presentás.
+    </div>
+
+    <div class="card">
+      <p class="num-hint">🔊 Clic en cualquier número para escucharlo</p>
+      <div class="num-grid" id="numGrid"></div>
+      <div style="margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--cream-dk);font-size:0.83rem;color:#666;line-height:1.7;">
+        ⚠️ <strong>Atención:</strong> <em>uno → un / una</em> según el género del sustantivo.<br>
+        ⚠️ <em>Ventuno, ventotto</em> — se pierde la vocal cuando el número termina en vocal + <em>uno/otto</em>.<br>
+        ⚠️ Los números del 11 al 16 terminan en <em>-dici</em>; del 17 al 19 empiezan con <em>dicia-</em>.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Actividad — unir número con palabra</div>
+      <p style="font-size:0.87rem;color:#777;margin-bottom:0.75rem;">Seleccioná la palabra correcta para cada número:</p>
+      <div id="numMatch"></div>
+      <button class="check-btn" onclick="checkNumMatch()">Verificar</button>
+      <div class="activity-result" id="numMatchResult"></div>
+    </div>
+  </section>
+
+  <!-- ══════════ ⑨ ESPRESSIONI ══════════ -->
+  <section class="sec" id="s-espr">
+    <div class="sec-label">⑨ Expresiones útiles</div>
+    <h2 class="sec-title">Espressioni utili</h2>
+    <p class="sec-sub">Frases que ya podés usar desde hoy — con audio</p>
+
+    <div class="info-box">
+      💬 Estas expresiones aparecieron en el video o son esenciales para la comunicación básica.
+      Escuchá cada una y repetila en voz alta.
+    </div>
+
+    <div class="card">
+      <div class="espr-list" id="esprList"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Actividad — ¿qué expresión usarías?</div>
+      <div id="esprActivity"></div>
+    </div>
+  </section>
+
+
+</main>
+
+<script>
+(function() {
+  /* Guard: evita re-ejecución si Odoo/jQuery inyecta el script más de una vez */
+  if (window.__ipp_m0_e2__) return;
+  window.__ipp_m0_e2__ = true;
+
+  /* ══════════════════════════════════════════
+     TTS — SÍNTESIS DE VOZ
+     Para mejor calidad: en Chrome, instalá la
+     voz "Google italiano" desde la configuración
+     del sistema. En Android suena especialmente bien.
+     Alternativa de calidad premium (gratuita):
+     elevenlabs.io — 10.000 caracteres/mes gratis.
+  ══════════════════════════════════════════ */
+  var voices = []; /* var en lugar de let — evita SyntaxError en re-declaración */
+  function loadVoices() {
+    try { if (window.speechSynthesis) voices = window.speechSynthesis.getVoices(); } catch(e) {}
+  }
+  try {
+    loadVoices();
+    if (window.speechSynthesis && window.speechSynthesis.onvoiceschanged !== undefined) {
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+  } catch(e) { console.warn('SpeechSynthesis no disponible.'); }
+
+  function speak(text, onStart, onEnd) {
+    if (!window.speechSynthesis) { if (onEnd) onEnd(); return null; }
+    try {
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'it-IT';
+      utter.rate  = 0.82;
+      utter.pitch = 1.05;
+      utter.volume = 1;
+      const v = voices.find(v => v.lang === 'it-IT' && v.name.toLowerCase().includes('google'))
+             || voices.find(v => v.lang.startsWith('it') && !v.localService)
+             || voices.find(v => v.lang.startsWith('it'))
+             || voices.find(v => v.lang === 'it-IT');
+      if (v) utter.voice = v;
+      if (onStart) utter.onstart = onStart;
+      if (onEnd)   utter.onend   = onEnd;
+      window.speechSynthesis.speak(utter);
+      return utter;
+    } catch(e) {
+      console.warn('SpeechSynthesis error:', e);
+      if (onEnd) onEnd();
+      return null;
+    }
+  }
+
+  /* ══════════════════════════════════════════
+     TYPEWRITER EFFECT
+  ══════════════════════════════════════════ */
+  function typewrite(el, text, durationMs, onDone) {
+    el.classList.remove('empty');
+    el.classList.add('typing');
+    el.textContent = '';
+    const chars = [...text];
+    const interval = Math.max(18, durationMs / chars.length);
+    let i = 0;
+    const timer = setInterval(() => {
+      el.textContent += chars[i];
+      i++;
+      if (i >= chars.length) {
+        clearInterval(timer);
+        el.classList.remove('typing');
+        if (onDone) onDone();
+      }
+    }, interval);
+    return timer;
+  }
+
+  /* ══════════════════════════════════════════
+     PROGRESS TRACKING
+  ══════════════════════════════════════════ */
+  // Progress tracking eliminado (barra removida del HTML)
+
+  /* ══════════════════════════════════════════
+     V/F
+  ══════════════════════════════════════════ */
+  function checkVF(rowId, btn, answer, correct) {
+    const row = document.getElementById(rowId);
+    const exp = document.getElementById(rowId + '-ex');
+    row.querySelectorAll('.vf-btn').forEach(b => b.classList.add('disabled'));
+    const isCorrect = correct;
+    btn.classList.add(isCorrect ? 'correct' : 'wrong');
+    if (exp) exp.classList.add('show');
+  }
+
+  /* ══════════════════════════════════════════
+     ALFABETO DATA
+  ══════════════════════════════════════════ */
+  const ALFA = [
+    {l:'A', city:'Ancona'},    {l:'B', city:'Bologna'},
+    {l:'C', city:'Como'},      {l:'D', city:'Domodossola'},
+    {l:'E', city:'Empoli'},    {l:'F', city:'Firenze'},
+    {l:'G', city:'Genova'},    {l:'H', city:'Hotel'},
+    {l:'I', city:'Imola'},     {l:'L', city:'Livorno'},
+    {l:'M', city:'Milano'},    {l:'N', city:'Napoli'},
+    {l:'O', city:'Otranto'},   {l:'P', city:'Palermo'},
+    {l:'Q', city:'Quarto'},    {l:'R', city:'Roma'},
+    {l:'S', city:'Savona'},    {l:'T', city:'Torino'},
+    {l:'U', city:'Udine'},     {l:'V', city:'Venezia'},
+    {l:'Z', city:'Zara'},
+  ];
+  const ALFA_BLANKS = new Set(['B','D','F','H','L','N','P','R','T','V']);
+
+  // Build listen grid
+  function buildAlfaListenGrid() {
+    const grid = document.getElementById('alfaListenGrid');
+    ALFA.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'alfa-item';
+      div.innerHTML = `
+        <span class="alfa-ltr">${item.l}</span>
+        <button class="alfa-speak" id="asp-${item.l}" onclick="speakLetter('${item.l}','${item.city}')" title="Escuchar ${item.l} come ${item.city}">🔊</button>
+        <span class="alfa-como">come</span>
+        <span class="alfa-city">${item.city}</span>
+      `;
+      grid.appendChild(div);
+    });
+  }
+
+  function speakLetter(ltr, city) {
+    const btn = document.getElementById('asp-' + ltr);
+    if (btn) {
+      document.querySelectorAll('.alfa-speak').forEach(b => b.classList.remove('playing'));
+      btn.classList.add('playing');
+    }
+    speak(`${ltr} come ${city}`, null, () => {
+      if (btn) btn.classList.remove('playing');
+    });
+  }
+
+  // Build fill grid
+  function buildFillGrid() {
+    const grid = document.getElementById('alfaFillGrid');
+    ALFA.forEach((item, i) => {
+      const div = document.createElement('div');
+      div.className = 'fill-item';
+      if (ALFA_BLANKS.has(item.l)) {
+        div.innerHTML = `
+          <span class="fill-ltr">${item.l}</span>
+          <input class="fill-inp" id="fi-${item.l}" placeholder="ciudad…" data-city="${item.city}"
+            onkeypress="if(event.key==='Enter') checkFill()">
+          <span class="fill-icon" id="fii-${item.l}"></span>
+        `;
+      } else {
+        div.innerHTML = `
+          <span class="fill-ltr">${item.l}</span>
+          <span style="font-size:0.88rem;color:#444;font-weight:500;flex:1;">${item.city}</span>
+        `;
+      }
+      grid.appendChild(div);
+    });
+  }
+
+  function checkFill() {
+    let ok = 0, total = 0;
+    ALFA_BLANKS.forEach(ltr => {
+      total++;
+      const inp = document.getElementById('fi-' + ltr);
+      const icon = document.getElementById('fii-' + ltr);
+      const val = (inp.value || '').trim().toLowerCase();
+      const correct = inp.dataset.city.toLowerCase();
+      if (val === correct) {
+        inp.classList.add('ok'); inp.classList.remove('err');
+        icon.textContent = '✓'; ok++;
+      } else {
+        inp.classList.add('err'); inp.classList.remove('ok');
+        icon.textContent = '✗';
+      }
+    });
+    const res = document.getElementById('fillResult');
+    res.className = 'activity-result ' + (ok === total ? 'ok' : 'err');
+    res.textContent = ok + '/' + total + ' correctas. ' + (ok === total ? '¡Bravissimo/a! ¡Las sabés todas!' : 'Revisá las marcadas en rojo.');
+  }
+
+  function revealFill() {
+    ALFA_BLANKS.forEach(ltr => {
+      const inp = document.getElementById('fi-' + ltr);
+      const icon = document.getElementById('fii-' + ltr);
+      inp.value = inp.dataset.city;
+      inp.classList.add('ok'); inp.classList.remove('err');
+      icon.textContent = '✓';
+    });
+    const res = document.getElementById('fillResult');
+    res.className = 'activity-result ok';
+    res.textContent = 'Solución revelada. ¡Practicá en voz alta!';
+  }
+
+  /* ══════════════════════════════════════════
+     LETRAS EXTRANJERAS
+  ══════════════════════════════════════════ */
+  const FOREIGN = [
+    {l:'J', city:'Jersey',     word:'jeans',   phrase:'J come Jersey — jeans'},
+    {l:'K', city:'Kursaal',    word:'karaoke', phrase:'K come Kursaal — karaoke'},
+    {l:'W', city:'Washington', word:'weekend', phrase:'W come Washington — weekend'},
+    {l:'X', city:'Xilofono',   word:'taxi',    phrase:'X come Xilofono — taxi'},
+    {l:'Y', city:'York',       word:'yoga',    phrase:'Y come York — yoga'},
+  ];
+  const ALL_LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const foreignSet  = new Set(['J','K','W','X','Y']);
+  const pickedForeign = new Set();
+
+  function buildForeignAudioGrid() {
+    const grid = document.getElementById('foreignAudioGrid');
+    FOREIGN.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'foreign-chip';
+      div.style.cursor = 'default';
+      div.innerHTML = `
+        <span class="fc-ltr">${item.l}</span>
+        <button class="fc-audio" onclick="speak('${item.phrase}')" title="Escuchar"
+          style="background:none;border:1.5px solid var(--mc-dk);color:var(--mc-dk);padding:0.15rem 0.5rem;border-radius:20px;font-size:0.72rem;font-weight:600;cursor:pointer;font-family:var(--fb);transition:all 0.2s;">🔊 ${item.city}</button>
+        <span style="font-size:0.75rem;color:#888;font-style:italic;">(ej: ${item.word})</span>
+      `;
+      grid.appendChild(div);
+    });
+  }
+
+  function buildForeignPickGrid() {
+    const grid = document.getElementById('foreignPickGrid');
+    ALL_LETTERS.forEach(ltr => {
+      const div = document.createElement('div');
+      div.className = 'foreign-chip';
+      div.dataset.ltr = ltr;
+      div.innerHTML = `<span class="fc-ltr">${ltr}</span>`;
+      div.addEventListener('click', () => {
+        if (div.classList.contains('correct') || div.classList.contains('wrong') || div.classList.contains('missed')) return;
+        if (pickedForeign.has(ltr)) {
+          pickedForeign.delete(ltr); div.classList.remove('selected');
+        } else {
+          pickedForeign.add(ltr); div.classList.add('selected');
+        }
+      });
+      grid.appendChild(div);
+    });
+  }
+
+  function checkForeign() {
+    const chips = document.querySelectorAll('#foreignPickGrid .foreign-chip');
+    let correct = 0;
+    chips.forEach(chip => {
+      const ltr = chip.dataset.ltr;
+      const isForeign  = foreignSet.has(ltr);
+      const wasPicked  = pickedForeign.has(ltr);
+      chip.classList.remove('selected');
+      if (isForeign  &&  wasPicked) { chip.classList.add('correct'); correct++; }
+      if (isForeign  && !wasPicked) { chip.classList.add('missed'); }
+      if (!isForeign &&  wasPicked) { chip.classList.add('wrong'); }
+    });
+    document.getElementById('foreignCheckBtn').disabled = true;
+    const res = document.getElementById('foreignResult');
+    res.className = 'activity-result ' + (correct === 5 ? 'ok' : 'err');
+    res.textContent = correct === 5
+      ? '¡Perfetto! Las 5 letras straniere son J · K · W · X · Y — resaltadas en verde arriba.'
+      : `Encontraste ${correct}/5. Las amarillas son las que te faltaron. Son: J, K, W, X, Y.`;
+  }
+
+  /* ══════════════════════════════════════════
+     FONETICA
+  ══════════════════════════════════════════ */
+  const FONETICA = [
+    {combo:'C + a/o/u', sound:'K (como "casa")',           example:'casa, cosa, cura',   audio:'casa, cosa, cura'},
+    {combo:'C + e/i',   sound:'CH de "chico"',             example:'ciao, cinema',       audio:'ciao, cinema'},
+    {combo:'G + a/o/u', sound:'G suave (como "gato")',     example:'gatto, gonna',       audio:'gatto, gonna'},
+    {combo:'G + e/i',   sound:'GI — "gelato"',             example:'gelato, giro',       audio:'gelato, giro'},
+    {combo:'CH',        sound:'K dura (K italiana)',       example:'che, chi, chiamo',   audio:'che, chi, chiamo'},
+    {combo:'GH',        sound:'G suave (G italiana)',      example:'ghiaccio, spaghetti',audio:'ghiaccio, spaghetti'},
+    {combo:'SC + e/i',  sound:'SH de "show"',              example:'scena, sci',         audio:'scena, sci'},
+    {combo:'GL + i',    sound:'LL de "llamar"',            example:'gli, famiglia',      audio:'gli, famiglia'},
+    {combo:'GN',        sound:'Ñ de "año"',                example:'gnocchi, bagno',     audio:'gnocchi, bagno'},
+    {combo:'H',         sound:'Muda — no suena sola',      example:'hotel, ho, hai',     audio:'hotel, ho, hai'},
+  ];
+
+  function buildFonetica() {
+    const tbody = document.getElementById('fonTableBody');
+    FONETICA.forEach((row, i) => {
+      const tr = document.createElement('tr');
+      if (i % 2 !== 0) tr.style.background = 'var(--cream)';
+      tr.innerHTML = `
+        <td><strong class="hl">${row.combo}</strong></td>
+        <td>${row.sound}</td>
+        <td class="it">${row.example}</td>
+        <td><button class="fon-audio-btn" onclick="speak('${row.audio}')">🔊 Escuchar</button></td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  /* ══════════════════════════════════════════
+     SALUDOS
+  ══════════════════════════════════════════ */
+  const GREET_INF = [
+    {it:'Ciao!',         es:'¡Hola! / ¡Chau!'},
+    {it:'Salve!',        es:'¡Hola! (neutro)'},
+    {it:'Come stai?',    es:'¿Cómo estás?'},
+    {it:'Bene, grazie!', es:'¡Bien, gracias!'},
+    {it:'Dai! Ci vediamo!', es:'¡Dale! ¡Nos vemos!'},
+    {it:'A presto!',     es:'¡Hasta pronto!'},
+    {it:'Arrivederci',   es:'Hasta luego'},
+  ];
+  const GREET_FML = [
+    {it:'Buongiorno',      es:'Buenos días / Buen día'},
+    {it:'Buon pomeriggio', es:'Buenas tardes'},
+    {it:'Buonasera',       es:'Buenas noches (desde las 18h)'},
+    {it:'Buonanotte',      es:'Buenas noches (al dormir)'},
+    {it:'Come sta?',       es:'¿Cómo está usted?'},
+    {it:'Piacere!',        es:'¡Mucho gusto!'},
+    {it:'Arrivederla',     es:'Hasta luego (muy formal)'},
+  ];
+
+  function buildGreetGrid() {
+    const grid = document.getElementById('greetGrid');
+
+    function makeCard(title, items, headClass) {
+      const card = document.createElement('div');
+      card.className = 'greet-card';
+      const h = document.createElement('div');
+      h.className = 'greet-head ' + headClass;
+      h.textContent = title;
+      card.appendChild(h);
+      items.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'greet-row-item';
+        row.innerHTML = `
+          <button class="greet-play" onclick="speak('${item.it}')" title="Escuchar">🔊</button>
+          <span class="greet-it">${item.it}</span>
+          <span class="greet-es">${item.es}</span>
+        `;
+        card.appendChild(row);
+      });
+      return card;
+    }
+
+    grid.appendChild(makeCard('Informal — amigos y familia', GREET_INF, 'info'));
+    grid.appendChild(makeCard('Formal — adultos y desconocidos', GREET_FML, 'fml'));
+  }
+
+  const GREET_CONTEXT = [
+    {situation:'Entrás a una panadería a las 10am y saludás al dueño.', correct:'F', explic:'Contexto formal: adulto desconocido, horario de mañana → Buongiorno.'},
+    {situation:'Le mandás un mensaje a tu amiga italiana.', correct:'I', explic:'Contexto informal: amiga → Ciao! o una expresión relajada.'},
+    {situation:'Llegás a una entrevista de trabajo en Italia.', correct:'F', explic:'Contexto muy formal: entrevista → Buongiorno + Piacere!'},
+    {situation:'Te despedís de tu compañero de clase.', correct:'I', explic:'Contexto informal → Ciao! o A presto!'},
+  ];
+
+  function buildGreetContext() {
+    const container = document.getElementById('greetContext');
+    GREET_CONTEXT.forEach((item, i) => {
+      const div = document.createElement('div');
+      div.className = 'vf-row';
+      div.id = 'gc-' + i;
+      div.innerHTML = `
+        <span class="vf-text">${item.situation}</span>
+        <div class="vf-btns">
+          <button class="vf-btn" onclick="checkGC(${i},this,'F')">F</button>
+          <button class="vf-btn" onclick="checkGC(${i},this,'I')">I</button>
+        </div>
+      `;
+      const exp = document.createElement('div');
+      exp.className = 'vf-explic';
+      exp.id = 'gc-ex-' + i;
+      exp.textContent = item.explic;
+      container.appendChild(div);
+      container.appendChild(exp);
+    });
+  }
+
+  function checkGC(i, btn, answer) {
+    const item = GREET_CONTEXT[i];
+    const row  = document.getElementById('gc-' + i);
+    const exp  = document.getElementById('gc-ex-' + i);
+    row.querySelectorAll('.vf-btn').forEach(b => b.classList.add('disabled'));
+    btn.classList.add(answer === item.correct ? 'correct' : 'wrong');
+    if (exp) exp.classList.add('show');
+  }
+
+  /* ══════════════════════════════════════════
+     CHIAMARSI
+  ══════════════════════════════════════════ */
+  const CONJ_DATA = [
+    {pro:'io',      refl:'mi', verb:'chiamo',   example:'Io ___ chiamo Marco.'},
+    {pro:'tu',      refl:'ti', verb:'chiami',   example:'Tu ___ chiami Graziana.'},
+    {pro:'lui/lei', refl:'si', verb:'chiama',   example:'Lei ___ chiama Sofia.'},
+    {pro:'noi',     refl:'ci', verb:'chiamiamo',example:'Noi ___ chiamiamo italiani.'},
+  ];
+
+  function buildConj() {
+    const container = document.getElementById('conjRows');
+    CONJ_DATA.forEach((item, i) => {
+      const opts = ['mi','ti','si','ci','vi'].sort(() => Math.random() - 0.5);
+      const div = document.createElement('div');
+      div.className = 'conj-row';
+      div.innerHTML = `
+        <span class="conj-pro">${item.pro}</span>
+        <select class="conj-sel" id="cs-${i}">
+          <option value="">?</option>
+          ${opts.map(o => `<option value="${o}">${o}</option>`).join('')}
+        </select>
+        <span class="conj-verb">${item.verb}</span>
+        <span class="conj-example">${item.example.replace('___','__')}</span>
+        <span class="conj-icon" id="ci-${i}"></span>
+      `;
+      container.appendChild(div);
+      document.getElementById(`cs-${i}`).addEventListener('change', () => {
+        const sel = document.getElementById(`cs-${i}`);
+        const ok  = sel.value === item.refl;
+        sel.classList.toggle('ok',  ok);
+        sel.classList.toggle('err', !ok);
+        document.getElementById(`ci-${i}`).textContent = ok ? '✓' : '✗';
+        const allDone = CONJ_DATA.every((_,j) => document.getElementById(`cs-${j}`).value !== '');
+        if (allDone) {
+          const allOk = CONJ_DATA.every((_,j) => document.getElementById(`cs-${j}`).value === CONJ_DATA[j].refl);
+          if (allOk) revealPattern();
+        }
+      });
+    });
+  }
+
+  function revealPattern() {
+    const vals = ['mi','ti','si'];
+    vals.forEach((v,i) => {
+      const el = document.getElementById('pb' + i);
+      if (el) { el.textContent = v; el.classList.add('revealed'); }
+    });
+    document.getElementById('patternMsg').style.display = 'block';
+  }
+
+  /* ══════════════════════════════════════════
+     MC GENÉRICO
+  ══════════════════════════════════════════ */
+  function checkMC(btn, correct, feedback) {
+    const parent = btn.closest('.mc-opts');
+    parent.querySelectorAll('.mc-opt').forEach(b => b.classList.add('disabled'));
+    btn.classList.add(correct ? 'correct' : 'wrong');
+    const fbEl = btn.closest('.card').querySelector('.mc-fb') || document.getElementById('chiaMarsiMCfb') || document.getElementById('dialFb');
+    if (fbEl) {
+      fbEl.className = 'mc-fb ' + (correct ? 'ok' : 'err');
+      fbEl.textContent = (correct ? '✓ ' : '✗ ') + feedback;
+    }
+  }
+
+  /* ══════════════════════════════════════════
+     DIALOGO
+  ══════════════════════════════════════════ */
+  const DIAL_LINES_DATA = [
+    'Ciao! Mi chiamo Graziana. E tu, come ti chiami?',
+    'Ciao! Piacere! Mi chiamo Marco.',
+    'Bello! Come si scrive il tuo nome?',
+    'M come Milano, A come Ancona, R come Roma, C come Como, O come Otranto. Marco!',
+    'Perfetto! E tu, come si scrive il mio nome?',
+    'Mmm… G come Genova, R come Roma, A come Ancona, Z come Zara, I come Imola, A come Ancona. Graziana! Giusto?',
+    'Bravissimo! Arrivederci, Marco!',
+    'A presto, Graziana! Buonasera!',
+  ];
+
+  function playLine(idx) {
+    const sub = document.getElementById('sub-' + idx);
+    speak(DIAL_LINES_DATA[idx], () => { if (sub) sub.classList.add('visible'); }, null);
+  }
+
+  function speakAllDialog() {
+    let i = 0;
+    function next() {
+      if (i >= DIAL_LINES_DATA.length) return;
+      const idx = i++;
+      speak(DIAL_LINES_DATA[idx],
+        () => { const s = document.getElementById('sub-' + idx); if (s) s.classList.add('visible'); },
+        () => next()
+      );
+    }
+    next();
+  }
+
+  /* ══════════════════════════════════════════
+     NÚMEROS
+  ══════════════════════════════════════════ */
+  const NUMS = [
+    [1,'uno'],[2,'due'],[3,'tre'],[4,'quattro'],[5,'cinque'],
+    [6,'sei'],[7,'sette'],[8,'otto'],[9,'nove'],[10,'dieci'],
+    [11,'undici'],[12,'dodici'],[13,'tredici'],[14,'quattordici'],[15,'quindici'],
+    [16,'sedici'],[17,'diciassette'],[18,'diciotto'],[19,'diciannove'],[20,'venti'],
+    [21,'ventuno'],[22,'ventidue'],[23,'ventitré'],[24,'ventiquattro'],[25,'venticinque'],
+    [26,'ventisei'],[27,'ventisette'],[28,'ventotto'],[29,'ventinove'],[30,'trenta'],
+  ];
+
+  function buildNums() {
+    const grid = document.getElementById('numGrid');
+    NUMS.forEach(([n, w]) => {
+      const div = document.createElement('div');
+      div.className = 'num-item';
+      div.innerHTML = `<div class="n-num">${n}</div><div class="n-word">${w}</div>`;
+      div.addEventListener('click', () => {
+        document.querySelectorAll('.num-item').forEach(x => x.classList.remove('playing'));
+        div.classList.add('playing');
+        speak(w, null, () => div.classList.remove('playing'));
+      });
+      grid.appendChild(div);
+    });
+  }
+
+  // Match activity — 6 numbers
+  const NUM_MATCH = [
+    [3,'tre'],[7,'sette'],[12,'dodici'],[15,'quindici'],[21,'ventuno'],[28,'ventotto']
+  ];
+  const NUM_OPTS_POOL = ['tre','sette','dodici','quindici','ventuno','ventotto','venti','undici','due','diciotto'];
+
+  function buildNumMatch() {
+    const container = document.getElementById('numMatch');
+    NUM_MATCH.forEach(([num, word], i) => {
+      const opts = [word, ...NUM_OPTS_POOL.filter(w => w !== word).sort(() => Math.random()-0.5).slice(0,3)]
+                    .sort(() => Math.random()-0.5);
+      const row = document.createElement('div');
+      row.className = 'match-row';
+      row.innerHTML = `
+        <span class="match-num">${num}</span>
+        <select class="match-sel" id="nm-${i}" data-correct="${word}">
+          <option value="">— elegí —</option>
+          ${opts.map(o => `<option value="${o}">${o}</option>`).join('')}
+        </select>
+        <span class="match-icon" id="nmi-${i}"></span>
+      `;
+      container.appendChild(row);
+    });
+  }
+
+  function checkNumMatch() {
+    let ok = 0;
+    NUM_MATCH.forEach(([,word], i) => {
+      const sel  = document.getElementById('nm-' + i);
+      const icon = document.getElementById('nmi-' + i);
+      const correct = sel.value === sel.dataset.correct;
+      sel.classList.toggle('ok', correct);
+      sel.classList.toggle('err', !correct);
+      icon.textContent = correct ? '✓' : '✗';
+      if (correct) ok++;
+    });
+    const res = document.getElementById('numMatchResult');
+    res.className = 'activity-result ' + (ok === NUM_MATCH.length ? 'ok' : 'err');
+    res.textContent = ok + '/' + NUM_MATCH.length + ' correctos. ' + (ok === NUM_MATCH.length ? '¡Perfetto!' : 'Revisá los marcados en rojo.');
+  }
+
+  /* ══════════════════════════════════════════
+     EXPRESIONES ÚTILES
+  ══════════════════════════════════════════ */
+  const ESPR = [
+    {it:'Che significa?',     es:'¿Qué significa?',             speak:'Che significa?'},
+    {it:'Come si scrive?',    es:'¿Cómo se escribe?',           speak:'Come si scrive?'},
+    {it:'Come si pronuncia?', es:'¿Cómo se pronuncia?',         speak:'Come si pronuncia?'},
+    {it:'Non capisco.',       es:'No entiendo.',                 speak:'Non capisco.'},
+    {it:'Puoi ripetere?',     es:'¿Podés repetir?',             speak:'Puoi ripetere?'},
+    {it:'Piacere!',           es:'¡Mucho gusto!',               speak:'Piacere!'},
+    {it:'Come si dice… in italiano?', es:'¿Cómo se dice… en italiano?', speak:'Come si dice in italiano?'},
+    {it:'Scusa!',             es:'¡Perdón! / Disculpá',         speak:'Scusa!'},
+  ];
+
+  function buildEspr() {
+    const list = document.getElementById('esprList');
+    ESPR.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'espr-item';
+      div.innerHTML = `
+        <span class="espr-it">${item.it}</span>
+        <span class="espr-es">${item.es}</span>
+        <button class="espr-btn" onclick="speak('${item.speak}')">🔊</button>
+      `;
+      list.appendChild(div);
+    });
+  }
+
+  const ESPR_ACTIVITY = [
+    {situation:'No entendiste lo que dijo Sofia. ¿Qué le decís?', correct:'Non capisco. / Puoi ripetere?', opts:['Non capisco. / Puoi ripetere?','Piacere!','Come ti chiami?']},
+    {situation:'Escuchaste la palabra "gelato" y no sabés qué significa. ¿Preguntás?', correct:'Che significa?', opts:['Come si scrive?','Che significa?','Scusa!']},
+    {situation:'Acabás de conocer a Marco. Te presentás y le extendés la mano.', correct:'Piacere!', opts:['Arrivederci!','Piacere!','Non capisco.']},
+  ];
+
+  function buildEsprActivity() {
+    const container = document.getElementById('esprActivity');
+    ESPR_ACTIVITY.forEach((item, qi) => {
+      const div = document.createElement('div');
+      div.style.marginBottom = '1.2rem';
+      const shuffled = [...item.opts].sort(() => Math.random() - 0.5);
+      div.innerHTML = `
+        <p style="font-size:0.91rem;font-weight:600;color:var(--mc-text);margin-bottom:0.5rem;">${qi+1}. ${item.situation}</p>
+        <div class="mc-opts" id="ea-opts-${qi}">
+          ${shuffled.map(o => `<button class="mc-opt" onclick="checkEsprMC(this,${o === item.correct},'${qi}')">${o}</button>`).join('')}
+        </div>
+        <div class="mc-fb" id="ea-fb-${qi}"></div>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  function checkEsprMC(btn, correct, qi) {
+    btn.closest('.mc-opts').querySelectorAll('.mc-opt').forEach(b => b.classList.add('disabled'));
+    btn.classList.add(correct ? 'correct' : 'wrong');
+    const fb = document.getElementById('ea-fb-' + qi);
+    if (fb) {
+      fb.className = 'mc-fb ' + (correct ? 'ok' : 'err');
+      fb.textContent = correct ? '✓ ¡Perfetto!' : '✗ Revisá la lista de arriba y volvé a intentarlo.';
+    }
+  }
+
+  /* ══════════════════════════════════════════
+     INIT
+  ══════════════════════════════════════════ */
+  // Script está al final del body — DOM ya disponible, sin necesidad de DOMContentLoaded
+  buildAlfaListenGrid();
+  buildFillGrid();
+  buildForeignAudioGrid();
+  buildForeignPickGrid();
+  buildFonetica();
+  buildGreetGrid();
+  buildGreetContext();
+  buildConj();
+  buildNums();
+  buildNumMatch();
+  buildEspr();
+  buildEsprActivity();
+
+  // Exponer funciones para onclick handlers (necesario en Odoo DOMEval)
+  window.speak = speak;
+  window.speakLetter = speakLetter;
+  window.checkVF = checkVF;
+  window.checkFill = checkFill;
+  window.revealFill = revealFill;
+  window.checkForeign = checkForeign;
+  window.checkMC = checkMC;
+  window.checkGC = checkGC;
+  window.revealPattern = revealPattern;
+  window.checkNumMatch = checkNumMatch;
+  window.checkEsprMC = checkEsprMC;
+  window.playLine = playLine;
+  window.speakAllDialog = speakAllDialog;
+})();
+</script>
+</body>
+</html>

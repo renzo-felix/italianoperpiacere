@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Una notte a Roma — Etapa 1 | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:    #e9e6d5;
+  --cream-dk: #ddd9c8;
+  --gold:     #EFCF7F;
+  --amber:    #e5ab07;
+  --amber-dk: #c8940a;
+  --red:      #cc4736;
+  --teal:     #78a6ba;
+  --green:    #528e74;
+  --black:    #1a1a18;
+  --white:    #ffffff;
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+  --r: 10px;
+  --mc:      #78a6ba;
+  --mc-dk:   #5a8ea0;
+  --mc-text: #2d5f72;
+  --mc-bg:   #e5f1f5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--cream); font-family: var(--fb); color: var(--black); line-height: 1.6; }
+
+.hero {
+  background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%);
+  padding: 56px 24px 48px;
+  text-align: center;
+  color: var(--white);
+}
+.badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--fh);
+  font-style: italic;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.hero p { font-size: 1.05rem; opacity: 0.9; }
+
+.stage-nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--cream-dk);
+  padding: 0 24px;
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  overflow-x: auto;
+}
+.stage-nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: #888;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.stage-nav a.active { color: var(--mc-text); border-bottom-color: var(--mc); }
+.stage-nav a .num {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: #ddd; color: #666;
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.stage-nav a.active .num { background: var(--mc); color: var(--white); }
+.stage-nav a.done .num { background: var(--green); color: var(--white); }
+.stage-nav a.done { color: var(--green); }
+
+.container { max-width: 820px; margin: 0 auto; padding: 40px 24px; }
+
+.sofia-wrap { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 32px; }
+.sofia-avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--mc);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; flex-shrink: 0;
+}
+.sofia-bubble {
+  background: var(--cream-dk);
+  border-radius: 0 var(--r) var(--r) var(--r);
+  padding: 16px 20px;
+  font-size: 1rem; line-height: 1.65; flex: 1;
+  position: relative;
+}
+.sofia-bubble::before {
+  content: '';
+  position: absolute; left: -10px; top: 12px;
+  border: 5px solid transparent;
+  border-right-color: var(--cream-dk);
+}
+.sofia-name {
+  font-weight: 700; color: var(--mc-text); font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+}
+
+.video-wrap {
+  position: relative; padding-bottom: 56.25%; height: 0;
+  overflow: hidden; border-radius: var(--r);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin-bottom: 28px;
+}
+.video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+.task-box {
+  background: var(--mc-bg);
+  border-left: 4px solid var(--mc);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 16px 20px; margin-bottom: 36px;
+}
+.task-box h3 {
+  color: var(--mc-text); font-size: 13px;
+  text-transform: uppercase; letter-spacing: 0.8px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.task-box ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.task-box ul li::before { content: '→ '; color: var(--mc); font-weight: 700; }
+
+.section-title {
+  font-family: var(--fh); font-style: italic; font-size: 1.5rem;
+  color: var(--mc-text); margin-bottom: 20px;
+  padding-bottom: 8px; border-bottom: 2px solid var(--mc-bg);
+}
+
+.exercise-card {
+  background: var(--white); border-radius: var(--r);
+  padding: 28px; margin-bottom: 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.ex-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.ex-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--mc); color: var(--white);
+  font-weight: 700; font-size: 15px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.ex-title { font-weight: 700; font-size: 1.05rem; color: var(--black); }
+.ex-subtitle { font-size: 13px; color: #666; margin-top: 2px; }
+
+.vf-item {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 14px 0; border-bottom: 1px solid var(--cream-dk);
+}
+.vf-item:last-child { border-bottom: none; }
+.vf-statement { font-size: 0.97rem; }
+.vf-buttons { display: flex; gap: 10px; }
+.btn-vf {
+  padding: 7px 20px; border: 2px solid var(--cream-dk);
+  border-radius: 6px; background: var(--cream);
+  font-family: var(--fb); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-vf:hover { border-color: var(--mc); color: var(--mc-text); }
+.btn-vf.correct { background: #d4edda; border-color: #2d7a4f; color: #2d7a4f; }
+.btn-vf.wrong { background: #fde8e8; border-color: var(--red); color: var(--red); }
+.vf-feedback { font-size: 13px; min-height: 18px; font-weight: 500; }
+
+.mc-item { padding: 16px 0; border-bottom: 1px solid var(--cream-dk); }
+.mc-item:last-child { border-bottom: none; }
+.mc-question { font-weight: 600; margin-bottom: 10px; font-size: 0.97rem; }
+.mc-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn-mc {
+  padding: 8px 18px; border: 2px solid var(--cream-dk);
+  border-radius: 6px; background: var(--cream);
+  font-family: var(--fb); font-size: 13px; cursor: pointer; transition: all 0.2s;
+}
+.btn-mc:hover { border-color: var(--mc); }
+.btn-mc.correct { background: #d4edda; border-color: #2d7a4f; color: #2d7a4f; font-weight: 700; }
+.btn-mc.wrong { background: #fde8e8; border-color: var(--red); color: var(--red); }
+.mc-feedback { font-size: 13px; margin-top: 8px; min-height: 18px; font-weight: 500; }
+
+.score-bar {
+  background: var(--cream-dk); border-radius: var(--r);
+  padding: 16px 20px; margin-top: 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px;
+}
+.score-label { font-weight: 600; font-size: 0.95rem; }
+.score-num { font-size: 1.5rem; font-weight: 700; color: var(--mc-text); }
+
+.cta-wrap {
+  text-align: center; margin-top: 40px; padding: 36px;
+  background: var(--white); border-radius: var(--r);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.cta-wrap p { color: #555; margin-bottom: 16px; }
+.btn-cta {
+  display: inline-block; padding: 14px 36px;
+  background: var(--mc); color: var(--white);
+  text-decoration: none; border-radius: 8px;
+  font-weight: 700; font-size: 1rem; transition: background 0.2s;
+}
+.btn-cta:hover { background: var(--mc-dk); }
+
+@media (max-width: 600px) {
+  .stage-nav a { padding: 12px 12px; font-size: 12px; }
+  .stage-nav a span:not(.num) { display: none; }
+  .mc-options { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">A1 · Unità 2</div>
+  <h1>Una notte a Roma</h1>
+  <p>Check-in en el hotel — vocabulario y frases reales</p>
+</div>
+
+<nav class="stage-nav">
+  <a href="etapa1_exploracion.html" class="active">
+    <span class="num">1</span><span>Exploración</span>
+  </a>
+  <a href="etapa2_descubrimiento.html">
+    <span class="num">2</span><span>Descubrimiento</span>
+  </a>
+  <a href="etapa3_gramatica.html">
+    <span class="num">3</span><span>Gramática</span>
+  </a>
+</nav>
+
+<div class="container">
+
+  <div class="sofia-wrap">
+    <div class="sofia-avatar">🇮🇹</div>
+    <div class="sofia-bubble">
+      <div class="sofia-name">Sofia — tu guía</div>
+      ¿Alguna vez reservaste un hotel en italiano? Hoy vamos a ver exactamente cómo se hace. Este video está grabado en un hotel real — el <em>Casalunga Golf Resort</em> — y vas a escuchar frases auténticas usadas en la recepción. Presta atención al tono, la cortesía y cómo se maneja todo con calma. <strong>¡Así se habla el italiano de verdad!</strong>
+    </div>
+  </div>
+
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/nJ0gKWX8mjM" allowfullscreen title="Check-in en hotel italiano"></iframe>
+  </div>
+
+  <div class="task-box">
+    <h3>🎯 Mientras ves el video, presta atención a...</h3>
+    <ul>
+      <li>¿Cómo saluda la recepcionista Giulia al entrar los huéspedes?</li>
+      <li>¿Cuánto cuesta la habitación por noche?</li>
+      <li>¿Qué documentos le piden al señor Baldini?</li>
+    </ul>
+  </div>
+
+  <h2 class="section-title">Después del video</h2>
+
+  <div class="exercise-card">
+    <div class="ex-header">
+      <div class="ex-num">1</div>
+      <div>
+        <div class="ex-title">Verdadero o Falso</div>
+        <div class="ex-subtitle">Basado en lo que escuchaste en el video</div>
+      </div>
+    </div>
+
+    <div class="vf-item" data-answer="true">
+      <div class="vf-statement">1. El hotel se llama <em>Casalunga Golf Resort</em>.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="vf-item" data-answer="false">
+      <div class="vf-statement">2. La habitación cuesta 200 euros por noche.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="vf-item" data-answer="true">
+      <div class="vf-statement">3. El desayuno (<em>colazione</em>) está incluido en el precio.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="vf-item" data-answer="false">
+      <div class="vf-statement">4. El impuesto turístico (<em>tassa di soggiorno</em>) es de 5 euros por persona.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="vf-item" data-answer="false">
+      <div class="vf-statement">5. Los huéspedes deben pagar todo al momento del check-in.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="score-bar">
+      <span class="score-label">Puntuación Ejercicio 1:</span>
+      <span class="score-num" id="vf-score">0 / 5</span>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <div class="ex-header">
+      <div class="ex-num">2</div>
+      <div>
+        <div class="ex-title">Selección múltiple</div>
+        <div class="ex-subtitle">Elige la respuesta correcta para cada pregunta</div>
+      </div>
+    </div>
+
+    <div class="mc-item" data-correct="Giulia">
+      <div class="mc-question">1. ¿Cómo se llama la recepcionista del hotel?</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this)">Maria</button>
+        <button class="btn-mc" onclick="checkMC(this)">Sofia</button>
+        <button class="btn-mc" onclick="checkMC(this)">Giulia</button>
+        <button class="btn-mc" onclick="checkMC(this)">Anna</button>
+      </div>
+      <div class="mc-feedback"></div>
+    </div>
+
+    <div class="mc-item" data-correct="2 noches">
+      <div class="mc-question">2. ¿Cuántas noches reservaron los Baldini?</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this)">1 noche</button>
+        <button class="btn-mc" onclick="checkMC(this)">2 noches</button>
+        <button class="btn-mc" onclick="checkMC(this)">3 noches</button>
+        <button class="btn-mc" onclick="checkMC(this)">4 noches</button>
+      </div>
+      <div class="mc-feedback"></div>
+    </div>
+
+    <div class="mc-item" data-correct="tasto 9">
+      <div class="mc-question">3. ¿Qué número marcar para llamar a la portería (<em>portineria</em>)?</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this)">tasto 7</button>
+        <button class="btn-mc" onclick="checkMC(this)">tasto 5</button>
+        <button class="btn-mc" onclick="checkMC(this)">tasto 9</button>
+        <button class="btn-mc" onclick="checkMC(this)">tasto 1</button>
+      </div>
+      <div class="mc-feedback"></div>
+    </div>
+
+    <div class="mc-item" data-correct="Hasta las 11:00">
+      <div class="mc-question">4. ¿Hasta qué hora sirven el desayuno?</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this)">Hasta las 9:00</button>
+        <button class="btn-mc" onclick="checkMC(this)">Hasta las 10:00</button>
+        <button class="btn-mc" onclick="checkMC(this)">Hasta las 11:00</button>
+        <button class="btn-mc" onclick="checkMC(this)">Hasta las 12:00</button>
+      </div>
+      <div class="mc-feedback"></div>
+    </div>
+
+    <div class="score-bar">
+      <span class="score-label">Puntuación Ejercicio 2:</span>
+      <span class="score-num" id="mc-score">0 / 4</span>
+    </div>
+  </div>
+
+  <div class="cta-wrap">
+    <p>¡Muy bien! Ya exploraste el video y entendiste las ideas principales. Ahora vamos a profundizar en el vocabulario y las frases del hotel. 🏨</p>
+    <a href="etapa2_descubrimiento.html" class="btn-cta">Continuar → Etapa 2: Descubrimiento</a>
+  </div>
+
+</div>
+
+<script>
+function speak(text, rate, gender) {
+  rate = rate || 0.82;
+  gender = gender || 'f';
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  var utt = new SpeechSynthesisUtterance(text);
+  utt.lang = 'it-IT';
+  utt.rate = rate;
+  var voices = speechSynthesis.getVoices();
+  var itVoices = voices.filter(function(v){ return v.lang.startsWith('it'); });
+  var voice;
+  if (gender === 'm') {
+    voice = itVoices.find(function(v){ return /cosimo|luca|giorgio|male/i.test(v.name); });
+    if (!voice) voice = itVoices[itVoices.length - 1];
+  } else {
+    voice = itVoices.find(function(v){ return /elsa|alice|giulia|female/i.test(v.name); });
+    if (!voice) voice = itVoices[0];
+  }
+  if (!voice && itVoices.length) voice = itVoices[0];
+  if (voice) utt.voice = voice;
+  speechSynthesis.speak(utt);
+}
+if (window.speechSynthesis) {
+  speechSynthesis.onvoiceschanged = function(){ speechSynthesis.getVoices(); };
+}
+
+var vfScores = {};
+var vfExplanations = [
+  'En el video se escucha: «benvenuti al Casalunga Golf Resort».',
+  'El precio correcto es 150 euros por noche: «il prezzo è di 150 euro a notte».',
+  'Giulia confirma: «comprensivo di prima colazione» — el desayuno está incluido.',
+  'La tassa di soggiorno es 3 euros al día por persona: «3 euro al giorno a persona».',
+  'Giulia dice: «potete pagare tutto alla vostra partenza» — pagan al salir.'
+];
+
+function checkVF(btn, userAnswer) {
+  var item = btn.closest('.vf-item');
+  if (item.dataset.done) return;
+  item.dataset.done = 'true';
+  var correctBool = item.dataset.answer === 'true';
+  var isCorrect = (userAnswer === correctBool);
+  var feedback = item.querySelector('.vf-feedback');
+  var btns = item.querySelectorAll('.btn-vf');
+  btns.forEach(function(b){ b.disabled = true; });
+  var items = document.querySelectorAll('.vf-item');
+  var idx = Array.from(items).indexOf(item);
+  if (isCorrect) {
+    btn.classList.add('correct');
+    feedback.style.color = '#2d7a4f';
+    feedback.textContent = '✓ ¡Correcto! ' + vfExplanations[idx];
+    vfScores[idx] = 1;
+  } else {
+    btn.classList.add('wrong');
+    feedback.style.color = '#cc4736';
+    feedback.textContent = '✗ No exactamente. ' + vfExplanations[idx];
+    vfScores[idx] = 0;
+    btns.forEach(function(b){
+      var isV = b.textContent.includes('Verdadero');
+      if ((isV && correctBool) || (!isV && !correctBool)) b.classList.add('correct');
+    });
+  }
+  var total = 0;
+  Object.values(vfScores).forEach(function(v){ total += v; });
+  document.getElementById('vf-score').textContent = total + ' / 5';
+}
+
+var mcScores = {};
+function checkMC(btn) {
+  var item = btn.closest('.mc-item');
+  if (item.dataset.done) return;
+  item.dataset.done = 'true';
+  var correct = item.dataset.correct;
+  var btns = item.querySelectorAll('.btn-mc');
+  btns.forEach(function(b){ b.disabled = true; });
+  var feedback = item.querySelector('.mc-feedback');
+  var items = document.querySelectorAll('.mc-item');
+  var idx = Array.from(items).indexOf(item);
+  if (btn.textContent.trim() === correct) {
+    btn.classList.add('correct');
+    feedback.style.color = '#2d7a4f';
+    feedback.textContent = '✓ ¡Perfecto!';
+    mcScores[idx] = 1;
+  } else {
+    btn.classList.add('wrong');
+    feedback.style.color = '#cc4736';
+    feedback.textContent = '✗ La respuesta correcta es: ' + correct;
+    mcScores[idx] = 0;
+    btns.forEach(function(b){
+      if (b.textContent.trim() === correct) b.classList.add('correct');
+    });
+  }
+  var total = 0;
+  Object.values(mcScores).forEach(function(v){ total += v; });
+  document.getElementById('mc-score').textContent = total + ' / 4';
+}
+</script>
+</body>
+</html>

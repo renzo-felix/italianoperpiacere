@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 1 · Di dove sei? — Descubrimiento | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:    #e9e6d5;
+  --cream-dk: #ddd9c8;
+  --gold:     #EFCF7F;
+  --amber:    #e5ab07;
+  --amber-dk: #c8940a;
+  --red:      #cc4736;
+  --teal:     #78a6ba;
+  --green:    #528e74;
+  --black:    #1a1a18;
+  --white:    #ffffff;
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+  --r: 10px;
+  --mc:      #cc4736;
+  --mc-dk:   #a8382a;
+  --mc-text: #7a1f14;
+  --mc-bg:   #fbeae8;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--fb); background: var(--cream); color: var(--black); line-height: 1.6; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%);
+  color: var(--white);
+  padding: 56px 24px 48px;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-family: var(--fb);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 700; margin-bottom: 10px; }
+.hero-sub { font-size: 1.05rem; opacity: 0.88; font-weight: 300; }
+
+/* STAGE NAV */
+.stage-nav {
+  display: flex; justify-content: center; gap: 6px;
+  padding: 18px 16px;
+  background: var(--white);
+  border-bottom: 1px solid var(--cream-dk);
+  flex-wrap: wrap;
+}
+.stage-link {
+  display: flex; align-items: center; gap: 7px;
+  padding: 8px 16px; border-radius: 30px;
+  text-decoration: none; font-family: var(--fb); font-size: 0.82rem; font-weight: 500;
+  color: #888; background: var(--cream); border: 1.5px solid transparent; transition: all 0.2s;
+}
+.stage-link .sn {
+  width: 22px; height: 22px; border-radius: 50%; background: #ccc; color: var(--white);
+  display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700;
+}
+.stage-link.active { background: var(--mc-bg); color: var(--mc-text); border-color: var(--mc); }
+.stage-link.active .sn { background: var(--mc); }
+.stage-link.done { color: var(--green); }
+.stage-link.done .sn { background: var(--green); }
+
+/* MAIN */
+.main { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; }
+.section { margin-bottom: 48px; }
+
+/* SOFIA */
+.sofia-row {
+  display: flex; gap: 16px; align-items: flex-start;
+  background: var(--white); border-radius: var(--r); padding: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 28px;
+}
+.sofia-col { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
+.sofia-avatar {
+  width: 52px; height: 52px; border-radius: 50%; background: var(--mc-bg);
+  display: flex; align-items: center; justify-content: center; font-size: 1.8rem; border: 2px solid var(--mc);
+}
+.sofia-name { font-size: 0.7rem; font-weight: 700; color: var(--mc); text-transform: uppercase; letter-spacing: 0.05em; }
+.sofia-bubble {
+  background: var(--cream-dk); border-radius: 0 var(--r) var(--r) var(--r);
+  padding: 16px 20px; font-size: 0.96rem; line-height: 1.65; flex: 1;
+}
+
+/* SECTION TITLE */
+.sec-title { font-family: var(--fh); font-style: italic; font-size: 1.6rem; color: var(--mc-text); margin-bottom: 6px; }
+.sec-divider { width: 48px; height: 3px; background: var(--mc); border-radius: 2px; margin-bottom: 20px; }
+
+/* CARD */
+.card {
+  background: var(--white); border-radius: var(--r);
+  padding: 24px 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 24px;
+}
+
+/* VOCAB GRID */
+.vocab-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; margin-top: 16px;
+}
+.vocab-chip {
+  background: var(--cream); border-radius: 8px; padding: 12px 14px;
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+}
+.vocab-chip .it { font-size: 1rem; font-weight: 700; color: var(--mc-text); font-style: italic; }
+.vocab-chip .es { font-size: 0.8rem; color: #666; }
+.btn-audio {
+  background: var(--mc); color: var(--white); border: none; border-radius: 50%;
+  width: 32px; height: 32px; cursor: pointer; font-size: 0.85rem; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+}
+.btn-audio:hover { background: var(--mc-dk); }
+
+/* NUMBERS SECTION */
+.num-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; margin-top: 16px;
+}
+.num-cell {
+  background: var(--cream); border-radius: 8px; padding: 10px 12px;
+  display: flex; align-items: center; justify-content: space-between; cursor: pointer;
+  transition: all 0.2s; border: 1.5px solid transparent;
+}
+.num-cell:hover { border-color: var(--mc); background: var(--mc-bg); }
+.num-cell .n { font-size: 1.1rem; font-weight: 700; color: var(--mc); }
+.num-cell .w { font-size: 0.78rem; color: #555; font-style: italic; }
+.num-cell .sp { font-size: 0.75rem; color: #999; }
+
+/* FORM INTERACTIVE */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+@media(max-width:540px){ .form-grid { grid-template-columns: 1fr; } }
+.form-field label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--mc); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+.form-field span.it-label { font-size: 0.72rem; color: #888; font-style: italic; display: block; margin-bottom: 6px; }
+.form-field input {
+  width: 100%; padding: 10px 14px; border: 1.5px solid var(--cream-dk); border-radius: 8px;
+  font-family: var(--fb); font-size: 0.92rem; background: var(--cream); outline: none;
+  transition: border-color 0.2s;
+}
+.form-field input:focus { border-color: var(--mc); background: var(--white); }
+
+/* DIÁLOGO */
+.dial-wrap { position: relative; margin-bottom: 12px; }
+.dial-line {
+  display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px;
+}
+.dial-avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+.dial-avatar.a { background: var(--mc-bg); border: 2px solid var(--mc); }
+.dial-avatar.b { background: #e8f4f8; border: 2px solid var(--teal); }
+.dial-bubble {
+  padding: 12px 16px; border-radius: 0 10px 10px 10px; font-size: 0.93rem; line-height: 1.5; flex: 1;
+  filter: blur(5px); transition: filter 0.5s; user-select: none;
+}
+.dial-bubble.a-bg { background: var(--mc-bg); }
+.dial-bubble.b-bg { background: #e8f4f8; }
+.dial-bubble.revealed { filter: blur(0); user-select: auto; }
+.dial-speaker { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 3px; }
+.speaker-a { color: var(--mc); }
+.speaker-b { color: var(--teal); }
+
+.btn-reveal {
+  display: block; margin: 0 auto 20px; padding: 10px 28px;
+  background: var(--mc); color: var(--white); border: none; border-radius: 20px;
+  font-family: var(--fb); font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: background 0.2s;
+}
+.btn-reveal:hover { background: var(--mc-dk); }
+
+/* PATTERN BOXES */
+.pattern-area { margin-top: 16px; }
+.pattern-instr { font-size: 0.88rem; font-style: italic; color: #666; margin-bottom: 14px; }
+.phrase-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.p-chip {
+  padding: 8px 14px; background: var(--cream-dk); border-radius: 8px;
+  font-size: 0.88rem; cursor: grab; border: 1.5px solid transparent; transition: all 0.2s;
+}
+.p-chip:hover { border-color: var(--mc); background: var(--mc-bg); }
+.p-chip.placed { opacity: 0.4; cursor: default; }
+.verb-buckets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media(max-width:540px){ .verb-buckets { grid-template-columns: 1fr; } }
+.bucket {
+  border: 2px dashed var(--cream-dk); border-radius: var(--r); padding: 12px;
+  min-height: 120px; transition: border-color 0.2s;
+}
+.bucket.drag-over { border-color: var(--mc); background: var(--mc-bg); }
+.bucket h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 2px solid; }
+.bucket.essere h4 { color: var(--mc); border-color: var(--mc); }
+.bucket.andare h4 { color: var(--teal); border-color: var(--teal); }
+.bucket.avere  h4 { color: var(--green); border-color: var(--green); }
+.placed-chip {
+  padding: 6px 10px; border-radius: 6px; font-size: 0.82rem; margin-bottom: 4px;
+  font-style: italic; font-weight: 600;
+}
+.bucket.essere .placed-chip { background: var(--mc-bg); color: var(--mc-text); }
+.bucket.andare .placed-chip { background: #e8f4f8; color: #2d5f72; }
+.bucket.avere  .placed-chip { background: #e8f4ee; color: #2d4d3c; }
+#pattern-feedback { margin-top: 12px; font-size: 0.88rem; font-weight: 600; min-height: 22px; }
+.ok { color: #155724; }
+.ko { color: #721c24; }
+
+/* ITALY MAP SVG */
+.map-section { text-align: center; }
+.city-btn {
+  background: var(--mc-bg); border: 2px solid var(--mc); color: var(--mc-text);
+  padding: 8px 16px; border-radius: 20px; font-family: var(--fb); font-size: 0.88rem; font-weight: 700;
+  cursor: pointer; margin: 5px; transition: all 0.2s;
+}
+.city-btn:hover { background: var(--mc); color: var(--white); }
+.city-info {
+  margin-top: 16px; background: var(--cream-dk); border-radius: var(--r); padding: 14px 18px;
+  font-size: 0.92rem; min-height: 56px; display: flex; align-items: center; gap: 12px;
+}
+.city-info em { font-size: 1.1rem; font-weight: 700; color: var(--mc-text); }
+
+/* DIAL QUESTIONS */
+.dial-q { background: var(--cream); border-radius: var(--r); padding: 16px 20px; margin-top: 16px; }
+.dial-q p { font-size: 0.9rem; font-weight: 600; margin-bottom: 10px; }
+.dial-q-opts { display: flex; flex-direction: column; gap: 6px; }
+.btn-dq {
+  padding: 8px 14px; border-radius: 8px; border: 1.5px solid var(--cream-dk); background: var(--white);
+  font-family: var(--fb); font-size: 0.86rem; cursor: pointer; text-align: left; transition: all 0.2s;
+}
+.btn-dq:hover:not(:disabled) { border-color: var(--mc); background: var(--mc-bg); }
+.btn-dq.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: 600; }
+.btn-dq.wrong   { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+.dq-fb { font-size: 0.8rem; font-weight: 600; margin-top: 6px; min-height: 18px; }
+
+/* CTA */
+.cta-wrap { text-align: center; margin-top: 48px; }
+.btn-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--mc); color: var(--white); padding: 16px 36px; border-radius: 30px;
+  font-family: var(--fb); font-size: 1rem; font-weight: 700; text-decoration: none;
+  box-shadow: 0 4px 16px rgba(204,71,54,0.35); transition: all 0.25s;
+}
+.btn-cta:hover { background: var(--mc-dk); transform: translateY(-2px); }
+.btn-cta .arrow { font-size: 1.2rem; }
+
+/* NUM practice */
+.num-practice { margin-top: 20px; }
+.num-quiz-q { font-size: 0.95rem; font-weight: 600; margin-bottom: 12px; }
+.num-input-row { display: flex; gap: 10px; align-items: center; }
+.num-input-row input {
+  flex: 1; padding: 10px 14px; border: 1.5px solid var(--cream-dk); border-radius: 8px;
+  font-family: var(--fb); font-size: 0.92rem; outline: none;
+}
+.num-input-row input:focus { border-color: var(--mc); }
+.btn-check {
+  padding: 10px 20px; background: var(--mc); color: var(--white); border: none; border-radius: 8px;
+  font-family: var(--fb); font-size: 0.86rem; font-weight: 700; cursor: pointer; transition: background 0.2s;
+}
+.btn-check:hover { background: var(--mc-dk); }
+.btn-next-num {
+  padding: 10px 18px; background: var(--cream-dk); color: var(--black); border: none; border-radius: 8px;
+  font-family: var(--fb); font-size: 0.84rem; font-weight: 600; cursor: pointer; transition: background 0.2s;
+}
+.btn-next-num:hover { background: var(--cream); }
+.num-result { font-size: 0.85rem; font-weight: 700; margin-top: 8px; min-height: 20px; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">A1 · Unità 1</div>
+  <h1>Di dove sei?</h1>
+  <p class="hero-sub">Etapa 2 — Descubrimiento · Explora el vocabulario</p>
+</header>
+
+<!-- STAGE NAV -->
+<nav class="stage-nav">
+  <a class="stage-link done"   href="etapa1_exploracion.html"><span class="sn">✓</span>Exploración</a>
+  <a class="stage-link active" href="etapa2_descubrimiento.html"><span class="sn">2</span>Descubrimiento</a>
+  <a class="stage-link"        href="etapa3_gramatica.html"><span class="sn">3</span>Gramática</a>
+  <a class="stage-link"        href="etapa4_ejercicios.html"><span class="sn">4</span>Ejercicios</a>
+</nav>
+
+<main class="main">
+
+  <!-- APERTURA -->
+  <div class="sofia-row">
+    <div class="sofia-col">
+      <div class="sofia-avatar">👩‍🏫</div>
+      <div class="sofia-name">Sofia</div>
+    </div>
+    <div class="sofia-bubble">
+      En el video escuchamos personas que se conocen, se preguntan de dónde son y a dónde van. Palabras como <strong><em>sono di Roma</em></strong>, <strong><em>vado a Milano</em></strong>, <strong><em>ho ventitré anni</em></strong>... ¿las notaste? <br><br>
+      En esta etapa vamos a explorar ese vocabulario paso a paso: ciudades, transporte, números y cómo presentarte. Sin reglas por ahora — ¡solo disfruta el idioma! 🎵
+    </div>
+  </div>
+
+  <!-- ① VOCABOLARIO DEL VIDEO -->
+  <section class="section" id="vocab">
+    <h2 class="sec-title">Vocabolario del video</h2>
+    <div class="sec-divider"></div>
+
+    <div class="card">
+      <p style="font-size:0.92rem;margin-bottom:16px;">Escucha cada palabra haciendo clic en 🔊 — primero solo el audio, luego lee la traducción.</p>
+      <h4 style="font-size:0.82rem;text-transform:uppercase;letter-spacing:0.06em;color:#888;margin-bottom:12px;">Lugares y transporte</h4>
+      <div class="vocab-grid" id="vocab-transport"></div>
+      <h4 style="font-size:0.82rem;text-transform:uppercase;letter-spacing:0.06em;color:#888;margin:20px 0 12px;">Expresiones útiles</h4>
+      <div class="vocab-grid" id="vocab-expr"></div>
+      <h4 style="font-size:0.82rem;text-transform:uppercase;letter-spacing:0.06em;color:#888;margin:20px 0 12px;">Datos personales</h4>
+      <div class="vocab-grid" id="vocab-data"></div>
+    </div>
+  </section>
+
+  <!-- ② MAPA / CIUDADES -->
+  <section class="section" id="cities">
+    <h2 class="sec-title">Le città d'Italia</h2>
+    <div class="sec-divider"></div>
+
+    <div class="card map-section">
+      <div class="sofia-row" style="box-shadow:none;padding:0;margin-bottom:16px;">
+        <div class="sofia-col">
+          <div class="sofia-avatar">👩‍🏫</div>
+          <div class="sofia-name">Sofia</div>
+        </div>
+        <div class="sofia-bubble" style="background:var(--mc-bg);">
+          Haz clic en cada ciudad para escuchar su pronunciación y conocer un detalle curioso. ¡Italia tiene ciudades para todos los gustos! 🗺️
+        </div>
+      </div>
+
+      <div id="city-buttons"></div>
+      <div class="city-info" id="city-info">
+        <span>👆 Haz clic en una ciudad para descubrir más</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ NÚMEROS 0-100 -->
+  <section class="section" id="numeros">
+    <h2 class="sec-title">I numeri da 0 a 100</h2>
+    <div class="sec-divider"></div>
+
+    <div class="card">
+      <div class="sofia-row" style="box-shadow:none;padding:0;margin-bottom:16px;">
+        <div class="sofia-col">
+          <div class="sofia-avatar">👩‍🏫</div>
+          <div class="sofia-name">Sofia</div>
+        </div>
+        <div class="sofia-bubble" style="background:var(--mc-bg);">
+          Los números son clave para dar tu número de teléfono y tu edad. Haz clic en cualquier número para escuchar cómo se pronuncia. ¡Nótalo en italiano: <em>ventidue</em> sin espacio, <em>trentuno</em> sin la -a final de trenta!
+        </div>
+      </div>
+
+      <div class="num-grid" id="num-grid"></div>
+
+      <div class="num-practice">
+        <h4 style="margin-bottom:12px;font-size:0.9rem;font-weight:700;">🎯 Practica: ¿cómo se dice este número?</h4>
+        <p class="num-quiz-q" id="num-qtext">Cargando...</p>
+        <div class="num-input-row">
+          <input type="text" id="num-input" placeholder="Escribe el número en italiano..." autocomplete="off">
+          <button class="btn-check" onclick="checkNum()">Verificar</button>
+          <button class="btn-next-num" onclick="nextNum()">Otro →</button>
+        </div>
+        <div class="num-result" id="num-result"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ DATOS PERSONALES -->
+  <section class="section" id="datos">
+    <h2 class="sec-title">I miei dati personali</h2>
+    <div class="sec-divider"></div>
+
+    <div class="card">
+      <div class="sofia-row" style="box-shadow:none;padding:0;margin-bottom:16px;">
+        <div class="sofia-col">
+          <div class="sofia-avatar">👩‍🏫</div>
+          <div class="sofia-name">Sofia</div>
+        </div>
+        <div class="sofia-bubble" style="background:var(--mc-bg);">
+          En Italia, cuando te registras en un hotel o conoces a alguien nuevo, completas tu <em>scheda personale</em> (ficha personal). ¡Practica rellenando la tuya en italiano!
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-field">
+          <label>Nombre</label>
+          <span class="it-label">Come ti chiami?</span>
+          <input type="text" placeholder="Es. Marco Rossi" id="f-nome">
+        </div>
+        <div class="form-field">
+          <label>Edad</label>
+          <span class="it-label">Quanti anni hai?</span>
+          <input type="text" placeholder="Es. Ho 25 anni" id="f-eta">
+        </div>
+        <div class="form-field">
+          <label>Origen</label>
+          <span class="it-label">Di dove sei?</span>
+          <input type="text" placeholder="Es. Sono di Madrid" id="f-origine">
+        </div>
+        <div class="form-field">
+          <label>Destino</label>
+          <span class="it-label">Dove vai?</span>
+          <input type="text" placeholder="Es. Vado a Roma" id="f-dest">
+        </div>
+        <div class="form-field">
+          <label>Teléfono</label>
+          <span class="it-label">Qual è il tuo numero di telefono?</span>
+          <input type="text" placeholder="Es. 333-456-7890" id="f-tel">
+        </div>
+        <div class="form-field">
+          <label>Profesión</label>
+          <span class="it-label">Che lavoro fai?</span>
+          <input type="text" placeholder="Es. Sono studente" id="f-lavoro">
+        </div>
+      </div>
+      <button class="btn-reveal" style="margin-top:20px;" onclick="showScheda()">Ver mi <em>scheda</em> en italiano ✨</button>
+      <div id="scheda-result" style="display:none;margin-top:16px;background:var(--mc-bg);border-radius:var(--r);padding:18px 22px;font-size:0.95rem;line-height:1.9;"></div>
+    </div>
+  </section>
+
+  <!-- ⑤ MINI DIÁLOGO -->
+  <section class="section" id="dialogo">
+    <h2 class="sec-title">Un incontro in treno</h2>
+    <div class="sec-divider"></div>
+
+    <div class="card">
+      <div class="sofia-row" style="box-shadow:none;padding:0;margin-bottom:16px;">
+        <div class="sofia-col">
+          <div class="sofia-avatar">👩‍🏫</div>
+          <div class="sofia-name">Sofia</div>
+        </div>
+        <div class="sofia-bubble" style="background:var(--mc-bg);">
+          Primero <strong>escucha</strong> el diálogo completo (el texto está oculto). Luego haz clic en <strong>"Revelar texto"</strong> para leerlo. ¿Puedes entender de dónde son y a dónde van? 🎧
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
+        <button class="btn-audio" style="width:auto;border-radius:20px;padding:8px 18px;font-size:0.86rem;font-weight:700;" onclick="playDialogue()">
+          🔊 Escuchar diálogo
+        </button>
+        <button class="btn-reveal" style="margin:0;" onclick="revealDialogue()">👁️ Revelar texto</button>
+      </div>
+
+      <div id="dialogue-wrap"></div>
+
+      <!-- PREGUNTAS DE COMPRENSIÓN -->
+      <div class="dial-q" id="dial-questions" style="display:none;">
+        <p>Preguntas de comprensión — ¿entendiste el diálogo?</p>
+        <div id="dq-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ PATRONES VERBALES -->
+  <section class="section" id="patrones">
+    <h2 class="sec-title">¿Notas algo en estas frases?</h2>
+    <div class="sec-divider"></div>
+
+    <div class="card">
+      <div class="sofia-row" style="box-shadow:none;padding:0;margin-bottom:16px;">
+        <div class="sofia-col">
+          <div class="sofia-avatar">👩‍🏫</div>
+          <div class="sofia-name">Sofia</div>
+        </div>
+        <div class="sofia-bubble" style="background:var(--mc-bg);">
+          Aquí tienes frases del video. Fíjate en el verbo resaltado y <strong>arrástralo</strong> al grupo donde crees que pertenece. No te digo qué regla es — ¡tú la descubres! 🔍
+        </div>
+      </div>
+
+      <div class="pattern-area">
+        <p class="pattern-instr">Arrastra cada frase al grupo del verbo principal (ESSERE / ANDARE / AVERE):</p>
+        <div class="phrase-chips" id="phrase-chips"></div>
+        <div class="verb-buckets">
+          <div class="bucket essere" id="bucket-essere" ondragover="handleDragOver(event)" ondrop="handleDrop(event,'essere')">
+            <h4>ESSERE</h4>
+          </div>
+          <div class="bucket andare" id="bucket-andare" ondragover="handleDragOver(event)" ondrop="handleDrop(event,'andare')">
+            <h4>ANDARE</h4>
+          </div>
+          <div class="bucket avere" id="bucket-avere" ondragover="handleDragOver(event)" ondrop="handleDrop(event,'avere')">
+            <h4>AVERE</h4>
+          </div>
+        </div>
+        <div id="pattern-feedback"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-wrap">
+    <div class="sofia-row" style="text-align:left">
+      <div class="sofia-col">
+        <div class="sofia-avatar">👩‍🏫</div>
+        <div class="sofia-name">Sofia</div>
+      </div>
+      <div class="sofia-bubble">
+        ¡<em>Bravissimo/a!</em> Ya exploraste el vocabulario, los números, los datos personales y notaste patrones en los verbos. En la Etapa 3 vamos a formalizar todo eso. ¡Las reglas que intuiste ya están en tu cabeza! 🧠✨
+      </div>
+    </div>
+    <a href="etapa3_gramatica.html" class="btn-cta">
+      Ir a Etapa 3 — Gramática <span class="arrow">→</span>
+    </a>
+  </div>
+
+</main>
+
+<script>
+// ─── SPEECH ─────────────────────────────────────────────────────────
+function speak(text, rate = 0.82) {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.lang = 'it-IT';
+  utt.rate = rate;
+  const voices = speechSynthesis.getVoices();
+  const itVoice = voices.find(v => v.lang.startsWith('it'));
+  if (itVoice) utt.voice = itVoice;
+  speechSynthesis.speak(utt);
+}
+if (window.speechSynthesis) speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+
+// ─── VOCAB DATA ──────────────────────────────────────────────────────
+const vocabTransport = [
+  { it: "l'aeroporto", es: "el aeropuerto" },
+  { it: "la stazione", es: "la estación" },
+  { it: "il treno",    es: "el tren" },
+  { it: "il biglietto",es: "el boleto/billete" },
+  { it: "il binario",  es: "el andén / vía" },
+  { it: "la valigia",  es: "la maleta" },
+  { it: "il taxi",     es: "el taxi" },
+  { it: "la città",    es: "la ciudad" },
+];
+const vocabExpr = [
+  { it: "Grazie!",         es: "¡Gracias!" },
+  { it: "Prego.",          es: "De nada. / Por favor." },
+  { it: "Scusa!",          es: "¡Perdona! (informal)" },
+  { it: "Di dove sei?",    es: "¿De dónde eres?" },
+  { it: "Dove vai?",       es: "¿A dónde vas?" },
+  { it: "Sono di...",      es: "Soy de..." },
+  { it: "Vado a...",       es: "Voy a..." },
+  { it: "Piacere!",        es: "¡Mucho gusto!" },
+];
+const vocabData = [
+  { it: "il nome",          es: "el nombre" },
+  { it: "il cognome",       es: "el apellido" },
+  { it: "l'età",            es: "la edad" },
+  { it: "il numero di telefono", es: "el número de teléfono" },
+  { it: "la nazionalità",   es: "la nacionalidad" },
+  { it: "Ho ... anni",      es: "Tengo ... años" },
+  { it: "Qual è...?",       es: "¿Cuál es...?" },
+  { it: "Come si chiama?",  es: "¿Cómo se llama?" },
+];
+
+function buildVocabGrid(data, containerId) {
+  const el = document.getElementById(containerId);
+  data.forEach(item => {
+    const chip = document.createElement('div');
+    chip.className = 'vocab-chip';
+    chip.innerHTML = `
+      <div>
+        <div class="it">${item.it}</div>
+        <div class="es">${item.es}</div>
+      </div>
+      <button class="btn-audio" title="Escuchar" onclick="speak('${item.it.replace(/'/g,"\\'")}')">🔊</button>
+    `;
+    el.appendChild(chip);
+  });
+}
+buildVocabGrid(vocabTransport, 'vocab-transport');
+buildVocabGrid(vocabExpr, 'vocab-expr');
+buildVocabGrid(vocabData, 'vocab-data');
+
+// ─── CITIES ──────────────────────────────────────────────────────────
+const cities = [
+  { name: "Roma",    speech: "Roma",    info: "🏛️ <em>Roma</em> — la capital de Italia. En el norte del Lazio. <em>Sono di Roma.</em>" },
+  { name: "Milano",  speech: "Milano",  info: "👗 <em>Milano</em> — capital de la moda y las finanzas. En la Lombardia. <em>Vado a Milano.</em>" },
+  { name: "Napoli",  speech: "Napoli",  info: "🍕 <em>Napoli</em> — cuna de la pizza. En la Campania, sur de Italia. <em>Sono di Napoli.</em>" },
+  { name: "Venezia", speech: "Venezia", info: "🚣 <em>Venezia</em> — ciudad de canales y góndolas. En el Véneto. <em>Vado a Venezia.</em>" },
+  { name: "Firenze", speech: "Firenze", info: "🎨 <em>Firenze</em> — ciudad del Renacimiento, del Duomo y de Dante. En la Toscana." },
+  { name: "Torino",  speech: "Torino",  info: "🏔️ <em>Torino</em> — cerca de los Alpes. Antigua capital del Reino de Italia. <em>Sono di Torino.</em>" },
+  { name: "Bologna", speech: "Bologna", info: "🍝 <em>Bologna</em> — famosa por la pasta y la universidad más antigua de Europa. <em>Vado a Bologna.</em>" },
+  { name: "Palermo", speech: "Palermo", info: "🌞 <em>Palermo</em> — capital de Sicilia, la isla más grande del Mediterráneo." },
+];
+
+const cityButtons = document.getElementById('city-buttons');
+const cityInfo = document.getElementById('city-info');
+cities.forEach(c => {
+  const btn = document.createElement('button');
+  btn.className = 'city-btn';
+  btn.textContent = c.name;
+  btn.onclick = () => {
+    speak(c.speech);
+    cityInfo.innerHTML = c.info;
+  };
+  cityButtons.appendChild(btn);
+});
+
+// ─── NUMBERS ─────────────────────────────────────────────────────────
+const numbersData = [
+  [0,'zero'],[1,'uno'],[2,'due'],[3,'tre'],[4,'quattro'],[5,'cinque'],
+  [6,'sei'],[7,'sette'],[8,'otto'],[9,'nove'],[10,'dieci'],
+  [11,'undici'],[12,'dodici'],[13,'tredici'],[14,'quattordici'],[15,'quindici'],
+  [16,'sedici'],[17,'diciassette'],[18,'diciotto'],[19,'diciannove'],[20,'venti'],
+  [21,'ventuno'],[22,'ventidue'],[23,'ventitré'],[24,'ventiquattro'],[25,'venticinque'],
+  [26,'ventisei'],[27,'ventisette'],[28,'ventotto'],[29,'ventinove'],[30,'trenta'],
+  [31,'trentuno'],[32,'trentadue'],[40,'quaranta'],[41,'quarantuno'],[50,'cinquanta'],
+  [51,'cinquantuno'],[60,'sessanta'],[61,'sessantuno'],[70,'settanta'],[71,'settantuno'],
+  [80,'ottanta'],[81,'ottantuno'],[90,'novanta'],[91,'novantuno'],[100,'cento'],
+];
+
+const numGrid = document.getElementById('num-grid');
+numbersData.forEach(([n, w]) => {
+  const cell = document.createElement('div');
+  cell.className = 'num-cell';
+  cell.innerHTML = `<div><span class="n">${n}</span><br><span class="w">${w}</span></div><span class="sp">🔊</span>`;
+  cell.onclick = () => speak(w);
+  numGrid.appendChild(cell);
+});
+
+// NUM PRACTICE
+let numPracticeData = numbersData.filter(([n]) => n > 0);
+let currentNum = null;
+function nextNum() {
+  const idx = Math.floor(Math.random() * numPracticeData.length);
+  currentNum = numPracticeData[idx];
+  document.getElementById('num-qtext').textContent = `¿Cómo se dice el número ${currentNum[0]} en italiano?`;
+  document.getElementById('num-input').value = '';
+  document.getElementById('num-result').textContent = '';
+}
+function checkNum() {
+  if (!currentNum) return;
+  const val = document.getElementById('num-input').value.trim().toLowerCase();
+  const correct = currentNum[1].toLowerCase();
+  const res = document.getElementById('num-result');
+  if (val === correct || val.replace('é','e') === correct.replace('é','e')) {
+    res.textContent = `✓ ¡Perfetto! ${currentNum[0]} = ${currentNum[1]}`;
+    res.className = 'num-result ok';
+    speak(currentNum[1]);
+  } else {
+    res.innerHTML = `✗ La respuesta correcta es: <strong>${currentNum[1]}</strong>`;
+    res.className = 'num-result ko';
+  }
+}
+document.getElementById('num-input').addEventListener('keydown', e => { if (e.key === 'Enter') checkNum(); });
+nextNum();
+
+// ─── SCHEDA ──────────────────────────────────────────────────────────
+function showScheda() {
+  const nome = document.getElementById('f-nome').value || '...';
+  const eta  = document.getElementById('f-eta').value  || '...';
+  const orig = document.getElementById('f-origine').value || '...';
+  const dest = document.getElementById('f-dest').value || '...';
+  const tel  = document.getElementById('f-tel').value  || '...';
+  const lav  = document.getElementById('f-lavoro').value || '...';
+  const result = document.getElementById('scheda-result');
+  result.innerHTML = `
+    <strong>🪪 La mia scheda personale:</strong><br><br>
+    👤 Mi chiamo <strong>${nome}</strong>.<br>
+    🎂 Ho <strong>${eta}</strong>.<br>
+    🌍 Sono di <strong>${orig.replace(/sono di\s*/i,'')}</strong>.<br>
+    ✈️ Vado a <strong>${dest.replace(/vado a\s*/i,'')}</strong>.<br>
+    📞 Il mio numero è <strong>${tel}</strong>.<br>
+    💼 <strong>${lav.charAt(0).toUpperCase() + lav.slice(1)}</strong>.
+  `;
+  result.style.display = 'block';
+}
+
+// ─── DIALOGUE ────────────────────────────────────────────────────────
+const dialogueLines = [
+  { speaker: "Marco",   avatar: "👨", type: "a", text: "Ciao! Scusa, è libero questo posto?" },
+  { speaker: "Giulia",  avatar: "👩", type: "b", text: "Sì, sì, prego! Siediti pure." },
+  { speaker: "Marco",   avatar: "👨", type: "a", text: "Grazie! Vado a Roma. E tu?" },
+  { speaker: "Giulia",  avatar: "👩", type: "b", text: "Anch'io! Sono di Napoli ma vado a Roma per lavoro." },
+  { speaker: "Marco",   avatar: "👨", type: "a", text: "Ah, che coincidenza! Io sono di Milano. Mi chiamo Marco." },
+  { speaker: "Giulia",  avatar: "👩", type: "b", text: "Piacere, Marco! Io sono Giulia. Quanti anni hai?" },
+  { speaker: "Marco",   avatar: "👨", type: "a", text: "Ho ventotto anni. E tu?" },
+  { speaker: "Giulia",  avatar: "👩", type: "b", text: "Ho venticinque anni. Hai il numero di telefono? Ti mando un messaggio!" },
+  { speaker: "Marco",   avatar: "👨", type: "a", text: "Certo! Il mio numero è zero-tre-tre, quattro-cinque-sei, settantotto." },
+];
+
+const dqData = [
+  { q: "¿A dónde van Marco y Giulia?", opts: ["A Milano","A Napoli","A Roma","A Venezia"], correct: 2, fb: "¡Sí! Los dos van a Roma. <em>Anch'io vado a Roma.</em>" },
+  { q: "¿De dónde es Giulia?", opts: ["De Milano","De Napoli","De Roma","De Torino"], correct: 1, fb: "Correcto — Giulia dice: <em>Sono di Napoli.</em>" },
+  { q: "¿Cuántos años tiene Marco?", opts: ["25 años","28 años","30 años","23 años"], correct: 1, fb: "¡Exacto! Marco dice: <em>Ho ventotto anni.</em> (28 años)." },
+  { q: "¿Qué pide Giulia al final del diálogo?", opts: ["El nombre completo","El teléfono","La edad","La dirección"], correct: 1, fb: "¡Sí! Giulia pide: <em>Hai il numero di telefono?</em>" },
+];
+
+const dw = document.getElementById('dialogue-wrap');
+dialogueLines.forEach((line, i) => {
+  const div = document.createElement('div');
+  div.className = 'dial-line';
+  div.innerHTML = `
+    <div class="dial-avatar ${line.type}">${line.avatar}</div>
+    <div>
+      <div class="dial-speaker speaker-${line.type}">${line.speaker}</div>
+      <div class="dial-bubble ${line.type}-bg" id="dl-${i}">${line.text}</div>
+    </div>
+  `;
+  dw.appendChild(div);
+});
+
+function playDialogue() {
+  let i = 0;
+  function playNext() {
+    if (i >= dialogueLines.length) {
+      document.getElementById('dial-questions').style.display = 'block';
+      return;
+    }
+    speak(dialogueLines[i].text, 0.78);
+    i++;
+    const dur = dialogueLines[i-1].text.length * 60 + 800;
+    setTimeout(playNext, dur);
+  }
+  playNext();
+}
+
+function revealDialogue() {
+  document.querySelectorAll('.dial-bubble').forEach(b => b.classList.add('revealed'));
+  document.getElementById('dial-questions').style.display = 'block';
+  buildDQ();
+}
+
+let dqBuilt = false;
+function buildDQ() {
+  if (dqBuilt) return;
+  dqBuilt = true;
+  const list = document.getElementById('dq-list');
+  dqData.forEach((item, qi) => {
+    const div = document.createElement('div');
+    div.style.marginBottom = '16px';
+    const optsHtml = item.opts.map((o, oi) =>
+      `<button class="btn-dq" data-qi="${qi}" data-oi="${oi}">${o}</button>`
+    ).join('');
+    div.innerHTML = `<p>${qi+1}. ${item.q}</p><div class="dial-q-opts">${optsHtml}</div><div class="dq-fb" id="dqfb-${qi}"></div>`;
+    list.appendChild(div);
+  });
+}
+
+document.getElementById('dial-questions').addEventListener('click', e => {
+  const btn = e.target.closest('.btn-dq');
+  if (!btn) return;
+  const qi = parseInt(btn.dataset.qi);
+  const oi = parseInt(btn.dataset.oi);
+  const item = dqData[qi];
+  const parent = btn.closest('.dial-q-opts');
+  if (parent.querySelector('.correct') || parent.querySelector('.wrong')) return;
+  const isCorrect = oi === item.correct;
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) parent.querySelectorAll('.btn-dq')[item.correct].classList.add('correct');
+  parent.querySelectorAll('.btn-dq').forEach(b => b.disabled = true);
+  const fb = document.getElementById(`dqfb-${qi}`);
+  fb.innerHTML = (isCorrect ? '✓ ' : '✗ ') + item.fb;
+  fb.className = `dq-fb ${isCorrect ? 'ok' : 'ko'}`;
+});
+
+// Play triggers build
+document.querySelector('[onclick="playDialogue()"]').addEventListener('click', () => {
+  setTimeout(() => buildDQ(), dialogueLines.reduce((a,l) => a + l.text.length*60+800, 0));
+});
+
+// ─── PATTERN DRAG & DROP ─────────────────────────────────────────────
+const phraseData = [
+  { text: "Sono di Roma.", verb: "essere" },
+  { text: "Sei italiano?", verb: "essere" },
+  { text: "È di Napoli.", verb: "essere" },
+  { text: "Vado a Milano.", verb: "andare" },
+  { text: "Vai a Firenze?", verb: "andare" },
+  { text: "Va a Venezia.", verb: "andare" },
+  { text: "Ho ventidue anni.", verb: "avere" },
+  { text: "Hai il telefono?", verb: "avere" },
+  { text: "Ha trent'anni.", verb: "avere" },
+];
+
+const chipsContainer = document.getElementById('phrase-chips');
+phraseData.forEach((p, i) => {
+  const chip = document.createElement('div');
+  chip.className = 'p-chip';
+  chip.textContent = p.text;
+  chip.draggable = true;
+  chip.id = `pchip-${i}`;
+  chip.dataset.verb = p.verb;
+  chip.dataset.idx = i;
+  chip.addEventListener('dragstart', e => {
+    e.dataTransfer.setData('text/plain', i);
+    chip.style.opacity = '0.5';
+  });
+  chip.addEventListener('dragend', () => { chip.style.opacity = '1'; });
+  chipsContainer.appendChild(chip);
+});
+
+function handleDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+
+function handleDrop(e, bucketVerb) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  const idx = parseInt(e.dataTransfer.getData('text/plain'));
+  const phrase = phraseData[idx];
+  const chip = document.getElementById(`pchip-${idx}`);
+  if (chip.classList.contains('placed')) return;
+
+  const isCorrect = phrase.verb === bucketVerb;
+  const fb = document.getElementById('pattern-feedback');
+
+  if (isCorrect) {
+    chip.classList.add('placed');
+    const placed = document.createElement('div');
+    placed.className = 'placed-chip';
+    placed.textContent = phrase.text;
+    document.getElementById(`bucket-${bucketVerb}`).appendChild(placed);
+    fb.textContent = `✓ ¡Correcto! "${phrase.text}" usa ${bucketVerb.toUpperCase()}.`;
+    fb.className = 'ok';
+
+    const allPlaced = document.querySelectorAll('.p-chip.placed').length;
+    if (allPlaced === phraseData.length) {
+      fb.innerHTML = '🎉 ¡Bravissimo/a! Clasificaste todas las frases. ¿Notaste algún patrón en las terminaciones? En la Etapa 3 lo confirmamos. 😉';
+    }
+  } else {
+    fb.textContent = `✗ No exactamente. Piensa: ¿qué verbo escuchas en esa frase?`;
+    fb.className = 'ko';
+    document.querySelectorAll('.bucket').forEach(b => b.classList.add('drag-over'));
+    setTimeout(() => document.querySelectorAll('.bucket').forEach(b => b.classList.remove('drag-over')), 300);
+  }
+}
+
+// Touch support for drag-drop fallback
+let touchPhrase = null;
+document.querySelectorAll('.p-chip').forEach(chip => {
+  chip.addEventListener('touchstart', () => { touchPhrase = chip; chip.style.opacity = '0.5'; });
+  chip.addEventListener('touchend', () => { if (chip.style.opacity) chip.style.opacity = '1'; });
+});
+</script>
+</body>
+</html>
