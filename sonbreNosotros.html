@@ -178,15 +178,15 @@ img{max-width:100%;height:auto;display:block}
 .ipp-videos-exp{margin-bottom:3.5rem}
 .ipp-videos-exp:last-child{margin-bottom:0}
 .ipp-videos-exp-label{display:inline-flex;align-items:center;gap:.45rem;background:var(--ipp-white);color:var(--ipp-green);padding:.3rem .9rem;border-radius:2px;border-left:3px solid var(--ipp-green);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem}
-.ipp-shorts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:520px}
-.ipp-short{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:9/16;background:#c8d8cc;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.12);transition:transform .3s,box-shadow .3s}
-.ipp-short:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(0,0,0,.2)}
-.ipp-short img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .35s}
+.ipp-shorts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:860px}
+.ipp-short{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:16/9;background:#e0ddd0;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.13);transition:transform .3s,box-shadow .3s}
+.ipp-short:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,0,0,.18)}
+.ipp-short img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .35s}
 .ipp-short:hover img{transform:scale(1.05)}
-.ipp-short-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,26,24,.5) 0%,transparent 55%)}
+.ipp-short-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,26,24,.5) 0%,transparent 60%)}
 .ipp-short-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-.ipp-short-play span{width:46px;height:46px;background:var(--ipp-amber);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(229,171,7,.45)}
-.ipp-short-play svg{width:18px;height:18px;fill:#fff;margin-left:2px}
+.ipp-short-play span{width:46px;height:46px;background:rgba(255,255,255,.92);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.ipp-short-play svg{width:16px;height:16px;fill:var(--ipp-red);margin-left:2px}
 @media(max-width:480px){.ipp-shorts-grid{max-width:100%}}
 
 /* CTA */
@@ -433,13 +433,22 @@ img{max-width:100%;height:auto;display:block}
             @italianort
           </a>
         </div>
-        <button class="ipp-diploma-card" id="diplBtn" type="button">
-          <img class="ipp-diploma-thumb" src="https://wsrv.nl/?url=raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Diploma.png&w=800&q=90&output=webp" alt="Diploma Ca' Foscari">
-          <div class="ipp-diploma-info">
-            <strong>Master Ca' Foscari · Venezia</strong>
-            <small>Ver título completo →</small>
-          </div>
-        </button>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.2rem;">
+          <button class="ipp-diploma-card" id="diplBtn" type="button" style="margin-top:0">
+            <img class="ipp-diploma-thumb" src="https://wsrv.nl/?url=raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Diploma.png&w=800&q=90&output=webp" alt="Diploma Ca' Foscari">
+            <div class="ipp-diploma-info">
+              <strong>Master Ca' Foscari · Venezia</strong>
+              <small>Ver título completo →</small>
+            </div>
+          </button>
+          <button class="ipp-diploma-card" id="tituloBtn" type="button" style="margin-top:0">
+            <img class="ipp-diploma-thumb" src="https://wsrv.nl/?url=raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/titulo.png&w=800&q=90&output=webp" alt="Título universitario">
+            <div class="ipp-diploma-info">
+              <strong>Título universitario</strong>
+              <small>Ver título completo →</small>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -546,11 +555,19 @@ img{max-width:100%;height:auto;display:block}
 </section>
 
 
-<!-- LIGHTBOX -->
+<!-- LIGHTBOX DIPLOMA -->
 <div class="ipp-lightbox" id="diplLightbox" role="dialog" aria-modal="true" aria-label="Diploma">
   <div class="ipp-lightbox-inner">
     <button class="ipp-lightbox-close" id="diplClose" aria-label="Cerrar">&times;</button>
     <img src="https://wsrv.nl/?url=raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/Diploma.png&w=800&q=90&output=webp" alt="Master en Didáctica y Promoción de la Lengua y Cultura Italiana — Ca' Foscari Venezia">
+  </div>
+</div>
+
+<!-- LIGHTBOX TÍTULO -->
+<div class="ipp-lightbox" id="tituloLightbox" role="dialog" aria-modal="true" aria-label="Título universitario">
+  <div class="ipp-lightbox-inner">
+    <button class="ipp-lightbox-close" id="tituloClose" aria-label="Cerrar">&times;</button>
+    <img src="https://wsrv.nl/?url=raw.githubusercontent.com/renzo-felix/italianoperpiacere/main/titulo.png&w=1200&q=90&output=webp" alt="Título universitario">
   </div>
 </div>
 
@@ -583,7 +600,11 @@ img{max-width:100%;height:auto;display:block}
   document.getElementById('diplBtn').addEventListener('click',function(){lb.classList.add('ipp-open');document.body.style.overflow='hidden';});
   document.getElementById('diplClose').addEventListener('click',function(){lb.classList.remove('ipp-open');document.body.style.overflow='';});
   lb.addEventListener('click',function(e){if(e.target===lb){lb.classList.remove('ipp-open');document.body.style.overflow='';}});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){lb.classList.remove('ipp-open');document.body.style.overflow='';}});
+  var lb2=document.getElementById('tituloLightbox');
+  document.getElementById('tituloBtn').addEventListener('click',function(){lb2.classList.add('ipp-open');document.body.style.overflow='hidden';});
+  document.getElementById('tituloClose').addEventListener('click',function(){lb2.classList.remove('ipp-open');document.body.style.overflow='';});
+  lb2.addEventListener('click',function(e){if(e.target===lb2){lb2.classList.remove('ipp-open');document.body.style.overflow='';}});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){lb.classList.remove('ipp-open');lb2.classList.remove('ipp-open');document.body.style.overflow='';}});
 
   /* YouTube Shorts lightbox */
   document.querySelectorAll('.ipp-short').forEach(function(card){

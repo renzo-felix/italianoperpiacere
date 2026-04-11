@@ -539,6 +539,17 @@
 </main>
 
 <script>
+// ── IPP Voice Preloader ──
+if (!window.__ippVC) {
+  window.__ippVC = true;
+  window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) window.__ippV = v; };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
+
 (function() {
   /* ═══ ALFABETO DATA ═══ */
   const ALFA = [
@@ -604,24 +615,23 @@
       div.innerHTML = `
         <span class="espr-it">${it}</span>
         <span class="espr-es">${es}</span>
-        <button class="espr-audio" onclick="speak('${it.replace(/'/g,"\\'")}')">🔊 Escuchar</button>
+        <button class="espr-audio" onclick="ippAudio('${it.replace(/'/g,"\\'")}')">🔊 Escuchar</button>
       `;
       list.appendChild(div);
     });
   }
 
   /* ═══ SPEECH ═══ */
-  function speak(text, rate) {
+  function ippAudio(text, rate) {
     if (!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     const utt = new SpeechSynthesisUtterance(text);
     utt.lang = 'it-IT'; utt.rate = rate || 0.82;
-    const voices = speechSynthesis.getVoices();
+    const voices = (window.__ippV && window.__ippV.length) ? window.__ippV : speechSynthesis.getVoices();
     const itVoice = voices.find(v => v.lang.startsWith('it'));
     if (itVoice) utt.voice = itVoice;
-    speechSynthesis.speak(utt);
+    (function(u){ setTimeout(function(){ try { speechSynthesis.speak(u); } catch(e){} }, 60); })(utt);
   }
-  if (window.speechSynthesis) speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
 
   /* ═══ EJ A: FILL ALFA ═══ */
   const exAlfaData = [
@@ -872,7 +882,7 @@
   buildOrden();
 
   // Exponer funciones para onclick handlers (necesario en Odoo DOMEval)
-  window.speak = speak;
+  window.ippAudio = ippAudio;
   window.checkExAlfa = checkExAlfa;
   window.checkOrden = checkOrden;
   window.checkExVF = checkExVF;

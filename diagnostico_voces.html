@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico de Voces — Italiano Per Piacere</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f3ec; color: #1a1a18; min-height: 100vh; padding: 30px 20px; }
+h1 { font-size: 1.6rem; color: #7a1f14; margin-bottom: 8px; }
+.sub { font-size: 0.9rem; color: #666; margin-bottom: 28px; line-height: 1.5; }
+.section { background: white; border-radius: 12px; border: 1px solid #ddd9c8; padding: 22px; margin-bottom: 20px; }
+.section h2 { font-size: 1rem; color: #7a1f14; margin-bottom: 14px; border-bottom: 2px solid #faeae8; padding-bottom: 8px; }
+.voice-row { display: grid; grid-template-columns: 1fr auto auto auto; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 8px; margin-bottom: 6px; border: 1px solid #eee; }
+.voice-row:hover { background: #faeae8; }
+.voice-name { font-weight: 600; font-size: 0.88rem; }
+.voice-meta { font-size: 0.75rem; color: #888; }
+.voice-gender { font-size: 0.72rem; font-weight: 700; padding: 2px 10px; border-radius: 10px; min-width: 60px; text-align: center; }
+.gender-m { background: #dbeafe; color: #1e3a8a; }
+.gender-f { background: #fce7f3; color: #831843; }
+.gender-? { background: #f3f4f6; color: #6b7280; }
+.btn-play { background: #cc4736; color: white; border: none; border-radius: 16px; padding: 5px 14px; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
+.btn-play:hover { background: #a8382a; }
+.btn-play.playing { background: #528e74; animation: pulse 0.8s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+.all-voices-section .voice-row { grid-template-columns: 1fr auto auto; }
+.empty { color: #aaa; font-style: italic; font-size: 0.88rem; padding: 10px; }
+.status { background: #faeae8; border-left: 4px solid #cc4736; border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 20px; font-size: 0.88rem; color: #7a1f14; }
+.test-phrase { background: #f5f3ec; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 0.88rem; }
+.test-phrase label { font-weight: 700; color: #555; font-size: 0.78rem; display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .05em; }
+.test-phrase select, .test-phrase input { border: 1px solid #ddd; border-radius: 6px; padding: 6px 10px; font-size: 0.88rem; width: 100%; margin-top: 4px; }
+.btn-refresh { background: #528e74; color: white; border: none; border-radius: 16px; padding: 7px 18px; font-size: 0.82rem; font-weight: 600; cursor: pointer; margin-bottom: 20px; }
+.btn-refresh:hover { background: #3d6b58; }
+.info-box { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 14px; margin-top: 16px; font-size: 0.82rem; color: #555; line-height: 1.7; }
+.info-box strong { color: #7a1f14; }
+.tag-m { display: inline-block; background: #dbeafe; color: #1e3a8a; border-radius: 4px; padding: 1px 6px; font-size: 0.72rem; font-weight: 700; margin-right: 4px; }
+.tag-f { display: inline-block; background: #fce7f3; color: #831843; border-radius: 4px; padding: 1px 6px; font-size: 0.72rem; font-weight: 700; margin-right: 4px; }
+</style>
+</head>
+<body>
+
+<h1>🎙️ Diagnóstico de Voces — Italiano Per Piacere</h1>
+<p class="sub">Esta página lista todas las voces disponibles en tu navegador para identificar cuáles son masculinas y cuáles femeninas, y así configurar correctamente los diálogos.</p>
+
+<div class="status" id="status">Cargando voces... (puede tardar 1-2 segundos)</div>
+
+<button class="btn-refresh" onclick="loadVoices()">🔄 Recargar voces</button>
+
+<div class="test-phrase">
+  <label>Frase de prueba (podés cambiarla)</label>
+  <input type="text" id="testPhrase" value="Ciao! Sono di Roma. Come stai? Ho ventidue anni.">
+</div>
+
+<!-- ITALIAN VOICES -->
+<div class="section">
+  <h2>🇮🇹 Voces italianas (it-IT / it) detectadas</h2>
+  <div id="itVoices"><div class="empty">Esperando...</div></div>
+
+  <div class="info-box">
+    <strong>¿Cómo usarlas en el código?</strong><br>
+    El sistema actual en los módulos busca voces por nombre:<br>
+    • <span class="tag-f">F</span> busca: <code>/elsa|alice|giulia|female|femm/i</code><br>
+    • <span class="tag-m">M</span> busca: <code>/cosimo|luca|giorgio|male|masc/i</code><br><br>
+    Decime los nombres exactos que escuchás como masculinos/femeninos y actualizo los patrones de búsqueda.
+  </div>
+</div>
+
+<!-- ALL VOICES BY LANGUAGE -->
+<div class="section">
+  <h2>🌍 Todas las voces disponibles (todos los idiomas)</h2>
+  <div id="allVoices"><div class="empty">Esperando...</div></div>
+</div>
+
+<!-- CURRENT LOGIC TEST -->
+<div class="section">
+  <h2>⚙️ Resultado actual de ippVoice() — ¿qué voz elige el código?</h2>
+  <div id="logicResult"><div class="empty">Esperando voces...</div></div>
+</div>
+
+<script>
+var allVoicesList = [];
+
+function ippVoice(gender) {
+  var voices = speechSynthesis.getVoices();
+  var itV = voices.filter(function(v) { return v.lang && v.lang.startsWith('it'); });
+  var voice = null;
+  if (gender === 'm') {
+    voice = itV.find(function(v) { return /cosimo|luca|giorgio|male|masc/i.test(v.name); });
+    if (!voice) voice = itV.find(function(v) { return !/elsa|alice|giulia|female|femm/i.test(v.name); });
+  } else {
+    voice = itV.find(function(v) { return /elsa|alice|giulia|female|femm/i.test(v.name); });
+    if (!voice) voice = itV.find(function(v) { return !/cosimo|luca|giorgio|male|masc/i.test(v.name); });
+  }
+  return voice || (itV.length ? itV[0] : null);
+}
+
+function playVoice(voiceName, btn) {
+  if (!window.speechSynthesis) { alert('SpeechSynthesis no disponible'); return; }
+  window.speechSynthesis.cancel();
+  var phrase = document.getElementById('testPhrase').value || 'Ciao! Sono di Roma.';
+  var utt = new SpeechSynthesisUtterance(phrase);
+  utt.lang = 'it-IT';
+  utt.rate = 0.85;
+  var voices = speechSynthesis.getVoices();
+  var voice = voices.find(function(v) { return v.name === voiceName; });
+  if (voice) utt.voice = voice;
+  document.querySelectorAll('.btn-play').forEach(function(b) { b.classList.remove('playing'); b.textContent = '▶ Escuchar'; });
+  btn.classList.add('playing');
+  btn.textContent = '⏸ Hablando...';
+  utt.onend = function() { btn.classList.remove('playing'); btn.textContent = '▶ Escuchar'; };
+  utt.onerror = function() { btn.classList.remove('playing'); btn.textContent = '▶ Escuchar'; };
+  speechSynthesis.speak(utt);
+}
+
+function guessGender(name) {
+  if (/elsa|alice|giulia|female|femm|woman|girl/i.test(name)) return 'f';
+  if (/cosimo|luca|giorgio|male|masc|man|boy/i.test(name)) return 'm';
+  return '?';
+}
+
+function loadVoices() {
+  var voices = speechSynthesis.getVoices();
+  allVoicesList = voices;
+
+  // Italian voices
+  var itV = voices.filter(function(v) { return v.lang && v.lang.startsWith('it'); });
+  var itEl = document.getElementById('itVoices');
+
+  if (itV.length === 0) {
+    itEl.innerHTML = '<div class="empty">⚠️ No se encontraron voces italianas. Tu navegador puede no tener voces it-IT instaladas. Probá en Chrome con voces de Google.</div>';
+    document.getElementById('status').textContent = '⚠️ Sin voces italianas detectadas — ' + voices.length + ' voces totales disponibles.';
+  } else {
+    document.getElementById('status').textContent = '✅ ' + itV.length + ' voz(ces) italiana(s) detectada(s) — ' + voices.length + ' voces totales.';
+    itEl.innerHTML = '';
+    itV.forEach(function(v) {
+      var g = guessGender(v.name);
+      var gLabel = g === 'f' ? '<span class="voice-gender gender-f">FEMENINA</span>' : g === 'm' ? '<span class="voice-gender gender-m">MASCULINA</span>' : '<span class="voice-gender gender-?">¿?</span>';
+      var row = document.createElement('div');
+      row.className = 'voice-row';
+      row.innerHTML =
+        '<div>' +
+          '<div class="voice-name">' + v.name + '</div>' +
+          '<div class="voice-meta">Lang: ' + v.lang + ' | Local: ' + (v.localService ? 'sí' : 'no') + ' | Default: ' + (v.default ? 'sí' : 'no') + '</div>' +
+        '</div>' +
+        gLabel +
+        '<button class="btn-play" onclick="playVoice(\'' + v.name.replace(/'/g,"\\'") + '\', this)">▶ Escuchar</button>';
+      itEl.appendChild(row);
+    });
+  }
+
+  // All voices
+  var allEl = document.getElementById('allVoices');
+  if (voices.length === 0) {
+    allEl.innerHTML = '<div class="empty">Sin voces disponibles.</div>';
+  } else {
+    allEl.innerHTML = '';
+    // Group by language
+    var byLang = {};
+    voices.forEach(function(v) {
+      var l = v.lang || 'unknown';
+      if (!byLang[l]) byLang[l] = [];
+      byLang[l].push(v);
+    });
+    // Show Italian first, then others
+    var langs = Object.keys(byLang).sort(function(a,b) {
+      if (a.startsWith('it')) return -1;
+      if (b.startsWith('it')) return 1;
+      return a.localeCompare(b);
+    });
+    langs.forEach(function(lang) {
+      var langGroup = document.createElement('div');
+      langGroup.style.marginBottom = '12px';
+      langGroup.innerHTML = '<div style="font-size:0.75rem;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">' + lang + ' (' + byLang[lang].length + ')</div>';
+      byLang[lang].forEach(function(v) {
+        var row = document.createElement('div');
+        row.className = 'voice-row all-voices-section';
+        row.innerHTML =
+          '<div>' +
+            '<div class="voice-name">' + v.name + '</div>' +
+            '<div class="voice-meta">' + (v.localService ? 'Local' : 'Red') + (v.default ? ' · Default' : '') + '</div>' +
+          '</div>' +
+          '<span class="voice-gender ' + (guessGender(v.name) === 'f' ? 'gender-f' : guessGender(v.name) === 'm' ? 'gender-m' : 'gender-?') + '">' + (guessGender(v.name) === 'f' ? 'F' : guessGender(v.name) === 'm' ? 'M' : '?') + '</span>' +
+          '<button class="btn-play" onclick="playVoice(\'' + v.name.replace(/'/g,"\\'") + '\', this)">▶</button>';
+        langGroup.appendChild(row);
+      });
+      allEl.appendChild(langGroup);
+    });
+  }
+
+  // Current logic result
+  var logEl = document.getElementById('logicResult');
+  var vF = ippVoice('f');
+  var vM = ippVoice('m');
+  logEl.innerHTML =
+    '<div class="voice-row" style="grid-template-columns:auto 1fr auto;">' +
+      '<span class="voice-gender gender-f">F</span>' +
+      '<div>' +
+        '<div class="voice-name">' + (vF ? vF.name : 'NINGUNA') + '</div>' +
+        '<div class="voice-meta">' + (vF ? 'Lang: ' + vF.lang : 'No se encontró voz femenina italiana') + '</div>' +
+      '</div>' +
+      (vF ? '<button class="btn-play" onclick="playVoice(\'' + vF.name.replace(/'/g,"\\'") + '\', this)">▶ Escuchar</button>' : '') +
+    '</div>' +
+    '<div class="voice-row" style="grid-template-columns:auto 1fr auto;margin-top:8px;">' +
+      '<span class="voice-gender gender-m">M</span>' +
+      '<div>' +
+        '<div class="voice-name">' + (vM ? vM.name : 'NINGUNA') + '</div>' +
+        '<div class="voice-meta">' + (vM ? 'Lang: ' + vM.lang : 'No se encontró voz masculina italiana') + '</div>' +
+      '</div>' +
+      (vM ? '<button class="btn-play" onclick="playVoice(\'' + vM.name.replace(/'/g,"\\'") + '\', this)">▶ Escuchar</button>' : '') +
+    '</div>' +
+    '<div class="info-box" style="margin-top:12px;">' +
+      '<strong>¿Qué significa?</strong><br>' +
+      'Cuando en el diálogo una línea tiene <code>data-gender="f"</code>, el código usa la voz <strong>' + (vF ? vF.name : 'ninguna') + '</strong>.<br>' +
+      'Cuando tiene <code>data-gender="m"</code>, usa <strong>' + (vM ? vM.name : 'ninguna') + '</strong>.<br><br>' +
+      'Si alguna de estas voces no es del género correcto, decime y ajusto el patrón de búsqueda.' +
+    '</div>';
+}
+
+// Load on start
+if (window.speechSynthesis) {
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+  }
+  // Also try immediately (Chrome sometimes has voices already)
+  setTimeout(loadVoices, 300);
+  setTimeout(loadVoices, 1500);
+} else {
+  document.getElementById('status').textContent = '❌ SpeechSynthesis no está disponible en este navegador.';
+}
+</script>
+</body>
+</html>

@@ -787,7 +787,7 @@
     <p class="sec-sub">Descubrí el patrón de <em>chiamarsi</em> sin que nadie te lo explique</p>
 
     <div class="discover-quote">
-      <button class="dq-play" onclick="speak('Mi chiamo Graziana. Come ti chiami?')" title="Escuchar">▶</button>
+      <button class="dq-play" onclick="ippAudio('Mi chiamo Graziana. Come ti chiami?')" title="Escuchar">▶</button>
       <span>En el video escuchamos: <span style="color:var(--red);">«Mi chiamo Graziana. Come ti chiami?»</span></span>
     </div>
 
@@ -1002,6 +1002,17 @@
 </main>
 
 <script>
+// ── IPP Voice Preloader ──
+if (!window.__ippVC) {
+  window.__ippVC = true;
+  window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) window.__ippV = v; };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
+
 (function() {
   /* Guard: evita re-ejecución si Odoo/jQuery inyecta el script más de una vez */
   if (window.__ipp_m0_e2__) return;
@@ -1015,18 +1026,8 @@
      Alternativa de calidad premium (gratuita):
      elevenlabs.io — 10.000 caracteres/mes gratis.
   ══════════════════════════════════════════ */
-  var voices = []; /* var en lugar de let — evita SyntaxError en re-declaración */
-  function loadVoices() {
-    try { if (window.speechSynthesis) voices = window.speechSynthesis.getVoices(); } catch(e) {}
-  }
-  try {
-    loadVoices();
-    if (window.speechSynthesis && window.speechSynthesis.onvoiceschanged !== undefined) {
-      window.speechSynthesis.onvoiceschanged = loadVoices;
-    }
-  } catch(e) { console.warn('SpeechSynthesis no disponible.'); }
 
-  function speak(text, onStart, onEnd) {
+  function ippAudio(text, onStart, onEnd) {
     if (!window.speechSynthesis) { if (onEnd) onEnd(); return null; }
     try {
       window.speechSynthesis.cancel();
@@ -1035,6 +1036,7 @@
       utter.rate  = 0.82;
       utter.pitch = 1.05;
       utter.volume = 1;
+      const voices = (window.__ippV && window.__ippV.length) ? window.__ippV : speechSynthesis.getVoices();
       const v = voices.find(v => v.lang === 'it-IT' && v.name.toLowerCase().includes('google'))
              || voices.find(v => v.lang.startsWith('it') && !v.localService)
              || voices.find(v => v.lang.startsWith('it'))
@@ -1042,7 +1044,7 @@
       if (v) utter.voice = v;
       if (onStart) utter.onstart = onStart;
       if (onEnd)   utter.onend   = onEnd;
-      window.speechSynthesis.speak(utter);
+      (function(u){ setTimeout(function(){ try { speechSynthesis.speak(u); } catch(e){} }, 60); })(utter);
       return utter;
     } catch(e) {
       console.warn('SpeechSynthesis error:', e);
@@ -1130,7 +1132,7 @@
       document.querySelectorAll('.alfa-speak').forEach(b => b.classList.remove('playing'));
       btn.classList.add('playing');
     }
-    speak(`${ltr} come ${city}`, null, () => {
+    ippAudio(`${ltr} come ${city}`, null, () => {
       if (btn) btn.classList.remove('playing');
     });
   }
@@ -1214,7 +1216,7 @@
       div.style.cursor = 'default';
       div.innerHTML = `
         <span class="fc-ltr">${item.l}</span>
-        <button class="fc-audio" onclick="speak('${item.phrase}')" title="Escuchar"
+        <button class="fc-audio" onclick="ippAudio('${item.phrase}')" title="Escuchar"
           style="background:none;border:1.5px solid var(--mc-dk);color:var(--mc-dk);padding:0.15rem 0.5rem;border-radius:20px;font-size:0.72rem;font-weight:600;cursor:pointer;font-family:var(--fb);transition:all 0.2s;">🔊 ${item.city}</button>
         <span style="font-size:0.75rem;color:#888;font-style:italic;">(ej: ${item.word})</span>
       `;
@@ -1286,7 +1288,7 @@
         <td><strong class="hl">${row.combo}</strong></td>
         <td>${row.sound}</td>
         <td class="it">${row.example}</td>
-        <td><button class="fon-audio-btn" onclick="speak('${row.audio}')">🔊 Escuchar</button></td>
+        <td><button class="fon-audio-btn" onclick="ippAudio('${row.audio}')">🔊 Escuchar</button></td>
       `;
       tbody.appendChild(tr);
     });
@@ -1328,7 +1330,7 @@
         const row = document.createElement('div');
         row.className = 'greet-row-item';
         row.innerHTML = `
-          <button class="greet-play" onclick="speak('${item.it}')" title="Escuchar">🔊</button>
+          <button class="greet-play" onclick="ippAudio('${item.it}')" title="Escuchar">🔊</button>
           <span class="greet-it">${item.it}</span>
           <span class="greet-es">${item.es}</span>
         `;
@@ -1460,7 +1462,7 @@
 
   function playLine(idx) {
     const sub = document.getElementById('sub-' + idx);
-    speak(DIAL_LINES_DATA[idx], () => { if (sub) sub.classList.add('visible'); }, null);
+    ippAudio(DIAL_LINES_DATA[idx], () => { if (sub) sub.classList.add('visible'); }, null);
   }
 
   function speakAllDialog() {
@@ -1468,7 +1470,7 @@
     function next() {
       if (i >= DIAL_LINES_DATA.length) return;
       const idx = i++;
-      speak(DIAL_LINES_DATA[idx],
+      ippAudio(DIAL_LINES_DATA[idx],
         () => { const s = document.getElementById('sub-' + idx); if (s) s.classList.add('visible'); },
         () => next()
       );
@@ -1497,7 +1499,7 @@
       div.addEventListener('click', () => {
         document.querySelectorAll('.num-item').forEach(x => x.classList.remove('playing'));
         div.classList.add('playing');
-        speak(w, null, () => div.classList.remove('playing'));
+        ippAudio(w, null, () => div.classList.remove('playing'));
       });
       grid.appendChild(div);
     });
@@ -1566,7 +1568,7 @@
       div.innerHTML = `
         <span class="espr-it">${item.it}</span>
         <span class="espr-es">${item.es}</span>
-        <button class="espr-btn" onclick="speak('${item.speak}')">🔊</button>
+        <button class="espr-btn" onclick="ippAudio('${item.speak}')">🔊</button>
       `;
       list.appendChild(div);
     });
@@ -1623,7 +1625,7 @@
   buildEsprActivity();
 
   // Exponer funciones para onclick handlers (necesario en Odoo DOMEval)
-  window.speak = speak;
+  window.ippAudio = ippAudio;
   window.speakLetter = speakLetter;
   window.checkVF = checkVF;
   window.checkFill = checkFill;

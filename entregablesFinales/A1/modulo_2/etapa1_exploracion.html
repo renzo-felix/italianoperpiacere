@@ -227,17 +227,7 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
   <p>Check-in en el hotel — vocabulario y frases reales</p>
 </div>
 
-<nav class="stage-nav">
-  <a href="etapa1_exploracion.html" class="active">
-    <span class="num">1</span><span>Exploración</span>
-  </a>
-  <a href="etapa2_descubrimiento.html">
-    <span class="num">2</span><span>Descubrimiento</span>
-  </a>
-  <a href="etapa3_gramatica.html">
-    <span class="num">3</span><span>Gramática</span>
-  </a>
-</nav>
+
 
 <div class="container">
 
@@ -383,15 +373,23 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
     </div>
   </div>
 
-  <div class="cta-wrap">
-    <p>¡Muy bien! Ya exploraste el video y entendiste las ideas principales. Ahora vamos a profundizar en el vocabulario y las frases del hotel. 🏨</p>
-    <a href="etapa2_descubrimiento.html" class="btn-cta">Continuar → Etapa 2: Descubrimiento</a>
-  </div>
+
 
 </div>
 
 <script>
-function speak(text, rate, gender) {
+// ── IPP Voice Preloader ──
+if (!window.__ippVC) {
+  window.__ippVC = true;
+  window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) window.__ippV = v; };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
+
+function ippAudio(text, rate, gender) {
   rate = rate || 0.82;
   gender = gender || 'f';
   if (!window.speechSynthesis) return;
@@ -399,7 +397,7 @@ function speak(text, rate, gender) {
   var utt = new SpeechSynthesisUtterance(text);
   utt.lang = 'it-IT';
   utt.rate = rate;
-  var voices = speechSynthesis.getVoices();
+  var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : speechSynthesis.getVoices();
   var itVoices = voices.filter(function(v){ return v.lang.startsWith('it'); });
   var voice;
   if (gender === 'm') {
@@ -411,10 +409,7 @@ function speak(text, rate, gender) {
   }
   if (!voice && itVoices.length) voice = itVoices[0];
   if (voice) utt.voice = voice;
-  speechSynthesis.speak(utt);
-}
-if (window.speechSynthesis) {
-  speechSynthesis.onvoiceschanged = function(){ speechSynthesis.getVoices(); };
+  (function(u){ setTimeout(function(){ try { speechSynthesis.speak(u); } catch(e){} }, 60); })(utt);
 }
 
 var vfScores = {};

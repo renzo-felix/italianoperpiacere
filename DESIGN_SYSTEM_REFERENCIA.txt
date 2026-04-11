@@ -1,0 +1,805 @@
+══════════════════════════════════════════════════════════════════════════
+  ITALIANO PER PIACERE — SISTEMA DE DISEÑO Y GUÍA DE CONSTRUCCIÓN DE MÓDULOS
+  Referencia completa para replicar el trabajo en cualquier sesión futura
+══════════════════════════════════════════════════════════════════════════
+
+ÍNDICE
+ 1. Contexto del proyecto
+ 2. Estructura de archivos
+ 3. Paleta de colores y variables CSS
+ 4. Tipografía
+ 5. Estructura de cada módulo (4 etapas)
+ 6. Patrones de componentes — Etapa 2 (Descubrimiento)
+ 7. Patrones de componentes — Etapa 3 (Gramática)
+ 8. Sistema de audio (ippAudio / ippVoice) — Odoo-safe
+ 9. JavaScript: Odoo DOMEval — patrones obligatorios
+10. Plantilla de script base (ejecutar en todos los archivos)
+11. Checklist de creación de un módulo completo
+12. Unidades completadas (Nivel A1)
+13. CSV de objetivos y alternancia de inputs
+14. Tono y voz de marca
+
+══════════════════════════════════════════════════════════════════════════
+1. CONTEXTO DEL PROYECTO
+══════════════════════════════════════════════════════════════════════════
+
+Academia de italiano online. Nombre: Italiano Per Piacere.
+Plataforma: Odoo (slides/presentaciones embebidas).
+Nivel actual en producción: A1 (16 unidades = módulo_0 a módulo_15).
+Próximo nivel: A2.
+
+Los módulos son archivos HTML standalone cargados por Odoo via DOMEval.
+Esto tiene implicaciones críticas para el JavaScript (ver sección 9).
+
+Carpeta de entregables finales A1:
+  C:\Users\User\Desktop\proyectos\italianoperpiacere\entregablesFinales\A1\
+
+Carpeta de trabajo/worktrees:
+  C:\Users\User\Desktop\proyectos\italianoperpiacere\entregables\
+
+══════════════════════════════════════════════════════════════════════════
+2. ESTRUCTURA DE ARCHIVOS
+══════════════════════════════════════════════════════════════════════════
+
+entregablesFinales/A1/
+  modulo_0/
+    etapa1_exploracion.html      ← video/canción/imagen/audio + preguntas
+    etapa2_descubrimiento.html   ← interactivo, diálogo, vocab, ejercicios
+    etapa3_gramatica.html        ← tablas gramaticales + ejercicios
+    etapa4_ejercicios.md         ← solo Markdown plano (se copia a plantillas)
+  modulo_1/
+    ... (misma estructura)
+  ...
+
+Nomenclatura de archivos: siempre minúsculas, guión bajo, sin acentos.
+
+══════════════════════════════════════════════════════════════════════════
+3. PALETA DE COLORES Y VARIABLES CSS
+══════════════════════════════════════════════════════════════════════════
+
+── COLORES BASE (invariantes) ──
+--cream:      #e9e6d5   ← fondo principal de secciones
+--cream-dk:   #ddd9c8   ← fondo secundario, bordes suaves
+--gold:       #EFCF7F   ← acento dorado, hero, highlights
+--amber:      #e5ab07   ← módulos 0/4/8/12/16
+--amber-dk:   #c8940a
+--red:        #cc4736   ← módulos 1/5/9/13
+--red-dk:     #a8382a
+--teal:       #78a6ba   ← módulos 2/6/10/14
+--teal-dk:    #5a8ea0
+--green:      #528e74   ← módulos 3/7/11/15
+--green-dk:   #3d6b58
+--black:      #1a1a18   ← SOLO para texto (nunca fondo)
+--white:      #ffffff
+
+⚠️  REGLAS ESTRICTAS DE COLOR:
+- NUNCA fondo negro. --black SOLO como color de texto.
+- Secciones de contenido: fondo cream (#e9e6d5) o cream-dk (#ddd9c8).
+- Burbujas de diálogo .bubble-b: fondo cream-dk, NUNCA negro.
+- Culture strip: gradient(135deg, gold/módulo-light, cream-dk) + border-top módulo color.
+- Hero/encabezado: puede usar el color del módulo como acento, fondo cream o blanco.
+
+── COLORES POR MÓDULO (patrón A1, continuar en A2) ──
+Módulo 0,4,8,12,16  → amber  (#e5ab07 / #c8940a / hero-text: #7a5500)
+Módulo 1,5,9,13     → red    (#cc4736 / #a8382a / hero-text: #7a1f14)
+Módulo 2,6,10,14    → teal   (#78a6ba / #5a8ea0 / hero-text: #2d5f72)
+Módulo 3,7,11,15    → green  (#528e74 / #3d6b58 / hero-text: #2d4d3c)
+
+── USO EN CSS ──
+Al inicio de cada archivo definir las variables del módulo:
+
+:root {
+  --mod:    #cc4736;   /* color principal del módulo */
+  --mod-dk: #a8382a;   /* color oscuro (hover, bordes) */
+  --mod-lt: #faeae8;   /* color muy claro (fondos de chips, highlights) */
+  --mod-tx: #7a1f14;   /* color para texto sobre fondo claro */
+}
+
+══════════════════════════════════════════════════════════════════════════
+4. TIPOGRAFÍA
+══════════════════════════════════════════════════════════════════════════
+
+Fuentes: Playfair Display (títulos en italic) + Outfit (cuerpo/interactivos)
+
+Import en cada archivo:
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+Variables de fuente:
+--fh: 'Playfair Display', Georgia, serif;   ← headings
+--fb: 'Outfit', system-ui, sans-serif;       ← body
+
+Uso:
+- Títulos de sección (h2, h3): font-family: var(--fh); font-style: italic;
+- Todo lo demás: font-family: var(--fb);
+- Tamaños base: body 0.92rem, h1 1.5rem, h2 1.1rem, secciones 0.88rem
+
+══════════════════════════════════════════════════════════════════════════
+5. ESTRUCTURA DE CADA MÓDULO (4 ETAPAS)
+══════════════════════════════════════════════════════════════════════════
+
+ETAPA 1 — INPUT (exploracion.html)
+  Tipo según alternancia: Video → Canción → Imagen → Audio → Video → ...
+  Contenido:
+    - Hero con título del módulo
+    - Embed del recurso (YouTube, Spotify, imagen, audio player)
+    - Actividad previa (checklist, preguntas predicción)
+    - Preguntas de comprensión (V/F + opción múltiple)
+    - Botón "Continuar →" al final
+  No usa TTS (no hay ippAudio en esta etapa, o muy limitado).
+
+ETAPA 2 — DESCUBRIMIENTO (descubrimiento.html)
+  Formato: HTML interactivo largo, múltiples secciones.
+  Conectado temáticamente al recurso de Etapa 1.
+  Secciones típicas (orden flexible según tema):
+    1. Vocabulario clave (vocab chips)
+    2. Diálogo con audio TTS (personajes, línea a línea)
+    3. Sección gramatical visual (patrones, tablas)
+    4. Números / días / expresiones (según módulo)
+    5. Fonética (según módulo)
+    6. Cultura (culture strip)
+    7. Actividades de comprensión (ejercicios interactivos)
+  ⚠️  El contenido NO debe ser exclusivamente del video/input.
+      Incluir vocabulario y estructuras estándar de nivel A1.
+
+ETAPA 3 — GRAMÁTICA (gramatica.html)
+  Formato: HTML interactivo, secciones numeradas.
+  Una sección por tema gramatical.
+  Cada sección tiene: explicación visual → tabla/ejemplo → ejercicios.
+  Ejercicios mínimos: 3-4 por sección gramatical.
+  Ejercicios al final: set integrador opcional.
+
+ETAPA 4 — EJERCICIOS (ejercicios.md)
+  Formato: Markdown plano. Se copia a plantillas externas.
+  Mínimo 5-8 ejercicios + sección RISPOSTA (respuestas).
+  No necesita HTML ni interactividad.
+
+── ALTERNANCIA DE INPUTS ──
+U0 Video → U1 Canción → U2 Imagen → U3 Audio →
+U4 Video → U5 Canción → U6 Imagen → U7 Audio → (repite)
+
+══════════════════════════════════════════════════════════════════════════
+6. PATRONES DE COMPONENTES — ETAPA 2 (DESCUBRIMIENTO)
+══════════════════════════════════════════════════════════════════════════
+
+Todos los componentes son INVARIANTES en estilo entre módulos.
+Solo cambia el color usando la variable --mod / --mod-dk / --mod-lt.
+
+── A. VOCAB CHIP ──
+HTML:
+<div class="vocab-chip" onclick="ippAudio('parola', 0.85, 'f')">
+  <div class="vocab-it">parola</div>
+  <div class="vocab-es">traducción</div>
+  <button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('parola',0.85,'f')">▶ escuchar</button>
+</div>
+
+CSS estándar:
+.vocab-chip {
+  display: inline-flex; flex-direction: column; align-items: center;
+  background: white; border: 1.5px solid var(--cream-dk);
+  border-radius: 10px; padding: 10px 14px; cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  min-width: 90px; text-align: center;
+}
+.vocab-chip:hover { background: var(--mod-lt); border-color: var(--mod); }
+.vocab-it { font-family: var(--fh); font-style: italic; font-size: 1rem; color: var(--mod-tx); }
+.vocab-es { font-size: 0.75rem; color: #888; margin-top: 2px; }
+.vocab-audio-btn {
+  margin-top: 6px; background: var(--mod); color: white;
+  border: none; border-radius: 12px; padding: 2px 10px;
+  font-size: 0.72rem; cursor: pointer;
+}
+
+── B. DIÁLOGO (componente central) ──
+El diálogo tiene: personaje A (femenino) y personaje B (masculino).
+Cada línea tiene un botón de reproducción individual + botón "play all".
+
+HTML estructura:
+<div class="dialog-wrap">
+  <button class="btn-play-all" onclick="playAllDialog()">▶ Escuchar todo el diálogo</button>
+  <div class="dialog-line" data-text="Ciao!" data-gender="f" data-rate="0.82">
+    <div class="dialog-avatar avatar-f">G</div>
+    <div class="dialog-bubble bubble-f">
+      <span class="dialog-speaker">Giulia</span>
+      <span class="dialog-text">Ciao!</span>
+    </div>
+    <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+  </div>
+  <div class="dialog-line" data-text="Buongiorno!" data-gender="m" data-rate="0.82">
+    <div class="dialog-avatar avatar-m">M</div>
+    <div class="dialog-bubble bubble-m">
+      <span class="dialog-speaker">Marco</span>
+      <span class="dialog-text">Buongiorno!</span>
+    </div>
+    <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+  </div>
+</div>
+
+CSS estándar del diálogo:
+.dialog-wrap { background: white; border-radius: 12px; padding: 20px; }
+.btn-play-all {
+  background: var(--mod); color: white; border: none;
+  border-radius: 20px; padding: 8px 20px; font-size: 0.85rem;
+  font-weight: 700; cursor: pointer; margin-bottom: 16px;
+  font-family: var(--fb);
+}
+.btn-play-all:hover { background: var(--mod-dk); }
+.dialog-line {
+  display: grid; grid-template-columns: 36px 1fr auto;
+  gap: 10px; align-items: start; margin-bottom: 14px;
+  animation: fadeUp 0.3s ease both;
+}
+@keyframes fadeUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+.dialog-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.9rem; color: white; flex-shrink: 0;
+}
+.avatar-f { background: var(--mod); }
+.avatar-m { background: var(--mod-dk); }
+.dialog-bubble {
+  border-radius: 0 12px 12px 12px; padding: 10px 14px;
+  font-size: 0.9rem; line-height: 1.5;
+}
+.bubble-f { background: var(--mod-lt); }
+.bubble-m { background: var(--cream-dk); }  /* NUNCA negro */
+.dialog-speaker { display: block; font-size: 0.72rem; font-weight: 700;
+  color: var(--mod-tx); text-transform: uppercase; margin-bottom: 3px; }
+.dialog-text { font-family: var(--fh); font-style: italic; }
+.btn-line-play {
+  background: none; border: 1.5px solid var(--mod);
+  color: var(--mod); border-radius: 16px; padding: 4px 10px;
+  font-size: 0.75rem; cursor: pointer; flex-shrink: 0;
+}
+.btn-line-play:hover { background: var(--mod); color: white; }
+.btn-line-play.playing { background: var(--mod); color: white; animation: pulse 0.8s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+
+── C. PATTERN CARD (tarjeta clickeable con frase) ──
+<div class="pattern-card" onclick="ippAudio('Io sono di Roma.', 0.82, 'f')">
+  <div class="pattern-it">Io sono di Roma.</div>
+  <div class="pattern-es">Yo soy de Roma.</div>
+</div>
+
+CSS:
+.pattern-card {
+  background: var(--cream); border: 1.5px solid var(--cream-dk);
+  border-radius: 10px; padding: 12px 16px; cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.pattern-card:hover { border-color: var(--mod); background: var(--mod-lt); }
+.pattern-it { font-family: var(--fh); font-style: italic; font-size: 1rem; color: var(--mod-tx); }
+.pattern-es { font-size: 0.78rem; color: #888; margin-top: 4px; }
+
+── D. EXERCISE OPT-BTN (botón de opción múltiple) ──
+<div class="ex-block" id="ex1">
+  <p class="ex-q">Pregunta...</p>
+  <button class="opt-btn" onclick="checkOpt(this,'ex1',false,'Feedback incorrecto')">Opción A</button>
+  <button class="opt-btn" onclick="checkOpt(this,'ex1',true,'¡Correcto!')">Opción B</button>
+  <button class="opt-btn" onclick="checkOpt(this,'ex1',false,'Feedback incorrecto')">Opción C</button>
+  <div class="ex-fb" id="ex1fb"></div>
+</div>
+
+CSS:
+.opt-btn {
+  background: white; border: 1.5px solid var(--cream-dk);
+  border-radius: 8px; padding: 8px 16px; font-size: 0.85rem;
+  cursor: pointer; margin: 4px; font-family: var(--fb);
+  transition: all 0.15s;
+}
+.opt-btn:hover:not(:disabled) { border-color: var(--mod); background: var(--mod-lt); }
+.opt-btn.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.opt-btn.wrong   { background: #fee2e2; border-color: #ef4444; color: #991b1b; }
+.opt-btn:disabled { cursor: default; opacity: 0.8; }
+.ex-fb { min-height: 20px; font-size: 0.82rem; margin-top: 6px; padding: 4px 0; }
+.ex-fb.ok { color: #065f46; }
+.ex-fb.no { color: #991b1b; }
+
+── E. CULTURE STRIP ──
+<div class="culture-strip">
+  <div class="culture-flag">🇮🇹</div>
+  <div class="culture-body">
+    <h3 class="culture-title">Título en italiano</h3>
+    <p class="culture-it">Texto en italiano...</p>
+    <button class="btn-translate" onclick="toggleCulture(this)">🇪🇸 Ver en español</button>
+    <div class="culture-es" style="display:none">
+      <p>Texto en español...</p>
+    </div>
+  </div>
+</div>
+
+CSS:
+.culture-strip {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--cream-dk) 100%);
+  border-top: 3px solid var(--mod);
+  border-radius: 12px; padding: 20px 22px;
+  display: flex; gap: 16px; align-items: flex-start;
+  margin-top: 24px;
+}
+.culture-flag { font-size: 2rem; flex-shrink: 0; }
+.culture-title { font-family: var(--fh); font-style: italic; font-size: 1.05rem;
+  color: var(--mod-tx); margin-bottom: 8px; }
+.culture-it { font-size: 0.88rem; line-height: 1.6; color: #333; }
+.btn-translate {
+  margin-top: 10px; background: var(--mod); color: white;
+  border: none; border-radius: 16px; padding: 5px 14px;
+  font-size: 0.78rem; cursor: pointer;
+}
+.culture-es { margin-top: 12px; font-size: 0.85rem; color: #555; line-height: 1.6; }
+
+── F. NÚMERO CHIP ──
+<div class="num-chip" onclick="ippAudio('ventidue', 0.85, 'f')">
+  ventidue<small>22</small>
+</div>
+
+CSS:
+.num-chip {
+  background: var(--mod-lt); border: 1.5px solid var(--mod);
+  border-radius: 10px; padding: 10px 14px; text-align: center;
+  cursor: pointer; font-family: var(--fh); font-style: italic;
+  font-size: 0.95rem; color: var(--mod-tx);
+  transition: background 0.15s;
+}
+.num-chip:hover { background: var(--mod); color: white; }
+.num-chip small { display: block; font-size: 0.7rem; font-family: var(--fb);
+  font-style: normal; color: inherit; margin-top: 2px; }
+
+══════════════════════════════════════════════════════════════════════════
+7. PATRONES DE COMPONENTES — ETAPA 3 (GRAMÁTICA)
+══════════════════════════════════════════════════════════════════════════
+
+── TABLA DE CONJUGACIÓN ──
+<div class="conj-card">
+  <h3 class="conj-title">ESSERE — ser / estar</h3>
+  <button class="conj-btn-audio" onclick="ippAudio('io sono, tu sei, lui lei è', 0.78, 'f')">▶ escuchar</button>
+  <table class="conj-table">
+    <tr><th>Pronombre</th><th>Forma</th><th>Significado</th><th></th></tr>
+    <tr><td>io</td><td>sono</td><td>soy/estoy</td><td><button class="conj-play" onclick="ippAudio('io sono',0.82,'f')">▶</button></td></tr>
+    <tr><td>tu</td><td>sei</td><td>sos/estás</td><td><button class="conj-play" onclick="ippAudio('tu sei',0.82,'m')">▶</button></td></tr>
+    <tr><td>lui/lei</td><td>è</td><td>es/está</td><td><button class="conj-play" onclick="ippAudio('lui lei è',0.82,'f')">▶</button></td></tr>
+  </table>
+</div>
+
+CSS:
+.conj-card { background: white; border-radius: 12px; border: 1.5px solid var(--cream-dk);
+  padding: 18px 20px; margin-bottom: 16px; }
+.conj-title { font-family: var(--fh); font-style: italic; color: var(--mod-tx);
+  font-size: 1rem; margin-bottom: 10px; }
+.conj-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.conj-table th { background: var(--mod-lt); color: var(--mod-tx); padding: 6px 10px;
+  text-align: left; font-size: 0.75rem; text-transform: uppercase; }
+.conj-table td { padding: 7px 10px; border-bottom: 1px solid var(--cream-dk); }
+.conj-play { background: var(--mod); color: white; border: none; border-radius: 50%;
+  width: 26px; height: 26px; font-size: 0.7rem; cursor: pointer; }
+.conj-btn-audio { background: var(--mod-lt); color: var(--mod-tx); border: 1px solid var(--mod);
+  border-radius: 16px; padding: 4px 12px; font-size: 0.78rem; cursor: pointer;
+  margin-bottom: 10px; }
+
+── FILL-IN EXERCISE (completar con texto) ──
+<div class="fill-item">
+  <span>Io ___ di Roma.</span>
+  <input class="fill-input" type="text" data-answer="sono" oninput="checkFill(this)" placeholder="...">
+  <span class="fill-feedback"></span>
+</div>
+
+CSS:
+.fill-input { border: 1.5px solid var(--cream-dk); border-radius: 6px;
+  padding: 4px 8px; font-size: 0.88rem; width: 100px; margin: 0 6px; }
+.fill-input.correct { border-color: #10b981; background: #d1fae5; }
+.fill-input.wrong   { border-color: #ef4444; background: #fee2e2; }
+.fill-feedback { font-size: 0.78rem; }
+
+══════════════════════════════════════════════════════════════════════════
+8. SISTEMA DE AUDIO (ippAudio / ippVoice) — ODOO-SAFE
+══════════════════════════════════════════════════════════════════════════
+
+── PROBLEMA CENTRAL EN ODOO ──
+Odoo usa DOMEval para inyectar scripts. DOMEval envuelve el código en
+una función local:
+  (function() { /* tu código aquí */ })()
+
+Consecuencia: `function foo()` declarada DENTRO del código queda en el
+scope LOCAL de esa función, NO en window. Los onclick="foo()" buscan en
+window y tiran "foo is not defined".
+
+Solución: Exponer explícitamente a window: `window.foo = foo;`
+
+── BLOQUE DE AUDIO ESTÁNDAR ──
+Este bloque va AL INICIO del <script>, ANTES de cualquier execution guard.
+Tiene su propio guard (window.__ippVC) para ejecutarse solo una vez.
+
+```javascript
+// ── IPP Voice Preloader (Odoo-safe, una vez por sesión) ──
+if (!window.__ippVC) {
+  window.__ippVC = true;
+  window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() {
+      var v = speechSynthesis.getVoices();
+      if (v && v.length) window.__ippV = v;
+    };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
+```
+
+── FUNCIÓN ippVoice (selección de voz por género) ──
+```javascript
+function ippVoice(gender) {
+  var voices = (window.__ippV && window.__ippV.length)
+    ? window.__ippV
+    : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+  var itV = voices.filter(function(v) { return v.lang && v.lang.startsWith('it'); });
+  if (!itV.length) return null;
+  var voice = null;
+  if (gender === 'm') {
+    voice = itV.find(function(v) { return /cosimo|luca|giorgio|male|masc/i.test(v.name); });
+    if (!voice) voice = itV.find(function(v) { return !/elsa|alice|giulia|female|femm/i.test(v.name); });
+  } else {
+    voice = itV.find(function(v) { return /elsa|alice|giulia|female|femm/i.test(v.name); });
+    if (!voice) voice = itV.find(function(v) { return !/cosimo|luca|giorgio|male|masc/i.test(v.name); });
+  }
+  return voice || itV[0];
+}
+```
+
+Lógica de ippVoice:
+  1. Intenta match positivo por nombre (cosimo/luca/giorgio para M, elsa/alice/giulia para F)
+  2. Si falla, usa match negativo (para F: voz que NO sea M, y viceversa)
+  3. Fallback: primera voz italiana disponible
+  4. Siempre usa el cache window.__ippV con fallback a getVoices() en vivo
+
+── FUNCIÓN ippAudio (firma estándar, módulos 1-16) ──
+```javascript
+function ippAudio(text, rate, gender) {
+  rate = (typeof rate === 'number' && isFinite(rate) && rate > 0) ? rate : 0.82;
+  gender = (gender === 'm' || gender === 'f') ? gender : 'f';
+  if (!window.speechSynthesis) return;
+  try { speechSynthesis.cancel(); } catch(e) {}
+  var utt = new SpeechSynthesisUtterance(String(text));
+  utt.lang = 'it-IT'; utt.rate = rate;
+  var voice = ippVoice(gender);
+  if (voice) utt.voice = voice;
+  (function(u) {
+    setTimeout(function() {
+      try { speechSynthesis.speak(u); } catch(e) {}
+    }, 60);
+  })(utt);
+}
+```
+
+⚠️  modulo_0/etapa2 tiene firma diferente: ippAudio(text, onStart, onEnd)
+    con callbacks para encadenar líneas del diálogo. NO cambiar esa firma.
+
+── FUNCIÓN playLine (dialog line-by-line) ──
+```javascript
+function playLine(btn) {
+  var line = btn.closest('.dialog-line');
+  var text = line.getAttribute('data-text');
+  var gender = line.getAttribute('data-gender') || 'f';
+  var rate = parseFloat(line.getAttribute('data-rate')) || 0.82;
+  document.querySelectorAll('.btn-line-play').forEach(function(b) {
+    b.classList.remove('playing'); b.textContent = '▶ Escuchar';
+  });
+  btn.classList.add('playing'); btn.textContent = '⏸ Hablando...';
+  if (!window.speechSynthesis) return;
+  try { speechSynthesis.cancel(); } catch(e) {}
+  var utt = new SpeechSynthesisUtterance(String(text));
+  utt.lang = 'it-IT';
+  utt.rate = (isFinite(rate) && rate > 0) ? rate : 0.82;
+  var voice = ippVoice(gender);
+  if (voice) utt.voice = voice;
+  utt.onend = function() { btn.classList.remove('playing'); btn.textContent = '▶ Escuchar'; };
+  utt.onerror = function() { btn.classList.remove('playing'); btn.textContent = '▶ Escuchar'; };
+  (function(u) { setTimeout(function() { try { speechSynthesis.speak(u); } catch(e) {} }, 60); })(utt);
+}
+```
+
+── FUNCIÓN playAllDialog (reproducir diálogo completo) ──
+```javascript
+var _dialogTimer = null;
+function playAllDialog() {
+  if (_dialogTimer) { clearTimeout(_dialogTimer); _dialogTimer = null; }
+  if (window.speechSynthesis) try { speechSynthesis.cancel(); } catch(e) {}
+  var lines = document.querySelectorAll('.dialog-line');
+  var idx = 0;
+  function playNext() {
+    if (idx >= lines.length) return;
+    var line = lines[idx++];
+    var text = line.getAttribute('data-text');
+    var gender = line.getAttribute('data-gender') || 'f';
+    var rate = parseFloat(line.getAttribute('data-rate')) || 0.82;
+    var utt = new SpeechSynthesisUtterance(String(text));
+    utt.lang = 'it-IT';
+    utt.rate = (isFinite(rate) && rate > 0) ? rate : 0.82;
+    var voice = ippVoice(gender);
+    if (voice) utt.voice = voice;
+    utt.onend = function() { _dialogTimer = setTimeout(playNext, 400); };
+    utt.onerror = function() { _dialogTimer = setTimeout(playNext, 400); };
+    try { speechSynthesis.speak(utt); } catch(e) { _dialogTimer = setTimeout(playNext, 400); }
+  }
+  setTimeout(playNext, 60);
+}
+```
+
+── FUNCIÓN checkOpt (ejercicios opción múltiple) ──
+```javascript
+function checkOpt(btn, exId, isCorrect, feedback) {
+  var block = document.getElementById(exId);
+  if (!block) return;
+  block.querySelectorAll('.opt-btn').forEach(function(b) {
+    b.disabled = true;
+    b.classList.remove('correct', 'wrong');
+  });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (isCorrect) {
+    block.querySelectorAll('.opt-btn').forEach(function(b) {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').indexOf(',true,') !== -1)
+        b.classList.add('correct');
+    });
+  }
+  var fb = document.getElementById(exId + 'fb');
+  if (fb) { fb.textContent = feedback; fb.className = 'ex-fb ' + (isCorrect ? 'ok' : 'no'); }
+}
+```
+
+── FUNCIÓN toggleCulture (culture strip toggle) ──
+```javascript
+function toggleCulture(btn) {
+  var strip = btn.closest('.culture-strip');
+  var es = strip ? strip.querySelector('.culture-es') : document.getElementById('cult-es');
+  if (!es) return;
+  if (es.style.display === 'none' || es.style.display === '') {
+    es.style.display = 'block'; btn.textContent = '🇮🇹 Leggere in italiano';
+  } else {
+    es.style.display = 'none'; btn.textContent = '🇪🇸 Ver en español';
+  }
+}
+```
+
+══════════════════════════════════════════════════════════════════════════
+9. JAVASCRIPT: ODOO DOMEval — PATRONES OBLIGATORIOS
+══════════════════════════════════════════════════════════════════════════
+
+── EXECUTION GUARD ──
+Odoo puede re-ejecutar el script al navegar entre slides.
+Para evitar doble-ejecución y errores de re-declaración:
+
+```javascript
+if (!window.__ipp_mX_eY__) {   // X = módulo, Y = etapa
+  window.__ipp_mX_eY__ = true;
+
+  // ... todo el código del módulo aquí ...
+
+  // AL FINAL: exponer funciones a window
+  window.ippAudio       = ippAudio;
+  window.playLine       = playLine;
+  window.playAllDialog  = playAllDialog;
+  window.checkOpt       = checkOpt;
+  window.toggleCulture  = toggleCulture;
+  // ... cualquier función usada en onclick, oninput, onchange
+
+} // end execution guard
+```
+
+Naming convention de guards:
+  modulo_0/etapa2 → window.__ipp_m0_e2__
+  modulo_1/etapa3 → window.__ipp_m1_e3__
+  etc.
+
+── REGLA: TODO onclick DEBE ESTAR EN window ──
+Si un atributo HTML tiene onclick="foo(...)", la función foo DEBE estar
+en window. Para hacerlo: colocar `window.foo = foo;` antes del cierre
+del execution guard.
+
+── USO DE var vs let/const ──
+Dentro de execution guards: preferir var. let/const no pueden ser
+re-declarados si el guard falla y el script corre dos veces.
+
+── ESTRUCTURA COMPLETA DE UN <script> ──
+```javascript
+<script>
+// ── IPP Voice Preloader ──
+if (!window.__ippVC) {
+  window.__ippVC = true;
+  window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) window.__ippV = v; };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
+
+// ── EXECUTION GUARD ──
+if (!window.__ipp_mX_eY__) {
+window.__ipp_mX_eY__ = true;
+
+function ippVoice(gender) { /* ... */ }
+function ippAudio(text, rate, gender) { /* ... */ }
+function playLine(btn) { /* ... */ }
+function playAllDialog() { /* ... */ }
+function checkOpt(btn, exId, isCorrect, feedback) { /* ... */ }
+function toggleCulture(btn) { /* ... */ }
+// ... más funciones ...
+
+// ── EXPONER A WINDOW ──
+window.ippAudio      = ippAudio;
+window.ippVoice      = ippVoice;
+window.playLine      = playLine;
+window.playAllDialog = playAllDialog;
+window.checkOpt      = checkOpt;
+window.toggleCulture = toggleCulture;
+
+} // end execution guard
+</script>
+```
+
+══════════════════════════════════════════════════════════════════════════
+10. PLANTILLA CSS BASE (copiar al inicio de cada archivo)
+══════════════════════════════════════════════════════════════════════════
+
+```css
+/* Cambiar colores según módulo */
+:root {
+  --mod:    #cc4736;
+  --mod-dk: #a8382a;
+  --mod-lt: #faeae8;
+  --mod-tx: #7a1f14;
+  --cream:  #e9e6d5;
+  --cream-dk: #ddd9c8;
+  --gold:   #EFCF7F;
+  --black:  #1a1a18;
+  --white:  #ffffff;
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--fb); background: var(--cream); color: var(--black);
+  font-size: 0.92rem; line-height: 1.6; }
+h1, h2, h3 { font-family: var(--fh); font-style: italic; }
+.section { background: white; border-radius: 14px; padding: 22px 24px;
+  margin-bottom: 20px; border: 1.5px solid var(--cream-dk); }
+.section-title { font-size: 1.05rem; color: var(--mod-tx); margin-bottom: 14px;
+  padding-bottom: 8px; border-bottom: 2px solid var(--mod-lt); }
+```
+
+══════════════════════════════════════════════════════════════════════════
+11. CHECKLIST DE CREACIÓN DE UN MÓDULO COMPLETO
+══════════════════════════════════════════════════════════════════════════
+
+[ ] Determinar tipo de input (alternancia Video/Canción/Imagen/Audio)
+[ ] Leer CSV de objetivos para la unidad (temas léxicos, gramaticales, funcionales)
+[ ] Leer transcript/letra/descripción del recurso de input
+
+ETAPA 1 (exploracion.html):
+[ ] Hero con título, subtítulo, etiqueta del módulo
+[ ] Embed del recurso correcto (YouTube embed URL, no watch URL)
+[ ] Actividad previa (checklist o predicción)
+[ ] Preguntas de comprensión (V/F con respuestas correctas) — verificar respuestas
+[ ] Botón "Continuar →" al final
+[ ] Color de módulo correcto
+[ ] Execution guard + window exposures
+
+ETAPA 2 (descubrimiento.html):
+[ ] NO decir "antes de ver el video" (ya lo vieron en etapa 1)
+[ ] Vocabulario clave (chips con audio)
+[ ] Diálogo situacional (personajes F y M, data-gender correcto)
+[ ] Patrones gramaticales del módulo
+[ ] Sección cultural (culture strip)
+[ ] Al menos 1 actividad interactiva de comprensión
+[ ] Contenido NO exclusivamente del video (incluir vocab A1 general)
+[ ] Todos los onclick apuntados en window.xxx = xxx
+[ ] IPP Voice Preloader al inicio del script
+[ ] Execution guard correcto (mX_eY)
+
+ETAPA 3 (gramatica.html):
+[ ] Una sección por tema gramatical
+[ ] Ejercicios DESPUÉS de cada sección (mínimo 3-4 por sección)
+[ ] Tablas de conjugación con audio por fila
+[ ] Todos los onclick apuntados en window
+[ ] Execution guard correcto
+
+ETAPA 4 (ejercicios.md):
+[ ] Mínimo 5-8 ejercicios variados
+[ ] Sección RISPOSTA con todas las respuestas
+[ ] Formato Markdown limpio (sin HTML)
+
+══════════════════════════════════════════════════════════════════════════
+12. UNIDADES COMPLETADAS — NIVEL A1
+══════════════════════════════════════════════════════════════════════════
+
+M0  Come ti chiami?          Video     LearnAmo  https://youtu.be/6R_4YRTshIg
+M1  Di dove sei?             Canción   Azzurro   https://youtu.be/HCyzGuipTd4
+    (también: video ciudades https://youtu.be/s7MBSo0E71o — usado para etapa1)
+M2  Mi dai il tuo numero?    Imagen    (hotel/check-in)
+M3  Tutti in piazza!         Audio     Coffee Break Italian
+M4  Una notte a Roma         Video
+M5  Che ore sono?            Canción
+M6  A tavola!                Imagen
+M7  Com'è il tempo?          Audio
+M8  Andiamo al mercato       Video
+M9  La mia famiglia          Canción
+M10 Casa dolce casa          Imagen
+M11 Mi sento così            Audio
+M12 Che lavoro fai?          Video
+M13 In città                 Canción   "Questo piccolo grande amore" — Claudio Baglioni
+M14 Tempo libero             Imagen    Festival de música italiana
+M15 Il weekend scorso        Audio     RAI/Coffee Break
+M16 Ieri sera                Video     Roberto Benigni teatro  ← FIN A1
+
+══════════════════════════════════════════════════════════════════════════
+13. TEMAS GRAMATICALES POR MÓDULO (A1)
+══════════════════════════════════════════════════════════════════════════
+
+M0: Alfabeto italiano, verbo chiamarsi (mi chiamo), numeri 0-20, saluti
+M1: Essere/andare/avere (io/tu/lui-lei), verbi -ARE, interrogativi
+    (Come/Quale/Che), dati anagrafici, numeri 0-100, città italiane
+M2: Articoli (il/la/l'/i/le), avere (noi/voi/loro), numeri grandi,
+    giorni settimana (con accento: lunedì martedì mercoledì giovedì venerdì)
+M3: Articoli determinativi completos, verbi -ERE e -IRE, ora e tempo,
+    espressioni di tempo (alle, verso, dalle...alle)
+M4: Passato prossimo (avere/essere + participio), aggettivi
+M5: Presente indicativo completo, avverbi di frequenza
+M6: Plurale nomi e aggettivi, partitivi (del/della/degli/delle)
+M7: Aggettivi possessivi, famiglia, descrizione fisica
+M8: C'è / ci sono, preposizioni di luogo, imperative (informale)
+M9: Verbi riflessivi, routines diarias, avverbi di tempo
+M10: Stanze della casa, mobili, preposizioni articolate completas
+M11: Stare + gerundio, emozioni, verbi sentire/sembrare
+M12: Lavori e professioni, dovere/potere/volere, forme del lavoro
+M13: Passato prossimo essere vs avere, participi irregolari
+M14: Presente progressivo, sport e hobby, piacere + infinito
+M15: Imperfetto (intro), racconto di esperienze, connettori
+M16: Imperfetto vs Passato prossimo (contrasto base)
+
+══════════════════════════════════════════════════════════════════════════
+14. TONO Y VOZ DE MARCA
+══════════════════════════════════════════════════════════════════════════
+
+- Cercano, alegre, relajado, emocional
+- Como anfitriona italiana que recibe con copa y sonrisa
+- NO dar cátedra — conversar, acompañar
+- Texto en español con frases y ejemplos en italiano
+- Usar voceo (vos, tenés, etc.) — audiencia rioplatense
+- Las explicaciones gramaticales son breves, visuales, con ejemplos reales
+- Los diálogos son situacionales y naturales (no inventados para estudiar)
+- La cultura aparece integrada, no como dato suelto
+
+Personajes recurrentes en los diálogos:
+  Giulia — voz femenina (F) — italiana, de Roma
+  Marco  — voz masculina (M) — italiano, de Milano
+  (En módulos de hotel/viaje: personaje del hotel también F)
+
+Géneros en audio:
+  Personaje F → data-gender="f" → ippVoice('f')
+  Personaje M → data-gender="m" → ippVoice('m')
+  Narración/vocabulario → 'f' por defecto
+
+══════════════════════════════════════════════════════════════════════════
+15. COSAS A RECORDAR / ERRORES COMUNES
+══════════════════════════════════════════════════════════════════════════
+
+1. NUNCA usar fondo negro. --black solo para texto.
+2. NUNCA onclick="speak(...)" — el nombre de Odoo tiene speak() propio.
+   Siempre usar onclick="ippAudio(...)"
+3. SIEMPRE exponer funciones a window dentro del execution guard.
+4. SIEMPRE poner el IPP Voice Preloader ANTES del execution guard.
+5. onvoiceschanged = function(){ speechSynthesis.getVoices(); } NO cachea nada — NO usar.
+6. speechSynthesis.cancel() seguido inmediatamente por speak() puede fallar.
+   Siempre usar setTimeout(60ms) antes del speak().
+7. let/const dentro de execution guards pueden causar SyntaxError si el
+   script corre dos veces. Usar var.
+8. El embed de YouTube debe ser /embed/ID no /watch?v=ID
+9. Los giorni della settimana llevan acento: lunedì, martedì, mercoledì,
+   giovedì, venerdì (sabato y domenica sin acento).
+10. Los nombres de las unidades deben ser CONSISTENTES en las 4 etapas.
+11. Los artículos (ARTICOLI) son tema crítico A1 — incluirlos en M2/M3.
+12. Contenido NO debe ser exclusivamente del video/input — integrar A1 general.
+13. checkFill(input) — el oninput debe pasar 'this', no el evento.
+14. En Odoo, DOMContentLoaded puede no dispararse correctamente.
+    Preferir inicialización directa o setTimeout(() => init(), 0).
+
+══════════════════════════════════════════════════════════════════════════
+FIN DEL DOCUMENTO — Italiano Per Piacere Design System v1.0
+Generado: 2026-04-11
+══════════════════════════════════════════════════════════════════════════
