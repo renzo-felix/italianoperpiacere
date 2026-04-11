@@ -441,6 +441,16 @@ body { font-family: var(--fb); background: var(--cream); color: var(--black); li
 
 <main class="main">
 
+  <!-- CONEXIÓN CON EL VIDEO -->
+  <div class="section" style="background:var(--mod-lt);border:1.5px solid var(--mod);border-radius:12px;display:flex;gap:16px;align-items:flex-start;padding:24px;">
+    <div style="font-size:2rem;flex-shrink:0;">👩‍🏫</div>
+    <div>
+      <p style="font-size:1rem;line-height:1.65;color:var(--mod-tx);">
+        En el video conociste a <strong>Luisa</strong> (6 años), <strong>Anna</strong> (4 años), <strong>Lorenzo</strong> (2 años), <strong>Stella</strong> (la mamma, siciliana) y <strong>Michele</strong> (il papà, toscano, 38 años). Una familia italiana real, con su rutina, sus abuelos lejos y sus reflexiones sobre la vida familiar en Italia. Ahora vamos a explorar el vocabulario de la famiglia — los vínculos, los objetos personales y cómo hablar de tu propia famiglia.
+      </p>
+    </div>
+  </div>
+
   <!-- SECCIÓN 1: LA FAMIGLIA — ÁRBOL GENEALÓGICO -->
   <div class="section">
     <h2 class="sec-title">La famiglia</h2>
@@ -770,62 +780,32 @@ body { font-family: var(--fb); background: var(--cream); color: var(--black); li
   <div class="section">
     <h2 class="sec-title">C'è / Ci sono</h2>
     <div class="sec-divider"></div>
-    <div class="grammar-box">
-      <h3>¿Cuándo usamos cada uno?</h3>
-      <table class="grammar-table">
-        <thead>
-          <tr>
-            <th>Forma</th>
-            <th>Uso</th>
-            <th>Ejemplo</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="it-cell">C'è</td>
-            <td>Hay (singular) — una sola cosa o persona</td>
-            <td><em>C'è una bambina in famiglia.</em><br><small style="color:#777">Hay una nena en la familia.</small></td>
-          </tr>
-          <tr>
-            <td class="it-cell">Ci sono</td>
-            <td>Hay (plural) — más de una cosa o persona</td>
-            <td><em>Ci sono tre figli.</em><br><small style="color:#777">Hay tres hijos.</small></td>
-          </tr>
-          <tr>
-            <td class="it-cell">Non c'è</td>
-            <td>No hay (singular)</td>
-            <td><em>Non c'è uno zio in questa famiglia.</em></td>
-          </tr>
-          <tr>
-            <td class="it-cell">Non ci sono</td>
-            <td>No hay (plural)</td>
-            <td><em>Non ci sono nonni vicini.</em></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <p class="sec-sub">En el video escuchaste frases como <em>"Ci sono tre figli"</em> o <em>"C'è la babysitter"</em>. Estas expresiones equivalen a "hay" en español — y en italiano cambian según si hay una o varias cosas. Hacé clic en cada tarjeta para escuchar:</p>
 
     <div class="pattern-grid">
-      <div class="pattern-card">
-        <h4>Describir una familia</h4>
-        <div class="pattern-ex">
-          <span class="pattern-it">C'è un padre, una madre e tre figli.</span><br>
-          <small>Hay un padre, una madre y tres hijos.</small>
-        </div>
+      <div class="pattern-card" onclick="ippAudio('C\'è un padre, una madre e tre figli.', 0.82, 'f')" style="cursor:pointer">
+        <div class="pattern-it">C'è un padre, una madre e tre figli.</div>
+        <div class="pattern-es">Hay un padre, una madre y tres hijos.</div>
       </div>
-      <div class="pattern-card">
-        <h4>Preguntar si algo/alguien está</h4>
-        <div class="pattern-ex">
-          <span class="pattern-it">C'è tua sorella a casa?</span><br>
-          <small>¿Está tu hermana en casa?</small>
-        </div>
+      <div class="pattern-card" onclick="ippAudio('Ci sono tre bambini in famiglia.', 0.82, 'f')" style="cursor:pointer">
+        <div class="pattern-it">Ci sono tre bambini in famiglia.</div>
+        <div class="pattern-es">Hay tres chicos en la familia.</div>
       </div>
-      <div class="pattern-card">
-        <h4>Con oggetti personali</h4>
-        <div class="pattern-ex">
-          <span class="pattern-it">Ci sono le chiavi nel zaino?</span><br>
-          <small>¿Están las llaves en la mochila?</small>
-        </div>
+      <div class="pattern-card" onclick="ippAudio('C\'è tua sorella a casa?', 0.82, 'f')" style="cursor:pointer">
+        <div class="pattern-it">C'è tua sorella a casa?</div>
+        <div class="pattern-es">¿Está tu hermana en casa?</div>
+      </div>
+      <div class="pattern-card" onclick="ippAudio('Non ci sono nonni vicini.', 0.82, 'm')" style="cursor:pointer">
+        <div class="pattern-it">Non ci sono nonni vicini.</div>
+        <div class="pattern-es">No hay abuelos cerca.</div>
+      </div>
+      <div class="pattern-card" onclick="ippAudio('Ci sono le chiavi nel zaino?', 0.82, 'f')" style="cursor:pointer">
+        <div class="pattern-it">Ci sono le chiavi nel zaino?</div>
+        <div class="pattern-es">¿Están las llaves en la mochila?</div>
+      </div>
+      <div class="pattern-card" onclick="ippAudio('Non c\'è uno zio in questa famiglia.', 0.82, 'm')" style="cursor:pointer">
+        <div class="pattern-it">Non c'è uno zio in questa famiglia.</div>
+        <div class="pattern-es">No hay ningún tío en esta familia.</div>
       </div>
     </div>
   </div>
@@ -993,66 +973,6 @@ body { font-family: var(--fb); background: var(--cream); color: var(--black); li
       </div>
     </div>
 
-    <!-- Ejercicio 2: C'è / Ci sono -->
-    <div class="ex-card">
-      <h2>Esercizio 2 — C'è o Ci sono?</h2>
-      <span class="ex-tag">Gramática</span>
-      <p class="ex-instr">Completá cada oración con <strong>c'è</strong> o <strong>ci sono</strong> según corresponda. Escribí tu respuesta y luego verificá.</p>
-
-      <div id="fill-cece">
-        <div class="fill-row">
-          <div class="fill-sentence">1. Nella famiglia di Giulia ______ <input class="fill-input" id="f1" placeholder="c'è / ci sono"> tre figli.</div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">2. <input class="fill-input" id="f2" placeholder="c'è / ci sono"> una nonna che abita vicino.</div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">3. Nel portafoglio <input class="fill-input" id="f3" placeholder="c'è / ci sono"> le chiavi?</div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">4. Non <input class="fill-input" id="f4" placeholder="c'è / ci sono"> uno zio in questa famiglia.</div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">5. In Italia non <input class="fill-input" id="f5" placeholder="c'è / ci sono"> abbastanza servizi per le famiglie.</div>
-        </div>
-      </div>
-
-      <button class="btn-check" onclick="checkFill('cece', ['ci sono','c\'è','ci sono','c\'è','ci sono'], ['f1','f2','f3','f4','f5'])">
-        Verificar respuestas
-      </button>
-      <div class="check-result" id="res-cece"></div>
-    </div>
-
-    <!-- Ejercicio 3: Oggetti personali -->
-    <div class="ex-card">
-      <h2>Esercizio 3 — Cosa c'è nella borsa?</h2>
-      <span class="ex-tag">Vocabulario + C'è / Ci sono</span>
-      <p class="ex-instr">Observá los objetos y escribí oraciones usando <em>c'è</em> o <em>ci sono</em>.</p>
-
-      <div style="background: var(--mod-lt); border-radius: 8px; padding: 16px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.8;">
-        <strong>Nella borsa di Giulia ci sono:</strong> un portafoglio 💼, delle chiavi 🔑, un cellulare 📱, degli occhiali 👓, un'agenda 📓, un ombrello ☂️
-      </div>
-
-      <div id="fill-borsa">
-        <div class="fill-row">
-          <div class="fill-sentence">1. <input class="fill-input" id="b1" placeholder="c'è / ci sono"> un cellulare.</div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">2. <input class="fill-input" id="b2" placeholder="c'è / ci sono"> delle chiavi.</div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">3. Non <input class="fill-input" id="b3" placeholder="c'è / ci sono"> uno zaino.</div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">4. <input class="fill-input" id="b4" placeholder="c'è / ci sono"> gli occhiali e l'agenda.</div>
-        </div>
-      </div>
-
-      <button class="btn-check" onclick="checkFill('borsa', [\"c'è\",\"ci sono\",\"c'è\",\"ci sono\"], ['b1','b2','b3','b4'])">
-        Verificar respuestas
-      </button>
-      <div class="check-result" id="res-borsa"></div>
-    </div>
 
   </div>
 
