@@ -329,9 +329,8 @@
     .mc-fb.ok  { color: #2a7a4a; display: block; }
     .mc-fb.err { color: var(--red); display: block; }
 
-    /* SUBTITULO OCULTO */
-    .dial-sub { opacity: 0; transition: opacity 0.4s; }
-    .dial-sub.visible { opacity: 1; }
+    /* SUBTITULO */
+    .dial-sub { opacity: 1; }
 
     /* DIALOGO */
     .listen-all-btn {
@@ -349,10 +348,8 @@
 
     .dial-line {
       display: flex; align-items: flex-start; gap: 0.75rem;
-      margin-bottom: 1rem; opacity: 0.5; transition: opacity 0.3s;
+      margin-bottom: 1rem; opacity: 1;
     }
-    .dial-line.ready { opacity: 1; }
-    .dial-line.playing { opacity: 1; }
 
     .dial-speaker {
       font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
@@ -1014,9 +1011,7 @@ if (!window.__ippVC) {
 }
 
 (function() {
-  /* Guard: evita re-ejecución si Odoo/jQuery inyecta el script más de una vez */
-  if (window.__ipp_m0_e2__) return;
-  window.__ipp_m0_e2__ = true;
+  /* Inicialización — se puede re-ejecutar si Odoo recarga el slide */
 
   /* ══════════════════════════════════════════
      TTS — SÍNTESIS DE VOZ
@@ -1044,6 +1039,7 @@ if (!window.__ippVC) {
       if (v) utter.voice = v;
       if (onStart) utter.onstart = onStart;
       if (onEnd)   utter.onend   = onEnd;
+      if (onEnd)   utter.onerror  = function() { onEnd(); };
       (function(u){ setTimeout(function(){ try { speechSynthesis.speak(u); } catch(e){} }, 60); })(utter);
       return utter;
     } catch(e) {
@@ -1051,6 +1047,35 @@ if (!window.__ippVC) {
       if (onEnd) onEnd();
       return null;
     }
+  }
+
+  function ippAudioGendered(text, onStart, onEnd, gender) {
+    if (!window.speechSynthesis) { if (onEnd) onEnd(); return; }
+    try { window.speechSynthesis.cancel(); } catch(e) {}
+    var utt = new SpeechSynthesisUtterance(String(text));
+    utt.lang = 'it-IT';
+    utt.rate = 0.82;
+    utt.pitch = (gender === 'm') ? 0.85 : 1.1;
+    var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+    var itVoices = voices.filter(function(v) { return v.lang && v.lang.startsWith('it'); });
+    var voice = null;
+    if (itVoices.length) {
+      if (gender === 'm') {
+        voice = itVoices.find(function(v) { return /cosimo|luca|giorgio|male/i.test(v.name); })
+             || itVoices.find(function(v) { return !/elsa|alice|giulia|female/i.test(v.name); })
+             || itVoices[0];
+      } else {
+        voice = itVoices.find(function(v) { return /elsa|alice|giulia|female/i.test(v.name); })
+             || itVoices.find(function(v) { return !/cosimo|luca|giorgio|male/i.test(v.name); })
+             || itVoices[0];
+      }
+    } else {
+      voice = voices.length ? voices[0] : null;
+    }
+    if (voice) utt.voice = voice;
+    if (onStart) utt.onstart = onStart;
+    if (onEnd) { utt.onend = onEnd; utt.onerror = function() { onEnd(); }; }
+    (function(u) { setTimeout(function() { try { speechSynthesis.speak(u); } catch(e) { if (onEnd) onEnd(); } }, 60); })(utt);
   }
 
   /* ══════════════════════════════════════════
@@ -1113,6 +1138,7 @@ if (!window.__ippVC) {
   // Build listen grid
   function buildAlfaListenGrid() {
     const grid = document.getElementById('alfaListenGrid');
+    grid.innerHTML = '';
     ALFA.forEach(item => {
       const div = document.createElement('div');
       div.className = 'alfa-item';
@@ -1140,6 +1166,7 @@ if (!window.__ippVC) {
   // Build fill grid
   function buildFillGrid() {
     const grid = document.getElementById('alfaFillGrid');
+    grid.innerHTML = '';
     ALFA.forEach((item, i) => {
       const div = document.createElement('div');
       div.className = 'fill-item';
@@ -1210,6 +1237,7 @@ if (!window.__ippVC) {
 
   function buildForeignAudioGrid() {
     const grid = document.getElementById('foreignAudioGrid');
+    grid.innerHTML = '';
     FOREIGN.forEach(item => {
       const div = document.createElement('div');
       div.className = 'foreign-chip';
@@ -1226,6 +1254,7 @@ if (!window.__ippVC) {
 
   function buildForeignPickGrid() {
     const grid = document.getElementById('foreignPickGrid');
+    grid.innerHTML = '';
     ALL_LETTERS.forEach(ltr => {
       const div = document.createElement('div');
       div.className = 'foreign-chip';
@@ -1281,6 +1310,7 @@ if (!window.__ippVC) {
 
   function buildFonetica() {
     const tbody = document.getElementById('fonTableBody');
+    tbody.innerHTML = '';
     FONETICA.forEach((row, i) => {
       const tr = document.createElement('tr');
       if (i % 2 !== 0) tr.style.background = 'var(--cream)';
@@ -1318,6 +1348,7 @@ if (!window.__ippVC) {
 
   function buildGreetGrid() {
     const grid = document.getElementById('greetGrid');
+    grid.innerHTML = '';
 
     function makeCard(title, items, headClass) {
       const card = document.createElement('div');
@@ -1352,6 +1383,7 @@ if (!window.__ippVC) {
 
   function buildGreetContext() {
     const container = document.getElementById('greetContext');
+    container.innerHTML = '';
     GREET_CONTEXT.forEach((item, i) => {
       const div = document.createElement('div');
       div.className = 'vf-row';
@@ -1393,6 +1425,7 @@ if (!window.__ippVC) {
 
   function buildConj() {
     const container = document.getElementById('conjRows');
+    container.innerHTML = '';
     CONJ_DATA.forEach((item, i) => {
       const opts = ['mi','ti','si','ci','vi'].sort(() => Math.random() - 0.5);
       const div = document.createElement('div');
@@ -1460,22 +1493,30 @@ if (!window.__ippVC) {
     'A presto, Graziana! Buonasera!',
   ];
 
+  var _dialogTimer = null;
+
   function playLine(idx) {
-    const sub = document.getElementById('sub-' + idx);
-    ippAudio(DIAL_LINES_DATA[idx], () => { if (sub) sub.classList.add('visible'); }, null);
+    var sub = document.getElementById('sub-' + idx);
+    var gender = (idx % 2 === 0) ? 'f' : 'm';
+    ippAudioGendered(DIAL_LINES_DATA[idx], function() { if (sub) sub.classList.add('visible'); }, null, gender);
   }
 
   function speakAllDialog() {
-    let i = 0;
+    if (_dialogTimer) { clearTimeout(_dialogTimer); _dialogTimer = null; }
+    if (window.speechSynthesis) { try { speechSynthesis.cancel(); } catch(e) {} }
+    var i = 0;
     function next() {
       if (i >= DIAL_LINES_DATA.length) return;
-      const idx = i++;
-      ippAudio(DIAL_LINES_DATA[idx],
-        () => { const s = document.getElementById('sub-' + idx); if (s) s.classList.add('visible'); },
-        () => next()
+      var idx = i++;
+      var gender = (idx % 2 === 0) ? 'f' : 'm';
+      ippAudioGendered(
+        DIAL_LINES_DATA[idx],
+        function() { var s = document.getElementById('sub-' + idx); if (s) s.classList.add('visible'); },
+        function() { _dialogTimer = setTimeout(next, 400); },
+        gender
       );
     }
-    next();
+    setTimeout(next, 60);
   }
 
   /* ══════════════════════════════════════════
@@ -1492,6 +1533,7 @@ if (!window.__ippVC) {
 
   function buildNums() {
     const grid = document.getElementById('numGrid');
+    grid.innerHTML = '';
     NUMS.forEach(([n, w]) => {
       const div = document.createElement('div');
       div.className = 'num-item';
@@ -1513,6 +1555,7 @@ if (!window.__ippVC) {
 
   function buildNumMatch() {
     const container = document.getElementById('numMatch');
+    container.innerHTML = '';
     NUM_MATCH.forEach(([num, word], i) => {
       const opts = [word, ...NUM_OPTS_POOL.filter(w => w !== word).sort(() => Math.random()-0.5).slice(0,3)]
                     .sort(() => Math.random()-0.5);
@@ -1562,6 +1605,7 @@ if (!window.__ippVC) {
 
   function buildEspr() {
     const list = document.getElementById('esprList');
+    list.innerHTML = '';
     ESPR.forEach(item => {
       const div = document.createElement('div');
       div.className = 'espr-item';
@@ -1582,6 +1626,7 @@ if (!window.__ippVC) {
 
   function buildEsprActivity() {
     const container = document.getElementById('esprActivity');
+    container.innerHTML = '';
     ESPR_ACTIVITY.forEach((item, qi) => {
       const div = document.createElement('div');
       div.style.marginBottom = '1.2rem';
@@ -1626,6 +1671,7 @@ if (!window.__ippVC) {
 
   // Exponer funciones para onclick handlers (necesario en Odoo DOMEval)
   window.ippAudio = ippAudio;
+  window.ippAudioGendered = ippAudioGendered;
   window.speakLetter = speakLetter;
   window.checkVF = checkVF;
   window.checkFill = checkFill;

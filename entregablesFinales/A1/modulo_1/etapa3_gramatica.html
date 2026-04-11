@@ -99,6 +99,9 @@ body { font-family: var(--fb); background: var(--cream); color: var(--black); mi
 .opt-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; pointer-events: none; }
 .opt-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; pointer-events: none; }
 
+.ex-section { margin: 24px 0; }
+.ex-section-title { font-family: var(--fh); font-style: italic; color: var(--mc-dk); font-size: 1rem; margin-bottom: 14px; padding-bottom: 6px; border-bottom: 2px solid var(--mc-bg); }
+
 .callout { background: var(--mc-bg); border-left: 4px solid var(--mc); border-radius: 0 var(--r) var(--r) 0; padding: 14px 18px; margin: 18px 0; font-size: 0.88rem; color: var(--mc-text); line-height: 1.6; }
 .callout strong { color: var(--mc-dk); }
 hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 0; }
@@ -152,6 +155,44 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
   💡 <strong>Atención:</strong> En italiano se puede omitir el pronombre — <em>Sono di Roma</em> (sin "io") es igual de correcto que <em>Io sono di Roma</em>. El verbo ya indica la persona.
 </div>
 
+<div style="background: var(--cream); border-radius: var(--r); padding: 16px 20px; margin: 20px 0;">
+<div class="ex-section">
+  <h4 class="ex-section-title">Prattica — essere</h4>
+
+  <div class="ex-block" id="es1a">
+    <p class="ex-q">¿Cómo se dice "Yo soy de Roma"?</p>
+    <button class="opt-btn" onclick="checkOpt(this,'es1a',false,'Eso sería «tu sei» — eso es «vos sos».')">Tu sei di Roma.</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es1a',true,'¡Perfetto! «Io sono» = yo soy/estoy.')">Io sono di Roma.</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es1a',false,'Eso sería «lei è» — eso es «ella es».')">Lei è di Roma.</button>
+    <div class="ex-fb" id="es1afb"></div>
+  </div>
+
+  <div class="ex-block" id="es1b">
+    <p class="ex-q">¿Cuál es la forma correcta para "vos sos estudiante"?</p>
+    <button class="opt-btn" onclick="checkOpt(this,'es1b',false,'«Io sono» = yo soy. Vos sos = tu sei.')">Io sono studente.</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es1b',true,'¡Correcto! «Tu sei» = vos sos / tú eres.')">Tu sei studente.</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es1b',false,'«Lui è» = él es. Aquí hablamos de vos.')">Lui è studente.</button>
+    <div class="ex-fb" id="es1bfb"></div>
+  </div>
+
+  <div class="ex-block" id="es1c">
+    <p class="ex-q">Giulia __ italiana.</p>
+    <button class="opt-btn" onclick="checkOpt(this,'es1c',false,'«Sei» es para «tu» (vos). Giulia es tercera persona.')">sei</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es1c',false,'«Sono» es para «io» (yo). Giulia es tercera persona.')">sono</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es1c',true,'¡Perfetto! «È» = es/está — tercera persona singular.')">è</button>
+    <div class="ex-fb" id="es1cfb"></div>
+  </div>
+
+  <div class="ex-block" id="es1d">
+    <p class="ex-q">¿Cómo preguntás "¿De dónde sos?" en italiano?</p>
+    <button class="opt-btn" onclick="checkOpt(this,'es1d',false,'«Come sei» significa ¿cómo estás?')">Come sei?</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es1d',true,'¡Sì! «Di dove sei?» = ¿de dónde sos?')">Di dove sei?</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es1d',false,'«Dove sei» sin «di» = ¿dónde estás?')">Dove sei?</button>
+    <div class="ex-fb" id="es1dfb"></div>
+  </div>
+</div>
+</div>
+
 <hr class="divider">
 
 <!-- ═══ SEC 2: ANDARE ═══ -->
@@ -179,6 +220,36 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
   Ante artículo: <em>Vado all'aeroporto · Vai alla stazione · Va al museo</em>
 </div>
 
+<div style="background: var(--cream); border-radius: var(--r); padding: 16px 20px; margin: 20px 0;">
+<div class="ex-section">
+  <h4 class="ex-section-title">Prattica — andare</h4>
+
+  <div class="ex-block" id="es2a">
+    <p class="ex-q">¿Cómo se dice "Yo voy a Roma"?</p>
+    <button class="opt-btn" onclick="checkOpt(this,'es2a',true,'¡Bravo! «Io vado a Roma» es correcto.')">Io vado a Roma.</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es2a',false,'«Vai» es segunda persona — vos vas.')">Tu vai a Roma.</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es2a',false,'«Va» es tercera persona — él/ella va.')">Lei va a Roma.</button>
+    <div class="ex-fb" id="es2afb"></div>
+  </div>
+
+  <div class="ex-block" id="es2b">
+    <p class="ex-q">Marco __ a Milano questo weekend.</p>
+    <button class="opt-btn" onclick="checkOpt(this,'es2b',false,'«Vado» es primera persona — yo voy.')">vado</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es2b',false,'«Andate» es segunda persona plural — ustedes van.')">andate</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es2b',true,'¡Sì! «Va» = él/ella va — tercera persona singular.')">va</button>
+    <div class="ex-fb" id="es2bfb"></div>
+  </div>
+
+  <div class="ex-block" id="es2c">
+    <p class="ex-q">¿Cuál es la forma correcta de "nosotros vamos"?</p>
+    <button class="opt-btn" onclick="checkOpt(this,'es2c',false,'«Vanno» es tercera persona plural — ellos van.')">Vanno</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es2c',true,'¡Esatto! «Andiamo» = nosotros/as vamos.')">Andiamo</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es2c',false,'«Andate» es segunda persona plural — ustedes van.')">Andate</button>
+    <div class="ex-fb" id="es2cfb"></div>
+  </div>
+</div>
+</div>
+
 <hr class="divider">
 
 <!-- ═══ SEC 3: AVERE ═══ -->
@@ -204,6 +275,36 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
 <div class="callout" style="margin-top:16px;">
   💡 <strong>La edad con avere:</strong> <em>Ho vent'anni</em> — Tengo 20 años. En italiano se usa <em>avere</em>, no <em>essere</em>.<br>
   La <strong>h</strong> en ho/hai/ha es completamente muda — solo sirve para distinguir de <em>o</em> (o), <em>ai</em> (a los), <em>a</em> (a).
+</div>
+
+<div style="background: var(--cream); border-radius: var(--r); padding: 16px 20px; margin: 20px 0;">
+<div class="ex-section">
+  <h4 class="ex-section-title">Prattica — avere</h4>
+
+  <div class="ex-block" id="es3a">
+    <p class="ex-q">¿Cómo se dice "Yo tengo 25 años"?</p>
+    <button class="opt-btn" onclick="checkOpt(this,'es3a',false,'«Sono 25 anni» no es correcto. En italiano la edad usa «avere».')">Sono 25 anni.</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es3a',true,'¡Perfetto! «Ho» = yo tengo. La edad usa «avere» en italiano, no «essere».')">Ho 25 anni.</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es3a',false,'«Ha» es tercera persona — él/ella tiene.')">Ha 25 anni.</button>
+    <div class="ex-fb" id="es3afb"></div>
+  </div>
+
+  <div class="ex-block" id="es3b">
+    <p class="ex-q">Giulia __ una sorella che si chiama Anna.</p>
+    <button class="opt-btn" onclick="checkOpt(this,'es3b',true,'¡Sì! «Ha» = ella tiene — tercera persona de avere.')">ha</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es3b',false,'«Ho» es primera persona — yo tengo.')">ho</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es3b',false,'«Hai» es segunda persona — vos tenés.')">hai</button>
+    <div class="ex-fb" id="es3bfb"></div>
+  </div>
+
+  <div class="ex-block" id="es3c">
+    <p class="ex-q">¿Por qué "Ho" no se pronuncia la H?</p>
+    <button class="opt-btn" onclick="checkOpt(this,'es3c',false,'No, la H en italiano no es aspirada como en inglés.')">Porque en italiano la H se aspira como en inglés</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es3c',true,'¡Correcto! En italiano la H es muda. Se escribe por etimología latina, pero no se pronuncia.')">Porque la H italiana es siempre muda</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es3c',false,'No — la H se usa como acento diacrítico en italiano.')">Porque se usa como acento</button>
+    <div class="ex-fb" id="es3cfb"></div>
+  </div>
+</div>
 </div>
 
 <hr class="divider">
@@ -247,6 +348,36 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
   💡 <strong>Excepciones:</strong> <em>il problema, il programma</em> (terminan en -a pero son maschile) · <em>la mano</em> (termina en -o pero es femminile). ¡Siempre conviene aprender el artículo con el nombre!
 </div>
 
+<div style="background: var(--cream); border-radius: var(--r); padding: 16px 20px; margin: 20px 0;">
+<div class="ex-section">
+  <h4 class="ex-section-title">Prattica — i nomi</h4>
+
+  <div class="ex-block" id="es4a">
+    <p class="ex-q">¿Cuál es el artículo correcto para "ragazzo" (chico)?</p>
+    <button class="opt-btn" onclick="checkOpt(this,'es4a',false,'«La» es el artículo femenino. «Ragazzo» es masculino.')">la ragazzo</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es4a',true,'¡Esatto! «Il» es el artículo masculino singular.')">il ragazzo</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es4a',false,'«Le» es el artículo femenino plural.')">le ragazzo</button>
+    <div class="ex-fb" id="es4afb"></div>
+  </div>
+
+  <div class="ex-block" id="es4b">
+    <p class="ex-q">"Studentessa" (estudiante femenino) — ¿qué artículo lleva?</p>
+    <button class="opt-btn" onclick="checkOpt(this,'es4b',false,'«Il» es artículo masculino. «Studentessa» es femenino.')">il studentessa</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es4b',true,'¡Sì! «La» es el artículo femenino singular.')">la studentessa</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es4b',false,'«Lo» se usa con palabras masculinas que empiezan con s+consonante, z, ps, etc.')">lo studentessa</button>
+    <div class="ex-fb" id="es4bfb"></div>
+  </div>
+
+  <div class="ex-block" id="es4c">
+    <p class="ex-q">¿Cuál de estas palabras es femenina?</p>
+    <button class="opt-btn" onclick="checkOpt(this,'es4c',false,'«Ragazzo» termina en -o → masculino.')">ragazzo</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es4c',false,'«Libro» termina en -o → masculino.')">libro</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es4c',true,'¡Correcto! «Città» es femenino — las palabras en -à suelen ser femeninas.')">città</button>
+    <div class="ex-fb" id="es4cfb"></div>
+  </div>
+</div>
+</div>
+
 <hr class="divider">
 
 <!-- ═══ SEC 5: VERBI -ARE ═══ -->
@@ -273,6 +404,44 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
       </tbody>
     </table>
   </div>
+</div>
+
+<div style="background: var(--cream); border-radius: var(--r); padding: 16px 20px; margin: 20px 0;">
+<div class="ex-section">
+  <h4 class="ex-section-title">Prattica — verbi in -ARE</h4>
+
+  <div class="ex-block" id="es5a">
+    <p class="ex-q">¿Cómo se conjuga "parlare" para "io"?</p>
+    <button class="opt-btn" onclick="checkOpt(this,'es5a',true,'¡Perfetto! io + -ARE → quito -ARE, agrego -o: parlo.')">parlo</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es5a',false,'«Parli» es para «tu» (vos hablás).')">parli</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es5a',false,'«Parla» es para lui/lei (él/ella habla).')">parla</button>
+    <div class="ex-fb" id="es5afb"></div>
+  </div>
+
+  <div class="ex-block" id="es5b">
+    <p class="ex-q">Sofia __ italiano molto bene. (parlare)</p>
+    <button class="opt-btn" onclick="checkOpt(this,'es5b',false,'«Parli» es para «tu» — vos hablás.')">parli</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es5b',false,'«Parlate» es para «voi» — ustedes hablan.')">parlate</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es5b',true,'¡Sì! «Parla» es lui/lei — tercera persona singular.')">parla</button>
+    <div class="ex-fb" id="es5bfb"></div>
+  </div>
+
+  <div class="ex-block" id="es5c">
+    <p class="ex-q">Noi __ a Napoli. (abitare = vivir)</p>
+    <button class="opt-btn" onclick="checkOpt(this,'es5c',true,'¡Esatto! «noi + -ARE» → quito -ARE, agrego -iamo: abitiamo.')">abitiamo</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es5c',false,'«Abitate» es para «voi» — ustedes viven.')">abitate</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es5c',false,'«Abitano» es para «loro» — ellos viven.')">abitano</button>
+    <div class="ex-fb" id="es5cfb"></div>
+  </div>
+
+  <div class="ex-block" id="es5d">
+    <p class="ex-q">¿Cuál es la terminación correcta para "voi" en verbos -ARE?</p>
+    <button class="opt-btn" onclick="checkOpt(this,'es5d',false,'«-o» es para io (yo).')">-o</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es5d',false,'«-iamo» es para noi (nosotros).')">-iamo</button>
+    <button class="opt-btn" onclick="checkOpt(this,'es5d',true,'¡Correcto! Voi + -ARE → -ate. Ej: parlate, abitate, lavorate.')">-ate</button>
+    <div class="ex-fb" id="es5dfb"></div>
+  </div>
+</div>
 </div>
 
 <hr class="divider">

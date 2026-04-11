@@ -380,73 +380,64 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
 </div><!-- /container -->
 
 <script>
-// Variables de puntaje
-let vfScore = 0;
-let vfTotal = 6;
-let mcScore = 0;
-let mcTotal = 5;
+// ── Odoo DOMEval safe: IIFE + var + window.xxx ──
+(function() {
+  var vfScore = 0;
+  var vfTotal = 6;
+  var mcScore = 0;
+  var mcTotal = 5;
 
-// FEEDBACK messages para V/F
-const vfMessages = {
-  true: ['¡Esatto! ✓', '¡Bravissimo! ✓', '¡Corretto! ✓'],
-  false: ['Ops, no es así. Volvé a ver el video.', 'Incorretto — fijate bien en el video.', 'No exactamente, revisá el contenido.']
-};
+  function checkVF(btn, userAnswer) {
+    var item = btn.closest('.vf-item');
+    var correctAnswer = item.getAttribute('data-answer') === 'true';
+    var btns = item.querySelectorAll('.btn-vf');
+    var feedback = item.querySelector('.vf-feedback');
 
-function checkVF(btn, userAnswer) {
-  const item = btn.closest('.vf-item');
-  const correctAnswer = item.getAttribute('data-answer') === 'true';
-  const btns = item.querySelectorAll('.btn-vf');
-  const feedback = item.querySelector('.vf-feedback');
+    if (item.classList.contains('answered')) return;
+    item.classList.add('answered');
 
-  // Si ya fue respondido, no hacer nada
-  if (item.classList.contains('answered')) return;
-  item.classList.add('answered');
+    var isCorrect = (userAnswer === correctAnswer);
+    btns.forEach(function(b) { b.disabled = true; });
 
-  const isCorrect = (userAnswer === correctAnswer);
-
-  btns.forEach(b => b.disabled = true);
-
-  if (isCorrect) {
-    btn.classList.add('correct');
-    feedback.style.color = '#2d7a4f';
-    feedback.textContent = '✓ ¡Correcto!';
-    vfScore++;
-  } else {
-    btn.classList.add('wrong');
-    feedback.style.color = '#cc4736';
-    feedback.textContent = '✗ Incorrecto.';
-    // Marcar la correcta
-    btns.forEach(b => {
-      const bAnswer = b.textContent.includes('Verdadero') ? true : false;
-      if (bAnswer === correctAnswer) b.classList.add('correct');
-    });
+    if (isCorrect) {
+      btn.classList.add('correct');
+      feedback.style.color = '#2d7a4f';
+      feedback.textContent = '✓ ¡Correcto!';
+      vfScore++;
+    } else {
+      btn.classList.add('wrong');
+      feedback.style.color = '#cc4736';
+      feedback.textContent = '✗ Incorrecto.';
+      btns.forEach(function(b) {
+        var bAnswer = b.textContent.indexOf('Verdadero') !== -1;
+        if (bAnswer === correctAnswer) b.classList.add('correct');
+      });
+    }
+    document.getElementById('vf-score').textContent = vfScore + ' / ' + vfTotal;
   }
 
-  document.getElementById('vf-score').textContent = vfScore + ' / ' + vfTotal;
-}
+  function checkMC(btn, isCorrect, feedbackText) {
+    var item = btn.closest('.mc-item');
+    if (item.classList.contains('answered')) return;
+    item.classList.add('answered');
 
-function checkMC(btn, isCorrect, feedbackText) {
-  const item = btn.closest('.mc-item');
-  if (item.classList.contains('answered')) return;
-  item.classList.add('answered');
+    var btns = item.querySelectorAll('.btn-mc');
+    var feedback = item.querySelector('.mc-feedback');
 
-  const btns = item.querySelectorAll('.btn-mc');
-  const feedback = item.querySelector('.mc-feedback');
+    btns.forEach(function(b) { b.disabled = true; });
+    btn.classList.add(isCorrect ? 'correct' : 'wrong');
 
-  btns.forEach(b => b.disabled = true);
-  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+    feedback.textContent = feedbackText;
+    feedback.style.color = isCorrect ? '#2d7a4f' : '#cc4736';
+    feedback.style.fontWeight = '600';
 
-  feedback.textContent = feedbackText;
-  feedback.style.color = isCorrect ? '#2d7a4f' : '#cc4736';
-  feedback.style.fontWeight = '600';
-
-  if (isCorrect) {
-    mcScore++;
-    document.getElementById('mc-score').textContent = mcScore + ' / ' + mcTotal;
-  } else {
+    if (isCorrect) mcScore++;
     document.getElementById('mc-score').textContent = mcScore + ' / ' + mcTotal;
   }
-}
+
+  window.checkVF = checkVF;
+  window.checkMC = checkMC;
+})();
 </script>
 </body>
 </html>

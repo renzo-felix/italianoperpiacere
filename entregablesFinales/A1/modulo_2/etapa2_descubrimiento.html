@@ -1420,27 +1420,27 @@ body {
   <div class="days-grid">
     <div class="day-chip" onclick="ippAudio('lunedì', 0.82, 'f')">
       <div class="day-num">1</div>
-      <span class="day-it">lunedi</span>
+      <span class="day-it">lunedì</span>
       <div class="day-es">lunes</div>
     </div>
     <div class="day-chip" onclick="ippAudio('martedì', 0.82, 'f')">
       <div class="day-num">2</div>
-      <span class="day-it">martedi</span>
+      <span class="day-it">martedì</span>
       <div class="day-es">martes</div>
     </div>
     <div class="day-chip" onclick="ippAudio('mercoledì', 0.82, 'f')">
       <div class="day-num">3</div>
-      <span class="day-it">mercoledi</span>
+      <span class="day-it">mercoledì</span>
       <div class="day-es">miercoles</div>
     </div>
     <div class="day-chip" onclick="ippAudio('giovedì', 0.82, 'f')">
       <div class="day-num">4</div>
-      <span class="day-it">giovedi</span>
+      <span class="day-it">giovedì</span>
       <div class="day-es">jueves</div>
     </div>
     <div class="day-chip" onclick="ippAudio('venerdì', 0.82, 'f')">
       <div class="day-num">5</div>
-      <span class="day-it">venerdi</span>
+      <span class="day-it">venerdì</span>
       <div class="day-es">viernes</div>
     </div>
     <div class="day-chip" onclick="ippAudio('sabato', 0.82, 'f')">
@@ -1461,12 +1461,12 @@ body {
 
     <div class="day-options" id="dayOptions">
       <button class="day-opt-btn" data-day="domenica" onclick="addDay(this)">domenica</button>
-      <button class="day-opt-btn" data-day="mercoledi" onclick="addDay(this)">mercoledi</button>
-      <button class="day-opt-btn" data-day="venerdi" onclick="addDay(this)">venerdi</button>
-      <button class="day-opt-btn" data-day="lunedi" onclick="addDay(this)">lunedi</button>
+      <button class="day-opt-btn" data-day="mercoledì" onclick="addDay(this)">mercoledì</button>
+      <button class="day-opt-btn" data-day="venerdì" onclick="addDay(this)">venerdì</button>
+      <button class="day-opt-btn" data-day="lunedì" onclick="addDay(this)">lunedì</button>
       <button class="day-opt-btn" data-day="sabato" onclick="addDay(this)">sabato</button>
-      <button class="day-opt-btn" data-day="martedi" onclick="addDay(this)">martedi</button>
-      <button class="day-opt-btn" data-day="giovedi" onclick="addDay(this)">giovedi</button>
+      <button class="day-opt-btn" data-day="martedì" onclick="addDay(this)">martedì</button>
+      <button class="day-opt-btn" data-day="giovedì" onclick="addDay(this)">giovedì</button>
     </div>
 
     <div class="day-drop-zone" id="dayOrder"></div>
@@ -2146,16 +2146,15 @@ function checkComp(btn, isCorrect, qId) {
 }
 
 // ── DAYS ORDERING ──
-var dayOrder = ['lunedi', 'martedi', 'mercoledi', 'giovedi', 'venerdi', 'sabato', 'domenica'];
+var dayOrder = ['lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato', 'domenica'];
 var selectedDays = [];
 
 function addDay(btn) {
   if (btn.classList.contains('selected')) return;
   var day = btn.dataset.day;
-  var sayDay = day.replace('lunedi','lunedì').replace('martedi','martedì').replace('mercoledi','mercoledì').replace('giovedi','giovedì').replace('venerdi','venerdì');
   selectedDays.push(day);
   btn.classList.add('selected');
-  ippAudio(sayDay, 0.82, 'f');
+  ippAudio(day, 0.82, 'f');
 
   var zone = document.getElementById('dayOrder');
   var tag = document.createElement('span');
@@ -2188,7 +2187,7 @@ function checkDays() {
   }
   var correct = selectedDays.every(function(d, i) { return d === dayOrder[i]; });
   if (correct) {
-    fb.textContent = 'Perfecto! Lunedi, martedi, mercoledi, giovedi, venerdi, sabato, domenica: los sabes!';
+    fb.textContent = 'Perfecto! Lunedì, martedì, mercoledì, giovedì, venerdì, sabato, domenica: los sabes!';
     fb.className = 'days-feedback ok';
   } else {
     fb.innerHTML = 'El orden no es correcto. El orden correcto es: <strong>' + dayOrder.join(' > ') + '</strong>';

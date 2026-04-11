@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Una notte a Roma — Etapa 3 | Italiano Per Piacere</title>
+<title>Mi dai il tuo numero? — Etapa 3 | Italiano Per Piacere</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -299,7 +299,7 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
 
 <div class="hero">
   <div class="badge">A1 · Unità 2</div>
-  <h1>Una notte a Roma</h1>
+  <h1>Mi dai il tuo numero?</h1>
   <p>Gramática — nomi, plurale, verbi, fonetica</p>
 </div>
 
@@ -419,12 +419,12 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
         <tr><th>Pronombre</th><th>Forma</th><th>Traducción</th></tr>
       </thead>
       <tbody>
-        <tr><td class="pronoun">io</td><td>preot<span class="verb-end">o</span></td><td>yo reservo</td></tr>
-        <tr><td class="pronoun">tu</td><td>preot<span class="verb-end">i</span></td><td>tú reservas</td></tr>
-        <tr><td class="pronoun">lui/lei</td><td>preot<span class="verb-end">a</span></td><td>él/ella reserva</td></tr>
-        <tr class="noi-row"><td class="pronoun">noi</td><td>preot<span class="verb-end">iamo</span></td><td>nosotros reservamos</td></tr>
-        <tr class="voi-row"><td class="pronoun">voi</td><td>preot<span class="verb-end">ate</span></td><td>vosotros reserváis</td></tr>
-        <tr class="loro-row"><td class="pronoun">loro</td><td>preot<span class="verb-end">ano</span></td><td>ellos reservan</td></tr>
+        <tr><td class="pronoun">io</td><td>prenot<span class="verb-end">o</span></td><td>yo reservo</td></tr>
+        <tr><td class="pronoun">tu</td><td>prenot<span class="verb-end">i</span></td><td>tú reservas</td></tr>
+        <tr><td class="pronoun">lui/lei</td><td>prenot<span class="verb-end">a</span></td><td>él/ella reserva</td></tr>
+        <tr class="noi-row"><td class="pronoun">noi</td><td>prenot<span class="verb-end">iamo</span></td><td>nosotros reservamos</td></tr>
+        <tr class="voi-row"><td class="pronoun">voi</td><td>prenot<span class="verb-end">ate</span></td><td>vosotros reserváis</td></tr>
+        <tr class="loro-row"><td class="pronoun">loro</td><td>prenot<span class="verb-end">ano</span></td><td>ellos reservan</td></tr>
       </tbody>
     </table>
     <div class="rule-box teal">
@@ -540,7 +540,7 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
       </tbody>
     </table>
     <div class="rule-box teal">
-      <strong>Del video — formas reales:</strong><br>
+      <strong>Ejemplos reales:</strong><br>
       • <em>«suppongo siate stanchi»</em> — voi (subjuntivo, referencia)<br>
       • <em>«abbiamo prenotato»</em> — noi de avere (auxiliar)<br>
       • <em>«non abbiamo trovato traffico»</em> — noi de avere<br>
@@ -588,11 +588,6 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
             <span class="fon-word">certamente</span>
             <span class="fon-ipa">/tʃertaˈmente/</span>
             <button class="btn-fon" onclick="ippAudio('certamente', 0.82, 'f')">🔊</button>
-          </div>
-          <div class="fon-ex">
-            <span class="fon-word">culla</span>
-            <span class="fon-ipa">/ˈtʃulla/ ← ci</span>
-            <button class="btn-fon" onclick="ippAudio('culla', 0.82, 'f')">🔊</button>
           </div>
           <div class="fon-ex">
             <span class="fon-word">piacere</span>
@@ -707,7 +702,7 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
         </div>
         <div class="conj-fill-item" style="background:var(--mc-bg);">
           <div class="pron">noi</div>
-          <input type="text" data-answer="prenoviamo" placeholder="noi..." oninput="checkConjInput(this)" data-answer="prenotiamo">
+          <input type="text" data-answer="prenotiamo" placeholder="noi..." oninput="checkConjInput(this)">
         </div>
         <div class="conj-fill-item" style="background:#fef9e6;">
           <div class="pron">voi</div>
@@ -1249,22 +1244,11 @@ function resetClassify7() {
   document.querySelectorAll('#wb7 .word-token').forEach(function(t){ t.classList.remove('used'); });
 }
 
-// FIX: repair the duplicate data-answer on noi row of ex2
 window.ippAudio = ippAudio;
 window.checkFill = checkFill;
 window.revealFills = revealFills;
 window.revealConjInputs = revealConjInputs;
 window.checkMCEx = checkMCEx;
-
-document.addEventListener('DOMContentLoaded', function() {
-  var conjCards = document.querySelectorAll('.exercise-card');
-  conjCards.forEach(function(card) {
-    var noi = card.querySelector('.conj-fill-item:nth-child(4) input');
-    if (noi && noi.dataset.answer && noi.dataset.answer.includes('prenoviamo')) {
-      noi.dataset.answer = 'prenotiamo';
-    }
-  });
-});
 </script>
 </body>
 </html>
