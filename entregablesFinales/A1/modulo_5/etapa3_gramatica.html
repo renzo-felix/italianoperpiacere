@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 5 · Al bar — Gramática | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --mod:    #cc4736;
+  --mod-dk: #a8382a;
+  --mod-lt: #faeae8;
+  --mod-tx: #7a1f14;
+  --cream:  #e9e6d5;
+  --cream-dk: #ddd9c8;
+  --gold:   #EFCF7F;
+  --black:  #1a1a18;
+  --white:  #ffffff;
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+  --r: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--fb); background: var(--cream); color: var(--black); line-height: 1.6; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
+  color: var(--white); padding: 56px 24px 48px; text-align: center;
+}
+.hero-badge {
+  display: inline-block; background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4); border-radius: 20px;
+  padding: 4px 16px; font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px;
+}
+.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 700; margin-bottom: 10px; }
+.hero-sub { font-size: 1.05rem; opacity: 0.88; font-weight: 300; }
+
+/* NAV */
+
+.stage-link {
+  display: flex; align-items: center; gap: 7px; padding: 8px 16px;
+  border-radius: 30px; text-decoration: none; font-size: 0.82rem;
+  font-weight: 500; color: #888; background: var(--cream);
+  border: 1.5px solid transparent; transition: all 0.2s;
+}
+.stage-link .sn {
+  width: 22px; height: 22px; border-radius: 50%; background: #ccc;
+  color: var(--white); display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; font-weight: 700;
+}
+.stage-link.active { background: var(--mod-lt); color: var(--mod-tx); border-color: var(--mod); }
+.stage-link.active .sn { background: var(--mod); }
+.stage-link.done { color: #528e74; }
+.stage-link.done .sn { background: #528e74; }
+
+/* MAIN */
+.main { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; }
+.section { margin-bottom: 52px; }
+
+/* SECTION TITLE */
+.sec-title { font-family: var(--fh); font-style: italic; font-size: 1.6rem; color: var(--mod-tx); margin-bottom: 6px; }
+.sec-divider { width: 48px; height: 3px; background: var(--mod); border-radius: 2px; margin-bottom: 20px; }
+.sec-sub { font-size: 0.93rem; color: #666; margin-bottom: 16px; }
+
+/* SOFIA */
+.sofia-row {
+  display: flex; gap: 16px; align-items: flex-start;
+  background: var(--white); border-radius: var(--r);
+  padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 32px;
+}
+.sofia-col { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
+.sofia-avatar {
+  width: 52px; height: 52px; border-radius: 50%; background: var(--mod-lt);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; border: 2px solid var(--mod);
+}
+.sofia-name { font-size: 0.7rem; font-weight: 700; color: var(--mod); text-transform: uppercase; letter-spacing: 0.05em; }
+.sofia-bubble {
+  background: var(--cream-dk); border-radius: 0 var(--r) var(--r) var(--r);
+  padding: 16px 20px; font-size: 0.96rem; line-height: 1.65; flex: 1;
+}
+
+/* GRAM CARD */
+.gram-card {
+  background: var(--white); border-radius: var(--r);
+  padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 20px;
+}
+.gram-card h3 { font-family: var(--fh); font-style: italic; font-size: 1.25rem; color: var(--mod-tx); margin-bottom: 8px; }
+.gram-card p { font-size: 0.94rem; line-height: 1.7; margin-bottom: 14px; }
+
+/* TABLE */
+.gram-table-wrap { overflow-x: auto; margin: 16px 0; }
+.gram-table {
+  width: 100%; border-collapse: collapse; font-size: 0.9rem;
+  background: var(--white); border-radius: var(--r); overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.gram-table th {
+  background: var(--mod); color: var(--white);
+  padding: 10px 16px; text-align: left; font-weight: 600; font-size: 0.85rem;
+}
+.gram-table td { padding: 10px 16px; border-bottom: 1px solid var(--cream); }
+.gram-table tr:last-child td { border-bottom: none; }
+.gram-table tr:nth-child(even) td { background: #fafaf8; }
+.gram-hl { color: var(--mod-tx); font-weight: 700; font-size: 1.05rem; }
+.gram-note { font-size: 0.78rem; color: #777; font-style: italic; }
+.gram-ex { background: var(--cream); border-radius: 6px; padding: 4px 10px; display: inline-block; font-size: 0.88rem; }
+
+/* TIP BOX */
+.tip-box {
+  background: var(--mod-lt); border-left: 4px solid var(--mod);
+  border-radius: 0 var(--r) var(--r) 0; padding: 14px 18px; margin: 14px 0;
+  font-size: 0.9rem; line-height: 1.6;
+}
+.tip-box strong { color: var(--mod-tx); }
+
+/* RULE CARD */
+.rule-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px; margin: 16px 0;
+}
+.rule-card {
+  background: var(--cream); border-radius: var(--r);
+  padding: 16px; border: 2px solid var(--cream-dk);
+  text-align: center; transition: all 0.2s; cursor: pointer;
+}
+.rule-card:hover { border-color: var(--mod); background: var(--mod-lt); }
+.rule-art { font-size: 1.8rem; font-weight: 900; color: var(--mod-tx); font-family: var(--fh); font-style: italic; }
+.rule-when { font-size: 0.78rem; color: #777; margin-top: 4px; }
+.rule-ex { font-size: 0.82rem; color: var(--mod-tx); margin-top: 6px; font-style: italic; }
+
+/* EXERCISE CARD */
+.ex-card {
+  background: var(--white); border-radius: var(--r);
+  padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 16px;
+}
+.ex-card h4 { font-family: var(--fh); font-style: italic; font-size: 1.1rem; color: var(--mod-tx); margin-bottom: 6px; }
+.ex-tag {
+  display: inline-block; background: var(--mod); color: var(--white);
+  border-radius: 20px; padding: 3px 12px; font-size: 0.7rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px;
+}
+.ex-instr { font-size: 0.88rem; color: #555; margin-bottom: 14px; font-style: italic; }
+.ex-num-badge {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--mod); color: var(--white);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.82rem; margin-right: 8px; flex-shrink: 0;
+}
+.ex-header { display: flex; align-items: center; margin-bottom: 6px; }
+
+/* OPT BUTTONS */
+.opt-group { margin-bottom: 18px; }
+.opt-q { font-weight: 600; font-size: 0.94rem; margin-bottom: 9px; }
+.opt-row { display: flex; flex-direction: column; gap: 7px; }
+.opt-btn {
+  padding: 9px 16px; border-radius: var(--r);
+  border: 1.5px solid var(--cream-dk); background: var(--cream);
+  font-family: var(--fb); font-size: 0.87rem; cursor: pointer;
+  text-align: left; transition: all 0.2s;
+}
+.opt-btn:hover:not(:disabled) { border-color: var(--mod); background: var(--mod-lt); }
+.opt-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: 600; }
+.opt-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+.ex-fb { font-size: 0.82rem; font-weight: 600; margin-top: 5px; min-height: 16px; }
+.ex-fb.ok { color: #155724; }
+.ex-fb.no { color: #991b1b; }
+
+/* FILL IN */
+.fill-block { margin-bottom: 14px; }
+.fill-sentence { font-size: 0.94rem; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.fill-input {
+  border: 1.5px solid var(--cream-dk); border-radius: 8px;
+  padding: 5px 12px; font-family: var(--fb); font-size: 0.93rem;
+  width: 110px; transition: all 0.2s; background: var(--cream);
+}
+.fill-input:focus { outline: none; border-color: var(--mod); background: var(--white); }
+.fill-input.correct { border-color: #28a745; background: #d4edda; }
+.fill-input.wrong { border-color: #dc3545; background: #f8d7da; }
+.fill-fb { font-size: 0.85rem; font-weight: 700; }
+
+/* PREPOSICION GRID */
+.prep-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 14px; margin: 16px 0;
+}
+@media (max-width: 520px) { .prep-grid { grid-template-columns: 1fr; } }
+.prep-card {
+  background: var(--white); border: 2px solid var(--cream-dk);
+  border-radius: var(--r); padding: 18px; text-align: center;
+  transition: all 0.2s; cursor: pointer;
+}
+.prep-card:hover { border-color: var(--mod); background: var(--mod-lt); }
+.prep-art { font-size: 2rem; font-weight: 900; color: var(--mod); font-family: var(--fh); }
+.prep-use { font-size: 0.8rem; color: #555; margin: 6px 0; line-height: 1.5; }
+.prep-ex { font-size: 0.83rem; color: var(--mod-tx); font-style: italic; }
+
+/* CONJUGATION TABLE */
+.conj-block {
+  margin-bottom: 24px;
+}
+.conj-title {
+  font-size: 1rem; font-weight: 700; color: var(--mod-tx);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+}
+.conj-inf {
+  background: var(--mod); color: var(--white);
+  border-radius: 20px; padding: 3px 14px; font-size: 0.82rem; font-weight: 700;
+}
+.conj-table {
+  width: 100%; border-collapse: collapse; font-size: 0.88rem;
+}
+.conj-table td { padding: 8px 12px; border-bottom: 1px solid var(--cream); }
+.conj-table tr:last-child td { border-bottom: none; }
+.conj-table .pron { color: #888; width: 30%; }
+.conj-table .form { font-weight: 700; color: var(--mod-tx); }
+.conj-table .tr { color: #555; font-style: italic; font-size: 0.82rem; }
+
+/* CTA */
+
+/* INTEGRADOR */
+.integrador-box {
+  background: linear-gradient(135deg, var(--mod-lt) 0%, #fff 100%);
+  border: 2px solid var(--mod);
+  border-radius: var(--r); padding: 28px; margin-bottom: 20px;
+}
+.integrador-box h3 { font-family: var(--fh); font-style: italic; font-size: 1.3rem; color: var(--mod-tx); margin-bottom: 8px; }
+.integrador-box p { font-size: 0.9rem; color: #555; margin-bottom: 16px; }
+
+.divider-section { border: none; border-top: 2px dashed var(--cream-dk); margin: 30px 0; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">A1 · Unità 5</div>
+  <h1>Al bar</h1>
+  <p class="hero-sub">Etapa 3 — Gramática · Artículos, Modales & Preposiciones</p>
+</header>
+
+<!-- NAV -->
+
+<main class="main">
+
+  <!-- SOFIA -->
+  <div class="sofia-row">
+    <div class="sofia-col">
+      <div class="sofia-avatar">👩‍🏫</div>
+      <div class="sofia-name">Sofia</div>
+    </div>
+    <div class="sofia-bubble">
+      ¡Acá llegamos al núcleo duro! Hoy trabajamos tres pilares gramaticales que vas a usar en cada conversación al bar: los <strong>artículos indeterminativos</strong> (un, uno, una, un'), los <strong>verbos modales</strong> (dovere, potere, volere) y las <strong>preposiciones de lugar</strong> (da, a, in). Al final hay ejercicios integradores que mezclan todo. ¡Vamos paso a paso!
+    </div>
+  </div>
+
+  <!-- ============================
+       SECCIÓN 1: ARTICOLI INDETERMINATIVI
+       ============================ -->
+  <section class="section">
+    <h2 class="sec-title">1. Gli articoli indeterminativi</h2>
+    <div class="sec-divider"></div>
+    <p class="sec-sub">En italiano, el artículo indeterminativo (equivalente a "un/una" en español) tiene cuatro formas. La elección depende del género y de la letra inicial de la palabra siguiente.</p>
+
+    <div class="gram-card">
+      <h3>Las cuatro formas</h3>
+      <p>Fijate en la lógica: las formas cambian para que la pronunciación fluya mejor. Hacé clic en cada tarjeta para escuchar un ejemplo.</p>
+
+      <div class="rule-grid" id="art-grid"></div>
+
+      <div class="gram-table-wrap">
+        <table class="gram-table">
+          <thead>
+            <tr>
+              <th>Forma</th>
+              <th>Cuándo se usa</th>
+              <th>Ejemplos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="gram-hl">un</span></td>
+              <td>Sustantivos masculinos que empiezan con consonante normal o vocal</td>
+              <td><span class="gram-ex">un caffè</span> · <span class="gram-ex">un aperitivo</span></td>
+            </tr>
+            <tr>
+              <td><span class="gram-hl">uno</span></td>
+              <td>Masculinos que empiezan con s+consonante, z, gn, ps, x, y</td>
+              <td><span class="gram-ex">uno spuntino</span> · <span class="gram-ex">uno zaino</span></td>
+            </tr>
+            <tr>
+              <td><span class="gram-hl">una</span></td>
+              <td>Sustantivos femeninos que empiezan con consonante</td>
+              <td><span class="gram-ex">una birra</span> · <span class="gram-ex">una pizza</span></td>
+            </tr>
+            <tr>
+              <td><span class="gram-hl">un'</span></td>
+              <td>Femeninos que empiezan con vocal (se elide)</td>
+              <td><span class="gram-ex">un'arancia</span> · <span class="gram-ex">un'acqua</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tip-box">
+        <strong>Truco rápido:</strong> Para el masculino, si la palabra empieza con una consonante "complicada" (sp, st, sc, z, gn…) usás <em>uno</em>. Para todo lo demás masculino, <em>un</em>. Para femenino: vocal → <em>un'</em>, consonante → <em>una</em>.
+      </div>
+    </div>
+
+    <!-- EJERCICIOS ARTÍCULOS -->
+    <div class="ex-card" id="ex-a1">
+      <div class="ex-header">
+        <div class="ex-num-badge">1</div>
+        <h4>Artículo correcto — opción múltiple</h4>
+      </div>
+      <div class="ex-tag">Artículos indeterminativos</div>
+      <p class="ex-instr">Elegí el artículo indeterminativo correcto para cada sustantivo.</p>
+
+      <div class="opt-group">
+        <div class="opt-q">1. ___ cappuccino (m., empieza con c)</div>
+        <div class="opt-row" id="ex-a1a-row">
+          <button class="opt-btn" onclick="checkOptG('ex-a1a',this,true,'✓ ¡Correcto! Cappuccino es masculino y empieza con consonante normal → un.')">un</button>
+          <button class="opt-btn" onclick="checkOptG('ex-a1a',this,false,'✗ Uno se usa para masculinos con s+cons., z, gn...')">uno</button>
+          <button class="opt-btn" onclick="checkOptG('ex-a1a',this,false,'✗ Una es para femeninos con consonante.')">una</button>
+          <button class="opt-btn" onclick="checkOptG('ex-a1a',this,false,'✗ Un\' es para femeninos que empiezan con vocal.')">un'</button>
+        </div>
+        <div class="ex-fb" id="ex-a1afb"></div>
+      </div>
+
+      <div class="opt-group">
+        <div class="opt-q">2. ___ acqua (f., empieza con vocal)</div>
+        <div class="opt-row" id="ex-a1b-row">
+          <button class="opt-btn" onclick="checkOptG('ex-a1b',this,false,'✗ Un es para masculinos.')">un</button>
+          <button class="opt-btn" onclick="checkOptG('ex-a1b',this,false,'✗ Una es para femeninos con consonante.')">una</button>
+          <button class="opt-btn" onclick="checkOptG('ex-a1b',this,true,'✓ ¡Perfecto! Acqua es femenino y empieza con vocal → un\'.')">un'</button>
+          <button class="opt-btn" onclick="checkOptG('ex-a1b',this,false,'✗ Uno es para masculinos especiales.')">uno</button>
+        </div>
+        <div class="ex-fb" id="ex-a1bfb"></div>
+      </div>
+
+      <div class="opt-group">
+        <div class="opt-q">3. ___ spremuta (f., empieza con consonante)</div>
+        <div class="opt-row" id="ex-a1c-row">
+          <button class="opt-btn" onclick="checkOptG('ex-a1c',this,false,'✗ Un\' es para femeninos con vocal inicial.')">un'</button>
+          <button class="opt-btn" onclick="checkOptG('ex-a1c',this,true,'✓ ¡Correcto! Spremuta es femenino con consonante → una.')">una</button>
+          <button class="opt-btn" onclick="checkOptG('ex-a1c',this,false,'✗ Un es para masculinos.')">un</button>
+          <button class="opt-btn" onclick="checkOptG('ex-a1c',this,false,'✗ Uno es para masculinos especiales.')">uno</button>
+        </div>
+        <div class="ex-fb" id="ex-a1cfb"></div>
+      </div>
+
+      <div class="opt-group">
+        <div class="opt-q">4. ___ spuntino (m., empieza con sp-)</div>
+        <div class="opt-row" id="ex-a1d-row">
+          <button class="opt-btn" onclick="checkOptG('ex-a1d',this,false,'✗ Un se usa con consonantes simples, no con sp.')">un</button>
+          <button class="opt-btn" onclick="checkOptG('ex-a1d',this,true,'✓ ¡Muy bien! Spuntino empieza con sp → uno.')">uno</button>
+          <button class="opt-btn" onclick="checkOptG('ex-a1d',this,false,'✗ Una es para femeninos.')">una</button>
+          <button class="opt-btn" onclick="checkOptG('ex-a1d',this,false,'✗ Un\' es para femeninos con vocal.')">un'</button>
+        </div>
+        <div class="ex-fb" id="ex-a1dfb"></div>
+      </div>
+    </div>
+
+    <div class="ex-card" id="ex-a2">
+      <div class="ex-header">
+        <div class="ex-num-badge">2</div>
+        <h4>Completá con el artículo correcto</h4>
+      </div>
+      <div class="ex-tag">Artículos indeterminativos</div>
+      <p class="ex-instr">Escribí el artículo indeterminativo que corresponde. Recordá: un / uno / una / un'</p>
+
+      <div class="fill-block">
+        <div class="fill-sentence">
+          <span>Vorrei</span>
+          <input class="fill-input" type="text" data-answer="un" oninput="checkFill(this)" placeholder="___">
+          <span>tiramisù.</span>
+          <span class="fill-fb"></span>
+        </div>
+      </div>
+      <div class="fill-block">
+        <div class="fill-sentence">
+          <span>Prendo</span>
+          <input class="fill-input" type="text" data-answer="una" oninput="checkFill(this)" placeholder="___">
+          <span>panna cotta.</span>
+          <span class="fill-fb"></span>
+        </div>
+      </div>
+      <div class="fill-block">
+        <div class="fill-sentence">
+          <span>Ho</span>
+          <input class="fill-input" type="text" data-answer="un'" oninput="checkFill(this)" placeholder="___">
+          <span>idea!</span>
+          <span class="fill-fb"></span>
+        </div>
+      </div>
+      <div class="fill-block">
+        <div class="fill-sentence">
+          <span>C'è</span>
+          <input class="fill-input" type="text" data-answer="uno" oninput="checkFill(this)" placeholder="___">
+          <span>zaino sul tavolo.</span>
+          <span class="fill-fb"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider-section">
+
+  <!-- ============================
+       SECCIÓN 2: VERBI MODALI
+       ============================ -->
+  <section class="section">
+    <h2 class="sec-title">2. I verbi modali</h2>
+    <div class="sec-divider"></div>
+    <p class="sec-sub"><em>Dovere</em>, <em>potere</em> y <em>volere</em> son verbos irregulares esenciales. Van siempre seguidos de un infinitivo y transforman el significado de la oración.</p>
+
+    <div class="gram-card">
+      <h3>Conjugación completa</h3>
+      <p>Todos los verbos modali son irregulares — hay que memorizarlos. La buena noticia: se usan todo el tiempo, así que los vas a internalizar rápido.</p>
+
+      <div id="conj-blocks"></div>
+
+      <div class="tip-box">
+        <strong>Estructura:</strong> Modal + <em>Infinitivo</em><br>
+        <em>Voglio <strong>bere</strong> un caffè.</em> (Quiero beber un café.)<br>
+        <em>Posso <strong>avere</strong> il conto?</em> (¿Puedo tener la cuenta?)<br>
+        <em>Devo <strong>andare</strong> adesso.</em> (Debo irme ahora.)
+      </div>
+    </div>
+
+    <!-- EJERCICIOS MODALI -->
+    <div class="ex-card" id="ex-m1">
+      <div class="ex-header">
+        <div class="ex-num-badge">3</div>
+        <h4>Verbos modali — selección múltiple</h4>
+      </div>
+      <div class="ex-tag">Verbos modali</div>
+      <p class="ex-instr">Elegí la forma correcta del verbo modal.</p>
+
+      <div class="opt-group">
+        <div class="opt-q">1. Giulia e Marco ___ ordinare subito. (deber)</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOptG('ex-m1a',this,false,'✗ Devono es correcto para loro, no dobbiamo.')">dobbiamo</button>
+          <button class="opt-btn" onclick="checkOptG('ex-m1a',this,true,'✓ ¡Correcto! Loro devono = ellos deben.')">devono</button>
+          <button class="opt-btn" onclick="checkOptG('ex-m1a',this,false,'✗ Devo es para io (yo).')">devo</button>
+        </div>
+        <div class="ex-fb" id="ex-m1afb"></div>
+      </div>
+
+      <div class="opt-group">
+        <div class="opt-q">2. Io non ___ bere alcolici. (poder — negación)</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOptG('ex-m1b',this,false,'✗ Puoi es para tu (vos).')">puoi</button>
+          <button class="opt-btn" onclick="checkOptG('ex-m1b',this,true,'✓ ¡Exacto! Io posso = yo puedo.')">posso</button>
+          <button class="opt-btn" onclick="checkOptG('ex-m1b',this,false,'✗ Può es para lui/lei.')">può</button>
+        </div>
+        <div class="ex-fb" id="ex-m1bfb"></div>
+      </div>
+
+      <div class="opt-group">
+        <div class="opt-q">3. Voi cosa ___ mangiare? (querer)</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOptG('ex-m1c',this,false,'✗ Vogliamo es para noi (nosotros).')">vogliamo</button>
+          <button class="opt-btn" onclick="checkOptG('ex-m1c',this,true,'✓ ¡Bien! Voi volete = ustedes quieren.')">volete</button>
+          <button class="opt-btn" onclick="checkOptG('ex-m1c',this,false,'✗ Vogliono es para loro.')">vogliono</button>
+        </div>
+        <div class="ex-fb" id="ex-m1cfb"></div>
+      </div>
+    </div>
+
+    <div class="ex-card" id="ex-m2">
+      <div class="ex-header">
+        <div class="ex-num-badge">4</div>
+        <h4>Completá con el verbo modal correcto</h4>
+      </div>
+      <div class="ex-tag">Verbos modali</div>
+      <p class="ex-instr">Escribí la forma correcta del verbo entre paréntesis.</p>
+
+      <div class="fill-block">
+        <div class="fill-sentence">
+          <span>Io</span>
+          <input class="fill-input" type="text" data-answer="voglio" oninput="checkFill(this)" placeholder="(volere)">
+          <span>un gelato.</span>
+          <span class="fill-fb"></span>
+        </div>
+      </div>
+      <div class="fill-block">
+        <div class="fill-sentence">
+          <span>Tu</span>
+          <input class="fill-input" type="text" data-answer="puoi" oninput="checkFill(this)" placeholder="(potere)">
+          <span>venire al bar?</span>
+          <span class="fill-fb"></span>
+        </div>
+      </div>
+      <div class="fill-block">
+        <div class="fill-sentence">
+          <span>Lui</span>
+          <input class="fill-input" type="text" data-answer="deve" oninput="checkFill(this)" placeholder="(dovere)">
+          <span>pagare il conto.</span>
+          <span class="fill-fb"></span>
+        </div>
+      </div>
+      <div class="fill-block">
+        <div class="fill-sentence">
+          <span>Noi</span>
+          <input class="fill-input" type="text" data-answer="possiamo" oninput="checkFill(this)" placeholder="(potere)">
+          <span>ordinare adesso.</span>
+          <span class="fill-fb"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider-section">
+
+  <!-- ============================
+       SECCIÓN 3: PREPOSIZIONI DI LUOGO
+       ============================ -->
+  <section class="section">
+    <h2 class="sec-title">3. Le preposizioni di luogo</h2>
+    <div class="sec-divider"></div>
+    <p class="sec-sub"><em>Da</em>, <em>a</em> e <em>in</em> son las preposiciones de lugar más usadas. Tienen matices distintos que se entienden mejor con ejemplos del bar.</p>
+
+    <div class="gram-card">
+      <h3>Da, a, in — diferencias clave</h3>
+
+      <div class="prep-grid" id="prep-grid"></div>
+
+      <div class="gram-table-wrap">
+        <table class="gram-table">
+          <thead>
+            <tr>
+              <th>Preposición</th>
+              <th>Uso principal</th>
+              <th>Ejemplo al bar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="gram-hl">da</span></td>
+              <td>Lugar de alguien (casa de, local de); origen; desde</td>
+              <td><span class="gram-ex">Vado da Mario.</span> (Voy al bar de Mario / donde Mario)</td>
+            </tr>
+            <tr>
+              <td><span class="gram-hl">a</span></td>
+              <td>Lugar puntual, ciudad; dirección hacia</td>
+              <td><span class="gram-ex">Sono al bar.</span> (Estoy en el bar) · <span class="gram-ex">Vado a Roma.</span></td>
+            </tr>
+            <tr>
+              <td><span class="gram-hl">in</span></td>
+              <td>Interior de un espacio; país; región</td>
+              <td><span class="gram-ex">Siamo in Italia.</span> · <span class="gram-ex">Il tavolo è in fondo.</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tip-box">
+        <strong>Atención con "al":</strong> <em>a + il = al</em>. Por eso decimos <em>al bar</em>, <em>al ristorante</em>, <em>al mercato</em>. Es una contracción automática en italiano.
+      </div>
+    </div>
+
+    <!-- EJERCICIOS PREPOSIZIONI -->
+    <div class="ex-card" id="ex-p1">
+      <div class="ex-header">
+        <div class="ex-num-badge">5</div>
+        <h4>Preposizioni di luogo — selección</h4>
+      </div>
+      <div class="ex-tag">Preposizioni</div>
+      <p class="ex-instr">Elegí la preposición correcta.</p>
+
+      <div class="opt-group">
+        <div class="opt-q">1. Giulia è ___ bar con un'amica.</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOptG('ex-p1a',this,true,'✓ ¡Correcto! Al bar (a + il). Lugar puntual → a.')">al</button>
+          <button class="opt-btn" onclick="checkOptG('ex-p1a',this,false,'✗ Dal indica «de/desde el» bar.')">dal</button>
+          <button class="opt-btn" onclick="checkOptG('ex-p1a',this,false,'✗ Nel indica «dentro del» bar.')">nel</button>
+        </div>
+        <div class="ex-fb" id="ex-p1afb"></div>
+      </div>
+
+      <div class="opt-group">
+        <div class="opt-q">2. Domani andiamo ___ Roma.</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOptG('ex-p1b',this,false,'✗ In se usa para países y regiones, pero para ciudades se usa a.')">in</button>
+          <button class="opt-btn" onclick="checkOptG('ex-p1b',this,true,'✓ ¡Perfecto! Para ciudades, siempre a.')">a</button>
+          <button class="opt-btn" onclick="checkOptG('ex-p1b',this,false,'✗ Da indica origen o «casa de alguien».')">da</button>
+        </div>
+        <div class="ex-fb" id="ex-p1bfb"></div>
+      </div>
+
+      <div class="opt-group">
+        <div class="opt-q">3. Abitiamo ___ Italia da tre anni.</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOptG('ex-p1c',this,false,'✗ A se usa para ciudades, no países.')">a</button>
+          <button class="opt-btn" onclick="checkOptG('ex-p1c',this,false,'✗ Da indica punto de partida, pero no para países.')">da</button>
+          <button class="opt-btn" onclick="checkOptG('ex-p1c',this,true,'✓ ¡Correcto! In + país → in Italia.')">in</button>
+        </div>
+        <div class="ex-fb" id="ex-p1cfb"></div>
+      </div>
+    </div>
+
+    <div class="ex-card" id="ex-p2">
+      <div class="ex-header">
+        <div class="ex-num-badge">6</div>
+        <h4>Completá con da, a o in</h4>
+      </div>
+      <div class="ex-tag">Preposizioni</div>
+      <p class="ex-instr">Escribí la preposición correcta (da / a / in).</p>
+
+      <div class="fill-block">
+        <div class="fill-sentence">
+          <span>Stasera vado</span>
+          <input class="fill-input" type="text" data-answer="da" oninput="checkFill(this)" placeholder="___">
+          <span>Giulia.</span>
+          <span class="fill-fb"></span>
+        </div>
+      </div>
+      <div class="fill-block">
+        <div class="fill-sentence">
+          <span>Il bar è</span>
+          <input class="fill-input" type="text" data-answer="in" oninput="checkFill(this)" placeholder="___">
+          <span>centro.</span>
+          <span class="fill-fb"></span>
+        </div>
+      </div>
+      <div class="fill-block">
+        <div class="fill-sentence">
+          <span>Andiamo</span>
+          <input class="fill-input" type="text" data-answer="a" oninput="checkFill(this)" placeholder="___">
+          <span>Venezia.</span>
+          <span class="fill-fb"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider-section">
+
+  <!-- ============================
+       SET INTEGRADOR
+       ============================ -->
+  <section class="section">
+    <h2 class="sec-title">Set integrador</h2>
+    <div class="sec-divider"></div>
+    <p class="sec-sub">Estos ejercicios mezclan artículos, modali y preposizioni. ¡El verdadero desafío!</p>
+
+    <div class="integrador-box">
+      <h3>Situación: Al bar con amici</h3>
+      <p>Completá las frases con el elemento correcto (artículo, modal o preposición).</p>
+
+      <div class="fill-block">
+        <div class="fill-sentence">
+          <span>Voglio</span>
+          <input class="fill-input" type="text" data-answer="un" oninput="checkFill(this)" placeholder="art.">
+          <span>caffè, per favore.</span>
+          <span class="fill-fb"></span>
+        </div>
+      </div>
+      <div class="fill-block">
+        <div class="fill-sentence">
+          <span>Noi</span>
+          <input class="fill-input" type="text" data-answer="dobbiamo" oninput="checkFill(this)" placeholder="modal">
+          <span>partire presto.</span>
+          <span class="fill-fb"></span>
+        </div>
+      </div>
+      <div class="fill-block">
+        <div class="fill-sentence">
+          <span>Sei</span>
+          <input class="fill-input" type="text" data-answer="al" oninput="checkFill(this)" placeholder="prep.">
+          <span>bar adesso?</span>
+          <span class="fill-fb"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Integrador 2: opt -->
+    <div class="ex-card" id="ex-int2">
+      <div class="ex-header">
+        <div class="ex-num-badge">7</div>
+        <h4>Traducción contextual</h4>
+      </div>
+      <div class="ex-tag">Integrador</div>
+      <p class="ex-instr">¿Cómo se dice correctamente en italiano?</p>
+
+      <div class="opt-group">
+        <div class="opt-q">1. «Quiero una cerveza y un agua.»</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOptG('ex-int2a',this,true,'✓ ¡Perfecto! Voglio una birra e un\'acqua.')">Voglio una birra e un'acqua.</button>
+          <button class="opt-btn" onclick="checkOptG('ex-int2a',this,false,'✗ Posso = puedo, no quiero.')">Posso una birra e un'acqua.</button>
+          <button class="opt-btn" onclick="checkOptG('ex-int2a',this,false,'✗ Uno birra es incorrecto — birra es femenino.')">Voglio uno birra e un'acqua.</button>
+        </div>
+        <div class="ex-fb" id="ex-int2afb"></div>
+      </div>
+
+      <div class="opt-group">
+        <div class="opt-q">2. «¿Podés venir al bar el viernes?»</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOptG('ex-int2b',this,false,'✗ Devi = debés, no podés.')">Devi venire al bar venerdì?</button>
+          <button class="opt-btn" onclick="checkOptG('ex-int2b',this,true,'✓ ¡Correcto! Puoi = podés (tu). Al bar = a + il bar.')">Puoi venire al bar venerdì?</button>
+          <button class="opt-btn" onclick="checkOptG('ex-int2b',this,false,'✗ Vuoi = querés, tiene otro matiz.')">Vuoi venire in bar venerdì?</button>
+        </div>
+        <div class="ex-fb" id="ex-int2bfb"></div>
+      </div>
+    </div>
+
+    <!-- Integrador 3: fill -->
+    <div class="ex-card" id="ex-int3">
+      <div class="ex-header">
+        <div class="ex-num-badge">8</div>
+        <h4>Diálogo con huecos</h4>
+      </div>
+      <div class="ex-tag">Integrador</div>
+      <p class="ex-instr">Completá el diálogo con la palabra correcta de la lista: <strong>posso / una / in / al / voglio / un'</strong></p>
+
+      <div style="background:var(--cream); border-radius:var(--r); padding:18px; font-size:0.93rem; line-height:2.2;">
+        <strong>Marco:</strong> Buongiorno! Siete
+        <input class="fill-input" style="width:80px" type="text" data-answer="al" oninput="checkFill(this)" placeholder="___">
+        bar per la prima volta?
+        <span class="fill-fb"></span>
+        <br>
+        <strong>Giulia:</strong> Sì!
+        <input class="fill-input" style="width:110px" type="text" data-answer="posso" oninput="checkFill(this)" placeholder="___">
+        vedere il menù?
+        <span class="fill-fb"></span>
+        <br>
+        <strong>Marco:</strong> Certo! Siamo famosi
+        <input class="fill-input" style="width:70px" type="text" data-answer="in" oninput="checkFill(this)" placeholder="___">
+        tutta Roma.
+        <span class="fill-fb"></span>
+        <br>
+        <strong>Giulia:</strong> Perfetto!
+        <input class="fill-input" style="width:100px" type="text" data-answer="voglio" oninput="checkFill(this)" placeholder="___">
+        <input class="fill-input" style="width:70px" type="text" data-answer="una" oninput="checkFill(this)" placeholder="___">
+        panna cotta.
+        <span class="fill-fb"></span><span class="fill-fb"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  
+
+</main>
+
+<script>
+// ===== ODOO DOMEval guard =====
+if (!window.__ippVC) {
+  window.__ippVC = true;
+  window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) window.__ippV = v; };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
+
+if (!window.__ipp_m5_e3__) {
+window.__ipp_m5_e3__ = true;
+
+function ippVoice(gender) {
+  var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+  var itV = voices.filter(function(v) { return v.lang && v.lang.startsWith('it'); });
+  if (!itV.length) return null;
+  var voice = null;
+  if (gender === 'm') {
+    voice = itV.find(function(v) { return /cosimo|luca|giorgio|male|masc/i.test(v.name); });
+    if (!voice) voice = itV.find(function(v) { return !/elsa|alice|giulia|female|femm/i.test(v.name); });
+  } else {
+    voice = itV.find(function(v) { return /elsa|alice|giulia|female|femm/i.test(v.name); });
+    if (!voice) voice = itV.find(function(v) { return !/cosimo|luca|giorgio|male|masc/i.test(v.name); });
+  }
+  return voice || itV[0];
+}
+
+function ippAudio(text, rate, gender) {
+  rate = (typeof rate === 'number' && isFinite(rate) && rate > 0) ? rate : 0.82;
+  gender = (gender === 'm' || gender === 'f') ? gender : 'f';
+  if (!window.speechSynthesis) return;
+  try { speechSynthesis.cancel(); } catch(e) {}
+  var utt = new SpeechSynthesisUtterance(String(text));
+  utt.lang = 'it-IT'; utt.rate = rate;
+  var voice = ippVoice(gender);
+  if (voice) utt.voice = voice;
+  (function(u) { setTimeout(function() { try { speechSynthesis.speak(u); } catch(e) {} }, 60); })(utt);
+}
+
+function checkOptG(exId, btn, isCorrect, feedback) {
+  var row = btn.closest('.opt-row');
+  if (!row) return;
+  row.querySelectorAll('.opt-btn').forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  var fb = document.getElementById(exId + 'fb');
+  if (fb) { fb.textContent = feedback; fb.className = 'ex-fb ' + (isCorrect ? 'ok' : 'no'); }
+}
+
+function checkFill(input) {
+  var answer = (input.getAttribute('data-answer') || '').toLowerCase().trim();
+  var val = input.value.toLowerCase().trim();
+  var fb = input.nextElementSibling;
+  // skip non-fill-fb siblings
+  while (fb && !fb.classList.contains('fill-fb')) fb = fb.nextElementSibling;
+  input.classList.remove('correct','wrong');
+  if (!val) { if (fb) fb.textContent = ''; return; }
+  if (val === answer) {
+    input.classList.add('correct');
+    if (fb) { fb.textContent = '✓'; fb.style.color = '#065f46'; }
+  } else if (answer.startsWith(val)) {
+    if (fb) { fb.textContent = '...'; fb.style.color = '#888'; }
+  } else {
+    input.classList.add('wrong');
+    if (fb) { fb.textContent = '✗'; fb.style.color = '#991b1b'; }
+  }
+}
+
+window.ippAudio = ippAudio;
+window.ippVoice = ippVoice;
+window.checkOptG = checkOptG;
+window.checkFill = checkFill;
+
+// ===== ARTICOLI CARDS =====
+var artData = [
+  { art: 'un', when: 'Masculino + consonante o vocal', ex: 'un caffè', sample: 'un caffè' },
+  { art: 'uno', when: 'Masculino + s+cons., z, gn, ps', ex: 'uno spuntino', sample: 'uno spuntino' },
+  { art: 'una', when: 'Femenino + consonante', ex: 'una birra', sample: 'una birra' },
+  { art: "un'", when: 'Femenino + vocal', ex: "un'acqua", sample: 'un acqua' }
+];
+var artGrid = document.getElementById('art-grid');
+artData.forEach(function(item) {
+  var card = document.createElement('div');
+  card.className = 'rule-card';
+  card.onclick = function() { ippAudio(item.sample, 0.78, 'f'); };
+  card.innerHTML = '<div class="rule-art">' + item.art + '</div>' +
+    '<div class="rule-when">' + item.when + '</div>' +
+    '<div class="rule-ex">' + item.ex + '</div>';
+  artGrid.appendChild(card);
+});
+
+// ===== CONJ BLOCKS =====
+var conjData = [
+  {
+    inf: 'dovere', tr: 'deber',
+    rows: [
+      ['io', 'devo', 'debo'],
+      ['tu', 'devi', 'debés'],
+      ['lui/lei', 'deve', 'debe'],
+      ['noi', 'dobbiamo', 'debemos'],
+      ['voi', 'dovete', 'deben (uds.)'],
+      ['loro', 'devono', 'deben (ellos)']
+    ]
+  },
+  {
+    inf: 'potere', tr: 'poder',
+    rows: [
+      ['io', 'posso', 'puedo'],
+      ['tu', 'puoi', 'podés'],
+      ['lui/lei', 'può', 'puede'],
+      ['noi', 'possiamo', 'podemos'],
+      ['voi', 'potete', 'pueden (uds.)'],
+      ['loro', 'possono', 'pueden (ellos)']
+    ]
+  },
+  {
+    inf: 'volere', tr: 'querer',
+    rows: [
+      ['io', 'voglio', 'quiero'],
+      ['tu', 'vuoi', 'querés'],
+      ['lui/lei', 'vuole', 'quiere'],
+      ['noi', 'vogliamo', 'queremos'],
+      ['voi', 'volete', 'quieren (uds.)'],
+      ['loro', 'vogliono', 'quieren (ellos)']
+    ]
+  }
+];
+
+var conjBlocks = document.getElementById('conj-blocks');
+conjData.forEach(function(verb) {
+  var block = document.createElement('div');
+  block.className = 'conj-block';
+  var title = document.createElement('div');
+  title.className = 'conj-title';
+  title.innerHTML = '<span class="conj-inf">' + verb.inf + '</span> <span style="color:#777;font-size:0.85rem;font-weight:400;">' + verb.tr + '</span>';
+  block.appendChild(title);
+
+  var table = document.createElement('table');
+  table.className = 'conj-table';
+  verb.rows.forEach(function(row) {
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td class="pron">' + row[0] + '</td>' +
+      '<td class="form" style="cursor:pointer" onclick="ippAudio(\'' + row[1] + '\', 0.78, \'f\')">' + row[1] + '</td>' +
+      '<td class="tr">' + row[2] + '</td>';
+    table.appendChild(tr);
+  });
+  block.appendChild(table);
+  conjBlocks.appendChild(block);
+});
+
+// ===== PREP CARDS =====
+var prepData = [
+  {
+    prep: 'da',
+    use: 'Lugar de alguien\nOrigen / desde',
+    ex: 'Vado da Mario.\nVengo da Roma.'
+  },
+  {
+    prep: 'a',
+    use: 'Ciudad / lugar puntual\nDirección hacia',
+    ex: 'Sono al bar.\nVado a Napoli.'
+  },
+  {
+    prep: 'in',
+    use: 'Interior / espacio\nPaís / región',
+    ex: 'Siamo in Italia.\nIl tavolo è in fondo.'
+  }
+];
+
+var prepGrid = document.getElementById('prep-grid');
+prepData.forEach(function(item) {
+  var card = document.createElement('div');
+  card.className = 'prep-card';
+  card.onclick = function() { ippAudio(item.prep, 0.75, 'f'); };
+  card.innerHTML = '<div class="prep-art">' + item.prep + '</div>' +
+    '<div class="prep-use">' + item.use.replace(/\n/g, '<br>') + '</div>' +
+    '<div class="prep-ex">' + item.ex.replace(/\n/g, '<br>') + '</div>';
+  prepGrid.appendChild(card);
+});
+
+} // end execution guard
+</script>
+</body>
+</html>

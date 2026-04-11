@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La mia giornata — Etapa 2 | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --mod:    #78a6ba;
+  --mod-dk: #5a8ea0;
+  --mod-lt: #eaf3f7;
+  --mod-tx: #2d5f72;
+  --cream:  #e9e6d5;
+  --cream-dk: #ddd9c8;
+  --gold:   #EFCF7F;
+  --black:  #1a1a18;
+  --white:  #ffffff;
+  --green:  #528e74;
+  --red:    #cc4736;
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+  --r: 10px;
+  --mc:      #78a6ba;
+  --mc-dk:   #5a8ea0;
+  --mc-text: #2d5f72;
+  --mc-bg:   #eaf3f7;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--fb); background: var(--cream); color: var(--black); line-height: 1.6; }
+
+/* STAGE NAV */
+
+.stage-pill { padding: 5px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; border: 1.5px solid transparent; text-decoration: none; transition: all 0.2s; }
+.stage-pill.done { background: var(--mc-bg); color: var(--mc-dk); border-color: var(--mc); }
+.stage-pill.active { background: var(--mc); color: var(--white); border-color: var(--mc-dk); }
+.stage-pill.pending { background: var(--cream-dk); color: #888; border-color: #ccc; }
+.stage-sep { color: #bbb; font-size: 0.8rem; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%);
+  color: var(--white); padding: 60px 24px 52px; text-align: center;
+}
+.hero-badge {
+  display: inline-block; background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.35); border-radius: 20px;
+  padding: 4px 16px; font-size: 0.78rem; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase; margin-bottom: 18px;
+}
+.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 700; margin-bottom: 10px; }
+.hero-sub { font-size: 1.05rem; opacity: .88; font-weight: 300; }
+
+/* CONTAINER */
+.container { max-width: 860px; margin: 0 auto; padding: 44px 20px 80px; }
+.section { margin-bottom: 52px; }
+
+/* SEC HEADER */
+.sec-header { margin-bottom: 22px; }
+.sec-header h2 { font-family: var(--fh); font-style: italic; color: var(--mc-text); font-size: 1.5rem; margin-bottom: 6px; }
+.sec-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--mc); color: var(--white); font-size: 0.82rem; font-weight: 700;
+  margin-right: 8px; vertical-align: middle;
+}
+.sec-divider { width: 48px; height: 3px; background: var(--mc); border-radius: 2px; margin-bottom: 14px; }
+.sec-header p { font-size: 0.92rem; color: #555; }
+
+/* SOFIA */
+.sofia-block { display: flex; gap: 16px; align-items: flex-start; background: var(--white); border-radius: var(--r); padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,.07); margin-bottom: 32px; }
+.sofia-col { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
+.sofia-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--mc-bg); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; border: 2px solid var(--mc); }
+.sofia-name { font-size: 0.7rem; font-weight: 700; color: var(--mc); text-transform: uppercase; letter-spacing: .05em; }
+.sofia-bubble { background: var(--cream-dk); border-radius: 0 var(--r) var(--r) var(--r); padding: 16px 20px; font-size: 0.96rem; line-height: 1.65; flex: 1; }
+
+/* VOCAB CHIP GRID */
+.vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.vocab-chip {
+  background: var(--white); border: 1px solid var(--cream-dk); border-radius: var(--r);
+  padding: 13px 16px; display: flex; align-items: center; gap: 12px;
+  transition: box-shadow 0.2s;
+}
+.vocab-chip:hover { box-shadow: 0 3px 12px rgba(120,166,186,.18); }
+.vocab-it { flex: 1; }
+.vocab-it strong { font-size: 1rem; font-style: italic; color: var(--mc-dk); display: block; }
+.vocab-it span { font-size: 0.78rem; color: #777; }
+.btn-audio {
+  background: var(--mc-bg); border: 1.5px solid var(--mc); border-radius: 50%;
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.2s; flex-shrink: 0; font-size: 1rem; color: var(--mc-dk);
+}
+.btn-audio:hover { background: var(--mc); color: var(--white); }
+.btn-audio.playing { background: var(--mc); color: var(--white); animation: pulse 0.8s infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.12)} }
+
+/* CHIP ROWS — small chips for avverbi, parti del giorno */
+.chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.chip {
+  background: var(--white); border: 1.5px solid var(--mc); border-radius: 30px;
+  padding: 8px 18px; display: flex; align-items: center; gap: 8px;
+  font-size: 0.88rem; cursor: pointer; transition: all 0.2s; color: var(--mc-text);
+}
+.chip:hover { background: var(--mc); color: var(--white); }
+.chip strong { font-style: italic; }
+.chip .chip-es { font-size: 0.75rem; opacity: .75; }
+
+/* PARTI DEL GIORNO */
+.parti-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+.parti-card {
+  background: var(--white); border-radius: 12px; border: 1.5px solid var(--cream-dk);
+  padding: 18px 14px; text-align: center; transition: all 0.2s; cursor: pointer;
+}
+.parti-card:hover { border-color: var(--mc); box-shadow: 0 4px 14px rgba(120,166,186,.2); transform: translateY(-2px); }
+.parti-emoji { font-size: 2rem; margin-bottom: 8px; display: block; }
+.parti-it { font-family: var(--fh); font-style: italic; font-size: 1.05rem; color: var(--mc-dk); font-weight: 700; margin-bottom: 4px; }
+.parti-es { font-size: 0.75rem; color: #777; margin-bottom: 10px; }
+.parti-card .btn-audio { margin: 0 auto; }
+
+/* DIALOG */
+.dial-box { background: var(--white); border-radius: 14px; border: 1px solid var(--cream-dk); padding: 24px; }
+.dial-meta { font-size: 0.82rem; color: #888; margin-bottom: 16px; font-style: italic; }
+.btn-play-all {
+  width: 100%; padding: 13px; background: var(--mc); color: var(--white);
+  border: none; border-radius: var(--r); font-family: var(--fb); font-size: 0.95rem;
+  font-weight: 700; cursor: pointer; margin-bottom: 22px; transition: background 0.2s;
+}
+.btn-play-all:hover { background: var(--mc-dk); }
+.line { margin-bottom: 16px; }
+.line-speaker { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+.line-speaker.f { color: var(--mc-dk); }
+.line-speaker.m { color: var(--mc-text); }
+.f-bubble { background: var(--mc-bg); border-left: 3px solid var(--mc); padding: 12px 16px; border-radius: 0 10px 10px 10px; font-size: 0.94rem; }
+.m-bubble { background: var(--cream-dk); border-left: 3px solid var(--mc-dk); padding: 12px 16px; border-radius: 0 10px 10px 10px; font-size: 0.94rem; }
+.line-it { font-style: italic; color: var(--mc-text); font-weight: 600; }
+.line-es { font-size: 0.8rem; color: #777; margin-top: 4px; }
+.btn-line-play {
+  padding: 3px 12px; background: var(--white); border: 1.5px solid var(--mc);
+  border-radius: 20px; color: var(--mc-dk); font-family: var(--fb); font-size: 0.75rem;
+  font-weight: 600; cursor: pointer; transition: all 0.2s;
+}
+.btn-line-play:hover { background: var(--mc-bg); }
+
+/* PATTERN CARDS */
+.pattern-grid { display: grid; gap: 10px; }
+.pattern-card {
+  background: var(--white); border-radius: var(--r); border: 1px solid var(--cream-dk);
+  padding: 16px 20px; display: flex; align-items: center; gap: 14px;
+  transition: box-shadow 0.2s;
+}
+.pattern-card:hover { box-shadow: 0 3px 12px rgba(120,166,186,.15); }
+.pattern-it { flex: 1; font-style: italic; font-size: 1rem; font-weight: 600; color: var(--mc-dk); }
+.pattern-note { font-size: 0.78rem; color: #777; margin-top: 3px; }
+.pattern-highlight { color: var(--mc); font-style: normal; }
+
+/* ANCHE/NEANCHE TABLE */
+.anche-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.anche-col { background: var(--white); border-radius: var(--r); border: 2px solid var(--cream-dk); overflow: hidden; }
+.anche-col-head {
+  padding: 12px 16px; font-weight: 700; font-size: 0.88rem;
+  text-transform: uppercase; letter-spacing: .05em;
+}
+.anche-col-head.pos { background: var(--mc); color: var(--white); }
+.anche-col-head.neg { background: var(--mc-dk); color: var(--white); }
+.anche-body { padding: 14px 16px; }
+.anche-row { padding: 8px 0; border-bottom: 1px solid var(--cream-dk); font-size: 0.9rem; }
+.anche-row:last-child { border-bottom: none; }
+.anche-row em { color: var(--mc-dk); font-weight: 600; }
+.callout { background: var(--mc-bg); border-left: 4px solid var(--mc); border-radius: 0 var(--r) var(--r) 0; padding: 14px 18px; margin: 18px 0; font-size: 0.88rem; color: var(--mc-text); }
+.callout strong { color: var(--mc-dk); }
+
+/* FONETICA */
+.fon-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--r); overflow: hidden; border: 1px solid var(--cream-dk); }
+.fon-table th { background: var(--mc); color: var(--white); padding: 10px 14px; font-size: 0.82rem; text-align: left; font-weight: 600; }
+.fon-table td { padding: 12px 14px; border-bottom: 1px solid var(--cream-dk); font-size: 0.93rem; vertical-align: middle; }
+.fon-table tr:last-child td { border-bottom: none; }
+.fon-table tr:nth-child(even) td { background: var(--cream); }
+.fon-ipa { font-family: monospace; font-size: 1.1rem; background: var(--mc-bg); color: var(--mc-dk); padding: 2px 8px; border-radius: 6px; font-weight: 700; }
+.fon-word { font-style: italic; font-weight: 700; color: var(--mc-text); font-size: 1rem; }
+.fon-hint { font-size: 0.75rem; color: #aaa; font-style: italic; }
+
+/* CULTURE */
+.culture-strip {
+  background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk));
+  border-top: 3px solid var(--mc); border-radius: var(--r);
+  padding: 26px 28px; margin: 40px 0;
+}
+.culture-icon { font-size: 2rem; margin-bottom: 8px; }
+.culture-strip h3 { font-family: var(--fh); font-style: italic; color: var(--mc-dk); margin-bottom: 12px; font-size: 1.2rem; }
+.culture-strip p { font-size: 0.91rem; line-height: 1.75; color: #444; margin-bottom: 10px; }
+.btn-translate {
+  margin-top: 12px; padding: 8px 20px; background: var(--white);
+  border: 1.5px solid var(--mc); border-radius: 20px; color: var(--mc-dk);
+  font-family: var(--fb); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+}
+.btn-translate:hover { background: var(--mc-bg); }
+.culture-es { margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--mc); display: none; }
+.culture-es p { color: #555; }
+
+/* EXERCISES */
+.ex-card { background: var(--white); border-radius: 14px; border: 1px solid var(--cream-dk); padding: 24px; margin-bottom: 18px; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+.ex-title { font-family: var(--fh); font-style: italic; color: var(--mc-text); font-size: 1.1rem; margin-bottom: 6px; }
+.ex-inst { font-size: 0.85rem; color: #666; margin-bottom: 18px; }
+.opt-btn {
+  padding: 8px 18px; border-radius: 20px; border: 1.5px solid var(--mc);
+  background: var(--white); color: var(--mc-dk); font-family: var(--fb); font-size: 0.85rem;
+  font-weight: 600; cursor: pointer; transition: all 0.2s;
+}
+.opt-btn:hover:not(:disabled) { background: var(--mc-bg); }
+.opt-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; pointer-events: none; }
+.opt-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; pointer-events: none; }
+.opt-btn.disabled { pointer-events: none; opacity: .55; }
+.q-item { padding: 14px 0; border-bottom: 1px solid var(--cream-dk); }
+.q-item:last-child { border-bottom: none; }
+.q-text { font-size: 0.94rem; font-weight: 600; color: var(--mc-text); margin-bottom: 10px; }
+.q-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.q-fb { font-size: 0.8rem; font-weight: 600; margin-top: 8px; display: none; }
+.q-fb.show { display: block; }
+.q-fb.ok { color: #155724; }
+.q-fb.no { color: #721c24; }
+
+/* FILL */
+.fill-item { margin-bottom: 18px; }
+.fill-item label { display: block; font-size: 0.94rem; margin-bottom: 6px; color: var(--mc-text); font-weight: 500; }
+.fill-input {
+  padding: 9px 14px; border-radius: var(--r); border: 1.5px solid var(--cream-dk);
+  font-family: var(--fb); font-size: 0.94rem; width: 100%; max-width: 320px;
+  background: var(--white); transition: border-color 0.2s; color: var(--black);
+}
+.fill-input:focus { outline: none; border-color: var(--mc); }
+.fill-input.correct { border-color: #28a745; background: #d4edda; }
+.fill-input.wrong { border-color: #dc3545; background: #f8d7da; }
+.btn-check {
+  margin-top: 4px; padding: 5px 16px; background: var(--mc-dk); color: var(--white);
+  border: none; border-radius: 20px; font-family: var(--fb); font-size: 0.8rem;
+  font-weight: 700; cursor: pointer; transition: all 0.2s; display: block; margin-top: 8px;
+}
+.btn-check:hover { background: var(--mc-text); }
+
+/* CTA */
+.cta-section { text-align: center; padding: 44px 0 20px; }
+
+.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 44px 0; }
+
+@media(max-width:600px) {
+  .anche-grid { grid-template-columns: 1fr; }
+  .parti-grid { grid-template-columns: repeat(2, 1fr); }
+  .vocab-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- STAGE NAV -->
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">Módulo 6 · A1</div>
+  <h1>La mia giornata</h1>
+  <p class="hero-sub">Etapa 2 — Descubrimiento · Vocabulario, Diálogos y Cultura</p>
+</header>
+
+<main class="container">
+
+<!-- ── SECCIÓN 1: APERTURA ── -->
+<section class="section">
+  <div class="sofia-block">
+    <div class="sofia-col">
+      <div class="sofia-avatar">👩‍🏫</div>
+      <span class="sofia-name">Sofia</span>
+    </div>
+    <div class="sofia-bubble">
+      <p>¡Benvenuto/a! Ahora viene la parte divertida: vamos a explorar juntos el vocabulario del video, escuchar cómo suenan las palabras y entender los patrones que se repiten en la rutina italiana.</p>
+      <p style="margin-top:10px">Esta etapa tiene <strong>vocabulario con audio</strong>, un diálogo entre Giulia y Marco, las secciones de gramática inducida y una pizca de cultura. ¡Tomálo con calma y escuchá mucho! 🎧</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECCIÓN 2: VOCABOLARIO — AZIONI QUOTIDIANE ── -->
+<section class="section">
+  <div class="sec-header">
+    <h2><span class="sec-num">2</span>La routine quotidiana</h2>
+    <div class="sec-divider"></div>
+    <p>Verbos reflexivos y acciones del día. Hacé clic en ▶ para escuchar la pronunciación.</p>
+  </div>
+
+  <div class="vocab-grid">
+    <div class="vocab-chip">
+      <div class="vocab-it"><strong>svegliarsi</strong><span>despertarse</span></div>
+      <button class="btn-audio" onclick="ippAudio('svegliarsi','f')" title="Escuchar">▶</button>
+    </div>
+    <div class="vocab-chip">
+      <div class="vocab-it"><strong>alzarsi</strong><span>levantarse</span></div>
+      <button class="btn-audio" onclick="ippAudio('alzarsi','f')" title="Escuchar">▶</button>
+    </div>
+    <div class="vocab-chip">
+      <div class="vocab-it"><strong>lavarsi la faccia</strong><span>lavarse la cara</span></div>
+      <button class="btn-audio" onclick="ippAudio('lavarsi la faccia','m')" title="Escuchar">▶</button>
+    </div>
+    <div class="vocab-chip">
+      <div class="vocab-it"><strong>lavarsi i denti</strong><span>lavarse los dientes</span></div>
+      <button class="btn-audio" onclick="ippAudio('lavarsi i denti','m')" title="Escuchar">▶</button>
+    </div>
+    <div class="vocab-chip">
+      <div class="vocab-it"><strong>vestirsi</strong><span>vestirse</span></div>
+      <button class="btn-audio" onclick="ippAudio('vestirsi','f')" title="Escuchar">▶</button>
+    </div>
+    <div class="vocab-chip">
+      <div class="vocab-it"><strong>fare colazione</strong><span>desayunar / hacer el desayuno</span></div>
+      <button class="btn-audio" onclick="ippAudio('fare colazione','m')" title="Escuchar">▶</button>
+    </div>
+    <div class="vocab-chip">
+      <div class="vocab-it"><strong>uscire di casa</strong><span>salir de casa</span></div>
+      <button class="btn-audio" onclick="ippAudio('uscire di casa','f')" title="Escuchar">▶</button>
+    </div>
+    <div class="vocab-chip">
+      <div class="vocab-it"><strong>andare al lavoro</strong><span>ir al trabajo</span></div>
+      <button class="btn-audio" onclick="ippAudio('andare al lavoro','m')" title="Escuchar">▶</button>
+    </div>
+    <div class="vocab-chip">
+      <div class="vocab-it"><strong>pranzare</strong><span>almorzar</span></div>
+      <button class="btn-audio" onclick="ippAudio('pranzare','f')" title="Escuchar">▶</button>
+    </div>
+    <div class="vocab-chip">
+      <div class="vocab-it"><strong>tornare a casa</strong><span>volver a casa</span></div>
+      <button class="btn-audio" onclick="ippAudio('tornare a casa','m')" title="Escuchar">▶</button>
+    </div>
+    <div class="vocab-chip">
+      <div class="vocab-it"><strong>rilassarsi</strong><span>relajarse</span></div>
+      <button class="btn-audio" onclick="ippAudio('rilassarsi','f')" title="Escuchar">▶</button>
+    </div>
+    <div class="vocab-chip">
+      <div class="vocab-it"><strong>cucinare la cena</strong><span>cocinar la cena</span></div>
+      <button class="btn-audio" onclick="ippAudio('cucinare la cena','m')" title="Escuchar">▶</button>
+    </div>
+    <div class="vocab-chip">
+      <div class="vocab-it"><strong>lavare i piatti</strong><span>lavar los platos</span></div>
+      <button class="btn-audio" onclick="ippAudio('lavare i piatti','f')" title="Escuchar">▶</button>
+    </div>
+    <div class="vocab-chip">
+      <div class="vocab-it"><strong>leggere</strong><span>leer</span></div>
+      <button class="btn-audio" onclick="ippAudio('leggere','m')" title="Escuchar">▶</button>
+    </div>
+    <div class="vocab-chip">
+      <div class="vocab-it"><strong>ascoltare musica</strong><span>escuchar música</span></div>
+      <button class="btn-audio" onclick="ippAudio('ascoltare musica','f')" title="Escuchar">▶</button>
+    </div>
+    <div class="vocab-chip">
+      <div class="vocab-it"><strong>andare a letto</strong><span>irse a la cama</span></div>
+      <button class="btn-audio" onclick="ippAudio('andare a letto','m')" title="Escuchar">▶</button>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── SECCIÓN 3: AVVERBI DI FREQUENZA ── -->
+<section class="section">
+  <div class="sec-header">
+    <h2><span class="sec-num">3</span>Avverbi di frequenza</h2>
+    <div class="sec-divider"></div>
+    <p>Estos adverbios te dicen con qué frecuencia se hace algo. Hacé clic en cada uno para escucharlo.</p>
+  </div>
+
+  <div class="chip-row">
+    <div class="chip" onclick="ippAudio('sempre','f')">
+      <strong>sempre</strong> <span class="chip-es">siempre</span>
+    </div>
+    <div class="chip" onclick="ippAudio('spesso','m')">
+      <strong>spesso</strong> <span class="chip-es">a menudo</span>
+    </div>
+    <div class="chip" onclick="ippAudio('a volte','f')">
+      <strong>a volte</strong> <span class="chip-es">a veces</span>
+    </div>
+    <div class="chip" onclick="ippAudio('qualche volta','m')">
+      <strong>qualche volta</strong> <span class="chip-es">alguna vez</span>
+    </div>
+    <div class="chip" onclick="ippAudio('raramente','f')">
+      <strong>raramente</strong> <span class="chip-es">raramente</span>
+    </div>
+    <div class="chip" onclick="ippAudio('non... mai','m')">
+      <strong>non … mai</strong> <span class="chip-es">nunca</span>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:20px">
+    <strong>Ojo:</strong> en italiano el "nunca" es una negación doble — <em>Non mangio mai la pasta fredda.</em> (Nunca como pasta fría). ¡No es error!
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── SECCIÓN 4: LE PARTI DEL GIORNO ── -->
+<section class="section">
+  <div class="sec-header">
+    <h2><span class="sec-num">4</span>Le parti del giorno</h2>
+    <div class="sec-divider"></div>
+    <p>Las partes del día te ayudan a situar las acciones en el tiempo. Hacé clic en cada tarjeta para escucharla.</p>
+  </div>
+
+  <div class="parti-grid">
+    <div class="parti-card" onclick="ippAudio('la mattina','f')">
+      <span class="parti-emoji">🌅</span>
+      <div class="parti-it">la mattina</div>
+      <div class="parti-es">la mañana</div>
+    </div>
+    <div class="parti-card" onclick="ippAudio('il pomeriggio','m')">
+      <span class="parti-emoji">☀️</span>
+      <div class="parti-it">il pomeriggio</div>
+      <div class="parti-es">la tarde</div>
+    </div>
+    <div class="parti-card" onclick="ippAudio('la sera','f')">
+      <span class="parti-emoji">🌇</span>
+      <div class="parti-it">la sera</div>
+      <div class="parti-es">la noche (temprano)</div>
+    </div>
+    <div class="parti-card" onclick="ippAudio('la notte','f')">
+      <span class="parti-emoji">🌙</span>
+      <div class="parti-it">la notte</div>
+      <div class="parti-es">la noche (tarde)</div>
+    </div>
+    <div class="parti-card" onclick="ippAudio('mezzogiorno','m')">
+      <span class="parti-emoji">🕛</span>
+      <div class="parti-it">mezzogiorno</div>
+      <div class="parti-es">mediodía</div>
+    </div>
+    <div class="parti-card" onclick="ippAudio('mezzanotte','f')">
+      <span class="parti-emoji">🕛</span>
+      <div class="parti-it">mezzanotte</div>
+      <div class="parti-es">medianoche</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── SECCIÓN 5: DIÁLOGO ── -->
+<section class="section">
+  <div class="sec-header">
+    <h2><span class="sec-num">5</span>Giulia e Marco si raccontano la giornata</h2>
+    <div class="sec-divider"></div>
+    <p>Giulia y Marco hablan de cómo es su día típico. Escuchá línea por línea o el diálogo completo.</p>
+  </div>
+
+  <div class="dial-box">
+    <p class="dial-meta">🎙 Diálogo — La routine di ogni giorno</p>
+    <button class="btn-play-all" onclick="playAllDialog()">▶ Reproducir todo el diálogo</button>
+
+    <div class="line" id="line0">
+      <div class="line-speaker f">Giulia <button class="btn-line-play" onclick="playLine(0)">▶</button></div>
+      <div class="f-bubble">
+        <div class="line-it">Marco, a che ora ti svegli di solito?</div>
+        <div class="line-es">Marco, ¿a qué hora te despertás habitualmente?</div>
+      </div>
+    </div>
+
+    <div class="line" id="line1">
+      <div class="line-speaker m">Marco <button class="btn-line-play" onclick="playLine(1)">▶</button></div>
+      <div class="m-bubble">
+        <div class="line-it">Di solito mi sveglio alle sette e mi alzo subito. Non riesco a restare a letto!</div>
+        <div class="line-es">Habitualmente me despierto a las siete y me levanto enseguida. ¡No puedo quedarme en la cama!</div>
+      </div>
+    </div>
+
+    <div class="line" id="line2">
+      <div class="line-speaker f">Giulia <button class="btn-line-play" onclick="playLine(2)">▶</button></div>
+      <div class="f-bubble">
+        <div class="line-it">Anch'io! Prima mi lavo la faccia, poi mi vesto e faccio colazione.</div>
+        <div class="line-es">¡Yo también! Primero me lavo la cara, luego me visto y desayuno.</div>
+      </div>
+    </div>
+
+    <div class="line" id="line3">
+      <div class="line-speaker m">Marco <button class="btn-line-play" onclick="playLine(3)">▶</button></div>
+      <div class="m-bubble">
+        <div class="line-it">Io faccio colazione al bar, spesso con un cappuccino e un cornetto.</div>
+        <div class="line-es">Yo desayuno en el bar, a menudo con un cappuccino y un croissant.</div>
+      </div>
+    </div>
+
+    <div class="line" id="line4">
+      <div class="line-speaker f">Giulia <button class="btn-line-play" onclick="playLine(4)">▶</button></div>
+      <div class="f-bubble">
+        <div class="line-it">Che bello! Io invece mangio a casa. A mezzogiorno pranzo con i colleghi.</div>
+        <div class="line-es">¡Qué lindo! Yo en cambio como en casa. Al mediodía almuerzo con los colegas.</div>
+      </div>
+    </div>
+
+    <div class="line" id="line5">
+      <div class="line-speaker m">Marco <button class="btn-line-play" onclick="playLine(5)">▶</button></div>
+      <div class="m-bubble">
+        <div class="line-it">La sera, quando torno a casa, mi rilasso un po'. A volte leggo, a volte ascolto musica.</div>
+        <div class="line-es">Por la tarde, cuando vuelvo a casa, me relajo un rato. A veces leo, a veces escucho música.</div>
+      </div>
+    </div>
+
+    <div class="line" id="line6">
+      <div class="line-speaker f">Giulia <button class="btn-line-play" onclick="playLine(6)">▶</button></div>
+      <div class="f-bubble">
+        <div class="line-it">Anch'io mi rilasso la sera. E il weekend? Ti piace dormire fino a tardi?</div>
+        <div class="line-es">Yo también me relajo por la tarde. ¿Y el fin de semana? ¿Te gusta dormir hasta tarde?</div>
+      </div>
+    </div>
+
+    <div class="line" id="line7">
+      <div class="line-speaker m">Marco <button class="btn-line-play" onclick="playLine(7)">▶</button></div>
+      <div class="m-bubble">
+        <div class="line-it">Sì! Il sabato non metto la sveglia. Di solito vado al mercato e poi corro al parco.</div>
+        <div class="line-es">¡Sí! El sábado no pongo el despertador. Habitualmente voy al mercado y después corro en el parque.</div>
+      </div>
+    </div>
+
+    <div class="line" id="line8">
+      <div class="line-speaker f">Giulia <button class="btn-line-play" onclick="playLine(8)">▶</button></div>
+      <div class="f-bubble">
+        <div class="line-it">La domenica invece incontro gli amici o visito una mostra. E la sera vado a pranzo dalla famiglia!</div>
+        <div class="line-es">El domingo en cambio me junto con amigos o visito una exposición. ¡Y a la tarde voy a almorzar con la familia!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── SECCIÓN 6: PATTERN CARDS ── -->
+<section class="section">
+  <div class="sec-header">
+    <h2><span class="sec-num">6</span>Patrones clave — Dire quando si fa una cosa</h2>
+    <div class="sec-divider"></div>
+    <p>Estos son los patrones más útiles para hablar de tu rutina. Las palabras en <span style="color:var(--mc);font-weight:700">teal</span> son las que podés cambiar.</p>
+  </div>
+
+  <div class="pattern-grid">
+    <div class="pattern-card">
+      <div style="flex:1">
+        <div class="pattern-it"><span class="pattern-highlight">Di solito</span> mi sveglio alle sette.</div>
+        <div class="pattern-note">Habitualmente + verbo reflexivo + hora</div>
+      </div>
+      <button class="btn-audio" onclick="ippAudio('Di solito mi sveglio alle sette.','m')">▶</button>
+    </div>
+    <div class="pattern-card">
+      <div style="flex:1">
+        <div class="pattern-it"><span class="pattern-highlight">A volte</span> faccio colazione al bar.</div>
+        <div class="pattern-note">A veces + acción</div>
+      </div>
+      <button class="btn-audio" onclick="ippAudio('A volte faccio colazione al bar.','f')">▶</button>
+    </div>
+    <div class="pattern-card">
+      <div style="flex:1">
+        <div class="pattern-it"><span class="pattern-highlight">La sera</span> mi rilasso sul divano.</div>
+        <div class="pattern-note">Parte del día + verbo reflexivo + lugar</div>
+      </div>
+      <button class="btn-audio" onclick="ippAudio('La sera mi rilasso sul divano.','m')">▶</button>
+    </div>
+    <div class="pattern-card">
+      <div style="flex:1">
+        <div class="pattern-it"><span class="pattern-highlight">Il lunedì</span> vado al lavoro alle otto.</div>
+        <div class="pattern-note">Artículo + día + acción + hora</div>
+      </div>
+      <button class="btn-audio" onclick="ippAudio('Il lunedì vado al lavoro alle otto.','f')">▶</button>
+    </div>
+    <div class="pattern-card">
+      <div style="flex:1">
+        <div class="pattern-it"><span class="pattern-highlight">Spesso</span> pranzo con i colleghi.</div>
+        <div class="pattern-note">Adverbio de frecuencia + acción</div>
+      </div>
+      <button class="btn-audio" onclick="ippAudio('Spesso pranzo con i colleghi.','m')">▶</button>
+    </div>
+    <div class="pattern-card">
+      <div style="flex:1">
+        <div class="pattern-it"><span class="pattern-highlight">Quando torno a casa</span>, mi rilasso.</div>
+        <div class="pattern-note">Cuando + acción → consecuencia</div>
+      </div>
+      <button class="btn-audio" onclick="ippAudio('Quando torno a casa, mi rilasso.','f')">▶</button>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── SECCIÓN 7: ANCHE / NEANCHE ── -->
+<section class="section">
+  <div class="sec-header">
+    <h2><span class="sec-num">7</span>Anche / Neanche — Yo también / Yo tampoco</h2>
+    <div class="sec-divider"></div>
+    <p>Una de las estructuras más usadas en conversación. Sirve para estar de acuerdo o en desacuerdo con lo que dice alguien.</p>
+  </div>
+
+  <div class="anche-grid">
+    <div class="anche-col">
+      <div class="anche-col-head pos">Anche — (Yo) también</div>
+      <div class="anche-body">
+        <div class="anche-row">— <em>Mi piace il caffè.</em> — Anch'io!</div>
+        <div class="anche-row">— <em>Faccio sport ogni giorno.</em> — Anch'io!</div>
+        <div class="anche-row">— <em>Vado a letto tardi.</em> — Anch'io, sempre!</div>
+        <div class="anche-row">— <em>Mi rilasso la sera.</em> — Anche Marco si rilassa!</div>
+      </div>
+    </div>
+    <div class="anche-col">
+      <div class="anche-col-head neg">Neanche — (Yo) tampoco</div>
+      <div class="anche-body">
+        <div class="anche-row">— <em>Non mi piace alzarmi presto.</em> — Neanche a me!</div>
+        <div class="anche-row">— <em>Non faccio mai sport.</em> — Neanche io.</div>
+        <div class="anche-row">— <em>Non metto la sveglia.</em> — Neanche io, mai!</div>
+        <div class="anche-row">— <em>Non cucino spesso.</em> — Neanche Marco cucina.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:18px">
+    <strong>Regla rápida:</strong> <em>Anche</em> acompaña oraciones afirmativas. <em>Neanche</em> acompaña oraciones negativas. Cuando se refiere a la primera persona, se escribe <em>anch'io</em> y <em>neanche io</em>.
+  </div>
+
+  <div class="pattern-grid" style="margin-top:16px">
+    <div class="pattern-card">
+      <div style="flex:1">
+        <div class="pattern-it">— Mi sveglio tardi. — <span class="pattern-highlight">Anch'io!</span></div>
+        <div class="pattern-note">Afirmativa → Anche</div>
+      </div>
+      <button class="btn-audio" onclick="ippAudio('Mi sveglio tardi. Anch io!','f')">▶</button>
+    </div>
+    <div class="pattern-card">
+      <div style="flex:1">
+        <div class="pattern-it">— Non faccio sport. — <span class="pattern-highlight">Neanche io!</span></div>
+        <div class="pattern-note">Negativa → Neanche</div>
+      </div>
+      <button class="btn-audio" onclick="ippAudio('Non faccio sport. Neanche io!','m')">▶</button>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── SECCIÓN 8: FONETICA ── -->
+<section class="section">
+  <div class="sec-header">
+    <h2><span class="sec-num">8</span>Fonetica — I suoni ʎ e ɲ</h2>
+    <div class="sec-divider"></div>
+    <p>Dos sonidos italianos que no existen igual en español rioplatense. ¡Pero son más fáciles de lo que parecen!</p>
+  </div>
+
+  <table class="fon-table">
+    <thead>
+      <tr>
+        <th>Sonido</th>
+        <th>Grafía</th>
+        <th>Ejemplo</th>
+        <th>Equivalente aproximado</th>
+        <th>Audio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="fon-ipa">ʎ</span></td>
+        <td><strong>gli</strong></td>
+        <td><span class="fon-word">famiglia</span></td>
+        <td>Como la "ll" del rioplatense en "llama" (yeísta suavizado)</td>
+        <td><button class="btn-audio" onclick="ippAudio('famiglia','f')">▶</button></td>
+      </tr>
+      <tr>
+        <td><span class="fon-ipa">ʎ</span></td>
+        <td><strong>gli</strong></td>
+        <td><span class="fon-word">moglie</span></td>
+        <td>Igual que arriba — la "gl" se pronuncia junta</td>
+        <td><button class="btn-audio" onclick="ippAudio('moglie','m')">▶</button></td>
+      </tr>
+      <tr>
+        <td><span class="fon-ipa">ʎ</span></td>
+        <td><strong>gli</strong></td>
+        <td><span class="fon-word">luglio</span></td>
+        <td>Julio → en italiano luglio — mismo sonido</td>
+        <td><button class="btn-audio" onclick="ippAudio('luglio','f')">▶</button></td>
+      </tr>
+      <tr>
+        <td><span class="fon-ipa">ɲ</span></td>
+        <td><strong>gn</strong></td>
+        <td><span class="fon-word">bagno</span></td>
+        <td>Como la "ñ" del español — ¡ya la sabés!</td>
+        <td><button class="btn-audio" onclick="ippAudio('bagno','m')">▶</button></td>
+      </tr>
+      <tr>
+        <td><span class="fon-ipa">ɲ</span></td>
+        <td><strong>gn</strong></td>
+        <td><span class="fon-word">gnocchi</span></td>
+        <td>Ñoqui — ¡exactamente eso, la palabra que ya conocés!</td>
+        <td><button class="btn-audio" onclick="ippAudio('gnocchi','f')">▶</button></td>
+      </tr>
+      <tr>
+        <td><span class="fon-ipa">ɲ</span></td>
+        <td><strong>gn</strong></td>
+        <td><span class="fon-word">compagno</span></td>
+        <td>Compañero — el gn siempre suena como ñ</td>
+        <td><button class="btn-audio" onclick="ippAudio('compagno','m')">▶</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout" style="margin-top:16px">
+    <strong>Truco rioplatense:</strong> el sonido <em>gn</em> (ɲ) ya lo tenés en "ñ" (mañana, año). ¡Y el sonido <em>gli</em> (ʎ) es muy parecido a la "ll" que usamos en Buenos Aires! Practicá con: <em>famiglia, moglie, bagno, gnocchi</em>.
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── SECCIÓN 9: CULTURA ── -->
+<section class="section">
+  <div class="sec-header">
+    <h2><span class="sec-num">9</span>Cultura — La giornata italiana</h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <div class="culture-strip">
+    <div class="culture-icon">🇮🇹</div>
+    <h3>Il ritmo della vita italiana</h3>
+    <p>In Italia, la giornata ha un ritmo tutto suo. La mattina si inizia spesso al bar con un caffè veloce — pochi minuti in piedi al bancone, non seduti come in Argentina.</p>
+    <p>Il pranzo è ancora oggi un momento importante: molte famiglie e aziende si fermano tra mezzogiorno e le due. Nei piccoli paesi, è ancora comune tornare a casa per mangiare.</p>
+    <p>La sera, prima di cena, c'è <em>l'aperitivo</em> — un momento sociale tra amici o colleghi. E dopo cena, la classica <em>passeggiata</em> per le strade del centro è una tradizione viva in molte città.</p>
+    <button class="btn-translate" onclick="toggleCulture()">Ver traducción en español</button>
+    <div class="culture-es" id="culture-es">
+      <p>En Italia, el día tiene su propio ritmo. Por la mañana se empieza a menudo en el bar con un café rápido — pocos minutos de pie en el mostrador, no sentados como en Argentina.</p>
+      <p>El almuerzo sigue siendo hoy un momento importante: muchas familias y empresas hacen una pausa entre el mediodía y las dos. En los pueblos pequeños, todavía es común volver a casa a comer.</p>
+      <p>Por la tarde, antes de cenar, está el aperitivo — un momento social entre amigos o colegas. Y después de cenar, el clásico paseo por las calles del centro es una tradición viva en muchas ciudades.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── SECCIÓN 10: EJERCICIOS ── -->
+<section class="section">
+  <div class="sec-header">
+    <h2><span class="sec-num">10</span>Ejercicios interactivos</h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <!-- Ejercicio A: Orden de la rutina -->
+  <div class="ex-card">
+    <div class="ex-title">Ejercicio A — ¿Qué va primero?</div>
+    <p class="ex-inst">Elegí la opción que describe el orden lógico de la rutina matutina.</p>
+
+    <div class="q-item">
+      <div class="q-text">1. ¿Cuál es el orden correcto de la mañana?</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="checkOpt(this,'qA1',false)">vestirsi → svegliarsi → lavarsi</button>
+        <button class="opt-btn" onclick="checkOpt(this,'qA1',true)">svegliarsi → alzarsi → lavarsi → vestirsi</button>
+        <button class="opt-btn" onclick="checkOpt(this,'qA1',false)">lavarsi → alzarsi → svegliarsi</button>
+      </div>
+      <div class="q-fb" id="qA1">¡Correcto! El orden natural: despertarse → levantarse → lavarse → vestirse.</div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-text">2. ¿Qué se hace normalmente dopo pranzo (después del almuerzo)?</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="checkOpt(this,'qA2',false)">fare colazione</button>
+        <button class="opt-btn" onclick="checkOpt(this,'qA2',false)">svegliarsi</button>
+        <button class="opt-btn" onclick="checkOpt(this,'qA2',true)">tornare al lavoro o rilassarsi</button>
+      </div>
+      <div class="q-fb" id="qA2">¡Exacto! Después del almuerzo se vuelve al trabajo o, si se puede, ¡un riposino!</div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-text">3. ¿Qué avverbio de frecuencia va mejor? "_____ faccio colazione al bar."</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="checkOpt(this,'qA3',false)">Mai</button>
+        <button class="opt-btn" onclick="checkOpt(this,'qA3',true)">Spesso</button>
+        <button class="opt-btn" onclick="checkOpt(this,'qA3',false)">Raramente (para indicar algo frecuente)</button>
+      </div>
+      <div class="q-fb" id="qA3">¡Bien! Spesso = a menudo, indica algo frecuente. Mai = nunca y raramente = raramente (poco frecuente).</div>
+    </div>
+  </div>
+
+  <!-- Ejercicio B: Anche / Neanche -->
+  <div class="ex-card">
+    <div class="ex-title">Ejercicio B — Anche o Neanche</div>
+    <p class="ex-inst">Elegí si la respuesta correcta es <em>Anch'io</em> o <em>Neanche io</em>.</p>
+
+    <div class="q-item">
+      <div class="q-text">1. — Mi alzo presto ogni giorno. — _____!</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="checkOpt(this,'qB1',true)">Anch'io!</button>
+        <button class="opt-btn" onclick="checkOpt(this,'qB1',false)">Neanche io!</button>
+      </div>
+      <div class="q-fb" id="qB1">¡Correcto! La oración es afirmativa → usamos <em>Anch'io</em>.</div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-text">2. — Non mi piace cucinare la cena. — _____!</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="checkOpt(this,'qB2',false)">Anch'io!</button>
+        <button class="opt-btn" onclick="checkOpt(this,'qB2',true)">Neanche io!</button>
+      </div>
+      <div class="q-fb" id="qB2">¡Perfecto! La oración es negativa (non) → usamos <em>Neanche io</em>.</div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-text">3. — Leggo sempre prima di dormire. — _____!</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="checkOpt(this,'qB3',true)">Anch'io!</button>
+        <button class="opt-btn" onclick="checkOpt(this,'qB3',false)">Neanche io!</button>
+      </div>
+      <div class="q-fb" id="qB3">¡Muy bien! Afirmativa → <em>Anch'io</em>. ¡Los que leen antes de dormir son la mejor compañía!</div>
+    </div>
+  </div>
+
+  <!-- Ejercicio C: Completar con partes del giorno -->
+  <div class="ex-card">
+    <div class="ex-title">Ejercicio C — Completá con la parte del giorno</div>
+    <p class="ex-inst">Escribí la parte del día correcta: <em>la mattina / il pomeriggio / la sera / la notte</em>.</p>
+
+    <div class="fill-item">
+      <label>1. Mi sveglio _____ alle sette.</label>
+      <input class="fill-input" id="fill1" placeholder="la mattina / il pomeriggio / la sera / la notte" oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-check" onclick="checkFill('fill1',['la mattina','mattina'],'¡Correcto! Nos despertamos por la mañana.','Se despierta a las 7 → la mattina.')">Verificar</button>
+    </div>
+
+    <div class="fill-item">
+      <label>2. _____ guardo un film sul divano.</label>
+      <input class="fill-input" id="fill2" placeholder="la mattina / il pomeriggio / la sera / la notte" oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-check" onclick="checkFill('fill2',['la sera','sera'],'¡Perfecto! La sera es el momento de relajarse en el sofá.','Ver películas en el sofá es una actividad de la sera.')">Verificar</button>
+    </div>
+
+    <div class="fill-item">
+      <label>3. _____ vado al parco a correre.</label>
+      <input class="fill-input" id="fill3" placeholder="la mattina / il pomeriggio / la sera / la notte" oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-check" onclick="checkFill('fill3',['il pomeriggio','pomeriggio','la mattina','mattina'],'¡Bien! Correr al parque es una actividad de la mañana o la tarde.','Correr es actividad de mattina o pomeriggio.')">Verificar</button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  
+  
+</div>
+
+</main>
+
+<script>
+// ── IPP Voice Preloader ──
+if (!window.__ipp_m6_e2__) {
+  window.__ipp_m6_e2__ = true;
+
+  // Preload voices
+  window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _loadV = function() { window.__ippV = speechSynthesis.getVoices(); };
+    _loadV();
+    speechSynthesis.onvoiceschanged = _loadV;
+  }
+
+  // ── ippVoice ──
+  window.ippVoice = function(gender) {
+    var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+    var itV = voices.filter(function(v) { return v.lang && v.lang.startsWith('it'); });
+    if (!itV.length) return null;
+    var voice = null;
+    if (gender === 'm') {
+      voice = itV.find(function(v) { return /cosimo|luca|giorgio|male|masc/i.test(v.name); });
+      if (!voice) voice = itV.find(function(v) { return !/elsa|alice|giulia|female|femm/i.test(v.name); });
+    } else {
+      voice = itV.find(function(v) { return /elsa|alice|giulia|female|femm/i.test(v.name); });
+      if (!voice) voice = itV.find(function(v) { return !/cosimo|luca|giorgio|male|masc/i.test(v.name); });
+    }
+    return voice || itV[0];
+  };
+
+  // ── ippAudio ──
+  window.ippAudio = function(text, gender) {
+    if (!window.speechSynthesis) return;
+    speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'it-IT';
+    u.rate = 0.88;
+    u.pitch = (gender === 'f') ? 1.1 : 0.95;
+    var v = window.ippVoice(gender || 'f');
+    if (v) u.voice = v;
+    speechSynthesis.speak(u);
+  };
+
+  // ── Dialog lines ──
+  var dialogLines = [
+    { text: 'Marco, a che ora ti svegli di solito?', gender: 'f' },
+    { text: 'Di solito mi sveglio alle sette e mi alzo subito. Non riesco a restare a letto!', gender: 'm' },
+    { text: "Anch'io! Prima mi lavo la faccia, poi mi vesto e faccio colazione.", gender: 'f' },
+    { text: 'Io faccio colazione al bar, spesso con un cappuccino e un cornetto.', gender: 'm' },
+    { text: 'Che bello! Io invece mangio a casa. A mezzogiorno pranzo con i colleghi.', gender: 'f' },
+    { text: 'La sera, quando torno a casa, mi rilasso un po\'. A volte leggo, a volte ascolto musica.', gender: 'm' },
+    { text: "Anch'io mi rilasso la sera. E il weekend? Ti piace dormire fino a tardi?", gender: 'f' },
+    { text: 'Sì! Il sabato non metto la sveglia. Di solito vado al mercato e poi corro al parco.', gender: 'm' },
+    { text: "La domenica invece incontro gli amici o visito una mostra. E la sera vado a pranzo dalla famiglia!", gender: 'f' }
+  ];
+
+  window.playLine = function(idx) {
+    var line = dialogLines[idx];
+    if (!line) return;
+    window.ippAudio(line.text, line.gender);
+  };
+
+  window.playAllDialog = function() {
+    if (!window.speechSynthesis) return;
+    speechSynthesis.cancel();
+    var idx = 0;
+    function speakNext() {
+      if (idx >= dialogLines.length) return;
+      var line = dialogLines[idx];
+      var u = new SpeechSynthesisUtterance(line.text);
+      u.lang = 'it-IT';
+      u.rate = 0.85;
+      u.pitch = (line.gender === 'f') ? 1.1 : 0.95;
+      var v = window.ippVoice(line.gender);
+      if (v) u.voice = v;
+      u.onend = function() { idx++; setTimeout(speakNext, 600); };
+      speechSynthesis.speak(u);
+    }
+    speakNext();
+  };
+
+  // ── checkOpt ──
+  window.checkOpt = function(btn, fbId, isCorrect) {
+    var container = btn.parentElement;
+    var allBtns = container.querySelectorAll('.opt-btn');
+    allBtns.forEach(function(b) { b.disabled = true; b.classList.add('disabled'); });
+    btn.classList.remove('disabled');
+    btn.classList.add(isCorrect ? 'correct' : 'wrong');
+    var fb = document.getElementById(fbId);
+    if (fb) {
+      fb.className = 'q-fb show ' + (isCorrect ? 'ok' : 'no');
+      if (!isCorrect) fb.textContent = '¡Casi! Revisá las opciones — la respuesta correcta queda resaltada.';
+      if (isCorrect && !fb.textContent) fb.textContent = '¡Muy bien!';
+    }
+  };
+
+  // ── checkFill ──
+  window.checkFill = function(inputId, answers, msgOk, msgNo) {
+    var inp = document.getElementById(inputId);
+    if (!inp) return;
+    var val = inp.value.trim().toLowerCase();
+    var correct = answers.some(function(a) { return a.toLowerCase() === val; });
+    inp.classList.toggle('correct', correct);
+    inp.classList.toggle('wrong', !correct);
+    // show inline msg
+    var nextSib = inp.nextElementSibling && inp.nextElementSibling.nextElementSibling;
+    var msgEl = inp.parentElement.querySelector('.fill-msg');
+    if (!msgEl) {
+      msgEl = document.createElement('div');
+      msgEl.className = 'fill-msg q-fb show';
+      inp.parentElement.appendChild(msgEl);
+    }
+    msgEl.className = 'fill-msg q-fb show ' + (correct ? 'ok' : 'no');
+    msgEl.textContent = correct ? msgOk : msgNo;
+  };
+
+  // ── toggleCulture ──
+  window.toggleCulture = function() {
+    var el = document.getElementById('culture-es');
+    if (!el) return;
+    el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+  };
+
+} // end guard
+</script>
+</body>
+</html>

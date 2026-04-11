@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 5 · Al bar — Descubrimiento | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --mod:    #cc4736;
+  --mod-dk: #a8382a;
+  --mod-lt: #faeae8;
+  --mod-tx: #7a1f14;
+  --cream:  #e9e6d5;
+  --cream-dk: #ddd9c8;
+  --gold:   #EFCF7F;
+  --black:  #1a1a18;
+  --white:  #ffffff;
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+  --r: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--fb); background: var(--cream); color: var(--black); line-height: 1.6; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
+  color: var(--white); padding: 56px 24px 48px; text-align: center;
+}
+.hero-badge {
+  display: inline-block; background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4); border-radius: 20px;
+  padding: 4px 16px; font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px;
+}
+.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 700; margin-bottom: 10px; }
+.hero-sub { font-size: 1.05rem; opacity: 0.88; font-weight: 300; }
+
+/* NAV */
+
+.stage-link {
+  display: flex; align-items: center; gap: 7px; padding: 8px 16px;
+  border-radius: 30px; text-decoration: none; font-size: 0.82rem;
+  font-weight: 500; color: #888; background: var(--cream);
+  border: 1.5px solid transparent; transition: all 0.2s;
+}
+.stage-link .sn {
+  width: 22px; height: 22px; border-radius: 50%; background: #ccc;
+  color: var(--white); display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; font-weight: 700;
+}
+.stage-link.active { background: var(--mod-lt); color: var(--mod-tx); border-color: var(--mod); }
+.stage-link.active .sn { background: var(--mod); }
+.stage-link.done { color: #528e74; }
+.stage-link.done .sn { background: #528e74; }
+
+/* MAIN */
+.main { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; }
+.section { margin-bottom: 48px; }
+
+/* SECTION TITLE */
+.sec-title { font-family: var(--fh); font-style: italic; font-size: 1.6rem; color: var(--mod-tx); margin-bottom: 6px; }
+.sec-sub { font-size: 0.93rem; color: #666; margin-bottom: 14px; }
+.sec-divider { width: 48px; height: 3px; background: var(--mod); border-radius: 2px; margin-bottom: 20px; }
+
+/* SOFIA */
+.sofia-row {
+  display: flex; gap: 16px; align-items: flex-start;
+  background: var(--white); border-radius: var(--r);
+  padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 28px;
+}
+.sofia-col { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
+.sofia-avatar {
+  width: 52px; height: 52px; border-radius: 50%; background: var(--mod-lt);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; border: 2px solid var(--mod);
+}
+.sofia-name { font-size: 0.7rem; font-weight: 700; color: var(--mod); text-transform: uppercase; letter-spacing: 0.05em; }
+.sofia-bubble {
+  background: var(--cream-dk); border-radius: 0 var(--r) var(--r) var(--r);
+  padding: 16px 20px; font-size: 0.96rem; line-height: 1.65; flex: 1;
+}
+
+/* VOCAB GRID */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.vocab-chip {
+  background: var(--white);
+  border: 1.5px solid var(--cream-dk);
+  border-radius: var(--r);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+.vocab-chip:hover { border-color: var(--mod); box-shadow: 0 2px 8px rgba(204,71,54,0.12); transform: translateY(-1px); }
+.vocab-it { font-size: 1rem; font-weight: 700; color: var(--mod-tx); }
+.vocab-es { font-size: 0.8rem; color: #666; }
+.vocab-play {
+  position: absolute; top: 8px; right: 10px;
+  background: var(--mod-lt); border: none; border-radius: 50%;
+  width: 28px; height: 28px; font-size: 0.75rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--mod); transition: all 0.2s;
+}
+.vocab-play:hover { background: var(--mod); color: var(--white); }
+
+/* CAFFE GRID */
+.caffe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.caffe-card {
+  background: var(--white);
+  border: 2px solid var(--cream-dk);
+  border-radius: var(--r);
+  padding: 16px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.caffe-card:hover { border-color: var(--mod); transform: translateY(-2px); }
+.caffe-icon { font-size: 2rem; margin-bottom: 8px; display: block; }
+.caffe-name { font-size: 0.88rem; font-weight: 700; color: var(--mod-tx); margin-bottom: 2px; }
+.caffe-desc { font-size: 0.73rem; color: #777; }
+
+/* GIORNI */
+.giorni-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.giorno-chip {
+  background: var(--white);
+  border: 2px solid var(--cream-dk);
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--mod-tx);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.giorno-chip:hover { border-color: var(--mod); background: var(--mod-lt); }
+.giorno-chip span.num { font-size: 0.7rem; color: #aaa; font-weight: 400; }
+
+/* DIALOG */
+.dialog-box {
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  margin-bottom: 16px;
+}
+.dialog-controls {
+  display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;
+}
+.btn-play-all {
+  background: var(--mod); color: var(--white); border: none;
+  border-radius: 30px; padding: 10px 22px; font-family: var(--fb);
+  font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
+}
+.btn-play-all:hover { background: var(--mod-dk); }
+.dialog-line {
+  display: flex; gap: 14px; align-items: flex-start;
+  margin-bottom: 14px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--cream);
+}
+.dialog-line:last-child { border-bottom: none; margin-bottom: 0; }
+.bubble-avatar {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; font-weight: 700; color: var(--white);
+}
+.avatar-g { background: var(--mod); }
+.avatar-m { background: var(--mod-dk); }
+.bubble-content { flex: 1; }
+.bubble-speaker { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+.speaker-g { color: var(--mod); }
+.speaker-m { color: var(--mod-dk); }
+.bubble-m {
+  background: var(--cream-dk);
+  border-radius: 0 var(--r) var(--r) var(--r);
+  padding: 10px 14px; font-size: 0.93rem; line-height: 1.5; margin-bottom: 6px;
+}
+.bubble-m.giulia { border-radius: var(--r) 0 var(--r) var(--r); }
+.bubble-es { font-size: 0.78rem; color: #777; font-style: italic; padding: 0 4px; }
+.btn-line-play {
+  background: var(--mod-lt); color: var(--mod); border: 1.5px solid var(--mod);
+  border-radius: 20px; padding: 4px 12px; font-size: 0.75rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; font-family: var(--fb);
+}
+.btn-line-play:hover, .btn-line-play.playing { background: var(--mod); color: var(--white); }
+
+/* PATTERN CARDS */
+.pattern-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.pattern-card {
+  background: var(--white);
+  border: 2px solid var(--cream-dk);
+  border-radius: var(--r);
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.pattern-card:hover { border-color: var(--mod); background: var(--mod-lt); }
+.pattern-it { font-size: 1rem; font-weight: 700; color: var(--mod-tx); margin-bottom: 4px; }
+.pattern-es { font-size: 0.8rem; color: #777; }
+
+/* MODAL TABLE */
+.modal-table-wrap { overflow-x: auto; margin-bottom: 16px; }
+.modal-table {
+  width: 100%; border-collapse: collapse; font-size: 0.88rem;
+  background: var(--white); border-radius: var(--r); overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.modal-table th {
+  background: var(--mod); color: var(--white);
+  padding: 10px 14px; text-align: left; font-weight: 600;
+}
+.modal-table td { padding: 9px 14px; border-bottom: 1px solid var(--cream); }
+.modal-table tr:last-child td { border-bottom: none; }
+.modal-table tr:nth-child(even) td { background: var(--cream); }
+.highlight-it { color: var(--mod-tx); font-weight: 700; }
+
+/* FONETICA */
+.fonetica-box {
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.doppie-row {
+  display: flex; gap: 12px; align-items: center;
+  padding: 10px 0; border-bottom: 1px solid var(--cream);
+}
+.doppie-row:last-child { border-bottom: none; }
+.doppie-word { font-size: 1.1rem; font-weight: 700; color: var(--mod-tx); min-width: 160px; }
+.doppie-syl { font-size: 0.88rem; color: #777; font-family: monospace; }
+.doppie-play { margin-left: auto; }
+.doppie-mark { color: var(--mod); font-weight: 900; }
+
+/* CULTURE STRIP */
+.culture-strip {
+  background: var(--mod-lt);
+  border: 2px solid var(--mod);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.culture-header {
+  background: var(--mod);
+  color: var(--white);
+  padding: 14px 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.culture-header h3 { font-family: var(--fh); font-style: italic; font-size: 1.1rem; font-weight: 700; }
+.culture-it { padding: 20px; font-size: 0.93rem; line-height: 1.7; }
+.culture-es { padding: 0 20px 20px; font-size: 0.9rem; color: #555; font-style: italic; display: none; }
+.btn-toggle-culture {
+  margin: 0 20px 20px;
+  background: var(--white); color: var(--mod-tx);
+  border: 1.5px solid var(--mod); border-radius: 20px;
+  padding: 7px 18px; font-size: 0.82rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; font-family: var(--fb);
+}
+.btn-toggle-culture:hover { background: var(--mod); color: var(--white); }
+
+/* EXERCISE CARD */
+.ex-card {
+  background: var(--white); border-radius: var(--r);
+  padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 20px;
+}
+.ex-card h3 { font-family: var(--fh); font-style: italic; font-size: 1.2rem; color: var(--mod-tx); margin-bottom: 6px; }
+.ex-tag {
+  display: inline-block; background: var(--mod); color: var(--white);
+  border-radius: 20px; padding: 3px 12px; font-size: 0.72rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 14px;
+}
+.ex-instr { font-size: 0.88rem; color: #555; margin-bottom: 18px; font-style: italic; }
+.ex-num { width: 28px; height: 28px; border-radius: 50%; background: var(--mod); color: var(--white); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; margin-right: 8px; flex-shrink: 0; }
+.ex-header { display: flex; align-items: center; margin-bottom: 6px; }
+
+/* OPT BUTTONS */
+.opt-row { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.opt-q { font-weight: 600; font-size: 0.94rem; margin-bottom: 8px; }
+.opt-btn {
+  padding: 9px 16px; border-radius: var(--r);
+  border: 1.5px solid var(--cream-dk); background: var(--cream);
+  font-family: var(--fb); font-size: 0.88rem; cursor: pointer;
+  text-align: left; transition: all 0.2s;
+}
+.opt-btn:hover:not(:disabled) { border-color: var(--mod); background: var(--mod-lt); }
+.opt-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: 600; }
+.opt-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+.ex-fb { font-size: 0.82rem; font-weight: 600; margin-top: 6px; min-height: 18px; }
+.ex-fb.ok { color: #155724; }
+.ex-fb.no { color: #991b1b; }
+
+/* FILL IN */
+.fill-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+.fill-row label { font-size: 0.93rem; }
+.fill-input {
+  border: 1.5px solid var(--cream-dk); border-radius: 8px;
+  padding: 6px 12px; font-family: var(--fb); font-size: 0.93rem;
+  width: 140px; transition: all 0.2s;
+}
+.fill-input:focus { outline: none; border-color: var(--mod); }
+.fill-input.correct { border-color: #28a745; background: #d4edda; }
+.fill-input.wrong { border-color: #dc3545; background: #f8d7da; }
+.fill-fb { font-size: 0.85rem; font-weight: 700; }
+
+/* CTA */
+
+/* SECTION CARD */
+.section-card {
+  background: var(--white); border-radius: var(--r);
+  padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 20px;
+}
+.tip-box {
+  background: var(--mod-lt); border-left: 4px solid var(--mod);
+  border-radius: 0 var(--r) var(--r) 0; padding: 14px 18px; margin: 16px 0;
+  font-size: 0.9rem;
+}
+.tip-box strong { color: var(--mod-tx); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">A1 · Unità 5</div>
+  <h1>Al bar</h1>
+  <p class="hero-sub">Etapa 2 — Descubrimiento · Vocabulario, Diálogo & Gramática</p>
+</header>
+
+<!-- NAV -->
+
+<main class="main">
+
+  <!-- SOFIA -->
+  <div class="sofia-row">
+    <div class="sofia-col">
+      <div class="sofia-avatar">👩‍🏫</div>
+      <div class="sofia-name">Sofia</div>
+    </div>
+    <div class="sofia-bubble">
+      ¡Chegamos al momento más rico! Hoy aprendés todo lo que necesitás para sobrevivir en un bar italiano. Vocabulario de comidas y bebidas, los tipos de café (que son un mundo aparte, te aviso), los días de la semana, un diálogo real y las estructuras para ordenar con naturalidad.<br><br>
+      Hacé clic en cualquier chip para escuchar la pronunciación. ¡Empezamos!
+    </div>
+  </div>
+
+  <!-- ===== SECCIÓN 1: VOCABULARIO AL BAR ===== -->
+  <section class="section">
+    <h2 class="sec-title">Al bar — cosa si ordina</h2>
+    <div class="sec-divider"></div>
+    <p class="sec-sub">Hacé clic en cada palabra para escucharla en italiano.</p>
+
+    <div class="vocab-grid" id="vocab-grid"></div>
+
+    <div class="tip-box">
+      <strong>Tip cultural:</strong> En Italia, <em>il bar</em> sirve tanto bebidas alcohólicas como café, jugos y snacks. ¡No es un bar de noche solamente!
+    </div>
+  </section>
+
+  <!-- ===== SECCIÓN 2: TIPI DI CAFFÈ ===== -->
+  <section class="section">
+    <h2 class="sec-title">I tipi di caffè</h2>
+    <div class="sec-divider"></div>
+    <p class="sec-sub">El café en Italia es un rito. Hacé clic en cada tipo para escuchar el nombre.</p>
+
+    <div class="caffe-grid" id="caffe-grid"></div>
+
+    <div class="tip-box">
+      <strong>Regola d'oro:</strong> En Italia, "un caffè" sin más = un espresso. Si querés leche, tenés que pedirlo específicamente. ¡Y nadie toma cappuccino después de las 11 de la mañana!
+    </div>
+  </section>
+
+  <!-- ===== SECCIÓN 3: I GIORNI DELLA SETTIMANA ===== -->
+  <section class="section">
+    <h2 class="sec-title">I giorni della settimana</h2>
+    <div class="sec-divider"></div>
+    <p class="sec-sub">Los días de la semana. Fijate que los primeros cinco llevan acento en la última sílaba.</p>
+
+    <div class="giorni-grid" id="giorni-grid"></div>
+
+    <div class="tip-box">
+      <strong>Atención:</strong> En italiano, la semana empieza el <em>lunedì</em> (lunes), no el domingo como en muchos calendarios en español. ¡Y todos los días llevan minúscula!
+    </div>
+  </section>
+
+  <!-- ===== SECCIÓN 4: DIÁLOGO ===== -->
+  <section class="section">
+    <h2 class="sec-title">Al bar — il dialogo</h2>
+    <div class="sec-divider"></div>
+    <p class="sec-sub">Giulia (clienta) y Marco (cameriere) en un bar romano. Escuchá línea por línea o todo el diálogo de una vez.</p>
+
+    <div class="dialog-box">
+      <div class="dialog-controls">
+        <button class="btn-play-all" onclick="playAllDialog()">▶ Escuchar todo el diálogo</button>
+      </div>
+
+      <div class="dialog-line" data-text="Buongiorno! Prego, cosa prende?" data-gender="m" data-rate="0.82">
+        <div class="bubble-avatar avatar-m">M</div>
+        <div class="bubble-content">
+          <div class="bubble-speaker speaker-m">Marco — cameriere</div>
+          <div class="bubble-m">Buongiorno! Prego, cosa prende?</div>
+          <div class="bubble-es">¡Buenos días! Por favor, ¿qué va a tomar?</div>
+          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line" data-text="Buongiorno! Io vorrei una spremuta d'arancia, per favore. Con le arance rosse, se possibile." data-gender="f" data-rate="0.82">
+        <div class="bubble-avatar avatar-g">G</div>
+        <div class="bubble-content">
+          <div class="bubble-speaker speaker-g">Giulia — cliente</div>
+          <div class="bubble-m giulia">Buongiorno! Io vorrei una spremuta d'arancia, per favore. Con le arance rosse, se possibile.</div>
+          <div class="bubble-es">¡Buenos días! Yo quisiera un jugo de naranja, por favor. Con naranjas rojas, si es posible.</div>
+          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line" data-text="Certo, signora! E lei, signore?" data-gender="m" data-rate="0.82">
+        <div class="bubble-avatar avatar-m">M</div>
+        <div class="bubble-content">
+          <div class="bubble-speaker speaker-m">Marco — cameriere</div>
+          <div class="bubble-m">Certo, signora! E lei, signore?</div>
+          <div class="bubble-es">¡Por supuesto, señora! ¿Y usted, señor?</div>
+          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line" data-text="Per me un tramezzino con prosciutto crudo e mozzarella, e una birra piccola." data-gender="m" data-rate="0.80">
+        <div class="bubble-avatar avatar-g" style="background:#5a8a70; font-size:0.85rem;">A</div>
+        <div class="bubble-content">
+          <div class="bubble-speaker" style="color:#5a8a70;">Amico di Giulia</div>
+          <div class="bubble-m">Per me un tramezzino con prosciutto crudo e mozzarella, e una birra piccola.</div>
+          <div class="bubble-es">Para mí un sándwich con jamón crudo y mozzarella, y una cerveza pequeña.</div>
+          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line" data-text="E poi, volete anche il dolce?" data-gender="m" data-rate="0.82">
+        <div class="bubble-avatar avatar-m">M</div>
+        <div class="bubble-content">
+          <div class="bubble-speaker speaker-m">Marco — cameriere</div>
+          <div class="bubble-m">E poi, volete anche il dolce?</div>
+          <div class="bubble-es">¿Y luego, quieren también el postre?</div>
+          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line" data-text="Sì! Un tiramisù e una panna cotta, grazie." data-gender="f" data-rate="0.82">
+        <div class="bubble-avatar avatar-g">G</div>
+        <div class="bubble-content">
+          <div class="bubble-speaker speaker-g">Giulia — cliente</div>
+          <div class="bubble-m giulia">Sì! Un tiramisù e una panna cotta, grazie.</div>
+          <div class="bubble-es">¡Sí! Un tiramisú y una panna cotta, gracias.</div>
+          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line" data-text="Quanto costa tutto?" data-gender="f" data-rate="0.82">
+        <div class="bubble-avatar avatar-g">G</div>
+        <div class="bubble-content">
+          <div class="bubble-speaker speaker-g">Giulia — cliente</div>
+          <div class="bubble-m giulia">Quanto costa tutto?</div>
+          <div class="bubble-es">¿Cuánto cuesta todo?</div>
+          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line" data-text="Dodici euro e cinquanta, signora." data-gender="m" data-rate="0.82">
+        <div class="bubble-avatar avatar-m">M</div>
+        <div class="bubble-content">
+          <div class="bubble-speaker speaker-m">Marco — cameriere</div>
+          <div class="bubble-m">Dodici euro e cinquanta, signora.</div>
+          <div class="bubble-es">Doce euros con cincuenta, señora.</div>
+          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line" data-text="Che confusione! Scusi, questo non è il mio caffè!" data-gender="f" data-rate="0.84">
+        <div class="bubble-avatar avatar-g">G</div>
+        <div class="bubble-content">
+          <div class="bubble-speaker speaker-g">Giulia — cliente</div>
+          <div class="bubble-m giulia">Che confusione! Scusi, questo non è il mio caffè!</div>
+          <div class="bubble-es">¡Qué confusión! Perdone, ¡esto no es mi café!</div>
+          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECCIÓN 5: PATRONES PARA ORDENAR ===== -->
+  <section class="section">
+    <h2 class="sec-title">Come si ordina al bar</h2>
+    <div class="sec-divider"></div>
+    <p class="sec-sub">Hacé clic en cada patrón para escucharlo.</p>
+
+    <div class="pattern-grid" id="pattern-grid"></div>
+  </section>
+
+  <!-- ===== SECCIÓN 6: VERBOS MODALI ===== -->
+  <section class="section">
+    <h2 class="sec-title">I verbi modali</h2>
+    <div class="sec-divider"></div>
+    <p class="sec-sub"><em>Dovere</em> (deber), <em>potere</em> (poder) y <em>volere</em> (querer) son verbos clave. Hacé clic en cada forma para escucharla.</p>
+
+    <div class="modal-table-wrap">
+      <table class="modal-table">
+        <thead>
+          <tr>
+            <th>Pronombre</th>
+            <th>dovere</th>
+            <th>potere</th>
+            <th>volere</th>
+          </tr>
+        </thead>
+        <tbody id="modal-tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="tip-box">
+      <strong>Uso clave:</strong> Los verbos modali van seguidos de un infinitivo. Ej: <em>Voglio <strong>prendere</strong> un caffè.</em> / <em>Posso <strong>avere</strong> il menù?</em>
+    </div>
+
+    <div class="pattern-grid" id="modal-pattern-grid"></div>
+  </section>
+
+  <!-- ===== SECCIÓN 7: FONÉTICA — LE DOPPIE ===== -->
+  <section class="section">
+    <h2 class="sec-title">Fonetica — Le doppie</h2>
+    <div class="sec-divider"></div>
+
+    <div class="section-card">
+      <p style="font-size:0.95rem; margin-bottom:16px;">En italiano, las consonantes dobles se pronuncian con una pequeña pausa — casi como si las "detuvieras" antes de soltarlas. Es una diferencia real de significado. Hacé clic para escuchar.</p>
+
+      <div class="tip-box" style="margin-top:0; margin-bottom:18px;">
+        <strong>Ejemplo clave:</strong> <em>pala</em> (pala) ≠ <em>palla</em> (pelota). ¡La duración cambia el significado!
+      </div>
+
+      <div id="doppie-list"></div>
+    </div>
+  </section>
+
+  <!-- ===== SECCIÓN 8: CULTURA ===== -->
+  <section class="section">
+    <h2 class="sec-title">Cultura italiana</h2>
+    <div class="sec-divider"></div>
+
+    <div class="culture-strip">
+      <div class="culture-header">
+        <span style="font-size:1.4rem;">☕</span>
+        <h3>Il bar italiano — un rito quotidiano</h3>
+      </div>
+      <div class="culture-it">
+        <p>Il bar in Italia non è semplicemente un posto dove si beve. È un luogo di incontro, di conversazione, di pausa dalla vita frenetica. Gli italiani vanno al bar la mattina per un caffè e un cornetto, a mezzogiorno per un panino veloce, e il pomeriggio per un aperitivo.</p>
+        <br>
+        <p>Il caffè si beve quasi sempre al bancone — è più economico e più veloce. Sedersi ai tavolini costa di più, soprattutto nelle città turistiche. A Roma, un espresso al bancone può costare solo un euro, mentre seduto allo stesso bar può costare tre euro o più.</p>
+        <br>
+        <p>Il barista è una figura importante nella vita italiana. Sa i nomi dei clienti abituali, conosce le loro preferenze, ricorda se vogliono lo zucchero o no. È quasi un confidente quotidiano.</p>
+      </div>
+      <button class="btn-toggle-culture" onclick="toggleCulture(this)">🇪🇸 Ver en español</button>
+      <div class="culture-es">
+        <p>El bar en Italia no es simplemente un lugar donde se bebe. Es un espacio de encuentro, conversación y pausa de la vida agitada. Los italianos van al bar por la mañana para tomar un café y un cornetto (medialuna), al mediodía para un sándwich rápido, y por la tarde para un aperitivo.</p>
+        <br>
+        <p>El café casi siempre se toma parado en el mostrador — es más económico y más rápido. Sentarse en las mesas cuesta más, especialmente en ciudades turísticas. En Roma, un espresso en el mostrador puede costar solo un euro, mientras que sentado en el mismo bar puede costar tres euros o más.</p>
+        <br>
+        <p>El barista es una figura importante en la vida italiana. Sabe los nombres de los clientes habituales, conoce sus preferencias, recuerda si quieren azúcar o no. Es casi un confidente cotidiano.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EJERCICIOS ===== -->
+  <section class="section">
+    <h2 class="sec-title">Esercizi</h2>
+    <div class="sec-divider"></div>
+
+    <!-- Ejercicio 1: Opt -->
+    <div class="ex-card" id="ex-d1">
+      <div class="ex-header">
+        <div class="ex-num">1</div>
+        <h3>¿Qué pedís?</h3>
+      </div>
+      <div class="ex-tag">Vocabulario</div>
+      <p class="ex-instr">Elegí la opción correcta para completar cada frase.</p>
+
+      <div class="opt-q">1. Non ho fame, ma ho sete. Prendo ___.</div>
+      <div class="opt-row">
+        <button class="opt-btn" onclick="checkOpt(this,'ex-d1a',false,'✗ Un tramezzino es sólido, no para la sed.')">un tramezzino</button>
+        <button class="opt-btn" onclick="checkOpt(this,'ex-d1a',true,'✓ ¡Perfecto! Una spremmuta es ideal para la sed.')">una spremuta</button>
+        <button class="opt-btn" onclick="checkOpt(this,'ex-d1a',false,'✗ Un cornetto es para comer en el desayuno.')">un cornetto</button>
+      </div>
+      <div class="ex-fb" id="ex-d1afb"></div>
+
+      <hr style="border:none; border-top:1px solid var(--cream); margin: 16px 0;">
+
+      <div class="opt-q">2. Voglio qualcosa di dolce. Prendo ___.</div>
+      <div class="opt-row">
+        <button class="opt-btn" onclick="checkOpt(this,'ex-d1b',false,'✗ Il panino es salado, no dulce.')">un panino</button>
+        <button class="opt-btn" onclick="checkOpt(this,'ex-d1b',false,'✗ L\'acqua no es un postre.')">un\'acqua</button>
+        <button class="opt-btn" onclick="checkOpt(this,'ex-d1b',true,'✓ ¡Sí! Il tiramisù es el postre italiano por excelencia.')">un tiramisù</button>
+      </div>
+      <div class="ex-fb" id="ex-d1bfb"></div>
+    </div>
+
+    <!-- Ejercicio 2: Fill giorni -->
+    <div class="ex-card" id="ex-d2">
+      <div class="ex-header">
+        <div class="ex-num">2</div>
+        <h3>I giorni della settimana</h3>
+      </div>
+      <div class="ex-tag">Vocabulario</div>
+      <p class="ex-instr">Completá el nombre del día según la pista. Escribí con acento donde corresponde.</p>
+
+      <div class="fill-row">
+        <label>Il primo giorno della settimana è il</label>
+        <input class="fill-input" type="text" data-answer="lunedì" oninput="checkFill(this)" placeholder="...">
+        <span class="fill-fb"></span>
+      </div>
+      <div class="fill-row">
+        <label>Dopo il mercoledì viene il</label>
+        <input class="fill-input" type="text" data-answer="giovedì" oninput="checkFill(this)" placeholder="...">
+        <span class="fill-fb"></span>
+      </div>
+      <div class="fill-row">
+        <label>Il giorno del fine settimana (sabato + ___)</label>
+        <input class="fill-input" type="text" data-answer="domenica" oninput="checkFill(this)" placeholder="...">
+        <span class="fill-fb"></span>
+      </div>
+      <div class="fill-row">
+        <label>Il giorno prima del sabato è</label>
+        <input class="fill-input" type="text" data-answer="venerdì" oninput="checkFill(this)" placeholder="...">
+        <span class="fill-fb"></span>
+      </div>
+    </div>
+
+    <!-- Ejercicio 3: Verbos modali -->
+    <div class="ex-card" id="ex-d3">
+      <div class="ex-header">
+        <div class="ex-num">3</div>
+        <h3>Verbos modali al bar</h3>
+      </div>
+      <div class="ex-tag">Gramática</div>
+      <p class="ex-instr">Elegí el verbo modal correcto para cada situación.</p>
+
+      <div class="opt-q">1. Giulia chiede permesso al cameriere: «___ avere un po' d'acqua?»</div>
+      <div class="opt-row">
+        <button class="opt-btn" onclick="checkOpt(this,'ex-d3a',false,'✗ Devo significa «debo», no es para pedir permiso.')">Devo</button>
+        <button class="opt-btn" onclick="checkOpt(this,'ex-d3a',true,'✓ ¡Correcto! Posso = puedo. Se usa para pedir permiso.')">Posso</button>
+        <button class="opt-btn" onclick="checkOpt(this,'ex-d3a',false,'✗ Voglio suena más exigente, menos cortés.')">Voglio</button>
+      </div>
+      <div class="ex-fb" id="ex-d3afb"></div>
+
+      <hr style="border:none; border-top:1px solid var(--cream); margin:14px 0;">
+
+      <div class="opt-q">2. Marco dice a los clientes: «___ ordinare adesso.» (deben ordenar ahora)</div>
+      <div class="opt-row">
+        <button class="opt-btn" onclick="checkOpt(this,'ex-d3b',true,'✓ ¡Correcto! Dovete = debéis/deben (vosotros/ustedes).')">Dovete</button>
+        <button class="opt-btn" onclick="checkOpt(this,'ex-d3b',false,'✗ Volete = quieren, no es obligación.')">Volete</button>
+        <button class="opt-btn" onclick="checkOpt(this,'ex-d3b',false,'✗ Potete = pueden, no expresa obligación.')">Potete</button>
+      </div>
+      <div class="ex-fb" id="ex-d3bfb"></div>
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  
+
+</main>
+
+<script>
+// ===== ODOO DOMEval guard =====
+if (!window.__ippVC) {
+  window.__ippVC = true;
+  window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) window.__ippV = v; };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
+
+if (!window.__ipp_m5_e2__) {
+window.__ipp_m5_e2__ = true;
+
+function ippVoice(gender) {
+  var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+  var itV = voices.filter(function(v) { return v.lang && v.lang.startsWith('it'); });
+  if (!itV.length) return null;
+  var voice = null;
+  if (gender === 'm') {
+    voice = itV.find(function(v) { return /cosimo|luca|giorgio|male|masc/i.test(v.name); });
+    if (!voice) voice = itV.find(function(v) { return !/elsa|alice|giulia|female|femm/i.test(v.name); });
+  } else {
+    voice = itV.find(function(v) { return /elsa|alice|giulia|female|femm/i.test(v.name); });
+    if (!voice) voice = itV.find(function(v) { return !/cosimo|luca|giorgio|male|masc/i.test(v.name); });
+  }
+  return voice || itV[0];
+}
+
+function ippAudio(text, rate, gender) {
+  rate = (typeof rate === 'number' && isFinite(rate) && rate > 0) ? rate : 0.82;
+  gender = (gender === 'm' || gender === 'f') ? gender : 'f';
+  if (!window.speechSynthesis) return;
+  try { speechSynthesis.cancel(); } catch(e) {}
+  var utt = new SpeechSynthesisUtterance(String(text));
+  utt.lang = 'it-IT'; utt.rate = rate;
+  var voice = ippVoice(gender);
+  if (voice) utt.voice = voice;
+  (function(u) { setTimeout(function() { try { speechSynthesis.speak(u); } catch(e) {} }, 60); })(utt);
+}
+
+function playLine(btn) {
+  var line = btn.closest('.dialog-line');
+  var text = line.getAttribute('data-text');
+  var gender = line.getAttribute('data-gender') || 'f';
+  var rate = parseFloat(line.getAttribute('data-rate')) || 0.82;
+  document.querySelectorAll('.btn-line-play').forEach(function(b) { b.classList.remove('playing'); b.textContent = '▶ Escuchar'; });
+  btn.classList.add('playing'); btn.textContent = '⏸ Hablando...';
+  if (!window.speechSynthesis) return;
+  try { speechSynthesis.cancel(); } catch(e) {}
+  var utt = new SpeechSynthesisUtterance(String(text));
+  utt.lang = 'it-IT'; utt.rate = rate;
+  var voice = ippVoice(gender);
+  if (voice) utt.voice = voice;
+  utt.onend = function() { btn.classList.remove('playing'); btn.textContent = '▶ Escuchar'; };
+  utt.onerror = function() { btn.classList.remove('playing'); btn.textContent = '▶ Escuchar'; };
+  (function(u) { setTimeout(function() { try { speechSynthesis.speak(u); } catch(e) {} }, 60); })(utt);
+}
+
+var _dialogTimer = null;
+function playAllDialog() {
+  if (_dialogTimer) { clearTimeout(_dialogTimer); _dialogTimer = null; }
+  if (window.speechSynthesis) try { speechSynthesis.cancel(); } catch(e) {}
+  var lines = document.querySelectorAll('.dialog-line');
+  var idx = 0;
+  function playNext() {
+    if (idx >= lines.length) return;
+    var line = lines[idx++];
+    var text = line.getAttribute('data-text');
+    var gender = line.getAttribute('data-gender') || 'f';
+    var rate = parseFloat(line.getAttribute('data-rate')) || 0.82;
+    var utt = new SpeechSynthesisUtterance(String(text));
+    utt.lang = 'it-IT'; utt.rate = rate;
+    var voice = ippVoice(gender);
+    if (voice) utt.voice = voice;
+    utt.onend = function() { _dialogTimer = setTimeout(playNext, 400); };
+    utt.onerror = function() { _dialogTimer = setTimeout(playNext, 400); };
+    try { speechSynthesis.speak(utt); } catch(e) { _dialogTimer = setTimeout(playNext, 400); }
+  }
+  setTimeout(playNext, 60);
+}
+
+function checkOpt(btn, exId, isCorrect, feedback) {
+  var block = document.getElementById(exId);
+  var container = btn.closest('.opt-row') || btn.parentElement;
+  container.querySelectorAll('.opt-btn').forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (isCorrect) {
+    container.querySelectorAll('.opt-btn').forEach(function(b) {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').indexOf(',true,') !== -1) b.classList.add('correct');
+    });
+  }
+  var fb = document.getElementById(exId + 'fb');
+  if (fb) { fb.textContent = feedback; fb.className = 'ex-fb ' + (isCorrect ? 'ok' : 'no'); }
+}
+
+function checkFill(input) {
+  var answer = (input.getAttribute('data-answer') || '').toLowerCase().trim();
+  var val = input.value.toLowerCase().trim();
+  var fb = input.nextElementSibling;
+  input.classList.remove('correct','wrong');
+  if (!val) { if (fb) fb.textContent = ''; return; }
+  if (val === answer) {
+    input.classList.add('correct');
+    if (fb) { fb.textContent = '✓'; fb.style.color = '#065f46'; }
+  } else if (answer.startsWith(val)) {
+    if (fb) { fb.textContent = '...'; fb.style.color = '#888'; }
+  } else {
+    input.classList.add('wrong');
+    if (fb) { fb.textContent = '✗'; fb.style.color = '#991b1b'; }
+  }
+}
+
+function toggleCulture(btn) {
+  var strip = btn.closest('.culture-strip');
+  var es = strip ? strip.querySelector('.culture-es') : null;
+  if (!es) return;
+  if (es.style.display === 'none' || !es.style.display) {
+    es.style.display = 'block'; btn.textContent = '🇮🇹 Leggere in italiano';
+  } else {
+    es.style.display = 'none'; btn.textContent = '🇪🇸 Ver en español';
+  }
+}
+
+window.ippAudio = ippAudio;
+window.ippVoice = ippVoice;
+window.playLine = playLine;
+window.playAllDialog = playAllDialog;
+window.checkOpt = checkOpt;
+window.checkFill = checkFill;
+window.toggleCulture = toggleCulture;
+
+// ===== VOCAB DATA =====
+var vocabItems = [
+  { it: 'caffè', es: 'café (espresso)', gender: 'm' },
+  { it: 'cappuccino', es: 'capuchino', gender: 'm' },
+  { it: 'cornetto', es: 'medialuna / croissant', gender: 'm' },
+  { it: 'tramezzino', es: 'sándwich de molde', gender: 'm' },
+  { it: 'birra', es: 'cerveza', gender: 'f' },
+  { it: 'acqua', es: 'agua', gender: 'f' },
+  { it: 'succo di frutta', es: 'jugo de fruta', gender: 'm' },
+  { it: 'spremuta', es: 'jugo exprimido', gender: 'f' },
+  { it: 'tè', es: 'té', gender: 'm' },
+  { it: 'arancata', es: 'naranjada (gaseosa)', gender: 'f' },
+  { it: 'tiramisù', es: 'tiramisú', gender: 'm' },
+  { it: 'panna cotta', es: 'panna cotta', gender: 'f' },
+  { it: 'panino', es: 'sándwich / pancito', gender: 'm' },
+  { it: 'sfogliatella', es: 'hojaldre napolitano', gender: 'f' },
+  { it: 'aperitivo', es: 'aperitivo', gender: 'm' }
+];
+
+var vocabGrid = document.getElementById('vocab-grid');
+vocabItems.forEach(function(item) {
+  var chip = document.createElement('div');
+  chip.className = 'vocab-chip';
+  chip.onclick = function() { ippAudio(item.it, 0.78, item.gender); };
+  chip.innerHTML = '<div class="vocab-it">' + item.it + '</div>' +
+    '<div class="vocab-es">' + item.es + '</div>' +
+    '<button class="vocab-play" onclick="event.stopPropagation(); ippAudio(\'' + item.it.replace(/'/g,"\\'") + '\', 0.78, \'' + item.gender + '\')">🔊</button>';
+  vocabGrid.appendChild(chip);
+});
+
+// ===== CAFFÈ DATA =====
+var caffeItems = [
+  { icon: '☕', name: 'caffè espresso', desc: 'Pequeño y concentrado', text: 'caffè espresso' },
+  { icon: '☕', name: 'caffè macchiato', desc: 'Espresso con gotita de leche', text: 'caffè macchiato' },
+  { icon: '🥛', name: 'caffè latte', desc: 'Mucha leche, poco café', text: 'caffè latte' },
+  { icon: '🥃', name: 'caffè corretto', desc: 'Con grappa o licor', text: 'caffè corretto' },
+  { icon: '🧊', name: 'caffè freddo', desc: 'Café frío, en vaso', text: 'caffè freddo' },
+  { icon: '☕', name: 'cappuccino', desc: 'Espresso + leche espumada', text: 'cappuccino' }
+];
+
+var caffeGrid = document.getElementById('caffe-grid');
+caffeItems.forEach(function(item) {
+  var card = document.createElement('div');
+  card.className = 'caffe-card';
+  card.onclick = function() { ippAudio(item.text, 0.78, 'f'); };
+  card.innerHTML = '<span class="caffe-icon">' + item.icon + '</span>' +
+    '<div class="caffe-name">' + item.name + '</div>' +
+    '<div class="caffe-desc">' + item.desc + '</div>';
+  caffeGrid.appendChild(card);
+});
+
+// ===== GIORNI DATA =====
+var giorniData = [
+  { it: 'lunedì', num: '1', note: 'lunes' },
+  { it: 'martedì', num: '2', note: 'martes' },
+  { it: 'mercoledì', num: '3', note: 'miércoles' },
+  { it: 'giovedì', num: '4', note: 'jueves' },
+  { it: 'venerdì', num: '5', note: 'viernes' },
+  { it: 'sabato', num: '6', note: 'sábado' },
+  { it: 'domenica', num: '7', note: 'domingo' }
+];
+
+var giorniGrid = document.getElementById('giorni-grid');
+giorniData.forEach(function(item) {
+  var chip = document.createElement('div');
+  chip.className = 'giorno-chip';
+  chip.onclick = function() { ippAudio(item.it, 0.78, 'f'); };
+  chip.innerHTML = '<span class="num">' + item.num + '</span>' + item.it +
+    ' <span style="font-size:0.75rem;color:#aaa;font-weight:400;">(' + item.note + ')</span>';
+  giorniGrid.appendChild(chip);
+});
+
+// ===== PATRONES =====
+var patterns = [
+  { it: 'Vorrei un caffè.', es: 'Quisiera un café.' },
+  { it: 'Prendo una birra.', es: 'Tomo una cerveza.' },
+  { it: 'Per me un tramezzino.', es: 'Para mí un sándwich.' },
+  { it: 'Quanto costa?', es: '¿Cuánto cuesta?' },
+  { it: 'Il conto, per favore.', es: 'La cuenta, por favor.' },
+  { it: 'Posso avere il menù?', es: '¿Puedo tener el menú?' },
+  { it: 'Scusi, mi porta…?', es: 'Perdone, ¿me trae…?' },
+  { it: 'Buongiorno! Prego?', es: '¡Buenos días! ¿Dígame?' }
+];
+
+var patternGrid = document.getElementById('pattern-grid');
+patterns.forEach(function(p) {
+  var card = document.createElement('div');
+  card.className = 'pattern-card';
+  card.onclick = function() { ippAudio(p.it, 0.80, 'f'); };
+  card.innerHTML = '<div class="pattern-it">' + p.it + '</div><div class="pattern-es">' + p.es + '</div>';
+  patternGrid.appendChild(card);
+});
+
+// ===== MODAL TABLE =====
+var modalData = [
+  ['io', 'devo', 'posso', 'voglio'],
+  ['tu', 'devi', 'puoi', 'vuoi'],
+  ['lui/lei', 'deve', 'può', 'vuole'],
+  ['noi', 'dobbiamo', 'possiamo', 'vogliamo'],
+  ['voi', 'dovete', 'potete', 'volete'],
+  ['loro', 'devono', 'possono', 'vogliono']
+];
+
+var tbody = document.getElementById('modal-tbody');
+modalData.forEach(function(row) {
+  var tr = document.createElement('tr');
+  row.forEach(function(cell, i) {
+    var td = document.createElement('td');
+    if (i === 0) {
+      td.innerHTML = '<strong>' + cell + '</strong>';
+    } else {
+      td.innerHTML = '<span class="highlight-it" style="cursor:pointer" onclick="ippAudio(\'' + cell + '\', 0.80, \'f\')">' + cell + '</span>';
+    }
+    tr.appendChild(td);
+  });
+  tbody.appendChild(tr);
+});
+
+var modalPatterns = [
+  { it: 'Voglio un caffè.', es: 'Quiero un café.' },
+  { it: 'Posso avere il menù?', es: '¿Puedo tener el menú?' },
+  { it: 'Devo andare al bar.', es: 'Debo ir al bar.' },
+  { it: 'Vuole ordinare adesso?', es: '¿Quiere ordenar ahora?' }
+];
+
+var modalPatternGrid = document.getElementById('modal-pattern-grid');
+modalPatterns.forEach(function(p) {
+  var card = document.createElement('div');
+  card.className = 'pattern-card';
+  card.onclick = function() { ippAudio(p.it, 0.80, 'f'); };
+  card.innerHTML = '<div class="pattern-it">' + p.it + '</div><div class="pattern-es">' + p.es + '</div>';
+  modalPatternGrid.appendChild(card);
+});
+
+// ===== DOPPIE =====
+var doppieData = [
+  { word: 'caffè', syl: 'caf-fè', note: 'La ff se detiene un instante', gender: 'f' },
+  { word: 'cappuccino', syl: 'cap-puc-ci-no', note: 'pp y cc dobles', gender: 'f' },
+  { word: 'mozzarella', syl: 'moz-za-rel-la', note: 'zz y ll dobles', gender: 'f' },
+  { word: 'panna cotta', syl: 'pan-na cot-ta', note: 'nn y tt dobles', gender: 'f' },
+  { word: 'tiramisù', syl: 'ti-ra-mi-sù', note: 'Acento en la última sílaba', gender: 'f' },
+  { word: 'pizza', syl: 'piz-za', note: 'zz = sonido intenso', gender: 'f' },
+  { word: 'prosciutto', syl: 'pros-ciut-to', note: 'tt doble al final', gender: 'm' },
+  { word: 'ammiro', syl: 'am-mi-ro', note: 'mm — pausa perceptible', gender: 'm' }
+];
+
+var doppieList = document.getElementById('doppie-list');
+doppieData.forEach(function(item) {
+  var div = document.createElement('div');
+  div.className = 'doppie-row';
+  var wordHtml = item.word.replace(/(ff|pp|cc|zz|ll|nn|tt|mm)/g, '<span class="doppie-mark">$1</span>');
+  div.innerHTML = '<div class="doppie-word">' + wordHtml + '</div>' +
+    '<div class="doppie-syl">' + item.syl + '<br><span style="font-size:0.75rem;color:#aaa;">' + item.note + '</span></div>' +
+    '<div class="doppie-play"><button class="btn-line-play" onclick="ippAudio(\'' + item.word + '\', 0.65, \'' + item.gender + '\')">🔊 Escuchar</button></div>';
+  doppieList.appendChild(div);
+});
+
+} // end execution guard
+</script>
+</body>
+</html>

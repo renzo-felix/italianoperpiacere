@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 7 · In famiglia — Exploración | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --mod:      #528e74;
+  --mod-dk:   #3d6b58;
+  --mod-lt:   #e8f4ef;
+  --mod-tx:   #2d4d3c;
+  --cream:    #e9e6d5;
+  --cream-dk: #ddd9c8;
+  --gold:     #EFCF7F;
+  --black:    #1a1a18;
+  --white:    #ffffff;
+  --green:    #528e74;
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+  --r: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--fb); background: var(--cream); color: var(--black); line-height: 1.6; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
+  color: var(--white);
+  padding: 56px 24px 48px;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-family: var(--fb);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--fh);
+  font-style: italic;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.hero-sub {
+  font-size: 1.05rem;
+  opacity: 0.88;
+  font-weight: 300;
+}
+
+/* STAGE NAV */
+
+.stage-link {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-family: var(--fb);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #888;
+  background: var(--cream);
+  border: 1.5px solid transparent;
+  transition: all 0.2s;
+}
+.stage-link .sn {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: #ccc;
+  color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; font-weight: 700;
+}
+.stage-link.active {
+  background: var(--mod-lt);
+  color: var(--mod-tx);
+  border-color: var(--mod);
+}
+.stage-link.active .sn { background: var(--mod); }
+.stage-link.done { color: var(--green); }
+.stage-link.done .sn { background: var(--green); }
+
+/* MAIN */
+.main { max-width: 860px; margin: 0 auto; padding: 40px 20px 80px; }
+.section { margin-bottom: 40px; }
+
+/* SOFIA */
+.sofia-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  margin-bottom: 28px;
+}
+.sofia-col { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
+.sofia-avatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--mod-lt);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  border: 2px solid var(--mod);
+}
+.sofia-name { font-size: 0.7rem; font-weight: 700; color: var(--mod); text-transform: uppercase; letter-spacing: 0.05em; }
+.sofia-bubble {
+  background: var(--cream-dk);
+  border-radius: 0 var(--r) var(--r) var(--r);
+  padding: 16px 20px;
+  font-size: 0.96rem;
+  line-height: 1.65;
+  flex: 1;
+}
+
+/* TASK BOX */
+.task-box {
+  background: var(--mod-lt);
+  border-left: 4px solid var(--mod);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 18px 22px;
+  margin-bottom: 28px;
+}
+.task-box h3 { font-family: var(--fb); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mod-dk); margin-bottom: 10px; font-weight: 700; }
+.task-box ul { padding-left: 20px; }
+.task-box li { margin-bottom: 6px; font-size: 0.94rem; }
+
+/* VIDEO */
+.video-label {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px;
+}
+.video-label .vl-badge {
+  background: var(--mod);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 12px;
+  border-radius: 20px;
+}
+.video-label span { font-size: 0.92rem; color: #666; }
+.video-wrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  margin-bottom: 28px;
+}
+.video-wrap iframe {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+/* EXERCISE CARD */
+.ex-card {
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  margin-bottom: 28px;
+}
+.ex-card h2 {
+  font-family: var(--fh);
+  font-style: italic;
+  font-size: 1.35rem;
+  color: var(--mod-tx);
+  margin-bottom: 6px;
+}
+.ex-tag {
+  display: inline-block;
+  background: var(--mod);
+  color: var(--white);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 18px;
+}
+.ex-instr {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+/* TRUE/FALSE */
+.tf-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--cream);
+}
+.tf-item:last-child { border-bottom: none; }
+.tf-num {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--mod-lt);
+  color: var(--mod-dk);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 700;
+  flex-shrink: 0; margin-top: 2px;
+}
+.tf-stmt { flex: 1; font-size: 0.94rem; padding-top: 2px; }
+.tf-btns { display: flex; gap: 8px; flex-shrink: 0; }
+.btn-tf {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1.5px solid var(--cream-dk);
+  background: var(--cream);
+  font-family: var(--fb);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-tf:hover { border-color: var(--mod); color: var(--mod); }
+.btn-tf.selected-correct { background: #d4edda; border-color: #28a745; color: #155724; }
+.btn-tf.selected-wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+.tf-feedback { font-size: 0.78rem; margin-top: 6px; font-weight: 600; display: none; }
+.tf-feedback.show { display: block; }
+.tf-feedback.ok { color: #155724; }
+.tf-feedback.ko { color: #721c24; }
+
+/* MULTIPLE CHOICE */
+.mc-item { margin-bottom: 24px; }
+.mc-item:last-child { margin-bottom: 0; }
+.mc-question { font-size: 0.96rem; font-weight: 600; margin-bottom: 12px; line-height: 1.5; }
+.mc-options { display: flex; flex-direction: column; gap: 8px; }
+.btn-mc {
+  padding: 10px 16px;
+  border-radius: var(--r);
+  border: 1.5px solid var(--cream-dk);
+  background: var(--cream);
+  font-family: var(--fb);
+  font-size: 0.88rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+  line-height: 1.4;
+}
+.btn-mc:hover:not(:disabled) { border-color: var(--mod); background: var(--mod-lt); }
+.btn-mc.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: 600; }
+.btn-mc.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+.mc-feedback { font-size: 0.8rem; margin-top: 8px; font-weight: 600; display: none; }
+.mc-feedback.show { display: block; }
+.mc-feedback.ok { color: #155724; }
+.mc-feedback.ko { color: #721c24; }
+
+/* SCORE BOX */
+.score-box {
+  margin-top: 20px;
+  padding: 14px 20px;
+  border-radius: var(--r);
+  background: var(--mod-lt);
+  border: 1.5px solid var(--mod);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--mod-tx);
+  display: none;
+}
+.score-box.show { display: block; }
+
+/* CTA */
+
+@media (max-width: 600px) {
+  .tf-item { flex-direction: column; gap: 8px; }
+  .tf-btns { align-self: flex-start; }
+  .sofia-row { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-badge">A1 · Unità 7</div>
+  <h1>In famiglia</h1>
+  <p class="hero-sub">Etapa 1 — Exploración · Video</p>
+</header>
+
+<main class="main">
+
+  <!-- INTRO SOFIA -->
+  <div class="section">
+    <div class="sofia-row">
+      <div class="sofia-col">
+        <div class="sofia-avatar">👩🏫</div>
+        <span class="sofia-name">Sofia</span>
+      </div>
+      <div class="sofia-bubble">
+        <p>¡Ciao! En este módulo nos metemos de lleno en uno de los temas más importantes de la cultura italiana: <strong>la familia</strong>. Vas a ver una entrevista real a una familia italiana —Stella, Michele y sus tres hijos— que nos cuenta cómo es su vida cotidiana. Atención, porque van a aparecer muchas palabras nuevas sobre parentela y rutinas. ¡Mirá el video con curiosidad y sin presión!</p>
+      </div>
+    </div>
+
+    <!-- TASK BOX -->
+    <div class="task-box">
+      <h3>🎯 Mientras mirás el video, prestá atención a…</h3>
+      <ul>
+        <li><strong>Los miembros de la familia:</strong> ¿cuántos son? ¿cómo se llaman? ¿qué edades tienen?</li>
+        <li><strong>La rutina diaria:</strong> ¿a qué hora se levantan? ¿qué hacen por la mañana?</li>
+        <li><strong>Los lugares mencionados:</strong> ¿qué ciudades o regiones aparecen?</li>
+        <li><strong>Las opiniones:</strong> ¿qué piensa la familia sobre Italia y los servicios para familias?</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- VIDEO -->
+  <div class="section">
+    <div class="video-label">
+      <span class="vl-badge">Video auténtico</span>
+      <span>Entrevista a una famiglia italiana — Michele, Stella e i loro tre figli</span>
+    </div>
+    <div class="video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/mvl1hKoWWdM"
+        title="Una famiglia italiana — Italiano Per Piacere M7"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <!-- EJERCICIO 1: VERDADERO/FALSO -->
+  <div class="section">
+    <div class="ex-card">
+      <h2>Esercizio 1 — Vero o Falso?</h2>
+      <span class="ex-tag">Comprensión auditiva</span>
+      <p class="ex-instr">Leé cada afirmación y decidí si es verdadera (V) o falsa (F) según lo que escuchaste en el video.</p>
+
+      <div id="tf-container">
+
+        <div class="tf-item" data-answer="V">
+          <div class="tf-num">1</div>
+          <div>
+            <div class="tf-stmt">La familia tiene tres hijos.</div>
+            <div class="tf-feedback ko" id="tf-fb-1"></div>
+          </div>
+          <div class="tf-btns">
+            <button class="btn-tf" onclick="checkTF(this, 'V', 1)">V</button>
+            <button class="btn-tf" onclick="checkTF(this, 'F', 1)">F</button>
+          </div>
+        </div>
+
+        <div class="tf-item" data-answer="V">
+          <div class="tf-num">2</div>
+          <div>
+            <div class="tf-stmt">El padre de la familia se llama Michele.</div>
+            <div class="tf-feedback ko" id="tf-fb-2"></div>
+          </div>
+          <div class="tf-btns">
+            <button class="btn-tf" onclick="checkTF(this, 'V', 2)">V</button>
+            <button class="btn-tf" onclick="checkTF(this, 'F', 2)">F</button>
+          </div>
+        </div>
+
+        <div class="tf-item" data-answer="F">
+          <div class="tf-num">3</div>
+          <div>
+            <div class="tf-stmt">La madre, Stella, es de Toscana.</div>
+            <div class="tf-feedback ko" id="tf-fb-3"></div>
+          </div>
+          <div class="tf-btns">
+            <button class="btn-tf" onclick="checkTF(this, 'V', 3)">V</button>
+            <button class="btn-tf" onclick="checkTF(this, 'F', 3)">F</button>
+          </div>
+        </div>
+
+        <div class="tf-item" data-answer="F">
+          <div class="tf-num">4</div>
+          <div>
+            <div class="tf-stmt">La familia normalmente desayuna a las 8 de la mañana.</div>
+            <div class="tf-feedback ko" id="tf-fb-4"></div>
+          </div>
+          <div class="tf-btns">
+            <button class="btn-tf" onclick="checkTF(this, 'V', 4)">V</button>
+            <button class="btn-tf" onclick="checkTF(this, 'F', 4)">F</button>
+          </div>
+        </div>
+
+        <div class="tf-item" data-answer="V">
+          <div class="tf-num">5</div>
+          <div>
+            <div class="tf-stmt">Los fines de semana a veces van a visitar a los abuelos.</div>
+            <div class="tf-feedback ko" id="tf-fb-5"></div>
+          </div>
+          <div class="tf-btns">
+            <button class="btn-tf" onclick="checkTF(this, 'V', 5)">V</button>
+            <button class="btn-tf" onclick="checkTF(this, 'F', 5)">F</button>
+          </div>
+        </div>
+
+        <div class="tf-item" data-answer="F">
+          <div class="tf-num">6</div>
+          <div>
+            <div class="tf-stmt">Michele considera que son una familia típica italiana.</div>
+            <div class="tf-feedback ko" id="tf-fb-6"></div>
+          </div>
+          <div class="tf-btns">
+            <button class="btn-tf" onclick="checkTF(this, 'V', 6)">V</button>
+            <button class="btn-tf" onclick="checkTF(this, 'F', 6)">F</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="score-box" id="tf-score"></div>
+    </div>
+  </div>
+
+  <!-- EJERCICIO 2: SELECCIÓN MÚLTIPLE -->
+  <div class="section">
+    <div class="ex-card">
+      <h2>Esercizio 2 — Scelta multipla</h2>
+      <span class="ex-tag">Comprensión detallada</span>
+      <p class="ex-instr">Elegí la opción correcta para cada pregunta según el video.</p>
+
+      <!-- Pregunta 1 -->
+      <div class="mc-item" id="mc-1">
+        <div class="mc-question">1. ¿Cuántos años tiene Michele?</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkMC(this, false, 'mc-1', '¡No! Escuchá bien el número que dice.')">35 años</button>
+          <button class="btn-mc" onclick="checkMC(this, true, 'mc-1', '¡Perfecto! Michele dice que tiene 38 años.')">38 años</button>
+          <button class="btn-mc" onclick="checkMC(this, false, 'mc-1', 'No exactamente. Volvé a escuchar.')">42 años</button>
+          <button class="btn-mc" onclick="checkMC(this, false, 'mc-1', '¡No! Prestá atención al número.')">30 años</button>
+        </div>
+        <div class="mc-feedback" id="mc-fb-1"></div>
+      </div>
+
+      <!-- Pregunta 2 -->
+      <div class="mc-item" id="mc-2">
+        <div class="mc-question">2. ¿De qué región italiana es Michele, el padre?</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkMC(this, false, 'mc-2', 'Sicilia es de donde es Stella, la mamma.')">Sicilia</button>
+          <button class="btn-mc" onclick="checkMC(this, false, 'mc-2', 'No es del Lazio. Volvé a escuchar.')">Lazio</button>
+          <button class="btn-mc" onclick="checkMC(this, true, 'mc-2', '¡Exacto! Michele es toscano. Por eso los fines de semana van a Toscana a ver a los nonni paterni.')">Toscana</button>
+          <button class="btn-mc" onclick="checkMC(this, false, 'mc-2', 'Lombardia no es mencionada en el video.')">Lombardia</button>
+        </div>
+        <div class="mc-feedback" id="mc-fb-2"></div>
+      </div>
+
+      <!-- Pregunta 3 -->
+      <div class="mc-item" id="mc-3">
+        <div class="mc-question">3. ¿A qué hora se despierta la familia por la mañana?</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkMC(this, false, 'mc-3', '¡No! ¿Quién se despierta primero en la familia?')">A las 7:00</button>
+          <button class="btn-mc" onclick="checkMC(this, false, 'mc-3', 'No es a las 8. La familia madruga más.')">A las 8:00</button>
+          <button class="btn-mc" onclick="checkMC(this, true, 'mc-3', '¡Correcto! Lorenzo, el más chico, los despierta a las 6:15.')">A las 6:15</button>
+          <button class="btn-mc" onclick="checkMC(this, false, 'mc-3', '¡No! Escuchá bien la hora que mencionan.')">A las 5:30</button>
+        </div>
+        <div class="mc-feedback" id="mc-fb-3"></div>
+      </div>
+
+      <!-- Pregunta 4 -->
+      <div class="mc-item" id="mc-4">
+        <div class="mc-question">4. ¿Qué hacen Stella y Michele a la mañana antes de que los chicos vayan al colegio?</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkMC(this, false, 'mc-4', 'No trabajan antes de llevar a los chicos.')">Van al trabajo temprano</button>
+          <button class="btn-mc" onclick="checkMC(this, true, 'mc-4', '¡Perfecto! Preparan el desayuno con música, ¡qué hermoso ritual familiar!')">Preparan el desayuno con música</button>
+          <button class="btn-mc" onclick="checkMC(this, false, 'mc-4', 'No hacen la compra a la mañana.')">Hacen las compras</button>
+          <button class="btn-mc" onclick="checkMC(this, false, 'mc-4', 'La película la miran después del trabajo, no a la mañana.')">Miran una película</button>
+        </div>
+        <div class="mc-feedback" id="mc-fb-4"></div>
+      </div>
+
+      <!-- Pregunta 5 -->
+      <div class="mc-item" id="mc-5">
+        <div class="mc-question">5. ¿Qué crítica hace la familia sobre Italia?</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkMC(this, false, 'mc-5', 'No critican el sistema educativo en el video.')">Que el sistema educativo es muy malo</button>
+          <button class="btn-mc" onclick="checkMC(this, false, 'mc-5', 'No hablan de dificultades económicas personales.')">Que no tienen suficiente dinero</button>
+          <button class="btn-mc" onclick="checkMC(this, true, 'mc-5', '¡Exacto! Critican la falta de servicios públicos para las familias, lo que hace difícil tener varios hijos en Italia.')">Que faltan servicios públicos para las familias</button>
+          <button class="btn-mc" onclick="checkMC(this, false, 'mc-5', 'No mencionan el clima como problema.')">Que el clima es muy difícil</button>
+        </div>
+        <div class="mc-feedback" id="mc-fb-5"></div>
+      </div>
+
+      <div class="score-box" id="mc-score"></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  
+
+</main>
+
+<script>
+// TRUE/FALSE
+const tfAnswers = { 1:'V', 2:'V', 3:'F', 4:'F', 5:'V', 6:'F' };
+const tfFeedback = {
+  1: { V: '✓ Correcto. Luisa (6), Anna (4) y Lorenzo (2): tre figli!', F: '✗ No. La familia tiene 3 hijos: Luisa, Anna y Lorenzo.' },
+  2: { V: '✓ ¡Sí! El padre se llama Michele.', F: '✗ No. El padre sí se llama Michele.' },
+  3: { V: '✗ No. Stella es siciliana, de Siracusa. Michele es el toscano.', F: '✓ Correcto. Stella es de Sicilia, específicamente de Siracusa.' },
+  4: { V: '✗ Falso. La familia se despierta a las 6:15, ¡mucho antes de las 8!', F: '✓ Exacto. Se despiertan a las 6:15, cuando Lorenzo los despierta.' },
+  5: { V: '✓ Sí. Los fines de semana hacen "girate fuori porta" o visitan a los nonni en Toscana o Siracusa.', F: '✗ No. Los fines de semana sí visitan a los abuelos a veces.' },
+  6: { V: '✗ No. De hecho, Michele y Stella reflexionan sobre que NO son una familia típica italiana.', F: '✓ Correcto. Ellos mismos dicen que no son una familia típica italiana por tener 3 hijos.' }
+};
+const tfDone = {};
+let tfScore = 0;
+
+function checkTF(btn, selected, num) {
+  if (tfDone[num]) return;
+  tfDone[num] = true;
+  const correct = tfAnswers[num];
+  const isOk = selected === correct;
+  if (isOk) tfScore++;
+  const btns = btn.closest('.tf-item').querySelectorAll('.btn-tf');
+  btns.forEach(b => { b.disabled = true; });
+  btn.classList.add(isOk ? 'selected-correct' : 'selected-wrong');
+  if (!isOk) {
+    btns.forEach(b => { if (b.textContent === correct) b.classList.add('selected-correct'); });
+  }
+  const fb = document.getElementById('tf-fb-' + num);
+  fb.textContent = tfFeedback[num][selected];
+  fb.className = 'tf-feedback show ' + (isOk ? 'ok' : 'ko');
+
+  if (Object.keys(tfDone).length === 6) {
+    const box = document.getElementById('tf-score');
+    box.textContent = `Resultado: ${tfScore}/6 respuestas correctas. ${tfScore === 6 ? '¡Excelente comprensión!' : tfScore >= 4 ? '¡Muy bien! Revisá las que fallaste.' : 'No pasa nada, volvé a mirar el video.'}`;
+    box.classList.add('show');
+  }
+}
+
+// MULTIPLE CHOICE
+const mcDone = {};
+let mcScore = 0;
+
+function checkMC(btn, isCorrect, groupId, feedback) {
+  if (mcDone[groupId]) return;
+  mcDone[groupId] = true;
+  const group = document.getElementById(groupId);
+  const btns = group.querySelectorAll('.btn-mc');
+  btns.forEach(b => { b.disabled = true; });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    btns.forEach(b => {
+      if (b.onclick && b.onclick.toString().includes('true')) b.classList.add('correct');
+    });
+  }
+  if (isCorrect) mcScore++;
+  const fb = document.getElementById('mc-fb-' + groupId.split('-')[1]);
+  fb.textContent = feedback;
+  fb.className = 'mc-feedback show ' + (isCorrect ? 'ok' : 'ko');
+
+  if (Object.keys(mcDone).length === 5) {
+    const box = document.getElementById('mc-score');
+    box.textContent = `Resultado: ${mcScore}/5 respuestas correctas. ${mcScore === 5 ? '¡Comprensión perfecta!' : mcScore >= 3 ? '¡Buen trabajo! Revisá las que fallaste.' : 'Te recomiendo volver a ver el video antes de seguir.'}`;
+    box.classList.add('show');
+  }
+}
+</script>
+</body>
+</html>

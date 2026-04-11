@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Che lavoro fai? — Etapa 2 | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --mod:    #e5ab07;
+  --mod-dk: #c8940a;
+  --mod-lt: #fff8e6;
+  --mod-tx: #7a5500;
+  --cream:  #e9e6d5;
+  --cream-dk: #ddd9c8;
+  --gold:   #EFCF7F;
+  --black:  #1a1a18;
+  --white:  #ffffff;
+  --green:  #2d7a4f;
+  --red:    #cc4736;
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+  --r: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--cream); font-family: var(--fb); color: var(--black); line-height: 1.6; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
+  padding: 56px 24px 48px;
+  text-align: center;
+  color: var(--white);
+}
+.badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; margin-bottom: 8px; }
+.hero p { font-size: 1.05rem; opacity: 0.9; }
+
+/* NAV */
+
+/* LAYOUT */
+.container { max-width: 860px; margin: 0 auto; padding: 40px 24px; }
+.section-block { background: var(--white); border-radius: var(--r); padding: 32px; margin-bottom: 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.section-title { font-family: var(--fh); font-style: italic; font-size: 1.6rem; color: var(--mod-tx); margin-bottom: 6px; }
+.section-subtitle { font-size: 0.9rem; color: #666; margin-bottom: 24px; }
+.divider { height: 2px; background: var(--mod-lt); margin: 24px 0; border-radius: 2px; }
+
+/* VOCAB CHIPS */
+.vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+.vocab-chip {
+  background: var(--mod-lt); border: 1.5px solid var(--gold);
+  border-radius: var(--r); padding: 14px 16px;
+  cursor: pointer; transition: all 0.18s;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.vocab-chip:hover { border-color: var(--mod); box-shadow: 0 2px 10px rgba(229,171,7,0.2); transform: translateY(-1px); }
+.vocab-it { font-weight: 700; font-size: 1rem; color: var(--mod-tx); }
+.vocab-es { font-size: 0.85rem; color: #666; }
+.vocab-audio-btn {
+  margin-top: 6px; padding: 4px 10px;
+  background: var(--mod); color: var(--white);
+  border: none; border-radius: 5px;
+  font-family: var(--fb); font-size: 11px; font-weight: 600;
+  cursor: pointer; align-self: flex-start; transition: background 0.2s;
+}
+.vocab-audio-btn:hover { background: var(--mod-dk); }
+
+/* COLOR SWATCHES */
+.color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.color-chip {
+  border-radius: var(--r); overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: pointer;
+  transition: transform 0.18s;
+}
+.color-chip:hover { transform: translateY(-2px); }
+.color-swatch { height: 60px; }
+.color-info { background: var(--white); padding: 10px 12px; }
+.color-it { font-weight: 700; font-size: 0.9rem; color: var(--black); }
+.color-es { font-size: 0.78rem; color: #666; }
+.color-play-btn {
+  margin-top: 4px; padding: 3px 8px;
+  background: var(--cream-dk); border: none;
+  border-radius: 4px; font-size: 11px; cursor: pointer;
+  font-family: var(--fb); font-weight: 600;
+  transition: background 0.2s;
+}
+.color-play-btn:hover { background: var(--gold); }
+
+/* DIALOGO */
+.dialog-wrap { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.dialog-line { display: flex; align-items: flex-start; gap: 12px; }
+.dialog-line.right { flex-direction: row-reverse; }
+.dialog-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 15px; flex-shrink: 0; color: var(--white);
+}
+.avatar-f { background: var(--mod); }
+.avatar-m { background: var(--mod-tx); }
+.dialog-bubble {
+  border-radius: 0 var(--r) var(--r) var(--r);
+  padding: 12px 16px; max-width: 78%; line-height: 1.5;
+}
+.dialog-line.right .dialog-bubble { border-radius: var(--r) 0 var(--r) var(--r); }
+.bubble-f { background: var(--mod-lt); }
+.bubble-m { background: var(--cream-dk); }
+.dialog-speaker { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; color: var(--mod-tx); }
+.dialog-text { font-size: 0.97rem; }
+.btn-line-play {
+  flex-shrink: 0; align-self: center;
+  padding: 5px 12px; background: var(--cream-dk);
+  border: none; border-radius: 5px;
+  font-size: 12px; font-weight: 600;
+  font-family: var(--fb); cursor: pointer; transition: all 0.2s;
+}
+.btn-line-play:hover { background: var(--gold); }
+.dialog-controls { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+.btn-play-all, .btn-stop-dialog {
+  padding: 10px 22px; border: none; border-radius: 8px;
+  font-family: var(--fb); font-size: 14px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-play-all { background: var(--mod); color: var(--white); }
+.btn-play-all:hover { background: var(--mod-dk); }
+.btn-stop-dialog { background: var(--cream-dk); color: var(--black); }
+.btn-stop-dialog:hover { background: #ccc8b8; }
+
+/* PATTERN CARDS */
+.pattern-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.pattern-card {
+  background: var(--mod-lt); border: 1.5px solid var(--gold);
+  border-radius: var(--r); padding: 18px; cursor: pointer;
+  transition: all 0.18s;
+}
+.pattern-card:hover { border-color: var(--mod); box-shadow: 0 2px 10px rgba(229,171,7,0.2); }
+.pattern-it { font-size: 1.05rem; font-weight: 700; color: var(--mod-tx); margin-bottom: 4px; }
+.pattern-es { font-size: 0.88rem; color: #555; margin-bottom: 8px; }
+.pattern-example { font-size: 0.85rem; font-style: italic; color: #444; border-top: 1px solid var(--gold); padding-top: 8px; }
+
+/* CONJUGATION TABLE */
+.conj-card { background: var(--mod-lt); border-radius: var(--r); padding: 24px; margin-bottom: 20px; }
+.conj-title { font-family: var(--fh); font-size: 1.15rem; color: var(--mod-tx); margin-bottom: 14px; }
+.conj-table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+.conj-table th { background: var(--mod); color: var(--white); padding: 8px 12px; text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+.conj-table td { padding: 9px 12px; border-bottom: 1px solid var(--gold); }
+.conj-table tr:last-child td { border-bottom: none; }
+.conj-table tr:hover td { background: rgba(229,171,7,0.08); }
+.conj-play {
+  padding: 3px 10px; background: var(--cream-dk); border: none;
+  border-radius: 4px; font-size: 12px; cursor: pointer;
+  font-family: var(--fb); transition: background 0.2s;
+}
+.conj-play:hover { background: var(--gold); }
+
+/* FONETICA */
+.fonema-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.fonema-card {
+  background: var(--white); border: 1.5px solid var(--cream-dk);
+  border-radius: var(--r); padding: 16px; cursor: pointer;
+  transition: all 0.2s;
+}
+.fonema-card:hover { border-color: var(--mod); }
+.fonema-symbol { font-size: 1.8rem; font-weight: 900; color: var(--mod); margin-bottom: 4px; }
+.fonema-desc { font-size: 0.8rem; color: #666; margin-bottom: 8px; }
+.fonema-examples { display: flex; flex-direction: column; gap: 4px; }
+.fonema-ex {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 4px 8px; background: var(--cream); border-radius: 5px;
+  font-size: 0.88rem;
+}
+.fonema-word { font-weight: 600; color: var(--mod-tx); }
+.btn-f-play {
+  padding: 2px 8px; background: var(--mod); color: var(--white);
+  border: none; border-radius: 4px; font-size: 11px; cursor: pointer;
+  font-family: var(--fb); transition: background 0.2s;
+}
+.btn-f-play:hover { background: var(--mod-dk); }
+
+/* CULTURE STRIP */
+.culture-strip {
+  background: linear-gradient(135deg, var(--mod-lt), var(--cream));
+  border: 1px solid var(--gold); border-radius: var(--r);
+  padding: 24px; display: flex; gap: 20px;
+  margin-bottom: 28px;
+}
+.culture-flag { font-size: 2.5rem; flex-shrink: 0; }
+.culture-body { flex: 1; }
+.culture-title { font-family: var(--fh); font-style: italic; font-size: 1.2rem; color: var(--mod-tx); margin-bottom: 10px; }
+.culture-it { font-size: 0.95rem; line-height: 1.65; color: #333; margin-bottom: 12px; }
+.btn-translate {
+  padding: 7px 16px; background: var(--cream-dk); border: none;
+  border-radius: 6px; font-family: var(--fb); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s;
+}
+.btn-translate:hover { background: var(--gold); }
+.culture-es { margin-top: 12px; padding: 12px 16px; background: var(--white); border-radius: 8px; font-size: 0.93rem; line-height: 1.65; color: #444; }
+
+/* EXERCISES */
+.ex-block { padding: 16px 0; border-bottom: 1px solid var(--cream-dk); }
+.ex-block:last-child { border-bottom: none; }
+.ex-q { font-weight: 600; margin-bottom: 10px; font-size: 0.97rem; }
+.opt-btn {
+  display: inline-block; margin: 4px; padding: 8px 18px;
+  border: 2px solid var(--cream-dk); border-radius: 6px;
+  background: var(--cream); font-family: var(--fb); font-size: 13px;
+  cursor: pointer; transition: all 0.2s;
+}
+.opt-btn:hover { border-color: var(--mod); }
+.opt-btn.correct { background: #d4edda; border-color: var(--green); color: var(--green); font-weight: 700; }
+.opt-btn.wrong { background: #fde8e8; border-color: var(--red); color: var(--red); }
+.ex-fb { font-size: 13px; min-height: 18px; margin-top: 8px; font-weight: 600; }
+.fill-item { margin: 10px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.96rem; }
+.fill-input {
+  padding: 5px 10px; border: 2px solid var(--cream-dk); border-radius: 6px;
+  font-family: var(--fb); font-size: 0.93rem; width: 130px; outline: none;
+  transition: border-color 0.2s;
+}
+.fill-input:focus { border-color: var(--mod); }
+.fill-input.ok { border-color: var(--green); background: #d4edda; }
+.fill-input.err { border-color: var(--red); background: #fde8e8; }
+.fill-feedback { font-size: 12px; font-weight: 600; }
+
+/* CTA */
+
+.ex-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.ex-num { width: 36px; height: 36px; border-radius: 50%; background: var(--mod); color: var(--white); font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ex-title { font-weight: 700; font-size: 1.05rem; }
+.ex-subtitle { font-size: 13px; color: #666; }
+.exercise-card { background: var(--white); border-radius: var(--r); padding: 28px; margin-bottom: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+
+@media (max-width: 600px) {
+  
+  
+  .culture-strip { flex-direction: column; gap: 12px; }
+  .dialog-line { flex-wrap: nowrap; }
+  .btn-line-play { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">A1 · Unità 4</div>
+  <h1>Che lavoro fai?</h1>
+  <p>Etapa 2 — Descubrimiento</p>
+</div>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════
+     SECCIÓN 1: LE PROFESSIONI
+════════════════════════════════════════ -->
+<div class="section-block">
+  <h2 class="section-title">Le professioni</h2>
+  <p class="section-subtitle">Los nombres de las profesiones y oficios — hacé clic en cada chip para escuchar la pronunciación</p>
+
+  <div class="vocab-grid">
+    <div class="vocab-chip" onclick="ippAudio('il medico', 0.85, 'f')">
+      <div class="vocab-it">il medico</div>
+      <div class="vocab-es">el/la médico/a</div>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('il medico',0.85,'f')">▶ escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('l\'infermiere, l\'infermiera', 0.85, 'f')">
+      <div class="vocab-it">l'infermiere / l'infermiera</div>
+      <div class="vocab-es">el enfermero / la enfermera</div>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('l infermiere, l infermiera',0.85,'f')">▶ escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('l\'insegnante', 0.85, 'f')">
+      <div class="vocab-it">l'insegnante</div>
+      <div class="vocab-es">el/la docente / maestro/a</div>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('l insegnante',0.85,'f')">▶ escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('l\'avvocato', 0.85, 'm')">
+      <div class="vocab-it">l'avvocato / l'avvocatessa</div>
+      <div class="vocab-es">el abogado / la abogada</div>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('l avvocato',0.85,'m')">▶ escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('l\'ingegnere', 0.85, 'm')">
+      <div class="vocab-it">l'ingegnere</div>
+      <div class="vocab-es">el/la ingeniero/a</div>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('l ingegnere',0.85,'m')">▶ escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('il cuoco, la cuoca', 0.85, 'f')">
+      <div class="vocab-it">il cuoco / la cuoca</div>
+      <div class="vocab-es">el cocinero / la cocinera</div>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('il cuoco, la cuoca',0.85,'f')">▶ escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('il cameriere, la cameriera', 0.85, 'f')">
+      <div class="vocab-it">il cameriere / la cameriera</div>
+      <div class="vocab-es">el mozo / la moza</div>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('il cameriere, la cameriera',0.85,'f')">▶ escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('il commesso, la commessa', 0.85, 'f')">
+      <div class="vocab-it">il commesso / la commessa</div>
+      <div class="vocab-es">el vendedor / la vendedora</div>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('il commesso, la commessa',0.85,'f')">▶ escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('l\'impiegato, l\'impiegata', 0.85, 'f')">
+      <div class="vocab-it">l'impiegato / l'impiegata</div>
+      <div class="vocab-es">el/la empleado/a de oficina</div>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('l impiegato, l impiegata',0.85,'f')">▶ escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('il parrucchiere, la parrucchiera', 0.85, 'f')">
+      <div class="vocab-it">il parrucchiere / la parrucchiera</div>
+      <div class="vocab-es">el peluquero / la peluquera</div>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('il parrucchiere, la parrucchiera',0.85,'f')">▶ escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('il meccanico', 0.85, 'm')">
+      <div class="vocab-it">il meccanico</div>
+      <div class="vocab-es">el mecánico</div>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('il meccanico',0.85,'m')">▶ escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('il poliziotto, la poliziotta', 0.85, 'm')">
+      <div class="vocab-it">il poliziotto / la poliziotta</div>
+      <div class="vocab-es">el policía / la policía</div>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('il poliziotto, la poliziotta',0.85,'m')">▶ escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('l\'architetto', 0.85, 'm')">
+      <div class="vocab-it">l'architetto</div>
+      <div class="vocab-es">el/la arquitecto/a</div>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('l architetto',0.85,'m')">▶ escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('il giornalista, la giornalista', 0.85, 'f')">
+      <div class="vocab-it">il giornalista / la giornalista</div>
+      <div class="vocab-es">el/la periodista</div>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('il giornalista, la giornalista',0.85,'f')">▶ escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('il badante, la badante', 0.85, 'f')">
+      <div class="vocab-it">il badante / la badante</div>
+      <div class="vocab-es">el/la cuidador/a de ancianos</div>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('il badante, la badante',0.85,'f')">▶ escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('il programmatore, la programmatrice', 0.85, 'm')">
+      <div class="vocab-it">il programmatore / la programmatrice</div>
+      <div class="vocab-es">el programador / la programadora</div>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('il programmatore, la programmatrice',0.85,'m')">▶ escuchar</button>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <p style="font-size:0.9rem; color:#555; font-style:italic;">
+    💡 <strong>Nota gramatical:</strong> En italiano, muchas profesiones tienen forma masculina y femenina. Algunas como <em>insegnante</em> o <em>giornalista</em> son invariables — solo cambia el artículo: <em>il giornalista / la giornalista</em>.
+  </p>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECCIÓN 2: I COLORI
+════════════════════════════════════════ -->
+<div class="section-block">
+  <h2 class="section-title">I colori</h2>
+  <p class="section-subtitle">Los colores en italiano — ¡escuchalos y memorizalos!</p>
+
+  <div class="color-grid">
+    <div class="color-chip" onclick="ippAudio('rosso',0.85,'f')">
+      <div class="color-swatch" style="background:#cc2200;"></div>
+      <div class="color-info">
+        <div class="color-it">rosso</div>
+        <div class="color-es">rojo</div>
+        <button class="color-play-btn" onclick="event.stopPropagation();ippAudio('rosso',0.85,'f')">▶</button>
+      </div>
+    </div>
+    <div class="color-chip" onclick="ippAudio('blu',0.85,'f')">
+      <div class="color-swatch" style="background:#1a3a8f;"></div>
+      <div class="color-info">
+        <div class="color-it">blu</div>
+        <div class="color-es">azul (oscuro)</div>
+        <button class="color-play-btn" onclick="event.stopPropagation();ippAudio('blu',0.85,'f')">▶</button>
+      </div>
+    </div>
+    <div class="color-chip" onclick="ippAudio('azzurro',0.85,'f')">
+      <div class="color-swatch" style="background:#4fb3e8;"></div>
+      <div class="color-info">
+        <div class="color-it">azzurro</div>
+        <div class="color-es">celeste / azul cielo</div>
+        <button class="color-play-btn" onclick="event.stopPropagation();ippAudio('azzurro',0.85,'f')">▶</button>
+      </div>
+    </div>
+    <div class="color-chip" onclick="ippAudio('verde',0.85,'f')">
+      <div class="color-swatch" style="background:#2d8f4e;"></div>
+      <div class="color-info">
+        <div class="color-it">verde</div>
+        <div class="color-es">verde</div>
+        <button class="color-play-btn" onclick="event.stopPropagation();ippAudio('verde',0.85,'f')">▶</button>
+      </div>
+    </div>
+    <div class="color-chip" onclick="ippAudio('giallo',0.85,'f')">
+      <div class="color-swatch" style="background:#e5c000;"></div>
+      <div class="color-info">
+        <div class="color-it">giallo</div>
+        <div class="color-es">amarillo</div>
+        <button class="color-play-btn" onclick="event.stopPropagation();ippAudio('giallo',0.85,'f')">▶</button>
+      </div>
+    </div>
+    <div class="color-chip" onclick="ippAudio('arancione',0.85,'f')">
+      <div class="color-swatch" style="background:#e5780a;"></div>
+      <div class="color-info">
+        <div class="color-it">arancione</div>
+        <div class="color-es">naranja</div>
+        <button class="color-play-btn" onclick="event.stopPropagation();ippAudio('arancione',0.85,'f')">▶</button>
+      </div>
+    </div>
+    <div class="color-chip" onclick="ippAudio('bianco',0.85,'f')">
+      <div class="color-swatch" style="background:#f8f8f8; border:1px solid #ddd;"></div>
+      <div class="color-info">
+        <div class="color-it">bianco</div>
+        <div class="color-es">blanco</div>
+        <button class="color-play-btn" onclick="event.stopPropagation();ippAudio('bianco',0.85,'f')">▶</button>
+      </div>
+    </div>
+    <div class="color-chip" onclick="ippAudio('nero',0.85,'f')">
+      <div class="color-swatch" style="background:#1a1a18;"></div>
+      <div class="color-info">
+        <div class="color-it">nero</div>
+        <div class="color-es">negro</div>
+        <button class="color-play-btn" onclick="event.stopPropagation();ippAudio('nero',0.85,'f')">▶</button>
+      </div>
+    </div>
+    <div class="color-chip" onclick="ippAudio('grigio',0.85,'f')">
+      <div class="color-swatch" style="background:#888888;"></div>
+      <div class="color-info">
+        <div class="color-it">grigio</div>
+        <div class="color-es">gris</div>
+        <button class="color-play-btn" onclick="event.stopPropagation();ippAudio('grigio',0.85,'f')">▶</button>
+      </div>
+    </div>
+    <div class="color-chip" onclick="ippAudio('marrone',0.85,'f')">
+      <div class="color-swatch" style="background:#6b3f2a;"></div>
+      <div class="color-info">
+        <div class="color-it">marrone</div>
+        <div class="color-es">marrón / café</div>
+        <button class="color-play-btn" onclick="event.stopPropagation();ippAudio('marrone',0.85,'f')">▶</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECCIÓN 3: DIALOGO
+════════════════════════════════════════ -->
+<div class="section-block">
+  <h2 class="section-title">Dialogo — Giulia e Marco parlano di lavoro</h2>
+  <p class="section-subtitle">Giulia es de Roma, Marco es de Milano. Se conocen en un corso di italiano. Escuchá la conversación línea por línea o toda de corrido.</p>
+
+  <div class="dialog-wrap" id="dialog-main">
+    <div class="dialog-line" data-text="Ciao Marco! Che lavoro fai?" data-gender="f" data-rate="0.82">
+      <div class="dialog-avatar avatar-f">G</div>
+      <div class="dialog-bubble bubble-f">
+        <span class="dialog-speaker">Giulia</span>
+        <span class="dialog-text">Ciao Marco! Che lavoro fai?</span>
+      </div>
+      <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+    </div>
+
+    <div class="dialog-line right" data-text="Sono ingegnere. Lavoro in un'azienda di informatica. E tu?" data-gender="m" data-rate="0.82">
+      <div class="dialog-avatar avatar-m">M</div>
+      <div class="dialog-bubble bubble-m">
+        <span class="dialog-speaker">Marco</span>
+        <span class="dialog-text">Sono ingegnere. Lavoro in un'azienda di informatica. E tu?</span>
+      </div>
+      <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+    </div>
+
+    <div class="dialog-line" data-text="Io sono insegnante. Insegno italiano a stranieri." data-gender="f" data-rate="0.82">
+      <div class="dialog-avatar avatar-f">G</div>
+      <div class="dialog-bubble bubble-f">
+        <span class="dialog-speaker">Giulia</span>
+        <span class="dialog-text">Io sono insegnante. Insegno italiano a stranieri.</span>
+      </div>
+      <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+    </div>
+
+    <div class="dialog-line right" data-text="Interessante! Ti piace il tuo lavoro?" data-gender="m" data-rate="0.82">
+      <div class="dialog-avatar avatar-m">M</div>
+      <div class="dialog-bubble bubble-m">
+        <span class="dialog-speaker">Marco</span>
+        <span class="dialog-text">Interessante! Ti piace il tuo lavoro?</span>
+      </div>
+      <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+    </div>
+
+    <div class="dialog-line" data-text="Sì, mi piace molto! Preferisco lavorare con le persone. E la tua uniforme, di che colore è?" data-gender="f" data-rate="0.82">
+      <div class="dialog-avatar avatar-f">G</div>
+      <div class="dialog-bubble bubble-f">
+        <span class="dialog-speaker">Giulia</span>
+        <span class="dialog-text">Sì, mi piace molto! Preferisco lavorare con le persone. E la tua uniforme, di che colore è?</span>
+      </div>
+      <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+    </div>
+
+    <div class="dialog-line right" data-text="Non ho un'uniforme. Di solito porto una camicia bianca e pantaloni grigi. E tu?" data-gender="m" data-rate="0.82">
+      <div class="dialog-avatar avatar-m">M</div>
+      <div class="dialog-bubble bubble-m">
+        <span class="dialog-speaker">Marco</span>
+        <span class="dialog-text">Non ho un'uniforme. Di solito porto una camicia bianca e pantaloni grigi. E tu?</span>
+      </div>
+      <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+    </div>
+
+    <div class="dialog-line" data-text="Io preferisco i vestiti colorati! Oggi ho una gonna verde e una giacca gialla." data-gender="f" data-rate="0.82">
+      <div class="dialog-avatar avatar-f">G</div>
+      <div class="dialog-bubble bubble-f">
+        <span class="dialog-speaker">Giulia</span>
+        <span class="dialog-text">Io preferisco i vestiti colorati! Oggi ho una gonna verde e una giacca gialla.</span>
+      </div>
+      <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+    </div>
+
+    <div class="dialog-line right" data-text="Molto bella! Sei una vera italiana — colorata e allegra!" data-gender="m" data-rate="0.82">
+      <div class="dialog-avatar avatar-m">M</div>
+      <div class="dialog-bubble bubble-m">
+        <span class="dialog-speaker">Marco</span>
+        <span class="dialog-text">Molto bella! Sei una vera italiana — colorata e allegra!</span>
+      </div>
+      <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+    </div>
+
+    <div class="dialog-line" data-text="Grazie! E tu sei un vero milanese — elegante e puntuale!" data-gender="f" data-rate="0.82">
+      <div class="dialog-avatar avatar-f">G</div>
+      <div class="dialog-bubble bubble-f">
+        <span class="dialog-speaker">Giulia</span>
+        <span class="dialog-text">Grazie! E tu sei un vero milanese — elegante e puntuale!</span>
+      </div>
+      <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
+    </div>
+  </div>
+
+  <div class="dialog-controls">
+    <button class="btn-play-all" onclick="playAll()">▶▶ Escuchar todo el diálogo</button>
+    <button class="btn-stop-dialog" onclick="stopDialog()">■ Detener</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECCIÓN 4: IL VERBO FARE
+════════════════════════════════════════ -->
+<div class="section-block">
+  <h2 class="section-title">Il verbo FARE — el verbo hacer/tener (trabajo)</h2>
+  <p class="section-subtitle">FARE es un verbo irregular muy usado. Hacé clic en cada tarjeta para escuchar el uso en contexto.</p>
+
+  <div class="pattern-grid">
+    <div class="pattern-card" onclick="ippAudio('Che lavoro fai?', 0.82, 'f')">
+      <div class="pattern-it">Che lavoro fai?</div>
+      <div class="pattern-es">¿A qué te dedicás? / ¿Qué trabajo hacés?</div>
+      <div class="pattern-example">Domanda principale del modulo ✓</div>
+    </div>
+    <div class="pattern-card" onclick="ippAudio('Faccio il medico.', 0.82, 'f')">
+      <div class="pattern-it">Faccio il medico.</div>
+      <div class="pattern-es">Soy médico. (lit. "hago el médico")</div>
+      <div class="pattern-example">Con articolo: faccio + il/la + professione</div>
+    </div>
+    <div class="pattern-card" onclick="ippAudio('Fa la cuoca in un ristorante.', 0.82, 'f')">
+      <div class="pattern-it">Fa la cuoca in un ristorante.</div>
+      <div class="pattern-es">Ella es cocinera en un restaurante.</div>
+      <div class="pattern-example">3ª persona singular</div>
+    </div>
+    <div class="pattern-card" onclick="ippAudio('Cosa fate nel tempo libero?', 0.82, 'f')">
+      <div class="pattern-it">Cosa fate nel tempo libero?</div>
+      <div class="pattern-es">¿Qué hacen en el tiempo libre?</div>
+      <div class="pattern-example">2ª persona plural (voi)</div>
+    </div>
+    <div class="pattern-card" onclick="ippAudio('Facciamo una pausa!', 0.82, 'f')">
+      <div class="pattern-it">Facciamo una pausa!</div>
+      <div class="pattern-es">¡Hacemos una pausa!</div>
+      <div class="pattern-example">Expresión muy usada en el trabajo</div>
+    </div>
+    <div class="pattern-card" onclick="ippAudio('Non fa niente.', 0.82, 'm')">
+      <div class="pattern-it">Non fa niente.</div>
+      <div class="pattern-es">No importa. / No hay nada.</div>
+      <div class="pattern-example">Expresión idiomática frecuente</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="conj-card">
+    <h3 class="conj-title">FARE (presente indicativo) — conjugación completa</h3>
+    <table class="conj-table">
+      <tr><th>Pronombre</th><th>Forma</th><th>Significado</th><th>Audio</th></tr>
+      <tr><td>io</td><td><strong>faccio</strong></td><td>hago</td><td><button class="conj-play" onclick="ippAudio('io faccio',0.82,'f')">▶</button></td></tr>
+      <tr><td>tu</td><td><strong>fai</strong></td><td>hacés</td><td><button class="conj-play" onclick="ippAudio('tu fai',0.82,'f')">▶</button></td></tr>
+      <tr><td>lui / lei</td><td><strong>fa</strong></td><td>hace</td><td><button class="conj-play" onclick="ippAudio('lui fa, lei fa',0.82,'f')">▶</button></td></tr>
+      <tr><td>noi</td><td><strong>facciamo</strong></td><td>hacemos</td><td><button class="conj-play" onclick="ippAudio('noi facciamo',0.82,'f')">▶</button></td></tr>
+      <tr><td>voi</td><td><strong>fate</strong></td><td>hacéis / hacen</td><td><button class="conj-play" onclick="ippAudio('voi fate',0.82,'f')">▶</button></td></tr>
+      <tr><td>loro</td><td><strong>fanno</strong></td><td>hacen</td><td><button class="conj-play" onclick="ippAudio('loro fanno',0.82,'f')">▶</button></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECCIÓN 5: FONÉTICA sk / ʃ
+════════════════════════════════════════ -->
+<div class="section-block">
+  <h2 class="section-title">I suoni: sk e ʃ</h2>
+  <p class="section-subtitle">Dos sonidos importantes relacionados con la letra SC — hacé clic para escucharlos</p>
+
+  <div class="fonema-grid">
+    <div class="fonema-card">
+      <div class="fonema-symbol">/sk/</div>
+      <div class="fonema-desc">SC ante A, O, U, o consonante → sonido /sk/ como en "escuchar"</div>
+      <div class="fonema-examples">
+        <div class="fonema-ex">
+          <span class="fonema-word">scuola</span>
+          <button class="btn-f-play" onclick="ippAudio('scuola',0.8,'f')">▶</button>
+        </div>
+        <div class="fonema-ex">
+          <span class="fonema-word">disco</span>
+          <button class="btn-f-play" onclick="ippAudio('disco',0.8,'f')">▶</button>
+        </div>
+        <div class="fonema-ex">
+          <span class="fonema-word">scarpa</span>
+          <button class="btn-f-play" onclick="ippAudio('scarpa',0.8,'f')">▶</button>
+        </div>
+        <div class="fonema-ex">
+          <span class="fonema-word">schiena</span>
+          <button class="btn-f-play" onclick="ippAudio('schiena',0.8,'f')">▶</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="fonema-card">
+      <div class="fonema-symbol">/ʃ/</div>
+      <div class="fonema-desc">SC ante E, I → sonido /ʃ/ como la "sh" inglesa o nuestra "ll" porteña</div>
+      <div class="fonema-examples">
+        <div class="fonema-ex">
+          <span class="fonema-word">scena</span>
+          <button class="btn-f-play" onclick="ippAudio('scena',0.8,'f')">▶</button>
+        </div>
+        <div class="fonema-ex">
+          <span class="fonema-word">pesce</span>
+          <button class="btn-f-play" onclick="ippAudio('pesce',0.8,'f')">▶</button>
+        </div>
+        <div class="fonema-ex">
+          <span class="fonema-word">uscire</span>
+          <button class="btn-f-play" onclick="ippAudio('uscire',0.8,'f')">▶</button>
+        </div>
+        <div class="fonema-ex">
+          <span class="fonema-word">lasciare</span>
+          <button class="btn-f-play" onclick="ippAudio('lasciare',0.8,'f')">▶</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="fonema-card">
+      <div class="fonema-symbol">SCH</div>
+      <div class="fonema-desc">SCH (ante E, I) → suena siempre /sk/ — la H "protege" el sonido duro</div>
+      <div class="fonema-examples">
+        <div class="fonema-ex">
+          <span class="fonema-word">scheda</span>
+          <button class="btn-f-play" onclick="ippAudio('scheda',0.8,'f')">▶</button>
+        </div>
+        <div class="fonema-ex">
+          <span class="fonema-word">schema</span>
+          <button class="btn-f-play" onclick="ippAudio('schema',0.8,'m')">▶</button>
+        </div>
+        <div class="fonema-ex">
+          <span class="fonema-word">schiavo</span>
+          <button class="btn-f-play" onclick="ippAudio('schiavo',0.8,'m')">▶</button>
+        </div>
+        <div class="fonema-ex">
+          <span class="fonema-word">maschio</span>
+          <button class="btn-f-play" onclick="ippAudio('maschio',0.8,'m')">▶</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="fonema-card">
+      <div class="fonema-symbol">Professioni</div>
+      <div class="fonema-desc">Practicá estos sonidos con palabras del módulo</div>
+      <div class="fonema-examples">
+        <div class="fonema-ex">
+          <span class="fonema-word">conoscere /ʃ/</span>
+          <button class="btn-f-play" onclick="ippAudio('conoscere',0.8,'f')">▶</button>
+        </div>
+        <div class="fonema-ex">
+          <span class="fonema-word">capisce /ʃ/</span>
+          <button class="btn-f-play" onclick="ippAudio('capisce',0.8,'f')">▶</button>
+        </div>
+        <div class="fonema-ex">
+          <span class="fonema-word">fresco /sk/</span>
+          <button class="btn-f-play" onclick="ippAudio('fresco',0.8,'m')">▶</button>
+        </div>
+        <div class="fonema-ex">
+          <span class="fonema-word">lavorisco /sk/</span>
+          <button class="btn-f-play" onclick="ippAudio('lavoro',0.8,'m')">▶</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECCIÓN 6: CULTURE STRIP
+════════════════════════════════════════ -->
+<div class="culture-strip">
+  <div class="culture-flag">🇮🇹</div>
+  <div class="culture-body">
+    <h3 class="culture-title">Il lavoro in Italia — lavoro e identità</h3>
+    <p class="culture-it">
+      In Italia, il lavoro è spesso parte dell'identità personale. Quando gli italiani si presentano, spesso dicono <em>"Faccio il medico"</em> o <em>"Sono insegnante"</em> — il lavoro definisce chi sei. Il mercato del lavoro italiano è complesso: da un lato ci sono grandi aziende e professioni prestigiose, dall'altro molti giovani faticano a trovare lavoro stabile. Il <em>Centro per l'Impiego</em> aiuta i disoccupati a cercare lavoro e a ricevere sussidi. Per gli stranieri, avere il permesso di soggiorno è essenziale per lavorare legalmente in Italia.
+    </p>
+    <button class="btn-translate" onclick="toggleCulture(this)">🇪🇸 Ver en español</button>
+    <div class="culture-es" style="display:none">
+      <p>En Italia, el trabajo es frecuentemente parte de la identidad personal. Cuando los italianos se presentan, suelen decir "Faccio il medico" o "Sono insegnante" — el trabajo define quién sos. El mercado laboral italiano es complejo: por un lado hay grandes empresas y profesiones de prestigio, pero por otro muchos jóvenes tienen dificultades para encontrar trabajo estable. El Centro per l'Impiego ayuda a los desocupados a buscar empleo y acceder a subsidios. Para los extranjeros, tener el permesso di soggiorno es esencial para trabajar legalmente en Italia.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECCIÓN 7: ACTIVIDADES
+════════════════════════════════════════ -->
+<div class="exercise-card">
+  <div class="ex-header">
+    <div class="ex-num">1</div>
+    <div>
+      <div class="ex-title">¿Qué profesión es?</div>
+      <div class="ex-subtitle">Elegí la opción correcta para cada descripción</div>
+    </div>
+  </div>
+
+  <div class="ex-block" id="ex1a">
+    <p class="ex-q">1. Lavora in ospedale e cura i malati. È...</p>
+    <button class="opt-btn" onclick="checkOpt(this,'ex1a',false,'No — un commesso lavora in un negozio.')">il commesso</button>
+    <button class="opt-btn" onclick="checkOpt(this,'ex1a',true,'¡Esatto! Il medico cura i malati in ospedale.')">il medico</button>
+    <button class="opt-btn" onclick="checkOpt(this,'ex1a',false,'No — il meccanico lavora con le macchine.')">il meccanico</button>
+    <div class="ex-fb" id="ex1afb"></div>
+  </div>
+
+  <div class="ex-block" id="ex1b">
+    <p class="ex-q">2. Insegna ai bambini a leggere e scrivere. È...</p>
+    <button class="opt-btn" onclick="checkOpt(this,'ex1b',false,'No — il cuoco lavora in cucina, non in classe.')">il cuoco</button>
+    <button class="opt-btn" onclick="checkOpt(this,'ex1b',false,'No — il poliziotto mantiene l\'ordine pubblico.')">il poliziotto</button>
+    <button class="opt-btn" onclick="checkOpt(this,'ex1b',true,'¡Perfetto! L\'insegnante insegna ai bambini.')">l\'insegnante</button>
+    <div class="ex-fb" id="ex1bfb"></div>
+  </div>
+
+  <div class="ex-block" id="ex1c">
+    <p class="ex-q">3. Porta il cibo ai clienti al ristorante. È...</p>
+    <button class="opt-btn" onclick="checkOpt(this,'ex1c',true,'¡Sì! Il cameriere serve i clienti al ristorante.')">il cameriere</button>
+    <button class="opt-btn" onclick="checkOpt(this,'ex1c',false,'No — l\'avvocato lavora in tribunale o nel suo studio.')">l\'avvocato</button>
+    <button class="opt-btn" onclick="checkOpt(this,'ex1c',false,'No — il parrucchiere taglia i capelli, non porta cibo.')">il parrucchiere</button>
+    <div class="ex-fb" id="ex1cfb"></div>
+  </div>
+</div>
+
+<div class="exercise-card">
+  <div class="ex-header">
+    <div class="ex-num">2</div>
+    <div>
+      <div class="ex-title">Completá con FARE</div>
+      <div class="ex-subtitle">Escribí la forma correcta del verbo FARE en cada oración</div>
+    </div>
+  </div>
+
+  <div class="fill-item">
+    <span>Io ___ il programmatore.</span>
+    <input class="fill-input" type="text" data-answer="faccio" oninput="checkFill(this)" placeholder="...">
+    <span class="fill-feedback"></span>
+  </div>
+  <div class="fill-item">
+    <span>Tu che lavoro ___?</span>
+    <input class="fill-input" type="text" data-answer="fai" oninput="checkFill(this)" placeholder="...">
+    <span class="fill-feedback"></span>
+  </div>
+  <div class="fill-item">
+    <span>Lei ___ la parrucchiera.</span>
+    <input class="fill-input" type="text" data-answer="fa" oninput="checkFill(this)" placeholder="...">
+    <span class="fill-feedback"></span>
+  </div>
+  <div class="fill-item">
+    <span>Noi ___ gli infermieri.</span>
+    <input class="fill-input" type="text" data-answer="facciamo" oninput="checkFill(this)" placeholder="...">
+    <span class="fill-feedback"></span>
+  </div>
+</div>
+
+<div class="exercise-card">
+  <div class="ex-header">
+    <div class="ex-num">3</div>
+    <div>
+      <div class="ex-title">I colori — ¿De qué color es?</div>
+      <div class="ex-subtitle">Asociá el color correcto</div>
+    </div>
+  </div>
+
+  <div class="ex-block" id="ex3a">
+    <p class="ex-q">1. La bandiera italiana è verde, ___ e rossa.</p>
+    <button class="opt-btn" onclick="checkOpt(this,'ex3a',false,'No — il giallo non è il colore della bandiera italiana.')">gialla</button>
+    <button class="opt-btn" onclick="checkOpt(this,'ex3a',true,'¡Esatto! La bandiera italiana è verde, bianca e rossa.')">bianca</button>
+    <button class="opt-btn" onclick="checkOpt(this,'ex3a',false,'No — il blu non appare nella bandiera italiana.')">blu</button>
+    <div class="ex-fb" id="ex3afb"></div>
+  </div>
+
+  <div class="ex-block" id="ex3b">
+    <p class="ex-q">2. Il cielo di notte è ___.</p>
+    <button class="opt-btn" onclick="checkOpt(this,'ex3b',false,'No — il cielo di notte non è arancione.')">arancione</button>
+    <button class="opt-btn" onclick="checkOpt(this,'ex3b',false,'No — il bianco non è il colore del cielo notturno.')">bianco</button>
+    <button class="opt-btn" onclick="checkOpt(this,'ex3b',true,'¡Perfetto! Il cielo di notte è nero (o blu scuro).')">nero</button>
+    <div class="ex-fb" id="ex3bfb"></div>
+  </div>
+
+  <div class="ex-block" id="ex3c">
+    <p class="ex-q">3. L'erba del parco è ___.</p>
+    <button class="opt-btn" onclick="checkOpt(this,'ex3c',true,'¡Sì! L\'erba è verde.')">verde</button>
+    <button class="opt-btn" onclick="checkOpt(this,'ex3c',false,'No — il marrone non è il colore tipico dell\'erba.')">marrone</button>
+    <button class="opt-btn" onclick="checkOpt(this,'ex3c',false,'No — il grigio non è il colore dell\'erba.')">grigio</button>
+    <div class="ex-fb" id="ex3cfb"></div>
+  </div>
+</div>
+
+<!-- CTA -->
+
+</div><!-- /container -->
+
+<script>
+// ══════════════════════════════════════════
+// IPP Voice Preloader
+// ══════════════════════════════════════════
+if (!window.__ippVC) {
+  window.__ippVC = true;
+  window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) window.__ippV = v; };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
+
+// ══════════════════════════════════════════
+// EXECUTION GUARD
+// ══════════════════════════════════════════
+if (!window.__ipp_m4_e2__) {
+window.__ipp_m4_e2__ = true;
+
+function ippVoice(gender) {
+  var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+  var itV = voices.filter(function(v) { return v.lang && v.lang.startsWith('it'); });
+  if (!itV.length) return null;
+  var voice = null;
+  if (gender === 'm') {
+    voice = itV.find(function(v) { return /cosimo|luca|giorgio|male|masc/i.test(v.name); });
+    if (!voice) voice = itV.find(function(v) { return !/elsa|alice|giulia|female|femm/i.test(v.name); });
+  } else {
+    voice = itV.find(function(v) { return /elsa|alice|giulia|female|femm/i.test(v.name); });
+    if (!voice) voice = itV.find(function(v) { return !/cosimo|luca|giorgio|male|masc/i.test(v.name); });
+  }
+  return voice || itV[0];
+}
+
+function ippAudio(text, rate, gender) {
+  rate = (typeof rate === 'number' && isFinite(rate) && rate > 0) ? rate : 0.82;
+  gender = (gender === 'm' || gender === 'f') ? gender : 'f';
+  if (!window.speechSynthesis) return;
+  try { speechSynthesis.cancel(); } catch(e) {}
+  var utt = new SpeechSynthesisUtterance(String(text));
+  utt.lang = 'it-IT'; utt.rate = rate;
+  var voice = ippVoice(gender);
+  if (voice) utt.voice = voice;
+  (function(u) { setTimeout(function() { try { speechSynthesis.speak(u); } catch(e) {} }, 60); })(utt);
+}
+
+// Dialog playback
+var dialogQueue = [];
+var dialogPlaying = false;
+
+function playLine(btn) {
+  var line = btn.closest('.dialog-line');
+  var text = line.getAttribute('data-text');
+  var gender = line.getAttribute('data-gender') || 'f';
+  var rate = parseFloat(line.getAttribute('data-rate')) || 0.82;
+  ippAudio(text, rate, gender);
+}
+
+function playAll() {
+  var lines = document.querySelectorAll('#dialog-main .dialog-line');
+  dialogQueue = Array.from(lines);
+  dialogPlaying = true;
+  playNextLine();
+}
+
+function playNextLine() {
+  if (!dialogPlaying || dialogQueue.length === 0) { dialogPlaying = false; return; }
+  var line = dialogQueue.shift();
+  var text = line.getAttribute('data-text');
+  var gender = line.getAttribute('data-gender') || 'f';
+  var rate = parseFloat(line.getAttribute('data-rate')) || 0.82;
+  if (!window.speechSynthesis) return;
+  try { speechSynthesis.cancel(); } catch(e) {}
+  var utt = new SpeechSynthesisUtterance(String(text));
+  utt.lang = 'it-IT'; utt.rate = rate;
+  var voice = ippVoice(gender);
+  if (voice) utt.voice = voice;
+  utt.onend = function() { setTimeout(playNextLine, 600); };
+  setTimeout(function() { try { speechSynthesis.speak(utt); } catch(e) {} }, 60);
+}
+
+function stopDialog() {
+  dialogPlaying = false;
+  dialogQueue = [];
+  if (window.speechSynthesis) { try { speechSynthesis.cancel(); } catch(e) {} }
+}
+
+// Exercises
+function checkOpt(btn, exId, isCorrect, feedbackText) {
+  var block = document.getElementById(exId);
+  if (block.classList.contains('answered')) return;
+  block.classList.add('answered');
+  var btns = block.querySelectorAll('.opt-btn');
+  btns.forEach(function(b) { b.disabled = true; });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  var fb = document.getElementById(exId + 'fb');
+  if (fb) {
+    fb.textContent = feedbackText;
+    fb.style.color = isCorrect ? '#2d7a4f' : '#cc4736';
+  }
+}
+
+function checkFill(input) {
+  var answer = (input.getAttribute('data-answer') || '').toLowerCase().trim();
+  var val = input.value.toLowerCase().trim();
+  var fb = input.nextElementSibling;
+  if (!val) { input.className = 'fill-input'; if(fb) fb.textContent = ''; return; }
+  if (val === answer) {
+    input.className = 'fill-input ok';
+    if (fb) { fb.textContent = '✓'; fb.style.color = '#2d7a4f'; }
+  } else {
+    input.className = 'fill-input err';
+    if (fb) { fb.textContent = '✗'; fb.style.color = '#cc4736'; }
+  }
+}
+
+function toggleCulture(btn) {
+  var es = btn.nextElementSibling;
+  if (!es) return;
+  var visible = es.style.display !== 'none';
+  es.style.display = visible ? 'none' : 'block';
+  btn.textContent = visible ? '🇪🇸 Ver en español' : '🇮🇹 Ocultar traducción';
+}
+
+// EXPONER A WINDOW
+window.ippAudio = ippAudio;
+window.ippVoice = ippVoice;
+window.playLine = playLine;
+window.playAll = playAll;
+window.stopDialog = stopDialog;
+window.checkOpt = checkOpt;
+window.checkFill = checkFill;
+window.toggleCulture = toggleCulture;
+
+} // end execution guard
+</script>
+</body>
+</html>
