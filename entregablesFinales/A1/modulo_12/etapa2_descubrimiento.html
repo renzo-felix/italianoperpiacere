@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ieri sera — Etapa 2 | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --mod:    #528e74;
+  --mod-dk: #3d6b58;
+  --mod-lt: #e8f4f0;
+  --mod-tx: #2d4d3c;
+  --cream:  #e9e6d5;
+  --cream-dk: #ddd9c8;
+  --gold:   #EFCF7F;
+  --black:  #1a1a18;
+  --white:  #ffffff;
+  --green:  #528e74;
+  --red:    #cc4736;
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+  --r: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--cream); font-family: var(--fb); color: var(--black); line-height: 1.6; }
+
+.hero {
+  background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
+  padding: 56px 24px 48px;
+  text-align: center;
+  color: var(--white);
+}
+.badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-size: 13px; font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2rem,5vw,3.2rem); font-weight: 700; margin-bottom: 8px; }
+.hero p { font-size: 1.05rem; opacity: 0.9; }
+
+.container { max-width: 860px; margin: 0 auto; padding: 40px 24px; }
+
+.section-title {
+  font-family: var(--fh); font-style: italic; font-size: 1.5rem;
+  color: var(--mod-tx); margin-bottom: 20px;
+  padding-bottom: 8px; border-bottom: 2px solid var(--mod-lt);
+}
+
+.card {
+  background: var(--white); border-radius: var(--r);
+  padding: 28px; margin-bottom: 32px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.card-title {
+  font-weight: 700; font-size: 1rem; color: var(--mod-tx);
+  text-transform: uppercase; letter-spacing: 0.7px;
+  margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+}
+
+/* CHIPS */
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--mod-lt); border: 2px solid transparent;
+  border-radius: 24px; padding: 8px 16px;
+  font-size: 0.88rem; font-weight: 500; cursor: pointer;
+  transition: all 0.2s; color: var(--mod-tx);
+}
+.chip:hover { border-color: var(--mod); background: var(--white); }
+.chip:active { transform: scale(0.97); }
+.chip .play-icon { font-size: 12px; opacity: 0.7; }
+.chip.playing { border-color: var(--mod); background: var(--mod); color: var(--white); }
+
+/* TIEMPO chips — diferente color */
+.chip-time { background: var(--cream-dk); color: var(--black); }
+.chip-time:hover { border-color: var(--mod-dk); background: var(--cream); }
+.chip-time.playing { background: var(--mod-dk); color: var(--white); border-color: var(--mod-dk); }
+
+/* MONTHS grid */
+.months-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px; margin-top: 12px;
+}
+.month-chip {
+  background: var(--mod-lt); border: 2px solid transparent;
+  border-radius: 8px; padding: 10px 14px;
+  text-align: center; cursor: pointer; transition: all 0.2s;
+  font-size: 0.88rem; font-weight: 500; color: var(--mod-tx);
+}
+.month-chip:hover { border-color: var(--mod); }
+.month-chip.playing { background: var(--mod); color: var(--white); }
+.month-num { font-size: 10px; opacity: 0.6; display: block; margin-bottom: 2px; }
+
+/* FECHA INTERACTIVA */
+.fecha-builder {
+  background: var(--mod-lt); border-radius: var(--r);
+  padding: 20px; margin-top: 16px;
+}
+.fecha-display {
+  background: var(--white); border-radius: 8px;
+  padding: 16px 20px; text-align: center;
+  font-family: var(--fh); font-style: italic; font-size: 1.3rem;
+  color: var(--mod-tx); margin-bottom: 16px; min-height: 56px;
+  border: 2px solid var(--mod-lt);
+}
+.fecha-selects { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.fecha-selects select {
+  padding: 8px 12px; border: 2px solid var(--cream-dk);
+  border-radius: 8px; font-family: var(--fb); font-size: 0.9rem;
+  background: var(--white); cursor: pointer; color: var(--black);
+}
+.fecha-selects select:focus { outline: none; border-color: var(--mod); }
+
+/* DIÁLOGO */
+.dialog-header {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--mod-lt); border-radius: 8px;
+  padding: 12px 16px; margin-bottom: 20px;
+}
+.dialog-header .play-all-btn {
+  background: var(--mod); color: var(--white);
+  border: none; border-radius: 20px; padding: 8px 20px;
+  font-family: var(--fb); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; white-space: nowrap;
+}
+.dialog-header .play-all-btn:hover { background: var(--mod-dk); }
+.dialog-header p { font-size: 13px; color: var(--mod-tx); }
+
+.bubble { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px; }
+.bubble.right { flex-direction: row-reverse; }
+.avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0; font-weight: 700;
+  font-family: var(--fh);
+}
+.av-f { background: var(--mod); color: var(--white); }
+.av-m { background: var(--mod-dk); color: var(--white); }
+.bubble-content { max-width: 70%; }
+.bubble-name {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.5px; margin-bottom: 4px;
+  color: var(--mod-tx);
+}
+.bubble.right .bubble-name { text-align: right; }
+.bubble-text {
+  background: var(--cream-dk);
+  border-radius: 0 var(--r) var(--r) var(--r);
+  padding: 12px 16px; font-size: 0.92rem; line-height: 1.5;
+  cursor: pointer; transition: all 0.2s;
+  border: 2px solid transparent;
+}
+.bubble.right .bubble-text {
+  border-radius: var(--r) 0 var(--r) var(--r);
+  background: var(--mod-lt);
+}
+.bubble-text:hover { border-color: var(--mod); }
+.bubble-text em { color: var(--mod-tx); font-style: normal; font-weight: 600; }
+.bubble-text .transl { font-size: 12px; color: #888; margin-top: 4px; display: block; }
+
+/* EXPRESIONES CARDS */
+.exp-section { margin-bottom: 28px; }
+.exp-label {
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.8px; color: var(--mod-tx); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 6px;
+}
+.exp-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.exp-card {
+  background: var(--white); border: 2px solid var(--cream-dk);
+  border-radius: 8px; padding: 10px 16px;
+  cursor: pointer; transition: all 0.2s; font-size: 0.88rem;
+}
+.exp-card:hover { border-color: var(--mod); background: var(--mod-lt); }
+.exp-card .it { font-weight: 600; color: var(--black); }
+.exp-card .es { font-size: 11px; color: #777; margin-top: 2px; }
+
+/* PRONOME CHE */
+.che-box {
+  background: var(--mod-lt); border-radius: 8px;
+  padding: 20px; margin-top: 12px;
+}
+.che-example {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 12px 0; border-bottom: 1px solid var(--cream-dk);
+}
+.che-example:last-child { border-bottom: none; }
+.che-it { font-size: 1rem; color: var(--black); }
+.che-it .highlight { color: var(--mod-dk); font-weight: 700; text-decoration: underline; }
+.che-es { font-size: 13px; color: #777; }
+
+/* CULTURE STRIP */
+.culture-strip {
+  background: linear-gradient(135deg, #EFCF7F 0%, #ddd9c8 100%);
+  border-top: 3px solid var(--mod);
+  border-radius: var(--r); padding: 24px 28px;
+  margin-bottom: 32px;
+}
+.culture-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+  cursor: pointer;
+}
+.culture-flag { font-size: 28px; }
+.culture-title { font-family: var(--fh); font-style: italic; font-size: 1.2rem; color: var(--mod-tx); }
+.culture-toggle { margin-left: auto; font-size: 20px; transition: transform 0.3s; }
+.culture-body { display: none; font-size: 0.93rem; line-height: 1.7; color: var(--black); }
+.culture-body.open { display: block; }
+.culture-body p { margin-bottom: 10px; }
+.culture-body p:last-child { margin-bottom: 0; }
+
+/* CTA */
+.cta-wrap { text-align: center; margin-top: 40px; padding-bottom: 20px; }
+.btn-cta {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--mod), var(--mod-dk));
+  color: var(--white); font-family: var(--fb); font-size: 1.05rem;
+  font-weight: 700; padding: 16px 40px; border-radius: 30px;
+  border: none; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(82,142,116,0.4);
+  transition: all 0.25s; letter-spacing: 0.3px;
+}
+.btn-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(82,142,116,0.5); }
+
+@media (max-width: 600px) {
+  .bubble-content { max-width: 85%; }
+  .fecha-selects { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">A1 · Unità 11</div>
+  <h1>Ieri sera</h1>
+  <p>Etapa 2 — Descubrimiento · Vocabolario &amp; Dialogo</p>
+</div>
+
+<div class="container">
+
+  <!-- SECCIÓN 1: AZIONI QUOTIDIANE -->
+  <h2 class="section-title">1. Azioni quotidiane — Del audio al vocabulario</h2>
+  <div class="card">
+    <div class="card-title">🎙️ Frasi dal transcript — tocá cada frase para escucharla</div>
+    <div class="chips" id="chips-azioni">
+      <div class="chip" onclick="playChip(this,'pulire la casa','f')"><span class="play-icon">▶</span> pulire la casa</div>
+      <div class="chip" onclick="playChip(this,'fare la spesa','f')"><span class="play-icon">▶</span> fare la spesa</div>
+      <div class="chip" onclick="playChip(this,'andare dalla parrucchiera','f')"><span class="play-icon">▶</span> andare dalla parrucchiera</div>
+      <div class="chip" onclick="playChip(this,'prendere la pizza','m')"><span class="play-icon">▶</span> prendere la pizza</div>
+      <div class="chip" onclick="playChip(this,'fare un aperitivo','f')"><span class="play-icon">▶</span> fare un aperitivo</div>
+      <div class="chip" onclick="playChip(this,'preparare la cena','f')"><span class="play-icon">▶</span> preparare la cena</div>
+      <div class="chip" onclick="playChip(this,'guardare un film','m')"><span class="play-icon">▶</span> guardare un film</div>
+      <div class="chip" onclick="playChip(this,'leggere un libro','m')"><span class="play-icon">▶</span> leggere un libro</div>
+      <div class="chip" onclick="playChip(this,'addormentarsi sul divano','m')"><span class="play-icon">▶</span> addormentarsi sul divano</div>
+      <div class="chip" onclick="playChip(this,'camminare in centro','f')"><span class="play-icon">▶</span> camminare in centro</div>
+      <div class="chip" onclick="playChip(this,'perdere l\'autobus','f')"><span class="play-icon">▶</span> perdere l'autobus</div>
+      <div class="chip" onclick="playChip(this,'tornare a casa a piedi','f')"><span class="play-icon">▶</span> tornare a casa a piedi</div>
+      <div class="chip" onclick="playChip(this,'andare al karaoke','m')"><span class="play-icon">▶</span> andare al karaoke</div>
+      <div class="chip" onclick="playChip(this,'alzarsi la mattina','m')"><span class="play-icon">▶</span> alzarsi la mattina</div>
+      <div class="chip" onclick="playChip(this,'prendere la bici','m')"><span class="play-icon">▶</span> prendere la bici</div>
+      <div class="chip" onclick="playChip(this,'andare al lavoro','m')"><span class="play-icon">▶</span> andare al lavoro</div>
+      <div class="chip" onclick="playChip(this,'cadere dalla bicicletta','f')"><span class="play-icon">▶</span> cadere dalla bicicletta</div>
+      <div class="chip" onclick="playChip(this,'rompersi i pantaloni','f')"><span class="play-icon">▶</span> rompersi i pantaloni</div>
+    </div>
+    <p style="font-size:12px;color:#999;margin-top:14px;">* La pronuncia usa síntesis de voz del navegador. Requiere voces italianas instaladas.</p>
+  </div>
+
+  <!-- SECCIÓN 2: ESPRESSIONI DI TEMPO -->
+  <h2 class="section-title">2. Espressioni di tempo — Cuándo pasó</h2>
+  <div class="card">
+    <div class="card-title">🕐 Expresiones temporales — tocá para escuchar</div>
+    <div class="chips">
+      <div class="chip chip-time" onclick="playChip(this,'adesso','f')"><span class="play-icon">▶</span> adesso <small style="opacity:0.6;margin-left:4px">ahora</small></div>
+      <div class="chip chip-time" onclick="playChip(this,'ieri','f')"><span class="play-icon">▶</span> ieri <small style="opacity:0.6;margin-left:4px">ayer</small></div>
+      <div class="chip chip-time" onclick="playChip(this,'ieri sera','f')"><span class="play-icon">▶</span> ieri sera <small style="opacity:0.6;margin-left:4px">ayer a la noche</small></div>
+      <div class="chip chip-time" onclick="playChip(this,'l\'altro ieri','f')"><span class="play-icon">▶</span> l'altro ieri <small style="opacity:0.6;margin-left:4px">anteayer</small></div>
+      <div class="chip chip-time" onclick="playChip(this,'due giorni fa','m')"><span class="play-icon">▶</span> due giorni fa <small style="opacity:0.6;margin-left:4px">hace dos días</small></div>
+      <div class="chip chip-time" onclick="playChip(this,'due sere fa','f')"><span class="play-icon">▶</span> due sere fa <small style="opacity:0.6;margin-left:4px">hace dos noches</small></div>
+      <div class="chip chip-time" onclick="playChip(this,'stamattina','f')"><span class="play-icon">▶</span> stamattina <small style="opacity:0.6;margin-left:4px">esta mañana</small></div>
+      <div class="chip chip-time" onclick="playChip(this,'verso le venti','m')"><span class="play-icon">▶</span> verso le 20 <small style="opacity:0.6;margin-left:4px">alrededor de las 20</small></div>
+      <div class="chip chip-time" onclick="playChip(this,'prima di cena','f')"><span class="play-icon">▶</span> prima di cena <small style="opacity:0.6;margin-left:4px">antes de cenar</small></div>
+      <div class="chip chip-time" onclick="playChip(this,'dopo pranzo','m')"><span class="play-icon">▶</span> dopo pranzo <small style="opacity:0.6;margin-left:4px">después del almuerzo</small></div>
+      <div class="chip chip-time" onclick="playChip(this,'alla fine','f')"><span class="play-icon">▶</span> alla fine <small style="opacity:0.6;margin-left:4px">al final</small></div>
+      <div class="chip chip-time" onclick="playChip(this,'alla fine della giornata','f')"><span class="play-icon">▶</span> alla fine della giornata <small style="opacity:0.6;margin-left:4px">al final del día</small></div>
+      <div class="chip chip-time" onclick="playChip(this,'per fortuna','f')"><span class="play-icon">▶</span> per fortuna <small style="opacity:0.6;margin-left:4px">por suerte</small></div>
+      <div class="chip chip-time" onclick="playChip(this,'purtroppo','f')"><span class="play-icon">▶</span> purtroppo <small style="opacity:0.6;margin-left:4px">lamentablemente</small></div>
+    </div>
+
+    <div style="background:var(--mod-lt);border-radius:8px;padding:16px;margin-top:20px;">
+      <div style="font-weight:700;font-size:13px;color:var(--mod-tx);margin-bottom:10px;">⚡ Patrón para recordar: <em>fa</em> = hace</div>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;font-size:0.92rem;">
+        <span>un'ora <strong>fa</strong> → hace una hora</span>
+        <span>due giorni <strong>fa</strong> → hace dos días</span>
+        <span>una settimana <strong>fa</strong> → hace una semana</span>
+        <span>un mese <strong>fa</strong> → hace un mes</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3: LA DATA -->
+  <h2 class="section-title">3. La data — Cómo decir la fecha</h2>
+  <div class="card">
+    <div class="card-title">📅 I mesi dell'anno — tocá para escuchar</div>
+    <div class="months-grid">
+      <div class="month-chip" onclick="playMonth(this,'gennaio')"><span class="month-num">01</span>gennaio</div>
+      <div class="month-chip" onclick="playMonth(this,'febbraio')"><span class="month-num">02</span>febbraio</div>
+      <div class="month-chip" onclick="playMonth(this,'marzo')"><span class="month-num">03</span>marzo</div>
+      <div class="month-chip" onclick="playMonth(this,'aprile')"><span class="month-num">04</span>aprile</div>
+      <div class="month-chip" onclick="playMonth(this,'maggio')"><span class="month-num">05</span>maggio</div>
+      <div class="month-chip" onclick="playMonth(this,'giugno')"><span class="month-num">06</span>giugno</div>
+      <div class="month-chip" onclick="playMonth(this,'luglio')"><span class="month-num">07</span>luglio</div>
+      <div class="month-chip" onclick="playMonth(this,'agosto')"><span class="month-num">08</span>agosto</div>
+      <div class="month-chip" onclick="playMonth(this,'settembre')"><span class="month-num">09</span>settembre</div>
+      <div class="month-chip" onclick="playMonth(this,'ottobre')"><span class="month-num">10</span>ottobre</div>
+      <div class="month-chip" onclick="playMonth(this,'novembre')"><span class="month-num">11</span>novembre</div>
+      <div class="month-chip" onclick="playMonth(this,'dicembre')"><span class="month-num">12</span>dicembre</div>
+    </div>
+
+    <div style="margin-top:20px;background:var(--mod-lt);border-radius:8px;padding:16px;">
+      <div style="font-weight:700;font-size:13px;color:var(--mod-tx);margin-bottom:10px;">💬 Come si dice la data in italiano</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.92rem;">
+        <div><strong>Che giorno è oggi?</strong><br><em style="color:#888">¿Qué día es hoy?</em></div>
+        <div><strong>Oggi è lunedì.</strong><br><em style="color:#888">Hoy es lunes.</em></div>
+        <div><strong>Quanti ne abbiamo?</strong><br><em style="color:#888">¿A cuánto estamos?</em></div>
+        <div><strong>Ne abbiamo quattordici.</strong><br><em style="color:#888">Estamos a 14.</em></div>
+        <div><strong>Che data è oggi?</strong><br><em style="color:#888">¿Qué fecha es hoy?</em></div>
+        <div><strong>È il 14 aprile 2025.</strong><br><em style="color:#888">Es el 14 de abril de 2025.</em></div>
+      </div>
+      <div style="margin-top:12px;font-size:13px;background:var(--white);border-radius:6px;padding:10px 14px;">
+        ⚠️ <strong>Excepción:</strong> el primer día del mes se dice <em>"il primo"</em> (no "il uno").<br>
+        Ej: <em>È il primo maggio.</em> = Es el 1 de mayo.
+      </div>
+    </div>
+
+    <!-- CONSTRUCTOR DE FECHA -->
+    <div class="fecha-builder" style="margin-top:20px;">
+      <div style="font-weight:700;font-size:13px;color:var(--mod-tx);margin-bottom:12px;">🎮 Armá una fecha y escuchala</div>
+      <div class="fecha-display" id="fecha-display">Oggi è...</div>
+      <div class="fecha-selects">
+        <select id="sel-dia" onchange="updateFecha()">
+          <option value="">— día —</option>
+          <option value="1">primo</option>
+          <option value="2">due</option><option value="3">tre</option>
+          <option value="4">quattro</option><option value="5">cinque</option>
+          <option value="6">sei</option><option value="7">sette</option>
+          <option value="8">otto</option><option value="9">nove</option>
+          <option value="10">dieci</option><option value="11">undici</option>
+          <option value="12">dodici</option><option value="13">tredici</option>
+          <option value="14">quattordici</option><option value="15">quindici</option>
+          <option value="16">sedici</option><option value="17">diciassette</option>
+          <option value="18">diciotto</option><option value="19">diciannove</option>
+          <option value="20">venti</option><option value="21">ventuno</option>
+          <option value="22">ventidue</option><option value="25">venticinque</option>
+          <option value="28">ventotto</option><option value="30">trenta</option>
+          <option value="31">trentuno</option>
+        </select>
+        <select id="sel-mes" onchange="updateFecha()">
+          <option value="">— mes —</option>
+          <option value="gennaio">gennaio</option><option value="febbraio">febbraio</option>
+          <option value="marzo">marzo</option><option value="aprile">aprile</option>
+          <option value="maggio">maggio</option><option value="giugno">giugno</option>
+          <option value="luglio">luglio</option><option value="agosto">agosto</option>
+          <option value="settembre">settembre</option><option value="ottobre">ottobre</option>
+          <option value="novembre">novembre</option><option value="dicembre">dicembre</option>
+        </select>
+        <select id="sel-anio" onchange="updateFecha()">
+          <option value="">— año —</option>
+          <option value="duemilaventidue">2022</option>
+          <option value="duemilaventitre">2023</option>
+          <option value="duemilaventiquattro">2024</option>
+          <option value="duemilaventicinque">2025</option>
+          <option value="duemilaventisei">2026</option>
+        </select>
+        <button onclick="playFecha()" style="background:var(--mod);color:var(--white);border:none;border-radius:8px;padding:8px 16px;font-family:var(--fb);font-size:13px;font-weight:600;cursor:pointer;">▶ Escuchar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4: DIÁLOGO -->
+  <h2 class="section-title">4. Dialogo — Concordare un appuntamento</h2>
+  <div class="card">
+    <div class="dialog-header">
+      <div>
+        <p><strong>Anna</strong> y <strong>Roberto</strong> quieren organizar un plan para el fin de semana. Tocá cada burbuja para escuchar la línea, o reproducí todo el diálogo de una vez.</p>
+      </div>
+      <button class="play-all-btn" onclick="playAllDialog()">▶ Reproducir todo</button>
+    </div>
+
+    <div class="bubble" id="dl1">
+      <div class="avatar av-f">A</div>
+      <div class="bubble-content">
+        <div class="bubble-name">Anna</div>
+        <div class="bubble-text" onclick="playLine('dl1')" data-gender="f" data-text="Roberto, ti va di andare al cinema sabato sera?">
+          <em>Roberto, ti va di andare al cinema sabato sera?</em>
+          <span class="transl">Roberto, ¿te parece ir al cine el sábado a la noche?</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble right" id="dl2">
+      <div class="avatar av-m">R</div>
+      <div class="bubble-content">
+        <div class="bubble-name" style="text-align:right">Roberto</div>
+        <div class="bubble-text" onclick="playLine('dl2')" data-gender="m" data-text="Sabato sera non posso, ho già un impegno. Purtroppo!">
+          <em>Sabato sera non posso, ho già un impegno. Purtroppo!</em>
+          <span class="transl">El sábado a la noche no puedo, ya tengo algo. ¡Lamentablemente!</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble" id="dl3">
+      <div class="avatar av-f">A</div>
+      <div class="bubble-content">
+        <div class="bubble-name">Anna</div>
+        <div class="bubble-text" onclick="playLine('dl3')" data-gender="f" data-text="Ah, capito. Che ne dici di domenica pomeriggio allora?">
+          <em>Ah, capito. Che ne dici di domenica pomeriggio allora?</em>
+          <span class="transl">Ah, entiendo. ¿Qué te parece el domingo a la tarde, entonces?</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble right" id="dl4">
+      <div class="avatar av-m">R</div>
+      <div class="bubble-content">
+        <div class="bubble-name" style="text-align:right">Roberto</div>
+        <div class="bubble-text" onclick="playLine('dl4')" data-gender="m" data-text="Domenica pomeriggio va benissimo! A che ora?">
+          <em>Domenica pomeriggio va benissimo! A che ora?</em>
+          <span class="transl">El domingo a la tarde está perfecto. ¿A qué hora?</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble" id="dl5">
+      <div class="avatar av-f">A</div>
+      <div class="bubble-content">
+        <div class="bubble-name">Anna</div>
+        <div class="bubble-text" onclick="playLine('dl5')" data-gender="f" data-text="Verso le quattro? Ci troviamo davanti al cinema.">
+          <em>Verso le quattro? Ci troviamo davanti al cinema.</em>
+          <span class="transl">¿Alrededor de las cuatro? Nos encontramos frente al cine.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble right" id="dl6">
+      <div class="avatar av-m">R</div>
+      <div class="bubble-content">
+        <div class="bubble-name" style="text-align:right">Roberto</div>
+        <div class="bubble-text" onclick="playLine('dl6')" data-gender="m" data-text="Perfetto! E dopo il cinema andiamo a mangiare qualcosa?">
+          <em>Perfetto! E dopo il cinema andiamo a mangiare qualcosa?</em>
+          <span class="transl">¡Perfecto! ¿Y después del cine vamos a comer algo?</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble" id="dl7">
+      <div class="avatar av-f">A</div>
+      <div class="bubble-content">
+        <div class="bubble-name">Anna</div>
+        <div class="bubble-text" onclick="playLine('dl7')" data-gender="f" data-text="Sì, volentieri! Conosco un bel posto qui vicino.">
+          <em>Sì, volentieri! Conosco un bel posto qui vicino.</em>
+          <span class="transl">¡Sí, con gusto! Conozco un lindo lugar aquí cerca.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble right" id="dl8">
+      <div class="avatar av-m">R</div>
+      <div class="bubble-content">
+        <div class="bubble-name" style="text-align:right">Roberto</div>
+        <div class="bubble-text" onclick="playLine('dl8')" data-gender="m" data-text="Ottimo! D'accordo allora, ci vediamo domenica.">
+          <em>Ottimo! D'accordo allora, ci vediamo domenica.</em>
+          <span class="transl">¡Genial! De acuerdo, entonces nos vemos el domingo.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble" id="dl9">
+      <div class="avatar av-f">A</div>
+      <div class="bubble-content">
+        <div class="bubble-name">Anna</div>
+        <div class="bubble-text" onclick="playLine('dl9')" data-gender="f" data-text="Perfetto! Hai già visto qualcosa di buono al cinema ultimamente?">
+          <em>Perfetto! Hai già visto qualcosa di buono al cinema ultimamente?</em>
+          <span class="transl">¡Perfecto! ¿Ya viste algo bueno en el cine últimamente?</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble right" id="dl10">
+      <div class="avatar av-m">R</div>
+      <div class="bubble-content">
+        <div class="bubble-name" style="text-align:right">Roberto</div>
+        <div class="bubble-text" onclick="playLine('dl10')" data-gender="m" data-text="Sì! La settimana scorsa ho visto un film italiano bellissimo — 'La grande bellezza'.">
+          <em>Sì! La settimana scorsa ho visto un film italiano bellissimo — 'La grande bellezza'.</em>
+          <span class="transl">¡Sí! La semana pasada vi una película italiana hermosísima: "La grande bellezza".</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble" id="dl11">
+      <div class="avatar av-f">A</div>
+      <div class="bubble-content">
+        <div class="bubble-name">Anna</div>
+        <div class="bubble-text" onclick="playLine('dl11')" data-gender="f" data-text="L'ho sentito nominare! Di cosa parla esattamente?">
+          <em>L'ho sentito nominare! Di cosa parla esattamente?</em>
+          <span class="transl">¡Lo escuché nombrar! ¿De qué trata exactamente?</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble right" id="dl12">
+      <div class="avatar av-m">R</div>
+      <div class="bubble-content">
+        <div class="bubble-name" style="text-align:right">Roberto</div>
+        <div class="bubble-text" onclick="playLine('dl12')" data-gender="m" data-text="È la storia di un uomo a Roma che riflette sulla sua vita. Ha vinto l'Oscar come miglior film straniero!">
+          <em>È la storia di un uomo a Roma che riflette sulla sua vita. Ha vinto l'Oscar come miglior film straniero!</em>
+          <span class="transl">Es la historia de un hombre en Roma que reflexiona sobre su vida. ¡Ganó el Oscar a la mejor película extranjera!</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble" id="dl13">
+      <div class="avatar av-f">A</div>
+      <div class="bubble-content">
+        <div class="bubble-name">Anna</div>
+        <div class="bubble-text" onclick="playLine('dl13')" data-gender="f" data-text="Che bello! Allora domenica vediamo quel film. Sei d'accordo?">
+          <em>Che bello! Allora domenica vediamo quel film. Sei d'accordo?</em>
+          <span class="transl">¡Qué lindo! Entonces el domingo vemos esa película. ¿Estás de acuerdo?</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble right" id="dl14">
+      <div class="avatar av-m">R</div>
+      <div class="bubble-content">
+        <div class="bubble-name" style="text-align:right">Roberto</div>
+        <div class="bubble-text" onclick="playLine('dl14')" data-gender="m" data-text="D'accordo! Ti mando sabato sera l'orario degli spettacoli.">
+          <em>D'accordo! Ti mando sabato sera l'orario degli spettacoli.</em>
+          <span class="transl">¡De acuerdo! Te mando el sábado a la noche los horarios de las funciones.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble" id="dl15">
+      <div class="avatar av-f">A</div>
+      <div class="bubble-content">
+        <div class="bubble-name">Anna</div>
+        <div class="bubble-text" onclick="playLine('dl15')" data-gender="f" data-text="Perfetto! Ci vediamo domenica alle quattro davanti al cinema, allora.">
+          <em>Perfetto! Ci vediamo domenica alle quattro davanti al cinema, allora.</em>
+          <span class="transl">¡Perfecto! Entonces nos vemos el domingo a las cuatro frente al cine.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble right" id="dl16">
+      <div class="avatar av-m">R</div>
+      <div class="bubble-content">
+        <div class="bubble-name" style="text-align:right">Roberto</div>
+        <div class="bubble-text" onclick="playLine('dl16')" data-gender="m" data-text="A domenica! Non vedo l'ora!">
+          <em>A domenica! Non vedo l'ora!</em>
+          <span class="transl">¡Hasta el domingo! ¡No puedo esperar!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 5: EXPRESIONES PARA ACORDAR -->
+  <h2 class="section-title">5. Per concordare un appuntamento</h2>
+  <div class="card">
+    <div class="exp-section">
+      <div class="exp-label">📤 Fare una proposta — Proponer</div>
+      <div class="exp-grid">
+        <div class="exp-card" onclick="playExp(this,'Ti va di andare al cinema?')">
+          <div class="it">Ti va di...?</div>
+          <div class="es">¿Te parece...? / ¿Qué te parece...?</div>
+        </div>
+        <div class="exp-card" onclick="playExp(this,'Che ne dici di domenica?')">
+          <div class="it">Che ne dici di...?</div>
+          <div class="es">¿Qué decís de...? / ¿Te parece...?</div>
+        </div>
+        <div class="exp-card" onclick="playExp(this,'Perché non andiamo al cinema?')">
+          <div class="it">Perché non...?</div>
+          <div class="es">¿Por qué no...?</div>
+        </div>
+        <div class="exp-card" onclick="playExp(this,'Ci vediamo alle quattro?')">
+          <div class="it">Ci vediamo a...?</div>
+          <div class="es">¿Nos vemos a las...?</div>
+        </div>
+      </div>
+    </div>
+    <div class="exp-section">
+      <div class="exp-label">✅ Accettare — Aceptar</div>
+      <div class="exp-grid">
+        <div class="exp-card" onclick="playExp(this,'Sì, volentieri!')">
+          <div class="it">Sì, volentieri!</div>
+          <div class="es">¡Sí, con gusto!</div>
+        </div>
+        <div class="exp-card" onclick="playExp(this,'Perfetto!')">
+          <div class="it">Perfetto!</div>
+          <div class="es">¡Perfecto!</div>
+        </div>
+        <div class="exp-card" onclick="playExp(this,"D'accordo!")">
+          <div class="it">D'accordo!</div>
+          <div class="es">¡De acuerdo!</div>
+        </div>
+        <div class="exp-card" onclick="playExp(this,'Va benissimo!')">
+          <div class="it">Va benissimo!</div>
+          <div class="es">¡Está perfectísimo!</div>
+        </div>
+        <div class="exp-card" onclick="playExp(this,'Ottimo!')">
+          <div class="it">Ottimo!</div>
+          <div class="es">¡Genial!</div>
+        </div>
+      </div>
+    </div>
+    <div class="exp-section">
+      <div class="exp-label">❌ Rifiutare — Rechazar</div>
+      <div class="exp-grid">
+        <div class="exp-card" onclick="playExp(this,'Mi dispiace, non posso.')">
+          <div class="it">Mi dispiace, non posso.</div>
+          <div class="es">Lo siento, no puedo.</div>
+        </div>
+        <div class="exp-card" onclick="playExp(this,'Purtroppo ho già un impegno.')">
+          <div class="it">Purtroppo ho già un impegno.</div>
+          <div class="es">Lamentablemente ya tengo algo.</div>
+        </div>
+        <div class="exp-card" onclick="playExp(this,'Un\'altra volta, forse!')">
+          <div class="it">Un'altra volta!</div>
+          <div class="es">¡Otra vez!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 6: PRONOME CHE -->
+  <h2 class="section-title">6. Il pronome relativo "che" — Primera mirada</h2>
+  <div class="card">
+    <p style="margin-bottom:16px;">El pronombre <strong><em>che</em></strong> une dos frases y equivale a "que" en español. No cambia según el género ni el número.</p>
+    <div class="che-box">
+      <div class="che-example">
+        <div class="che-it">Il film <span class="highlight">che</span> ho visto era bellissimo.</div>
+        <div class="che-es">La película <em>que</em> vi era hermosísima.</div>
+      </div>
+      <div class="che-example">
+        <div class="che-it">La ragazza <span class="highlight">che</span> ha perso l'autobus si chiama Giulia.</div>
+        <div class="che-es">La chica <em>que</em> perdió el colectivo se llama Giulia.</div>
+      </div>
+      <div class="che-example">
+        <div class="che-it">Il posto <span class="highlight">che</span> conosco è qui vicino.</div>
+        <div class="che-es">El lugar <em>que</em> conozco está aquí cerca.</div>
+      </div>
+      <div class="che-example">
+        <div class="che-it">Le persone <span class="highlight">che</span> ho incontrato erano simpaticissime.</div>
+        <div class="che-es">Las personas <em>que</em> conocí eran simpatiquísimas.</div>
+      </div>
+    </div>
+    <div style="background:var(--mod-lt);border-radius:8px;padding:14px;margin-top:16px;font-size:0.92rem;">
+      <strong>Tip rioplatense:</strong> En italiano, <em>che</em> es invariable — se usa igual para masc./fem./sing./plural. En español a veces decimos "el que", "la que", "los que"... en italiano siempre es <em>che</em>.
+    </div>
+  </div>
+
+  <!-- CULTURE STRIP -->
+  <div class="culture-strip">
+    <div class="culture-header" onclick="toggleCulture()">
+      <span class="culture-flag">🍸</span>
+      <span class="culture-title">L'aperitivo all'italiana: un rituale sociale</span>
+      <span class="culture-toggle" id="cultureToggle">▼</span>
+    </div>
+    <div class="culture-body" id="cultureBody">
+      <p>En el audio escuchaste que la coppia <em>"ha fatto un aperitivo sotto casa"</em>. El aperitivo italiano es mucho más que una bebida — es un ritual social que marca la transición entre el trabajo y la noche, generalmente entre las 18 y las 21 horas.</p>
+      <p>Lo típico es pedir un <em>Aperol Spritz</em>, un <em>Negroni</em> o un <em>Campari</em>, acompañado de <em>stuzzichini</em> (algo para picar): aceitunas, chips, tramezzini o incluso mini panini. En muchos bares del norte de Italia, especialmente en Milano, el aperitivo incluye un buffet libre con el precio de la bebida.</p>
+      <p>El concepto de <em>aperitivo</em> es tan importante que tiene su propio horario: la <em>happy hour</em> italiana. Y a diferencia del happy hour anglosajón, no es solo por los precios — es un momento de socialización casi sagrado para muchos italianos.</p>
+    </div>
+  </div>
+
+  <div class="cta-wrap">
+    <button class="btn-cta" onclick="alert('¡Ottimo! Pasá a la Etapa 3 para estudiar la gramática en profundidad.')">Continuar a Etapa 3 →</button>
+  </div>
+
+</div>
+
+<script>
+if (!window.__ippVC) {
+  window.__ippVC = true; window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) window.__ippV = v; };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
+
+if (!window.__ipp_m11_e2__) {
+  window.__ipp_m11_e2__ = true;
+
+  function ippVoice(gender) {
+    var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+    var itV = voices.filter(function(v){ return v.lang && v.lang.startsWith('it'); });
+    if (!itV.length) return null;
+    var voice = null;
+    if (gender==='m'){voice=itV.find(function(v){return /cosimo|luca|giorgio|male|masc/i.test(v.name);});if(!voice)voice=itV.find(function(v){return !/elsa|alice|giulia|female|femm/i.test(v.name);});}
+    else{voice=itV.find(function(v){return /elsa|alice|giulia|female|femm/i.test(v.name);});if(!voice)voice=itV.find(function(v){return !/cosimo|luca|giorgio|male|masc/i.test(v.name);});}
+    return voice || itV[0];
+  }
+
+  function ippAudio(text, rate, gender) {
+    rate=(typeof rate==='number'&&isFinite(rate)&&rate>0)?rate:0.82;
+    gender=(gender==='m'||gender==='f')?gender:'f';
+    if(!window.speechSynthesis)return;
+    try{speechSynthesis.cancel();}catch(e){}
+    var utt=new SpeechSynthesisUtterance(String(text));
+    utt.lang='it-IT';utt.rate=rate;
+    var voice=ippVoice(gender);if(voice)utt.voice=voice;
+    (function(u){setTimeout(function(){try{speechSynthesis.speak(u);}catch(e){}},60);})(utt);
+  }
+
+  function playChip(el, text, gender) {
+    var allChips = document.querySelectorAll('.chip');
+    allChips.forEach(function(c){ c.classList.remove('playing'); });
+    el.classList.add('playing');
+    ippAudio(text, 0.8, gender || 'f');
+    setTimeout(function(){ el.classList.remove('playing'); }, 2200);
+  }
+
+  function playMonth(el, text) {
+    var allMonths = document.querySelectorAll('.month-chip');
+    allMonths.forEach(function(c){ c.classList.remove('playing'); });
+    el.classList.add('playing');
+    ippAudio(text, 0.8, 'f');
+    setTimeout(function(){ el.classList.remove('playing'); }, 1500);
+  }
+
+  function playExp(el, text) {
+    ippAudio(text, 0.82, 'f');
+    el.style.borderColor = 'var(--mod)';
+    setTimeout(function(){ el.style.borderColor = ''; }, 1500);
+  }
+
+  function playLine(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var bt = el.querySelector('.bubble-text');
+    var text = bt.getAttribute('data-text');
+    var gender = bt.getAttribute('data-gender') || 'f';
+    ippAudio(text, 0.82, gender);
+    bt.style.borderColor = 'var(--mod)';
+    setTimeout(function(){ bt.style.borderColor = ''; }, 2500);
+  }
+
+  var dialogLines = [
+    {id:'dl1',delay:0},{id:'dl2',delay:3200},{id:'dl3',delay:6400},
+    {id:'dl4',delay:9200},{id:'dl5',delay:12000},{id:'dl6',delay:14800},
+    {id:'dl7',delay:17600},{id:'dl8',delay:20400},{id:'dl9',delay:23200},
+    {id:'dl10',delay:26400},{id:'dl11',delay:30000},{id:'dl12',delay:33600},
+    {id:'dl13',delay:37600},{id:'dl14',delay:41200},{id:'dl15',delay:44800},
+    {id:'dl16',delay:48000}
+  ];
+
+  function playAllDialog() {
+    dialogLines.forEach(function(line) {
+      setTimeout(function(){ playLine(line.id); }, line.delay);
+    });
+  }
+
+  function updateFecha() {
+    var dia = document.getElementById('sel-dia').value;
+    var mes = document.getElementById('sel-mes').value;
+    var anio = document.getElementById('sel-anio').value;
+    var parts = [];
+    if (dia) parts.push(dia === '1' ? 'primo' : dia);
+    if (mes) parts.push(mes);
+    if (anio) {
+      var anioMap = {duemilaventidue:'2022',duemilaventire:'2023',duemilaventiquattro:'2024',duemilaventicinque:'2025',duemilaventisei:'2026'};
+      parts.push(anio);
+    }
+    var display = document.getElementById('fecha-display');
+    if (parts.length === 0) { display.textContent = 'Oggi è...'; return; }
+    var str = 'Oggi è';
+    if (dia) str += ' il ' + (dia === '1' ? 'primo' : dia);
+    if (mes) str += ' ' + mes;
+    if (anio) str += ' ' + anio.replace('duemila','duemila').replace('venti','venti');
+    display.textContent = str + '.';
+  }
+
+  function playFecha() {
+    var display = document.getElementById('fecha-display');
+    var text = display.textContent;
+    if (text && text !== 'Oggi è...') {
+      ippAudio(text, 0.78, 'f');
+    } else {
+      alert('Primero armá una fecha con los selectores.');
+    }
+  }
+
+  function toggleCulture() {
+    var body = document.getElementById('cultureBody');
+    var toggle = document.getElementById('cultureToggle');
+    body.classList.toggle('open');
+    toggle.textContent = body.classList.contains('open') ? '▲' : '▼';
+  }
+
+  window.ippAudio = ippAudio;
+  window.ippVoice = ippVoice;
+  window.playChip = playChip;
+  window.playMonth = playMonth;
+  window.playExp = playExp;
+  window.playLine = playLine;
+  window.playAllDialog = playAllDialog;
+  window.updateFecha = updateFecha;
+  window.playFecha = playFecha;
+  window.toggleCulture = toggleCulture;
+}
+</script>
+</body>
+</html>

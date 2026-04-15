@@ -3,445 +3,441 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Módulo 5 · Al bar — Exploración | Italiano Per Piacere</title>
+<title>Che lavoro fai? — Etapa 1 | Italiano Per Piacere</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --mod:    #cc4736;
-  --mod-dk: #a8382a;
-  --mod-lt: #faeae8;
-  --mod-tx: #7a1f14;
+  --mod:    #e5ab07;
+  --mod-dk: #c8940a;
+  --mod-lt: #fff8e6;
+  --mod-tx: #7a5500;
   --cream:  #e9e6d5;
   --cream-dk: #ddd9c8;
   --gold:   #EFCF7F;
   --black:  #1a1a18;
   --white:  #ffffff;
+  --green:  #2d7a4f;
+  --red:    #cc4736;
   --fh: 'Playfair Display', Georgia, serif;
   --fb: 'Outfit', system-ui, sans-serif;
   --r: 10px;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: var(--fb); background: var(--cream); color: var(--black); line-height: 1.6; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--cream); font-family: var(--fb); color: var(--black); line-height: 1.6; }
 
 /* HERO */
 .hero {
   background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
-  color: var(--white);
   padding: 56px 24px 48px;
   text-align: center;
+  color: var(--white);
 }
-.hero-badge {
+.badge {
   display: inline-block;
   background: rgba(255,255,255,0.2);
   border: 1px solid rgba(255,255,255,0.4);
   border-radius: 20px;
   padding: 4px 16px;
-  font-family: var(--fb);
-  font-size: 0.78rem;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 1px;
   text-transform: uppercase;
   margin-bottom: 16px;
 }
 .hero h1 {
   font-family: var(--fh);
   font-style: italic;
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
-.hero-sub { font-size: 1.05rem; opacity: 0.88; font-weight: 300; }
+.hero p { font-size: 1.05rem; opacity: 0.9; }
 
-/* STAGE NAV */
+/* NAV */
 
-.stage-link {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 8px 16px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-family: var(--fb);
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: #888;
-  background: var(--cream);
-  border: 1.5px solid transparent;
-  transition: all 0.2s;
-}
-.stage-link .sn {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: #ccc;
-  color: var(--white);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.72rem; font-weight: 700;
-}
-.stage-link.active { background: var(--mod-lt); color: var(--mod-tx); border-color: var(--mod); }
-.stage-link.active .sn { background: var(--mod); }
-
-/* MAIN */
-.main { max-width: 860px; margin: 0 auto; padding: 40px 20px 80px; }
-.section { margin-bottom: 40px; }
+/* LAYOUT */
+.container { max-width: 820px; margin: 0 auto; padding: 40px 24px; }
 
 /* SOFIA */
-.sofia-row {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  background: var(--white);
-  border-radius: var(--r);
-  padding: 20px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-  margin-bottom: 28px;
-}
-.sofia-col { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
+.sofia-wrap { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 32px; }
 .sofia-avatar {
-  width: 52px; height: 52px;
-  border-radius: 50%;
-  background: var(--mod-lt);
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--mod);
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.8rem;
-  border: 2px solid var(--mod);
+  font-size: 24px; flex-shrink: 0;
 }
-.sofia-name { font-size: 0.7rem; font-weight: 700; color: var(--mod); text-transform: uppercase; letter-spacing: 0.05em; }
 .sofia-bubble {
   background: var(--cream-dk);
   border-radius: 0 var(--r) var(--r) var(--r);
   padding: 16px 20px;
-  font-size: 0.96rem;
-  line-height: 1.65;
-  flex: 1;
+  font-size: 1rem; line-height: 1.65; flex: 1;
+  position: relative;
 }
+.sofia-bubble::before {
+  content: '';
+  position: absolute; left: -10px; top: 12px;
+  border: 5px solid transparent;
+  border-right-color: var(--cream-dk);
+}
+.sofia-name {
+  font-weight: 700; color: var(--mod-tx); font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+}
+
+/* VIDEO */
+.video-wrap {
+  position: relative; padding-bottom: 56.25%; height: 0;
+  overflow: hidden; border-radius: var(--r);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin-bottom: 28px;
+}
+.video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
 /* TASK BOX */
 .task-box {
   background: var(--mod-lt);
   border-left: 4px solid var(--mod);
   border-radius: 0 var(--r) var(--r) 0;
-  padding: 18px 22px;
-  margin-bottom: 28px;
+  padding: 16px 20px; margin-bottom: 28px;
 }
-.task-box h3 { font-family: var(--fb); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mod); margin-bottom: 10px; font-weight: 700; }
-.task-box ul { padding-left: 20px; }
-.task-box li { margin-bottom: 6px; font-size: 0.94rem; }
+.task-box h3 {
+  color: var(--mod-tx); font-size: 13px;
+  text-transform: uppercase; letter-spacing: 0.8px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.task-box ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.task-box ul li::before { content: '→ '; color: var(--mod); font-weight: 700; }
 
-/* VIDEO */
-.video-wrap {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%;
-  border-radius: var(--r);
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  margin-bottom: 28px;
+/* SECTION TITLE */
+.section-title {
+  font-family: var(--fh); font-style: italic; font-size: 1.5rem;
+  color: var(--mod-tx); margin-bottom: 20px;
+  padding-bottom: 8px; border-bottom: 2px solid var(--mod-lt);
 }
-.video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
 /* EXERCISE CARD */
-.ex-card {
-  background: var(--white);
-  border-radius: var(--r);
-  padding: 28px;
+.exercise-card {
+  background: var(--white); border-radius: var(--r);
+  padding: 28px; margin-bottom: 28px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-  margin-bottom: 28px;
 }
-.ex-card h2 { font-family: var(--fh); font-style: italic; font-size: 1.35rem; color: var(--mod-tx); margin-bottom: 6px; }
-.ex-tag {
-  display: inline-block;
-  background: var(--mod);
-  color: var(--white);
-  border-radius: 20px;
-  padding: 3px 12px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 18px;
+.ex-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.ex-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--mod); color: var(--white);
+  font-weight: 700; font-size: 15px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
-.ex-instr { font-size: 0.9rem; color: #555; margin-bottom: 20px; font-style: italic; }
+.ex-title { font-weight: 700; font-size: 1.05rem; color: var(--black); }
+.ex-subtitle { font-size: 13px; color: #666; margin-top: 2px; }
 
-/* TRUE/FALSE */
-.tf-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--cream);
+/* V/F */
+.vf-item {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 14px 0; border-bottom: 1px solid var(--cream-dk);
 }
-.tf-item:last-child { border-bottom: none; }
-.tf-stmt { flex: 1; font-size: 0.94rem; padding-top: 2px; }
-.tf-btns { display: flex; gap: 8px; flex-shrink: 0; }
-.btn-tf {
-  padding: 6px 16px;
-  border-radius: 20px;
-  border: 1.5px solid var(--cream-dk);
-  background: var(--cream);
-  font-family: var(--fb);
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
+.vf-item:last-child { border-bottom: none; }
+.vf-statement { font-size: 0.97rem; }
+.vf-buttons { display: flex; gap: 10px; }
+.btn-vf {
+  padding: 7px 20px; border: 2px solid var(--cream-dk);
+  border-radius: 6px; background: var(--cream);
+  font-family: var(--fb); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
 }
-.btn-tf:hover { border-color: var(--mod); color: var(--mod); }
-.btn-tf.selected-correct { background: #d4edda; border-color: #28a745; color: #155724; }
-.btn-tf.selected-wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
-.tf-feedback { font-size: 0.78rem; margin-top: 6px; font-weight: 600; display: none; }
-.tf-feedback.show { display: block; }
-.tf-feedback.ok { color: #155724; }
-.tf-feedback.ko { color: #721c24; }
+.btn-vf:hover { border-color: var(--mod); color: var(--mod-tx); }
+.btn-vf.correct { background: #d4edda; border-color: var(--green); color: var(--green); }
+.btn-vf.wrong { background: #fde8e8; border-color: var(--red); color: var(--red); }
+.vf-feedback { font-size: 13px; min-height: 18px; font-weight: 500; }
 
-/* MULTIPLE CHOICE */
-.mc-item { margin-bottom: 22px; }
-.mc-question { font-size: 0.96rem; font-weight: 600; margin-bottom: 12px; }
-.mc-options { display: flex; flex-direction: column; gap: 8px; }
+/* MC */
+.mc-item { padding: 16px 0; border-bottom: 1px solid var(--cream-dk); }
+.mc-item:last-child { border-bottom: none; }
+.mc-question { font-weight: 600; margin-bottom: 10px; font-size: 0.97rem; }
+.mc-options { display: flex; flex-wrap: wrap; gap: 8px; }
 .btn-mc {
-  padding: 10px 16px;
-  border-radius: var(--r);
-  border: 1.5px solid var(--cream-dk);
-  background: var(--cream);
-  font-family: var(--fb);
-  font-size: 0.88rem;
-  cursor: pointer;
-  text-align: left;
-  transition: all 0.2s;
+  padding: 8px 18px; border: 2px solid var(--cream-dk);
+  border-radius: 6px; background: var(--cream);
+  font-family: var(--fb); font-size: 13px; cursor: pointer; transition: all 0.2s;
 }
-.btn-mc:hover:not(:disabled) { border-color: var(--mod); background: var(--mod-lt); }
-.btn-mc.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: 600; }
-.btn-mc.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
-.mc-feedback { font-size: 0.8rem; margin-top: 8px; font-weight: 600; display: none; }
-.mc-feedback.show { display: block; }
-.mc-feedback.ok { color: #155724; }
-.mc-feedback.ko { color: #721c24; }
+.btn-mc:hover { border-color: var(--mod); }
+.btn-mc.correct { background: #d4edda; border-color: var(--green); color: var(--green); font-weight: 700; }
+.btn-mc.wrong { background: #fde8e8; border-color: var(--red); color: var(--red); }
+.mc-feedback { font-size: 13px; margin-top: 8px; min-height: 18px; font-weight: 500; }
 
 /* SCORE */
 .score-bar {
-  background: var(--cream-dk);
-  border-radius: 20px;
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 0.88rem;
-  margin-top: 16px;
+  background: var(--mod-lt); border-radius: var(--r);
+  padding: 16px 20px; margin-top: 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px;
 }
-.score-num { font-size: 1.3rem; font-weight: 700; color: var(--mod); }
+.score-label { font-weight: 600; font-size: 0.95rem; }
+.score-num { font-size: 1.5rem; font-weight: 700; color: var(--mod-tx); }
 
 /* CTA */
 
-/* Section title */
-.sec-title { font-family: var(--fh); font-style: italic; font-size: 1.6rem; color: var(--mod-tx); margin-bottom: 6px; }
-.sec-divider { width: 48px; height: 3px; background: var(--mod); border-radius: 2px; margin-bottom: 20px; }
-.ex-num {
-  width: 32px; height: 32px; border-radius: 50%;
-  background: var(--mod); color: var(--white);
-  display: inline-flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 0.9rem; margin-right: 10px; flex-shrink: 0;
+/* CONTEXT BOX */
+.context-box {
+  background: var(--white); border-radius: var(--r);
+  padding: 20px 24px; margin-bottom: 28px;
+  border: 1px solid var(--gold);
+  box-shadow: 0 2px 8px rgba(229,171,7,0.1);
 }
-.ex-header { display: flex; align-items: center; margin-bottom: 6px; }
+.context-box h3 { color: var(--mod-tx); font-size: 13px; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700; margin-bottom: 10px; }
+.context-box p { font-size: 0.95rem; line-height: 1.6; color: #444; }
+
+@media (max-width: 600px) {
+  
+  
+  .mc-options { flex-direction: column; }
+}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-badge">A1 · Unità 5</div>
-  <h1>Al bar</h1>
-  <p class="hero-sub">Etapa 1 — Exploración · Video</p>
-</header>
+<div class="hero">
+  <div class="badge">A1 · Unità 4</div>
+  <h1>Che lavoro fai?</h1>
+  <p>Etapa 1 — Exploración · Video</p>
+</div>
 
-<!-- STAGE NAV -->
+<div class="container">
 
-<!-- MAIN -->
-<main class="main">
-
-  <!-- SOFIA INTRO -->
-  <div class="sofia-row">
-    <div class="sofia-col">
-      <div class="sofia-avatar">👩‍🏫</div>
-      <div class="sofia-name">Sofia</div>
-    </div>
+  <div class="sofia-wrap">
+    <div class="sofia-avatar">👩‍🏫</div>
     <div class="sofia-bubble">
-      ¡<em>Benvenuta/o</em> a la Unità 5! Hoy entramos a uno de los lugares más icónicos de Italia: <strong>il bar</strong>. Ojo: en Italia, il bar no es como lo imaginás. Es el lugar donde tomás el café parado en el mostrador en 2 minutos, pedís un <em>cornetto</em> a las 8 de la mañana o te encontrás con amigos.<br><br>
-      En este video vas a ver a dos amigos decidiendo qué pedir. Hay un poco de caos al final, una llamada de teléfono y una frase perfecta para resumirlo todo. ¡Prestá atención!
+      <div class="sofia-name">Sofia — tu guía</div>
+      ¡Benvenuti! En este módulo entramos a un mundo muy italiano: <strong>el trabajo y las profesiones</strong>. El video que vas a ver transcurre en un <em><strong>Centro per l'Impiego</strong></em> — que es la oficina de empleo pública italiana, el equivalente a nuestras bolsas de trabajo. Vas a conocer a <strong>Samira</strong>, una mujer extranjera que busca trabajo en Italia por primera vez. Prestale mucha atención porque vas a escuchar vocabulario muy útil: documentos oficiales, profesiones, y cómo hablar de lo que sabés hacer. ¡Es una situación muy real!
     </div>
   </div>
 
-  <!-- VIDEO -->
-  <section class="section">
-    <h2 class="sec-title">Il video</h2>
-    <div class="sec-divider"></div>
+  <div class="context-box">
+    <h3>🏛️ Contexto cultural: il Centro per l'Impiego</h3>
+    <p>El <em>Centro per l'Impiego</em> es una oficina pública italiana donde las personas desocupadas pueden registrarse, buscar trabajo y acceder a subsidios. Para inscribirse, es obligatorio presentar ciertos documentos: la <strong>carta d'identità</strong> (DNI italiano), el <strong>codice fiscale</strong> (número tributario, equivalente al CUIL/CUIT argentino) y, para extranjeros, el <strong>permesso di soggiorno</strong> (permiso de residencia). Al finalizar la inscripción, se firma una <strong>dichiarazione di immediata disponibilità al lavoro</strong> — una declaración de que la persona está disponible para trabajar de inmediato.</p>
+  </div>
 
-    <div class="task-box">
-      <h3>🎬 Mientras ves el video, prestá atención a...</h3>
-      <ul>
-        <li>¿Qué pide la mujer para tomar? ¿Tiene hambre o no?</li>
-        <li>¿Qué pide el hombre para comer y para tomar?</li>
-        <li>¿Qué postres aparecen en la conversación?</li>
-        <li>¿Alguien recibe o hace una llamada? ¿A quién llaman?</li>
-        <li>¿Cuál es la frase final del video? ¿La entendés?</li>
-      </ul>
-    </div>
+  <div class="task-box">
+    <h3>🎯 Mientras ves el video, fijate en...</h3>
+    <ul>
+      <li>¿Qué documentos le piden a Samira? ¿Podés identificarlos en italiano?</li>
+      <li>¿Samira tiene experiencia laboral previa? ¿Qué dice exactamente?</li>
+      <li>¿Qué tipo de trabajo le gustaría hacer? ¿Con quiénes le gusta trabajar?</li>
+      <li>¿Qué firma Samira al final de la entrevista?</li>
+      <li>¿Qué palabras en italiano relacionadas con el trabajo podés reconocer?</li>
+    </ul>
+  </div>
 
-    <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/2_VwcAlQUyU" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-    </div>
-  </section>
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/VsEBjpQTlyY" allowfullscreen title="Che lavoro fai? — Centro per l'Impiego"></iframe>
+  </div>
 
-  <!-- EJ 1: VERDADERO/FALSO -->
-  <div class="ex-card" id="ex1">
+  <h2 class="section-title">Dopo il video — Después del video</h2>
+
+  <!-- EJERCICIO 1: V/F -->
+  <div class="exercise-card">
     <div class="ex-header">
       <div class="ex-num">1</div>
-      <h2 class="sec-title" style="margin-bottom:0">Verdadero o Falso</h2>
+      <div>
+        <div class="ex-title">Vero o Falso — Verdadero o Falso</div>
+        <div class="ex-subtitle">¿Qué tan bien entendiste el video? Contestá cada afirmación.</div>
+      </div>
     </div>
-    <div class="ex-tag">Comprensión del video</div>
-    <p class="ex-instr">Mirá cada afirmación y decidí si es <strong>V</strong> (Verdadero) o <strong>F</strong> (Falso) según lo que viste en el video.</p>
 
-    <div id="tf-list"></div>
+    <div class="vf-item" data-answer="true">
+      <div class="vf-statement">1. La escena transcurre en una oficina pública llamada <em>Centro per l'Impiego</em>.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
 
-    <div class="score-bar" id="tf-score" style="display:none">
-      <span class="score-num" id="tf-score-num">0/6</span>
-      <span>respuestas correctas en Verdadero/Falso</span>
+    <div class="vf-item" data-answer="false">
+      <div class="vf-statement">2. Samira ya tiene mucha experiencia laboral en Italia.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="vf-item" data-answer="true">
+      <div class="vf-statement">3. Entre los documentos pedidos aparece la <em>carta d'identità</em>.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="vf-item" data-answer="true">
+      <div class="vf-statement">4. A Samira le gusta cuidar a personas mayores y a niños.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="vf-item" data-answer="false">
+      <div class="vf-statement">5. La funcionaria de la oficina es un hombre.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="vf-item" data-answer="true">
+      <div class="vf-statement">6. Al final, Samira firma un documento de disponibilidad para trabajar.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="score-bar">
+      <span class="score-label">Tu puntaje en V/F:</span>
+      <span class="score-num" id="vf-score">0 / 6</span>
     </div>
   </div>
 
-  <!-- EJ 2: SELECCIÓN MÚLTIPLE -->
-  <div class="ex-card" id="ex2">
+  <!-- EJERCICIO 2: SELECCIÓN MÚLTIPLE -->
+  <div class="exercise-card">
     <div class="ex-header">
       <div class="ex-num">2</div>
-      <h2 class="sec-title" style="margin-bottom:0">Selección múltiple</h2>
+      <div>
+        <div class="ex-title">Scelta multipla — Selección múltiple</div>
+        <div class="ex-subtitle">Elegí la opción correcta para cada pregunta sobre el video.</div>
+      </div>
     </div>
-    <div class="ex-tag">Comprensión del video</div>
-    <p class="ex-instr">Elegí la opción correcta para cada pregunta.</p>
-    <div id="mc-list"></div>
+
+    <div class="mc-item">
+      <div class="mc-question">1. ¿Qué es el <em>codice fiscale</em> en Italia?</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this, false, 'No exactamente — el código fiscal es un número de identificación tributaria personal, no una contraseña.')">Una contraseña bancaria</button>
+        <button class="btn-mc" onclick="checkMC(this, true, '¡Correcto! El codice fiscale es el número de identificación tributaria de cada ciudadano o residente.')">Un número de identificación tributaria</button>
+        <button class="btn-mc" onclick="checkMC(this, false, 'No — el codice fiscale no es el número de pasaporte, aunque ambos identifican a la persona.')">El número de pasaporte</button>
+        <button class="btn-mc" onclick="checkMC(this, false, 'No — el permesso di soggiorno es el documento que autoriza la residencia, no el codice fiscale.')">Un permiso de residencia</button>
+      </div>
+      <div class="mc-feedback"></div>
+    </div>
+
+    <div class="mc-item">
+      <div class="mc-question">2. ¿Cuál es la situación de Samira respecto al trabajo cuando llega a la oficina?</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this, false, 'No — Samira no viene a renunciar a un trabajo, sino a buscar uno.')">Viene a renunciar a su trabajo actual</button>
+        <button class="btn-mc" onclick="checkMC(this, true, '¡Exacto! Samira no ha trabajado antes (en Italia) y busca su primera oportunidad laboral.')">No ha trabajado antes y busca empleo</button>
+        <button class="btn-mc" onclick="checkMC(this, false, 'No — Samira es una candidata que busca trabajo, no una funcionaria que trabaja allí.')">Es funcionaria del centro</button>
+        <button class="btn-mc" onclick="checkMC(this, false, 'No — Samira no viene a pedir un subsidio específicamente, sino a inscribirse como buscadora de empleo.')">Viene a cobrar un subsidio</button>
+      </div>
+      <div class="mc-feedback"></div>
+    </div>
+
+    <div class="mc-item">
+      <div class="mc-question">3. Además de la <em>carta d'identità</em>, ¿qué otro documento se menciona para extranjeros?</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this, false, 'No — el pasaporte se usa para viajar, pero no es el documento específico mencionado en este contexto.')">El pasaporte</button>
+        <button class="btn-mc" onclick="checkMC(this, false, 'No — el certificato di nascita es la partida de nacimiento, no mencionada aquí.')">El <em>certificato di nascita</em></button>
+        <button class="btn-mc" onclick="checkMC(this, true, '¡Sí! El permesso di soggiorno (permiso de residencia) es obligatorio para extranjeros que quieran trabajar en Italia.')">El <em>permesso di soggiorno</em></button>
+        <button class="btn-mc" onclick="checkMC(this, false, 'No — la tessera sanitaria es la tarjeta sanitaria, que no se menciona en este contexto.')">La <em>tessera sanitaria</em></button>
+      </div>
+      <div class="mc-feedback"></div>
+    </div>
+
+    <div class="mc-item">
+      <div class="mc-question">4. ¿Qué tipo de actividades menciona Samira que le gustan o que sabe hacer?</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this, false, 'No — Samira no menciona trabajo en computadoras o tecnología.')">Trabajar con computadoras</button>
+        <button class="btn-mc" onclick="checkMC(this, false, 'No — la cocina no es lo que Samira menciona explícitamente como su interés.')">Cocinar en un restaurante</button>
+        <button class="btn-mc" onclick="checkMC(this, true, '¡Correcto! Samira expresa que le gusta cuidar a personas mayores (anziani) y a niños.')">Cuidar a personas mayores y a niños</button>
+        <button class="btn-mc" onclick="checkMC(this, false, 'No — enseñar en escuelas no es lo que menciona Samira.')">Enseñar en escuelas</button>
+      </div>
+      <div class="mc-feedback"></div>
+    </div>
+
+    <div class="mc-item">
+      <div class="mc-question">5. ¿Cómo se llama el documento que Samira firma al final?</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this, false, 'No — ese sería un contrato de trabajo, pero Samira aún no consiguió trabajo.')">Un <em>contratto di lavoro</em></button>
+        <button class="btn-mc" onclick="checkMC(this, true, '¡Exacto! Es la dichiarazione di immediata disponibilità al lavoro, que indica que la persona está disponible para trabajar de inmediato.')">Una <em>dichiarazione di immediata disponibilità al lavoro</em></button>
+        <button class="btn-mc" onclick="checkMC(this, false, 'No — el curriculum vitae es el CV, que se entrega antes de la inscripción.')">Un <em>curriculum vitae</em></button>
+        <button class="btn-mc" onclick="checkMC(this, false, 'No — la lettera di referenze son cartas de recomendación, no lo que se firma aquí.')">Una <em>lettera di referenze</em></button>
+      </div>
+      <div class="mc-feedback"></div>
+    </div>
+
+    <div class="score-bar">
+      <span class="score-label">Tu puntaje en selección múltiple:</span>
+      <span class="score-num" id="mc-score">0 / 5</span>
+    </div>
   </div>
 
   <!-- CTA -->
   
 
-</main>
+</div><!-- /container -->
 
 <script>
-// ===== VERDADERO/FALSO =====
-var tfData = [
-  { stmt: "La signora ordina una panna cotta.", correct: "V", feedback_ok: "✓ ¡Correcto! La mujer sí pide panna cotta entre los pedidos.", feedback_ko: "✗ Atención: la panna cotta se ordena en la escena." },
-  { stmt: "Qualcuno risponde al telefono durante la scena.", correct: "V", feedback_ok: "✓ ¡Muy bien! Un personaje llama o atiende el teléfono en medio de la escena.", feedback_ko: "✗ ¡Revisá el video! Hay una llamada telefónica." },
-  { stmt: "Il signore ordina una birra grande.", correct: "F", feedback_ok: "✓ ¡Exacto! El hombre pide una birra piccola, no grande.", feedback_ko: "✗ Atención: pide una birra piccola (pequeña)." },
-  { stmt: "La signora ha molta fame.", correct: "F", feedback_ok: "✓ ¡Correcto! La señora dice que no tiene hambre, solo quiere una bebida.", feedback_ko: "✗ En el video ella dice que no tiene hambre." },
-  { stmt: "Nella scena appare un tiramisù.", correct: "V", feedback_ok: "✓ ¡Muy bien! El tiramisù se menciona en los pedidos.", feedback_ko: "✗ ¡Revisá el video! El tiramisù aparece en la conversación." },
-  { stmt: "La frase finale è: «Che confusione!»", correct: "V", feedback_ok: "✓ ¡Perfecto! «Che confusione!» es exactamente la frase final del video.", feedback_ko: "✗ ¡Prestá atención al final del video!" }
-];
+// ── Odoo DOMEval safe: IIFE + var + window.xxx ──
+(function() {
+  var vfScore = 0;
+  var vfTotal = 6;
+  var mcScore = 0;
+  var mcTotal = 5;
 
-var tfAnswered = 0;
-var tfCorrect = 0;
-var tfList = document.getElementById('tf-list');
+  function checkVF(btn, userAnswer) {
+    var item = btn.closest('.vf-item');
+    var correctAnswer = item.getAttribute('data-answer') === 'true';
+    var btns = item.querySelectorAll('.btn-vf');
+    var feedback = item.querySelector('.vf-feedback');
 
-tfData.forEach(function(item, idx) {
-  var div = document.createElement('div');
-  div.className = 'tf-item';
-  div.id = 'tf-' + idx;
-  div.innerHTML = '<div class="tf-stmt">' + item.stmt + '</div>' +
-    '<div class="tf-btns">' +
-      '<button class="btn-tf" onclick="answerTF(' + idx + ',\'V\')">V</button>' +
-      '<button class="btn-tf" onclick="answerTF(' + idx + ',\'F\')">F</button>' +
-    '</div>';
-  var fb = document.createElement('div');
-  fb.className = 'tf-feedback';
-  fb.id = 'tf-fb-' + idx;
-  div.appendChild(fb);
-  tfList.appendChild(div);
-});
+    if (item.classList.contains('answered')) return;
+    item.classList.add('answered');
 
-function answerTF(idx, answer) {
-  var item = tfData[idx];
-  var container = document.getElementById('tf-' + idx);
-  var btns = container.querySelectorAll('.btn-tf');
-  btns.forEach(function(b) { b.disabled = true; });
-  var fb = document.getElementById('tf-fb-' + idx);
-  var isCorrect = (answer === item.correct);
-  if (isCorrect) {
-    btns[answer === 'V' ? 0 : 1].classList.add('selected-correct');
-    tfCorrect++;
-    fb.textContent = item.feedback_ok;
-    fb.className = 'tf-feedback show ok';
-  } else {
-    btns[answer === 'V' ? 0 : 1].classList.add('selected-wrong');
-    // mark correct one
-    btns[item.correct === 'V' ? 0 : 1].classList.add('selected-correct');
-    fb.textContent = item.feedback_ko;
-    fb.className = 'tf-feedback show ko';
+    var isCorrect = (userAnswer === correctAnswer);
+    btns.forEach(function(b) { b.disabled = true; });
+
+    if (isCorrect) {
+      btn.classList.add('correct');
+      feedback.style.color = '#2d7a4f';
+      feedback.textContent = '✓ ¡Correcto!';
+      vfScore++;
+    } else {
+      btn.classList.add('wrong');
+      feedback.style.color = '#cc4736';
+      feedback.textContent = '✗ Incorrecto.';
+      btns.forEach(function(b) {
+        var bAnswer = b.textContent.indexOf('Verdadero') !== -1;
+        if (bAnswer === correctAnswer) b.classList.add('correct');
+      });
+    }
+    document.getElementById('vf-score').textContent = vfScore + ' / ' + vfTotal;
   }
-  tfAnswered++;
-  if (tfAnswered === tfData.length) {
-    var scoreBar = document.getElementById('tf-score');
-    scoreBar.style.display = 'flex';
-    document.getElementById('tf-score-num').textContent = tfCorrect + '/' + tfData.length;
+
+  function checkMC(btn, isCorrect, feedbackText) {
+    var item = btn.closest('.mc-item');
+    if (item.classList.contains('answered')) return;
+    item.classList.add('answered');
+
+    var btns = item.querySelectorAll('.btn-mc');
+    var feedback = item.querySelector('.mc-feedback');
+
+    btns.forEach(function(b) { b.disabled = true; });
+    btn.classList.add(isCorrect ? 'correct' : 'wrong');
+
+    feedback.textContent = feedbackText;
+    feedback.style.color = isCorrect ? '#2d7a4f' : '#cc4736';
+    feedback.style.fontWeight = '600';
+
+    if (isCorrect) mcScore++;
+    document.getElementById('mc-score').textContent = mcScore + ' / ' + mcTotal;
   }
-}
 
-// ===== SELECCIÓN MÚLTIPLE =====
-var mcData = [
-  {
-    q: "¿Qué pide la mujer para tomar?",
-    opts: ["Un cappuccino", "Una spremuta d'arancia", "Un tè freddo", "Una birra"],
-    correct: 1,
-    feedback: "¡Correcto! La mujer pide una spremuta d'arancia (jugo de naranja), prefiriendo arance rosse."
-  },
-  {
-    q: "¿Qué pide el hombre para comer?",
-    opts: ["Un cornetto al cioccolato", "Una sfogliatella", "Un tramezzino con prosciutto crudo e mozzarella", "Un panino al formaggio"],
-    correct: 2,
-    feedback: "¡Exacto! El hombre pide un tramezzino con prosciutto crudo e mozzarella."
-  },
-  {
-    q: "¿A quién llaman por teléfono en la escena?",
-    opts: ["A Marco", "A Sofia", "A Valeria", "Al cameriere"],
-    correct: 2,
-    feedback: "¡Muy bien! En medio de la escena alguien llama a Valeria por teléfono."
-  },
-  {
-    q: "¿Qué postre NO se menciona en el video?",
-    opts: ["Tiramisù", "Panna cotta", "Cannolo siciliano", "Caffè decaffeinato"],
-    correct: 2,
-    feedback: "¡Correcto! El cannolo siciliano no aparece. Sí aparecen tiramisù, panna cotta y caffè decaffeinato."
-  },
-  {
-    q: "¿Qué sucede al final del video?",
-    opts: ["Todo sale perfecto", "Hay confusión con los pedidos", "El mozo se equivoca de mesa", "Se van sin pagar"],
-    correct: 1,
-    feedback: "¡Perfecto! Hay confusión con los pedidos cuando llega el mozo, de ahí la frase «Che confusione!»"
-  }
-];
-
-var mcList = document.getElementById('mc-list');
-
-mcData.forEach(function(item, idx) {
-  var div = document.createElement('div');
-  div.className = 'mc-item';
-  div.id = 'mc-' + idx;
-  var html = '<div class="mc-question">' + (idx+1) + '. ' + item.q + '</div>';
-  html += '<div class="mc-options">';
-  item.opts.forEach(function(opt, oi) {
-    html += '<button class="btn-mc" onclick="answerMC(' + idx + ',' + oi + ')">' + opt + '</button>';
-  });
-  html += '</div>';
-  html += '<div class="mc-feedback" id="mc-fb-' + idx + '"></div>';
-  div.innerHTML = html;
-  mcList.appendChild(div);
-});
-
-function answerMC(idx, chosen) {
-  var item = mcData[idx];
-  var container = document.getElementById('mc-' + idx);
-  var btns = container.querySelectorAll('.btn-mc');
-  btns.forEach(function(b) { b.disabled = true; });
-  var fb = document.getElementById('mc-fb-' + idx);
-  var isCorrect = (chosen === item.correct);
-  btns[chosen].classList.add(isCorrect ? 'correct' : 'wrong');
-  if (!isCorrect) btns[item.correct].classList.add('correct');
-  fb.textContent = (isCorrect ? '✓ ' : '✗ ') + item.feedback;
-  fb.className = 'mc-feedback show ' + (isCorrect ? 'ok' : 'ko');
-}
+  window.checkVF = checkVF;
+  window.checkMC = checkMC;
+})();
 </script>
 </body>
 </html>

@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 9 — Etapa 3: Gramática</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mod:#cc4736; --mod-dk:#a8382a; --mod-lt:#faeae8; --mod-tx:#7a1f14;
+    --cream:#e9e6d5; --cream-dk:#ddd9c8; --gold:#EFCF7F;
+    --black:#1a1a18; --white:#fff;
+    --fh:'Playfair Display',Georgia,serif;
+    --fb:'Outfit',system-ui,sans-serif;
+    --teal:#78a6ba; --green:#528e74;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--fb); background:var(--cream); color:var(--black); }
+
+  .hero {
+    background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
+    color: var(--white);
+    padding: 40px 24px 36px;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 14px; margin-bottom: 14px;
+  }
+  .hero h1 { font-family:var(--fh); font-style:italic; font-size:clamp(1.8rem,4.5vw,2.6rem); margin-bottom:6px; }
+  .hero h2 { font-weight:300; font-size:1rem; opacity:0.85; }
+
+  .container { max-width: 780px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  /* GRAMMAR BLOCK */
+  .gram-block {
+    background: var(--white);
+    border-radius: 14px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+  .gram-header {
+    background: var(--mod);
+    color: var(--white);
+    padding: 18px 26px;
+  }
+  .gram-header .gram-num {
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    opacity: 0.8; margin-bottom: 4px;
+  }
+  .gram-header h3 {
+    font-family: var(--fh); font-style: italic;
+    font-size: 1.4rem; line-height: 1.2;
+  }
+  .gram-body { padding: 26px 26px 22px; }
+  .gram-body > p {
+    font-size: 0.95rem; line-height: 1.7; color: #444;
+    margin-bottom: 14px;
+  }
+
+  /* CONJUGATION TABLE */
+  .conj-table { width:100%; border-collapse:collapse; margin-bottom:18px; }
+  .conj-table th {
+    background: var(--mod-lt); color: var(--mod-tx);
+    font-size:0.8rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    padding:8px 12px; text-align:left;
+  }
+  .conj-table td { padding:9px 12px; border-bottom:1px solid var(--cream-dk); font-size:0.93rem; }
+  .conj-table tr:last-child td { border-bottom:none; }
+  .conj-table .pronoun-col { color:#888; font-size:0.85rem; width:130px; }
+  .conj-table .indirect-col { color:var(--mod-dk); font-weight:700; width:80px; }
+  .conj-table .verb-col em { font-style:normal; font-weight:700; color:var(--mod); }
+  .conj-table tr:nth-child(even) td { background:var(--cream); }
+  .conj-table .audio-btn {
+    background:none; border:none; cursor:pointer;
+    font-size:0.95rem; opacity:0.6; transition:opacity 0.2s; padding:2px;
+  }
+  .conj-table .audio-btn:hover { opacity:1; }
+
+  /* INFO BOX */
+  .info-box {
+    background: var(--mod-lt);
+    border-left: 4px solid var(--mod);
+    border-radius: 0 10px 10px 0;
+    padding: 13px 16px;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin: 14px 0;
+  }
+  .info-box strong { color: var(--mod-dk); }
+
+  /* EXERCISES */
+  .ex-section {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-top: 20px;
+  }
+  .ex-section-title {
+    font-family: var(--fh);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--mod-dk);
+    margin-bottom: 14px;
+  }
+
+  .ex-item { margin-bottom: 16px; }
+  .ex-item:last-child { margin-bottom: 0; }
+  .ex-prompt { font-size: 0.93rem; margin-bottom: 8px; color: var(--black); line-height:1.5; }
+  .ex-prompt strong { color: var(--mod-dk); }
+
+  /* BLANK INPUT */
+  .blank-input {
+    border: none;
+    border-bottom: 2px solid var(--mod);
+    background: transparent;
+    font-family: var(--fb);
+    font-size: 0.93rem;
+    color: var(--black);
+    width: 130px;
+    padding: 2px 4px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .blank-input:focus { border-bottom-color: var(--mod-dk); }
+  .blank-input.ok { border-bottom-color: var(--green); background: rgba(82,142,116,0.08); }
+  .blank-input.nok { border-bottom-color: var(--mod); background: var(--mod-lt); }
+
+  /* CHECK BUTTON */
+  .ex-check-btn {
+    margin-top: 14px;
+    padding: 8px 20px;
+    background: var(--mod);
+    color: var(--white);
+    font-family: var(--fb);
+    font-size: 0.88rem; font-weight: 600;
+    border: none; border-radius: 8px;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .ex-check-btn:hover { background: var(--mod-dk); }
+
+  .ex-feedback {
+    margin-top: 10px;
+    padding: 10px 14px;
+    border-radius: 9px;
+    font-size: 0.88rem;
+    display: none;
+    line-height: 1.6;
+  }
+  .ex-feedback.show { display: block; }
+  .ex-feedback.ok { background: #edf7f3; color: #2d4d3c; border-left: 3px solid var(--green); }
+  .ex-feedback.nok { background: var(--mod-lt); color: var(--mod-tx); border-left: 3px solid var(--mod); }
+
+  /* MULTIPLE CHOICE */
+  .mc-opts { display:flex; flex-direction:column; gap:7px; margin-top:8px; }
+  .mc-opt {
+    display:flex; align-items:center; gap:10px;
+    padding:9px 14px;
+    border:2px solid var(--cream-dk);
+    border-radius:9px; cursor:pointer;
+    font-size:0.9rem; background:var(--white);
+    transition:border-color 0.2s, background 0.2s;
+  }
+  .mc-opt:hover { border-color:var(--mod); background:var(--mod-lt); }
+  .mc-opt.correct { border-color:var(--green); background:#edf7f3; color:#2d4d3c; }
+  .mc-opt.wrong { border-color:var(--mod); background:var(--mod-lt); color:var(--mod-tx); }
+  .mc-dot {
+    width:16px; height:16px; border:2px solid #ccc;
+    border-radius:50%; flex-shrink:0;
+  }
+  .mc-opt.correct .mc-dot { border-color:var(--green); background:var(--green); }
+  .mc-opt.wrong .mc-dot { border-color:var(--mod); background:var(--mod); }
+
+  /* PRONOMI INDIRETTI PANEL */
+  .pronomi-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .pronomi-card {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 14px 16px;
+    border-top: 3px solid var(--teal);
+  }
+  .pronomi-card .pron-label {
+    font-size: 0.75rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:0.07em; color:#2d5f72; margin-bottom:6px;
+  }
+  .pronomi-card .pron-form {
+    font-size:1.05rem; font-weight:700; color:var(--teal);
+    margin-bottom:4px;
+  }
+  .pronomi-card .pron-example { font-size:0.87rem; color:#555; font-style:italic; }
+
+  /* PREPOSIZIONI TABLE 2 */
+  .prep-mini-wrap { overflow-x:auto; margin:14px 0; }
+  .prep-mini {
+    width:100%; border-collapse:collapse; font-size:0.87rem; min-width:400px;
+  }
+  .prep-mini th {
+    background:var(--mod); color:var(--white);
+    padding:8px 10px; text-align:center; font-weight:600; font-size:0.8rem;
+  }
+  .prep-mini th:first-child { text-align:left; }
+  .prep-mini td { padding:8px 10px; text-align:center; border-bottom:1px solid var(--cream-dk); }
+  .prep-mini td:first-child { text-align:left; font-weight:700; color:var(--mod-dk); background:var(--mod-lt); }
+  .prep-mini tr:nth-child(even) td:not(:first-child) { background:var(--cream); }
+  .prep-mini tr:last-child td { border-bottom:none; }
+  .prep-mini .art { font-weight:700; }
+
+  /* PREFERIRE CONJ */
+  .preferire-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:14px 0;
+  }
+  .pref-cell {
+    background:var(--cream); border-radius:9px; padding:10px 14px;
+    border-left:3px solid var(--gold);
+  }
+  .pref-cell .pf-pronoun { font-size:0.78rem; color:#888; margin-bottom:3px; }
+  .pref-cell .pf-form { font-size:0.97rem; font-weight:700; color:var(--black); }
+  .pref-cell .pf-irr { color:var(--mod); }
+
+  /* FONETICA */
+  .fon-row {
+    display:flex; align-items:stretch; gap:12px; margin-bottom:12px; flex-wrap:wrap;
+  }
+  .fon-card {
+    flex:1; min-width:160px;
+    background:var(--cream); border-radius:11px;
+    padding:14px 16px; text-align:center;
+    cursor:pointer; transition:background 0.2s, transform 0.15s;
+    border-bottom:3px solid transparent;
+  }
+  .fon-card:hover { background:var(--cream-dk); transform:translateY(-2px); }
+  .fon-card.decl { border-bottom-color: var(--teal); }
+  .fon-card.inter { border-bottom-color: var(--gold); }
+  .fon-card.excl { border-bottom-color: var(--mod); }
+  .fon-card .fon-type {
+    font-size:0.72rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:0.08em; margin-bottom:6px;
+  }
+  .fon-card.decl .fon-type { color:#2d5f72; }
+  .fon-card.inter .fon-type { color:#7a5500; }
+  .fon-card.excl .fon-type { color:var(--mod-tx); }
+  .fon-card .fon-phrase { font-size:0.97rem; font-weight:600; margin-bottom:4px; }
+  .fon-card .fon-arrow { font-size:1.4rem; margin-bottom:4px; }
+  .fon-card .fon-desc { font-size:0.78rem; color:#777; }
+
+  /* DRAG-DROP EXERCISE (simplified as click-select) */
+  .match-area {
+    display:flex; flex-direction:column; gap:8px; margin-top:10px;
+  }
+  .match-row {
+    display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  }
+  .match-sentence { font-size:0.92rem; flex:1; min-width:200px; }
+  .match-select {
+    border:2px solid var(--cream-dk);
+    border-radius:8px; padding:6px 10px;
+    font-family:var(--fb); font-size:0.9rem;
+    color:var(--black); background:var(--white);
+    cursor:pointer; outline:none;
+    transition:border-color 0.2s;
+  }
+  .match-select:focus { border-color:var(--mod); }
+  .match-select.ok { border-color:var(--green); background:#edf7f3; }
+  .match-select.nok { border-color:var(--mod); background:var(--mod-lt); }
+
+  .divider { height:1px; background:var(--cream-dk); margin:16px 0; }
+
+  /* IDENTIFY EXERCISE */
+  .identify-opts { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+  .id-btn {
+    padding:7px 16px;
+    border:2px solid var(--cream-dk);
+    border-radius:8px; background:var(--cream);
+    font-family:var(--fb); font-size:0.87rem; font-weight:600;
+    cursor:pointer; transition:all 0.2s;
+  }
+  .id-btn:hover { border-color:var(--mod); background:var(--mod-lt); }
+  .id-btn.selected { background:var(--mod); color:var(--white); border-color:var(--mod); }
+  .id-btn.correct { background:var(--green); color:var(--white); border-color:var(--green); }
+  .id-btn.wrong { background:var(--mod); color:var(--white); border-color:var(--mod); }
+</style>
+</head>
+<body>
+
+<script>
+if (!window.__ippVC) {
+  window.__ippVC = true; window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) window.__ippV = v; };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
+</script>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Módulo 9 · Etapa 3</div>
+  <h1>Gramática</h1>
+  <h2>Piacere · Pronomi · Preposizioni · Preferire · Fonetica</h2>
+</div>
+
+<div class="container">
+
+  <!-- ══════════════════════════════════════
+       BLOQUE 1 — IL VERBO PIACERE
+  ══════════════════════════════════════ -->
+  <div class="gram-block">
+    <div class="gram-header">
+      <div class="gram-num">Sección 1</div>
+      <h3>Il verbo piacere — conjugación completa</h3>
+    </div>
+    <div class="gram-body">
+      <p>En italiano, <em>piacere</em> es un verbo <strong>impersonal invertido</strong>: el sujeto gramatical es la cosa o acción que gusta, no la persona. El verbo solo tiene dos formas principales: <strong>piace</strong> (singular o infinitivo) y <strong>piacciono</strong> (plural).</p>
+
+      <table class="conj-table">
+        <thead>
+          <tr>
+            <th>Persona</th>
+            <th>Pron. ind.</th>
+            <th>+ cosa singular / infinitivo</th>
+            <th>+ cosas plurales</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="pronoun-col">io</td>
+            <td class="indirect-col">mi</td>
+            <td class="verb-col"><em>mi piace</em> il cinema</td>
+            <td class="verb-col"><em>mi piacciono</em> i film</td>
+            <td><button class="audio-btn" onclick="ippAudio('mi piace il cinema, mi piacciono i film', 0.8, 'f')">🔊</button></td>
+          </tr>
+          <tr>
+            <td class="pronoun-col">tu</td>
+            <td class="indirect-col">ti</td>
+            <td class="verb-col"><em>ti piace</em> leggere</td>
+            <td class="verb-col"><em>ti piacciono</em> i libri</td>
+            <td><button class="audio-btn" onclick="ippAudio('ti piace leggere, ti piacciono i libri', 0.8, 'f')">🔊</button></td>
+          </tr>
+          <tr>
+            <td class="pronoun-col">lui</td>
+            <td class="indirect-col">gli</td>
+            <td class="verb-col"><em>gli piace</em> ballare</td>
+            <td class="verb-col"><em>gli piacciono</em> i viaggi</td>
+            <td><button class="audio-btn" onclick="ippAudio('gli piace ballare, gli piacciono i viaggi', 0.8, 'm')">🔊</button></td>
+          </tr>
+          <tr>
+            <td class="pronoun-col">lei</td>
+            <td class="indirect-col">le</td>
+            <td class="verb-col"><em>le piace</em> cucinare</td>
+            <td class="verb-col"><em>le piacciono</em> le paste</td>
+            <td><button class="audio-btn" onclick="ippAudio('le piace cucinare, le piacciono le paste', 0.8, 'f')">🔊</button></td>
+          </tr>
+          <tr>
+            <td class="pronoun-col">noi</td>
+            <td class="indirect-col">ci</td>
+            <td class="verb-col"><em>ci piace</em> la pizza</td>
+            <td class="verb-col"><em>ci piacciono</em> gli amici</td>
+            <td><button class="audio-btn" onclick="ippAudio('ci piace la pizza, ci piacciono gli amici', 0.8, 'f')">🔊</button></td>
+          </tr>
+          <tr>
+            <td class="pronoun-col">voi</td>
+            <td class="indirect-col">vi</td>
+            <td class="verb-col"><em>vi piace</em> fare sport</td>
+            <td class="verb-col"><em>vi piacciono</em> i mercati</td>
+            <td><button class="audio-btn" onclick="ippAudio('vi piace fare sport, vi piacciono i mercati', 0.8, 'f')">🔊</button></td>
+          </tr>
+          <tr>
+            <td class="pronoun-col">loro</td>
+            <td class="indirect-col">gli</td>
+            <td class="verb-col"><em>gli piace</em> uscire</td>
+            <td class="verb-col"><em>gli piacciono</em> le feste</td>
+            <td><button class="audio-btn" onclick="ippAudio('gli piace uscire, gli piacciono le feste', 0.8, 'm')">🔊</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <strong>Regla de oro:</strong> ¿Qué gusta? → una cosa o infinitivo → <strong>piace</strong> · ¿Qué gustan? → varias cosas → <strong>piacciono</strong><br>
+        <em>Mi piace il caffè.</em> / <em>Mi piacciono i caffè.</em>
+      </div>
+
+      <!-- EJERCICIOS PIACERE -->
+      <div class="ex-section">
+        <div class="ex-section-title">Esercizi — Il verbo piacere</div>
+
+        <!-- E1.1 -->
+        <div class="ex-item">
+          <div class="ex-prompt">1. Completá con <strong>piace</strong> o <strong>piacciono</strong>:<br>
+            a) Mi <input class="blank-input" id="p1a" placeholder="..."> la musica italiana.<br>
+            b) Ti <input class="blank-input" id="p1b" placeholder="..."> i film d'azione?<br>
+            c) Gli <input class="blank-input" id="p1c" placeholder="..."> fare yoga al mattino.<br>
+            d) Le <input class="blank-input" id="p1d" placeholder="..."> le passeggiate in montagna.
+          </div>
+          <button class="ex-check-btn" onclick="checkPiacere1()">Verificar</button>
+          <div class="ex-feedback" id="fb_p1"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- E1.2 -->
+        <div class="ex-item">
+          <div class="ex-prompt">2. Elegí la opción correcta:</div>
+          <div class="mc-opts">
+            <div class="mc-opt" onclick="checkMC(this,'wrong','mc1fb')">
+              <div class="mc-dot"></div> A Marco piace i videogiochi.
+            </div>
+            <div class="mc-opt" onclick="checkMC(this,'correct','mc1fb')">
+              <div class="mc-dot"></div> A Marco piacciono i videogiochi.
+            </div>
+            <div class="mc-opt" onclick="checkMC(this,'wrong','mc1fb')">
+              <div class="mc-dot"></div> A Marco piaci i videogiochi.
+            </div>
+          </div>
+          <div class="ex-feedback" id="mc1fb"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- E1.3 -->
+        <div class="ex-item">
+          <div class="ex-prompt">3. Completá con el pronombre indirecto correcto:<br>
+            a) A Giulia <input class="blank-input" id="p3a" placeholder="..."> piace leggere.<br>
+            b) A Marco e Anna <input class="blank-input" id="p3b" placeholder="..."> piacciono i viaggi.<br>
+            c) A noi <input class="blank-input" id="p3c" placeholder="..."> piace il calcio.
+          </div>
+          <button class="ex-check-btn" onclick="checkPiacere3()">Verificar</button>
+          <div class="ex-feedback" id="fb_p3"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- E1.4 -->
+        <div class="ex-item">
+          <div class="ex-prompt">4. Traducí al italiano:<br>
+            a) "A él le gusta cocinar." → <input class="blank-input" id="p4a" placeholder="..." style="width:200px"><br>
+            b) "A nosotros nos gustan los conciertos." → <input class="blank-input" id="p4b" placeholder="..." style="width:240px">
+          </div>
+          <button class="ex-check-btn" onclick="checkPiacere4()">Verificar</button>
+          <div class="ex-feedback" id="fb_p4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BLOQUE 2 — PRONOMI INDIRETTI TERZA PERSONA
+  ══════════════════════════════════════ -->
+  <div class="gram-block">
+    <div class="gram-header">
+      <div class="gram-num">Sección 2</div>
+      <h3>Pronomi indiretti — terza persona</h3>
+    </div>
+    <div class="gram-body">
+      <p>Los pronombres indirectos van <strong>antes del verbo</strong> y reemplazan a "a + persona". La tercera persona tiene formas distintas para masculino y femenino:</p>
+
+      <div class="pronomi-cards">
+        <div class="pronomi-card">
+          <div class="pron-label">Masculino · a lui</div>
+          <div class="pron-form">gli</div>
+          <div class="pron-example">A Marco piace → <strong>Gli</strong> piace</div>
+        </div>
+        <div class="pronomi-card">
+          <div class="pron-label">Femenino · a lei</div>
+          <div class="pron-form">le</div>
+          <div class="pron-example">A Giulia piace → <strong>Le</strong> piace</div>
+        </div>
+        <div class="pronomi-card">
+          <div class="pron-label">Plural · a loro</div>
+          <div class="pron-form">gli</div>
+          <div class="pron-example">A loro piace → <strong>Gli</strong> piace</div>
+        </div>
+        <div class="pronomi-card">
+          <div class="pron-label">Posición en la frase</div>
+          <div class="pron-form" style="font-size:0.9rem; color:var(--black);">ANTES del verbo</div>
+          <div class="pron-example"><strong>Gli</strong> piace la musica. ✓<br>Piace <strong>gli</strong> la musica. ✗</div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <strong>¡Ojo!</strong> <em>Gli</em> sirve para él (a lui) <em>y</em> para ellos (a loro). Se distingue por el contexto.<br>
+        <em>Le</em> solo es para ella (a lei).
+      </div>
+
+      <!-- EJERCICIOS PRONOMI -->
+      <div class="ex-section">
+        <div class="ex-section-title">Esercizi — Pronomi indiretti</div>
+
+        <!-- E2.1 -->
+        <div class="ex-item">
+          <div class="ex-prompt">1. Reemplazá con el pronombre indirecto:<br>
+            a) A Giulia piace fare shopping. → <input class="blank-input" id="pr1a" placeholder="..."> piace fare shopping.<br>
+            b) A Marco piacciono i film. → <input class="blank-input" id="pr1b" placeholder="..."> piacciono i film.<br>
+            c) A Giulia e Marco piace uscire. → <input class="blank-input" id="pr1c" placeholder="..."> piace uscire.
+          </div>
+          <button class="ex-check-btn" onclick="checkPronomi1()">Verificar</button>
+          <div class="ex-feedback" id="fb_pr1"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- E2.2 -->
+        <div class="ex-item">
+          <div class="ex-prompt">2. ¿Cuál es correcta?</div>
+          <div class="mc-opts">
+            <div class="mc-opt" onclick="checkMC(this,'wrong','mc2fb')">
+              <div class="mc-dot"></div> A Giulia piace la musica. → La piace la musica.
+            </div>
+            <div class="mc-opt" onclick="checkMC(this,'correct','mc2fb')">
+              <div class="mc-dot"></div> A Giulia piace la musica. → Le piace la musica.
+            </div>
+            <div class="mc-opt" onclick="checkMC(this,'wrong','mc2fb')">
+              <div class="mc-dot"></div> A Giulia piace la musica. → Gli piace la musica.
+            </div>
+          </div>
+          <div class="ex-feedback" id="mc2fb"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- E2.3 -->
+        <div class="ex-item">
+          <div class="ex-prompt">3. Completá con <strong>gli</strong> o <strong>le</strong>:<br>
+            a) A mio fratello <input class="blank-input" id="pr3a" placeholder="..."> piacciono i videogiochi.<br>
+            b) A mia sorella <input class="blank-input" id="pr3b" placeholder="..."> piace leggere.<br>
+            c) Al professore <input class="blank-input" id="pr3c" placeholder="..."> piace insegnare.
+          </div>
+          <button class="ex-check-btn" onclick="checkPronomi3()">Verificar</button>
+          <div class="ex-feedback" id="fb_pr3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BLOQUE 3 — PREPOSIZIONI ARTICOLATE
+  ══════════════════════════════════════ -->
+  <div class="gram-block">
+    <div class="gram-header">
+      <div class="gram-num">Sección 3</div>
+      <h3>Preposizioni articolate — tabla completa</h3>
+    </div>
+    <div class="gram-body">
+      <p>Cuando una preposición precede a un artículo determinativo, se fusionan. Estas formas se llaman <strong>preposizioni articolate</strong> y son obligatorias en italiano estándar.</p>
+
+      <div class="prep-mini-wrap">
+        <table class="prep-mini">
+          <thead>
+            <tr>
+              <th>Prep.</th>
+              <th>il</th>
+              <th>lo</th>
+              <th>l'</th>
+              <th>la</th>
+              <th>i</th>
+              <th>gli</th>
+              <th>le</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>a</td><td class="art">al</td><td class="art">allo</td><td class="art">all'</td><td class="art">alla</td><td class="art">ai</td><td class="art">agli</td><td class="art">alle</td></tr>
+            <tr><td>di</td><td class="art">del</td><td class="art">dello</td><td class="art">dell'</td><td class="art">della</td><td class="art">dei</td><td class="art">degli</td><td class="art">delle</td></tr>
+            <tr><td>da</td><td class="art">dal</td><td class="art">dallo</td><td class="art">dall'</td><td class="art">dalla</td><td class="art">dai</td><td class="art">dagli</td><td class="art">dalle</td></tr>
+            <tr><td>in</td><td class="art">nel</td><td class="art">nello</td><td class="art">nell'</td><td class="art">nella</td><td class="art">nei</td><td class="art">negli</td><td class="art">nelle</td></tr>
+            <tr><td>su</td><td class="art">sul</td><td class="art">sullo</td><td class="art">sull'</td><td class="art">sulla</td><td class="art">sui</td><td class="art">sugli</td><td class="art">sulle</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-box">
+        <strong>Truco:</strong> Las preposiciones <em>con, per, tra/fra</em> generalmente NO se contraen con el artículo en el italiano moderno.
+      </div>
+
+      <!-- EJERCICIOS PREPOSIZIONI -->
+      <div class="ex-section">
+        <div class="ex-section-title">Esercizi — Preposizioni articolate</div>
+
+        <!-- E3.1 -->
+        <div class="ex-item">
+          <div class="ex-prompt">1. Elegí la preposición articulada correcta:</div>
+          <div class="match-area">
+            <div class="match-row">
+              <span class="match-sentence">Vado <strong>__</strong> cinema stasera.</span>
+              <select class="match-select" data-correct="al" onchange="checkSelect(this)">
+                <option value="">—</option>
+                <option>al</option><option>alla</option><option>del</option><option>nel</option>
+              </select>
+            </div>
+            <div class="match-row">
+              <span class="match-sentence">Parlo <strong>__</strong> amici.</span>
+              <select class="match-select" data-correct="degli" onchange="checkSelect(this)">
+                <option value="">—</option>
+                <option>degli</option><option>degli</option><option>ai</option><option>sui</option>
+              </select>
+            </div>
+            <div class="match-row">
+              <span class="match-sentence">Il libro è <strong>__</strong> tavolo.</span>
+              <select class="match-select" data-correct="sul" onchange="checkSelect(this)">
+                <option value="">—</option>
+                <option>sul</option><option>al</option><option>nel</option><option>dal</option>
+              </select>
+            </div>
+            <div class="match-row">
+              <span class="match-sentence">Vengo <strong>__</strong> palestra.</span>
+              <select class="match-select" data-correct="dalla" onchange="checkSelect(this)">
+                <option value="">—</option>
+                <option>dalla</option><option>alla</option><option>nella</option><option>della</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- E3.2 -->
+        <div class="ex-item">
+          <div class="ex-prompt">2. Completá con la preposición articulada correcta (a + artículo):<br>
+            a) Vado <input class="blank-input" id="prep2a" placeholder="..."> mercato. <span style="font-size:0.8rem;color:#999">(il mercato)</span><br>
+            b) Parliamo <input class="blank-input" id="prep2b" placeholder="..."> sport. <span style="font-size:0.8rem;color:#999">(lo sport)</span><br>
+            c) Siamo <input class="blank-input" id="prep2c" placeholder="..."> festa. <span style="font-size:0.8rem;color:#999">(la festa)</span>
+          </div>
+          <button class="ex-check-btn" onclick="checkPrep2()">Verificar</button>
+          <div class="ex-feedback" id="fb_prep2"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- E3.3 -->
+        <div class="ex-item">
+          <div class="ex-prompt">3. ¿Cuál está bien formada?</div>
+          <div class="mc-opts">
+            <div class="mc-opt" onclick="checkMC(this,'wrong','mc3fb')">
+              <div class="mc-dot"></div> Vado a il cinema.
+            </div>
+            <div class="mc-opt" onclick="checkMC(this,'correct','mc3fb')">
+              <div class="mc-dot"></div> Vado al cinema.
+            </div>
+            <div class="mc-opt" onclick="checkMC(this,'wrong','mc3fb')">
+              <div class="mc-dot"></div> Vado allo cinema.
+            </div>
+          </div>
+          <div class="ex-feedback" id="mc3fb"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BLOQUE 4 — PREFERIRE
+  ══════════════════════════════════════ -->
+  <div class="gram-block">
+    <div class="gram-header">
+      <div class="gram-num">Sección 4</div>
+      <h3>Il verbo preferire</h3>
+    </div>
+    <div class="gram-body">
+      <p><em>Preferire</em> es un verbo de la 3ª conjugación (-ire) con ampliación <strong>-isc-</strong> en singular y 3ª plural. Usalo para expresar preferencias comparando dos cosas.</p>
+
+      <div class="preferire-grid">
+        <div class="pref-cell">
+          <div class="pf-pronoun">io</div>
+          <div class="pf-form">prefer<span class="pf-irr">isco</span></div>
+        </div>
+        <div class="pref-cell">
+          <div class="pf-pronoun">tu</div>
+          <div class="pf-form">prefer<span class="pf-irr">isci</span></div>
+        </div>
+        <div class="pref-cell">
+          <div class="pf-pronoun">lui/lei</div>
+          <div class="pf-form">prefer<span class="pf-irr">isce</span></div>
+        </div>
+        <div class="pref-cell">
+          <div class="pf-pronoun">noi</div>
+          <div class="pf-form">prefer<span class="pf-irr">iamo</span></div>
+        </div>
+        <div class="pref-cell">
+          <div class="pf-pronoun">voi</div>
+          <div class="pf-form">prefer<span class="pf-irr">ite</span></div>
+        </div>
+        <div class="pref-cell">
+          <div class="pf-pronoun">loro</div>
+          <div class="pf-form">prefer<span class="pf-irr">iscono</span></div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <strong>Estructura comparativa:</strong> <em>Preferisco X a Y</em> · <em>Preferisco X che Y</em><br>
+        Ej: <em>Preferisco il cinema al teatro.</em> / <em>Preferisco leggere che guardare la TV.</em>
+      </div>
+
+      <!-- EJERCICIOS PREFERIRE -->
+      <div class="ex-section">
+        <div class="ex-section-title">Esercizi — Preferire</div>
+
+        <!-- E4.1 -->
+        <div class="ex-item">
+          <div class="ex-prompt">1. Conjugá <strong>preferire</strong>:<br>
+            a) Io <input class="blank-input" id="pf1a" placeholder="..."> la pizza alla pasta.<br>
+            b) Marco <input class="blank-input" id="pf1b" placeholder="..."> fare sport che guardare la TV.<br>
+            c) Voi <input class="blank-input" id="pf1c" placeholder="..."> il mare o la montagna?
+          </div>
+          <button class="ex-check-btn" onclick="checkPreferire1()">Verificar</button>
+          <div class="ex-feedback" id="fb_pf1"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- E4.2 -->
+        <div class="ex-item">
+          <div class="ex-prompt">2. ¿Cuál es correcta?</div>
+          <div class="mc-opts">
+            <div class="mc-opt" onclick="checkMC(this,'wrong','mc4fb')">
+              <div class="mc-dot"></div> Loro preferano uscire.
+            </div>
+            <div class="mc-opt" onclick="checkMC(this,'correct','mc4fb')">
+              <div class="mc-dot"></div> Loro preferiscono uscire.
+            </div>
+            <div class="mc-opt" onclick="checkMC(this,'wrong','mc4fb')">
+              <div class="mc-dot"></div> Loro preferiscono uscire.
+            </div>
+          </div>
+          <div class="ex-feedback" id="mc4fb"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- E4.3 -->
+        <div class="ex-item">
+          <div class="ex-prompt">3. Escribí una oración completa usando <em>preferisco</em> para hablar de vos mismo:<br>
+            <input class="blank-input" id="pf3" placeholder="Preferisco..." style="width:100%; max-width:400px; margin-top:6px">
+          </div>
+          <button class="ex-check-btn" onclick="checkPreferire3()">Verificar</button>
+          <div class="ex-feedback" id="fb_pf3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BLOQUE 5 — FONETICA
+  ══════════════════════════════════════ -->
+  <div class="gram-block">
+    <div class="gram-header">
+      <div class="gram-num">Sección 5</div>
+      <h3>Fonetica — L'accento della frase</h3>
+    </div>
+    <div class="gram-body">
+      <p>En italiano, la <strong>entonación</strong> cambia el significado de una frase. La misma oración puede ser una afirmación, una pregunta o una exclamación según cómo varíe el tono.</p>
+
+      <div class="fon-row">
+        <div class="fon-card decl" onclick="ippAudio('Vai al cinema.', 0.82, 'f')">
+          <div class="fon-type">Declarativa</div>
+          <div class="fon-phrase">Vai al cinema.</div>
+          <div class="fon-arrow">↘</div>
+          <div class="fon-desc">Tono descendente al final</div>
+        </div>
+        <div class="fon-card inter" onclick="ippAudio('Vai al cinema?', 0.82, 'f')">
+          <div class="fon-type">Interrogativa</div>
+          <div class="fon-phrase">Vai al cinema?</div>
+          <div class="fon-arrow">↗</div>
+          <div class="fon-desc">Tono ascendente al final</div>
+        </div>
+        <div class="fon-card excl" onclick="ippAudio('Vai al cinema!', 0.88, 'f')">
+          <div class="fon-type">Exclamativa</div>
+          <div class="fon-phrase">Vai al cinema!</div>
+          <div class="fon-arrow">↑↘</div>
+          <div class="fon-desc">Tono intenso y marcado</div>
+        </div>
+      </div>
+
+      <div class="fon-row">
+        <div class="fon-card decl" onclick="ippAudio('Ti piace la musica.', 0.82, 'f')">
+          <div class="fon-type">Declarativa</div>
+          <div class="fon-phrase">Ti piace la musica.</div>
+          <div class="fon-arrow">↘</div>
+          <div class="fon-desc">Afirmación tranquila</div>
+        </div>
+        <div class="fon-card inter" onclick="ippAudio('Ti piace la musica?', 0.82, 'f')">
+          <div class="fon-type">Interrogativa</div>
+          <div class="fon-phrase">Ti piace la musica?</div>
+          <div class="fon-arrow">↗</div>
+          <div class="fon-desc">Pregunta genuina</div>
+        </div>
+        <div class="fon-card excl" onclick="ippAudio('Ti piace la musica!', 0.88, 'f')">
+          <div class="fon-type">Exclamativa</div>
+          <div class="fon-phrase">Ti piace la musica!</div>
+          <div class="fon-arrow">↑↘</div>
+          <div class="fon-desc">Sorpresa o énfasis</div>
+        </div>
+      </div>
+
+      <p style="font-size:0.88rem; color:#777; margin-top:4px;">Hacé clic en cada tarjeta para escuchar la diferencia de entonación.</p>
+
+      <!-- EJERCICIOS FONETICA -->
+      <div class="ex-section">
+        <div class="ex-section-title">Esercizi — Identificar el tipo de frase</div>
+
+        <!-- E5.1 -->
+        <div class="ex-item">
+          <div class="ex-prompt">1. Escuchá y decidí: ¿qué tipo de frase es <em>"Gli piace uscire."</em>?</div>
+          <div class="identify-opts">
+            <button class="id-btn" onclick="checkIdentify(this, 'declarativa', 'fon1', ['declarativa','interrogativa','exclamativa'])">Declarativa</button>
+            <button class="id-btn" onclick="checkIdentify(this, 'interrogativa', 'fon1', ['declarativa','interrogativa','exclamativa'])">Interrogativa</button>
+            <button class="id-btn" onclick="checkIdentify(this, 'exclamativa', 'fon1', ['declarativa','interrogativa','exclamativa'])">Exclamativa</button>
+          </div>
+          <div class="ex-feedback" id="fon1">
+            <button class="ex-check-btn" style="margin-bottom:8px" onclick="ippAudio('Gli piace uscire.', 0.82, 'm')">🔊 Escuchar</button>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- E5.2 -->
+        <div class="ex-item">
+          <div class="ex-prompt">2. La frase "Le piacciono i concerti?" tiene entonación...</div>
+          <div class="identify-opts">
+            <button class="id-btn" onclick="checkIdentify(this, 'wrong1', 'fon2', ['wrong1','correcta','wrong2'])">Descendente (declarativa)</button>
+            <button class="id-btn" onclick="checkIdentify(this, 'correcta', 'fon2', ['wrong1','correcta','wrong2'])">Ascendente (interrogativa)</button>
+            <button class="id-btn" onclick="checkIdentify(this, 'wrong2', 'fon2', ['wrong1','correcta','wrong2'])">Muy intensa (exclamativa)</button>
+          </div>
+          <div class="ex-feedback" id="fon2">
+            <button class="ex-check-btn" style="margin-bottom:8px" onclick="ippAudio('Le piacciono i concerti?', 0.82, 'f')">🔊 Escuchar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+if (!window.__ipp_m9_e3__) { window.__ipp_m9_e3__ = true;
+
+  function ippVoice(gender) {
+    var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+    var itV = voices.filter(function(v){ return v.lang && v.lang.startsWith('it'); });
+    if (!itV.length) return null;
+    var voice = null;
+    if (gender==='m') {
+      voice = itV.find(function(v){ return /cosimo|luca|giorgio|male|masc/i.test(v.name); });
+      if (!voice) voice = itV.find(function(v){ return !/elsa|alice|giulia|female|femm/i.test(v.name); });
+    } else {
+      voice = itV.find(function(v){ return /elsa|alice|giulia|female|femm/i.test(v.name); });
+      if (!voice) voice = itV.find(function(v){ return !/cosimo|luca|giorgio|male|masc/i.test(v.name); });
+    }
+    return voice || itV[0];
+  }
+
+  function ippAudio(text, rate, gender) {
+    rate = (typeof rate==='number' && isFinite(rate) && rate>0) ? rate : 0.82;
+    gender = (gender==='m'||gender==='f') ? gender : 'f';
+    if (!window.speechSynthesis) return;
+    try { speechSynthesis.cancel(); } catch(e) {}
+    var utt = new SpeechSynthesisUtterance(String(text));
+    utt.lang='it-IT'; utt.rate=rate;
+    var voice=ippVoice(gender); if (voice) utt.voice=voice;
+    (function(u){ setTimeout(function(){ try{speechSynthesis.speak(u);}catch(e){} },60); })(utt);
+  }
+
+  function normalize(s) {
+    return s.trim().toLowerCase()
+      .replace(/[àá]/g,'a').replace(/[èé]/g,'e').replace(/[ìí]/g,'i')
+      .replace(/[òó]/g,'o').replace(/[ùú]/g,'u');
+  }
+
+  /* PIACERE 1 */
+  function checkPiacere1() {
+    var answers = [
+      { id:'p1a', correct:'piace' },
+      { id:'p1b', correct:'piacciono' },
+      { id:'p1c', correct:'piace' },
+      { id:'p1d', correct:'piacciono' }
+    ];
+    var ok = 0;
+    answers.forEach(function(a) {
+      var el = document.getElementById(a.id);
+      var val = normalize(el.value);
+      if (val === a.correct) { el.className='blank-input ok'; ok++; }
+      else { el.className='blank-input nok'; }
+    });
+    var fb = document.getElementById('fb_p1');
+    if (ok === 4) {
+      fb.innerHTML = '¡Perfecto! Las cuatro son correctas.';
+      fb.className = 'ex-feedback show ok';
+    } else {
+      fb.innerHTML = 'Revisá: usá <strong>piace</strong> con singular/infinitivo y <strong>piacciono</strong> con plural. (' + ok + '/4 correctas)';
+      fb.className = 'ex-feedback show nok';
+    }
+  }
+
+  /* PIACERE 3 */
+  function checkPiacere3() {
+    var answers = [
+      { id:'p3a', correct:'le' },
+      { id:'p3b', correct:'gli' },
+      { id:'p3c', correct:'ci' }
+    ];
+    var ok = 0;
+    answers.forEach(function(a) {
+      var el = document.getElementById(a.id);
+      var val = normalize(el.value);
+      if (val === a.correct) { el.className='blank-input ok'; ok++; }
+      else { el.className='blank-input nok'; }
+    });
+    var fb = document.getElementById('fb_p3');
+    if (ok === 3) {
+      fb.innerHTML = '¡Excelente! a Giulia → le · a Marco e Anna → gli · a noi → ci.';
+      fb.className = 'ex-feedback show ok';
+    } else {
+      fb.innerHTML = 'Casi... Recordá: Giulia (F) → <strong>le</strong> · Marco e Anna (plural) → <strong>gli</strong> · noi → <strong>ci</strong>. (' + ok + '/3)';
+      fb.className = 'ex-feedback show nok';
+    }
+  }
+
+  /* PIACERE 4 */
+  function checkPiacere4() {
+    var a = normalize(document.getElementById('p4a').value);
+    var b = normalize(document.getElementById('p4b').value);
+    var aOk = a.indexOf('gli piace cucinare') >= 0 || a === 'gli piace cucinare.';
+    var bOk = b.indexOf('ci piacciono i concerti') >= 0 || b.indexOf('gli piacciono i concerti') >= 0;
+    document.getElementById('p4a').className = aOk ? 'blank-input ok' : 'blank-input nok';
+    document.getElementById('p4b').className = bOk ? 'blank-input ok' : 'blank-input nok';
+    var fb = document.getElementById('fb_p4');
+    if (aOk && bOk) {
+      fb.innerHTML = '¡Muy bien! a) <em>Gli piace cucinare.</em> b) <em>Ci piacciono i concerti.</em>';
+      fb.className = 'ex-feedback show ok';
+    } else {
+      fb.innerHTML = 'Revisá: a) <em>Gli piace cucinare.</em> (él → gli, singular → piace) · b) <em>Ci piacciono i concerti.</em> (nosotros → ci, plural → piacciono)';
+      fb.className = 'ex-feedback show nok';
+    }
+  }
+
+  /* PRONOMI 1 */
+  function checkPronomi1() {
+    var answers = [
+      { id:'pr1a', correct:'le' },
+      { id:'pr1b', correct:'gli' },
+      { id:'pr1c', correct:'gli' }
+    ];
+    var ok = 0;
+    answers.forEach(function(a) {
+      var el = document.getElementById(a.id);
+      var val = normalize(el.value);
+      if (val === a.correct) { el.className='blank-input ok'; ok++; }
+      else { el.className='blank-input nok'; }
+    });
+    var fb = document.getElementById('fb_pr1');
+    if (ok === 3) {
+      fb.innerHTML = '¡Correcto! Giulia (F) → le · Marco (M) → gli · Giulia e Marco (plural) → gli.';
+      fb.className = 'ex-feedback show ok';
+    } else {
+      fb.innerHTML = 'Recordá: femenino → <strong>le</strong> · masculino/plural → <strong>gli</strong>. (' + ok + '/3)';
+      fb.className = 'ex-feedback show nok';
+    }
+  }
+
+  /* PRONOMI 3 */
+  function checkPronomi3() {
+    var answers = [
+      { id:'pr3a', correct:'gli' },
+      { id:'pr3b', correct:'le' },
+      { id:'pr3c', correct:'gli' }
+    ];
+    var ok = 0;
+    answers.forEach(function(a) {
+      var el = document.getElementById(a.id);
+      var val = normalize(el.value);
+      if (val === a.correct) { el.className='blank-input ok'; ok++; }
+      else { el.className='blank-input nok'; }
+    });
+    var fb = document.getElementById('fb_pr3');
+    if (ok === 3) {
+      fb.innerHTML = '¡Perfecto! fratello (M) → gli · sorella (F) → le · professore (M) → gli.';
+      fb.className = 'ex-feedback show ok';
+    } else {
+      fb.innerHTML = 'Revisá: fratello (M) → <strong>gli</strong> · sorella (F) → <strong>le</strong> · professore (M) → <strong>gli</strong>. (' + ok + '/3)';
+      fb.className = 'ex-feedback show nok';
+    }
+  }
+
+  /* SELECT */
+  function checkSelect(el) {
+    var val = el.value;
+    var correct = el.getAttribute('data-correct');
+    if (!val) { el.className='match-select'; return; }
+    if (val === correct) { el.className='match-select ok'; }
+    else { el.className='match-select nok'; }
+  }
+
+  /* PREP 2 */
+  function checkPrep2() {
+    var answers = [
+      { id:'prep2a', correct:'al' },
+      { id:'prep2b', correct:'allo' },
+      { id:'prep2c', correct:'alla' }
+    ];
+    var ok = 0;
+    answers.forEach(function(a) {
+      var el = document.getElementById(a.id);
+      var val = normalize(el.value);
+      if (val === a.correct) { el.className='blank-input ok'; ok++; }
+      else { el.className='blank-input nok'; }
+    });
+    var fb = document.getElementById('fb_prep2');
+    if (ok === 3) {
+      fb.innerHTML = '¡Bien! a+il=<strong>al</strong> · a+lo=<strong>allo</strong> · a+la=<strong>alla</strong>.';
+      fb.className = 'ex-feedback show ok';
+    } else {
+      fb.innerHTML = 'Revisá la tabla: a+il=<strong>al</strong> · a+lo=<strong>allo</strong> · a+la=<strong>alla</strong>. (' + ok + '/3)';
+      fb.className = 'ex-feedback show nok';
+    }
+  }
+
+  /* PREFERIRE 1 */
+  function checkPreferire1() {
+    var answers = [
+      { id:'pf1a', correct:'preferisco' },
+      { id:'pf1b', correct:'preferisce' },
+      { id:'pf1c', correct:'preferite' }
+    ];
+    var ok = 0;
+    answers.forEach(function(a) {
+      var el = document.getElementById(a.id);
+      var val = normalize(el.value);
+      if (val === a.correct) { el.className='blank-input ok'; ok++; }
+      else { el.className='blank-input nok'; }
+    });
+    var fb = document.getElementById('fb_pf1');
+    if (ok === 3) {
+      fb.innerHTML = '¡Correcto! io → preferisco · lui/lei → preferisce · voi → preferite.';
+      fb.className = 'ex-feedback show ok';
+    } else {
+      fb.innerHTML = 'Revisá: io → <strong>preferisco</strong> · Marco (lui) → <strong>preferisce</strong> · voi → <strong>preferite</strong>. (' + ok + '/3)';
+      fb.className = 'ex-feedback show nok';
+    }
+  }
+
+  /* PREFERIRE 3 */
+  function checkPreferire3() {
+    var val = normalize(document.getElementById('pf3').value);
+    var fb = document.getElementById('fb_pf3');
+    if (val.indexOf('preferisco') >= 0 && val.length > 15) {
+      document.getElementById('pf3').className='blank-input ok';
+      fb.innerHTML = '¡Perfecto! Usaste <em>preferisco</em> correctamente.';
+      fb.className = 'ex-feedback show ok';
+    } else {
+      document.getElementById('pf3').className='blank-input nok';
+      fb.innerHTML = 'Asegurate de usar <strong>preferisco</strong> y completar la oración. Ej: <em>Preferisco leggere che guardare la TV.</em>';
+      fb.className = 'ex-feedback show nok';
+    }
+  }
+
+  /* MC GENÉRICO */
+  function checkMC(el, result, fbId) {
+    var parent = el.parentElement;
+    parent.querySelectorAll('.mc-opt').forEach(function(o){ o.classList.remove('correct','wrong'); });
+    el.classList.add(result === 'correct' ? 'correct' : 'wrong');
+    var fb = document.getElementById(fbId);
+    if (result === 'correct') {
+      fb.innerHTML = '¡Correcto! ✓';
+      fb.className = 'ex-feedback show ok';
+    } else {
+      fb.innerHTML = 'No es esa. Fijate bien en la opción correcta.';
+      fb.className = 'ex-feedback show nok';
+    }
+  }
+
+  /* IDENTIFY */
+  function checkIdentify(btn, val, fbId, allVals) {
+    var container = btn.parentElement;
+    container.querySelectorAll('.id-btn').forEach(function(b){ b.className='id-btn'; });
+    var correct = (fbId === 'fon1') ? 'declarativa' : 'correcta';
+    if (val === correct) {
+      btn.className = 'id-btn correct';
+      var fb = document.getElementById(fbId);
+      fb.innerHTML += '<span style="color:#2d4d3c; font-weight:600; display:block; margin-top:4px">¡Correcto! El punto final indica entonación descendente (declarativa).</span>';
+    } else {
+      btn.className = 'id-btn wrong';
+      var fb = document.getElementById(fbId);
+      fb.innerHTML += '<span style="color:var(--mod-tx); display:block; margin-top:4px">Casi... Fijate en el signo de puntuación y escuchá de nuevo.</span>';
+    }
+  }
+
+  window.ippAudio = ippAudio;
+  window.ippVoice = ippVoice;
+  window.checkPiacere1 = checkPiacere1;
+  window.checkPiacere3 = checkPiacere3;
+  window.checkPiacere4 = checkPiacere4;
+  window.checkPronomi1 = checkPronomi1;
+  window.checkPronomi3 = checkPronomi3;
+  window.checkSelect = checkSelect;
+  window.checkPrep2 = checkPrep2;
+  window.checkPreferire1 = checkPreferire1;
+  window.checkPreferire3 = checkPreferire3;
+  window.checkMC = checkMC;
+  window.checkIdentify = checkIdentify;
+
+} // end execution guard
+</script>
+</body>
+</html>

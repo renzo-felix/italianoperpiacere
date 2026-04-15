@@ -1,143 +1,152 @@
-# Módulo 5 — Al bar · Etapa 4: Ejercicios
+# Módulo 4 — Che lavoro fai? · Etapa 4: Ejercicios
 
 ---
 
-## Esercizio 1 — Metti in ordine il dialogo
+## Esercizio 1 — Scegli l'articolo determinativo corretto
 
-Ordená estas frases para reconstruir una conversación en el bar:
+Completá con el artículo correcto: **il / lo / la / l' / i / gli / le**
 
-a. Allora, per me un cappuccino e un cornetto alla crema.
-b. Quanto costa tutto?
-c. Buongiorno! Cosa prende?
-d. Cinque euro e venti, grazie.
-e. Buongiorno! Io vorrei un'acqua naturale, per favore.
-f. E lei, signore?
-
-Orden correcto: ___ → ___ → ___ → ___ → ___ → ___
-
----
-
-## Esercizio 2 — Completa con l'articolo indeterminativo
-
-Completá con **un / uno / una / un'**:
-
-1. Prendo ___ caffè macchiato.
-2. Vorrei ___ spremuta d'arancia.
-3. Per me ___ tramezzino con prosciutto.
-4. C'è ___ tiramisù fatto in casa?
-5. Prendo ___ acqua frizzante, per favore.
-6. Hai ___ spuntino veloce?
-7. Vorrei ___ birra piccola.
-8. Per la signora ___ panna cotta.
+1. ___ medico lavora in ospedale.
+2. ___ infermiera è molto gentile.
+3. ___ avvocato studia molti libri.
+4. ___ studenti imparano l'italiano.
+5. ___ maestre insegnano ai bambini.
+6. ___ ingegneri costruiscono ponti.
+7. ___ architetto disegna belle case.
+8. ___ ufficio è al secondo piano.
 
 ---
 
-## Esercizio 3 — Verbi modali: VOLERE / POTERE / DOVERE
+## Esercizio 2 — Coniuga il verbo FARE
+
+Completá la conjugación del verbo **fare**:
+
+| Pronome | Forma |
+|---------|-------|
+| io | ___ |
+| tu | ___ |
+| lui/lei | ___ |
+| noi | ___ |
+| voi | ___ |
+| loro | ___ |
+
+---
+
+## Esercizio 3 — Verbi in -ISC-
 
 Completá con la forma correcta del verbo indicado:
 
-1. Io ___ (volere) un caffè decaffeinato.
-2. Tu ___ (potere) ordinare al bancone.
-3. Lei ___ (dovere) pagare alla cassa.
-4. Noi ___ (volere) due cappuccini, per favore.
-5. Voi ___ (potere) scegliere tra caffè e tè.
-6. Loro non ___ (dovere) aspettare molto.
+1. Io ___ (capire) tutto il professore.
+2. Tu ___ (finire) il lavoro alle cinque?
+3. Lui ___ (preferire) lavorare di mattina.
+4. Noi ___ (pulire) l'ufficio ogni venerdì.
+5. Voi ___ (capire) l'italiano bene!
+6. Loro ___ (finire) la riunione alle tre.
 
 ---
 
-## Esercizio 4 — Preposizioni di luogo: DA / A / IN
+## Esercizio 4 — Concordanza articolo-nome-aggettivo
 
-Completá con la preposizione correcta:
+Completá con la forma correcta del adjetivo:
 
-1. Vado ___ bar ogni mattina.
-2. Mangio ___ casa di solito.
-3. Vengo ___ Roma.
-4. Lavoro ___ un ufficio in centro.
-5. Sei ___ casa adesso?
-6. Andiamo ___ bere un caffè?
-
----
-
-## Esercizio 5 — I giorni della settimana
-
-Escribí el día que falta en la secuencia:
-
-1. lunedì → martedì → ___ → giovedì
-2. venerdì → sabato → ___
-3. ___ → mercoledì → giovedì
-4. domenica → ___ → martedì
+1. Il medico è molto _________ (bravo).
+2. La commessa è _________ (simpatico).
+3. I camerieri sono _________ (stanco).
+4. Le infermiere sono _________ (gentile).
+5. L'avvocato è _________ (giovane).
+6. Gli ingegneri sono _________ (bravo).
 
 ---
 
-## Esercizio 6 — Al bar: ¿qué decís?
+## Esercizio 5 — Colori e professioni
 
-Escribí en italiano qué dirías en cada situación:
+Associá cada profesión con el color típico de su uniforme o entorno. Escribí una frase completa:
 
-1. Querés pedir un café con leche:
-   → ___
+*Esempio: L'infermiera indossa un camice **bianco**.*
 
-2. Preguntás cuánto cuesta el tramezzino:
-   → ___
-
-3. Pedís la cuenta:
-   → ___
-
-4. Llamás la atención del mozo:
-   → ___
-
-5. Decís que no tenés hambre, solo sed:
-   → ___
+1. Il poliziotto → ___
+2. Il cuoco → ___
+3. Il meccanico → ___
+4. L'insegnante → ___
 
 ---
 
-## Esercizio 7 — Le doppie: vero o falso?
+## Esercizio 6 — Trasforma al plurale
 
-Indicá si la doble consonante está escrita correctamente (V) o no (F):
+Riscrivé le frasi al plural:
 
-1. cafè → ___
-2. cappuccino → ___
-3. mozzarela → ___
-4. tiramisù → ___
-5. panna cotta → ___
-6. piza → ___
-7. cornetto → ___
-8. prosciuto → ___
+1. Il cameriere lavora al ristorante. → ___
+2. La commessa vende vestiti. → ___
+3. L'impiegato risponde al telefono. → ___
+4. Il parrucchiere taglia i capelli. → ___
+
+---
+
+## Esercizio 7 — Che lavoro fa?
+
+Mirá las descripciones y escribí la profesión en italiano:
+
+1. Visita i pazienti in ospedale e prescrive medicine: ___
+2. Insegna ai bambini a leggere e scrivere: ___
+3. Prepara piatti deliziosi in cucina: ___
+4. Taglia i capelli e fa lo shampoo: ___
+5. Difende i clienti in tribunale: ___
+6. Progetta e costruisce edifici: ___
 
 ---
 
 ## Esercizio 8 — Produzione scritta
 
-Describí tu bar ideal en 5-6 oraciones. Usá:
-- Al menos 3 bebidas o comidas del bar
-- Un día de la semana
-- Una frase con verbo modal (voglio / posso / devo)
-- La expresión *di solito* o *a volte*
+Escribí un párrafo de 5-6 oraciones describiendo el trabajo de un familiar o conocido. Usá:
+- El verbo **fare** (Mia madre fa la...)
+- Al menos 1 verbo en **-isco**
+- Artículos determinativos correctos
+- Al menos 2 adjetivos concordados
+
+---
+
+## Esercizio 9 — Dialogo
+
+Completá el diálogo con las palabras del recuadro:
+
+> **faccio · lavora · fai · medico · infermieri · l'ospedale**
+
+— Ciao Marco, che lavoro ___ ?
+— Io ___ il ___. E tu?
+— Io sono ___. Lavoriamo in ___, con i ___.
 
 ---
 
 ## RISPOSTA
 
 **Esercizio 1:**
-c → e → f → a → b → d
+1. Il  2. L'  3. L'  4. Gli  5. Le  6. Gli  7. L'  8. L'
 
 **Esercizio 2:**
-1. un  2. una  3. un  4. un  5. un'  6. uno  7. una  8. una
+io faccio / tu fai / lui-lei fa / noi facciamo / voi fate / loro fanno
 
 **Esercizio 3:**
-1. voglio  2. puoi  3. deve  4. vogliamo  5. potete  6. devono
+1. capisco  2. finisci  3. preferisce  4. puliamo  5. capite  6. finiscono
 
 **Esercizio 4:**
-1. al  2. a  3. da  4. in  5. a  6. a
+1. bravo  2. simpatica  3. stanchi  4. gentili  5. giovane  6. bravi
 
-**Esercizio 5:**
-1. mercoledì  2. domenica  3. martedì  4. lunedì
+**Esercizio 5:** (respuestas abiertas, sugerencias)
+1. Il poliziotto indossa una divisa blu/azzurra.
+2. Il cuoco indossa un grembiule bianco.
+3. Il meccanico indossa una tuta grigia/blu.
+4. L'insegnante porta vestiti eleganti/colorati.
 
-**Esercizio 6:** (sugerencias)
-1. Vorrei un caffellatte, per favore. / Un latte macchiato, grazie.
-2. Quanto costa il tramezzino?
-3. Il conto, per favore. / Posso avere il conto?
-4. Scusi! / Mi scusi!
-5. Non ho fame, solo sete.
+**Esercizio 6:**
+1. I camerieri lavorano al ristorante.
+2. Le commesse vendono vestiti.
+3. Gli impiegati rispondono al telefono.
+4. I parrucchieri tagliano i capelli.
 
 **Esercizio 7:**
-1. F (caffè ✓)  2. V  3. F (mozzarella)  4. V  5. V  6. F (pizza)  7. V  8. F (prosciutto)
+1. il medico  2. l'insegnante / la maestra  3. il cuoco / la cuoca  4. il/la parrucchiere/a  5. l'avvocato  6. l'architetto / l'ingegnere
+
+**Esercizio 8:** Producción libre.
+
+**Esercizio 9:**
+fai / faccio / medico / infermiera / l'ospedale / infermieri

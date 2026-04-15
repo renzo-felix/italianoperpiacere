@@ -3,960 +3,2274 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tutti in piazza! — Etapa 2 | Italiano Per Piacere</title>
+<title>Módulo 2 — Mi dai il tuo numero? | Etapa 2: Descubrimiento</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --cream: #e9e6d5; --cream-dk: #ddd9c8; --gold: #EFCF7F;
   --amber: #e5ab07; --amber-dk: #c8940a; --red: #cc4736;
-  --teal: #78a6ba; --green: #528e74; --black: #1a1a18; --white: #ffffff;
+  --teal: #78a6ba; --teal-dk: #5a8ea0; --green: #528e74;
+  --black: #1a1a18; --white: #ffffff;
   --fh: 'Playfair Display', Georgia, serif;
   --fb: 'Outfit', system-ui, sans-serif;
   --r: 10px;
-  --mc: #528e74; --mc-dk: #3d6b58; --mc-text: #2d4d3c; --mc-bg: #e8f4ef;
+  --mc: #78a6ba; --mc-dk: #5a8ea0; --mc-text: #2d5f72; --mc-bg: #e5f1f5;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--cream); font-family: var(--fb); color: var(--black); line-height: 1.6; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--fb);
+  background: var(--cream);
+  color: var(--black);
+  min-height: 100vh;
+}
 
 /* ── STAGE NAV ── */
 .stage-nav {
-  background: var(--white); border-bottom: 2px solid var(--cream-dk);
-  padding: 12px 24px; display: flex; align-items: center; gap: 8px;
-  flex-wrap: wrap; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  background: var(--white);
+  border-bottom: 2px solid var(--cream-dk);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
-.stage-nav .logo { font-family: var(--fh); font-style: italic; color: var(--mc); font-size: 1rem; font-weight: 700; margin-right: 12px; }
-.stage-pill {
-  padding: 5px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 600;
-  border: 1.5px solid transparent; text-decoration: none; transition: all 0.2s;
+.stage-nav-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 20px;
 }
-.stage-pill.done { background: var(--mc-bg); color: var(--mc-dk); border-color: var(--mc); }
-.stage-pill.active { background: var(--mc); color: var(--white); border-color: var(--mc-dk); }
-.stage-pill.pending { background: var(--cream-dk); color: #888; border-color: #ccc; cursor: default; }
-.stage-sep { color: #bbb; font-size: 0.8rem; }
+.stage-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #999;
+  padding: 14px 16px;
+  border-bottom: 3px solid transparent;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.stage-label.done {
+  color: var(--green);
+  border-bottom-color: var(--green);
+}
+.stage-label.active {
+  color: var(--mc-text);
+  border-bottom-color: var(--mc);
+  font-weight: 700;
+}
+.stage-label.pending { color: #bbb; }
+.stage-sep { color: #ccc; font-size: 0.8rem; padding: 0 2px; }
 
 /* ── HERO ── */
 .hero {
-  background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%);
-  color: var(--white); padding: 56px 24px 48px; text-align: center;
+  background: linear-gradient(135deg, var(--mc-bg) 0%, var(--cream-dk) 100%);
+  border-bottom: 3px solid var(--mc);
+  padding: 52px 20px 44px;
+  text-align: center;
 }
-.hero .modulo-tag {
-  display: inline-block; background: rgba(255,255,255,.18);
-  border-radius: 20px; padding: 4px 16px; font-size: 0.78rem; font-weight: 600;
-  letter-spacing: .06em; text-transform: uppercase; margin-bottom: 18px;
+.hero-badge {
+  display: inline-block;
+  background: var(--mc);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 5px 16px;
+  border-radius: 20px;
+  margin-bottom: 16px;
 }
-.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2rem,5vw,3.2rem); line-height: 1.1; margin-bottom: 14px; }
-.hero .sub { font-size: 1rem; opacity: .88; max-width: 560px; margin: 0 auto; }
+.hero h1 {
+  font-family: var(--fh);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-style: italic;
+  color: var(--mc-text);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.hero p {
+  font-size: 1rem;
+  color: #555;
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
 
-/* ── MAIN CONTAINER ── */
-.container { max-width: 820px; margin: 0 auto; padding: 40px 20px 60px; }
+/* ── MAIN LAYOUT ── */
+.main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
 
 /* ── SECTION HEADERS ── */
-.sec-header { margin: 48px 0 22px; }
-.sec-header h2 { font-family: var(--fh); font-style: italic; color: var(--mc-dk); font-size: 1.55rem; margin-bottom: 6px; }
-.sec-header p { font-size: 0.92rem; color: #555; }
-.sec-num { display: inline-block; background: var(--mc); color: var(--white); border-radius: 50%; width: 28px; height: 28px; line-height: 28px; text-align: center; font-size: 0.8rem; font-weight: 700; margin-right: 8px; vertical-align: middle; }
-
-/* ── SOFIA BUBBLE ── */
-.sofia-block { display: flex; gap: 16px; align-items: flex-start; margin: 32px 0; }
-.sofia-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--mc); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; border: 3px solid var(--mc-dk); }
-.sofia-bubble {
-  background: var(--cream-dk); border-radius: 0 16px 16px 16px;
-  padding: 16px 20px; flex: 1; position: relative; font-size: 0.93rem;
-  border-left: 3px solid var(--mc);
+.sec-header {
+  margin: 56px 0 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
-.sofia-bubble::before { content: ''; position: absolute; left: -9px; top: 16px; border: 8px solid transparent; border-right-color: var(--mc); border-left: none; }
-.sofia-name { font-weight: 700; color: var(--mc-dk); font-size: 0.8rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: .05em; }
-
-/* ── PHRASE CARDS ── */
-.phrase-grid { display: grid; gap: 12px; }
-.phrase-card {
-  background: var(--white); border: 1px solid var(--cream-dk); border-radius: var(--r);
-  padding: 14px 18px; display: flex; align-items: center; gap: 14px;
-  transition: box-shadow 0.2s;
+.sec-icon {
+  width: 46px; height: 46px;
+  background: var(--mc);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
 }
-.phrase-card:hover { box-shadow: 0 3px 12px rgba(82,142,116,.15); }
-.phrase-text { flex: 1; }
-.phrase-it { font-size: 1rem; font-weight: 600; font-style: italic; color: var(--mc-dk); }
-.phrase-context { font-size: 0.78rem; color: #777; margin-top: 2px; }
-.btn-audio {
-  background: var(--mc-bg); border: 1.5px solid var(--mc); border-radius: 50%;
-  width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: all 0.2s; flex-shrink: 0; font-size: 1rem;
+.sec-header h2 {
+  font-family: var(--fh);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--mc-text);
+  line-height: 1.2;
 }
-.btn-audio:hover { background: var(--mc); color: var(--white); }
-.btn-audio.playing { background: var(--mc); color: var(--white); animation: pulse 0.8s infinite; }
-@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.12)} }
-
-/* ── CLOCK GRID ── */
-.clock-wrapper { background: var(--white); border-radius: 16px; padding: 28px; border: 1px solid var(--cream-dk); }
-.clock-label { text-align: center; font-size: 0.85rem; color: #666; margin-bottom: 20px; font-style: italic; }
-.clock-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
-}
-.clock-btn {
-  background: var(--cream-dk); border: 2px solid transparent; border-radius: var(--r);
-  padding: 12px 6px; text-align: center; cursor: pointer; transition: all 0.2s;
+.sec-header .sec-sub {
+  font-size: 0.82rem;
+  color: #777;
+  margin-top: 3px;
+  font-style: normal;
   font-family: var(--fb);
 }
-.clock-btn:hover { background: var(--mc-bg); border-color: var(--mc); }
-.clock-btn.active { background: var(--mc); border-color: var(--mc-dk); color: var(--white); }
-.clock-btn .hour-num { font-size: 1.3rem; font-weight: 700; display: block; }
-.clock-btn .hour-label { font-size: 0.68rem; color: inherit; opacity: .75; display: block; margin-top: 2px; }
-.clock-display {
-  margin-top: 20px; background: var(--mc-bg); border-radius: var(--r);
-  padding: 16px 20px; text-align: center; min-height: 56px;
-  display: flex; align-items: center; justify-content: center; gap: 12px;
+
+/* ── SOFIA CARD ── */
+.sofia-card {
+  background: var(--cream-dk);
+  border-radius: var(--r);
+  border-left: 4px solid var(--mc);
+  padding: 24px 28px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin: 32px 0;
 }
-.clock-display .disp-it { font-size: 1.2rem; font-weight: 700; color: var(--mc-dk); font-style: italic; }
-.clock-display .disp-note { font-size: 0.78rem; color: var(--mc-text); background: var(--white); padding: 3px 10px; border-radius: 20px; border: 1px solid var(--mc); }
-
-/* ── PATTERN TABLE ── */
-.pattern-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--r); overflow: hidden; border: 1px solid var(--cream-dk); }
-.pattern-table th { background: var(--mc); color: var(--white); padding: 10px 14px; font-size: 0.82rem; font-weight: 600; text-align: left; }
-.pattern-table td { padding: 11px 14px; border-bottom: 1px solid var(--cream-dk); font-size: 0.92rem; vertical-align: middle; }
-.pattern-table tr:last-child td { border-bottom: none; }
-.pattern-table tr:nth-child(even) td { background: var(--cream); }
-.pattern-table td em { color: var(--mc-dk); font-weight: 600; }
-.pattern-table .time-badge { font-size: 0.8rem; font-weight: 700; background: var(--mc-bg); color: var(--mc-dk); padding: 2px 8px; border-radius: 20px; }
-
-/* ── FORMAL TABLE ── */
-.formal-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--r); overflow: hidden; border: 1px solid var(--cream-dk); }
-.formal-table th { padding: 10px 14px; font-size: 0.8rem; font-weight: 600; text-align: left; }
-.formal-table th:first-child { background: var(--cream-dk); width: 80px; }
-.formal-table th:nth-child(2) { background: var(--mc); color: var(--white); }
-.formal-table th:last-child { background: var(--mc-dk); color: var(--white); }
-.formal-table td { padding: 11px 14px; border-bottom: 1px solid var(--cream-dk); font-size: 0.88rem; vertical-align: middle; }
-.formal-table tr:last-child td { border-bottom: none; }
-.formal-table .time-col { font-weight: 700; font-size: 0.9rem; color: var(--mc-dk); }
-
-/* ── SALUTI CARDS ── */
-.saluti-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; }
-.saluto-card {
-  background: var(--white); border-radius: 14px; padding: 20px 16px; text-align: center;
-  border: 2px solid var(--cream-dk); transition: all 0.2s; cursor: pointer;
+.sofia-avatar {
+  font-size: 2.8rem;
+  flex-shrink: 0;
+  line-height: 1;
 }
-.saluto-card:hover { border-color: var(--mc); box-shadow: 0 4px 14px rgba(82,142,116,.18); transform: translateY(-2px); }
-.saluto-emoji { font-size: 2.2rem; margin-bottom: 8px; display: block; }
-.saluto-word { font-family: var(--fh); font-style: italic; font-size: 1.25rem; color: var(--mc-dk); font-weight: 700; margin-bottom: 4px; }
-.saluto-time { font-size: 0.75rem; color: #777; margin-bottom: 10px; }
-.saluto-card .btn-audio { margin: 0 auto; }
+.sofia-bubble h3 {
+  font-family: var(--fh);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--mc-text);
+  margin-bottom: 8px;
+}
+.sofia-bubble p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 8px;
+}
+.sofia-bubble p:last-child { margin-bottom: 0; }
+.sofia-bubble em { color: var(--mc-dk); font-style: italic; }
+.sofia-bubble strong { color: var(--mc-text); }
 
-/* ── DIALOG ── */
-.dial-container { background: var(--white); border-radius: 14px; border: 1px solid var(--cream-dk); padding: 24px; margin-bottom: 24px; }
-.dial-title { font-family: var(--fh); font-style: italic; color: var(--mc-dk); font-size: 1rem; margin-bottom: 16px; font-weight: 700; }
+/* ── VOCAB GRID ── */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.vocab-chip {
+  background: var(--white);
+  border: 1.5px solid var(--mc-bg);
+  border-radius: var(--r);
+  padding: 14px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+.vocab-chip:hover {
+  border-color: var(--mc);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(120,166,186,0.2);
+}
+.vocab-emoji { font-size: 1.6rem; }
+.vocab-it {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--mc-text);
+  text-align: center;
+}
+.vocab-es {
+  font-size: 0.75rem;
+  color: #777;
+  text-align: center;
+  line-height: 1.3;
+}
+.vocab-audio-btn {
+  margin-top: 4px;
+  padding: 3px 10px;
+  background: var(--mc-bg);
+  border: 1px solid var(--mc);
+  border-radius: 12px;
+  color: var(--mc-dk);
+  font-size: 0.72rem;
+  font-family: var(--fb);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.vocab-audio-btn:hover { background: var(--mc); color: var(--white); }
+
+/* ── FRASES CARD ── */
+.frases-list { display: flex; flex-direction: column; gap: 12px; margin: 24px 0; }
+.frase-card {
+  background: var(--white);
+  border-radius: var(--r);
+  border-left: 3px solid var(--mc);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: box-shadow 0.2s;
+}
+.frase-card:hover { box-shadow: 0 3px 12px rgba(120,166,186,0.2); }
+.frase-card.m-card { border-left-color: #3a6080; }
+.frase-it {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--mc-text);
+  flex: 1;
+  line-height: 1.4;
+}
+.frase-es {
+  font-size: 0.78rem;
+  color: #777;
+  margin-top: 3px;
+  font-style: italic;
+}
+.frase-speaker {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.btn-frase-play {
+  padding: 6px 14px;
+  background: var(--mc-bg);
+  border: 1.5px solid var(--mc);
+  border-radius: 20px;
+  color: var(--mc-dk);
+  font-family: var(--fb);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.btn-frase-play:hover { background: var(--mc); color: var(--white); }
+.btn-frase-play.m-btn { border-color: #3a6080; color: #3a6080; }
+.btn-frase-play.m-btn:hover { background: #3a6080; color: var(--white); }
+
+/* ── NUMBERS GRID ── */
+.num-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.num-chip {
+  background: var(--white);
+  border-radius: var(--r);
+  border: 2px solid var(--mc-bg);
+  padding: 16px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.num-chip:hover {
+  border-color: var(--mc);
+  box-shadow: 0 3px 10px rgba(120,166,186,0.2);
+  transform: translateY(-2px);
+}
+.num-num {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--mc);
+  display: block;
+}
+.num-it {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--mc-text);
+  margin: 4px 0 2px;
+}
+.num-es { font-size: 0.72rem; color: #888; }
+
+.num-note {
+  background: var(--mc-bg);
+  border-radius: var(--r);
+  padding: 16px 20px;
+  margin-top: 16px;
+  font-size: 0.88rem;
+  color: var(--mc-text);
+  line-height: 1.65;
+}
+.num-note em { font-style: italic; font-weight: 700; }
+
+/* ── DAYS GRID ── */
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  margin: 24px 0;
+}
+.day-chip {
+  background: var(--white);
+  border-radius: var(--r);
+  border: 2px solid var(--mc-bg);
+  padding: 14px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.day-chip:hover {
+  border-color: var(--mc);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(120,166,186,0.2);
+}
+.day-it {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--mc-text);
+  display: block;
+}
+.day-es { font-size: 0.72rem; color: #888; margin-top: 3px; }
+.day-num {
+  display: inline-block;
+  width: 22px; height: 22px;
+  background: var(--mc);
+  color: var(--white);
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 22px;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+/* Days ordering activity */
+.days-activity {
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 24px;
+  margin-top: 20px;
+  border: 1.5px solid var(--mc-bg);
+}
+.days-activity h4 {
+  font-family: var(--fh);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--mc-text);
+  margin-bottom: 16px;
+}
+.day-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.day-opt-btn {
+  padding: 8px 16px;
+  background: var(--mc-bg);
+  border: 2px solid var(--mc);
+  border-radius: 20px;
+  color: var(--mc-text);
+  font-family: var(--fb);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.day-opt-btn:hover { background: var(--mc); color: var(--white); }
+.day-opt-btn.selected { background: var(--mc); color: var(--white); opacity: 0.5; cursor: not-allowed; }
+.day-drop-zone {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 44px;
+  background: var(--cream);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 14px;
+  border: 2px dashed var(--mc-bg);
+}
+.day-drop-tag {
+  padding: 6px 14px;
+  background: var(--mc);
+  color: var(--white);
+  border-radius: 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.day-drop-tag .remove-tag {
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  opacity: 0.8;
+}
+.day-drop-tag .remove-tag:hover { opacity: 1; }
+.days-check-btn {
+  padding: 10px 24px;
+  background: var(--mc);
+  color: var(--white);
+  border: none;
+  border-radius: var(--r);
+  font-family: var(--fb);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.days-check-btn:hover { background: var(--mc-dk); }
+.days-feedback {
+  margin-top: 12px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: none;
+}
+.days-feedback.ok { background: #d4edda; color: #155724; display: block; }
+.days-feedback.err { background: #f8d7da; color: #721c24; display: block; }
+
+/* ── DIALOGO ── */
+.dial-wrap {
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 28px 24px;
+  border: 1.5px solid var(--mc-bg);
+  margin: 24px 0;
+}
 .btn-play-all {
-  width: 100%; padding: 14px; background: var(--mc); color: var(--white);
-  border: none; border-radius: var(--r); font-family: var(--fb); font-size: 1rem;
-  font-weight: 700; cursor: pointer; margin-bottom: 20px; transition: background 0.2s;
+  width: 100%;
+  padding: 14px;
+  background: var(--mc);
+  color: var(--white);
+  border: none;
+  border-radius: var(--r);
+  font-family: var(--fb);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 24px;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 .btn-play-all:hover { background: var(--mc-dk); }
-.dial-speaker-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
-.dial-speaker { font-size: 0.75rem; font-weight: 700; color: var(--mc-dk); text-transform: uppercase; letter-spacing: .04em; }
-.f-bubble { background: var(--mc-bg); border-left: 3px solid var(--mc); padding: 12px 16px; border-radius: 0 10px 10px 10px; margin-bottom: 16px; }
-.m-bubble { background: #e8f0eb; border-left: 3px solid #3d6b58; padding: 12px 16px; border-radius: 0 10px 10px 10px; margin-bottom: 16px; }
-.hidden-text { opacity: 0; max-height: 0; overflow: hidden; transition: all 0.4s ease; font-size: 0.95rem; font-style: italic; color: var(--mc-text); font-weight: 600; }
-.hidden-text.revealed { opacity: 1; max-height: 200px; }
+.dial-line { margin-bottom: 20px; }
+.dial-speaker-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.dial-avatar { font-size: 1.4rem; }
+.dial-name {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.f-name { color: var(--mc-dk); }
+.m-name { color: #3a6080; }
 .btn-line-play {
-  padding: 4px 12px; background: var(--white); border: 1.5px solid var(--mc);
-  border-radius: 20px; color: var(--mc-dk); font-family: var(--fb); font-size: 0.78rem;
-  font-weight: 600; cursor: pointer; transition: all 0.2s;
+  padding: 4px 12px;
+  background: var(--white);
+  border: 1.5px solid var(--mc);
+  border-radius: 20px;
+  color: var(--mc-dk);
+  font-family: var(--fb);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 .btn-line-play:hover { background: var(--mc-bg); }
-
-/* ── ACTIVITY ── */
-.activity-card { background: var(--white); border-radius: 12px; border: 1px solid var(--cream-dk); padding: 18px 20px; margin-bottom: 12px; }
-.activity-q { font-size: 0.95rem; font-weight: 600; margin-bottom: 12px; color: var(--mc-text); }
-.activity-opts { display: flex; gap: 10px; flex-wrap: wrap; }
-.opt-btn {
-  padding: 8px 18px; border-radius: 20px; border: 1.5px solid var(--mc);
-  background: var(--white); color: var(--mc-dk); font-family: var(--fb); font-size: 0.85rem;
-  font-weight: 600; cursor: pointer; transition: all 0.2s;
+.btn-line-play.m-play { border-color: #3a6080; color: #3a6080; }
+.btn-line-play.m-play:hover { background: #e8f0f5; }
+.dial-bubble {
+  padding: 12px 16px;
+  border-radius: 0 10px 10px 10px;
+  font-size: 0.93rem;
+  line-height: 1.6;
+  margin-bottom: 4px;
 }
-.opt-btn:hover:not(:disabled) { background: var(--mc-bg); }
-.opt-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; pointer-events: none; }
-.opt-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; pointer-events: none; }
-.activity-feedback { margin-top: 10px; font-size: 0.85rem; font-weight: 600; display: none; }
-.activity-feedback.show { display: block; }
-.activity-feedback.ok { color: #155724; }
-.activity-feedback.no { color: #721c24; }
-
-/* ── EXPRESIONES ── */
-.expr-grid { display: grid; gap: 10px; }
-.expr-row {
-  background: var(--white); border-radius: var(--r); border: 1px solid var(--cream-dk);
-  padding: 12px 16px; display: flex; align-items: center; gap: 14px;
+.f-bubble { background: var(--mc-bg); border-left: 3px solid var(--mc); }
+.m-bubble { background: #e8f0f5; border-left: 3px solid #3a6080; }
+.hidden-text {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
 }
-.expr-it { font-style: italic; font-weight: 600; color: var(--mc-dk); font-size: 0.95rem; flex: 1; }
-.expr-es { font-size: 0.82rem; color: #666; flex: 1; }
+.hidden-text.revealed {
+  opacity: 1;
+  max-height: 200px;
+}
+
+/* Comprension */
+.comprension {
+  background: var(--mc-bg);
+  border-radius: var(--r);
+  padding: 22px 24px;
+  margin-top: 28px;
+}
+.comprension h4 {
+  font-family: var(--fh);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--mc-text);
+  margin-bottom: 16px;
+}
+.comp-q { margin-bottom: 18px; }
+.comp-q p {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+.comp-opts { display: flex; flex-direction: column; gap: 6px; }
+.comp-opt {
+  padding: 9px 14px;
+  background: var(--white);
+  border: 1.5px solid var(--mc);
+  border-radius: 8px;
+  font-family: var(--fb);
+  font-size: 0.84rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+.comp-opt:hover { background: var(--mc-bg); }
+.comp-opt.correct { background: #d4edda; border-color: #28a745; color: #155724; pointer-events: none; }
+.comp-opt.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; pointer-events: none; }
+
+/* ── PATTERN DISCOVERY ── */
+.pattern-box {
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 24px;
+  margin: 16px 0;
+  border: 1.5px solid var(--mc-bg);
+}
+.pattern-box h4 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--mc);
+  margin-bottom: 14px;
+}
+.pattern-phrases { display: flex; flex-direction: column; gap: 8px; }
+.pattern-phrase {
+  font-size: 0.92rem;
+  padding: 10px 14px;
+  background: var(--mc-bg);
+  border-radius: 8px;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.pattern-phrase:hover { background: #c5dde8; }
+.pattern-phrase em {
+  font-style: italic;
+  font-weight: 700;
+  color: var(--mc-text);
+  background: rgba(120,166,186,0.25);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+.pattern-discovery-q {
+  margin-top: 20px;
+  background: var(--cream);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+.pattern-discovery-q p {
+  font-size: 0.88rem;
+  color: #555;
+  margin-bottom: 12px;
+  font-style: italic;
+}
+.pattern-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--mc);
+  border-radius: 8px;
+  font-family: var(--fb);
+  font-size: 0.88rem;
+  background: var(--white);
+  color: var(--black);
+  outline: none;
+  transition: border 0.2s;
+  resize: vertical;
+}
+.pattern-input:focus { border-color: var(--mc-dk); }
+.pattern-reveal-btn {
+  margin-top: 10px;
+  padding: 8px 20px;
+  background: var(--mc);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--fb);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.pattern-reveal-btn:hover { background: var(--mc-dk); }
+.pattern-answer {
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: var(--mc-bg);
+  border-radius: 8px;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--mc-text);
+  display: none;
+}
+.pattern-answer strong { color: var(--mc-text); font-weight: 700; }
+
+/* ── PLURAL ACTIVITY ── */
+.plural-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.plural-card {
+  background: var(--white);
+  border-radius: var(--r);
+  border: 1.5px solid var(--mc-bg);
+  padding: 16px;
+  transition: border-color 0.2s;
+}
+.plural-card:focus-within { border-color: var(--mc); }
+.plural-sing {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--mc-text);
+  margin-bottom: 8px;
+}
+.plural-arrow { color: var(--mc); margin: 0 6px; }
+.plural-inp {
+  width: 100%;
+  border: 1.5px solid var(--cream-dk);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-family: var(--fb);
+  font-size: 0.88rem;
+  color: var(--black);
+  background: var(--cream);
+  outline: none;
+  transition: border 0.2s;
+}
+.plural-inp:focus { border-color: var(--mc); background: var(--white); }
+.plural-inp.correct { border-color: #28a745; background: #d4edda; color: #155724; }
+.plural-inp.wrong { border-color: #dc3545; background: #f8d7da; color: #721c24; }
+.plural-hint {
+  font-size: 0.72rem;
+  color: #aaa;
+  margin-top: 4px;
+  font-style: italic;
+}
+.plural-check-btn {
+  padding: 11px 28px;
+  background: var(--mc);
+  color: var(--white);
+  border: none;
+  border-radius: var(--r);
+  font-family: var(--fb);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 4px;
+}
+.plural-check-btn:hover { background: var(--mc-dk); }
+.plural-feedback {
+  margin-top: 14px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  display: none;
+}
+.plural-feedback.show { display: block; }
+.plural-feedback.ok { background: #d4edda; color: #155724; }
+.plural-feedback.partial { background: #fff3cd; color: #856404; }
+
+/* ── EXPRESIONES HOTEL ── */
+.expr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+  margin: 24px 0;
+}
+.expr-card {
+  background: var(--white);
+  border-radius: var(--r);
+  border: 1.5px solid var(--mc-bg);
+  padding: 18px;
+  transition: all 0.2s;
+  cursor: default;
+}
+.expr-card:hover {
+  border-color: var(--mc);
+  box-shadow: 0 3px 12px rgba(120,166,186,0.2);
+}
+.expr-it {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--mc-text);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.expr-es {
+  font-size: 0.78rem;
+  color: #777;
+  font-style: italic;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.expr-speaker-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.expr-who { font-size: 0.72rem; color: #aaa; }
+.btn-expr-play {
+  padding: 4px 12px;
+  background: var(--mc-bg);
+  border: 1.5px solid var(--mc);
+  border-radius: 12px;
+  color: var(--mc-dk);
+  font-family: var(--fb);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-expr-play:hover { background: var(--mc); color: var(--white); }
 
 /* ── FONETICA ── */
-.fonetica-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--r); overflow: hidden; border: 1px solid var(--cream-dk); }
-.fonetica-table th { background: var(--mc); color: var(--white); padding: 10px 14px; font-size: 0.82rem; }
-.fonetica-table td { padding: 11px 14px; border-bottom: 1px solid var(--cream-dk); text-align: center; vertical-align: middle; font-size: 0.95rem; }
-.fonetica-table tr:last-child td { border-bottom: none; }
-.fonetica-table .fl { font-style: italic; font-weight: 700; color: var(--mc-dk); }
-.fonetica-table .fr { font-style: italic; font-weight: 700; color: var(--red); }
-.fonetica-table .fn { font-size: 0.75rem; color: #aaa; font-style: italic; }
-
-.fonetic-activity { background: var(--white); border-radius: 14px; border: 1px solid var(--cream-dk); padding: 24px; margin-top: 20px; }
-.fonetic-activity h3 { font-family: var(--fh); font-style: italic; color: var(--mc-dk); margin-bottom: 14px; }
-.fonetic-word-row { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
-.fonetic-word-row .word-num { font-weight: 700; color: var(--mc-dk); width: 22px; }
-.fonetic-answer { display: flex; gap: 8px; }
-.lr-btn {
-  padding: 6px 18px; border-radius: 20px; border: 1.5px solid var(--mc);
-  background: var(--white); color: var(--mc-dk); font-family: var(--fb); font-size: 0.88rem;
-  font-weight: 700; cursor: pointer; transition: all 0.2s;
+.fon-intro {
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 22px 24px;
+  border: 1.5px solid var(--mc-bg);
+  margin-bottom: 20px;
 }
-.lr-btn:hover:not(:disabled) { background: var(--mc-bg); }
-.lr-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; pointer-events: none; }
-.lr-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; pointer-events: none; }
-.fonetic-fb { font-size: 0.8rem; font-weight: 600; display: none; }
-.fonetic-fb.show { display: inline-block; }
-.fonetic-fb.ok { color: #155724; }
-.fonetic-fb.no { color: #721c24; }
+.fon-intro p { font-size: 0.88rem; color: #555; line-height: 1.7; }
+.fon-intro em { color: var(--mc-dk); font-style: italic; font-weight: 600; }
+
+.fon-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: var(--white);
+  border-radius: var(--r);
+  overflow: hidden;
+  border: 1.5px solid var(--mc-bg);
+}
+.fon-table th {
+  background: var(--mc);
+  color: var(--white);
+  font-family: var(--fb);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px 16px;
+  text-align: left;
+}
+.fon-table td {
+  padding: 10px 16px;
+  font-size: 0.88rem;
+  border-bottom: 1px solid var(--cream-dk);
+  color: var(--black);
+  vertical-align: middle;
+}
+.fon-table tr:last-child td { border-bottom: none; }
+.fon-table tr:nth-child(even) td { background: #f5fafb; }
+.fon-sound {
+  display: inline-block;
+  background: var(--mc-bg);
+  color: var(--mc-text);
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.btn-fon-play {
+  padding: 4px 10px;
+  background: var(--white);
+  border: 1.5px solid var(--mc);
+  border-radius: 12px;
+  color: var(--mc-dk);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--fb);
+  transition: all 0.2s;
+}
+.btn-fon-play:hover { background: var(--mc); color: var(--white); }
+
+/* Clasificacion fonetica */
+.fon-classify {
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 24px;
+  border: 1.5px solid var(--mc-bg);
+  margin-top: 20px;
+}
+.fon-classify h4 {
+  font-family: var(--fh);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--mc-text);
+  margin-bottom: 16px;
+}
+.fon-word-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.fon-word-btn {
+  padding: 8px 16px;
+  background: var(--mc-bg);
+  border: 2px solid var(--mc);
+  border-radius: 20px;
+  color: var(--mc-text);
+  font-family: var(--fb);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.fon-word-btn:hover { background: var(--mc); color: var(--white); }
+.fon-word-btn.used { opacity: 0.4; pointer-events: none; }
+.fon-bins {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.fon-bin {
+  border-radius: var(--r);
+  padding: 14px;
+  min-height: 80px;
+  border: 2px dashed;
+  cursor: pointer;
+}
+.fon-bin.k-bin { border-color: var(--mc); background: var(--mc-bg); }
+.fon-bin.ch-bin { border-color: #8b6aad; background: #f3eef9; }
+.fon-bin.active-bin { border-style: solid; }
+.fon-bin-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.k-bin .fon-bin-label { color: var(--mc-dk); }
+.ch-bin .fon-bin-label { color: #6a4c8c; }
+.fon-bin-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.fon-bin-tag {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.k-bin .fon-bin-tag { background: var(--mc); color: var(--white); }
+.ch-bin .fon-bin-tag { background: #8b6aad; color: var(--white); }
+.fon-bin-tag:hover { opacity: 0.8; }
+.fon-check-btn {
+  padding: 10px 24px;
+  background: var(--mc);
+  color: var(--white);
+  border: none;
+  border-radius: var(--r);
+  font-family: var(--fb);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.fon-check-btn:hover { background: var(--mc-dk); }
+.fon-feedback {
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: none;
+  line-height: 1.6;
+}
+.fon-feedback.show { display: block; }
+.fon-feedback.ok { background: #d4edda; color: #155724; }
+.fon-feedback.partial { background: #fff3cd; color: #856404; }
 
 /* ── CULTURE STRIP ── */
 .culture-strip {
   background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk));
-  border-top: 3px solid var(--mc); border-radius: var(--r);
-  padding: 24px 28px; margin: 40px 0;
+  border-top: 3px solid var(--mc);
+  border-radius: var(--r);
+  padding: 24px 28px;
+  margin: 40px 0;
 }
-.culture-icon { font-size: 2rem; margin-bottom: 8px; }
-.culture-strip h3 { font-family: var(--fh); font-style: italic; color: var(--mc-dk); margin-bottom: 12px; font-size: 1.2rem; }
-.culture-strip p { font-size: 0.9rem; line-height: 1.75; color: #444; margin-bottom: 10px; }
+.culture-icon { font-size: 2rem; margin-bottom: 10px; }
+.culture-strip h3 {
+  font-family: var(--fh);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--mc-dk);
+  margin-bottom: 12px;
+}
+.culture-strip p {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: #444;
+  margin-bottom: 10px;
+}
+.culture-strip strong { color: var(--mc-text); }
+.culture-strip em { font-style: italic; }
 .btn-translate {
-  margin-top: 12px; padding: 8px 20px; background: var(--white);
-  border: 1.5px solid var(--mc); border-radius: 20px; color: var(--mc-dk);
-  font-family: var(--fb); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+  margin-top: 12px;
+  padding: 8px 20px;
+  background: var(--white);
+  border: 1.5px solid var(--mc);
+  border-radius: 20px;
+  color: var(--mc-dk);
+  font-family: var(--fb);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 .btn-translate:hover { background: var(--mc-bg); }
-.culture-es { margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--mc); }
-
-/* ── CTA ── */
-.cta-section { text-align: center; padding: 40px 0 20px; }
-.btn-cta {
-  display: inline-block; padding: 16px 40px; background: var(--mc);
-  color: var(--white); border-radius: 30px; font-family: var(--fb); font-size: 1.05rem;
-  font-weight: 700; text-decoration: none; transition: all 0.25s;
-  box-shadow: 0 4px 16px rgba(82,142,116,.35);
+.culture-es {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--mc);
 }
-.btn-cta:hover { background: var(--mc-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(82,142,116,.45); }
-.btn-cta-sub { font-size: 0.82rem; color: #888; margin-top: 10px; }
+
+/* ── CTA FOOTER ── */
+.cta-section {
+  text-align: center;
+  padding: 48px 20px;
+  border-top: 2px solid var(--mc-bg);
+  margin-top: 40px;
+}
+.cta-section p {
+  font-size: 0.88rem;
+  color: #777;
+  margin-bottom: 20px;
+}
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 36px;
+  background: var(--mc);
+  color: var(--white);
+  border: none;
+  border-radius: var(--r);
+  font-family: var(--fb);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.btn-cta:hover {
+  background: var(--mc-dk);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(120,166,186,0.35);
+}
+.btn-cta-arrow { font-size: 1.2rem; }
 
 /* ── DIVIDER ── */
-.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 44px 0; }
+.divider {
+  border: none;
+  border-top: 2px solid var(--cream-dk);
+  margin: 48px 0;
+}
 
-/* ── CALLOUT ── */
-.callout { background: var(--mc-bg); border-left: 4px solid var(--mc); border-radius: 0 var(--r) var(--r) 0; padding: 14px 18px; margin: 18px 0; font-size: 0.88rem; color: var(--mc-text); }
-.callout strong { color: var(--mc-dk); }
+/* ── INFO PILL ── */
+.info-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--mc-bg);
+  color: var(--mc-text);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
 
 /* ── RESPONSIVE ── */
-@media(max-width: 600px) {
-  .clock-grid { grid-template-columns: repeat(3, 1fr); }
-  .saluti-grid { grid-template-columns: repeat(2, 1fr); }
-  .formal-table { font-size: 0.78rem; }
+@media (max-width: 600px) {
+  .sofia-card { flex-direction: column; gap: 12px; }
+  .frase-card { flex-wrap: wrap; }
+  .fon-bins { grid-template-columns: 1fr; }
+  .stage-nav-inner { overflow-x: auto; }
+  .stage-label { padding: 12px 10px; font-size: 0.65rem; }
 }
-</style>
+
+/* ── IPP YouTube Player Controls ── */
+.yt-controls{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 10px}
+.yt-btn{padding:10px 20px;border:none;border-radius:8px;font-family:var(--fb);
+  font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;
+  align-items:center;gap:6px}
+.yt-btn-conv{background:var(--mc);color:var(--white)}
+.yt-btn-conv:hover{background:var(--mc-dk)}
+.yt-btn-dial{background:var(--white);color:var(--mc);border:2px solid var(--mc)}
+.yt-btn-dial:hover{background:var(--mc-bg,#faeae8)}
+.yt-btn-stop{background:var(--cream-dk,#ddd9c8);color:var(--black,#1a1a18)}
+.yt-btn-stop:hover{filter:brightness(.92)}
+.yt-btn:disabled{opacity:.45;cursor:not-allowed}
+.dial-line.yt-active{outline:3px solid var(--mc);border-radius:8px;
+  background:var(--mc-bg,#faeae8);transition:background .3s}
+.dial-line.yt-done{opacity:.7}
+
+
+    /* ── YT Dialog Controls (per-line) ── */
+    .yt-top-controls{display:flex;gap:12px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+    .blurred{filter:blur(7px);opacity:.25;user-select:none;pointer-events:none;
+      transition:filter .45s ease,opacity .45s ease}
+    .dial-line-ctrl{display:flex;gap:6px;margin-top:7px;align-items:center}
+    .yt-lbtn{width:32px;height:32px;border-radius:50%;
+      border:1.8px solid var(--mc-dk,#c8940a);background:none;color:var(--mc-dk,#c8940a);
+      cursor:pointer;font-size:.72rem;display:flex;align-items:center;justify-content:center;
+      transition:all .2s;flex-shrink:0}
+    .yt-lbtn:hover{background:var(--mc-bg,#faeee8)}
+    .yt-lbtn.stop{border-color:var(--red,#cc4736);color:var(--red,#cc4736)}
+    .yt-lbtn.stop:hover{background:#faeaea}
+    .yt-lbtn.teal{border-color:var(--teal,#78a6ba);color:var(--teal,#78a6ba)}
+    .yt-lbtn.teal:hover{background:#e5f1f5}
+
+    </style>
 </head>
 <body>
 
+<!-- ── STAGE NAV ── -->
+<nav class="stage-nav">
+  <div class="stage-nav-inner">
+    <a class="stage-label done" href="etapa1_exploracion.html">&#10003; Etapa 1: Input</a>
+    <span class="stage-sep">&#8250;</span>
+    <span class="stage-label active">Etapa 2: Descubrimiento</span>
+    <span class="stage-sep">&#8250;</span>
+    <a class="stage-label pending" href="etapa3_gramatica.html">Etapa 3: Gramatica</a>
+    <span class="stage-sep">&#8250;</span>
+    <a class="stage-label pending" href="etapa4_ejercicios.html">Etapa 4: Ejercicios</a>
+  </div>
+</nav>
 
-
-<!-- HERO -->
+<!-- ── HERO ── -->
 <header class="hero">
-  <div class="modulo-tag">Módulo 3 · A1</div>
-  <h1>Tutti in piazza!</h1>
-  <p class="sub">Descubrí cómo los italianos hablan del tiempo — sin memorizar reglas, solo escuchando y observando.</p>
+  <div class="hero-badge">Modulo 2 &middot; A1 &middot; Etapa 2</div>
+  <h1>Una notte in hotel</h1>
+  <p>Acabas de ver el check-in en el <em>Casalunga Golf Resort</em>. Ahora vas a explorar el vocabulario, las frases y los sonidos de esa escena &mdash; todo a tu ritmo.</p>
 </header>
 
-<!-- MAIN CONTENT -->
-<main class="container">
+<main class="main">
 
-  <!-- ── SECCIÓN 1: APERTURA SOFIA ── -->
-  <section>
-    <div class="sofia-block">
-      <div class="sofia-avatar">👩‍🏫</div>
-      <div class="sofia-bubble">
-        <div class="sofia-name">Sofia · tu guía</div>
-        <p>¿Cuántas veces preguntamos la hora al día? En italiano hay formas muy específicas de decirla... y una forma muy divertida de aprenderlas: <strong>¡con una barzelletta!</strong></p>
-        <p style="margin-top:10px">En el video escuchamos <em>«Mi sa dire l'ora?»</em> y <em>«Sono le sette e quindici spaccate!»</em> — ¿notaste esas frases? En esta etapa las vamos a explorar juntos, pasito a pasito.</p>
-        <p style="margin-top:10px">Ah, y si pensás que el chiste era sobre un burro y un campanario... pues sí. Y resulta que los italianos usaban los campanarios como relojes. ¡La historia es mejor de lo que parece! 🔔</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── SECCIÓN 2: FRASES DE LA BARZELLETTA ── -->
-  <section>
-    <div class="sec-header">
-      <h2><span class="sec-num">2</span>Frases reales de la barzelletta</h2>
-      <p>Estas son las frases exactas del video. Hacé clic en el botón de audio para escucharlas tal como suenan.</p>
-    </div>
-
-    <div class="phrase-grid">
-      <div class="phrase-card">
-        <div class="phrase-text">
-          <div class="phrase-it">Mi scusi, mi sa dire l'ora per favore?</div>
-          <div class="phrase-context">Cómo pedir la hora formalmente</div>
-        </div>
-        <button class="btn-audio" onclick="ippAudio('Mi scusi, mi sa dire l\'ora per favore?', 0.82, 'm')" title="Escuchar">▶</button>
-      </div>
-      <div class="phrase-card">
-        <div class="phrase-text">
-          <div class="phrase-it">Le 5:35.</div>
-          <div class="phrase-context">Respuesta directa — solo la hora</div>
-        </div>
-        <button class="btn-audio" onclick="ippAudio('Le cinque e trentacinque.', 0.82, 'm')" title="Escuchar">▶</button>
-      </div>
-      <div class="phrase-card">
-        <div class="phrase-text">
-          <div class="phrase-it">Ma è sicuro?</div>
-          <div class="phrase-context">¿Pero está seguro? — duda graciosa</div>
-        </div>
-        <button class="btn-audio" onclick="ippAudio('Ma è sicuro?', 0.82, 'm')" title="Escuchar">▶</button>
-      </div>
-      <div class="phrase-card">
-        <div class="phrase-text">
-          <div class="phrase-it">Senta, mi sa dire che ore sono?</div>
-          <div class="phrase-context">Otra forma de pedir la hora</div>
-        </div>
-        <button class="btn-audio" onclick="ippAudio('Senta, mi sa dire che ore sono?', 0.82, 'm')" title="Escuchar">▶</button>
-      </div>
-      <div class="phrase-card">
-        <div class="phrase-text">
-          <div class="phrase-it">Sono le 7:15 spaccate!</div>
-          <div class="phrase-context"><em>Spaccate</em> = exactas, en punto ✓</div>
-        </div>
-        <button class="btn-audio" onclick="ippAudio('Sono le sette e quindici spaccate!', 0.82, 'm')" title="Escuchar">▶</button>
-      </div>
-      <div class="phrase-card">
-        <div class="phrase-text">
-          <div class="phrase-it">Sotto c'è il campanile!</div>
-          <div class="phrase-context">El gran chiste final — ¡había un campanario abajo!</div>
-        </div>
-        <button class="btn-audio" onclick="ippAudio('Sotto c\'è il campanile!', 0.82, 'm')" title="Escuchar">▶</button>
-      </div>
-    </div>
-
-    <div class="callout" style="margin-top:18px">
-      <strong>Observá:</strong> ¿Hay dos formas de preguntar la hora en esas frases? <em>«mi sa dire l'ora»</em> y <em>«che ore sono»</em> son las dos más comunes. Las irás usando naturalmente.
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- ── SECCIÓN 3: RELOJ INTERACTIVO ── -->
-  <section>
-    <div class="sec-header">
-      <h2><span class="sec-num">3</span>Il reloj — hacé clic para descubrir</h2>
-      <p>Cada número es una hora. Tocá para escuchar cómo se dice en italiano. ¿Notás algo raro en el 1?</p>
-    </div>
-
-    <div class="clock-wrapper">
-      <p class="clock-label">⬇ Hacé clic en cualquier hora</p>
-      <div class="clock-grid">
-        <div class="clock-btn" onclick="playHour(this, 'È l\'una.', 'Es la una', '¡Es la ÚNICA hora en singular!')" id="h1">
-          <span class="hour-num">1</span><span class="hour-label">l'una</span>
-        </div>
-        <div class="clock-btn" onclick="playHour(this, 'Sono le due.', 'Son las dos', '')" id="h2">
-          <span class="hour-num">2</span><span class="hour-label">le due</span>
-        </div>
-        <div class="clock-btn" onclick="playHour(this, 'Sono le tre.', 'Son las tres', '')" id="h3">
-          <span class="hour-num">3</span><span class="hour-label">le tre</span>
-        </div>
-        <div class="clock-btn" onclick="playHour(this, 'Sono le quattro.', 'Son las cuatro', '')" id="h4">
-          <span class="hour-num">4</span><span class="hour-label">le quattro</span>
-        </div>
-        <div class="clock-btn" onclick="playHour(this, 'Sono le cinque.', 'Son las cinco', '')" id="h5">
-          <span class="hour-num">5</span><span class="hour-label">le cinque</span>
-        </div>
-        <div class="clock-btn" onclick="playHour(this, 'Sono le sei.', 'Son las seis', '')" id="h6">
-          <span class="hour-num">6</span><span class="hour-label">le sei</span>
-        </div>
-        <div class="clock-btn" onclick="playHour(this, 'Sono le sette.', 'Son las siete', '')" id="h7">
-          <span class="hour-num">7</span><span class="hour-label">le sette</span>
-        </div>
-        <div class="clock-btn" onclick="playHour(this, 'Sono le otto.', 'Son las ocho', '')" id="h8">
-          <span class="hour-num">8</span><span class="hour-label">le otto</span>
-        </div>
-        <div class="clock-btn" onclick="playHour(this, 'Sono le nove.', 'Son las nueve', '')" id="h9">
-          <span class="hour-num">9</span><span class="hour-label">le nove</span>
-        </div>
-        <div class="clock-btn" onclick="playHour(this, 'Sono le dieci.', 'Son las diez', '')" id="h10">
-          <span class="hour-num">10</span><span class="hour-label">le dieci</span>
-        </div>
-        <div class="clock-btn" onclick="playHour(this, 'Sono le undici.', 'Son las once', '')" id="h11">
-          <span class="hour-num">11</span><span class="hour-label">le undici</span>
-        </div>
-        <div class="clock-btn" onclick="playHour(this, 'Sono le dodici.', 'Son las doce', '')" id="h12">
-          <span class="hour-num">12</span><span class="hour-label">le dodici</span>
-        </div>
-        <div class="clock-btn" onclick="playHour(this, 'È mezzogiorno.', 'Es mediodía', 'Especial: mezzogiorno = mediodía')" id="hmezz" style="grid-column: span 2">
-          <span class="hour-num">☀️</span><span class="hour-label">mezzogiorno</span>
-        </div>
-        <div class="clock-btn" onclick="playHour(this, 'È mezzanotte.', 'Es medianoche', 'Especial: mezzanotte = medianoche')" id="hmn" style="grid-column: span 2">
-          <span class="hour-num">🌙</span><span class="hour-label">mezzanotte</span>
-        </div>
-      </div>
-      <div class="clock-display" id="clock-display">
-        <span style="color:#aaa; font-size:0.88rem">← Tocá una hora para escucharla</span>
-      </div>
-    </div>
-
-    <div class="callout">
-      <strong>¿Lo notaste?</strong> El 1 es especial: <em>«È l'una»</em> — usa <strong>È</strong> (singular) en vez de <em>Sono</em>. Igual que el mediodía y la medianoche. ¡El italiano ama los singulares especiales!
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- ── SECCIÓN 4: CÓMO SE CONSTRUYE LA HORA ── -->
-  <section>
-    <div class="sec-header">
-      <h2><span class="sec-num">4</span>¿Cómo se construye la hora?</h2>
-      <p>Escuchá los ejemplos y observá el patrón. No hay que memorizar nada — el patrón se va a revelar solo.</p>
-    </div>
-
-    <table class="pattern-table">
-      <thead>
-        <tr>
-          <th>Hora</th>
-          <th>En italiano</th>
-          <th>Parte clave</th>
-          <th>▶</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="time-badge">7:00</span></td>
-          <td>Sono le <em>sette</em></td>
-          <td>Solo la hora</td>
-          <td><button class="btn-audio" onclick="ippAudio('Sono le sette.', 0.82, 'f')">▶</button></td>
-        </tr>
-        <tr>
-          <td><span class="time-badge">7:15</span></td>
-          <td>Sono le sette <em>e un quarto</em></td>
-          <td>+ e un quarto</td>
-          <td><button class="btn-audio" onclick="ippAudio('Sono le sette e un quarto.', 0.82, 'f')">▶</button></td>
-        </tr>
-        <tr>
-          <td><span class="time-badge">7:30</span></td>
-          <td>Sono le sette <em>e mezza</em></td>
-          <td>+ e mezza</td>
-          <td><button class="btn-audio" onclick="ippAudio('Sono le sette e mezza.', 0.82, 'f')">▶</button></td>
-        </tr>
-        <tr>
-          <td><span class="time-badge">7:45</span></td>
-          <td>Sono le sette <em>e quarantacinque</em></td>
-          <td>+ e + minutos</td>
-          <td><button class="btn-audio" onclick="ippAudio('Sono le sette e quarantacinque.', 0.82, 'f')">▶</button></td>
-        </tr>
-        <tr>
-          <td><span class="time-badge">7:45</span></td>
-          <td>Sono le <em>otto meno un quarto</em></td>
-          <td>siguiente hora − quarto</td>
-          <td><button class="btn-audio" onclick="ippAudio('Sono le otto meno un quarto.', 0.82, 'f')">▶</button></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="callout" style="margin-top:18px">
-      <strong>¿Notaste el patrón?</strong> Primero va la hora (<em>le sette</em>), luego se agrega <em>«e»</em> + los minutos. Para la última parte de la hora, los italianos usan la hora siguiente con <em>«meno»</em> (menos). ¡Exactamente como en español informal!
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- ── SECCIÓN 5: ORARIO FORMALE VS INFORMALE ── -->
-  <section>
-    <div class="sec-header">
-      <h2><span class="sec-num">5</span>Orario formale vs. informale</h2>
-      <p>En una estación de tren o aeropuerto se usa el horario de 24h. En la calle, el informal. Escuchá ambas versiones.</p>
-    </div>
-
-    <table class="formal-table">
-      <thead>
-        <tr>
-          <th>Hora</th>
-          <th>🏛 Formal (24h)</th>
-          <th>🗣 Informal</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="time-col">14:00</td>
-          <td>
-            <em>le quattordici</em>
-            <button class="btn-audio" onclick="ippAudio('le quattordici', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
-          </td>
-          <td>
-            <em>le due del pomeriggio</em>
-            <button class="btn-audio" onclick="ippAudio('le due del pomeriggio', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
-          </td>
-        </tr>
-        <tr>
-          <td class="time-col">15:30</td>
-          <td>
-            <em>le quindici e trenta</em>
-            <button class="btn-audio" onclick="ippAudio('le quindici e trenta', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
-          </td>
-          <td>
-            <em>le tre e mezza</em>
-            <button class="btn-audio" onclick="ippAudio('le tre e mezza', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
-          </td>
-        </tr>
-        <tr>
-          <td class="time-col">7:15</td>
-          <td>
-            <em>le sette e quindici</em>
-            <button class="btn-audio" onclick="ippAudio('le sette e quindici', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
-          </td>
-          <td>
-            <em>le sette e un quarto</em>
-            <button class="btn-audio" onclick="ippAudio('le sette e un quarto', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
-          </td>
-        </tr>
-        <tr>
-          <td class="time-col">20:45</td>
-          <td>
-            <em>le venti e quarantacinque</em>
-            <button class="btn-audio" onclick="ippAudio('le venti e quarantacinque', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
-          </td>
-          <td>
-            <em>le nove meno un quarto</em>
-            <button class="btn-audio" onclick="ippAudio('le nove meno un quarto', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
-          </td>
-        </tr>
-        <tr>
-          <td class="time-col">12:00</td>
-          <td>
-            <em>le dodici</em>
-            <button class="btn-audio" onclick="ippAudio('le dodici', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
-          </td>
-          <td>
-            <em>mezzogiorno</em>
-            <button class="btn-audio" onclick="ippAudio('mezzogiorno', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
-          </td>
-        </tr>
-        <tr>
-          <td class="time-col">0:00</td>
-          <td>
-            <em>le zero / la zero</em>
-            <button class="btn-audio" onclick="ippAudio('le zero', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
-          </td>
-          <td>
-            <em>mezzanotte</em>
-            <button class="btn-audio" onclick="ippAudio('mezzanotte', 0.82, 'f')" style="display:inline-flex;width:28px;height:28px;font-size:0.75rem;margin-left:8px">▶</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <hr class="divider">
-
-  <!-- ── SECCIÓN 6: SALUTI DELLA GIORNATA ── -->
-  <section>
-    <div class="sec-header">
-      <h2><span class="sec-num">6</span>Saluti della giornata</h2>
-      <p>En italiano el saludo cambia según la hora del día. Hacé clic en cualquier tarjeta para escucharlo.</p>
-    </div>
-
-    <div class="saluti-grid">
-      <div class="saluto-card" onclick="ippAudio('Buongiorno!', 0.82, 'f')">
-        <span class="saluto-emoji">🌅</span>
-        <div class="saluto-word">Buongiorno</div>
-        <div class="saluto-time">6:00 – 12:00</div>
-        <small style="color:#888;font-size:0.72rem">buenos días</small>
-      </div>
-      <div class="saluto-card" onclick="ippAudio('Buon pomeriggio!', 0.82, 'f')">
-        <span class="saluto-emoji">☀️</span>
-        <div class="saluto-word">Buon pomeriggio</div>
-        <div class="saluto-time">12:00 – 18:00</div>
-        <small style="color:#888;font-size:0.72rem">buenas tardes</small>
-      </div>
-      <div class="saluto-card" onclick="ippAudio('Buonasera!', 0.82, 'f')">
-        <span class="saluto-emoji">🌆</span>
-        <div class="saluto-word">Buonasera</div>
-        <div class="saluto-time">18:00 – 22:00</div>
-        <small style="color:#888;font-size:0.72rem">buenas noches (al llegar)</small>
-      </div>
-      <div class="saluto-card" onclick="ippAudio('Buonanotte!', 0.82, 'f')">
-        <span class="saluto-emoji">🌙</span>
-        <div class="saluto-word">Buonanotte</div>
-        <div class="saluto-time">22:00 – 6:00</div>
-        <small style="color:#888;font-size:0.72rem">buenas noches (al despedirse)</small>
-      </div>
-    </div>
-
-    <div class="callout">
-      <strong>Dato:</strong> <em>Buonasera</em> se usa al <strong>llegar</strong> por la tarde-noche; <em>buonanotte</em> es para <strong>despedirse</strong> antes de dormir. ¡No son intercambiables!
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- ── SECCIÓN 7: DIÁLOGOS ── -->
-  <section>
-    <div class="sec-header">
-      <h2><span class="sec-num">7</span>Diálogo en la calle</h2>
-      <p>Ahora sí, sin barzelletta — pedir la hora como se hace normalmente. Primero escuchá todo, luego descubrí cada línea.</p>
-    </div>
-
-    <!-- Diálogo 1: dos hombres -->
-    <div class="dial-container">
-      <div class="dial-title">🗣 Diálogo 1 — Due uomini</div>
-      <button class="btn-play-all" onclick="playAllDialog('dial1')">▶ Escuchar todo el diálogo</button>
-
-      <div class="dial-line" data-text="Scusi, mi sa dire che ore sono?" data-gender="m" data-dialog="dial1">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👤 Uomo 1</span>
-          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
-        </div>
-        <div class="m-bubble">
-          <div class="hidden-text dial-bubble">Scusi, mi sa dire che ore sono?</div>
-        </div>
-      </div>
-
-      <div class="dial-line" data-text="Certo! Sono le dieci e mezza." data-gender="m" data-dialog="dial1">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👤 Uomo 2</span>
-          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
-        </div>
-        <div class="m-bubble">
-          <div class="hidden-text dial-bubble">Certo! Sono le dieci e mezza.</div>
-        </div>
-      </div>
-
-      <div class="dial-line" data-text="Grazie mille!" data-gender="m" data-dialog="dial1">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👤 Uomo 1</span>
-          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
-        </div>
-        <div class="m-bubble">
-          <div class="hidden-text dial-bubble">Grazie mille!</div>
-        </div>
-      </div>
-
-      <div class="dial-line" data-text="Prego, buona giornata!" data-gender="m" data-dialog="dial1">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👤 Uomo 2</span>
-          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
-        </div>
-        <div class="m-bubble">
-          <div class="hidden-text dial-bubble">Prego, buona giornata!</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Diálogo 2: mujer y hombre -->
-    <div class="dial-container">
-      <div class="dial-title">🗣 Diálogo 2 — Donna e Uomo</div>
-      <button class="btn-play-all" onclick="playAllDialog('dial2')">▶ Escuchar todo el diálogo</button>
-
-      <div class="dial-line" data-text="Mi scusi, sa dirmi l'ora per favore?" data-gender="f" data-dialog="dial2">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👩 Donna</span>
-          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
-        </div>
-        <div class="f-bubble">
-          <div class="hidden-text dial-bubble">Mi scusi, sa dirmi l'ora per favore?</div>
-        </div>
-      </div>
-
-      <div class="dial-line" data-text="Sì, certo! Sono le tre e un quarto." data-gender="m" data-dialog="dial2">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👤 Uomo</span>
-          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
-        </div>
-        <div class="m-bubble">
-          <div class="hidden-text dial-bubble">Sì, certo! Sono le tre e un quarto.</div>
-        </div>
-      </div>
-
-      <div class="dial-line" data-text="Perfetto, grazie!" data-gender="f" data-dialog="dial2">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👩 Donna</span>
-          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
-        </div>
-        <div class="f-bubble">
-          <div class="hidden-text dial-bubble">Perfetto, grazie!</div>
-        </div>
-      </div>
-
-      <div class="dial-line" data-text="Figurati!" data-gender="m" data-dialog="dial2">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👤 Uomo</span>
-          <button class="btn-line-play" onclick="playLine(this)">▶ Escuchar</button>
-        </div>
-        <div class="m-bubble">
-          <div class="hidden-text dial-bubble">Figurati!</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- ── SECCIÓN 8: ¿A QUÉ HORA...? ── -->
-  <section>
-    <div class="sec-header">
-      <h2><span class="sec-num">8</span>¿A qué hora...? — Vita italiana</h2>
-      <p>¿Sabés a qué hora pasan las cosas en Italia? Elegí la hora correcta. ¡Cuidado, los horarios italianos tienen su lógica!</p>
-    </div>
-
-    <div class="activity-card">
-      <div class="activity-q">☕ <em>Il bar apre alle...</em> (El bar / café abre a las...)</div>
-      <div class="activity-opts">
-        <button class="opt-btn" onclick="checkActivity(this, true, 'act1')">7:00</button>
-        <button class="opt-btn" onclick="checkActivity(this, false, 'act1')">8:00</button>
-        <button class="opt-btn" onclick="checkActivity(this, false, 'act1')">9:00</button>
-      </div>
-      <div class="activity-feedback" id="act1-fb"></div>
-    </div>
-
-    <div class="activity-card">
-      <div class="activity-q">🍝 <em>Il pranzo è a...</em> (El almuerzo es a las...)</div>
-      <div class="activity-opts">
-        <button class="opt-btn" onclick="checkActivity(this, false, 'act2')">12:00</button>
-        <button class="opt-btn" onclick="checkActivity(this, true, 'act2')">13:00</button>
-        <button class="opt-btn" onclick="checkActivity(this, false, 'act2')">14:00</button>
-      </div>
-      <div class="activity-feedback" id="act2-fb"></div>
-    </div>
-
-    <div class="activity-card">
-      <div class="activity-q">🍽 <em>La cena è a...</em> (La cena es a las...)</div>
-      <div class="activity-opts">
-        <button class="opt-btn" onclick="checkActivity(this, false, 'act3')">19:00</button>
-        <button class="opt-btn" onclick="checkActivity(this, true, 'act3')">20:00</button>
-        <button class="opt-btn" onclick="checkActivity(this, false, 'act3')">21:00</button>
-      </div>
-      <div class="activity-feedback" id="act3-fb"></div>
-    </div>
-
-    <div class="activity-card">
-      <div class="activity-q">🏛 <em>Il museo chiude alle...</em> (El museo cierra a las...)</div>
-      <div class="activity-opts">
-        <button class="opt-btn" onclick="checkActivity(this, false, 'act4')">17:00</button>
-        <button class="opt-btn" onclick="checkActivity(this, true, 'act4')">18:00</button>
-        <button class="opt-btn" onclick="checkActivity(this, false, 'act4')">19:00</button>
-      </div>
-      <div class="activity-feedback" id="act4-fb"></div>
-    </div>
-
-    <div class="activity-card">
-      <div class="activity-q">💼 <em>L'ufficio apre alle...</em> (La oficina abre a las...)</div>
-      <div class="activity-opts">
-        <button class="opt-btn" onclick="checkActivity(this, false, 'act5')">8:00</button>
-        <button class="opt-btn" onclick="checkActivity(this, true, 'act5')">9:00</button>
-        <button class="opt-btn" onclick="checkActivity(this, false, 'act5')">10:00</button>
-      </div>
-      <div class="activity-feedback" id="act5-fb"></div>
-    </div>
-
-    <div class="activity-card">
-      <div class="activity-q">💊 <em>La farmacia è aperta fino alle...</em> (La farmacia está abierta hasta las...)</div>
-      <div class="activity-opts">
-        <button class="opt-btn" onclick="checkActivity(this, true, 'act6')">19:00/19:30</button>
-        <button class="opt-btn" onclick="checkActivity(this, false, 'act6')">20:00</button>
-        <button class="opt-btn" onclick="checkActivity(this, false, 'act6')">21:00</button>
-      </div>
-      <div class="activity-feedback" id="act6-fb"></div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- ── SECCIÓN 9: ESPRESSIONI DI TEMPO ── -->
-  <section>
-    <div class="sec-header">
-      <h2><span class="sec-num">9</span>Espressioni di tempo</h2>
-      <p>Más allá de decir la hora exacta, los italianos usan estas expresiones constantemente. Escuchalas.</p>
-    </div>
-
-    <div class="expr-grid">
-      <div class="expr-row">
-        <button class="btn-audio" onclick="ippAudio('alle otto', 0.82, 'f')">▶</button>
-        <div class="expr-it">alle otto</div>
-        <div class="expr-es">a las ocho</div>
-      </div>
-      <div class="expr-row">
-        <button class="btn-audio" onclick="ippAudio('verso le dieci', 0.82, 'm')">▶</button>
-        <div class="expr-it">verso le dieci</div>
-        <div class="expr-es">hacia las diez (aproximado)</div>
-      </div>
-      <div class="expr-row">
-        <button class="btn-audio" onclick="ippAudio('dalle sette alle undici', 0.82, 'f')">▶</button>
-        <div class="expr-it">dalle sette alle undici</div>
-        <div class="expr-es">de las siete a las once</div>
-      </div>
-      <div class="expr-row">
-        <button class="btn-audio" onclick="ippAudio('tra un\'ora', 0.82, 'm')">▶</button>
-        <div class="expr-it">tra un'ora</div>
-        <div class="expr-es">en una hora (en el futuro)</div>
-      </div>
-      <div class="expr-row">
-        <button class="btn-audio" onclick="ippAudio('a mezzogiorno in punto', 0.82, 'f')">▶</button>
-        <div class="expr-it">a mezzogiorno in punto</div>
-        <div class="expr-es">al mediodía en punto</div>
-      </div>
-      <div class="expr-row">
-        <button class="btn-audio" onclick="ippAudio('prima di cena', 0.82, 'm')">▶</button>
-        <div class="expr-it">prima di cena</div>
-        <div class="expr-es">antes de cenar</div>
-      </div>
-      <div class="expr-row">
-        <button class="btn-audio" onclick="ippAudio('dopo pranzo', 0.82, 'f')">▶</button>
-        <div class="expr-it">dopo pranzo</div>
-        <div class="expr-es">después del almuerzo</div>
-      </div>
-    </div>
-
-    <div class="callout" style="margin-top:18px">
-      <strong>Tip cultural:</strong> <em>«Verso le dieci»</em> es clave en Italia. Los italianos raramente son puntuales al minuto — <em>verso</em> (hacia, alrededor de) es la palabra que suaviza todo compromiso de hora. ¡Adoptala!
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- ── SECCIÓN 10: FONETICA L y R ── -->
-  <section>
-    <div class="sec-header">
-      <h2><span class="sec-num">10</span>Fonetica: i suoni L e R</h2>
-      <p>La L y la R en italiano suenan muy diferentes a la del español. La R italiana es vibrante (rolada), como la R doble del español. Practicá escuchando estos pares.</p>
-    </div>
-
-    <table class="fonetica-table">
-      <thead>
-        <tr>
-          <th>Con L</th>
-          <th>▶</th>
-          <th>Con R</th>
-          <th>▶</th>
-          <th>Nota</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="fl">luna</td>
-          <td><button class="btn-audio" onclick="ippAudio('luna', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
-          <td class="fr">runa</td>
-          <td><button class="btn-audio" onclick="ippAudio('runa', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
-          <td class="fn">luna / (palabra inventada)</td>
-        </tr>
-        <tr>
-          <td class="fl">letto</td>
-          <td><button class="btn-audio" onclick="ippAudio('letto', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
-          <td class="fr">retto</td>
-          <td><button class="btn-audio" onclick="ippAudio('retto', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
-          <td class="fn">cama / recto, derecho</td>
-        </tr>
-        <tr>
-          <td class="fl">lago</td>
-          <td><button class="btn-audio" onclick="ippAudio('lago', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
-          <td class="fr">rago</td>
-          <td><button class="btn-audio" onclick="ippAudio('rago', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
-          <td class="fn">lago / (poco común)</td>
-        </tr>
-        <tr>
-          <td class="fl">lana</td>
-          <td><button class="btn-audio" onclick="ippAudio('lana', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
-          <td class="fr">rana</td>
-          <td><button class="btn-audio" onclick="ippAudio('rana', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
-          <td class="fn">lana / rana</td>
-        </tr>
-        <tr>
-          <td class="fl">losa</td>
-          <td><button class="btn-audio" onclick="ippAudio('losa', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
-          <td class="fr">rosa</td>
-          <td><button class="btn-audio" onclick="ippAudio('rosa', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
-          <td class="fn">losa / rosa</td>
-        </tr>
-        <tr>
-          <td class="fl">luce</td>
-          <td><button class="btn-audio" onclick="ippAudio('luce', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
-          <td class="fr">ruce</td>
-          <td><button class="btn-audio" onclick="ippAudio('ruce', 0.75, 'm')" style="width:28px;height:28px;font-size:0.7rem">▶</button></td>
-          <td class="fn">luz / (práctica)</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- Actividad: escuchar y elegir L o R -->
-    <div class="fonetic-activity">
-      <h3>¿L o R? — Escuchá y decidí</h3>
-      <p style="font-size:0.85rem;color:#666;margin-bottom:18px">Hacé clic en "▶ Escuchar" y luego decidí si empieza con L o con R.</p>
-
-      <div class="fonetic-word-row">
-        <span class="word-num">1.</span>
-        <button class="btn-audio" onclick="ippAudio('lago', 0.8, 'm')" style="margin-right:10px">▶ Escuchar</button>
-        <div class="fonetic-answer">
-          <button class="lr-btn" onclick="checkLR(this, 'L', 'L', 'lr1')">L</button>
-          <button class="lr-btn" onclick="checkLR(this, 'R', 'L', 'lr1')">R</button>
-        </div>
-        <span class="fonetic-fb" id="lr1-fb"></span>
-      </div>
-
-      <div class="fonetic-word-row">
-        <span class="word-num">2.</span>
-        <button class="btn-audio" onclick="ippAudio('rana', 0.8, 'm')" style="margin-right:10px">▶ Escuchar</button>
-        <div class="fonetic-answer">
-          <button class="lr-btn" onclick="checkLR(this, 'L', 'R', 'lr2')">L</button>
-          <button class="lr-btn" onclick="checkLR(this, 'R', 'R', 'lr2')">R</button>
-        </div>
-        <span class="fonetic-fb" id="lr2-fb"></span>
-      </div>
-
-      <div class="fonetic-word-row">
-        <span class="word-num">3.</span>
-        <button class="btn-audio" onclick="ippAudio('letto', 0.8, 'm')" style="margin-right:10px">▶ Escuchar</button>
-        <div class="fonetic-answer">
-          <button class="lr-btn" onclick="checkLR(this, 'L', 'L', 'lr3')">L</button>
-          <button class="lr-btn" onclick="checkLR(this, 'R', 'L', 'lr3')">R</button>
-        </div>
-        <span class="fonetic-fb" id="lr3-fb"></span>
-      </div>
-
-      <div class="fonetic-word-row">
-        <span class="word-num">4.</span>
-        <button class="btn-audio" onclick="ippAudio('rosa', 0.8, 'm')" style="margin-right:10px">▶ Escuchar</button>
-        <div class="fonetic-answer">
-          <button class="lr-btn" onclick="checkLR(this, 'L', 'R', 'lr4')">L</button>
-          <button class="lr-btn" onclick="checkLR(this, 'R', 'R', 'lr4')">R</button>
-        </div>
-        <span class="fonetic-fb" id="lr4-fb"></span>
-      </div>
-
-      <div class="fonetic-word-row">
-        <span class="word-num">5.</span>
-        <button class="btn-audio" onclick="ippAudio('luna', 0.8, 'm')" style="margin-right:10px">▶ Escuchar</button>
-        <div class="fonetic-answer">
-          <button class="lr-btn" onclick="checkLR(this, 'L', 'L', 'lr5')">L</button>
-          <button class="lr-btn" onclick="checkLR(this, 'R', 'L', 'lr5')">R</button>
-        </div>
-        <span class="fonetic-fb" id="lr5-fb"></span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CULTURE STRIP ── -->
-  <div class="culture-strip">
-    <div class="culture-icon">🔔</div>
-    <h3>Il campanile: l'orologio del villaggio</h3>
-    <div class="culture-it">
-      <p>Prima degli orologi da polso, gli italiani usavano i <strong>rintocchi del campanile</strong> per sapere l'ora. Ogni paese aveva il suo campanile, e le campane suonavano per segnare le ore del giorno: la sveglia al mattino, il pranzo a mezzogiorno, il vespro la sera.</p>
-      <p>In molti borghi italiani, questa tradizione esiste ancora! A volte, passeggiando per un paese toscano o umbro, si sente ancora il campanile suonare le <em>«dodici spaccate»</em> a mezzogiorno. Proprio come nella barzelletta!</p>
-      <p><strong>Curiosità:</strong> La parola <em>campanile</em> viene da <em>campana</em>. Il campanile più famoso del mondo è probabilmente quello di Pisa — la <strong>Torre pendente</strong>!</p>
-    </div>
-    <button class="btn-translate" onclick="toggleCulture(this)">🇪🇸 Ver en español</button>
-    <div class="culture-es" style="display:none">
-      <p>Antes de los relojes de pulsera, los italianos usaban los <strong>repiques del campanario</strong> para saber la hora. Cada pueblo tenía su campanario, y las campanas sonaban para marcar las horas del día: el despertar por la mañana, el almuerzo al mediodía, las vísperas por la tarde.</p>
-      <p>¡En muchos pueblos italianos esta tradición sigue viva! A veces, caminando por un pueblo toscano o umbro, se escucha el campanario dar las <em>«doce en punto»</em> al mediodía. ¡Justo como en la barzelletta!</p>
-      <p><strong>Curiosidad:</strong> La palabra <em>campanile</em> viene de <em>campana</em>. ¡El campanario más famoso del mundo es probablemente el de Pisa — la <strong>Torre inclinada</strong>!</p>
+  <!-- ======== SECCION 1 — SOFIA ======== -->
+  <div class="sec-header">
+    <div class="sec-icon">&#127775;</div>
+    <div>
+      <h2>Ciao! Arrancamos</h2>
+      <div class="sec-sub">Sofia te da la bienvenida al modulo</div>
     </div>
   </div>
 
+  <div class="sofia-card">
+    <div class="sofia-avatar">&#128105;&#8205;&#127979;</div>
+    <div class="sofia-bubble">
+      <h3>Benvenuti!</h3>
+      <p>En el video que viste, Giulia recibe a los senores Baldini con una frase que lo dice todo: <em>&#171;Benvenuti al Casalunga Golf Resort!&#187;</em> &mdash; y ahi empieza todo. Un check-in en italiano es una pequenya obra de teatro: hay cortesia, preguntas precisas, numeros exactos y mil cosas que aprender.</p>
+      <p>En esta etapa vas a <strong>explorar todo ese vocabulario</strong>, escuchar las frases reales del video, descubrir como funcionan los numeros grandes (150 euros, habitacion 1001...) y notar algunos patrones del italiano que aparecen una y otra vez.</p>
+      <p>No hay apuro! Anda al ritmo que quieras. Hace clic en los botones de audio, juga con los ejercicios. Listo?</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ======== SECCION 2 — VOCABULARIO ======== -->
+  <div class="sec-header">
+    <div class="sec-icon">&#127968;</div>
+    <div>
+      <h2>Vocabolario dell'hotel</h2>
+      <div class="sec-sub">Hace clic en cada tarjeta para escuchar la pronunciacion</div>
+    </div>
+  </div>
+
+  <div class="info-pill">&#128266; Hace clic en cualquier tarjeta para escuchar</div>
+
+  <div class="vocab-grid">
+    <div class="vocab-chip" onclick="ippAudio('albergo', 0.82, 'f')">
+      <span class="vocab-emoji">&#127968;</span>
+      <span class="vocab-it">albergo</span>
+      <span class="vocab-es">hotel</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('albergo', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('pensione', 0.82, 'f')">
+      <span class="vocab-emoji">&#127968;</span>
+      <span class="vocab-it">pensione</span>
+      <span class="vocab-es">pension / hostal</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('pensione', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('camera singola', 0.82, 'f')">
+      <span class="vocab-emoji">&#128716;</span>
+      <span class="vocab-it">camera singola</span>
+      <span class="vocab-es">habitacion individual</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('camera singola', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('camera doppia', 0.82, 'f')">
+      <span class="vocab-emoji">&#128716;</span>
+      <span class="vocab-it">camera doppia</span>
+      <span class="vocab-es">habitacion doble</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('camera doppia', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('junior suite', 0.82, 'f')">
+      <span class="vocab-emoji">&#10024;</span>
+      <span class="vocab-it">junior suite</span>
+      <span class="vocab-es">junior suite</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('junior suite', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('colazione', 0.82, 'f')">
+      <span class="vocab-emoji">&#9749;</span>
+      <span class="vocab-it">colazione</span>
+      <span class="vocab-es">desayuno</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('colazione', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('culla', 0.82, 'f')">
+      <span class="vocab-emoji">&#128118;</span>
+      <span class="vocab-it">culla</span>
+      <span class="vocab-es">cuna (para bebe)</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('culla', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('chiavi', 0.82, 'f')">
+      <span class="vocab-emoji">&#128273;</span>
+      <span class="vocab-it">chiavi</span>
+      <span class="vocab-es">llaves</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('chiavi', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('portineria', 0.82, 'f')">
+      <span class="vocab-emoji">&#128222;</span>
+      <span class="vocab-it">portineria</span>
+      <span class="vocab-es">recepcion / conserjeria</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('portineria', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('garage', 0.82, 'f')">
+      <span class="vocab-emoji">&#128663;</span>
+      <span class="vocab-it">garage</span>
+      <span class="vocab-es">garage / estacionamiento</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('garage', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('documenti', 0.82, 'f')">
+      <span class="vocab-emoji">&#128196;</span>
+      <span class="vocab-it">documenti</span>
+      <span class="vocab-es">documentos / DNI</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('documenti', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('firma', 0.82, 'f')">
+      <span class="vocab-emoji">&#9997;</span>
+      <span class="vocab-it">firma</span>
+      <span class="vocab-es">firma</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('firma', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('supplemento', 0.82, 'f')">
+      <span class="vocab-emoji">&#128182;</span>
+      <span class="vocab-it">supplemento</span>
+      <span class="vocab-es">suplemento / cargo extra</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('supplemento', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('benvenuti', 0.82, 'f')">
+      <span class="vocab-emoji">&#128075;</span>
+      <span class="vocab-it">benvenuti</span>
+      <span class="vocab-es">bienvenidos</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('benvenuti', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('soggiorno', 0.82, 'f')">
+      <span class="vocab-emoji">&#127958;</span>
+      <span class="vocab-it">soggiorno</span>
+      <span class="vocab-es">estancia / estadia</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('soggiorno', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('partenza', 0.82, 'f')">
+      <span class="vocab-emoji">&#129523;</span>
+      <span class="vocab-it">partenza</span>
+      <span class="vocab-es">salida / partida</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('partenza', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('prenotazione', 0.82, 'f')">
+      <span class="vocab-emoji">&#128203;</span>
+      <span class="vocab-it">prenotazione</span>
+      <span class="vocab-es">reserva</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('prenotazione', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+    <div class="vocab-chip" onclick="ippAudio('traffico', 0.82, 'f')">
+      <span class="vocab-emoji">&#128678;</span>
+      <span class="vocab-it">traffico</span>
+      <span class="vocab-es">trafico</span>
+      <button class="vocab-audio-btn" onclick="event.stopPropagation(); ippAudio('traffico', 0.82, 'f')">&#128266; escuchar</button>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ======== SECCION 3 — FRASES REALES ======== -->
+  <div class="sec-header">
+    <div class="sec-icon">&#127916;</div>
+    <div>
+      <h2>Frasi reali dal video</h2>
+      <div class="sec-sub">Las frases mas importantes del check-in, tal cual las escuchaste</div>
+    </div>
+  </div>
+
+  <div class="sofia-card">
+    <div class="sofia-avatar">&#128105;&#8205;&#127979;</div>
+    <div class="sofia-bubble">
+      <p>Estas frases aparecen exactamente asi en el video. Hace clic en <strong>&#9654; Escuchar</strong> para oirlas una por una. Notar el ritmo del italiano es tan importante como entender las palabras.</p>
+    </div>
+  </div>
+
+  <div class="frases-list">
+    <div class="frase-card">
+      <span class="frase-speaker">&#128105;</span>
+      <div style="flex:1">
+        <div class="frase-it">Buongiorno, come posso esservi utile?</div>
+        <div class="frase-es">Buenos dias, en que les puedo ayudar?</div>
+      </div>
+      <button class="btn-frase-play" onclick="ippAudio('Buongiorno, come posso esservi utile?', 0.82, 'f')">&#9654; Escuchar</button>
+    </div>
+    <div class="frase-card m-card">
+      <span class="frase-speaker">&#128104;</span>
+      <div style="flex:1">
+        <div class="frase-it">Abbiamo prenotato una camera a nome Baldini.</div>
+        <div class="frase-es">Reservamos una habitacion a nombre de Baldini.</div>
+      </div>
+      <button class="btn-frase-play m-btn" onclick="ippAudio('Abbiamo prenotato una camera a nome Baldini.', 0.82, 'm')">&#9654; Escuchar</button>
+    </div>
+    <div class="frase-card">
+      <span class="frase-speaker">&#128105;</span>
+      <div style="flex:1">
+        <div class="frase-it">Benvenuti al Casalunga Golf Resort!</div>
+        <div class="frase-es">Bienvenidos al Casalunga Golf Resort!</div>
+      </div>
+      <button class="btn-frase-play" onclick="ippAudio('Benvenuti al Casalunga Golf Resort!', 0.82, 'f')">&#9654; Escuchar</button>
+    </div>
+    <div class="frase-card">
+      <span class="frase-speaker">&#128105;</span>
+      <div style="flex:1">
+        <div class="frase-it">E andato bene il viaggio?</div>
+        <div class="frase-es">Fue bien el viaje?</div>
+      </div>
+      <button class="btn-frase-play" onclick="ippAudio('È andato bene il viaggio?', 0.82, 'f')">&#9654; Escuchar</button>
+    </div>
+    <div class="frase-card">
+      <span class="frase-speaker">&#128105;</span>
+      <div style="flex:1">
+        <div class="frase-it">Il prezzo e di 150 euro a notte, comprensivo di prima colazione.</div>
+        <div class="frase-es">El precio es de 150 euros por noche, incluyendo el desayuno.</div>
+      </div>
+      <button class="btn-frase-play" onclick="ippAudio('Il prezzo è di centocinquanta euro a notte, comprensivo di prima colazione.', 0.82, 'f')">&#9654; Escuchar</button>
+    </div>
+    <div class="frase-card">
+      <span class="frase-speaker">&#128105;</span>
+      <div style="flex:1">
+        <div class="frase-it">Cortesemente, potrei avere i vostri documenti?</div>
+        <div class="frase-es">Podria tener sus documentos, por favor?</div>
+      </div>
+      <button class="btn-frase-play" onclick="ippAudio('Cortesemente, potrei avere i vostri documenti?', 0.82, 'f')">&#9654; Escuchar</button>
+    </div>
+    <div class="frase-card">
+      <span class="frase-speaker">&#128105;</span>
+      <div style="flex:1">
+        <div class="frase-it">Non si preoccupi.</div>
+        <div class="frase-es">No se preocupe.</div>
+      </div>
+      <button class="btn-frase-play" onclick="ippAudio('Non si preoccupi.', 0.82, 'f')">&#9654; Escuchar</button>
+    </div>
+    <div class="frase-card">
+      <span class="frase-speaker">&#128105;</span>
+      <div style="flex:1">
+        <div class="frase-it">Potete pagare tutto alla vostra partenza.</div>
+        <div class="frase-es">Pueden pagar todo al momento de su salida.</div>
+      </div>
+      <button class="btn-frase-play" onclick="ippAudio('Potete pagare tutto alla vostra partenza.', 0.82, 'f')">&#9654; Escuchar</button>
+    </div>
+    <div class="frase-card">
+      <span class="frase-speaker">&#128105;</span>
+      <div style="flex:1">
+        <div class="frase-it">Vi auguro un buon soggiorno!</div>
+        <div class="frase-es">Les deseo una buena estadia!</div>
+      </div>
+      <button class="btn-frase-play" onclick="ippAudio('Vi auguro un buon soggiorno!', 0.82, 'f')">&#9654; Escuchar</button>
+    </div>
+    <div class="frase-card">
+      <span class="frase-speaker">&#128105;</span>
+      <div style="flex:1">
+        <div class="frase-it">Per qualsiasi cosa chiamate in portineria, tasto 9.</div>
+        <div class="frase-es">Para cualquier cosa llamen a la conserjeria, tecla 9.</div>
+      </div>
+      <button class="btn-frase-play" onclick="ippAudio('Per qualsiasi cosa chiamate in portineria, tasto nove.', 0.82, 'f')">&#9654; Escuchar</button>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ======== SECCION 4 — NUMEROS ======== -->
+  <div class="sec-header">
+    <div class="sec-icon">&#128182;</div>
+    <div>
+      <h2>Numeri grandi &mdash; I prezzi dell'hotel</h2>
+      <div class="sec-sub">Hace clic en cada numero para escuchar como se dice en italiano</div>
+    </div>
+  </div>
+
+  <div class="sofia-card">
+    <div class="sofia-avatar">&#128105;&#8205;&#127979;</div>
+    <div class="sofia-bubble">
+      <p>En el check-in aparecen varios numeros: el precio de la habitacion, el suplemento del garage, el numero de la habitacion... Los reconoces? Hace clic en cada uno para escucharlos.</p>
+    </div>
+  </div>
+
+  <div class="num-grid">
+    <div class="num-chip" onclick="ippAudio('cento', 0.82, 'f')">
+      <span class="num-num">100</span>
+      <div class="num-it">cento</div>
+      <div class="num-es">cien</div>
+    </div>
+    <div class="num-chip" onclick="ippAudio('centocinquanta', 0.82, 'f')">
+      <span class="num-num">150</span>
+      <div class="num-it">centocinquanta</div>
+      <div class="num-es">ciento cincuenta</div>
+    </div>
+    <div class="num-chip" onclick="ippAudio('duecento', 0.82, 'f')">
+      <span class="num-num">200</span>
+      <div class="num-it">duecento</div>
+      <div class="num-es">doscientos</div>
+    </div>
+    <div class="num-chip" onclick="ippAudio('trecento', 0.82, 'f')">
+      <span class="num-num">300</span>
+      <div class="num-it">trecento</div>
+      <div class="num-es">trescientos</div>
+    </div>
+    <div class="num-chip" onclick="ippAudio('quattrocento', 0.82, 'f')">
+      <span class="num-num">400</span>
+      <div class="num-it">quattrocento</div>
+      <div class="num-es">cuatrocientos</div>
+    </div>
+    <div class="num-chip" onclick="ippAudio('cinquecento', 0.82, 'f')">
+      <span class="num-num">500</span>
+      <div class="num-it">cinquecento</div>
+      <div class="num-es">quinientos</div>
+    </div>
+    <div class="num-chip" onclick="ippAudio('seicento', 0.82, 'f')">
+      <span class="num-num">600</span>
+      <div class="num-it">seicento</div>
+      <div class="num-es">seiscientos</div>
+    </div>
+    <div class="num-chip" onclick="ippAudio('settecento', 0.82, 'f')">
+      <span class="num-num">700</span>
+      <div class="num-it">settecento</div>
+      <div class="num-es">setecientos</div>
+    </div>
+    <div class="num-chip" onclick="ippAudio('ottocento', 0.82, 'f')">
+      <span class="num-num">800</span>
+      <div class="num-it">ottocento</div>
+      <div class="num-es">ochocientos</div>
+    </div>
+    <div class="num-chip" onclick="ippAudio('novecento', 0.82, 'f')">
+      <span class="num-num">900</span>
+      <div class="num-it">novecento</div>
+      <div class="num-es">novecientos</div>
+    </div>
+    <div class="num-chip" onclick="ippAudio('mille', 0.82, 'f')">
+      <span class="num-num">1000</span>
+      <div class="num-it">mille</div>
+      <div class="num-es">mil</div>
+    </div>
+    <div class="num-chip" onclick="ippAudio('milleuno', 0.82, 'f')">
+      <span class="num-num">1001</span>
+      <div class="num-it">milleuno</div>
+      <div class="num-es">mil uno</div>
+    </div>
+    <div class="num-chip" onclick="ippAudio('quindici', 0.82, 'f')">
+      <span class="num-num">15</span>
+      <div class="num-it">quindici</div>
+      <div class="num-es">quince (garage!)</div>
+    </div>
+    <div class="num-chip" onclick="ippAudio('tre', 0.82, 'f')">
+      <span class="num-num">3</span>
+      <div class="num-it">tre</div>
+      <div class="num-es">tres (tassa!)</div>
+    </div>
+  </div>
+
+  <div class="num-note">
+    En el video: la camera e la numero <em>milleuno</em> (1001), il prezzo e <em>centocinquanta</em> euro a notte, il supplemento garage e <em>quindici</em> euro, e la tassa di soggiorno e <em>tre</em> euro a persona.
+  </div>
+
+  <hr class="divider">
+
+  <!-- ======== SECCION 5 — DIAS ======== -->
+  <div class="sec-header">
+    <div class="sec-icon">&#128197;</div>
+    <div>
+      <h2>Giorni della settimana</h2>
+      <div class="sec-sub">Cuando reservas un hotel, los dias importan mucho</div>
+    </div>
+  </div>
+
+  <div class="days-grid">
+    <div class="day-chip" onclick="ippAudio('lunedì', 0.82, 'f')">
+      <div class="day-num">1</div>
+      <span class="day-it">lunedì</span>
+      <div class="day-es">lunes</div>
+    </div>
+    <div class="day-chip" onclick="ippAudio('martedì', 0.82, 'f')">
+      <div class="day-num">2</div>
+      <span class="day-it">martedì</span>
+      <div class="day-es">martes</div>
+    </div>
+    <div class="day-chip" onclick="ippAudio('mercoledì', 0.82, 'f')">
+      <div class="day-num">3</div>
+      <span class="day-it">mercoledì</span>
+      <div class="day-es">miercoles</div>
+    </div>
+    <div class="day-chip" onclick="ippAudio('giovedì', 0.82, 'f')">
+      <div class="day-num">4</div>
+      <span class="day-it">giovedì</span>
+      <div class="day-es">jueves</div>
+    </div>
+    <div class="day-chip" onclick="ippAudio('venerdì', 0.82, 'f')">
+      <div class="day-num">5</div>
+      <span class="day-it">venerdì</span>
+      <div class="day-es">viernes</div>
+    </div>
+    <div class="day-chip" onclick="ippAudio('sabato', 0.82, 'f')">
+      <div class="day-num">6</div>
+      <span class="day-it">sabato</span>
+      <div class="day-es">sabado</div>
+    </div>
+    <div class="day-chip" onclick="ippAudio('domenica', 0.82, 'f')">
+      <div class="day-num">7</div>
+      <span class="day-it">domenica</span>
+      <div class="day-es">domingo</div>
+    </div>
+  </div>
+
+  <div class="days-activity">
+    <h4>Podes ordenar los dias de la semana?</h4>
+    <p style="font-size:0.82rem; color:#777; margin-bottom:12px;">Selecciona los dias en el orden correcto (de lunes a domingo). Hace clic para agregar, toca la x para quitar.</p>
+
+    <div class="day-options" id="dayOptions">
+      <button class="day-opt-btn" data-day="domenica" onclick="addDay(this)">domenica</button>
+      <button class="day-opt-btn" data-day="mercoledì" onclick="addDay(this)">mercoledì</button>
+      <button class="day-opt-btn" data-day="venerdì" onclick="addDay(this)">venerdì</button>
+      <button class="day-opt-btn" data-day="lunedì" onclick="addDay(this)">lunedì</button>
+      <button class="day-opt-btn" data-day="sabato" onclick="addDay(this)">sabato</button>
+      <button class="day-opt-btn" data-day="martedì" onclick="addDay(this)">martedì</button>
+      <button class="day-opt-btn" data-day="giovedì" onclick="addDay(this)">giovedì</button>
+    </div>
+
+    <div class="day-drop-zone" id="dayOrder"></div>
+
+    <button class="days-check-btn" onclick="checkDays()">Verificar orden</button>
+    <div class="days-feedback" id="daysFeedback"></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ======== SECCION 6 — DIALOGO ======== -->
+  <div class="sec-header">
+    <div class="sec-icon">&#127917;</div>
+    <div>
+      <h2>Il check-in completo</h2>
+      <div class="sec-sub">El dialogo entero del video &mdash; escucha primero, luego revela el texto</div>
+    </div>
+  </div>
+
+  <div class="sofia-card">
+    <div class="sofia-avatar">&#128105;&#8205;&#127979;</div>
+    <div class="sofia-bubble">
+      <p><strong>Dos formas de usar este dialogo:</strong></p>
+      <p>1. Hace clic en <strong>&#9654; Escuchar todo el dialogo</strong> para oir todas las lineas seguidas (el texto permanece oculto &mdash; es un desafio de escucha!).</p>
+      <p>2. Hace clic en <strong>&#9654; Escuchar</strong> de cada linea individual para oirla y revelar su texto.</p>
+    </div>
+  </div>
+
+  <div class="dial-wrap">
+
+      <div class="yt-top-controls">
+        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
+        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
+      </div>
+
+      <div class="yt-top-controls">
+        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
+        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
+      </div>
+
+      <div class="yt-top-controls">
+        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
+        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
+      </div>
+
+      <div class="yt-top-controls">
+        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
+        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
+      </div>
+<div class="dial-line" data-text="Buongiorno, come posso esservi utile?" data-gender="f" data-yt-idx="0">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Giulia</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Buongiorno, come posso esservi utile?</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(0)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Abbiamo prenotato una camera a nome Baldini." data-gender="m" data-yt-idx="1">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128104;</span>
+        <span class="dial-name m-name">Sig. Baldini</span>
+      </div>
+      <div class="dial-bubble m-bubble hidden-text blurred">Abbiamo prenotato una camera a nome Baldini.</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(1)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Buongiorno signori Baldini, benvenuti al Casalunga Golf Resort. Il mio nome è Giulia. È andato bene il viaggio?" data-gender="f" data-yt-idx="2">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Giulia</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Buongiorno signori Baldini, benvenuti al Casalunga Golf Resort. Il mio nome è Giulia. È andato bene il viaggio?</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(2)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Sì, grazie. Non abbiamo trovato traffico." data-gender="m" data-yt-idx="3">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128104;</span>
+        <span class="dial-name m-name">Sig. Baldini</span>
+      </div>
+      <div class="dial-bubble m-bubble hidden-text blurred">Si, grazie. Non abbiamo trovato traffico.</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(3)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Che fortuna! Abbiamo riservato per voi una junior suite per due notti con trattamento camera e colazione. Abbiamo aggiunto una culla per vostro figlio." data-gender="f" data-yt-idx="4">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Giulia</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Che fortuna! Abbiamo riservato per voi una junior suite per due notti con trattamento camera e colazione. Abbiamo aggiunto una culla per vostro figlio.</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(4)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Grazie. Ci ricorda il prezzo, gentilmente?" data-gender="m" data-yt-idx="5">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128104;</span>
+        <span class="dial-name m-name">Sig. Baldini</span>
+      </div>
+      <div class="dial-bubble m-bubble hidden-text blurred">Grazie. Ci ricorda il prezzo, gentilmente?</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(5)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Certamente. Il prezzo è di centocinquanta euro a notte, comprensivo di prima colazione. È da aggiungere l'imposta di soggiorno di tre euro al giorno a persona, naturalmente solo per gli adulti." data-gender="f" data-yt-idx="6">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Giulia</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Certamente. Il prezzo è di 150 euro a notte, comprensivo di prima colazione. È da aggiungere l'imposta di soggiorno di 3 euro al giorno a persona, naturalmente solo per gli adulti.</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(6)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Cortesemente, potrei avere i vostri documenti?" data-gender="f" data-yt-idx="7">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Giulia</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Cortesemente, potrei avere i vostri documenti?</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(7)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Sì, certamente. Ecco qua. C'è anche la carta d'identità di nostro figlio." data-gender="m" data-yt-idx="8">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128104;</span>
+        <span class="dial-name m-name">Sig. Baldini</span>
+      </div>
+      <div class="dial-bubble m-bubble hidden-text blurred">Si, certamente. Ecco qua. C'e anche la carta d'identita di nostro figlio.</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(8)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Se necessario, disponiamo di un garage custodito ventiquattro ore su ventiquattro, con un supplemento di quindici euro al giorno. Potete tranquillamente lasciare lì la macchina." data-gender="f" data-yt-idx="9">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Giulia</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Se necessario, disponiamo di un garage custodito 24 ore su 24, con un supplemento di 15 euro al giorno. Potete tranquillamente lasciare li la macchina.</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(9)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Va bene, sì." data-gender="m" data-yt-idx="10">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128104;</span>
+        <span class="dial-name m-name">Sig. Baldini</span>
+      </div>
+      <div class="dial-bubble m-bubble hidden-text blurred">Va bene, si.</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(10)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Signor Baldini, avrete bisogno di una firma per il trattamento dei dati personali." data-gender="f" data-yt-idx="11">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Giulia</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Signor Baldini, avrete bisogno di una firma per il trattamento dei dati personali.</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(11)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Certamente." data-gender="m" data-yt-idx="12">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128104;</span>
+        <span class="dial-name m-name">Sig. Baldini</span>
+      </div>
+      <div class="dial-bubble m-bubble hidden-text blurred">Certamente.</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(12)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="È necessario pagare tutto ora?" data-gender="m" data-yt-idx="13">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128104;</span>
+        <span class="dial-name m-name">Sig. Baldini</span>
+      </div>
+      <div class="dial-bubble m-bubble hidden-text blurred">E necessario pagare tutto ora?</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(13)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Non si preoccupi. Potete pagare tutto alla vostra partenza." data-gender="f" data-yt-idx="14">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Giulia</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Non si preoccupi. Potete pagare tutto alla vostra partenza.</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(14)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Ecco a voi le vostre chiavi, insieme alla welcome card con le informazioni sui nostri servizi. La camera è la numero milleuno." data-gender="f" data-yt-idx="15">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Giulia</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Ecco a voi le vostre chiavi, insieme alla welcome card con le informazioni sui nostri servizi. La camera e la numero 1001.</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(15)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Fino a che ora servite la colazione?" data-gender="f" data-yt-idx="16">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Sig.ra Baldini</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Fino a che ora servite la colazione?</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(16)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Serviamo la colazione dalle sette alle undici. Su richiesta possiamo servire anche la colazione in camera." data-gender="f" data-yt-idx="17">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Giulia</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Serviamo la colazione dalle 7 alle 11. Su richiesta possiamo servire anche la colazione in camera.</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(17)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Vi auguro un buon soggiorno! Per qualsiasi cosa chiamate in portineria, tasto nove." data-gender="f" data-yt-idx="18">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Giulia</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Vi auguro un buon soggiorno! Per qualsiasi cosa chiamate in portineria, tasto 9.</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(18)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line" data-text="Grazie mille!" data-gender="m" data-yt-idx="19">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128104;</span>
+        <span class="dial-name m-name">Sig. Baldini</span>
+      </div>
+      <div class="dial-bubble m-bubble hidden-text blurred">Grazie mille!</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(19)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <!-- Comprension -->
+    <div class="comprension">
+      <h4>Entendiste el dialogo? Responde estas preguntas:</h4>
+
+      <div class="comp-q" id="cq1">
+        <p>1. Cuantas noches reservaron los Baldini?</p>
+        <div class="comp-opts">
+          <button class="comp-opt" onclick="checkComp(this, false, 'cq1')">Una noche</button>
+          <button class="comp-opt" onclick="checkComp(this, true, 'cq1')">Dos noches</button>
+          <button class="comp-opt" onclick="checkComp(this, false, 'cq1')">Tres noches</button>
+        </div>
+      </div>
+
+      <div class="comp-q" id="cq2">
+        <p>2. A que hora termina el desayuno?</p>
+        <div class="comp-opts">
+          <button class="comp-opt" onclick="checkComp(this, false, 'cq2')">A las 10</button>
+          <button class="comp-opt" onclick="checkComp(this, false, 'cq2')">A las 10:30</button>
+          <button class="comp-opt" onclick="checkComp(this, true, 'cq2')">A las 11</button>
+        </div>
+      </div>
+
+      <div class="comp-q" id="cq3">
+        <p>3. Cuando tienen que pagar los Baldini?</p>
+        <div class="comp-opts">
+          <button class="comp-opt" onclick="checkComp(this, false, 'cq3')">Ahora mismo, al hacer el check-in</button>
+          <button class="comp-opt" onclick="checkComp(this, true, 'cq3')">Al momento de la partenza (salida)</button>
+          <button class="comp-opt" onclick="checkComp(this, false, 'cq3')">Antes del desayuno</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ======== SECCION 7 — PATRONES VERBALES ======== -->
+  <div class="sec-header">
+    <div class="sec-icon">&#128269;</div>
+    <div>
+      <h2>Notas algo en estas frases?</h2>
+      <div class="sec-sub">Observa los grupos &mdash; que tienen en comun?</div>
+    </div>
+  </div>
+
+  <div class="sofia-card">
+    <div class="sofia-avatar">&#128105;&#8205;&#127979;</div>
+    <div class="sofia-bubble">
+      <p>Sin explicaciones por ahora: solo mira estas frases del video y fijate en las palabras en <em>cursiva y negrita</em>. Ves algo que se repite? Hace clic en cualquier frase para escucharla.</p>
+    </div>
+  </div>
+
+  <div class="pattern-box">
+    <h4>Grupo A &mdash; Que terminacion tienen todas?</h4>
+    <div class="pattern-phrases">
+      <div class="pattern-phrase" onclick="ippAudio('Abbiamo prenotato una camera.', 0.82, 'm')">
+        Abbiamo <em>prenotato</em> una camera.
+      </div>
+      <div class="pattern-phrase" onclick="ippAudio('Non abbiamo trovato traffico.', 0.82, 'm')">
+        Non abbiamo <em>trovato</em> traffico.
+      </div>
+      <div class="pattern-phrase" onclick="ippAudio('Abbiamo riservato una junior suite.', 0.82, 'f')">
+        Abbiamo <em>riservato</em> una junior suite.
+      </div>
+      <div class="pattern-phrase" onclick="ippAudio('Abbiamo aggiunto una culla.', 0.82, 'f')">
+        Abbiamo <em>aggiunto</em> una culla.
+      </div>
+    </div>
+  </div>
+
+  <div class="pattern-box">
+    <h4>Grupo B &mdash; Y estos?</h4>
+    <div class="pattern-phrases">
+      <div class="pattern-phrase" onclick="ippAudio('Potete pagare alla partenza.', 0.82, 'f')">
+        Potete <em>pagare</em> alla partenza.
+      </div>
+      <div class="pattern-phrase" onclick="ippAudio('Potete lasciare la macchina nel garage.', 0.82, 'f')">
+        Potete <em>lasciare</em> la macchina nel garage.
+      </div>
+    </div>
+  </div>
+
+  <div class="pattern-box">
+    <h4>Grupo C &mdash; Que persona esta hablando?</h4>
+    <div class="pattern-phrases">
+      <div class="pattern-phrase" onclick="ippAudio('Disponiamo di un garage custodito.', 0.82, 'f')">
+        <em>Disponiamo</em> di un garage custodito.
+      </div>
+      <div class="pattern-phrase" onclick="ippAudio('Serviamo la colazione dalle sette alle undici.', 0.82, 'f')">
+        <em>Serviamo</em> la colazione dalle 7 alle 11.
+      </div>
+    </div>
+  </div>
+
+  <div class="pattern-discovery-q">
+    <p>Que notaste? Podes describir en tus palabras que tienen en comun las frases de cada grupo?</p>
+    <textarea class="pattern-input" rows="3" placeholder="Escribe tus observaciones aqui... (Ej: En el grupo A todas terminan en -ato, en el grupo C todas tienen -iamo...)"></textarea>
+    <br>
+    <button class="pattern-reveal-btn" onclick="document.getElementById('patternAnswer').style.display='block'">Ver pistas</button>
+    <div class="pattern-answer" id="patternAnswer">
+      <strong>Grupo A:</strong> "abbiamo + ...ato / ...uto / ...ito" &mdash; se usa cuando alguien dice lo que hizo (nosotros reservamos, encontramos, anadimos...). Es el pasado en italiano.<br><br>
+      <strong>Grupo B:</strong> "potete + infinitivo (-are/-ere/-ire)" &mdash; aparece cuando dicen lo que pueden hacer (pueden pagar, pueden dejar). Son verbos en forma basica.<br><br>
+      <strong>Grupo C:</strong> "-iamo" al final &mdash; indica <strong>nosotros</strong>. "Disponiamo" = disponemos. "Serviamo" = servimos. La terminacion cambia segun quien habla!
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ======== SECCION 8 — PLURAL ======== -->
+  <div class="sec-header">
+    <div class="sec-icon">&#128221;</div>
+    <div>
+      <h2>Singular &#8594; Plural</h2>
+      <div class="sec-sub">Como cambian las palabras cuando hay mas de uno?</div>
+    </div>
+  </div>
+
+  <div class="sofia-card">
+    <div class="sofia-avatar">&#128105;&#8205;&#127979;</div>
+    <div class="sofia-bubble">
+      <p>En el video aparecen estas palabras en plural: <em>documenti</em>, <em>adulti</em>, <em>chiavi</em>... Podes completar los plurales basandote en lo que escuchaste? Escribilos y hace clic en "Verificar".</p>
+    </div>
+  </div>
+
+  <div class="plural-grid">
+    <div class="plural-card">
+      <div class="plural-sing">documento <span class="plural-arrow">&#8594;</span></div>
+      <input class="plural-inp" id="pl1" type="text" placeholder="plural..." data-answer="documenti">
+      <div class="plural-hint">aparece en el video</div>
+    </div>
+    <div class="plural-card">
+      <div class="plural-sing">adulto <span class="plural-arrow">&#8594;</span></div>
+      <input class="plural-inp" id="pl2" type="text" placeholder="plural..." data-answer="adulti">
+      <div class="plural-hint">aparece en el video</div>
+    </div>
+    <div class="plural-card">
+      <div class="plural-sing">notte <span class="plural-arrow">&#8594;</span></div>
+      <input class="plural-inp" id="pl3" type="text" placeholder="plural..." data-answer="notti">
+      <div class="plural-hint">dos noches...</div>
+    </div>
+    <div class="plural-card">
+      <div class="plural-sing">chiave <span class="plural-arrow">&#8594;</span></div>
+      <input class="plural-inp" id="pl4" type="text" placeholder="plural..." data-answer="chiavi">
+      <div class="plural-hint">aparece en el video</div>
+    </div>
+    <div class="plural-card">
+      <div class="plural-sing">camera <span class="plural-arrow">&#8594;</span></div>
+      <input class="plural-inp" id="pl5" type="text" placeholder="plural..." data-answer="camere">
+      <div class="plural-hint">varias habitaciones</div>
+    </div>
+    <div class="plural-card">
+      <div class="plural-sing">servizio <span class="plural-arrow">&#8594;</span></div>
+      <input class="plural-inp" id="pl6" type="text" placeholder="plural..." data-answer="servizi">
+      <div class="plural-hint">informacion sobre servicios</div>
+    </div>
+    <div class="plural-card">
+      <div class="plural-sing">citta <span class="plural-arrow">&#8594;</span></div>
+      <input class="plural-inp" id="pl7" type="text" placeholder="plural..." data-answer="citta">
+      <div class="plural-hint">sorpresa: no cambia</div>
+    </div>
+  </div>
+
+  <button class="plural-check-btn" onclick="checkPlurals()">Verificar plurales</button>
+  <div class="plural-feedback" id="pluralFeedback"></div>
+
+  <hr class="divider">
+
+  <!-- ======== SECCION 9 — EXPRESIONES ======== -->
+  <div class="sec-header">
+    <div class="sec-icon">&#128172;</div>
+    <div>
+      <h2>Frasi utili in hotel</h2>
+      <div class="sec-sub">Estas son las frases que vas a necesitar cuando viajes a Italia</div>
+    </div>
+  </div>
+
+  <div class="expr-grid">
+    <div class="expr-card">
+      <div class="expr-it">Avete una camera libera?</div>
+      <div class="expr-es">Tienen una habitacion disponible?</div>
+      <div class="expr-speaker-row">
+        <span class="expr-who">&#128100; huesped</span>
+        <button class="btn-expr-play" onclick="ippAudio('Avete una camera libera?', 0.82, 'm')">&#9654; Escuchar</button>
+      </div>
+    </div>
+    <div class="expr-card">
+      <div class="expr-it">Vorrei prenotare una camera.</div>
+      <div class="expr-es">Quisiera reservar una habitacion.</div>
+      <div class="expr-speaker-row">
+        <span class="expr-who">&#128100; huesped</span>
+        <button class="btn-expr-play" onclick="ippAudio('Vorrei prenotare una camera.', 0.82, 'm')">&#9654; Escuchar</button>
+      </div>
+    </div>
+    <div class="expr-card">
+      <div class="expr-it">A che ora e il check-out?</div>
+      <div class="expr-es">A que hora es el check-out?</div>
+      <div class="expr-speaker-row">
+        <span class="expr-who">&#128100; huespeda</span>
+        <button class="btn-expr-play" onclick="ippAudio('A che ora è il check-out?', 0.82, 'f')">&#9654; Escuchar</button>
+      </div>
+    </div>
+<div class="expr-card">
+  <div class="expr-it">Dov'è l'ascensore?</div>
+  <div class="expr-es">¿Dónde está el ascensor?</div>
+  <div class="expr-speaker-row">
+    <span class="expr-who">👤 huésped</span>
+    <button class="btn-expr-play" onclick="ippAudio('Dov\'è l\'ascensore?', 0.82, 'm')">▶ Escuchar</button>
+  </div>
+</div>
+    <div class="expr-card">
+      <div class="expr-it">Mi puo chiamare un taxi?</div>
+      <div class="expr-es">Me puede llamar un taxi?</div>
+      <div class="expr-speaker-row">
+        <span class="expr-who">&#128100; huespeda</span>
+        <button class="btn-expr-play" onclick="ippAudio('Mi può chiamare un taxi?', 0.82, 'f')">&#9654; Escuchar</button>
+      </div>
+    </div>
+    <div class="expr-card">
+      <div class="expr-it">Come si dice... in italiano?</div>
+      <div class="expr-es">Como se dice... en italiano?</div>
+      <div class="expr-speaker-row">
+        <span class="expr-who">&#128100; estudiante</span>
+        <button class="btn-expr-play" onclick="ippAudio('Come si dice in italiano?', 0.82, 'm')">&#9654; Escuchar</button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ======== SECCION 10 — FONETICA ======== -->
+  <div class="sec-header">
+    <div class="sec-icon">&#127925;</div>
+    <div>
+      <h2>I suoni del italiano</h2>
+      <div class="sec-sub">Descubri como suena la C y la G en italiano</div>
+    </div>
+  </div>
+
+  <div class="fon-intro">
+    <p>El italiano tiene algo curioso: la misma letra puede sonar diferente segun que letra viene despues. Escucha estos pares de palabras del video y fijate si suenan igual o diferente. No hace falta memorizar reglas &mdash; el oido lo capta solo!</p>
+  </div>
+
+  <table class="fon-table">
+    <thead>
+      <tr>
+        <th>Letra + vocal</th>
+        <th>Sonido</th>
+        <th>Ejemplo del hotel</th>
+        <th>Escuchar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>ca / co / cu</strong></td>
+        <td><span class="fon-sound">[k] como &ldquo;k&rdquo;</span></td>
+        <td><em>camera</em>, <em>colazione</em>, <em>culla</em></td>
+        <td><button class="btn-fon-play" onclick="ippAudio('camera, colazione, culla', 0.75, 'f')">&#9654;</button></td>
+      </tr>
+      <tr>
+        <td><strong>ce / ci</strong></td>
+        <td><span class="fon-sound">[ts] como &ldquo;ch&rdquo;</span></td>
+        <td><em>certamente</em>, <em>ci ricorda</em></td>
+        <td><button class="btn-fon-play" onclick="ippAudio('certamente, ci ricorda', 0.75, 'f')">&#9654;</button></td>
+      </tr>
+      <tr>
+        <td><strong>che / chi</strong></td>
+        <td><span class="fon-sound">[k] como &ldquo;k&rdquo;</span></td>
+        <td><em>chiavi</em>, <em>che fortuna</em></td>
+        <td><button class="btn-fon-play" onclick="ippAudio('chiavi, che fortuna', 0.75, 'f')">&#9654;</button></td>
+      </tr>
+      <tr>
+        <td><strong>ga / go / gu</strong></td>
+        <td><span class="fon-sound">[g] como &ldquo;g&rdquo; suave</span></td>
+        <td><em>garage</em>, <em>grazie</em></td>
+        <td><button class="btn-fon-play" onclick="ippAudio('garage, grazie', 0.75, 'f')">&#9654;</button></td>
+      </tr>
+      <tr>
+        <td><strong>ge / gi</strong></td>
+        <td><span class="fon-sound">[dz] como &ldquo;y&rdquo; fuerte</span></td>
+        <td><em>Giulia</em>, <em>giorno</em></td>
+        <td><button class="btn-fon-play" onclick="ippAudio('Giulia, buongiorno', 0.75, 'f')">&#9654;</button></td>
+      </tr>
+      <tr>
+        <td><strong>ghe / ghi</strong></td>
+        <td><span class="fon-sound">[g] como &ldquo;g&rdquo; suave</span></td>
+        <td><em>spaghetti</em>, <em>ghiaccio</em></td>
+        <td><button class="btn-fon-play" onclick="ippAudio('spaghetti, ghiaccio', 0.75, 'f')">&#9654;</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="fon-classify">
+    <h4>Actividad: clasifica estas palabras segun su sonido</h4>
+    <p style="font-size:0.82rem; color:#777; margin-bottom:16px;">1. Hace clic en uno de los dos grupos para seleccionarlo (queda con borde solido). 2. Luego hace clic en la palabra para clasificarla. Hace clic en la etiqueta dentro del grupo para devolverla.</p>
+
+    <div class="fon-word-pool" id="fonPool">
+      <button class="fon-word-btn" data-word="camera" data-group="k" onclick="fonWordClick(this)">camera</button>
+      <button class="fon-word-btn" data-word="certamente" data-group="ch" onclick="fonWordClick(this)">certamente</button>
+      <button class="fon-word-btn" data-word="chiavi" data-group="k" onclick="fonWordClick(this)">chiavi</button>
+      <button class="fon-word-btn" data-word="Giulia" data-group="ch" onclick="fonWordClick(this)">Giulia</button>
+      <button class="fon-word-btn" data-word="colazione" data-group="k" onclick="fonWordClick(this)">colazione</button>
+      <button class="fon-word-btn" data-word="giorno" data-group="ch" onclick="fonWordClick(this)">giorno</button>
+      <button class="fon-word-btn" data-word="che fortuna" data-group="k" onclick="fonWordClick(this)">che fortuna</button>
+      <button class="fon-word-btn" data-word="ci ricorda" data-group="ch" onclick="fonWordClick(this)">ci ricorda</button>
+    </div>
+
+    <div class="fon-bins">
+      <div class="fon-bin k-bin" id="kBin" onclick="setActiveBin('k')">
+        <div class="fon-bin-label">Sonido [k] &mdash; como &ldquo;k&rdquo;</div>
+        <div class="fon-bin-tags" id="kTags"></div>
+      </div>
+      <div class="fon-bin ch-bin" id="chBin" onclick="setActiveBin('ch')">
+        <div class="fon-bin-label">Sonido suave [ch/y]</div>
+        <div class="fon-bin-tags" id="chTags"></div>
+      </div>
+    </div>
+
+    <button class="fon-check-btn" onclick="checkFonetica()">Verificar clasificacion</button>
+    <div class="fon-feedback" id="fonFeedback"></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ======== CULTURE STRIP ======== -->
+  <div class="culture-strip">
+    <div class="culture-icon">&#127963;</div>
+    <h3>La tassa di soggiorno</h3>
+    <div class="culture-it">
+      <p>Se un giorno ti ospiti in Italia, noterai che oltre al prezzo dell'hotel c'e un piccolo costo extra: la <strong>tassa di soggiorno</strong>. E un tributo comunale che pagano i turisti e varia secondo la citta e la categoria dell'hotel.</p>
+      <p>Nel video, Giulia lo spiega perfettamente: <em>&#171;3 euro al giorno a persona, naturalmente solo per gli adulti&#187;</em>. A Roma questo tributo puo essere da 3 a 7 euro a notte secondo il tipo di alloggio. Il ricavato va direttamente al comune per i servizi turistici e la manutenzione del patrimonio storico!</p>
+      <p><strong>Dato utile:</strong> Se vai a Venezia, la tassa di soggiorno puo arrivare a 5-6 euro a notte. Tienilo a mente quando prenoti!</p>
+    </div>
+    <button class="btn-translate" onclick="toggleCulture(this)">&#127466;&#127480; Ver en espanol</button>
+    <div class="culture-es" style="display:none">
+      <p>Si alguna vez te hospedas en Italia, notaras que ademas del precio del hotel hay un pequeno cargo extra: la <strong>tassa di soggiorno</strong> (impuesto de estancia). Es un tributo municipal que pagan los turistas y varia segun la ciudad y la categoria del hotel.</p>
+      <p>En el video, Giulia lo explica perfectamente: <em>&#171;3 euros al dia por persona, naturalmente solo para adultos&#187;</em>. En Roma este impuesto puede ser de 3 a 7 euros por noche segun el tipo de alojamiento. El ingreso va directo al municipio para servicios turisticos y mantenimiento del patrimonio historico!</p>
+      <p><strong>Dato util:</strong> Si vas a Venecia, la tassa di soggiorno puede llegar a 5-6 euros por noche. Tenlo en cuenta cuando reserves!</p>
+    </div>
+  </div>
+
+
+  <hr class="divider">
+
+  <!-- ======== SECCION EXTRA — SEGUNDO DIALOGO: RESERVA POR TELEFONO ======== -->
+  <div class="sec-header">
+    <div class="sec-icon">&#128222;</div>
+    <div>
+      <h2>Un secondo dialogo &mdash; prenoto al telefono</h2>
+      <div class="sec-sub">Ahora escucha una reserva por telefono. Giulia recibe la llamada.</div>
+    </div>
+  </div>
+
+  <div class="sofia-card">
+    <div class="sofia-avatar">&#128105;&#8205;&#127979;</div>
+    <div class="sofia-bubble">
+      <p>Este dialogo ocurre <strong>antes</strong> del video: el Sig. Ricci llama al hotel para reservar. Hace clic en <strong>&#9654; Escuchar</strong> en cada linea para oir y revelar el texto, o escucha todo seguido.</p>
+    </div>
+  </div>
+
+  <div class="dial-wrap">
+
+    <div class="dial-line2" data-text="Buongiorno, vorrei prenotare una camera doppia per tre notti." data-gender="m" data-yt-idx="20">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128104;</span>
+        <span class="dial-name m-name">Sig. Ricci</span>
+      </div>
+      <div class="dial-bubble m-bubble hidden-text blurred">Buongiorno, vorrei prenotare una camera doppia per tre notti.</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(20)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line2" data-text="Buongiorno! Certo. Da quando a quando vorrebbe soggiornare?" data-gender="f" data-yt-idx="21">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Giulia</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Buongiorno! Certo. Da quando a quando vorrebbe soggiornare?</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(21)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line2" data-text="Dal quindici al diciotto marzo. È possibile?" data-gender="m" data-yt-idx="22">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128104;</span>
+        <span class="dial-name m-name">Sig. Ricci</span>
+      </div>
+      <div class="dial-bubble m-bubble hidden-text blurred">Dal quindici al diciotto marzo. E possibile?</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(22)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line2" data-text="Sì, abbiamo disponibilità. Vuole camera con vista mare o giardino?" data-gender="f" data-yt-idx="23">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Giulia</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Si, abbiamo disponibilita. Vuole camera con vista mare o giardino?</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(23)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line2" data-text="Con vista mare, se possibile. Quanto costa a notte?" data-gender="m" data-yt-idx="24">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128104;</span>
+        <span class="dial-name m-name">Sig. Ricci</span>
+      </div>
+      <div class="dial-bubble m-bubble hidden-text blurred">Con vista mare, se possibile. Quanto costa a notte?</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(24)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line2" data-text="Centottanta euro a notte, colazione inclusa." data-gender="f" data-yt-idx="25">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Giulia</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Centottanta euro a notte, colazione inclusa.</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(25)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line2" data-text="Perfetto. Come posso pagare?" data-gender="m" data-yt-idx="26">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128104;</span>
+        <span class="dial-name m-name">Sig. Ricci</span>
+      </div>
+      <div class="dial-bubble m-bubble hidden-text blurred">Perfetto. Come posso pagare?</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(26)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line2" data-text="Può pagare con carta di credito alla prenotazione oppure in contanti all'arrivo." data-gender="f" data-yt-idx="27">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Giulia</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Puo pagare con carta di credito alla prenotazione oppure in contanti all'arrivo.</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(27)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line2" data-text="Preferisco pagare all'arrivo. Va bene?" data-gender="m" data-yt-idx="28">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128104;</span>
+        <span class="dial-name m-name">Sig. Ricci</span>
+      </div>
+      <div class="dial-bubble m-bubble hidden-text blurred">Preferisco pagare all'arrivo. Va bene?</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(28)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line2" data-text="Naturalmente! Le confermo la prenotazione via email. Può darmi il suo indirizzo?" data-gender="f" data-yt-idx="29">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Giulia</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Naturalmente! Le confermo la prenotazione via email. Puo darmi il suo indirizzo?</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(29)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line2" data-text="Certo, è marco.ricci@email.it" data-gender="m" data-yt-idx="30">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128104;</span>
+        <span class="dial-name m-name">Sig. Ricci</span>
+      </div>
+      <div class="dial-bubble m-bubble hidden-text blurred">Certo, e marco.ricci@email.it</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(30)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line2" data-text="Perfetto, signor Ricci. La aspettiamo il quindici marzo. Buona giornata!" data-gender="f" data-yt-idx="31">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128105;</span>
+        <span class="dial-name f-name">Giulia</span>
+      </div>
+      <div class="dial-bubble f-bubble hidden-text blurred">Perfetto, signor Ricci. La aspettiamo il quindici marzo. Buona giornata!</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(31)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <div class="dial-line2" data-text="Grazie a lei. Arrivederci!" data-gender="m" data-yt-idx="32">
+      <div class="dial-speaker-row">
+        <span class="dial-avatar">&#128104;</span>
+        <span class="dial-name m-name">Sig. Ricci</span>
+      </div>
+      <div class="dial-bubble m-bubble hidden-text blurred">Grazie a lei. Arrivederci!</div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(32)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+    <!-- Comprension segundo dialogo -->
+    <div class="comprension">
+      <h4>Entendiste la reserva? Responde estas preguntas:</h4>
+
+      <div class="comp-q" id="cq4">
+        <p>1. Cuantas noches quiere reservar el Sig. Ricci?</p>
+        <div class="comp-opts">
+          <button class="comp-opt" onclick="checkComp(this, false, 'cq4')">Dos noches</button>
+          <button class="comp-opt" onclick="checkComp(this, true, 'cq4')">Tres noches</button>
+          <button class="comp-opt" onclick="checkComp(this, false, 'cq4')">Cuatro noches</button>
+        </div>
+      </div>
+
+      <div class="comp-q" id="cq5">
+        <p>2. Cuanto cuesta la habitacion con vista al mar por noche?</p>
+        <div class="comp-opts">
+          <button class="comp-opt" onclick="checkComp(this, false, 'cq5')">150 euros, desayuno incluido</button>
+          <button class="comp-opt" onclick="checkComp(this, true, 'cq5')">180 euros, desayuno incluido</button>
+          <button class="comp-opt" onclick="checkComp(this, false, 'cq5')">180 euros, sin desayuno</button>
+        </div>
+      </div>
+
+      <div class="comp-q" id="cq6">
+        <p>3. Como prefiere pagar el Sig. Ricci?</p>
+        <div class="comp-opts">
+          <button class="comp-opt" onclick="checkComp(this, false, 'cq6')">Con tarjeta de credito al reservar</button>
+          <button class="comp-opt" onclick="checkComp(this, false, 'cq6')">Por transferencia bancaria</button>
+          <button class="comp-opt" onclick="checkComp(this, true, 'cq6')">En efectivo al llegar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </main>
 
@@ -973,22 +2287,58 @@ if (!window.__ippVC) {
 }
 
 // ── EXECUTION GUARD (Odoo DOMEval re-runs scripts on slide navigation) ──
-if (window.__ipp_m3_e2__) { /* already loaded */ }
-else {
-window.__ipp_m3_e2__ = true;
+if (!window.__ipp_m2_e2__) {
+window.__ipp_m2_e2__ = true;
 
-// ── AUDIO ENGINE ──
+// ── SPEECH SYNTHESIS ──
 // Nombre único para evitar colisión con función speak() de Odoo/framework
 function ippAudio(text, rate, gender) {
+  // Protección: si rate no es un número finito, usar 0.82
   rate = (typeof rate === 'number' && isFinite(rate)) ? rate : 0.82;
   gender = (gender === 'm' || gender === 'f') ? gender : 'f';
   if (!window.speechSynthesis) return;
   window.speechSynthesis.cancel();
   var utt = new SpeechSynthesisUtterance(String(text));
-  utt.lang = 'it-IT'; utt.rate = rate;
-  var voice = ippVoice(gender);
+  utt.lang = 'it-IT';
+  utt.rate = rate;
+  var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : speechSynthesis.getVoices();
+  var itV = voices.filter(function(v) { return v.lang && v.lang.startsWith('it'); });
+  var voice = null;
+  if (gender === 'm') {
+    // Voces masculinas conocidas en Windows/Mac/Chrome
+    voice = itV.find(function(v) { return /cosimo|luca|giorgio|male|masc/i.test(v.name); });
+    // Fallback: voz que NO sea Elsa/Alice (típicamente femeninas)
+    if (!voice) voice = itV.find(function(v) { return !/elsa|alice|female|femm/i.test(v.name); });
+  } else {
+    // Voces femeninas conocidas
+    voice = itV.find(function(v) { return /elsa|alice|giulia|female|femm/i.test(v.name); });
+    // Fallback: voz que NO sea Cosimo/Luca (típicamente masculinas)
+    if (!voice) voice = itV.find(function(v) { return !/cosimo|luca|giorgio|male/i.test(v.name); });
+  }
+  // Último recurso: cualquier voz italiana disponible
+  if (!voice && itV.length) voice = itV[0];
   if (voice) utt.voice = voice;
   (function(u){ setTimeout(function(){ try { speechSynthesis.speak(u); } catch(e){} }, 60); })(utt);
+}
+
+// ── DIALOG ──
+function playLine(btn) {
+  var line = btn.closest('.dial-line');
+  var text = line.dataset.text;
+  var gender = line.dataset.gender;
+  var bubble = line.querySelector('.dial-bubble');
+  ippAudio(text, 0.82, gender);
+  setTimeout(function() { bubble.classList.add('revealed'); }, 300);
+}
+
+var dialIndex = 0;
+var dialLines = [];
+
+function playAllDialog() {
+  dialLines = Array.from(document.querySelectorAll('.dial-line'));
+  dialIndex = 0;
+  window.speechSynthesis.cancel();
+  playDialogLine();
 }
 
 function ippVoice(gender) {
@@ -1005,130 +2355,431 @@ function ippVoice(gender) {
   return voice || (itV.length ? itV[0] : null);
 }
 
-// ── CLOCK INTERACTION ──
-const clockData = {
-  'h1':    { text: 'È l\'una.',       label: 'È l\'una',          note: '¡Singular especial!' },
-  'h2':    { text: 'Sono le due.',    label: 'Sono le due',       note: '' },
-  'h3':    { text: 'Sono le tre.',    label: 'Sono le tre',       note: '' },
-  'h4':    { text: 'Sono le quattro.',label: 'Sono le quattro',   note: '' },
-  'h5':    { text: 'Sono le cinque.', label: 'Sono le cinque',    note: '' },
-  'h6':    { text: 'Sono le sei.',    label: 'Sono le sei',       note: '' },
-  'h7':    { text: 'Sono le sette.',  label: 'Sono le sette',     note: '' },
-  'h8':    { text: 'Sono le otto.',   label: 'Sono le otto',      note: '' },
-  'h9':    { text: 'Sono le nove.',   label: 'Sono le nove',      note: '' },
-  'h10':   { text: 'Sono le dieci.',  label: 'Sono le dieci',     note: '' },
-  'h11':   { text: 'Sono le undici.', label: 'Sono le undici',    note: '' },
-  'h12':   { text: 'Sono le dodici.', label: 'Sono le dodici',    note: '' },
-  'hmezz': { text: 'È mezzogiorno.',  label: 'È mezzogiorno',     note: 'Especial: mezzogiorno' },
-  'hmn':   { text: 'È mezzanotte.',   label: 'È mezzanotte',      note: 'Especial: mezzanotte' },
-};
-
-function playHour(el, text, label, note) {
-  // Remove active from all
-  document.querySelectorAll('.clock-btn').forEach(b => b.classList.remove('active'));
-  el.classList.add('active');
-  ippAudio(text, 0.82, 'f');
-  const disp = document.getElementById('clock-display');
-  let html = '<span class="disp-it">' + label + '</span>';
-  if (note) html += ' <span class="disp-note">' + note + '</span>';
-  disp.innerHTML = html;
-}
-
-// ── DIALOG SYSTEM ──
-function playLine(btn) {
-  const line = btn.closest('.dial-line');
-  const text = line.dataset.text;
-  const gender = line.dataset.gender;
-  const bubble = line.querySelector('.dial-bubble');
-  ippAudio(text, 0.82, gender);
-  setTimeout(() => bubble.classList.add('revealed'), 300);
-}
-
-function playAllDialog(dialogId) {
-  const lines = Array.from(document.querySelectorAll('[data-dialog="' + dialogId + '"]'));
-  let index = 0;
-  window.speechSynthesis.cancel();
-  function playNext() {
-    if (index >= lines.length) return;
-    const line = lines[index];
-    const utt = new SpeechSynthesisUtterance(line.dataset.text);
-    utt.lang = 'it-IT'; utt.rate = 0.82;
-    const voices = speechSynthesis.getVoices();
-    const itV = voices.filter(v => v.lang.startsWith('it'));
-    const g = line.dataset.gender || 'f';
-    const voice = ippVoice(g);
-    if (voice) utt.voice = voice;
-    utt.onend = () => { index++; setTimeout(playNext, 500); };
-    speechSynthesis.speak(utt);
-  }
-  playNext();
-}
-
-// ── ACTIVITIES ──
-const actFeedback = {
-  'act1': { ok: '¡Correcto! Los bares italianos abren muy temprano para el espresso matutino. ☕', no: 'No exactamente — los bares italianos abren a las 7:00.' },
-  'act2': { ok: '¡Correcto! El pranzo italiano es entre la 1 y las 2 del mediodía. 🍝', no: 'En Italia el almuerzo es a las 13:00 (la una).' },
-  'act3': { ok: '¡Correcto! La cena italiana es bastante tarde — entre las 20:00 y las 21:00. 🍽', no: 'Los italianos cenan tarde — alrededor de las 20:00.' },
-  'act4': { ok: '¡Correcto! La mayoría de museos cierran a las 18:00. 🏛', no: 'Los museos suelen cerrar a las 18:00.' },
-  'act5': { ok: '¡Correcto! Las oficinas italianas abren a las 9:00. 💼', no: 'Las oficinas italianas abren a las 9:00.' },
-  'act6': { ok: '¡Correcto! Las farmacias cierran alrededor de las 19:00–19:30. 💊', no: 'Las farmacias suelen cerrar a las 19:00–19:30.' },
-};
-
-function checkActivity(btn, isCorrect, actId) {
-  const card = btn.closest('.activity-card');
-  const allBtns = card.querySelectorAll('.opt-btn');
-  allBtns.forEach(b => b.disabled = true);
-  btn.classList.add(isCorrect ? 'correct' : 'wrong');
-  if (!isCorrect) {
-    // Show which was correct
-    allBtns.forEach(b => {
-      if (b.onclick.toString().includes('true')) b.classList.add('correct');
-    });
-  }
-  const fb = document.getElementById(actId + '-fb');
-  fb.textContent = isCorrect ? actFeedback[actId].ok : actFeedback[actId].no;
-  fb.className = 'activity-feedback show ' + (isCorrect ? 'ok' : 'no');
-}
-
-// ── FONETICA ──
-function checkLR(btn, answer, correct, id) {
-  const row = btn.closest('.fonetic-word-row');
-  const allBtns = row.querySelectorAll('.lr-btn');
-  allBtns.forEach(b => b.disabled = true);
-  const isCorrect = answer === correct;
-  btn.classList.add(isCorrect ? 'correct' : 'wrong');
-  if (!isCorrect) {
-    allBtns.forEach(b => {
-      if (b.textContent.trim() === correct) b.classList.add('correct');
-    });
-  }
-  const fb = document.getElementById(id + '-fb');
-  fb.textContent = isCorrect ? '✓ ¡Bien!' : '✗ Era ' + correct;
-  fb.className = 'fonetic-fb show ' + (isCorrect ? 'ok' : 'no');
+function playDialogLine() {
+  if (dialIndex >= dialLines.length) return;
+  var line = dialLines[dialIndex];
+  var text = line.dataset.text;
+  var gender = line.dataset.gender || 'f';
+  var utt = new SpeechSynthesisUtterance(text);
+  utt.lang = 'it-IT';
+  utt.rate = 0.82;
+  var voice = ippVoice(gender);
+  if (voice) utt.voice = voice;
+  utt.onend = function() {
+    dialIndex++;
+    setTimeout(playDialogLine, 400);
+  };
+  (function(u){ setTimeout(function(){ try { speechSynthesis.speak(u); } catch(e){} }, 60); })(utt);
 }
 
 // ── CULTURE TOGGLE ──
 function toggleCulture(btn) {
-  const strip = btn.closest('.culture-strip');
-  const es = strip.querySelector('.culture-es');
+  var strip = btn.closest('.culture-strip');
+  var es = strip.querySelector('.culture-es');
   if (es.style.display === 'none') {
     es.style.display = 'block';
-    btn.textContent = '🇮🇹 Leggere in italiano';
+    btn.textContent = 'Leggere in italiano';
   } else {
     es.style.display = 'none';
-    btn.textContent = '🇪🇸 Ver en español';
+    btn.textContent = 'Ver en espanol';
+  }
+}
+
+// ── COMPRENSION QUIZ ──
+function checkComp(btn, isCorrect, qId) {
+  var q = document.getElementById(qId);
+  var opts = q.querySelectorAll('.comp-opt');
+  var correctTexts = { cq1: 'Dos noches', cq2: 'A las 11', cq3: 'Al momento de la partenza (salida)' };
+  opts.forEach(function(o) { o.disabled = true; });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    opts.forEach(function(o) {
+      if (o.textContent.trim() === correctTexts[qId]) o.classList.add('correct');
+    });
+  }
+}
+
+// ── DAYS ORDERING ──
+var dayOrder = ['lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato', 'domenica'];
+var selectedDays = [];
+
+function addDay(btn) {
+  if (btn.classList.contains('selected')) return;
+  var day = btn.dataset.day;
+  selectedDays.push(day);
+  btn.classList.add('selected');
+  ippAudio(day, 0.82, 'f');
+
+  var zone = document.getElementById('dayOrder');
+  var tag = document.createElement('span');
+  tag.className = 'day-drop-tag';
+  tag.setAttribute('data-day', day);
+  var inner = document.createTextNode(day + ' ');
+  tag.appendChild(inner);
+  var x = document.createElement('span');
+  x.className = 'remove-tag';
+  x.textContent = 'x';
+  x.onclick = (function(d, b, t) {
+    return function() {
+      t.remove();
+      var idx = selectedDays.indexOf(d);
+      if (idx > -1) selectedDays.splice(idx, 1);
+      b.classList.remove('selected');
+    };
+  })(day, btn, tag);
+  tag.appendChild(x);
+  zone.appendChild(tag);
+}
+
+function checkDays() {
+  var fb = document.getElementById('daysFeedback');
+  fb.className = 'days-feedback';
+  if (selectedDays.length < 7) {
+    fb.textContent = 'Todavia faltan dias. Agrega los 7 dias de la semana!';
+    fb.className = 'days-feedback err';
+    return;
+  }
+  var correct = selectedDays.every(function(d, i) { return d === dayOrder[i]; });
+  if (correct) {
+    fb.textContent = 'Perfecto! Lunedì, martedì, mercoledì, giovedì, venerdì, sabato, domenica: los sabes!';
+    fb.className = 'days-feedback ok';
+  } else {
+    fb.innerHTML = 'El orden no es correcto. El orden correcto es: <strong>' + dayOrder.join(' > ') + '</strong>';
+    fb.className = 'days-feedback err';
+  }
+}
+
+// ── PLURALS ──
+function checkPlurals() {
+  var ids = ['pl1','pl2','pl3','pl4','pl5','pl6','pl7'];
+  var correct = 0;
+  ids.forEach(function(id) {
+    var inp = document.getElementById(id);
+    var answer = inp.dataset.answer.toLowerCase().trim();
+    var val = inp.value.toLowerCase().trim();
+    inp.classList.remove('correct', 'wrong');
+    if (val === answer) {
+      inp.classList.add('correct');
+      correct++;
+    } else if (val.length > 0) {
+      inp.classList.add('wrong');
+      inp.value = inp.value + ' > ' + inp.dataset.answer;
+    }
+  });
+  var fb = document.getElementById('pluralFeedback');
+  fb.classList.add('show');
+  if (correct === 7) {
+    fb.textContent = 'Perfecto! Todos los plurales son correctos. Nota especial: "citta" no cambia: las palabras que terminan en vocal acentuada son invariables.';
+    fb.className = 'plural-feedback show ok';
+  } else {
+    fb.textContent = 'Bien! Acertaste ' + correct + ' de 7. Las en rojo muestran la respuesta correcta despues del >. Revisalas.';
+    fb.className = 'plural-feedback show partial';
+  }
+}
+
+// ── FONETICA ACTIVITY ──
+var activeBin = null;
+
+function setActiveBin(bin) {
+  activeBin = bin;
+  document.getElementById('kBin').classList.toggle('active-bin', bin === 'k');
+  document.getElementById('chBin').classList.toggle('active-bin', bin === 'ch');
+}
+
+function fonWordClick(btn) {
+  var word = btn.dataset.word;
+  ippAudio(word, 0.82, 'f');
+
+  if (!activeBin) {
+    alert('Primero hace clic en uno de los dos grupos (cuadros de abajo) para seleccionarlo, luego hace clic en la palabra.');
+    return;
+  }
+
+  var tagsEl = document.getElementById(activeBin + 'Tags');
+  var existing = tagsEl.querySelector('[data-word="' + word + '"]');
+  if (existing) return;
+
+  btn.classList.add('used');
+
+  var tag = document.createElement('span');
+  tag.className = 'fon-bin-tag';
+  tag.setAttribute('data-word', word);
+  tag.setAttribute('data-group', btn.dataset.group);
+  tag.textContent = word;
+  var btnRef = btn;
+  tag.onclick = function(e) {
+    e.stopPropagation();
+    this.remove();
+    btnRef.classList.remove('used');
+  };
+  tagsEl.appendChild(tag);
+}
+
+function checkFonetica() {
+  var kTags = document.querySelectorAll('#kTags .fon-bin-tag');
+  var chTags = document.querySelectorAll('#chTags .fon-bin-tag');
+  var correct = 0;
+  var total = 0;
+
+  kTags.forEach(function(t) {
+    total++;
+    if (t.dataset.group === 'k') correct++;
+  });
+  chTags.forEach(function(t) {
+    total++;
+    if (t.dataset.group === 'ch') correct++;
+  });
+
+  var fb = document.getElementById('fonFeedback');
+  if (total < 8) {
+    fb.textContent = 'Todavia no clasificaste todas las palabras. Faltan ' + (8 - total) + ' mas!';
+    fb.className = 'fon-feedback show partial';
+    return;
+  }
+
+  if (correct === 8) {
+    fb.innerHTML = 'Excelente oido! Clasificaste todo correctamente.<br><strong>Regla que descubriste:</strong> ca/co/cu + che/chi = [k] duro | ce/ci + ge/gi = sonido suave (ch/y).';
+    fb.className = 'fon-feedback show ok';
+  } else {
+    fb.innerHTML = 'Muy bien! Acertaste ' + correct + ' de 8.<br><em>Pista:</em> "chiavi" y "che fortuna" suenan [k] aunque tengan "h". Y Giulia/giorno son suaves aunque empiecen con G.';
+    fb.className = 'fon-feedback show partial';
   }
 }
 
   window.ippAudio = ippAudio;
-  window.playHour = playHour;
   window.playLine = playLine;
   window.playAllDialog = playAllDialog;
-  window.playNext = playNext;
-  window.checkActivity = checkActivity;
-  window.checkLR = checkLR;
+  window.addDay = addDay;
+  window.checkDays = checkDays;
+  window.checkComp = checkComp;
+  window.checkPlurals = checkPlurals;
+  window.fonWordClick = fonWordClick;
+  window.setActiveBin = setActiveBin;
+  window.checkFonetica = checkFonetica;
   window.toggleCulture = toggleCulture;
 } // end execution guard
 </script>
+
+<div id="ippyt-frame" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden"></div>
+
+<script>
+/* ── IPP YouTube Dialog Player — shared ipp-yt-v3 ── */
+(function(){
+  if(window.__ippYTinit) return;
+  window.__ippYTinit = true;
+
+  window._ippYT = {
+    player: null, ready: false,
+    mode: null,   // 'conv'|'dial'
+    idx: 0, poll: null,
+    lines: [],    // set per-dialog
+    els: [],      // dial-line NodeList
+  };
+
+  /* Carga la API de YouTube una sola vez */
+  if(!window.YT){
+    var s=document.createElement('script');
+    s.src='https://www.youtube.com/iframe_api';
+    document.head.appendChild(s);
+  }
+
+  window._ippYTinitPlayer = function(videoId, frameId){
+    if(window._ippYT.player) return; // ya creado
+    function tryCreate(){
+      if(!window.YT||!window.YT.Player){ setTimeout(tryCreate,300); return; }
+      window._ippYT.player = new YT.Player(frameId,{
+        videoId: videoId,
+        height:1, width:1,
+        playerVars:{autoplay:0,controls:0,origin:location.origin||''},
+        events:{
+          onReady:function(){ window._ippYT.ready=true; }
+        }
+      });
+    }
+    tryCreate();
+  };
+
+  window.ippYT_detener = function(){
+    var y=window._ippYT;
+    if(y.poll){clearInterval(y.poll);y.poll=null;}
+    if(y.player&&y.ready){ try{y.player.pauseVideo();}catch(e){} }
+    y.mode=null;
+    document.querySelectorAll('.yt-active')
+      .forEach(function(el){el.classList.remove('yt-active');});
+  };
+
+  window.ippYT_conversacion = function(){
+    var y=window._ippYT;
+    if(!y.ready){alert('El reproductor aun se esta cargando...');return;}
+    ippYT_detener();
+    // Revelar todo el texto inmediatamente
+    document.querySelectorAll('[data-yt-idx]').forEach(function(el){
+      _ippYT_revealEl(el);
+    });
+    y.mode='conv';
+    try{y.player.seekTo(0,true);y.player.playVideo();}catch(e){}
+  };
+
+  window.ippYT_dialogo = function(lineasCfg, dialSelector){
+    var y=window._ippYT;
+    if(!y.ready){alert('El reproductor aun se esta cargando...');return;}
+    ippYT_detener();
+    // Ocultar texto de todas las lineas
+    var selector = dialSelector
+      ? '.dial-container[data-yt-dial="'+dialSelector+'"] .dial-line[data-yt-idx]'
+      : '[data-yt-idx]';
+    y.els = Array.from(document.querySelectorAll(selector));
+    y.lines = lineasCfg;
+    y.idx = 0;
+    y.mode = 'dial';
+    // Reset visual
+    y.els.forEach(function(el){
+      el.classList.remove('yt-active','yt-done');
+      _ippYT_hideEl(el);
+    });
+    _ippYT_playNext();
+  };
+
+  window._ippYT_playNext = function(){
+    var y=window._ippYT;
+    if(y.mode!=='dial') return;
+    if(y.idx>=y.els.length){y.mode=null;return;}
+    var el=y.els[y.idx];
+    var ts=y.lines[y.idx];
+    el.classList.add('yt-active');
+    _ippYT_revealEl(el);
+    el.scrollIntoView({behavior:'smooth',block:'nearest'});
+    if(ts && ts[0]!==null){
+      try{
+        y.player.seekTo(ts[0],true);
+        y.player.playVideo();
+      }catch(e){}
+      y.poll=setInterval(function(){
+        if(y.mode!=='dial'){clearInterval(y.poll);return;}
+        try{
+          var ct=y.player.getCurrentTime();
+          if(ct>=ts[1]){
+            clearInterval(y.poll); y.poll=null;
+            try{y.player.pauseVideo();}catch(e){}
+            el.classList.remove('yt-active');el.classList.add('yt-done');
+            y.idx++;
+            setTimeout(window._ippYT_playNext,450);
+          }
+        }catch(e){clearInterval(y.poll);}
+      },150);
+    } else {
+      // Sin timestamp: mostrar texto 2 segundos
+      setTimeout(function(){
+        el.classList.remove('yt-active');el.classList.add('yt-done');
+        y.idx++;
+        _ippYT_playNext();
+      },2000);
+    }
+  };
+
+  window._ippYT_revealEl = function(el){
+    var t = el.getAttribute('data-text')||el.getAttribute('data-yt-text')||'';
+    // dial-hidden/hidden-text/dial-bubble: M0-M3 (texto oculto revelado)
+    // bubble-m/bubble-g: M4-M5/M7 (siempre visible, solo resaltamos)
+    // line-it: M6 (solo resaltamos)
+    var targets=['.dial-hidden','.hidden-text','.dial-bubble','.bubble-m','.bubble-g','.line-it'];
+    for(var i=0;i<targets.length;i++){
+      var h=el.querySelector(targets[i]);
+      if(h){
+        if(t && i<3) h.textContent=t; // solo sobreescribir en M0-M3
+        h.style.opacity='1';h.style.visibility='visible';
+        h.style.maxHeight='none';h.style.display='';
+        return;
+      }
+    }
+  };
+
+  window._ippYT_hideEl = function(el){
+    var targets=['.dial-hidden','.hidden-text','.dial-bubble','.bubble-m','.bubble-g','.line-it'];
+    for(var i=0;i<targets.length;i++){
+      var h=el.querySelector(targets[i]);
+      if(h){ h.style.opacity='0'; h.style.visibility='hidden'; return; }
+    }
+  };
+})();
+</script>
+<script>_ippYTinitPlayer('YXFZ63W1ezQ','ippyt-frame');</script>
+
+
+<script>
+/* ── IPP Per-line YT playback ── */
+(function(){
+  var LINE_TIMES = [[0,3],[3,6],[6,15],[15,18],[18,30],[30,33],[33,48],[48,51],[51,57],[57,69],[69,71],[71,77],[77,80],[77,80],[80,83],[83,95],[95,97],[97,106],[106,112],[112,116]];
+  var _activeLine = -1;
+  var _linePoll   = null;
+
+  function _lineEl(idx){ return document.querySelector('[data-yt-idx="'+idx+'"]'); }
+
+  function _bubbleEl(el){
+    // Intenta encontrar el elemento burbuja en distintas estructuras de modulo
+    var sels = ['.dial-bubble','.f-bubble','.m-bubble','.dialog-bubble',
+                '.bubble-m','.bubble-g','.bubble-f','.bubble-wrap'];
+    for(var i=0;i<sels.length;i++){
+      var b=el.querySelector(sels[i]); if(b) return b;
+    }
+    return el; // fallback
+  }
+
+  function _setButtons(idx, playing){
+    var el=_lineEl(idx); if(!el) return;
+    var pb=el.querySelector('.yt-lbtn.play');
+    var sb=el.querySelector('.yt-lbtn.stop');
+    if(pb) pb.style.display=playing?'none':'';
+    if(sb) sb.style.display=playing?'':'none';
+    el.classList.toggle('yt-playing',playing);
+  }
+
+  window.ippYT_stopLine=function(){
+    if(_linePoll){clearInterval(_linePoll);_linePoll=null;}
+    var y=window._ippYT;
+    if(y&&y.ready){try{y.player.pauseVideo();}catch(e){}}
+    if(_activeLine>=0){_setButtons(_activeLine,false);_activeLine=-1;}
+  };
+
+  window.ippYT_playLine=function(idx){
+    ippYT_stopLine();
+    var y=window._ippYT;
+    if(!y||!y.ready){alert('El reproductor aún se está cargando...');return;}
+    var ts=LINE_TIMES[idx];
+    if(!ts)return;
+    var el=_lineEl(idx);
+    if(el){ var b=_bubbleEl(el); if(b) b.classList.remove('blurred'); }
+    _activeLine=idx;
+    _setButtons(idx,true);
+    try{y.player.seekTo(ts[0],true);y.player.playVideo();}catch(e){}
+    _linePoll=setInterval(function(){
+      try{
+        var ct=y.player.getCurrentTime();
+        if(ct>=ts[1]){
+          clearInterval(_linePoll);_linePoll=null;
+          try{y.player.pauseVideo();}catch(e){}
+          _setButtons(idx,false);_activeLine=-1;
+        }
+      }catch(e){clearInterval(_linePoll);}
+    },150);
+  };
+
+  // Sobrescribir conversacion: quita blur de todo y reproduce
+  var _origConv=window.ippYT_conversacion;
+  window.ippYT_conversacion=function(){
+    ippYT_stopLine();
+    document.querySelectorAll('.blurred').forEach(function(b){b.classList.remove('blurred');});
+    if(_origConv) _origConv();
+  };
+
+  // Sobrescribir detener
+  var _origStop=window.ippYT_detener;
+  window.ippYT_detener=function(){
+    ippYT_stopLine();
+    if(_origStop) _origStop();
+  };
+})();
+</script>
+
 </body>
 </html>

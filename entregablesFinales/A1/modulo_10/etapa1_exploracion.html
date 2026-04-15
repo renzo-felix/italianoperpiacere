@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 9 — Mi piace moltissimo!</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mod:#cc4736; --mod-dk:#a8382a; --mod-lt:#faeae8; --mod-tx:#7a1f14;
+    --cream:#e9e6d5; --cream-dk:#ddd9c8; --gold:#EFCF7F;
+    --black:#1a1a18; --white:#fff;
+    --fh:'Playfair Display',Georgia,serif;
+    --fb:'Outfit',system-ui,sans-serif;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--fb); background:var(--cream); color:var(--black); }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
+    color: var(--white);
+    padding: 48px 24px 40px;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    font-family: var(--fb);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: var(--fh);
+    font-style: italic;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .hero h2 {
+    font-family: var(--fb);
+    font-weight: 300;
+    font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+    opacity: 0.88;
+    margin-bottom: 20px;
+  }
+  .hero-desc {
+    max-width: 560px;
+    margin: 0 auto;
+    font-size: 0.97rem;
+    opacity: 0.85;
+    line-height: 1.6;
+  }
+
+  /* MAIN */
+  .container { max-width: 760px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  /* SECCIÓN GENERAL */
+  .section {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 28px 28px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  }
+  .section-tag {
+    display: inline-block;
+    background: var(--mod-lt);
+    color: var(--mod-tx);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  .section h3 {
+    font-family: var(--fh);
+    font-style: italic;
+    font-size: 1.35rem;
+    color: var(--mod-dk);
+    margin-bottom: 8px;
+  }
+  .section p { font-size: 0.97rem; line-height: 1.65; color: #444; margin-bottom: 10px; }
+  .section p:last-child { margin-bottom: 0; }
+
+  /* CHECKLIST */
+  .checklist {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    user-select: none;
+    border: 2px solid transparent;
+  }
+  .check-item:hover { background: var(--cream-dk); transform: translateY(-1px); }
+  .check-item.checked {
+    background: var(--mod-lt);
+    border-color: var(--mod);
+  }
+  .check-item input[type="checkbox"] { display: none; }
+  .check-box {
+    width: 20px; height: 20px;
+    border: 2px solid var(--mod);
+    border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    color: var(--white);
+    background: transparent;
+    transition: background 0.2s;
+  }
+  .check-item.checked .check-box { background: var(--mod); }
+  .check-label { font-size: 0.92rem; font-weight: 500; color: var(--black); }
+
+  /* VIDEO */
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    margin: 16px 0;
+    background: var(--black);
+  }
+  .video-wrap iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+  .video-note {
+    font-size: 0.82rem;
+    color: #777;
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  /* COMPRENSIÓN - preguntas */
+  .quiz-question { margin-bottom: 22px; }
+  .quiz-question .q-text {
+    font-weight: 600;
+    font-size: 0.97rem;
+    margin-bottom: 10px;
+    color: var(--black);
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 2px solid var(--cream-dk);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.92rem;
+    transition: border-color 0.2s, background 0.2s;
+    background: var(--cream);
+  }
+  .quiz-option:hover { border-color: var(--mod); background: var(--mod-lt); }
+  .quiz-option.correct { border-color: #528e74; background: #edf7f3; color: #2d4d3c; }
+  .quiz-option.wrong { border-color: var(--mod); background: var(--mod-lt); color: var(--mod-tx); }
+  .quiz-option .opt-radio {
+    width: 18px; height: 18px;
+    border: 2px solid #bbb;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: border-color 0.2s;
+  }
+  .quiz-option.correct .opt-radio { border-color: #528e74; background: #528e74; }
+  .quiz-option.wrong .opt-radio { border-color: var(--mod); background: var(--mod); }
+
+  .feedback-msg {
+    font-size: 0.88rem;
+    padding: 6px 12px;
+    border-radius: 8px;
+    margin-top: 6px;
+    display: none;
+  }
+  .feedback-msg.show { display: block; }
+  .feedback-msg.ok { background: #edf7f3; color: #2d4d3c; }
+  .feedback-msg.nok { background: var(--mod-lt); color: var(--mod-tx); }
+
+  /* BTN CONTINUAR */
+  .btn-continuar {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin: 32px auto 0;
+    padding: 14px 24px;
+    background: var(--mod);
+    color: var(--white);
+    font-family: var(--fb);
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+  .btn-continuar:hover { background: var(--mod-dk); transform: translateY(-2px); }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--cream-dk); margin: 20px 0; }
+
+  /* REFLEXIÓN */
+  .reflex-check { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .reflex-opt {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 14px;
+    border: 2px solid var(--cream-dk);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.92rem;
+    background: var(--cream);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .reflex-opt:hover { border-color: var(--mod); background: var(--mod-lt); }
+  .reflex-opt.selected { border-color: var(--mod); background: var(--mod-lt); color: var(--mod-tx); font-weight: 500; }
+  .reflex-opt .opt-sq {
+    width: 18px; height: 18px;
+    border: 2px solid #bbb;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .reflex-opt.selected .opt-sq { border-color: var(--mod); background: var(--mod); }
+
+  .check-btn {
+    margin-top: 14px;
+    padding: 9px 22px;
+    background: var(--mod);
+    color: var(--white);
+    font-family: var(--fb);
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .check-btn:hover { background: var(--mod-dk); }
+
+  .result-box {
+    margin-top: 12px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 0.93rem;
+    display: none;
+    line-height: 1.6;
+  }
+  .result-box.show { display: block; }
+  .result-box.ok { background: #edf7f3; color: #2d4d3c; border-left: 4px solid #528e74; }
+  .result-box.nok { background: var(--mod-lt); color: var(--mod-tx); border-left: 4px solid var(--mod); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Módulo 9 · A1</div>
+  <h1>Mi piace moltissimo!</h1>
+  <h2>Il tempo libero in Italia</h2>
+  <p class="hero-desc">¿Qué hacés cuando tenés tiempo libre? Hoy vas a escuchar una canción italiana sobre el aburrimiento del fin de semana... y las ganas de salir a disfrutar la vida.</p>
+</div>
+
+<div class="container">
+
+  <!-- SECCIÓN 1: PRE-ESCUCHA -->
+  <div class="section">
+    <span class="section-tag">Antes de escuchar</span>
+    <h3>¿Qué actividades conocés en italiano?</h3>
+    <p>Marcá las palabras que ya conocés o que podés adivinar. ¡No hay trampa, es solo para calentarte!</p>
+    <div class="checklist" id="checklist1">
+      <label class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">andare al cinema</span>
+      </label>
+      <label class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">leggere</span>
+      </label>
+      <label class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">ascoltare musica</span>
+      </label>
+      <label class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">fare sport</span>
+      </label>
+      <label class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">viaggiare</span>
+      </label>
+      <label class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">cucinare</span>
+      </label>
+      <label class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">guardare la TV</span>
+      </label>
+      <label class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">fare una passeggiata</span>
+      </label>
+    </div>
+    <p style="margin-top:16px; font-size:0.88rem; color:#777;">Las que no conocés todavía, ¡las vas a aprender en esta unidad!</p>
+  </div>
+
+  <!-- SECCIÓN 2: VIDEO -->
+  <div class="section">
+    <span class="section-tag">La canción del módulo</span>
+    <h3>Escuchá con atención</h3>
+    <p>Esta canción habla de dos personas que están aburridas en casa un sábado. Escuchala una vez sin preocuparte por entender todo, ¡dejate llevar por la música!</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/7RXiaCyz7O8" allowfullscreen title="Canción Módulo 9 — Tempo libero"></iframe>
+    </div>
+    <p class="video-note">Podés pausar y volver a escuchar las veces que necesites.</p>
+  </div>
+
+  <!-- SECCIÓN 3: COMPRENSIÓN -->
+  <div class="section">
+    <span class="section-tag">Comprensión</span>
+    <h3>¿Entendiste la idea general?</h3>
+    <p>Respondé estas preguntas sobre lo que escuchaste. Hacé clic en la opción que te parece correcta.</p>
+
+    <!-- Q1 -->
+    <div class="quiz-question">
+      <div class="q-text">1. ¿Dónde están las personas al comienzo de la canción?</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="selectOpt(this, false, 'fb1')">
+          <div class="opt-radio"></div> En el parque
+        </div>
+        <div class="quiz-option" onclick="selectOpt(this, true, 'fb1')">
+          <div class="opt-radio"></div> En casa
+        </div>
+        <div class="quiz-option" onclick="selectOpt(this, false, 'fb1')">
+          <div class="opt-radio"></div> En el cine
+        </div>
+        <div class="quiz-option" onclick="selectOpt(this, false, 'fb1')">
+          <div class="opt-radio"></div> En un restaurante
+        </div>
+      </div>
+      <div class="feedback-msg" id="fb1"></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Q2 -->
+    <div class="quiz-question">
+      <div class="q-text">2. ¿Cómo se siente al menos uno de los personajes?</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="selectOpt(this, false, 'fb2')">
+          <div class="opt-radio"></div> Contento/a y relajado/a
+        </div>
+        <div class="quiz-option" onclick="selectOpt(this, false, 'fb2')">
+          <div class="opt-radio"></div> Con hambre
+        </div>
+        <div class="quiz-option" onclick="selectOpt(this, true, 'fb2')">
+          <div class="opt-radio"></div> Aburrido/a (<em>che noia!</em>)
+        </div>
+        <div class="quiz-option" onclick="selectOpt(this, false, 'fb2')">
+          <div class="opt-radio"></div> Cansado/a
+        </div>
+      </div>
+      <div class="feedback-msg" id="fb2"></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Q3 -->
+    <div class="quiz-question">
+      <div class="q-text">3. ¿Qué día de la semana es en la canción?</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="selectOpt(this, false, 'fb3')">
+          <div class="opt-radio"></div> Lunedì
+        </div>
+        <div class="quiz-option" onclick="selectOpt(this, false, 'fb3')">
+          <div class="opt-radio"></div> Venerdì
+        </div>
+        <div class="quiz-option" onclick="selectOpt(this, true, 'fb3')">
+          <div class="opt-radio"></div> Sabato
+        </div>
+        <div class="quiz-option" onclick="selectOpt(this, false, 'fb3')">
+          <div class="opt-radio"></div> Domenica
+        </div>
+      </div>
+      <div class="feedback-msg" id="fb3"></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Q4 -->
+    <div class="quiz-question">
+      <div class="q-text">4. ¿Qué quieren hacer al final?</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="selectOpt(this, false, 'fb4')">
+          <div class="opt-radio"></div> Quedarse en casa a cocinar
+        </div>
+        <div class="quiz-option" onclick="selectOpt(this, true, 'fb4')">
+          <div class="opt-radio"></div> Salir a dar una vuelta (<em>fare una passeggiata</em>)
+        </div>
+        <div class="quiz-option" onclick="selectOpt(this, false, 'fb4')">
+          <div class="opt-radio"></div> Ir al trabajo
+        </div>
+        <div class="quiz-option" onclick="selectOpt(this, false, 'fb4')">
+          <div class="opt-radio"></div> Llamar a los amigos
+        </div>
+      </div>
+      <div class="feedback-msg" id="fb4"></div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4: REFLEXIÓN -->
+  <div class="section">
+    <span class="section-tag">Reflexión</span>
+    <h3>¿Qué actividades se mencionan?</h3>
+    <p>Seleccioná todas las que aparecen en la canción (podés elegir más de una).</p>
+    <div class="reflex-check" id="reflexCheck">
+      <div class="reflex-opt" onclick="toggleReflex(this)" data-val="passeggiata">
+        <div class="opt-sq"></div> Fare una passeggiata
+      </div>
+      <div class="reflex-opt" onclick="toggleReflex(this)" data-val="viaggiare">
+        <div class="opt-sq"></div> Viaggiare
+      </div>
+      <div class="reflex-opt" onclick="toggleReflex(this)" data-val="cinema">
+        <div class="opt-sq"></div> Andare al cinema
+      </div>
+      <div class="reflex-opt" onclick="toggleReflex(this)" data-val="casa">
+        <div class="opt-sq"></div> Stare a casa
+      </div>
+      <div class="reflex-opt" onclick="toggleReflex(this)" data-val="cucinare">
+        <div class="opt-sq"></div> Cucinare
+      </div>
+      <div class="reflex-opt" onclick="toggleReflex(this)" data-val="uscire">
+        <div class="opt-sq"></div> Uscire
+      </div>
+    </div>
+    <button class="check-btn" onclick="checkReflex()">Verificar</button>
+    <div class="result-box" id="reflexResult"></div>
+  </div>
+
+  <!-- BOTÓN CONTINUAR -->
+  <button class="btn-continuar" onclick="alert('¡Genial! Continuá con la Etapa 2: Descubrimiento.')">
+    Continuar a la Etapa 2 →
+  </button>
+
+</div>
+
+<script>
+if (!window.__ipp_m9_e1__) { window.__ipp_m9_e1__ = true;
+
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+  }
+
+  function selectOpt(el, isCorrect, fbId) {
+    var parent = el.parentElement;
+    var opts = parent.querySelectorAll('.quiz-option');
+    opts.forEach(function(o) { o.classList.remove('correct','wrong'); });
+    el.classList.add(isCorrect ? 'correct' : 'wrong');
+    var fb = document.getElementById(fbId);
+    if (isCorrect) {
+      fb.textContent = '¡Perfecto! ✓';
+      fb.className = 'feedback-msg show ok';
+    } else {
+      fb.textContent = 'Casi... escuchá de nuevo y fijate en esa parte.';
+      fb.className = 'feedback-msg show nok';
+    }
+  }
+
+  function toggleReflex(el) {
+    el.classList.toggle('selected');
+  }
+
+  function checkReflex() {
+    var correctVals = ['passeggiata','viaggiare','casa','uscire'];
+    var selected = [];
+    document.querySelectorAll('#reflexCheck .reflex-opt.selected').forEach(function(o){
+      selected.push(o.getAttribute('data-val'));
+    });
+    var hits = selected.filter(function(v){ return correctVals.indexOf(v) >= 0; }).length;
+    var wrong = selected.filter(function(v){ return correctVals.indexOf(v) < 0; }).length;
+    var result = document.getElementById('reflexResult');
+    if (hits >= 3 && wrong === 0) {
+      result.innerHTML = '¡Muy bien! Las que se mencionan son: <strong>fare una passeggiata</strong>, <strong>viaggiare</strong>, <strong>stare a casa</strong> y <strong>uscire</strong>.';
+      result.className = 'result-box show ok';
+    } else {
+      result.innerHTML = 'Revisá tu selección. Las pistas están en la letra: <em>stiamo sempre a casa</em>, <em>uscire</em>, <em>fare una passeggiata</em>, <em>viaggiano</em>.';
+      result.className = 'result-box show nok';
+    }
+  }
+
+  window.toggleCheck = toggleCheck;
+  window.selectOpt = selectOpt;
+  window.toggleReflex = toggleReflex;
+  window.checkReflex = checkReflex;
+
+} // end execution guard
+</script>
+</body>
+</html>

@@ -1,137 +1,143 @@
-# Módulo 6 — La mia giornata · Etapa 4: Ejercicios
+# Módulo 5 — Al bar · Etapa 4: Ejercicios
 
 ---
 
-## Esercizio 1 — Coniuga i verbi riflessivi
+## Esercizio 1 — Metti in ordine il dialogo
 
-Completá con la forma correcta del verbo reflexivo indicado:
+Ordená estas frases para reconstruir una conversación en el bar:
 
-1. Io ___ (svegliarsi) alle sette di mattina.
-2. Tu ___ (alzarsi) subito o aspetti un po'?
-3. Giulia ___ (vestirsi) in dieci minuti.
-4. Noi ___ (lavarsi) i denti dopo colazione.
-5. Voi ___ (rilassarsi) sul divano la sera?
-6. I bambini ___ (addormentarsi) presto.
+a. Allora, per me un cappuccino e un cornetto alla crema.
+b. Quanto costa tutto?
+c. Buongiorno! Cosa prende?
+d. Cinque euro e venti, grazie.
+e. Buongiorno! Io vorrei un'acqua naturale, per favore.
+f. E lei, signore?
 
----
-
-## Esercizio 2 — Anche / Neanche
-
-Respondé usando **anche** o **neanche**:
-
-1. — Io mi sveglio alle 7.
-   — ___ io! (misma hora)
-
-2. — Non faccio colazione la mattina.
-   — ___ io. (igual)
-
-3. — Mi piace correre al parco.
-   — ___ a me! (igual)
-
-4. — Non mi rilasso mai.
-   — ___ io, ho sempre da fare. (igual)
+Orden correcto: ___ → ___ → ___ → ___ → ___ → ___
 
 ---
 
-## Esercizio 3 — Gli articoli con i giorni della settimana
+## Esercizio 2 — Completa con l'articolo indeterminativo
 
-Completá con el artículo correcto (il / la / i / le) o dejá vacío si no se necesita:
+Completá con **un / uno / una / un'**:
 
-1. Di solito vado in palestra ___ lunedì.
-2. ___ domenica è il giorno della famiglia.
-3. Lavoro ___ lunedì, ___ martedì e ___ mercoledì.
-4. Oggi è ___ venerdì.
-5. Mi piace ___ sabato mattina perché non lavoro.
-6. ___ giovedì ho una riunione importante.
-
----
-
-## Esercizio 4 — I possessivi
-
-Completá con il possessivo corretto:
-
-1. Questa è ___ (mi) agenda.
-2. Come si chiama ___ (tu) madre?
-3. ___ (suo, di lui) nonno abita a Firenze.
-4. ___ (nostro) gatto si chiama Micio.
-5. I ___ (loro) figli vanno a scuola.
-6. Dov'è ___ (vostro) casa?
+1. Prendo ___ caffè macchiato.
+2. Vorrei ___ spremuta d'arancia.
+3. Per me ___ tramezzino con prosciutto.
+4. C'è ___ tiramisù fatto in casa?
+5. Prendo ___ acqua frizzante, per favore.
+6. Hai ___ spuntino veloce?
+7. Vorrei ___ birra piccola.
+8. Per la signora ___ panna cotta.
 
 ---
 
-## Esercizio 5 — Rimetti in ordine la giornata
+## Esercizio 3 — Verbi modali: VOLERE / POTERE / DOVERE
 
-Ordená estas acciones de la mañana de forma lógica:
+Completá con la forma correcta del verbo indicado:
 
-a. vestirsi
-b. fare colazione
-c. svegliarsi
-d. lavarsi i denti
-e. uscire di casa
-f. alzarsi dal letto
-
-Orden: ___ → ___ → ___ → ___ → ___ → ___
+1. Io ___ (volere) un caffè decaffeinato.
+2. Tu ___ (potere) ordinare al bancone.
+3. Lei ___ (dovere) pagare alla cassa.
+4. Noi ___ (volere) due cappuccini, per favore.
+5. Voi ___ (potere) scegliere tra caffè e tè.
+6. Loro non ___ (dovere) aspettare molto.
 
 ---
 
-## Esercizio 6 — Avverbi di frequenza
+## Esercizio 4 — Preposizioni di luogo: DA / A / IN
 
-Completá las oraciones con el adverbio más lógico (**sempre / spesso / a volte / raramente / mai**):
+Completá con la preposizione correcta:
 
-1. Mi sveglio ___ alle 7 — non cambio mai orario.
-2. ___ vado al bar la mattina, ma non tutti i giorni.
-3. Non mangio ___ carne — sono vegetariano.
-4. ___ cucino io, altre volte ordiniamo la pizza.
-5. Vai ___ in palestra? — No, quasi ___!
+1. Vado ___ bar ogni mattina.
+2. Mangio ___ casa di solito.
+3. Vengo ___ Roma.
+4. Lavoro ___ un ufficio in centro.
+5. Sei ___ casa adesso?
+6. Andiamo ___ bere un caffè?
 
 ---
 
-## Esercizio 7 — Le parti del giorno
+## Esercizio 5 — I giorni della settimana
 
-Asociá cada acción con la parte del giorno más apropiada:
+Escribí el día que falta en la secuencia:
 
-| Azione | Parte del giorno |
-|--------|-----------------|
-| fare colazione | ___ |
-| cenare | ___ |
-| pranzare | ___ |
-| guardare le stelle | ___ |
-| andare al lavoro | ___ |
-| dormire | ___ |
+1. lunedì → martedì → ___ → giovedì
+2. venerdì → sabato → ___
+3. ___ → mercoledì → giovedì
+4. domenica → ___ → martedì
 
-*(la mattina / il pomeriggio / la sera / la notte / mezzogiorno)*
+---
+
+## Esercizio 6 — Al bar: ¿qué decís?
+
+Escribí en italiano qué dirías en cada situación:
+
+1. Querés pedir un café con leche:
+   → ___
+
+2. Preguntás cuánto cuesta el tramezzino:
+   → ___
+
+3. Pedís la cuenta:
+   → ___
+
+4. Llamás la atención del mozo:
+   → ___
+
+5. Decís que no tenés hambre, solo sed:
+   → ___
+
+---
+
+## Esercizio 7 — Le doppie: vero o falso?
+
+Indicá si la doble consonante está escrita correctamente (V) o no (F):
+
+1. cafè → ___
+2. cappuccino → ___
+3. mozzarela → ___
+4. tiramisù → ___
+5. panna cotta → ___
+6. piza → ___
+7. cornetto → ___
+8. prosciuto → ___
 
 ---
 
 ## Esercizio 8 — Produzione scritta
 
-Describí tu rutina de un giorno tipo en 6-8 oraciones. Usá:
-- Al menos 4 verbos reflexivos conjugados
-- Dos avverbi di frequenza
-- Al menos un possessivo
-- Expresiones de tiempo (di solito, verso le, intorno alle, dopo)
+Describí tu bar ideal en 5-6 oraciones. Usá:
+- Al menos 3 bebidas o comidas del bar
+- Un día de la semana
+- Una frase con verbo modal (voglio / posso / devo)
+- La expresión *di solito* o *a volte*
 
 ---
 
 ## RISPOSTA
 
 **Esercizio 1:**
-1. mi sveglio  2. ti alzi  3. si veste  4. ci laviamo  5. vi rilassate  6. si addormentano
+c → e → f → a → b → d
 
 **Esercizio 2:**
-1. Anch'  2. Neanche / Neanch'  3. Anche  4. Neanche / Neanch'
+1. un  2. una  3. un  4. un  5. un'  6. uno  7. una  8. una
 
 **Esercizio 3:**
-1. il  2. La  3. il / il / il  4. (sin artículo — "Oggi è venerdì")  5. il  6. Il
+1. voglio  2. puoi  3. deve  4. vogliamo  5. potete  6. devono
 
 **Esercizio 4:**
-1. la mia  2. tua  3. Suo  4. Il nostro  5. loro  6. la vostra
+1. al  2. a  3. da  4. in  5. a  6. a
 
 **Esercizio 5:**
-c → f → d → b → a → e
+1. mercoledì  2. domenica  3. martedì  4. lunedì
 
-**Esercizio 6:**
-1. sempre  2. A volte / Spesso  3. mai  4. A volte  5. spesso / mai
+**Esercizio 6:** (sugerencias)
+1. Vorrei un caffellatte, per favore. / Un latte macchiato, grazie.
+2. Quanto costa il tramezzino?
+3. Il conto, per favore. / Posso avere il conto?
+4. Scusi! / Mi scusi!
+5. Non ho fame, solo sete.
 
 **Esercizio 7:**
-fare colazione → la mattina · cenare → la sera · pranzare → mezzogiorno/il pomeriggio · guardare le stelle → la notte · andare al lavoro → la mattina · dormire → la notte
+1. F (caffè ✓)  2. V  3. F (mozzarella)  4. V  5. V  6. F (pizza)  7. V  8. F (prosciutto)

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M10 · Etapa 1 — Il concerto è andato bene!</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --mod:#78a6ba; --mod-dk:#5a8ea0; --mod-lt:#e8f4f8; --mod-tx:#2d5f72;
+  --cream:#e9e6d5; --cream-dk:#ddd9c8; --gold:#EFCF7F;
+  --black:#1a1a18; --white:#fff;
+  --fh:'Playfair Display',Georgia,serif;
+  --fb:'Outfit',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6;}
+
+/* HERO */
+.hero{background:var(--mod-lt);border-bottom:4px solid var(--mod);padding:2.5rem 1.5rem 2rem;text-align:center;}
+.hero-tag{display:inline-block;background:var(--mod);color:var(--white);font-family:var(--fb);font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .9rem;border-radius:2rem;margin-bottom:.9rem;}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:2.1rem;color:var(--mod-tx);line-height:1.2;margin-bottom:.5rem;}
+.hero p{font-size:1rem;color:var(--mod-dk);max-width:500px;margin:0 auto;}
+
+/* SECTIONS */
+.section{max-width:720px;margin:2rem auto;padding:0 1.2rem;}
+.card{background:var(--white);border-radius:14px;border:1.5px solid var(--cream-dk);padding:1.6rem;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(120,166,186,.1);}
+.card h2{font-family:var(--fh);font-style:italic;font-size:1.25rem;color:var(--mod-tx);margin-bottom:.4rem;}
+.card h3{font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mod-dk);margin-bottom:.9rem;}
+
+/* IMAGEN PLACEHOLDER */
+.concert-img{width:100%;aspect-ratio:16/9;background:linear-gradient(145deg,var(--mod-lt) 0%,var(--mod) 100%);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:1.2rem;border:2px solid var(--mod);}
+.concert-img .icon{font-size:3.5rem;margin-bottom:.5rem;}
+.concert-img .label{font-family:var(--fh);font-style:italic;font-size:1.1rem;color:var(--white);text-shadow:0 1px 3px rgba(0,0,0,.25);}
+.concert-img .sublabel{font-size:.85rem;color:rgba(255,255,255,.85);margin-top:.25rem;}
+
+/* DESCRIPCION */
+.desc-text{font-size:.98rem;color:var(--black);line-height:1.75;}
+.desc-text .it{font-style:italic;color:var(--mod-tx);font-weight:500;}
+
+/* CHECKLIST */
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.8rem;}
+@media(max-width:480px){.check-grid{grid-template-columns:1fr;}}
+.check-item{display:flex;align-items:center;gap:.6rem;background:var(--cream);border:1.5px solid var(--cream-dk);border-radius:8px;padding:.55rem .8rem;cursor:pointer;transition:border-color .2s,background .2s;user-select:none;}
+.check-item:hover{border-color:var(--mod);}
+.check-item.active{background:var(--mod-lt);border-color:var(--mod);}
+.check-item .cb{width:18px;height:18px;border:2px solid var(--mod-dk);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;color:var(--white);}
+.check-item.active .cb{background:var(--mod-dk);border-color:var(--mod-dk);}
+.check-item span{font-size:.9rem;}
+
+/* V/F */
+.vf-list{display:flex;flex-direction:column;gap:.8rem;margin-top:.8rem;}
+.vf-item{background:var(--cream);border:1.5px solid var(--cream-dk);border-radius:10px;padding:1rem 1.1rem;}
+.vf-item p{font-size:.93rem;margin-bottom:.7rem;}
+.vf-btn-row{display:flex;gap:.6rem;}
+.vf-btn{padding:.35rem .9rem;border-radius:20px;border:1.5px solid var(--mod-dk);background:var(--white);color:var(--mod-tx);font-family:var(--fb);font-size:.85rem;font-weight:600;cursor:pointer;transition:all .18s;}
+.vf-btn:hover{background:var(--mod-lt);}
+.vf-btn.correct{background:#d4edda;border-color:#4caf50;color:#2e7d32;}
+.vf-btn.wrong{background:#fde8e8;border-color:#e57373;color:#c62828;}
+.vf-feedback{font-size:.82rem;margin-top:.5rem;min-height:1rem;font-weight:500;}
+
+/* MULTIPLE CHOICE */
+.mc-list{display:flex;flex-direction:column;gap:1.1rem;margin-top:.8rem;}
+.mc-item{}
+.mc-item p{font-size:.95rem;margin-bottom:.6rem;font-weight:500;}
+.mc-opts{display:flex;flex-direction:column;gap:.45rem;}
+.mc-opt{display:flex;align-items:center;gap:.65rem;background:var(--white);border:1.5px solid var(--cream-dk);border-radius:8px;padding:.55rem .85rem;cursor:pointer;font-size:.9rem;transition:all .18s;}
+.mc-opt:hover{border-color:var(--mod);}
+.mc-opt.correct{background:#d4edda;border-color:#4caf50;}
+.mc-opt.wrong{background:#fde8e8;border-color:#e57373;}
+.mc-opt.disabled{pointer-events:none;cursor:default;}
+.mc-feedback{font-size:.82rem;margin-top:.5rem;min-height:1rem;font-weight:500;}
+
+/* PROGRESS */
+.progress-bar-wrap{background:var(--cream-dk);border-radius:20px;height:8px;margin:1.5rem 0 .5rem;}
+.progress-bar{background:var(--mod);border-radius:20px;height:8px;transition:width .4s;}
+.progress-label{font-size:.8rem;color:var(--mod-dk);text-align:right;margin-bottom:1rem;}
+
+/* CTA */
+.cta-wrap{text-align:center;padding:2rem 0 3rem;}
+.cta-btn{display:inline-block;background:var(--mod-dk);color:var(--white);font-family:var(--fb);font-size:1rem;font-weight:600;padding:.85rem 2.2rem;border-radius:30px;text-decoration:none;cursor:pointer;border:none;transition:background .2s,transform .15s;box-shadow:0 3px 10px rgba(90,142,160,.25);}
+.cta-btn:hover{background:var(--mod-tx);transform:translateY(-2px);}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Módulo 10 · Etapa 1 · Imagen</div>
+  <h1>Il concerto è andato bene!</h1>
+  <p>Mirá la imagen, leé la descripción y preparate para contar lo que pasó.</p>
+</div>
+
+<div class="section">
+
+  <!-- IMAGEN + DESCRIPCIÓN -->
+  <div class="card">
+    <h2>L'immagine del concerto</h2>
+    <h3>Observá y leé la descripción</h3>
+
+    <div class="concert-img">
+      <div class="icon">🎸</div>
+      <div class="label">Concerto italiano — Estate 2024</div>
+      <div class="sublabel">Arena di Verona · Notte di luglio</div>
+    </div>
+
+    <p class="desc-text">
+      Nell'immagine si vede <span class="it">un grande palcoscenico</span> illuminato da luci colorate — azzurre, bianche e rosse.
+      <span class="it">Il cantante</span> tiene <span class="it">il microfono</span> in mano e canta con molta energia.
+      Dietro di lui ci sono <span class="it">i musicisti</span>: uno suona <span class="it">la chitarra elettrica</span>, un altro suona <span class="it">la batteria</span>.
+      <br><br>
+      In primo piano si vede <span class="it">il pubblico</span>: migliaia di persone con le braccia alzate.
+      <span class="it">La folla</span> applaude e canta insieme all'artista.
+      Ci sono persone di tutte le età — ragazzi giovani, famiglie, coppie.
+      Molti tengono in mano <span class="it">il biglietto</span> del concerto come ricordo.
+      <br><br>
+      L'atmosfera è elettrica. Il concerto è iniziato due ore fa e <span class="it">la gente</span> non vuole che finisca.
+    </p>
+  </div>
+
+  <!-- ACTIVIDAD CHECKLIST -->
+  <div class="card">
+    <h2>Antes de seguir...</h2>
+    <h3>¿Qué palabras del italiano ya conocés relacionadas con la música?</h3>
+    <p style="font-size:.9rem;color:#555;margin-bottom:.3rem;">Tildá todas las que ya sabías antes de leer la descripción:</p>
+
+    <div class="check-grid" id="checkGrid">
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>🎵 la canzone (la canción)</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>🎸 la chitarra (la guitarra)</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>🥁 la batteria (la batería)</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>🎤 il microfono (el micrófono)</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>🎟️ il biglietto (la entrada)</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>🙌 applaudire (aplaudir)</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>🎭 il palco (el escenario)</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>👥 il pubblico (el público)</span></div>
+    </div>
+
+    <div style="margin-top:1rem;" id="checkResult"></div>
+  </div>
+
+  <!-- V/F -->
+  <div class="card">
+    <h2>Vero o Falso?</h2>
+    <h3>Leé la descripción y decidí</h3>
+
+    <div class="vf-list">
+
+      <div class="vf-item" id="vf1">
+        <p>1. Nel concerto, il cantante suona la batteria.</p>
+        <div class="vf-btn-row">
+          <button class="vf-btn" onclick="checkVF('vf1','F',this,'V')">Vero</button>
+          <button class="vf-btn" onclick="checkVF('vf1','F',this,'F')">Falso</button>
+        </div>
+        <div class="vf-feedback" id="fb-vf1"></div>
+      </div>
+
+      <div class="vf-item" id="vf2">
+        <p>2. Il pubblico ha le braccia alzate e applaude.</p>
+        <div class="vf-btn-row">
+          <button class="vf-btn" onclick="checkVF('vf2','V',this,'V')">Vero</button>
+          <button class="vf-btn" onclick="checkVF('vf2','V',this,'F')">Falso</button>
+        </div>
+        <div class="vf-feedback" id="fb-vf2"></div>
+      </div>
+
+      <div class="vf-item" id="vf3">
+        <p>3. Il concerto è in un piccolo teatro con poche persone.</p>
+        <div class="vf-btn-row">
+          <button class="vf-btn" onclick="checkVF('vf3','F',this,'V')">Vero</button>
+          <button class="vf-btn" onclick="checkVF('vf3','F',this,'F')">Falso</button>
+        </div>
+        <div class="vf-feedback" id="fb-vf3"></div>
+      </div>
+
+      <div class="vf-item" id="vf4">
+        <p>4. Le luci del palcoscenico sono colorate.</p>
+        <div class="vf-btn-row">
+          <button class="vf-btn" onclick="checkVF('vf4','V',this,'V')">Vero</button>
+          <button class="vf-btn" onclick="checkVF('vf4','V',this,'F')">Falso</button>
+        </div>
+        <div class="vf-feedback" id="fb-vf4"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MULTIPLE CHOICE -->
+  <div class="card">
+    <h2>Un po' di comprensione</h2>
+    <h3>Elegí la opción correcta</h3>
+
+    <div class="mc-list">
+
+      <div class="mc-item" id="mc1">
+        <p>1. ¿Cuánto tiempo lleva el concierto cuando describe la imagen?</p>
+        <div class="mc-opts">
+          <div class="mc-opt" onclick="checkMC('mc1',0,2,this)">a) Media hora</div>
+          <div class="mc-opt" onclick="checkMC('mc1',1,2,this)">b) Una hora</div>
+          <div class="mc-opt" onclick="checkMC('mc1',2,2,this)">c) Dos horas</div>
+          <div class="mc-opt" onclick="checkMC('mc1',3,2,this)">d) Toda la noche</div>
+        </div>
+        <div class="mc-feedback" id="fb-mc1"></div>
+      </div>
+
+      <div class="mc-item" id="mc2">
+        <p>2. ¿Qué hace mucha gente con el biglietto del concerto?</p>
+        <div class="mc-opts">
+          <div class="mc-opt" onclick="checkMC('mc2',0,1,this)">a) Lo tira al suelo</div>
+          <div class="mc-opt" onclick="checkMC('mc2',1,1,this)">b) Lo guarda como recuerdo</div>
+          <div class="mc-opt" onclick="checkMC('mc2',2,1,this)">c) Lo vende</div>
+          <div class="mc-opt" onclick="checkMC('mc2',3,1,this)">d) Lo pierde</div>
+        </div>
+        <div class="mc-feedback" id="fb-mc2"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div>
+    <div class="progress-bar-wrap"><div class="progress-bar" style="width:25%"></div></div>
+    <div class="progress-label">Etapa 1 de 4 — Exploración</div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-wrap">
+    <button class="cta-btn" onclick="alert('¡Listo! Pasá a la Etapa 2 en tu plataforma.')">Continuar → Etapa 2</button>
+  </div>
+
+</div><!-- /section -->
+
+<script>
+if (!window.__ipp_m10_e1__) { window.__ipp_m10_e1__ = true;
+
+function toggleCheck(el) {
+  el.classList.toggle('active');
+  var checked = document.querySelectorAll('#checkGrid .check-item.active').length;
+  var cb = el.querySelector('.cb');
+  if (el.classList.contains('active')) {
+    cb.textContent = '✓';
+  } else {
+    cb.textContent = '';
+  }
+  var res = document.getElementById('checkResult');
+  if (checked === 0) { res.textContent = ''; return; }
+  if (checked <= 2) {
+    res.innerHTML = '<span style="color:var(--mod-tx);font-size:.9rem;">¡Bien! Ya sabés algunas — en esta unidad vas a aprender un montón más.</span>';
+  } else if (checked <= 5) {
+    res.innerHTML = '<span style="color:var(--mod-tx);font-size:.9rem;">¡Muy bien! Ya tenés buena base de vocabulario musical.</span>';
+  } else {
+    res.innerHTML = '<span style="color:var(--mod-tx);font-size:.9rem;">¡Excellente! Sabés casi todo — esta unidad te va a parecer muy familiar. 🎵</span>';
+  }
+}
+
+function checkVF(id, correct, btn, chosen) {
+  var item = document.getElementById(id);
+  if (item.dataset.done) return;
+  item.dataset.done = '1';
+  var btns = item.querySelectorAll('.vf-btn');
+  btns.forEach(function(b) { b.style.pointerEvents = 'none'; });
+  var fb = document.getElementById('fb-' + id);
+  if (chosen === correct) {
+    btn.classList.add('correct');
+    fb.innerHTML = '<span style="color:#2e7d32">✓ ¡Exacto!</span>';
+  } else {
+    btn.classList.add('wrong');
+    fb.innerHTML = '<span style="color:#c62828">✗ No es así — la respuesta es <strong>' + (correct==='V'?'Vero':'Falso') + '</strong>.</span>';
+    btns.forEach(function(b) {
+      if ((correct==='V'&&b.textContent==='Vero')||(correct==='F'&&b.textContent==='Falso')) b.classList.add('correct');
+    });
+  }
+}
+
+function checkMC(id, chosen, correct, optEl) {
+  var item = document.getElementById(id);
+  if (item.dataset.done) return;
+  item.dataset.done = '1';
+  var opts = item.querySelectorAll('.mc-opt');
+  opts.forEach(function(o) { o.classList.add('disabled'); });
+  var fb = document.getElementById('fb-' + id);
+  if (chosen === correct) {
+    optEl.classList.add('correct');
+    fb.innerHTML = '<span style="color:#2e7d32">✓ ¡Muy bien!</span>';
+  } else {
+    optEl.classList.add('wrong');
+    opts[correct].classList.add('correct');
+    fb.innerHTML = '<span style="color:#c62828">✗ Casi — la respuesta correcta está marcada en verde.</span>';
+  }
+}
+
+window.toggleCheck = toggleCheck;
+window.checkVF = checkVF;
+window.checkMC = checkMC;
+
+} // end execution guard
+</script>
+
+</body>
+</html>

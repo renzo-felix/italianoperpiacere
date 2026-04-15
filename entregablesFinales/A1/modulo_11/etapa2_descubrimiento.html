@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M10 · Etapa 2 — Descubrimiento</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --mod:#78a6ba; --mod-dk:#5a8ea0; --mod-lt:#e8f4f8; --mod-tx:#2d5f72;
+  --cream:#e9e6d5; --cream-dk:#ddd9c8; --gold:#EFCF7F;
+  --black:#1a1a18; --white:#fff;
+  --fh:'Playfair Display',Georgia,serif;
+  --fb:'Outfit',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6;}
+
+.hero{background:var(--mod-lt);border-bottom:4px solid var(--mod);padding:2.5rem 1.5rem 2rem;text-align:center;}
+.hero-tag{display:inline-block;background:var(--mod);color:var(--white);font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .9rem;border-radius:2rem;margin-bottom:.9rem;}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:2.1rem;color:var(--mod-tx);line-height:1.2;margin-bottom:.5rem;}
+.hero p{font-size:1rem;color:var(--mod-dk);max-width:500px;margin:0 auto;}
+
+.section{max-width:720px;margin:2rem auto;padding:0 1.2rem;}
+.card{background:var(--white);border-radius:14px;border:1.5px solid var(--cream-dk);padding:1.6rem;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(120,166,186,.1);}
+.card h2{font-family:var(--fh);font-style:italic;font-size:1.25rem;color:var(--mod-tx);margin-bottom:.4rem;}
+.card h3{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mod-dk);margin-bottom:.9rem;}
+
+/* CHIPS */
+.chip-grid{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.5rem;}
+.chip{display:inline-flex;align-items:center;gap:.45rem;background:var(--mod-lt);border:1.5px solid var(--mod);color:var(--mod-tx);border-radius:30px;padding:.4rem .9rem;font-size:.88rem;font-weight:500;cursor:pointer;transition:all .18s;user-select:none;}
+.chip:hover{background:var(--mod);color:var(--white);}
+.chip .play-ico{font-size:.85rem;opacity:.7;}
+.chip-label{font-size:.72rem;color:#666;margin-top:.5rem;}
+
+/* TIEMPO chips */
+.tiempo-grid{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.6rem;}
+.tiempo-chip{background:var(--cream);border:1.5px solid var(--mod-dk);border-radius:10px;padding:.55rem 1rem;font-size:.88rem;cursor:pointer;transition:all .18s;text-align:center;}
+.tiempo-chip:hover{background:var(--mod-lt);border-color:var(--mod);}
+.tiempo-chip .it{font-weight:600;color:var(--mod-tx);display:block;}
+.tiempo-chip .es{font-size:.78rem;color:#666;display:block;margin-top:.15rem;}
+
+/* DIALOGO */
+.dialog-wrap{display:flex;flex-direction:column;gap:.9rem;margin-top:.8rem;}
+.bubble-row{display:flex;align-items:flex-end;gap:.7rem;}
+.bubble-row.right{flex-direction:row-reverse;}
+.avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;border:2px solid var(--cream-dk);}
+.avatar.f{background:var(--mod-lt);}
+.avatar.m{background:#f0e8ff;border-color:#c9b4e8;}
+.bubble{background:var(--cream-dk);border-radius:14px;padding:.75rem 1rem;max-width:82%;font-size:.93rem;line-height:1.5;position:relative;}
+.bubble-row.right .bubble{background:var(--mod-lt);border-bottom-right-radius:4px;}
+.bubble-row:not(.right) .bubble{border-bottom-left-radius:4px;}
+.bubble .speaker{font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--mod-dk);margin-bottom:.2rem;}
+.bubble .it-text{font-style:italic;color:var(--mod-tx);}
+.bubble .play-btn{background:none;border:none;cursor:pointer;font-size:.9rem;margin-left:.4rem;vertical-align:middle;opacity:.7;transition:opacity .15s;}
+.bubble .play-btn:hover{opacity:1;}
+.play-all-btn{margin-top:.8rem;background:var(--mod-dk);color:var(--white);border:none;border-radius:20px;padding:.45rem 1.2rem;font-family:var(--fb);font-size:.85rem;font-weight:600;cursor:pointer;transition:background .18s;}
+.play-all-btn:hover{background:var(--mod-tx);}
+
+/* PASSATO intro */
+.pp-intro{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem;}
+@media(max-width:500px){.pp-intro{grid-template-columns:1fr;}}
+.pp-box{border-radius:12px;padding:1.1rem;border:2px solid var(--mod);}
+.pp-box.avere{background:#fff9ee;border-color:#e5ab07;}
+.pp-box.essere{background:var(--mod-lt);border-color:var(--mod);}
+.pp-box h4{font-family:var(--fh);font-style:italic;font-size:1rem;margin-bottom:.6rem;}
+.pp-box.avere h4{color:#7a5500;}
+.pp-box.essere h4{color:var(--mod-tx);}
+.pp-box ul{list-style:none;padding:0;}
+.pp-box ul li{font-size:.88rem;padding:.25rem 0;border-bottom:1px solid rgba(0,0,0,.06);}
+.pp-box ul li:last-child{border-bottom:none;}
+.pp-box .formula{font-size:.82rem;background:rgba(0,0,0,.05);border-radius:6px;padding:.35rem .6rem;margin-bottom:.7rem;font-weight:600;color:#444;}
+.pp-trick{margin-top:1rem;background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-radius:10px;padding:1rem 1.1rem;border-top:3px solid var(--mod);font-size:.9rem;}
+.pp-trick strong{color:var(--mod-tx);}
+
+/* PATTERN CARDS */
+.pattern-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:.8rem;}
+@media(max-width:480px){.pattern-grid{grid-template-columns:1fr;}}
+.pattern-card{background:var(--cream);border:1.5px solid var(--cream-dk);border-radius:10px;padding:.9rem 1rem;cursor:pointer;transition:all .2s;}
+.pattern-card:hover,.pattern-card.flipped{background:var(--mod-lt);border-color:var(--mod);}
+.pattern-card .front{font-size:.9rem;font-weight:600;color:var(--mod-tx);}
+.pattern-card .back{font-size:.82rem;color:#555;margin-top:.35rem;display:none;}
+.pattern-card.flipped .back{display:block;}
+
+/* PARTICIPI IRREGOLARI */
+.irreg-grid{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.6rem;}
+.irreg-chip{background:var(--white);border:1.5px solid var(--mod-dk);border-radius:8px;padding:.45rem .9rem;font-size:.85rem;cursor:pointer;transition:all .18s;}
+.irreg-chip:hover,.irreg-chip.shown{background:var(--mod-lt);}
+.irreg-chip .inf{color:var(--mod-tx);font-weight:600;}
+.irreg-chip .arr{color:var(--mod-dk);margin:0 .3rem;}
+.irreg-chip .pp{color:var(--black);}
+
+/* CULTURE STRIP */
+.culture-strip{background:linear-gradient(135deg,var(--gold) 0%,var(--cream-dk) 100%);border-radius:14px;border-top:3px solid var(--mod);padding:1.3rem 1.5rem;margin-bottom:1.5rem;}
+.culture-strip h3{font-family:var(--fh);font-style:italic;font-size:1.1rem;color:var(--mod-tx);margin-bottom:.3rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;}
+.culture-strip h3 .toggle-ico{font-size:.85rem;transition:transform .2s;}
+.culture-strip h3.open .toggle-ico{transform:rotate(180deg);}
+.culture-body{display:none;margin-top:.8rem;}
+.culture-body.open{display:block;}
+.cantautori{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.6rem;}
+.cant-tag{background:rgba(255,255,255,.6);border:1.5px solid var(--mod);border-radius:8px;padding:.4rem .85rem;font-size:.85rem;}
+.cant-tag strong{color:var(--mod-tx);display:block;font-size:.9rem;}
+.cant-tag span{color:#555;font-size:.78rem;}
+.culture-body p{font-size:.9rem;color:var(--black);line-height:1.65;}
+
+/* PROGRESS */
+.progress-bar-wrap{background:var(--cream-dk);border-radius:20px;height:8px;margin:1.5rem 0 .5rem;}
+.progress-bar{background:var(--mod);border-radius:20px;height:8px;}
+.progress-label{font-size:.8rem;color:var(--mod-dk);text-align:right;margin-bottom:1rem;}
+.cta-wrap{text-align:center;padding:2rem 0 3rem;}
+.cta-btn{display:inline-block;background:var(--mod-dk);color:var(--white);font-size:1rem;font-weight:600;padding:.85rem 2.2rem;border-radius:30px;cursor:pointer;border:none;transition:background .2s,transform .15s;box-shadow:0 3px 10px rgba(90,142,160,.25);font-family:var(--fb);}
+.cta-btn:hover{background:var(--mod-tx);transform:translateY(-2px);}
+</style>
+</head>
+<body>
+
+<!-- VOICE INIT -->
+<script>
+if (!window.__ippVC) {
+  window.__ippVC = true; window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) window.__ippV = v; };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
+</script>
+
+<div class="hero">
+  <div class="hero-tag">Módulo 10 · Etapa 2 · Descubrimiento</div>
+  <h1>Il concerto è andato bene!</h1>
+  <p>Vocabulario, expresiones de tiempo, diálogo y el passato prossimo en acción.</p>
+</div>
+
+<div class="section">
+
+  <!-- 1. VOCABOLARIO -->
+  <div class="card">
+    <h2>Vocabolario — Il concerto</h2>
+    <h3>Tocá cada palabra para escucharla</h3>
+    <div class="chip-grid">
+      <div class="chip" onclick="ippAudio('il concerto',0.82,'f')"><span class="play-ico">🔊</span> il concerto</div>
+      <div class="chip" onclick="ippAudio('il cantante',0.82,'m')"><span class="play-ico">🔊</span> il cantante / la cantante</div>
+      <div class="chip" onclick="ippAudio('la canzone',0.82,'f')"><span class="play-ico">🔊</span> la canzone</div>
+      <div class="chip" onclick="ippAudio('il palcoscenico',0.82,'m')"><span class="play-ico">🔊</span> il palco / il palcoscenico</div>
+      <div class="chip" onclick="ippAudio('il pubblico',0.82,'m')"><span class="play-ico">🔊</span> il pubblico</div>
+      <div class="chip" onclick="ippAudio('la folla',0.82,'f')"><span class="play-ico">🔊</span> la folla</div>
+      <div class="chip" onclick="ippAudio('applaudire',0.82,'f')"><span class="play-ico">🔊</span> applaudire</div>
+      <div class="chip" onclick="ippAudio('il biglietto',0.82,'m')"><span class="play-ico">🔊</span> il biglietto</div>
+      <div class="chip" onclick="ippAudio('il posto',0.82,'m')"><span class="play-ico">🔊</span> il posto</div>
+      <div class="chip" onclick="ippAudio("l'arena",0.82,'f')"><span class="play-ico">🔊</span> l'arena</div>
+      <div class="chip" onclick="ippAudio('la chitarra',0.82,'f')"><span class="play-ico">🔊</span> la chitarra</div>
+      <div class="chip" onclick="ippAudio('la batteria',0.82,'f')"><span class="play-ico">🔊</span> la batteria</div>
+      <div class="chip" onclick="ippAudio('il microfono',0.82,'m')"><span class="play-ico">🔊</span> il microfono</div>
+      <div class="chip" onclick="ippAudio('le luci',0.82,'f')"><span class="play-ico">🔊</span> le luci</div>
+      <div class="chip" onclick="ippAudio('il backstage',0.82,'m')"><span class="play-ico">🔊</span> il backstage</div>
+    </div>
+    <p class="chip-label">💡 Tocá cualquier palabra para escuchar la pronunciación en italiano.</p>
+  </div>
+
+  <!-- 2. ESPRESSIONI DI TEMPO -->
+  <div class="card">
+    <h2>Espressioni di tempo</h2>
+    <h3>Tocá cada expresión para escucharla</h3>
+    <div class="tiempo-grid">
+      <div class="tiempo-chip" onclick="ippAudio('ieri',0.78,'f')">
+        <span class="it">ieri</span><span class="es">ayer</span>
+      </div>
+      <div class="tiempo-chip" onclick="ippAudio("l'altro ieri",0.78,'f')">
+        <span class="it">l'altro ieri</span><span class="es">antes de ayer</span>
+      </div>
+      <div class="tiempo-chip" onclick="ippAudio('due giorni fa',0.78,'f')">
+        <span class="it">due giorni fa</span><span class="es">hace 2 días</span>
+      </div>
+      <div class="tiempo-chip" onclick="ippAudio('la settimana scorsa',0.78,'f')">
+        <span class="it">la settimana scorsa</span><span class="es">la semana pasada</span>
+      </div>
+      <div class="tiempo-chip" onclick="ippAudio('un mese fa',0.78,'f')">
+        <span class="it">un mese fa</span><span class="es">hace un mes</span>
+      </div>
+      <div class="tiempo-chip" onclick="ippAudio("l'anno scorso",0.78,'f')">
+        <span class="it">l'anno scorso</span><span class="es">el año pasado</span>
+      </div>
+      <div class="tiempo-chip" onclick="ippAudio('fra tre giorni',0.78,'f')">
+        <span class="it">fra / tra tre giorni</span><span class="es">en 3 días</span>
+      </div>
+      <div class="tiempo-chip" onclick="ippAudio('la prossima settimana',0.78,'f')">
+        <span class="it">la prossima settimana</span><span class="es">la próxima semana</span>
+      </div>
+      <div class="tiempo-chip" onclick="ippAudio('dal cinque al dieci marzo',0.78,'f')">
+        <span class="it">dal 5 al 10 marzo</span><span class="es">del 5 al 10 de marzo</span>
+      </div>
+    </div>
+    <div style="margin-top:1rem;background:var(--mod-lt);border-radius:8px;padding:.75rem 1rem;font-size:.88rem;color:var(--mod-tx);">
+      <strong>Nota:</strong> <em>fa</em> siempre va <strong>después</strong> del tiempo (dos giorni <em>fa</em>). En cambio, <em>fra/tra</em> va <strong>antes</strong> (fra tre giorni). ¡Son fáciles de confundir!
+    </div>
+  </div>
+
+  <!-- 3. DIALOGO -->
+  <div class="card">
+    <h2>Dialogo — "Com'è andato il concerto?"</h2>
+    <h3>Escuchá y seguí la conversación</h3>
+
+    <div class="dialog-wrap" id="dialogWrap">
+
+      <div class="bubble-row right" data-idx="0">
+        <div class="avatar m">👨</div>
+        <div class="bubble">
+          <div class="speaker">Davide</div>
+          <span class="it-text">Chiara! Com'è andato il concerto ieri sera?</span>
+          <button class="play-btn" onclick="playLine(0)">🔊</button>
+        </div>
+      </div>
+
+      <div class="bubble-row" data-idx="1">
+        <div class="avatar f">👩</div>
+        <div class="bubble">
+          <div class="speaker">Chiara</div>
+          <span class="it-text">È andato benissimo! È stato un concerto incredibile!</span>
+          <button class="play-btn" onclick="playLine(1)">🔊</button>
+        </div>
+      </div>
+
+      <div class="bubble-row right" data-idx="2">
+        <div class="avatar m">👨</div>
+        <div class="bubble">
+          <div class="speaker">Davide</div>
+          <span class="it-text">Davvero? Dove avete comprato i biglietti?</span>
+          <button class="play-btn" onclick="playLine(2)">🔊</button>
+        </div>
+      </div>
+
+      <div class="bubble-row" data-idx="3">
+        <div class="avatar f">👩</div>
+        <div class="bubble">
+          <div class="speaker">Chiara</div>
+          <span class="it-text">Li abbiamo comprati online, una settimana fa. Abbiamo aspettato due ore in fila per entrare!</span>
+          <button class="play-btn" onclick="playLine(3)">🔊</button>
+        </div>
+      </div>
+
+      <div class="bubble-row right" data-idx="4">
+        <div class="avatar m">👨</div>
+        <div class="bubble">
+          <div class="speaker">Davide</div>
+          <span class="it-text">Due ore? E poi ne è valsa la pena?</span>
+          <button class="play-btn" onclick="playLine(4)">🔊</button>
+        </div>
+      </div>
+
+      <div class="bubble-row" data-idx="5">
+        <div class="avatar f">👩</div>
+        <div class="bubble">
+          <div class="speaker">Chiara</div>
+          <span class="it-text">Sì, tantissimo! Ho visto il mio cantante preferito dal vivo. Ha cantato tutte le canzoni più belle!</span>
+          <button class="play-btn" onclick="playLine(5)">🔊</button>
+        </div>
+      </div>
+
+      <div class="bubble-row right" data-idx="6">
+        <div class="avatar m">👨</div>
+        <div class="bubble">
+          <div class="speaker">Davide</div>
+          <span class="it-text">Avete ballato e cantato anche voi?</span>
+          <button class="play-btn" onclick="playLine(6)">🔊</button>
+        </div>
+      </div>
+
+      <div class="bubble-row" data-idx="7">
+        <div class="avatar f">👩</div>
+        <div class="bubble">
+          <div class="speaker">Chiara</div>
+          <span class="it-text">Certo! Tutta la folla ha cantato insieme. È stata un'emozione unica! Siamo tornati a casa tardissimo.</span>
+          <button class="play-btn" onclick="playLine(7)">🔊</button>
+        </div>
+      </div>
+
+      <div class="bubble-row right" data-idx="8">
+        <div class="avatar m">👨</div>
+        <div class="bubble">
+          <div class="speaker">Davide</div>
+          <span class="it-text">Che bello! La prossima volta vengo anch'io!</span>
+          <button class="play-btn" onclick="playLine(8)">🔊</button>
+        </div>
+      </div>
+
+      <div class="bubble-row" data-idx="9">
+        <div class="avatar f">👩</div>
+        <div class="bubble">
+          <div class="speaker">Chiara</div>
+          <span class="it-text">Sì, assolutamente! La prossima volta compriamo i biglietti insieme — tu e io!</span>
+          <button class="play-btn" onclick="playLine(9)">🔊</button>
+        </div>
+      </div>
+
+      <div class="bubble-row right" data-idx="10">
+        <div class="avatar m">👨</div>
+        <div class="bubble">
+          <div class="speaker">Davide</div>
+          <span class="it-text">Volentieri! E dopo il concerto, dove siete andati?</span>
+          <button class="play-btn" onclick="playLine(10)">🔊</button>
+        </div>
+      </div>
+
+      <div class="bubble-row" data-idx="11">
+        <div class="avatar f">👩</div>
+        <div class="bubble">
+          <div class="speaker">Chiara</div>
+          <span class="it-text">Abbiamo trovato una pizzeria aperta fino alle due di notte. Ho mangiato la pizza più buona della mia vita!</span>
+          <button class="play-btn" onclick="playLine(11)">🔊</button>
+        </div>
+      </div>
+
+      <div class="bubble-row right" data-idx="12">
+        <div class="avatar m">👨</div>
+        <div class="bubble">
+          <div class="speaker">Davide</div>
+          <span class="it-text">Che invidia! E con chi sei andata? Con le amiche del lavoro?</span>
+          <button class="play-btn" onclick="playLine(12)">🔊</button>
+        </div>
+      </div>
+
+      <div class="bubble-row" data-idx="13">
+        <div class="avatar f">👩</div>
+        <div class="bubble">
+          <div class="speaker">Chiara</div>
+          <span class="it-text">Con Marta e Claudio. Siamo andati insieme anche l'anno scorso, a Napoli.</span>
+          <button class="play-btn" onclick="playLine(13)">🔊</button>
+        </div>
+      </div>
+
+      <div class="bubble-row right" data-idx="14">
+        <div class="avatar m">👨</div>
+        <div class="bubble">
+          <div class="speaker">Davide</div>
+          <span class="it-text">Napoli! Quanto ci siete stati?</span>
+          <button class="play-btn" onclick="playLine(14)">🔊</button>
+        </div>
+      </div>
+
+      <div class="bubble-row" data-idx="15">
+        <div class="avatar f">👩</div>
+        <div class="bubble">
+          <div class="speaker">Chiara</div>
+          <span class="it-text">Una settimana, in luglio. Abbiamo visitato tutto — il Vesuvio, Pompei, Capri... È stato un viaggio indimenticabile!</span>
+          <button class="play-btn" onclick="playLine(15)">🔊</button>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="play-all-btn" onclick="playAllDialog()">▶ Escuchar todo el diálogo</button>
+
+    <div style="margin-top:1.1rem;background:var(--mod-lt);border-radius:10px;padding:1rem;font-size:.88rem;">
+      <strong style="color:var(--mod-tx);">¿Notaste algo?</strong> Chiara usa muchos verbos en <em>passato prossimo</em>: <em>è andato, ho visto, abbiamo aspettato, siamo tornati...</em> ¡Eso es lo que vamos a aprender en esta unidad!
+    </div>
+  </div>
+
+  <!-- 4. PASSATO PROSSIMO INTRO -->
+  <div class="card">
+    <h2>Il Passato Prossimo</h2>
+    <h3>¿Cómo se forma?</h3>
+
+    <p style="font-size:.93rem;margin-bottom:1rem;">El passato prossimo se forma con el auxiliar (<strong>avere</strong> o <strong>essere</strong>) + el <strong>participio passato</strong>. Es el tiempo que usamos para hablar de lo que ya pasó.</p>
+
+    <div class="pp-intro">
+      <div class="pp-box avere">
+        <h4>Con AVERE</h4>
+        <div class="formula">ho / hai / ha / abbiamo / avete / hanno + p.p.</div>
+        <ul>
+          <li>ho mangi<strong>ato</strong> — comí</li>
+          <li>hai vist<strong>o</strong> — viste</li>
+          <li>ha comprat<strong>o</strong> — compró</li>
+          <li>abbiamo ascolt<strong>ato</strong> — escuchamos</li>
+          <li>hanno bev<strong>uto</strong> — bebieron</li>
+        </ul>
+      </div>
+      <div class="pp-box essere">
+        <h4>Con ESSERE</h4>
+        <div class="formula">sono / sei / è / siamo / siete / sono + p.p.</div>
+        <ul>
+          <li>sono andat<strong>o/a</strong> — fui</li>
+          <li>sei tornat<strong>o/a</strong> — volviste</li>
+          <li>è partit<strong>o/a</strong> — se fue</li>
+          <li>siamo arrivat<strong>i/e</strong> — llegamos</li>
+          <li>sono uscit<strong>i/e</strong> — salieron</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pp-trick">
+      <strong>💡 Truco:</strong> Con <strong>essere</strong> el participio concuerda en género y número con el sujeto (como un adjetivo). Con <strong>avere</strong> el participio no cambia (salvo casos especiales).
+      <br><br>
+      <strong>¿Cuándo usar essere?</strong> Con verbos de movimiento y estado: <em>andare, venire, partire, tornare, arrivare, uscire, entrare, stare, essere, restare, rimanere</em>.
+    </div>
+
+    <h3 style="margin-top:1.2rem;">Participi regolari — tocá para ver el patrón</h3>
+    <div class="pattern-grid">
+      <div class="pattern-card" onclick="flipCard(this)">
+        <div class="front">-ARE → -ATO</div>
+        <div class="back">mangiare → mangiato<br>parlare → parlato<br>comprare → comprato<br>aspettare → aspettato</div>
+      </div>
+      <div class="pattern-card" onclick="flipCard(this)">
+        <div class="front">-ERE → -UTO</div>
+        <div class="back">credere → creduto<br>vendere → venduto<br>ricevere → ricevuto<br>tenere → tenuto</div>
+      </div>
+      <div class="pattern-card" onclick="flipCard(this)">
+        <div class="front">-IRE → -ITO</div>
+        <div class="back">dormire → dormito<br>sentire → sentito<br>finire → finito<br>capire → capito</div>
+      </div>
+      <div class="pattern-card" onclick="flipCard(this)">
+        <div class="front">⚠️ Irregolari</div>
+        <div class="back">fare → fatto<br>vedere → visto<br>leggere → letto<br>¡Muchos verbos en -ere son irregulares!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. PARTICIPI IRREGOLARI -->
+  <div class="card">
+    <h2>Participi passati irregolari</h2>
+    <h3>Tocá cada uno para memorizarlo</h3>
+    <div class="irreg-grid" id="irregGrid">
+      <div class="irreg-chip" onclick="showIrreg(this,'visto')"><span class="inf">vedere</span><span class="arr">→</span><span class="pp">...</span></div>
+      <div class="irreg-chip" onclick="showIrreg(this,'fatto')"><span class="inf">fare</span><span class="arr">→</span><span class="pp">...</span></div>
+      <div class="irreg-chip" onclick="showIrreg(this,'detto')"><span class="inf">dire</span><span class="arr">→</span><span class="pp">...</span></div>
+      <div class="irreg-chip" onclick="showIrreg(this,'scritto')"><span class="inf">scrivere</span><span class="arr">→</span><span class="pp">...</span></div>
+      <div class="irreg-chip" onclick="showIrreg(this,'letto')"><span class="inf">leggere</span><span class="arr">→</span><span class="pp">...</span></div>
+      <div class="irreg-chip" onclick="showIrreg(this,'aperto')"><span class="inf">aprire</span><span class="arr">→</span><span class="pp">...</span></div>
+      <div class="irreg-chip" onclick="showIrreg(this,'chiuso')"><span class="inf">chiudere</span><span class="arr">→</span><span class="pp">...</span></div>
+      <div class="irreg-chip" onclick="showIrreg(this,'venuto')"><span class="inf">venire</span><span class="arr">→</span><span class="pp">...</span></div>
+      <div class="irreg-chip" onclick="showIrreg(this,'bevuto')"><span class="inf">bere</span><span class="arr">→</span><span class="pp">...</span></div>
+      <div class="irreg-chip" onclick="showIrreg(this,'rimasto')"><span class="inf">rimanere</span><span class="arr">→</span><span class="pp">...</span></div>
+      <div class="irreg-chip" onclick="showIrreg(this,'preso')"><span class="inf">prendere</span><span class="arr">→</span><span class="pp">...</span></div>
+      <div class="irreg-chip" onclick="showIrreg(this,'messo')"><span class="inf">mettere</span><span class="arr">→</span><span class="pp">...</span></div>
+    </div>
+    <p class="chip-label">Tocá cada verbo para revelar su participio pasado. ¡No te preocupes si no los recordás todos ahora — se van a practicar mucho en la Etapa 3!</p>
+  </div>
+
+  <!-- 6. CULTURE STRIP -->
+  <div class="culture-strip">
+    <h3 id="cultureToggle" onclick="toggleCulture()">
+      🎶 I grandi cantautori italiani
+      <span class="toggle-ico" id="cultureIco">▼</span>
+    </h3>
+    <div class="culture-body" id="cultureBody">
+      <p>Italia tiene una tradición riquísima de <em>cantautori</em> — artistas que escriben, componen y cantan sus propias canciones. Son parte de la identidad cultural italiana tanto como la pasta o el Coliseo.</p>
+      <div class="cantautori">
+        <div class="cant-tag"><strong>Francesco De Gregori</strong><span>Poesía hecha canción</span></div>
+        <div class="cant-tag"><strong>Lucio Battisti</strong><span>El rebelde del pop italiano</span></div>
+        <div class="cant-tag"><strong>Franco Battiato</strong><span>Música experimental y profunda</span></div>
+        <div class="cant-tag"><strong>Jovanotti</strong><span>Hip-hop + soul + optimismo</span></div>
+        <div class="cant-tag"><strong>Giorgia</strong><span>Una de las mejores voces italianas</span></div>
+        <div class="cant-tag"><strong>Fabrizio De André</strong><span>El poeta de los últimos</span></div>
+      </div>
+      <p style="margin-top:.8rem;font-size:.85rem;color:#555;">Si querés practicar el italiano de manera natural, ¡escuchar cantautori es una de las mejores estrategias!</p>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div>
+    <div class="progress-bar-wrap"><div class="progress-bar" style="width:50%"></div></div>
+    <div class="progress-label">Etapa 2 de 4 — Descubrimiento</div>
+  </div>
+
+  <div class="cta-wrap">
+    <button class="cta-btn" onclick="alert('¡Muy bien! Pasá a la Etapa 3 en tu plataforma.')">Continuar → Etapa 3</button>
+  </div>
+
+</div><!-- /section -->
+
+<script>
+if (!window.__ipp_m10_e2__) { window.__ipp_m10_e2__ = true;
+
+function ippVoice(gender) {
+  var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+  var itV = voices.filter(function(v){ return v.lang && v.lang.startsWith('it'); });
+  if (!itV.length) return null;
+  var voice = null;
+  if (gender==='m') { voice = itV.find(function(v){ return /cosimo|luca|giorgio|male|masc/i.test(v.name); }); if (!voice) voice = itV.find(function(v){ return !/elsa|alice|giulia|female|femm/i.test(v.name); }); }
+  else { voice = itV.find(function(v){ return /elsa|alice|giulia|female|femm/i.test(v.name); }); if (!voice) voice = itV.find(function(v){ return !/cosimo|luca|giorgio|male|masc/i.test(v.name); }); }
+  return voice || itV[0];
+}
+
+function ippAudio(text, rate, gender) {
+  rate = (typeof rate==='number'&&isFinite(rate)&&rate>0)?rate:0.82;
+  gender = (gender==='m'||gender==='f')?gender:'f';
+  if (!window.speechSynthesis) return;
+  try{speechSynthesis.cancel();}catch(e){}
+  var utt=new SpeechSynthesisUtterance(String(text));
+  utt.lang='it-IT'; utt.rate=rate;
+  var voice=ippVoice(gender); if(voice)utt.voice=voice;
+  (function(u){setTimeout(function(){try{speechSynthesis.speak(u);}catch(e){}},60);})(utt);
+}
+
+var dialogLines = [
+  { text: "Chiara! Com'è andato il concerto ieri sera?", gender:'m' },
+  { text: "È andato benissimo! È stato un concerto incredibile!", gender:'f' },
+  { text: "Davvero? Dove avete comprato i biglietti?", gender:'m' },
+  { text: "Li abbiamo comprati online, una settimana fa. Abbiamo aspettato due ore in fila per entrare!", gender:'f' },
+  { text: "Due ore? E poi ne è valsa la pena?", gender:'m' },
+  { text: "Sì, tantissimo! Ho visto il mio cantante preferito dal vivo. Ha cantato tutte le canzoni più belle!", gender:'f' },
+  { text: "Avete ballato e cantato anche voi?", gender:'m' },
+  { text: "Certo! Tutta la folla ha cantato insieme. È stata un'emozione unica! Siamo tornati a casa tardissimo.", gender:'f' },
+  { text: "Che bello! La prossima volta vengo anch'io!", gender:'m' },
+  { text: "Sì, assolutamente! La prossima volta compriamo i biglietti insieme — tu e io!", gender:'f' },
+  { text: "Volentieri! E dopo il concerto, dove siete andati?", gender:'m' },
+  { text: "Abbiamo trovato una pizzeria aperta fino alle due di notte. Ho mangiato la pizza più buona della mia vita!", gender:'f' },
+  { text: "Che invidia! E con chi sei andata? Con le amiche del lavoro?", gender:'m' },
+  { text: "Con Marta e Claudio. Siamo andati insieme anche l'anno scorso, a Napoli.", gender:'f' },
+  { text: "Napoli! Quanto ci siete stati?", gender:'m' },
+  { text: "Una settimana, in luglio. Abbiamo visitato tutto — il Vesuvio, Pompei, Capri... È stato un viaggio indimenticabile!", gender:'f' }
+];
+
+function playLine(idx) {
+  var line = dialogLines[idx];
+  if (!line) return;
+  ippAudio(line.text, 0.8, line.gender);
+}
+
+var playAllTimer = null;
+function playAllDialog() {
+  if (playAllTimer) clearTimeout(playAllTimer);
+  var idx = 0;
+  function next() {
+    if (idx >= dialogLines.length) return;
+    var line = dialogLines[idx];
+    if (!window.speechSynthesis) return;
+    try{speechSynthesis.cancel();}catch(e){}
+    var utt = new SpeechSynthesisUtterance(line.text);
+    utt.lang = 'it-IT'; utt.rate = 0.8;
+    var voice = ippVoice(line.gender); if(voice) utt.voice = voice;
+    utt.onend = function() { idx++; playAllTimer = setTimeout(next, 400); };
+    setTimeout(function(){ try{speechSynthesis.speak(utt);}catch(e){} }, 60);
+  }
+  next();
+}
+
+function flipCard(el) {
+  el.classList.toggle('flipped');
+}
+
+function showIrreg(el, pp) {
+  el.classList.add('shown');
+  var ppEl = el.querySelector('.pp');
+  if (ppEl) ppEl.textContent = pp;
+  ippAudio(el.querySelector('.inf').textContent + '... ' + pp, 0.78, 'f');
+}
+
+function toggleCulture() {
+  var body = document.getElementById('cultureBody');
+  var ico = document.getElementById('cultureIco');
+  var toggle = document.getElementById('cultureToggle');
+  if (body.classList.contains('open')) {
+    body.classList.remove('open');
+    toggle.classList.remove('open');
+  } else {
+    body.classList.add('open');
+    toggle.classList.add('open');
+  }
+}
+
+window.ippAudio = ippAudio;
+window.ippVoice = ippVoice;
+window.playLine = playLine;
+window.playAllDialog = playAllDialog;
+window.flipCard = flipCard;
+window.showIrreg = showIrreg;
+window.toggleCulture = toggleCulture;
+
+} // end execution guard
+</script>
+
+</body>
+</html>

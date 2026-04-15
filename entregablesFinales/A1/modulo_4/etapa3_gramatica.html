@@ -3,834 +3,1231 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Che lavoro fai? — Etapa 3 Gramática | Italiano Per Piacere</title>
+<title>Tutti in piazza! — Etapa 3 | Italiano Per Piacere</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --mod:    #e5ab07;
-  --mod-dk: #c8940a;
-  --mod-lt: #fff8e6;
-  --mod-tx: #7a5500;
-  --cream:  #e9e6d5;
+  --cream:    #e9e6d5;
   --cream-dk: #ddd9c8;
-  --gold:   #EFCF7F;
-  --black:  #1a1a18;
-  --white:  #ffffff;
-  --green:  #2d7a4f;
-  --red:    #cc4736;
+  --gold:     #EFCF7F;
+  --amber:    #e5ab07;
+  --amber-dk: #c8940a;
+  --red:      #cc4736;
+  --teal:     #78a6ba;
+  --green:    #528e74;
+  --black:    #1a1a18;
+  --white:    #ffffff;
   --fh: 'Playfair Display', Georgia, serif;
   --fb: 'Outfit', system-ui, sans-serif;
   --r: 10px;
+  --mc:      #528e74;
+  --mc-dk:   #3d6b58;
+  --mc-text: #2d4d3c;
+  --mc-bg:   #e8f4ef;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: var(--cream); font-family: var(--fb); color: var(--black); line-height: 1.6; }
 
-/* HERO */
 .hero {
-  background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
-  padding: 56px 24px 48px; text-align: center; color: var(--white);
+  background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%);
+  padding: 56px 24px 48px;
+  text-align: center;
+  color: var(--white);
 }
 .badge {
-  display: inline-block; background: rgba(255,255,255,0.2);
-  border: 1px solid rgba(255,255,255,0.4); border-radius: 20px;
-  padding: 4px 16px; font-size: 13px; font-weight: 600;
-  letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 16px;
 }
-.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2rem,5vw,3.2rem); font-weight: 700; margin-bottom: 8px; }
+.hero h1 {
+  font-family: var(--fh); font-style: italic;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700; margin-bottom: 8px;
+}
 .hero p { font-size: 1.05rem; opacity: 0.9; }
 
-/* NAV */
+.stage-nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--cream-dk);
+  padding: 0 24px;
+  display: flex; justify-content: center;
+  overflow-x: auto;
+}
+.stage-nav a {
+  display: flex; align-items: center; gap: 8px;
+  padding: 14px 20px;
+  text-decoration: none; font-size: 13px; font-weight: 600;
+  color: #888; border-bottom: 3px solid transparent;
+  white-space: nowrap; transition: all 0.2s;
+}
+.stage-nav a.active { color: var(--mc-text); border-bottom-color: var(--mc); }
+.stage-nav a .num {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: #ddd; color: #666;
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.stage-nav a.active .num { background: var(--mc); color: var(--white); }
+.stage-nav a.done .num { background: var(--green); color: var(--white); }
+.stage-nav a.done { color: var(--green); }
 
-/* LAYOUT */
-.container { max-width: 860px; margin: 0 auto; padding: 40px 24px; }
+/* STICKY INNER NAV */
+.sticky-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--mc-dk);
+  padding: 0 24px;
+  display: flex; justify-content: center; flex-wrap: wrap;
+  gap: 0; overflow-x: auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.sticky-nav a {
+  color: rgba(255,255,255,0.75);
+  text-decoration: none; font-size: 12px; font-weight: 600;
+  padding: 10px 14px;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap; transition: all 0.2s;
+  letter-spacing: 0.3px;
+}
+.sticky-nav a:hover { color: var(--white); border-bottom-color: var(--gold); }
 
-/* SECTION BLOCKS */
-.grammar-section {
+.container { max-width: 880px; margin: 0 auto; padding: 40px 24px; }
+
+.section-anchor { scroll-margin-top: 90px; }
+
+.section-title {
+  font-family: var(--fh); font-style: italic; font-size: 1.6rem;
+  color: var(--mc-text); margin-bottom: 6px;
+}
+.section-label {
+  display: inline-block;
+  background: var(--mc); color: var(--white);
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; border-radius: 4px;
+  padding: 2px 10px; margin-bottom: 10px;
+}
+.section-header { margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--mc-bg); }
+
+.card {
   background: var(--white); border-radius: var(--r);
-  padding: 32px; margin-bottom: 32px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  padding: 28px; margin-bottom: 36px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
 }
-.section-num {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 32px; height: 32px; border-radius: 50%;
-  background: var(--mod); color: var(--white);
-  font-weight: 700; font-size: 14px; margin-right: 10px; flex-shrink: 0;
-}
-.section-header { display: flex; align-items: center; margin-bottom: 6px; }
-.section-title { font-family: var(--fh); font-style: italic; font-size: 1.55rem; color: var(--mod-tx); }
-.section-subtitle { font-size: 0.9rem; color: #666; margin-bottom: 24px; padding-left: 42px; }
-.divider { height: 2px; background: var(--mod-lt); margin: 24px 0; border-radius: 2px; }
 
-/* RULE BOX */
 .rule-box {
-  background: var(--mod-lt); border-left: 4px solid var(--mod);
-  border-radius: 0 var(--r) var(--r) 0;
+  background: var(--mc-bg); border-radius: 8px;
   padding: 16px 20px; margin-bottom: 20px;
+  border-left: 4px solid var(--mc);
+  font-size: 0.95rem; line-height: 1.65;
 }
-.rule-box h4 { color: var(--mod-tx); font-size: 12px; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700; margin-bottom: 8px; }
-.rule-box p { font-size: 0.93rem; line-height: 1.6; }
-.rule-box ul { padding-left: 18px; font-size: 0.93rem; line-height: 1.8; }
+.rule-box strong { color: var(--mc-text); }
 
-/* ARTICOLO TABLE */
-.art-table-wrap { overflow-x: auto; margin-bottom: 20px; }
-.art-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 500px; }
-.art-table th {
-  background: var(--mod); color: var(--white);
-  padding: 10px 14px; text-align: center;
-  font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;
+/* GRAMMAR TABLE */
+.gram-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+.gram-table th {
+  background: var(--mc); color: var(--white);
+  padding: 10px 14px; text-align: left;
+  font-size: 13px; font-weight: 700;
 }
-.art-table td { padding: 10px 14px; border-bottom: 1px solid var(--cream-dk); text-align: center; }
-.art-table tr:last-child td { border-bottom: none; }
-.art-table .art-form { font-size: 1.1rem; font-weight: 700; color: var(--mod-tx); }
-.art-table .art-rule { font-size: 0.8rem; color: #555; }
-.art-table .art-ex { font-style: italic; color: #444; font-size: 0.88rem; }
-.art-table tr:hover td { background: rgba(229,171,7,0.06); }
-.art-table .col-head { background: var(--mod-lt); font-weight: 700; font-size: 0.85rem; color: var(--mod-tx); }
+.gram-table th:first-child { border-radius: 8px 0 0 0; }
+.gram-table th:last-child  { border-radius: 0 8px 0 0; }
+.gram-table td {
+  padding: 10px 14px; border-bottom: 1px solid var(--cream-dk);
+  font-size: 0.93rem;
+}
+.gram-table tr:last-child td { border-bottom: none; }
+.gram-table tr:nth-child(even) td { background: var(--cream); }
+.td-it { font-style: italic; font-weight: 600; color: var(--mc-text); }
+.td-es { color: #555; font-size: 0.87rem; }
 
-/* CONJ TABLE */
-.conj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 20px; }
-.conj-card { background: var(--mod-lt); border-radius: var(--r); padding: 22px; }
-.conj-title { font-family: var(--fh); font-size: 1.1rem; color: var(--mod-tx); margin-bottom: 14px; }
-.conj-table { width: 100%; border-collapse: collapse; font-size: 0.91rem; }
-.conj-table th { background: var(--mod); color: var(--white); padding: 7px 10px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
-.conj-table td { padding: 8px 10px; border-bottom: 1px solid var(--gold); }
-.conj-table tr:last-child td { border-bottom: none; }
-.conj-table tr:hover td { background: rgba(229,171,7,0.1); }
-.conj-play {
-  padding: 3px 9px; background: var(--cream-dk); border: none;
-  border-radius: 4px; font-size: 11px; cursor: pointer;
-  font-family: var(--fb); transition: background 0.2s;
+.btn-sm {
+  background: var(--mc); color: var(--white);
+  border: none; border-radius: 5px;
+  padding: 5px 10px; font-size: 14px;
+  cursor: pointer; transition: background 0.2s;
 }
-.conj-play:hover { background: var(--gold); }
+.btn-sm:hover { background: var(--mc-dk); }
 
-/* CONCORDANZA EXAMPLES */
-.concord-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-bottom: 20px; }
-.concord-card {
-  background: var(--cream); border-radius: var(--r);
-  padding: 14px 16px; border: 1.5px solid var(--cream-dk);
-  transition: border-color 0.2s; cursor: pointer;
+/* FONETICA */
+.fonetica-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px; margin-bottom: 20px;
 }
-.concord-card:hover { border-color: var(--mod); }
-.concord-it { font-size: 1.05rem; font-weight: 700; color: var(--mod-tx); margin-bottom: 4px; }
-.concord-analysis { font-size: 0.8rem; color: #666; line-height: 1.5; }
-.concord-analysis span { display: inline-block; background: var(--mod-lt); border-radius: 3px; padding: 1px 5px; margin: 1px; font-size: 0.75rem; color: var(--mod-tx); font-weight: 600; }
+.fonetica-pair {
+  background: var(--cream); border-radius: 8px;
+  padding: 14px 16px;
+  display: flex; align-items: center; gap: 12px;
+  border: 1px solid var(--cream-dk);
+}
+.fp-col { flex: 1; text-align: center; }
+.fp-word { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.5px; }
+.fp-word .hl { color: var(--mc); }
+.fp-trans { font-size: 0.8rem; color: #666; }
+.fp-vs { font-weight: 700; color: #aaa; font-size: 0.9rem; }
 
 /* EXERCISES */
-.exercise-card { background: var(--white); border-radius: var(--r); padding: 28px; margin-bottom: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
-.ex-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-.ex-num { width: 36px; height: 36px; border-radius: 50%; background: var(--mod); color: var(--white); font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.ex-title { font-weight: 700; font-size: 1.05rem; }
-.ex-subtitle { font-size: 13px; color: #666; }
-
-.ex-block { padding: 14px 0; border-bottom: 1px solid var(--cream-dk); }
-.ex-block:last-child { border-bottom: none; }
-.ex-q { font-weight: 600; margin-bottom: 10px; font-size: 0.97rem; }
-.opt-btn {
-  display: inline-block; margin: 4px; padding: 8px 16px;
-  border: 2px solid var(--cream-dk); border-radius: 6px;
-  background: var(--cream); font-family: var(--fb); font-size: 13px;
-  cursor: pointer; transition: all 0.2s;
+.ex-card {
+  background: var(--white); border-radius: var(--r);
+  padding: 24px; margin-bottom: 20px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+  border-top: 3px solid var(--mc);
 }
-.opt-btn:hover { border-color: var(--mod); }
-.opt-btn.correct { background: #d4edda; border-color: var(--green); color: var(--green); font-weight: 700; }
-.opt-btn.wrong { background: #fde8e8; border-color: var(--red); color: var(--red); }
-.ex-fb { font-size: 13px; min-height: 18px; margin-top: 8px; font-weight: 600; }
+.ex-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.ex-num {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--mc); color: var(--white);
+  font-weight: 700; font-size: 14px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.ex-title { font-weight: 700; font-size: 1rem; color: var(--black); }
+.ex-subtitle { font-size: 12px; color: #666; margin-top: 2px; }
 
-.fill-item { margin: 12px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.96rem; line-height: 1.8; }
-.fill-input {
-  padding: 5px 10px; border: 2px solid var(--cream-dk); border-radius: 6px;
-  font-family: var(--fb); font-size: 0.93rem; width: 140px; outline: none;
+/* Fill in blank */
+.fib-item { margin-bottom: 16px; }
+.fib-item label { display: block; font-size: 0.95rem; margin-bottom: 6px; }
+.fib-input {
+  border: 2px solid var(--cream-dk); border-radius: 6px;
+  padding: 7px 12px; font-family: var(--fb); font-size: 0.95rem;
+  width: 100%; max-width: 320px;
   transition: border-color 0.2s;
 }
-.fill-input:focus { border-color: var(--mod); }
-.fill-input.ok { border-color: var(--green); background: #d4edda; }
-.fill-input.err { border-color: var(--red); background: #fde8e8; }
-.fill-feedback { font-size: 12px; font-weight: 600; }
-.fill-hint { font-size: 11px; color: #888; font-style: italic; }
+.fib-input:focus { outline: none; border-color: var(--mc); }
+.fib-input.correct { border-color: #2d7a4f; background: #d4edda; }
+.fib-input.wrong   { border-color: var(--red); background: #fde8e8; }
+.fib-feedback { font-size: 13px; margin-top: 4px; font-weight: 500; }
 
-/* INTEGRADOR */
-.integrador-banner {
-  background: linear-gradient(135deg, var(--mod-lt), var(--cream));
-  border: 2px solid var(--mod); border-radius: var(--r);
-  padding: 20px 24px; margin-bottom: 24px; text-align: center;
+.btn-check {
+  background: var(--mc); color: var(--white);
+  border: none; border-radius: 8px;
+  padding: 10px 24px; font-family: var(--fb);
+  font-size: 0.9rem; font-weight: 700;
+  cursor: pointer; margin-top: 8px; transition: background 0.2s;
 }
-.integrador-banner h3 { font-family: var(--fh); font-style: italic; color: var(--mod-tx); font-size: 1.3rem; margin-bottom: 6px; }
-.integrador-banner p { font-size: 0.92rem; color: #555; }
+.btn-check:hover { background: var(--mc-dk); }
+
+/* MC */
+.mc-item { padding: 14px 0; border-bottom: 1px solid var(--cream-dk); }
+.mc-item:last-child { border-bottom: none; }
+.mc-question { font-weight: 600; margin-bottom: 10px; font-size: 0.95rem; }
+.mc-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn-mc {
+  padding: 7px 16px; border: 2px solid var(--cream-dk);
+  border-radius: 6px; background: var(--cream);
+  font-family: var(--fb); font-size: 13px; cursor: pointer; transition: all 0.2s;
+}
+.btn-mc:hover { border-color: var(--mc); }
+.btn-mc.correct { background: #d4edda; border-color: #2d7a4f; color: #2d7a4f; font-weight: 700; }
+.btn-mc.wrong   { background: #fde8e8; border-color: var(--red); color: var(--red); }
+.mc-feedback { font-size: 13px; margin-top: 8px; min-height: 18px; font-weight: 500; }
+
+/* Sort exercise */
+.sort-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.sort-word {
+  padding: 7px 14px; background: var(--mc-bg);
+  border: 2px solid var(--mc); border-radius: 6px;
+  font-weight: 600; font-size: 0.9rem; cursor: pointer;
+  color: var(--mc-text); transition: all 0.2s;
+  user-select: none;
+}
+.sort-word.used { opacity: 0.35; pointer-events: none; }
+.sort-answer {
+  min-height: 44px; background: var(--cream);
+  border: 2px dashed var(--cream-dk); border-radius: 8px;
+  padding: 8px 12px; display: flex; flex-wrap: wrap; gap: 8px;
+  align-items: center; margin-bottom: 8px;
+}
+.sort-placed {
+  padding: 5px 12px; background: var(--mc);
+  color: var(--white); border-radius: 5px;
+  font-size: 0.9rem; font-weight: 600; cursor: pointer;
+}
+.sort-placed:hover { background: var(--mc-dk); }
+
+/* Formal/Informal classify */
+.fi-options { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.fi-item {
+  padding: 8px 16px; border-radius: 6px;
+  border: 2px solid var(--cream-dk); background: var(--cream);
+  font-size: 0.9rem; font-style: italic; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; color: var(--mc-text);
+}
+.fi-item:hover { border-color: var(--mc); }
+.fi-item.done-formal { background: #d4edda; border-color: #2d7a4f; color: #2d7a4f; }
+.fi-item.done-informal { background: #e6f0ff; border-color: #5a7bd4; color: #3d5ab5; }
+.fi-item.wrong-pick { background: #fde8e8; border-color: var(--red); color: var(--red); }
+.fi-buckets { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.fi-bucket {
+  background: var(--cream); border: 2px dashed var(--cream-dk);
+  border-radius: 8px; padding: 12px; min-height: 60px;
+  text-align: center;
+}
+.fi-bucket-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #888; margin-bottom: 8px; }
+.fi-placed {
+  display: inline-block; margin: 3px; padding: 4px 10px;
+  border-radius: 5px; font-size: 0.85rem; font-style: italic; font-weight: 600;
+}
+.fi-placed.formal   { background: #d4edda; color: #2d7a4f; }
+.fi-placed.informal { background: #e6f0ff; color: #3d5ab5; }
+
+/* VF */
+.vf-item {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 12px 0; border-bottom: 1px solid var(--cream-dk);
+}
+.vf-item:last-child { border-bottom: none; }
+.vf-statement { font-size: 0.95rem; }
+.vf-buttons { display: flex; gap: 10px; }
+.btn-vf {
+  padding: 6px 18px; border: 2px solid var(--cream-dk);
+  border-radius: 6px; background: var(--cream);
+  font-family: var(--fb); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-vf:hover { border-color: var(--mc); }
+.btn-vf.correct { background: #d4edda; border-color: #2d7a4f; color: #2d7a4f; }
+.btn-vf.wrong   { background: #fde8e8; border-color: var(--red); color: var(--red); }
+.vf-feedback { font-size: 13px; min-height: 16px; font-weight: 500; }
+
+/* Culture strip */
+.culture-strip {
+  background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk));
+  border-top: 3px solid var(--mc);
+  border-radius: var(--r); padding: 28px;
+  margin-bottom: 36px;
+}
+.culture-title {
+  font-family: var(--fh); font-style: italic; font-size: 1.3rem;
+  color: var(--mc-text); margin-bottom: 12px;
+}
+.culture-body { font-size: 0.95rem; line-height: 1.7; color: #333; }
+.culture-body p { margin-bottom: 10px; }
+.culture-body p:last-child { margin-bottom: 0; }
 
 /* CTA */
-
-/* SELECT */
-.fill-select {
-  padding: 5px 10px; border: 2px solid var(--cream-dk); border-radius: 6px;
-  font-family: var(--fb); font-size: 0.93rem; background: var(--white); cursor: pointer;
-  outline: none; transition: border-color 0.2s;
+.cta-wrap {
+  text-align: center; margin-top: 40px; padding: 36px;
+  background: var(--white); border-radius: var(--r);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
 }
-.fill-select:focus { border-color: var(--mod); }
-.fill-select.ok { border-color: var(--green); background: #d4edda; }
-.fill-select.err { border-color: var(--red); background: #fde8e8; }
+.cta-wrap p { color: #555; margin-bottom: 16px; font-size: 1rem; }
+.btn-cta {
+  display: inline-block; padding: 14px 36px;
+  background: var(--mc); color: var(--white);
+  text-decoration: none; border-radius: 8px;
+  font-weight: 700; font-size: 1rem; transition: background 0.2s;
+}
+.btn-cta:hover { background: var(--mc-dk); }
 
 @media (max-width: 600px) {
-  
-  
-  .conj-grid { grid-template-columns: 1fr; }
-  .section-subtitle { padding-left: 0; }
+  .stage-nav a { padding: 12px 12px; font-size: 12px; }
+  .stage-nav a span:not(.num) { display: none; }
+  .sticky-nav a { padding: 8px 10px; font-size: 11px; }
+  .mc-options { flex-direction: column; }
+  .fi-buckets { grid-template-columns: 1fr; }
+  .fonetica-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
 <div class="hero">
-  <div class="badge">A1 · Unità 4</div>
-  <h1>Che lavoro fai?</h1>
-  <p>Etapa 3 — Gramática</p>
+  <div class="badge">A1 · Unità 3</div>
+  <h1>Tutti in piazza!</h1>
+  <p>Gramática completa — las reglas de la hora, los saludos y la fonética</p>
+</div>
+
+
+
+<div class="sticky-nav">
+  <a href="#lora">A. La hora</a>
+  <a href="#formale">B. Formal/Informal</a>
+  <a href="#saluti">C. Saludos</a>
+  <a href="#preposizioni">D. Preposiciones</a>
+  <a href="#fonetica">E. Fonética L/R</a>
+  <a href="#ejercicios">F. Ejercicios</a>
 </div>
 
 <div class="container">
 
-<!-- ═══════════════════════════════════════════════════
-     SECCIÓN 1: GLI ARTICOLI DETERMINATIVI
-════════════════════════════════════════════════════ -->
-<div class="grammar-section">
-  <div class="section-header">
-    <span class="section-num">1</span>
-    <h2 class="section-title">Gli articoli determinativi</h2>
-  </div>
-  <p class="section-subtitle">Los artículos determinados en italiano (equivalente a "el, la, los, las") — singolare e plurale</p>
-
-  <div class="rule-box">
-    <h4>¿Por qué hay tantos artículos?</h4>
-    <p>A diferencia del español (donde tenemos solo <em>el/la/los/las</em>), el italiano tiene <strong>7 formas distintas</strong> según el género (masculino/femenino), el número (singular/plural) y la <strong>primera letra de la palabra siguiente</strong>. ¡Pero con práctica se vuelve automático!</p>
+  <!-- ===================== A. COME SI DICE L'ORA ===================== -->
+  <div class="section-anchor" id="lora">
+    <div class="section-header">
+      <div class="section-label">A</div>
+      <h2 class="section-title">Come si dice l'ora — Cómo se dice la hora</h2>
+    </div>
   </div>
 
-  <div class="art-table-wrap">
-    <table class="art-table">
-      <tr>
-        <th></th>
-        <th colspan="2">MASCULINO</th>
-        <th>FEMENINO</th>
-      </tr>
-      <tr>
-        <td class="col-head">Singular</td>
-        <td>
-          <div class="art-form">il</div>
-          <div class="art-rule">ante consonante común</div>
-          <div class="art-ex">il medico, il cuoco</div>
-        </td>
-        <td>
-          <div class="art-form">lo</div>
-          <div class="art-rule">ante s+cons., z, gn, ps, x</div>
-          <div class="art-ex">lo studente, lo zaino</div>
-        </td>
-        <td>
-          <div class="art-form">la</div>
-          <div class="art-rule">ante consonante</div>
-          <div class="art-ex">la cuoca, la dottoressa</div>
-        </td>
-      </tr>
-      <tr>
-        <td class="col-head">Singular (vocal)</td>
-        <td colspan="2">
-          <div class="art-form">l'</div>
-          <div class="art-rule">ante vocal (masc.)</div>
-          <div class="art-ex">l'ingegnere, l'avvocato</div>
-        </td>
-        <td>
-          <div class="art-form">l'</div>
-          <div class="art-rule">ante vocal (fem.)</div>
-          <div class="art-ex">l'insegnante, l'infermiera</div>
-        </td>
-      </tr>
-      <tr>
-        <td class="col-head">Plural</td>
-        <td>
-          <div class="art-form">i</div>
-          <div class="art-rule">pl. de <em>il</em></div>
-          <div class="art-ex">i medici, i cuochi</div>
-        </td>
-        <td>
-          <div class="art-form">gli</div>
-          <div class="art-rule">pl. de <em>lo / l'</em> (masc.)</div>
-          <div class="art-ex">gli studenti, gli ingegneri</div>
-        </td>
-        <td>
-          <div class="art-form">le</div>
-          <div class="art-rule">pl. de <em>la / l'</em> (fem.)</div>
-          <div class="art-ex">le cuoche, le insegnanti</div>
-        </td>
-      </tr>
+  <div class="card">
+    <div class="rule-box">
+      <strong>Regla fundamental:</strong> La hora en italiano usa el verbo <em>essere</em> (ser). Se dice <strong><em>È l'una</em></strong> (singular) solo para la 1:00, y <strong><em>Sono le + número</em></strong> (plural) para el resto. ¡Igual que en español: "es la una" vs "son las dos"!
+    </div>
+
+    <table class="gram-table">
+      <thead>
+        <tr><th>Hora</th><th>Italiano</th><th>Español</th><th>🔊</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1:00</td>
+          <td class="td-it">È l'una</td>
+          <td class="td-es">Es la una</td>
+          <td><button class="btn-sm" onclick="ippAudio('È l\'una',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>1:30</td>
+          <td class="td-it">È l'una e mezza</td>
+          <td class="td-es">Es la una y media</td>
+          <td><button class="btn-sm" onclick="ippAudio('È l\'una e mezza',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>1:15</td>
+          <td class="td-it">È l'una e un quarto</td>
+          <td class="td-es">Es la una y cuarto</td>
+          <td><button class="btn-sm" onclick="ippAudio('È l\'una e un quarto',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>2:00</td>
+          <td class="td-it">Sono le due</td>
+          <td class="td-es">Son las dos</td>
+          <td><button class="btn-sm" onclick="ippAudio('Sono le due',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>3:20</td>
+          <td class="td-it">Sono le tre e venti</td>
+          <td class="td-es">Son las tres y veinte</td>
+          <td><button class="btn-sm" onclick="ippAudio('Sono le tre e venti',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>4:45</td>
+          <td class="td-it">Sono le cinque meno un quarto</td>
+          <td class="td-es">Son las cinco menos cuarto</td>
+          <td><button class="btn-sm" onclick="ippAudio('Sono le cinque meno un quarto',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>7:15</td>
+          <td class="td-it">Sono le sette e un quarto</td>
+          <td class="td-es">Son las siete y cuarto</td>
+          <td><button class="btn-sm" onclick="ippAudio('Sono le sette e un quarto',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>10:50</td>
+          <td class="td-it">Sono le undici meno dieci</td>
+          <td class="td-es">Son las once menos diez</td>
+          <td><button class="btn-sm" onclick="ippAudio('Sono le undici meno dieci',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>12:00</td>
+          <td class="td-it">È mezzogiorno</td>
+          <td class="td-es">Es mediodía</td>
+          <td><button class="btn-sm" onclick="ippAudio('È mezzogiorno',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td>0:00</td>
+          <td class="td-it">È mezzanotte</td>
+          <td class="td-es">Es medianoche</td>
+          <td><button class="btn-sm" onclick="ippAudio('È mezzanotte',0.82,'f')">🔊</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="rule-box" style="margin-bottom:0">
+      <strong>Expresiones clave:</strong><br>
+      <em>in punto</em> / <em>spaccate</em> = en punto (exacto) &nbsp;·&nbsp;
+      <em>e mezza</em> = y media &nbsp;·&nbsp;
+      <em>e un quarto</em> = y cuarto &nbsp;·&nbsp;
+      <em>meno un quarto</em> = menos cuarto &nbsp;·&nbsp;
+      <em>circa / verso</em> = aproximadamente
+    </div>
+  </div>
+
+  <!-- ===================== B. ORARIO FORMALE vs INFORMALE ===================== -->
+  <div class="section-anchor" id="formale">
+    <div class="section-header">
+      <div class="section-label">B</div>
+      <h2 class="section-title">Orario formale e informale</h2>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rule-box">
+      <strong>Orario formale (24h):</strong> se usa en trenes, aeropuertos, oficinas, horarios escritos. Solo se dicen los minutos exactos.<br>
+      <strong>Orario informale (12h):</strong> se usa en la conversación cotidiana. Se añade <em>di mattina / di pomeriggio / di sera / di notte</em> si hay ambigüedad.
+    </div>
+
+    <table class="gram-table">
+      <thead>
+        <tr>
+          <th>Hora</th>
+          <th>Formal (24h)</th>
+          <th>🔊</th>
+          <th>Informal (12h)</th>
+          <th>🔊</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>6:00</strong></td>
+          <td class="td-it">le sei</td>
+          <td><button class="btn-sm" onclick="ippAudio('le sei',0.82,'f')">🔊</button></td>
+          <td class="td-it">le sei di mattina</td>
+          <td><button class="btn-sm" onclick="ippAudio('le sei di mattina',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td><strong>7:15</strong></td>
+          <td class="td-it">le sette e quindici</td>
+          <td><button class="btn-sm" onclick="ippAudio('le sette e quindici',0.82,'f')">🔊</button></td>
+          <td class="td-it">le sette e un quarto</td>
+          <td><button class="btn-sm" onclick="ippAudio('le sette e un quarto',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td><strong>14:30</strong></td>
+          <td class="td-it">le quattordici e trenta</td>
+          <td><button class="btn-sm" onclick="ippAudio('le quattordici e trenta',0.82,'f')">🔊</button></td>
+          <td class="td-it">le due e mezza (del pomeriggio)</td>
+          <td><button class="btn-sm" onclick="ippAudio('le due e mezza del pomeriggio',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td><strong>16:45</strong></td>
+          <td class="td-it">le sedici e quarantacinque</td>
+          <td><button class="btn-sm" onclick="ippAudio('le sedici e quarantacinque',0.82,'f')">🔊</button></td>
+          <td class="td-it">le cinque meno un quarto</td>
+          <td><button class="btn-sm" onclick="ippAudio('le cinque meno un quarto',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td><strong>20:45</strong></td>
+          <td class="td-it">le venti e quarantacinque</td>
+          <td><button class="btn-sm" onclick="ippAudio('le venti e quarantacinque',0.82,'f')">🔊</button></td>
+          <td class="td-it">le nove meno un quarto (di sera)</td>
+          <td><button class="btn-sm" onclick="ippAudio('le nove meno un quarto di sera',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td><strong>22:00</strong></td>
+          <td class="td-it">le ventidue</td>
+          <td><button class="btn-sm" onclick="ippAudio('le ventidue',0.82,'f')">🔊</button></td>
+          <td class="td-it">le dieci di sera</td>
+          <td><button class="btn-sm" onclick="ippAudio('le dieci di sera',0.82,'f')">🔊</button></td>
+        </tr>
+      </tbody>
     </table>
   </div>
 
-  <div class="rule-box">
-    <h4>Regla práctica: cuándo usar cada artículo masculino</h4>
-    <ul>
-      <li><strong>il</strong> → la mayoría de los sustantivos masculinos en consonante: <em>il libro, il treno, il lavoro</em></li>
-      <li><strong>lo</strong> → ante <em>s</em> + consonante, <em>z</em>, <em>gn</em>, <em>ps</em>, <em>x</em>: <em>lo studente, lo zaino, lo gnocco</em></li>
-      <li><strong>l'</strong> → ante vocal: <em>l'uomo, l'aereo, l'ospedale</em></li>
-      <li><strong>i</strong> → plural de <em>il</em>: <em>i libri, i treni</em></li>
-      <li><strong>gli</strong> → plural de <em>lo</em> y <em>l'</em> (masc.): <em>gli studenti, gli uomini</em></li>
-    </ul>
+  <!-- ===================== C. SALUTI DELLA GIORNATA ===================== -->
+  <div class="section-anchor" id="saluti">
+    <div class="section-header">
+      <div class="section-label">C</div>
+      <h2 class="section-title">I saluti della giornata — Saludos del día</h2>
+    </div>
   </div>
 
-  <div class="divider"></div>
-  <h3 style="font-family:var(--fh);font-style:italic;color:var(--mod-tx);margin-bottom:16px;">Esercizi — Artículos</h3>
+  <div class="card">
+    <table class="gram-table">
+      <thead>
+        <tr><th>Saludo</th><th>Horario</th><th>Uso</th><th>🔊</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-it">Buongiorno!</td>
+          <td>6:00–12:00</td>
+          <td class="td-es">Buenos días — al llegar y al despedirse por la mañana</td>
+          <td><button class="btn-sm" onclick="ippAudio('Buongiorno!',0.85,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it">Buon pomeriggio!</td>
+          <td>12:00–17:00</td>
+          <td class="td-es">Buenas tardes — menos común, más formal</td>
+          <td><button class="btn-sm" onclick="ippAudio('Buon pomeriggio!',0.85,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it">Buonasera!</td>
+          <td>17:00–22:00</td>
+          <td class="td-es">Buenas tardes/noches — al llegar Y al marcharse por la tarde</td>
+          <td><button class="btn-sm" onclick="ippAudio('Buonasera!',0.85,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it">Buonanotte!</td>
+          <td>22:00–6:00</td>
+          <td class="td-es">Buenas noches — SOLO al despedirse (antes de dormir)</td>
+          <td><button class="btn-sm" onclick="ippAudio('Buonanotte!',0.85,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it">Salve!</td>
+          <td>todo el día</td>
+          <td class="td-es">Hola (formal, a cualquier hora)</td>
+          <td><button class="btn-sm" onclick="ippAudio('Salve!',0.85,'f')">🔊</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="rule-box" style="margin-bottom:0">
+      <strong>Atención:</strong> En italiano <em>buonasera</em> se usa también para despedirse — al igual que en España con "buenas noches" al salir de un restaurante a las 20:00. <em>Buonanotte</em> es exclusivo para irse a dormir.
+    </div>
+  </div>
 
-  <div class="exercise-card">
+  <!-- ===================== D. PREPOSIZIONI DI TEMPO ===================== -->
+  <div class="section-anchor" id="preposizioni">
+    <div class="section-header">
+      <div class="section-label">D</div>
+      <h2 class="section-title">Le preposizioni di tempo</h2>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rule-box">
+      Para situar eventos en el tiempo, los italianos usan preposiciones específicas. ¡Son fundamentales para hablar de horarios!
+    </div>
+
+    <table class="gram-table">
+      <thead>
+        <tr><th>Preposición</th><th>Uso</th><th>Ejemplo</th><th>🔊</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-it" style="font-size:1.1rem;font-weight:700">alle</td>
+          <td class="td-es">a las (hora exacta)</td>
+          <td class="td-it">Il treno parte alle otto.</td>
+          <td><button class="btn-sm" onclick="ippAudio('Il treno parte alle otto.',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.1rem;font-weight:700">verso</td>
+          <td class="td-es">hacia / alrededor de (aproximado)</td>
+          <td class="td-it">Arrivo verso le dieci.</td>
+          <td><button class="btn-sm" onclick="ippAudio('Arrivo verso le dieci.',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.1rem;font-weight:700">fino alle</td>
+          <td class="td-es">hasta las</td>
+          <td class="td-it">Il negozio è aperto fino alle venti.</td>
+          <td><button class="btn-sm" onclick="ippAudio('Il negozio è aperto fino alle venti.',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.1rem;font-weight:700">dalle...alle</td>
+          <td class="td-es">de... a... (horario)</td>
+          <td class="td-it">Il museo è aperto dalle nove alle diciotto.</td>
+          <td><button class="btn-sm" onclick="ippAudio('Il museo è aperto dalle nove alle diciotto.',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.1rem;font-weight:700">tra</td>
+          <td class="td-es">dentro de (tiempo futuro)</td>
+          <td class="td-it">Ci vediamo tra un'ora.</td>
+          <td><button class="btn-sm" onclick="ippAudio('Ci vediamo tra un\'ora.',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.1rem;font-weight:700">prima di</td>
+          <td class="td-es">antes de</td>
+          <td class="td-it">Mangio prima delle otto.</td>
+          <td><button class="btn-sm" onclick="ippAudio('Mangio prima delle otto.',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.1rem;font-weight:700">dopo</td>
+          <td class="td-es">después de</td>
+          <td class="td-it">Vado al bar dopo il lavoro.</td>
+          <td><button class="btn-sm" onclick="ippAudio('Vado al bar dopo il lavoro.',0.82,'f')">🔊</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===================== E. FONETICA: L / R ===================== -->
+  <div class="section-anchor" id="fonetica">
+    <div class="section-header">
+      <div class="section-label">E</div>
+      <h2 class="section-title">Fonetica — i suoni L e R</h2>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rule-box">
+      En italiano la <strong>L</strong> se pronuncia con la lengua tocando el paladar, igual que en español. La <strong>R</strong> italiana es vibrante (como la "r" española en "carro") — se pronuncia con la punta de la lengua vibrando rápidamente. ¡Escucha y repite!
+    </div>
+
+    <div class="fonetica-grid">
+      <div class="fonetica-pair">
+        <div class="fp-col">
+          <div class="fp-word"><span class="hl">L</span>ago</div>
+          <div class="fp-trans">lago</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="ippAudio('Lago',0.75,'f')">🔊</button>
+        </div>
+        <div class="fp-vs">vs</div>
+        <div class="fp-col">
+          <div class="fp-word"><span class="hl">R</span>ago</div>
+          <div class="fp-trans">araña</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="ippAudio('Rago',0.75,'f')">🔊</button>
+        </div>
+      </div>
+      <div class="fonetica-pair">
+        <div class="fp-col">
+          <div class="fp-word"><span class="hl">L</span>etto</div>
+          <div class="fp-trans">cama</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="ippAudio('Letto',0.75,'f')">🔊</button>
+        </div>
+        <div class="fp-vs">vs</div>
+        <div class="fp-col">
+          <div class="fp-word"><span class="hl">R</span>etto</div>
+          <div class="fp-trans">recto</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="ippAudio('Retto',0.75,'f')">🔊</button>
+        </div>
+      </div>
+      <div class="fonetica-pair">
+        <div class="fp-col">
+          <div class="fp-word"><span class="hl">L</span>una</div>
+          <div class="fp-trans">luna</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="ippAudio('Luna',0.75,'f')">🔊</button>
+        </div>
+        <div class="fp-vs">vs</div>
+        <div class="fp-col">
+          <div class="fp-word"><span class="hl">R</span>una</div>
+          <div class="fp-trans">runa</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="ippAudio('Runa',0.75,'f')">🔊</button>
+        </div>
+      </div>
+      <div class="fonetica-pair">
+        <div class="fp-col">
+          <div class="fp-word"><span class="hl">L</span>ana</div>
+          <div class="fp-trans">lana</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="ippAudio('Lana',0.75,'f')">🔊</button>
+        </div>
+        <div class="fp-vs">vs</div>
+        <div class="fp-col">
+          <div class="fp-word"><span class="hl">R</span>ana</div>
+          <div class="fp-trans">rana</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="ippAudio('Rana',0.75,'f')">🔊</button>
+        </div>
+      </div>
+      <div class="fonetica-pair">
+        <div class="fp-col">
+          <div class="fp-word">o<span class="hl">l</span>io</div>
+          <div class="fp-trans">aceite</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="ippAudio('Olio',0.75,'f')">🔊</button>
+        </div>
+        <div class="fp-vs">vs</div>
+        <div class="fp-col">
+          <div class="fp-word">o<span class="hl">r</span>io</div>
+          <div class="fp-trans">horario</div>
+          <button class="btn-sm" style="margin-top:6px" onclick="ippAudio('Orario',0.75,'f')">🔊</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mini ejercicio fonético -->
+    <div style="border-top:1px solid var(--cream-dk);padding-top:16px;margin-top:8px">
+      <div style="font-weight:700;font-size:0.9rem;color:var(--mc-text);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px">¿L o R? — elige la letra correcta</div>
+      <div id="fon-score" style="font-size:13px;color:#888;margin-bottom:12px">Aciertos: 0 / 5</div>
+
+      <div class="mc-item" id="fon1" data-correct="0">
+        <div class="mc-question">1. ¿Qué letra? → <em>___etto</em> (cama en italiano)</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkFon(this,'fon1',0)">L → <em>letto</em></button>
+          <button class="btn-mc" onclick="checkFon(this,'fon1',1)">R → <em>retto</em></button>
+        </div>
+        <div class="mc-feedback" id="fb-fon1"></div>
+      </div>
+      <div class="mc-item" id="fon2" data-correct="1">
+        <div class="mc-question">2. ¿Qué letra? → <em>o___ologio</em> (reloj)</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkFon(this,'fon2',0)">L → <em>orologio</em></button>
+          <button class="btn-mc" onclick="checkFon(this,'fon2',1)">R → <em>orologio</em></button>
+        </div>
+        <div class="mc-feedback" id="fb-fon2"></div>
+      </div>
+      <div class="mc-item" id="fon3" data-correct="0">
+        <div class="mc-question">3. ¿Qué letra? → <em>___una</em> (luna)</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkFon(this,'fon3',0)">L → <em>luna</em></button>
+          <button class="btn-mc" onclick="checkFon(this,'fon3',1)">R → <em>runa</em></button>
+        </div>
+        <div class="mc-feedback" id="fb-fon3"></div>
+      </div>
+      <div class="mc-item" id="fon4" data-correct="1">
+        <div class="mc-question">4. ¿Qué letra? → <em>cam___anile</em> (campanario)</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkFon(this,'fon4',0)">L → <em>camlanile</em></button>
+          <button class="btn-mc" onclick="checkFon(this,'fon4',1)">R → <em>campanile</em></button>
+        </div>
+        <div class="mc-feedback" id="fb-fon4"></div>
+      </div>
+      <div class="mc-item" id="fon5" data-correct="0">
+        <div class="mc-question">5. ¿Qué letra? → <em>___ana</em> (lana — tejido)</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkFon(this,'fon5',0)">L → <em>lana</em></button>
+          <button class="btn-mc" onclick="checkFon(this,'fon5',1)">R → <em>rana</em></button>
+        </div>
+        <div class="mc-feedback" id="fb-fon5"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== F. EJERCICIOS ===================== -->
+  <div class="section-anchor" id="ejercicios">
+    <div class="section-header">
+      <div class="section-label">F</div>
+      <h2 class="section-title">Esercizi — Ejercicios</h2>
+    </div>
+  </div>
+
+  <!-- EX 1: Escribe la hora en palabras -->
+  <div class="ex-card">
     <div class="ex-header">
       <div class="ex-num">1</div>
       <div>
-        <div class="ex-title">Elegí el artículo correcto</div>
-        <div class="ex-subtitle">Seleccioná il / lo / la / l' / i / gli / le según corresponda</div>
+        <div class="ex-title">Escribe la hora en palabras</div>
+        <div class="ex-subtitle">Escribe cómo se dice cada hora en italiano (informal)</div>
       </div>
     </div>
-
-    <div class="ex-block" id="art1a">
-      <p class="ex-q">1. ___ avvocato (sing. masc., empieza con vocal)</p>
-      <button class="opt-btn" onclick="checkOpt(this,'art1a',false,'No — ante vocal masculino usamos l\'.')">il</button>
-      <button class="opt-btn" onclick="checkOpt(this,'art1a',false,'No — lo va antes de s+consonante, z, gn...')">lo</button>
-      <button class="opt-btn" onclick="checkOpt(this,'art1a',true,'¡Esatto! l\'avvocato — ante vocal masculina usamos l\'.')">l'</button>
-      <button class="opt-btn" onclick="checkOpt(this,'art1a',false,'No — la es femenino singular.')">la</button>
-      <div class="ex-fb" id="art1afb"></div>
+    <div class="fib-item">
+      <label>3:00 → <em>Sono le...</em></label>
+      <input class="fib-input" id="fib1" placeholder="escribe aquí..." autocomplete="off">
+      <div class="fib-feedback" id="ffb1"></div>
     </div>
-
-    <div class="ex-block" id="art1b">
-      <p class="ex-q">2. ___ studenti (plural, empieza con s+consonante)</p>
-      <button class="opt-btn" onclick="checkOpt(this,'art1b',false,'No — i es el plural de il, para palabras que en singular usan il.')">i</button>
-      <button class="opt-btn" onclick="checkOpt(this,'art1b',true,'¡Corretto! Gli studenti — gli es el plural de lo.')">gli</button>
-      <button class="opt-btn" onclick="checkOpt(this,'art1b',false,'No — le es el plural femenino.')">le</button>
-      <button class="opt-btn" onclick="checkOpt(this,'art1b',false,'No — lo es singular.')">lo</button>
-      <div class="ex-fb" id="art1bfb"></div>
+    <div class="fib-item">
+      <label>7:15 → <em>Sono le sette e...</em></label>
+      <input class="fib-input" id="fib2" placeholder="escribe aquí..." autocomplete="off">
+      <div class="fib-feedback" id="ffb2"></div>
     </div>
-
-    <div class="ex-block" id="art1c">
-      <p class="ex-q">3. ___ infermiera (sing. fem., empieza con vocal)</p>
-      <button class="opt-btn" onclick="checkOpt(this,'art1c',false,'No — la va antes de sustantivos femeninos que empiezan con consonante.')">la</button>
-      <button class="opt-btn" onclick="checkOpt(this,'art1c',true,'¡Perfetto! L\'infermiera — ante vocal femenina usamos l\'.')">l'</button>
-      <button class="opt-btn" onclick="checkOpt(this,'art1c',false,'No — le es el plural femenino.')">le</button>
-      <button class="opt-btn" onclick="checkOpt(this,'art1c',false,'No — il es masculino singular.')">il</button>
-      <div class="ex-fb" id="art1cfb"></div>
+    <div class="fib-item">
+      <label>12:00 → <em>È...</em></label>
+      <input class="fib-input" id="fib3" placeholder="escribe aquí..." autocomplete="off">
+      <div class="fib-feedback" id="ffb3"></div>
     </div>
-
-    <div class="ex-block" id="art1d">
-      <p class="ex-q">4. ___ cuoche (plural femenino de la cuoca)</p>
-      <button class="opt-btn" onclick="checkOpt(this,'art1d',false,'No — gli es el plural masculino de lo / l\'.')">gli</button>
-      <button class="opt-btn" onclick="checkOpt(this,'art1d',false,'No — i es plural masculino de il.')">i</button>
-      <button class="opt-btn" onclick="checkOpt(this,'art1d',true,'¡Bravissimo! Le cuoche — le es el plural femenino.')">le</button>
-      <button class="opt-btn" onclick="checkOpt(this,'art1d',false,'No — l\' es singular.')">l'</button>
-      <div class="ex-fb" id="art1dfb"></div>
+    <div class="fib-item">
+      <label>2:30 → <em>Sono le due e...</em></label>
+      <input class="fib-input" id="fib4" placeholder="escribe aquí..." autocomplete="off">
+      <div class="fib-feedback" id="ffb4"></div>
     </div>
+    <div class="fib-item">
+      <label>9:45 → <em>Sono le dieci meno...</em></label>
+      <input class="fib-input" id="fib5" placeholder="escribe aquí..." autocomplete="off">
+      <div class="fib-feedback" id="ffb5"></div>
+    </div>
+    <button class="btn-check" onclick="checkFib()">Verificar respuestas</button>
   </div>
 
-  <div class="exercise-card">
+  <!-- EX 2: Selección múltiple — ¿cómo se dice? -->
+  <div class="ex-card">
     <div class="ex-header">
       <div class="ex-num">2</div>
       <div>
-        <div class="ex-title">Completá con el artículo correcto</div>
-        <div class="ex-subtitle">Escribí il / lo / la / l' / i / gli / le</div>
+        <div class="ex-title">¿Cómo se dice?</div>
+        <div class="ex-subtitle">Elige la opción correcta</div>
       </div>
     </div>
 
-    <div class="fill-item">
-      <span>___ medico lavora in ospedale.</span>
-      <input class="fill-input" type="text" data-answer="il" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
-      <span class="fill-hint">(medico = masc., consonante)</span>
-    </div>
-    <div class="fill-item">
-      <span>___ insegnanti sono brave.</span>
-      <input class="fill-input" type="text" data-answer="le" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
-      <span class="fill-hint">(insegnanti = fem. plural)</span>
-    </div>
-    <div class="fill-item">
-      <span>Conosco ___ avvocato di mia madre.</span>
-      <input class="fill-input" type="text" data-answer="l'" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
-      <span class="fill-hint">(avvocato = masc., empieza con vocal)</span>
-    </div>
-    <div class="fill-item">
-      <span>___ zaino di Marco è rosso.</span>
-      <input class="fill-input" type="text" data-answer="lo" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
-      <span class="fill-hint">(zaino = masc., empieza con z)</span>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════
-     SECCIÓN 2: VERBI IN -ISCO
-════════════════════════════════════════════════════ -->
-<div class="grammar-section">
-  <div class="section-header">
-    <span class="section-num">2</span>
-    <h2 class="section-title">Verbi in -isco</h2>
-  </div>
-  <p class="section-subtitle">Algunos verbos de la 3ª conjugación (-ire) insertan -ISC- entre la raíz y la desinencia en ciertas personas</p>
-
-  <div class="rule-box">
-    <h4>¿Cuándo aparece el -ISC-?</h4>
-    <p>En verbos como <em>capire, finire, preferire, pulire, costruire</em>, el morfema <strong>-isc-</strong> aparece en las formas del <strong>singular (io, tu, lui/lei)</strong> y en la <strong>3ª persona plural (loro)</strong>. Las formas <em>noi</em> y <em>voi</em> son regulares. Esta irregularidad es muy predecible: si aprendés el patrón, podés conjugar todos estos verbos.</p>
-  </div>
-
-  <div class="conj-grid">
-    <div class="conj-card">
-      <h3 class="conj-title">CAPIRE — entender</h3>
-      <table class="conj-table">
-        <tr><th>Pronombre</th><th>Forma</th><th>Audio</th></tr>
-        <tr><td>io</td><td><strong>cap<u>isc</u>o</strong></td><td><button class="conj-play" onclick="ippAudio('io capisco',0.82,'f')">▶</button></td></tr>
-        <tr><td>tu</td><td><strong>cap<u>isc</u>i</strong></td><td><button class="conj-play" onclick="ippAudio('tu capisci',0.82,'f')">▶</button></td></tr>
-        <tr><td>lui / lei</td><td><strong>cap<u>isc</u>e</strong></td><td><button class="conj-play" onclick="ippAudio('lui capisce',0.82,'m')">▶</button></td></tr>
-        <tr><td>noi</td><td>cap<em>iamo</em></td><td><button class="conj-play" onclick="ippAudio('noi capiamo',0.82,'f')">▶</button></td></tr>
-        <tr><td>voi</td><td>cap<em>ite</em></td><td><button class="conj-play" onclick="ippAudio('voi capite',0.82,'f')">▶</button></td></tr>
-        <tr><td>loro</td><td><strong>cap<u>isc</u>ono</strong></td><td><button class="conj-play" onclick="ippAudio('loro capiscono',0.82,'f')">▶</button></td></tr>
-      </table>
+    <div class="mc-item" id="ex2a" data-correct="1">
+      <div class="mc-question">¿Cómo se dice "son las 2 y media"?</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'ex2a',0)">sono le due mezza</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2a',1)">sono le due e mezza</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2a',2)">è le due e mezza</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2a',3)">è due e mezza</button>
+      </div>
+      <div class="mc-feedback" id="fb-ex2a"></div>
     </div>
 
-    <div class="conj-card">
-      <h3 class="conj-title">FINIRE — terminar</h3>
-      <table class="conj-table">
-        <tr><th>Pronombre</th><th>Forma</th><th>Audio</th></tr>
-        <tr><td>io</td><td><strong>fin<u>isc</u>o</strong></td><td><button class="conj-play" onclick="ippAudio('io finisco',0.82,'f')">▶</button></td></tr>
-        <tr><td>tu</td><td><strong>fin<u>isc</u>i</strong></td><td><button class="conj-play" onclick="ippAudio('tu finisci',0.82,'f')">▶</button></td></tr>
-        <tr><td>lui / lei</td><td><strong>fin<u>isc</u>e</strong></td><td><button class="conj-play" onclick="ippAudio('lui finisce',0.82,'m')">▶</button></td></tr>
-        <tr><td>noi</td><td>fin<em>iamo</em></td><td><button class="conj-play" onclick="ippAudio('noi finiamo',0.82,'f')">▶</button></td></tr>
-        <tr><td>voi</td><td>fin<em>ite</em></td><td><button class="conj-play" onclick="ippAudio('voi finite',0.82,'f')">▶</button></td></tr>
-        <tr><td>loro</td><td><strong>fin<u>isc</u>ono</strong></td><td><button class="conj-play" onclick="ippAudio('loro finiscono',0.82,'f')">▶</button></td></tr>
-      </table>
+    <div class="mc-item" id="ex2b" data-correct="0">
+      <div class="mc-question">¿Cómo se dice "es la una en punto"?</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'ex2b',0)">è l'una in punto</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2b',1)">sono le una in punto</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2b',2)">è la una in punto</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2b',3)">sono l'una in punto</button>
+      </div>
+      <div class="mc-feedback" id="fb-ex2b"></div>
     </div>
 
-    <div class="conj-card">
-      <h3 class="conj-title">PREFERIRE — preferir</h3>
-      <table class="conj-table">
-        <tr><th>Pronombre</th><th>Forma</th><th>Audio</th></tr>
-        <tr><td>io</td><td><strong>prefer<u>isc</u>o</strong></td><td><button class="conj-play" onclick="ippAudio('io preferisco',0.82,'f')">▶</button></td></tr>
-        <tr><td>tu</td><td><strong>prefer<u>isc</u>i</strong></td><td><button class="conj-play" onclick="ippAudio('tu preferisci',0.82,'f')">▶</button></td></tr>
-        <tr><td>lui / lei</td><td><strong>prefer<u>isc</u>e</strong></td><td><button class="conj-play" onclick="ippAudio('lui preferisce',0.82,'m')">▶</button></td></tr>
-        <tr><td>noi</td><td>prefer<em>iamo</em></td><td><button class="conj-play" onclick="ippAudio('noi preferiamo',0.82,'f')">▶</button></td></tr>
-        <tr><td>voi</td><td>prefer<em>ite</em></td><td><button class="conj-play" onclick="ippAudio('voi preferite',0.82,'f')">▶</button></td></tr>
-        <tr><td>loro</td><td><strong>prefer<u>isc</u>ono</strong></td><td><button class="conj-play" onclick="ippAudio('loro preferiscono',0.82,'f')">▶</button></td></tr>
-      </table>
+    <div class="mc-item" id="ex2c" data-correct="2">
+      <div class="mc-question">¿Cuál de estas expresa "aproximadamente las 3"?</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'ex2c',0)">alle tre in punto</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2c',1)">dalle tre</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2c',2)">verso le tre</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex2c',3)">fino alle tre</button>
+      </div>
+      <div class="mc-feedback" id="fb-ex2c"></div>
     </div>
   </div>
 
-  <div class="divider"></div>
-  <h3 style="font-family:var(--fh);font-style:italic;color:var(--mod-tx);margin-bottom:16px;">Esercizi — Verbi in -isco</h3>
-
-  <div class="exercise-card">
+  <!-- EX 3: Fill-in-the-blank con preposizioni -->
+  <div class="ex-card">
     <div class="ex-header">
       <div class="ex-num">3</div>
       <div>
-        <div class="ex-title">Completá con el verbo correcto</div>
-        <div class="ex-subtitle">Conjugá el verbo entre paréntesis en la forma correcta</div>
+        <div class="ex-title">Completa con la preposición correcta</div>
+        <div class="ex-subtitle">Usa: alle / dalle...alle / verso / fino alle / tra</div>
       </div>
     </div>
 
-    <div class="fill-item">
-      <span>Io non ___ bene l'inglese. (capire)</span>
-      <input class="fill-input" type="text" data-answer="capisco" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
+    <div class="mc-item" id="ex3a" data-correct="1">
+      <div class="mc-question">1. Il museo è aperto ___ 9 ___ 17. → usa <em>dalle...alle</em></div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'ex3a',0)">alle 9 alle 17</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex3a',1)">dalle 9 alle 17</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex3a',2)">tra 9 e 17</button>
+      </div>
+      <div class="mc-feedback" id="fb-ex3a"></div>
     </div>
-    <div class="fill-item">
-      <span>Lei ___ il lavoro alle sei. (finire)</span>
-      <input class="fill-input" type="text" data-answer="finisce" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
+
+    <div class="mc-item" id="ex3b" data-correct="0">
+      <div class="mc-question">2. Il treno parte ___ le otto e mezza.</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'ex3b',0)">alle</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex3b',1)">dalle</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex3b',2)">tra</button>
+      </div>
+      <div class="mc-feedback" id="fb-ex3b"></div>
     </div>
-    <div class="fill-item">
-      <span>Noi ___ lavorare di mattina. (preferire)</span>
-      <input class="fill-input" type="text" data-answer="preferiamo" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
+
+    <div class="mc-item" id="ex3c" data-correct="2">
+      <div class="mc-question">3. Ci vediamo ___ un'ora. (dentro de una hora)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'ex3c',0)">alle</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex3c',1)">verso</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex3c',2)">tra</button>
+      </div>
+      <div class="mc-feedback" id="fb-ex3c"></div>
     </div>
-    <div class="fill-item">
-      <span>I bambini ___ subito! (capire)</span>
-      <input class="fill-input" type="text" data-answer="capiscono" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
-    </div>
-    <div class="fill-item">
-      <span>Voi ___ a che ora? (finire)</span>
-      <input class="fill-input" type="text" data-answer="finite" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
+
+    <div class="mc-item" id="ex3d" data-correct="1">
+      <div class="mc-question">4. Arrivo ___ le undici. (aproximadamente las 11)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'ex3d',0)">alle</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex3d',1)">verso</button>
+        <button class="btn-mc" onclick="checkMC(this,'ex3d',2)">fino alle</button>
+      </div>
+      <div class="mc-feedback" id="fb-ex3d"></div>
     </div>
   </div>
 
-  <div class="exercise-card">
+  <!-- EX 4: Completar el diálogo de la barzelletta -->
+  <div class="ex-card">
     <div class="ex-header">
       <div class="ex-num">4</div>
       <div>
-        <div class="ex-title">¿Cuál es correcto?</div>
-        <div class="ex-subtitle">Elegí la forma verbal correcta</div>
+        <div class="ex-title">Completa el diálogo de la barzelletta</div>
+        <div class="ex-subtitle">Elige la palabra correcta para cada espacio</div>
       </div>
     </div>
 
-    <div class="ex-block" id="isco1">
-      <p class="ex-q">1. Tu ___ il problema? (capire)</p>
-      <button class="opt-btn" onclick="checkOpt(this,'isco1',false,'No — capisce es la 3ª persona. Para "tu" usamos capisci.')">capisce</button>
-      <button class="opt-btn" onclick="checkOpt(this,'isco1',true,'¡Corretto! Tu capisci il problema? — 2ª persona singular.')">capisci</button>
-      <button class="opt-btn" onclick="checkOpt(this,'isco1',false,'No — capisco es la 1ª persona (io).')">capisco</button>
-      <div class="ex-fb" id="isco1fb"></div>
+    <div style="background:var(--mc-bg);border-radius:8px;padding:16px;margin-bottom:16px;font-size:0.95rem;line-height:2">
+      <p><strong>Uomo 1:</strong> Mi (1)___ , mi sa (2)___ l'ora per favore?</p>
+      <p><strong>Uomo 2:</strong> Le (3)___ .</p>
+      <p><strong>Uomo 1:</strong> Ma è (4)___ ?</p>
+      <p><strong>Uomo 2:</strong> 36. Grazie.</p>
+      <p><strong>Uomo 1:</strong> Sono le 7:15 (5)___ ! Incredibile!</p>
     </div>
 
-    <div class="ex-block" id="isco2">
-      <p class="ex-q">2. Loro ___ di lavorare il sabato. (preferire)</p>
-      <button class="opt-btn" onclick="checkOpt(this,'isco2',false,'No — preferisce es 3ª persona singular (lui/lei).')">preferisce</button>
-      <button class="opt-btn" onclick="checkOpt(this,'isco2',false,'No — preferiamo es 1ª persona plural (noi).')">preferiamo</button>
-      <button class="opt-btn" onclick="checkOpt(this,'isco2',true,'¡Bravissimo! Loro preferiscono — 3ª persona plural con -isc-.')">preferiscono</button>
-      <div class="ex-fb" id="isco2fb"></div>
+    <div class="mc-item" id="bz1" data-correct="0">
+      <div class="mc-question">(1) Mi ___ , (disculpe)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'bz1',0)">scusi</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz1',1)">sento</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz1',2)">chiamo</button>
+      </div>
+      <div class="mc-feedback" id="fb-bz1"></div>
     </div>
-
-    <div class="ex-block" id="isco3">
-      <p class="ex-q">3. Noi ___ il corso tra una settimana. (finire)</p>
-      <button class="opt-btn" onclick="checkOpt(this,'isco3',true,'¡Esatto! Noi finiamo — forma regular sin -isc- para noi.')">finiamo</button>
-      <button class="opt-btn" onclick="checkOpt(this,'isco3',false,'No — finiscono es para loro.')">finiscono</button>
-      <button class="opt-btn" onclick="checkOpt(this,'isco3',false,'No — finite es para voi.')">finite</button>
-      <div class="ex-fb" id="isco3fb"></div>
+    <div class="mc-item" id="bz2" data-correct="1">
+      <div class="mc-question">(2) mi sa ___ l'ora (decir/explicar)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'bz2',0)">fare</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz2',1)">dire</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz2',2)">leggere</button>
+      </div>
+      <div class="mc-feedback" id="fb-bz2"></div>
     </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════
-     SECCIÓN 3: IL VERBO FARE
-════════════════════════════════════════════════════ -->
-<div class="grammar-section">
-  <div class="section-header">
-    <span class="section-num">3</span>
-    <h2 class="section-title">Il verbo FARE</h2>
-  </div>
-  <p class="section-subtitle">Verbo irregular fundamental — uno de los más usados del italiano</p>
-
-  <div class="rule-box">
-    <h4>FARE: mucho más que "hacer"</h4>
-    <ul>
-      <li><strong>Faccio il medico</strong> → Soy médico (expresa la profesión — equivale a "ser" en este contexto)</li>
-      <li><strong>Fare una domanda</strong> → Hacer una pregunta</li>
-      <li><strong>Fare una passeggiata</strong> → Dar un paseo</li>
-      <li><strong>Fare colazione</strong> → Desayunar</li>
-      <li><strong>Fare sport</strong> → Hacer deporte</li>
-      <li><strong>Non fa niente</strong> → No importa (expresión idiomática)</li>
-    </ul>
-  </div>
-
-  <div class="conj-grid">
-    <div class="conj-card">
-      <h3 class="conj-title">FARE — hacer (presente indicativo)</h3>
-      <table class="conj-table">
-        <tr><th>Pronombre</th><th>Forma</th><th>Significado</th><th>Audio</th></tr>
-        <tr><td>io</td><td><strong>faccio</strong></td><td>hago</td><td><button class="conj-play" onclick="ippAudio('io faccio',0.82,'f')">▶</button></td></tr>
-        <tr><td>tu</td><td><strong>fai</strong></td><td>hacés</td><td><button class="conj-play" onclick="ippAudio('tu fai',0.82,'f')">▶</button></td></tr>
-        <tr><td>lui / lei</td><td><strong>fa</strong></td><td>hace</td><td><button class="conj-play" onclick="ippAudio('lui fa',0.82,'m')">▶</button></td></tr>
-        <tr><td>noi</td><td><strong>facciamo</strong></td><td>hacemos</td><td><button class="conj-play" onclick="ippAudio('noi facciamo',0.82,'f')">▶</button></td></tr>
-        <tr><td>voi</td><td><strong>fate</strong></td><td>hacéis</td><td><button class="conj-play" onclick="ippAudio('voi fate',0.82,'f')">▶</button></td></tr>
-        <tr><td>loro</td><td><strong>fanno</strong></td><td>hacen</td><td><button class="conj-play" onclick="ippAudio('loro fanno',0.82,'f')">▶</button></td></tr>
-      </table>
+    <div class="mc-item" id="bz3" data-correct="2">
+      <div class="mc-question">(3) Le ___ (5:35)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'bz3',0)">tre e trenta</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz3',1)">sette e quindici</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz3',2)">cinque e trentacinque</button>
+      </div>
+      <div class="mc-feedback" id="fb-bz3"></div>
+    </div>
+    <div class="mc-item" id="bz4" data-correct="0">
+      <div class="mc-question">(4) Ma è ___ ? (¿está seguro?)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'bz4',0)">sicuro</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz4',1)">pronto</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz4',2)">certo</button>
+      </div>
+      <div class="mc-feedback" id="fb-bz4"></div>
+    </div>
+    <div class="mc-item" id="bz5" data-correct="2">
+      <div class="mc-question">(5) 7:15 ___ ! (en punto exacto)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'bz5',0)">circa</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz5',1)">quasi</button>
+        <button class="btn-mc" onclick="checkMC(this,'bz5',2)">spaccate</button>
+      </div>
+      <div class="mc-feedback" id="fb-bz5"></div>
     </div>
   </div>
 
-  <div class="rule-box">
-    <h4>Faccio + articolo + professione — la fórmula clave</h4>
-    <p>Para decir la profesión en italiano podés usar <strong>FARE + articolo determinativo + professione</strong>:<br>
-    <em>Faccio <strong>il</strong> cuoco.</em> / <em>Faccio <strong>la</strong> parrucchiera.</em> / <em>Fa <strong>l'</strong>avvocato.</em><br>
-    También se puede usar <strong>ESSERE + professione</strong> (sin artículo): <em>Sono medico. Sei infermiera.</em></p>
-  </div>
-
-  <div class="divider"></div>
-  <h3 style="font-family:var(--fh);font-style:italic;color:var(--mod-tx);margin-bottom:16px;">Esercizi — Il verbo FARE</h3>
-
-  <div class="exercise-card">
+  <!-- EX 5: ¿Formal o Informal? -->
+  <div class="ex-card">
     <div class="ex-header">
       <div class="ex-num">5</div>
       <div>
-        <div class="ex-title">Completá con FARE</div>
-        <div class="ex-subtitle">Escribí la forma correcta del verbo FARE</div>
+        <div class="ex-title">¿Formal o Informal?</div>
+        <div class="ex-subtitle">Haz clic en cada expresión para clasificarla</div>
       </div>
     </div>
 
-    <div class="fill-item">
-      <span>Io ___ il cameriere in un ristorante.</span>
-      <input class="fill-input" type="text" data-answer="faccio" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
+    <div class="fi-buckets">
+      <div class="fi-bucket" id="bucket-formal">
+        <div class="fi-bucket-label">Formal (24h)</div>
+        <div id="placed-formal"></div>
+      </div>
+      <div class="fi-bucket" id="bucket-informal">
+        <div class="fi-bucket-label">Informal (12h)</div>
+        <div id="placed-informal"></div>
+      </div>
     </div>
-    <div class="fill-item">
-      <span>Che lavoro ___ tuo fratello?</span>
-      <input class="fill-input" type="text" data-answer="fa" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
+
+    <div class="fi-options" id="fi-options">
+      <div class="fi-item" onclick="classifyFI(this,'formal')" data-type="formal"><em>le quattordici e trenta</em></div>
+      <div class="fi-item" onclick="classifyFI(this,'informal')" data-type="informal"><em>le due e mezza</em></div>
+      <div class="fi-item" onclick="classifyFI(this,'formal')" data-type="formal"><em>le venti e quarantacinque</em></div>
+      <div class="fi-item" onclick="classifyFI(this,'informal')" data-type="informal"><em>le nove meno un quarto</em></div>
+      <div class="fi-item" onclick="classifyFI(this,'formal')" data-type="formal"><em>le diciassette e quindici</em></div>
+      <div class="fi-item" onclick="classifyFI(this,'informal')" data-type="informal"><em>le cinque e un quarto di sera</em></div>
     </div>
-    <div class="fill-item">
-      <span>Voi ___ i programmatori?</span>
-      <input class="fill-input" type="text" data-answer="fate" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
-    </div>
-    <div class="fill-item">
-      <span>Loro ___ i cuochi nel ristorante di famiglia.</span>
-      <input class="fill-input" type="text" data-answer="fanno" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
-    </div>
-    <div class="fill-item">
-      <span>Noi ___ colazione insieme ogni mattina.</span>
-      <input class="fill-input" type="text" data-answer="facciamo" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
-    </div>
+    <div id="fi-feedback" style="font-size:13px;margin-top:10px;min-height:18px;font-weight:500"></div>
   </div>
 
-  <div class="exercise-card">
+  <!-- EX 6: Saludo según la hora -->
+  <div class="ex-card">
     <div class="ex-header">
       <div class="ex-num">6</div>
       <div>
-        <div class="ex-title">FARE o ESSERE — ¿cuál usarías?</div>
-        <div class="ex-subtitle">Ambas opciones son correctas, pero elegí la que usa FARE</div>
+        <div class="ex-title">¿Qué saludo corresponde?</div>
+        <div class="ex-subtitle">Son las... ¿qué dices al llegar?</div>
       </div>
     </div>
 
-    <div class="ex-block" id="fare1">
-      <p class="ex-q">1. Para decir "Soy abogada" usando FARE...</p>
-      <button class="opt-btn" onclick="checkOpt(this,'fare1',false,'No — sono avvocatessa usa ESSERE, no FARE.')">Sono avvocatessa.</button>
-      <button class="opt-btn" onclick="checkOpt(this,'fare1',true,'¡Perfetto! Faccio l\'avvocatessa usa FARE + articolo + professione.')">Faccio l'avvocatessa.</button>
-      <div class="ex-fb" id="fare1fb"></div>
-    </div>
-
-    <div class="ex-block" id="fare2">
-      <p class="ex-q">2. "Él trabaja como mecánico" con FARE es...</p>
-      <button class="opt-btn" onclick="checkOpt(this,'fare2',true,'¡Esatto! Fa il meccanico — 3ª persona de FARE + il + professione.')">Fa il meccanico.</button>
-      <button class="opt-btn" onclick="checkOpt(this,'fare2',false,'No — Lavora come meccanico usa LAVORARE, no FARE.')">Lavora come meccanico.</button>
-      <button class="opt-btn" onclick="checkOpt(this,'fare2',false,'No — È meccanico usa ESSERE.')">È meccanico.</button>
-      <div class="ex-fb" id="fare2fb"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════
-     SECCIÓN 4: CONCORDANZA ARTICOLO-NOME-AGGETTIVO
-════════════════════════════════════════════════════ -->
-<div class="grammar-section">
-  <div class="section-header">
-    <span class="section-num">4</span>
-    <h2 class="section-title">Concordanza articolo-nome-aggettivo</h2>
-  </div>
-  <p class="section-subtitle">En italiano, el artículo, el sustantivo y el adjetivo deben concordar en género y número — ¡los tres juntos!</p>
-
-  <div class="rule-box">
-    <h4>La regla de concordancia</h4>
-    <p>Cuando un sustantivo lleva un adjetivo, <strong>ambos deben tener el mismo género (M/F) y número (singular/plural)</strong>. El artículo también concuerda. Esto se llama <em>concordanza</em>:</p>
-    <ul>
-      <li>Masc. sing.: <em>il medico <strong>bravo</strong></em> → artículo M sing. + nombre M + adjetivo M sing.</li>
-      <li>Fem. sing.: <em>la cuoca <strong>brava</strong></em> → artículo F sing. + nombre F + adjetivo F sing.</li>
-      <li>Masc. pl.: <em>i medici <strong>bravi</strong></em> → artículo M pl. + nombre M pl. + adjetivo M pl.</li>
-      <li>Fem. pl.: <em>le cuoche <strong>brave</strong></em> → artículo F pl. + nombre F pl. + adjetivo F pl.</li>
-    </ul>
-  </div>
-
-  <div class="concord-grid">
-    <div class="concord-card" onclick="ippAudio('il commesso gentile',0.82,'m')">
-      <div class="concord-it">il commesso gentile</div>
-      <div class="concord-analysis">
-        <span>il</span> M.sg <span>commesso</span> M.sg <span>gentile</span> M.sg ▶
+    <div class="mc-item" id="sal1" data-correct="0">
+      <div class="mc-question">Son las 9:00 de la mañana y llegas a la oficina. Dices:</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'sal1',0)">Buongiorno!</button>
+        <button class="btn-mc" onclick="checkMC(this,'sal1',1)">Buonanotte!</button>
+        <button class="btn-mc" onclick="checkMC(this,'sal1',2)">Buonasera!</button>
       </div>
+      <div class="mc-feedback" id="fb-sal1"></div>
     </div>
-    <div class="concord-card" onclick="ippAudio('la commessa gentile',0.82,'f')">
-      <div class="concord-it">la commessa gentile</div>
-      <div class="concord-analysis">
-        <span>la</span> F.sg <span>commessa</span> F.sg <span>gentile</span> F.sg ▶
+    <div class="mc-item" id="sal2" data-correct="2">
+      <div class="mc-question">Son las 19:30. Entras a un restaurante. Dices:</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'sal2',0)">Buongiorno!</button>
+        <button class="btn-mc" onclick="checkMC(this,'sal2',1)">Buon pomeriggio!</button>
+        <button class="btn-mc" onclick="checkMC(this,'sal2',2)">Buonasera!</button>
       </div>
+      <div class="mc-feedback" id="fb-sal2"></div>
     </div>
-    <div class="concord-card" onclick="ippAudio('i commessi gentili',0.82,'m')">
-      <div class="concord-it">i commessi gentili</div>
-      <div class="concord-analysis">
-        <span>i</span> M.pl <span>commessi</span> M.pl <span>gentili</span> M.pl ▶
+    <div class="mc-item" id="sal3" data-correct="1">
+      <div class="mc-question">Son las 23:00. Te vas a dormir. Le dices a tu compañero:</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'sal3',0)">Buonasera!</button>
+        <button class="btn-mc" onclick="checkMC(this,'sal3',1)">Buonanotte!</button>
+        <button class="btn-mc" onclick="checkMC(this,'sal3',2)">Buongiorno!</button>
       </div>
-    </div>
-    <div class="concord-card" onclick="ippAudio('le commesse gentili',0.82,'f')">
-      <div class="concord-it">le commesse gentili</div>
-      <div class="concord-analysis">
-        <span>le</span> F.pl <span>commesse</span> F.pl <span>gentili</span> F.pl ▶
-      </div>
-    </div>
-    <div class="concord-card" onclick="ippAudio('il poliziotto italiano',0.82,'m')">
-      <div class="concord-it">il poliziotto italiano</div>
-      <div class="concord-analysis">
-        <span>il</span> M.sg <span>poliziotto</span> M.sg <span>italiano</span> M.sg ▶
-      </div>
-    </div>
-    <div class="concord-card" onclick="ippAudio('le poliziotte italiane',0.82,'f')">
-      <div class="concord-it">le poliziotte italiane</div>
-      <div class="concord-analysis">
-        <span>le</span> F.pl <span>poliziotte</span> F.pl <span>italiane</span> F.pl ▶
-      </div>
+      <div class="mc-feedback" id="fb-sal3"></div>
     </div>
   </div>
 
-  <div class="rule-box">
-    <h4>Adjetivos invariables — atención</h4>
-    <p>Algunos adjetivos como <em>gentile, grande, intelligente, interessante</em> no cambian entre masculino y femenino (solo cambian en el plural: <em>gentili, grandi</em>). En cambio adjetivos como <em>bravo/brava, italiano/italiana, rosso/rossa</em> sí tienen formas distintas para M y F.</p>
-  </div>
-
-  <div class="divider"></div>
-  <h3 style="font-family:var(--fh);font-style:italic;color:var(--mod-tx);margin-bottom:16px;">Esercizi — Concordanza</h3>
-
-  <div class="exercise-card">
+  <!-- EX 7: Ordenar palabras -->
+  <div class="ex-card">
     <div class="ex-header">
       <div class="ex-num">7</div>
       <div>
-        <div class="ex-title">Completá la concordanza</div>
-        <div class="ex-subtitle">Escribí el adjetivo en la forma correcta</div>
+        <div class="ex-title">Ordena las palabras</div>
+        <div class="ex-subtitle">Haz clic en las palabras en el orden correcto. Haz clic en una colocada para quitarla.</div>
       </div>
     </div>
 
-    <div class="fill-item">
-      <span>La parrucchiera è molto ___ (bravo).</span>
-      <input class="fill-input" type="text" data-answer="brava" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
-      <span class="fill-hint">(fem. sing.)</span>
+    <div style="margin-bottom:20px">
+      <div style="font-size:0.9rem;color:#666;margin-bottom:8px">Forma la pregunta: "¿Me puede decir qué hora es?"</div>
+      <div class="sort-wrap" id="sort1-words">
+        <div class="sort-word" onclick="addWord(this,'sort1','mi')">mi</div>
+        <div class="sort-word" onclick="addWord(this,'sort1','sa')">sa</div>
+        <div class="sort-word" onclick="addWord(this,'sort1','dire')">dire</div>
+        <div class="sort-word" onclick="addWord(this,'sort1','che')">che</div>
+        <div class="sort-word" onclick="addWord(this,'sort1','ore')">ore</div>
+        <div class="sort-word" onclick="addWord(this,'sort1','sono')">sono</div>
+        <div class="sort-word" onclick="addWord(this,'sort1','lei')">lei</div>
+      </div>
+      <div class="sort-answer" id="sort1-answer"></div>
+      <button class="btn-check" onclick="checkSort('sort1', ['mi','sa','dire','che','ore','sono'])">Verificar</button>
+      <div id="sort1-feedback" style="font-size:13px;margin-top:6px;font-weight:500"></div>
     </div>
-    <div class="fill-item">
-      <span>Gli ingegneri sono molto ___ (intelligente).</span>
-      <input class="fill-input" type="text" data-answer="intelligenti" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
-      <span class="fill-hint">(masc. pl.)</span>
-    </div>
-    <div class="fill-item">
-      <span>Il cameriere porta una camicia ___ (bianco).</span>
-      <input class="fill-input" type="text" data-answer="bianca" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
-      <span class="fill-hint">(camicia = fem. sing.)</span>
-    </div>
-    <div class="fill-item">
-      <span>Le avvocatesse sono molto ___ (preparato).</span>
-      <input class="fill-input" type="text" data-answer="preparate" oninput="checkFill(this)" placeholder="...">
-      <span class="fill-feedback"></span>
-      <span class="fill-hint">(fem. pl.)</span>
+
+    <div>
+      <div style="font-size:0.9rem;color:#666;margin-bottom:8px">Forma la frase: "El museo está abierto de 9 a 18."</div>
+      <div class="sort-wrap" id="sort2-words">
+        <div class="sort-word" onclick="addWord(this,'sort2','Il')">Il</div>
+        <div class="sort-word" onclick="addWord(this,'sort2','museo')">museo</div>
+        <div class="sort-word" onclick="addWord(this,'sort2','è')">è</div>
+        <div class="sort-word" onclick="addWord(this,'sort2','aperto')">aperto</div>
+        <div class="sort-word" onclick="addWord(this,'sort2','dalle')">dalle</div>
+        <div class="sort-word" onclick="addWord(this,'sort2','nove')">nove</div>
+        <div class="sort-word" onclick="addWord(this,'sort2','alle')">alle</div>
+        <div class="sort-word" onclick="addWord(this,'sort2','diciotto')">diciotto</div>
+      </div>
+      <div class="sort-answer" id="sort2-answer"></div>
+      <button class="btn-check" onclick="checkSort('sort2', ['Il','museo','è','aperto','dalle','nove','alle','diciotto'])">Verificar</button>
+      <div id="sort2-feedback" style="font-size:13px;margin-top:6px;font-weight:500"></div>
     </div>
   </div>
 
-  <div class="exercise-card">
+  <!-- EX 8: Transformar formal → informal -->
+  <div class="ex-card">
     <div class="ex-header">
       <div class="ex-num">8</div>
       <div>
-        <div class="ex-title">¿Cuál es la frase correcta?</div>
-        <div class="ex-subtitle">Elegí la opción con concordanza correcta</div>
+        <div class="ex-title">Formal → Informal</div>
+        <div class="ex-subtitle">¿Cómo se diría en la vida diaria?</div>
       </div>
     </div>
 
-    <div class="ex-block" id="con1">
-      <p class="ex-q">1. "El mecánico nuevo" en italiano es...</p>
-      <button class="opt-btn" onclick="checkOpt(this,'con1',false,'No — meccanico es masculino, el adjetivo debe ser nuova → nuovo.')">il meccanico nuova</button>
-      <button class="opt-btn" onclick="checkOpt(this,'con1',true,'¡Corretto! il meccanico nuovo — todo en masculino singular.')">il meccanico nuovo</button>
-      <button class="opt-btn" onclick="checkOpt(this,'con1',false,'No — los meccanici serían "los mecánicos" (plural).')">i meccanici nuovo</button>
-      <div class="ex-fb" id="con1fb"></div>
+    <div class="mc-item" id="tr1" data-correct="1">
+      <div class="mc-question">Formal: <em>"le tredici e trenta"</em> → Informal:</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'tr1',0)">le tredici e mezza</button>
+        <button class="btn-mc" onclick="checkMC(this,'tr1',1)">l'una e mezza del pomeriggio</button>
+        <button class="btn-mc" onclick="checkMC(this,'tr1',2)">le undici e mezza</button>
+      </div>
+      <div class="mc-feedback" id="fb-tr1"></div>
     </div>
-
-    <div class="ex-block" id="con2">
-      <p class="ex-q">2. "Las enfermeras italianas" es...</p>
-      <button class="opt-btn" onclick="checkOpt(this,'con2',false,'No — le infermiere son plural, el adjetivo debe ser en plural también: italiane.')">le infermiere italiana</button>
-      <button class="opt-btn" onclick="checkOpt(this,'con2',false,'No — italiano es la forma masculina singular.')">le infermiere italiano</button>
-      <button class="opt-btn" onclick="checkOpt(this,'con2',true,'¡Bravissimo! le infermiere italiane — todo en femenino plural.')">le infermiere italiane</button>
-      <div class="ex-fb" id="con2fb"></div>
+    <div class="mc-item" id="tr2" data-correct="0">
+      <div class="mc-question">Formal: <em>"le diciotto e quarantacinque"</em> → Informal:</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'tr2',0)">le sette meno un quarto di sera</button>
+        <button class="btn-mc" onclick="checkMC(this,'tr2',1)">le sei e un quarto di sera</button>
+        <button class="btn-mc" onclick="checkMC(this,'tr2',2)">le otto meno un quarto</button>
+      </div>
+      <div class="mc-feedback" id="fb-tr2"></div>
     </div>
-
-    <div class="ex-block" id="con3">
-      <p class="ex-q">3. Para describir "una abogada seria" se dice...</p>
-      <button class="opt-btn" onclick="checkOpt(this,'con3',true,'¡Esatto! un\'avvocatessa seria — femenino singular.')">un'avvocatessa seria</button>
-      <button class="opt-btn" onclick="checkOpt(this,'con3',false,'No — serio es la forma masculina del adjetivo.')">un'avvocatessa serio</button>
-      <button class="opt-btn" onclick="checkOpt(this,'con3',false,'No — seri es el plural masculino.')">un'avvocatessa seri</button>
-      <div class="ex-fb" id="con3fb"></div>
+    <div class="mc-item" id="tr3" data-correct="2">
+      <div class="mc-question">Formal: <em>"le ventiquattro"</em> → Informal:</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'tr3',0)">le dodici di notte</button>
+        <button class="btn-mc" onclick="checkMC(this,'tr3',1)">le undici di notte</button>
+        <button class="btn-mc" onclick="checkMC(this,'tr3',2)">mezzanotte</button>
+      </div>
+      <div class="mc-feedback" id="fb-tr3"></div>
     </div>
   </div>
+
+  <!-- EX 9: Completa con alle / verso / dalle...alle -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num">9</div>
+      <div>
+        <div class="ex-title">Mini diálogo — ¿a qué hora?</div>
+        <div class="ex-subtitle">Selecciona la opción lógica</div>
+      </div>
+    </div>
+    <div class="mc-item" id="dial9a" data-correct="0">
+      <div class="mc-question">— A che ora apre la farmacia? — Apre ___ le otto e mezza.</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'dial9a',0)">alle</button>
+        <button class="btn-mc" onclick="checkMC(this,'dial9a',1)">dalle</button>
+        <button class="btn-mc" onclick="checkMC(this,'dial9a',2)">fino alle</button>
+      </div>
+      <div class="mc-feedback" id="fb-dial9a"></div>
+    </div>
+    <div class="mc-item" id="dial9b" data-correct="2">
+      <div class="mc-question">— Quando chiude la banca? — Chiude ___ le sedici.</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'dial9b',0)">alle</button>
+        <button class="btn-mc" onclick="checkMC(this,'dial9b',1)">verso</button>
+        <button class="btn-mc" onclick="checkMC(this,'dial9b',2)">fino alle</button>
+      </div>
+      <div class="mc-feedback" id="fb-dial9b"></div>
+    </div>
+    <div class="mc-item" id="dial9c" data-correct="1">
+      <div class="mc-question">— A che ora arrivi? — Arrivo ___ le tre, non sono sicuro.</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'dial9c',0)">alle</button>
+        <button class="btn-mc" onclick="checkMC(this,'dial9c',1)">verso</button>
+        <button class="btn-mc" onclick="checkMC(this,'dial9c',2)">fino alle</button>
+      </div>
+      <div class="mc-feedback" id="fb-dial9c"></div>
+    </div>
+  </div>
+
+  <!-- EX 10: VF Verdadero o Falso — reglas gramaticales -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num">10</div>
+      <div>
+        <div class="ex-title">Verdadero o Falso — reglas gramaticales</div>
+        <div class="ex-subtitle">Pon a prueba tu comprensión de las reglas</div>
+      </div>
+    </div>
+
+    <div class="vf-item" data-answer="false">
+      <div class="vf-statement">1. Para la 1:00 se dice <em>"Sono l'una"</em>.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="vf-item" data-answer="true">
+      <div class="vf-statement">2. <em>"Verso le cinque"</em> significa "alrededor de las 5".</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="vf-item" data-answer="false">
+      <div class="vf-statement">3. <em>"Buonanotte"</em> se puede usar al llegar a un lugar por la noche.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="vf-item" data-answer="true">
+      <div class="vf-statement">4. El horario de 24h se usa en estaciones y aeropuertos.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+
+    <div class="vf-item" data-answer="true">
+      <div class="vf-statement">5. <em>"Spaccate"</em> y <em>"in punto"</em> significan lo mismo: en punto exacto.</div>
+      <div class="vf-buttons">
+        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
+        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
+      </div>
+      <div class="vf-feedback"></div>
+    </div>
+  </div>
+
+  <!-- ===================== CULTURE STRIP ===================== -->
+  <div class="culture-strip">
+    <div class="culture-title">Il campanile — el reloj de todos</div>
+    <div class="culture-body">
+      <p>El chiste de la barzelletta no es tan absurdo si conoces la historia italiana. Durante siglos, el <strong><em>campanile</em></strong> (campanario) fue el reloj público de cada pueblo y ciudad. Los <em>rintocchi</em> (repiques de campana) marcaban las horas y los momentos importantes del día — el inicio del trabajo, la hora del almuerzo, el angelus al atardecer.</p>
+      <p>Hoy en día, muchos pueblos italianos siguen teniendo el campanile como símbolo central. Y los italianos son famosos por tener horarios muy específicos: la <strong><em>pausa pranzo</em></strong> (pausa del almuerzo) entre las 13:00 y las 15:00 hace que muchos negocios cierren. Nada de ir a comprar a las 13:30 — ¡el <em>negozio è chiuso</em>!</p>
+      <p>Curiosidad: Italia tiene una larga tradición de <strong><em>barzellette</em></strong> como género oral. Se cuentan en familia, en el bar, en el trabajo. El humor juega con situaciones cotidianas — como pedir la hora — y lo lleva al absurdo. <em>È un classico!</em></p>
+    </div>
+  </div>
+
+
 </div>
-
-<!-- ═══════════════════════════════════════════════════
-     SECCIÓN 5: SET INTEGRADOR
-════════════════════════════════════════════════════ -->
-<div class="integrador-banner">
-  <h3>Set integrador — tutto insieme!</h3>
-  <p>Estos ejercicios mezclan artículos, verbi in -isco, FARE y concordanza. ¡Es el momento de mostrar todo lo que aprendiste!</p>
-</div>
-
-<div class="exercise-card">
-  <div class="ex-header">
-    <div class="ex-num">9</div>
-    <div>
-      <div class="ex-title">Completá el párrafo</div>
-      <div class="ex-subtitle">Escribí la forma correcta en cada espacio — artículos, verbos y adjetivos</div>
-    </div>
-  </div>
-
-  <p style="margin-bottom:16px;font-size:0.95rem;line-height:1.8;">
-    Mi chiamo Lucia e <strong>faccio</strong>
-    <span style="display:inline-block;min-width:80px;">
-      <input class="fill-input" type="text" data-answer="l'" oninput="checkFill(this)" placeholder="art." style="width:60px;">
-      <span class="fill-feedback"></span>
-    </span> infermiera.
-
-    Lavoro in un ospedale
-    <span style="display:inline-block;min-width:80px;">
-      <input class="fill-input" type="text" data-answer="grande" oninput="checkFill(this)" placeholder="adj." style="width:90px;">
-      <span class="fill-feedback"></span>
-    </span>
-    <span style="font-size:0.8rem;color:#888;">(grande)</span>.
-
-    I miei colleghi sono
-    <span style="display:inline-block;min-width:80px;">
-      <input class="fill-input" type="text" data-answer="bravi" oninput="checkFill(this)" placeholder="adj." style="width:80px;">
-      <span class="fill-feedback"></span>
-    </span>
-    <span style="font-size:0.8rem;color:#888;">(bravo, pl.)</span>.
-
-    Io
-    <span style="display:inline-block;min-width:80px;">
-      <input class="fill-input" type="text" data-answer="preferisco" oninput="checkFill(this)" placeholder="verbo" style="width:110px;">
-      <span class="fill-feedback"></span>
-    </span>
-    <span style="font-size:0.8rem;color:#888;">(preferire)</span>
-    lavorare di mattina. Il turno di notte
-
-    <span style="display:inline-block;min-width:80px;">
-      <input class="fill-input" type="text" data-answer="finisce" oninput="checkFill(this)" placeholder="verbo" style="width:90px;">
-      <span class="fill-feedback"></span>
-    </span>
-    <span style="font-size:0.8rem;color:#888;">(finire)</span>
-    alle otto.
-  </p>
-</div>
-
-<div class="exercise-card">
-  <div class="ex-header">
-    <div class="ex-num">10</div>
-    <div>
-      <div class="ex-title">Preguntas y respuestas sobre trabajo</div>
-      <div class="ex-subtitle">Seleccioná la respuesta correcta a cada pregunta</div>
-    </div>
-  </div>
-
-  <div class="ex-block" id="int1">
-    <p class="ex-q">1. "Che lavoro fai?" — ¿Cuál es una respuesta correcta?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'int1',false,'No — faccio va seguido de articolo + professione, no de un verbo.')">Faccio lavorare.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'int1',true,'¡Perfetto! Faccio il cuoco — FARE + articolo + professione.')">Faccio il cuoco.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'int1',false,'No — questa no es la estructura correcta para responder sobre trabajo.')">Io lavoro cuoco.</button>
-    <div class="ex-fb" id="int1fb"></div>
-  </div>
-
-  <div class="ex-block" id="int2">
-    <p class="ex-q">2. "Preferisci lavorare la mattina o la sera?" — ¿Cuál es la respuesta gramaticalmente correcta?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'int2',false,'No — preferire con io se conjuga preferisco (con -isc-).')">Io preferio la mattina.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'int2',true,'¡Esatto! Preferisco usa el morfema -isc- correcto para la 1ª persona.')">Preferisco la mattina.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'int2',false,'No — preferite es la 2ª persona plural (voi), no 1ª persona singular.')">Preferite la mattina.</button>
-    <div class="ex-fb" id="int2fb"></div>
-  </div>
-
-  <div class="ex-block" id="int3">
-    <p class="ex-q">3. ¿Cuál de estas frases tiene concordanza correcta?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'int3',false,'No — il infermiera mezcla artículo masculino con sustantivo femenino.')">il infermiera brava</button>
-    <button class="opt-btn" onclick="checkOpt(this,'int3',false,'No — la ingegnere bravo mezcla artículo femenino con adjetivo masculino.')">la ingegnere bravo</button>
-    <button class="opt-btn" onclick="checkOpt(this,'int3',true,'¡Corretto! l\'infermiera brava — todo en femenino singular.')">l'infermiera brava</button>
-    <div class="ex-fb" id="int3fb"></div>
-  </div>
-</div>
-
-<!-- CTA -->
-
-</div><!-- /container -->
 
 <script>
-// ══════════════════════════════════════════
-// IPP Voice Preloader
-// ══════════════════════════════════════════
+// ── IPP Voice Preloader ──
 if (!window.__ippVC) {
   window.__ippVC = true;
   window.__ippV = [];
@@ -841,78 +1238,193 @@ if (!window.__ippVC) {
   }
 }
 
-// ══════════════════════════════════════════
-// EXECUTION GUARD
-// ══════════════════════════════════════════
-if (!window.__ipp_m4_e3__) {
-window.__ipp_m4_e3__ = true;
-
-function ippVoice(gender) {
-  var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
-  var itV = voices.filter(function(v) { return v.lang && v.lang.startsWith('it'); });
-  if (!itV.length) return null;
-  var voice = null;
-  if (gender === 'm') {
-    voice = itV.find(function(v) { return /cosimo|luca|giorgio|male|masc/i.test(v.name); });
-    if (!voice) voice = itV.find(function(v) { return !/elsa|alice|giulia|female|femm/i.test(v.name); });
-  } else {
-    voice = itV.find(function(v) { return /elsa|alice|giulia|female|femm/i.test(v.name); });
-    if (!voice) voice = itV.find(function(v) { return !/cosimo|luca|giorgio|male|masc/i.test(v.name); });
-  }
-  return voice || itV[0];
-}
-
+// ---- SPEECH ----
 function ippAudio(text, rate, gender) {
-  rate = (typeof rate === 'number' && isFinite(rate) && rate > 0) ? rate : 0.82;
-  gender = (gender === 'm' || gender === 'f') ? gender : 'f';
+  rate = rate || 0.82;
+  gender = gender || 'f';
   if (!window.speechSynthesis) return;
-  try { speechSynthesis.cancel(); } catch(e) {}
-  var utt = new SpeechSynthesisUtterance(String(text));
-  utt.lang = 'it-IT'; utt.rate = rate;
-  var voice = ippVoice(gender);
-  if (voice) utt.voice = voice;
-  (function(u) { setTimeout(function() { try { speechSynthesis.speak(u); } catch(e) {} }, 60); })(utt);
-}
-
-function checkOpt(btn, exId, isCorrect, feedbackText) {
-  var block = document.getElementById(exId);
-  if (block.classList.contains('answered')) return;
-  block.classList.add('answered');
-  var btns = block.querySelectorAll('.opt-btn');
-  btns.forEach(function(b) { b.disabled = true; });
-  btn.classList.add(isCorrect ? 'correct' : 'wrong');
-  var fb = document.getElementById(exId + 'fb');
-  if (fb) {
-    fb.textContent = feedbackText;
-    fb.style.color = isCorrect ? '#2d7a4f' : '#cc4736';
-  }
-}
-
-function checkFill(input) {
-  var answer = (input.getAttribute('data-answer') || '').toLowerCase().trim();
-  var val = input.value.toLowerCase().trim();
-  var fb = input.nextElementSibling;
-  if (!val) {
-    input.className = 'fill-input';
-    if (fb && fb.classList.contains('fill-feedback')) fb.textContent = '';
-    return;
-  }
-  if (val === answer) {
-    input.className = 'fill-input ok';
-    if (fb && fb.classList.contains('fill-feedback')) { fb.textContent = '✓'; fb.style.color = '#2d7a4f'; }
+  window.speechSynthesis.cancel();
+  var utt = new SpeechSynthesisUtterance(text);
+  utt.lang = 'it-IT';
+  utt.rate = rate;
+  var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : speechSynthesis.getVoices();
+  var itVoices = voices.filter(function(v){ return v.lang.startsWith('it'); });
+  var voice;
+  if (gender === 'm') {
+    voice = itVoices.find(function(v){ return /cosimo|luca|giorgio|male/i.test(v.name); });
+    if (!voice && itVoices.length > 1) voice = itVoices[itVoices.length - 1];
   } else {
-    input.className = 'fill-input err';
-    if (fb && fb.classList.contains('fill-feedback')) { fb.textContent = '✗'; fb.style.color = '#cc4736'; }
+    voice = itVoices.find(function(v){ return /elsa|alice|giulia|female/i.test(v.name); });
+    if (!voice) voice = itVoices[0];
+  }
+  if (!voice && itVoices.length) voice = itVoices[0];
+  if (voice) utt.voice = voice;
+  (function(u){ setTimeout(function(){ try { speechSynthesis.speak(u); } catch(e){} }, 60); })(utt);
+}
+
+// ---- MC ----
+function checkMC(btn, id, idx) {
+  var item = document.getElementById(id);
+  var correct = parseInt(item.dataset.correct);
+  var buttons = item.querySelectorAll('.btn-mc');
+  var feedback = document.getElementById('fb-' + id);
+  buttons.forEach(function(b){ b.disabled = true; });
+  if (idx === correct) {
+    btn.classList.add('correct');
+    feedback.style.color = '#2d7a4f';
+    feedback.textContent = '✓ ¡Correcto!';
+  } else {
+    btn.classList.add('wrong');
+    buttons[correct].classList.add('correct');
+    feedback.style.color = '#cc4736';
+    feedback.textContent = '✗ La respuesta correcta es "' + buttons[correct].textContent + '".';
   }
 }
 
-// EXPONER A WINDOW
-window.ippAudio = ippAudio;
-window.ippVoice = ippVoice;
-window.checkOpt = checkOpt;
-window.checkFill = checkFill;
+// ---- FONETICA ----
+var fonScore = 0;
+function checkFon(btn, id, idx) {
+  var item = document.getElementById(id);
+  var correct = parseInt(item.dataset.correct);
+  var buttons = item.querySelectorAll('.btn-mc');
+  var feedback = document.getElementById('fb-' + id);
+  buttons.forEach(function(b){ b.disabled = true; });
+  if (idx === correct) {
+    btn.classList.add('correct');
+    feedback.style.color = '#2d7a4f';
+    feedback.textContent = '✓ ¡Correcto!';
+    fonScore++;
+  } else {
+    btn.classList.add('wrong');
+    buttons[correct].classList.add('correct');
+    feedback.style.color = '#cc4736';
+    feedback.textContent = '✗ La respuesta correcta es "' + buttons[correct].textContent + '".';
+  }
+  document.getElementById('fon-score').textContent = 'Aciertos: ' + fonScore + ' / 5';
+}
 
-} // end execution guard
+// ---- VF ----
+function checkVF(btn, userAnswer) {
+  var item = btn.closest('.vf-item');
+  var correct = item.dataset.answer === 'true';
+  var buttons = item.querySelectorAll('.btn-vf');
+  var feedback = item.querySelector('.vf-feedback');
+  buttons.forEach(function(b){ b.disabled = true; });
+  if (userAnswer === correct) {
+    btn.classList.add('correct');
+    feedback.style.color = '#2d7a4f';
+    feedback.textContent = '✓ ¡Correcto!';
+  } else {
+    btn.classList.add('wrong');
+    feedback.style.color = '#cc4736';
+    feedback.textContent = '✗ La respuesta es ' + (correct ? 'Verdadero' : 'Falso') + '.';
+  }
+}
+
+// ---- FIB (Fill in blank) ----
+var fibAnswers = {
+  fib1: ['tre','le tre','sono le tre'],
+  fib2: ['un quarto','e un quarto','sette e un quarto'],
+  fib3: ['mezzogiorno','è mezzogiorno'],
+  fib4: ['mezza','e mezza','due e mezza'],
+  fib5: ['un quarto','meno un quarto','dieci meno un quarto']
+};
+function checkFib() {
+  for (var i = 1; i <= 5; i++) {
+    var inp = document.getElementById('fib' + i);
+    var fb = document.getElementById('ffb' + i);
+    var val = inp.value.trim().toLowerCase();
+    inp.classList.remove('correct','wrong');
+    fb.textContent = '';
+    var answers = fibAnswers['fib' + i];
+    var found = answers.some(function(a){ return val === a.toLowerCase() || val.indexOf(a.toLowerCase()) >= 0; });
+    if (found) {
+      inp.classList.add('correct');
+      fb.style.color = '#2d7a4f';
+      fb.textContent = '✓ ¡Correcto!';
+    } else {
+      inp.classList.add('wrong');
+      fb.style.color = '#cc4736';
+      fb.textContent = '✗ Revisa. Una respuesta posible: "' + answers[0] + '"';
+    }
+  }
+}
+
+// ---- SORT ----
+var sortBuilt = { sort1: [], sort2: [] };
+function addWord(el, id, word) {
+  if (el.classList.contains('used')) return;
+  el.classList.add('used');
+  sortBuilt[id].push(word);
+  var answerDiv = document.getElementById(id + '-answer');
+  var placed = document.createElement('span');
+  placed.className = 'sort-placed';
+  placed.textContent = word;
+  placed.dataset.word = word;
+  placed.onclick = function() { removeWord(this, id, el); };
+  answerDiv.appendChild(placed);
+  document.getElementById(id + '-feedback').textContent = '';
+}
+function removeWord(placedEl, id, origEl) {
+  var word = placedEl.dataset.word;
+  sortBuilt[id] = sortBuilt[id].filter(function(w, i, arr){
+    var idx = arr.indexOf(word); if(i === idx){ arr.splice(idx,1); return false; } return true;
+  });
+  // simpler: just remove last occurrence
+  var idx = sortBuilt[id].lastIndexOf(word);
+  if (idx > -1) sortBuilt[id].splice(idx, 1);
+  placedEl.remove();
+  origEl.classList.remove('used');
+}
+function checkSort(id, correct) {
+  var built = sortBuilt[id];
+  var fb = document.getElementById(id + '-feedback');
+  var isCorrect = built.length === correct.length && built.every(function(w,i){ return w === correct[i]; });
+  if (isCorrect) {
+    fb.style.color = '#2d7a4f';
+    fb.textContent = '✓ ¡Perfecto! La frase es correcta.';
+  } else {
+    fb.style.color = '#cc4736';
+    fb.textContent = '✗ No exactamente. Orden correcto: ' + correct.join(' ');
+  }
+}
+
+// ---- FORMAL / INFORMAL CLASSIFY ----
+var fiCounts = { formal: 0, informal: 0 };
+var fiTotal  = { formal: 3, informal: 3 };
+function classifyFI(el, chosen) {
+  var actual = el.dataset.type;
+  if (el.classList.contains('done-formal') || el.classList.contains('done-informal') || el.classList.contains('wrong-pick')) return;
+  var text = el.querySelector('em').textContent;
+  if (chosen === actual) {
+    el.classList.add('done-' + actual);
+    var bucket = document.getElementById('placed-' + actual);
+    var span = document.createElement('span');
+    span.className = 'fi-placed ' + actual;
+    span.textContent = text;
+    bucket.appendChild(span);
+    fiCounts[actual]++;
+    var total = fiCounts.formal + fiCounts.informal;
+    if (total === 6) {
+      document.getElementById('fi-feedback').style.color = '#2d7a4f';
+      document.getElementById('fi-feedback').textContent = '✓ ¡Excelente! Clasificaste todas correctamente.';
+    }
+  } else {
+    el.classList.add('wrong-pick');
+    document.getElementById('fi-feedback').style.color = '#cc4736';
+    document.getElementById('fi-feedback').textContent = '✗ Esa no va ahí. Pista: ¿los números llegan al 24?';
+    setTimeout(function(){ el.classList.remove('wrong-pick'); }, 1200);
+  }
+}
+
+window.ippAudio = ippAudio;
+window.checkMC = checkMC;
+window.checkFon = checkFon;
+window.checkVF = checkVF;
+window.checkFib = checkFib;
+window.addWord = addWord;
+window.checkSort = checkSort;
+window.classifyFI = classifyFI;
 </script>
 </body>
 </html>

@@ -1,161 +1,224 @@
-# Módulo 1 — Di dove sei?
-## Etapa 4: Ejercicios
+# ETAPA 4: EJERCICIOS
+## Unità 1 — Come ti chiami?
+**Nivel:** A1 · **Tema:** El alfabeto, el verbo chiamarsi, los saludos y los números 1–30
 
 ---
 
-### Ejercicio 1 — Completá con la forma correcta de *essere*
+## EJERCICIO 1: Completa el Alfabeto Fonético Italiano
 
-Completá cada oración con **sono / sei / è**.
+**Instrucción:** Escribe la ciudad italiana que corresponde a cada letra según el alfabeto fonético italiano. (Ejemplo: A come _Ancona_)
 
-1. Io _______ di Roma.
-2. Tu _______ di Venezia?
-3. Lei _______ di Milano.
-4. Lui _______ di Napoli.
-5. Io non _______ italiano, _______ argentino.
-
-**Respuestas:** 1. sono · 2. sei · 3. è · 4. è · 5. sono / sono
-
----
-
-### Ejercicio 2 — *Andare* + ciudad
-
-Completá con **vado / vai / va**.
-
-1. Io _______ a Firenze in treno.
-2. Tu _______ all'aeroporto?
-3. Marco _______ a Torino per lavoro.
-4. Giulia _______ alla stazione.
-5. Io _______ a Roma domani.
-
-**Respuestas:** 1. vado · 2. vai · 3. va · 4. va · 5. vado
+1. B come ___________
+2. C come ___________
+3. D come ___________
+4. F come ___________
+5. G come ___________
+6. M come ___________
+7. N come ___________
+8. R come ___________
+9. T come ___________
+10. V come ___________
 
 ---
 
-### Ejercicio 3 — *Avere* + edad
+## EJERCICIO 2: Verdadero o Falso (Vero o Falso)
 
-Completá con **ho / hai / ha**.
+**Instrucción:** Lee cada afirmación y escribe **V** (vero) o **F** (falso).
 
-1. Io _______ vent'anni.
-2. Quanti anni _______ tu?
-3. Marco _______ trentadue anni.
-4. Giulia _______ venticinque anni.
-5. Io _______ il numero di telefono di Marco.
-
-**Respuestas:** 1. ho · 2. hai · 3. ha · 4. ha · 5. ho
-
----
-
-### Ejercicio 4 — Escribí los números en italiano
-
-1. 7 → _______________
-2. 15 → _______________
-3. 22 → _______________
-4. 48 → _______________
-5. 63 → _______________
-6. 99 → _______________
-7. 100 → _______________
-
-**Respuestas:** 1. sette · 2. quindici · 3. ventidue · 4. quarantotto · 5. sessantatré · 6. novantanove · 7. cento
+1. El alfabeto italiano tiene 26 letras nativas. ____
+2. La letra "H" en italiano se pronuncia "acca". ____
+3. Las letras J, K, W, X, Y son letras italianas nativas. ____
+4. "Erre" es el nombre de la letra R en italiano. ____
+5. La letra Z se llama "zeta" en italiano. ____
+6. "Elle" es el nombre de la letra N en italiano. ____
 
 ---
 
-### Ejercicio 5 — Unidades famosas con sus ciudades
+## EJERCICIO 3: Conjuga el Verbo CHIAMARSI
 
-Relacioná cada ciudad con lo que la hace famosa.
+**Instrucción:** Completa las frases con la forma correcta del verbo _chiamarsi_ (mi chiamo / ti chiami / si chiama).
 
-| Ciudad       | Famosa per...            |
-|--------------|--------------------------|
-| 1. Roma      | a. le gondole            |
-| 2. Venezia   | b. il Palio              |
-| 3. Milano    | c. la pizza              |
-| 4. Napoli    | d. il Colosseo           |
-| 5. Siena     | e. la moda               |
-| 6. Firenze   | f. gli Uffizi            |
+1. – Come ti chiami?
+   – Io ___________ Laura.
 
-**Respuestas:** 1-d · 2-a · 3-e · 4-c · 5-b · 6-f
+2. – Come ___________ lui?
+   – Si chiama Alessandro.
 
----
+3. – Tu ___________ Marco, vero?
+   – Sì, esatto!
 
-### Ejercicio 6 — Interrogativos: *Come / Quale / Che / Di dove / Dove*
+4. – Come si chiama lei?
+   – Lei ___________ Francesca.
 
-Completá con el interrogativo correcto.
-
-1. _______ ti chiami? — Mi chiamo Giulia.
-2. _______ sei? — Sono di Torino.
-3. _______ è il tuo numero di telefono? — È il 338 445 6789.
-4. _______ età hai? — Ho ventidue anni.
-5. _______ vai? — Vado alla stazione.
-6. _______ stai? — Sto bene, grazie!
-
-**Respuestas:** 1. Come · 2. Di dove · 3. Qual · 4. Che · 5. Dove · 6. Come
+5. – Io ___________ Paolo. E tu, come ti chiami?
 
 ---
 
-### Ejercicio 7 — Scheda personale
+## EJERCICIO 4: Relaciona el Saludo con el Contexto
 
-Completá la scheda con tus datos reales (o inventados) en italiano.
+**Instrucción:** Une cada saludo (columna A) con el contexto o momento adecuado (columna B).
 
-```
-Nome:        ________________________________
-Cognome:     ________________________________
-Età:         ________________________________ anni
-Città:       Sono di ________________________
-Telefono:    Il mio numero è _________________
-Nazionalità: Sono ___________________________
-```
+**Columna A:**
+1. Buongiorno!
+2. Buonanotte!
+3. Arrivederci!
+4. Ciao!
+5. Buonasera!
+6. Come stai?
 
-**Modelo de respuesta:**
-Nome: Marco · Cognome: Rossi · Età: ventisei anni · Città: Sono di Buenos Aires · Telefono: Il mio numero è zero tre due uno due tre quattro cinque sei sette · Nazionalità: Sono argentino
-
----
-
-### Ejercicio 8 — Diálogo: completá la conversación
-
-Completá el diálogo con las palabras del recuadro.
-
-**Palabras:** *sono · di dove · ho · vai · vado · come · prego · grazie*
-
-> A: Ciao! _______ ti chiami?  
-> B: Mi chiamo Luca. E tu?  
-> A: Io _______ Martina. _______ sei?  
-> B: _______ di Firenze. E tu?  
-> A: Io _______ di Roma.  
-> B: Ah, bella città! _______ adesso?  
-> A: _______ alla stazione. _______ per l'aiuto!  
-> B: _______ !
-
-**Respuestas:** come · sono · Di dove · Sono · sono · Dove · Vado · Grazie · Prego
+**Columna B:**
+a. Saludo informal para cualquier momento del día
+b. Despedida formal
+c. Al llegar por la mañana
+d. Antes de irse a dormir
+e. Cuando quieres saber cómo está alguien (informal)
+f. Al saludar por la tarde o noche
 
 ---
 
-### Actividad extra — Mappa interattiva
+## EJERCICIO 5: Los Números — Escribe en Italiano
 
-*(Actividad para clase o plataforma)*
+**Instrucción:** Escribe en italiano el número que aparece en cifra.
 
-**Instrucciones:** Arrastrá cada nombre de ciudad al lugar correcto en el mapa de Italia.
-
-Ciudades a ubicar: **Roma · Venezia · Milano · Napoli · Firenze · Torino · Palermo · Siena**
-
-💡 *Pista geográfica:*
-- Norte: Milano, Torino, Venezia
-- Centro: Firenze, Roma, Siena
-- Sur: Napoli, Palermo (Sicilia)
+1. 5   → ___________
+2. 12  → ___________
+3. 19  → ___________
+4. 21  → ___________
+5. 28  → ___________
+6. 30  → ___________
+7. 16  → ___________
+8. 23  → ___________
 
 ---
 
-### Actividad oral — Intervistare un compagno
+## EJERCICIO 6: Ordena las Palabras para Formar Frases
 
-*(En parejas)*
+**Instrucción:** Reordena las palabras para construir frases correctas en italiano.
 
-Hacé las siguientes preguntas a tu compañero y anotá sus respuestas.
+1. ti / come / chiami / ?
+   → ___________________________________________
 
-| Pregunta                          | Respuesta |
-|-----------------------------------|-----------|
-| Come ti chiami?                   |           |
-| Di dove sei?                      |           |
-| Quanti anni hai?                  |           |
-| Qual è il tuo numero di telefono? |           |
-| Dove vai dopo la lezione?         |           |
+2. chiamo / mi / Sofia / io
+   → ___________________________________________
 
-**Frases útiles para presentar al compañero:**
-> *Si chiama ______. È di ______. Ha ______ anni.*
+3. chiama / Alessandro / si / lui
+   → ___________________________________________
+
+4. significa / che / "ciao" / ?
+   → ___________________________________________
+
+5. si / "buongiorno" / come / scrive / ?
+   → ___________________________________________
+
+---
+
+## EJERCICIO 7: Completa el Diálogo
+
+**Instrucción:** Completa el diálogo con las palabras del recuadro.
+
+**Palabras:** _mi chiamo · come ti chiami · buongiorno · grazie · prego · ciao_
+
+> — (1) ___________ ! Io sono la professoressa Rossi.
+>
+> — (2) ___________ professoressa! Io (3) ___________ Marco.
+>
+> — E tu, (4) ___________ ?
+>
+> — Mi chiamo Sofia.
+>
+> — Benvenuti! Molto piacere.
+>
+> — (5) ___________ !
+>
+> — (6) ___________ !
+
+---
+
+## EJERCICIO 8: Deletrea en Italiano (Come si scrive?)
+
+**Instrucción:** Escribe cómo se deletrea cada palabra usando los nombres de las letras italianas. Separa con guiones.
+(Ejemplo: ROMA → erre – o – emme – a)
+
+1. CIAO → ___________________________________________
+2. BENE → ___________________________________________
+3. SOLE → ___________________________________________
+4. PIZZA → ___________________________________________
+
+---
+
+## RESPUESTAS
+
+**Ejercicio 1:**
+1. B come Bologna
+2. C come Como
+3. D come Domodossola
+4. F come Firenze
+5. G come Genova
+6. M come Milano
+7. N come Napoli
+8. R come Roma
+9. T come Torino
+10. V come Venezia
+
+---
+
+**Ejercicio 2:**
+1. F (el italiano nativo tiene 21 letras)
+2. V
+3. F (son letras de origen extranjero, "straniere")
+4. V
+5. V
+6. F ("elle" es la letra L; la N se llama "enne")
+
+---
+
+**Ejercicio 3:**
+1. mi chiamo
+2. si chiama
+3. ti chiami
+4. si chiama
+5. mi chiamo
+
+---
+
+**Ejercicio 4:**
+1 – c | 2 – d | 3 – b | 4 – a | 5 – f | 6 – e
+
+---
+
+**Ejercicio 5:**
+1. cinque
+2. dodici
+3. diciannove
+4. ventuno
+5. ventotto
+6. trenta
+7. sedici
+8. ventitré
+
+---
+
+**Ejercicio 6:**
+1. Come ti chiami?
+2. Io mi chiamo Sofia.
+3. Lui si chiama Alessandro.
+4. Che significa "ciao"?
+5. Come si scrive "buongiorno"?
+
+---
+
+**Ejercicio 7:**
+1. Buongiorno
+2. Ciao (o Buongiorno)
+3. mi chiamo
+4. come ti chiami
+5. Grazie
+6. Prego
+
+---
+
+**Ejercicio 8:**
+1. CIAO → ci – i – a – o
+2. BENE → bi – e – enne – e
+3. SOLE → esse – o – elle – e
+4. PIZZA → pi – i – zeta – zeta – a

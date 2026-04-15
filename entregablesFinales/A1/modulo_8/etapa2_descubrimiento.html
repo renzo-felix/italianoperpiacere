@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 7 · In famiglia — Descubrimiento | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --mod:      #528e74;
+  --mod-dk:   #3d6b58;
+  --mod-lt:   #e8f4ef;
+  --mod-tx:   #2d4d3c;
+  --cream:    #e9e6d5;
+  --cream-dk: #ddd9c8;
+  --gold:     #EFCF7F;
+  --black:    #1a1a18;
+  --white:    #ffffff;
+  --green:    #528e74;
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+  --r: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--fb); background: var(--cream); color: var(--black); line-height: 1.6; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
+  color: var(--white);
+  padding: 56px 24px 48px;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-family: var(--fb);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 700; margin-bottom: 10px; }
+.hero-sub { font-size: 1.05rem; opacity: 0.88; font-weight: 300; }
+
+/* STAGE NAV */
+
+.stage-link {
+  display: flex; align-items: center; gap: 7px;
+  padding: 8px 16px; border-radius: 30px;
+  text-decoration: none; font-family: var(--fb); font-size: 0.82rem; font-weight: 500;
+  color: #888; background: var(--cream); border: 1.5px solid transparent; transition: all 0.2s;
+}
+.stage-link .sn {
+  width: 22px; height: 22px; border-radius: 50%; background: #ccc; color: var(--white);
+  display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700;
+}
+.stage-link.active { background: var(--mod-lt); color: var(--mod-tx); border-color: var(--mod); }
+.stage-link.active .sn { background: var(--mod); }
+.stage-link.done { color: var(--green); }
+.stage-link.done .sn { background: var(--green); }
+
+/* MAIN */
+.main { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; }
+.section { margin-bottom: 48px; }
+
+/* SECTION HEADING */
+.sec-title { font-family: var(--fh); font-style: italic; font-size: 1.6rem; color: var(--mod-tx); margin-bottom: 6px; }
+.sec-divider { width: 48px; height: 3px; background: var(--mod); border-radius: 2px; margin-bottom: 20px; }
+
+/* VOCAB CHIP */
+.vocab-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+.vocab-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  border: 1.5px solid var(--mod);
+  border-radius: 30px;
+  padding: 8px 16px;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 4px rgba(82,142,116,0.1);
+}
+.vocab-chip:hover { background: var(--mod-lt); transform: translateY(-1px); box-shadow: 0 3px 8px rgba(82,142,116,0.2); }
+.vocab-chip .it { font-weight: 700; color: var(--mod-dk); }
+.vocab-chip .es { color: #666; font-size: 0.82rem; }
+.vocab-chip .audio-btn {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--mod);
+  color: var(--white);
+  border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.vocab-chip .audio-btn:hover { background: var(--mod-dk); }
+
+/* FAMILY TREE VISUAL */
+.family-tree {
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  margin-bottom: 20px;
+}
+.tree-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  position: relative;
+}
+.tree-row::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--cream-dk);
+  margin-top: 8px;
+}
+.tree-row:last-child::after { display: none; }
+.tree-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.tree-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 90px;
+}
+.tree-emoji { font-size: 2rem; }
+.tree-it { font-weight: 700; font-size: 0.9rem; color: var(--mod-dk); }
+.tree-es { font-size: 0.78rem; color: #777; }
+.tree-audio {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--mod);
+  color: var(--white);
+  border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 0.65rem;
+  transition: background 0.2s;
+}
+.tree-audio:hover { background: var(--mod-dk); }
+
+/* VOCAB SECTION CARD */
+.vocab-card {
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  margin-bottom: 24px;
+}
+.vocab-card h3 { font-family: var(--fh); font-style: italic; font-size: 1.2rem; color: var(--mod-tx); margin-bottom: 4px; }
+.vocab-card .subtitle { font-size: 0.84rem; color: #777; margin-bottom: 16px; }
+
+/* DIALOG */
+.dialog-card {
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.dialog-controls {
+  display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;
+}
+.btn-play-all {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--mod); color: var(--white);
+  border: none; border-radius: 30px;
+  padding: 8px 20px; font-family: var(--fb); font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-play-all:hover { background: var(--mod-dk); }
+.dialog-line {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 10px 0; border-bottom: 1px solid var(--cream);
+}
+.dialog-line:last-child { border-bottom: none; }
+.bubble-wrap { display: flex; gap: 10px; align-items: flex-start; flex: 1; }
+.bubble-name {
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+  min-width: 52px; text-align: center; margin-top: 4px;
+}
+.bubble-name.g { color: var(--mod-dk); }
+.bubble-name.m { color: #7a5e2d; }
+.bubble-m {
+  background: var(--cream-dk);
+  border-radius: 0 var(--r) var(--r) var(--r);
+  padding: 10px 14px; font-size: 0.93rem; line-height: 1.55; flex: 1;
+}
+.bubble-f {
+  background: var(--mod-lt);
+  border: 1px solid rgba(82,142,116,0.3);
+  border-radius: var(--r) 0 var(--r) var(--r);
+  padding: 10px 14px; font-size: 0.93rem; line-height: 1.55; flex: 1;
+}
+.btn-line-play {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1.5px solid var(--cream-dk); background: var(--cream);
+  color: #888; cursor: pointer; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; transition: all 0.2s; margin-top: 4px;
+}
+.btn-line-play:hover { border-color: var(--mod); color: var(--mod); background: var(--mod-lt); }
+.btn-line-play.playing { background: var(--mod); color: var(--white); border-color: var(--mod); }
+.highlight-word { background: rgba(239,207,127,0.4); border-radius: 3px; padding: 0 3px; font-weight: 700; }
+
+/* PATTERN CARDS */
+.pattern-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+.pattern-card {
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-top: 3px solid var(--mod);
+}
+.pattern-card h4 { font-family: var(--fh); font-style: italic; color: var(--mod-tx); font-size: 1rem; margin-bottom: 8px; }
+.pattern-card .pattern-ex { font-size: 0.88rem; color: #555; line-height: 1.6; }
+.pattern-card .pattern-it { font-weight: 700; color: var(--mod-dk); }
+
+/* GRAMMAR BOX */
+.grammar-box {
+  background: var(--mod-lt);
+  border: 1.5px solid var(--mod);
+  border-radius: var(--r);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.grammar-box h3 { font-family: var(--fh); font-style: italic; font-size: 1.25rem; color: var(--mod-tx); margin-bottom: 12px; }
+.grammar-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  background: var(--white);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.grammar-table th {
+  background: var(--mod);
+  color: var(--white);
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+.grammar-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--cream);
+  vertical-align: top;
+}
+.grammar-table tr:last-child td { border-bottom: none; }
+.grammar-table .it-cell { font-weight: 700; color: var(--mod-dk); }
+
+/* NUMERI TABLE */
+.numeri-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+.numeri-card {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 14px 16px;
+  text-align: center;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  border-bottom: 3px solid var(--mod);
+}
+.numeri-card .n-num { font-size: 1.3rem; font-weight: 700; color: var(--mod-dk); font-family: var(--fh); }
+.numeri-card .n-word { font-size: 0.88rem; color: #555; margin-top: 2px; }
+
+/* CULTURE STRIP */
+.culture-strip {
+  background: linear-gradient(135deg, var(--mod-dk) 0%, #2d4d3c 100%);
+  color: var(--white);
+  border-radius: var(--r);
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.culture-strip::before {
+  content: '🇮🇹';
+  position: absolute; top: -10px; right: 20px;
+  font-size: 5rem; opacity: 0.1;
+}
+.culture-strip h3 {
+  font-family: var(--fh); font-style: italic;
+  font-size: 1.3rem; margin-bottom: 6px;
+}
+.culture-strip .culture-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px; padding: 2px 12px;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; margin-bottom: 14px;
+}
+.culture-it { font-size: 0.95rem; line-height: 1.7; margin-bottom: 12px; }
+.culture-es {
+  font-size: 0.9rem; line-height: 1.65;
+  background: rgba(255,255,255,0.12);
+  border-radius: 8px; padding: 14px 16px;
+  display: none;
+}
+.culture-es.show { display: block; }
+.btn-toggle {
+  background: rgba(255,255,255,0.2);
+  border: 1.5px solid rgba(255,255,255,0.5);
+  color: var(--white);
+  border-radius: 20px;
+  padding: 6px 18px;
+  font-family: var(--fb); font-size: 0.82rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+  margin-top: 12px;
+}
+.btn-toggle:hover { background: rgba(255,255,255,0.3); }
+
+/* EXERCISE CARD */
+.ex-card {
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  margin-bottom: 20px;
+}
+.ex-card h2 { font-family: var(--fh); font-style: italic; font-size: 1.3rem; color: var(--mod-tx); margin-bottom: 6px; }
+.ex-tag {
+  display: inline-block; background: var(--mod); color: var(--white);
+  border-radius: 20px; padding: 3px 12px; font-size: 0.72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 16px;
+}
+.ex-instr { font-size: 0.9rem; color: #555; margin-bottom: 20px; font-style: italic; }
+
+/* OPT BUTTONS */
+.opt-group { margin-bottom: 22px; }
+.opt-group:last-child { margin-bottom: 0; }
+.opt-q { font-size: 0.95rem; font-weight: 600; margin-bottom: 10px; }
+.opt-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.opt-btn {
+  padding: 8px 16px; border-radius: 20px;
+  border: 1.5px solid var(--cream-dk); background: var(--cream);
+  font-family: var(--fb); font-size: 0.86rem; cursor: pointer;
+  transition: all 0.2s;
+}
+.opt-btn:hover:not(:disabled) { border-color: var(--mod); background: var(--mod-lt); color: var(--mod-tx); }
+.opt-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: 600; }
+.opt-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+.opt-feedback { font-size: 0.8rem; margin-top: 8px; font-weight: 600; }
+.opt-feedback.ok { color: #155724; }
+.opt-feedback.ko { color: #721c24; }
+
+/* FILL-IN */
+.fill-row { margin-bottom: 18px; }
+.fill-row:last-child { margin-bottom: 0; }
+.fill-sentence { font-size: 0.95rem; line-height: 2; display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.fill-input {
+  border: none; border-bottom: 2px solid var(--mod);
+  background: transparent; font-family: var(--fb); font-size: 0.95rem;
+  color: var(--black); padding: 2px 6px; min-width: 120px;
+  outline: none; transition: border-color 0.2s;
+}
+.fill-input:focus { border-color: var(--mod-dk); }
+.fill-input.ok { border-color: #28a745; background: #d4edda; border-radius: 4px; }
+.fill-input.ko { border-color: #dc3545; background: #f8d7da; border-radius: 4px; }
+.btn-check {
+  display: inline-flex; align-items: center; gap: 7px;
+  margin-top: 18px;
+  background: var(--mod); color: var(--white);
+  border: none; border-radius: 30px;
+  padding: 9px 22px; font-family: var(--fb); font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-check:hover { background: var(--mod-dk); }
+.check-result {
+  margin-top: 12px; font-size: 0.88rem; font-weight: 600;
+  color: var(--mod-tx); display: none;
+}
+.check-result.show { display: block; }
+
+/* SCORE BOX */
+.score-box {
+  margin-top: 16px;
+  padding: 12px 18px;
+  border-radius: var(--r);
+  background: var(--mod-lt);
+  border: 1.5px solid var(--mod);
+  font-size: 0.9rem; font-weight: 600; color: var(--mod-tx);
+  display: none;
+}
+.score-box.show { display: block; }
+
+/* CTA */
+
+@media (max-width: 600px) {
+  .tree-row { gap: 12px; }
+  .tree-member { min-width: 70px; }
+  .pattern-grid { grid-template-columns: 1fr; }
+  .numeri-grid { grid-template-columns: repeat(2, 1fr); }
+  .dialog-line { flex-direction: column; gap: 4px; }
+}
+
+/* ── IPP YouTube Player Controls ── */
+.yt-controls{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 10px}
+.yt-btn{padding:10px 20px;border:none;border-radius:8px;font-family:var(--fb);
+  font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;
+  align-items:center;gap:6px}
+.yt-btn-conv{background:var(--mc);color:var(--white)}
+.yt-btn-conv:hover{background:var(--mc-dk)}
+.yt-btn-dial{background:var(--white);color:var(--mc);border:2px solid var(--mc)}
+.yt-btn-dial:hover{background:var(--mc-bg,#faeae8)}
+.yt-btn-stop{background:var(--cream-dk,#ddd9c8);color:var(--black,#1a1a18)}
+.yt-btn-stop:hover{filter:brightness(.92)}
+.yt-btn:disabled{opacity:.45;cursor:not-allowed}
+.dial-line.yt-active{outline:3px solid var(--mc);border-radius:8px;
+  background:var(--mc-bg,#faeae8);transition:background .3s}
+.dial-line.yt-done{opacity:.7}
+
+
+    /* ── YT Dialog Controls (per-line) ── */
+    .yt-top-controls{display:flex;gap:12px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+    .blurred{filter:blur(7px);opacity:.25;user-select:none;pointer-events:none;
+      transition:filter .45s ease,opacity .45s ease}
+    .dial-line-ctrl{display:flex;gap:6px;margin-top:7px;align-items:center}
+    .yt-lbtn{width:32px;height:32px;border-radius:50%;
+      border:1.8px solid var(--mc-dk,#c8940a);background:none;color:var(--mc-dk,#c8940a);
+      cursor:pointer;font-size:.72rem;display:flex;align-items:center;justify-content:center;
+      transition:all .2s;flex-shrink:0}
+    .yt-lbtn:hover{background:var(--mc-bg,#faeee8)}
+    .yt-lbtn.stop{border-color:var(--red,#cc4736);color:var(--red,#cc4736)}
+    .yt-lbtn.stop:hover{background:#faeaea}
+    .yt-lbtn.teal{border-color:var(--teal,#78a6ba);color:var(--teal,#78a6ba)}
+    .yt-lbtn.teal:hover{background:#e5f1f5}
+
+    </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-badge">A1 · Unità 7</div>
+  <h1>In famiglia</h1>
+  <p class="hero-sub">Etapa 2 — Descubrimiento · Vocabulario y gramática</p>
+</header>
+
+<main class="main">
+
+  <!-- CONEXIÓN CON EL VIDEO -->
+  <div class="section" style="background:var(--mod-lt);border:1.5px solid var(--mod);border-radius:12px;display:flex;gap:16px;align-items:flex-start;padding:24px;">
+    <div style="font-size:2rem;flex-shrink:0;">👩‍🏫</div>
+    <div>
+      <p style="font-size:1rem;line-height:1.65;color:var(--mod-tx);">
+        En el video conociste a <strong>Luisa</strong> (6 años), <strong>Anna</strong> (4 años), <strong>Lorenzo</strong> (2 años), <strong>Stella</strong> (la mamma, siciliana) y <strong>Michele</strong> (il papà, toscano, 38 años). Una familia italiana real, con su rutina, sus abuelos lejos y sus reflexiones sobre la vida familiar en Italia. Ahora vamos a explorar el vocabulario de la famiglia — los vínculos, los objetos personales y cómo hablar de tu propia famiglia.
+      </p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 1: LA FAMIGLIA — ÁRBOL GENEALÓGICO -->
+  <div class="section">
+    <h2 class="sec-title">La famiglia</h2>
+    <div class="sec-divider"></div>
+
+    <div class="family-tree">
+      <!-- Bisabuelos -->
+      <div class="tree-row">
+        <div class="tree-label">I bisnonni</div>
+        <div class="tree-member">
+          <div class="tree-emoji">👴</div>
+          <div class="tree-it">il bisnonno</div>
+          <div class="tree-es">bisabuelo</div>
+          <button class="tree-audio" onclick="ippVoice('il bisnonno', 'M')" title="Escuchar">▶</button>
+        </div>
+        <div class="tree-member">
+          <div class="tree-emoji">👵</div>
+          <div class="tree-it">la bisnonna</div>
+          <div class="tree-es">bisabuela</div>
+          <button class="tree-audio" onclick="ippVoice('la bisnonna', 'F')" title="Escuchar">▶</button>
+        </div>
+      </div>
+      <!-- Abuelos -->
+      <div class="tree-row">
+        <div class="tree-label">I nonni</div>
+        <div class="tree-member">
+          <div class="tree-emoji">👴</div>
+          <div class="tree-it">il nonno</div>
+          <div class="tree-es">abuelo</div>
+          <button class="tree-audio" onclick="ippVoice('il nonno', 'M')" title="Escuchar">▶</button>
+        </div>
+        <div class="tree-member">
+          <div class="tree-emoji">👵</div>
+          <div class="tree-it">la nonna</div>
+          <div class="tree-es">abuela</div>
+          <button class="tree-audio" onclick="ippVoice('la nonna', 'F')" title="Escuchar">▶</button>
+        </div>
+      </div>
+      <!-- Tíos / Padres -->
+      <div class="tree-row">
+        <div class="tree-label">Zii e genitori</div>
+        <div class="tree-member">
+          <div class="tree-emoji">👨</div>
+          <div class="tree-it">lo zio</div>
+          <div class="tree-es">tío</div>
+          <button class="tree-audio" onclick="ippVoice('lo zio', 'M')" title="Escuchar">▶</button>
+        </div>
+        <div class="tree-member">
+          <div class="tree-emoji">👩</div>
+          <div class="tree-it">la zia</div>
+          <div class="tree-es">tía</div>
+          <button class="tree-audio" onclick="ippVoice('la zia', 'F')" title="Escuchar">▶</button>
+        </div>
+        <div class="tree-member">
+          <div class="tree-emoji">👨</div>
+          <div class="tree-it">il padre / papà</div>
+          <div class="tree-es">padre / papá</div>
+          <button class="tree-audio" onclick="ippVoice('il padre', 'M')" title="Escuchar">▶</button>
+        </div>
+        <div class="tree-member">
+          <div class="tree-emoji">👩</div>
+          <div class="tree-it">la madre / mamma</div>
+          <div class="tree-es">madre / mamá</div>
+          <button class="tree-audio" onclick="ippVoice('la madre', 'F')" title="Escuchar">▶</button>
+        </div>
+      </div>
+      <!-- Cónyuge -->
+      <div class="tree-row">
+        <div class="tree-label">La coppia</div>
+        <div class="tree-member">
+          <div class="tree-emoji">👰‍♀️</div>
+          <div class="tree-it">la moglie</div>
+          <div class="tree-es">esposa</div>
+          <button class="tree-audio" onclick="ippVoice('la moglie', 'F')" title="Escuchar">▶</button>
+        </div>
+        <div class="tree-member">
+          <div class="tree-emoji">🤵</div>
+          <div class="tree-it">il marito</div>
+          <div class="tree-es">esposo</div>
+          <button class="tree-audio" onclick="ippVoice('il marito', 'M')" title="Escuchar">▶</button>
+        </div>
+      </div>
+      <!-- Hijos / Hermanos -->
+      <div class="tree-row">
+        <div class="tree-label">I figli e i fratelli</div>
+        <div class="tree-member">
+          <div class="tree-emoji">👦</div>
+          <div class="tree-it">il figlio / il fratello</div>
+          <div class="tree-es">hijo / hermano</div>
+          <button class="tree-audio" onclick="ippVoice('il figlio', 'M')" title="Escuchar">▶</button>
+        </div>
+        <div class="tree-member">
+          <div class="tree-emoji">👧</div>
+          <div class="tree-it">la figlia / la sorella</div>
+          <div class="tree-es">hija / hermana</div>
+          <button class="tree-audio" onclick="ippVoice('la figlia', 'F')" title="Escuchar">▶</button>
+        </div>
+        <div class="tree-member">
+          <div class="tree-emoji">👦</div>
+          <div class="tree-it">il cugino</div>
+          <div class="tree-es">primo</div>
+          <button class="tree-audio" onclick="ippVoice('il cugino', 'M')" title="Escuchar">▶</button>
+        </div>
+        <div class="tree-member">
+          <div class="tree-emoji">👧</div>
+          <div class="tree-it">la cugina</div>
+          <div class="tree-es">prima</div>
+          <button class="tree-audio" onclick="ippVoice('la cugina', 'F')" title="Escuchar">▶</button>
+        </div>
+      </div>
+      <!-- Sobrinos / Nietos -->
+      <div class="tree-row">
+        <div class="tree-label">Il nipote (sobrino o nieto)</div>
+        <div class="tree-member">
+          <div class="tree-emoji">👦</div>
+          <div class="tree-it">il nipote</div>
+          <div class="tree-es">sobrino / nieto</div>
+          <button class="tree-audio" onclick="ippVoice('il nipote', 'M')" title="Escuchar">▶</button>
+        </div>
+        <div class="tree-member">
+          <div class="tree-emoji">👧</div>
+          <div class="tree-it">la nipote</div>
+          <div class="tree-es">sobrina / nieta</div>
+          <button class="tree-audio" onclick="ippVoice('la nipote', 'F')" title="Escuchar">▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plurales importantes -->
+    <div class="vocab-card">
+      <h3>Plurali e collettivi importanti</h3>
+      <p class="subtitle">Estas formas aparecen muy seguido en el video</p>
+      <div class="vocab-grid">
+        <div class="vocab-chip">
+          <span class="it">i genitori</span>
+          <span class="es">los padres</span>
+          <button class="audio-btn" onclick="ippVoice('i genitori', 'M')">▶</button>
+        </div>
+        <div class="vocab-chip">
+          <span class="it">i parenti</span>
+          <span class="es">los parientes</span>
+          <button class="audio-btn" onclick="ippVoice('i parenti', 'M')">▶</button>
+        </div>
+        <div class="vocab-chip">
+          <span class="it">i nonni</span>
+          <span class="es">los abuelos</span>
+          <button class="audio-btn" onclick="ippVoice('i nonni', 'M')">▶</button>
+        </div>
+        <div class="vocab-chip">
+          <span class="it">i figli</span>
+          <span class="es">los hijos</span>
+          <button class="audio-btn" onclick="ippVoice('i figli', 'M')">▶</button>
+        </div>
+        <div class="vocab-chip">
+          <span class="it">i fratelli</span>
+          <span class="es">los hermanos</span>
+          <button class="audio-btn" onclick="ippVoice('i fratelli', 'M')">▶</button>
+        </div>
+        <div class="vocab-chip">
+          <span class="it">la famiglia</span>
+          <span class="es">la familia</span>
+          <button class="audio-btn" onclick="ippVoice('la famiglia', 'F')">▶</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2: OGGETTI PERSONALI -->
+  <div class="section">
+    <h2 class="sec-title">Oggetti personali</h2>
+    <div class="sec-divider"></div>
+    <div class="vocab-card">
+      <h3>Le cose di tutti i giorni</h3>
+      <p class="subtitle">Cosas que usamos cada día — hacé clic para escuchar</p>
+      <div class="vocab-grid">
+        <div class="vocab-chip">
+          <span class="it">lo zaino</span>
+          <span class="es">la mochila</span>
+          <button class="audio-btn" onclick="ippVoice('lo zaino', 'M')">▶</button>
+        </div>
+        <div class="vocab-chip">
+          <span class="it">il portafoglio</span>
+          <span class="es">la billetera</span>
+          <button class="audio-btn" onclick="ippVoice('il portafoglio', 'M')">▶</button>
+        </div>
+        <div class="vocab-chip">
+          <span class="it">le chiavi</span>
+          <span class="es">las llaves</span>
+          <button class="audio-btn" onclick="ippVoice('le chiavi', 'F')">▶</button>
+        </div>
+        <div class="vocab-chip">
+          <span class="it">il cellulare</span>
+          <span class="es">el celular</span>
+          <button class="audio-btn" onclick="ippVoice('il cellulare', 'M')">▶</button>
+        </div>
+        <div class="vocab-chip">
+          <span class="it">gli occhiali</span>
+          <span class="es">los anteojos</span>
+          <button class="audio-btn" onclick="ippVoice('gli occhiali', 'M')">▶</button>
+        </div>
+        <div class="vocab-chip">
+          <span class="it">la borsa</span>
+          <span class="es">la cartera / bolso</span>
+          <button class="audio-btn" onclick="ippVoice('la borsa', 'F')">▶</button>
+        </div>
+        <div class="vocab-chip">
+          <span class="it">l'agenda</span>
+          <span class="es">la agenda</span>
+          <button class="audio-btn" onclick="ippVoice("l'agenda", 'F')">▶</button>
+        </div>
+        <div class="vocab-chip">
+          <span class="it">l'ombrello</span>
+          <span class="es">el paraguas</span>
+          <button class="audio-btn" onclick="ippVoice("l'ombrello", 'M')">▶</button>
+        </div>
+        <div class="vocab-chip">
+          <span class="it">il passaporto</span>
+          <span class="es">el pasaporte</span>
+          <button class="audio-btn" onclick="ippVoice('il passaporto', 'M')">▶</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3: DIÁLOGO -->
+  <div class="section">
+    <h2 class="sec-title">Dialogo — La mia famiglia</h2>
+    <div class="sec-divider"></div>
+    <div class="dialog-card">
+      <div class="dialog-controls">
+      </div>
+
+      <div id="dialog-lines">
+
+      <div class="yt-top-controls">
+        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
+        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
+      </div>
+<div class="dialog-line" data-line="0" data-speaker="M" data-text="Giulia, hai fratelli o sorelle?" data-yt-idx="0">
+          <div class="bubble-wrap">
+            <span class="bubble-name m">Marco</span>
+            <div class="bubble-m blurred">Giulia, hai fratelli o sorelle?</div>
+          </div>
+        
+          
+      <div class="yt-top-controls">
+        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
+        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
+      </div>
+        
+          
+      <div class="yt-top-controls">
+        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
+        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
+      </div>
+<div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(0)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+        <div class="dialog-line" data-line="1" data-speaker="F" data-text="Sì! Ho un fratello e una sorella. Mio fratello si chiama Luca e ha ventidue anni." data-yt-idx="1">
+          <div class="bubble-wrap">
+            <span class="bubble-name g">Giulia</span>
+            <div class="bubble-f blurred">Sì! Ho un fratello e una sorella. <span class="highlight-word">Mio fratello</span> si chiama Luca e ha ventidue anni.</div>
+          </div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(1)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+        <div class="dialog-line" data-line="2" data-speaker="M" data-text="E tua sorella, come si chiama?" data-yt-idx="2">
+          <div class="bubble-wrap">
+            <span class="bubble-name m">Marco</span>
+            <div class="bubble-m blurred">E <span class="highlight-word">tua sorella</span>, come si chiama?</div>
+          </div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(2)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+        <div class="dialog-line" data-line="3" data-speaker="F" data-text="Si chiama Elena. Ha diciotto anni e studia all'università. I miei genitori sono molto orgogliosi di lei!" data-yt-idx="3">
+          <div class="bubble-wrap">
+            <span class="bubble-name g">Giulia</span>
+            <div class="bubble-f blurred">Si chiama Elena. Ha diciotto anni e studia all'università. <span class="highlight-word">I miei genitori</span> sono molto orgogliosi di lei!</div>
+          </div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(3)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+        <div class="dialog-line" data-line="4" data-speaker="M" data-text="E i nonni? Li vedi spesso?" data-yt-idx="4">
+          <div class="bubble-wrap">
+            <span class="bubble-name m">Marco</span>
+            <div class="bubble-m blurred">E <span class="highlight-word">i nonni</span>? Li vedi spesso?</div>
+          </div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(4)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+        <div class="dialog-line" data-line="5" data-speaker="F" data-text="Sì, ogni domenica andiamo a pranzo da mia nonna materna. Lei abita a venti minuti da casa nostra." data-yt-idx="5">
+          <div class="bubble-wrap">
+            <span class="bubble-name g">Giulia</span>
+            <div class="bubble-f blurred">Sì, ogni domenica andiamo a pranzo da <span class="highlight-word">mia nonna</span> materna. Lei abita a venti minuti da casa nostra.</div>
+          </div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(5)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+        <div class="dialog-line" data-line="6" data-speaker="M" data-text="Bello! E tuo nonno paterno, abita lontano?" data-yt-idx="6">
+          <div class="bubble-wrap">
+            <span class="bubble-name m">Marco</span>
+            <div class="bubble-m blurred">Bello! E <span class="highlight-word">tuo nonno</span> paterno, abita lontano?</div>
+          </div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(6)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+        <div class="dialog-line" data-line="7" data-speaker="F" data-text="Sì, purtroppo. Mio nonno abita in Toscana. Lo vediamo solo d'estate e a Natale." data-yt-idx="7">
+          <div class="bubble-wrap">
+            <span class="bubble-name g">Giulia</span>
+            <div class="bubble-f blurred">Sì, purtroppo. <span class="highlight-word">Mio nonno</span> abita in Toscana. Lo vediamo solo d'estate e a Natale.</div>
+          </div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(7)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+        <div class="dialog-line" data-line="8" data-speaker="M" data-text="Hai anche zii o cugini?" data-yt-idx="8">
+          <div class="bubble-wrap">
+            <span class="bubble-name m">Marco</span>
+            <div class="bubble-m blurred">Hai anche <span class="highlight-word">zii</span> o <span class="highlight-word">cugini</span>?</div>
+          </div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(8)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+        <div class="dialog-line" data-line="9" data-speaker="F" data-text="Eccome! Mia zia Carla ha tre figli — due maschi e una femmina. Sono i miei cugini preferiti!" data-yt-idx="9">
+          <div class="bubble-wrap">
+            <span class="bubble-name g">Giulia</span>
+            <div class="bubble-f blurred">Eccome! <span class="highlight-word">Mia zia</span> Carla ha tre figli — due maschi e una femmina. Sono <span class="highlight-word">i miei cugini</span> preferiti!</div>
+          </div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(9)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+        <div class="dialog-line" data-line="10" data-speaker="M" data-text="E i tuoi genitori, che lavoro fanno?" data-yt-idx="10">
+          <div class="bubble-wrap">
+            <span class="bubble-name m">Marco</span>
+            <div class="bubble-m blurred">E <span class="highlight-word">i tuoi genitori</span>, che lavoro fanno?</div>
+          </div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(10)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+        <div class="dialog-line" data-line="11" data-speaker="F" data-text="Mio padre è medico e mia madre è architetta. Lavorano tantissimo ma sono molto presenti!" data-yt-idx="11">
+          <div class="bubble-wrap">
+            <span class="bubble-name g">Giulia</span>
+            <div class="bubble-f blurred"><span class="highlight-word">Mio padre</span> è medico e <span class="highlight-word">mia madre</span> è architetta. Lavorano tantissimo ma sono molto presenti!</div>
+          </div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(11)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+        <div class="dialog-line" data-line="12" data-speaker="M" data-text="La tua famiglia si incontra spesso tutta insieme?" data-yt-idx="12">
+          <div class="bubble-wrap">
+            <span class="bubble-name m">Marco</span>
+            <div class="bubble-m blurred"><span class="highlight-word">La tua famiglia</span> si incontra spesso tutta insieme?</div>
+          </div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(12)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+        <div class="dialog-line" data-line="13" data-speaker="F" data-text="Sì! A Natale siamo sempre tutti riuniti — i nonni, gli zii, i cugini... siamo in venti!" data-yt-idx="13">
+          <div class="bubble-wrap">
+            <span class="bubble-name g">Giulia</span>
+            <div class="bubble-f blurred">Sì! A Natale siamo sempre tutti riuniti — <span class="highlight-word">i nonni</span>, <span class="highlight-word">gli zii</span>, <span class="highlight-word">i cugini</span>... siamo in venti!</div>
+          </div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(13)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+        <div class="dialog-line" data-line="14" data-speaker="M" data-text="Che bella famiglia numerosa! Nella mia siamo solo in quattro." data-yt-idx="14">
+          <div class="bubble-wrap">
+            <span class="bubble-name m">Marco</span>
+            <div class="bubble-m blurred">Che bella famiglia numerosa! Nella mia siamo solo in quattro.</div>
+          </div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(14)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+        <div class="dialog-line" data-line="15" data-speaker="F" data-text="Piccola ma unita, di sicuro! Qual è la tua tradizione preferita?" data-yt-idx="15">
+          <div class="bubble-wrap">
+            <span class="bubble-name g">Giulia</span>
+            <div class="bubble-f blurred">Piccola ma unita, di sicuro! Qual è la tua tradizione preferita?</div>
+          </div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(15)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+        <div class="dialog-line" data-line="16" data-speaker="M" data-text="Le vacanze estive in Sicilia! Andiamo ogni anno, è una tradizione da vent'anni." data-yt-idx="16">
+          <div class="bubble-wrap">
+            <span class="bubble-name m">Marco</span>
+            <div class="bubble-m blurred">Le vacanze estive in Sicilia! Andiamo ogni anno, è una tradizione da vent'anni.</div>
+          </div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(16)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+        <div class="dialog-line" data-line="17" data-speaker="F" data-text="Che meraviglia! Anche noi andiamo al mare d'estate — ma in Sardegna. Il mare è incredibile!" data-yt-idx="17">
+          <div class="bubble-wrap">
+            <span class="bubble-name g">Giulia</span>
+            <div class="bubble-f blurred">Che meraviglia! Anche noi andiamo al mare d'estate — ma in Sardegna. Il mare è incredibile!</div>
+          </div>
+        
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(17)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+        </div>
+
+      </div>
+
+      <div style="margin-top:16px; padding: 14px; background: var(--mod-lt); border-radius: 8px; font-size: 0.85rem; color: var(--mod-tx);">
+        <strong>Notá:</strong> Los possessivi con nomi di parentela van SIN artículo en singular: <em>mio fratello</em>, <em>tua sorella</em>, <em>mio nonno</em>. Pero en plural llevan artículo: <em>i miei genitori</em>, <em>i miei cugini</em>.
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4: C'È / CI SONO -->
+  <div class="section">
+    <h2 class="sec-title">C'è / Ci sono</h2>
+    <div class="sec-divider"></div>
+    <p class="sec-sub">En el video escuchaste frases como <em>"Ci sono tre figli"</em> o <em>"C'è la babysitter"</em>. Estas expresiones equivalen a "hay" en español — y en italiano cambian según si hay una o varias cosas. Hacé clic en cada tarjeta para escuchar:</p>
+
+    <div class="pattern-grid">
+      <div class="pattern-card" onclick="ippAudio('C\'è un padre, una madre e tre figli.', 0.82, 'f')" style="cursor:pointer">
+        <div class="pattern-it">C'è un padre, una madre e tre figli.</div>
+        <div class="pattern-es">Hay un padre, una madre y tres hijos.</div>
+      </div>
+      <div class="pattern-card" onclick="ippAudio('Ci sono tre bambini in famiglia.', 0.82, 'f')" style="cursor:pointer">
+        <div class="pattern-it">Ci sono tre bambini in famiglia.</div>
+        <div class="pattern-es">Hay tres chicos en la familia.</div>
+      </div>
+      <div class="pattern-card" onclick="ippAudio('C\'è tua sorella a casa?', 0.82, 'f')" style="cursor:pointer">
+        <div class="pattern-it">C'è tua sorella a casa?</div>
+        <div class="pattern-es">¿Está tu hermana en casa?</div>
+      </div>
+      <div class="pattern-card" onclick="ippAudio('Non ci sono nonni vicini.', 0.82, 'm')" style="cursor:pointer">
+        <div class="pattern-it">Non ci sono nonni vicini.</div>
+        <div class="pattern-es">No hay abuelos cerca.</div>
+      </div>
+      <div class="pattern-card" onclick="ippAudio('Ci sono le chiavi nel zaino?', 0.82, 'f')" style="cursor:pointer">
+        <div class="pattern-it">Ci sono le chiavi nel zaino?</div>
+        <div class="pattern-es">¿Están las llaves en la mochila?</div>
+      </div>
+      <div class="pattern-card" onclick="ippAudio('Non c\'è uno zio in questa famiglia.', 0.82, 'm')" style="cursor:pointer">
+        <div class="pattern-it">Non c'è uno zio in questa famiglia.</div>
+        <div class="pattern-es">No hay ningún tío en esta familia.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 5: NUMERI OLTRE 1000 -->
+  <div class="section">
+    <h2 class="sec-title">Numeri oltre 1000</h2>
+    <div class="sec-divider"></div>
+    <div class="grammar-box">
+      <h3>Dal mille in poi</h3>
+      <div class="numeri-grid">
+        <div class="numeri-card">
+          <div class="n-num">1.000</div>
+          <div class="n-word">mille</div>
+        </div>
+        <div class="numeri-card">
+          <div class="n-num">1.100</div>
+          <div class="n-word">millecentо</div>
+        </div>
+        <div class="numeri-card">
+          <div class="n-num">2.000</div>
+          <div class="n-word">duemila</div>
+        </div>
+        <div class="numeri-card">
+          <div class="n-num">3.500</div>
+          <div class="n-word">tremilacinquecento</div>
+        </div>
+        <div class="numeri-card">
+          <div class="n-num">10.000</div>
+          <div class="n-word">diecimila</div>
+        </div>
+        <div class="numeri-card">
+          <div class="n-num">50.000</div>
+          <div class="n-word">cinquantamila</div>
+        </div>
+        <div class="numeri-card">
+          <div class="n-num">100.000</div>
+          <div class="n-word">centomila</div>
+        </div>
+        <div class="numeri-card">
+          <div class="n-num">1.000.000</div>
+          <div class="n-word">un milione</div>
+        </div>
+      </div>
+      <div style="margin-top:16px; font-size:0.88rem; line-height:1.7; color: var(--mod-tx);">
+        <strong>Regla clave:</strong> <em>mille</em> → singular; <em>mila</em> → plural (duemila, tremila, diecimila). Milione lleva artículo: <em>un milione</em>, <em>due milioni</em>.
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 6: EXPRESIONES PARA HABLAR DE LA FAMILIA -->
+  <div class="section">
+    <h2 class="sec-title">Come parlare della famiglia</h2>
+    <div class="sec-divider"></div>
+    <div class="pattern-grid">
+      <div class="pattern-card">
+        <h4>Preguntar por la familia</h4>
+        <div class="pattern-ex">
+          <span class="pattern-it">Hai fratelli?</span><br>
+          <small>¿Tenés hermanos?</small><br><br>
+          <span class="pattern-it">Quanti siete in famiglia?</span><br>
+          <small>¿Cuántos son en la familia?</small>
+        </div>
+      </div>
+      <div class="pattern-card">
+        <h4>Describir la familia</h4>
+        <div class="pattern-ex">
+          <span class="pattern-it">Siamo in quattro / in cinque.</span><br>
+          <small>Somos cuatro / cinco.</small><br><br>
+          <span class="pattern-it">Ho una famiglia numerosa.</span><br>
+          <small>Tengo una familia numerosa.</small>
+        </div>
+      </div>
+      <div class="pattern-card">
+        <h4>Expresar acuerdo / desacuerdo</h4>
+        <div class="pattern-ex">
+          <span class="pattern-it">Hai ragione! / Non sono d'accordo.</span><br>
+          <small>¡Tenés razón! / No estoy de acuerdo.</small><br><br>
+          <span class="pattern-it">Anch'io penso così.</span><br>
+          <small>Yo también pienso eso.</small>
+        </div>
+      </div>
+      <div class="pattern-card">
+        <h4>Hacer propuestas</h4>
+        <div class="pattern-ex">
+          <span class="pattern-it">Perché non andiamo dai nonni?</span><br>
+          <small>¿Por qué no vamos a lo de los abuelos?</small><br><br>
+          <span class="pattern-it">Ti va di venire con noi?</span><br>
+          <small>¿Te copa venir con nosotros?</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 7: CULTURA -->
+  <div class="section">
+    <h2 class="sec-title">Cultura italiana</h2>
+    <div class="sec-divider"></div>
+    <div class="culture-strip">
+      <span class="culture-tag">📚 Cultura</span>
+      <h3>La famiglia italiana — La famiglia è il cuore di tutto</h3>
+      <div class="culture-it">
+        In Italia, la famiglia è ancora oggi il pilastro fondamentale della società. Non si tratta solo dei genitori e dei figli: la famiglia italiana è spesso molto estesa, e include nonni, zii, cugini e parenti lontani che si frequentano con regolarità. Il pranzo domenicale è un rituale sacro: tutta la famiglia si riunisce a tavola, spesso a casa dei nonni, per stare insieme e mangiare piatti tradizionali. I nonni giocano un ruolo centrale nella vita familiare: accudiscono i nipoti, trasmettono le tradizioni e rappresentano la memoria storica della famiglia. Come ha detto Michele nel video, avere tre figli in Italia oggi è considerato qualcosa di insolito — la media italiana è di circa 1,2 figli per donna, tra le più basse d'Europa.
+      </div>
+      <button class="btn-toggle" onclick="toggleCulture('cultura-es')">Ver traducción al español</button>
+      <div class="culture-es" id="cultura-es">
+        En Italia, la familia sigue siendo hoy el pilar fundamental de la sociedad. No se trata solo de padres e hijos: la familia italiana suele ser muy extensa, e incluye abuelos, tíos, primos y parientes lejanos que se ven con regularidad. El almuerzo dominical es un ritual sagrado: toda la familia se reúne en la mesa, generalmente en casa de los abuelos, para estar juntos y comer platos tradicionales. Los abuelos juegan un rol central en la vida familiar: cuidan a los nietos, transmiten las tradiciones y representan la memoria histórica de la familia. Como dijo Michele en el video, tener tres hijos en Italia hoy se considera algo inusual — el promedio italiano es de aproximadamente 1,2 hijos por mujer, entre los más bajos de Europa.
+      </div>
+    </div>
+  </div>
+
+  <!-- EJERCICIOS -->
+  <div class="section">
+    <h2 class="sec-title">Esercizi</h2>
+    <div class="sec-divider"></div>
+
+    <!-- Ejercicio 1: Opción múltiple vocab -->
+    <div class="ex-card">
+      <h2>Esercizio 1 — Chi è?</h2>
+      <span class="ex-tag">Vocabulario</span>
+      <p class="ex-instr">Elegí la palabra italiana correcta para cada definición.</p>
+
+      <div class="opt-group" id="opt-g1">
+        <div class="opt-q">1. El padre de tu padre o de tu madre.</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'opt-g1',false,'¡No! El zio es tu tío.')">lo zio</button>
+          <button class="opt-btn" onclick="checkOpt(this,'opt-g1',true,'✓ Correcto! Il nonno es el abuelo.')">il nonno</button>
+          <button class="opt-btn" onclick="checkOpt(this,'opt-g1',false,'Il cugino es tu primo, no el abuelo.')">il cugino</button>
+          <button class="opt-btn" onclick="checkOpt(this,'opt-g1',false,'Il fratello es tu hermano.')">il fratello</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-g1"></div>
+      </div>
+
+      <div class="opt-group" id="opt-g2">
+        <div class="opt-q">2. La hermana de tu padre o de tu madre.</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'opt-g2',false,'La sorella es tu hermana, no la tía.')">la sorella</button>
+          <button class="opt-btn" onclick="checkOpt(this,'opt-g2',false,'La cugina es tu prima.')">la cugina</button>
+          <button class="opt-btn" onclick="checkOpt(this,'opt-g2',true,'✓ ¡Exacto! La zia es la tía.')">la zia</button>
+          <button class="opt-btn" onclick="checkOpt(this,'opt-g2',false,'La nonna es la abuela.')">la nonna</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-g2"></div>
+      </div>
+
+      <div class="opt-group" id="opt-g3">
+        <div class="opt-q">3. El hijo de tu tío o tía.</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'opt-g3',false,'Il nipote es sobrino o nieto.')">il nipote</button>
+          <button class="opt-btn" onclick="checkOpt(this,'opt-g3',true,'✓ Perfecto! Il cugino es el primo.')">il cugino</button>
+          <button class="opt-btn" onclick="checkOpt(this,'opt-g3',false,'Il figlio es el hijo, en general.')">il figlio</button>
+          <button class="opt-btn" onclick="checkOpt(this,'opt-g3',false,'Il fratello es el hermano.')">il fratello</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-g3"></div>
+      </div>
+
+      <div class="opt-group" id="opt-g4">
+        <div class="opt-q">4. ¿Cómo se dice "los padres" (padre y madre juntos) en italiano?</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'opt-g4',false,'I figli son los hijos.')">i figli</button>
+          <button class="opt-btn" onclick="checkOpt(this,'opt-g4',false,'I parenti son los parientes en general.')">i parenti</button>
+          <button class="opt-btn" onclick="checkOpt(this,'opt-g4',true,'✓ Correcto! I genitori es la forma para padre y madre juntos.')">i genitori</button>
+          <button class="opt-btn" onclick="checkOpt(this,'opt-g4',false,'I nonni son los abuelos.')">i nonni</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-g4"></div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <!-- CTA -->
+  
+
+</main>
+
+<script>
+if (!window.__ipp_m7_e2__) {
+  window.__ipp_m7_e2__ = true;
+
+  // ── IPP Voice Preloader ──────────────────────────────────────────────────
+  function ippVoice(text, gender) {
+    const synth = window.speechSynthesis;
+    if (!synth) return;
+    synth.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'it-IT';
+    utter.rate = 0.9;
+    utter.pitch = gender === 'F' ? 1.15 : 0.9;
+
+    const trySpeak = () => {
+      const voices = synth.getVoices();
+      const itVoices = voices.filter(v => v.lang.startsWith('it'));
+      if (itVoices.length > 0) {
+        const preferredF = itVoices.find(v => /female|donna|femminile/i.test(v.name));
+        const preferredM = itVoices.find(v => /male|uomo|maschio/i.test(v.name));
+        if (gender === 'F' && preferredF) utter.voice = preferredF;
+        else if (gender === 'M' && preferredM) utter.voice = preferredM;
+        else utter.voice = itVoices[0];
+      }
+      synth.speak(utter);
+    };
+
+    if (synth.getVoices().length === 0) {
+      synth.onvoiceschanged = trySpeak;
+    } else {
+      trySpeak();
+    }
+  }
+
+  function ippAudio(text, gender) {
+    ippVoice(text, gender || 'F');
+  }
+
+  // ── Diálogo ─────────────────────────────────────────────────────────────
+  const dialogData = [
+    { speaker: 'M', text: 'Giulia, hai fratelli o sorelle?' },
+    { speaker: 'F', text: 'Sì! Ho un fratello e una sorella. Mio fratello si chiama Luca e ha ventidue anni.' },
+    { speaker: 'M', text: 'E tua sorella, come si chiama?' },
+    { speaker: 'F', text: 'Si chiama Elena. Ha diciotto anni e studia all\'università. I miei genitori sono molto orgogliosi di lei!' },
+    { speaker: 'M', text: 'E i nonni? Li vedi spesso?' },
+    { speaker: 'F', text: 'Sì, ogni domenica andiamo a pranzo da mia nonna materna. Lei abita a venti minuti da casa nostra.' },
+    { speaker: 'M', text: 'Bello! E tuo nonno paterno, abita lontano?' },
+    { speaker: 'F', text: 'Sì, purtroppo. Mio nonno abita in Toscana. Lo vediamo solo d\'estate e a Natale.' },
+    { speaker: 'M', text: 'Hai anche zii o cugini?' },
+    { speaker: 'F', text: 'Eccome! Mia zia Carla ha tre figli — due maschi e una femmina. Sono i miei cugini preferiti!' },
+    { speaker: 'M', text: 'E i tuoi genitori, che lavoro fanno?' },
+    { speaker: 'F', text: 'Mio padre è medico e mia madre è architetta. Lavorano tantissimo ma sono molto presenti!' },
+    { speaker: 'M', text: 'La tua famiglia si incontra spesso tutta insieme?' },
+    { speaker: 'F', text: 'Sì! A Natale siamo sempre tutti riuniti — i nonni, gli zii, i cugini... siamo in venti!' },
+    { speaker: 'M', text: 'Che bella famiglia numerosa! Nella mia siamo solo in quattro.' },
+    { speaker: 'F', text: 'Piccola ma unita, di sicuro! Qual è la tua tradizione preferita?' },
+    { speaker: 'M', text: "Le vacanze estive in Sicilia! Andiamo ogni anno, è una tradizione da vent'anni." },
+    { speaker: 'F', text: "Che meraviglia! Anche noi andiamo al mare d'estate — ma in Sardegna. Il mare è incredibile!" }
+  ];
+
+  let dialogPlaying = false;
+  let currentLineIdx = -1;
+
+  function setLineActive(idx, active) {
+    const btn = document.querySelector(`[data-line="${idx}"] .btn-line-play`);
+    if (btn) btn.classList.toggle('playing', active);
+  }
+
+  function playLine(idx) {
+    if (dialogPlaying && currentLineIdx === idx) {
+      window.speechSynthesis.cancel();
+      setLineActive(idx, false);
+      dialogPlaying = false;
+      currentLineIdx = -1;
+      return;
+    }
+    window.speechSynthesis.cancel();
+    if (currentLineIdx >= 0) setLineActive(currentLineIdx, false);
+    const line = dialogData[idx];
+    if (!line) return;
+    dialogPlaying = true;
+    currentLineIdx = idx;
+    setLineActive(idx, true);
+    const utter = new SpeechSynthesisUtterance(line.text);
+    utter.lang = 'it-IT';
+    utter.rate = 0.9;
+    utter.pitch = line.speaker === 'F' ? 1.15 : 0.9;
+    utter.onend = () => { setLineActive(idx, false); dialogPlaying = false; currentLineIdx = -1; };
+    const synth = window.speechSynthesis;
+    const go = () => {
+      const voices = synth.getVoices().filter(v => v.lang.startsWith('it'));
+      if (voices.length) utter.voice = voices[line.speaker === 'F' ? 0 : Math.min(1, voices.length-1)];
+      synth.speak(utter);
+    };
+    if (synth.getVoices().length === 0) synth.onvoiceschanged = go;
+    else go();
+  }
+
+  function playAllDialog() {
+    window.speechSynthesis.cancel();
+    if (currentLineIdx >= 0) setLineActive(currentLineIdx, false);
+    let idx = 0;
+    const playNext = () => {
+      if (idx >= dialogData.length) { dialogPlaying = false; currentLineIdx = -1; return; }
+      if (currentLineIdx >= 0) setLineActive(currentLineIdx, false);
+      const line = dialogData[idx];
+      dialogPlaying = true;
+      currentLineIdx = idx;
+      setLineActive(idx, true);
+      const utter = new SpeechSynthesisUtterance(line.text);
+      utter.lang = 'it-IT';
+      utter.rate = 0.88;
+      utter.pitch = line.speaker === 'F' ? 1.15 : 0.9;
+      utter.onend = () => { setLineActive(idx, false); idx++; setTimeout(playNext, 400); };
+      const synth = window.speechSynthesis;
+      const go = () => {
+        const voices = synth.getVoices().filter(v => v.lang.startsWith('it'));
+        if (voices.length) utter.voice = voices[line.speaker === 'F' ? 0 : Math.min(1, voices.length-1)];
+        synth.speak(utter);
+      };
+      if (synth.getVoices().length === 0) synth.onvoiceschanged = go;
+      else go();
+    };
+    playNext();
+  }
+
+  // ── checkOpt ─────────────────────────────────────────────────────────────
+  function checkOpt(btn, groupId, isCorrect, feedback) {
+    const group = document.getElementById(groupId);
+    if (!group || group.dataset.done) return;
+    group.dataset.done = '1';
+    group.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+    btn.classList.add(isCorrect ? 'correct' : 'wrong');
+    const fb = document.getElementById('opt-fb-' + groupId);
+    if (fb) { fb.textContent = feedback; fb.className = 'opt-feedback ' + (isCorrect ? 'ok' : 'ko'); }
+  }
+
+  // ── checkFill ─────────────────────────────────────────────────────────────
+  function checkFill(key, answers, ids) {
+    let correct = 0;
+    ids.forEach((id, i) => {
+      const inp = document.getElementById(id);
+      if (!inp) return;
+      const val = inp.value.trim().toLowerCase();
+      const expected = answers[i].toLowerCase();
+      const isOk = val === expected;
+      inp.className = 'fill-input ' + (isOk ? 'ok' : 'ko');
+      inp.disabled = true;
+      if (isOk) correct++;
+    });
+    const res = document.getElementById('res-' + key);
+    if (res) {
+      res.textContent = `${correct}/${ids.length} correctas. ${correct === ids.length ? '¡Perfecto!' : 'Revisá las marcadas en rojo.'}`;
+      res.className = 'check-result show';
+    }
+  }
+
+  // ── toggleCulture ─────────────────────────────────────────────────────────
+  function toggleCulture(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.toggle('show');
+    const btn = el.previousElementSibling;
+    if (btn) btn.textContent = el.classList.contains('show') ? 'Ocultar traducción' : 'Ver traducción al español';
+  }
+
+  // Expose all to window
+  window.ippVoice = ippVoice;
+  window.ippAudio = ippAudio;
+  window.playLine = playLine;
+  window.playAllDialog = playAllDialog;
+  window.checkOpt = checkOpt;
+  window.checkFill = checkFill;
+  window.toggleCulture = toggleCulture;
+}
+</script>
+
+<div id="ippyt-frame" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden"></div>
+
+<script>
+/* ── IPP YouTube Dialog Player — shared ipp-yt-v3 ── */
+(function(){
+  if(window.__ippYTinit) return;
+  window.__ippYTinit = true;
+
+  window._ippYT = {
+    player: null, ready: false,
+    mode: null,   // 'conv'|'dial'
+    idx: 0, poll: null,
+    lines: [],    // set per-dialog
+    els: [],      // dial-line NodeList
+  };
+
+  /* Carga la API de YouTube una sola vez */
+  if(!window.YT){
+    var s=document.createElement('script');
+    s.src='https://www.youtube.com/iframe_api';
+    document.head.appendChild(s);
+  }
+
+  window._ippYTinitPlayer = function(videoId, frameId){
+    if(window._ippYT.player) return; // ya creado
+    function tryCreate(){
+      if(!window.YT||!window.YT.Player){ setTimeout(tryCreate,300); return; }
+      window._ippYT.player = new YT.Player(frameId,{
+        videoId: videoId,
+        height:1, width:1,
+        playerVars:{autoplay:0,controls:0,origin:location.origin||''},
+        events:{
+          onReady:function(){ window._ippYT.ready=true; }
+        }
+      });
+    }
+    tryCreate();
+  };
+
+  window.ippYT_detener = function(){
+    var y=window._ippYT;
+    if(y.poll){clearInterval(y.poll);y.poll=null;}
+    if(y.player&&y.ready){ try{y.player.pauseVideo();}catch(e){} }
+    y.mode=null;
+    document.querySelectorAll('.yt-active')
+      .forEach(function(el){el.classList.remove('yt-active');});
+  };
+
+  window.ippYT_conversacion = function(){
+    var y=window._ippYT;
+    if(!y.ready){alert('El reproductor aun se esta cargando...');return;}
+    ippYT_detener();
+    // Revelar todo el texto inmediatamente
+    document.querySelectorAll('[data-yt-idx]').forEach(function(el){
+      _ippYT_revealEl(el);
+    });
+    y.mode='conv';
+    try{y.player.seekTo(0,true);y.player.playVideo();}catch(e){}
+  };
+
+  window.ippYT_dialogo = function(lineasCfg, dialSelector){
+    var y=window._ippYT;
+    if(!y.ready){alert('El reproductor aun se esta cargando...');return;}
+    ippYT_detener();
+    // Ocultar texto de todas las lineas
+    var selector = dialSelector
+      ? '.dial-container[data-yt-dial="'+dialSelector+'"] .dial-line[data-yt-idx]'
+      : '[data-yt-idx]';
+    y.els = Array.from(document.querySelectorAll(selector));
+    y.lines = lineasCfg;
+    y.idx = 0;
+    y.mode = 'dial';
+    // Reset visual
+    y.els.forEach(function(el){
+      el.classList.remove('yt-active','yt-done');
+      _ippYT_hideEl(el);
+    });
+    _ippYT_playNext();
+  };
+
+  window._ippYT_playNext = function(){
+    var y=window._ippYT;
+    if(y.mode!=='dial') return;
+    if(y.idx>=y.els.length){y.mode=null;return;}
+    var el=y.els[y.idx];
+    var ts=y.lines[y.idx];
+    el.classList.add('yt-active');
+    _ippYT_revealEl(el);
+    el.scrollIntoView({behavior:'smooth',block:'nearest'});
+    if(ts && ts[0]!==null){
+      try{
+        y.player.seekTo(ts[0],true);
+        y.player.playVideo();
+      }catch(e){}
+      y.poll=setInterval(function(){
+        if(y.mode!=='dial'){clearInterval(y.poll);return;}
+        try{
+          var ct=y.player.getCurrentTime();
+          if(ct>=ts[1]){
+            clearInterval(y.poll); y.poll=null;
+            try{y.player.pauseVideo();}catch(e){}
+            el.classList.remove('yt-active');el.classList.add('yt-done');
+            y.idx++;
+            setTimeout(window._ippYT_playNext,450);
+          }
+        }catch(e){clearInterval(y.poll);}
+      },150);
+    } else {
+      // Sin timestamp: mostrar texto 2 segundos
+      setTimeout(function(){
+        el.classList.remove('yt-active');el.classList.add('yt-done');
+        y.idx++;
+        _ippYT_playNext();
+      },2000);
+    }
+  };
+
+  window._ippYT_revealEl = function(el){
+    var t = el.getAttribute('data-text')||el.getAttribute('data-yt-text')||'';
+    // dial-hidden/hidden-text/dial-bubble: M0-M3 (texto oculto revelado)
+    // bubble-m/bubble-g: M4-M5/M7 (siempre visible, solo resaltamos)
+    // line-it: M6 (solo resaltamos)
+    var targets=['.dial-hidden','.hidden-text','.dial-bubble','.bubble-m','.bubble-g','.line-it'];
+    for(var i=0;i<targets.length;i++){
+      var h=el.querySelector(targets[i]);
+      if(h){
+        if(t && i<3) h.textContent=t; // solo sobreescribir en M0-M3
+        h.style.opacity='1';h.style.visibility='visible';
+        h.style.maxHeight='none';h.style.display='';
+        return;
+      }
+    }
+  };
+
+  window._ippYT_hideEl = function(el){
+    var targets=['.dial-hidden','.hidden-text','.dial-bubble','.bubble-m','.bubble-g','.line-it'];
+    for(var i=0;i<targets.length;i++){
+      var h=el.querySelector(targets[i]);
+      if(h){ h.style.opacity='0'; h.style.visibility='hidden'; return; }
+    }
+  };
+})();
+</script>
+<script>_ippYTinitPlayer('XdJK-OLCiic','ippyt-frame');</script>
+
+
+<script>
+/* ── IPP Per-line YT playback ── */
+(function(){
+  var LINE_TIMES = [[0,2.5],[2.5,9.2],[9.2,11.4],[11.4,19.2],[19.2,21.6],[21.6,28],[28,33.3],[33.3,40.4],[40.4,42.7],[42.7,50.6],[50.6,53.1],[53.1,60.7],[60.7,64],[64,72.2],[72.2,76.5],[76.5,81.6],[81.6,87.6],[87.6,96]];
+  var _activeLine = -1;
+  var _linePoll   = null;
+
+  function _lineEl(idx){ return document.querySelector('[data-yt-idx="'+idx+'"]'); }
+
+  function _bubbleEl(el){
+    // Intenta encontrar el elemento burbuja en distintas estructuras de modulo
+    var sels = ['.dial-bubble','.f-bubble','.m-bubble','.dialog-bubble',
+                '.bubble-m','.bubble-g','.bubble-f','.bubble-wrap'];
+    for(var i=0;i<sels.length;i++){
+      var b=el.querySelector(sels[i]); if(b) return b;
+    }
+    return el; // fallback
+  }
+
+  function _setButtons(idx, playing){
+    var el=_lineEl(idx); if(!el) return;
+    var pb=el.querySelector('.yt-lbtn.play');
+    var sb=el.querySelector('.yt-lbtn.stop');
+    if(pb) pb.style.display=playing?'none':'';
+    if(sb) sb.style.display=playing?'':'none';
+    el.classList.toggle('yt-playing',playing);
+  }
+
+  window.ippYT_stopLine=function(){
+    if(_linePoll){clearInterval(_linePoll);_linePoll=null;}
+    var y=window._ippYT;
+    if(y&&y.ready){try{y.player.pauseVideo();}catch(e){}}
+    if(_activeLine>=0){_setButtons(_activeLine,false);_activeLine=-1;}
+  };
+
+  window.ippYT_playLine=function(idx){
+    ippYT_stopLine();
+    var y=window._ippYT;
+    if(!y||!y.ready){alert('El reproductor aún se está cargando...');return;}
+    var ts=LINE_TIMES[idx];
+    if(!ts)return;
+    var el=_lineEl(idx);
+    if(el){ var b=_bubbleEl(el); if(b) b.classList.remove('blurred'); }
+    _activeLine=idx;
+    _setButtons(idx,true);
+    try{y.player.seekTo(ts[0],true);y.player.playVideo();}catch(e){}
+    _linePoll=setInterval(function(){
+      try{
+        var ct=y.player.getCurrentTime();
+        if(ct>=ts[1]){
+          clearInterval(_linePoll);_linePoll=null;
+          try{y.player.pauseVideo();}catch(e){}
+          _setButtons(idx,false);_activeLine=-1;
+        }
+      }catch(e){clearInterval(_linePoll);}
+    },150);
+  };
+
+  // Sobrescribir conversacion: quita blur de todo y reproduce
+  var _origConv=window.ippYT_conversacion;
+  window.ippYT_conversacion=function(){
+    ippYT_stopLine();
+    document.querySelectorAll('.blurred').forEach(function(b){b.classList.remove('blurred');});
+    if(_origConv) _origConv();
+  };
+
+  // Sobrescribir detener
+  var _origStop=window.ippYT_detener;
+  window.ippYT_detener=function(){
+    ippYT_stopLine();
+    if(_origStop) _origStop();
+  };
+})();
+</script>
+
+</body>
+</html>

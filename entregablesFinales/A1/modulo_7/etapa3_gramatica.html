@@ -3,961 +3,866 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Módulo 7 · In famiglia — Gramática | Italiano Per Piacere</title>
+<title>La mia giornata — Etapa 3 | Italiano Per Piacere</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --mod:      #528e74;
-  --mod-dk:   #3d6b58;
-  --mod-lt:   #e8f4ef;
-  --mod-tx:   #2d4d3c;
-  --cream:    #e9e6d5;
+  --mod:    #78a6ba;
+  --mod-dk: #5a8ea0;
+  --mod-lt: #eaf3f7;
+  --mod-tx: #2d5f72;
+  --cream:  #e9e6d5;
   --cream-dk: #ddd9c8;
-  --gold:     #EFCF7F;
-  --black:    #1a1a18;
-  --white:    #ffffff;
-  --green:    #528e74;
+  --gold:   #EFCF7F;
+  --black:  #1a1a18;
+  --white:  #ffffff;
+  --green:  #528e74;
+  --red:    #cc4736;
   --fh: 'Playfair Display', Georgia, serif;
   --fb: 'Outfit', system-ui, sans-serif;
   --r: 10px;
+  --mc:      #78a6ba;
+  --mc-dk:   #5a8ea0;
+  --mc-text: #2d5f72;
+  --mc-bg:   #eaf3f7;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: var(--fb); background: var(--cream); color: var(--black); line-height: 1.6; }
 
-/* HERO */
+/* ── STAGE NAV ── */
+
+.stage-pill { padding: 5px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; border: 1.5px solid transparent; text-decoration: none; transition: all 0.2s; }
+.stage-pill.done { background: var(--mc-bg); color: var(--mc-dk); border-color: var(--mc); }
+.stage-pill.active { background: var(--mc); color: var(--white); border-color: var(--mc-dk); }
+.stage-pill.pending { background: var(--cream-dk); color: #888; border-color: #ccc; }
+.stage-sep { color: #bbb; font-size: 0.8rem; }
+
+/* ── STICKY INNER NAV ── */
+.inner-nav {
+  position: sticky; top: 53px; z-index: 150;
+  background: var(--mc-dk); padding: 0 20px;
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 0;
+  overflow-x: auto; box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+.inner-nav a {
+  color: rgba(255,255,255,.75); text-decoration: none;
+  font-size: 0.75rem; font-weight: 600; padding: 10px 14px;
+  border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: all 0.2s; letter-spacing: 0.3px;
+}
+.inner-nav a:hover { color: var(--white); border-bottom-color: var(--gold); }
+
+/* ── HERO ── */
 .hero {
-  background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
-  color: var(--white);
-  padding: 56px 24px 48px;
-  text-align: center;
+  background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%);
+  color: var(--white); padding: 60px 24px 52px; text-align: center;
 }
 .hero-badge {
-  display: inline-block;
-  background: rgba(255,255,255,0.2);
-  border: 1px solid rgba(255,255,255,0.4);
-  border-radius: 20px;
-  padding: 4px 16px;
-  font-family: var(--fb);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 16px;
+  display: inline-block; background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.35); border-radius: 20px;
+  padding: 4px 16px; font-size: 0.78rem; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase; margin-bottom: 18px;
 }
 .hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 700; margin-bottom: 10px; }
-.hero-sub { font-size: 1.05rem; opacity: 0.88; font-weight: 300; }
+.hero-sub { font-size: 1.05rem; opacity: .88; font-weight: 300; }
 
-/* STAGE NAV */
+/* ── CONTAINER ── */
+.container { max-width: 880px; margin: 0 auto; padding: 44px 20px 80px; }
+.gram-section { margin-bottom: 60px; scroll-margin-top: 110px; }
 
-.stage-link {
-  display: flex; align-items: center; gap: 7px;
-  padding: 8px 16px; border-radius: 30px;
-  text-decoration: none; font-family: var(--fb); font-size: 0.82rem; font-weight: 500;
-  color: #888; background: var(--cream); border: 1.5px solid transparent; transition: all 0.2s;
-}
-.stage-link .sn {
-  width: 22px; height: 22px; border-radius: 50%; background: #ccc; color: var(--white);
-  display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700;
-}
-.stage-link.active { background: var(--mod-lt); color: var(--mod-tx); border-color: var(--mod); }
-.stage-link.active .sn { background: var(--mod); }
-.stage-link.done { color: var(--green); }
-.stage-link.done .sn { background: var(--green); }
-
-/* MAIN */
-.main { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; }
-.section { margin-bottom: 52px; }
-
-/* SECTION HEADING */
+/* ── SECTION HEADER ── */
+.sec-header { margin-bottom: 22px; }
+.sec-header h2 { font-family: var(--fh); font-style: italic; color: var(--mc-text); font-size: 1.55rem; margin-bottom: 6px; }
 .sec-num {
-  display: inline-flex;
-  align-items: center; justify-content: center;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  background: var(--mod);
-  color: var(--white);
-  font-size: 1rem; font-weight: 700;
-  margin-bottom: 10px;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--mc); color: var(--white); font-size: 0.85rem; font-weight: 700;
+  margin-right: 8px; vertical-align: middle;
 }
-.sec-title { font-family: var(--fh); font-style: italic; font-size: 1.65rem; color: var(--mod-tx); margin-bottom: 6px; }
-.sec-divider { width: 48px; height: 3px; background: var(--mod); border-radius: 2px; margin-bottom: 22px; }
-.sec-intro { font-size: 0.95rem; color: #555; line-height: 1.7; margin-bottom: 22px; }
+.sec-divider { width: 48px; height: 3px; background: var(--mc); border-radius: 2px; margin-bottom: 16px; }
+.sec-header p { font-size: 0.92rem; color: #555; }
 
-/* GRAMMAR TABLE */
-.grammar-wrap {
-  background: var(--white);
-  border-radius: var(--r);
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-  margin-bottom: 24px;
+/* ── EXPLANATION BOX ── */
+.exp-box {
+  background: var(--white); border-radius: var(--r); border: 1px solid var(--cream-dk);
+  padding: 22px 24px; margin-bottom: 22px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
-.grammar-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.88rem;
-}
-.grammar-table th {
-  background: var(--mod);
-  color: var(--white);
-  padding: 10px 14px;
-  text-align: left;
-  font-weight: 600;
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
-}
-.grammar-table td {
-  padding: 9px 14px;
-  border-bottom: 1px solid var(--cream);
-  vertical-align: middle;
-}
-.grammar-table tr:last-child td { border-bottom: none; }
-.grammar-table tr:nth-child(even) td { background: rgba(232,244,239,0.4); }
-.it-cell { font-weight: 700; color: var(--mod-dk); font-size: 0.95rem; }
-.ex-cell { font-size: 0.85rem; color: #666; font-style: italic; }
+.exp-box p { font-size: 0.93rem; line-height: 1.7; margin-bottom: 10px; }
+.exp-box p:last-child { margin-bottom: 0; }
+.exp-box em { color: var(--mc-dk); font-weight: 600; }
+.callout { background: var(--mc-bg); border-left: 4px solid var(--mc); border-radius: 0 var(--r) var(--r) 0; padding: 14px 18px; margin: 16px 0; font-size: 0.88rem; color: var(--mc-text); line-height: 1.6; }
+.callout strong { color: var(--mc-dk); }
 
-/* ALERT BOX */
-.alert-box {
-  background: rgba(239,207,127,0.25);
-  border: 2px solid var(--gold);
-  border-radius: var(--r);
-  padding: 18px 22px;
-  margin-bottom: 24px;
-}
-.alert-box h4 {
-  font-family: var(--fb); font-size: 0.82rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.07em;
-  color: #7a5e2d; margin-bottom: 10px;
-}
-.alert-box p { font-size: 0.92rem; line-height: 1.7; }
-.alert-box .rule-example {
-  margin-top: 12px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-.rule-col {
-  background: var(--white);
-  border-radius: 8px;
-  padding: 12px 14px;
-  font-size: 0.88rem;
-}
-.rule-col .rule-head {
-  font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
-  margin-bottom: 6px;
-}
-.rule-col.ok .rule-head { color: #155724; }
-.rule-col.ko .rule-head { color: #721c24; }
-.rule-col .rule-item { margin-bottom: 4px; }
-.rule-col.ok .rule-item { color: #155724; }
-.rule-col.ko .rule-item { color: #721c24; text-decoration: line-through; }
-.rule-note { font-size: 0.82rem; color: #7a5e2d; margin-top: 10px; font-style: italic; }
+/* ── CONJUGATION TABLE ── */
+.conj-wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 22px; }
+.conj-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--r); overflow: hidden; border: 1px solid var(--cream-dk); }
+.conj-table caption { font-family: var(--fh); font-style: italic; font-size: 1rem; color: var(--mc-text); padding: 10px 14px; text-align: left; background: var(--mc-bg); font-weight: 700; }
+.conj-table th { background: var(--mc); color: var(--white); padding: 9px 14px; font-size: 0.8rem; font-weight: 600; text-align: left; }
+.conj-table td { padding: 10px 14px; border-bottom: 1px solid var(--cream-dk); font-size: 0.92rem; vertical-align: middle; }
+.conj-table tr:last-child td { border-bottom: none; }
+.conj-table tr:nth-child(even) td { background: var(--cream); }
+.conj-table .pronoun { font-weight: 600; color: var(--mc-dk); width: 100px; }
+.conj-table .refl { color: var(--mc); font-weight: 700; }
+.conj-table .stem { color: var(--black); }
 
-/* INFO BOX */
-.info-box {
-  background: var(--mod-lt);
-  border-left: 4px solid var(--mod);
-  border-radius: 0 var(--r) var(--r) 0;
-  padding: 16px 20px;
-  margin-bottom: 22px;
-  font-size: 0.92rem;
-  line-height: 1.7;
-  color: var(--mod-tx);
+/* ── GRAMMAR TABLE ── */
+.gram-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--r); overflow: hidden; border: 1px solid var(--cream-dk); margin-bottom: 18px; }
+.gram-table th { background: var(--mc); color: var(--white); padding: 10px 14px; font-size: 0.82rem; font-weight: 600; text-align: left; }
+.gram-table td { padding: 11px 14px; border-bottom: 1px solid var(--cream-dk); font-size: 0.91rem; vertical-align: middle; }
+.gram-table tr:last-child td { border-bottom: none; }
+.gram-table tr:nth-child(even) td { background: var(--cream); }
+.gram-table em { color: var(--mc-dk); font-weight: 600; }
+.gram-table .badge {
+  display: inline-block; font-size: 0.72rem; font-weight: 700;
+  padding: 2px 8px; border-radius: 10px; background: var(--mc-bg); color: var(--mc-dk);
 }
-.info-box strong { color: var(--mod-dk); }
+.gram-table .badge-m { background: #e8f4ef; color: #3d6b58; }
 
-/* EXERCISE CARD */
-.ex-card {
-  background: var(--white);
-  border-radius: var(--r);
-  padding: 26px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-  margin-bottom: 16px;
+/* ── POSSESSIVI GRID ── */
+.poss-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 22px; }
+.poss-card {
+  background: var(--white); border-radius: var(--r); border: 2px solid var(--cream-dk);
+  padding: 16px 14px; text-align: center; transition: all 0.2s;
 }
-.ex-card h3 { font-family: var(--fh); font-style: italic; font-size: 1.2rem; color: var(--mod-tx); margin-bottom: 6px; }
-.ex-tag {
-  display: inline-block; background: var(--mod); color: var(--white);
-  border-radius: 20px; padding: 3px 12px; font-size: 0.72rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 14px;
-}
-.ex-instr { font-size: 0.88rem; color: #555; margin-bottom: 18px; font-style: italic; }
+.poss-card:hover { border-color: var(--mc); box-shadow: 0 3px 12px rgba(120,166,186,.2); }
+.poss-pronoun { font-family: var(--fh); font-style: italic; font-size: 1.4rem; color: var(--mc-dk); font-weight: 700; margin-bottom: 6px; }
+.poss-forms { font-size: 0.8rem; color: #666; line-height: 1.8; }
+.poss-forms em { color: var(--mc-text); font-style: normal; font-weight: 600; }
 
-/* OPT BUTTONS */
-.opt-group { margin-bottom: 20px; }
-.opt-group:last-child { margin-bottom: 0; }
-.opt-q { font-size: 0.94rem; font-weight: 600; margin-bottom: 10px; line-height: 1.5; }
-.opt-row { display: flex; flex-wrap: wrap; gap: 8px; }
-.opt-btn {
-  padding: 8px 18px; border-radius: 20px;
-  border: 1.5px solid var(--cream-dk); background: var(--cream);
-  font-family: var(--fb); font-size: 0.86rem; cursor: pointer;
-  transition: all 0.2s;
-}
-.opt-btn:hover:not(:disabled) { border-color: var(--mod); background: var(--mod-lt); color: var(--mod-tx); }
-.opt-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: 600; }
-.opt-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
-.opt-feedback { font-size: 0.8rem; margin-top: 8px; font-weight: 600; }
-.opt-feedback.ok { color: #155724; }
-.opt-feedback.ko { color: #721c24; }
+/* ── ANCHE/NEANCHE COMPACT ── */
+.anche-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--r); overflow: hidden; border: 1px solid var(--cream-dk); margin-bottom: 18px; }
+.anche-table th { padding: 10px 14px; font-size: 0.82rem; font-weight: 700; text-align: left; }
+.anche-table th:first-child { background: var(--mc); color: var(--white); }
+.anche-table th:last-child { background: var(--mc-dk); color: var(--white); }
+.anche-table td { padding: 11px 14px; border-bottom: 1px solid var(--cream-dk); font-size: 0.9rem; vertical-align: top; }
+.anche-table tr:last-child td { border-bottom: none; }
+.anche-table em { color: var(--mc-dk); font-weight: 600; }
 
-/* FILL-IN */
-.fill-row { margin-bottom: 16px; }
-.fill-row:last-child { margin-bottom: 0; }
-.fill-sentence {
-  font-size: 0.94rem; line-height: 2.2;
-  display: flex; align-items: center; flex-wrap: wrap; gap: 5px;
+/* ── EXERCISES ── */
+.ex-block { background: var(--white); border-radius: 14px; border: 1px solid var(--cream-dk); padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+.ex-label {
+  display: inline-block; background: var(--mc); color: var(--white);
+  font-size: 0.72rem; font-weight: 700; padding: 3px 12px; border-radius: 20px;
+  text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px;
 }
+.ex-title { font-family: var(--fh); font-style: italic; color: var(--mc-text); font-size: 1.05rem; margin-bottom: 6px; }
+.ex-inst { font-size: 0.84rem; color: #666; margin-bottom: 18px; }
+
+/* Fill */
+.fill-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.fill-row label { font-size: 0.93rem; color: var(--mc-text); font-weight: 500; min-width: 200px; flex: 1; }
 .fill-input {
-  border: none; border-bottom: 2px solid var(--mod);
-  background: transparent; font-family: var(--fb); font-size: 0.94rem;
-  color: var(--black); padding: 2px 6px; min-width: 110px;
-  outline: none; transition: border-color 0.2s;
+  padding: 8px 14px; border-radius: var(--r); border: 1.5px solid var(--cream-dk);
+  font-family: var(--fb); font-size: 0.93rem; width: 200px;
+  background: var(--white); transition: border-color 0.2s; color: var(--black);
 }
-.fill-input:focus { border-color: var(--mod-dk); }
-.fill-input.ok { border-color: #28a745; background: #d4edda; border-radius: 4px; }
-.fill-input.ko { border-color: #dc3545; background: #f8d7da; border-radius: 4px; }
-.fill-hint { font-size: 0.78rem; color: #888; font-style: italic; }
-
-/* BTN CHECK */
-.btn-check {
-  display: inline-flex; align-items: center; gap: 7px;
-  margin-top: 16px;
-  background: var(--mod); color: var(--white);
-  border: none; border-radius: 30px;
-  padding: 9px 22px; font-family: var(--fb); font-size: 0.85rem; font-weight: 600;
-  cursor: pointer; transition: all 0.2s;
+.fill-input:focus { outline: none; border-color: var(--mc); }
+.fill-input.correct { border-color: #28a745; background: #d4edda; }
+.fill-input.wrong { border-color: #dc3545; background: #f8d7da; }
+.btn-ok {
+  padding: 7px 16px; background: var(--mc-dk); color: var(--white);
+  border: none; border-radius: 20px; font-family: var(--fb); font-size: 0.8rem;
+  font-weight: 700; cursor: pointer; flex-shrink: 0; transition: all 0.2s;
 }
-.btn-check:hover { background: var(--mod-dk); }
-.check-result {
-  margin-top: 10px; font-size: 0.88rem; font-weight: 600;
-  color: var(--mod-tx); display: none;
+.btn-ok:hover { background: var(--mc-text); }
+.fill-fb { font-size: 0.78rem; font-weight: 600; width: 100%; display: none; }
+.fill-fb.show { display: block; }
+.fill-fb.ok { color: #155724; }
+.fill-fb.no { color: #721c24; }
+
+/* Opt buttons */
+.q-item { padding: 14px 0; border-bottom: 1px solid var(--cream-dk); }
+.q-item:last-child { border-bottom: none; }
+.q-text { font-size: 0.93rem; font-weight: 600; color: var(--mc-text); margin-bottom: 10px; }
+.q-num { color: var(--mc); margin-right: 5px; }
+.q-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.opt-btn {
+  padding: 8px 18px; border-radius: 20px; border: 1.5px solid var(--mc);
+  background: var(--white); color: var(--mc-dk); font-family: var(--fb); font-size: 0.85rem;
+  font-weight: 600; cursor: pointer; transition: all 0.2s;
 }
-.check-result.show { display: block; }
+.opt-btn:hover:not(:disabled) { background: var(--mc-bg); }
+.opt-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; pointer-events: none; }
+.opt-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; pointer-events: none; }
+.opt-btn.disabled { pointer-events: none; opacity: .55; }
+.q-fb { font-size: 0.8rem; font-weight: 600; margin-top: 8px; display: none; }
+.q-fb.show { display: block; }
+.q-fb.ok { color: #155724; }
+.q-fb.no { color: #721c24; }
 
-/* NUMERI SYSTEM */
-.numeri-system {
-  background: var(--white);
-  border-radius: var(--r);
-  padding: 24px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-  margin-bottom: 24px;
-}
-.numeri-system h4 { font-family: var(--fh); font-style: italic; font-size: 1.1rem; color: var(--mod-tx); margin-bottom: 14px; }
-.numeri-rows { display: flex; flex-direction: column; gap: 10px; }
-.numeri-row {
-  display: flex; align-items: baseline; gap: 14px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid var(--cream-dk);
-  background: var(--cream);
-}
-.numeri-row .n-num { font-size: 1.1rem; font-weight: 700; color: var(--mod-dk); min-width: 90px; font-family: var(--fh); }
-.numeri-row .n-word { font-weight: 600; color: var(--black); font-size: 0.95rem; flex: 1; }
-.numeri-row .n-rule { font-size: 0.8rem; color: #888; font-style: italic; }
+/* ── INTEGRADOR ── */
+.integrador { background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk)); border-radius: 16px; border: 2px solid var(--mc); padding: 28px; margin-bottom: 20px; }
+.integrador h3 { font-family: var(--fh); font-style: italic; color: var(--mc-text); font-size: 1.2rem; margin-bottom: 6px; }
+.integrador p { font-size: 0.88rem; color: #555; margin-bottom: 20px; }
 
-/* INTEGRADOR */
-.integrador-box {
-  background: linear-gradient(135deg, rgba(82,142,116,0.08), rgba(61,107,88,0.12));
-  border: 2px solid var(--mod);
-  border-radius: var(--r);
-  padding: 24px;
-  margin-bottom: 16px;
-}
-.integrador-box h3 { font-family: var(--fh); font-style: italic; font-size: 1.2rem; color: var(--mod-tx); margin-bottom: 6px; }
+/* ── CTA ── */
+.cta-section { text-align: center; padding: 44px 0 20px; }
 
-/* CTA */
+.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 0; }
 
-/* POSSESSIVI COLOR CODING */
-.poss-sing { color: var(--mod-dk); font-weight: 700; }
-.poss-plur { color: #7a5e2d; font-weight: 700; }
-
-@media (max-width: 600px) {
-  .alert-box .rule-example { grid-template-columns: 1fr; }
-  .numeri-row { flex-direction: column; gap: 4px; }
-  .numeri-row .n-num { min-width: unset; }
+@media(max-width:600px) {
+  .conj-wrap { grid-template-columns: 1fr; }
+  .poss-grid { grid-template-columns: repeat(2,1fr); }
+  .fill-row { flex-direction: column; align-items: flex-start; }
+  .fill-input { width: 100%; }
 }
 </style>
 </head>
 <body>
 
+<!-- STAGE NAV -->
+
+<!-- INNER NAV -->
+<nav class="inner-nav">
+  <a href="#s1">1. Verbi riflessivi</a>
+  <a href="#s2">2. Articoli + giorni</a>
+  <a href="#s3">3. Possessivi</a>
+  <a href="#s4">4. Anche / Neanche</a>
+  <a href="#s5">5. Integrador</a>
+</nav>
+
+<!-- HERO -->
 <header class="hero">
-  <div class="hero-badge">A1 · Unità 7</div>
-  <h1>In famiglia</h1>
-  <p class="hero-sub">Etapa 3 — Gramática · Possessivi, C'è/Ci sono, Numeri</p>
+  <div class="hero-badge">Módulo 6 · A1</div>
+  <h1>La mia giornata</h1>
+  <p class="hero-sub">Etapa 3 — Gramática · Reflexivos, Días, Possessivi, Anche/Neanche</p>
 </header>
 
-<main class="main">
+<main class="container">
 
-  <!-- ══════════════════════════════════════════════════════════
-       SECCIÓN 1: AGGETTIVI POSSESSIVI
-  ══════════════════════════════════════════════════════════ -->
-  <div class="section">
-    <div class="sec-num">1</div>
-    <h2 class="sec-title">Gli aggettivi possessivi</h2>
+<!-- ══════════════════════════════════════════
+     SECCIÓN 1 — I VERBI RIFLESSIVI
+═══════════════════════════════════════════ -->
+<section class="gram-section" id="s1">
+  <div class="sec-header">
+    <h2><span class="sec-num">1</span>I verbi riflessivi</h2>
     <div class="sec-divider"></div>
-    <p class="sec-intro">
-      Los adjetivos posesivos en italiano concuerdan en género y número con la cosa poseída, no con el poseedor. Además, casi siempre van precedidos del artículo determinativo. Hay, sin embargo, una excepción fundamental que vas a ver muy seguido cuando hablás de la familia.
-    </p>
+    <p>Los verbos reflexivos son aquellos donde el sujeto realiza y recibe la acción al mismo tiempo. En italiano se conjugan con un pronombre reflexivo delante del verbo.</p>
+  </div>
 
-    <!-- Tabla completa -->
-    <div class="grammar-wrap">
-      <table class="grammar-table">
-        <thead>
-          <tr>
-            <th>Persona</th>
-            <th>Masc. sing.</th>
-            <th>Fem. sing.</th>
-            <th>Masc. plur.</th>
-            <th>Fem. plur.</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>yo</strong> (io)</td>
-            <td class="it-cell">il mio</td>
-            <td class="it-cell">la mia</td>
-            <td class="it-cell">i miei</td>
-            <td class="it-cell">le mie</td>
-          </tr>
-          <tr>
-            <td><strong>vos/tú</strong> (tu)</td>
-            <td class="it-cell">il tuo</td>
-            <td class="it-cell">la tua</td>
-            <td class="it-cell">i tuoi</td>
-            <td class="it-cell">le tue</td>
-          </tr>
-          <tr>
-            <td><strong>él/ella</strong> (lui/lei)</td>
-            <td class="it-cell">il suo</td>
-            <td class="it-cell">la sua</td>
-            <td class="it-cell">i suoi</td>
-            <td class="it-cell">le sue</td>
-          </tr>
-          <tr>
-            <td><strong>nosotros</strong> (noi)</td>
-            <td class="it-cell">il nostro</td>
-            <td class="it-cell">la nostra</td>
-            <td class="it-cell">i nostri</td>
-            <td class="it-cell">le nostre</td>
-          </tr>
-          <tr>
-            <td><strong>ustedes</strong> (voi)</td>
-            <td class="it-cell">il vostro</td>
-            <td class="it-cell">la vostra</td>
-            <td class="it-cell">i vostri</td>
-            <td class="it-cell">le vostre</td>
-          </tr>
-          <tr>
-            <td><strong>ellos/as</strong> (loro)</td>
-            <td class="it-cell">il loro</td>
-            <td class="it-cell">la loro</td>
-            <td class="it-cell">i loro</td>
-            <td class="it-cell">le loro</td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="exp-box">
+    <p>La estructura es: <em>pronombre reflexivo + verbo conjugado</em>.<br>
+    El infinitivo termina en <em>-si</em>: <em>svegliarsi, alzarsi, vestirsi, rilassarsi</em>.</p>
+    <p>Pronombres reflexivos: <em>mi</em> (yo), <em>ti</em> (tú/vos), <em>si</em> (él/ella), <em>ci</em> (nosotros), <em>vi</em> (vosotros), <em>si</em> (ellos).</p>
+  </div>
+
+  <!-- Conjugation tables -->
+  <div class="conj-wrap">
+    <table class="conj-table">
+      <caption>svegliarsi — despertarse</caption>
+      <thead><tr><th>Persona</th><th>Forma</th></tr></thead>
+      <tbody>
+        <tr><td class="pronoun">io</td><td><span class="refl">mi</span> <span class="stem">sveglio</span></td></tr>
+        <tr><td class="pronoun">tu</td><td><span class="refl">ti</span> <span class="stem">svegli</span></td></tr>
+        <tr><td class="pronoun">lui/lei</td><td><span class="refl">si</span> <span class="stem">sveglia</span></td></tr>
+        <tr><td class="pronoun">noi</td><td><span class="refl">ci</span> <span class="stem">svegliamo</span></td></tr>
+        <tr><td class="pronoun">voi</td><td><span class="refl">vi</span> <span class="stem">svegliate</span></td></tr>
+        <tr><td class="pronoun">loro</td><td><span class="refl">si</span> <span class="stem">svegliano</span></td></tr>
+      </tbody>
+    </table>
+
+    <table class="conj-table">
+      <caption>lavarsi — lavarse</caption>
+      <thead><tr><th>Persona</th><th>Forma</th></tr></thead>
+      <tbody>
+        <tr><td class="pronoun">io</td><td><span class="refl">mi</span> <span class="stem">lavo</span></td></tr>
+        <tr><td class="pronoun">tu</td><td><span class="refl">ti</span> <span class="stem">lavi</span></td></tr>
+        <tr><td class="pronoun">lui/lei</td><td><span class="refl">si</span> <span class="stem">lava</span></td></tr>
+        <tr><td class="pronoun">noi</td><td><span class="refl">ci</span> <span class="stem">laviamo</span></td></tr>
+        <tr><td class="pronoun">voi</td><td><span class="refl">vi</span> <span class="stem">lavate</span></td></tr>
+        <tr><td class="pronoun">loro</td><td><span class="refl">si</span> <span class="stem">lavano</span></td></tr>
+      </tbody>
+    </table>
+
+    <table class="conj-table">
+      <caption>vestirsi — vestirse</caption>
+      <thead><tr><th>Persona</th><th>Forma</th></tr></thead>
+      <tbody>
+        <tr><td class="pronoun">io</td><td><span class="refl">mi</span> <span class="stem">vesto</span></td></tr>
+        <tr><td class="pronoun">tu</td><td><span class="refl">ti</span> <span class="stem">vesti</span></td></tr>
+        <tr><td class="pronoun">lui/lei</td><td><span class="refl">si</span> <span class="stem">veste</span></td></tr>
+        <tr><td class="pronoun">noi</td><td><span class="refl">ci</span> <span class="stem">vestiamo</span></td></tr>
+        <tr><td class="pronoun">voi</td><td><span class="refl">vi</span> <span class="stem">vestite</span></td></tr>
+        <tr><td class="pronoun">loro</td><td><span class="refl">si</span> <span class="stem">vestono</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>Truco:</strong> en italiano el pronombre va ANTES del verbo conjugado: <em>mi sveglio</em> (me despierto). Al infinitivo se le agrega al final: <em>svegliar<strong>si</strong></em>. No confundas las dos posiciones.
+  </div>
+
+  <!-- EJERCICIOS VERBI RIFLESSIVI -->
+  <div class="ex-block">
+    <span class="ex-label">Ejercicio 1a</span>
+    <div class="ex-title">Conjugá el verbo reflexivo</div>
+    <p class="ex-inst">Escribí la forma correcta del verbo reflexivo entre paréntesis. Ej: <em>Io (svegliarsi) → mi sveglio</em></p>
+
+    <div class="fill-row">
+      <label>1. Lui ___ (alzarsi) alle sette.</label>
+      <input class="fill-input" id="r1" placeholder="si alza" oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-ok" onclick="chkFill('r1',['si alza'],'¡Correcto! lui → si alza.','Incorrecto. lui usa el pronombre si → si alza.')">OK</button>
+      <span class="fill-fb" id="r1-fb"></span>
     </div>
-
-    <div class="info-box">
-      <strong>Concordancia:</strong> el posesivo concuerda con la cosa poseída. "Mi hermana" → <em>mia sorella</em> (femenino singular). "Mis hermanas" → <em>le mie sorelle</em> (femenino plural). No importa si sos hombre o mujer: usás el mismo posesivo.
+    <div class="fill-row">
+      <label>2. Noi ___ (lavarsi) i denti.</label>
+      <input class="fill-input" id="r2" placeholder="ci laviamo" oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-ok" onclick="chkFill('r2',['ci laviamo'],'¡Perfecto! noi → ci laviamo.','noi usa ci → ci laviamo.')">OK</button>
+      <span class="fill-fb" id="r2-fb"></span>
     </div>
-
-    <!-- REGLA CRÍTICA: sin artículo con parentela -->
-    <div class="alert-box">
-      <h4>⚡ Regla crítica — Con nomi di parentela singolare</h4>
-      <p>Cuando el posesivo acompaña a un <strong>nombre de parentela en singular no modificado</strong> (sin adjetivo, sufijo ni complemento), se usa <strong>SIN artículo</strong>. Esta es una de las reglas más características del italiano y se nota mucho.</p>
-      <div class="rule-example">
-        <div class="rule-col ok">
-          <div class="rule-head">✓ Sin artículo (correcto)</div>
-          <div class="rule-item">mio padre</div>
-          <div class="rule-item">mia madre</div>
-          <div class="rule-item">tua sorella</div>
-          <div class="rule-item">suo fratello</div>
-          <div class="rule-item">mio nonno</div>
-          <div class="rule-item">tua zia</div>
-          <div class="rule-item">nostro figlio</div>
-        </div>
-        <div class="rule-col ko">
-          <div class="rule-head">✗ Con artículo (incorrecto)</div>
-          <div class="rule-item">il mio padre</div>
-          <div class="rule-item">la mia madre</div>
-          <div class="rule-item">la tua sorella</div>
-          <div class="rule-item">il suo fratello</div>
-          <div class="rule-item">il mio nonno</div>
-          <div class="rule-item">la tua zia</div>
-          <div class="rule-item">il nostro figlio</div>
-        </div>
-      </div>
-      <p class="rule-note">Excepción: "loro" SIEMPRE lleva artículo → <em>il loro padre</em>, <em>la loro sorella</em>. Y en plural SIEMPRE lleva artículo → <em>i miei fratelli</em>, <em>le tue sorelle</em>.</p>
-      <p class="rule-note">Excepción 2: Si el nombre de parentela lleva un adjetivo o está modificado, vuelve el artículo → <em>il mio fratello maggiore</em>, <em>la mia cara nonna</em>.</p>
+    <div class="fill-row">
+      <label>3. Tu ___ (vestirsi) in fretta?</label>
+      <input class="fill-input" id="r3" placeholder="ti vesti" oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-ok" onclick="chkFill('r3',['ti vesti'],'¡Bien! tu → ti vesti.','tu usa ti → ti vesti.')">OK</button>
+      <span class="fill-fb" id="r3-fb"></span>
     </div>
-
-    <!-- Ejercicios possessivi -->
-    <div class="ex-card">
-      <h3>Esercizio 1.A — Scegli il possessivo</h3>
-      <span class="ex-tag">Possessivi</span>
-      <p class="ex-instr">Elegí el possessivo correcto para completar cada oración.</p>
-
-      <div class="opt-group" id="p1">
-        <div class="opt-q">1. Giulia parla di suo fratello: "_____ fratello si chiama Luca."</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOpt(this,'p1',false,'No. Para Giulia (yo) es &quot;mio&quot;, no &quot;tuo&quot;.')">Tuo</button>
-          <button class="opt-btn" onclick="checkOpt(this,'p1',true,'✓ Correcto! Giulia habla de sí misma, usa &quot;mio&quot; sin artículo.')">Mio</button>
-          <button class="opt-btn" onclick="checkOpt(this,'p1',false,'&quot;Suo&quot; sería si alguien más habla del hermano de Giulia.')">Suo</button>
-          <button class="opt-btn" onclick="checkOpt(this,'p1',false,'&quot;Il mio&quot; es incorrecto: con parentela singolare no va el artículo.')">Il mio</button>
-        </div>
-        <div class="opt-feedback" id="opt-fb-p1"></div>
-      </div>
-
-      <div class="opt-group" id="p2">
-        <div class="opt-q">2. Marco le pregunta a Giulia: "E _____ sorella, come si chiama?"</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOpt(this,'p2',false,'No. Marco le habla a Giulia (vos), entonces es &quot;tua&quot;.')">sua</button>
-          <button class="opt-btn" onclick="checkOpt(this,'p2',false,'&quot;La tua&quot; lleva artículo, lo que es incorrecto con parentela singolare.')">la tua</button>
-          <button class="opt-btn" onclick="checkOpt(this,'p2',true,'✓ Perfecto! Marco habla con Giulia (tu), usa &quot;tua&quot; sin artículo.')">tua</button>
-          <button class="opt-btn" onclick="checkOpt(this,'p2',false,'&quot;mia&quot; sería si Giulia hablara de su propia hermana.')">mia</button>
-        </div>
-        <div class="opt-feedback" id="opt-fb-p2"></div>
-      </div>
-
-      <div class="opt-group" id="p3">
-        <div class="opt-q">3. "_____ genitori sono di Milano." (hablando de los padres de él)</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOpt(this,'p3',false,'I miei = mis (de yo). No es correcto aquí.')">I miei</button>
-          <button class="opt-btn" onclick="checkOpt(this,'p3',true,'✓ Correcto! &quot;I suoi&quot; = los de él/ella. Plural → lleva artículo.')">I suoi</button>
-          <button class="opt-btn" onclick="checkOpt(this,'p3',false,'&quot;I tuoi&quot; sería para (los de vos).')">I tuoi</button>
-          <button class="opt-btn" onclick="checkOpt(this,'p3',false,'&quot;Suo&quot; es singular masculino, pero &quot;genitori&quot; es plural.')">Suo</button>
-        </div>
-        <div class="opt-feedback" id="opt-fb-p3"></div>
-      </div>
-
-      <div class="opt-group" id="p4">
-        <div class="opt-q">4. "_____ nonna materna abita a venti minuti." (Giulia habla de su propia nonna)</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOpt(this,'p4',false,'&quot;La mia&quot; lleva artículo. Con parentela singolare no va.')">La mia</button>
-          <button class="opt-btn" onclick="checkOpt(this,'p4',false,'&quot;Sua&quot; sería para hablar de la nonna de otra persona.')">Sua</button>
-          <button class="opt-btn" onclick="checkOpt(this,'p4',true,'✓ Correcto! &quot;Mia&quot; sin artículo, porque nonna es parentela singolare.')">Mia</button>
-          <button class="opt-btn" onclick="checkOpt(this,'p4',false,'&quot;Tua&quot; es para la persona con quien hablás.')">Tua</button>
-        </div>
-        <div class="opt-feedback" id="opt-fb-p4"></div>
-      </div>
-    </div>
-
-    <div class="ex-card">
-      <h3>Esercizio 1.B — Artículo sí o no</h3>
-      <span class="ex-tag">Possessivi con parentela</span>
-      <p class="ex-instr">Completá con el possessivo correcto. Si corresponde artículo, incluyelo. Prestá atención: ¿es singular o plural? ¿hay modificación?</p>
-
-      <div id="fill-poss">
-        <div class="fill-row">
-          <div class="fill-sentence">
-            1. Ho una sorella. <input class="fill-input" id="pf1" placeholder="mia / la mia"> sorella si chiama Elena.
-            <span class="fill-hint">(yo, singular)</span>
-          </div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">
-            2. Giulia ha due cugini. <input class="fill-input" id="pf2" placeholder="i miei / miei"> cugini abitano a Roma.
-            <span class="fill-hint">(yo, plural)</span>
-          </div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">
-            3. Marco chiede: "Come si chiama <input class="fill-input" id="pf3" placeholder="tuo / il tuo"> padre?"
-            <span class="fill-hint">(vos, singular)</span>
-          </div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">
-            4. È bellissima! <input class="fill-input" id="pf4" placeholder="la mia / mia"> cara nonna fa la pasta a mano.
-            <span class="fill-hint">(yo, singular, con adjetivo "cara")</span>
-          </div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">
-            5. Michele e Stella portano i bambini a scuola. <input class="fill-input" id="pf5" placeholder="i loro / loro"> figli vanno all'asilo.
-            <span class="fill-hint">(loro, plural)</span>
-          </div>
-        </div>
-      </div>
-
-      <button class="btn-check" onclick="checkFill('poss', ['mia','i miei','tuo','la mia','i loro'], ['pf1','pf2','pf3','pf4','pf5'])">
-        Verificar respuestas
-      </button>
-      <div class="check-result" id="res-poss"></div>
+    <div class="fill-row">
+      <label>4. Loro ___ (rilassarsi) la sera.</label>
+      <input class="fill-input" id="r4" placeholder="si rilassano" oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-ok" onclick="chkFill('r4',['si rilassano'],'¡Muy bien! loro → si rilassano.','loro usa si → si rilassano.')">OK</button>
+      <span class="fill-fb" id="r4-fb"></span>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════════
-       SECCIÓN 2: C'È / CI SONO
-  ══════════════════════════════════════════════════════════ -->
-  <div class="section">
-    <div class="sec-num">2</div>
-    <h2 class="sec-title">C'è / Ci sono — In profondità</h2>
+  <div class="ex-block">
+    <span class="ex-label">Ejercicio 1b</span>
+    <div class="ex-title">Elegí la forma correcta</div>
+    <p class="ex-inst">Seleccioná la opción que completa correctamente cada oración.</p>
+
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">1.</span> Giovanni ___ sveglia alle sette di mattina.</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="chkOpt(this,'e1b1',false)">mi</button>
+        <button class="opt-btn" onclick="chkOpt(this,'e1b1',true)">si</button>
+        <button class="opt-btn" onclick="chkOpt(this,'e1b1',false)">ti</button>
+        <button class="opt-btn" onclick="chkOpt(this,'e1b1',false)">ci</button>
+      </div>
+      <div class="q-fb" id="e1b1">¡Correcto! Giovanni es tercera persona singular → pronombre <em>si</em>.</div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">2.</span> Io ___ alzo subito dopo il caffè.</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="chkOpt(this,'e1b2',true)">mi</button>
+        <button class="opt-btn" onclick="chkOpt(this,'e1b2',false)">si</button>
+        <button class="opt-btn" onclick="chkOpt(this,'e1b2',false)">ti</button>
+        <button class="opt-btn" onclick="chkOpt(this,'e1b2',false)">vi</button>
+      </div>
+      <div class="q-fb" id="e1b2">¡Perfecto! Io (yo) → pronombre reflexivo <em>mi</em>.</div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">3.</span> Voi ___ vestite velocemente?</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="chkOpt(this,'e1b3',false)">si</button>
+        <button class="opt-btn" onclick="chkOpt(this,'e1b3',false)">ci</button>
+        <button class="opt-btn" onclick="chkOpt(this,'e1b3',true)">vi</button>
+        <button class="opt-btn" onclick="chkOpt(this,'e1b3',false)">mi</button>
+      </div>
+      <div class="q-fb" id="e1b3">¡Bien! Voi (ustedes/vosotros) → pronombre <em>vi</em>.</div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">4.</span> Sofia e Marco ___ rilassano sul divano.</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="chkOpt(this,'e1b4',false)">ci</button>
+        <button class="opt-btn" onclick="chkOpt(this,'e1b4',true)">si</button>
+        <button class="opt-btn" onclick="chkOpt(this,'e1b4',false)">vi</button>
+        <button class="opt-btn" onclick="chkOpt(this,'e1b4',false)">mi</button>
+      </div>
+      <div class="q-fb" id="e1b4">¡Correcto! Loro (ellos) → pronombre <em>si</em>.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════
+     SECCIÓN 2 — ARTICOLI CON I GIORNI
+═══════════════════════════════════════════ -->
+<section class="gram-section" id="s2">
+  <div class="sec-header">
+    <h2><span class="sec-num">2</span>Gli articoli con i giorni della settimana</h2>
     <div class="sec-divider"></div>
-    <p class="sec-intro">
-      C'è y ci sono son las formas de "hay" en italiano. Provienen de <em>ci + essere</em> (allí + ser/estar). Se usan para indicar la existencia o presencia de personas, cosas o situaciones.
-    </p>
+    <p>En italiano, el artículo antes del día de la semana cambia el significado: sin artículo = el día específico; con artículo = todos los lunes / todos los domingos (habitualmente).</p>
+  </div>
 
-    <div class="grammar-wrap">
-      <table class="grammar-table">
-        <thead>
-          <tr>
-            <th>Forma</th>
-            <th>Número</th>
-            <th>Uso</th>
-            <th>Ejemplo en contexto familiar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="it-cell">C'è</td>
-            <td>Singular</td>
-            <td>Un elemento / una persona</td>
-            <td class="ex-cell">C'è un bambino che piange — Hay un niño que llora.</td>
-          </tr>
-          <tr>
-            <td class="it-cell">Ci sono</td>
-            <td>Plural</td>
-            <td>Dos o más elementos / personas</td>
-            <td class="ex-cell">Ci sono tre figli in questa famiglia — Hay tres hijos en esta familia.</td>
-          </tr>
-          <tr>
-            <td class="it-cell">Non c'è</td>
-            <td>Singular neg.</td>
-            <td>Ausencia de un elemento</td>
-            <td class="ex-cell">Non c'è abbastanza aiuto per le famiglie — No hay suficiente ayuda para las familias.</td>
-          </tr>
-          <tr>
-            <td class="it-cell">Non ci sono</td>
-            <td>Plural neg.</td>
-            <td>Ausencia de varios elementos</td>
-            <td class="ex-cell">Non ci sono servizi pubblici adeguati — No hay servicios públicos adecuados.</td>
-          </tr>
-          <tr>
-            <td class="it-cell">C'è…?</td>
-            <td>Pregunta sing.</td>
-            <td>¿Hay…? ¿Está…?</td>
-            <td class="ex-cell">C'è tua madre a casa? — ¿Está tu mamá en casa?</td>
-          </tr>
-          <tr>
-            <td class="it-cell">Ci sono…?</td>
-            <td>Pregunta plur.</td>
-            <td>¿Hay…? (varios)</td>
-            <td class="ex-cell">Ci sono i nonni oggi? — ¿Están los abuelos hoy?</td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="exp-box">
+    <p><em>Lunedì vado al lavoro.</em> → El lunes (este lunes concreto) voy al trabajo.<br>
+    <em>Il lunedì vado al lavoro.</em> → Los lunes (habitualmente) voy al trabajo.</p>
+    <p>Los días masculinos (<em>lunedì, martedì, mercoledì, giovedì, venerdì, sabato</em>) usan <em>il</em>. El día femenino (<em>domenica</em>) usa <em>la</em>.</p>
+  </div>
+
+  <table class="gram-table">
+    <thead><tr><th>Día</th><th>Con artículo (habitual)</th><th>Sin artículo (específico)</th></tr></thead>
+    <tbody>
+      <tr><td><em>lunedì</em></td><td><em>Il lunedì</em> vado in palestra.</td><td><em>Lunedì</em> vado al medico.</td></tr>
+      <tr><td><em>mercoledì</em></td><td><em>Il mercoledì</em> lavoro da casa.</td><td><em>Mercoledì</em> ho una riunione.</td></tr>
+      <tr><td><em>sabato</em></td><td><em>Il sabato</em> vado al mercato.</td><td><em>Sabato</em> vado a Roma.</td></tr>
+      <tr><td><em>domenica</em></td><td><em>La domenica</em> pranzo con la famiglia.</td><td><em>Domenica</em> vado a Venezia.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>Regla rápida:</strong> artículo + día = costumbre semanal. Sin artículo = ocasión puntual. ¡Es la diferencia entre "los martes" y "este martes"!
+  </div>
+
+  <!-- EJERCICIOS GIORNI -->
+  <div class="ex-block">
+    <span class="ex-label">Ejercicio 2a</span>
+    <div class="ex-title">¿Con o sin artículo?</div>
+    <p class="ex-inst">Elegí si se necesita artículo o no según el contexto.</p>
+
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">1.</span> ___ domenica (cada domingo) vado a pranzo dalla nonna.</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="chkOpt(this,'e2a1',true)">La domenica</button>
+        <button class="opt-btn" onclick="chkOpt(this,'e2a1',false)">Domenica</button>
+      </div>
+      <div class="q-fb" id="e2a1">¡Correcto! "Cada domingo" es habitual → <em>La domenica</em>.</div>
     </div>
 
-    <div class="info-box">
-      <strong>Tip:</strong> La clave es siempre mirar el sustantivo que sigue. Si es singular → c'è. Si es plural → ci sono. Es tan simple como eso, pero hay que hacerlo automático con práctica.
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">2.</span> ___ sabato (este sábado concreto) ho un matrimonio.</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="chkOpt(this,'e2a2',false)">Il sabato</button>
+        <button class="opt-btn" onclick="chkOpt(this,'e2a2',true)">Sabato</button>
+      </div>
+      <div class="q-fb" id="e2a2">¡Bien! Es un sábado específico → sin artículo: <em>Sabato</em>.</div>
     </div>
 
-    <!-- Ejercicios C'è / Ci sono -->
-    <div class="ex-card">
-      <h3>Esercizio 2.A — C'è o Ci sono?</h3>
-      <span class="ex-tag">C'è / Ci sono</span>
-      <p class="ex-instr">Elegí la forma correcta.</p>
-
-      <div class="opt-group" id="ce1">
-        <div class="opt-q">1. "_____ una festa in famiglia questo weekend?"</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOpt(this,'ce1',true,'✓ Correcto! &quot;Una festa&quot; es singular → c\'è.')">C'è</button>
-          <button class="opt-btn" onclick="checkOpt(this,'ce1',false,'No. &quot;Festa&quot; es singular, entonces necesitamos c\'è.')">Ci sono</button>
-        </div>
-        <div class="opt-feedback" id="opt-fb-ce1"></div>
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">3.</span> ___ lunedì (los lunes en general) mi sveglio alle sei.</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="chkOpt(this,'e2a3',true)">Il lunedì</button>
+        <button class="opt-btn" onclick="chkOpt(this,'e2a3',false)">Lunedì</button>
       </div>
-
-      <div class="opt-group" id="ce2">
-        <div class="opt-q">2. "Non _____ abbastanza tempo per la famiglia in Italia."</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOpt(this,'ce2',true,'✓ Correcto! &quot;Tempo&quot; es singular → non c\'è.')">c'è</button>
-          <button class="opt-btn" onclick="checkOpt(this,'ce2',false,'No. &quot;Tempo&quot; es singular, usa c\'è.')">ci sono</button>
-        </div>
-        <div class="opt-feedback" id="opt-fb-ce2"></div>
-      </div>
-
-      <div class="opt-group" id="ce3">
-        <div class="opt-q">3. "In questa città _____ molti parchi per i bambini?"</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOpt(this,'ce3',false,'No. &quot;Molti parchi&quot; es plural → ci sono.')">c'è</button>
-          <button class="opt-btn" onclick="checkOpt(this,'ce3',true,'✓ Exacto! &quot;Molti parchi&quot; es plural → ci sono.')">ci sono</button>
-        </div>
-        <div class="opt-feedback" id="opt-fb-ce3"></div>
-      </div>
-
-      <div class="opt-group" id="ce4">
-        <div class="opt-q">4. "Nel video _____ una famiglia siciliana e toscana insieme."</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOpt(this,'ce4',true,'✓ Correcto! &quot;Una famiglia&quot; es singular → c\'è.')">c'è</button>
-          <button class="opt-btn" onclick="checkOpt(this,'ce4',false,'No. &quot;Una famiglia&quot; es un solo sustantivo singular.')">ci sono</button>
-        </div>
-        <div class="opt-feedback" id="opt-fb-ce4"></div>
-      </div>
-    </div>
-
-    <div class="ex-card">
-      <h3>Esercizio 2.B — Completá las oraciones</h3>
-      <span class="ex-tag">C'è / Ci sono — Fill in</span>
-      <p class="ex-instr">Escribí <strong>c'è</strong>, <strong>ci sono</strong>, <strong>non c'è</strong> o <strong>non ci sono</strong> según el contexto.</p>
-
-      <div id="fill-ce2">
-        <div class="fill-row">
-          <div class="fill-sentence">
-            1. <input class="fill-input" id="ce2f1" placeholder="c'è / ci sono"> tre bambini nella famiglia di Stella.
-          </div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">
-            2. A Siracusa <input class="fill-input" id="ce2f2" placeholder="c'è / ci sono"> i nonni materni di Luisa.
-          </div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">
-            3. In Italia <input class="fill-input" id="ce2f3" placeholder="non c'è / non ci sono"> abbastanza asili nido pubblici.
-          </div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">
-            4. <input class="fill-input" id="ce2f4" placeholder="c'è / ci sono"> un parco vicino a casa loro?
-          </div>
-        </div>
-      </div>
-
-      <button class="btn-check" onclick="checkFill('ce2', [\"ci sono\",\"ci sono\",\"non ci sono\",\"c'è\"], ['ce2f1','ce2f2','ce2f3','ce2f4'])">
-        Verificar respuestas
-      </button>
-      <div class="check-result" id="res-ce2"></div>
-    </div>
-
-    <div class="ex-card">
-      <h3>Esercizio 2.C — Traducí al italiano</h3>
-      <span class="ex-tag">Traducción</span>
-      <p class="ex-instr">Escribí la traducción italiana de cada oración. Prestá atención al número.</p>
-
-      <div id="fill-trad">
-        <div class="fill-row">
-          <div class="fill-sentence">
-            1. "Hay cuatro personas en mi familia." →
-            <input class="fill-input" id="tr1" placeholder="..." style="min-width:260px">
-          </div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">
-            2. "¿Hay un abuelo en tu familia?" →
-            <input class="fill-input" id="tr2" placeholder="..." style="min-width:260px">
-          </div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">
-            3. "No hay servicios para las familias." →
-            <input class="fill-input" id="tr3" placeholder="..." style="min-width:280px">
-          </div>
-        </div>
-      </div>
-
-      <button class="btn-check" onclick="checkFill('trad', ['ci sono quattro persone nella mia famiglia', \"c'è un nonno nella tua famiglia\", 'non ci sono servizi per le famiglie'], ['tr1','tr2','tr3'])">
-        Verificar respuestas
-      </button>
-      <div class="check-result" id="res-trad"></div>
+      <div class="q-fb" id="e2a3">¡Perfecto! Costumbre de todos los lunes → <em>Il lunedì</em>.</div>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════════
-       SECCIÓN 3: NUMERI OLTRE 1000
-  ══════════════════════════════════════════════════════════ -->
-  <div class="section">
-    <div class="sec-num">3</div>
-    <h2 class="sec-title">Numeri oltre 1000</h2>
-    <div class="sec-divider"></div>
-    <p class="sec-intro">
-      El sistema de numeración italiano es bastante lógico. Una vez que entendés la estructura base, podés construir cualquier número combinando las piezas. La clave: <em>mille</em> (singular) vs. <em>mila</em> (plural).
-    </p>
+  <div class="ex-block">
+    <span class="ex-label">Ejercicio 2b</span>
+    <div class="ex-title">Completá con el artículo correcto</div>
+    <p class="ex-inst">Añadí <em>il / la</em> donde corresponda (o dejá el espacio en blanco si no va artículo).</p>
 
-    <div class="numeri-system">
-      <h4>Sistema de construcción</h4>
-      <div class="numeri-rows">
-        <div class="numeri-row">
-          <div class="n-num">1.000</div>
-          <div class="n-word">mille</div>
-          <div class="n-rule">Siempre singular: "mille", nunca "un mille"</div>
-        </div>
-        <div class="numeri-row">
-          <div class="n-num">1.100</div>
-          <div class="n-word">millecentо</div>
-          <div class="n-rule">mille + cento (se unen sin espacio)</div>
-        </div>
-        <div class="numeri-row">
-          <div class="n-num">1.500</div>
-          <div class="n-word">millecinquecento</div>
-          <div class="n-rule">mille + cinquecento</div>
-        </div>
-        <div class="numeri-row">
-          <div class="n-num">2.000</div>
-          <div class="n-word">duemila</div>
-          <div class="n-rule">Plural: due + mila (no "due mille")</div>
-        </div>
-        <div class="numeri-row">
-          <div class="n-num">3.500</div>
-          <div class="n-word">tremilacinquecento</div>
-          <div class="n-rule">tre + mila + cinquecento</div>
-        </div>
-        <div class="numeri-row">
-          <div class="n-num">10.000</div>
-          <div class="n-word">diecimila</div>
-          <div class="n-rule">dieci + mila</div>
-        </div>
-        <div class="numeri-row">
-          <div class="n-num">25.000</div>
-          <div class="n-word">venticinquemila</div>
-          <div class="n-rule">venticinque + mila</div>
-        </div>
-        <div class="numeri-row">
-          <div class="n-num">100.000</div>
-          <div class="n-word">centomila</div>
-          <div class="n-rule">cento + mila</div>
-        </div>
-        <div class="numeri-row">
-          <div class="n-num">1.000.000</div>
-          <div class="n-word">un milione</div>
-          <div class="n-rule">Sustantivo, no adjetivo. Plural: due milioni</div>
-        </div>
-        <div class="numeri-row">
-          <div class="n-num">2.500.000</div>
-          <div class="n-word">due milioni e cinquecentomila</div>
-          <div class="n-rule">Se usa "e" para unir milioni con el resto</div>
-        </div>
-      </div>
+    <div class="fill-row">
+      <label>1. ___ venerdì faccio yoga. (los viernes)</label>
+      <input class="fill-input" id="g1" placeholder="il / la / —" oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-ok" onclick="chkFill('g1',['il','Il'],'¡Correcto! Il venerdì — masculino, habitual.','venerdì es masculino → il venerdì.')">OK</button>
+      <span class="fill-fb" id="g1-fb"></span>
     </div>
-
-    <div class="info-box">
-      <strong>Atención con milione:</strong> Es un sustantivo, así que necesita la preposición "di" antes de lo que cuenta: <em>un milione di persone</em> (un millón de personas), <em>tre milioni di euro</em>.
+    <div class="fill-row">
+      <label>2. ___ domenica vado al mare. (este domingo)</label>
+      <input class="fill-input" id="g2" placeholder="il / la / —" oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-ok" onclick="chkFill('g2',['—','','nessuno','x'],'¡Correcto! Sin artículo — es un domingo específico.','Es un hecho puntual → sin artículo.')">OK</button>
+      <span class="fill-fb" id="g2-fb"></span>
     </div>
-
-    <!-- Ejercicios numerales -->
-    <div class="ex-card">
-      <h3>Esercizio 3.A — Come si dice?</h3>
-      <span class="ex-tag">Numeri</span>
-      <p class="ex-instr">Elegí cómo se dice correctamente cada número en italiano.</p>
-
-      <div class="opt-group" id="n1">
-        <div class="opt-q">1. ¿Cómo se dice 2.000?</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOpt(this,'n1',false,'&quot;due mille&quot; no existe. El plural de mille es mila.')">due mille</button>
-          <button class="opt-btn" onclick="checkOpt(this,'n1',true,'✓ Correcto! duemila — el plural de mille es siempre mila.')">duemila</button>
-          <button class="opt-btn" onclick="checkOpt(this,'n1',false,'&quot;dimila&quot; no existe en italiano.')">dimila</button>
-        </div>
-        <div class="opt-feedback" id="opt-fb-n1"></div>
-      </div>
-
-      <div class="opt-group" id="n2">
-        <div class="opt-q">2. ¿Cómo se dice "un millón de habitantes"?</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOpt(this,'n2',false,'Falta la preposición &quot;di&quot; obligatoria con milione.')">un milione abitanti</button>
-          <button class="opt-btn" onclick="checkOpt(this,'n2',true,'✓ Perfecto! Con milione (sustantivo) se usa &quot;di&quot; antes del sustantivo.')">un milione di abitanti</button>
-          <button class="opt-btn" onclick="checkOpt(this,'n2',false,'mille no equivale a un millón. mille = 1.000.')">mille abitanti</button>
-        </div>
-        <div class="opt-feedback" id="opt-fb-n2"></div>
-      </div>
-
-      <div class="opt-group" id="n3">
-        <div class="opt-q">3. ¿Cómo se escribe en palabras el número 15.000?</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOpt(this,'n3',false,'&quot;quindici mille&quot; no es correcto. El plural es mila.')">quindici mille</button>
-          <button class="opt-btn" onclick="checkOpt(this,'n3',false,'&quot;quindicimille&quot; tampoco es correcto.')">quindicimille</button>
-          <button class="opt-btn" onclick="checkOpt(this,'n3',true,'✓ Exacto! quindici + mila = quindicimila.')">quindicimila</button>
-        </div>
-        <div class="opt-feedback" id="opt-fb-n3"></div>
-      </div>
-    </div>
-
-    <div class="ex-card">
-      <h3>Esercizio 3.B — Scrivi il numero</h3>
-      <span class="ex-tag">Numeri — Fill in</span>
-      <p class="ex-instr">Escribí en italiano (en letras) los números indicados.</p>
-
-      <div id="fill-numeri">
-        <div class="fill-row">
-          <div class="fill-sentence">
-            1. 3.000 → <input class="fill-input" id="nu1" placeholder="..." style="min-width:140px">
-          </div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">
-            2. 1.200 → <input class="fill-input" id="nu2" placeholder="..." style="min-width:180px">
-          </div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">
-            3. 50.000 → <input class="fill-input" id="nu3" placeholder="..." style="min-width:160px">
-          </div>
-        </div>
-        <div class="fill-row">
-          <div class="fill-sentence">
-            4. "Hay 2.000.000 de turistas." → Ci sono <input class="fill-input" id="nu4" placeholder="..." style="min-width:200px"> di turisti.
-          </div>
-        </div>
-      </div>
-
-      <button class="btn-check" onclick="checkFill('numeri', ['tremila','milleduecento','cinquantamila','due milioni'], ['nu1','nu2','nu3','nu4'])">
-        Verificar respuestas
-      </button>
-      <div class="check-result" id="res-numeri"></div>
+    <div class="fill-row">
+      <label>3. ___ domenica pranzo sempre con la famiglia. (los domingos)</label>
+      <input class="fill-input" id="g3" placeholder="il / la / —" oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-ok" onclick="chkFill('g3',['la','La'],'¡Bien! La domenica — femenino, habitual.','domenica es femenino → la domenica.')">OK</button>
+      <span class="fill-fb" id="g3-fb"></span>
     </div>
   </div>
+</section>
 
-  <!-- ══════════════════════════════════════════════════════════
-       SECCIÓN 4: SET INTEGRADOR
-  ══════════════════════════════════════════════════════════ -->
-  <div class="section">
-    <div class="sec-num">4</div>
-    <h2 class="sec-title">Set integrador</h2>
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════
+     SECCIÓN 3 — PRONOMI POSSESSIVI
+═══════════════════════════════════════════ -->
+<section class="gram-section" id="s3">
+  <div class="sec-header">
+    <h2><span class="sec-num">3</span>I pronomi possessivi</h2>
     <div class="sec-divider"></div>
-    <p class="sec-intro">Estos ejercicios mezclan possessivi, c'è/ci sono y numeri en contextos reales inspirados en el video.</p>
+    <p>Los posesivos en italiano concuerdan en género y número con la cosa poseída, no con el poseedor. Intro básico: mio/mia, tuo/tua, suo/sua.</p>
+  </div>
 
-    <div class="integrador-box">
-      <h3>Esercizio 4.A — Tutto insieme</h3>
-      <span class="ex-tag" style="background:var(--mod-dk)">Integrador</span>
-      <p class="ex-instr" style="margin-top:12px;">Completá el texto con la palabra correcta de la lista. Usá: <em>mia, i miei, suo, c'è, ci sono, tremila, milleduecento</em></p>
-      <br>
-      <div id="fill-int">
-        <div style="font-size:0.95rem; line-height:2.4;">
-          Nella famiglia di Giulia
-          <input class="fill-input" id="int1" placeholder="c'è / ci sono"> cinque persone.
-          <input class="fill-input" id="int2" placeholder="mia / la mia"> madre si chiama Anna e
-          <input class="fill-input" id="int3" placeholder="mio / il mio"> fratello si chiama Luca.
-          I nonni abitano a <input class="fill-input" id="int4" placeholder="duemila / tremila"> chilometri di distanza.
-          A casa loro non <input class="fill-input" id="int5" placeholder="c'è / ci sono"> molti spazi, ma
-          <input class="fill-input" id="int6" placeholder="c'è / ci sono"> tanto amore!
-        </div>
+  <div class="exp-box">
+    <p>A diferencia del español, en italiano el posesivo casi siempre lleva artículo: <em>il mio libro, la mia borsa, i miei amici, le mie chiavi</em>.</p>
+    <p><strong>Excepción importante:</strong> con los parientes en singular se omite el artículo: <em>mia madre, mio padre, mio fratello</em>. Pero en plural sí va: <em>i miei fratelli, le mie sorelle</em>.</p>
+  </div>
+
+  <div class="poss-grid">
+    <div class="poss-card">
+      <div class="poss-pronoun">mio / mia</div>
+      <div class="poss-forms">
+        <em>il mio</em> libro<br>
+        <em>la mia</em> routine<br>
+        <em>i miei</em> amici<br>
+        <em>le mie</em> chiavi
       </div>
-
-      <button class="btn-check" onclick="checkFill('int', ['ci sono','mia','mio','tremila','ci sono',\"c'è\"], ['int1','int2','int3','int4','int5','int6'])">
-        Verificar respuestas
-      </button>
-      <div class="check-result" id="res-int"></div>
     </div>
-
-    <div class="integrador-box">
-      <h3>Esercizio 4.B — Preguntas sobre el video</h3>
-      <span class="ex-tag" style="background:var(--mod-dk)">Integrador</span>
-      <p class="ex-instr" style="margin-top:12px;">Respondé sobre la familia del video usando possessivi y c'è/ci sono.</p>
-
-      <div class="opt-group" id="int-b1" style="margin-top:12px;">
-        <div class="opt-q">1. Para decir "los abuelos maternos de Luisa", ¿cómo lo expresarías?</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOpt(this,'int-b1',false,'&quot;I nonni sua&quot; no es correcto. El possessivo va antes del sustantivo.')">i nonni sua</button>
-          <button class="opt-btn" onclick="checkOpt(this,'int-b1',true,'✓ Correcto! &quot;I suoi nonni&quot; = los de ella. Plural → lleva artículo.')">i suoi nonni</button>
-          <button class="opt-btn" onclick="checkOpt(this,'int-b1',false,'&quot;suoi nonni&quot; sin artículo está mal. Plural siempre lleva artículo.')">suoi nonni</button>
-        </div>
-        <div class="opt-feedback" id="opt-fb-int-b1"></div>
+    <div class="poss-card">
+      <div class="poss-pronoun">tuo / tua</div>
+      <div class="poss-forms">
+        <em>il tuo</em> lavoro<br>
+        <em>la tua</em> mattina<br>
+        <em>i tuoi</em> colleghi<br>
+        <em>le tue</em> scarpe
       </div>
-
-      <div class="opt-group" id="int-b2">
-        <div class="opt-q">2. "En la familia del video, hay tres hijos." ¿Cómo se dice?</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOpt(this,'int-b2',false,'Falta la forma correcta de hay para plural.')">C'è tre figli.</button>
-          <button class="opt-btn" onclick="checkOpt(this,'int-b2',true,'✓ Perfecto! Tre figli = plural → ci sono.')">Ci sono tre figli.</button>
-          <button class="opt-btn" onclick="checkOpt(this,'int-b2',false,'Sono tre figli significa &quot;son tres hijos&quot;, no &quot;hay tres hijos&quot;.')">Sono tre figli.</button>
-        </div>
-        <div class="opt-feedback" id="opt-fb-int-b2"></div>
+    </div>
+    <div class="poss-card">
+      <div class="poss-pronoun">suo / sua</div>
+      <div class="poss-forms">
+        <em>il suo</em> cappuccino<br>
+        <em>la sua</em> giornata<br>
+        <em>i suoi</em> amici<br>
+        <em>le sue</em> abitudini
       </div>
-
-      <div class="opt-group" id="int-b3">
-        <div class="opt-q">3. Michele dice que en Italia no hay suficientes servicios para las familias. ¿Cuál es la forma correcta?</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOpt(this,'int-b3',false,'&quot;Non c\'è servizi&quot; mezcla singular y plural incorrectamente.')">Non c'è servizi per le famiglie.</button>
-          <button class="opt-btn" onclick="checkOpt(this,'int-b3',true,'✓ Exacto! Servizi es plural → non ci sono.')">Non ci sono servizi per le famiglie.</button>
-          <button class="opt-btn" onclick="checkOpt(this,'int-b3',false,'&quot;Non hanno servizi&quot; cambia el sujeto, ya no es impersonal.')">Non hanno servizi per le famiglie.</button>
-        </div>
-        <div class="opt-feedback" id="opt-fb-int-b3"></div>
+    </div>
+    <div class="poss-card">
+      <div class="poss-pronoun">nostro / nostra</div>
+      <div class="poss-forms">
+        <em>il nostro</em> ritmo<br>
+        <em>la nostra</em> pausa<br>
+        <em>i nostri</em> piani<br>
+        <em>le nostre</em> serate
       </div>
     </div>
   </div>
 
-  <!-- CTA -->
+  <table class="gram-table">
+    <thead><tr><th>Poseedor</th><th>Masc. sing.</th><th>Fem. sing.</th><th>Masc. pl.</th><th>Fem. pl.</th></tr></thead>
+    <tbody>
+      <tr><td><em>io</em></td><td><em>mio</em></td><td><em>mia</em></td><td><em>miei</em></td><td><em>mie</em></td></tr>
+      <tr><td><em>tu</em></td><td><em>tuo</em></td><td><em>tua</em></td><td><em>tuoi</em></td><td><em>tue</em></td></tr>
+      <tr><td><em>lui/lei</em></td><td><em>suo</em></td><td><em>sua</em></td><td><em>suoi</em></td><td><em>sue</em></td></tr>
+    </tbody>
+  </table>
+
+  <!-- EJERCICIOS POSSESSIVI -->
+  <div class="ex-block">
+    <span class="ex-label">Ejercicio 3a</span>
+    <div class="ex-title">Elegí el posesivo correcto</div>
+    <p class="ex-inst">Seleccioná la forma correcta del posesivo.</p>
+
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">1.</span> Questa è la ___ routine mattutina. (di Giulia — ella)</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="chkOpt(this,'p1',false)">mia</button>
+        <button class="opt-btn" onclick="chkOpt(this,'p1',true)">sua</button>
+        <button class="opt-btn" onclick="chkOpt(this,'p1',false)">tua</button>
+      </div>
+      <div class="q-fb" id="p1">¡Correcto! Giulia = lei → <em>sua</em>. La routine es femenino → <em>la sua routine</em>.</div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">2.</span> I ___ colleghi sono simpatici. (i colleghi di Marco — lui)</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="chkOpt(this,'p2',false)">miei</button>
+        <button class="opt-btn" onclick="chkOpt(this,'p2',false)">tuoi</button>
+        <button class="opt-btn" onclick="chkOpt(this,'p2',true)">suoi</button>
+      </div>
+      <div class="q-fb" id="p2">¡Bien! Marco = lui → <em>suoi</em>. Colleghi es masculino plural → <em>i suoi colleghi</em>.</div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">3.</span> Dove sono le ___ chiavi? (le chiavi mie — io)</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="chkOpt(this,'p3',true)">mie</button>
+        <button class="opt-btn" onclick="chkOpt(this,'p3',false)">mia</button>
+        <button class="opt-btn" onclick="chkOpt(this,'p3',false)">miei</button>
+      </div>
+      <div class="q-fb" id="p3">¡Perfecto! <em>Chiavi</em> es femenino plural → <em>le mie chiavi</em>.</div>
+    </div>
+  </div>
+
+  <div class="ex-block">
+    <span class="ex-label">Ejercicio 3b</span>
+    <div class="ex-title">Completá con el posesivo</div>
+    <p class="ex-inst">Escribí el posesivo correcto.</p>
+
+    <div class="fill-row">
+      <label>1. (io) La ___ mattina inizia alle sei.</label>
+      <input class="fill-input" id="p4" placeholder="mia / mio / miei / mie" oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-ok" onclick="chkFill('p4',['mia','Mia'],'¡Correcto! La mattina (fem.) + io → la mia mattina.','mattina es femenino + io → mia.')">OK</button>
+      <span class="fill-fb" id="p4-fb"></span>
+    </div>
+    <div class="fill-row">
+      <label>2. (tu) Il ___ caffè è già freddo!</label>
+      <input class="fill-input" id="p5" placeholder="tuo / tua / tuoi / tue" oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-ok" onclick="chkFill('p5',['tuo','Tuo'],'¡Muy bien! Il caffè (masc.) + tu → il tuo caffè.','caffè es masculino + tu → tuo.')">OK</button>
+      <span class="fill-fb" id="p5-fb"></span>
+    </div>
+    <div class="fill-row">
+      <label>3. (lui) I ___ amici sono tutti sportivi.</label>
+      <input class="fill-input" id="p6" placeholder="suo / sua / suoi / sue" oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-ok" onclick="chkFill('p6',['suoi','Suoi'],'¡Excelente! Gli amici (masc. pl.) + lui → i suoi amici.','amici es masc. pl. + lui → suoi.')">OK</button>
+      <span class="fill-fb" id="p6-fb"></span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════
+     SECCIÓN 4 — ANCHE / NEANCHE
+═══════════════════════════════════════════ -->
+<section class="gram-section" id="s4">
+  <div class="sec-header">
+    <h2><span class="sec-num">4</span>Anche / Neanche — Acuerdo y desacuerdo</h2>
+    <div class="sec-divider"></div>
+    <p>Con <em>anche</em> y <em>neanche</em> respondemos a lo que dice alguien mostrando acuerdo. Son muy comunes en conversación.</p>
+  </div>
+
+  <table class="anche-table">
+    <thead>
+      <tr><th>Anche (también) — oraciones afirmativas</th><th>Neanche (tampoco) — oraciones negativas</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>— <em>Mi piace il cappuccino.</em><br>— <em>Anche a me!</em> / <em>Anch'io!</em></td>
+        <td>— <em>Non mi piace alzarmi presto.</em><br>— <em>Neanche a me!</em> / <em>Neanche io!</em></td>
+      </tr>
+      <tr>
+        <td>— <em>Leggo ogni sera.</em><br>— <em>Anch'io leggo ogni sera.</em></td>
+        <td>— <em>Non guardo mai la TV.</em><br>— <em>Neanche io guardo la TV.</em></td>
+      </tr>
+      <tr>
+        <td>— <em>Vado spesso al mercato.</em><br>— <em>Anche Marco va al mercato!</em></td>
+        <td>— <em>Marco non cucina mai.</em><br>— <em>Neanche Giulia cucina!</em></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>Forma compacta:</strong> <em>Anch'io</em> (también yo) — la <em>e</em> final de <em>anche</em> se elide antes de la <em>i</em> de <em>io</em>. Con <em>neanche</em> no hay elisión: se escribe siempre <em>neanche io</em>.
+  </div>
+
+  <!-- EJERCICIOS ANCHE/NEANCHE -->
+  <div class="ex-block">
+    <span class="ex-label">Ejercicio 4a</span>
+    <div class="ex-title">Anche o Neanche</div>
+    <p class="ex-inst">Elegí la respuesta correcta para cada mini-diálogo.</p>
+
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">1.</span> — Faccio sempre colazione a casa. — ___!</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="chkOpt(this,'an1',true)">Anch'io!</button>
+        <button class="opt-btn" onclick="chkOpt(this,'an1',false)">Neanche io!</button>
+      </div>
+      <div class="q-fb" id="an1">¡Correcto! Oración afirmativa → <em>Anch'io</em>.</div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">2.</span> — Non mi sveglio mai prima delle otto. — ___!</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="chkOpt(this,'an2',false)">Anch'io!</button>
+        <button class="opt-btn" onclick="chkOpt(this,'an2',true)">Neanche io!</button>
+      </div>
+      <div class="q-fb" id="an2">¡Perfecto! Oración negativa (non … mai) → <em>Neanche io</em>.</div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">3.</span> — Mi rilasso sempre con un libro. — ___!</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="chkOpt(this,'an3',true)">Anch'io!</button>
+        <button class="opt-btn" onclick="chkOpt(this,'an3',false)">Neanche io!</button>
+      </div>
+      <div class="q-fb" id="an3">¡Bien! Afirmativa → <em>Anch'io</em>.</div>
+    </div>
+  </div>
+
+  <div class="ex-block">
+    <span class="ex-label">Ejercicio 4b</span>
+    <div class="ex-title">Completá el diálogo</div>
+    <p class="ex-inst">Escribí <em>Anch'io</em> o <em>Neanche io</em> según el contexto.</p>
+
+    <div class="fill-row">
+      <label>1. — Spesso cucino io la cena. — ___!</label>
+      <input class="fill-input" id="an4" placeholder="Anch'io / Neanche io" oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-ok" onclick="chkFill('an4',[&quot;anch'io&quot;,&quot;Anch'io&quot;,&quot;anche io&quot;,&quot;Anche io&quot;],'¡Correcto! Afirmativa → Anch\'io.','Es afirmativa → Anch\'io.')">OK</button>
+      <span class="fill-fb" id="an4-fb"></span>
+    </div>
+    <div class="fill-row">
+      <label>2. — Non esco mai di casa prima delle sette. — ___!</label>
+      <input class="fill-input" id="an5" placeholder="Anch'io / Neanche io" oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-ok" onclick="chkFill('an5',['neanche io','Neanche io','neanche','Neanche'],'¡Perfecto! Negativa → Neanche io.','Es negativa (non … mai) → Neanche io.')">OK</button>
+      <span class="fill-fb" id="an5-fb"></span>
+    </div>
+    <div class="fill-row">
+      <label>3. — Vado sempre a correre il sabato. — ___!</label>
+      <input class="fill-input" id="an6" placeholder="Anch'io / Neanche io" oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-ok" onclick="chkFill('an6',[&quot;anch'io&quot;,&quot;Anch'io&quot;,&quot;anche io&quot;,&quot;Anche io&quot;],'¡Muy bien! Afirmativa → Anch\'io.','Es afirmativa → Anch\'io.')">OK</button>
+      <span class="fill-fb" id="an6-fb"></span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════
+     SECCIÓN 5 — SET INTEGRADOR
+═══════════════════════════════════════════ -->
+<section class="gram-section" id="s5">
+  <div class="sec-header">
+    <h2><span class="sec-num">5</span>Ejercicios integradores</h2>
+    <div class="sec-divider"></div>
+    <p>Combinamos todo lo visto: reflexivos, días con artículo, posesivos y anche/neanche.</p>
+  </div>
+
+  <div class="integrador">
+    <h3>Integratore 1 — Corregí los errores</h3>
+    <p>Cada oración tiene un error. Elegí la versión correcta.</p>
+
+    <div class="q-item" style="background:var(--white);border-radius:var(--r);padding:14px;margin-bottom:12px">
+      <div class="q-text"><span class="q-num">1.</span> "La sabato mi sveglio tardi." — ¿Cuál es la corrección?</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="chkOpt(this,'int1',false)">La sabato → Sabato (sin artículo siempre)</button>
+        <button class="opt-btn" onclick="chkOpt(this,'int1',true)">La sabato → Il sabato (sabato es masculino)</button>
+        <button class="opt-btn" onclick="chkOpt(this,'int1',false)">Está bien así</button>
+      </div>
+      <div class="q-fb" id="int1">¡Correcto! <em>Sabato</em> es masculino → usa <em>il</em>: <em>Il sabato mi sveglio tardi.</em></div>
+    </div>
+
+    <div class="q-item" style="background:var(--white);border-radius:var(--r);padding:14px;margin-bottom:12px">
+      <div class="q-text"><span class="q-num">2.</span> "Io si sveglio alle sette." — ¿Cuál es el error?</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="chkOpt(this,'int2',true)">El pronombre reflexivo — debería ser mi</button>
+        <button class="opt-btn" onclick="chkOpt(this,'int2',false)">El verbo — debería ser svegliamo</button>
+        <button class="opt-btn" onclick="chkOpt(this,'int2',false)">No hay error</button>
+      </div>
+      <div class="q-fb" id="int2">¡Bien visto! Io (yo) → pronombre reflexivo <em>mi</em>. Correcto: <em>Io mi sveglio alle sette.</em></div>
+    </div>
+
+    <div class="q-item" style="background:var(--white);border-radius:var(--r);padding:14px">
+      <div class="q-text"><span class="q-num">3.</span> "— Non mi piace cucinare. — Anche io!" — ¿Está bien?</div>
+      <div class="q-opts">
+        <button class="opt-btn" onclick="chkOpt(this,'int3',false)">Sí, está perfecta</button>
+        <button class="opt-btn" onclick="chkOpt(this,'int3',true)">No — debería ser Neanche io (oración negativa)</button>
+        <button class="opt-btn" onclick="chkOpt(this,'int3',false)">No — debería ser Nemmeno io</button>
+      </div>
+      <div class="q-fb" id="int3">¡Exacto! La oración es negativa (non … cucinare) → la respuesta correcta es <em>Neanche io!</em></div>
+    </div>
+  </div>
+
+  <div class="integrador" style="margin-top:20px">
+    <h3>Integratore 2 — Traducí al italiano</h3>
+    <p>Traducí cada oración aplicando lo que aprendiste.</p>
+
+    <div class="fill-row" style="background:var(--white);border-radius:var(--r);padding:14px;margin-bottom:12px;flex-direction:column;align-items:flex-start">
+      <label style="margin-bottom:8px">1. "Los domingos (habitual) me relajo con mi familia." (mia famiglia)</label>
+      <input class="fill-input" id="tr1" style="width:100%;max-width:500px" placeholder="La domenica mi rilasso con..." oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-ok" style="margin-top:8px" onclick="chkFill('tr1',['la domenica mi rilasso con la mia famiglia','La domenica mi rilasso con la mia famiglia'],'¡Perfecto! La domenica + mi rilasso + la mia famiglia.','Revisá: La domenica mi rilasso con la mia famiglia.')">OK</button>
+      <span class="fill-fb" id="tr1-fb"></span>
+    </div>
+
+    <div class="fill-row" style="background:var(--white);border-radius:var(--r);padding:14px;margin-bottom:12px;flex-direction:column;align-items:flex-start">
+      <label style="margin-bottom:8px">2. "¿A qué hora te despertás vos?" (tu)</label>
+      <input class="fill-input" id="tr2" style="width:100%;max-width:500px" placeholder="A che ora ti...?" oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-ok" style="margin-top:8px" onclick="chkFill('tr2',['a che ora ti svegli?','A che ora ti svegli?','a che ora ti svegli'],'¡Muy bien! A che ora ti svegli? — reflexivo en segunda persona.','Recordá: tu → ti svegli. A che ora ti svegli?')">OK</button>
+      <span class="fill-fb" id="tr2-fb"></span>
+    </div>
+
+    <div class="fill-row" style="background:var(--white);border-radius:var(--r);padding:14px;flex-direction:column;align-items:flex-start">
+      <label style="margin-bottom:8px">3. "Yo tampoco voy al trabajo los sábados." (il sabato)</label>
+      <input class="fill-input" id="tr3" style="width:100%;max-width:500px" placeholder="Neanche io..." oninput="this.classList.remove('correct','wrong')">
+      <button class="btn-ok" style="margin-top:8px" onclick="chkFill('tr3',['neanche io vado al lavoro il sabato','Neanche io vado al lavoro il sabato','neanche io vado al lavoro il sabato.','Neanche io vado al lavoro il sabato.'],'¡Excelente! Neanche io vado al lavoro il sabato.','Revisá: Neanche io vado al lavoro il sabato.')">OK</button>
+      <span class="fill-fb" id="tr3-fb"></span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
   
+  
+</div>
 
 </main>
 
 <script>
-if (!window.__ipp_m7_e3__) {
-  window.__ipp_m7_e3__ = true;
+// ── IPP Guard ──
+if (!window.__ipp_m6_e3__) {
+  window.__ipp_m6_e3__ = true;
 
-  // ── IPP Voice ────────────────────────────────────────────────────────────
-  function ippVoice(text, gender) {
-    const synth = window.speechSynthesis;
-    if (!synth) return;
-    synth.cancel();
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = 'it-IT';
-    utter.rate = 0.9;
-    utter.pitch = gender === 'F' ? 1.15 : 0.9;
-    const trySpeak = () => {
-      const voices = synth.getVoices();
-      const itVoices = voices.filter(v => v.lang.startsWith('it'));
-      if (itVoices.length > 0) {
-        const preferredF = itVoices.find(v => /female|donna/i.test(v.name));
-        const preferredM = itVoices.find(v => /male|uomo/i.test(v.name));
-        if (gender === 'F' && preferredF) utter.voice = preferredF;
-        else if (gender === 'M' && preferredM) utter.voice = preferredM;
-        else utter.voice = itVoices[0];
-      }
-      synth.speak(utter);
-    };
-    if (synth.getVoices().length === 0) synth.onvoiceschanged = trySpeak;
-    else trySpeak();
+  // Preload voices
+  window.__ippV = window.__ippV || [];
+  if (window.speechSynthesis) {
+    var _loadV = function() { window.__ippV = speechSynthesis.getVoices(); };
+    _loadV();
+    speechSynthesis.onvoiceschanged = _loadV;
   }
 
-  function ippAudio(text, gender) { ippVoice(text, gender || 'F'); }
-
-  // ── checkOpt ─────────────────────────────────────────────────────────────
-  function checkOpt(btn, groupId, isCorrect, feedback) {
-    const group = document.getElementById(groupId);
-    if (!group || group.dataset.done) return;
-    group.dataset.done = '1';
-    group.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
-    btn.classList.add(isCorrect ? 'correct' : 'wrong');
-    const fb = document.getElementById('opt-fb-' + groupId);
-    if (fb) { fb.textContent = feedback; fb.className = 'opt-feedback ' + (isCorrect ? 'ok' : 'ko'); }
-  }
-
-  // ── checkFill ─────────────────────────────────────────────────────────────
-  function checkFill(key, answers, ids) {
-    let correct = 0;
-    ids.forEach((id, i) => {
-      const inp = document.getElementById(id);
-      if (!inp) return;
-      const val = inp.value.trim().toLowerCase();
-      const expected = answers[i].toLowerCase();
-      const isOk = val === expected;
-      inp.className = 'fill-input ' + (isOk ? 'ok' : 'ko');
-      inp.disabled = true;
-      if (isOk) correct++;
-    });
-    const res = document.getElementById('res-' + key);
-    if (res) {
-      res.textContent = `${correct}/${ids.length} correctas. ${correct === ids.length ? '¡Excelente! Gramática dominada.' : correct >= ids.length * 0.7 ? '¡Muy bien! Revisá las rojas.' : 'Repasá la teoría y volvé a intentarlo.'}`;
-      res.className = 'check-result show';
+  // ── ippVoice ──
+  window.ippVoice = function(gender) {
+    var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+    var itV = voices.filter(function(v) { return v.lang && v.lang.startsWith('it'); });
+    if (!itV.length) return null;
+    var voice = null;
+    if (gender === 'm') {
+      voice = itV.find(function(v) { return /cosimo|luca|giorgio|male|masc/i.test(v.name); });
+      if (!voice) voice = itV.find(function(v) { return !/elsa|alice|giulia|female|femm/i.test(v.name); });
+    } else {
+      voice = itV.find(function(v) { return /elsa|alice|giulia|female|femm/i.test(v.name); });
+      if (!voice) voice = itV.find(function(v) { return !/cosimo|luca|giorgio|male|masc/i.test(v.name); });
     }
-  }
+    return voice || itV[0];
+  };
 
-  // ── toggleCulture ─────────────────────────────────────────────────────────
-  function toggleCulture(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.classList.toggle('show');
-    const btn = el.previousElementSibling;
-    if (btn) btn.textContent = el.classList.contains('show') ? 'Ocultar traducción' : 'Ver traducción al español';
-  }
+  // ── ippAudio ──
+  window.ippAudio = function(text, gender) {
+    if (!window.speechSynthesis) return;
+    speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'it-IT';
+    u.rate = 0.88;
+    u.pitch = (gender === 'f') ? 1.1 : 0.95;
+    var v = window.ippVoice(gender || 'f');
+    if (v) u.voice = v;
+    speechSynthesis.speak(u);
+  };
 
-  // Expose all to window
-  window.ippVoice = ippVoice;
-  window.ippAudio = ippAudio;
-  window.checkOpt = checkOpt;
-  window.checkFill = checkFill;
-  window.toggleCulture = toggleCulture;
-}
+  // ── chkOpt ──
+  window.chkOpt = function(btn, fbId, isCorrect) {
+    var container = btn.parentElement;
+    var allBtns = container.querySelectorAll('.opt-btn');
+    allBtns.forEach(function(b) { b.disabled = true; b.classList.add('disabled'); });
+    btn.classList.remove('disabled');
+    btn.classList.add(isCorrect ? 'correct' : 'wrong');
+    var fb = document.getElementById(fbId);
+    if (fb) {
+      fb.className = 'q-fb show ' + (isCorrect ? 'ok' : 'no');
+      if (!isCorrect) fb.textContent = 'Casi — revisá la explicación arriba y volvé a intentarlo.';
+    }
+  };
+
+  // ── chkFill ──
+  window.chkFill = function(inputId, answers, msgOk, msgNo) {
+    var inp = document.getElementById(inputId);
+    if (!inp) return;
+    var val = inp.value.trim().toLowerCase();
+    var correct = answers.some(function(a) { return a.toLowerCase() === val; });
+    inp.classList.toggle('correct', correct);
+    inp.classList.toggle('wrong', !correct);
+    var fbId = inputId + '-fb';
+    var fb = document.getElementById(fbId);
+    if (!fb) {
+      fb = document.createElement('span');
+      fb.id = fbId;
+      fb.className = 'fill-fb';
+      inp.parentElement.appendChild(fb);
+    }
+    fb.className = 'fill-fb show ' + (correct ? 'ok' : 'no');
+    fb.textContent = correct ? msgOk : msgNo;
+  };
+
+  // Smooth scroll for inner nav
+  document.querySelectorAll('.inner-nav a').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        var target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+} // end guard
 </script>
 </body>
 </html>

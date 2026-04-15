@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In treno o in macchina? — Etapa 2 | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --mod:    #e5ab07;
+  --mod-dk: #c8940a;
+  --mod-lt: #fef9e7;
+  --mod-tx: #7a5500;
+  --cream:  #e9e6d5;
+  --cream-dk: #ddd9c8;
+  --gold:   #EFCF7F;
+  --black:  #1a1a18;
+  --white:  #ffffff;
+  --green:  #528e74;
+  --red:    #cc4736;
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+  --r: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--cream); font-family: var(--fb); color: var(--black); line-height: 1.6; }
+
+.hero {
+  background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
+  padding: 56px 24px 48px; text-align: center; color: var(--white);
+}
+.badge {
+  display: inline-block; background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4); border-radius: 20px;
+  padding: 4px 16px; font-size: 13px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--fh); font-style: italic;
+  font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; margin-bottom: 8px;
+}
+.hero p { font-size: 1.05rem; opacity: 0.9; }
+
+.container { max-width: 860px; margin: 0 auto; padding: 40px 24px; }
+
+.section-block { margin-bottom: 48px; }
+.section-title {
+  font-family: var(--fh); font-style: italic; font-size: 1.5rem;
+  color: var(--mod-tx); margin-bottom: 6px;
+  padding-bottom: 8px; border-bottom: 2px solid var(--mod-lt);
+}
+.section-sub { font-size: 0.9rem; color: #666; margin-bottom: 18px; }
+
+/* VOCAB CHIPS */
+.chip-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--white); border: 2px solid var(--cream-dk);
+  border-radius: 30px; padding: 8px 16px;
+  font-size: 0.92rem; cursor: pointer; transition: all 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.chip:hover { border-color: var(--mod); background: var(--mod-lt); }
+.chip:active { transform: scale(0.97); }
+.chip-icon { font-size: 1.1rem; }
+.chip-it { font-weight: 600; color: var(--black); }
+.chip-es { font-size: 0.8rem; color: #777; }
+.chip .audio-btn {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--mod); border: none; color: var(--white);
+  font-size: 11px; cursor: pointer; display: flex;
+  align-items: center; justify-content: center; flex-shrink: 0;
+}
+
+/* AVVERBI */
+.avverbi-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr));
+  gap: 10px;
+}
+.avv-card {
+  background: var(--white); border: 2px solid var(--cream-dk);
+  border-radius: var(--r); padding: 12px 16px;
+  text-align: center; cursor: pointer; transition: all 0.2s;
+}
+.avv-card:hover { border-color: var(--mod); background: var(--mod-lt); }
+.avv-it { font-weight: 700; font-size: 1rem; color: var(--mod-tx); }
+.avv-es { font-size: 0.82rem; color: #666; margin-top: 2px; }
+
+/* DIALOG */
+.dialog-box {
+  background: var(--white); border-radius: var(--r);
+  padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.dialog-controls {
+  display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;
+}
+.btn-play-all {
+  background: var(--mod); color: var(--white);
+  border: none; border-radius: 20px; padding: 9px 22px;
+  font-family: var(--fb); font-size: 0.9rem; font-weight: 700;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-play-all:hover { background: var(--mod-dk); }
+.dialog-line {
+  display: flex; align-items: flex-start; gap: 12px;
+  margin-bottom: 14px;
+}
+.dialog-line.sofia { flex-direction: row; }
+.dialog-line.luca { flex-direction: row-reverse; }
+.speaker-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0; font-weight: 700;
+  font-size: 13px;
+}
+.sofia .speaker-avatar { background: var(--mod); color: var(--white); }
+.luca .speaker-avatar { background: var(--cream-dk); color: var(--mod-tx); }
+.bubble {
+  max-width: 75%; padding: 12px 16px;
+  border-radius: var(--r); font-size: 0.95rem; line-height: 1.55;
+  position: relative;
+}
+.sofia .bubble {
+  background: var(--mod-lt); border: 1px solid var(--gold);
+  border-radius: 0 var(--r) var(--r) var(--r);
+}
+.luca .bubble {
+  background: var(--cream-dk);
+  border-radius: var(--r) 0 var(--r) var(--r);
+}
+.bubble-name {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.5px; margin-bottom: 4px; color: var(--mod-tx);
+}
+.luca .bubble-name { text-align: right; color: #555; }
+.bubble-text { }
+.bubble-es { font-size: 0.8rem; color: #777; margin-top: 4px; font-style: italic; }
+.btn-line {
+  background: none; border: 1px solid var(--cream-dk);
+  border-radius: 12px; padding: 3px 10px; font-size: 11px;
+  cursor: pointer; color: #777; margin-top: 6px;
+  font-family: var(--fb); transition: all 0.2s;
+}
+.btn-line:hover { border-color: var(--mod); color: var(--mod-tx); }
+
+/* GRAMMAR CARDS */
+.grammar-section { margin-bottom: 36px; }
+.grammar-title {
+  font-size: 1.05rem; font-weight: 700; color: var(--mod-tx);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+}
+.grammar-tag {
+  background: var(--mod); color: var(--white);
+  font-size: 11px; padding: 2px 10px; border-radius: 10px;
+  font-weight: 600; letter-spacing: 0.5px;
+}
+.pattern-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.pattern-card {
+  background: var(--white); border: 2px solid var(--cream-dk);
+  border-radius: var(--r); padding: 14px 18px;
+  cursor: pointer; transition: all 0.2s; min-width: 160px;
+}
+.pattern-card:hover { border-color: var(--mod); background: var(--mod-lt); }
+.pattern-it { font-weight: 700; font-size: 1rem; color: var(--mod-tx); }
+.pattern-es { font-size: 0.82rem; color: #777; margin-top: 3px; }
+.pattern-form { font-size: 0.78rem; color: var(--mod-dk); font-weight: 600; margin-top: 2px; }
+
+/* ORDINALI TABLE */
+.table-wrap { overflow-x: auto; margin-bottom: 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th { background: var(--mod); color: var(--white); padding: 10px 14px; text-align: left; font-weight: 700; }
+td { padding: 9px 14px; border-bottom: 1px solid var(--cream-dk); }
+tr:nth-child(even) td { background: var(--cream); }
+tr:last-child td { border-bottom: none; }
+.td-it { font-weight: 700; color: var(--mod-tx); }
+.td-es { color: #555; }
+.td-audio { text-align: center; }
+.btn-tbl {
+  background: none; border: 1px solid var(--mod);
+  border-radius: 50%; width: 26px; height: 26px;
+  cursor: pointer; font-size: 12px; color: var(--mod-tx);
+  transition: all 0.2s;
+}
+.btn-tbl:hover { background: var(--mod); color: var(--white); }
+
+/* IMPERATIVO TABLE */
+.imp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 10px; }
+.imp-card {
+  background: var(--white); border: 2px solid var(--cream-dk);
+  border-radius: var(--r); padding: 14px 16px; cursor: pointer; transition: all 0.2s;
+}
+.imp-card:hover { border-color: var(--mod); background: var(--mod-lt); }
+.imp-it { font-weight: 700; font-size: 1rem; color: var(--mod-tx); }
+.imp-es { font-size: 0.82rem; color: #666; }
+.imp-type { font-size: 0.75rem; color: var(--mod-dk); font-weight: 600; margin-top: 2px; }
+
+/* PRONOMI DIMOSTRATIVI */
+.dimo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.dimo-box {
+  background: var(--white); border-radius: var(--r);
+  padding: 20px; border: 2px solid var(--cream-dk);
+}
+.dimo-box.questo { border-color: var(--mod); }
+.dimo-box.quello { border-color: var(--cream-dk); }
+.dimo-header { font-weight: 700; font-size: 1.1rem; color: var(--mod-tx); margin-bottom: 10px; }
+.dimo-forms { display: flex; flex-direction: column; gap: 6px; }
+.dimo-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
+.dimo-word { font-weight: 700; }
+.dimo-label { font-size: 0.8rem; color: #777; }
+
+/* CULTURE STRIP */
+.culture-strip {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--cream-dk) 100%);
+  border-top: 3px solid var(--mod);
+  border-radius: var(--r); padding: 24px 28px;
+  margin-bottom: 40px;
+}
+.culture-header {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px; margin-bottom: 12px;
+}
+.culture-title {
+  font-family: var(--fh); font-style: italic; font-size: 1.2rem;
+  color: var(--mod-tx); font-weight: 700;
+}
+.btn-toggle {
+  background: var(--white); border: 1px solid var(--mod);
+  border-radius: 14px; padding: 5px 14px; font-size: 12px;
+  font-family: var(--fb); color: var(--mod-tx); cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-toggle:hover { background: var(--mod-lt); }
+.culture-it { font-size: 0.95rem; line-height: 1.7; color: var(--black); }
+.culture-es { display: none; font-size: 0.92rem; line-height: 1.7; color: #444; font-style: italic; margin-top: 8px; }
+
+@media (max-width: 600px) {
+  .dimo-grid { grid-template-columns: 1fr; }
+  .bubble { max-width: 88%; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">A1 · Unità 8</div>
+  <h1>In treno o in macchina?</h1>
+  <p>Etapa 2 — Descubrimiento · Vocabulario y gramática en contexto</p>
+</div>
+
+<div class="container">
+
+  <!-- 1. MEZZI DI TRASPORTO -->
+  <div class="section-block">
+    <h2 class="section-title">I mezzi di trasporto</h2>
+    <p class="section-sub">Hacé clic en cada chip para escucharlo en italiano.</p>
+    <div class="chip-grid">
+      <div class="chip" onclick="ippAudio('la bicicletta', 0.82, 'f')"><span class="chip-icon">🚲</span><span class="chip-it">la bicicletta</span><span class="chip-es">la bicicleta</span></div>
+      <div class="chip" onclick="ippAudio('il treno', 0.82, 'm')"><span class="chip-icon">🚂</span><span class="chip-it">il treno</span><span class="chip-es">el tren</span></div>
+      <div class="chip" onclick="ippAudio('l\'autobus', 0.82, 'm')"><span class="chip-icon">🚌</span><span class="chip-it">l'autobus</span><span class="chip-es">el colectivo</span></div>
+      <div class="chip" onclick="ippAudio('il tram', 0.82, 'm')"><span class="chip-icon">🚃</span><span class="chip-it">il tram</span><span class="chip-es">el tranvía</span></div>
+      <div class="chip" onclick="ippAudio('la metropolitana', 0.82, 'f')"><span class="chip-icon">🚇</span><span class="chip-it">la metropolitana</span><span class="chip-es">el subterráneo</span></div>
+      <div class="chip" onclick="ippAudio('il taxi', 0.82, 'm')"><span class="chip-icon">🚕</span><span class="chip-it">il taxi</span><span class="chip-es">el taxi</span></div>
+      <div class="chip" onclick="ippAudio('la macchina', 0.82, 'f')"><span class="chip-icon">🚗</span><span class="chip-it">la macchina</span><span class="chip-es">el auto</span></div>
+      <div class="chip" onclick="ippAudio('il traghetto', 0.82, 'm')"><span class="chip-icon">🛳️</span><span class="chip-it">il traghetto</span><span class="chip-es">el ferry</span></div>
+      <div class="chip" onclick="ippAudio('il vaporetto', 0.82, 'm')"><span class="chip-icon">⛴️</span><span class="chip-it">il vaporetto</span><span class="chip-es">colectivo acuático</span></div>
+      <div class="chip" onclick="ippAudio('la gondola', 0.82, 'f')"><span class="chip-icon">🚣</span><span class="chip-it">la gondola</span><span class="chip-es">la góndola</span></div>
+      <div class="chip" onclick="ippAudio('l\'aereo', 0.82, 'm')"><span class="chip-icon">✈️</span><span class="chip-it">l'aereo</span><span class="chip-es">el avión</span></div>
+      <div class="chip" onclick="ippAudio('la moto', 0.82, 'f')"><span class="chip-icon">🏍️</span><span class="chip-it">la moto</span><span class="chip-es">la moto</span></div>
+      <div class="chip" onclick="ippAudio('lo scooter', 0.82, 'm')"><span class="chip-icon">🛵</span><span class="chip-it">lo scooter</span><span class="chip-es">el scooter</span></div>
+      <div class="chip" onclick="ippAudio('a piedi', 0.82, 'f')"><span class="chip-icon">🚶</span><span class="chip-it">a piedi</span><span class="chip-es">a pie / caminando</span></div>
+    </div>
+  </div>
+
+  <!-- 2. LA CITTÀ -->
+  <div class="section-block">
+    <h2 class="section-title">La città — Vocabulario urbano</h2>
+    <p class="section-sub">Las palabras que necesitás para moverte por una ciudad italiana.</p>
+    <div class="chip-grid">
+      <div class="chip" onclick="ippAudio('la via', 0.82, 'f')"><span class="chip-icon">🛣️</span><span class="chip-it">la via</span><span class="chip-es">la calle</span></div>
+      <div class="chip" onclick="ippAudio('il viale', 0.82, 'm')"><span class="chip-icon">🌳</span><span class="chip-it">il viale</span><span class="chip-es">la avenida arbolada</span></div>
+      <div class="chip" onclick="ippAudio('la piazza', 0.82, 'f')"><span class="chip-icon">🏛️</span><span class="chip-it">la piazza</span><span class="chip-es">la plaza</span></div>
+      <div class="chip" onclick="ippAudio('il corso', 0.82, 'm')"><span class="chip-icon">🏙️</span><span class="chip-it">il corso</span><span class="chip-es">la av. principal</span></div>
+      <div class="chip" onclick="ippAudio('il largo', 0.82, 'm')"><span class="chip-icon">⬜</span><span class="chip-it">il largo</span><span class="chip-es">la plazoleta</span></div>
+      <div class="chip" onclick="ippAudio('l\'incrocio', 0.82, 'm')"><span class="chip-icon">✚</span><span class="chip-it">l'incrocio</span><span class="chip-es">la intersección</span></div>
+      <div class="chip" onclick="ippAudio('il semaforo', 0.82, 'm')"><span class="chip-icon">🚦</span><span class="chip-it">il semaforo</span><span class="chip-es">el semáforo</span></div>
+      <div class="chip" onclick="ippAudio('la fermata', 0.82, 'f')"><span class="chip-icon">🚏</span><span class="chip-it">la fermata</span><span class="chip-es">la parada</span></div>
+      <div class="chip" onclick="ippAudio('la stazione', 0.82, 'f')"><span class="chip-icon">🏢</span><span class="chip-it">la stazione</span><span class="chip-es">la estación</span></div>
+      <div class="chip" onclick="ippAudio('il binario', 0.82, 'm')"><span class="chip-icon">🛤️</span><span class="chip-it">il binario</span><span class="chip-es">el andén / vía</span></div>
+      <div class="chip" onclick="ippAudio('l\'aeroporto', 0.82, 'm')"><span class="chip-icon">🛫</span><span class="chip-it">l'aeroporto</span><span class="chip-es">el aeropuerto</span></div>
+    </div>
+  </div>
+
+  <!-- 3. AVVERBI DI LUOGO -->
+  <div class="section-block">
+    <h2 class="section-title">Avverbi di luogo — Adverbios de lugar</h2>
+    <p class="section-sub">Palabras esenciales para dar y entender indicaciones.</p>
+    <div class="avverbi-grid">
+      <div class="avv-card" onclick="ippAudio('qui, qua', 0.82, 'f')"><div class="avv-it">qui / qua</div><div class="avv-es">aquí / acá</div></div>
+      <div class="avv-card" onclick="ippAudio('lì, là', 0.82, 'f')"><div class="avv-it">lì / là</div><div class="avv-es">allí / allá</div></div>
+      <div class="avv-card" onclick="ippAudio('vicino', 0.82, 'm')"><div class="avv-it">vicino</div><div class="avv-es">cerca</div></div>
+      <div class="avv-card" onclick="ippAudio('lontano', 0.82, 'm')"><div class="avv-it">lontano</div><div class="avv-es">lejos</div></div>
+      <div class="avv-card" onclick="ippAudio('sopra', 0.82, 'f')"><div class="avv-it">sopra</div><div class="avv-es">arriba / encima</div></div>
+      <div class="avv-card" onclick="ippAudio('sotto', 0.82, 'f')"><div class="avv-it">sotto</div><div class="avv-es">abajo / debajo</div></div>
+      <div class="avv-card" onclick="ippAudio('davanti', 0.82, 'f')"><div class="avv-it">davanti</div><div class="avv-es">delante / enfrente</div></div>
+      <div class="avv-card" onclick="ippAudio('dietro', 0.82, 'f')"><div class="avv-it">dietro</div><div class="avv-es">detrás</div></div>
+      <div class="avv-card" onclick="ippAudio('a destra', 0.82, 'f')"><div class="avv-it">a destra</div><div class="avv-es">a la derecha</div></div>
+      <div class="avv-card" onclick="ippAudio('a sinistra', 0.82, 'f')"><div class="avv-it">a sinistra</div><div class="avv-es">a la izquierda</div></div>
+      <div class="avv-card" onclick="ippAudio('dritto', 0.82, 'm')"><div class="avv-it">dritto / diritto</div><div class="avv-es">recto / derecho</div></div>
+    </div>
+  </div>
+
+  <!-- 4. DIÁLOGO -->
+  <div class="section-block">
+    <h2 class="section-title">In stazione — Diálogo situacional</h2>
+    <p class="section-sub">Sofia llega a Roma Termini y pregunta cómo llegar al Colosseo.</p>
+    <div class="dialog-box">
+      <div class="dialog-controls">
+        <button class="btn-play-all" onclick="playAllDialog()">▶ Escuchar todo el diálogo</button>
+      </div>
+
+      <div class="dialog-line sofia">
+        <div class="speaker-avatar">S</div>
+        <div class="bubble">
+          <div class="bubble-name">Sofia</div>
+          <div class="bubble-text" data-text="Scusi, mi sa dire come arrivo al Colosseo da qui?" data-gender="f">
+            <em>Scusi, mi sa dire come arrivo al Colosseo da qui?</em>
+          </div>
+          <div class="bubble-es">Disculpe, ¿me podría decir cómo llego al Colosseo desde acá?</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line luca">
+        <div class="speaker-avatar">L</div>
+        <div class="bubble">
+          <div class="bubble-name">Luca</div>
+          <div class="bubble-text" data-text="Certo! Prenda la metropolitana linea B, direzione Laurentina." data-gender="m">
+            <em>Certo! Prenda la metropolitana linea B, direzione Laurentina.</em>
+          </div>
+          <div class="bubble-es">¡Claro! Tomá el subterráneo línea B, dirección Laurentina.</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line sofia">
+        <div class="speaker-avatar">S</div>
+        <div class="bubble">
+          <div class="bubble-name">Sofia</div>
+          <div class="bubble-text" data-text="E dove prendo la metro? È lontano da qui?" data-gender="f">
+            <em>E dove prendo la metro? È lontano da qui?</em>
+          </div>
+          <div class="bubble-es">¿Y dónde tomo el subte? ¿Está lejos de acá?</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line luca">
+        <div class="speaker-avatar">L</div>
+        <div class="bubble">
+          <div class="bubble-name">Luca</div>
+          <div class="bubble-text" data-text="No, è vicinissimo! Vada dritto, poi giri a sinistra. La fermata è lì, davanti alla farmacia." data-gender="m">
+            <em>No, è vicinissimo! Vada dritto, poi giri a sinistra. La fermata è lì, davanti alla farmacia.</em>
+          </div>
+          <div class="bubble-es">¡No, está cerquísima! Andá recto, después girá a la izquierda. La parada está allí, frente a la farmacia.</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line sofia">
+        <div class="speaker-avatar">S</div>
+        <div class="bubble">
+          <div class="bubble-name">Sofia</div>
+          <div class="bubble-text" data-text="Capito! E ci vuole molto per arrivare al Colosseo?" data-gender="f">
+            <em>Capito! E ci vuole molto per arrivare al Colosseo?</em>
+          </div>
+          <div class="bubble-es">¡Entendido! ¿Y lleva mucho para llegar al Colosseo?</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line luca">
+        <div class="speaker-avatar">L</div>
+        <div class="bubble">
+          <div class="bubble-name">Luca</div>
+          <div class="bubble-text" data-text="No, ci vuole circa dieci minuti con la metro. Scendi alla fermata Colosseo, è sulla linea B." data-gender="m">
+            <em>No, ci vuole circa dieci minuti con la metro. Scendi alla fermata Colosseo, è sulla linea B.</em>
+          </div>
+          <div class="bubble-es">No, lleva unos diez minutos en subte. Bajás en la parada Colosseo, está en la línea B.</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line sofia">
+        <div class="speaker-avatar">S</div>
+        <div class="bubble">
+          <div class="bubble-name">Sofia</div>
+          <div class="bubble-text" data-text="Perfetto! E il biglietto, dove si compra?" data-gender="f">
+            <em>Perfetto! E il biglietto, dove si compra?</em>
+          </div>
+          <div class="bubble-es">¡Perfecto! ¿Y el boleto, dónde se compra?</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line luca">
+        <div class="speaker-avatar">L</div>
+        <div class="bubble">
+          <div class="bubble-name">Luca</div>
+          <div class="bubble-text" data-text="Alla biglietteria automatica, proprio qui in stazione. Oppure puoi comprarlo dal tabaccaio." data-gender="m">
+            <em>Alla biglietteria automatica, proprio qui in stazione. Oppure puoi comprarlo dal tabaccaio.</em>
+          </div>
+          <div class="bubble-es">En la boletería automática, acá mismo en la estación. O podés comprarlo en el kiosco de tabaco.</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line sofia">
+        <div class="speaker-avatar">S</div>
+        <div class="bubble">
+          <div class="bubble-name">Sofia</div>
+          <div class="bubble-text" data-text="Grazie mille, è stato gentilissimo!" data-gender="f">
+            <em>Grazie mille, è stato gentilissimo!</em>
+          </div>
+          <div class="bubble-es">¡Muchísimas gracias, fue muy amable!</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line luca">
+        <div class="speaker-avatar">L</div>
+        <div class="bubble">
+          <div class="bubble-name">Luca</div>
+          <div class="bubble-text" data-text="Prego! Buona visita al Colosseo!" data-gender="m">
+            <em>Prego! Buona visita al Colosseo!</em>
+          </div>
+          <div class="bubble-es">¡De nada! ¡Que disfrutes la visita al Colosseo!</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line sofia">
+        <div class="speaker-avatar">S</div>
+        <div class="bubble">
+          <div class="bubble-name">Sofia</div>
+          <div class="bubble-text" data-text="Aspetti! Sa anche dove posso mangiare vicino al Colosseo? Ho una fame!" data-gender="f">
+            <em>Aspetti! Sa anche dove posso mangiare vicino al Colosseo? Ho una fame!</em>
+          </div>
+          <div class="bubble-es">¡Espere! ¿Sabe también dónde puedo comer cerca del Colosseo? ¡Tengo un hambre!</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line luca">
+        <div class="speaker-avatar">L</div>
+        <div class="bubble">
+          <div class="bubble-name">Luca</div>
+          <div class="bubble-text" data-text="Certo! Vicino alla fermata ci sono tanti ristoranti. Ma attenzione ai prezzi — zona turistica!" data-gender="m">
+            <em>Certo! Vicino alla fermata ci sono tanti ristoranti. Ma attenzione ai prezzi — zona turistica!</em>
+          </div>
+          <div class="bubble-es">¡Claro! Cerca de la parada hay muchos restaurantes. ¡Pero cuidado con los precios, zona turística!</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line sofia">
+        <div class="speaker-avatar">S</div>
+        <div class="bubble">
+          <div class="bubble-name">Sofia</div>
+          <div class="bubble-text" data-text="Ha una raccomandazione? Preferisco qualcosa di tipico romano." data-gender="f">
+            <em>Ha una raccomandazione? Preferisco qualcosa di tipico romano.</em>
+          </div>
+          <div class="bubble-es">¿Tiene alguna recomendación? Prefiero algo típico romano.</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line luca">
+        <div class="speaker-avatar">L</div>
+        <div class="bubble">
+          <div class="bubble-name">Luca</div>
+          <div class="bubble-text" data-text="Vada in Via dei Serpenti — lì ci sono trattorie genuine. Provi la pasta cacio e pepe!" data-gender="m">
+            <em>Vada in Via dei Serpenti — lì ci sono trattorie genuine. Provi la pasta cacio e pepe!</em>
+          </div>
+          <div class="bubble-es">Vaya a Via dei Serpenti, allí hay trattorias genuinas. ¡Pruebe la pasta cacio e pepe!</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line sofia">
+        <div class="speaker-avatar">S</div>
+        <div class="bubble">
+          <div class="bubble-name">Sofia</div>
+          <div class="bubble-text" data-text="Cacio e pepe! È già il mio piatto preferito. E per tornare, prendo di nuovo la metro?" data-gender="f">
+            <em>Cacio e pepe! È già il mio piatto preferito. E per tornare, prendo di nuovo la metro?</em>
+          </div>
+          <div class="bubble-es">¡Cacio e pepe! Ya es mi plato preferido. ¿Y para volver, tomo de nuevo el subte?</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line luca">
+        <div class="speaker-avatar">L</div>
+        <div class="bubble">
+          <div class="bubble-name">Luca</div>
+          <div class="bubble-text" data-text="Sì, oppure c'è l'autobus numero 75. Passa ogni dieci minuti." data-gender="m">
+            <em>Sì, oppure c'è l'autobus numero 75. Passa ogni dieci minuti.</em>
+          </div>
+          <div class="bubble-es">Sí, o también está el autobús número 75. Pasa cada diez minutos.</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line sofia">
+        <div class="speaker-avatar">S</div>
+        <div class="bubble">
+          <div class="bubble-name">Sofia</div>
+          <div class="bubble-text" data-text="Perfetto! Tante grazie, è stato di grande aiuto!" data-gender="f">
+            <em>Perfetto! Tante grazie, è stato di grande aiuto!</em>
+          </div>
+          <div class="bubble-es">¡Perfecto! Muchas gracias, fue de gran ayuda.</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+
+      <div class="dialog-line luca">
+        <div class="speaker-avatar">L</div>
+        <div class="bubble">
+          <div class="bubble-name">Luca</div>
+          <div class="bubble-text" data-text="Di niente! Benvenuta a Roma — è una città meravigliosa. Buona permanenza!" data-gender="m">
+            <em>Di niente! Benvenuta a Roma — è una città meravigliosa. Buona permanenza!</em>
+          </div>
+          <div class="bubble-es">¡De nada! Bienvenida a Roma, es una ciudad maravillosa. ¡Que disfrutes la estadía!</div>
+          <button class="btn-line" onclick="playLine(this)">▶ Escuchar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. STARE + GERUNDIO -->
+  <div class="section-block">
+    <h2 class="section-title">Stare + gerundio — Presente progresivo</h2>
+    <p class="section-sub">Se usa para hablar de lo que está pasando <em>ahora mismo</em>. Como el "-ando/-iendo" del español.</p>
+    <div class="grammar-section">
+      <div class="grammar-title"><span class="grammar-tag">STRUTTURA</span> stare (conjugado) + gerundio</div>
+      <div class="pattern-grid">
+        <div class="pattern-card" onclick="ippAudio('sto camminando', 0.82, 'f')">
+          <div class="pattern-it">Sto camminando</div>
+          <div class="pattern-es">Estoy caminando</div>
+          <div class="pattern-form">io → sto</div>
+        </div>
+        <div class="pattern-card" onclick="ippAudio('stai aspettando il treno', 0.82, 'f')">
+          <div class="pattern-it">Stai aspettando il treno</div>
+          <div class="pattern-es">Estás esperando el tren</div>
+          <div class="pattern-form">tu → stai</div>
+        </div>
+        <div class="pattern-card" onclick="ippAudio('sta prendendo la metro', 0.82, 'f')">
+          <div class="pattern-it">Sta prendendo la metro</div>
+          <div class="pattern-es">Está tomando el subte</div>
+          <div class="pattern-form">lui/lei → sta</div>
+        </div>
+        <div class="pattern-card" onclick="ippAudio('stiamo viaggiando', 0.82, 'f')">
+          <div class="pattern-it">Stiamo viaggiando</div>
+          <div class="pattern-es">Estamos viajando</div>
+          <div class="pattern-form">noi → stiamo</div>
+        </div>
+        <div class="pattern-card" onclick="ippAudio('state guardando la mappa', 0.82, 'f')">
+          <div class="pattern-it">State guardando la mappa</div>
+          <div class="pattern-es">Están mirando el mapa</div>
+          <div class="pattern-form">voi → state</div>
+        </div>
+        <div class="pattern-card" onclick="ippAudio('stanno partendo adesso', 0.82, 'f')">
+          <div class="pattern-it">Stanno partendo adesso</div>
+          <div class="pattern-es">Están saliendo ahora</div>
+          <div class="pattern-form">loro → stanno</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. NUMERI ORDINALI -->
+  <div class="section-block">
+    <h2 class="section-title">Numeri ordinali — Números ordinales</h2>
+    <p class="section-sub">Muy útiles para indicar pisos, andenes, líneas de metro... ¡Hacé clic para escucharlos!</p>
+    <div class="chip-grid">
+      <div class="chip" onclick="ippAudio('primo', 0.82, 'm')"><span class="chip-it">1° primo</span><span class="chip-es">primero/a</span></div>
+      <div class="chip" onclick="ippAudio('secondo', 0.82, 'm')"><span class="chip-it">2° secondo</span><span class="chip-es">segundo/a</span></div>
+      <div class="chip" onclick="ippAudio('terzo', 0.82, 'm')"><span class="chip-it">3° terzo</span><span class="chip-es">tercero/a</span></div>
+      <div class="chip" onclick="ippAudio('quarto', 0.82, 'm')"><span class="chip-it">4° quarto</span><span class="chip-es">cuarto/a</span></div>
+      <div class="chip" onclick="ippAudio('quinto', 0.82, 'm')"><span class="chip-it">5° quinto</span><span class="chip-es">quinto/a</span></div>
+      <div class="chip" onclick="ippAudio('sesto', 0.82, 'm')"><span class="chip-it">6° sesto</span><span class="chip-es">sexto/a</span></div>
+      <div class="chip" onclick="ippAudio('settimo', 0.82, 'm')"><span class="chip-it">7° settimo</span><span class="chip-es">séptimo/a</span></div>
+      <div class="chip" onclick="ippAudio('ottavo', 0.82, 'm')"><span class="chip-it">8° ottavo</span><span class="chip-es">octavo/a</span></div>
+      <div class="chip" onclick="ippAudio('nono', 0.82, 'm')"><span class="chip-it">9° nono</span><span class="chip-es">noveno/a</span></div>
+      <div class="chip" onclick="ippAudio('decimo', 0.82, 'm')"><span class="chip-it">10° decimo</span><span class="chip-es">décimo/a</span></div>
+    </div>
+  </div>
+
+  <!-- 7. IMPERATIVO INFORMALE -->
+  <div class="section-block">
+    <h2 class="section-title">Imperativo informale — Dar instrucciones</h2>
+    <p class="section-sub">Para decirle a alguien (vos/tú) qué hacer. Fundamental para indicar cómo llegar a algún lugar.</p>
+    <div class="imp-grid">
+      <div class="imp-card" onclick="ippAudio('Prendi il treno!', 0.82, 'f')">
+        <div class="imp-it">Prendi il treno!</div>
+        <div class="imp-es">¡Tomá el tren!</div>
+        <div class="imp-type">prendere → prendi</div>
+      </div>
+      <div class="imp-card" onclick="ippAudio('Vai dritto!', 0.82, 'm')">
+        <div class="imp-it">Vai dritto!</div>
+        <div class="imp-es">¡Andá recto!</div>
+        <div class="imp-type">andare → vai ⚠ irregolare</div>
+      </div>
+      <div class="imp-card" onclick="ippAudio('Aspetta qui!', 0.82, 'm')">
+        <div class="imp-it">Aspetta qui!</div>
+        <div class="imp-es">¡Esperá acá!</div>
+        <div class="imp-type">aspettare → aspetta</div>
+      </div>
+      <div class="imp-card" onclick="ippAudio('Gira a destra!', 0.82, 'f')">
+        <div class="imp-it">Gira a destra!</div>
+        <div class="imp-es">¡Girá a la derecha!</div>
+        <div class="imp-type">girare → gira</div>
+      </div>
+      <div class="imp-card" onclick="ippAudio('Scendi alla prossima fermata!', 0.82, 'f')">
+        <div class="imp-it">Scendi alla prossima!</div>
+        <div class="imp-es">¡Bajá en la próxima!</div>
+        <div class="imp-type">scendere → scendi</div>
+      </div>
+      <div class="imp-card" onclick="ippAudio('Segui la strada principale!', 0.82, 'f')">
+        <div class="imp-it">Segui la strada!</div>
+        <div class="imp-es">¡Seguí la calle!</div>
+        <div class="imp-type">seguire → segui</div>
+      </div>
+      <div class="imp-card" onclick="ippAudio('Compra il biglietto!', 0.82, 'f')">
+        <div class="imp-it">Compra il biglietto!</div>
+        <div class="imp-es">¡Comprá el boleto!</div>
+        <div class="imp-type">comprare → compra</div>
+      </div>
+      <div class="imp-card" onclick="ippAudio('Vieni con me!', 0.82, 'f')">
+        <div class="imp-it">Vieni con me!</div>
+        <div class="imp-es">¡Venite conmigo!</div>
+        <div class="imp-type">venire → vieni ⚠ irregolare</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. PRONOMI DIMOSTRATIVI -->
+  <div class="section-block">
+    <h2 class="section-title">Pronomi dimostrativi — Este vs. Ese/Aquel</h2>
+    <p class="section-sub"><strong>questo/a</strong> = este/esta (cerca de mí) · <strong>quello/a</strong> = ese/aquel (lejos de mí)</p>
+    <div class="dimo-grid">
+      <div class="dimo-box questo">
+        <div class="dimo-header" style="cursor:pointer" onclick="ippAudio('questo, questa, questi, queste', 0.82, 'f')">QUESTO — cerca 📍</div>
+        <div class="dimo-forms">
+          <div class="dimo-row">
+            <span class="dimo-word" onclick="ippAudio('questo treno', 0.82, 'm')" style="cursor:pointer">questo treno</span>
+            <span class="dimo-label">masc. sing.</span>
+          </div>
+          <div class="dimo-row">
+            <span class="dimo-word" onclick="ippAudio('questa fermata', 0.82, 'f')" style="cursor:pointer">questa fermata</span>
+            <span class="dimo-label">fem. sing.</span>
+          </div>
+          <div class="dimo-row">
+            <span class="dimo-word" onclick="ippAudio('questi treni', 0.82, 'm')" style="cursor:pointer">questi treni</span>
+            <span class="dimo-label">masc. plur.</span>
+          </div>
+          <div class="dimo-row">
+            <span class="dimo-word" onclick="ippAudio('queste strade', 0.82, 'f')" style="cursor:pointer">queste strade</span>
+            <span class="dimo-label">fem. plur.</span>
+          </div>
+        </div>
+      </div>
+      <div class="dimo-box quello">
+        <div class="dimo-header" style="cursor:pointer" onclick="ippAudio('quello, quella, quelli, quelle', 0.82, 'f')">QUELLO — lontano 🔭</div>
+        <div class="dimo-forms">
+          <div class="dimo-row">
+            <span class="dimo-word" onclick="ippAudio('quel treno', 0.82, 'm')" style="cursor:pointer">quel treno</span>
+            <span class="dimo-label">masc. sing.</span>
+          </div>
+          <div class="dimo-row">
+            <span class="dimo-word" onclick="ippAudio('quella fermata', 0.82, 'f')" style="cursor:pointer">quella fermata</span>
+            <span class="dimo-label">fem. sing.</span>
+          </div>
+          <div class="dimo-row">
+            <span class="dimo-word" onclick="ippAudio('quei treni', 0.82, 'm')" style="cursor:pointer">quei treni</span>
+            <span class="dimo-label">masc. plur.</span>
+          </div>
+          <div class="dimo-row">
+            <span class="dimo-word" onclick="ippAudio('quelle strade', 0.82, 'f')" style="cursor:pointer">quelle strade</span>
+            <span class="dimo-label">fem. plur.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CULTURE STRIP -->
+  <div class="culture-strip">
+    <div class="culture-header">
+      <div class="culture-title">🚄 Il Frecciarossa: orgoglio italiano</div>
+      <button class="btn-toggle" onclick="toggleCulture(this)">Ver en español</button>
+    </div>
+    <div class="culture-it">
+      Il Frecciarossa è il treno ad alta velocità più famoso d'Italia. Collega Milano e Roma in circa due ore e mezza, viaggiando a oltre 300 km/h. È gestito da Trenitalia e fa parte della famiglia <em>Frecce</em>, insieme al Frecciabianca e al Frecciargento. Le stazioni di Reggio Emilia AV, progettate da Santiago Calatrava, sono un esempio di architettura moderna integrata con i trasporti. In Italia, il treno è spesso più conveniente e più veloce dell'aereo per le tratte interne.
+    </div>
+    <div class="culture-es">
+      El Frecciarossa es el tren de alta velocidad más famoso de Italia. Conecta Milán con Roma en alrededor de dos horas y media, viajando a más de 300 km/h. Es operado por Trenitalia y forma parte de la familia <em>Frecce</em>, junto con el Frecciabianca y el Frecciargento. Las estaciones de Reggio Emilia AV, diseñadas por Santiago Calatrava, son un ejemplo de arquitectura moderna integrada con el transporte. En Italia, el tren suele ser más económico y más rápido que el avión para los trayectos internos.
+    </div>
+  </div>
+
+</div>
+
+<script>
+if (!window.__ippVC) {
+  window.__ippVC = true; window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) window.__ippV = v; };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
+
+if (!window.__ipp_m8_e2__) {
+window.__ipp_m8_e2__ = true;
+
+function ippVoice(gender) {
+  var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+  var itV = voices.filter(function(v){ return v.lang && v.lang.startsWith('it'); });
+  if (!itV.length) return null;
+  var voice = null;
+  if (gender === 'm') {
+    voice = itV.find(function(v){ return /cosimo|luca|giorgio|male|masc/i.test(v.name); });
+    if (!voice) voice = itV.find(function(v){ return !/elsa|alice|giulia|female|femm/i.test(v.name); });
+  } else {
+    voice = itV.find(function(v){ return /elsa|alice|giulia|female|femm/i.test(v.name); });
+    if (!voice) voice = itV.find(function(v){ return !/cosimo|luca|giorgio|male|masc/i.test(v.name); });
+  }
+  return voice || itV[0];
+}
+
+function ippAudio(text, rate, gender) {
+  rate = (typeof rate === 'number' && isFinite(rate) && rate > 0) ? rate : 0.82;
+  gender = (gender === 'm' || gender === 'f') ? gender : 'f';
+  if (!window.speechSynthesis) return;
+  try { speechSynthesis.cancel(); } catch(e) {}
+  var utt = new SpeechSynthesisUtterance(String(text));
+  utt.lang = 'it-IT'; utt.rate = rate;
+  var voice = ippVoice(gender);
+  if (voice) utt.voice = voice;
+  (function(u){ setTimeout(function(){ try { speechSynthesis.speak(u); } catch(e){} }, 60); })(utt);
+}
+
+function playLine(btn) {
+  var bubble = btn.closest('.bubble');
+  var textEl = bubble.querySelector('[data-text]');
+  if (!textEl) return;
+  var text = textEl.getAttribute('data-text');
+  var gender = textEl.getAttribute('data-gender') || 'f';
+  ippAudio(text, 0.8, gender);
+}
+
+function playAllDialog() {
+  var lines = document.querySelectorAll('.bubble [data-text]');
+  var delay = 0;
+  lines.forEach(function(el) {
+    var text = el.getAttribute('data-text');
+    var gender = el.getAttribute('data-gender') || 'f';
+    (function(t, g, d){
+      setTimeout(function(){
+        if (!window.speechSynthesis) return;
+        try { speechSynthesis.cancel(); } catch(e) {}
+        var utt = new SpeechSynthesisUtterance(String(t));
+        utt.lang = 'it-IT'; utt.rate = 0.8;
+        var voice = ippVoice(g);
+        if (voice) utt.voice = voice;
+        try { speechSynthesis.speak(utt); } catch(e) {}
+      }, d);
+    })(text, gender, delay);
+    delay += 3500;
+  });
+}
+
+function toggleCulture(btn) {
+  var strip = btn.closest('.culture-strip');
+  var es = strip.querySelector('.culture-es');
+  if (es.style.display === 'block') {
+    es.style.display = 'none';
+    btn.textContent = 'Ver en español';
+  } else {
+    es.style.display = 'block';
+    btn.textContent = 'Ocultar traducción';
+  }
+}
+
+window.ippAudio = ippAudio;
+window.ippVoice = ippVoice;
+window.playLine = playLine;
+window.playAllDialog = playAllDialog;
+window.toggleCulture = toggleCulture;
+
+} // end execution guard
+</script>
+</body>
+</html>

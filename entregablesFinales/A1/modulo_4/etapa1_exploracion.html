@@ -3,31 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Che lavoro fai? — Etapa 1 | Italiano Per Piacere</title>
+<title>Tutti in piazza! — Etapa 1 | Italiano Per Piacere</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --mod:    #e5ab07;
-  --mod-dk: #c8940a;
-  --mod-lt: #fff8e6;
-  --mod-tx: #7a5500;
-  --cream:  #e9e6d5;
+  --cream:    #e9e6d5;
   --cream-dk: #ddd9c8;
-  --gold:   #EFCF7F;
-  --black:  #1a1a18;
-  --white:  #ffffff;
-  --green:  #2d7a4f;
-  --red:    #cc4736;
+  --gold:     #EFCF7F;
+  --amber:    #e5ab07;
+  --amber-dk: #c8940a;
+  --red:      #cc4736;
+  --teal:     #78a6ba;
+  --green:    #528e74;
+  --black:    #1a1a18;
+  --white:    #ffffff;
   --fh: 'Playfair Display', Georgia, serif;
   --fb: 'Outfit', system-ui, sans-serif;
   --r: 10px;
+  --mc:      #528e74;
+  --mc-dk:   #3d6b58;
+  --mc-text: #2d4d3c;
+  --mc-bg:   #e8f4ef;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: var(--cream); font-family: var(--fb); color: var(--black); line-height: 1.6; }
 
-/* HERO */
 .hero {
-  background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
+  background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%);
   padding: 56px 24px 48px;
   text-align: center;
   color: var(--white);
@@ -53,16 +55,45 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
 }
 .hero p { font-size: 1.05rem; opacity: 0.9; }
 
-/* NAV */
+.stage-nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--cream-dk);
+  padding: 0 24px;
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  overflow-x: auto;
+}
+.stage-nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: #888;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.stage-nav a.active { color: var(--mc-text); border-bottom-color: var(--mc); }
+.stage-nav a .num {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: #ddd; color: #666;
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.stage-nav a.active .num { background: var(--mc); color: var(--white); }
+.stage-nav a.done .num { background: var(--green); color: var(--white); }
+.stage-nav a.done { color: var(--green); }
 
-/* LAYOUT */
 .container { max-width: 820px; margin: 0 auto; padding: 40px 24px; }
 
-/* SOFIA */
 .sofia-wrap { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 32px; }
 .sofia-avatar {
   width: 52px; height: 52px; border-radius: 50%;
-  background: var(--mod);
+  background: var(--mc);
   display: flex; align-items: center; justify-content: center;
   font-size: 24px; flex-shrink: 0;
 }
@@ -80,11 +111,10 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
   border-right-color: var(--cream-dk);
 }
 .sofia-name {
-  font-weight: 700; color: var(--mod-tx); font-size: 12px;
+  font-weight: 700; color: var(--mc-text); font-size: 12px;
   text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
 }
 
-/* VIDEO */
 .video-wrap {
   position: relative; padding-bottom: 56.25%; height: 0;
   overflow: hidden; border-radius: var(--r);
@@ -92,29 +122,40 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
 }
 .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-/* TASK BOX */
 .task-box {
-  background: var(--mod-lt);
-  border-left: 4px solid var(--mod);
+  background: var(--mc-bg);
+  border-left: 4px solid var(--mc);
   border-radius: 0 var(--r) var(--r) 0;
   padding: 16px 20px; margin-bottom: 28px;
 }
 .task-box h3 {
-  color: var(--mod-tx); font-size: 13px;
+  color: var(--mc-text); font-size: 13px;
   text-transform: uppercase; letter-spacing: 0.8px;
   font-weight: 700; margin-bottom: 8px;
 }
 .task-box ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-.task-box ul li::before { content: '→ '; color: var(--mod); font-weight: 700; }
+.task-box ul li::before { content: '→ '; color: var(--mc); font-weight: 700; }
 
-/* SECTION TITLE */
-.section-title {
-  font-family: var(--fh); font-style: italic; font-size: 1.5rem;
-  color: var(--mod-tx); margin-bottom: 20px;
-  padding-bottom: 8px; border-bottom: 2px solid var(--mod-lt);
+.joke-note {
+  background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk));
+  border: 1px solid var(--mc);
+  border-radius: var(--r);
+  padding: 16px 20px;
+  margin-bottom: 32px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.joke-label {
+  font-weight: 700; color: var(--mc-text); font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px;
 }
 
-/* EXERCISE CARD */
+.section-title {
+  font-family: var(--fh); font-style: italic; font-size: 1.5rem;
+  color: var(--mc-text); margin-bottom: 20px;
+  padding-bottom: 8px; border-bottom: 2px solid var(--mc-bg);
+}
+
 .exercise-card {
   background: var(--white); border-radius: var(--r);
   padding: 28px; margin-bottom: 28px;
@@ -123,14 +164,13 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
 .ex-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
 .ex-num {
   width: 36px; height: 36px; border-radius: 50%;
-  background: var(--mod); color: var(--white);
+  background: var(--mc); color: var(--white);
   font-weight: 700; font-size: 15px;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .ex-title { font-weight: 700; font-size: 1.05rem; color: var(--black); }
 .ex-subtitle { font-size: 13px; color: #666; margin-top: 2px; }
 
-/* V/F */
 .vf-item {
   display: flex; flex-direction: column; gap: 8px;
   padding: 14px 0; border-bottom: 1px solid var(--cream-dk);
@@ -144,12 +184,11 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
   font-family: var(--fb); font-size: 13px; font-weight: 600;
   cursor: pointer; transition: all 0.2s;
 }
-.btn-vf:hover { border-color: var(--mod); color: var(--mod-tx); }
-.btn-vf.correct { background: #d4edda; border-color: var(--green); color: var(--green); }
+.btn-vf:hover { border-color: var(--mc); color: var(--mc-text); }
+.btn-vf.correct { background: #d4edda; border-color: #2d7a4f; color: #2d7a4f; }
 .btn-vf.wrong { background: #fde8e8; border-color: var(--red); color: var(--red); }
 .vf-feedback { font-size: 13px; min-height: 18px; font-weight: 500; }
 
-/* MC */
 .mc-item { padding: 16px 0; border-bottom: 1px solid var(--cream-dk); }
 .mc-item:last-child { border-bottom: none; }
 .mc-question { font-weight: 600; margin-bottom: 10px; font-size: 0.97rem; }
@@ -159,36 +198,37 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
   border-radius: 6px; background: var(--cream);
   font-family: var(--fb); font-size: 13px; cursor: pointer; transition: all 0.2s;
 }
-.btn-mc:hover { border-color: var(--mod); }
-.btn-mc.correct { background: #d4edda; border-color: var(--green); color: var(--green); font-weight: 700; }
+.btn-mc:hover { border-color: var(--mc); }
+.btn-mc.correct { background: #d4edda; border-color: #2d7a4f; color: #2d7a4f; font-weight: 700; }
 .btn-mc.wrong { background: #fde8e8; border-color: var(--red); color: var(--red); }
 .mc-feedback { font-size: 13px; margin-top: 8px; min-height: 18px; font-weight: 500; }
 
-/* SCORE */
 .score-bar {
-  background: var(--mod-lt); border-radius: var(--r);
+  background: var(--mc-bg); border-radius: var(--r);
   padding: 16px 20px; margin-top: 20px;
   display: flex; align-items: center; justify-content: space-between;
   flex-wrap: wrap; gap: 10px;
 }
 .score-label { font-weight: 600; font-size: 0.95rem; }
-.score-num { font-size: 1.5rem; font-weight: 700; color: var(--mod-tx); }
+.score-num { font-size: 1.5rem; font-weight: 700; color: var(--mc-text); }
 
-/* CTA */
-
-/* CONTEXT BOX */
-.context-box {
+.cta-wrap {
+  text-align: center; margin-top: 40px; padding: 36px;
   background: var(--white); border-radius: var(--r);
-  padding: 20px 24px; margin-bottom: 28px;
-  border: 1px solid var(--gold);
-  box-shadow: 0 2px 8px rgba(229,171,7,0.1);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
 }
-.context-box h3 { color: var(--mod-tx); font-size: 13px; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700; margin-bottom: 10px; }
-.context-box p { font-size: 0.95rem; line-height: 1.6; color: #444; }
+.cta-wrap p { color: #555; margin-bottom: 16px; font-size: 1rem; }
+.btn-cta {
+  display: inline-block; padding: 14px 36px;
+  background: var(--mc); color: var(--white);
+  text-decoration: none; border-radius: 8px;
+  font-weight: 700; font-size: 1rem; transition: background 0.2s;
+}
+.btn-cta:hover { background: var(--mc-dk); }
 
 @media (max-width: 600px) {
-  
-  
+  .stage-nav a { padding: 12px 12px; font-size: 12px; }
+  .stage-nav a span:not(.num) { display: none; }
   .mc-options { flex-direction: column; }
 }
 </style>
@@ -196,55 +236,55 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
 <body>
 
 <div class="hero">
-  <div class="badge">A1 · Unità 4</div>
-  <h1>Che lavoro fai?</h1>
-  <p>Etapa 1 — Exploración · Video</p>
+  <div class="badge">A1 · Unità 3</div>
+  <h1>Tutti in piazza!</h1>
+  <p>Una <em>barzelletta</em> italiana — aprende a preguntar la hora</p>
 </div>
+
+
 
 <div class="container">
 
   <div class="sofia-wrap">
-    <div class="sofia-avatar">👩‍🏫</div>
+    <div class="sofia-avatar">🇮🇹</div>
     <div class="sofia-bubble">
       <div class="sofia-name">Sofia — tu guía</div>
-      ¡Benvenuti! En este módulo entramos a un mundo muy italiano: <strong>el trabajo y las profesiones</strong>. El video que vas a ver transcurre en un <em><strong>Centro per l'Impiego</strong></em> — que es la oficina de empleo pública italiana, el equivalente a nuestras bolsas de trabajo. Vas a conocer a <strong>Samira</strong>, una mujer extranjera que busca trabajo en Italia por primera vez. Prestale mucha atención porque vas a escuchar vocabulario muy útil: documentos oficiales, profesiones, y cómo hablar de lo que sabés hacer. ¡Es una situación muy real!
+      Hoy aprendemos a pedir la hora... ¡con una <strong><em>barzelletta</em></strong>! Una <em>barzelletta</em> es un chiste italiano. Este video es muy corto pero <em>molto divertente</em> — muy gracioso. Los italianos tienen una larga tradición de chistes contados con gestos y teatralidad. <strong>¡Prepárate para reírte y aprender al mismo tiempo!</strong>
     </div>
   </div>
 
-  <div class="context-box">
-    <h3>🏛️ Contexto cultural: il Centro per l'Impiego</h3>
-    <p>El <em>Centro per l'Impiego</em> es una oficina pública italiana donde las personas desocupadas pueden registrarse, buscar trabajo y acceder a subsidios. Para inscribirse, es obligatorio presentar ciertos documentos: la <strong>carta d'identità</strong> (DNI italiano), el <strong>codice fiscale</strong> (número tributario, equivalente al CUIL/CUIT argentino) y, para extranjeros, el <strong>permesso di soggiorno</strong> (permiso de residencia). Al finalizar la inscripción, se firma una <strong>dichiarazione di immediata disponibilità al lavoro</strong> — una declaración de que la persona está disponible para trabajar de inmediato.</p>
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/7mi5_TnIORo" allowfullscreen title="Le barzellette — L'asino (Che ore sono?)"></iframe>
   </div>
 
   <div class="task-box">
-    <h3>🎯 Mientras ves el video, fijate en...</h3>
+    <h3>🎯 Mientras ves el video, presta atención a...</h3>
     <ul>
-      <li>¿Qué documentos le piden a Samira? ¿Podés identificarlos en italiano?</li>
-      <li>¿Samira tiene experiencia laboral previa? ¿Qué dice exactamente?</li>
-      <li>¿Qué tipo de trabajo le gustaría hacer? ¿Con quiénes le gusta trabajar?</li>
-      <li>¿Qué firma Samira al final de la entrevista?</li>
-      <li>¿Qué palabras en italiano relacionadas con el trabajo podés reconocer?</li>
+      <li>¿Cómo pregunta la hora el hombre? ¿Qué palabras usa exactamente?</li>
+      <li>¿Qué horas menciona durante el chiste?</li>
+      <li>¿Cuál es el chiste? ¿Qué hay debajo del burrito (<em>il Ciuchino</em>)?</li>
     </ul>
   </div>
 
-  <div class="video-wrap">
-    <iframe src="https://www.youtube.com/embed/VsEBjpQTlyY" allowfullscreen title="Che lavoro fai? — Centro per l'Impiego"></iframe>
+  <div class="joke-note">
+    <div class="joke-label">💡 ¿No entendiste el chiste?</div>
+    El segundo hombre dice que lee la hora en <em>"le palle del Ciuchino"</em> (las bolas del burrito). Cuando las levanta... ¡debajo hay un <strong><em>campanile</em></strong>, un campanario! Los campanarios en los pueblos italianos históricamente eran el reloj público de toda la comunidad. El absurdo cómico es que alguien lleve un campanario escondido ahí. ¡Ahora el chiste tiene mucha más gracia!
   </div>
 
-  <h2 class="section-title">Dopo il video — Después del video</h2>
+  <h2 class="section-title">Después del video</h2>
 
   <!-- EJERCICIO 1: V/F -->
   <div class="exercise-card">
     <div class="ex-header">
       <div class="ex-num">1</div>
       <div>
-        <div class="ex-title">Vero o Falso — Verdadero o Falso</div>
-        <div class="ex-subtitle">¿Qué tan bien entendiste el video? Contestá cada afirmación.</div>
+        <div class="ex-title">Verdadero o Falso</div>
+        <div class="ex-subtitle">Basado en la barzelletta que acabas de ver</div>
       </div>
     </div>
 
     <div class="vf-item" data-answer="true">
-      <div class="vf-statement">1. La escena transcurre en una oficina pública llamada <em>Centro per l'Impiego</em>.</div>
+      <div class="vf-statement">1. El hombre empieza con <em>"Mi scusi"</em> para llamar la atención.</div>
       <div class="vf-buttons">
         <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
         <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
@@ -253,7 +293,7 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
     </div>
 
     <div class="vf-item" data-answer="false">
-      <div class="vf-statement">2. Samira ya tiene mucha experiencia laboral en Italia.</div>
+      <div class="vf-statement">2. La primera hora que escucha el hombre son las 3:35.</div>
       <div class="vf-buttons">
         <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
         <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
@@ -262,16 +302,7 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
     </div>
 
     <div class="vf-item" data-answer="true">
-      <div class="vf-statement">3. Entre los documentos pedidos aparece la <em>carta d'identità</em>.</div>
-      <div class="vf-buttons">
-        <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
-        <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
-      </div>
-      <div class="vf-feedback"></div>
-    </div>
-
-    <div class="vf-item" data-answer="true">
-      <div class="vf-statement">4. A Samira le gusta cuidar a personas mayores y a niños.</div>
+      <div class="vf-statement">3. Al final del chiste el hombre dice <em>"sono le 7:15 spaccate"</em>.</div>
       <div class="vf-buttons">
         <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
         <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
@@ -280,7 +311,7 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
     </div>
 
     <div class="vf-item" data-answer="false">
-      <div class="vf-statement">5. La funcionaria de la oficina es un hombre.</div>
+      <div class="vf-statement">4. El segundo personaje lee la hora en un reloj de pulsera.</div>
       <div class="vf-buttons">
         <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
         <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
@@ -289,7 +320,7 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
     </div>
 
     <div class="vf-item" data-answer="true">
-      <div class="vf-statement">6. Al final, Samira firma un documento de disponibilidad para trabajar.</div>
+      <div class="vf-statement">5. Debajo del burrito (<em>il Ciuchino</em>) hay un <em>campanile</em>.</div>
       <div class="vf-buttons">
         <button class="btn-vf" onclick="checkVF(this, true)">✓ Verdadero</button>
         <button class="btn-vf" onclick="checkVF(this, false)">✗ Falso</button>
@@ -298,146 +329,116 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
     </div>
 
     <div class="score-bar">
-      <span class="score-label">Tu puntaje en V/F:</span>
-      <span class="score-num" id="vf-score">0 / 6</span>
+      <span class="score-label">Respuestas correctas:</span>
+      <span class="score-num" id="score-vf">0 / 5</span>
     </div>
   </div>
 
-  <!-- EJERCICIO 2: SELECCIÓN MÚLTIPLE -->
+  <!-- EJERCICIO 2: Selección múltiple -->
   <div class="exercise-card">
     <div class="ex-header">
       <div class="ex-num">2</div>
       <div>
-        <div class="ex-title">Scelta multipla — Selección múltiple</div>
-        <div class="ex-subtitle">Elegí la opción correcta para cada pregunta sobre el video.</div>
+        <div class="ex-title">Selección múltiple</div>
+        <div class="ex-subtitle">Elige la respuesta correcta para cada pregunta</div>
       </div>
     </div>
 
-    <div class="mc-item">
-      <div class="mc-question">1. ¿Qué es el <em>codice fiscale</em> en Italia?</div>
+    <div class="mc-item" id="mc1" data-correct="0">
+      <div class="mc-question">1. ¿Cómo pide la hora el hombre en la barzelletta?</div>
       <div class="mc-options">
-        <button class="btn-mc" onclick="checkMC(this, false, 'No exactamente — el código fiscal es un número de identificación tributaria personal, no una contraseña.')">Una contraseña bancaria</button>
-        <button class="btn-mc" onclick="checkMC(this, true, '¡Correcto! El codice fiscale es el número de identificación tributaria de cada ciudadano o residente.')">Un número de identificación tributaria</button>
-        <button class="btn-mc" onclick="checkMC(this, false, 'No — el codice fiscale no es el número de pasaporte, aunque ambos identifican a la persona.')">El número de pasaporte</button>
-        <button class="btn-mc" onclick="checkMC(this, false, 'No — el permesso di soggiorno es el documento que autoriza la residencia, no el codice fiscale.')">Un permiso de residencia</button>
+        <button class="btn-mc" onclick="checkMC(this,'mc1',0)">Mi sa dire l'ora?</button>
+        <button class="btn-mc" onclick="checkMC(this,'mc1',1)">Che lavoro fai?</button>
+        <button class="btn-mc" onclick="checkMC(this,'mc1',2)">Come ti chiami?</button>
+        <button class="btn-mc" onclick="checkMC(this,'mc1',3)">Dove sei?</button>
       </div>
-      <div class="mc-feedback"></div>
+      <div class="mc-feedback" id="fb-mc1"></div>
     </div>
 
-    <div class="mc-item">
-      <div class="mc-question">2. ¿Cuál es la situación de Samira respecto al trabajo cuando llega a la oficina?</div>
+    <div class="mc-item" id="mc2" data-correct="0">
+      <div class="mc-question">2. ¿Qué hora exacta dice el segundo hombre al final del chiste?</div>
       <div class="mc-options">
-        <button class="btn-mc" onclick="checkMC(this, false, 'No — Samira no viene a renunciar a un trabajo, sino a buscar uno.')">Viene a renunciar a su trabajo actual</button>
-        <button class="btn-mc" onclick="checkMC(this, true, '¡Exacto! Samira no ha trabajado antes (en Italia) y busca su primera oportunidad laboral.')">No ha trabajado antes y busca empleo</button>
-        <button class="btn-mc" onclick="checkMC(this, false, 'No — Samira es una candidata que busca trabajo, no una funcionaria que trabaja allí.')">Es funcionaria del centro</button>
-        <button class="btn-mc" onclick="checkMC(this, false, 'No — Samira no viene a pedir un subsidio específicamente, sino a inscribirse como buscadora de empleo.')">Viene a cobrar un subsidio</button>
+        <button class="btn-mc" onclick="checkMC(this,'mc2',0)">7:15</button>
+        <button class="btn-mc" onclick="checkMC(this,'mc2',1)">5:35</button>
+        <button class="btn-mc" onclick="checkMC(this,'mc2',2)">8:00</button>
+        <button class="btn-mc" onclick="checkMC(this,'mc2',3)">9:00</button>
       </div>
-      <div class="mc-feedback"></div>
+      <div class="mc-feedback" id="fb-mc2"></div>
     </div>
 
-    <div class="mc-item">
-      <div class="mc-question">3. Además de la <em>carta d'identità</em>, ¿qué otro documento se menciona para extranjeros?</div>
+    <div class="mc-item" id="mc3" data-correct="0">
+      <div class="mc-question">3. ¿Qué hay debajo de las <em>palle del Ciuchino</em>?</div>
       <div class="mc-options">
-        <button class="btn-mc" onclick="checkMC(this, false, 'No — el pasaporte se usa para viajar, pero no es el documento específico mencionado en este contexto.')">El pasaporte</button>
-        <button class="btn-mc" onclick="checkMC(this, false, 'No — el certificato di nascita es la partida de nacimiento, no mencionada aquí.')">El <em>certificato di nascita</em></button>
-        <button class="btn-mc" onclick="checkMC(this, true, '¡Sí! El permesso di soggiorno (permiso de residencia) es obligatorio para extranjeros que quieran trabajar en Italia.')">El <em>permesso di soggiorno</em></button>
-        <button class="btn-mc" onclick="checkMC(this, false, 'No — la tessera sanitaria es la tarjeta sanitaria, que no se menciona en este contexto.')">La <em>tessera sanitaria</em></button>
+        <button class="btn-mc" onclick="checkMC(this,'mc3',0)">Un campanile (campanario)</button>
+        <button class="btn-mc" onclick="checkMC(this,'mc3',1)">Un orologio (reloj)</button>
+        <button class="btn-mc" onclick="checkMC(this,'mc3',2)">Una chiesa (iglesia)</button>
+        <button class="btn-mc" onclick="checkMC(this,'mc3',3)">Un palazzo (palacio)</button>
       </div>
-      <div class="mc-feedback"></div>
+      <div class="mc-feedback" id="fb-mc3"></div>
     </div>
 
-    <div class="mc-item">
-      <div class="mc-question">4. ¿Qué tipo de actividades menciona Samira que le gustan o que sabe hacer?</div>
+    <div class="mc-item" id="mc4" data-correct="0">
+      <div class="mc-question">4. En italiano, ¿qué significa <em>"spaccate"</em> al hablar de la hora?</div>
       <div class="mc-options">
-        <button class="btn-mc" onclick="checkMC(this, false, 'No — Samira no menciona trabajo en computadoras o tecnología.')">Trabajar con computadoras</button>
-        <button class="btn-mc" onclick="checkMC(this, false, 'No — la cocina no es lo que Samira menciona explícitamente como su interés.')">Cocinar en un restaurante</button>
-        <button class="btn-mc" onclick="checkMC(this, true, '¡Correcto! Samira expresa que le gusta cuidar a personas mayores (anziani) y a niños.')">Cuidar a personas mayores y a niños</button>
-        <button class="btn-mc" onclick="checkMC(this, false, 'No — enseñar en escuelas no es lo que menciona Samira.')">Enseñar en escuelas</button>
+        <button class="btn-mc" onclick="checkMC(this,'mc4',0)">En punto exacto</button>
+        <button class="btn-mc" onclick="checkMC(this,'mc4',1)">Más o menos</button>
+        <button class="btn-mc" onclick="checkMC(this,'mc4',2)">Y cuarto</button>
+        <button class="btn-mc" onclick="checkMC(this,'mc4',3)">Y media</button>
       </div>
-      <div class="mc-feedback"></div>
-    </div>
-
-    <div class="mc-item">
-      <div class="mc-question">5. ¿Cómo se llama el documento que Samira firma al final?</div>
-      <div class="mc-options">
-        <button class="btn-mc" onclick="checkMC(this, false, 'No — ese sería un contrato de trabajo, pero Samira aún no consiguió trabajo.')">Un <em>contratto di lavoro</em></button>
-        <button class="btn-mc" onclick="checkMC(this, true, '¡Exacto! Es la dichiarazione di immediata disponibilità al lavoro, que indica que la persona está disponible para trabajar de inmediato.')">Una <em>dichiarazione di immediata disponibilità al lavoro</em></button>
-        <button class="btn-mc" onclick="checkMC(this, false, 'No — el curriculum vitae es el CV, que se entrega antes de la inscripción.')">Un <em>curriculum vitae</em></button>
-        <button class="btn-mc" onclick="checkMC(this, false, 'No — la lettera di referenze son cartas de recomendación, no lo que se firma aquí.')">Una <em>lettera di referenze</em></button>
-      </div>
-      <div class="mc-feedback"></div>
+      <div class="mc-feedback" id="fb-mc4"></div>
     </div>
 
     <div class="score-bar">
-      <span class="score-label">Tu puntaje en selección múltiple:</span>
-      <span class="score-num" id="mc-score">0 / 5</span>
+      <span class="score-label">Respuestas correctas:</span>
+      <span class="score-num" id="score-mc">0 / 4</span>
     </div>
   </div>
 
-  <!-- CTA -->
-  
 
-</div><!-- /container -->
+</div>
 
 <script>
-// ── Odoo DOMEval safe: IIFE + var + window.xxx ──
-(function() {
-  var vfScore = 0;
-  var vfTotal = 6;
-  var mcScore = 0;
-  var mcTotal = 5;
+var vfScore = 0, vfTotal = 5;
+var mcScore = 0, mcTotal = 4;
 
-  function checkVF(btn, userAnswer) {
-    var item = btn.closest('.vf-item');
-    var correctAnswer = item.getAttribute('data-answer') === 'true';
-    var btns = item.querySelectorAll('.btn-vf');
-    var feedback = item.querySelector('.vf-feedback');
-
-    if (item.classList.contains('answered')) return;
-    item.classList.add('answered');
-
-    var isCorrect = (userAnswer === correctAnswer);
-    btns.forEach(function(b) { b.disabled = true; });
-
-    if (isCorrect) {
-      btn.classList.add('correct');
-      feedback.style.color = '#2d7a4f';
-      feedback.textContent = '✓ ¡Correcto!';
-      vfScore++;
-    } else {
-      btn.classList.add('wrong');
-      feedback.style.color = '#cc4736';
-      feedback.textContent = '✗ Incorrecto.';
-      btns.forEach(function(b) {
-        var bAnswer = b.textContent.indexOf('Verdadero') !== -1;
-        if (bAnswer === correctAnswer) b.classList.add('correct');
-      });
-    }
-    document.getElementById('vf-score').textContent = vfScore + ' / ' + vfTotal;
+function checkVF(btn, userAnswer) {
+  var item = btn.closest('.vf-item');
+  var correct = item.dataset.answer === 'true';
+  var buttons = item.querySelectorAll('.btn-vf');
+  var feedback = item.querySelector('.vf-feedback');
+  buttons.forEach(function(b){ b.disabled = true; });
+  if (userAnswer === correct) {
+    btn.classList.add('correct');
+    feedback.style.color = '#2d7a4f';
+    feedback.textContent = '✓ ¡Correcto!';
+    vfScore++;
+  } else {
+    btn.classList.add('wrong');
+    feedback.style.color = '#cc4736';
+    feedback.textContent = '✗ No exactamente. La respuesta es ' + (correct ? 'Verdadero' : 'Falso') + '.';
   }
+  document.getElementById('score-vf').textContent = vfScore + ' / ' + vfTotal;
+}
 
-  function checkMC(btn, isCorrect, feedbackText) {
-    var item = btn.closest('.mc-item');
-    if (item.classList.contains('answered')) return;
-    item.classList.add('answered');
-
-    var btns = item.querySelectorAll('.btn-mc');
-    var feedback = item.querySelector('.mc-feedback');
-
-    btns.forEach(function(b) { b.disabled = true; });
-    btn.classList.add(isCorrect ? 'correct' : 'wrong');
-
-    feedback.textContent = feedbackText;
-    feedback.style.color = isCorrect ? '#2d7a4f' : '#cc4736';
-    feedback.style.fontWeight = '600';
-
-    if (isCorrect) mcScore++;
-    document.getElementById('mc-score').textContent = mcScore + ' / ' + mcTotal;
+function checkMC(btn, id, idx) {
+  var item = document.getElementById(id);
+  var correct = parseInt(item.dataset.correct);
+  var buttons = item.querySelectorAll('.btn-mc');
+  var feedback = document.getElementById('fb-' + id);
+  buttons.forEach(function(b){ b.disabled = true; });
+  if (idx === correct) {
+    btn.classList.add('correct');
+    feedback.style.color = '#2d7a4f';
+    feedback.textContent = '✓ ¡Correcto! Bien observado.';
+    mcScore++;
+  } else {
+    btn.classList.add('wrong');
+    buttons[correct].classList.add('correct');
+    feedback.style.color = '#cc4736';
+    feedback.textContent = '✗ La respuesta correcta es "' + buttons[correct].textContent + '".';
   }
-
-  window.checkVF = checkVF;
-  window.checkMC = checkMC;
-})();
+  document.getElementById('score-mc').textContent = mcScore + ' / ' + mcTotal;
+}
 </script>
 </body>
 </html>

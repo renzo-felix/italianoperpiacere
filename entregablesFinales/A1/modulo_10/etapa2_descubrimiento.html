@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 9 — Etapa 2: Descubrimiento</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mod:#cc4736; --mod-dk:#a8382a; --mod-lt:#faeae8; --mod-tx:#7a1f14;
+    --cream:#e9e6d5; --cream-dk:#ddd9c8; --gold:#EFCF7F;
+    --black:#1a1a18; --white:#fff;
+    --fh:'Playfair Display',Georgia,serif;
+    --fb:'Outfit',system-ui,sans-serif;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--fb); background:var(--cream); color:var(--black); }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
+    color: var(--white);
+    padding: 40px 24px 36px;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-family: var(--fh);
+    font-style: italic;
+    font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+    margin-bottom: 6px;
+  }
+  .hero h2 {
+    font-weight: 300;
+    font-size: 1rem;
+    opacity: 0.85;
+  }
+
+  .container { max-width: 780px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  .section {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 28px 28px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  }
+  .section-tag {
+    display: inline-block;
+    background: var(--mod-lt);
+    color: var(--mod-tx);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  .section h3 {
+    font-family: var(--fh);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--mod-dk);
+    margin-bottom: 6px;
+  }
+  .section > p { font-size: 0.95rem; line-height: 1.65; color: #555; margin-bottom: 14px; }
+
+  /* VOCAB CHIPS */
+  .vocab-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .vocab-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cream);
+    border: 2px solid var(--cream-dk);
+    border-radius: 24px;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .vocab-chip:hover { border-color: var(--mod); background: var(--mod-lt); transform: translateY(-1px); }
+  .vocab-chip:active { transform: translateY(0); }
+  .chip-speaker {
+    font-size: 1rem;
+    opacity: 0.7;
+  }
+
+  /* DIÁLOGO */
+  .dialog-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .btn-play {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 18px;
+    background: var(--mod);
+    color: var(--white);
+    border: none;
+    border-radius: 9px;
+    font-family: var(--fb);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-play:hover { background: var(--mod-dk); }
+  .btn-play.secondary {
+    background: var(--cream-dk);
+    color: var(--black);
+  }
+  .btn-play.secondary:hover { background: #ccc9b8; }
+
+  .dialog-box { display: flex; flex-direction: column; gap: 12px; }
+  .dialog-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .dialog-line.right { flex-direction: row-reverse; }
+  .avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    font-weight: 700;
+    font-family: var(--fb);
+  }
+  .avatar.g { background: var(--mod-lt); color: var(--mod-dk); }
+  .avatar.m { background: #e3eef5; color: #2d5f72; }
+
+  .bubble {
+    max-width: 78%;
+    padding: 11px 15px;
+    border-radius: 14px;
+    font-size: 0.93rem;
+    line-height: 1.6;
+    position: relative;
+  }
+  .bubble-g { background: var(--cream-dk); border-bottom-left-radius: 4px; }
+  .bubble-m { background: var(--cream-dk); border-bottom-right-radius: 4px; }
+  .bubble-name {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 3px;
+  }
+  .bubble-name.gn { color: var(--mod-dk); }
+  .bubble-name.mn { color: #2d5f72; }
+  .bubble-play {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    opacity: 0.65;
+    padding: 2px 4px;
+    transition: opacity 0.2s;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .bubble-play:hover { opacity: 1; }
+  .highlight { background: rgba(204,71,54,0.12); border-radius: 4px; padding: 0 3px; font-weight: 600; }
+
+  /* PIACERE CARDS */
+  .piacere-intro {
+    background: var(--mod-lt);
+    border-left: 4px solid var(--mod);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 16px;
+    font-size: 0.93rem;
+    line-height: 1.65;
+    margin-bottom: 18px;
+  }
+  .piacere-intro strong { color: var(--mod-dk); }
+
+  .pattern-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .pattern-card {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 14px 16px;
+    border-top: 3px solid var(--mod);
+  }
+  .pattern-card .pronoun {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--mod-dk);
+    margin-bottom: 6px;
+  }
+  .pattern-card .form-sing, .pattern-card .form-plur {
+    font-size: 0.93rem;
+    margin-bottom: 4px;
+  }
+  .pattern-card .form-sing em, .pattern-card .form-plur em {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--mod);
+  }
+  .pattern-card .example {
+    font-size: 0.82rem;
+    color: #666;
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* PIACERE RULE BOX */
+  .rule-box {
+    background: linear-gradient(135deg, #fff8f7 0%, var(--mod-lt) 100%);
+    border: 2px solid var(--mod);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: 18px 0;
+  }
+  .rule-box .rule-title {
+    font-family: var(--fh);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--mod-dk);
+    margin-bottom: 10px;
+  }
+  .rule-structure {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 0.92rem;
+    margin-bottom: 8px;
+  }
+  .rule-part {
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+  }
+  .rp-pronoun { background: var(--mod); color: var(--white); }
+  .rp-verb { background: #78a6ba; color: var(--white); }
+  .rp-subject { background: var(--gold); color: var(--black); }
+  .rule-arrow { font-size: 1.2rem; color: #999; }
+
+  /* PREPOSIZIONI TABLE */
+  .prep-table-wrap { overflow-x: auto; margin-top: 14px; }
+  .prep-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    min-width: 460px;
+  }
+  .prep-table th {
+    background: var(--mod);
+    color: var(--white);
+    padding: 10px 12px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+  }
+  .prep-table th:first-child { text-align: left; border-radius: 8px 0 0 0; }
+  .prep-table th:last-child { border-radius: 0 8px 0 0; }
+  .prep-table td {
+    padding: 9px 12px;
+    text-align: center;
+    border-bottom: 1px solid var(--cream-dk);
+  }
+  .prep-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    color: var(--mod-dk);
+    background: var(--mod-lt);
+  }
+  .prep-table tr:nth-child(even) td:not(:first-child) { background: var(--cream); }
+  .prep-table tr:last-child td { border-bottom: none; }
+  .prep-table .art { font-weight: 700; }
+  .prep-examples {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .prep-ex {
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-size: 0.87rem;
+  }
+  .prep-ex em { font-style: normal; font-weight: 700; color: var(--mod-dk); }
+
+  /* ESPRESSIONI */
+  .expr-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+  .expr-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 11px 16px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .expr-item:hover { background: var(--cream-dk); transform: translateX(3px); }
+  .expr-ita {
+    font-weight: 700;
+    font-size: 0.97rem;
+    color: var(--mod-dk);
+    min-width: 200px;
+  }
+  .expr-sep { color: #bbb; }
+  .expr-esp { font-size: 0.9rem; color: #555; }
+  .expr-audio { margin-left: auto; font-size: 1.1rem; opacity: 0.6; }
+
+  /* CULTURE STRIP */
+  .culture-strip {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--cream-dk) 100%);
+    border-top: 3px solid var(--mod);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 24px;
+  }
+  .culture-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    gap: 12px;
+  }
+  .culture-title {
+    font-family: var(--fh);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--mod-dk);
+  }
+  .culture-toggle {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: var(--mod-dk);
+    transition: transform 0.3s;
+  }
+  .culture-toggle.open { transform: rotate(180deg); }
+  .culture-body {
+    display: none;
+    margin-top: 16px;
+    font-size: 0.93rem;
+    line-height: 1.7;
+    color: #444;
+  }
+  .culture-body.open { display: block; }
+  .culture-body p { margin-bottom: 10px; }
+  .culture-body p:last-child { margin-bottom: 0; }
+  .culture-body strong { color: var(--mod-dk); }
+
+  .divider { height: 1px; background: var(--cream-dk); margin: 18px 0; }
+</style>
+</head>
+<body>
+
+<!-- AUDIO SETUP -->
+<script>
+if (!window.__ippVC) {
+  window.__ippVC = true; window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) window.__ippV = v; };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
+</script>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Módulo 9 · Etapa 2</div>
+  <h1>Descubrimiento</h1>
+  <h2>Vocabulario · Diálogo · Gramática en contexto</h2>
+</div>
+
+<div class="container">
+
+  <!-- ═══ 1. VOCABULARIO ═══ -->
+  <div class="section">
+    <span class="section-tag">Vocabulario</span>
+    <h3>Il tempo libero</h3>
+    <p>Hacé clic en cada chip para escuchar la pronunciación. ¡Repetí en voz alta mientras escuchás!</p>
+    <div class="vocab-grid">
+      <div class="vocab-chip" onclick="ippAudio('andare al cinema', 0.82, 'f')"><span class="chip-speaker">🔊</span> andare al cinema</div>
+      <div class="vocab-chip" onclick="ippAudio('leggere un libro', 0.82, 'f')"><span class="chip-speaker">🔊</span> leggere un libro</div>
+      <div class="vocab-chip" onclick="ippAudio('ascoltare musica', 0.82, 'f')"><span class="chip-speaker">🔊</span> ascoltare musica</div>
+      <div class="vocab-chip" onclick="ippAudio('fare sport', 0.82, 'f')"><span class="chip-speaker">🔊</span> fare sport</div>
+      <div class="vocab-chip" onclick="ippAudio('andare in palestra', 0.82, 'f')"><span class="chip-speaker">🔊</span> andare in palestra</div>
+      <div class="vocab-chip" onclick="ippAudio('guardare la TV', 0.82, 'f')"><span class="chip-speaker">🔊</span> guardare la TV</div>
+      <div class="vocab-chip" onclick="ippAudio('fare una passeggiata', 0.82, 'f')"><span class="chip-speaker">🔊</span> fare una passeggiata</div>
+      <div class="vocab-chip" onclick="ippAudio('cucinare', 0.82, 'f')"><span class="chip-speaker">🔊</span> cucinare</div>
+      <div class="vocab-chip" onclick="ippAudio('disegnare', 0.82, 'f')"><span class="chip-speaker">🔊</span> disegnare</div>
+      <div class="vocab-chip" onclick="ippAudio('suonare la chitarra', 0.82, 'f')"><span class="chip-speaker">🔊</span> suonare la chitarra</div>
+      <div class="vocab-chip" onclick="ippAudio('ballare', 0.82, 'f')"><span class="chip-speaker">🔊</span> ballare</div>
+      <div class="vocab-chip" onclick="ippAudio('viaggiare', 0.82, 'f')"><span class="chip-speaker">🔊</span> viaggiare</div>
+      <div class="vocab-chip" onclick="ippAudio('fare shopping', 0.82, 'f')"><span class="chip-speaker">🔊</span> fare shopping</div>
+      <div class="vocab-chip" onclick="ippAudio('stare con gli amici', 0.82, 'f')"><span class="chip-speaker">🔊</span> stare con gli amici</div>
+      <div class="vocab-chip" onclick="ippAudio('giocare ai videogiochi', 0.82, 'f')"><span class="chip-speaker">🔊</span> giocare ai videogiochi</div>
+      <div class="vocab-chip" onclick="ippAudio('fare yoga', 0.82, 'f')"><span class="chip-speaker">🔊</span> fare yoga</div>
+    </div>
+  </div>
+
+  <!-- ═══ 2. DIÁLOGO ═══ -->
+  <div class="section">
+    <span class="section-tag">Diálogo</span>
+    <h3>Che facciamo sabato?</h3>
+    <p>Giulia y Marco están en casa un sábado y se aburren. Leé, escuchá y fijate cómo usan <strong>mi piace / ti piace</strong> para hablar de lo que les gusta.</p>
+
+    <div class="dialog-controls">
+      <button class="btn-play" onclick="playAllDialog()">▶ Escuchar todo</button>
+      <button class="btn-play secondary" onclick="if(window.speechSynthesis)speechSynthesis.cancel()">■ Detener</button>
+    </div>
+
+    <div class="dialog-box" id="dialogBox">
+
+      <div class="dialog-line" data-text="Che noia! Stiamo sempre a casa..." data-gender="f">
+        <div class="avatar g">G</div>
+        <div class="bubble bubble-g">
+          <div class="bubble-name gn">Giulia</div>
+          Che noia! Stiamo sempre a casa...
+          <button class="bubble-play" onclick="playLine(this)">🔊</button>
+        </div>
+      </div>
+
+      <div class="dialog-line right" data-text="Hai ragione. Ma oggi è sabato! Dobbiamo fare qualcosa." data-gender="m">
+        <div class="avatar m">M</div>
+        <div class="bubble bubble-m">
+          <div class="bubble-name mn">Marco</div>
+          Hai ragione. Ma oggi è sabato! Dobbiamo fare qualcosa.
+          <button class="bubble-play" onclick="playLine(this)">🔊</button>
+        </div>
+      </div>
+
+      <div class="dialog-line" data-text="Sì! Ti piace andare al cinema?" data-gender="f">
+        <div class="avatar g">G</div>
+        <div class="bubble bubble-g">
+          <div class="bubble-name gn">Giulia</div>
+          Sì! <span class="highlight">Ti piace</span> andare al cinema?
+          <button class="bubble-play" onclick="playLine(this)">🔊</button>
+        </div>
+      </div>
+
+      <div class="dialog-line right" data-text="Mmm, non molto. Mi piace di più fare una passeggiata. E a te?" data-gender="m">
+        <div class="avatar m">M</div>
+        <div class="bubble bubble-m">
+          <div class="bubble-name mn">Marco</div>
+          Mmm, non molto. <span class="highlight">Mi piace</span> di più fare una passeggiata. E a te?
+          <button class="bubble-play" onclick="playLine(this)">🔊</button>
+        </div>
+      </div>
+
+      <div class="dialog-line" data-text="A me piace moltissimo uscire! Mi piacciono anche i mercati all'aperto." data-gender="f">
+        <div class="avatar g">G</div>
+        <div class="bubble bubble-g">
+          <div class="bubble-name gn">Giulia</div>
+          A me <span class="highlight">piace moltissimo</span> uscire! <span class="highlight">Mi piacciono</span> anche i mercati all'aperto.
+          <button class="bubble-play" onclick="playLine(this)">🔊</button>
+        </div>
+      </div>
+
+      <div class="dialog-line right" data-text="Ottima idea! Gli piace andare al mercato anche alla mia sorella." data-gender="m">
+        <div class="avatar m">M</div>
+        <div class="bubble bubble-m">
+          <div class="bubble-name mn">Marco</div>
+          Ottima idea! <span class="highlight">Gli piace</span> andare al mercato anche alla mia sorella.
+          <button class="bubble-play" onclick="playLine(this)">🔊</button>
+        </div>
+      </div>
+
+      <div class="dialog-line" data-text="Perfetto! E dopo andiamo al parco? Mi piace tanto passeggiare." data-gender="f">
+        <div class="avatar g">G</div>
+        <div class="bubble bubble-g">
+          <div class="bubble-name gn">Giulia</div>
+          Perfetto! E dopo andiamo al parco? <span class="highlight">Mi piace</span> tanto passeggiare.
+          <button class="bubble-play" onclick="playLine(this)">🔊</button>
+        </div>
+      </div>
+
+      <div class="dialog-line right" data-text="Certo! Preferisco stare all'aria aperta che restare sul divano." data-gender="m">
+        <div class="avatar m">M</div>
+        <div class="bubble bubble-m">
+          <div class="bubble-name mn">Marco</div>
+          Certo! <span class="highlight">Preferisco</span> stare all'aria aperta che restare sul divano.
+          <button class="bubble-play" onclick="playLine(this)">🔊</button>
+        </div>
+      </div>
+
+      <div class="dialog-line" data-text="Allora, ci piace la stessa cosa! Andiamo!" data-gender="f">
+        <div class="avatar g">G</div>
+        <div class="bubble bubble-g">
+          <div class="bubble-name gn">Giulia</div>
+          Allora, <span class="highlight">ci piace</span> la stessa cosa! Andiamo!
+          <button class="bubble-play" onclick="playLine(this)">🔊</button>
+        </div>
+      </div>
+
+      <div class="dialog-line right" data-text="Aspetta! Al mercato compriamo qualcosa per il pranzo?" data-gender="m">
+        <div class="avatar m">M</div>
+        <div class="bubble bubble-m">
+          <div class="bubble-name mn">Marco</div>
+          Aspetta! Al mercato compriamo qualcosa per il pranzo?
+          <button class="bubble-play" onclick="playLine(this)">🔊</button>
+        </div>
+      </div>
+
+      <div class="dialog-line" data-text="Sì! Mi piacciono molto i formaggi del mercato. E anche le olive! E a te, cosa ti piace comprare?" data-gender="f">
+        <div class="avatar g">G</div>
+        <div class="bubble bubble-g">
+          <div class="bubble-name gn">Giulia</div>
+          Sì! <span class="highlight">Mi piacciono</span> molto i formaggi del mercato. E anche le olive! E a te, cosa <span class="highlight">ti piace</span> comprare?
+          <button class="bubble-play" onclick="playLine(this)">🔊</button>
+        </div>
+      </div>
+
+      <div class="dialog-line right" data-text="A me piacciono le verdure fresche. E il pane artigianale — mi piace moltissimo!" data-gender="m">
+        <div class="avatar m">M</div>
+        <div class="bubble bubble-m">
+          <div class="bubble-name mn">Marco</div>
+          A me <span class="highlight">piacciono</span> le verdure fresche. E il pane artigianale — <span class="highlight">mi piace moltissimo</span>!
+          <button class="bubble-play" onclick="playLine(this)">🔊</button>
+        </div>
+      </div>
+
+      <div class="dialog-line" data-text="Perfetto! E dopo il parco, che facciamo? Ti piace cucinare insieme?" data-gender="f">
+        <div class="avatar g">G</div>
+        <div class="bubble bubble-g">
+          <div class="bubble-name gn">Giulia</div>
+          Perfetto! E dopo il parco, che facciamo? <span class="highlight">Ti piace</span> cucinare insieme?
+          <button class="bubble-play" onclick="playLine(this)">🔊</button>
+        </div>
+      </div>
+
+      <div class="dialog-line right" data-text="Mi piace moltissimo! Preferisco cucinare con gli amici che da solo. È più divertente!" data-gender="m">
+        <div class="avatar m">M</div>
+        <div class="bubble bubble-m">
+          <div class="bubble-name mn">Marco</div>
+          <span class="highlight">Mi piace moltissimo</span>! Preferisco cucinare con gli amici che da solo. È più divertente!
+          <button class="bubble-play" onclick="playLine(this)">🔊</button>
+        </div>
+      </div>
+
+      <div class="dialog-line" data-text="Allora decidiamo: mercato, parco, e poi cena a casa mia. Ti va?" data-gender="f">
+        <div class="avatar g">G</div>
+        <div class="bubble bubble-g">
+          <div class="bubble-name gn">Giulia</div>
+          Allora decidiamo: mercato, parco, e poi cena a casa mia. Ti va?
+          <button class="bubble-play" onclick="playLine(this)">🔊</button>
+        </div>
+      </div>
+
+      <div class="dialog-line right" data-text="Mi va benissimo! Questa è la giornata perfetta. Andiamo!" data-gender="m">
+        <div class="avatar m">M</div>
+        <div class="bubble bubble-m">
+          <div class="bubble-name mn">Marco</div>
+          Mi va benissimo! Questa è la giornata perfetta. Andiamo!
+          <button class="bubble-play" onclick="playLine(this)">🔊</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ 3. IL VERBO PIACERE ═══ -->
+  <div class="section">
+    <span class="section-tag">Gramática</span>
+    <h3>Il verbo <em>piacere</em></h3>
+
+    <div class="piacere-intro">
+      <strong>¡Atención!</strong> En italiano, <em>piacere</em> funciona al revés que en español. El sujeto gramatical es <strong>la cosa que gusta</strong>, no la persona. Por eso el verbo concuerda con lo que gusta, no con quien lo siente.<br><br>
+      <strong>Me gusta el café</strong> → <em>Mi piace il caffè</em> (el café = sujeto singular → piace)<br>
+      <strong>Me gustan los libros</strong> → <em>Mi piacciono i libri</em> (los libros = sujeto plural → piacciono)
+    </div>
+
+    <div class="rule-box">
+      <div class="rule-title">La estructura básica</div>
+      <div class="rule-structure">
+        <span class="rule-part rp-pronoun">pronombre indirecto</span>
+        <span class="rule-arrow">+</span>
+        <span class="rule-part rp-verb">piace / piacciono</span>
+        <span class="rule-arrow">+</span>
+        <span class="rule-part rp-subject">sujeto (lo que gusta)</span>
+      </div>
+      <div style="font-size:0.85rem; color:#666; margin-top:8px;">
+        Usá <strong>piace</strong> con infinitivo o sustantivo singular · <strong>piacciono</strong> con sustantivo plural
+      </div>
+    </div>
+
+    <div class="pattern-cards">
+      <div class="pattern-card">
+        <div class="pronoun">yo</div>
+        <div class="form-sing">(a me) <em>mi piace</em> il cinema</div>
+        <div class="form-plur">(a me) <em>mi piacciono</em> i film</div>
+        <div class="example">Mi piace leggere.</div>
+      </div>
+      <div class="pattern-card">
+        <div class="pronoun">vos / tú</div>
+        <div class="form-sing">(a te) <em>ti piace</em> la musica</div>
+        <div class="form-plur">(a te) <em>ti piacciono</em> i viaggi</div>
+        <div class="example">Ti piace cucinare?</div>
+      </div>
+      <div class="pattern-card">
+        <div class="pronoun">él</div>
+        <div class="form-sing">(a lui) <em>gli piace</em> lo sport</div>
+        <div class="form-plur">(a lui) <em>gli piacciono</em> i videogiochi</div>
+        <div class="example">Gli piace ballare.</div>
+      </div>
+      <div class="pattern-card">
+        <div class="pronoun">ella</div>
+        <div class="form-sing">(a lei) <em>le piace</em> leggere</div>
+        <div class="form-plur">(a lei) <em>le piacciono</em> le passeggiate</div>
+        <div class="example">Le piace il caffè.</div>
+      </div>
+      <div class="pattern-card">
+        <div class="pronoun">nosotros/as</div>
+        <div class="form-sing">(a noi) <em>ci piace</em> viaggiare</div>
+        <div class="form-plur">(a noi) <em>ci piacciono</em> gli amici</div>
+        <div class="example">Ci piace la pizza!</div>
+      </div>
+      <div class="pattern-card">
+        <div class="pronoun">ustedes / vosotros</div>
+        <div class="form-sing">(a voi) <em>vi piace</em> fare yoga</div>
+        <div class="form-plur">(a voi) <em>vi piacciono</em> i mercati</div>
+        <div class="example">Vi piace la musica?</div>
+      </div>
+      <div class="pattern-card">
+        <div class="pronoun">ellos/as</div>
+        <div class="form-sing">(a loro) <em>gli piace</em> uscire</div>
+        <div class="form-plur">(a loro) <em>gli piacciono</em> i film</div>
+        <div class="example">Gli piacciono i concerti.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 4. PREPOSIZIONI ARTICOLATE ═══ -->
+  <div class="section">
+    <span class="section-tag">Gramática</span>
+    <h3>Preposizioni articolate</h3>
+    <p>Cuando una preposición va seguida de un artículo determinativo, los dos se fusionan en una sola palabra. ¡Es automático en italiano!</p>
+
+    <div class="prep-table-wrap">
+      <table class="prep-table">
+        <thead>
+          <tr>
+            <th>Prep.</th>
+            <th>il</th>
+            <th>lo</th>
+            <th>l'</th>
+            <th>la</th>
+            <th>i</th>
+            <th>gli</th>
+            <th>le</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>a</td>
+            <td class="art">al</td>
+            <td class="art">allo</td>
+            <td class="art">all'</td>
+            <td class="art">alla</td>
+            <td class="art">ai</td>
+            <td class="art">agli</td>
+            <td class="art">alle</td>
+          </tr>
+          <tr>
+            <td>di</td>
+            <td class="art">del</td>
+            <td class="art">dello</td>
+            <td class="art">dell'</td>
+            <td class="art">della</td>
+            <td class="art">dei</td>
+            <td class="art">degli</td>
+            <td class="art">delle</td>
+          </tr>
+          <tr>
+            <td>da</td>
+            <td class="art">dal</td>
+            <td class="art">dallo</td>
+            <td class="art">dall'</td>
+            <td class="art">dalla</td>
+            <td class="art">dai</td>
+            <td class="art">dagli</td>
+            <td class="art">dalle</td>
+          </tr>
+          <tr>
+            <td>in</td>
+            <td class="art">nel</td>
+            <td class="art">nello</td>
+            <td class="art">nell'</td>
+            <td class="art">nella</td>
+            <td class="art">nei</td>
+            <td class="art">negli</td>
+            <td class="art">nelle</td>
+          </tr>
+          <tr>
+            <td>su</td>
+            <td class="art">sul</td>
+            <td class="art">sullo</td>
+            <td class="art">sull'</td>
+            <td class="art">sulla</td>
+            <td class="art">sui</td>
+            <td class="art">sugli</td>
+            <td class="art">sulle</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prep-examples">
+      <div class="prep-ex">Vado <em>al</em> cinema. <span style="color:#999">(a + il)</span></div>
+      <div class="prep-ex">Parlo <em>degli</em> amici. <span style="color:#999">(di + gli)</span></div>
+      <div class="prep-ex">Vengo <em>dalla</em> palestra. <span style="color:#999">(da + la)</span></div>
+      <div class="prep-ex">Il libro è <em>sul</em> tavolo. <span style="color:#999">(su + il)</span></div>
+      <div class="prep-ex">Studio <em>nell'</em>università. <span style="color:#999">(in + l')</span></div>
+      <div class="prep-ex">Vado <em>alla</em> festa. <span style="color:#999">(a + la)</span></div>
+      <div class="prep-ex">Parlo <em>della</em> musica. <span style="color:#999">(di + la)</span></div>
+    </div>
+  </div>
+
+  <!-- ═══ 5. ESPRESSIONI DI PREFERENZA ═══ -->
+  <div class="section">
+    <span class="section-tag">Expresiones</span>
+    <h3>Esprimere le preferenze</h3>
+    <p>Hacé clic en cada expresión para escucharla. Son las frases clave del módulo.</p>
+    <div class="expr-list">
+      <div class="expr-item" onclick="ippAudio('Mi piace moltissimo leggere.', 0.8, 'f')">
+        <span class="expr-ita">Mi piace moltissimo...</span>
+        <span class="expr-sep">→</span>
+        <span class="expr-esp">Me gusta muchísimo...</span>
+        <span class="expr-audio">🔊</span>
+      </div>
+      <div class="expr-item" onclick="ippAudio('Preferisco il cinema al teatro.', 0.8, 'f')">
+        <span class="expr-ita">Preferisco...</span>
+        <span class="expr-sep">→</span>
+        <span class="expr-esp">Prefiero...</span>
+        <span class="expr-audio">🔊</span>
+      </div>
+      <div class="expr-item" onclick="ippAudio('Non mi piace molto lo sport.', 0.8, 'f')">
+        <span class="expr-ita">Non mi piace (molto)...</span>
+        <span class="expr-sep">→</span>
+        <span class="expr-esp">No me gusta (mucho)...</span>
+        <span class="expr-audio">🔊</span>
+      </div>
+      <div class="expr-item" onclick="ippAudio('Odio cucinare da sola.', 0.8, 'f')">
+        <span class="expr-ita">Odio...</span>
+        <span class="expr-sep">→</span>
+        <span class="expr-esp">Odio...</span>
+        <span class="expr-audio">🔊</span>
+      </div>
+      <div class="expr-item" onclick="ippAudio('Mi piace di più viaggiare che stare a casa.', 0.8, 'f')">
+        <span class="expr-ita">Mi piace di più...</span>
+        <span class="expr-sep">→</span>
+        <span class="expr-esp">Me gusta más...</span>
+        <span class="expr-audio">🔊</span>
+      </div>
+      <div class="expr-item" onclick="ippAudio('Leggere è il mio passatempo preferito.', 0.8, 'f')">
+        <span class="expr-ita">È il mio passatempo preferito</span>
+        <span class="expr-sep">→</span>
+        <span class="expr-esp">Es mi pasatiempo favorito</span>
+        <span class="expr-audio">🔊</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 6. CULTURE STRIP ═══ -->
+  <div class="culture-strip">
+    <div class="culture-header" onclick="toggleCulture()">
+      <div class="culture-title">🇮🇹 Il weekend degli italiani</div>
+      <button class="culture-toggle" id="cultureToggle">▼</button>
+    </div>
+    <div class="culture-body" id="cultureBody">
+      <p>¿Sabés qué hacen los italianos cuando tienen tiempo libre? El <strong>weekend</strong> es sagrado en Italia, especialmente el domingo.</p>
+      <p>Una de las tradiciones más queridas es la <strong>passeggiata</strong>: un paseo tranquilo por el centro del pueblo o la ciudad, generalmente a última hora de la tarde. No es solo caminar — es ver y ser visto, saludar a los vecinos, tomar un aperitivo.</p>
+      <p>El <strong>aperitivo</strong> es otro ritual del tiempo libre: entre las 18 y las 20hs, los italianos se juntan en un bar para tomar un Aperol Spritz o un Negroni, acompañado de snacks. En muchas ciudades como Milán, el aperitivo viene con buffet libre.</p>
+      <p>El domingo al mediodía es el momento del <strong>pranzo in famiglia</strong>: una comida larga con la familia, que puede durar 2 o 3 horas. ¡El tiempo libre en Italia siempre tiene que ver con el placer de estar juntos!</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+if (!window.__ipp_m9_e2__) { window.__ipp_m9_e2__ = true;
+
+  function ippVoice(gender) {
+    var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+    var itV = voices.filter(function(v){ return v.lang && v.lang.startsWith('it'); });
+    if (!itV.length) return null;
+    var voice = null;
+    if (gender==='m') {
+      voice = itV.find(function(v){ return /cosimo|luca|giorgio|male|masc/i.test(v.name); });
+      if (!voice) voice = itV.find(function(v){ return !/elsa|alice|giulia|female|femm/i.test(v.name); });
+    } else {
+      voice = itV.find(function(v){ return /elsa|alice|giulia|female|femm/i.test(v.name); });
+      if (!voice) voice = itV.find(function(v){ return !/cosimo|luca|giorgio|male|masc/i.test(v.name); });
+    }
+    return voice || itV[0];
+  }
+
+  function ippAudio(text, rate, gender) {
+    rate = (typeof rate==='number' && isFinite(rate) && rate>0) ? rate : 0.82;
+    gender = (gender==='m'||gender==='f') ? gender : 'f';
+    if (!window.speechSynthesis) return;
+    try { speechSynthesis.cancel(); } catch(e) {}
+    var utt = new SpeechSynthesisUtterance(String(text));
+    utt.lang='it-IT'; utt.rate=rate;
+    var voice=ippVoice(gender); if (voice) utt.voice=voice;
+    (function(u){ setTimeout(function(){ try{speechSynthesis.speak(u);}catch(e){} },60); })(utt);
+  }
+
+  function playLine(btn) {
+    var line = btn.closest('.dialog-line');
+    var text = line.getAttribute('data-text');
+    var gender = line.getAttribute('data-gender') || 'f';
+    ippAudio(text, 0.82, gender);
+  }
+
+  var dialogLines = [
+    { text: "Che noia! Stiamo sempre a casa...", gender: "f" },
+    { text: "Hai ragione. Ma oggi è sabato! Dobbiamo fare qualcosa.", gender: "m" },
+    { text: "Sì! Ti piace andare al cinema?", gender: "f" },
+    { text: "Mmm, non molto. Mi piace di più fare una passeggiata. E a te?", gender: "m" },
+    { text: "A me piace moltissimo uscire! Mi piacciono anche i mercati all'aperto.", gender: "f" },
+    { text: "Ottima idea! Gli piace andare al mercato anche alla mia sorella.", gender: "m" },
+    { text: "Perfetto! E dopo andiamo al parco? Mi piace tanto passeggiare.", gender: "f" },
+    { text: "Certo! Preferisco stare all'aria aperta che restare sul divano.", gender: "m" },
+    { text: "Allora, ci piace la stessa cosa! Andiamo!", gender: "f" },
+    { text: "Aspetta! Al mercato compriamo qualcosa per il pranzo?", gender: "m" },
+    { text: "Sì! Mi piacciono molto i formaggi del mercato. E anche le olive! E a te, cosa ti piace comprare?", gender: "f" },
+    { text: "A me piacciono le verdure fresche. E il pane artigianale — mi piace moltissimo!", gender: "m" },
+    { text: "Perfetto! E dopo il parco, che facciamo? Ti piace cucinare insieme?", gender: "f" },
+    { text: "Mi piace moltissimo! Preferisco cucinare con gli amici che da solo. È più divertente!", gender: "m" },
+    { text: "Allora decidiamo: mercato, parco, e poi cena a casa mia. Ti va?", gender: "f" },
+    { text: "Mi va benissimo! Questa è la giornata perfetta. Andiamo!", gender: "m" }
+  ];
+
+  function playAllDialog() {
+    if (!window.speechSynthesis) return;
+    try { speechSynthesis.cancel(); } catch(e) {}
+    var idx = 0;
+    function playNext() {
+      if (idx >= dialogLines.length) return;
+      var line = dialogLines[idx];
+      var utt = new SpeechSynthesisUtterance(line.text);
+      utt.lang = 'it-IT';
+      utt.rate = 0.82;
+      var voice = ippVoice(line.gender);
+      if (voice) utt.voice = voice;
+      utt.onend = function() { idx++; setTimeout(playNext, 400); };
+      try { speechSynthesis.speak(utt); } catch(e) {}
+      idx = idx; // keep scope
+    }
+    playNext();
+  }
+
+  function toggleCulture() {
+    var body = document.getElementById('cultureBody');
+    var toggle = document.getElementById('cultureToggle');
+    var isOpen = body.classList.contains('open');
+    if (isOpen) {
+      body.classList.remove('open');
+      toggle.classList.remove('open');
+    } else {
+      body.classList.add('open');
+      toggle.classList.add('open');
+    }
+  }
+
+  window.ippAudio = ippAudio;
+  window.ippVoice = ippVoice;
+  window.playLine = playLine;
+  window.playAllDialog = playAllDialog;
+  window.toggleCulture = toggleCulture;
+
+} // end execution guard
+</script>
+</body>
+</html>

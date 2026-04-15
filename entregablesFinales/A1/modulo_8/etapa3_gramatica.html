@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 7 · In famiglia — Gramática | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --mod:      #528e74;
+  --mod-dk:   #3d6b58;
+  --mod-lt:   #e8f4ef;
+  --mod-tx:   #2d4d3c;
+  --cream:    #e9e6d5;
+  --cream-dk: #ddd9c8;
+  --gold:     #EFCF7F;
+  --black:    #1a1a18;
+  --white:    #ffffff;
+  --green:    #528e74;
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+  --r: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--fb); background: var(--cream); color: var(--black); line-height: 1.6; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
+  color: var(--white);
+  padding: 56px 24px 48px;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-family: var(--fb);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 700; margin-bottom: 10px; }
+.hero-sub { font-size: 1.05rem; opacity: 0.88; font-weight: 300; }
+
+/* STAGE NAV */
+
+.stage-link {
+  display: flex; align-items: center; gap: 7px;
+  padding: 8px 16px; border-radius: 30px;
+  text-decoration: none; font-family: var(--fb); font-size: 0.82rem; font-weight: 500;
+  color: #888; background: var(--cream); border: 1.5px solid transparent; transition: all 0.2s;
+}
+.stage-link .sn {
+  width: 22px; height: 22px; border-radius: 50%; background: #ccc; color: var(--white);
+  display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700;
+}
+.stage-link.active { background: var(--mod-lt); color: var(--mod-tx); border-color: var(--mod); }
+.stage-link.active .sn { background: var(--mod); }
+.stage-link.done { color: var(--green); }
+.stage-link.done .sn { background: var(--green); }
+
+/* MAIN */
+.main { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; }
+.section { margin-bottom: 52px; }
+
+/* SECTION HEADING */
+.sec-num {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--mod);
+  color: var(--white);
+  font-size: 1rem; font-weight: 700;
+  margin-bottom: 10px;
+}
+.sec-title { font-family: var(--fh); font-style: italic; font-size: 1.65rem; color: var(--mod-tx); margin-bottom: 6px; }
+.sec-divider { width: 48px; height: 3px; background: var(--mod); border-radius: 2px; margin-bottom: 22px; }
+.sec-intro { font-size: 0.95rem; color: #555; line-height: 1.7; margin-bottom: 22px; }
+
+/* GRAMMAR TABLE */
+.grammar-wrap {
+  background: var(--white);
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  margin-bottom: 24px;
+}
+.grammar-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.grammar-table th {
+  background: var(--mod);
+  color: var(--white);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+.grammar-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--cream);
+  vertical-align: middle;
+}
+.grammar-table tr:last-child td { border-bottom: none; }
+.grammar-table tr:nth-child(even) td { background: rgba(232,244,239,0.4); }
+.it-cell { font-weight: 700; color: var(--mod-dk); font-size: 0.95rem; }
+.ex-cell { font-size: 0.85rem; color: #666; font-style: italic; }
+
+/* ALERT BOX */
+.alert-box {
+  background: rgba(239,207,127,0.25);
+  border: 2px solid var(--gold);
+  border-radius: var(--r);
+  padding: 18px 22px;
+  margin-bottom: 24px;
+}
+.alert-box h4 {
+  font-family: var(--fb); font-size: 0.82rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.07em;
+  color: #7a5e2d; margin-bottom: 10px;
+}
+.alert-box p { font-size: 0.92rem; line-height: 1.7; }
+.alert-box .rule-example {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.rule-col {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.88rem;
+}
+.rule-col .rule-head {
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.rule-col.ok .rule-head { color: #155724; }
+.rule-col.ko .rule-head { color: #721c24; }
+.rule-col .rule-item { margin-bottom: 4px; }
+.rule-col.ok .rule-item { color: #155724; }
+.rule-col.ko .rule-item { color: #721c24; text-decoration: line-through; }
+.rule-note { font-size: 0.82rem; color: #7a5e2d; margin-top: 10px; font-style: italic; }
+
+/* INFO BOX */
+.info-box {
+  background: var(--mod-lt);
+  border-left: 4px solid var(--mod);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 16px 20px;
+  margin-bottom: 22px;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--mod-tx);
+}
+.info-box strong { color: var(--mod-dk); }
+
+/* EXERCISE CARD */
+.ex-card {
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 26px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  margin-bottom: 16px;
+}
+.ex-card h3 { font-family: var(--fh); font-style: italic; font-size: 1.2rem; color: var(--mod-tx); margin-bottom: 6px; }
+.ex-tag {
+  display: inline-block; background: var(--mod); color: var(--white);
+  border-radius: 20px; padding: 3px 12px; font-size: 0.72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 14px;
+}
+.ex-instr { font-size: 0.88rem; color: #555; margin-bottom: 18px; font-style: italic; }
+
+/* OPT BUTTONS */
+.opt-group { margin-bottom: 20px; }
+.opt-group:last-child { margin-bottom: 0; }
+.opt-q { font-size: 0.94rem; font-weight: 600; margin-bottom: 10px; line-height: 1.5; }
+.opt-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.opt-btn {
+  padding: 8px 18px; border-radius: 20px;
+  border: 1.5px solid var(--cream-dk); background: var(--cream);
+  font-family: var(--fb); font-size: 0.86rem; cursor: pointer;
+  transition: all 0.2s;
+}
+.opt-btn:hover:not(:disabled) { border-color: var(--mod); background: var(--mod-lt); color: var(--mod-tx); }
+.opt-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: 600; }
+.opt-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+.opt-feedback { font-size: 0.8rem; margin-top: 8px; font-weight: 600; }
+.opt-feedback.ok { color: #155724; }
+.opt-feedback.ko { color: #721c24; }
+
+/* FILL-IN */
+.fill-row { margin-bottom: 16px; }
+.fill-row:last-child { margin-bottom: 0; }
+.fill-sentence {
+  font-size: 0.94rem; line-height: 2.2;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 5px;
+}
+.fill-input {
+  border: none; border-bottom: 2px solid var(--mod);
+  background: transparent; font-family: var(--fb); font-size: 0.94rem;
+  color: var(--black); padding: 2px 6px; min-width: 110px;
+  outline: none; transition: border-color 0.2s;
+}
+.fill-input:focus { border-color: var(--mod-dk); }
+.fill-input.ok { border-color: #28a745; background: #d4edda; border-radius: 4px; }
+.fill-input.ko { border-color: #dc3545; background: #f8d7da; border-radius: 4px; }
+.fill-hint { font-size: 0.78rem; color: #888; font-style: italic; }
+
+/* BTN CHECK */
+.btn-check {
+  display: inline-flex; align-items: center; gap: 7px;
+  margin-top: 16px;
+  background: var(--mod); color: var(--white);
+  border: none; border-radius: 30px;
+  padding: 9px 22px; font-family: var(--fb); font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-check:hover { background: var(--mod-dk); }
+.check-result {
+  margin-top: 10px; font-size: 0.88rem; font-weight: 600;
+  color: var(--mod-tx); display: none;
+}
+.check-result.show { display: block; }
+
+/* NUMERI SYSTEM */
+.numeri-system {
+  background: var(--white);
+  border-radius: var(--r);
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  margin-bottom: 24px;
+}
+.numeri-system h4 { font-family: var(--fh); font-style: italic; font-size: 1.1rem; color: var(--mod-tx); margin-bottom: 14px; }
+.numeri-rows { display: flex; flex-direction: column; gap: 10px; }
+.numeri-row {
+  display: flex; align-items: baseline; gap: 14px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--cream-dk);
+  background: var(--cream);
+}
+.numeri-row .n-num { font-size: 1.1rem; font-weight: 700; color: var(--mod-dk); min-width: 90px; font-family: var(--fh); }
+.numeri-row .n-word { font-weight: 600; color: var(--black); font-size: 0.95rem; flex: 1; }
+.numeri-row .n-rule { font-size: 0.8rem; color: #888; font-style: italic; }
+
+/* INTEGRADOR */
+.integrador-box {
+  background: linear-gradient(135deg, rgba(82,142,116,0.08), rgba(61,107,88,0.12));
+  border: 2px solid var(--mod);
+  border-radius: var(--r);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.integrador-box h3 { font-family: var(--fh); font-style: italic; font-size: 1.2rem; color: var(--mod-tx); margin-bottom: 6px; }
+
+/* CTA */
+
+/* POSSESSIVI COLOR CODING */
+.poss-sing { color: var(--mod-dk); font-weight: 700; }
+.poss-plur { color: #7a5e2d; font-weight: 700; }
+
+@media (max-width: 600px) {
+  .alert-box .rule-example { grid-template-columns: 1fr; }
+  .numeri-row { flex-direction: column; gap: 4px; }
+  .numeri-row .n-num { min-width: unset; }
+}
+
+/* ── IPP Dialog / YouTube Controls ── */
+.dial-line{display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:1rem}
+.dial-speaker{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;min-width:80px;padding-top:.5rem;color:#888}
+.dial-speaker.a{color:var(--mc-dk)}
+.dial-speaker.b{color:var(--teal,#78a6ba)}
+.dial-wrap{flex:1}
+.dial-bubble{background:var(--cream-dk,#ddd9c8);border-radius:0 10px 10px 10px;padding:.8rem 1.1rem;font-size:.93rem;line-height:1.65;font-style:italic;transition:filter .45s,opacity .45s}
+.dial-bubble.blurred{filter:blur(7px);opacity:.25;user-select:none;pointer-events:none}
+.dial-line.right .dial-speaker{order:2}
+.dial-line.right .dial-wrap{order:1}
+.dial-line.right .dial-bubble{border-radius:10px 0 10px 10px;background:#e0eff5}
+.dial-line-ctrl{display:flex;gap:6px;margin-top:7px}
+.yt-lbtn{width:32px;height:32px;border-radius:50%;border:1.8px solid var(--mc-dk);background:none;color:var(--mc-dk);cursor:pointer;font-size:.72rem;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.yt-lbtn:hover{background:var(--mc-bg,#e4f0e9)}
+.yt-lbtn.stop{border-color:#cc4736;color:#cc4736}
+.yt-lbtn.stop:hover{background:#faeaea}
+.dial-line.right .yt-lbtn{border-color:var(--teal,#78a6ba);color:var(--teal,#78a6ba)}
+.dial-line.right .yt-lbtn:hover{background:#e5f1f5}
+.dial-line.right .yt-lbtn.stop{border-color:#cc4736;color:#cc4736}
+.dial-line.yt-active{outline:3px solid var(--mc-dk);border-radius:8px;background:var(--mc-bg,#e4f0e9);transition:background .3s}
+.dial-line.yt-done{opacity:.7}
+.yt-top-controls{display:flex;gap:12px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+.yt-btn{padding:10px 20px;border:none;border-radius:8px;font-family:var(--fb,'Outfit',system-ui,sans-serif);font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.yt-btn-conv{background:var(--mc-dk);color:#fff}
+.yt-btn-conv:hover{background:var(--mc)}
+.yt-btn-stop{background:var(--cream-dk,#ddd9c8);color:#1a1a18}
+.yt-btn-stop:hover{filter:brightness(.92)}
+.yt-btn:disabled{opacity:.45;cursor:not-allowed}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-badge">A1 · Unità 7</div>
+  <h1>In famiglia</h1>
+  <p class="hero-sub">Etapa 3 — Gramática · Possessivi, C'è/Ci sono, Numeri</p>
+</header>
+
+<main class="main">
+
+  <!-- ══════════════════════════════════════════════════════════
+       SECCIÓN 1: AGGETTIVI POSSESSIVI
+  ══════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="sec-num">1</div>
+    <h2 class="sec-title">Gli aggettivi possessivi</h2>
+    <div class="sec-divider"></div>
+    <p class="sec-intro">
+      Los adjetivos posesivos en italiano concuerdan en género y número con la cosa poseída, no con el poseedor. Además, casi siempre van precedidos del artículo determinativo. Hay, sin embargo, una excepción fundamental que vas a ver muy seguido cuando hablás de la familia.
+    </p>
+
+    <!-- Tabla completa -->
+    <div class="grammar-wrap">
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>Persona</th>
+            <th>Masc. sing.</th>
+            <th>Fem. sing.</th>
+            <th>Masc. plur.</th>
+            <th>Fem. plur.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>yo</strong> (io)</td>
+            <td class="it-cell">il mio</td>
+            <td class="it-cell">la mia</td>
+            <td class="it-cell">i miei</td>
+            <td class="it-cell">le mie</td>
+          </tr>
+          <tr>
+            <td><strong>vos/tú</strong> (tu)</td>
+            <td class="it-cell">il tuo</td>
+            <td class="it-cell">la tua</td>
+            <td class="it-cell">i tuoi</td>
+            <td class="it-cell">le tue</td>
+          </tr>
+          <tr>
+            <td><strong>él/ella</strong> (lui/lei)</td>
+            <td class="it-cell">il suo</td>
+            <td class="it-cell">la sua</td>
+            <td class="it-cell">i suoi</td>
+            <td class="it-cell">le sue</td>
+          </tr>
+          <tr>
+            <td><strong>nosotros</strong> (noi)</td>
+            <td class="it-cell">il nostro</td>
+            <td class="it-cell">la nostra</td>
+            <td class="it-cell">i nostri</td>
+            <td class="it-cell">le nostre</td>
+          </tr>
+          <tr>
+            <td><strong>ustedes</strong> (voi)</td>
+            <td class="it-cell">il vostro</td>
+            <td class="it-cell">la vostra</td>
+            <td class="it-cell">i vostri</td>
+            <td class="it-cell">le vostre</td>
+          </tr>
+          <tr>
+            <td><strong>ellos/as</strong> (loro)</td>
+            <td class="it-cell">il loro</td>
+            <td class="it-cell">la loro</td>
+            <td class="it-cell">i loro</td>
+            <td class="it-cell">le loro</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-box">
+      <strong>Concordancia:</strong> el posesivo concuerda con la cosa poseída. "Mi hermana" → <em>mia sorella</em> (femenino singular). "Mis hermanas" → <em>le mie sorelle</em> (femenino plural). No importa si sos hombre o mujer: usás el mismo posesivo.
+    </div>
+
+    <!-- REGLA CRÍTICA: sin artículo con parentela -->
+    <div class="alert-box">
+      <h4>⚡ Regla crítica — Con nomi di parentela singolare</h4>
+      <p>Cuando el posesivo acompaña a un <strong>nombre de parentela en singular no modificado</strong> (sin adjetivo, sufijo ni complemento), se usa <strong>SIN artículo</strong>. Esta es una de las reglas más características del italiano y se nota mucho.</p>
+      <div class="rule-example">
+        <div class="rule-col ok">
+          <div class="rule-head">✓ Sin artículo (correcto)</div>
+          <div class="rule-item">mio padre</div>
+          <div class="rule-item">mia madre</div>
+          <div class="rule-item">tua sorella</div>
+          <div class="rule-item">suo fratello</div>
+          <div class="rule-item">mio nonno</div>
+          <div class="rule-item">tua zia</div>
+          <div class="rule-item">nostro figlio</div>
+        </div>
+        <div class="rule-col ko">
+          <div class="rule-head">✗ Con artículo (incorrecto)</div>
+          <div class="rule-item">il mio padre</div>
+          <div class="rule-item">la mia madre</div>
+          <div class="rule-item">la tua sorella</div>
+          <div class="rule-item">il suo fratello</div>
+          <div class="rule-item">il mio nonno</div>
+          <div class="rule-item">la tua zia</div>
+          <div class="rule-item">il nostro figlio</div>
+        </div>
+      </div>
+      <p class="rule-note">Excepción: "loro" SIEMPRE lleva artículo → <em>il loro padre</em>, <em>la loro sorella</em>. Y en plural SIEMPRE lleva artículo → <em>i miei fratelli</em>, <em>le tue sorelle</em>.</p>
+      <p class="rule-note">Excepción 2: Si el nombre de parentela lleva un adjetivo o está modificado, vuelve el artículo → <em>il mio fratello maggiore</em>, <em>la mia cara nonna</em>.</p>
+    </div>
+
+    <!-- Ejercicios possessivi -->
+    <div class="ex-card">
+      <h3>Esercizio 1.A — Scegli il possessivo</h3>
+      <span class="ex-tag">Possessivi</span>
+      <p class="ex-instr">Elegí el possessivo correcto para completar cada oración.</p>
+
+      <div class="opt-group" id="p1">
+        <div class="opt-q">1. Giulia parla di suo fratello: "_____ fratello si chiama Luca."</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'p1',false,'No. Para Giulia (yo) es &quot;mio&quot;, no &quot;tuo&quot;.')">Tuo</button>
+          <button class="opt-btn" onclick="checkOpt(this,'p1',true,'✓ Correcto! Giulia habla de sí misma, usa &quot;mio&quot; sin artículo.')">Mio</button>
+          <button class="opt-btn" onclick="checkOpt(this,'p1',false,'&quot;Suo&quot; sería si alguien más habla del hermano de Giulia.')">Suo</button>
+          <button class="opt-btn" onclick="checkOpt(this,'p1',false,'&quot;Il mio&quot; es incorrecto: con parentela singolare no va el artículo.')">Il mio</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-p1"></div>
+      </div>
+
+      <div class="opt-group" id="p2">
+        <div class="opt-q">2. Marco le pregunta a Giulia: "E _____ sorella, come si chiama?"</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'p2',false,'No. Marco le habla a Giulia (vos), entonces es &quot;tua&quot;.')">sua</button>
+          <button class="opt-btn" onclick="checkOpt(this,'p2',false,'&quot;La tua&quot; lleva artículo, lo que es incorrecto con parentela singolare.')">la tua</button>
+          <button class="opt-btn" onclick="checkOpt(this,'p2',true,'✓ Perfecto! Marco habla con Giulia (tu), usa &quot;tua&quot; sin artículo.')">tua</button>
+          <button class="opt-btn" onclick="checkOpt(this,'p2',false,'&quot;mia&quot; sería si Giulia hablara de su propia hermana.')">mia</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-p2"></div>
+      </div>
+
+      <div class="opt-group" id="p3">
+        <div class="opt-q">3. "_____ genitori sono di Milano." (hablando de los padres de él)</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'p3',false,'I miei = mis (de yo). No es correcto aquí.')">I miei</button>
+          <button class="opt-btn" onclick="checkOpt(this,'p3',true,'✓ Correcto! &quot;I suoi&quot; = los de él/ella. Plural → lleva artículo.')">I suoi</button>
+          <button class="opt-btn" onclick="checkOpt(this,'p3',false,'&quot;I tuoi&quot; sería para (los de vos).')">I tuoi</button>
+          <button class="opt-btn" onclick="checkOpt(this,'p3',false,'&quot;Suo&quot; es singular masculino, pero &quot;genitori&quot; es plural.')">Suo</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-p3"></div>
+      </div>
+
+      <div class="opt-group" id="p4">
+        <div class="opt-q">4. "_____ nonna materna abita a venti minuti." (Giulia habla de su propia nonna)</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'p4',false,'&quot;La mia&quot; lleva artículo. Con parentela singolare no va.')">La mia</button>
+          <button class="opt-btn" onclick="checkOpt(this,'p4',false,'&quot;Sua&quot; sería para hablar de la nonna de otra persona.')">Sua</button>
+          <button class="opt-btn" onclick="checkOpt(this,'p4',true,'✓ Correcto! &quot;Mia&quot; sin artículo, porque nonna es parentela singolare.')">Mia</button>
+          <button class="opt-btn" onclick="checkOpt(this,'p4',false,'&quot;Tua&quot; es para la persona con quien hablás.')">Tua</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-p4"></div>
+      </div>
+    </div>
+
+    <div class="ex-card">
+      <h3>Esercizio 1.B — Artículo sí o no</h3>
+      <span class="ex-tag">Possessivi con parentela</span>
+      <p class="ex-instr">Completá con el possessivo correcto. Si corresponde artículo, incluyelo. Prestá atención: ¿es singular o plural? ¿hay modificación?</p>
+
+      <div id="fill-poss">
+        <div class="fill-row">
+          <div class="fill-sentence">
+            1. Ho una sorella. <input class="fill-input" id="pf1" placeholder="mia / la mia"> sorella si chiama Elena.
+            <span class="fill-hint">(yo, singular)</span>
+          </div>
+        </div>
+        <div class="fill-row">
+          <div class="fill-sentence">
+            2. Giulia ha due cugini. <input class="fill-input" id="pf2" placeholder="i miei / miei"> cugini abitano a Roma.
+            <span class="fill-hint">(yo, plural)</span>
+          </div>
+        </div>
+        <div class="fill-row">
+          <div class="fill-sentence">
+            3. Marco chiede: "Come si chiama <input class="fill-input" id="pf3" placeholder="tuo / il tuo"> padre?"
+            <span class="fill-hint">(vos, singular)</span>
+          </div>
+        </div>
+        <div class="fill-row">
+          <div class="fill-sentence">
+            4. È bellissima! <input class="fill-input" id="pf4" placeholder="la mia / mia"> cara nonna fa la pasta a mano.
+            <span class="fill-hint">(yo, singular, con adjetivo "cara")</span>
+          </div>
+        </div>
+        <div class="fill-row">
+          <div class="fill-sentence">
+            5. Michele e Stella portano i bambini a scuola. <input class="fill-input" id="pf5" placeholder="i loro / loro"> figli vanno all'asilo.
+            <span class="fill-hint">(loro, plural)</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-check" onclick="checkFill('poss', ['mia','i miei','tuo','la mia','i loro'], ['pf1','pf2','pf3','pf4','pf5'])">
+        Verificar respuestas
+      </button>
+      <div class="check-result" id="res-poss"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SECCIÓN 2: C'È / CI SONO
+  ══════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="sec-num">2</div>
+    <h2 class="sec-title">C'è / Ci sono — In profondità</h2>
+    <div class="sec-divider"></div>
+    <p class="sec-intro">
+      C'è y ci sono son las formas de "hay" en italiano. Provienen de <em>ci + essere</em> (allí + ser/estar). Se usan para indicar la existencia o presencia de personas, cosas o situaciones.
+    </p>
+
+    <div class="grammar-wrap">
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>Forma</th>
+            <th>Número</th>
+            <th>Uso</th>
+            <th>Ejemplo en contexto familiar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="it-cell">C'è</td>
+            <td>Singular</td>
+            <td>Un elemento / una persona</td>
+            <td class="ex-cell">C'è un bambino che piange — Hay un niño que llora.</td>
+          </tr>
+          <tr>
+            <td class="it-cell">Ci sono</td>
+            <td>Plural</td>
+            <td>Dos o más elementos / personas</td>
+            <td class="ex-cell">Ci sono tre figli in questa famiglia — Hay tres hijos en esta familia.</td>
+          </tr>
+          <tr>
+            <td class="it-cell">Non c'è</td>
+            <td>Singular neg.</td>
+            <td>Ausencia de un elemento</td>
+            <td class="ex-cell">Non c'è abbastanza aiuto per le famiglie — No hay suficiente ayuda para las familias.</td>
+          </tr>
+          <tr>
+            <td class="it-cell">Non ci sono</td>
+            <td>Plural neg.</td>
+            <td>Ausencia de varios elementos</td>
+            <td class="ex-cell">Non ci sono servizi pubblici adeguati — No hay servicios públicos adecuados.</td>
+          </tr>
+          <tr>
+            <td class="it-cell">C'è…?</td>
+            <td>Pregunta sing.</td>
+            <td>¿Hay…? ¿Está…?</td>
+            <td class="ex-cell">C'è tua madre a casa? — ¿Está tu mamá en casa?</td>
+          </tr>
+          <tr>
+            <td class="it-cell">Ci sono…?</td>
+            <td>Pregunta plur.</td>
+            <td>¿Hay…? (varios)</td>
+            <td class="ex-cell">Ci sono i nonni oggi? — ¿Están los abuelos hoy?</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-box">
+      <strong>Tip:</strong> La clave es siempre mirar el sustantivo que sigue. Si es singular → c'è. Si es plural → ci sono. Es tan simple como eso, pero hay que hacerlo automático con práctica.
+    </div>
+
+    <!-- Ejercicios C'è / Ci sono -->
+    <div class="ex-card">
+      <h3>Esercizio 2.A — C'è o Ci sono?</h3>
+      <span class="ex-tag">C'è / Ci sono</span>
+      <p class="ex-instr">Elegí la forma correcta.</p>
+
+      <div class="opt-group" id="ce1">
+        <div class="opt-q">1. "_____ una festa in famiglia questo weekend?"</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'ce1',true,'✓ Correcto! &quot;Una festa&quot; es singular → c\'è.')">C'è</button>
+          <button class="opt-btn" onclick="checkOpt(this,'ce1',false,'No. &quot;Festa&quot; es singular, entonces necesitamos c\'è.')">Ci sono</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-ce1"></div>
+      </div>
+
+      <div class="opt-group" id="ce2">
+        <div class="opt-q">2. "Non _____ abbastanza tempo per la famiglia in Italia."</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'ce2',true,'✓ Correcto! &quot;Tempo&quot; es singular → non c\'è.')">c'è</button>
+          <button class="opt-btn" onclick="checkOpt(this,'ce2',false,'No. &quot;Tempo&quot; es singular, usa c\'è.')">ci sono</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-ce2"></div>
+      </div>
+
+      <div class="opt-group" id="ce3">
+        <div class="opt-q">3. "In questa città _____ molti parchi per i bambini?"</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'ce3',false,'No. &quot;Molti parchi&quot; es plural → ci sono.')">c'è</button>
+          <button class="opt-btn" onclick="checkOpt(this,'ce3',true,'✓ Exacto! &quot;Molti parchi&quot; es plural → ci sono.')">ci sono</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-ce3"></div>
+      </div>
+
+      <div class="opt-group" id="ce4">
+        <div class="opt-q">4. "Nel video _____ una famiglia siciliana e toscana insieme."</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'ce4',true,'✓ Correcto! &quot;Una famiglia&quot; es singular → c\'è.')">c'è</button>
+          <button class="opt-btn" onclick="checkOpt(this,'ce4',false,'No. &quot;Una famiglia&quot; es un solo sustantivo singular.')">ci sono</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-ce4"></div>
+      </div>
+    </div>
+
+    <div class="ex-card">
+      <h3>Esercizio 2.B — Completá las oraciones</h3>
+      <span class="ex-tag">C'è / Ci sono — Fill in</span>
+      <p class="ex-instr">Escribí <strong>c'è</strong>, <strong>ci sono</strong>, <strong>non c'è</strong> o <strong>non ci sono</strong> según el contexto.</p>
+
+      <div id="fill-ce2">
+        <div class="fill-row">
+          <div class="fill-sentence">
+            1. <input class="fill-input" id="ce2f1" placeholder="c'è / ci sono"> tre bambini nella famiglia di Stella.
+          </div>
+        </div>
+        <div class="fill-row">
+          <div class="fill-sentence">
+            2. A Siracusa <input class="fill-input" id="ce2f2" placeholder="c'è / ci sono"> i nonni materni di Luisa.
+          </div>
+        </div>
+        <div class="fill-row">
+          <div class="fill-sentence">
+            3. In Italia <input class="fill-input" id="ce2f3" placeholder="non c'è / non ci sono"> abbastanza asili nido pubblici.
+          </div>
+        </div>
+        <div class="fill-row">
+          <div class="fill-sentence">
+            4. <input class="fill-input" id="ce2f4" placeholder="c'è / ci sono"> un parco vicino a casa loro?
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-check" onclick="checkFill('ce2', [\"ci sono\",\"ci sono\",\"non ci sono\",\"c'è\"], ['ce2f1','ce2f2','ce2f3','ce2f4'])">
+        Verificar respuestas
+      </button>
+      <div class="check-result" id="res-ce2"></div>
+    </div>
+
+    <div class="ex-card">
+      <h3>Esercizio 2.C — Traducí al italiano</h3>
+      <span class="ex-tag">Traducción</span>
+      <p class="ex-instr">Escribí la traducción italiana de cada oración. Prestá atención al número.</p>
+
+      <div id="fill-trad">
+        <div class="fill-row">
+          <div class="fill-sentence">
+            1. "Hay cuatro personas en mi familia." →
+            <input class="fill-input" id="tr1" placeholder="..." style="min-width:260px">
+          </div>
+        </div>
+        <div class="fill-row">
+          <div class="fill-sentence">
+            2. "¿Hay un abuelo en tu familia?" →
+            <input class="fill-input" id="tr2" placeholder="..." style="min-width:260px">
+          </div>
+        </div>
+        <div class="fill-row">
+          <div class="fill-sentence">
+            3. "No hay servicios para las familias." →
+            <input class="fill-input" id="tr3" placeholder="..." style="min-width:280px">
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-check" onclick="checkFill('trad', ['ci sono quattro persone nella mia famiglia', \"c'è un nonno nella tua famiglia\", 'non ci sono servizi per le famiglie'], ['tr1','tr2','tr3'])">
+        Verificar respuestas
+      </button>
+      <div class="check-result" id="res-trad"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SECCIÓN 3: NUMERI OLTRE 1000
+  ══════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="sec-num">3</div>
+    <h2 class="sec-title">Numeri oltre 1000</h2>
+    <div class="sec-divider"></div>
+    <p class="sec-intro">
+      El sistema de numeración italiano es bastante lógico. Una vez que entendés la estructura base, podés construir cualquier número combinando las piezas. La clave: <em>mille</em> (singular) vs. <em>mila</em> (plural).
+    </p>
+
+    <div class="numeri-system">
+      <h4>Sistema de construcción</h4>
+      <div class="numeri-rows">
+        <div class="numeri-row">
+          <div class="n-num">1.000</div>
+          <div class="n-word">mille</div>
+          <div class="n-rule">Siempre singular: "mille", nunca "un mille"</div>
+        </div>
+        <div class="numeri-row">
+          <div class="n-num">1.100</div>
+          <div class="n-word">millecentо</div>
+          <div class="n-rule">mille + cento (se unen sin espacio)</div>
+        </div>
+        <div class="numeri-row">
+          <div class="n-num">1.500</div>
+          <div class="n-word">millecinquecento</div>
+          <div class="n-rule">mille + cinquecento</div>
+        </div>
+        <div class="numeri-row">
+          <div class="n-num">2.000</div>
+          <div class="n-word">duemila</div>
+          <div class="n-rule">Plural: due + mila (no "due mille")</div>
+        </div>
+        <div class="numeri-row">
+          <div class="n-num">3.500</div>
+          <div class="n-word">tremilacinquecento</div>
+          <div class="n-rule">tre + mila + cinquecento</div>
+        </div>
+        <div class="numeri-row">
+          <div class="n-num">10.000</div>
+          <div class="n-word">diecimila</div>
+          <div class="n-rule">dieci + mila</div>
+        </div>
+        <div class="numeri-row">
+          <div class="n-num">25.000</div>
+          <div class="n-word">venticinquemila</div>
+          <div class="n-rule">venticinque + mila</div>
+        </div>
+        <div class="numeri-row">
+          <div class="n-num">100.000</div>
+          <div class="n-word">centomila</div>
+          <div class="n-rule">cento + mila</div>
+        </div>
+        <div class="numeri-row">
+          <div class="n-num">1.000.000</div>
+          <div class="n-word">un milione</div>
+          <div class="n-rule">Sustantivo, no adjetivo. Plural: due milioni</div>
+        </div>
+        <div class="numeri-row">
+          <div class="n-num">2.500.000</div>
+          <div class="n-word">due milioni e cinquecentomila</div>
+          <div class="n-rule">Se usa "e" para unir milioni con el resto</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>Atención con milione:</strong> Es un sustantivo, así que necesita la preposición "di" antes de lo que cuenta: <em>un milione di persone</em> (un millón de personas), <em>tre milioni di euro</em>.
+    </div>
+
+    <!-- Ejercicios numerales -->
+    <div class="ex-card">
+      <h3>Esercizio 3.A — Come si dice?</h3>
+      <span class="ex-tag">Numeri</span>
+      <p class="ex-instr">Elegí cómo se dice correctamente cada número en italiano.</p>
+
+      <div class="opt-group" id="n1">
+        <div class="opt-q">1. ¿Cómo se dice 2.000?</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'n1',false,'&quot;due mille&quot; no existe. El plural de mille es mila.')">due mille</button>
+          <button class="opt-btn" onclick="checkOpt(this,'n1',true,'✓ Correcto! duemila — el plural de mille es siempre mila.')">duemila</button>
+          <button class="opt-btn" onclick="checkOpt(this,'n1',false,'&quot;dimila&quot; no existe en italiano.')">dimila</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-n1"></div>
+      </div>
+
+      <div class="opt-group" id="n2">
+        <div class="opt-q">2. ¿Cómo se dice "un millón de habitantes"?</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'n2',false,'Falta la preposición &quot;di&quot; obligatoria con milione.')">un milione abitanti</button>
+          <button class="opt-btn" onclick="checkOpt(this,'n2',true,'✓ Perfecto! Con milione (sustantivo) se usa &quot;di&quot; antes del sustantivo.')">un milione di abitanti</button>
+          <button class="opt-btn" onclick="checkOpt(this,'n2',false,'mille no equivale a un millón. mille = 1.000.')">mille abitanti</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-n2"></div>
+      </div>
+
+      <div class="opt-group" id="n3">
+        <div class="opt-q">3. ¿Cómo se escribe en palabras el número 15.000?</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'n3',false,'&quot;quindici mille&quot; no es correcto. El plural es mila.')">quindici mille</button>
+          <button class="opt-btn" onclick="checkOpt(this,'n3',false,'&quot;quindicimille&quot; tampoco es correcto.')">quindicimille</button>
+          <button class="opt-btn" onclick="checkOpt(this,'n3',true,'✓ Exacto! quindici + mila = quindicimila.')">quindicimila</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-n3"></div>
+      </div>
+    </div>
+
+    <div class="ex-card">
+      <h3>Esercizio 3.B — Scrivi il numero</h3>
+      <span class="ex-tag">Numeri — Fill in</span>
+      <p class="ex-instr">Escribí en italiano (en letras) los números indicados.</p>
+
+      <div id="fill-numeri">
+        <div class="fill-row">
+          <div class="fill-sentence">
+            1. 3.000 → <input class="fill-input" id="nu1" placeholder="..." style="min-width:140px">
+          </div>
+        </div>
+        <div class="fill-row">
+          <div class="fill-sentence">
+            2. 1.200 → <input class="fill-input" id="nu2" placeholder="..." style="min-width:180px">
+          </div>
+        </div>
+        <div class="fill-row">
+          <div class="fill-sentence">
+            3. 50.000 → <input class="fill-input" id="nu3" placeholder="..." style="min-width:160px">
+          </div>
+        </div>
+        <div class="fill-row">
+          <div class="fill-sentence">
+            4. "Hay 2.000.000 de turistas." → Ci sono <input class="fill-input" id="nu4" placeholder="..." style="min-width:200px"> di turisti.
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-check" onclick="checkFill('numeri', ['tremila','milleduecento','cinquantamila','due milioni'], ['nu1','nu2','nu3','nu4'])">
+        Verificar respuestas
+      </button>
+      <div class="check-result" id="res-numeri"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SECCIÓN 4: SET INTEGRADOR
+  ══════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="sec-num">4</div>
+    <h2 class="sec-title">Set integrador</h2>
+    <div class="sec-divider"></div>
+    <p class="sec-intro">Estos ejercicios mezclan possessivi, c'è/ci sono y numeri en contextos reales inspirados en el video.</p>
+
+    <div class="integrador-box">
+      <h3>Esercizio 4.A — Tutto insieme</h3>
+      <span class="ex-tag" style="background:var(--mod-dk)">Integrador</span>
+      <p class="ex-instr" style="margin-top:12px;">Completá el texto con la palabra correcta de la lista. Usá: <em>mia, i miei, suo, c'è, ci sono, tremila, milleduecento</em></p>
+      <br>
+      <div id="fill-int">
+        <div style="font-size:0.95rem; line-height:2.4;">
+          Nella famiglia di Giulia
+          <input class="fill-input" id="int1" placeholder="c'è / ci sono"> cinque persone.
+          <input class="fill-input" id="int2" placeholder="mia / la mia"> madre si chiama Anna e
+          <input class="fill-input" id="int3" placeholder="mio / il mio"> fratello si chiama Luca.
+          I nonni abitano a <input class="fill-input" id="int4" placeholder="duemila / tremila"> chilometri di distanza.
+          A casa loro non <input class="fill-input" id="int5" placeholder="c'è / ci sono"> molti spazi, ma
+          <input class="fill-input" id="int6" placeholder="c'è / ci sono"> tanto amore!
+        </div>
+      </div>
+
+      <button class="btn-check" onclick="checkFill('int', ['ci sono','mia','mio','tremila','ci sono',\"c'è\"], ['int1','int2','int3','int4','int5','int6'])">
+        Verificar respuestas
+      </button>
+      <div class="check-result" id="res-int"></div>
+    </div>
+
+    <div class="integrador-box">
+      <h3>Esercizio 4.B — Preguntas sobre el video</h3>
+      <span class="ex-tag" style="background:var(--mod-dk)">Integrador</span>
+      <p class="ex-instr" style="margin-top:12px;">Respondé sobre la familia del video usando possessivi y c'è/ci sono.</p>
+
+      <div class="opt-group" id="int-b1" style="margin-top:12px;">
+        <div class="opt-q">1. Para decir "los abuelos maternos de Luisa", ¿cómo lo expresarías?</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'int-b1',false,'&quot;I nonni sua&quot; no es correcto. El possessivo va antes del sustantivo.')">i nonni sua</button>
+          <button class="opt-btn" onclick="checkOpt(this,'int-b1',true,'✓ Correcto! &quot;I suoi nonni&quot; = los de ella. Plural → lleva artículo.')">i suoi nonni</button>
+          <button class="opt-btn" onclick="checkOpt(this,'int-b1',false,'&quot;suoi nonni&quot; sin artículo está mal. Plural siempre lleva artículo.')">suoi nonni</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-int-b1"></div>
+      </div>
+
+      <div class="opt-group" id="int-b2">
+        <div class="opt-q">2. "En la familia del video, hay tres hijos." ¿Cómo se dice?</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'int-b2',false,'Falta la forma correcta de hay para plural.')">C'è tre figli.</button>
+          <button class="opt-btn" onclick="checkOpt(this,'int-b2',true,'✓ Perfecto! Tre figli = plural → ci sono.')">Ci sono tre figli.</button>
+          <button class="opt-btn" onclick="checkOpt(this,'int-b2',false,'Sono tre figli significa &quot;son tres hijos&quot;, no &quot;hay tres hijos&quot;.')">Sono tre figli.</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-int-b2"></div>
+      </div>
+
+      <div class="opt-group" id="int-b3">
+        <div class="opt-q">3. Michele dice que en Italia no hay suficientes servicios para las familias. ¿Cuál es la forma correcta?</div>
+        <div class="opt-row">
+          <button class="opt-btn" onclick="checkOpt(this,'int-b3',false,'&quot;Non c\'è servizi&quot; mezcla singular y plural incorrectamente.')">Non c'è servizi per le famiglie.</button>
+          <button class="opt-btn" onclick="checkOpt(this,'int-b3',true,'✓ Exacto! Servizi es plural → non ci sono.')">Non ci sono servizi per le famiglie.</button>
+          <button class="opt-btn" onclick="checkOpt(this,'int-b3',false,'&quot;Non hanno servizi&quot; cambia el sujeto, ya no es impersonal.')">Non hanno servizi per le famiglie.</button>
+        </div>
+        <div class="opt-feedback" id="opt-fb-int-b3"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+
+
+  <!-- ══════ IL DIALOGO ══════ -->
+  <section class="sec" id="s-dialogo">
+    <div class="sec-label">Il dialogo</div>
+    <h2 class="sec-title">La famiglia — Il dialogo completo</h2>
+    <p class="sec-sub">Seguí la conversación — presioná ▶ en cada línea o escuchá todo de corrido</p>
+    <div class="card">
+      <div class="yt-top-controls">
+        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
+        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.85rem;margin-bottom:1.5rem;">
+        <div class="dial-line" data-yt-idx="0">
+          <div class="dial-speaker a">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Giulia, hai fratelli o sorelle?</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(0)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line right" data-yt-idx="1">
+          <div class="dial-speaker b">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Sì! Ho un fratello e una sorella. Mio fratello si chiama Luca e ha ventidue anni.</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(1)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line" data-yt-idx="2">
+          <div class="dial-speaker a">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">E tua sorella, come si chiama?</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(2)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line right" data-yt-idx="3">
+          <div class="dial-speaker b">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Si chiama Elena. Ha diciotto anni e studia all'università. I miei genitori sono molto orgogliosi di lei!</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(3)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line" data-yt-idx="4">
+          <div class="dial-speaker a">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">E i nonni? Li vedi spesso?</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(4)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line right" data-yt-idx="5">
+          <div class="dial-speaker b">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Sì, ogni domenica andiamo a pranzo da mia nonna materna. Lei abita a venti minuti da casa nostra.</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(5)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line" data-yt-idx="6">
+          <div class="dial-speaker a">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Bello! E tuo nonno paterno, abita lontano?</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(6)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line right" data-yt-idx="7">
+          <div class="dial-speaker b">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Sì, purtroppo. Mio nonno abita in Toscana. Lo vediamo solo d'estate e a Natale.</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(7)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line" data-yt-idx="8">
+          <div class="dial-speaker a">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Hai anche zii o cugini?</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(8)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line right" data-yt-idx="9">
+          <div class="dial-speaker b">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Eccome! Mia zia Carla ha tre figli — due maschi e una femmina. Sono i miei cugini preferiti!</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(9)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line" data-yt-idx="10">
+          <div class="dial-speaker a">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">E i tuoi genitori, che lavoro fanno?</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(10)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line right" data-yt-idx="11">
+          <div class="dial-speaker b">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Mio padre è medico e mia madre è architetta. Lavorano tantissimo ma sono molto presenti!</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(11)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line" data-yt-idx="12">
+          <div class="dial-speaker a">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">La tua famiglia si incontra spesso tutta insieme?</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(12)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line right" data-yt-idx="13">
+          <div class="dial-speaker b">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Sì! A Natale siamo sempre tutti riuniti — i nonni, gli zii, i cugini... siamo in venti!</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(13)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line" data-yt-idx="14">
+          <div class="dial-speaker a">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Che bella famiglia numerosa! Nella mia siamo solo in quattro.</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(14)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line right" data-yt-idx="15">
+          <div class="dial-speaker b">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Piccola ma unita, di sicuro! Qual è la tua tradizione preferita?</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(15)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line" data-yt-idx="16">
+          <div class="dial-speaker a">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Le vacanze estive in Sicilia! Andiamo ogni anno, è una tradizione da vent'anni.</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(16)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line right" data-yt-idx="17">
+          <div class="dial-speaker b">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Che meraviglia! Anche noi andiamo al mare d'estate — ma in Sardegna. Il mare è incredibile!</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(17)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+if (!window.__ipp_m7_e3__) {
+  window.__ipp_m7_e3__ = true;
+
+  // ── IPP Voice ────────────────────────────────────────────────────────────
+  function ippVoice(text, gender) {
+    const synth = window.speechSynthesis;
+    if (!synth) return;
+    synth.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'it-IT';
+    utter.rate = 0.9;
+    utter.pitch = gender === 'F' ? 1.15 : 0.9;
+    const trySpeak = () => {
+      const voices = synth.getVoices();
+      const itVoices = voices.filter(v => v.lang.startsWith('it'));
+      if (itVoices.length > 0) {
+        const preferredF = itVoices.find(v => /female|donna/i.test(v.name));
+        const preferredM = itVoices.find(v => /male|uomo/i.test(v.name));
+        if (gender === 'F' && preferredF) utter.voice = preferredF;
+        else if (gender === 'M' && preferredM) utter.voice = preferredM;
+        else utter.voice = itVoices[0];
+      }
+      synth.speak(utter);
+    };
+    if (synth.getVoices().length === 0) synth.onvoiceschanged = trySpeak;
+    else trySpeak();
+  }
+
+  function ippAudio(text, gender) { ippVoice(text, gender || 'F'); }
+
+  // ── checkOpt ─────────────────────────────────────────────────────────────
+  function checkOpt(btn, groupId, isCorrect, feedback) {
+    const group = document.getElementById(groupId);
+    if (!group || group.dataset.done) return;
+    group.dataset.done = '1';
+    group.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+    btn.classList.add(isCorrect ? 'correct' : 'wrong');
+    const fb = document.getElementById('opt-fb-' + groupId);
+    if (fb) { fb.textContent = feedback; fb.className = 'opt-feedback ' + (isCorrect ? 'ok' : 'ko'); }
+  }
+
+  // ── checkFill ─────────────────────────────────────────────────────────────
+  function checkFill(key, answers, ids) {
+    let correct = 0;
+    ids.forEach((id, i) => {
+      const inp = document.getElementById(id);
+      if (!inp) return;
+      const val = inp.value.trim().toLowerCase();
+      const expected = answers[i].toLowerCase();
+      const isOk = val === expected;
+      inp.className = 'fill-input ' + (isOk ? 'ok' : 'ko');
+      inp.disabled = true;
+      if (isOk) correct++;
+    });
+    const res = document.getElementById('res-' + key);
+    if (res) {
+      res.textContent = `${correct}/${ids.length} correctas. ${correct === ids.length ? '¡Excelente! Gramática dominada.' : correct >= ids.length * 0.7 ? '¡Muy bien! Revisá las rojas.' : 'Repasá la teoría y volvé a intentarlo.'}`;
+      res.className = 'check-result show';
+    }
+  }
+
+  // ── toggleCulture ─────────────────────────────────────────────────────────
+  function toggleCulture(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.toggle('show');
+    const btn = el.previousElementSibling;
+    if (btn) btn.textContent = el.classList.contains('show') ? 'Ocultar traducción' : 'Ver traducción al español';
+  }
+
+  // Expose all to window
+  window.ippVoice = ippVoice;
+  window.ippAudio = ippAudio;
+  window.checkOpt = checkOpt;
+  window.checkFill = checkFill;
+  window.toggleCulture = toggleCulture;
+}
+</script>
+
+<div id="ippyt-frame" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden"></div>
+
+<script>
+/* ── IPP YouTube Dialog Player — shared ipp-yt-v3 ── */
+(function(){
+  if(window.__ippYTinit) return;
+  window.__ippYTinit = true;
+  window._ippYT = {player:null,ready:false,mode:null,idx:0,poll:null,lines:[],els:[]};
+  if(!window.YT){
+    var s=document.createElement('script');
+    s.src='https://www.youtube.com/iframe_api';
+    document.head.appendChild(s);
+  }
+  window._ippYTinitPlayer=function(videoId,frameId){
+    if(window._ippYT.player)return;
+    function tryCreate(){
+      if(!window.YT||!window.YT.Player){setTimeout(tryCreate,300);return;}
+      window._ippYT.player=new YT.Player(frameId,{videoId:videoId,height:1,width:1,
+        playerVars:{autoplay:0,controls:0,origin:location.origin||''},
+        events:{onReady:function(){window._ippYT.ready=true;}}});
+    }
+    tryCreate();
+  };
+  window.ippYT_detener=function(){
+    var y=window._ippYT;
+    if(y.poll){clearInterval(y.poll);y.poll=null;}
+    if(y.player&&y.ready){try{y.player.pauseVideo();}catch(e){}}
+    y.mode=null;
+    document.querySelectorAll('.yt-active').forEach(function(el){el.classList.remove('yt-active');});
+  };
+  window.ippYT_conversacion=function(){
+    var y=window._ippYT;
+    if(!y.ready){alert('El reproductor aún se está cargando...');return;}
+    ippYT_detener();
+    document.querySelectorAll('[data-yt-idx]').forEach(function(el){_ippYT_revealEl(el);});
+    y.mode='conv';
+    try{y.player.seekTo(0,true);y.player.playVideo();}catch(e){}
+  };
+  window._ippYT_playNext=function(){
+    var y=window._ippYT;
+    if(y.mode!=='dial')return;
+    if(y.idx>=y.els.length){y.mode=null;return;}
+    var el=y.els[y.idx];var ts=y.lines[y.idx];
+    el.classList.add('yt-active');_ippYT_revealEl(el);
+    el.scrollIntoView({behavior:'smooth',block:'nearest'});
+    if(ts&&ts[0]!==null){
+      try{y.player.seekTo(ts[0],true);y.player.playVideo();}catch(e){}
+      y.poll=setInterval(function(){
+        if(y.mode!=='dial'){clearInterval(y.poll);return;}
+        try{var ct=y.player.getCurrentTime();
+          if(ct>=ts[1]){clearInterval(y.poll);y.poll=null;try{y.player.pauseVideo();}catch(e){}
+            el.classList.remove('yt-active');el.classList.add('yt-done');y.idx++;setTimeout(window._ippYT_playNext,450);}
+        }catch(e){clearInterval(y.poll);}
+      },150);
+    }else{setTimeout(function(){el.classList.remove('yt-active');el.classList.add('yt-done');y.idx++;_ippYT_playNext();},2000);}
+  };
+  window._ippYT_revealEl=function(el){
+    var targets=['.dial-hidden','.hidden-text','.dial-bubble'];
+    for(var i=0;i<targets.length;i++){var h=el.querySelector(targets[i]);if(h){h.style.opacity='1';h.style.visibility='visible';h.style.maxHeight='none';h.style.display='';return;}}
+  };
+  window._ippYT_hideEl=function(el){
+    var targets=['.dial-hidden','.hidden-text','.dial-bubble'];
+    for(var i=0;i<targets.length;i++){var h=el.querySelector(targets[i]);if(h){h.style.opacity='0';h.style.visibility='hidden';return;}}
+  };
+})();
+</script>
+
+<script>_ippYTinitPlayer('XdJK-OLCiic','ippyt-frame');</script>
+
+<script>
+/* ── IPP Per-line playback — M7 etapa3 ── */
+(function(){
+  var LINE_TIMES=[[0,2],[2,9],[9,11],[11,19],[19,21],[21,32],[32,36],[36,42],[42,46],[46,53],[53,56],[56,64],[64,68],[68,75],[75,79],[79,85],[85,90],[90,96]];
+  var _activeLine=-1,_linePoll=null;
+  function _getLineEl(idx){return document.querySelector('.dial-line[data-yt-idx="'+idx+'"]');}
+  function _setButtons(idx,playing){
+    var el=_getLineEl(idx);if(!el)return;
+    var pb=el.querySelector('.yt-lbtn.play'),sb=el.querySelector('.yt-lbtn.stop');
+    if(pb)pb.style.display=playing?'none':'';if(sb)sb.style.display=playing?'':'none';
+    el.classList.toggle('yt-playing',playing);
+  }
+  window.ippYT_stopLine=function(){
+    if(_linePoll){clearInterval(_linePoll);_linePoll=null;}
+    var y=window._ippYT;if(y&&y.ready){try{y.player.pauseVideo();}catch(e){}}
+    if(_activeLine>=0){_setButtons(_activeLine,false);_activeLine=-1;}
+  };
+  window.ippYT_playLine=function(idx){
+    ippYT_stopLine();
+    var y=window._ippYT;if(!y||!y.ready){alert('El reproductor aún se está cargando...');return;}
+    var ts=LINE_TIMES[idx];if(!ts)return;
+    var el=_getLineEl(idx);
+    if(el){var b=el.querySelector('.dial-bubble');if(b)b.classList.remove('blurred');}
+    _activeLine=idx;_setButtons(idx,true);
+    try{y.player.seekTo(ts[0],true);y.player.playVideo();}catch(e){}
+    _linePoll=setInterval(function(){
+      try{var ct=y.player.getCurrentTime();
+        if(ct>=ts[1]){clearInterval(_linePoll);_linePoll=null;try{y.player.pauseVideo();}catch(e){}_setButtons(idx,false);_activeLine=-1;}
+      }catch(e){clearInterval(_linePoll);}
+    },150);
+  };
+  var _origConv=window.ippYT_conversacion;
+  window.ippYT_conversacion=function(){
+    ippYT_stopLine();
+    document.querySelectorAll('.dial-bubble.blurred').forEach(function(b){b.classList.remove('blurred');});
+    if(_origConv)_origConv();
+  };
+  var _origStop=window.ippYT_detener;
+  window.ippYT_detener=function(){ippYT_stopLine();if(_origStop)_origStop();};
+})();
+</script>
+</body>
+</html>

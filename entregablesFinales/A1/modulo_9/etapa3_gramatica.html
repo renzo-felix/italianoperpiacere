@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In treno o in macchina? — Etapa 3 | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --mod:    #e5ab07;
+  --mod-dk: #c8940a;
+  --mod-lt: #fef9e7;
+  --mod-tx: #7a5500;
+  --cream:  #e9e6d5;
+  --cream-dk: #ddd9c8;
+  --gold:   #EFCF7F;
+  --black:  #1a1a18;
+  --white:  #ffffff;
+  --green:  #528e74;
+  --red:    #cc4736;
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+  --r: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--cream); font-family: var(--fb); color: var(--black); line-height: 1.6; }
+
+.hero {
+  background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
+  padding: 56px 24px 48px; text-align: center; color: var(--white);
+}
+.badge {
+  display: inline-block; background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4); border-radius: 20px;
+  padding: 4px 16px; font-size: 13px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;
+}
+.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2rem,5vw,3.2rem); font-weight: 700; margin-bottom: 8px; }
+.hero p { font-size: 1.05rem; opacity: 0.9; }
+
+.container { max-width: 860px; margin: 0 auto; padding: 40px 24px; }
+
+/* GRAMMAR BLOCK */
+.gram-block {
+  background: var(--white); border-radius: var(--r);
+  padding: 32px; margin-bottom: 36px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.gram-number {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--mod); color: var(--white);
+  font-weight: 700; font-size: 15px; margin-right: 10px; flex-shrink: 0;
+}
+.gram-header { display: flex; align-items: center; margin-bottom: 6px; }
+.gram-title { font-family: var(--fh); font-style: italic; font-size: 1.4rem; color: var(--mod-tx); }
+.gram-subtitle { font-size: 0.88rem; color: #666; margin-bottom: 20px; margin-left: 42px; }
+
+/* TABLES */
+.table-wrap { overflow-x: auto; margin-bottom: 20px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th { background: var(--mod); color: var(--white); padding: 10px 14px; text-align: left; font-weight: 700; }
+td { padding: 9px 14px; border-bottom: 1px solid var(--cream-dk); vertical-align: middle; }
+tr:nth-child(even) td { background: var(--cream); }
+tr:last-child td { border-bottom: none; }
+.td-it { font-weight: 700; color: var(--mod-tx); }
+.td-es { color: #555; }
+.btn-tbl {
+  background: none; border: 1px solid var(--mod); border-radius: 50%;
+  width: 26px; height: 26px; cursor: pointer; font-size: 12px;
+  color: var(--mod-tx); transition: all 0.2s;
+}
+.btn-tbl:hover { background: var(--mod); color: var(--white); }
+
+/* HIGHLIGHT BOX */
+.hi-box {
+  background: var(--mod-lt); border-left: 4px solid var(--mod);
+  border-radius: 0 var(--r) var(--r) 0; padding: 14px 18px;
+  margin-bottom: 18px; font-size: 0.93rem;
+}
+.hi-box strong { color: var(--mod-tx); }
+.formula-box {
+  background: var(--cream); border: 2px solid var(--gold);
+  border-radius: var(--r); padding: 14px 18px;
+  text-align: center; font-size: 1.1rem; font-weight: 700;
+  color: var(--mod-tx); margin-bottom: 18px; letter-spacing: 0.5px;
+}
+
+/* EXAMPLE CHIPS */
+.ex-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.ex-chip {
+  background: var(--cream); border: 1px solid var(--cream-dk);
+  border-radius: 8px; padding: 8px 14px; font-size: 0.88rem;
+  cursor: pointer; transition: all 0.2s;
+}
+.ex-chip:hover { border-color: var(--mod); background: var(--mod-lt); }
+.ex-chip em { color: var(--mod-tx); font-style: normal; font-weight: 700; }
+.ex-chip span { color: #666; font-size: 0.8rem; display: block; }
+
+/* EXERCISES */
+.ex-divider {
+  border: none; border-top: 2px dashed var(--cream-dk);
+  margin: 28px 0;
+}
+.ex-section-title {
+  font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px;
+  font-weight: 700; color: #888; margin-bottom: 16px;
+}
+.opt-item { margin-bottom: 20px; }
+.opt-question { font-weight: 600; margin-bottom: 8px; font-size: 0.96rem; }
+.opt-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn-opt {
+  padding: 8px 18px; border: 2px solid var(--cream-dk);
+  border-radius: 6px; background: var(--cream);
+  font-family: var(--fb); font-size: 0.88rem; cursor: pointer;
+  transition: all 0.2s; text-align: left;
+}
+.btn-opt:hover { border-color: var(--mod); background: var(--mod-lt); }
+.btn-opt.correct { background: #d4edda; border-color: var(--green); color: #2d6a4f; font-weight: 700; }
+.btn-opt.wrong { background: #fde8e8; border-color: var(--red); color: #9b2335; }
+.opt-feedback { font-size: 13px; margin-top: 6px; min-height: 18px; font-weight: 500; }
+
+/* FONETICA */
+.fon-pairs { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 10px; margin-bottom: 16px; }
+.fon-pair {
+  background: var(--cream); border-radius: var(--r);
+  padding: 12px 16px; display: flex; align-items: center;
+  gap: 12px; cursor: pointer; transition: all 0.2s;
+  border: 1px solid var(--cream-dk);
+}
+.fon-pair:hover { border-color: var(--mod); background: var(--mod-lt); }
+.fon-w1 { font-weight: 700; font-size: 1rem; color: var(--mod-tx); }
+.fon-w2 { font-weight: 700; font-size: 1rem; color: var(--red); }
+.fon-sep { color: #aaa; font-size: 1.2rem; }
+
+/* PRONOMI CI */
+.ci-cards { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+.ci-card {
+  background: var(--cream); border-radius: var(--r); padding: 16px 18px;
+  border: 1px solid var(--cream-dk); flex: 1; min-width: 220px;
+  cursor: pointer; transition: all 0.2s;
+}
+.ci-card:hover { border-color: var(--mod); background: var(--mod-lt); }
+.ci-from { font-size: 0.85rem; color: #666; margin-bottom: 4px; }
+.ci-arrow { color: var(--mod); font-weight: 700; margin: 4px 0; }
+.ci-to { font-weight: 700; color: var(--mod-tx); font-size: 0.95rem; }
+
+/* PRONOMI DIRETTI */
+.pd-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 16px; }
+.pd-card {
+  background: var(--cream); border-radius: var(--r); padding: 14px 16px;
+  border: 2px solid var(--cream-dk); cursor: pointer; transition: all 0.2s;
+}
+.pd-card:hover { border-color: var(--mod); background: var(--mod-lt); }
+.pd-pron { font-size: 2rem; font-weight: 700; color: var(--mod); }
+.pd-label { font-size: 0.82rem; color: #555; margin-bottom: 6px; }
+.pd-ex { font-size: 0.88rem; font-style: italic; }
+
+@media (max-width: 600px) {
+  .gram-block { padding: 20px; }
+  .opt-buttons { flex-direction: column; }
+  .pd-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">A1 · Unità 8</div>
+  <h1>In treno o in macchina?</h1>
+  <p>Etapa 3 — Gramática · Explicación interactiva</p>
+</div>
+
+<div class="container">
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- BLOQUE 1: NUMERI ORDINALI -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="gram-block">
+    <div class="gram-header">
+      <span class="gram-number">1</span>
+      <h2 class="gram-title">Numeri ordinali</h2>
+    </div>
+    <p class="gram-subtitle">Los números ordinales indican posición o secuencia: primero, segundo, tercero... Se usan para pisos, andenes, líneas de metro, siglos y más.</p>
+
+    <div class="hi-box">
+      Del <strong>1° al 10°</strong> son formas especiales que hay que memorizar. Del 11° en adelante se forma agregando <strong>-esimo/a</strong> al número (undicesimo, dodicesimo...).
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Italiano</th><th>Español</th><th>🔊</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1°</td><td class="td-it">primo / prima</td><td class="td-es">primero / primera</td><td><button class="btn-tbl" onclick="ippAudio('primo', 0.82, 'm')">▶</button></td></tr>
+          <tr><td>2°</td><td class="td-it">secondo / seconda</td><td class="td-es">segundo / segunda</td><td><button class="btn-tbl" onclick="ippAudio('secondo', 0.82, 'm')">▶</button></td></tr>
+          <tr><td>3°</td><td class="td-it">terzo / terza</td><td class="td-es">tercero / tercera</td><td><button class="btn-tbl" onclick="ippAudio('terzo', 0.82, 'm')">▶</button></td></tr>
+          <tr><td>4°</td><td class="td-it">quarto / quarta</td><td class="td-es">cuarto / cuarta</td><td><button class="btn-tbl" onclick="ippAudio('quarto', 0.82, 'm')">▶</button></td></tr>
+          <tr><td>5°</td><td class="td-it">quinto / quinta</td><td class="td-es">quinto / quinta</td><td><button class="btn-tbl" onclick="ippAudio('quinto', 0.82, 'm')">▶</button></td></tr>
+          <tr><td>6°</td><td class="td-it">sesto / sesta</td><td class="td-es">sexto / sexta</td><td><button class="btn-tbl" onclick="ippAudio('sesto', 0.82, 'm')">▶</button></td></tr>
+          <tr><td>7°</td><td class="td-it">settimo / settima</td><td class="td-es">séptimo / séptima</td><td><button class="btn-tbl" onclick="ippAudio('settimo', 0.82, 'm')">▶</button></td></tr>
+          <tr><td>8°</td><td class="td-it">ottavo / ottava</td><td class="td-es">octavo / octava</td><td><button class="btn-tbl" onclick="ippAudio('ottavo', 0.82, 'm')">▶</button></td></tr>
+          <tr><td>9°</td><td class="td-it">nono / nona</td><td class="td-es">noveno / novena</td><td><button class="btn-tbl" onclick="ippAudio('nono', 0.82, 'm')">▶</button></td></tr>
+          <tr><td>10°</td><td class="td-it">decimo / decima</td><td class="td-es">décimo / décima</td><td><button class="btn-tbl" onclick="ippAudio('decimo', 0.82, 'm')">▶</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ex-chips">
+      <div class="ex-chip" onclick="ippAudio('Prendo il primo treno', 0.82, 'f')"><em>Prendo il primo treno.</em> <span>Tomo el primer tren.</span></div>
+      <div class="ex-chip" onclick="ippAudio('Scendi alla terza fermata', 0.82, 'm')"><em>Scendi alla terza fermata.</em> <span>Bajá en la tercera parada.</span></div>
+      <div class="ex-chip" onclick="ippAudio('È al secondo piano', 0.82, 'f')"><em>È al secondo piano.</em> <span>Está en el segundo piso.</span></div>
+    </div>
+
+    <hr class="ex-divider">
+    <div class="ex-section-title">Ejercicios — Numeri ordinali</div>
+
+    <div class="opt-item" data-group="g1a">
+      <div class="opt-question">1. ¿Cómo se dice "quinta parada" en italiano?</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No, eso sería «cuarta parada».')">quarta fermata</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Esatto! quinta fermata.')">quinta fermata</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No, eso es «sexta parada».')">sesta fermata</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+
+    <div class="opt-item" data-group="g1b">
+      <div class="opt-question">2. Completá: "Prendo il ___ autobus." (el segundo autobús)</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. primo = primero.')">primo</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Sì! secondo = segundo.')">secondo</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. terzo = tercero.')">terzo</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+
+    <div class="opt-item" data-group="g1c">
+      <div class="opt-question">3. ¿Cuál es el ordinal de 7 en italiano?</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No, sesto es 6°.')">sesto</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No, ottavo es 8°.')">ottavo</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Correcto! settimo = séptimo.')">settimo</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- BLOQUE 2: STARE + GERUNDIO -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="gram-block">
+    <div class="gram-header">
+      <span class="gram-number">2</span>
+      <h2 class="gram-title">Stare + gerundio</h2>
+    </div>
+    <p class="gram-subtitle">Es el equivalente italiano del presente progresivo: "estoy haciendo", "estás yendo". Se forma con <strong>stare</strong> conjugado + el gerundio del verbo.</p>
+
+    <div class="formula-box">stare (conjugado) + verbo in -<strong>ando</strong> / -<strong>endo</strong></div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Pronome</th><th>Stare</th><th>Gerundio (-are)</th><th>Gerundio (-ere/-ire)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>io</td><td class="td-it">sto</td><td>cammin<strong>ando</strong></td><td>prend<strong>endo</strong></td></tr>
+          <tr><td>tu</td><td class="td-it">stai</td><td>aspett<strong>ando</strong></td><td>scend<strong>endo</strong></td></tr>
+          <tr><td>lui / lei</td><td class="td-it">sta</td><td>viaggi<strong>ando</strong></td><td>part<strong>endo</strong></td></tr>
+          <tr><td>noi</td><td class="td-it">stiamo</td><td>guard<strong>ando</strong></td><td>bev<strong>endo</strong></td></tr>
+          <tr><td>voi</td><td class="td-it">state</td><td>parl<strong>ando</strong></td><td>scriv<strong>endo</strong></td></tr>
+          <tr><td>loro</td><td class="td-it">stanno</td><td>arri<strong>vando</strong></td><td>dorm<strong>endo</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ex-chips">
+      <div class="ex-chip" onclick="ippAudio('Sto aspettando il treno sul binario tre', 0.82, 'f')"><em>Sto aspettando il treno sul binario tre.</em> <span>Estoy esperando el tren en el andén tres.</span></div>
+      <div class="ex-chip" onclick="ippAudio('Cosa stai facendo?', 0.82, 'm')"><em>Cosa stai facendo?</em> <span>¿Qué estás haciendo?</span></div>
+      <div class="ex-chip" onclick="ippAudio('Stanno salendo sul vaporetto', 0.82, 'f')"><em>Stanno salendo sul vaporetto.</em> <span>Están subiendo al vaporetto.</span></div>
+    </div>
+
+    <hr class="ex-divider">
+    <div class="ex-section-title">Ejercicios — Stare + gerundio</div>
+
+    <div class="opt-item" data-group="g2a">
+      <div class="opt-question">1. ¿Cómo se dice "Estamos viajando en tren"?</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No, «siamo» es del verbo essere, no stare.')">Siamo viaggiando in treno.</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Perfetto! stiamo + gerundio -ando.')">Stiamo viaggiando in treno.</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No, «abbiamo» es el verbo avere, no sirve aquí.')">Abbiamo viaggiando in treno.</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+
+    <div class="opt-item" data-group="g2b">
+      <div class="opt-question">2. ¿Cuál es el gerundio de "partire"?</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No, -ando es para los verbos en -are.')">partando</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Correcto! partire → partendo.')">partendo</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No existe esa forma.')">partindo</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+
+    <div class="opt-item" data-group="g2c">
+      <div class="opt-question">3. Completá: "Sofia ___ guardando la mappa." (ella)</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. «sto» es para io.')">sto</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. «stai» es para tu.')">stai</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Sì! sta = lui/lei.')">sta</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- BLOQUE 3: PRONOME CI DI LUOGO -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="gram-block">
+    <div class="gram-header">
+      <span class="gram-number">3</span>
+      <h2 class="gram-title">Il pronome di luogo <em>ci</em></h2>
+    </div>
+    <p class="gram-subtitle"><strong>Ci</strong> reemplaza a "a + lugar" o "in + lugar". Es muy frecuente en italiano y equivale a "allí", "ahí", "a ese lugar". Se pone antes del verbo.</p>
+
+    <div class="formula-box">ci = a/in + luogo già menzionato</div>
+
+    <div class="ci-cards">
+      <div class="ci-card" onclick="ippAudio('Vado a Roma. Ci vado ogni anno.', 0.82, 'f')">
+        <div class="ci-from">Vado a Roma ogni anno.</div>
+        <div class="ci-arrow">↓ ci reemplaza "a Roma"</div>
+        <div class="ci-to">Ci vado ogni anno.</div>
+      </div>
+      <div class="ci-card" onclick="ippAudio('Sei mai stato a Venezia? Sì, ci sono stato l\'anno scorso.', 0.82, 'm')">
+        <div class="ci-from">Sei mai stato a Venezia?</div>
+        <div class="ci-arrow">↓ ci reemplaza "a Venezia"</div>
+        <div class="ci-to">Sì, ci sono stato l'anno scorso.</div>
+      </div>
+      <div class="ci-card" onclick="ippAudio('Andiamo in stazione. Ci andiamo a piedi.', 0.82, 'f')">
+        <div class="ci-from">Andiamo in stazione.</div>
+        <div class="ci-arrow">↓ ci reemplaza "in stazione"</div>
+        <div class="ci-to">Ci andiamo a piedi.</div>
+      </div>
+    </div>
+
+    <div class="hi-box">
+      <strong>Ci vuole / Ci vogliono</strong> — expresión fija para indicar tiempo o duración:<br>
+      <em>Ci vuole un'ora.</em> (Lleva una hora.) · <em>Ci vogliono due ore.</em> (Llevan dos horas.)
+    </div>
+
+    <hr class="ex-divider">
+    <div class="ex-section-title">Ejercicios — Il pronome ci</div>
+
+    <div class="opt-item" data-group="g3a">
+      <div class="opt-question">1. "Vado spesso in centro." → Con ci: "___ vado spesso."</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. lo reemplaza un objeto directo, no un lugar.')">Lo vado spesso.</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Esatto! Ci vado spesso.')">Ci vado spesso.</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. la reemplaza un objeto femenino, no un lugar.')">La vado spesso.</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+
+    <div class="opt-item" data-group="g3b">
+      <div class="opt-question">2. ¿Cuánto tiempo lleva? "___ vuole circa mezz'ora."</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No, «lo» no va con questa struttura.')">Lo vuole circa mezz'ora.</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No, «si» no es el pronome correcto aquí.')">Si vuole circa mezz'ora.</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Correcto! Ci vuole circa mezz\'ora.')">Ci vuole circa mezz'ora.</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+
+    <div class="opt-item" data-group="g3c">
+      <div class="opt-question">3. "Non sono mai andato a Napoli." → Con ci: "Non ___ sono mai andato."</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Perfetto! ci si mette prima del verbo ausiliare.')">ci</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. lo es pronome diretto, no di luogo.')">lo</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. ne è pronome partitivo, non di luogo.')">ne</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- BLOQUE 4: IMPERATIVO INFORMALE -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="gram-block">
+    <div class="gram-header">
+      <span class="gram-number">4</span>
+      <h2 class="gram-title">Imperativo informale (tu)</h2>
+    </div>
+    <p class="gram-subtitle">Para dar instrucciones a alguien de confianza (vos/tú). Esencial para indicar cómo llegar a un lugar.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Infinito</th><th>Imperativo (tu)</th><th>Ejemplo</th><th>🔊</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>guardare</td><td class="td-it">guarda!</td><td>Guarda a destra!</td><td><button class="btn-tbl" onclick="ippAudio('Guarda a destra!', 0.82, 'f')">▶</button></td></tr>
+          <tr><td>aspettare</td><td class="td-it">aspetta!</td><td>Aspetta qui!</td><td><button class="btn-tbl" onclick="ippAudio('Aspetta qui!', 0.82, 'm')">▶</button></td></tr>
+          <tr><td>girare</td><td class="td-it">gira!</td><td>Gira a sinistra!</td><td><button class="btn-tbl" onclick="ippAudio('Gira a sinistra!', 0.82, 'f')">▶</button></td></tr>
+          <tr><td>prendere</td><td class="td-it">prendi!</td><td>Prendi il treno!</td><td><button class="btn-tbl" onclick="ippAudio('Prendi il treno!', 0.82, 'm')">▶</button></td></tr>
+          <tr><td>scendere</td><td class="td-it">scendi!</td><td>Scendi alla prossima!</td><td><button class="btn-tbl" onclick="ippAudio('Scendi alla prossima!', 0.82, 'f')">▶</button></td></tr>
+          <tr><td>partire</td><td class="td-it">parti!</td><td>Parti subito!</td><td><button class="btn-tbl" onclick="ippAudio('Parti subito!', 0.82, 'm')">▶</button></td></tr>
+          <tr><td>seguire</td><td class="td-it">segui!</td><td>Segui la strada!</td><td><button class="btn-tbl" onclick="ippAudio('Segui la strada!', 0.82, 'f')">▶</button></td></tr>
+          <tr style="background:#fff8e1"><td><strong>andare ⚠</strong></td><td class="td-it">vai!</td><td>Vai dritto!</td><td><button class="btn-tbl" onclick="ippAudio('Vai dritto!', 0.82, 'm')">▶</button></td></tr>
+          <tr style="background:#fff8e1"><td><strong>venire ⚠</strong></td><td class="td-it">vieni!</td><td>Vieni con me!</td><td><button class="btn-tbl" onclick="ippAudio('Vieni con me!', 0.82, 'f')">▶</button></td></tr>
+          <tr style="background:#fff8e1"><td><strong>fare ⚠</strong></td><td class="td-it">fai!</td><td>Fai attenzione!</td><td><button class="btn-tbl" onclick="ippAudio('Fai attenzione!', 0.82, 'm')">▶</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hi-box">
+      Los verbos <strong>-are</strong> forman el imperativo igual que la 3ª persona del presente: <em>guarda</em>, <em>aspetta</em>.<br>
+      Los verbos <strong>-ere/-ire</strong> usan la 2ª persona del presente: <em>prendi</em>, <em>parti</em>.<br>
+      Algunos son <strong>irregolari</strong> (fondo amarillo): vai, vieni, fai.
+    </div>
+
+    <hr class="ex-divider">
+    <div class="ex-section-title">Ejercicios — Imperativo informale</div>
+
+    <div class="opt-item" data-group="g4a">
+      <div class="opt-question">1. ¿Cómo le decís a un amigo "¡Tomá el metro!"?</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No, prende es presente de lui/lei.')">Prende la metro!</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Sì! prendi es el imperativo de prendere.')">Prendi la metro!</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No, prendete es imperativo para voi (ustedes).')">Prendete la metro!</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+
+    <div class="opt-item" data-group="g4b">
+      <div class="opt-question">2. ¿Cuál es el imperativo de "andare" para (tu/vos)?</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No, anda no es la forma italiana correcta.')">anda</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No, andate es para voi.')">andate</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Correcto! vai es la forma irregolare de andare.')">vai</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+
+    <div class="opt-item" data-group="g4c">
+      <div class="opt-question">3. Tu amigo busca la stazione. Le decís: "___ dritto e poi ___ a sinistra."</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No, andate / girate son para voi.')">Andate / girate</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Perfetto! vai (andare irreg.) + gira (-are reg.)')">Vai / gira</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No, va / gire no son formas correctas.')">Va / gire</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- BLOQUE 5: PRONOMI DIMOSTRATIVI -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="gram-block">
+    <div class="gram-header">
+      <span class="gram-number">5</span>
+      <h2 class="gram-title">Pronomi dimostrativi: questo / quello</h2>
+    </div>
+    <p class="gram-subtitle"><strong>Questo</strong> = este/esta/estos/estas (objeto cercano). <strong>Quello</strong> = ese/aquel (objeto lejano). Concuerdan en género y número con el sustantivo.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th></th><th>Maschile singolare</th><th>Femminile singolare</th><th>Maschile plurale</th><th>Femminile plurale</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:700;color:var(--mod-tx)">QUESTO (cerca)</td>
+            <td class="td-it" style="cursor:pointer" onclick="ippAudio('questo', 0.82, 'm')">questo 🔊</td>
+            <td class="td-it" style="cursor:pointer" onclick="ippAudio('questa', 0.82, 'f')">questa 🔊</td>
+            <td class="td-it" style="cursor:pointer" onclick="ippAudio('questi', 0.82, 'm')">questi 🔊</td>
+            <td class="td-it" style="cursor:pointer" onclick="ippAudio('queste', 0.82, 'f')">queste 🔊</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:#666">QUELLO (lontano)</td>
+            <td class="td-it" style="cursor:pointer" onclick="ippAudio('quello', 0.82, 'm')">quello / quel 🔊</td>
+            <td class="td-it" style="cursor:pointer" onclick="ippAudio('quella', 0.82, 'f')">quella 🔊</td>
+            <td class="td-it" style="cursor:pointer" onclick="ippAudio('quelli', 0.82, 'm')">quelli / quei 🔊</td>
+            <td class="td-it" style="cursor:pointer" onclick="ippAudio('quelle', 0.82, 'f')">quelle 🔊</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hi-box">
+      Antes de sustantivo, <strong>quello</strong> se comporta como el artículo <em>bello</em>: <em>quel treno</em>, <em>quello zaino</em>, <em>quell'aereo</em>, <em>quella macchina</em>, <em>quei treni</em>, <em>quegli autobus</em>, <em>quelle strade</em>.
+    </div>
+
+    <div class="ex-chips">
+      <div class="ex-chip" onclick="ippAudio('Questo treno va a Milano', 0.82, 'm')"><em>Questo treno va a Milano.</em> <span>Este tren va a Milán.</span></div>
+      <div class="ex-chip" onclick="ippAudio('Quella fermata è lontana', 0.82, 'f')"><em>Quella fermata è lontana.</em> <span>Esa parada está lejos.</span></div>
+      <div class="ex-chip" onclick="ippAudio('Queste valigie sono pesanti', 0.82, 'f')"><em>Queste valigie sono pesanti.</em> <span>Estas valijas son pesadas.</span></div>
+    </div>
+
+    <hr class="ex-divider">
+    <div class="ex-section-title">Ejercicios — Questo / quello</div>
+
+    <div class="opt-item" data-group="g5a">
+      <div class="opt-question">1. El objeto está cerca de vos. Decís: "___ biglietto è mio." (este boleto)</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Sì! questo porque el boleto está cerca y es masculino.')">Questo biglietto è mio.</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. quello es para objetos lejanos.')">Quello biglietto è mio.</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. questa sería para un sustantivo femenino cercano.')">Questa biglietto è mio.</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+
+    <div class="opt-item" data-group="g5b">
+      <div class="opt-question">2. Señalás una estación que se ve a lo lejos: "___ stazione è bellissima."</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. questa es para objetos cercanos.')">Questa stazione è bellissima.</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Correcto! quella = lejano + femenino.')">Quella stazione è bellissima.</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. quello va ante sustantivos masculinos.')">Quello stazione è bellissima.</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+
+    <div class="opt-item" data-group="g5c">
+      <div class="opt-question">3. ¿Cómo se dice "esos trenes" (lejos, masculino plural)?</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. questi treni = estos trenes (cerca).')">questi treni</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Sì! quei treni = esos trenes (lejos, masc. plur.).')">quei treni</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. quelle es para femminile plurale.')">quelle treni</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- BLOQUE 6: PRONOMI DIRETTI -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="gram-block">
+    <div class="gram-header">
+      <span class="gram-number">6</span>
+      <h2 class="gram-title">Pronomi diretti: lo, la, li, le</h2>
+    </div>
+    <p class="gram-subtitle">Los pronombres de objeto directo reemplazan al sustantivo para no repetirlo. Concuerdan en género y número con lo que reemplazan.</p>
+
+    <div class="pd-grid">
+      <div class="pd-card" onclick="ippAudio('lo prendo', 0.82, 'm')">
+        <div class="pd-pron">lo</div>
+        <div class="pd-label">maschile singolare</div>
+        <div class="pd-ex">Prendo <em>il biglietto</em> → <strong>Lo</strong> prendo.</div>
+      </div>
+      <div class="pd-card" onclick="ippAudio('la compro', 0.82, 'f')">
+        <div class="pd-pron">la</div>
+        <div class="pd-label">femminile singolare</div>
+        <div class="pd-ex">Aspetto <em>la fermata</em> → <strong>La</strong> aspetto.</div>
+      </div>
+      <div class="pd-card" onclick="ippAudio('li vedo', 0.82, 'm')">
+        <div class="pd-pron">li</div>
+        <div class="pd-label">maschile plurale</div>
+        <div class="pd-ex">Compro <em>i biglietti</em> → <strong>Li</strong> compro.</div>
+      </div>
+      <div class="pd-card" onclick="ippAudio('le prendo', 0.82, 'f')">
+        <div class="pd-pron">le</div>
+        <div class="pd-label">femminile plurale</div>
+        <div class="pd-ex">Aspetto <em>le ragazze</em> → <strong>Le</strong> aspetto.</div>
+      </div>
+    </div>
+
+    <div class="hi-box">
+      El pronome diretto va <strong>antes del verbo</strong> conjugado: <em>Lo prendo</em>, <em>La vedo</em>.<br>
+      Con los infinitivos va <strong>pegado al final</strong> (sin -e): <em>Devo prenderlo.</em> (Debo tomarlo.)
+    </div>
+
+    <div class="ex-chips">
+      <div class="ex-chip" onclick="ippAudio('Conosci Marco? Sì, lo conosco.', 0.82, 'f')"><em>Conosci Marco? — Sì, lo conosco.</em> <span>¿Conocés a Marco? — Sí, lo conozco.</span></div>
+      <div class="ex-chip" onclick="ippAudio('Prendi la metro? Sì, la prendo.', 0.82, 'm')"><em>Prendi la metro? — Sì, la prendo.</em> <span>¿Tomás el subte? — Sí, lo tomo.</span></div>
+    </div>
+
+    <hr class="ex-divider">
+    <div class="ex-section-title">Ejercicios — Pronomi diretti</div>
+
+    <div class="opt-item" data-group="g6a">
+      <div class="opt-question">1. "Aspetto il treno." → Con pronome diretto: "___ aspetto."</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. la es para sustantivos femeninos singolari.')">La aspetto.</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Esatto! il treno → lo (masc. sing.).')">Lo aspetto.</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. li es para masculino plural.')">Li aspetto.</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+
+    <div class="opt-item" data-group="g6b">
+      <div class="opt-question">2. "Compro le valigie." → "___ compro."</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. lo es singular masculino.')">Lo compro.</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. li es masculino plural.')">Li compro.</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Correcto! le valigie → le (femminile plurale).')">Le compro.</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+
+    <div class="opt-item" data-group="g6c">
+      <div class="opt-question">3. "Devo comprare il biglietto." Con pronome al infinito: "Devo comprar___."</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. il biglietto es masculino, no femenino.')">comprare + la = comprarla</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Sì! comprare – e + lo = comprarlo.')">comprare + lo = comprarlo</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. li es para plural masculino.')">comprare + li = comprarli</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- BLOQUE 7: FONETICA -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="gram-block">
+    <div class="gram-header">
+      <span class="gram-number">7</span>
+      <h2 class="gram-title">Fonetica — Coppie minime</h2>
+    </div>
+    <p class="gram-subtitle">En italiano, algunos sonidos muy parecidos cambian completamente el significado de la palabra. Hacé clic para escuchar cada par.</p>
+
+    <div class="hi-box">
+      <strong>Coppie minime</strong> = dos palabras que se diferencian solo por un sonido. Practicar estas diferencias mejora mucho la pronunciación y la comprensión.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Par de sonidos</th><th>Palabra 1</th><th>Palabra 2</th><th>🔊</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:700;color:var(--mod-tx)">v / b</td>
+            <td class="td-it">vino (vino)</td>
+            <td class="td-it">bino (andén)</td>
+            <td><button class="btn-tbl" onclick="ippAudio('vino, bino', 0.75, 'm')">▶</button></td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:var(--mod-tx)">p / b</td>
+            <td class="td-it">panca (banco)</td>
+            <td class="td-it">banca (banco)</td>
+            <td><button class="btn-tbl" onclick="ippAudio('panca, banca', 0.75, 'f')">▶</button></td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:var(--mod-tx)">v / f</td>
+            <td class="td-it">vino (vino)</td>
+            <td class="td-it">fino (hasta)</td>
+            <td><button class="btn-tbl" onclick="ippAudio('vino, fino', 0.75, 'm')">▶</button></td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:var(--mod-tx)">t / d</td>
+            <td class="td-it">tetto (techo)</td>
+            <td class="td-it">detto (dicho)</td>
+            <td><button class="btn-tbl" onclick="ippAudio('tetto, detto', 0.75, 'm')">▶</button></td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:var(--mod-tx)">t / d</td>
+            <td class="td-it">via (calle)</td>
+            <td class="td-it">fia (hija, ant.)</td>
+            <td><button class="btn-tbl" onclick="ippAudio('via, fia', 0.75, 'f')">▶</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="ex-divider">
+    <div class="ex-section-title">Ejercicios — Fonetica</div>
+
+    <div class="opt-item" data-group="g7a">
+      <div class="opt-question">1. Escuchás la palabra "bino". ¿Qué sonido inicial tiene?</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. «v» suena como la v en «vaca» — labio superior contra dientes inferiores.')">Sonido /v/ (como "vino")</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Correcto! «b» es oclusivo bilabial — ambos labios juntos.')">Sonido /b/ (como "bello")</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No. «p» es bilabial sordo, diferente a «b».')">Sonido /p/ (como "piazza")</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+
+    <div class="opt-item" data-group="g7b">
+      <div class="opt-question">2. ¿Cuál es la diferencia entre "tetto" y "detto"?</div>
+      <div class="opt-buttons">
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No, las vocales son las mismas en ambas palabras.')">El sonido de las vocales</button>
+        <button class="btn-opt" onclick="checkOpt(this, true, '¡Sì! t/d: «tetto» empieza con t (oclusiva sorda) y «detto» con d (oclusiva sonora).')">La consonante inicial: t vs. d</button>
+        <button class="btn-opt" onclick="checkOpt(this, false, 'No, la acentuación es igual en las dos palabras.')">La acentuación</button>
+      </div>
+      <div class="opt-feedback"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+if (!window.__ippVC) {
+  window.__ippVC = true; window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) window.__ippV = v; };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
+
+if (!window.__ipp_m8_e3__) {
+window.__ipp_m8_e3__ = true;
+
+function ippVoice(gender) {
+  var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+  var itV = voices.filter(function(v){ return v.lang && v.lang.startsWith('it'); });
+  if (!itV.length) return null;
+  var voice = null;
+  if (gender === 'm') {
+    voice = itV.find(function(v){ return /cosimo|luca|giorgio|male|masc/i.test(v.name); });
+    if (!voice) voice = itV.find(function(v){ return !/elsa|alice|giulia|female|femm/i.test(v.name); });
+  } else {
+    voice = itV.find(function(v){ return /elsa|alice|giulia|female|femm/i.test(v.name); });
+    if (!voice) voice = itV.find(function(v){ return !/cosimo|luca|giorgio|male|masc/i.test(v.name); });
+  }
+  return voice || itV[0];
+}
+
+function ippAudio(text, rate, gender) {
+  rate = (typeof rate === 'number' && isFinite(rate) && rate > 0) ? rate : 0.82;
+  gender = (gender === 'm' || gender === 'f') ? gender : 'f';
+  if (!window.speechSynthesis) return;
+  try { speechSynthesis.cancel(); } catch(e) {}
+  var utt = new SpeechSynthesisUtterance(String(text));
+  utt.lang = 'it-IT'; utt.rate = rate;
+  var voice = ippVoice(gender);
+  if (voice) utt.voice = voice;
+  (function(u){ setTimeout(function(){ try { speechSynthesis.speak(u); } catch(e){} }, 60); })(utt);
+}
+
+function checkOpt(btn, isCorrect, msg) {
+  var item = btn.closest('.opt-item');
+  if (item.dataset.answered) return;
+  var feedback = item.querySelector('.opt-feedback');
+  var allBtns = item.querySelectorAll('.btn-opt');
+  allBtns.forEach(function(b) { b.disabled = true; });
+  item.dataset.answered = 'true';
+  if (isCorrect) {
+    btn.classList.add('correct');
+    feedback.style.color = 'var(--green)';
+    feedback.textContent = '✓ ' + msg;
+  } else {
+    btn.classList.add('wrong');
+    feedback.style.color = 'var(--red)';
+    feedback.textContent = '✗ ' + msg;
+  }
+}
+
+window.ippAudio = ippAudio;
+window.ippVoice = ippVoice;
+window.checkOpt = checkOpt;
+
+} // end execution guard
+</script>
+</body>
+</html>

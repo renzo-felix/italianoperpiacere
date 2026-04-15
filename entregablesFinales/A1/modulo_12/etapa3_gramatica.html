@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ieri sera — Etapa 3 Gramática | Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --mod:    #528e74;
+  --mod-dk: #3d6b58;
+  --mod-lt: #e8f4f0;
+  --mod-tx: #2d4d3c;
+  --cream:  #e9e6d5;
+  --cream-dk: #ddd9c8;
+  --gold:   #EFCF7F;
+  --black:  #1a1a18;
+  --white:  #ffffff;
+  --green:  #528e74;
+  --red:    #cc4736;
+  --amber:  #e5ab07;
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+  --r: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--cream); font-family: var(--fb); color: var(--black); line-height: 1.6; }
+
+.hero {
+  background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
+  padding: 56px 24px 48px; text-align: center; color: var(--white);
+}
+.badge {
+  display: inline-block; background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4); border-radius: 20px;
+  padding: 4px 16px; font-size: 13px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;
+}
+.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2rem,5vw,3.2rem); font-weight: 700; margin-bottom: 8px; }
+.hero p { font-size: 1.05rem; opacity: 0.9; }
+
+.container { max-width: 860px; margin: 0 auto; padding: 40px 24px; }
+
+.section-title {
+  font-family: var(--fh); font-style: italic; font-size: 1.6rem;
+  color: var(--mod-tx); margin-bottom: 6px;
+}
+.section-sub { font-size: 0.92rem; color: #666; margin-bottom: 24px; }
+
+.gram-block {
+  background: var(--white); border-radius: var(--r);
+  padding: 32px; margin-bottom: 36px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.gram-label {
+  display: inline-block; background: var(--mod); color: var(--white);
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; padding: 3px 12px; border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+/* ESSERE/AVERE VISUAL */
+.aux-columns {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin: 20px 0;
+}
+.aux-col {
+  border-radius: var(--r); padding: 20px; text-align: center;
+}
+.aux-col.avere { background: #fff3cd; border: 2px solid var(--amber); }
+.aux-col.essere { background: var(--mod-lt); border: 2px solid var(--mod); }
+.aux-col-title {
+  font-family: var(--fh); font-style: italic; font-size: 1.4rem;
+  font-weight: 700; margin-bottom: 8px;
+}
+.aux-col.avere .aux-col-title { color: #7a5500; }
+.aux-col.essere .aux-col-title { color: var(--mod-tx); }
+.aux-col-sub { font-size: 12px; margin-bottom: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #888; }
+.aux-verbs { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.aux-verbs li {
+  background: rgba(255,255,255,0.7); border-radius: 6px;
+  padding: 6px 10px; font-size: 0.88rem; cursor: pointer;
+  transition: all 0.2s; display: flex; justify-content: space-between;
+  align-items: center;
+}
+.aux-verbs li:hover { transform: translateX(3px); }
+.aux-verbs li .transl { font-size: 11px; color: #999; }
+.aux-col.essere .aux-verbs li:hover { background: rgba(82,142,116,0.15); }
+.aux-col.avere .aux-verbs li:hover { background: rgba(229,171,7,0.15); }
+
+/* ACCORDO PARTICIPIO */
+.accordo-table {
+  width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem;
+}
+.accordo-table th {
+  background: var(--mod); color: var(--white); padding: 10px 14px;
+  text-align: left; font-weight: 600;
+}
+.accordo-table td { padding: 10px 14px; border-bottom: 1px solid var(--cream-dk); }
+.accordo-table tr:last-child td { border-bottom: none; }
+.accordo-table tr:nth-child(even) td { background: var(--mod-lt); }
+.accordo-table .it { font-style: italic; color: var(--mod-tx); }
+.accordo-table .part { font-weight: 700; color: var(--mod-dk); }
+
+/* REFLEXIVOS */
+.reflex-box {
+  background: var(--mod-lt); border-radius: 8px; padding: 16px 20px; margin-top: 16px;
+}
+.reflex-box .rule {
+  font-weight: 700; color: var(--mod-tx); margin-bottom: 10px; font-size: 0.95rem;
+}
+.reflex-examples { display: flex; flex-direction: column; gap: 8px; }
+.reflex-ex {
+  display: flex; align-items: baseline; gap: 12px; font-size: 0.9rem;
+  padding: 6px 0; border-bottom: 1px solid var(--cream-dk);
+}
+.reflex-ex:last-child { border-bottom: none; }
+.reflex-ex .it { flex: 1; }
+.reflex-ex .it strong { color: var(--mod-dk); }
+.reflex-ex .es { flex: 1; color: #888; font-size: 13px; }
+
+/* VERBI IRREGOLARI TABLE */
+.irreg-table {
+  width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem;
+}
+.irreg-table th {
+  background: var(--mod-dk); color: var(--white); padding: 10px 14px; text-align: left;
+}
+.irreg-table td {
+  padding: 10px 14px; border-bottom: 1px solid var(--cream-dk); cursor: pointer;
+  transition: background 0.15s;
+}
+.irreg-table tr:hover td { background: var(--mod-lt); }
+.irreg-table tr:last-child td { border-bottom: none; }
+.irreg-table .part { font-weight: 700; color: var(--mod-dk); font-size: 1.05rem; }
+.irreg-table .from-transcript { font-size: 11px; color: var(--mod); font-style: italic; }
+
+/* CHE PRONOME */
+.che-steps {
+  display: flex; flex-direction: column; gap: 16px; margin: 16px 0;
+}
+.che-step {
+  background: var(--cream); border-radius: 8px; padding: 16px 20px;
+  border-left: 4px solid var(--mod);
+}
+.che-step .step-num {
+  font-size: 11px; font-weight: 700; color: var(--mod-tx);
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+}
+.che-step .it { font-size: 1rem; margin-bottom: 4px; }
+.che-step .it .highlight { color: var(--mod-dk); font-weight: 700; text-decoration: underline; }
+.che-step .arrow { color: var(--mod); font-size: 1.2rem; margin: 4px 0; }
+.che-step .es { font-size: 13px; color: #888; }
+
+/* INTONAZIONE */
+.intona-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 16px 0;
+}
+.intona-card {
+  border-radius: 8px; padding: 16px; text-align: center; cursor: pointer;
+  transition: all 0.2s;
+}
+.intona-card.dichiarativa { background: #e8f4e8; border: 2px solid var(--green); }
+.intona-card.interrogativa { background: #fff3cd; border: 2px solid var(--amber); }
+.intona-card.esclamativa { background: #fde8e8; border: 2px solid var(--red); }
+.intona-card:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.intona-arrow { font-size: 2rem; margin-bottom: 6px; }
+.intona-name { font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.intona-card.dichiarativa .intona-name { color: var(--green); }
+.intona-card.interrogativa .intona-name { color: #7a5500; }
+.intona-card.esclamativa .intona-name { color: var(--red); }
+.intona-example { font-style: italic; font-size: 0.88rem; margin-bottom: 4px; }
+.intona-desc { font-size: 11px; color: #777; }
+
+/* EJERCICIOS */
+.ex-card {
+  background: var(--cream); border-radius: var(--r);
+  padding: 24px; margin-top: 20px; border: 2px solid var(--cream-dk);
+}
+.ex-card-title {
+  font-weight: 700; font-size: 0.95rem; color: var(--mod-tx);
+  margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+}
+.ex-num-badge {
+  background: var(--mod); color: var(--white);
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; flex-shrink: 0;
+}
+
+/* SELECT ejercicios */
+.fill-row {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+  padding: 10px 0; border-bottom: 1px solid var(--cream-dk);
+  font-size: 0.93rem;
+}
+.fill-row:last-of-type { border-bottom: none; }
+.fill-select {
+  padding: 4px 10px; border: 2px solid var(--cream-dk);
+  border-radius: 6px; font-family: var(--fb); font-size: 0.9rem;
+  background: var(--white); cursor: pointer; color: var(--black);
+  min-width: 90px;
+}
+.fill-select:focus { outline: none; border-color: var(--mod); }
+.fill-select.correct { border-color: var(--green); background: #d4edda; color: var(--green); }
+.fill-select.wrong { border-color: var(--red); background: #fde8e8; color: var(--red); }
+
+/* DRAG GAME (visual only — click-based) */
+.drag-pool {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;
+}
+.drag-token {
+  background: var(--white); border: 2px solid var(--cream-dk);
+  border-radius: 20px; padding: 8px 18px;
+  font-size: 0.88rem; font-weight: 600; cursor: pointer;
+  transition: all 0.2s; user-select: none;
+}
+.drag-token:hover { border-color: var(--mod); background: var(--mod-lt); }
+.drag-token.selected { background: var(--mod); color: var(--white); border-color: var(--mod); }
+.drag-token.used { opacity: 0.4; pointer-events: none; }
+
+.drag-targets { display: flex; flex-direction: column; gap: 10px; }
+.drag-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; background: var(--white); border-radius: 8px;
+  border: 2px dashed var(--cream-dk); font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.drag-row:hover { border-color: var(--mod); }
+.drag-slot {
+  min-width: 80px; padding: 4px 10px; border-radius: 6px;
+  border: 2px solid var(--cream-dk); background: var(--cream);
+  text-align: center; font-size: 0.88rem; font-weight: 600;
+  cursor: pointer; color: #999; min-height: 32px;
+  display: flex; align-items: center; justify-content: center;
+}
+.drag-slot.filled { color: var(--mod-tx); background: var(--mod-lt); border-color: var(--mod); }
+.drag-slot.correct { background: #d4edda; border-color: var(--green); color: var(--green); }
+.drag-slot.wrong { background: #fde8e8; border-color: var(--red); color: var(--red); }
+
+.btn-check {
+  background: var(--mod); color: var(--white); border: none;
+  border-radius: 8px; padding: 10px 24px;
+  font-family: var(--fb); font-size: 0.9rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; margin-top: 14px;
+}
+.btn-check:hover { background: var(--mod-dk); }
+.ex-feedback { margin-top: 10px; font-size: 0.9rem; min-height: 20px; font-weight: 500; }
+
+.btn-reveal {
+  background: transparent; border: 2px solid var(--mod);
+  color: var(--mod-tx); border-radius: 8px; padding: 8px 20px;
+  font-family: var(--fb); font-size: 0.88rem; cursor: pointer;
+  transition: all 0.2s; margin-top: 12px;
+}
+.btn-reveal:hover { background: var(--mod-lt); }
+
+.cta-wrap { text-align: center; margin-top: 40px; padding-bottom: 20px; }
+.btn-cta {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--mod), var(--mod-dk));
+  color: var(--white); font-family: var(--fb); font-size: 1.05rem;
+  font-weight: 700; padding: 16px 40px; border-radius: 30px;
+  border: none; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(82,142,116,0.4);
+  transition: all 0.25s;
+}
+.btn-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(82,142,116,0.5); }
+
+@media (max-width: 600px) {
+  .aux-columns { grid-template-columns: 1fr; }
+  .intona-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">A1 · Unità 11</div>
+  <h1>Ieri sera</h1>
+  <p>Etapa 3 — Gramática · Essere o Avere · Pronome CHE · La data</p>
+</div>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- BLOQUE 1: ESSERE O AVERE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section-title">1. La scelta dell'ausiliare</div>
+<p class="section-sub">El secreto del passato prossimo: ¿cuándo va ESSERE y cuándo va AVERE?</p>
+
+<div class="gram-block">
+  <span class="gram-label">Regla fundamental</span>
+  <p style="margin-bottom:20px;">El <strong>passato prossimo</strong> se forma con un auxiliar + participio pasado. El desafío es elegir cuál de los dos auxiliares usar.</p>
+
+  <div class="aux-columns">
+    <div class="aux-col avere">
+      <div class="aux-col-title">AVERE</div>
+      <div class="aux-col-sub">ho / hai / ha / abbiamo / avete / hanno</div>
+      <ul class="aux-verbs">
+        <li onclick="playAux('mangiare la pizza')"><span>mangiare 🍕</span><span class="transl">comer</span></li>
+        <li onclick="playAux('vedere un film')"><span>vedere 🎬</span><span class="transl">ver</span></li>
+        <li onclick="playAux('fare la spesa')"><span>fare 🛒</span><span class="transl">hacer</span></li>
+        <li onclick="playAux('leggere un libro')"><span>leggere 📖</span><span class="transl">leer</span></li>
+        <li onclick="playAux('preparare la cena')"><span>preparare 🍳</span><span class="transl">preparar</span></li>
+        <li onclick="playAux('pulire la casa')"><span>pulire 🧹</span><span class="transl">limpiar</span></li>
+        <li onclick="playAux('prendere la bici')"><span>prendere 🚲</span><span class="transl">tomar</span></li>
+        <li onclick="playAux('perdere l\'autobus')"><span>perdere 🚌</span><span class="transl">perder</span></li>
+        <li onclick="playAux('camminare in centro')"><span>camminare 🚶</span><span class="transl">caminar</span></li>
+      </ul>
+      <div style="margin-top:12px;font-size:12px;background:rgba(255,255,255,0.6);border-radius:6px;padding:8px;">
+        Verbi <strong>transitivi</strong> — tienen objeto directo
+      </div>
+    </div>
+    <div class="aux-col essere">
+      <div class="aux-col-title">ESSERE</div>
+      <div class="aux-col-sub">sono / sei / è / siamo / siete / sono</div>
+      <ul class="aux-verbs">
+        <li onclick="playAux('andare al lavoro')"><span>andare 🏃</span><span class="transl">ir</span></li>
+        <li onclick="playAux('venire a casa')"><span>venire 🏠</span><span class="transl">venir</span></li>
+        <li onclick="playAux('tornare a casa')"><span>tornare ↩️</span><span class="transl">volver</span></li>
+        <li onclick="playAux('arrivare in tempo')"><span>arrivare ✈️</span><span class="transl">llegar</span></li>
+        <li onclick="playAux('uscire con gli amici')"><span>uscire 🚪</span><span class="transl">salir</span></li>
+        <li onclick="playAux('partire per Roma')"><span>partire 🧳</span><span class="transl">partir</span></li>
+        <li onclick="playAux('cadere dalla bici')"><span>cadere 💥</span><span class="transl">caerse</span></li>
+        <li onclick="playAux('rimanere a casa')"><span>rimanere 🛋️</span><span class="transl">quedarse</span></li>
+        <li onclick="playAux('nascere a Roma')"><span>nascere 👶</span><span class="transl">nacer</span></li>
+        <li onclick="playAux('morire di freddo')"><span>morire ❄️</span><span class="transl">morir</span></li>
+      </ul>
+      <div style="margin-top:12px;font-size:12px;background:rgba(255,255,255,0.6);border-radius:6px;padding:8px;">
+        Verbi di <strong>moto/stato</strong> + <strong>tutti i riflessivi</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDO PARTICIPIO -->
+  <div style="background:var(--mod-lt);border-radius:8px;padding:20px;margin-top:4px;">
+    <div style="font-weight:700;color:var(--mod-tx);margin-bottom:12px;">⚠️ Con ESSERE: el participio concuerda con el sujeto</div>
+    <table class="accordo-table">
+      <tr>
+        <th>Sujeto</th>
+        <th>Auxiliar</th>
+        <th>Participio</th>
+        <th>Ejemplo</th>
+      </tr>
+      <tr>
+        <td>io (masc.)</td>
+        <td>sono</td>
+        <td class="part">andato</td>
+        <td class="it">Io sono andato al lavoro.</td>
+      </tr>
+      <tr>
+        <td>io (fem.)</td>
+        <td>sono</td>
+        <td class="part">andata</td>
+        <td class="it">Io sono andata dalla parrucchiera.</td>
+      </tr>
+      <tr>
+        <td>noi (masc./mix.)</td>
+        <td>siamo</td>
+        <td class="part">andati</td>
+        <td class="it">Noi siamo andati al karaoke.</td>
+      </tr>
+      <tr>
+        <td>noi (fem.)</td>
+        <td>siamo</td>
+        <td class="part">andate</td>
+        <td class="it">Noi siamo andate a fare la spesa.</td>
+      </tr>
+    </table>
+    <p style="font-size:13px;color:#666;margin-top:4px;">Con AVERE el participio NO cambia: <em>ho mangiato / abbiamo mangiato</em> — siempre igual.</p>
+  </div>
+
+  <!-- RIFLESSIVI -->
+  <div class="reflex-box" style="margin-top:16px;">
+    <div class="rule">🔁 TUTTI I VERBI RIFLESSIVI → sempre con ESSERE</div>
+    <div class="reflex-examples">
+      <div class="reflex-ex">
+        <div class="it">Mi <strong>sono alzato</strong> alle sette.</div>
+        <div class="es">Me levanté a las siete.</div>
+      </div>
+      <div class="reflex-ex">
+        <div class="it">Mi <strong>sono addormentato</strong> sul divano.</div>
+        <div class="es">Me quedé dormido en el sillón.</div>
+      </div>
+      <div class="reflex-ex">
+        <div class="it">Mi <strong>sono rotta</strong> i pantaloni — oddio!</div>
+        <div class="es">Se me rompieron los pantalones — ¡dios mío!</div>
+      </div>
+      <div class="reflex-ex">
+        <div class="it">Ci <strong>siamo incontrati</strong> davanti al cinema.</div>
+        <div class="es">Nos encontramos frente al cine.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EJERCICIO 1 -->
+  <div class="ex-card">
+    <div class="ex-card-title">
+      <div class="ex-num-badge">1</div>
+      Scegli l'ausiliare corretto — Elegí ESSERE o AVERE
+    </div>
+    <div id="ex1-rows">
+      <div class="fill-row">
+        <span>Ieri Marco ___</span>
+        <select class="fill-select" id="e1r1" onchange="checkSelectAux('e1r1','ha','Correcto: <em>mangiare</em> es transitivo → AVERE','La pizza se come — ¡es un verbo transitivo! → <em>ha mangiato</em>')">
+          <option value="">— scegli —</option>
+          <option value="è">è</option>
+          <option value="ha">ha</option>
+        </select>
+        <span>mangiato la pizza con la famiglia.</span>
+      </div>
+      <div class="fill-row">
+        <span>Ieri Sara ___</span>
+        <select class="fill-select" id="e1r2" onchange="checkSelectAux('e1r2','è','¡Correcto! <em>andare</em> es verbo de movimiento → ESSERE','<em>Andare</em> es intransitivo de movimiento → siempre ESSERE: <em>è andata</em>')">
+          <option value="">— scegli —</option>
+          <option value="è">è</option>
+          <option value="ha">ha</option>
+        </select>
+        <span>andata dalla parrucchiera.</span>
+      </div>
+      <div class="fill-row">
+        <span>Stamattina io (M) ___</span>
+        <select class="fill-select" id="e1r3" onchange="checkSelectAux('e1r3','mi sono','¡Correcto! Los reflexivos siempre llevan ESSERE','Los reflexivos llevan SEMPRE ESSERE: <em>mi sono alzato</em>')">
+          <option value="">— scegli —</option>
+          <option value="mi sono">mi sono</option>
+          <option value="mi ho">mi ho</option>
+        </select>
+        <span>alzato tardi.</span>
+      </div>
+      <div class="fill-row">
+        <span>Noi ___</span>
+        <select class="fill-select" id="e1r4" onchange="checkSelectAux('e1r4','abbiamo','¡Correcto! <em>preparare</em> es transitivo → AVERE','<em>Preparare</em> tiene objeto directo (la cena) → es transitivo → AVERE: <em>abbiamo preparato</em>')">
+          <option value="">— scegli —</option>
+          <option value="siamo">siamo</option>
+          <option value="abbiamo">abbiamo</option>
+        </select>
+        <span>preparato la cena insieme.</span>
+      </div>
+      <div class="fill-row">
+        <span>Giulia ___</span>
+        <select class="fill-select" id="e1r5" onchange="checkSelectAux('e1r5','è','¡Correcto! <em>cadere</em> es verbo de movimiento involuntario → ESSERE','<em>Cadere</em> (caerse) es intransitivo → ESSERE: <em>è caduta</em>')">
+          <option value="">— scegli —</option>
+          <option value="è">è</option>
+          <option value="ha">ha</option>
+        </select>
+        <span>caduta dalla bicicletta.</span>
+      </div>
+    </div>
+    <div class="ex-feedback" id="fb-ex1"></div>
+  </div>
+
+  <!-- EJERCICIO 2 -->
+  <div class="ex-card">
+    <div class="ex-card-title">
+      <div class="ex-num-badge">2</div>
+      Accordo del participio — Elegí la forma correcta del participio
+    </div>
+    <div class="fill-row">
+      <span>Anna è</span>
+      <select class="fill-select" id="e2r1" onchange="checkSelectAux('e2r1','andata','¡Correcto! <em>Anna</em> es femenino singular → <em>andata</em>','Anna es femenino → el participio debe ser femenino: <em>andata</em>')">
+        <option value="">—</option>
+        <option value="andato">andato</option>
+        <option value="andata">andata</option>
+        <option value="andati">andati</option>
+      </select>
+      <span>al lavoro in bici.</span>
+    </div>
+    <div class="fill-row">
+      <span>Marco e Luigi sono</span>
+      <select class="fill-select" id="e2r2" onchange="checkSelectAux('e2r2','tornati','¡Correcto! Dos hombres (masc. plural) → <em>tornati</em>','Plural masculino → terminación -ati: <em>tornati</em>')">
+        <option value="">—</option>
+        <option value="tornato">tornato</option>
+        <option value="tornata">tornata</option>
+        <option value="tornati">tornati</option>
+        <option value="tornate">tornate</option>
+      </select>
+      <span>a casa a piedi.</span>
+    </div>
+    <div class="fill-row">
+      <span>Io (femmina) mi sono</span>
+      <select class="fill-select" id="e2r3" onchange="checkSelectAux('e2r3','addormentata','¡Correcto! Hablante femenina → <em>addormentata</em>','Es reflexivo + hablante femenina → participio en -ata: <em>addormentata</em>')">
+        <option value="">—</option>
+        <option value="addormentato">addormentato</option>
+        <option value="addormentata">addormentata</option>
+      </select>
+      <span>sul divano guardando il film.</span>
+    </div>
+    <div class="ex-feedback" id="fb-ex2"></div>
+  </div>
+
+  <!-- EJERCICIO 3 (drag-style click) -->
+  <div class="ex-card">
+    <div class="ex-card-title">
+      <div class="ex-num-badge">3</div>
+      Missione Ausiliare — Asigná ESSERE o AVERE a cada verbo
+    </div>
+    <p style="font-size:13px;color:#666;margin-bottom:14px;">Tocá el auxiliar que querés asignar y luego tocá el espacio en blanco de cada oración.</p>
+    <div class="drag-pool">
+      <div class="drag-token" id="tok-ha" onclick="selectToken('ha')">ha</div>
+      <div class="drag-token" id="tok-e" onclick="selectToken('è')">è</div>
+      <div class="drag-token" id="tok-abbiamo" onclick="selectToken('abbiamo')">abbiamo</div>
+      <div class="drag-token" id="tok-siamo" onclick="selectToken('siamo')">siamo</div>
+    </div>
+    <div class="drag-targets">
+      <div class="drag-row">
+        <span>Ieri sera Paolo</span>
+        <div class="drag-slot" id="dslot1" onclick="fillSlot('dslot1')" data-answer="ha">clic aquí</div>
+        <span>visto un bel film.</span>
+      </div>
+      <div class="drag-row">
+        <span>La mattina Marta</span>
+        <div class="drag-slot" id="dslot2" onclick="fillSlot('dslot2')" data-answer="è">clic aquí</div>
+        <span>andata al lavoro in bici.</span>
+      </div>
+      <div class="drag-row">
+        <span>Dopo cena noi</span>
+        <div class="drag-slot" id="dslot3" onclick="fillSlot('dslot3')" data-answer="abbiamo">clic aquí</div>
+        <span>fatto un aperitivo insieme.</span>
+      </div>
+      <div class="drag-row">
+        <span>La domenica io e Luca</span>
+        <div class="drag-slot" id="dslot4" onclick="fillSlot('dslot4')" data-answer="siamo">clic aquí</div>
+        <span>andati al karaoke.</span>
+      </div>
+    </div>
+    <button class="btn-check" onclick="checkDrag()">Verificar →</button>
+    <div class="ex-feedback" id="fb-ex3"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- BLOQUE 2: PARTICIPI IRREGOLARI -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section-title" style="margin-top:16px;">2. Participi passati irregolari</div>
+<p class="section-sub">Algunos participios no siguen la regla. Los más comunes — ¡y los que aparecieron en el audio!</p>
+
+<div class="gram-block">
+  <span class="gram-label">Del transcript al cuaderno</span>
+  <p style="margin-bottom:16px;">Tocá cada fila para escuchar el verbo en contexto.</p>
+
+  <table class="irreg-table">
+    <tr>
+      <th>Infinito</th>
+      <th>Participio</th>
+      <th>Auxiliar</th>
+      <th>Del audio</th>
+    </tr>
+    <tr onclick="playIrreg('ho visto un film')">
+      <td>vedere</td>
+      <td class="part">visto</td>
+      <td>avere</td>
+      <td class="from-transcript">ho visto un film</td>
+    </tr>
+    <tr onclick="playIrreg('ho fatto la spesa')">
+      <td>fare</td>
+      <td class="part">fatto</td>
+      <td>avere</td>
+      <td class="from-transcript">ho fatto la spesa</td>
+    </tr>
+    <tr onclick="playIrreg('ho perso l\'autobus')">
+      <td>perdere</td>
+      <td class="part">perso</td>
+      <td>avere</td>
+      <td class="from-transcript">ho perso l'autobus</td>
+    </tr>
+    <tr onclick="playIrreg('ho letto un libro')">
+      <td>leggere</td>
+      <td class="part">letto</td>
+      <td>avere</td>
+      <td class="from-transcript">ho letto un po'</td>
+    </tr>
+    <tr onclick="playIrreg('mi si sono rotti i pantaloni')">
+      <td>rompere</td>
+      <td class="part">rotto</td>
+      <td>essere</td>
+      <td class="from-transcript">mi sono rotti i pantaloni</td>
+    </tr>
+    <tr onclick="playIrreg('ho preso la bici')">
+      <td>prendere</td>
+      <td class="part">preso</td>
+      <td>avere</td>
+      <td class="from-transcript">ho preso la bici</td>
+    </tr>
+    <tr onclick="playIrreg('è caduta dalla bici')">
+      <td>cadere</td>
+      <td class="part">caduto/a</td>
+      <td>essere</td>
+      <td class="from-transcript">sono caduta in bicicletta</td>
+    </tr>
+    <tr onclick="playIrreg('ho scritto un messaggio')">
+      <td>scrivere</td>
+      <td class="part">scritto</td>
+      <td>avere</td>
+      <td class="from-transcript">—</td>
+    </tr>
+    <tr onclick="playIrreg('ho detto la verità')">
+      <td>dire</td>
+      <td class="part">detto</td>
+      <td>avere</td>
+      <td class="from-transcript">—</td>
+    </tr>
+    <tr onclick="playIrreg('ho messo la borsa')">
+      <td>mettere</td>
+      <td class="part">messo</td>
+      <td>avere</td>
+      <td class="from-transcript">—</td>
+    </tr>
+  </table>
+
+  <!-- EJERCICIO 4 -->
+  <div class="ex-card">
+    <div class="ex-card-title">
+      <div class="ex-num-badge">4</div>
+      Participio irregolare — Completá con el participio correcto
+    </div>
+    <div class="fill-row">
+      <span>Ieri ho</span>
+      <select class="fill-select" id="e4r1" onchange="checkSelectAux('e4r1','visto','¡Correcto! <em>vedere → visto</em>','<em>vedere → visto</em> (no "veduto")')">
+        <option value="">—</option>
+        <option value="veduto">veduto</option>
+        <option value="visto">visto</option>
+        <option value="veddo">veddo</option>
+      </select>
+      <span>un film bellissimo.</span>
+    </div>
+    <div class="fill-row">
+      <span>Stamattina ho</span>
+      <select class="fill-select" id="e4r2" onchange="checkSelectAux('e4r2','preso','¡Correcto! <em>prendere → preso</em>','<em>prendere → preso</em>')">
+        <option value="">—</option>
+        <option value="prenduto">prenduto</option>
+        <option value="prendo">prendo</option>
+        <option value="preso">preso</option>
+      </select>
+      <span>la bici per andare al lavoro.</span>
+    </div>
+    <div class="fill-row">
+      <span>Purtroppo ha</span>
+      <select class="fill-select" id="e4r3" onchange="checkSelectAux('e4r3','perso','¡Correcto! <em>perdere → perso</em>','<em>perdere → perso</em> (a veces también "perduto", pero <em>perso</em> es más común)')">
+        <option value="">—</option>
+        <option value="perduto">perduto</option>
+        <option value="perso">perso</option>
+        <option value="perdo">perdo</option>
+      </select>
+      <span>l'autobus ed è tornata a casa a piedi.</span>
+    </div>
+    <div class="ex-feedback" id="fb-ex4"></div>
+  </div>
+
+  <!-- EJERCICIO 5 -->
+  <div class="ex-card">
+    <div class="ex-card-title">
+      <div class="ex-num-badge">5</div>
+      Coniugazione completa — Escribí la forma correcta del passato prossimo
+    </div>
+    <p style="font-size:13px;color:#666;margin-bottom:14px;">Elegí auxiliar + participio para cada oración.</p>
+    <div class="fill-row">
+      <span>Ieri sera io (M)</span>
+      <select class="fill-select" id="e5r1" onchange="checkSelectAux('e5r1','ho fatto','¡Correcto! <em>fare → ho fatto</em>','<em>fare</em> es transitivo + participio irregular <em>fatto</em> → <em>ho fatto</em>')">
+        <option value="">—</option>
+        <option value="sono fatto">sono fatto</option>
+        <option value="ho fatto">ho fatto</option>
+        <option value="ho fare">ho fare</option>
+      </select>
+      <span>un aperitivo con gli amici.</span>
+    </div>
+    <div class="fill-row">
+      <span>Stamattina lei</span>
+      <select class="fill-select" id="e5r2" onchange="checkSelectAux('e5r2','si è alzata','¡Correcto! Reflexivo + femenino → <em>si è alzata</em>','Reflexivo siempre ESSERE + femenino singular → <em>si è alzata</em>')">
+        <option value="">—</option>
+        <option value="si ha alzato">si ha alzato</option>
+        <option value="si è alzata">si è alzata</option>
+        <option value="si è alzato">si è alzato</option>
+      </select>
+      <span>presto.</span>
+    </div>
+    <div class="fill-row">
+      <span>La sera abbiamo</span>
+      <select class="fill-select" id="e5r3" onchange="checkSelectAux('e5r3','letto','¡Correcto! <em>leggere → letto</em>','<em>leggere</em> → participio irregular <em>letto</em>')">
+        <option value="">—</option>
+        <option value="legguto">legguto</option>
+        <option value="leggito">leggito</option>
+        <option value="letto">letto</option>
+      </select>
+      <span>un po' prima di dormire.</span>
+    </div>
+    <div class="ex-feedback" id="fb-ex5"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- BLOQUE 3: PRONOME CHE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section-title" style="margin-top:16px;">3. Il pronome relativo "che"</div>
+<p class="section-sub">Para conectar dos frases en una sola usando "que"</p>
+
+<div class="gram-block">
+  <span class="gram-label">Cómo funciona</span>
+  <p style="margin-bottom:16px;"><strong><em>Che</em></strong> reemplaza a un sustantivo que ya fue mencionado. No cambia jamás — ni por género ni por número.</p>
+
+  <div class="che-steps">
+    <div class="che-step">
+      <div class="step-num">Ejemplo 1 — objeto</div>
+      <div class="it">Ho visto un film. Il film era bellissimo.</div>
+      <div class="arrow">↓</div>
+      <div class="it">Ho visto un film <span style="color:var(--mod-dk);font-weight:700;text-decoration:underline">che</span> era bellissimo.</div>
+      <div class="es">Vi una película que era hermosísima.</div>
+    </div>
+    <div class="che-step">
+      <div class="step-num">Ejemplo 2 — sujeto</div>
+      <div class="it">C'è una ragazza. La ragazza ha perso l'autobus.</div>
+      <div class="arrow">↓</div>
+      <div class="it">C'è una ragazza <span style="color:var(--mod-dk);font-weight:700;text-decoration:underline">che</span> ha perso l'autobus.</div>
+      <div class="es">Hay una chica que perdió el colectivo.</div>
+    </div>
+    <div class="che-step">
+      <div class="step-num">Ejemplo 3 — invariable</div>
+      <div class="it">Ho degli amici. <span style="color:#888">(plural)</span><br>Ho degli amici <span style="color:var(--mod-dk);font-weight:700;text-decoration:underline">che</span> abitano a Milano.</div>
+      <div class="es">Tengo amigos que viven en Milano. → <em>che</em> no cambia aunque sea plural</div>
+    </div>
+  </div>
+
+  <!-- EJERCICIO 6 -->
+  <div class="ex-card">
+    <div class="ex-card-title">
+      <div class="ex-num-badge">6</div>
+      Unì le due frasi con "che" — Unidos con el pronombre relativo
+    </div>
+    <p style="font-size:13px;color:#666;margin-bottom:14px;">Elegí la versión correcta con <em>che</em>.</p>
+    <div class="mc-ex-item" id="mce1">
+      <div style="margin-bottom:8px;font-size:0.93rem;">
+        <em>Ho incontrato una persona. La persona si chiama Roberto.</em>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <button class="btn-mc-ex" onclick="checkMCEx('mce1',this,true)">Ho incontrato una persona che si chiama Roberto.</button>
+        <button class="btn-mc-ex" onclick="checkMCEx('mce1',this,false)">Ho incontrato una persona chi si chiama Roberto.</button>
+        <button class="btn-mc-ex" onclick="checkMCEx('mce1',this,false)">Ho incontrato una persona quale si chiama Roberto.</button>
+      </div>
+      <div class="ex-feedback" id="fb-mce1"></div>
+    </div>
+    <div style="margin-top:16px;" class="mc-ex-item" id="mce2">
+      <div style="margin-bottom:8px;font-size:0.93rem;">
+        <em>C'è un posto. Il posto è bellissimo.</em>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <button class="btn-mc-ex" onclick="checkMCEx('mce2',this,false)">C'è un posto che è bellissimi.</button>
+        <button class="btn-mc-ex" onclick="checkMCEx('mce2',this,true)">C'è un posto che è bellissimo.</button>
+        <button class="btn-mc-ex" onclick="checkMCEx('mce2',this,false)">C'è un posto chi è bellissimo.</button>
+      </div>
+      <div class="ex-feedback" id="fb-mce2"></div>
+    </div>
+    <div style="margin-top:16px;" class="mc-ex-item" id="mce3">
+      <div style="margin-bottom:8px;font-size:0.93rem;">
+        <em>Abbiamo degli amici. Gli amici abitano a Roma.</em>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <button class="btn-mc-ex" onclick="checkMCEx('mce3',this,false)">Abbiamo degli amici che abita a Roma.</button>
+        <button class="btn-mc-ex" onclick="checkMCEx('mce3',this,true)">Abbiamo degli amici che abitano a Roma.</button>
+        <button class="btn-mc-ex" onclick="checkMCEx('mce3',this,false)">Abbiamo degli amici chi abitano a Roma.</button>
+      </div>
+      <div class="ex-feedback" id="fb-mce3"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- BLOQUE 4: LA DATA -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section-title" style="margin-top:16px;">4. Chiedere e dire la data</div>
+<p class="section-sub">Cómo preguntarle a alguien la fecha — y cómo responder</p>
+
+<div class="gram-block">
+  <span class="gram-label">Struttura della data</span>
+  <div style="background:var(--mod-lt);border-radius:8px;padding:20px;margin-bottom:20px;">
+    <div style="text-align:center;font-family:var(--fh);font-style:italic;font-size:1.5rem;color:var(--mod-tx);margin-bottom:12px;">
+      È il + [numero] + [mese] + [anno]
+    </div>
+    <div style="text-align:center;font-size:0.95rem;color:#555;">
+      È il 14 aprile 2025. &nbsp;·&nbsp; È il primo maggio 2026.
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+    <div style="background:var(--cream);border-radius:8px;padding:16px;">
+      <div style="font-weight:700;color:var(--mod-tx);margin-bottom:10px;">Preguntas</div>
+      <div style="font-size:0.9rem;display:flex;flex-direction:column;gap:8px;">
+        <div><em>Che giorno è oggi?</em><br><small style="color:#888">¿Qué día es hoy?</small></div>
+        <div><em>Quanti ne abbiamo?</em><br><small style="color:#888">¿A cuánto estamos?</small></div>
+        <div><em>Che data è oggi?</em><br><small style="color:#888">¿Qué fecha es hoy?</small></div>
+      </div>
+    </div>
+    <div style="background:var(--cream);border-radius:8px;padding:16px;">
+      <div style="font-weight:700;color:var(--mod-tx);margin-bottom:10px;">Respuestas</div>
+      <div style="font-size:0.9rem;display:flex;flex-direction:column;gap:8px;">
+        <div><em>Oggi è lunedì.</em><br><small style="color:#888">Hoy es lunes.</small></div>
+        <div><em>Ne abbiamo quattordici.</em><br><small style="color:#888">Estamos a 14.</small></div>
+        <div><em>È il 14 aprile 2025.</em><br><small style="color:#888">Es el 14 de abril de 2025.</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EJERCICIO 7 -->
+  <div class="ex-card">
+    <div class="ex-card-title">
+      <div class="ex-num-badge">7</div>
+      La data — Elegí la forma correcta
+    </div>
+    <div class="fill-row">
+      <span>Para decir el 1° de mayo se dice:</span>
+      <select class="fill-select" id="e7r1" onchange="checkSelectAux('e7r1','il primo maggio','¡Correcto! El primer día se dice <em>primo</em>, no <em>uno</em>','El primer día del mes siempre es <em>primo</em> en italiano: <em>il primo maggio</em>')">
+        <option value="">—</option>
+        <option value="il uno maggio">il uno maggio</option>
+        <option value="il primo maggio">il primo maggio</option>
+        <option value="il une maggio">il une maggio</option>
+      </select>
+    </div>
+    <div class="fill-row">
+      <span>Para preguntar a qué fecha estamos, decís:</span>
+      <select class="fill-select" id="e7r2" onchange="checkSelectAux('e7r2','Quanti ne abbiamo?','¡Correcto! <em>Quanti ne abbiamo?</em> es la forma coloquial más común','La forma coloquial es <em>Quanti ne abbiamo?</em>')">
+        <option value="">—</option>
+        <option value="Quanti anni hai?">Quanti anni hai?</option>
+        <option value="Quanti ne abbiamo?">Quanti ne abbiamo?</option>
+        <option value="Quanto costa?">Quanto costa?</option>
+      </select>
+    </div>
+    <div class="fill-row">
+      <span>La respuesta a "Che data è oggi?" el 23 de junio 2025:</span>
+      <select class="fill-select" id="e7r3" onchange="checkSelectAux('e7r3','È il 23 giugno 2025.','¡Correcto! Estructura: <em>È il + número + mes + año</em>','<em>È il 23 giugno 2025</em> — número, mes en minúscula, año')">
+        <option value="">—</option>
+        <option value="Sono il 23 giugno 2025.">Sono il 23 giugno 2025.</option>
+        <option value="È il 23 giugno 2025.">È il 23 giugno 2025.</option>
+        <option value="È il 23 Giugno 2025.">È il 23 Giugno 2025.</option>
+      </select>
+    </div>
+    <div class="ex-feedback" id="fb-ex7"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- BLOQUE 5: FONETICA -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section-title" style="margin-top:16px;">5. Fonetica — L'intonazione</div>
+<p class="section-sub">La misma frase puede ser una afirmación, una pregunta o una exclamación según cómo la entonés</p>
+
+<div class="gram-block">
+  <span class="gram-label">Tre tipi di intonazione</span>
+  <div class="intona-grid">
+    <div class="intona-card dichiarativa" onclick="playIntona('Ieri ho visto un film.','dichiarativa')">
+      <div class="intona-arrow">↘</div>
+      <div class="intona-name">Dichiarativa</div>
+      <div class="intona-example">Ieri ho visto un film.</div>
+      <div class="intona-desc">Voz baja al final. Punto.</div>
+    </div>
+    <div class="intona-card interrogativa" onclick="playIntona('Hai visto il film?','interrogativa')">
+      <div class="intona-arrow">↗</div>
+      <div class="intona-name">Interrogativa</div>
+      <div class="intona-example">Hai visto il film?</div>
+      <div class="intona-desc">Voz sube al final. Signo de pregunta.</div>
+    </div>
+    <div class="intona-card esclamativa" onclick="playIntona('Che film incredibile!','esclamativa')">
+      <div class="intona-arrow">↑↘</div>
+      <div class="intona-name">Esclamativa</div>
+      <div class="intona-example">Che film incredibile!</div>
+      <div class="intona-desc">Sube y baja con énfasis. ¡Signo!</div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:#888;margin-top:8px;text-align:center;">Tocá cada tarjeta para escuchar el ejemplo</p>
+
+  <!-- EJERCICIO 8 -->
+  <div class="ex-card">
+    <div class="ex-card-title">
+      <div class="ex-num-badge">8</div>
+      Identifica il tipo di frase — ¿Qué tipo de oración es?
+    </div>
+    <div class="mc-ex-item" id="intex1" style="padding:10px 0;border-bottom:1px solid var(--cream-dk);">
+      <div style="font-style:italic;font-size:1rem;margin-bottom:8px;">"Oddio, mi si sono rotti i pantaloni!"</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <button class="btn-mc-ex" onclick="checkMCEx('intex1',this,false)">Dichiarativa</button>
+        <button class="btn-mc-ex" onclick="checkMCEx('intex1',this,false)">Interrogativa</button>
+        <button class="btn-mc-ex" onclick="checkMCEx('intex1',this,true)">Esclamativa</button>
+      </div>
+      <div class="ex-feedback" id="fb-intex1"></div>
+    </div>
+    <div class="mc-ex-item" id="intex2" style="padding:10px 0;border-bottom:1px solid var(--cream-dk);">
+      <div style="font-style:italic;font-size:1rem;margin-bottom:8px;">"Ieri sono andato a cantare al karaoke."</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <button class="btn-mc-ex" onclick="checkMCEx('intex2',this,true)">Dichiarativa</button>
+        <button class="btn-mc-ex" onclick="checkMCEx('intex2',this,false)">Interrogativa</button>
+        <button class="btn-mc-ex" onclick="checkMCEx('intex2',this,false)">Esclamativa</button>
+      </div>
+      <div class="ex-feedback" id="fb-intex2"></div>
+    </div>
+    <div class="mc-ex-item" id="intex3" style="padding:10px 0;">
+      <div style="font-style:italic;font-size:1rem;margin-bottom:8px;">"Ti va di andare al cinema sabato?"</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <button class="btn-mc-ex" onclick="checkMCEx('intex3',this,false)">Dichiarativa</button>
+        <button class="btn-mc-ex" onclick="checkMCEx('intex3',this,true)">Interrogativa</button>
+        <button class="btn-mc-ex" onclick="checkMCEx('intex3',this,false)">Esclamativa</button>
+      </div>
+      <div class="ex-feedback" id="fb-intex3"></div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-wrap">
+  <button class="btn-cta" onclick="alert('¡Bravissimo/a! Pasá a la Etapa 4 para los ejercicios de producción.')">Continuar a Etapa 4 →</button>
+</div>
+
+</div><!-- /container -->
+
+<style>
+.btn-mc-ex {
+  padding: 8px 16px; border: 2px solid var(--cream-dk);
+  border-radius: 6px; background: var(--cream);
+  font-family: var(--fb); font-size: 0.88rem; cursor: pointer; transition: all 0.2s;
+}
+.btn-mc-ex:hover { border-color: var(--mod); }
+.btn-mc-ex.correct { background: #d4edda; border-color: var(--green); color: var(--green); font-weight: 700; }
+.btn-mc-ex.wrong { background: #fde8e8; border-color: var(--red); color: var(--red); }
+</style>
+
+<script>
+if (!window.__ippVC) {
+  window.__ippVC = true; window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) window.__ippV = v; };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
+
+if (!window.__ipp_m11_e3__) {
+  window.__ipp_m11_e3__ = true;
+
+  function ippVoice(gender) {
+    var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+    var itV = voices.filter(function(v){ return v.lang && v.lang.startsWith('it'); });
+    if (!itV.length) return null;
+    var voice = null;
+    if (gender==='m'){voice=itV.find(function(v){return /cosimo|luca|giorgio|male|masc/i.test(v.name);});if(!voice)voice=itV.find(function(v){return !/elsa|alice|giulia|female|femm/i.test(v.name);});}
+    else{voice=itV.find(function(v){return /elsa|alice|giulia|female|femm/i.test(v.name);});if(!voice)voice=itV.find(function(v){return !/cosimo|luca|giorgio|male|masc/i.test(v.name);});}
+    return voice || itV[0];
+  }
+
+  function ippAudio(text, rate, gender) {
+    rate=(typeof rate==='number'&&isFinite(rate)&&rate>0)?rate:0.82;
+    gender=(gender==='m'||gender==='f')?gender:'f';
+    if(!window.speechSynthesis)return;
+    try{speechSynthesis.cancel();}catch(e){}
+    var utt=new SpeechSynthesisUtterance(String(text));
+    utt.lang='it-IT';utt.rate=rate;
+    var voice=ippVoice(gender);if(voice)utt.voice=voice;
+    (function(u){setTimeout(function(){try{speechSynthesis.speak(u);}catch(e){}},60);})(utt);
+  }
+
+  function playAux(text) { ippAudio(text, 0.82, 'f'); }
+  function playIrreg(text) { ippAudio(text, 0.8, 'm'); }
+  function playIntona(text, tipo) {
+    var rate = tipo === 'esclamativa' ? 0.9 : (tipo === 'interrogativa' ? 0.85 : 0.8);
+    ippAudio(text, rate, 'f');
+  }
+
+  // SELECT CHECK
+  var selectFeedbacks = {};
+  function checkSelectAux(id, correct, okMsg, wrongMsg) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var val = el.value;
+    if (!val) return;
+    if (selectFeedbacks[id]) return;
+    var isOk = (val === correct);
+    el.classList.add(isOk ? 'correct' : 'wrong');
+    el.disabled = true;
+    selectFeedbacks[id] = true;
+    // find feedback container
+    var parent = el.closest('.ex-card');
+    if (parent) {
+      var fb = parent.querySelector('.ex-feedback');
+      if (fb) {
+        fb.innerHTML = '<span style="color:' + (isOk ? 'var(--green)' : 'var(--red)') + '">' + (isOk ? '✓ ' + okMsg : '✗ ' + wrongMsg) + '</span>';
+      }
+    }
+  }
+
+  // DRAG GAME
+  var selectedToken = null;
+  function selectToken(val) {
+    selectedToken = val;
+    var tokens = document.querySelectorAll('.drag-token');
+    tokens.forEach(function(t) { t.classList.remove('selected'); });
+    var tokMap = {'ha':'tok-ha','è':'tok-e','abbiamo':'tok-abbiamo','siamo':'tok-siamo'};
+    var tokEl = document.getElementById(tokMap[val]);
+    if (tokEl) tokEl.classList.add('selected');
+  }
+
+  function fillSlot(slotId) {
+    if (!selectedToken) { alert('Primero seleccioná un auxiliar de arriba.'); return; }
+    var slot = document.getElementById(slotId);
+    if (slot.classList.contains('correct') || slot.classList.contains('wrong')) return;
+    slot.textContent = selectedToken;
+    slot.classList.add('filled');
+    slot.setAttribute('data-filled', selectedToken);
+    var tokens = document.querySelectorAll('.drag-token');
+    tokens.forEach(function(t) { t.classList.remove('selected'); });
+    selectedToken = null;
+  }
+
+  function checkDrag() {
+    var slots = document.querySelectorAll('.drag-slot');
+    var allFilled = true;
+    slots.forEach(function(slot) {
+      if (!slot.getAttribute('data-filled')) allFilled = false;
+    });
+    if (!allFilled) { document.getElementById('fb-ex3').innerHTML = '<span style="color:var(--red)">Completá todos los espacios primero.</span>'; return; }
+    var correct = 0;
+    slots.forEach(function(slot) {
+      var answer = slot.getAttribute('data-answer');
+      var filled = slot.getAttribute('data-filled');
+      if (filled === answer) { slot.classList.add('correct'); correct++; }
+      else { slot.classList.add('wrong'); }
+    });
+    var fb = document.getElementById('fb-ex3');
+    fb.innerHTML = correct === 4
+      ? '<span style="color:var(--green)">✓ ¡Perfecto! 4/4 correctas.</span>'
+      : '<span style="color:var(--red)">✗ ' + correct + '/4 correctas. Las marcadas en rojo necesitan revisión.</span>';
+  }
+
+  // MC EXERCISES
+  var mcExDone = {};
+  function checkMCEx(id, btn, isCorrect) {
+    if (mcExDone[id]) return;
+    var item = document.getElementById(id);
+    var btns = item.querySelectorAll('.btn-mc-ex');
+    btns.forEach(function(b) { b.disabled = true; });
+    btn.classList.add(isCorrect ? 'correct' : 'wrong');
+    var fb = document.getElementById('fb-' + id);
+    if (fb) {
+      fb.innerHTML = isCorrect
+        ? '<span style="color:var(--green)">✓ ¡Correcto!</span>'
+        : '<span style="color:var(--red)">✗ No es esa — revisá las opciones.</span>';
+    }
+    mcExDone[id] = true;
+  }
+
+  window.ippAudio = ippAudio;
+  window.ippVoice = ippVoice;
+  window.playAux = playAux;
+  window.playIrreg = playIrreg;
+  window.playIntona = playIntona;
+  window.checkSelectAux = checkSelectAux;
+  window.selectToken = selectToken;
+  window.fillSlot = fillSlot;
+  window.checkDrag = checkDrag;
+  window.checkMCEx = checkMCEx;
+}
+</script>
+</body>
+</html>

@@ -3,751 +3,1047 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Módulo 5 · Al bar — Gramática | Italiano Per Piacere</title>
+<title>Che lavoro fai? — Etapa 3 Gramática | Italiano Per Piacere</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --mod:    #cc4736;
-  --mod-dk: #a8382a;
-  --mod-lt: #faeae8;
-  --mod-tx: #7a1f14;
+  --mod:    #e5ab07;
+  --mod-dk: #c8940a;
+  --mod-lt: #fff8e6;
+  --mod-tx: #7a5500;
   --cream:  #e9e6d5;
   --cream-dk: #ddd9c8;
   --gold:   #EFCF7F;
   --black:  #1a1a18;
   --white:  #ffffff;
+  --green:  #2d7a4f;
+  --red:    #cc4736;
   --fh: 'Playfair Display', Georgia, serif;
   --fb: 'Outfit', system-ui, sans-serif;
   --r: 10px;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: var(--fb); background: var(--cream); color: var(--black); line-height: 1.6; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--cream); font-family: var(--fb); color: var(--black); line-height: 1.6; }
 
 /* HERO */
 .hero {
   background: linear-gradient(135deg, var(--mod) 0%, var(--mod-dk) 100%);
-  color: var(--white); padding: 56px 24px 48px; text-align: center;
+  padding: 56px 24px 48px; text-align: center; color: var(--white);
 }
-.hero-badge {
+.badge {
   display: inline-block; background: rgba(255,255,255,0.2);
   border: 1px solid rgba(255,255,255,0.4); border-radius: 20px;
-  padding: 4px 16px; font-size: 0.78rem; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px;
+  padding: 4px 16px; font-size: 13px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;
 }
-.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 700; margin-bottom: 10px; }
-.hero-sub { font-size: 1.05rem; opacity: 0.88; font-weight: 300; }
+.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2rem,5vw,3.2rem); font-weight: 700; margin-bottom: 8px; }
+.hero p { font-size: 1.05rem; opacity: 0.9; }
 
 /* NAV */
 
-.stage-link {
-  display: flex; align-items: center; gap: 7px; padding: 8px 16px;
-  border-radius: 30px; text-decoration: none; font-size: 0.82rem;
-  font-weight: 500; color: #888; background: var(--cream);
-  border: 1.5px solid transparent; transition: all 0.2s;
-}
-.stage-link .sn {
-  width: 22px; height: 22px; border-radius: 50%; background: #ccc;
-  color: var(--white); display: flex; align-items: center; justify-content: center;
-  font-size: 0.72rem; font-weight: 700;
-}
-.stage-link.active { background: var(--mod-lt); color: var(--mod-tx); border-color: var(--mod); }
-.stage-link.active .sn { background: var(--mod); }
-.stage-link.done { color: #528e74; }
-.stage-link.done .sn { background: #528e74; }
+/* LAYOUT */
+.container { max-width: 860px; margin: 0 auto; padding: 40px 24px; }
 
-/* MAIN */
-.main { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; }
-.section { margin-bottom: 52px; }
-
-/* SECTION TITLE */
-.sec-title { font-family: var(--fh); font-style: italic; font-size: 1.6rem; color: var(--mod-tx); margin-bottom: 6px; }
-.sec-divider { width: 48px; height: 3px; background: var(--mod); border-radius: 2px; margin-bottom: 20px; }
-.sec-sub { font-size: 0.93rem; color: #666; margin-bottom: 16px; }
-
-/* SOFIA */
-.sofia-row {
-  display: flex; gap: 16px; align-items: flex-start;
+/* SECTION BLOCKS */
+.grammar-section {
   background: var(--white); border-radius: var(--r);
-  padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 32px;
+  padding: 32px; margin-bottom: 32px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
-.sofia-col { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
-.sofia-avatar {
-  width: 52px; height: 52px; border-radius: 50%; background: var(--mod-lt);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.8rem; border: 2px solid var(--mod);
-}
-.sofia-name { font-size: 0.7rem; font-weight: 700; color: var(--mod); text-transform: uppercase; letter-spacing: 0.05em; }
-.sofia-bubble {
-  background: var(--cream-dk); border-radius: 0 var(--r) var(--r) var(--r);
-  padding: 16px 20px; font-size: 0.96rem; line-height: 1.65; flex: 1;
-}
-
-/* GRAM CARD */
-.gram-card {
-  background: var(--white); border-radius: var(--r);
-  padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 20px;
-}
-.gram-card h3 { font-family: var(--fh); font-style: italic; font-size: 1.25rem; color: var(--mod-tx); margin-bottom: 8px; }
-.gram-card p { font-size: 0.94rem; line-height: 1.7; margin-bottom: 14px; }
-
-/* TABLE */
-.gram-table-wrap { overflow-x: auto; margin: 16px 0; }
-.gram-table {
-  width: 100%; border-collapse: collapse; font-size: 0.9rem;
-  background: var(--white); border-radius: var(--r); overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-.gram-table th {
-  background: var(--mod); color: var(--white);
-  padding: 10px 16px; text-align: left; font-weight: 600; font-size: 0.85rem;
-}
-.gram-table td { padding: 10px 16px; border-bottom: 1px solid var(--cream); }
-.gram-table tr:last-child td { border-bottom: none; }
-.gram-table tr:nth-child(even) td { background: #fafaf8; }
-.gram-hl { color: var(--mod-tx); font-weight: 700; font-size: 1.05rem; }
-.gram-note { font-size: 0.78rem; color: #777; font-style: italic; }
-.gram-ex { background: var(--cream); border-radius: 6px; padding: 4px 10px; display: inline-block; font-size: 0.88rem; }
-
-/* TIP BOX */
-.tip-box {
-  background: var(--mod-lt); border-left: 4px solid var(--mod);
-  border-radius: 0 var(--r) var(--r) 0; padding: 14px 18px; margin: 14px 0;
-  font-size: 0.9rem; line-height: 1.6;
-}
-.tip-box strong { color: var(--mod-tx); }
-
-/* RULE CARD */
-.rule-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  gap: 12px; margin: 16px 0;
-}
-.rule-card {
-  background: var(--cream); border-radius: var(--r);
-  padding: 16px; border: 2px solid var(--cream-dk);
-  text-align: center; transition: all 0.2s; cursor: pointer;
-}
-.rule-card:hover { border-color: var(--mod); background: var(--mod-lt); }
-.rule-art { font-size: 1.8rem; font-weight: 900; color: var(--mod-tx); font-family: var(--fh); font-style: italic; }
-.rule-when { font-size: 0.78rem; color: #777; margin-top: 4px; }
-.rule-ex { font-size: 0.82rem; color: var(--mod-tx); margin-top: 6px; font-style: italic; }
-
-/* EXERCISE CARD */
-.ex-card {
-  background: var(--white); border-radius: var(--r);
-  padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 16px;
-}
-.ex-card h4 { font-family: var(--fh); font-style: italic; font-size: 1.1rem; color: var(--mod-tx); margin-bottom: 6px; }
-.ex-tag {
-  display: inline-block; background: var(--mod); color: var(--white);
-  border-radius: 20px; padding: 3px 12px; font-size: 0.7rem;
-  font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px;
-}
-.ex-instr { font-size: 0.88rem; color: #555; margin-bottom: 14px; font-style: italic; }
-.ex-num-badge {
-  width: 28px; height: 28px; border-radius: 50%;
-  background: var(--mod); color: var(--white);
+.section-num {
   display: inline-flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 0.82rem; margin-right: 8px; flex-shrink: 0;
-}
-.ex-header { display: flex; align-items: center; margin-bottom: 6px; }
-
-/* OPT BUTTONS */
-.opt-group { margin-bottom: 18px; }
-.opt-q { font-weight: 600; font-size: 0.94rem; margin-bottom: 9px; }
-.opt-row { display: flex; flex-direction: column; gap: 7px; }
-.opt-btn {
-  padding: 9px 16px; border-radius: var(--r);
-  border: 1.5px solid var(--cream-dk); background: var(--cream);
-  font-family: var(--fb); font-size: 0.87rem; cursor: pointer;
-  text-align: left; transition: all 0.2s;
-}
-.opt-btn:hover:not(:disabled) { border-color: var(--mod); background: var(--mod-lt); }
-.opt-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: 600; }
-.opt-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
-.ex-fb { font-size: 0.82rem; font-weight: 600; margin-top: 5px; min-height: 16px; }
-.ex-fb.ok { color: #155724; }
-.ex-fb.no { color: #991b1b; }
-
-/* FILL IN */
-.fill-block { margin-bottom: 14px; }
-.fill-sentence { font-size: 0.94rem; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.fill-input {
-  border: 1.5px solid var(--cream-dk); border-radius: 8px;
-  padding: 5px 12px; font-family: var(--fb); font-size: 0.93rem;
-  width: 110px; transition: all 0.2s; background: var(--cream);
-}
-.fill-input:focus { outline: none; border-color: var(--mod); background: var(--white); }
-.fill-input.correct { border-color: #28a745; background: #d4edda; }
-.fill-input.wrong { border-color: #dc3545; background: #f8d7da; }
-.fill-fb { font-size: 0.85rem; font-weight: 700; }
-
-/* PREPOSICION GRID */
-.prep-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 14px; margin: 16px 0;
-}
-@media (max-width: 520px) { .prep-grid { grid-template-columns: 1fr; } }
-.prep-card {
-  background: var(--white); border: 2px solid var(--cream-dk);
-  border-radius: var(--r); padding: 18px; text-align: center;
-  transition: all 0.2s; cursor: pointer;
-}
-.prep-card:hover { border-color: var(--mod); background: var(--mod-lt); }
-.prep-art { font-size: 2rem; font-weight: 900; color: var(--mod); font-family: var(--fh); }
-.prep-use { font-size: 0.8rem; color: #555; margin: 6px 0; line-height: 1.5; }
-.prep-ex { font-size: 0.83rem; color: var(--mod-tx); font-style: italic; }
-
-/* CONJUGATION TABLE */
-.conj-block {
-  margin-bottom: 24px;
-}
-.conj-title {
-  font-size: 1rem; font-weight: 700; color: var(--mod-tx);
-  margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
-}
-.conj-inf {
+  width: 32px; height: 32px; border-radius: 50%;
   background: var(--mod); color: var(--white);
-  border-radius: 20px; padding: 3px 14px; font-size: 0.82rem; font-weight: 700;
+  font-weight: 700; font-size: 14px; margin-right: 10px; flex-shrink: 0;
 }
-.conj-table {
-  width: 100%; border-collapse: collapse; font-size: 0.88rem;
+.section-header { display: flex; align-items: center; margin-bottom: 6px; }
+.section-title { font-family: var(--fh); font-style: italic; font-size: 1.55rem; color: var(--mod-tx); }
+.section-subtitle { font-size: 0.9rem; color: #666; margin-bottom: 24px; padding-left: 42px; }
+.divider { height: 2px; background: var(--mod-lt); margin: 24px 0; border-radius: 2px; }
+
+/* RULE BOX */
+.rule-box {
+  background: var(--mod-lt); border-left: 4px solid var(--mod);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 16px 20px; margin-bottom: 20px;
 }
-.conj-table td { padding: 8px 12px; border-bottom: 1px solid var(--cream); }
+.rule-box h4 { color: var(--mod-tx); font-size: 12px; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700; margin-bottom: 8px; }
+.rule-box p { font-size: 0.93rem; line-height: 1.6; }
+.rule-box ul { padding-left: 18px; font-size: 0.93rem; line-height: 1.8; }
+
+/* ARTICOLO TABLE */
+.art-table-wrap { overflow-x: auto; margin-bottom: 20px; }
+.art-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 500px; }
+.art-table th {
+  background: var(--mod); color: var(--white);
+  padding: 10px 14px; text-align: center;
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.art-table td { padding: 10px 14px; border-bottom: 1px solid var(--cream-dk); text-align: center; }
+.art-table tr:last-child td { border-bottom: none; }
+.art-table .art-form { font-size: 1.1rem; font-weight: 700; color: var(--mod-tx); }
+.art-table .art-rule { font-size: 0.8rem; color: #555; }
+.art-table .art-ex { font-style: italic; color: #444; font-size: 0.88rem; }
+.art-table tr:hover td { background: rgba(229,171,7,0.06); }
+.art-table .col-head { background: var(--mod-lt); font-weight: 700; font-size: 0.85rem; color: var(--mod-tx); }
+
+/* CONJ TABLE */
+.conj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 20px; }
+.conj-card { background: var(--mod-lt); border-radius: var(--r); padding: 22px; }
+.conj-title { font-family: var(--fh); font-size: 1.1rem; color: var(--mod-tx); margin-bottom: 14px; }
+.conj-table { width: 100%; border-collapse: collapse; font-size: 0.91rem; }
+.conj-table th { background: var(--mod); color: var(--white); padding: 7px 10px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+.conj-table td { padding: 8px 10px; border-bottom: 1px solid var(--gold); }
 .conj-table tr:last-child td { border-bottom: none; }
-.conj-table .pron { color: #888; width: 30%; }
-.conj-table .form { font-weight: 700; color: var(--mod-tx); }
-.conj-table .tr { color: #555; font-style: italic; font-size: 0.82rem; }
+.conj-table tr:hover td { background: rgba(229,171,7,0.1); }
+.conj-play {
+  padding: 3px 9px; background: var(--cream-dk); border: none;
+  border-radius: 4px; font-size: 11px; cursor: pointer;
+  font-family: var(--fb); transition: background 0.2s;
+}
+.conj-play:hover { background: var(--gold); }
+
+/* CONCORDANZA EXAMPLES */
+.concord-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.concord-card {
+  background: var(--cream); border-radius: var(--r);
+  padding: 14px 16px; border: 1.5px solid var(--cream-dk);
+  transition: border-color 0.2s; cursor: pointer;
+}
+.concord-card:hover { border-color: var(--mod); }
+.concord-it { font-size: 1.05rem; font-weight: 700; color: var(--mod-tx); margin-bottom: 4px; }
+.concord-analysis { font-size: 0.8rem; color: #666; line-height: 1.5; }
+.concord-analysis span { display: inline-block; background: var(--mod-lt); border-radius: 3px; padding: 1px 5px; margin: 1px; font-size: 0.75rem; color: var(--mod-tx); font-weight: 600; }
+
+/* EXERCISES */
+.exercise-card { background: var(--white); border-radius: var(--r); padding: 28px; margin-bottom: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+.ex-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.ex-num { width: 36px; height: 36px; border-radius: 50%; background: var(--mod); color: var(--white); font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ex-title { font-weight: 700; font-size: 1.05rem; }
+.ex-subtitle { font-size: 13px; color: #666; }
+
+.ex-block { padding: 14px 0; border-bottom: 1px solid var(--cream-dk); }
+.ex-block:last-child { border-bottom: none; }
+.ex-q { font-weight: 600; margin-bottom: 10px; font-size: 0.97rem; }
+.opt-btn {
+  display: inline-block; margin: 4px; padding: 8px 16px;
+  border: 2px solid var(--cream-dk); border-radius: 6px;
+  background: var(--cream); font-family: var(--fb); font-size: 13px;
+  cursor: pointer; transition: all 0.2s;
+}
+.opt-btn:hover { border-color: var(--mod); }
+.opt-btn.correct { background: #d4edda; border-color: var(--green); color: var(--green); font-weight: 700; }
+.opt-btn.wrong { background: #fde8e8; border-color: var(--red); color: var(--red); }
+.ex-fb { font-size: 13px; min-height: 18px; margin-top: 8px; font-weight: 600; }
+
+.fill-item { margin: 12px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.96rem; line-height: 1.8; }
+.fill-input {
+  padding: 5px 10px; border: 2px solid var(--cream-dk); border-radius: 6px;
+  font-family: var(--fb); font-size: 0.93rem; width: 140px; outline: none;
+  transition: border-color 0.2s;
+}
+.fill-input:focus { border-color: var(--mod); }
+.fill-input.ok { border-color: var(--green); background: #d4edda; }
+.fill-input.err { border-color: var(--red); background: #fde8e8; }
+.fill-feedback { font-size: 12px; font-weight: 600; }
+.fill-hint { font-size: 11px; color: #888; font-style: italic; }
+
+/* INTEGRADOR */
+.integrador-banner {
+  background: linear-gradient(135deg, var(--mod-lt), var(--cream));
+  border: 2px solid var(--mod); border-radius: var(--r);
+  padding: 20px 24px; margin-bottom: 24px; text-align: center;
+}
+.integrador-banner h3 { font-family: var(--fh); font-style: italic; color: var(--mod-tx); font-size: 1.3rem; margin-bottom: 6px; }
+.integrador-banner p { font-size: 0.92rem; color: #555; }
 
 /* CTA */
 
-/* INTEGRADOR */
-.integrador-box {
-  background: linear-gradient(135deg, var(--mod-lt) 0%, #fff 100%);
-  border: 2px solid var(--mod);
-  border-radius: var(--r); padding: 28px; margin-bottom: 20px;
+/* SELECT */
+.fill-select {
+  padding: 5px 10px; border: 2px solid var(--cream-dk); border-radius: 6px;
+  font-family: var(--fb); font-size: 0.93rem; background: var(--white); cursor: pointer;
+  outline: none; transition: border-color 0.2s;
 }
-.integrador-box h3 { font-family: var(--fh); font-style: italic; font-size: 1.3rem; color: var(--mod-tx); margin-bottom: 8px; }
-.integrador-box p { font-size: 0.9rem; color: #555; margin-bottom: 16px; }
+.fill-select:focus { border-color: var(--mod); }
+.fill-select.ok { border-color: var(--green); background: #d4edda; }
+.fill-select.err { border-color: var(--red); background: #fde8e8; }
 
-.divider-section { border: none; border-top: 2px dashed var(--cream-dk); margin: 30px 0; }
+@media (max-width: 600px) {
+  
+  
+  .conj-grid { grid-template-columns: 1fr; }
+  .section-subtitle { padding-left: 0; }
+}
+/* ── IPP Dialog / YouTube Controls ── */
+.dial-line{display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:1rem}
+.dial-speaker{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;min-width:80px;padding-top:.5rem;color:#888}
+.dial-speaker.a{color:var(--mc-dk)}
+.dial-speaker.b{color:var(--teal,#78a6ba)}
+.dial-wrap{flex:1}
+.dial-bubble{background:var(--cream-dk,#ddd9c8);border-radius:0 10px 10px 10px;padding:.8rem 1.1rem;font-size:.93rem;line-height:1.65;font-style:italic;transition:filter .45s,opacity .45s}
+.dial-bubble.blurred{filter:blur(7px);opacity:.25;user-select:none;pointer-events:none}
+.dial-line.right .dial-speaker{order:2}
+.dial-line.right .dial-wrap{order:1}
+.dial-line.right .dial-bubble{border-radius:10px 0 10px 10px;background:#e0eff5}
+.dial-line-ctrl{display:flex;gap:6px;margin-top:7px}
+.yt-lbtn{width:32px;height:32px;border-radius:50%;border:1.8px solid var(--mc-dk);background:none;color:var(--mc-dk);cursor:pointer;font-size:.72rem;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.yt-lbtn:hover{background:var(--mc-bg,#e4f0e9)}
+.yt-lbtn.stop{border-color:#cc4736;color:#cc4736}
+.yt-lbtn.stop:hover{background:#faeaea}
+.dial-line.right .yt-lbtn{border-color:var(--teal,#78a6ba);color:var(--teal,#78a6ba)}
+.dial-line.right .yt-lbtn:hover{background:#e5f1f5}
+.dial-line.right .yt-lbtn.stop{border-color:#cc4736;color:#cc4736}
+.dial-line.yt-active{outline:3px solid var(--mc-dk);border-radius:8px;background:var(--mc-bg,#e4f0e9);transition:background .3s}
+.dial-line.yt-done{opacity:.7}
+.yt-top-controls{display:flex;gap:12px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+.yt-btn{padding:10px 20px;border:none;border-radius:8px;font-family:var(--fb,'Outfit',system-ui,sans-serif);font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.yt-btn-conv{background:var(--mc-dk);color:#fff}
+.yt-btn-conv:hover{background:var(--mc)}
+.yt-btn-stop{background:var(--cream-dk,#ddd9c8);color:#1a1a18}
+.yt-btn-stop:hover{filter:brightness(.92)}
+.yt-btn:disabled{opacity:.45;cursor:not-allowed}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-badge">A1 · Unità 5</div>
-  <h1>Al bar</h1>
-  <p class="hero-sub">Etapa 3 — Gramática · Artículos, Modales & Preposiciones</p>
-</header>
+<div class="hero">
+  <div class="badge">A1 · Unità 4</div>
+  <h1>Che lavoro fai?</h1>
+  <p>Etapa 3 — Gramática</p>
+</div>
 
-<!-- NAV -->
+<div class="container">
 
-<main class="main">
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 1: GLI ARTICOLI DETERMINATIVI
+════════════════════════════════════════════════════ -->
+<div class="grammar-section">
+  <div class="section-header">
+    <span class="section-num">1</span>
+    <h2 class="section-title">Gli articoli determinativi</h2>
+  </div>
+  <p class="section-subtitle">Los artículos determinados en italiano (equivalente a "el, la, los, las") — singolare e plurale</p>
 
-  <!-- SOFIA -->
-  <div class="sofia-row">
-    <div class="sofia-col">
-      <div class="sofia-avatar">👩‍🏫</div>
-      <div class="sofia-name">Sofia</div>
+  <div class="rule-box">
+    <h4>¿Por qué hay tantos artículos?</h4>
+    <p>A diferencia del español (donde tenemos solo <em>el/la/los/las</em>), el italiano tiene <strong>7 formas distintas</strong> según el género (masculino/femenino), el número (singular/plural) y la <strong>primera letra de la palabra siguiente</strong>. ¡Pero con práctica se vuelve automático!</p>
+  </div>
+
+  <div class="art-table-wrap">
+    <table class="art-table">
+      <tr>
+        <th></th>
+        <th colspan="2">MASCULINO</th>
+        <th>FEMENINO</th>
+      </tr>
+      <tr>
+        <td class="col-head">Singular</td>
+        <td>
+          <div class="art-form">il</div>
+          <div class="art-rule">ante consonante común</div>
+          <div class="art-ex">il medico, il cuoco</div>
+        </td>
+        <td>
+          <div class="art-form">lo</div>
+          <div class="art-rule">ante s+cons., z, gn, ps, x</div>
+          <div class="art-ex">lo studente, lo zaino</div>
+        </td>
+        <td>
+          <div class="art-form">la</div>
+          <div class="art-rule">ante consonante</div>
+          <div class="art-ex">la cuoca, la dottoressa</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="col-head">Singular (vocal)</td>
+        <td colspan="2">
+          <div class="art-form">l'</div>
+          <div class="art-rule">ante vocal (masc.)</div>
+          <div class="art-ex">l'ingegnere, l'avvocato</div>
+        </td>
+        <td>
+          <div class="art-form">l'</div>
+          <div class="art-rule">ante vocal (fem.)</div>
+          <div class="art-ex">l'insegnante, l'infermiera</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="col-head">Plural</td>
+        <td>
+          <div class="art-form">i</div>
+          <div class="art-rule">pl. de <em>il</em></div>
+          <div class="art-ex">i medici, i cuochi</div>
+        </td>
+        <td>
+          <div class="art-form">gli</div>
+          <div class="art-rule">pl. de <em>lo / l'</em> (masc.)</div>
+          <div class="art-ex">gli studenti, gli ingegneri</div>
+        </td>
+        <td>
+          <div class="art-form">le</div>
+          <div class="art-rule">pl. de <em>la / l'</em> (fem.)</div>
+          <div class="art-ex">le cuoche, le insegnanti</div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="rule-box">
+    <h4>Regla práctica: cuándo usar cada artículo masculino</h4>
+    <ul>
+      <li><strong>il</strong> → la mayoría de los sustantivos masculinos en consonante: <em>il libro, il treno, il lavoro</em></li>
+      <li><strong>lo</strong> → ante <em>s</em> + consonante, <em>z</em>, <em>gn</em>, <em>ps</em>, <em>x</em>: <em>lo studente, lo zaino, lo gnocco</em></li>
+      <li><strong>l'</strong> → ante vocal: <em>l'uomo, l'aereo, l'ospedale</em></li>
+      <li><strong>i</strong> → plural de <em>il</em>: <em>i libri, i treni</em></li>
+      <li><strong>gli</strong> → plural de <em>lo</em> y <em>l'</em> (masc.): <em>gli studenti, gli uomini</em></li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+  <h3 style="font-family:var(--fh);font-style:italic;color:var(--mod-tx);margin-bottom:16px;">Esercizi — Artículos</h3>
+
+  <div class="exercise-card">
+    <div class="ex-header">
+      <div class="ex-num">1</div>
+      <div>
+        <div class="ex-title">Elegí el artículo correcto</div>
+        <div class="ex-subtitle">Seleccioná il / lo / la / l' / i / gli / le según corresponda</div>
+      </div>
     </div>
-    <div class="sofia-bubble">
-      ¡Acá llegamos al núcleo duro! Hoy trabajamos tres pilares gramaticales que vas a usar en cada conversación al bar: los <strong>artículos indeterminativos</strong> (un, uno, una, un'), los <strong>verbos modales</strong> (dovere, potere, volere) y las <strong>preposiciones de lugar</strong> (da, a, in). Al final hay ejercicios integradores que mezclan todo. ¡Vamos paso a paso!
+
+    <div class="ex-block" id="art1a">
+      <p class="ex-q">1. ___ avvocato (sing. masc., empieza con vocal)</p>
+      <button class="opt-btn" onclick="checkOpt(this,'art1a',false,'No — ante vocal masculino usamos l\'.')">il</button>
+      <button class="opt-btn" onclick="checkOpt(this,'art1a',false,'No — lo va antes de s+consonante, z, gn...')">lo</button>
+      <button class="opt-btn" onclick="checkOpt(this,'art1a',true,'¡Esatto! l\'avvocato — ante vocal masculina usamos l\'.')">l'</button>
+      <button class="opt-btn" onclick="checkOpt(this,'art1a',false,'No — la es femenino singular.')">la</button>
+      <div class="ex-fb" id="art1afb"></div>
+    </div>
+
+    <div class="ex-block" id="art1b">
+      <p class="ex-q">2. ___ studenti (plural, empieza con s+consonante)</p>
+      <button class="opt-btn" onclick="checkOpt(this,'art1b',false,'No — i es el plural de il, para palabras que en singular usan il.')">i</button>
+      <button class="opt-btn" onclick="checkOpt(this,'art1b',true,'¡Corretto! Gli studenti — gli es el plural de lo.')">gli</button>
+      <button class="opt-btn" onclick="checkOpt(this,'art1b',false,'No — le es el plural femenino.')">le</button>
+      <button class="opt-btn" onclick="checkOpt(this,'art1b',false,'No — lo es singular.')">lo</button>
+      <div class="ex-fb" id="art1bfb"></div>
+    </div>
+
+    <div class="ex-block" id="art1c">
+      <p class="ex-q">3. ___ infermiera (sing. fem., empieza con vocal)</p>
+      <button class="opt-btn" onclick="checkOpt(this,'art1c',false,'No — la va antes de sustantivos femeninos que empiezan con consonante.')">la</button>
+      <button class="opt-btn" onclick="checkOpt(this,'art1c',true,'¡Perfetto! L\'infermiera — ante vocal femenina usamos l\'.')">l'</button>
+      <button class="opt-btn" onclick="checkOpt(this,'art1c',false,'No — le es el plural femenino.')">le</button>
+      <button class="opt-btn" onclick="checkOpt(this,'art1c',false,'No — il es masculino singular.')">il</button>
+      <div class="ex-fb" id="art1cfb"></div>
+    </div>
+
+    <div class="ex-block" id="art1d">
+      <p class="ex-q">4. ___ cuoche (plural femenino de la cuoca)</p>
+      <button class="opt-btn" onclick="checkOpt(this,'art1d',false,'No — gli es el plural masculino de lo / l\'.')">gli</button>
+      <button class="opt-btn" onclick="checkOpt(this,'art1d',false,'No — i es plural masculino de il.')">i</button>
+      <button class="opt-btn" onclick="checkOpt(this,'art1d',true,'¡Bravissimo! Le cuoche — le es el plural femenino.')">le</button>
+      <button class="opt-btn" onclick="checkOpt(this,'art1d',false,'No — l\' es singular.')">l'</button>
+      <div class="ex-fb" id="art1dfb"></div>
     </div>
   </div>
 
-  <!-- ============================
-       SECCIÓN 1: ARTICOLI INDETERMINATIVI
-       ============================ -->
-  <section class="section">
-    <h2 class="sec-title">1. Gli articoli indeterminativi</h2>
-    <div class="sec-divider"></div>
-    <p class="sec-sub">En italiano, el artículo indeterminativo (equivalente a "un/una" en español) tiene cuatro formas. La elección depende del género y de la letra inicial de la palabra siguiente.</p>
-
-    <div class="gram-card">
-      <h3>Las cuatro formas</h3>
-      <p>Fijate en la lógica: las formas cambian para que la pronunciación fluya mejor. Hacé clic en cada tarjeta para escuchar un ejemplo.</p>
-
-      <div class="rule-grid" id="art-grid"></div>
-
-      <div class="gram-table-wrap">
-        <table class="gram-table">
-          <thead>
-            <tr>
-              <th>Forma</th>
-              <th>Cuándo se usa</th>
-              <th>Ejemplos</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="gram-hl">un</span></td>
-              <td>Sustantivos masculinos que empiezan con consonante normal o vocal</td>
-              <td><span class="gram-ex">un caffè</span> · <span class="gram-ex">un aperitivo</span></td>
-            </tr>
-            <tr>
-              <td><span class="gram-hl">uno</span></td>
-              <td>Masculinos que empiezan con s+consonante, z, gn, ps, x, y</td>
-              <td><span class="gram-ex">uno spuntino</span> · <span class="gram-ex">uno zaino</span></td>
-            </tr>
-            <tr>
-              <td><span class="gram-hl">una</span></td>
-              <td>Sustantivos femeninos que empiezan con consonante</td>
-              <td><span class="gram-ex">una birra</span> · <span class="gram-ex">una pizza</span></td>
-            </tr>
-            <tr>
-              <td><span class="gram-hl">un'</span></td>
-              <td>Femeninos que empiezan con vocal (se elide)</td>
-              <td><span class="gram-ex">un'arancia</span> · <span class="gram-ex">un'acqua</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="tip-box">
-        <strong>Truco rápido:</strong> Para el masculino, si la palabra empieza con una consonante "complicada" (sp, st, sc, z, gn…) usás <em>uno</em>. Para todo lo demás masculino, <em>un</em>. Para femenino: vocal → <em>un'</em>, consonante → <em>una</em>.
+  <div class="exercise-card">
+    <div class="ex-header">
+      <div class="ex-num">2</div>
+      <div>
+        <div class="ex-title">Completá con el artículo correcto</div>
+        <div class="ex-subtitle">Escribí il / lo / la / l' / i / gli / le</div>
       </div>
     </div>
 
-    <!-- EJERCICIOS ARTÍCULOS -->
-    <div class="ex-card" id="ex-a1">
-      <div class="ex-header">
-        <div class="ex-num-badge">1</div>
-        <h4>Artículo correcto — opción múltiple</h4>
-      </div>
-      <div class="ex-tag">Artículos indeterminativos</div>
-      <p class="ex-instr">Elegí el artículo indeterminativo correcto para cada sustantivo.</p>
+    <div class="fill-item">
+      <span>___ medico lavora in ospedale.</span>
+      <input class="fill-input" type="text" data-answer="il" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+      <span class="fill-hint">(medico = masc., consonante)</span>
+    </div>
+    <div class="fill-item">
+      <span>___ insegnanti sono brave.</span>
+      <input class="fill-input" type="text" data-answer="le" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+      <span class="fill-hint">(insegnanti = fem. plural)</span>
+    </div>
+    <div class="fill-item">
+      <span>Conosco ___ avvocato di mia madre.</span>
+      <input class="fill-input" type="text" data-answer="l'" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+      <span class="fill-hint">(avvocato = masc., empieza con vocal)</span>
+    </div>
+    <div class="fill-item">
+      <span>___ zaino di Marco è rosso.</span>
+      <input class="fill-input" type="text" data-answer="lo" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+      <span class="fill-hint">(zaino = masc., empieza con z)</span>
+    </div>
+  </div>
+</div>
 
-      <div class="opt-group">
-        <div class="opt-q">1. ___ cappuccino (m., empieza con c)</div>
-        <div class="opt-row" id="ex-a1a-row">
-          <button class="opt-btn" onclick="checkOptG('ex-a1a',this,true,'✓ ¡Correcto! Cappuccino es masculino y empieza con consonante normal → un.')">un</button>
-          <button class="opt-btn" onclick="checkOptG('ex-a1a',this,false,'✗ Uno se usa para masculinos con s+cons., z, gn...')">uno</button>
-          <button class="opt-btn" onclick="checkOptG('ex-a1a',this,false,'✗ Una es para femeninos con consonante.')">una</button>
-          <button class="opt-btn" onclick="checkOptG('ex-a1a',this,false,'✗ Un\' es para femeninos que empiezan con vocal.')">un'</button>
-        </div>
-        <div class="ex-fb" id="ex-a1afb"></div>
-      </div>
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 2: VERBI IN -ISCO
+════════════════════════════════════════════════════ -->
+<div class="grammar-section">
+  <div class="section-header">
+    <span class="section-num">2</span>
+    <h2 class="section-title">Verbi in -isco</h2>
+  </div>
+  <p class="section-subtitle">Algunos verbos de la 3ª conjugación (-ire) insertan -ISC- entre la raíz y la desinencia en ciertas personas</p>
 
-      <div class="opt-group">
-        <div class="opt-q">2. ___ acqua (f., empieza con vocal)</div>
-        <div class="opt-row" id="ex-a1b-row">
-          <button class="opt-btn" onclick="checkOptG('ex-a1b',this,false,'✗ Un es para masculinos.')">un</button>
-          <button class="opt-btn" onclick="checkOptG('ex-a1b',this,false,'✗ Una es para femeninos con consonante.')">una</button>
-          <button class="opt-btn" onclick="checkOptG('ex-a1b',this,true,'✓ ¡Perfecto! Acqua es femenino y empieza con vocal → un\'.')">un'</button>
-          <button class="opt-btn" onclick="checkOptG('ex-a1b',this,false,'✗ Uno es para masculinos especiales.')">uno</button>
-        </div>
-        <div class="ex-fb" id="ex-a1bfb"></div>
-      </div>
+  <div class="rule-box">
+    <h4>¿Cuándo aparece el -ISC-?</h4>
+    <p>En verbos como <em>capire, finire, preferire, pulire, costruire</em>, el morfema <strong>-isc-</strong> aparece en las formas del <strong>singular (io, tu, lui/lei)</strong> y en la <strong>3ª persona plural (loro)</strong>. Las formas <em>noi</em> y <em>voi</em> son regulares. Esta irregularidad es muy predecible: si aprendés el patrón, podés conjugar todos estos verbos.</p>
+  </div>
 
-      <div class="opt-group">
-        <div class="opt-q">3. ___ spremuta (f., empieza con consonante)</div>
-        <div class="opt-row" id="ex-a1c-row">
-          <button class="opt-btn" onclick="checkOptG('ex-a1c',this,false,'✗ Un\' es para femeninos con vocal inicial.')">un'</button>
-          <button class="opt-btn" onclick="checkOptG('ex-a1c',this,true,'✓ ¡Correcto! Spremuta es femenino con consonante → una.')">una</button>
-          <button class="opt-btn" onclick="checkOptG('ex-a1c',this,false,'✗ Un es para masculinos.')">un</button>
-          <button class="opt-btn" onclick="checkOptG('ex-a1c',this,false,'✗ Uno es para masculinos especiales.')">uno</button>
-        </div>
-        <div class="ex-fb" id="ex-a1cfb"></div>
-      </div>
+  <div class="conj-grid">
+    <div class="conj-card">
+      <h3 class="conj-title">CAPIRE — entender</h3>
+      <table class="conj-table">
+        <tr><th>Pronombre</th><th>Forma</th><th>Audio</th></tr>
+        <tr><td>io</td><td><strong>cap<u>isc</u>o</strong></td><td><button class="conj-play" onclick="ippAudio('io capisco',0.82,'f')">▶</button></td></tr>
+        <tr><td>tu</td><td><strong>cap<u>isc</u>i</strong></td><td><button class="conj-play" onclick="ippAudio('tu capisci',0.82,'f')">▶</button></td></tr>
+        <tr><td>lui / lei</td><td><strong>cap<u>isc</u>e</strong></td><td><button class="conj-play" onclick="ippAudio('lui capisce',0.82,'m')">▶</button></td></tr>
+        <tr><td>noi</td><td>cap<em>iamo</em></td><td><button class="conj-play" onclick="ippAudio('noi capiamo',0.82,'f')">▶</button></td></tr>
+        <tr><td>voi</td><td>cap<em>ite</em></td><td><button class="conj-play" onclick="ippAudio('voi capite',0.82,'f')">▶</button></td></tr>
+        <tr><td>loro</td><td><strong>cap<u>isc</u>ono</strong></td><td><button class="conj-play" onclick="ippAudio('loro capiscono',0.82,'f')">▶</button></td></tr>
+      </table>
+    </div>
 
-      <div class="opt-group">
-        <div class="opt-q">4. ___ spuntino (m., empieza con sp-)</div>
-        <div class="opt-row" id="ex-a1d-row">
-          <button class="opt-btn" onclick="checkOptG('ex-a1d',this,false,'✗ Un se usa con consonantes simples, no con sp.')">un</button>
-          <button class="opt-btn" onclick="checkOptG('ex-a1d',this,true,'✓ ¡Muy bien! Spuntino empieza con sp → uno.')">uno</button>
-          <button class="opt-btn" onclick="checkOptG('ex-a1d',this,false,'✗ Una es para femeninos.')">una</button>
-          <button class="opt-btn" onclick="checkOptG('ex-a1d',this,false,'✗ Un\' es para femeninos con vocal.')">un'</button>
-        </div>
-        <div class="ex-fb" id="ex-a1dfb"></div>
+    <div class="conj-card">
+      <h3 class="conj-title">FINIRE — terminar</h3>
+      <table class="conj-table">
+        <tr><th>Pronombre</th><th>Forma</th><th>Audio</th></tr>
+        <tr><td>io</td><td><strong>fin<u>isc</u>o</strong></td><td><button class="conj-play" onclick="ippAudio('io finisco',0.82,'f')">▶</button></td></tr>
+        <tr><td>tu</td><td><strong>fin<u>isc</u>i</strong></td><td><button class="conj-play" onclick="ippAudio('tu finisci',0.82,'f')">▶</button></td></tr>
+        <tr><td>lui / lei</td><td><strong>fin<u>isc</u>e</strong></td><td><button class="conj-play" onclick="ippAudio('lui finisce',0.82,'m')">▶</button></td></tr>
+        <tr><td>noi</td><td>fin<em>iamo</em></td><td><button class="conj-play" onclick="ippAudio('noi finiamo',0.82,'f')">▶</button></td></tr>
+        <tr><td>voi</td><td>fin<em>ite</em></td><td><button class="conj-play" onclick="ippAudio('voi finite',0.82,'f')">▶</button></td></tr>
+        <tr><td>loro</td><td><strong>fin<u>isc</u>ono</strong></td><td><button class="conj-play" onclick="ippAudio('loro finiscono',0.82,'f')">▶</button></td></tr>
+      </table>
+    </div>
+
+    <div class="conj-card">
+      <h3 class="conj-title">PREFERIRE — preferir</h3>
+      <table class="conj-table">
+        <tr><th>Pronombre</th><th>Forma</th><th>Audio</th></tr>
+        <tr><td>io</td><td><strong>prefer<u>isc</u>o</strong></td><td><button class="conj-play" onclick="ippAudio('io preferisco',0.82,'f')">▶</button></td></tr>
+        <tr><td>tu</td><td><strong>prefer<u>isc</u>i</strong></td><td><button class="conj-play" onclick="ippAudio('tu preferisci',0.82,'f')">▶</button></td></tr>
+        <tr><td>lui / lei</td><td><strong>prefer<u>isc</u>e</strong></td><td><button class="conj-play" onclick="ippAudio('lui preferisce',0.82,'m')">▶</button></td></tr>
+        <tr><td>noi</td><td>prefer<em>iamo</em></td><td><button class="conj-play" onclick="ippAudio('noi preferiamo',0.82,'f')">▶</button></td></tr>
+        <tr><td>voi</td><td>prefer<em>ite</em></td><td><button class="conj-play" onclick="ippAudio('voi preferite',0.82,'f')">▶</button></td></tr>
+        <tr><td>loro</td><td><strong>prefer<u>isc</u>ono</strong></td><td><button class="conj-play" onclick="ippAudio('loro preferiscono',0.82,'f')">▶</button></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <h3 style="font-family:var(--fh);font-style:italic;color:var(--mod-tx);margin-bottom:16px;">Esercizi — Verbi in -isco</h3>
+
+  <div class="exercise-card">
+    <div class="ex-header">
+      <div class="ex-num">3</div>
+      <div>
+        <div class="ex-title">Completá con el verbo correcto</div>
+        <div class="ex-subtitle">Conjugá el verbo entre paréntesis en la forma correcta</div>
       </div>
     </div>
 
-    <div class="ex-card" id="ex-a2">
-      <div class="ex-header">
-        <div class="ex-num-badge">2</div>
-        <h4>Completá con el artículo correcto</h4>
-      </div>
-      <div class="ex-tag">Artículos indeterminativos</div>
-      <p class="ex-instr">Escribí el artículo indeterminativo que corresponde. Recordá: un / uno / una / un'</p>
+    <div class="fill-item">
+      <span>Io non ___ bene l'inglese. (capire)</span>
+      <input class="fill-input" type="text" data-answer="capisco" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+    </div>
+    <div class="fill-item">
+      <span>Lei ___ il lavoro alle sei. (finire)</span>
+      <input class="fill-input" type="text" data-answer="finisce" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+    </div>
+    <div class="fill-item">
+      <span>Noi ___ lavorare di mattina. (preferire)</span>
+      <input class="fill-input" type="text" data-answer="preferiamo" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+    </div>
+    <div class="fill-item">
+      <span>I bambini ___ subito! (capire)</span>
+      <input class="fill-input" type="text" data-answer="capiscono" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+    </div>
+    <div class="fill-item">
+      <span>Voi ___ a che ora? (finire)</span>
+      <input class="fill-input" type="text" data-answer="finite" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+    </div>
+  </div>
 
-      <div class="fill-block">
-        <div class="fill-sentence">
-          <span>Vorrei</span>
-          <input class="fill-input" type="text" data-answer="un" oninput="checkFill(this)" placeholder="___">
-          <span>tiramisù.</span>
-          <span class="fill-fb"></span>
-        </div>
+  <div class="exercise-card">
+    <div class="ex-header">
+      <div class="ex-num">4</div>
+      <div>
+        <div class="ex-title">¿Cuál es correcto?</div>
+        <div class="ex-subtitle">Elegí la forma verbal correcta</div>
       </div>
-      <div class="fill-block">
-        <div class="fill-sentence">
-          <span>Prendo</span>
-          <input class="fill-input" type="text" data-answer="una" oninput="checkFill(this)" placeholder="___">
-          <span>panna cotta.</span>
-          <span class="fill-fb"></span>
-        </div>
+    </div>
+
+    <div class="ex-block" id="isco1">
+      <p class="ex-q">1. Tu ___ il problema? (capire)</p>
+      <button class="opt-btn" onclick="checkOpt(this,'isco1',false,'No — capisce es la 3ª persona. Para "tu" usamos capisci.')">capisce</button>
+      <button class="opt-btn" onclick="checkOpt(this,'isco1',true,'¡Corretto! Tu capisci il problema? — 2ª persona singular.')">capisci</button>
+      <button class="opt-btn" onclick="checkOpt(this,'isco1',false,'No — capisco es la 1ª persona (io).')">capisco</button>
+      <div class="ex-fb" id="isco1fb"></div>
+    </div>
+
+    <div class="ex-block" id="isco2">
+      <p class="ex-q">2. Loro ___ di lavorare il sabato. (preferire)</p>
+      <button class="opt-btn" onclick="checkOpt(this,'isco2',false,'No — preferisce es 3ª persona singular (lui/lei).')">preferisce</button>
+      <button class="opt-btn" onclick="checkOpt(this,'isco2',false,'No — preferiamo es 1ª persona plural (noi).')">preferiamo</button>
+      <button class="opt-btn" onclick="checkOpt(this,'isco2',true,'¡Bravissimo! Loro preferiscono — 3ª persona plural con -isc-.')">preferiscono</button>
+      <div class="ex-fb" id="isco2fb"></div>
+    </div>
+
+    <div class="ex-block" id="isco3">
+      <p class="ex-q">3. Noi ___ il corso tra una settimana. (finire)</p>
+      <button class="opt-btn" onclick="checkOpt(this,'isco3',true,'¡Esatto! Noi finiamo — forma regular sin -isc- para noi.')">finiamo</button>
+      <button class="opt-btn" onclick="checkOpt(this,'isco3',false,'No — finiscono es para loro.')">finiscono</button>
+      <button class="opt-btn" onclick="checkOpt(this,'isco3',false,'No — finite es para voi.')">finite</button>
+      <div class="ex-fb" id="isco3fb"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 3: IL VERBO FARE
+════════════════════════════════════════════════════ -->
+<div class="grammar-section">
+  <div class="section-header">
+    <span class="section-num">3</span>
+    <h2 class="section-title">Il verbo FARE</h2>
+  </div>
+  <p class="section-subtitle">Verbo irregular fundamental — uno de los más usados del italiano</p>
+
+  <div class="rule-box">
+    <h4>FARE: mucho más que "hacer"</h4>
+    <ul>
+      <li><strong>Faccio il medico</strong> → Soy médico (expresa la profesión — equivale a "ser" en este contexto)</li>
+      <li><strong>Fare una domanda</strong> → Hacer una pregunta</li>
+      <li><strong>Fare una passeggiata</strong> → Dar un paseo</li>
+      <li><strong>Fare colazione</strong> → Desayunar</li>
+      <li><strong>Fare sport</strong> → Hacer deporte</li>
+      <li><strong>Non fa niente</strong> → No importa (expresión idiomática)</li>
+    </ul>
+  </div>
+
+  <div class="conj-grid">
+    <div class="conj-card">
+      <h3 class="conj-title">FARE — hacer (presente indicativo)</h3>
+      <table class="conj-table">
+        <tr><th>Pronombre</th><th>Forma</th><th>Significado</th><th>Audio</th></tr>
+        <tr><td>io</td><td><strong>faccio</strong></td><td>hago</td><td><button class="conj-play" onclick="ippAudio('io faccio',0.82,'f')">▶</button></td></tr>
+        <tr><td>tu</td><td><strong>fai</strong></td><td>hacés</td><td><button class="conj-play" onclick="ippAudio('tu fai',0.82,'f')">▶</button></td></tr>
+        <tr><td>lui / lei</td><td><strong>fa</strong></td><td>hace</td><td><button class="conj-play" onclick="ippAudio('lui fa',0.82,'m')">▶</button></td></tr>
+        <tr><td>noi</td><td><strong>facciamo</strong></td><td>hacemos</td><td><button class="conj-play" onclick="ippAudio('noi facciamo',0.82,'f')">▶</button></td></tr>
+        <tr><td>voi</td><td><strong>fate</strong></td><td>hacéis</td><td><button class="conj-play" onclick="ippAudio('voi fate',0.82,'f')">▶</button></td></tr>
+        <tr><td>loro</td><td><strong>fanno</strong></td><td>hacen</td><td><button class="conj-play" onclick="ippAudio('loro fanno',0.82,'f')">▶</button></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="rule-box">
+    <h4>Faccio + articolo + professione — la fórmula clave</h4>
+    <p>Para decir la profesión en italiano podés usar <strong>FARE + articolo determinativo + professione</strong>:<br>
+    <em>Faccio <strong>il</strong> cuoco.</em> / <em>Faccio <strong>la</strong> parrucchiera.</em> / <em>Fa <strong>l'</strong>avvocato.</em><br>
+    También se puede usar <strong>ESSERE + professione</strong> (sin artículo): <em>Sono medico. Sei infermiera.</em></p>
+  </div>
+
+  <div class="divider"></div>
+  <h3 style="font-family:var(--fh);font-style:italic;color:var(--mod-tx);margin-bottom:16px;">Esercizi — Il verbo FARE</h3>
+
+  <div class="exercise-card">
+    <div class="ex-header">
+      <div class="ex-num">5</div>
+      <div>
+        <div class="ex-title">Completá con FARE</div>
+        <div class="ex-subtitle">Escribí la forma correcta del verbo FARE</div>
       </div>
-      <div class="fill-block">
-        <div class="fill-sentence">
-          <span>Ho</span>
-          <input class="fill-input" type="text" data-answer="un'" oninput="checkFill(this)" placeholder="___">
-          <span>idea!</span>
-          <span class="fill-fb"></span>
-        </div>
+    </div>
+
+    <div class="fill-item">
+      <span>Io ___ il cameriere in un ristorante.</span>
+      <input class="fill-input" type="text" data-answer="faccio" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+    </div>
+    <div class="fill-item">
+      <span>Che lavoro ___ tuo fratello?</span>
+      <input class="fill-input" type="text" data-answer="fa" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+    </div>
+    <div class="fill-item">
+      <span>Voi ___ i programmatori?</span>
+      <input class="fill-input" type="text" data-answer="fate" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+    </div>
+    <div class="fill-item">
+      <span>Loro ___ i cuochi nel ristorante di famiglia.</span>
+      <input class="fill-input" type="text" data-answer="fanno" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+    </div>
+    <div class="fill-item">
+      <span>Noi ___ colazione insieme ogni mattina.</span>
+      <input class="fill-input" type="text" data-answer="facciamo" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <div class="ex-header">
+      <div class="ex-num">6</div>
+      <div>
+        <div class="ex-title">FARE o ESSERE — ¿cuál usarías?</div>
+        <div class="ex-subtitle">Ambas opciones son correctas, pero elegí la que usa FARE</div>
       </div>
-      <div class="fill-block">
-        <div class="fill-sentence">
-          <span>C'è</span>
-          <input class="fill-input" type="text" data-answer="uno" oninput="checkFill(this)" placeholder="___">
-          <span>zaino sul tavolo.</span>
-          <span class="fill-fb"></span>
+    </div>
+
+    <div class="ex-block" id="fare1">
+      <p class="ex-q">1. Para decir "Soy abogada" usando FARE...</p>
+      <button class="opt-btn" onclick="checkOpt(this,'fare1',false,'No — sono avvocatessa usa ESSERE, no FARE.')">Sono avvocatessa.</button>
+      <button class="opt-btn" onclick="checkOpt(this,'fare1',true,'¡Perfetto! Faccio l\'avvocatessa usa FARE + articolo + professione.')">Faccio l'avvocatessa.</button>
+      <div class="ex-fb" id="fare1fb"></div>
+    </div>
+
+    <div class="ex-block" id="fare2">
+      <p class="ex-q">2. "Él trabaja como mecánico" con FARE es...</p>
+      <button class="opt-btn" onclick="checkOpt(this,'fare2',true,'¡Esatto! Fa il meccanico — 3ª persona de FARE + il + professione.')">Fa il meccanico.</button>
+      <button class="opt-btn" onclick="checkOpt(this,'fare2',false,'No — Lavora come meccanico usa LAVORARE, no FARE.')">Lavora come meccanico.</button>
+      <button class="opt-btn" onclick="checkOpt(this,'fare2',false,'No — È meccanico usa ESSERE.')">È meccanico.</button>
+      <div class="ex-fb" id="fare2fb"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 4: CONCORDANZA ARTICOLO-NOME-AGGETTIVO
+════════════════════════════════════════════════════ -->
+<div class="grammar-section">
+  <div class="section-header">
+    <span class="section-num">4</span>
+    <h2 class="section-title">Concordanza articolo-nome-aggettivo</h2>
+  </div>
+  <p class="section-subtitle">En italiano, el artículo, el sustantivo y el adjetivo deben concordar en género y número — ¡los tres juntos!</p>
+
+  <div class="rule-box">
+    <h4>La regla de concordancia</h4>
+    <p>Cuando un sustantivo lleva un adjetivo, <strong>ambos deben tener el mismo género (M/F) y número (singular/plural)</strong>. El artículo también concuerda. Esto se llama <em>concordanza</em>:</p>
+    <ul>
+      <li>Masc. sing.: <em>il medico <strong>bravo</strong></em> → artículo M sing. + nombre M + adjetivo M sing.</li>
+      <li>Fem. sing.: <em>la cuoca <strong>brava</strong></em> → artículo F sing. + nombre F + adjetivo F sing.</li>
+      <li>Masc. pl.: <em>i medici <strong>bravi</strong></em> → artículo M pl. + nombre M pl. + adjetivo M pl.</li>
+      <li>Fem. pl.: <em>le cuoche <strong>brave</strong></em> → artículo F pl. + nombre F pl. + adjetivo F pl.</li>
+    </ul>
+  </div>
+
+  <div class="concord-grid">
+    <div class="concord-card" onclick="ippAudio('il commesso gentile',0.82,'m')">
+      <div class="concord-it">il commesso gentile</div>
+      <div class="concord-analysis">
+        <span>il</span> M.sg <span>commesso</span> M.sg <span>gentile</span> M.sg ▶
+      </div>
+    </div>
+    <div class="concord-card" onclick="ippAudio('la commessa gentile',0.82,'f')">
+      <div class="concord-it">la commessa gentile</div>
+      <div class="concord-analysis">
+        <span>la</span> F.sg <span>commessa</span> F.sg <span>gentile</span> F.sg ▶
+      </div>
+    </div>
+    <div class="concord-card" onclick="ippAudio('i commessi gentili',0.82,'m')">
+      <div class="concord-it">i commessi gentili</div>
+      <div class="concord-analysis">
+        <span>i</span> M.pl <span>commessi</span> M.pl <span>gentili</span> M.pl ▶
+      </div>
+    </div>
+    <div class="concord-card" onclick="ippAudio('le commesse gentili',0.82,'f')">
+      <div class="concord-it">le commesse gentili</div>
+      <div class="concord-analysis">
+        <span>le</span> F.pl <span>commesse</span> F.pl <span>gentili</span> F.pl ▶
+      </div>
+    </div>
+    <div class="concord-card" onclick="ippAudio('il poliziotto italiano',0.82,'m')">
+      <div class="concord-it">il poliziotto italiano</div>
+      <div class="concord-analysis">
+        <span>il</span> M.sg <span>poliziotto</span> M.sg <span>italiano</span> M.sg ▶
+      </div>
+    </div>
+    <div class="concord-card" onclick="ippAudio('le poliziotte italiane',0.82,'f')">
+      <div class="concord-it">le poliziotte italiane</div>
+      <div class="concord-analysis">
+        <span>le</span> F.pl <span>poliziotte</span> F.pl <span>italiane</span> F.pl ▶
+      </div>
+    </div>
+  </div>
+
+  <div class="rule-box">
+    <h4>Adjetivos invariables — atención</h4>
+    <p>Algunos adjetivos como <em>gentile, grande, intelligente, interessante</em> no cambian entre masculino y femenino (solo cambian en el plural: <em>gentili, grandi</em>). En cambio adjetivos como <em>bravo/brava, italiano/italiana, rosso/rossa</em> sí tienen formas distintas para M y F.</p>
+  </div>
+
+  <div class="divider"></div>
+  <h3 style="font-family:var(--fh);font-style:italic;color:var(--mod-tx);margin-bottom:16px;">Esercizi — Concordanza</h3>
+
+  <div class="exercise-card">
+    <div class="ex-header">
+      <div class="ex-num">7</div>
+      <div>
+        <div class="ex-title">Completá la concordanza</div>
+        <div class="ex-subtitle">Escribí el adjetivo en la forma correcta</div>
+      </div>
+    </div>
+
+    <div class="fill-item">
+      <span>La parrucchiera è molto ___ (bravo).</span>
+      <input class="fill-input" type="text" data-answer="brava" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+      <span class="fill-hint">(fem. sing.)</span>
+    </div>
+    <div class="fill-item">
+      <span>Gli ingegneri sono molto ___ (intelligente).</span>
+      <input class="fill-input" type="text" data-answer="intelligenti" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+      <span class="fill-hint">(masc. pl.)</span>
+    </div>
+    <div class="fill-item">
+      <span>Il cameriere porta una camicia ___ (bianco).</span>
+      <input class="fill-input" type="text" data-answer="bianca" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+      <span class="fill-hint">(camicia = fem. sing.)</span>
+    </div>
+    <div class="fill-item">
+      <span>Le avvocatesse sono molto ___ (preparato).</span>
+      <input class="fill-input" type="text" data-answer="preparate" oninput="checkFill(this)" placeholder="...">
+      <span class="fill-feedback"></span>
+      <span class="fill-hint">(fem. pl.)</span>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <div class="ex-header">
+      <div class="ex-num">8</div>
+      <div>
+        <div class="ex-title">¿Cuál es la frase correcta?</div>
+        <div class="ex-subtitle">Elegí la opción con concordanza correcta</div>
+      </div>
+    </div>
+
+    <div class="ex-block" id="con1">
+      <p class="ex-q">1. "El mecánico nuevo" en italiano es...</p>
+      <button class="opt-btn" onclick="checkOpt(this,'con1',false,'No — meccanico es masculino, el adjetivo debe ser nuova → nuovo.')">il meccanico nuova</button>
+      <button class="opt-btn" onclick="checkOpt(this,'con1',true,'¡Corretto! il meccanico nuovo — todo en masculino singular.')">il meccanico nuovo</button>
+      <button class="opt-btn" onclick="checkOpt(this,'con1',false,'No — los meccanici serían "los mecánicos" (plural).')">i meccanici nuovo</button>
+      <div class="ex-fb" id="con1fb"></div>
+    </div>
+
+    <div class="ex-block" id="con2">
+      <p class="ex-q">2. "Las enfermeras italianas" es...</p>
+      <button class="opt-btn" onclick="checkOpt(this,'con2',false,'No — le infermiere son plural, el adjetivo debe ser en plural también: italiane.')">le infermiere italiana</button>
+      <button class="opt-btn" onclick="checkOpt(this,'con2',false,'No — italiano es la forma masculina singular.')">le infermiere italiano</button>
+      <button class="opt-btn" onclick="checkOpt(this,'con2',true,'¡Bravissimo! le infermiere italiane — todo en femenino plural.')">le infermiere italiane</button>
+      <div class="ex-fb" id="con2fb"></div>
+    </div>
+
+    <div class="ex-block" id="con3">
+      <p class="ex-q">3. Para describir "una abogada seria" se dice...</p>
+      <button class="opt-btn" onclick="checkOpt(this,'con3',true,'¡Esatto! un\'avvocatessa seria — femenino singular.')">un'avvocatessa seria</button>
+      <button class="opt-btn" onclick="checkOpt(this,'con3',false,'No — serio es la forma masculina del adjetivo.')">un'avvocatessa serio</button>
+      <button class="opt-btn" onclick="checkOpt(this,'con3',false,'No — seri es el plural masculino.')">un'avvocatessa seri</button>
+      <div class="ex-fb" id="con3fb"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 5: SET INTEGRADOR
+════════════════════════════════════════════════════ -->
+<div class="integrador-banner">
+  <h3>Set integrador — tutto insieme!</h3>
+  <p>Estos ejercicios mezclan artículos, verbi in -isco, FARE y concordanza. ¡Es el momento de mostrar todo lo que aprendiste!</p>
+</div>
+
+<div class="exercise-card">
+  <div class="ex-header">
+    <div class="ex-num">9</div>
+    <div>
+      <div class="ex-title">Completá el párrafo</div>
+      <div class="ex-subtitle">Escribí la forma correcta en cada espacio — artículos, verbos y adjetivos</div>
+    </div>
+  </div>
+
+  <p style="margin-bottom:16px;font-size:0.95rem;line-height:1.8;">
+    Mi chiamo Lucia e <strong>faccio</strong>
+    <span style="display:inline-block;min-width:80px;">
+      <input class="fill-input" type="text" data-answer="l'" oninput="checkFill(this)" placeholder="art." style="width:60px;">
+      <span class="fill-feedback"></span>
+    </span> infermiera.
+
+    Lavoro in un ospedale
+    <span style="display:inline-block;min-width:80px;">
+      <input class="fill-input" type="text" data-answer="grande" oninput="checkFill(this)" placeholder="adj." style="width:90px;">
+      <span class="fill-feedback"></span>
+    </span>
+    <span style="font-size:0.8rem;color:#888;">(grande)</span>.
+
+    I miei colleghi sono
+    <span style="display:inline-block;min-width:80px;">
+      <input class="fill-input" type="text" data-answer="bravi" oninput="checkFill(this)" placeholder="adj." style="width:80px;">
+      <span class="fill-feedback"></span>
+    </span>
+    <span style="font-size:0.8rem;color:#888;">(bravo, pl.)</span>.
+
+    Io
+    <span style="display:inline-block;min-width:80px;">
+      <input class="fill-input" type="text" data-answer="preferisco" oninput="checkFill(this)" placeholder="verbo" style="width:110px;">
+      <span class="fill-feedback"></span>
+    </span>
+    <span style="font-size:0.8rem;color:#888;">(preferire)</span>
+    lavorare di mattina. Il turno di notte
+
+    <span style="display:inline-block;min-width:80px;">
+      <input class="fill-input" type="text" data-answer="finisce" oninput="checkFill(this)" placeholder="verbo" style="width:90px;">
+      <span class="fill-feedback"></span>
+    </span>
+    <span style="font-size:0.8rem;color:#888;">(finire)</span>
+    alle otto.
+  </p>
+</div>
+
+<div class="exercise-card">
+  <div class="ex-header">
+    <div class="ex-num">10</div>
+    <div>
+      <div class="ex-title">Preguntas y respuestas sobre trabajo</div>
+      <div class="ex-subtitle">Seleccioná la respuesta correcta a cada pregunta</div>
+    </div>
+  </div>
+
+  <div class="ex-block" id="int1">
+    <p class="ex-q">1. "Che lavoro fai?" — ¿Cuál es una respuesta correcta?</p>
+    <button class="opt-btn" onclick="checkOpt(this,'int1',false,'No — faccio va seguido de articolo + professione, no de un verbo.')">Faccio lavorare.</button>
+    <button class="opt-btn" onclick="checkOpt(this,'int1',true,'¡Perfetto! Faccio il cuoco — FARE + articolo + professione.')">Faccio il cuoco.</button>
+    <button class="opt-btn" onclick="checkOpt(this,'int1',false,'No — questa no es la estructura correcta para responder sobre trabajo.')">Io lavoro cuoco.</button>
+    <div class="ex-fb" id="int1fb"></div>
+  </div>
+
+  <div class="ex-block" id="int2">
+    <p class="ex-q">2. "Preferisci lavorare la mattina o la sera?" — ¿Cuál es la respuesta gramaticalmente correcta?</p>
+    <button class="opt-btn" onclick="checkOpt(this,'int2',false,'No — preferire con io se conjuga preferisco (con -isc-).')">Io preferio la mattina.</button>
+    <button class="opt-btn" onclick="checkOpt(this,'int2',true,'¡Esatto! Preferisco usa el morfema -isc- correcto para la 1ª persona.')">Preferisco la mattina.</button>
+    <button class="opt-btn" onclick="checkOpt(this,'int2',false,'No — preferite es la 2ª persona plural (voi), no 1ª persona singular.')">Preferite la mattina.</button>
+    <div class="ex-fb" id="int2fb"></div>
+  </div>
+
+  <div class="ex-block" id="int3">
+    <p class="ex-q">3. ¿Cuál de estas frases tiene concordanza correcta?</p>
+    <button class="opt-btn" onclick="checkOpt(this,'int3',false,'No — il infermiera mezcla artículo masculino con sustantivo femenino.')">il infermiera brava</button>
+    <button class="opt-btn" onclick="checkOpt(this,'int3',false,'No — la ingegnere bravo mezcla artículo femenino con adjetivo masculino.')">la ingegnere bravo</button>
+    <button class="opt-btn" onclick="checkOpt(this,'int3',true,'¡Corretto! l\'infermiera brava — todo en femenino singular.')">l'infermiera brava</button>
+    <div class="ex-fb" id="int3fb"></div>
+  </div>
+</div>
+
+<!-- CTA -->
+
+  <!-- ══════ IL DIALOGO ══════ -->
+  <section class="sec" id="s-dialogo">
+    <div class="sec-label">Il dialogo</div>
+    <h2 class="sec-title">Che lavoro fai? — Il dialogo completo</h2>
+    <p class="sec-sub">Seguí la conversación — presioná ▶ en cada línea o escuchá todo de corrido</p>
+    <div class="card">
+      <div class="yt-top-controls">
+        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
+        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.85rem;margin-bottom:1.5rem;">
+        <div class="dial-line" data-yt-idx="0">
+          <div class="dial-speaker a">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Ciao Marco! Che lavoro fai?</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(0)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line right" data-yt-idx="1">
+          <div class="dial-speaker b">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Sono ingegnere. Lavoro in un'azienda di informatica. E tu?</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(1)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line" data-yt-idx="2">
+          <div class="dial-speaker a">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Io sono insegnante. Insegno italiano a stranieri.</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(2)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line right" data-yt-idx="3">
+          <div class="dial-speaker b">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Interessante! Ti piace il tuo lavoro?</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(3)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line" data-yt-idx="4">
+          <div class="dial-speaker a">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Sì, mi piace molto! Preferisco lavorare con le persone. E la tua uniforme, di che colore è?</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(4)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line right" data-yt-idx="5">
+          <div class="dial-speaker b">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Non ho un'uniforme. Di solito porto una camicia bianca e pantaloni grigi. E tu?</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(5)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line" data-yt-idx="6">
+          <div class="dial-speaker a">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Io preferisco i vestiti colorati! Oggi ho una gonna verde e una giacca gialla.</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(6)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line right" data-yt-idx="7">
+          <div class="dial-speaker b">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Molto bella! Sei una vera italiana — colorata e allegra!</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(7)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line" data-yt-idx="8">
+          <div class="dial-speaker a">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Grazie! E tu sei un vero milanese — elegante e puntuale!</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(8)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line" data-yt-idx="9">
+          <div class="dial-speaker a">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">A che ora cominci a lavorare di solito?</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(9)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line right" data-yt-idx="10">
+          <div class="dial-speaker b">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Comincio alle nove. Ma a volte lavoro fino alle sette di sera... È stressante!</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(10)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line" data-yt-idx="11">
+          <div class="dial-speaker a">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Capisco! E hai colleghi simpatici?</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(11)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line right" data-yt-idx="12">
+          <div class="dial-speaker b">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Sì, il mio capo è molto bravo. Abbiamo anche una mensa aziendale — mangiamo tutti insieme a mezzogiorno.</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(12)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line" data-yt-idx="13">
+          <div class="dial-speaker a">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Che convenienza! Io invece mangio un panino in classe tra una lezione e l'altra.</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(13)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line right" data-yt-idx="14">
+          <div class="dial-speaker b">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">E in futuro, vorresti fare un altro lavoro?</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(14)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line" data-yt-idx="15">
+          <div class="dial-speaker a">Giulia</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Forse! Mi piace anche la traduzione. E tu, hai altri sogni professionali?</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(15)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
+        </div>
+        <div class="dial-line right" data-yt-idx="16">
+          <div class="dial-speaker b">Marco</div>
+          <div class="dial-wrap">
+            <div class="dial-bubble blurred"><span class="dial-sub">Vorrei diventare direttore tecnico un giorno. Ma prima devo imparare ancora molto!</span></div>
+            <div class="dial-line-ctrl">
+              <button class="yt-lbtn play" onclick="ippYT_playLine(16)" title="Escuchar">&#9654;</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <hr class="divider-section">
-
-  <!-- ============================
-       SECCIÓN 2: VERBI MODALI
-       ============================ -->
-  <section class="section">
-    <h2 class="sec-title">2. I verbi modali</h2>
-    <div class="sec-divider"></div>
-    <p class="sec-sub"><em>Dovere</em>, <em>potere</em> y <em>volere</em> son verbos irregulares esenciales. Van siempre seguidos de un infinitivo y transforman el significado de la oración.</p>
-
-    <div class="gram-card">
-      <h3>Conjugación completa</h3>
-      <p>Todos los verbos modali son irregulares — hay que memorizarlos. La buena noticia: se usan todo el tiempo, así que los vas a internalizar rápido.</p>
-
-      <div id="conj-blocks"></div>
-
-      <div class="tip-box">
-        <strong>Estructura:</strong> Modal + <em>Infinitivo</em><br>
-        <em>Voglio <strong>bere</strong> un caffè.</em> (Quiero beber un café.)<br>
-        <em>Posso <strong>avere</strong> il conto?</em> (¿Puedo tener la cuenta?)<br>
-        <em>Devo <strong>andare</strong> adesso.</em> (Debo irme ahora.)
-      </div>
-    </div>
-
-    <!-- EJERCICIOS MODALI -->
-    <div class="ex-card" id="ex-m1">
-      <div class="ex-header">
-        <div class="ex-num-badge">3</div>
-        <h4>Verbos modali — selección múltiple</h4>
-      </div>
-      <div class="ex-tag">Verbos modali</div>
-      <p class="ex-instr">Elegí la forma correcta del verbo modal.</p>
-
-      <div class="opt-group">
-        <div class="opt-q">1. Giulia e Marco ___ ordinare subito. (deber)</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOptG('ex-m1a',this,false,'✗ Devono es correcto para loro, no dobbiamo.')">dobbiamo</button>
-          <button class="opt-btn" onclick="checkOptG('ex-m1a',this,true,'✓ ¡Correcto! Loro devono = ellos deben.')">devono</button>
-          <button class="opt-btn" onclick="checkOptG('ex-m1a',this,false,'✗ Devo es para io (yo).')">devo</button>
-        </div>
-        <div class="ex-fb" id="ex-m1afb"></div>
-      </div>
-
-      <div class="opt-group">
-        <div class="opt-q">2. Io non ___ bere alcolici. (poder — negación)</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOptG('ex-m1b',this,false,'✗ Puoi es para tu (vos).')">puoi</button>
-          <button class="opt-btn" onclick="checkOptG('ex-m1b',this,true,'✓ ¡Exacto! Io posso = yo puedo.')">posso</button>
-          <button class="opt-btn" onclick="checkOptG('ex-m1b',this,false,'✗ Può es para lui/lei.')">può</button>
-        </div>
-        <div class="ex-fb" id="ex-m1bfb"></div>
-      </div>
-
-      <div class="opt-group">
-        <div class="opt-q">3. Voi cosa ___ mangiare? (querer)</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOptG('ex-m1c',this,false,'✗ Vogliamo es para noi (nosotros).')">vogliamo</button>
-          <button class="opt-btn" onclick="checkOptG('ex-m1c',this,true,'✓ ¡Bien! Voi volete = ustedes quieren.')">volete</button>
-          <button class="opt-btn" onclick="checkOptG('ex-m1c',this,false,'✗ Vogliono es para loro.')">vogliono</button>
-        </div>
-        <div class="ex-fb" id="ex-m1cfb"></div>
-      </div>
-    </div>
-
-    <div class="ex-card" id="ex-m2">
-      <div class="ex-header">
-        <div class="ex-num-badge">4</div>
-        <h4>Completá con el verbo modal correcto</h4>
-      </div>
-      <div class="ex-tag">Verbos modali</div>
-      <p class="ex-instr">Escribí la forma correcta del verbo entre paréntesis.</p>
-
-      <div class="fill-block">
-        <div class="fill-sentence">
-          <span>Io</span>
-          <input class="fill-input" type="text" data-answer="voglio" oninput="checkFill(this)" placeholder="(volere)">
-          <span>un gelato.</span>
-          <span class="fill-fb"></span>
-        </div>
-      </div>
-      <div class="fill-block">
-        <div class="fill-sentence">
-          <span>Tu</span>
-          <input class="fill-input" type="text" data-answer="puoi" oninput="checkFill(this)" placeholder="(potere)">
-          <span>venire al bar?</span>
-          <span class="fill-fb"></span>
-        </div>
-      </div>
-      <div class="fill-block">
-        <div class="fill-sentence">
-          <span>Lui</span>
-          <input class="fill-input" type="text" data-answer="deve" oninput="checkFill(this)" placeholder="(dovere)">
-          <span>pagare il conto.</span>
-          <span class="fill-fb"></span>
-        </div>
-      </div>
-      <div class="fill-block">
-        <div class="fill-sentence">
-          <span>Noi</span>
-          <input class="fill-input" type="text" data-answer="possiamo" oninput="checkFill(this)" placeholder="(potere)">
-          <span>ordinare adesso.</span>
-          <span class="fill-fb"></span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider-section">
-
-  <!-- ============================
-       SECCIÓN 3: PREPOSIZIONI DI LUOGO
-       ============================ -->
-  <section class="section">
-    <h2 class="sec-title">3. Le preposizioni di luogo</h2>
-    <div class="sec-divider"></div>
-    <p class="sec-sub"><em>Da</em>, <em>a</em> e <em>in</em> son las preposiciones de lugar más usadas. Tienen matices distintos que se entienden mejor con ejemplos del bar.</p>
-
-    <div class="gram-card">
-      <h3>Da, a, in — diferencias clave</h3>
-
-      <div class="prep-grid" id="prep-grid"></div>
-
-      <div class="gram-table-wrap">
-        <table class="gram-table">
-          <thead>
-            <tr>
-              <th>Preposición</th>
-              <th>Uso principal</th>
-              <th>Ejemplo al bar</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="gram-hl">da</span></td>
-              <td>Lugar de alguien (casa de, local de); origen; desde</td>
-              <td><span class="gram-ex">Vado da Mario.</span> (Voy al bar de Mario / donde Mario)</td>
-            </tr>
-            <tr>
-              <td><span class="gram-hl">a</span></td>
-              <td>Lugar puntual, ciudad; dirección hacia</td>
-              <td><span class="gram-ex">Sono al bar.</span> (Estoy en el bar) · <span class="gram-ex">Vado a Roma.</span></td>
-            </tr>
-            <tr>
-              <td><span class="gram-hl">in</span></td>
-              <td>Interior de un espacio; país; región</td>
-              <td><span class="gram-ex">Siamo in Italia.</span> · <span class="gram-ex">Il tavolo è in fondo.</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="tip-box">
-        <strong>Atención con "al":</strong> <em>a + il = al</em>. Por eso decimos <em>al bar</em>, <em>al ristorante</em>, <em>al mercato</em>. Es una contracción automática en italiano.
-      </div>
-    </div>
-
-    <!-- EJERCICIOS PREPOSIZIONI -->
-    <div class="ex-card" id="ex-p1">
-      <div class="ex-header">
-        <div class="ex-num-badge">5</div>
-        <h4>Preposizioni di luogo — selección</h4>
-      </div>
-      <div class="ex-tag">Preposizioni</div>
-      <p class="ex-instr">Elegí la preposición correcta.</p>
-
-      <div class="opt-group">
-        <div class="opt-q">1. Giulia è ___ bar con un'amica.</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOptG('ex-p1a',this,true,'✓ ¡Correcto! Al bar (a + il). Lugar puntual → a.')">al</button>
-          <button class="opt-btn" onclick="checkOptG('ex-p1a',this,false,'✗ Dal indica «de/desde el» bar.')">dal</button>
-          <button class="opt-btn" onclick="checkOptG('ex-p1a',this,false,'✗ Nel indica «dentro del» bar.')">nel</button>
-        </div>
-        <div class="ex-fb" id="ex-p1afb"></div>
-      </div>
-
-      <div class="opt-group">
-        <div class="opt-q">2. Domani andiamo ___ Roma.</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOptG('ex-p1b',this,false,'✗ In se usa para países y regiones, pero para ciudades se usa a.')">in</button>
-          <button class="opt-btn" onclick="checkOptG('ex-p1b',this,true,'✓ ¡Perfecto! Para ciudades, siempre a.')">a</button>
-          <button class="opt-btn" onclick="checkOptG('ex-p1b',this,false,'✗ Da indica origen o «casa de alguien».')">da</button>
-        </div>
-        <div class="ex-fb" id="ex-p1bfb"></div>
-      </div>
-
-      <div class="opt-group">
-        <div class="opt-q">3. Abitiamo ___ Italia da tre anni.</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOptG('ex-p1c',this,false,'✗ A se usa para ciudades, no países.')">a</button>
-          <button class="opt-btn" onclick="checkOptG('ex-p1c',this,false,'✗ Da indica punto de partida, pero no para países.')">da</button>
-          <button class="opt-btn" onclick="checkOptG('ex-p1c',this,true,'✓ ¡Correcto! In + país → in Italia.')">in</button>
-        </div>
-        <div class="ex-fb" id="ex-p1cfb"></div>
-      </div>
-    </div>
-
-    <div class="ex-card" id="ex-p2">
-      <div class="ex-header">
-        <div class="ex-num-badge">6</div>
-        <h4>Completá con da, a o in</h4>
-      </div>
-      <div class="ex-tag">Preposizioni</div>
-      <p class="ex-instr">Escribí la preposición correcta (da / a / in).</p>
-
-      <div class="fill-block">
-        <div class="fill-sentence">
-          <span>Stasera vado</span>
-          <input class="fill-input" type="text" data-answer="da" oninput="checkFill(this)" placeholder="___">
-          <span>Giulia.</span>
-          <span class="fill-fb"></span>
-        </div>
-      </div>
-      <div class="fill-block">
-        <div class="fill-sentence">
-          <span>Il bar è</span>
-          <input class="fill-input" type="text" data-answer="in" oninput="checkFill(this)" placeholder="___">
-          <span>centro.</span>
-          <span class="fill-fb"></span>
-        </div>
-      </div>
-      <div class="fill-block">
-        <div class="fill-sentence">
-          <span>Andiamo</span>
-          <input class="fill-input" type="text" data-answer="a" oninput="checkFill(this)" placeholder="___">
-          <span>Venezia.</span>
-          <span class="fill-fb"></span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider-section">
-
-  <!-- ============================
-       SET INTEGRADOR
-       ============================ -->
-  <section class="section">
-    <h2 class="sec-title">Set integrador</h2>
-    <div class="sec-divider"></div>
-    <p class="sec-sub">Estos ejercicios mezclan artículos, modali y preposizioni. ¡El verdadero desafío!</p>
-
-    <div class="integrador-box">
-      <h3>Situación: Al bar con amici</h3>
-      <p>Completá las frases con el elemento correcto (artículo, modal o preposición).</p>
-
-      <div class="fill-block">
-        <div class="fill-sentence">
-          <span>Voglio</span>
-          <input class="fill-input" type="text" data-answer="un" oninput="checkFill(this)" placeholder="art.">
-          <span>caffè, per favore.</span>
-          <span class="fill-fb"></span>
-        </div>
-      </div>
-      <div class="fill-block">
-        <div class="fill-sentence">
-          <span>Noi</span>
-          <input class="fill-input" type="text" data-answer="dobbiamo" oninput="checkFill(this)" placeholder="modal">
-          <span>partire presto.</span>
-          <span class="fill-fb"></span>
-        </div>
-      </div>
-      <div class="fill-block">
-        <div class="fill-sentence">
-          <span>Sei</span>
-          <input class="fill-input" type="text" data-answer="al" oninput="checkFill(this)" placeholder="prep.">
-          <span>bar adesso?</span>
-          <span class="fill-fb"></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Integrador 2: opt -->
-    <div class="ex-card" id="ex-int2">
-      <div class="ex-header">
-        <div class="ex-num-badge">7</div>
-        <h4>Traducción contextual</h4>
-      </div>
-      <div class="ex-tag">Integrador</div>
-      <p class="ex-instr">¿Cómo se dice correctamente en italiano?</p>
-
-      <div class="opt-group">
-        <div class="opt-q">1. «Quiero una cerveza y un agua.»</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOptG('ex-int2a',this,true,'✓ ¡Perfecto! Voglio una birra e un\'acqua.')">Voglio una birra e un'acqua.</button>
-          <button class="opt-btn" onclick="checkOptG('ex-int2a',this,false,'✗ Posso = puedo, no quiero.')">Posso una birra e un'acqua.</button>
-          <button class="opt-btn" onclick="checkOptG('ex-int2a',this,false,'✗ Uno birra es incorrecto — birra es femenino.')">Voglio uno birra e un'acqua.</button>
-        </div>
-        <div class="ex-fb" id="ex-int2afb"></div>
-      </div>
-
-      <div class="opt-group">
-        <div class="opt-q">2. «¿Podés venir al bar el viernes?»</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="checkOptG('ex-int2b',this,false,'✗ Devi = debés, no podés.')">Devi venire al bar venerdì?</button>
-          <button class="opt-btn" onclick="checkOptG('ex-int2b',this,true,'✓ ¡Correcto! Puoi = podés (tu). Al bar = a + il bar.')">Puoi venire al bar venerdì?</button>
-          <button class="opt-btn" onclick="checkOptG('ex-int2b',this,false,'✗ Vuoi = querés, tiene otro matiz.')">Vuoi venire in bar venerdì?</button>
-        </div>
-        <div class="ex-fb" id="ex-int2bfb"></div>
-      </div>
-    </div>
-
-    <!-- Integrador 3: fill -->
-    <div class="ex-card" id="ex-int3">
-      <div class="ex-header">
-        <div class="ex-num-badge">8</div>
-        <h4>Diálogo con huecos</h4>
-      </div>
-      <div class="ex-tag">Integrador</div>
-      <p class="ex-instr">Completá el diálogo con la palabra correcta de la lista: <strong>posso / una / in / al / voglio / un'</strong></p>
-
-      <div style="background:var(--cream); border-radius:var(--r); padding:18px; font-size:0.93rem; line-height:2.2;">
-        <strong>Marco:</strong> Buongiorno! Siete
-        <input class="fill-input" style="width:80px" type="text" data-answer="al" oninput="checkFill(this)" placeholder="___">
-        bar per la prima volta?
-        <span class="fill-fb"></span>
-        <br>
-        <strong>Giulia:</strong> Sì!
-        <input class="fill-input" style="width:110px" type="text" data-answer="posso" oninput="checkFill(this)" placeholder="___">
-        vedere il menù?
-        <span class="fill-fb"></span>
-        <br>
-        <strong>Marco:</strong> Certo! Siamo famosi
-        <input class="fill-input" style="width:70px" type="text" data-answer="in" oninput="checkFill(this)" placeholder="___">
-        tutta Roma.
-        <span class="fill-fb"></span>
-        <br>
-        <strong>Giulia:</strong> Perfetto!
-        <input class="fill-input" style="width:100px" type="text" data-answer="voglio" oninput="checkFill(this)" placeholder="___">
-        <input class="fill-input" style="width:70px" type="text" data-answer="una" oninput="checkFill(this)" placeholder="___">
-        panna cotta.
-        <span class="fill-fb"></span><span class="fill-fb"></span>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  
-
-</main>
+</div><!-- /container -->
 
 <script>
-// ===== ODOO DOMEval guard =====
+// ══════════════════════════════════════════
+// IPP Voice Preloader
+// ══════════════════════════════════════════
 if (!window.__ippVC) {
   window.__ippVC = true;
   window.__ippV = [];
@@ -758,8 +1054,11 @@ if (!window.__ippVC) {
   }
 }
 
-if (!window.__ipp_m5_e3__) {
-window.__ipp_m5_e3__ = true;
+// ══════════════════════════════════════════
+// EXECUTION GUARD
+// ══════════════════════════════════════════
+if (!window.__ipp_m4_e3__) {
+window.__ipp_m4_e3__ = true;
 
 function ippVoice(gender) {
   var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
@@ -788,147 +1087,155 @@ function ippAudio(text, rate, gender) {
   (function(u) { setTimeout(function() { try { speechSynthesis.speak(u); } catch(e) {} }, 60); })(utt);
 }
 
-function checkOptG(exId, btn, isCorrect, feedback) {
-  var row = btn.closest('.opt-row');
-  if (!row) return;
-  row.querySelectorAll('.opt-btn').forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+function checkOpt(btn, exId, isCorrect, feedbackText) {
+  var block = document.getElementById(exId);
+  if (block.classList.contains('answered')) return;
+  block.classList.add('answered');
+  var btns = block.querySelectorAll('.opt-btn');
+  btns.forEach(function(b) { b.disabled = true; });
   btn.classList.add(isCorrect ? 'correct' : 'wrong');
   var fb = document.getElementById(exId + 'fb');
-  if (fb) { fb.textContent = feedback; fb.className = 'ex-fb ' + (isCorrect ? 'ok' : 'no'); }
+  if (fb) {
+    fb.textContent = feedbackText;
+    fb.style.color = isCorrect ? '#2d7a4f' : '#cc4736';
+  }
 }
 
 function checkFill(input) {
   var answer = (input.getAttribute('data-answer') || '').toLowerCase().trim();
   var val = input.value.toLowerCase().trim();
   var fb = input.nextElementSibling;
-  // skip non-fill-fb siblings
-  while (fb && !fb.classList.contains('fill-fb')) fb = fb.nextElementSibling;
-  input.classList.remove('correct','wrong');
-  if (!val) { if (fb) fb.textContent = ''; return; }
+  if (!val) {
+    input.className = 'fill-input';
+    if (fb && fb.classList.contains('fill-feedback')) fb.textContent = '';
+    return;
+  }
   if (val === answer) {
-    input.classList.add('correct');
-    if (fb) { fb.textContent = '✓'; fb.style.color = '#065f46'; }
-  } else if (answer.startsWith(val)) {
-    if (fb) { fb.textContent = '...'; fb.style.color = '#888'; }
+    input.className = 'fill-input ok';
+    if (fb && fb.classList.contains('fill-feedback')) { fb.textContent = '✓'; fb.style.color = '#2d7a4f'; }
   } else {
-    input.classList.add('wrong');
-    if (fb) { fb.textContent = '✗'; fb.style.color = '#991b1b'; }
+    input.className = 'fill-input err';
+    if (fb && fb.classList.contains('fill-feedback')) { fb.textContent = '✗'; fb.style.color = '#cc4736'; }
   }
 }
 
+// EXPONER A WINDOW
 window.ippAudio = ippAudio;
 window.ippVoice = ippVoice;
-window.checkOptG = checkOptG;
+window.checkOpt = checkOpt;
 window.checkFill = checkFill;
 
-// ===== ARTICOLI CARDS =====
-var artData = [
-  { art: 'un', when: 'Masculino + consonante o vocal', ex: 'un caffè', sample: 'un caffè' },
-  { art: 'uno', when: 'Masculino + s+cons., z, gn, ps', ex: 'uno spuntino', sample: 'uno spuntino' },
-  { art: 'una', when: 'Femenino + consonante', ex: 'una birra', sample: 'una birra' },
-  { art: "un'", when: 'Femenino + vocal', ex: "un'acqua", sample: 'un acqua' }
-];
-var artGrid = document.getElementById('art-grid');
-artData.forEach(function(item) {
-  var card = document.createElement('div');
-  card.className = 'rule-card';
-  card.onclick = function() { ippAudio(item.sample, 0.78, 'f'); };
-  card.innerHTML = '<div class="rule-art">' + item.art + '</div>' +
-    '<div class="rule-when">' + item.when + '</div>' +
-    '<div class="rule-ex">' + item.ex + '</div>';
-  artGrid.appendChild(card);
-});
-
-// ===== CONJ BLOCKS =====
-var conjData = [
-  {
-    inf: 'dovere', tr: 'deber',
-    rows: [
-      ['io', 'devo', 'debo'],
-      ['tu', 'devi', 'debés'],
-      ['lui/lei', 'deve', 'debe'],
-      ['noi', 'dobbiamo', 'debemos'],
-      ['voi', 'dovete', 'deben (uds.)'],
-      ['loro', 'devono', 'deben (ellos)']
-    ]
-  },
-  {
-    inf: 'potere', tr: 'poder',
-    rows: [
-      ['io', 'posso', 'puedo'],
-      ['tu', 'puoi', 'podés'],
-      ['lui/lei', 'può', 'puede'],
-      ['noi', 'possiamo', 'podemos'],
-      ['voi', 'potete', 'pueden (uds.)'],
-      ['loro', 'possono', 'pueden (ellos)']
-    ]
-  },
-  {
-    inf: 'volere', tr: 'querer',
-    rows: [
-      ['io', 'voglio', 'quiero'],
-      ['tu', 'vuoi', 'querés'],
-      ['lui/lei', 'vuole', 'quiere'],
-      ['noi', 'vogliamo', 'queremos'],
-      ['voi', 'volete', 'quieren (uds.)'],
-      ['loro', 'vogliono', 'quieren (ellos)']
-    ]
-  }
-];
-
-var conjBlocks = document.getElementById('conj-blocks');
-conjData.forEach(function(verb) {
-  var block = document.createElement('div');
-  block.className = 'conj-block';
-  var title = document.createElement('div');
-  title.className = 'conj-title';
-  title.innerHTML = '<span class="conj-inf">' + verb.inf + '</span> <span style="color:#777;font-size:0.85rem;font-weight:400;">' + verb.tr + '</span>';
-  block.appendChild(title);
-
-  var table = document.createElement('table');
-  table.className = 'conj-table';
-  verb.rows.forEach(function(row) {
-    var tr = document.createElement('tr');
-    tr.innerHTML = '<td class="pron">' + row[0] + '</td>' +
-      '<td class="form" style="cursor:pointer" onclick="ippAudio(\'' + row[1] + '\', 0.78, \'f\')">' + row[1] + '</td>' +
-      '<td class="tr">' + row[2] + '</td>';
-    table.appendChild(tr);
-  });
-  block.appendChild(table);
-  conjBlocks.appendChild(block);
-});
-
-// ===== PREP CARDS =====
-var prepData = [
-  {
-    prep: 'da',
-    use: 'Lugar de alguien\nOrigen / desde',
-    ex: 'Vado da Mario.\nVengo da Roma.'
-  },
-  {
-    prep: 'a',
-    use: 'Ciudad / lugar puntual\nDirección hacia',
-    ex: 'Sono al bar.\nVado a Napoli.'
-  },
-  {
-    prep: 'in',
-    use: 'Interior / espacio\nPaís / región',
-    ex: 'Siamo in Italia.\nIl tavolo è in fondo.'
-  }
-];
-
-var prepGrid = document.getElementById('prep-grid');
-prepData.forEach(function(item) {
-  var card = document.createElement('div');
-  card.className = 'prep-card';
-  card.onclick = function() { ippAudio(item.prep, 0.75, 'f'); };
-  card.innerHTML = '<div class="prep-art">' + item.prep + '</div>' +
-    '<div class="prep-use">' + item.use.replace(/\n/g, '<br>') + '</div>' +
-    '<div class="prep-ex">' + item.ex.replace(/\n/g, '<br>') + '</div>';
-  prepGrid.appendChild(card);
-});
-
 } // end execution guard
+</script>
+<div id="ippyt-frame" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden"></div>
+
+<script>
+/* ── IPP YouTube Dialog Player — shared ipp-yt-v3 ── */
+(function(){
+  if(window.__ippYTinit) return;
+  window.__ippYTinit = true;
+  window._ippYT = {player:null,ready:false,mode:null,idx:0,poll:null,lines:[],els:[]};
+  if(!window.YT){
+    var s=document.createElement('script');
+    s.src='https://www.youtube.com/iframe_api';
+    document.head.appendChild(s);
+  }
+  window._ippYTinitPlayer=function(videoId,frameId){
+    if(window._ippYT.player)return;
+    function tryCreate(){
+      if(!window.YT||!window.YT.Player){setTimeout(tryCreate,300);return;}
+      window._ippYT.player=new YT.Player(frameId,{videoId:videoId,height:1,width:1,
+        playerVars:{autoplay:0,controls:0,origin:location.origin||''},
+        events:{onReady:function(){window._ippYT.ready=true;}}});
+    }
+    tryCreate();
+  };
+  window.ippYT_detener=function(){
+    var y=window._ippYT;
+    if(y.poll){clearInterval(y.poll);y.poll=null;}
+    if(y.player&&y.ready){try{y.player.pauseVideo();}catch(e){}}
+    y.mode=null;
+    document.querySelectorAll('.yt-active').forEach(function(el){el.classList.remove('yt-active');});
+  };
+  window.ippYT_conversacion=function(){
+    var y=window._ippYT;
+    if(!y.ready){alert('El reproductor aún se está cargando...');return;}
+    ippYT_detener();
+    document.querySelectorAll('[data-yt-idx]').forEach(function(el){_ippYT_revealEl(el);});
+    y.mode='conv';
+    try{y.player.seekTo(0,true);y.player.playVideo();}catch(e){}
+  };
+  window._ippYT_playNext=function(){
+    var y=window._ippYT;
+    if(y.mode!=='dial')return;
+    if(y.idx>=y.els.length){y.mode=null;return;}
+    var el=y.els[y.idx];var ts=y.lines[y.idx];
+    el.classList.add('yt-active');_ippYT_revealEl(el);
+    el.scrollIntoView({behavior:'smooth',block:'nearest'});
+    if(ts&&ts[0]!==null){
+      try{y.player.seekTo(ts[0],true);y.player.playVideo();}catch(e){}
+      y.poll=setInterval(function(){
+        if(y.mode!=='dial'){clearInterval(y.poll);return;}
+        try{var ct=y.player.getCurrentTime();
+          if(ct>=ts[1]){clearInterval(y.poll);y.poll=null;try{y.player.pauseVideo();}catch(e){}
+            el.classList.remove('yt-active');el.classList.add('yt-done');y.idx++;setTimeout(window._ippYT_playNext,450);}
+        }catch(e){clearInterval(y.poll);}
+      },150);
+    }else{setTimeout(function(){el.classList.remove('yt-active');el.classList.add('yt-done');y.idx++;_ippYT_playNext();},2000);}
+  };
+  window._ippYT_revealEl=function(el){
+    var targets=['.dial-hidden','.hidden-text','.dial-bubble'];
+    for(var i=0;i<targets.length;i++){var h=el.querySelector(targets[i]);if(h){h.style.opacity='1';h.style.visibility='visible';h.style.maxHeight='none';h.style.display='';return;}}
+  };
+  window._ippYT_hideEl=function(el){
+    var targets=['.dial-hidden','.hidden-text','.dial-bubble'];
+    for(var i=0;i<targets.length;i++){var h=el.querySelector(targets[i]);if(h){h.style.opacity='0';h.style.visibility='hidden';return;}}
+  };
+})();
+</script>
+
+<script>_ippYTinitPlayer('9lMBKecejn4','ippyt-frame');</script>
+
+<script>
+/* ── IPP Per-line playback — M4 etapa3 ── */
+(function(){
+  var LINE_TIMES=[[0,2],[2,7],[7,11],[11,14],[14,20],[20,27],[27,32],[32,37],[37,42],[42,47],[47,55],[55,60],[60,70],[70,78],[78,84],[84,92],[92,102]];
+  var _activeLine=-1,_linePoll=null;
+  function _getLineEl(idx){return document.querySelector('.dial-line[data-yt-idx="'+idx+'"]');}
+  function _setButtons(idx,playing){
+    var el=_getLineEl(idx);if(!el)return;
+    var pb=el.querySelector('.yt-lbtn.play'),sb=el.querySelector('.yt-lbtn.stop');
+    if(pb)pb.style.display=playing?'none':'';if(sb)sb.style.display=playing?'':'none';
+    el.classList.toggle('yt-playing',playing);
+  }
+  window.ippYT_stopLine=function(){
+    if(_linePoll){clearInterval(_linePoll);_linePoll=null;}
+    var y=window._ippYT;if(y&&y.ready){try{y.player.pauseVideo();}catch(e){}}
+    if(_activeLine>=0){_setButtons(_activeLine,false);_activeLine=-1;}
+  };
+  window.ippYT_playLine=function(idx){
+    ippYT_stopLine();
+    var y=window._ippYT;if(!y||!y.ready){alert('El reproductor aún se está cargando...');return;}
+    var ts=LINE_TIMES[idx];if(!ts)return;
+    var el=_getLineEl(idx);
+    if(el){var b=el.querySelector('.dial-bubble');if(b)b.classList.remove('blurred');}
+    _activeLine=idx;_setButtons(idx,true);
+    try{y.player.seekTo(ts[0],true);y.player.playVideo();}catch(e){}
+    _linePoll=setInterval(function(){
+      try{var ct=y.player.getCurrentTime();
+        if(ct>=ts[1]){clearInterval(_linePoll);_linePoll=null;try{y.player.pauseVideo();}catch(e){}_setButtons(idx,false);_activeLine=-1;}
+      }catch(e){clearInterval(_linePoll);}
+    },150);
+  };
+  var _origConv=window.ippYT_conversacion;
+  window.ippYT_conversacion=function(){
+    ippYT_stopLine();
+    document.querySelectorAll('.dial-bubble.blurred').forEach(function(b){b.classList.remove('blurred');});
+    if(_origConv)_origConv();
+  };
+  var _origStop=window.ippYT_detener;
+  window.ippYT_detener=function(){ippYT_stopLine();if(_origStop)_origStop();};
+})();
 </script>
 </body>
 </html>

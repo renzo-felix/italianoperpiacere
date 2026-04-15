@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M10 · Etapa 3 — Gramática</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --mod:#78a6ba; --mod-dk:#5a8ea0; --mod-lt:#e8f4f8; --mod-tx:#2d5f72;
+  --cream:#e9e6d5; --cream-dk:#ddd9c8; --gold:#EFCF7F;
+  --black:#1a1a18; --white:#fff;
+  --fh:'Playfair Display',Georgia,serif;
+  --fb:'Outfit',system-ui,sans-serif;
+  --ok:#2e7d32; --ok-bg:#d4edda; --ok-bd:#4caf50;
+  --err:#c62828; --err-bg:#fde8e8; --err-bd:#e57373;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--fb);background:var(--cream);color:var(--black);line-height:1.6;}
+
+.hero{background:var(--mod-lt);border-bottom:4px solid var(--mod);padding:2.5rem 1.5rem 2rem;text-align:center;}
+.hero-tag{display:inline-block;background:var(--mod);color:var(--white);font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .9rem;border-radius:2rem;margin-bottom:.9rem;}
+.hero h1{font-family:var(--fh);font-style:italic;font-size:2.1rem;color:var(--mod-tx);line-height:1.2;margin-bottom:.5rem;}
+.hero p{font-size:1rem;color:var(--mod-dk);max-width:500px;margin:0 auto;}
+
+.section{max-width:740px;margin:2rem auto;padding:0 1.2rem;}
+.card{background:var(--white);border-radius:14px;border:1.5px solid var(--cream-dk);padding:1.6rem;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(120,166,186,.1);}
+.card h2{font-family:var(--fh);font-style:italic;font-size:1.3rem;color:var(--mod-tx);margin-bottom:.3rem;}
+.card h3{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mod-dk);margin-bottom:.9rem;}
+.section-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mod-dk);margin:2rem 0 .4rem;}
+
+/* TABLAS */
+.gram-table{width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.88rem;}
+.gram-table th{background:var(--mod-lt);color:var(--mod-tx);font-weight:600;padding:.5rem .8rem;border:1px solid var(--mod);text-align:left;}
+.gram-table td{padding:.5rem .8rem;border:1px solid var(--cream-dk);}
+.gram-table tr:nth-child(even) td{background:var(--cream);}
+.gram-table .it{font-style:italic;color:var(--mod-tx);}
+.gram-table .hl{background:#fff9ee !important;font-weight:600;}
+
+/* EJERCICIOS */
+.ej-wrap{display:flex;flex-direction:column;gap:1rem;margin-top:.8rem;}
+.ej-item{background:var(--cream);border:1.5px solid var(--cream-dk);border-radius:10px;padding:1rem 1.1rem;}
+.ej-item p{font-size:.93rem;margin-bottom:.65rem;line-height:1.6;}
+.ej-item em{color:var(--mod-tx);}
+.ej-input{width:100%;border:1.5px solid var(--mod-dk);border-radius:8px;padding:.5rem .8rem;font-family:var(--fb);font-size:.93rem;background:var(--white);color:var(--black);outline:none;transition:border-color .18s;}
+.ej-input:focus{border-color:var(--mod-tx);}
+.ej-input.correct{border-color:var(--ok-bd);background:var(--ok-bg);}
+.ej-input.wrong{border-color:var(--err-bd);background:var(--err-bg);}
+.check-btn{margin-top:.6rem;background:var(--mod-dk);color:var(--white);border:none;border-radius:20px;padding:.38rem 1.1rem;font-family:var(--fb);font-size:.85rem;font-weight:600;cursor:pointer;transition:background .18s;}
+.check-btn:hover{background:var(--mod-tx);}
+.ej-feedback{font-size:.83rem;margin-top:.5rem;min-height:1rem;font-weight:500;}
+
+/* SELECT */
+.ej-select{border:1.5px solid var(--mod-dk);border-radius:8px;padding:.45rem .75rem;font-family:var(--fb);font-size:.92rem;background:var(--white);color:var(--black);cursor:pointer;outline:none;}
+.ej-select.correct{border-color:var(--ok-bd);background:var(--ok-bg);}
+.ej-select.wrong{border-color:var(--err-bd);background:var(--err-bg);}
+
+/* ORDENAR */
+.sort-area{display:flex;flex-wrap:wrap;gap:.5rem;margin:.6rem 0;min-height:44px;border:2px dashed var(--mod);border-radius:10px;padding:.5rem;}
+.sort-token{background:var(--mod-lt);border:1.5px solid var(--mod);border-radius:20px;padding:.35rem .8rem;font-size:.88rem;cursor:pointer;user-select:none;transition:all .18s;}
+.sort-token:hover{background:var(--mod);color:var(--white);}
+.sort-token.selected{background:var(--mod-dk);color:var(--white);border-color:var(--mod-dk);}
+.sort-answer{min-height:44px;border:2px solid var(--cream-dk);border-radius:10px;padding:.5rem;display:flex;flex-wrap:wrap;gap:.5rem;background:var(--white);margin:.4rem 0;}
+.sort-answer .sort-token{background:var(--mod);color:var(--white);}
+
+/* ACCORDO */
+.accord-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin:.45rem 0;font-size:.92rem;}
+
+/* HIGHLIGHT BOX */
+.info-box{background:var(--mod-lt);border-left:4px solid var(--mod);border-radius:0 10px 10px 0;padding:.9rem 1rem;margin:.8rem 0;font-size:.9rem;}
+.info-box strong{color:var(--mod-tx);}
+.warn-box{background:#fff9ee;border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:.9rem 1rem;margin:.8rem 0;font-size:.9rem;}
+
+/* PROGRESS */
+.progress-bar-wrap{background:var(--cream-dk);border-radius:20px;height:8px;margin:1.5rem 0 .5rem;}
+.progress-bar{background:var(--mod);border-radius:20px;height:8px;}
+.progress-label{font-size:.8rem;color:var(--mod-dk);text-align:right;margin-bottom:1rem;}
+.cta-wrap{text-align:center;padding:2rem 0 3rem;}
+.cta-btn{display:inline-block;background:var(--mod-dk);color:var(--white);font-size:1rem;font-weight:600;padding:.85rem 2.2rem;border-radius:30px;cursor:pointer;border:none;transition:background .2s,transform .15s;box-shadow:0 3px 10px rgba(90,142,160,.25);font-family:var(--fb);}
+.cta-btn:hover{background:var(--mod-tx);transform:translateY(-2px);}
+
+/* SCORE */
+.score-banner{display:none;background:var(--mod-lt);border:2px solid var(--mod);border-radius:12px;padding:1rem 1.3rem;text-align:center;margin-top:1rem;font-size:.95rem;}
+.score-banner strong{color:var(--mod-tx);font-size:1.1rem;}
+</style>
+</head>
+<body>
+
+<script>
+if (!window.__ippVC) {
+  window.__ippVC = true; window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) window.__ippV = v; };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
+</script>
+
+<div class="hero">
+  <div class="hero-tag">Módulo 10 · Etapa 3 · Gramática</div>
+  <h1>Il Passato Prossimo</h1>
+  <p>Formazione, participi regolari e irregolari, espressioni di tempo e ordine cronologico.</p>
+</div>
+
+<div class="section">
+
+  <!-- ══════════════════════════════════════
+       BLOQUE 1: FORMAZIONE
+  ══════════════════════════════════════ -->
+  <div class="section-label">Bloque 1 — Formazione del Passato Prossimo</div>
+  <div class="card">
+    <h2>Come si forma?</h2>
+    <h3>Auxiliar + participio passato</h3>
+
+    <div class="info-box">
+      <strong>Fórmula:</strong> sujeto + <strong>ausiliare</strong> (avere / essere) + <strong>participio passato</strong><br>
+      Ejemplo: <em>Io ho mangiato una pizza.</em> / <em>Noi siamo andati al concerto.</em>
+    </div>
+
+    <p style="font-size:.9rem;margin-bottom:.7rem;"><strong>Participi regolari:</strong></p>
+    <table class="gram-table">
+      <thead>
+        <tr><th>Infinito termina en</th><th>Participio termina en</th><th>Ejemplo</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="it">-are</td><td class="it hl">-ato</td><td class="it">mangiare → mangiato</td></tr>
+        <tr><td class="it">-ere</td><td class="it hl">-uto</td><td class="it">credere → creduto</td></tr>
+        <tr><td class="it">-ire</td><td class="it hl">-ito</td><td class="it">dormire → dormito</td></tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:.9rem;margin:.9rem 0 .6rem;"><strong>Conjugación completa — AVERE + mangiare:</strong></p>
+    <table class="gram-table">
+      <thead><tr><th>Persona</th><th>Forma</th><th>Traducción</th></tr></thead>
+      <tbody>
+        <tr><td>io</td><td class="it">ho mangiato</td><td>comí / he comido</td></tr>
+        <tr><td>tu</td><td class="it">hai mangiato</td><td>comiste / has comido</td></tr>
+        <tr><td>lui/lei</td><td class="it">ha mangiato</td><td>comió / ha comido</td></tr>
+        <tr><td>noi</td><td class="it">abbiamo mangiato</td><td>comimos</td></tr>
+        <tr><td>voi</td><td class="it">avete mangiato</td><td>comieron (vosotros)</td></tr>
+        <tr><td>loro</td><td class="it">hanno mangiato</td><td>comieron</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ej-wrap" id="bloque1">
+      <div class="ej-item" id="b1e1">
+        <p>1. Ieri sera io ___ (ascoltare) musica italiana per due ore.</p>
+        <input class="ej-input" id="b1e1i" placeholder="scrivi la forma corretta..." oninput="resetInput('b1e1i')">
+        <button class="check-btn" onclick="checkInput('b1e1i','ho ascoltato','b1e1f')">Verificar</button>
+        <div class="ej-feedback" id="b1e1f"></div>
+      </div>
+      <div class="ej-item" id="b1e2">
+        <p>2. Voi ___ (comprare) i biglietti online la settimana scorsa.</p>
+        <input class="ej-input" id="b1e2i" placeholder="scrivi la forma corretta..." oninput="resetInput('b1e2i')">
+        <button class="check-btn" onclick="checkInput('b1e2i','avete comprato','b1e2f')">Verificar</button>
+        <div class="ej-feedback" id="b1e2f"></div>
+      </div>
+      <div class="ej-item" id="b1e3">
+        <p>3. Chiara e Marco ___ (finire) di lavorare tardi ieri.</p>
+        <input class="ej-input" id="b1e3i" placeholder="scrivi la forma corretta..." oninput="resetInput('b1e3i')">
+        <button class="check-btn" onclick="checkInput('b1e3i','hanno finito','b1e3f')">Verificar</button>
+        <div class="ej-feedback" id="b1e3f"></div>
+      </div>
+      <div class="ej-item" id="b1e4">
+        <p>4. Tu ___ (parlare) con il cantante dopo il concerto? — Sì!</p>
+        <input class="ej-input" id="b1e4i" placeholder="scrivi la forma corretta..." oninput="resetInput('b1e4i')">
+        <button class="check-btn" onclick="checkInput('b1e4i','hai parlato','b1e4f')">Verificar</button>
+        <div class="ej-feedback" id="b1e4f"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BLOQUE 2: AVERE vs ESSERE
+  ══════════════════════════════════════ -->
+  <div class="section-label">Bloque 2 — Ausiliare: AVERE o ESSERE?</div>
+  <div class="card">
+    <h2>AVERE o ESSERE?</h2>
+    <h3>La clave para no equivocarse</h3>
+
+    <table class="gram-table">
+      <thead><tr><th>Con AVERE</th><th>Con ESSERE</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Verbos transitivos (tienen objeto directo):<br><em class="it">mangiare, vedere, comprare, ascoltare, guardare, leggere...</em></td>
+          <td>Verbos de movimiento y estado:<br><em class="it">andare, venire, partire, tornare, arrivare, uscire, entrare, stare, essere, restare, rimanere</em><br>+ todos los reflexivos</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="warn-box">
+      <strong>⚠️ Accordo del participio con ESSERE:</strong> cuando usás essere, el participio concuerda con el sujeto en género y número.<br>
+      <em>Mario è andato</em> → <em>Maria è andata</em> → <em>Loro sono andati/e</em>
+    </div>
+
+    <p style="font-size:.9rem;margin:.9rem 0 .6rem;"><strong>Conjugación completa — ESSERE + andare:</strong></p>
+    <table class="gram-table">
+      <thead><tr><th>Persona</th><th>Maschile</th><th>Femminile</th></tr></thead>
+      <tbody>
+        <tr><td>io</td><td class="it">sono andato</td><td class="it">sono andata</td></tr>
+        <tr><td>tu</td><td class="it">sei andato</td><td class="it">sei andata</td></tr>
+        <tr><td>lui/lei</td><td class="it">è andato</td><td class="it">è andata</td></tr>
+        <tr><td>noi</td><td class="it">siamo andati</td><td class="it">siamo andate</td></tr>
+        <tr><td>voi</td><td class="it">siete andati</td><td class="it">siete andate</td></tr>
+        <tr><td>loro</td><td class="it">sono andati</td><td class="it">sono andate</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ej-wrap">
+      <div class="ej-item">
+        <p>1. Elegí el auxiliar correcto para cada oración:</p>
+        <div style="display:flex;flex-direction:column;gap:.6rem;margin-top:.3rem;">
+          <div class="accord-row">
+            <span>a) Chiara ___</span>
+            <select class="ej-select" id="av1" onchange="resetSelect('av1')">
+              <option value="">— scegli —</option>
+              <option value="è">è</option>
+              <option value="ha">ha</option>
+            </select>
+            <span>tornata a casa tardissimo.</span>
+          </div>
+          <div class="accord-row">
+            <span>b) Noi ___</span>
+            <select class="ej-select" id="av2" onchange="resetSelect('av2')">
+              <option value="">— scegli —</option>
+              <option value="abbiamo">abbiamo</option>
+              <option value="siamo">siamo</option>
+            </select>
+            <span>ascoltato tutta la notte.</span>
+          </div>
+          <div class="accord-row">
+            <span>c) I ragazzi ___</span>
+            <select class="ej-select" id="av3" onchange="resetSelect('av3')">
+              <option value="">— scegli —</option>
+              <option value="sono">sono</option>
+              <option value="hanno">hanno</option>
+            </select>
+            <span>partiti subito dopo il concerto.</span>
+          </div>
+          <div class="accord-row">
+            <span>d) Tu ___</span>
+            <select class="ej-select" id="av4" onchange="resetSelect('av4')">
+              <option value="">— scegli —</option>
+              <option value="hai">hai</option>
+              <option value="sei">sei</option>
+            </select>
+            <span>visto il tuo cantante preferito?</span>
+          </div>
+        </div>
+        <button class="check-btn" onclick="checkAux()">Verificar todo</button>
+        <div class="ej-feedback" id="auxFb"></div>
+      </div>
+
+      <div class="ej-item" id="b2e2">
+        <p>2. Chiara (essere, f.) al concerto ieri. Escribí la forma correcta con el participio concordado:</p>
+        <input class="ej-input" id="b2e2i" placeholder="es. sono andato/a..." oninput="resetInput('b2e2i')">
+        <button class="check-btn" onclick="checkInput('b2e2i','è stata','b2e2f')">Verificar</button>
+        <div class="ej-feedback" id="b2e2f"></div>
+      </div>
+
+      <div class="ej-item" id="b2e3">
+        <p>3. Davide e Luca (uscire, m.pl.) dal backstage dopo lo show. Escribí la forma correcta:</p>
+        <input class="ej-input" id="b2e3i" placeholder="scrivi..." oninput="resetInput('b2e3i')">
+        <button class="check-btn" onclick="checkInput('b2e3i','sono usciti','b2e3f')">Verificar</button>
+        <div class="ej-feedback" id="b2e3f"></div>
+      </div>
+
+      <div class="ej-item" id="b2e4">
+        <p>4. Io e Chiara (restare, f.pl.) a casa ieri sera. Escribí la forma correcta:</p>
+        <input class="ej-input" id="b2e4i" placeholder="scrivi..." oninput="resetInput('b2e4i')">
+        <button class="check-btn" onclick="checkInput('b2e4i','siamo rimaste','b2e4f')">Verificar</button>
+        <div class="ej-feedback" id="b2e4f"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BLOQUE 3: PARTICIPI IRREGOLARI
+  ══════════════════════════════════════ -->
+  <div class="section-label">Bloque 3 — Participi Passati Irregolari</div>
+  <div class="card">
+    <h2>I Participi Irregolari</h2>
+    <h3>Los más importantes — ¡hay que memorizarlos!</h3>
+
+    <table class="gram-table">
+      <thead><tr><th>Infinito</th><th>Participio</th><th>Aux.</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr><td class="it">fare</td><td class="it hl">fatto</td><td>avere</td><td class="it">Ho fatto una foto.</td></tr>
+        <tr><td class="it">dire</td><td class="it hl">detto</td><td>avere</td><td class="it">Hai detto la verità.</td></tr>
+        <tr><td class="it">vedere</td><td class="it hl">visto</td><td>avere</td><td class="it">Ho visto il cantante.</td></tr>
+        <tr><td class="it">aprire</td><td class="it hl">aperto</td><td>avere</td><td class="it">Ha aperto il biglietto.</td></tr>
+        <tr><td class="it">leggere</td><td class="it hl">letto</td><td>avere</td><td class="it">Ho letto le recensioni.</td></tr>
+        <tr><td class="it">scrivere</td><td class="it hl">scritto</td><td>avere</td><td class="it">Ha scritto un post.</td></tr>
+        <tr><td class="it">bere</td><td class="it hl">bevuto</td><td>avere</td><td class="it">Abbiamo bevuto acqua.</td></tr>
+        <tr><td class="it">prendere</td><td class="it hl">preso</td><td>avere</td><td class="it">Ho preso il taxi.</td></tr>
+        <tr><td class="it">venire</td><td class="it hl">venuto</td><td>essere</td><td class="it">È venuto al concerto.</td></tr>
+        <tr><td class="it">chiudere</td><td class="it hl">chiuso</td><td>avere</td><td class="it">Hanno chiuso il locale.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ej-wrap">
+      <div class="ej-item" id="b3e1">
+        <p>1. Ieri ho ___ (vedere) un documentario sui cantautori italiani.</p>
+        <input class="ej-input" id="b3e1i" placeholder="participio irregolare..." oninput="resetInput('b3e1i')">
+        <button class="check-btn" onclick="checkInput('b3e1i','visto','b3e1f')">Verificar</button>
+        <div class="ej-feedback" id="b3e1f"></div>
+      </div>
+      <div class="ej-item" id="b3e2">
+        <p>2. Che cosa hai ___ (fare) dopo il concerto?</p>
+        <input class="ej-input" id="b3e2i" placeholder="participio irregolare..." oninput="resetInput('b3e2i')">
+        <button class="check-btn" onclick="checkInput('b3e2i','fatto','b3e2f')">Verificar</button>
+        <div class="ej-feedback" id="b3e2f"></div>
+      </div>
+      <div class="ej-item" id="b3e3">
+        <p>3. Abbiamo ___ (prendere) la metropolitana per tornare a casa.</p>
+        <input class="ej-input" id="b3e3i" placeholder="participio irregolare..." oninput="resetInput('b3e3i')">
+        <button class="check-btn" onclick="checkInput('b3e3i','preso','b3e3f')">Verificar</button>
+        <div class="ej-feedback" id="b3e3f"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BLOQUE 4: ESPRESSIONI DI TEMPO
+  ══════════════════════════════════════ -->
+  <div class="section-label">Bloque 4 — Espressioni di Tempo al Passato</div>
+  <div class="card">
+    <h2>Quando è successo?</h2>
+    <h3>Expresiones para situar las acciones en el tiempo</h3>
+
+    <table class="gram-table">
+      <thead><tr><th>Italiano</th><th>Español</th><th>Posición</th></tr></thead>
+      <tbody>
+        <tr><td class="it">ieri</td><td>ayer</td><td>inicio o final</td></tr>
+        <tr><td class="it">ieri sera</td><td>ayer a la noche</td><td>inicio o final</td></tr>
+        <tr><td class="it">l'altro ieri</td><td>antes de ayer</td><td>inicio o final</td></tr>
+        <tr><td class="it">due giorni fa</td><td>hace dos días</td><td>inicio o final</td></tr>
+        <tr><td class="it">la settimana scorsa</td><td>la semana pasada</td><td>inicio o final</td></tr>
+        <tr><td class="it">un mese fa</td><td>hace un mes</td><td>inicio o final</td></tr>
+        <tr><td class="it">l'anno scorso</td><td>el año pasado</td><td>inicio o final</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box">
+      <strong>Orden cronológico:</strong> para narrar eventos en secuencia usamos conectores:<br>
+      <em>prima... poi... dopo... infine... alla fine...</em><br>
+      (primero... después/luego... después... finalmente... al final...)
+    </div>
+
+    <div class="ej-wrap">
+      <div class="ej-item" id="b4e1">
+        <p>1. Elegí la expresión de tiempo que mejor completa la oración:<br>
+        "Ho comprato i biglietti ___ — tre settimane prima del concerto."</p>
+        <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.4rem;" id="b4e1opts">
+          <button class="check-btn" style="background:var(--cream);color:var(--black);border:1.5px solid var(--mod-dk);" onclick="checkOpt('b4e1','b','b4e1f',this,'b4e1opts')">ieri</button>
+          <button class="check-btn" style="background:var(--cream);color:var(--black);border:1.5px solid var(--mod-dk);" onclick="checkOpt('b4e1','b','b4e1f',this,'b4e1opts')">un mese fa</button>
+          <button class="check-btn" style="background:var(--cream);color:var(--black);border:1.5px solid var(--mod-dk);" onclick="checkOpt('b4e1','c','b4e1f',this,'b4e1opts')">domani</button>
+        </div>
+        <div class="ej-feedback" id="b4e1f"></div>
+      </div>
+      <div class="ej-item" id="b4e2">
+        <p>2. Completá con el conector correcto:<br>
+        "___ siamo arrivati all'arena, ___ abbiamo trovato i nostri posti, ___ è iniziato il concerto."</p>
+        <div style="display:flex;flex-direction:column;gap:.5rem;margin-top:.4rem;">
+          <div class="accord-row">
+            <span>Conector 1:</span>
+            <select class="ej-select" id="cn1" onchange="resetSelect('cn1')">
+              <option value="">—</option>
+              <option value="Prima">Prima</option>
+              <option value="Poi">Poi</option>
+              <option value="Infine">Infine</option>
+            </select>
+          </div>
+          <div class="accord-row">
+            <span>Conector 2:</span>
+            <select class="ej-select" id="cn2" onchange="resetSelect('cn2')">
+              <option value="">—</option>
+              <option value="prima">prima</option>
+              <option value="poi">poi</option>
+              <option value="infine">infine</option>
+            </select>
+          </div>
+          <div class="accord-row">
+            <span>Conector 3:</span>
+            <select class="ej-select" id="cn3" onchange="resetSelect('cn3')">
+              <option value="">—</option>
+              <option value="prima">prima</option>
+              <option value="poi">poi</option>
+              <option value="infine">infine</option>
+            </select>
+          </div>
+        </div>
+        <button class="check-btn" onclick="checkConnectors()">Verificar</button>
+        <div class="ej-feedback" id="cnFb"></div>
+      </div>
+      <div class="ej-item" id="b4e3">
+        <p>3. Traducí al italiano: "Hace un mes fui a un concierto."</p>
+        <input class="ej-input" id="b4e3i" placeholder="scrivi in italiano..." oninput="resetInput('b4e3i')">
+        <button class="check-btn" onclick="checkInput('b4e3i','un mese fa sono andato a un concerto','b4e3f',true)">Verificar</button>
+        <div class="ej-feedback" id="b4e3f"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BLOQUE 5: ORDINE CRONOLOGICO
+  ══════════════════════════════════════ -->
+  <div class="section-label">Bloque 5 — Ordine Cronologico</div>
+  <div class="card">
+    <h2>Ricostruire una storia</h2>
+    <h3>Ordená las frases para contar lo que pasó</h3>
+
+    <p style="font-size:.9rem;margin-bottom:.9rem;">Tocá las frases en el orden correcto para reconstruir la noche del concierto de Chiara. Las frases aparecerán en tu respuesta abajo.</p>
+
+    <div class="ej-item" id="sort1">
+      <p style="margin-bottom:.7rem;"><strong>Ejercicio 1</strong> — Noche del concierto. Ordená del 1 al 5:</p>
+      <div class="sort-area" id="sort1pool">
+        <span class="sort-token" onclick="moveToken(this,'sort1pool','sort1ans')">Ha cantato le sue canzoni più famose.</span>
+        <span class="sort-token" onclick="moveToken(this,'sort1pool','sort1ans')">Siamo tornati a casa a mezzanotte.</span>
+        <span class="sort-token" onclick="moveToken(this,'sort1pool','sort1ans')">Abbiamo comprato i biglietti online.</span>
+        <span class="sort-token" onclick="moveToken(this,'sort1pool','sort1ans')">Il cantante è salito sul palco.</span>
+        <span class="sort-token" onclick="moveToken(this,'sort1pool','sort1ans')">Siamo arrivati all'arena e abbiamo trovato i posti.</span>
+      </div>
+      <p style="font-size:.8rem;color:#666;margin:.4rem 0;">Tu respuesta (tocá una frase para quitarla):</p>
+      <div class="sort-answer" id="sort1ans"></div>
+      <button class="check-btn" onclick="checkSort1()">Verificar orden</button>
+      <div class="ej-feedback" id="sort1fb"></div>
+    </div>
+
+    <div class="ej-item" style="margin-top:1rem;" id="sort2">
+      <p style="margin-bottom:.7rem;"><strong>Ejercicio 2</strong> — Usá los conectores correctos para unir estas acciones en una sola narración. Escribí la secuencia completa:</p>
+      <div style="background:var(--mod-lt);border-radius:8px;padding:.8rem;font-size:.88rem;margin-bottom:.7rem;">
+        Acciones: <em>comprare il biglietto → arrivare in arena → aspettare → iniziare il concerto → tornare a casa</em>
+      </div>
+      <textarea class="ej-input" id="sort2t" rows="4" placeholder="Prima ho comprato il biglietto, poi..." oninput="resetInput('sort2t')" style="resize:vertical;"></textarea>
+      <button class="check-btn" onclick="showSort2Model()">Ver modelo de respuesta</button>
+      <div class="ej-feedback" id="sort2fb"></div>
+    </div>
+  </div>
+
+  <!-- SCORE TOTAL -->
+  <div class="score-banner" id="scoreBanner">
+    <strong id="scoreText">¡Muy bien!</strong><br>
+    <span id="scoreDetail"></span>
+  </div>
+
+  <!-- PROGRESS -->
+  <div>
+    <div class="progress-bar-wrap"><div class="progress-bar" style="width:75%"></div></div>
+    <div class="progress-label">Etapa 3 de 4 — Gramática</div>
+  </div>
+
+  <div class="cta-wrap">
+    <button class="cta-btn" onclick="alert('¡Excelente! Pasá a la Etapa 4 en tu plataforma.')">Continuar → Etapa 4</button>
+  </div>
+
+</div><!-- /section -->
+
+<script>
+if (!window.__ipp_m10_e3__) { window.__ipp_m10_e3__ = true;
+
+function ippVoice(gender) {
+  var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+  var itV = voices.filter(function(v){ return v.lang && v.lang.startsWith('it'); });
+  if (!itV.length) return null;
+  var voice = null;
+  if (gender==='m') { voice = itV.find(function(v){ return /cosimo|luca|giorgio|male|masc/i.test(v.name); }); if (!voice) voice = itV.find(function(v){ return !/elsa|alice|giulia|female|femm/i.test(v.name); }); }
+  else { voice = itV.find(function(v){ return /elsa|alice|giulia|female|femm/i.test(v.name); }); if (!voice) voice = itV.find(function(v){ return !/cosimo|luca|giorgio|male|masc/i.test(v.name); }); }
+  return voice || itV[0];
+}
+
+function ippAudio(text, rate, gender) {
+  rate = (typeof rate==='number'&&isFinite(rate)&&rate>0)?rate:0.82;
+  gender = (gender==='m'||gender==='f')?gender:'f';
+  if (!window.speechSynthesis) return;
+  try{speechSynthesis.cancel();}catch(e){}
+  var utt=new SpeechSynthesisUtterance(String(text));
+  utt.lang='it-IT'; utt.rate=rate;
+  var voice=ippVoice(gender); if(voice)utt.voice=voice;
+  (function(u){setTimeout(function(){try{speechSynthesis.speak(u);}catch(e){}},60);})(utt);
+}
+
+var totalCorrect = 0;
+var totalChecked = 0;
+
+function normalize(str) {
+  return str.trim().toLowerCase()
+    .replace(/à/g,'a').replace(/è/g,'e').replace(/é/g,'e')
+    .replace(/ì/g,'i').replace(/ò/g,'o').replace(/ù/g,'u');
+}
+
+function checkInput(inputId, correct, fbId, loose) {
+  var el = document.getElementById(inputId);
+  var fb = document.getElementById(fbId);
+  if (!el || !fb) return;
+  if (el.dataset.checked) return;
+  el.dataset.checked = '1';
+  var val = el.value;
+  var normVal = normalize(val);
+  var normCorrect = normalize(correct);
+  var ok = loose ? normVal.indexOf(normCorrect) >= 0 || normCorrect.indexOf(normVal) >= 0 : normVal === normCorrect;
+  if (ok) {
+    el.classList.add('correct');
+    fb.innerHTML = '<span style="color:var(--ok)">✓ ¡Perfecto! <em>' + correct + '</em></span>';
+    totalCorrect++;
+  } else {
+    el.classList.add('wrong');
+    fb.innerHTML = '<span style="color:var(--err)">✗ La forma correcta es: <em>' + correct + '</em></span>';
+  }
+  el.readOnly = true;
+  totalChecked++;
+}
+
+function resetInput(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.classList.remove('correct','wrong');
+  el.dataset.checked = '';
+  el.readOnly = false;
+  var fbId = id.replace('i','f').replace('t','f');
+  var fb = document.getElementById(fbId);
+  if (fb) fb.innerHTML = '';
+}
+
+function resetSelect(id) {
+  var el = document.getElementById(id);
+  if (el) { el.classList.remove('correct','wrong'); }
+}
+
+function checkAux() {
+  var answers = {av1:'è', av2:'abbiamo', av3:'sono', av4:'hai'};
+  var correct = 0;
+  for (var k in answers) {
+    var el = document.getElementById(k);
+    if (!el) continue;
+    if (el.value === answers[k]) {
+      el.classList.add('correct'); el.classList.remove('wrong'); correct++;
+    } else {
+      el.classList.add('wrong'); el.classList.remove('correct');
+    }
+    el.disabled = true;
+  }
+  var fb = document.getElementById('auxFb');
+  if (correct === 4) {
+    fb.innerHTML = '<span style="color:var(--ok)">✓ ¡Perfecto! Las 4 correctas.</span>';
+    totalCorrect++;
+  } else {
+    fb.innerHTML = '<span style="color:var(--err)">✗ ' + correct + '/4 correctas — revisá las marcadas en rojo.</span>';
+  }
+  totalChecked++;
+}
+
+function checkOpt(itemId, correctKey, fbId, btn, poolId) {
+  var pool = document.getElementById(poolId);
+  if (!pool || pool.dataset.done) return;
+  pool.dataset.done = '1';
+  var btns = pool.querySelectorAll('button');
+  btns.forEach(function(b){ b.disabled = true; });
+  var fb = document.getElementById(fbId);
+  // correct option is index 1 (un mese fa) for this exercise
+  var btnText = btn.textContent.trim();
+  var correctText = 'un mese fa';
+  if (btnText === correctText) {
+    btn.style.background = 'var(--ok-bg)'; btn.style.borderColor = 'var(--ok-bd)';
+    fb.innerHTML = '<span style="color:var(--ok)">✓ ¡Correcto! <em>un mese fa</em> — hace un mes.</span>';
+    totalCorrect++;
+  } else {
+    btn.style.background = 'var(--err-bg)'; btn.style.borderColor = 'var(--err-bd)';
+    btns.forEach(function(b){ if(b.textContent.trim()===correctText){ b.style.background='var(--ok-bg)'; b.style.borderColor='var(--ok-bd)'; } });
+    fb.innerHTML = '<span style="color:var(--err)">✗ La respuesta es <em>un mese fa</em>.</span>';
+  }
+  totalChecked++;
+}
+
+function checkConnectors() {
+  var cn1 = document.getElementById('cn1');
+  var cn2 = document.getElementById('cn2');
+  var cn3 = document.getElementById('cn3');
+  var fb = document.getElementById('cnFb');
+  var correct = 0;
+  if (cn1 && cn1.value === 'Prima') { cn1.classList.add('correct'); correct++; } else if (cn1) cn1.classList.add('wrong');
+  if (cn2 && cn2.value === 'poi') { cn2.classList.add('correct'); correct++; } else if (cn2) cn2.classList.add('wrong');
+  if (cn3 && cn3.value === 'infine') { cn3.classList.add('correct'); correct++; } else if (cn3) cn3.classList.add('wrong');
+  if (cn1) cn1.disabled = true;
+  if (cn2) cn2.disabled = true;
+  if (cn3) cn3.disabled = true;
+  if (correct === 3) {
+    fb.innerHTML = '<span style="color:var(--ok)">✓ ¡Exacto! <em>Prima... poi... infine...</em></span>';
+    totalCorrect++;
+  } else {
+    fb.innerHTML = '<span style="color:var(--err)">✗ ' + correct + '/3 — los correctos son: <em>Prima / poi / infine</em></span>';
+  }
+  totalChecked++;
+}
+
+function moveToken(el, fromId, toId) {
+  var from = document.getElementById(fromId);
+  var to = document.getElementById(toId);
+  if (!from || !to) return;
+  el.parentNode.removeChild(el);
+  to.appendChild(el);
+  var newFrom = (fromId === 'sort1pool') ? 'sort1ans' : 'sort1pool';
+  var newTo = fromId;
+  el.onclick = function(){ moveToken(el, newFrom, newTo); };
+}
+
+var sort1correct = [
+  'Abbiamo comprato i biglietti online.',
+  'Siamo arrivati all\'arena e abbiamo trovato i posti.',
+  'Il cantante è salito sul palco.',
+  'Ha cantato le sue canzoni più famose.',
+  'Siamo tornati a casa a mezzanotte.'
+];
+
+function checkSort1() {
+  var ans = document.getElementById('sort1ans');
+  if (!ans) return;
+  var tokens = ans.querySelectorAll('.sort-token');
+  var fb = document.getElementById('sort1fb');
+  if (tokens.length < 5) {
+    fb.innerHTML = '<span style="color:var(--err)">Faltan frases — arrastrá todas al área de respuesta.</span>';
+    return;
+  }
+  var allCorrect = true;
+  tokens.forEach(function(t, i) {
+    if (normalize(t.textContent) !== normalize(sort1correct[i])) allCorrect = false;
+  });
+  if (allCorrect) {
+    fb.innerHTML = '<span style="color:var(--ok)">✓ ¡Orden perfecto! Contás la historia cronológicamente.</span>';
+    totalCorrect++;
+  } else {
+    fb.innerHTML = '<span style="color:var(--err)">✗ El orden correcto sería: (1) Abbiamo comprato... (2) Siamo arrivati... (3) Il cantante è salito... (4) Ha cantato... (5) Siamo tornati...</span>';
+  }
+  totalChecked++;
+}
+
+function showSort2Model() {
+  var fb = document.getElementById('sort2fb');
+  fb.innerHTML = '<span style="color:var(--mod-tx)"><strong>Modelo:</strong> <em>Prima ho comprato il biglietto online. Poi siamo arrivati all\'arena e abbiamo aspettato un po\'. Dopo è iniziato il concerto ed è stato bellissimo! Infine siamo tornati a casa molto tardi.</em></span>';
+  totalChecked++;
+  totalCorrect++;
+}
+
+window.ippAudio = ippAudio;
+window.ippVoice = ippVoice;
+window.checkInput = checkInput;
+window.resetInput = resetInput;
+window.resetSelect = resetSelect;
+window.checkAux = checkAux;
+window.checkOpt = checkOpt;
+window.checkConnectors = checkConnectors;
+window.moveToken = moveToken;
+window.checkSort1 = checkSort1;
+window.showSort2Model = showSort2Model;
+
+} // end execution guard
+</script>
+
+</body>
+</html>
