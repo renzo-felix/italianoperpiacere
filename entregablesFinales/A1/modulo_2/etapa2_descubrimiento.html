@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Módulo 1 — Di dove sei? | Etapa 2: Descubrimiento</title>
+<title>Módulo 2 — Di dove sei? | Etapa 2: Descubrimiento</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -72,15 +72,16 @@ body { font-family: var(--fb); background: var(--cream); color: var(--black); mi
 .dial-subtitle { font-size: 0.8rem; color: #888; margin-bottom: 18px; }
 .btn-play-all { display: inline-flex; align-items: center; gap: 6px; background: var(--mc); color: var(--white); border: none; border-radius: 20px; padding: 8px 18px; font-size: 0.82rem; font-weight: 600; cursor: pointer; margin-bottom: 22px; }
 .btn-play-all:hover { background: var(--mc-dk); }
-.dial-line { margin-bottom: 14px; }
+.dial-line { margin-bottom: 18px; display: flex; flex-direction: column; align-items: flex-start; }
+.dial-line[data-gender="f"] { align-items: flex-end; }
 .dial-speaker-row { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
 .dial-speaker { font-size: 0.75rem; font-weight: 700; color: var(--mc); text-transform: uppercase; letter-spacing: .05em; }
 .dial-speaker.m-spk { color: var(--mc-dk); }
-.f-bubble { background: var(--mc-bg); border-left: 3px solid var(--mc); padding: 12px 16px; border-radius: 0 10px 10px 10px; }
-.m-bubble { background: #fdf0ee; border-left: 3px solid var(--mc-dk); padding: 12px 16px; border-radius: 0 10px 10px 10px; }
+.f-bubble { background: var(--mc-bg); border-right: 3px solid var(--mc); border-left: none; padding: 12px 16px; border-radius: 10px 0 10px 10px; max-width: 82%; }
+.m-bubble { background: #f5f5f5; border-left: 3px solid #aaa; padding: 12px 16px; border-radius: 0 10px 10px 10px; max-width: 82%; }
 .dial-hidden { opacity: 0; max-height: 0; overflow: hidden; transition: all 0.4s; font-size: 0.95rem; font-style: italic; color: var(--mc-text); font-weight: 600; }
-.dial-hidden.revealed { opacity: 1; max-height: 100px; }
-.btn-line-play { display: inline-flex; align-items: center; gap: 5px; background: var(--white); border: 1.5px solid var(--mc); color: var(--mc-text); border-radius: 16px; padding: 4px 12px; font-size: 0.78rem; font-weight: 600; cursor: pointer; margin-top: 8px; }
+.dial-hidden.revealed { opacity: 1; max-height: 120px; }
+.btn-line-play { display: inline-flex; align-items: center; gap: 5px; background: var(--white); border: 1.5px solid var(--mc); color: var(--mc-text); border-radius: 16px; padding: 4px 12px; font-size: 0.78rem; font-weight: 600; cursor: pointer; margin-top: 6px; }
 .btn-line-play:hover { background: var(--mc-bg); }
 
 /* PATTERN GRID */
@@ -185,7 +186,7 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
 
 
 <div class="hero">
-  <div class="hero-badge">Módulo 1 · Etapa 2</div>
+  <div class="hero-badge">Módulo 2 · Etapa 2</div>
   <h1>Di dove sei?</h1>
   <p class="sub">Explorás las ciudades, los números, los datos personales y los verbos clave del módulo.</p>
 </div>
@@ -265,184 +266,95 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
 </div>
 
 <div class="callout">
-  <strong>¿Cómo funciona?</strong> Clic en "▶ Escuchar todo" para oír sin ver el texto. Luego clic en cada ▶ para revelar lo que dijo cada persona.
+  <strong>¿Cómo funciona?</strong> Hacé clic en ▶ para escuchar cada línea — el texto aparece cuando lo reproducís. Para oír todo el diálogo de corrido, presioná "Reproducir conversación".
 </div>
 
-      <div class="yt-top-controls">
-        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
-        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
-      </div>
+<div class="yt-top-controls">
+  <button class="yt-btn yt-btn-conv" onclick="playAllDialog()">&#9654; Reproducir conversación</button>
+  <button class="yt-btn yt-btn-stop" onclick="stopAllDialog()">&#9646;&#9646; Detener</button>
+</div>
+
 <div class="dial-container">
   <div class="dial-title">Giulia e Marco — parlano delle città italiane</div>
   <div class="dial-subtitle">Conversazione informale · Italia</div>
 
-  
-      <div class="yt-top-controls">
-        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
-        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
-      </div>
-
-      <div class="yt-top-controls">
-        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
-        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
-      </div>
-
-      <div class="yt-top-controls">
-        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
-        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
-      </div>
-<div class="dial-line" data-text="Quali sono secondo te le città più famose d'Italia?" data-gender="f" data-yt-idx="0">
+  <div class="dial-line" data-text="Quali sono secondo te le città più famose d'Italia?" data-gender="f">
     <div class="dial-speaker-row"><span class="dial-speaker">Giulia</span></div>
-    <div class="f-bubble">
-      <div class="dial-hidden blurred"></div>
-    </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(0)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
+    <div class="f-bubble"><div class="dial-hidden blurred"></div></div>
+    <button class="btn-line-play" onclick="playLine(this)">&#9654;</button>
+  </div>
 
-  <div class="dial-line" data-text="Roma, Venezia, Milano e Napoli, credo. Anche Firenze, ovviamente." data-gender="m" data-yt-idx="1">
+  <div class="dial-line" data-text="Roma, Venezia, Milano e Napoli, credo. Anche Firenze, ovviamente." data-gender="m">
     <div class="dial-speaker-row"><span class="dial-speaker m-spk">Marco</span></div>
-    <div class="m-bubble">
-      <div class="dial-hidden blurred"></div>
-    </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(1)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
+    <div class="m-bubble"><div class="dial-hidden blurred"></div></div>
+    <button class="btn-line-play" onclick="playLine(this)">&#9654;</button>
+  </div>
 
-  <div class="dial-line" data-text="E Venezia? Perché è così famosa?" data-gender="f" data-yt-idx="2">
+  <div class="dial-line" data-text="E Venezia? Perché è così famosa?" data-gender="f">
     <div class="dial-speaker-row"><span class="dial-speaker">Giulia</span></div>
-    <div class="f-bubble">
-      <div class="dial-hidden blurred"></div>
-    </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(2)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
+    <div class="f-bubble"><div class="dial-hidden blurred"></div></div>
+    <button class="btn-line-play" onclick="playLine(this)">&#9654;</button>
+  </div>
 
-  <div class="dial-line" data-text="Venezia è la città dell'acqua. Ci sono le gondole e non si trovano automobili. È unica al mondo!" data-gender="m" data-yt-idx="3">
+  <div class="dial-line" data-text="Venezia è la città dell'acqua. Ci sono le gondole e non si trovano automobili. È unica al mondo!" data-gender="m">
     <div class="dial-speaker-row"><span class="dial-speaker m-spk">Marco</span></div>
-    <div class="m-bubble">
-      <div class="dial-hidden blurred"></div>
-    </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(3)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
+    <div class="m-bubble"><div class="dial-hidden blurred"></div></div>
+    <button class="btn-line-play" onclick="playLine(this)">&#9654;</button>
+  </div>
 
-  <div class="dial-line" data-text="E Roma? Perché è famosa Roma?" data-gender="f" data-yt-idx="4">
+  <div class="dial-line" data-text="E Roma? Perché è famosa Roma?" data-gender="f">
     <div class="dial-speaker-row"><span class="dial-speaker">Giulia</span></div>
-    <div class="f-bubble">
-      <div class="dial-hidden blurred"></div>
-    </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(4)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
+    <div class="f-bubble"><div class="dial-hidden blurred"></div></div>
+    <button class="btn-line-play" onclick="playLine(this)">&#9654;</button>
+  </div>
 
-  <div class="dial-line" data-text="Roma è la capitale d'Italia. Il Colosseo, Piazza Navona, il Vaticano... è la storia del mondo!" data-gender="m" data-yt-idx="5">
+  <div class="dial-line" data-text="Roma è la capitale d'Italia. Il Colosseo, Piazza Navona, il Vaticano... è la storia del mondo!" data-gender="m">
     <div class="dial-speaker-row"><span class="dial-speaker m-spk">Marco</span></div>
-    <div class="m-bubble">
-      <div class="dial-hidden blurred"></div>
-    </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(5)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
+    <div class="m-bubble"><div class="dial-hidden blurred"></div></div>
+    <button class="btn-line-play" onclick="playLine(this)">&#9654;</button>
+  </div>
 
-  <div class="dial-line" data-text="E tu, di dove sei, Marco?" data-gender="f" data-yt-idx="6">
+  <div class="dial-line" data-text="E tu, di dove sei, Marco?" data-gender="f">
     <div class="dial-speaker-row"><span class="dial-speaker">Giulia</span></div>
-    <div class="f-bubble">
-      <div class="dial-hidden blurred"></div>
-    </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(6)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
+    <div class="f-bubble"><div class="dial-hidden blurred"></div></div>
+    <button class="btn-line-play" onclick="playLine(this)">&#9654;</button>
+  </div>
 
-  <div class="dial-line" data-text="Io sono di Torino. E tu, Giulia? Di dove sei?" data-gender="m" data-yt-idx="7">
+  <div class="dial-line" data-text="Io sono di Torino. E tu, Giulia? Di dove sei?" data-gender="m">
     <div class="dial-speaker-row"><span class="dial-speaker m-spk">Marco</span></div>
-    <div class="m-bubble">
-      <div class="dial-hidden blurred"></div>
-    </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(7)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
+    <div class="m-bubble"><div class="dial-hidden blurred"></div></div>
+    <button class="btn-line-play" onclick="playLine(this)">&#9654;</button>
+  </div>
 
-  <div class="dial-line" data-text="Io sono di Firenze! Michelangelo, gli Uffizi, il Ponte Vecchio... un museo a cielo aperto!" data-gender="f" data-yt-idx="8">
+  <div class="dial-line" data-text="Io sono di Firenze! Michelangelo, gli Uffizi, il Ponte Vecchio... un museo a cielo aperto!" data-gender="f">
     <div class="dial-speaker-row"><span class="dial-speaker">Giulia</span></div>
-    <div class="f-bubble">
-      <div class="dial-hidden blurred"></div>
-    </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(8)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
+    <div class="f-bubble"><div class="dial-hidden blurred"></div></div>
+    <button class="btn-line-play" onclick="playLine(this)">&#9654;</button>
+  </div>
 
-  <div class="dial-line" data-text="Bellissima città! Hai il numero di telefono di quella guida turistica?" data-gender="m" data-yt-idx="9">
+  <div class="dial-line" data-text="Bellissima città! Hai il numero di telefono di quella guida turistica?" data-gender="m">
     <div class="dial-speaker-row"><span class="dial-speaker m-spk">Marco</span></div>
-    <div class="m-bubble">
-      <div class="dial-hidden blurred"></div>
-    </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(9)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
+    <div class="m-bubble"><div class="dial-hidden blurred"></div></div>
+    <button class="btn-line-play" onclick="playLine(this)">&#9654;</button>
+  </div>
 
-  <div class="dial-line" data-text="Sì, aspetta. Il suo numero è zero cinque quattro tre, due sette otto, novanta." data-gender="f" data-yt-idx="10">
+  <div class="dial-line" data-text="Sì, aspetta. Il suo numero è zero cinque quattro tre, due sette otto, novanta." data-gender="f">
     <div class="dial-speaker-row"><span class="dial-speaker">Giulia</span></div>
-    <div class="f-bubble">
-      <div class="dial-hidden blurred"></div>
-    </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(10)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
+    <div class="f-bubble"><div class="dial-hidden blurred"></div></div>
+    <button class="btn-line-play" onclick="playLine(this)">&#9654;</button>
+  </div>
 
-  <div class="dial-line" data-text="Grazie mille, Giulia!" data-gender="m" data-yt-idx="11">
+  <div class="dial-line" data-text="Grazie mille, Giulia!" data-gender="m">
     <div class="dial-speaker-row"><span class="dial-speaker m-spk">Marco</span></div>
-    <div class="m-bubble">
-      <div class="dial-hidden blurred"></div>
-    </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(11)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
+    <div class="m-bubble"><div class="dial-hidden blurred"></div></div>
+    <button class="btn-line-play" onclick="playLine(this)">&#9654;</button>
+  </div>
 
-  <div class="dial-line" data-text="Prego! Buon viaggio a Roma!" data-gender="f" data-yt-idx="12">
+  <div class="dial-line" data-text="Prego! Buon viaggio a Roma!" data-gender="f">
     <div class="dial-speaker-row"><span class="dial-speaker">Giulia</span></div>
-    <div class="f-bubble">
-      <div class="dial-hidden blurred"></div>
-    </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(12)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
-
-  <div class="dial-line" data-text="Marco, ma tu hai mai visitato Napoli?" data-gender="f" data-yt-idx="13">
-    <div class="dial-speaker-row"><span class="dial-speaker">Giulia</span></div>
-    <div class="f-bubble">
-      <div class="dial-hidden blurred"></div>
-    </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(13)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
-
-  <div class="dial-line" data-text="Sì, una volta! Il Vesuvio, la pizza... È una città incredibile." data-gender="m" data-yt-idx="14">
-    <div class="dial-speaker-row"><span class="dial-speaker m-spk">Marco</span></div>
-    <div class="m-bubble">
-      <div class="dial-hidden blurred"></div>
-    </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(14)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
-
-  <div class="dial-line" data-text="Anch'io voglio andarci! E poi magari anche la Sicilia." data-gender="f" data-yt-idx="15">
-    <div class="dial-speaker-row"><span class="dial-speaker">Giulia</span></div>
-    <div class="f-bubble">
-      <div class="dial-hidden blurred"></div>
-    </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(15)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
-
-  <div class="dial-line" data-text="Sì! L'Italia è così grande — c'è sempre una città nuova da scoprire." data-gender="m" data-yt-idx="16">
-    <div class="dial-speaker-row"><span class="dial-speaker m-spk">Marco</span></div>
-    <div class="m-bubble">
-      <div class="dial-hidden blurred"></div>
-    </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(16)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
+    <div class="f-bubble"><div class="dial-hidden blurred"></div></div>
+    <button class="btn-line-play" onclick="playLine(this)">&#9654;</button>
+  </div>
 </div>
 
 <hr class="divider">
@@ -891,8 +803,8 @@ if (!window.__ippVC) {
 }
 
 // ── EXECUTION GUARD ──
-if (!window.__ipp_m1_e2__) {
-window.__ipp_m1_e2__ = true;
+if (!window.__ipp_m2_e2__) {
+window.__ipp_m2_e2__ = true;
 
 function ippAudio(text, rate, gender) {
   rate = (typeof rate === 'number' && isFinite(rate)) ? rate : 0.82;
@@ -961,27 +873,43 @@ function playLine(btn) {
   var hidden = line.querySelector('.dial-hidden');
   ippAudio(text, 0.82, gender);
   setTimeout(function() {
-    hidden.textContent = '\u00AB' + text + '\u00BB';
-    hidden.classList.add('revealed');
+    if (hidden) {
+      hidden.textContent = '\u00AB' + text + '\u00BB';
+      hidden.classList.remove('blurred');
+      hidden.classList.add('revealed');
+    }
   }, 300);
+}
+
+function stopAllDialog() {
+  try { speechSynthesis.cancel(); } catch(e) {}
+  dialIdx = 9999;
 }
 
 function playAllDialog() {
   dialLines = Array.from(document.querySelectorAll('.dial-line'));
   dialIdx = 0;
-  window.speechSynthesis.cancel();
-  playNext();
+  try { speechSynthesis.cancel(); } catch(e) {}
+  setTimeout(playNext, 60);
 }
 
 function playNext() {
   if (dialIdx >= dialLines.length) return;
   var line = dialLines[dialIdx];
-  var utt = new SpeechSynthesisUtterance(line.dataset.text);
+  var text = line.dataset.text;
+  var gender = line.dataset.gender || 'f';
+  var hidden = line.querySelector('.dial-hidden');
+  if (hidden) {
+    hidden.textContent = '\u00AB' + text + '\u00BB';
+    hidden.classList.remove('blurred');
+    hidden.classList.add('revealed');
+  }
+  var utt = new SpeechSynthesisUtterance(text);
   utt.lang = 'it-IT'; utt.rate = 0.82;
-  var voice = ippVoice(line.dataset.gender || 'f');
+  var voice = ippVoice(gender);
   if (voice) utt.voice = voice;
   utt.onend = function() { dialIdx++; setTimeout(playNext, 500); };
-  speechSynthesis.speak(utt);
+  try { speechSynthesis.speak(utt); } catch(e) {}
 }
 
 // ── CULTURE ──
@@ -1000,230 +928,10 @@ function toggleCulture(btn) {
   window.selectCity = selectCity;
   window.playLine = playLine;
   window.playAllDialog = playAllDialog;
+  window.stopAllDialog = stopAllDialog;
   window.playNext = playNext;
   window.toggleCulture = toggleCulture;
 } // end execution guard
-</script>
-
-<div id="ippyt-frame" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden"></div>
-
-<script>
-/* ── IPP YouTube Dialog Player — shared ipp-yt-v3 ── */
-(function(){
-  if(window.__ippYTinit) return;
-  window.__ippYTinit = true;
-
-  window._ippYT = {
-    player: null, ready: false,
-    mode: null,   // 'conv'|'dial'
-    idx: 0, poll: null,
-    lines: [],    // set per-dialog
-    els: [],      // dial-line NodeList
-  };
-
-  /* Carga la API de YouTube una sola vez */
-  if(!window.YT){
-    var s=document.createElement('script');
-    s.src='https://www.youtube.com/iframe_api';
-    document.head.appendChild(s);
-  }
-
-  window._ippYTinitPlayer = function(videoId, frameId){
-    if(window._ippYT.player) return; // ya creado
-    function tryCreate(){
-      if(!window.YT||!window.YT.Player){ setTimeout(tryCreate,300); return; }
-      window._ippYT.player = new YT.Player(frameId,{
-        videoId: videoId,
-        height:1, width:1,
-        playerVars:{autoplay:0,controls:0,origin:location.origin||''},
-        events:{
-          onReady:function(){ window._ippYT.ready=true; }
-        }
-      });
-    }
-    tryCreate();
-  };
-
-  window.ippYT_detener = function(){
-    var y=window._ippYT;
-    if(y.poll){clearInterval(y.poll);y.poll=null;}
-    if(y.player&&y.ready){ try{y.player.pauseVideo();}catch(e){} }
-    y.mode=null;
-    document.querySelectorAll('.yt-active')
-      .forEach(function(el){el.classList.remove('yt-active');});
-  };
-
-  window.ippYT_conversacion = function(){
-    var y=window._ippYT;
-    if(!y.ready){alert('El reproductor aun se esta cargando...');return;}
-    ippYT_detener();
-    // Revelar todo el texto inmediatamente
-    document.querySelectorAll('[data-yt-idx]').forEach(function(el){
-      _ippYT_revealEl(el);
-    });
-    y.mode='conv';
-    try{y.player.seekTo(0,true);y.player.playVideo();}catch(e){}
-  };
-
-  window.ippYT_dialogo = function(lineasCfg, dialSelector){
-    var y=window._ippYT;
-    if(!y.ready){alert('El reproductor aun se esta cargando...');return;}
-    ippYT_detener();
-    // Ocultar texto de todas las lineas
-    var selector = dialSelector
-      ? '.dial-container[data-yt-dial="'+dialSelector+'"] .dial-line[data-yt-idx]'
-      : '[data-yt-idx]';
-    y.els = Array.from(document.querySelectorAll(selector));
-    y.lines = lineasCfg;
-    y.idx = 0;
-    y.mode = 'dial';
-    // Reset visual
-    y.els.forEach(function(el){
-      el.classList.remove('yt-active','yt-done');
-      _ippYT_hideEl(el);
-    });
-    _ippYT_playNext();
-  };
-
-  window._ippYT_playNext = function(){
-    var y=window._ippYT;
-    if(y.mode!=='dial') return;
-    if(y.idx>=y.els.length){y.mode=null;return;}
-    var el=y.els[y.idx];
-    var ts=y.lines[y.idx];
-    el.classList.add('yt-active');
-    _ippYT_revealEl(el);
-    el.scrollIntoView({behavior:'smooth',block:'nearest'});
-    if(ts && ts[0]!==null){
-      try{
-        y.player.seekTo(ts[0],true);
-        y.player.playVideo();
-      }catch(e){}
-      y.poll=setInterval(function(){
-        if(y.mode!=='dial'){clearInterval(y.poll);return;}
-        try{
-          var ct=y.player.getCurrentTime();
-          if(ct>=ts[1]){
-            clearInterval(y.poll); y.poll=null;
-            try{y.player.pauseVideo();}catch(e){}
-            el.classList.remove('yt-active');el.classList.add('yt-done');
-            y.idx++;
-            setTimeout(window._ippYT_playNext,450);
-          }
-        }catch(e){clearInterval(y.poll);}
-      },150);
-    } else {
-      // Sin timestamp: mostrar texto 2 segundos
-      setTimeout(function(){
-        el.classList.remove('yt-active');el.classList.add('yt-done');
-        y.idx++;
-        _ippYT_playNext();
-      },2000);
-    }
-  };
-
-  window._ippYT_revealEl = function(el){
-    var t = el.getAttribute('data-text')||el.getAttribute('data-yt-text')||'';
-    // dial-hidden/hidden-text/dial-bubble: M0-M3 (texto oculto revelado)
-    // bubble-m/bubble-g: M4-M5/M7 (siempre visible, solo resaltamos)
-    // line-it: M6 (solo resaltamos)
-    var targets=['.dial-hidden','.hidden-text','.dial-bubble','.bubble-m','.bubble-g','.line-it'];
-    for(var i=0;i<targets.length;i++){
-      var h=el.querySelector(targets[i]);
-      if(h){
-        if(t && i<3) h.textContent=t; // solo sobreescribir en M0-M3
-        h.style.opacity='1';h.style.visibility='visible';
-        h.style.maxHeight='none';h.style.display='';
-        return;
-      }
-    }
-  };
-
-  window._ippYT_hideEl = function(el){
-    var targets=['.dial-hidden','.hidden-text','.dial-bubble','.bubble-m','.bubble-g','.line-it'];
-    for(var i=0;i<targets.length;i++){
-      var h=el.querySelector(targets[i]);
-      if(h){ h.style.opacity='0'; h.style.visibility='hidden'; return; }
-    }
-  };
-})();
-</script>
-<script>_ippYTinitPlayer('OqOh7Ss5ULE','ippyt-frame');</script>
-
-
-<script>
-/* ── IPP Per-line YT playback ── */
-(function(){
-  var LINE_TIMES = [[0,4],[4,11],[11,14],[14,21],[21,25],[25,33],[33,35],[35,39],[39,48],[48,53],[53,62],[62,64],[64,68]];
-  var _activeLine = -1;
-  var _linePoll   = null;
-
-  function _lineEl(idx){ return document.querySelector('[data-yt-idx="'+idx+'"]'); }
-
-  function _bubbleEl(el){
-    // Intenta encontrar el elemento burbuja en distintas estructuras de modulo
-    var sels = ['.dial-bubble','.f-bubble','.m-bubble','.dialog-bubble',
-                '.bubble-m','.bubble-g','.bubble-f','.bubble-wrap'];
-    for(var i=0;i<sels.length;i++){
-      var b=el.querySelector(sels[i]); if(b) return b;
-    }
-    return el; // fallback
-  }
-
-  function _setButtons(idx, playing){
-    var el=_lineEl(idx); if(!el) return;
-    var pb=el.querySelector('.yt-lbtn.play');
-    var sb=el.querySelector('.yt-lbtn.stop');
-    if(pb) pb.style.display=playing?'none':'';
-    if(sb) sb.style.display=playing?'':'none';
-    el.classList.toggle('yt-playing',playing);
-  }
-
-  window.ippYT_stopLine=function(){
-    if(_linePoll){clearInterval(_linePoll);_linePoll=null;}
-    var y=window._ippYT;
-    if(y&&y.ready){try{y.player.pauseVideo();}catch(e){}}
-    if(_activeLine>=0){_setButtons(_activeLine,false);_activeLine=-1;}
-  };
-
-  window.ippYT_playLine=function(idx){
-    ippYT_stopLine();
-    var y=window._ippYT;
-    if(!y||!y.ready){alert('El reproductor aún se está cargando...');return;}
-    var ts=LINE_TIMES[idx];
-    if(!ts)return;
-    var el=_lineEl(idx);
-    if(el){ var b=_bubbleEl(el); if(b) b.classList.remove('blurred'); }
-    _activeLine=idx;
-    _setButtons(idx,true);
-    try{y.player.seekTo(ts[0],true);y.player.playVideo();}catch(e){}
-    _linePoll=setInterval(function(){
-      try{
-        var ct=y.player.getCurrentTime();
-        if(ct>=ts[1]){
-          clearInterval(_linePoll);_linePoll=null;
-          try{y.player.pauseVideo();}catch(e){}
-          _setButtons(idx,false);_activeLine=-1;
-        }
-      }catch(e){clearInterval(_linePoll);}
-    },150);
-  };
-
-  // Sobrescribir conversacion: quita blur de todo y reproduce
-  var _origConv=window.ippYT_conversacion;
-  window.ippYT_conversacion=function(){
-    ippYT_stopLine();
-    document.querySelectorAll('.blurred').forEach(function(b){b.classList.remove('blurred');});
-    if(_origConv) _origConv();
-  };
-
-  // Sobrescribir detener
-  var _origStop=window.ippYT_detener;
-  window.ippYT_detener=function(){
-    ippYT_stopLine();
-    if(_origStop) _origStop();
-  };
-})();
 </script>
 
 </body>

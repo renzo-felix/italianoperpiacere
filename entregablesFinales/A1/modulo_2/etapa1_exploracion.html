@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Módulo 1 — Di dove sei? | Etapa 1: El video</title>
+<title>Módulo 2 — Di dove sei? | Etapa 1: El video</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -80,7 +80,7 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 44px 
 
 
 <div class="hero">
-  <div class="hero-badge">Módulo 1 · Etapa 1</div>
+  <div class="hero-badge">Módulo 2 · Etapa 1</div>
   <h1>Di dove sei?</h1>
   <p class="sub">Antes de empezar, una inmersión real: italianos hablando sobre sus ciudades favoritas.</p>
 </div>
@@ -236,6 +236,12 @@ function checkVF(btn, isCorrect, qId, msg) {
   var clickedTrue = btn.textContent.startsWith('V');
   var wasCorrect = (clickedTrue && isCorrect) || (!clickedTrue && !isCorrect);
   btn.classList.add(wasCorrect ? 'correct' : 'wrong');
+  if (!wasCorrect) {
+    q.querySelectorAll('.opt-btn').forEach(function(b) {
+      var bTrue = b.textContent.startsWith('V');
+      if ((bTrue && isCorrect) || (!bTrue && !isCorrect)) b.classList.add('correct');
+    });
+  }
   var fb = document.getElementById(qId + 'fb');
   fb.textContent = msg;
   fb.className = 'quiz-fb ' + (wasCorrect ? 'ok' : 'no');

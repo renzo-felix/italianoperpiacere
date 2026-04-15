@@ -1,4 +1,4 @@
-# Módulo 1 — Di dove sei?
+# Módulo 2 — Di dove sei?
 ## Etapa 4: Ejercicios
 
 ---
