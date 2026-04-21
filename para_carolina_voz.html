@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Italiano Per Piacere · Elegí la voz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Outfit', system-ui, sans-serif; background: #f0ede0; color: #1a1a18; min-height: 100vh; }
+
+    .hero {
+      background: linear-gradient(135deg, #528e74 0%, #3d6b58 100%);
+      padding: 2.5rem 1.5rem 2rem; text-align: center; color: #fff;
+    }
+    .hero-badge {
+      display: inline-block; background: rgba(255,255,255,0.2);
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 20px; margin-bottom: 0.8rem;
+    }
+    .hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.6rem,4vw,2.4rem); font-style: italic; margin-bottom: 0.4rem; }
+    .hero p { font-size: 0.9rem; opacity: 0.85; font-weight: 300; max-width: 480px; margin: 0 auto; }
+
+    .container { max-width: 640px; margin: 0 auto; padding: 2rem 1.2rem 4rem; }
+
+    .intro-card {
+      background: #fff3cd; border-left: 4px solid #e5ab07;
+      border-radius: 10px; padding: 1rem 1.3rem;
+      font-size: 0.88rem; line-height: 1.7; margin-bottom: 2rem;
+    }
+    .intro-card strong { color: #c8940a; }
+
+    .section-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: #528e74;
+      margin-bottom: 0.8rem; display: block;
+    }
+
+    .phrase-list { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2.5rem; }
+
+    .phrase-row {
+      background: #fff; border-radius: 12px;
+      padding: 1rem 1.2rem; display: flex; align-items: center; gap: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .play-btn {
+      width: 46px; height: 46px; border-radius: 50%; border: none;
+      background: #528e74; color: #fff; font-size: 1.1rem;
+      cursor: pointer; flex-shrink: 0; transition: all 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .play-btn:hover { background: #3d6b58; transform: scale(1.07); }
+    .play-btn.playing { background: #cc4736; }
+
+    .phrase-text { flex: 1; }
+    .phrase-it { font-style: italic; font-weight: 600; color: #3d6b58; font-size: 1rem; margin-bottom: 0.2rem; }
+    .phrase-es { font-size: 0.8rem; color: #999; }
+
+    .notes-section { margin-top: 2rem; }
+    .notes-section h3 {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      color: #3d6b58; font-size: 1.2rem; margin-bottom: 0.5rem;
+    }
+    .notes-section p { font-size: 0.85rem; color: #777; margin-bottom: 0.8rem; }
+    textarea {
+      width: 100%; min-height: 100px; padding: 0.8rem 1rem;
+      border: 1.5px solid #ccc; border-radius: 10px;
+      font-family: inherit; font-size: 0.9rem; resize: vertical;
+      background: #fff;
+    }
+    textarea:focus { outline: none; border-color: #528e74; }
+
+    .footer { text-align: center; margin-top: 1.5rem; font-size: 0.78rem; color: #aaa; }
+
+    .status-bar {
+      background: #e4f0e9; border-radius: 8px; padding: 0.5rem 1rem;
+      font-size: 0.82rem; color: #3d6b58; margin-bottom: 1.5rem;
+      display: none; align-items: center; gap: 0.5rem;
+    }
+    .status-bar.visible { display: flex; }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">Italiano Per Piacere</div>
+  <h1>¿Cuál voz preferís?</h1>
+  <p>Escuchá cada frase y decinos cuál te suena más natural para el curso</p>
+</div>
+
+<div class="container">
+
+  <div class="intro-card">
+    <strong>Instrucciones para Carolina:</strong><br>
+    1. Abrí esta página en <strong>Google Chrome</strong> (importante)<br>
+    2. Hacé clic en ▶ para escuchar cada frase<br>
+    3. Si querés parar, hacé clic de nuevo en el botón<br>
+    4. Dejá tu opinión abajo 👇
+  </div>
+
+  <div id="statusBar" class="status-bar">
+    🔊 <span id="statusText">Reproduciendo...</span>
+  </div>
+
+  <span class="section-label">🎙 Frases del curso — escuchalas</span>
+
+  <div class="phrase-list">
+
+    <div class="phrase-row">
+      <button class="play-btn" id="btn0" onclick="toggle(0)">▶</button>
+      <div class="phrase-text">
+        <div class="phrase-it">Buongiorno! Come ti chiami?</div>
+        <div class="phrase-es">¡Buenos días! ¿Cómo te llamás?</div>
+      </div>
+    </div>
+
+    <div class="phrase-row">
+      <button class="play-btn" id="btn1" onclick="toggle(1)">▶</button>
+      <div class="phrase-text">
+        <div class="phrase-it">Mi chiamo Sofia. Piacere di conoscerti!</div>
+        <div class="phrase-es">Me llamo Sofía. ¡Mucho gusto en conocerte!</div>
+      </div>
+    </div>
+
+    <div class="phrase-row">
+      <button class="play-btn" id="btn2" onclick="toggle(2)">▶</button>
+      <div class="phrase-text">
+        <div class="phrase-it">Di dove sei? Io sono di Roma.</div>
+        <div class="phrase-es">¿De dónde sos? Yo soy de Roma.</div>
+      </div>
+    </div>
+
+    <div class="phrase-row">
+      <button class="play-btn" id="btn3" onclick="toggle(3)">▶</button>
+      <div class="phrase-text">
+        <div class="phrase-it">Qual è il tuo numero di telefono?</div>
+        <div class="phrase-es">¿Cuál es tu número de teléfono?</div>
+      </div>
+    </div>
+
+    <div class="phrase-row">
+      <button class="play-btn" id="btn4" onclick="toggle(4)">▶</button>
+      <div class="phrase-text">
+        <div class="phrase-it">Sono di Buenos Aires, ma abito a Milano.</div>
+        <div class="phrase-es">Soy de Buenos Aires, pero vivo en Milán.</div>
+      </div>
+    </div>
+
+    <div class="phrase-row">
+      <button class="play-btn" id="btn5" onclick="toggle(5)">▶</button>
+      <div class="phrase-text">
+        <div class="phrase-it">Che età hai? Ho ventitré anni.</div>
+        <div class="phrase-es">¿Cuántos años tenés? Tengo veintitrés años.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="notes-section">
+    <h3>Tu opinión</h3>
+    <p>¿La voz suena natural? ¿Hay algo que cambiarías (velocidad, tono)?</p>
+    <textarea placeholder="Ej: Me gusta, suena natural. Quizás un poco más lenta en las frases largas..."></textarea>
+  </div>
+
+  <div class="footer">Italiano Per Piacere · Archivo de prueba de voces</div>
+
+</div>
+
+<script>
+// ── Voice preloader ──
+var __ippV = [];
+if (window.speechSynthesis) {
+  var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) __ippV = v; };
+  speechSynthesis.onvoiceschanged = _ld;
+  _ld(); setTimeout(_ld, 300); setTimeout(_ld, 1000); setTimeout(_ld, 2500);
+}
+
+var phrases = [
+  'Buongiorno! Come ti chiami?',
+  'Mi chiamo Sofia. Piacere di conoscerti!',
+  'Di dove sei? Io sono di Roma.',
+  'Qual è il tuo numero di telefono?',
+  'Sono di Buenos Aires, ma abito a Milano.',
+  'Che età hai? Ho ventitré anni.'
+];
+
+var currentIdx = -1;
+var currentUtt = null;
+
+function getVoice() {
+  var voices = __ippV.length ? __ippV : (speechSynthesis.getVoices() || []);
+  var itV = voices.filter(function(v) { return v.lang && v.lang.startsWith('it'); });
+  return itV.find(function(v) { return /google/i.test(v.name); })
+      || itV.find(function(v) { return /elsa|alice|giulia|female|femm/i.test(v.name); })
+      || itV[0]
+      || null;
+}
+
+function resetBtn(idx) {
+  if (idx < 0) return;
+  var btn = document.getElementById('btn' + idx);
+  if (btn) { btn.textContent = '▶'; btn.classList.remove('playing'); }
+}
+
+function showStatus(text) {
+  var bar = document.getElementById('statusBar');
+  var txt = document.getElementById('statusText');
+  if (text) { txt.textContent = text; bar.classList.add('visible'); }
+  else { bar.classList.remove('visible'); }
+}
+
+function toggle(idx) {
+  if (!window.speechSynthesis) { alert('Abrí esta página en Google Chrome para escuchar las voces.'); return; }
+
+  // Same button clicked while playing → stop
+  if (idx === currentIdx && speechSynthesis.speaking) {
+    speechSynthesis.cancel();
+    resetBtn(currentIdx);
+    currentIdx = -1;
+    showStatus(null);
+    return;
+  }
+
+  // Stop current
+  speechSynthesis.cancel();
+  resetBtn(currentIdx);
+
+  // Play new
+  currentIdx = idx;
+  var btn = document.getElementById('btn' + idx);
+  if (btn) { btn.textContent = '⏹'; btn.classList.add('playing'); }
+  showStatus('Reproduciendo frase ' + (idx + 1) + ' de ' + phrases.length + '...');
+
+  var utt = new SpeechSynthesisUtterance(phrases[idx]);
+  utt.lang  = 'it-IT';
+  utt.rate  = 0.85;
+  utt.pitch = 1.0;
+  var v = getVoice();
+  if (v) utt.voice = v;
+
+  utt.onend = utt.onerror = function() {
+    resetBtn(currentIdx);
+    currentIdx = -1;
+    showStatus(null);
+  };
+
+  setTimeout(function() {
+    try { speechSynthesis.speak(utt); } catch(e) {}
+  }, 60);
+}
+</script>
+</body>
+</html>

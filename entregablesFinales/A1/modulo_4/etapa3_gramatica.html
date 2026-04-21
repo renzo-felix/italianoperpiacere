@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tutti in piazza! — Etapa 3 | Italiano Per Piacere</title>
+<title>Che ore sono? — Etapa 3 | Italiano Per Piacere</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -20,10 +20,10 @@
   --fh: 'Playfair Display', Georgia, serif;
   --fb: 'Outfit', system-ui, sans-serif;
   --r: 10px;
-  --mc:      #528e74;
-  --mc-dk:   #3d6b58;
-  --mc-text: #2d4d3c;
-  --mc-bg:   #e8f4ef;
+  --mc:      #e5ab07;
+  --mc-dk:   #c8940a;
+  --mc-text: #7a5500;
+  --mc-bg:   #fdf5e0;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: var(--cream); font-family: var(--fb); color: var(--black); line-height: 1.6; }
@@ -323,6 +323,17 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
 }
 .btn-cta:hover { background: var(--mc-dk); }
 
+/* ── STOP BUTTON ── */
+.btn-stop-global {
+  position: fixed; bottom: 22px; right: 22px; z-index: 9999;
+  background: var(--red); color: var(--white);
+  border: none; border-radius: 30px; padding: 10px 20px;
+  font-family: var(--fb); font-size: 0.85rem; font-weight: 700;
+  cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,.22);
+  transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+}
+.btn-stop-global:hover { background: #a8382a; transform: scale(1.04); }
+
 @media (max-width: 600px) {
   .stage-nav a { padding: 12px 12px; font-size: 12px; }
   .stage-nav a span:not(.num) { display: none; }
@@ -335,10 +346,12 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
 </head>
 <body>
 
+
+
 <div class="hero">
-  <div class="badge">A1 · Unità 3</div>
-  <h1>Tutti in piazza!</h1>
-  <p>Gramática completa — las reglas de la hora, los saludos y la fonética</p>
+  <div class="badge">A1 · Módulo 4</div>
+  <h1>Che ore sono?</h1>
+  <p>Gramática completa — la hora, los saludos, los artículos y las conjunciones</p>
 </div>
 
 
@@ -348,8 +361,10 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
   <a href="#formale">B. Formal/Informal</a>
   <a href="#saluti">C. Saludos</a>
   <a href="#preposizioni">D. Preposiciones</a>
-  <a href="#fonetica">E. Fonética L/R</a>
-  <a href="#ejercicios">F. Ejercicios</a>
+  <a href="#fonetica">E. Fonética</a>
+  <a href="#articoli">F. Artículos</a>
+  <a href="#congiunzioni">G. Conjunciones</a>
+  <a href="#ejercicios">H. Ejercicios</a>
 </div>
 
 <div class="container">
@@ -760,10 +775,214 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
     </div>
   </div>
 
-  <!-- ===================== F. EJERCICIOS ===================== -->
-  <div class="section-anchor" id="ejercicios">
+  <!-- ===================== F. ARTICOLI DETERMINATIVI E INDETERMINATIVI ===================== -->
+  <div class="section-anchor" id="articoli">
     <div class="section-header">
       <div class="section-label">F</div>
+      <h2 class="section-title">Articoli al singolare — Los artículos en singular</h2>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rule-box">
+      <strong>¿Qué es un artículo?</strong> Es la pequeña palabra que va antes del sustantivo. En italiano indica si la cosa es <em>masculina o femenina</em>, y si es <em>conocida (determinativo)</em> o <em>nueva/cualquiera (indeterminativo)</em>.<br>
+      <br>
+      En este módulo usamos varios: <em>il campanile, l'ora, la piazza, una riunione</em>. ¡Ya los conocés de oído!
+    </div>
+
+    <!-- DETERMINATIVOS -->
+    <div style="font-weight:700;font-size:0.9rem;color:var(--mc-text);margin:18px 0 10px;text-transform:uppercase;letter-spacing:0.5px">Articoli Determinativi — "El / La" (cosa conocida o específica)</div>
+
+    <table class="gram-table">
+      <thead>
+        <tr><th>Artículo</th><th>Cuando usarlo</th><th>Ejemplos</th><th>🔊</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-it" style="font-size:1.3rem;font-weight:800;width:70px">il</td>
+          <td class="td-es">Masc. singular — empieza con consonante<br><span style="font-size:0.8rem;color:#aaa">(excepto s+cons., z, gn, ps, x, y)</span></td>
+          <td class="td-it">il treno, il bar, il campanile, il caffè</td>
+          <td><button class="btn-sm" onclick="ippAudio('il treno, il bar, il campanile',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.3rem;font-weight:800">lo</td>
+          <td class="td-es">Masc. singular — empieza con s+cons., z, gn, ps, x, y</td>
+          <td class="td-it">lo zaino, lo studente, lo gnocco</td>
+          <td><button class="btn-sm" onclick="ippAudio('lo zaino, lo studente',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.3rem;font-weight:800">l'</td>
+          <td class="td-es">Masc. o Fem. singular — empieza con vocal (a, e, i, o, u)</td>
+          <td class="td-it">l'ora, l'amico, l'amica, l'aeroporto</td>
+          <td><button class="btn-sm" onclick="ippAudio('l\'ora, l\'amico, l\'amica',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.3rem;font-weight:800">la</td>
+          <td class="td-es">Fem. singular — empieza con consonante</td>
+          <td class="td-it">la piazza, la sera, la metro, la donna</td>
+          <td><button class="btn-sm" onclick="ippAudio('la piazza, la sera, la metro',0.82,'f')">🔊</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="rule-box">
+      <strong>Truco para recordar l':</strong> Cuando una palabra empieza con vocal, el italiano "come" la a/la del artículo para que suene fluido. <em>la ora</em> → <em>l'ora</em>. ¡Igual que "el agua" en español!
+    </div>
+
+    <!-- INDETERMINATIVOS -->
+    <div style="font-weight:700;font-size:0.9rem;color:var(--mc-text);margin:22px 0 10px;text-transform:uppercase;letter-spacing:0.5px">Articoli Indeterminativi — "Un / Una" (cosa nueva, no específica)</div>
+
+    <table class="gram-table">
+      <thead>
+        <tr><th>Artículo</th><th>Cuando usarlo</th><th>Ejemplos</th><th>🔊</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-it" style="font-size:1.3rem;font-weight:800;width:70px">un</td>
+          <td class="td-es">Masc. singular — todos los casos excepto s+cons., z, gn</td>
+          <td class="td-it">un treno, un bar, un caffè, un amico</td>
+          <td><button class="btn-sm" onclick="ippAudio('un treno, un bar, un amico',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.3rem;font-weight:800">uno</td>
+          <td class="td-es">Masc. singular — empieza con s+cons., z, gn, ps, x, y</td>
+          <td class="td-it">uno zaino, uno studente, uno gnocco</td>
+          <td><button class="btn-sm" onclick="ippAudio('uno zaino, uno studente',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.3rem;font-weight:800">una</td>
+          <td class="td-es">Fem. singular — empieza con consonante</td>
+          <td class="td-it">una riunione, una sera, una donna, una piazza</td>
+          <td><button class="btn-sm" onclick="ippAudio('una riunione, una sera, una donna',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.3rem;font-weight:800">un'</td>
+          <td class="td-es">Fem. singular — empieza con vocal (a, e, i, o, u)</td>
+          <td class="td-it">un'ora, un'amica, un'idea, un'estate</td>
+          <td><button class="btn-sm" onclick="ippAudio('un\'ora, un\'amica, un\'idea',0.82,'f')">🔊</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="rule-box" style="margin-bottom:0">
+      <strong>Determinativo vs. Indeterminativo:</strong><br>
+      — <em>Ho <strong>una</strong> riunione</em> = Tengo una reunión (cualquiera, nueva info) &nbsp;·&nbsp; artículo indefinido<br>
+      — <em>La riunione è alle tre</em> = La reunión (esa que mencioné antes) es a las tres &nbsp;·&nbsp; artículo definido<br>
+      <br>
+      ¡Es exactamente la diferencia entre "un" y "el" en español!
+    </div>
+  </div>
+
+  <!-- ===================== G. CONGIUNZIONI ===================== -->
+  <div class="section-anchor" id="congiunzioni">
+    <div class="section-header">
+      <div class="section-label">G</div>
+      <h2 class="section-title">Congiunzioni coordinate — Las conjunciones</h2>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rule-box">
+      Las conjunciones conectan palabras u oraciones. En italiano son muy similares al español y ya las usaste: <em>«Sono le sette <strong>e</strong> un quarto»</em>, <em>«formale <strong>o</strong> informale»</em>, <em>«voglio uscire, <strong>ma</strong> è tardi»</em>. ¡Las reconocés de oído!
+    </div>
+
+    <table class="gram-table">
+      <thead>
+        <tr><th>Conjunción</th><th>Significado</th><th>Ejemplo</th><th>🔊</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-it" style="font-size:1.3rem;font-weight:800;width:70px">e</td>
+          <td class="td-es">y — une dos elementos</td>
+          <td class="td-it">Sono le tre <em>e</em> un quarto.</td>
+          <td><button class="btn-sm" onclick="ippAudio('Sono le tre e un quarto.',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.3rem;font-weight:800">o</td>
+          <td class="td-es">o — presenta alternativas</td>
+          <td class="td-it">Arrivi alle otto <em>o</em> alle nove?</td>
+          <td><button class="btn-sm" onclick="ippAudio('Arrivi alle otto o alle nove?',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.3rem;font-weight:800">ma</td>
+          <td class="td-es">pero — contrasta ideas</td>
+          <td class="td-it">Voglio uscire, <em>ma</em> è tardi.</td>
+          <td><button class="btn-sm" onclick="ippAudio('Voglio uscire, ma è tardi.',0.82,'m')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.3rem;font-weight:800">però</td>
+          <td class="td-es">sin embargo</td>
+          <td class="td-it">Il bar è aperto, <em>però</em> la cucina è chiusa.</td>
+          <td><button class="btn-sm" onclick="ippAudio('Il bar è aperto, però la cucina è chiusa.',0.82,'f')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.3rem;font-weight:800">quindi</td>
+          <td class="td-es">entonces / así que — consecuencia</td>
+          <td class="td-it">È tardi, <em>quindi</em> devo sbrigarmi.</td>
+          <td><button class="btn-sm" onclick="ippAudio('È tardi, quindi devo sbrigarmi.',0.82,'m')">🔊</button></td>
+        </tr>
+        <tr>
+          <td class="td-it" style="font-size:1.3rem;font-weight:800">anche</td>
+          <td class="td-es">también</td>
+          <td class="td-it">Vengo <em>anche</em> io alle sette.</td>
+          <td><button class="btn-sm" onclick="ippAudio('Vengo anche io alle sette.',0.82,'m')">🔊</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="rule-box">
+      <strong>e → ed antes de vocal:</strong> Cuando la palabra siguiente empieza con <em>e</em>, se puede escribir <strong>ed</strong> para sonar más fluido: <em>«Sono le due <strong>ed</strong> è tardi»</em>. No es obligatorio, pero se usa bastante.
+    </div>
+
+    <div style="border-top:1px solid var(--cream-dk);padding-top:16px;margin-top:16px">
+      <div style="font-weight:700;font-size:0.9rem;color:var(--mc-text);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px">¿Cuál conjunción va? — elige</div>
+
+      <div class="mc-item" id="conj1" data-correct="0">
+        <div class="mc-question">Sono le tre ___ un quarto. (y cuarto)</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkMC(this,'conj1',0)">e</button>
+          <button class="btn-mc" onclick="checkMC(this,'conj1',1)">ma</button>
+          <button class="btn-mc" onclick="checkMC(this,'conj1',2)">o</button>
+        </div>
+        <div class="mc-feedback" id="fb-conj1"></div>
+      </div>
+
+      <div class="mc-item" id="conj2" data-correct="2">
+        <div class="mc-question">Voglio dormire, ___ devo lavorare. (pero)</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkMC(this,'conj2',0)">e</button>
+          <button class="btn-mc" onclick="checkMC(this,'conj2',1)">quindi</button>
+          <button class="btn-mc" onclick="checkMC(this,'conj2',2)">ma</button>
+        </div>
+        <div class="mc-feedback" id="fb-conj2"></div>
+      </div>
+
+      <div class="mc-item" id="conj3" data-correct="1">
+        <div class="mc-question">È tardi, ___ corro! (entonces)</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkMC(this,'conj3',0)">ma</button>
+          <button class="btn-mc" onclick="checkMC(this,'conj3',1)">quindi</button>
+          <button class="btn-mc" onclick="checkMC(this,'conj3',2)">anche</button>
+        </div>
+        <div class="mc-feedback" id="fb-conj3"></div>
+      </div>
+
+      <div class="mc-item" id="conj4" data-correct="0">
+        <div class="mc-question">Arrivi alle otto ___ alle nove? (o)</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="checkMC(this,'conj4',0)">o</button>
+          <button class="btn-mc" onclick="checkMC(this,'conj4',1)">e</button>
+          <button class="btn-mc" onclick="checkMC(this,'conj4',2)">però</button>
+        </div>
+        <div class="mc-feedback" id="fb-conj4"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== H. EJERCICIOS ===================== -->
+  <div class="section-anchor" id="ejercicios">
+    <div class="section-header">
+      <div class="section-label">H</div>
       <h2 class="section-title">Esercizi — Ejercicios</h2>
     </div>
   </div>
@@ -1213,6 +1432,148 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
     </div>
   </div>
 
+  <!-- EX 11: Artículos determinativos -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num">11</div>
+      <div>
+        <div class="ex-title">Elige el artículo determinativo correcto</div>
+        <div class="ex-subtitle">il / lo / l' / la</div>
+      </div>
+    </div>
+
+    <div class="mc-item" id="art11a" data-correct="0">
+      <div class="mc-question">___ treno (el tren — masc., consonante)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'art11a',0)">il treno</button>
+        <button class="btn-mc" onclick="checkMC(this,'art11a',1)">lo treno</button>
+        <button class="btn-mc" onclick="checkMC(this,'art11a',2)">la treno</button>
+      </div>
+      <div class="mc-feedback" id="fb-art11a"></div>
+    </div>
+
+    <div class="mc-item" id="art11b" data-correct="2">
+      <div class="mc-question">___ ora (la hora — fem., vocal)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'art11b',0)">la ora</button>
+        <button class="btn-mc" onclick="checkMC(this,'art11b',1)">il ora</button>
+        <button class="btn-mc" onclick="checkMC(this,'art11b',2)">l'ora</button>
+      </div>
+      <div class="mc-feedback" id="fb-art11b"></div>
+    </div>
+
+    <div class="mc-item" id="art11c" data-correct="1">
+      <div class="mc-question">___ studente (el estudiante — masc., empieza con st-)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'art11c',0)">il studente</button>
+        <button class="btn-mc" onclick="checkMC(this,'art11c',1)">lo studente</button>
+        <button class="btn-mc" onclick="checkMC(this,'art11c',2)">l'studente</button>
+      </div>
+      <div class="mc-feedback" id="fb-art11c"></div>
+    </div>
+
+    <div class="mc-item" id="art11d" data-correct="0">
+      <div class="mc-question">___ piazza (la plaza — fem., consonante)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'art11d',0)">la piazza</button>
+        <button class="btn-mc" onclick="checkMC(this,'art11d',1)">il piazza</button>
+        <button class="btn-mc" onclick="checkMC(this,'art11d',2)">l'piazza</button>
+      </div>
+      <div class="mc-feedback" id="fb-art11d"></div>
+    </div>
+
+    <div class="mc-item" id="art11e" data-correct="2">
+      <div class="mc-question">___ amico (el amigo — masc., vocal)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'art11e',0)">il amico</button>
+        <button class="btn-mc" onclick="checkMC(this,'art11e',1)">lo amico</button>
+        <button class="btn-mc" onclick="checkMC(this,'art11e',2)">l'amico</button>
+      </div>
+      <div class="mc-feedback" id="fb-art11e"></div>
+    </div>
+
+    <div class="mc-item" id="art11f" data-correct="0">
+      <div class="mc-question">___ sera (la tarde — fem., consonante)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'art11f',0)">la sera</button>
+        <button class="btn-mc" onclick="checkMC(this,'art11f',1)">il sera</button>
+        <button class="btn-mc" onclick="checkMC(this,'art11f',2)">l'sera</button>
+      </div>
+      <div class="mc-feedback" id="fb-art11f"></div>
+    </div>
+  </div>
+
+  <!-- EX 12: Artículos indeterminativos -->
+  <div class="ex-card">
+    <div class="ex-header">
+      <div class="ex-num">12</div>
+      <div>
+        <div class="ex-title">Elige el artículo indeterminativo correcto</div>
+        <div class="ex-subtitle">un / uno / una / un'</div>
+      </div>
+    </div>
+
+    <div class="mc-item" id="art12a" data-correct="0">
+      <div class="mc-question">___ caffè (un café — masc., consonante)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'art12a',0)">un caffè</button>
+        <button class="btn-mc" onclick="checkMC(this,'art12a',1)">uno caffè</button>
+        <button class="btn-mc" onclick="checkMC(this,'art12a',2)">una caffè</button>
+      </div>
+      <div class="mc-feedback" id="fb-art12a"></div>
+    </div>
+
+    <div class="mc-item" id="art12b" data-correct="2">
+      <div class="mc-question">___ riunione (una reunión — fem., consonante)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'art12b',0)">un riunione</button>
+        <button class="btn-mc" onclick="checkMC(this,'art12b',1)">uno riunione</button>
+        <button class="btn-mc" onclick="checkMC(this,'art12b',2)">una riunione</button>
+      </div>
+      <div class="mc-feedback" id="fb-art12b"></div>
+    </div>
+
+    <div class="mc-item" id="art12c" data-correct="1">
+      <div class="mc-question">___ zaino (una mochila — masc., empieza con z)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'art12c',0)">un zaino</button>
+        <button class="btn-mc" onclick="checkMC(this,'art12c',1)">uno zaino</button>
+        <button class="btn-mc" onclick="checkMC(this,'art12c',2)">una zaino</button>
+      </div>
+      <div class="mc-feedback" id="fb-art12c"></div>
+    </div>
+
+    <div class="mc-item" id="art12d" data-correct="2">
+      <div class="mc-question">___ ora (una hora — fem., vocal)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'art12d',0)">una ora</button>
+        <button class="btn-mc" onclick="checkMC(this,'art12d',1)">un ora</button>
+        <button class="btn-mc" onclick="checkMC(this,'art12d',2)">un'ora</button>
+      </div>
+      <div class="mc-feedback" id="fb-art12d"></div>
+    </div>
+
+    <div class="mc-item" id="art12e" data-correct="0">
+      <div class="mc-question">___ amica (una amiga — fem., vocal)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'art12e',0)">un'amica</button>
+        <button class="btn-mc" onclick="checkMC(this,'art12e',1)">una amica</button>
+        <button class="btn-mc" onclick="checkMC(this,'art12e',2)">un amica</button>
+      </div>
+      <div class="mc-feedback" id="fb-art12e"></div>
+    </div>
+
+    <div class="mc-item" id="art12f" data-correct="0">
+      <div class="mc-question">___ bar (un bar — masc., consonante)</div>
+      <div class="mc-options">
+        <button class="btn-mc" onclick="checkMC(this,'art12f',0)">un bar</button>
+        <button class="btn-mc" onclick="checkMC(this,'art12f',1)">uno bar</button>
+        <button class="btn-mc" onclick="checkMC(this,'art12f',2)">una bar</button>
+      </div>
+      <div class="mc-feedback" id="fb-art12f"></div>
+    </div>
+  </div>
+
   <!-- ===================== CULTURE STRIP ===================== -->
   <div class="culture-strip">
     <div class="culture-title">Il campanile — el reloj de todos</div>
@@ -1426,5 +1787,7 @@ window.addWord = addWord;
 window.checkSort = checkSort;
 window.classifyFI = classifyFI;
 </script>
+<button class="btn-stop-global" onclick="window.speechSynthesis.cancel()" title="Parar audio">⏹ Parar audio</button>
+
 </body>
 </html>

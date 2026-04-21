@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tutti in piazza! — Etapa 2 | Italiano Per Piacere</title>
+<title>Che ore sono? — Etapa 2 | Italiano Per Piacere</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -13,7 +13,7 @@
   --fh: 'Playfair Display', Georgia, serif;
   --fb: 'Outfit', system-ui, sans-serif;
   --r: 10px;
-  --mc: #528e74; --mc-dk: #3d6b58; --mc-text: #2d4d3c; --mc-bg: #e8f4ef;
+  --mc: #e5ab07; --mc-dk: #c8940a; --mc-text: #7a5500; --mc-bg: #fdf5e0;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: var(--cream); font-family: var(--fb); color: var(--black); line-height: 1.6; }
@@ -74,7 +74,7 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
   padding: 14px 18px; display: flex; align-items: center; gap: 14px;
   transition: box-shadow 0.2s;
 }
-.phrase-card:hover { box-shadow: 0 3px 12px rgba(82,142,116,.15); }
+.phrase-card:hover { box-shadow: 0 3px 12px rgba(229,171,7,.15); }
 .phrase-text { flex: 1; }
 .phrase-it { font-size: 1rem; font-weight: 600; font-style: italic; color: var(--mc-dk); }
 .phrase-context { font-size: 0.78rem; color: #777; margin-top: 2px; }
@@ -135,7 +135,7 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
   background: var(--white); border-radius: 14px; padding: 20px 16px; text-align: center;
   border: 2px solid var(--cream-dk); transition: all 0.2s; cursor: pointer;
 }
-.saluto-card:hover { border-color: var(--mc); box-shadow: 0 4px 14px rgba(82,142,116,.18); transform: translateY(-2px); }
+.saluto-card:hover { border-color: var(--mc); box-shadow: 0 4px 14px rgba(229,171,7,.18); transform: translateY(-2px); }
 .saluto-emoji { font-size: 2.2rem; margin-bottom: 8px; display: block; }
 .saluto-word { font-family: var(--fh); font-style: italic; font-size: 1.25rem; color: var(--mc-dk); font-weight: 700; margin-bottom: 4px; }
 .saluto-time { font-size: 0.75rem; color: #777; margin-bottom: 10px; }
@@ -150,10 +150,17 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
   font-weight: 700; cursor: pointer; margin-bottom: 20px; transition: background 0.2s;
 }
 .btn-play-all:hover { background: var(--mc-dk); }
-.dial-speaker-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
-.dial-speaker { font-size: 0.75rem; font-weight: 700; color: var(--mc-dk); text-transform: uppercase; letter-spacing: .04em; }
-.f-bubble { background: var(--mc-bg); border-left: 3px solid var(--mc); padding: 12px 16px; border-radius: 0 10px 10px 10px; margin-bottom: 16px; }
-.m-bubble { background: #e8f0eb; border-left: 3px solid #3d6b58; padding: 12px 16px; border-radius: 0 10px 10px 10px; margin-bottom: 16px; }
+/* WhatsApp-style dialogue */
+.dial-line { display:flex; flex-direction:column; margin-bottom:14px; gap:3px; }
+.dial-line[data-side="left"]  { align-items:flex-start; }
+.dial-line[data-side="right"] { align-items:flex-end; }
+.dial-speaker-row { display:flex; align-items:center; gap:8px; }
+.dial-speaker { font-size:0.74rem; font-weight:700; color:var(--mc-dk); text-transform:uppercase; letter-spacing:.04em; }
+.m-bubble, .f-bubble { max-width:80%; padding:10px 14px; margin-bottom:0; }
+.m-bubble { background:#eff2ef; border-left:3px solid #3d6b58; border-radius:0 12px 12px 12px; }
+.f-bubble { background:var(--mc-bg); border-left:3px solid var(--mc); border-radius:0 12px 12px 12px; }
+.dial-line[data-side="right"] .m-bubble { border-radius:12px 0 12px 12px; border-left:none; border-right:3px solid #3d6b58; }
+.dial-line[data-side="right"] .f-bubble { border-radius:12px 0 12px 12px; border-left:none; border-right:3px solid var(--mc); }
 .hidden-text { opacity: 0; max-height: 0; overflow: hidden; transition: all 0.4s ease; font-size: 0.95rem; font-style: italic; color: var(--mc-text); font-weight: 600; }
 .hidden-text.revealed { opacity: 1; max-height: 200px; }
 .btn-line-play {
@@ -239,9 +246,9 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
   display: inline-block; padding: 16px 40px; background: var(--mc);
   color: var(--white); border-radius: 30px; font-family: var(--fb); font-size: 1.05rem;
   font-weight: 700; text-decoration: none; transition: all 0.25s;
-  box-shadow: 0 4px 16px rgba(82,142,116,.35);
+  box-shadow: 0 4px 16px rgba(229,171,7,.35);
 }
-.btn-cta:hover { background: var(--mc-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(82,142,116,.45); }
+.btn-cta:hover { background: var(--mc-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(229,171,7,.45); }
 .btn-cta-sub { font-size: 0.82rem; color: #888; margin-top: 10px; }
 
 /* ── DIVIDER ── */
@@ -250,6 +257,17 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
 /* ── CALLOUT ── */
 .callout { background: var(--mc-bg); border-left: 4px solid var(--mc); border-radius: 0 var(--r) var(--r) 0; padding: 14px 18px; margin: 18px 0; font-size: 0.88rem; color: var(--mc-text); }
 .callout strong { color: var(--mc-dk); }
+
+/* ── STOP BUTTON ── */
+.btn-stop-global {
+  position: fixed; bottom: 22px; right: 22px; z-index: 9999;
+  background: var(--red); color: var(--white);
+  border: none; border-radius: 30px; padding: 10px 20px;
+  font-family: var(--fb); font-size: 0.85rem; font-weight: 700;
+  cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,.22);
+  transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+}
+.btn-stop-global:hover { background: #a8382a; transform: scale(1.04); }
 
 /* ── RESPONSIVE ── */
 @media(max-width: 600px) {
@@ -298,9 +316,9 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
 
 <!-- HERO -->
 <header class="hero">
-  <div class="modulo-tag">Módulo 3 · A1</div>
-  <h1>Tutti in piazza!</h1>
-  <p class="sub">Descubrí cómo los italianos hablan del tiempo — sin memorizar reglas, solo escuchando y observando.</p>
+  <div class="modulo-tag">Módulo 4 · A1</div>
+  <h1>Che ore sono?</h1>
+  <p class="sub">Descubrí cómo los italianos preguntan y dicen la hora — sin memorizar reglas, solo escuchando y observando.</p>
 </header>
 
 <!-- MAIN CONTENT -->
@@ -638,252 +656,112 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
 
     <!-- Diálogo 1: dos hombres -->
 
-      <div class="yt-top-controls">
-        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
-        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
-      </div>
+      
 <div class="dial-container" data-yt-dial="dial1">
       <div class="dial-title">🗣 Diálogo 1 — Due uomini</div>
-
-      
       <div class="yt-top-controls">
-        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
+        <button class="yt-btn yt-btn-conv" onclick="ippYT_dialogo([[0,2],[2,4],[4,6],[6,7]],'dial1')">&#9654; Reproducir conversación</button>
         <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
       </div>
-
-      <div class="yt-top-controls">
-        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
-        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
-      </div>
-<div class="dial-line" data-text="Scusi, mi sa dire che ore sono?" data-gender="m" data-dialog="dial1" data-yt-idx="0">
+<div class="dial-line" data-text="Scusi, mi sa dire che ore sono?" data-gender="m" data-dialog="dial1" data-yt-idx="0" data-side="left">
         <div class="dial-speaker-row">
           <span class="dial-speaker">👤 Uomo 1</span>
         </div>
         <div class="m-bubble">
-          <div class="hidden-text dial-bubble blurred">Scusi, mi sa dire che ore sono?</div>
+          <div class="dial-bubble blurred">Scusi, mi sa dire che ore sono?</div>
         </div>
         
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(0)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(parseInt(this.closest('[data-yt-idx]').dataset.ytIdx))" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
         </div>
 
-      <div class="dial-line" data-text="Certo! Sono le dieci e mezza." data-gender="m" data-dialog="dial1" data-yt-idx="1">
+      <div class="dial-line" data-text="Certo! Sono le dieci e mezza." data-gender="m" data-dialog="dial1" data-yt-idx="1" data-side="right">
         <div class="dial-speaker-row">
           <span class="dial-speaker">👤 Uomo 2</span>
         </div>
         <div class="m-bubble">
-          <div class="hidden-text dial-bubble blurred">Certo! Sono le dieci e mezza.</div>
+          <div class="dial-bubble blurred">Certo! Sono le dieci e mezza.</div>
         </div>
         
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(1)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(parseInt(this.closest('[data-yt-idx]').dataset.ytIdx))" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
         </div>
 
-      <div class="dial-line" data-text="Grazie mille!" data-gender="m" data-dialog="dial1" data-yt-idx="2">
+      <div class="dial-line" data-text="Grazie mille!" data-gender="m" data-dialog="dial1" data-yt-idx="2" data-side="left">
         <div class="dial-speaker-row">
           <span class="dial-speaker">👤 Uomo 1</span>
         </div>
         <div class="m-bubble">
-          <div class="hidden-text dial-bubble blurred">Grazie mille!</div>
+          <div class="dial-bubble blurred">Grazie mille! ,Prego</div>
         </div>
         
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(2)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(parseInt(this.closest('[data-yt-idx]').dataset.ytIdx))" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
         </div>
 
-      <div class="dial-line" data-text="Prego, buona giornata!" data-gender="m" data-dialog="dial1" data-yt-idx="3">
+      <div class="dial-line" data-text="Prego, buona giornata!" data-gender="m" data-dialog="dial1" data-yt-idx="3" data-side="right">
         <div class="dial-speaker-row">
           <span class="dial-speaker">👤 Uomo 2</span>
         </div>
         <div class="m-bubble">
-          <div class="hidden-text dial-bubble blurred">Prego, buona giornata!</div>
+          <div class="dial-bubble blurred"> buona giornata!</div>
         </div>
         
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(3)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(parseInt(this.closest('[data-yt-idx]').dataset.ytIdx))" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
         </div>
 
-      <div class="dial-line" data-text="Meno male! Devo prendere il treno alle undici." data-gender="m" data-dialog="dial1" data-yt-idx="4">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👤 Uomo 1</span>
-        </div>
-        <div class="m-bubble">
-          <div class="hidden-text dial-bubble blurred">Meno male! Devo prendere il treno alle undici.</div>
-        </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(4)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
-
-      <div class="dial-line" data-text="C'è ancora tempo! La stazione è qui vicino." data-gender="m" data-dialog="dial1" data-yt-idx="5">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👤 Uomo 2</span>
-        </div>
-        <div class="m-bubble">
-          <div class="hidden-text dial-bubble blurred">C'è ancora tempo! La stazione è qui vicino.</div>
-        </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(5)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
-
-      <div class="dial-line" data-text="Sa dove si compra il biglietto?" data-gender="m" data-dialog="dial1" data-yt-idx="6">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👤 Uomo 1</span>
-        </div>
-        <div class="m-bubble">
-          <div class="hidden-text dial-bubble blurred">Sa dove si compra il biglietto?</div>
-        </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(6)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
-
-      <div class="dial-line" data-text="Alla biglietteria automatica, proprio lì all'entrata." data-gender="m" data-dialog="dial1" data-yt-idx="7">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👤 Uomo 2</span>
-        </div>
-        <div class="m-bubble">
-          <div class="hidden-text dial-bubble blurred">Alla biglietteria automatica, proprio lì all'entrata.</div>
-        </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(7)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
-
-      <div class="dial-line" data-text="Perfetto, grazie ancora!" data-gender="m" data-dialog="dial1" data-yt-idx="8">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👤 Uomo 1</span>
-        </div>
-        <div class="m-bubble">
-          <div class="hidden-text dial-bubble blurred">Perfetto, grazie ancora!</div>
-        </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(8)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
-
-      <div class="dial-line" data-text="Prego! Buon viaggio!" data-gender="m" data-dialog="dial1" data-yt-idx="9">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👤 Uomo 2</span>
-        </div>
-        <div class="m-bubble">
-          <div class="hidden-text dial-bubble blurred">Prego! Buon viaggio!</div>
-        </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(9)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
     </div>
 
     <!-- Diálogo 2: mujer y hombre -->
 
-      <div class="yt-top-controls">
-        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
-        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
-      </div>
 <div class="dial-container" data-yt-dial="dial2">
       <div class="dial-title">🗣 Diálogo 2 — Donna e Uomo</div>
+      <div class="yt-top-controls">
+        <button class="yt-btn yt-btn-conv" onclick="ippYT_dialogo([[7,10],[10,13],[13,15],[15,17]],'dial2')">&#9654; Reproducir conversación</button>
+        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
+      </div>
 
-      <div class="dial-line" data-text="Mi scusi, sa dirmi l'ora per favore?" data-gender="f" data-dialog="dial2" data-yt-idx="0">
+      <div class="dial-line" data-text="Mi scusi, sa dirmi l'ora per favore?" data-gender="f" data-dialog="dial2" data-yt-idx="4" data-side="left">
         <div class="dial-speaker-row">
           <span class="dial-speaker">👩 Donna</span>
         </div>
         <div class="f-bubble">
-          <div class="hidden-text dial-bubble blurred">Mi scusi, sa dirmi l'ora per favore?</div>
+          <div class="dial-bubble blurred">Mi scusi, sa dirmi l'ora per favore?</div>
         </div>
         
-          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(0)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(parseInt(this.closest('[data-yt-idx]').dataset.ytIdx))" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
         </div>
 
-      <div class="dial-line" data-text="Sì, certo! Sono le tre e un quarto." data-gender="m" data-dialog="dial2" data-yt-idx="1">
+      <div class="dial-line" data-text="Sì, certo! Sono le tre e un quarto." data-gender="m" data-dialog="dial2" data-yt-idx="5" data-side="right">
         <div class="dial-speaker-row">
           <span class="dial-speaker">👤 Uomo</span>
         </div>
         <div class="m-bubble">
-          <div class="hidden-text dial-bubble blurred">Sì, certo! Sono le tre e un quarto.</div>
+          <div class="dial-bubble blurred">Sì, certo! Sono le tre e un quarto.</div>
         </div>
         
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(1)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(parseInt(this.closest('[data-yt-idx]').dataset.ytIdx))" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
         </div>
 
-      <div class="dial-line" data-text="Perfetto, grazie!" data-gender="f" data-dialog="dial2" data-yt-idx="2">
+      <div class="dial-line" data-text="Perfetto, grazie!" data-gender="f" data-dialog="dial2" data-yt-idx="6" data-side="left">
         <div class="dial-speaker-row">
           <span class="dial-speaker">👩 Donna</span>
         </div>
         <div class="f-bubble">
-          <div class="hidden-text dial-bubble blurred">Perfetto, grazie!</div>
+          <div class="dial-bubble blurred">Perfetto, grazie!</div>
         </div>
         
-          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(2)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(parseInt(this.closest('[data-yt-idx]').dataset.ytIdx))" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
         </div>
 
-      <div class="dial-line" data-text="Figurati!" data-gender="m" data-dialog="dial2" data-yt-idx="3">
+      <div class="dial-line" data-text="Figurati!" data-gender="m" data-dialog="dial2" data-yt-idx="7" data-side="right">
         <div class="dial-speaker-row">
           <span class="dial-speaker">👤 Uomo</span>
         </div>
         <div class="m-bubble">
-          <div class="hidden-text dial-bubble blurred">Figurati!</div>
+          <div class="dial-bubble blurred">Figurati!</div>
         </div>
         
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(3)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
+          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(parseInt(this.closest('[data-yt-idx]').dataset.ytIdx))" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
         </div>
 
-      <div class="dial-line" data-text="Ho una riunione alle tre e mezza — sono in ritardo!" data-gender="f" data-dialog="dial2" data-yt-idx="4">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👩 Donna</span>
-        </div>
-        <div class="f-bubble">
-          <div class="hidden-text dial-bubble blurred">Ho una riunione alle tre e mezza — sono in ritardo!</div>
-        </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(4)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
-
-      <div class="dial-line" data-text="Allora deve sbrigarsi! Da dove viene?" data-gender="m" data-dialog="dial2" data-yt-idx="5">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👤 Uomo</span>
-        </div>
-        <div class="m-bubble">
-          <div class="hidden-text dial-bubble blurred">Allora deve sbrigarsi! Da dove viene?</div>
-        </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(5)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
-
-      <div class="dial-line" data-text="Da Piazza Navona. C'è molto traffico oggi." data-gender="f" data-dialog="dial2" data-yt-idx="6">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👩 Donna</span>
-        </div>
-        <div class="f-bubble">
-          <div class="hidden-text dial-bubble blurred">Da Piazza Navona. C'è molto traffico oggi.</div>
-        </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(6)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
-
-      <div class="dial-line" data-text="Prenda la metro, è molto più veloce!" data-gender="m" data-dialog="dial2" data-yt-idx="7">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👤 Uomo</span>
-        </div>
-        <div class="m-bubble">
-          <div class="hidden-text dial-bubble blurred">Prenda la metro, è molto più veloce!</div>
-        </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(7)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
-
-      <div class="dial-line" data-text="Ottima idea! Grazie ancora, è stato gentilissimo." data-gender="f" data-dialog="dial2" data-yt-idx="8">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👩 Donna</span>
-        </div>
-        <div class="f-bubble">
-          <div class="hidden-text dial-bubble blurred">Ottima idea! Grazie ancora, è stato gentilissimo.</div>
-        </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn play" onclick="ippYT_playLine(8)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
-
-      <div class="dial-line" data-text="Prego! In bocca al lupo per la riunione!" data-gender="m" data-dialog="dial2" data-yt-idx="9">
-        <div class="dial-speaker-row">
-          <span class="dial-speaker">👤 Uomo</span>
-        </div>
-        <div class="m-bubble">
-          <div class="hidden-text dial-bubble blurred">Prego! In bocca al lupo per la riunione!</div>
-        </div>
-        
-          <div class="dial-line-ctrl"><button class="yt-lbtn teal play" onclick="ippYT_playLine(9)" title="Escuchar">&#9654;</button><button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button></div>
-        </div>
     </div>
   </section>
 
@@ -1081,7 +959,7 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
 
       <div class="fonetic-word-row">
         <span class="word-num">1.</span>
-        <button class="btn-audio" onclick="ippAudio('lago', 0.8, 'm')" style="margin-right:10px">▶ Escuchar</button>
+        <button class="btn-audio" onclick="ippAudio('lago', 0.8, 'm')" title="Escuchar">▶</button>
         <div class="fonetic-answer">
           <button class="lr-btn" onclick="checkLR(this, 'L', 'L', 'lr1')">L</button>
           <button class="lr-btn" onclick="checkLR(this, 'R', 'L', 'lr1')">R</button>
@@ -1091,7 +969,7 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
 
       <div class="fonetic-word-row">
         <span class="word-num">2.</span>
-        <button class="btn-audio" onclick="ippAudio('rana', 0.8, 'm')" style="margin-right:10px">▶ Escuchar</button>
+        <button class="btn-audio" onclick="ippAudio('rana', 0.8, 'm')" title="Escuchar">▶</button>
         <div class="fonetic-answer">
           <button class="lr-btn" onclick="checkLR(this, 'L', 'R', 'lr2')">L</button>
           <button class="lr-btn" onclick="checkLR(this, 'R', 'R', 'lr2')">R</button>
@@ -1101,7 +979,7 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
 
       <div class="fonetic-word-row">
         <span class="word-num">3.</span>
-        <button class="btn-audio" onclick="ippAudio('letto', 0.8, 'm')" style="margin-right:10px">▶ Escuchar</button>
+        <button class="btn-audio" onclick="ippAudio('letto', 0.8, 'm')" title="Escuchar">▶</button>
         <div class="fonetic-answer">
           <button class="lr-btn" onclick="checkLR(this, 'L', 'L', 'lr3')">L</button>
           <button class="lr-btn" onclick="checkLR(this, 'R', 'L', 'lr3')">R</button>
@@ -1111,7 +989,7 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
 
       <div class="fonetic-word-row">
         <span class="word-num">4.</span>
-        <button class="btn-audio" onclick="ippAudio('rosa', 0.8, 'm')" style="margin-right:10px">▶ Escuchar</button>
+        <button class="btn-audio" onclick="ippAudio('rosa', 0.8, 'm')" title="Escuchar">▶</button>
         <div class="fonetic-answer">
           <button class="lr-btn" onclick="checkLR(this, 'L', 'R', 'lr4')">L</button>
           <button class="lr-btn" onclick="checkLR(this, 'R', 'R', 'lr4')">R</button>
@@ -1121,13 +999,138 @@ body { background: var(--cream); font-family: var(--fb); color: var(--black); li
 
       <div class="fonetic-word-row">
         <span class="word-num">5.</span>
-        <button class="btn-audio" onclick="ippAudio('luna', 0.8, 'm')" style="margin-right:10px">▶ Escuchar</button>
+        <button class="btn-audio" onclick="ippAudio('luna', 0.8, 'm')" title="Escuchar">▶</button>
         <div class="fonetic-answer">
           <button class="lr-btn" onclick="checkLR(this, 'L', 'L', 'lr5')">L</button>
           <button class="lr-btn" onclick="checkLR(this, 'R', 'L', 'lr5')">R</button>
         </div>
         <span class="fonetic-fb" id="lr5-fb"></span>
       </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── SECCIÓN 11: DESCUBRIMIENTO DE ARTÍCULOS ── -->
+  <section>
+    <div class="sec-header">
+      <h2><span class="sec-num">11</span>¿Notaste estas palabritas?</h2>
+      <p>En todo lo que escuchamos aparecen pequeñas palabras antes de los sustantivos. Vamos a espiarlas.</p>
+    </div>
+
+    <div class="sofia-block">
+      <div class="sofia-avatar">👩‍🏫</div>
+      <div class="sofia-bubble">
+        <div class="sofia-name">Sofia · tu guía</div>
+        <p>Mirá estas frases del módulo. ¿Ves esas palabritas antes de los sustantivos? <em>«il campanile»</em>, <em>«l'ora»</em>, <em>«la piazza»</em>... No son decoración — le dicen al italiano si la cosa es masculina o femenina, conocida o nueva.</p>
+        <p style="margin-top:8px">Hoy no vamos a memorizar reglas. Solo vamos a <strong>notar el patrón</strong>. ¿Listo para espiar?</p>
+      </div>
+    </div>
+
+    <!-- Frases con artículos resaltados -->
+    <div class="phrase-grid" style="margin-bottom:20px">
+      <div class="phrase-card">
+        <div class="phrase-text">
+          <div class="phrase-it">Sotto c'è <mark style="background:var(--mc-bg);border-radius:4px;padding:0 3px;color:var(--mc-dk);font-weight:700">il</mark> campanile!</div>
+          <div class="phrase-context"><strong>il</strong> → masculino, empieza con consonante</div>
+        </div>
+        <button class="btn-audio" onclick="ippAudio('il campanile', 0.8, 'm')" title="Escuchar">▶</button>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-text">
+          <div class="phrase-it">Mi sa dire <mark style="background:var(--mc-bg);border-radius:4px;padding:0 3px;color:var(--mc-dk);font-weight:700">l'</mark>ora?</div>
+          <div class="phrase-context"><strong>l'</strong> → la hora · vocal: se "come" la a/la</div>
+        </div>
+        <button class="btn-audio" onclick="ippAudio('l\'ora', 0.8, 'f')" title="Escuchar">▶</button>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-text">
+          <div class="phrase-it">Tutti in <mark style="background:var(--mc-bg);border-radius:4px;padding:0 3px;color:var(--mc-dk);font-weight:700">la</mark> piazza!</div>
+          <div class="phrase-context"><strong>la</strong> → femenino, empieza con consonante</div>
+        </div>
+        <button class="btn-audio" onclick="ippAudio('la piazza', 0.8, 'f')" title="Escuchar">▶</button>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-text">
+          <div class="phrase-it">Ho <mark style="background:#ffe8cc;border-radius:4px;padding:0 3px;color:#a05000;font-weight:700">una</mark> riunione alle tre!</div>
+          <div class="phrase-context"><strong>una</strong> → femenino indefinido (una reunión cualquiera)</div>
+        </div>
+        <button class="btn-audio" onclick="ippAudio('una riunione', 0.8, 'f')" title="Escuchar">▶</button>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-text">
+          <div class="phrase-it">Prenda <mark style="background:var(--mc-bg);border-radius:4px;padding:0 3px;color:var(--mc-dk);font-weight:700">la</mark> metro!</div>
+          <div class="phrase-context"><strong>la</strong> → la metro, la que conocemos</div>
+        </div>
+        <button class="btn-audio" onclick="ippAudio('la metro', 0.8, 'm')" title="Escuchar">▶</button>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-text">
+          <div class="phrase-it">Vado al bar dopo <mark style="background:var(--mc-bg);border-radius:4px;padding:0 3px;color:var(--mc-dk);font-weight:700">il</mark> lavoro.</div>
+          <div class="phrase-context"><strong>il</strong> → el trabajo, masculino</div>
+        </div>
+        <button class="btn-audio" onclick="ippAudio('dopo il lavoro', 0.8, 'm')" title="Escuchar">▶</button>
+      </div>
+    </div>
+
+    <!-- Actividad: ¿qué artículo va? -->
+    <div style="background:var(--white);border-radius:14px;border:1px solid var(--cream-dk);padding:22px;margin-bottom:16px">
+      <div style="font-family:var(--fh);font-style:italic;color:var(--mc-dk);font-size:1rem;margin-bottom:6px;font-weight:700">¿Qué artículo le toca? — Elegí el correcto</div>
+      <p style="font-size:0.85rem;color:#666;margin-bottom:18px">Basate en lo que observaste arriba. No hay trampas — el patrón que notaste es suficiente.</p>
+
+      <div class="activity-card" style="margin-bottom:10px">
+        <div class="activity-q">1. ___ treno (el tren — masculino, consonante)</div>
+        <div class="activity-opts">
+          <button class="opt-btn" onclick="checkActivity(this, true, 'art1')">il</button>
+          <button class="opt-btn" onclick="checkActivity(this, false, 'art1')">la</button>
+          <button class="opt-btn" onclick="checkActivity(this, false, 'art1')">l'</button>
+        </div>
+        <div class="activity-feedback" id="art1-fb"></div>
+      </div>
+
+      <div class="activity-card" style="margin-bottom:10px">
+        <div class="activity-q">2. ___ amica (la amiga — femenino, empieza con vocal)</div>
+        <div class="activity-opts">
+          <button class="opt-btn" onclick="checkActivity(this, false, 'art2')">la</button>
+          <button class="opt-btn" onclick="checkActivity(this, true, 'art2')">l'</button>
+          <button class="opt-btn" onclick="checkActivity(this, false, 'art2')">il</button>
+        </div>
+        <div class="activity-feedback" id="art2-fb"></div>
+      </div>
+
+      <div class="activity-card" style="margin-bottom:10px">
+        <div class="activity-q">3. ___ sera (la tarde — femenino, consonante)</div>
+        <div class="activity-opts">
+          <button class="opt-btn" onclick="checkActivity(this, false, 'art3')">il</button>
+          <button class="opt-btn" onclick="checkActivity(this, false, 'art3')">l'</button>
+          <button class="opt-btn" onclick="checkActivity(this, true, 'art3')">la</button>
+        </div>
+        <div class="activity-feedback" id="art3-fb"></div>
+      </div>
+
+      <div class="activity-card" style="margin-bottom:10px">
+        <div class="activity-q">4. ___ amico (el amigo — masculino, empieza con vocal)</div>
+        <div class="activity-opts">
+          <button class="opt-btn" onclick="checkActivity(this, false, 'art4')">il</button>
+          <button class="opt-btn" onclick="checkActivity(this, true, 'art4')">l'</button>
+          <button class="opt-btn" onclick="checkActivity(this, false, 'art4')">la</button>
+        </div>
+        <div class="activity-feedback" id="art4-fb"></div>
+      </div>
+
+      <div class="activity-card" style="margin-bottom:0">
+        <div class="activity-q">5. ___ caffè (el café — masculino, empieza con consonante)</div>
+        <div class="activity-opts">
+          <button class="opt-btn" onclick="checkActivity(this, true, 'art5b')">il</button>
+          <button class="opt-btn" onclick="checkActivity(this, false, 'art5b')">la</button>
+          <button class="opt-btn" onclick="checkActivity(this, false, 'art5b')">l'</button>
+        </div>
+        <div class="activity-feedback" id="art5b-fb"></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>¿Lo viste?</strong> El artículo cambia según si la palabra es masculina o femenina, y según si empieza con vocal (→ <em>l'</em>) o consonante. En la próxima etapa vas a ver las reglas completas, incluyendo los artículos indefinidos (<em>un caffè, una sera</em>). Por ahora, ¡ya entrenaste el ojo!
     </div>
   </section>
 
@@ -1163,13 +1166,7 @@ if (!window.__ippVC) {
   }
 }
 
-// ── EXECUTION GUARD (Odoo DOMEval re-runs scripts on slide navigation) ──
-if (window.__ipp_m3_e2__) { /* already loaded */ }
-else {
-window.__ipp_m3_e2__ = true;
-
 // ── AUDIO ENGINE ──
-// Nombre único para evitar colisión con función speak() de Odoo/framework
 function ippAudio(text, rate, gender) {
   rate = (typeof rate === 'number' && isFinite(rate)) ? rate : 0.82;
   gender = (gender === 'm' || gender === 'f') ? gender : 'f';
@@ -1197,7 +1194,7 @@ function ippVoice(gender) {
 }
 
 // ── CLOCK INTERACTION ──
-const clockData = {
+var clockData = {
   'h1':    { text: 'È l\'una.',       label: 'È l\'una',          note: '¡Singular especial!' },
   'h2':    { text: 'Sono le due.',    label: 'Sono le due',       note: '' },
   'h3':    { text: 'Sono le tre.',    label: 'Sono le tre',       note: '' },
@@ -1231,38 +1228,50 @@ function playLine(btn) {
   const text = line.dataset.text;
   const gender = line.dataset.gender;
   const bubble = line.querySelector('.dial-bubble');
+  window.speechSynthesis.cancel();
   ippAudio(text, 0.82, gender);
-  setTimeout(() => bubble.classList.add('revealed'), 300);
+  setTimeout(() => {
+    if(bubble){ bubble.classList.remove('blurred'); bubble.classList.add('revealed'); }
+  }, 200);
 }
 
 function playAllDialog(dialogId) {
   const lines = Array.from(document.querySelectorAll('[data-dialog="' + dialogId + '"]'));
   let index = 0;
   window.speechSynthesis.cancel();
+  document.querySelectorAll('[data-dialog="'+dialogId+'"]').forEach(l => l.style.outline='');
   function playNext() {
     if (index >= lines.length) return;
     const line = lines[index];
+    const bubble = line.querySelector('.dial-bubble');
+    if(bubble){ bubble.classList.remove('blurred'); bubble.classList.add('revealed'); }
+    line.style.outline = '2px solid var(--mc)';
+    line.style.borderRadius = '8px';
+    if(index > 0){ lines[index-1].style.outline = ''; }
     const utt = new SpeechSynthesisUtterance(line.dataset.text);
     utt.lang = 'it-IT'; utt.rate = 0.82;
-    const voices = speechSynthesis.getVoices();
-    const itV = voices.filter(v => v.lang.startsWith('it'));
     const g = line.dataset.gender || 'f';
     const voice = ippVoice(g);
     if (voice) utt.voice = voice;
-    utt.onend = () => { index++; setTimeout(playNext, 500); };
+    utt.onend = () => { line.style.outline = ''; index++; setTimeout(playNext, 400); };
     speechSynthesis.speak(utt);
   }
   playNext();
 }
 
 // ── ACTIVITIES ──
-const actFeedback = {
+var actFeedback = {
   'act1': { ok: '¡Correcto! Los bares italianos abren muy temprano para el espresso matutino. ☕', no: 'No exactamente — los bares italianos abren a las 7:00.' },
   'act2': { ok: '¡Correcto! El pranzo italiano es entre la 1 y las 2 del mediodía. 🍝', no: 'En Italia el almuerzo es a las 13:00 (la una).' },
   'act3': { ok: '¡Correcto! La cena italiana es bastante tarde — entre las 20:00 y las 21:00. 🍽', no: 'Los italianos cenan tarde — alrededor de las 20:00.' },
   'act4': { ok: '¡Correcto! La mayoría de museos cierran a las 18:00. 🏛', no: 'Los museos suelen cerrar a las 18:00.' },
   'act5': { ok: '¡Correcto! Las oficinas italianas abren a las 9:00. 💼', no: 'Las oficinas italianas abren a las 9:00.' },
   'act6': { ok: '¡Correcto! Las farmacias cierran alrededor de las 19:00–19:30. 💊', no: 'Las farmacias suelen cerrar a las 19:00–19:30.' },
+  'art1': { ok: '¡Sí! il treno — masculino, consonante → il', no: 'No — treno es masculino y empieza con consonante: il treno.' },
+  'art2': { ok: "¡Exacto! l'amica — femenino, empieza con vocal → l'", no: "No — amica empieza con vocal, así que se usa l'amica." },
+  'art3': { ok: '¡Correcto! la sera — femenino, consonante → la', no: 'No — sera es femenino y empieza con consonante: la sera.' },
+  'art4': { ok: "¡Bien! l'amico — masculino, empieza con vocal → l'", no: "No — amico empieza con vocal: l'amico." },
+  'art5b': { ok: '¡Correcto! il caffè — masculino, consonante → il', no: 'No — caffè es masculino y empieza con consonante: il caffè.' },
 };
 
 function checkActivity(btn, isCorrect, actId) {
@@ -1315,11 +1324,9 @@ function toggleCulture(btn) {
   window.playHour = playHour;
   window.playLine = playLine;
   window.playAllDialog = playAllDialog;
-  window.playNext = playNext;
   window.checkActivity = checkActivity;
   window.checkLR = checkLR;
   window.toggleCulture = toggleCulture;
-} // end execution guard
 </script>
 
 <div id="ippyt-frame" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden"></div>
@@ -1449,6 +1456,8 @@ function toggleCulture(btn) {
       var h=el.querySelector(targets[i]);
       if(h){
         if(t && i<3) h.textContent=t; // solo sobreescribir en M0-M3
+        h.classList.remove('blurred');
+        h.classList.add('revealed');
         h.style.opacity='1';h.style.visibility='visible';
         h.style.maxHeight='none';h.style.display='';
         return;
@@ -1460,7 +1469,12 @@ function toggleCulture(btn) {
     var targets=['.dial-hidden','.hidden-text','.dial-bubble','.bubble-m','.bubble-g','.line-it'];
     for(var i=0;i<targets.length;i++){
       var h=el.querySelector(targets[i]);
-      if(h){ h.style.opacity='0'; h.style.visibility='hidden'; return; }
+      if(h){
+        h.classList.add('blurred');
+        h.classList.remove('revealed');
+        h.style.opacity=''; h.style.visibility=''; h.style.maxHeight='';
+        return;
+      }
     }
   };
 })();
@@ -1471,7 +1485,7 @@ function toggleCulture(btn) {
 <script>
 /* ── IPP Per-line YT playback ── */
 (function(){
-  var LINE_TIMES = [[0,2],[2,4],[4,6],[6,7],null,null,null,null,null,null,[7,10],[10,13],[13,15],[15,17],null,null,null,null,null,null];
+  var LINE_TIMES = [[0,2],[2,4],[4,6],[6,7],[7,10],[10,13],[13,15],[15,17]];
   var _activeLine = -1;
   var _linePoll   = null;
 
@@ -1542,6 +1556,8 @@ function toggleCulture(btn) {
   };
 })();
 </script>
+
+<button class="btn-stop-global" onclick="window.speechSynthesis.cancel();if(window.ippYT_detener)ippYT_detener();" title="Parar audio">⏹ Parar audio</button>
 
 </body>
 </html>

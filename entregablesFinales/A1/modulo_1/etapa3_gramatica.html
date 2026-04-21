@@ -162,7 +162,7 @@
 
     /* GREETINGS GRID */
     .greet-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-bottom: 1rem;
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.85rem; margin-bottom: 1rem;
     }
     .greet-card {
       background: var(--cream); border-radius: var(--r); padding: 1rem 1.2rem;
@@ -170,6 +170,7 @@
     .greet-card h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem; color: #888; }
     .greet-card h4.formal { color: var(--teal); }
     .greet-card h4.informal { color: var(--green); }
+    .greet-card h4.neutral { color: var(--amber-dk); }
     .greet-row { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--cream-dk); font-size: 0.88rem; }
     .greet-row:last-child { border-bottom: none; }
     .greet-row .it-phrase { font-weight: 700; color: var(--black); }
@@ -242,6 +243,21 @@
     .opt.correct  { background: #e8f5ec; border-color: #52a670; color: #1f5c35; font-weight: 700; }
     .opt.wrong    { background: #fdecea; border-color: var(--red); color: #7a1f14; }
     .opt.disabled { pointer-events: none; opacity: 0.6; }
+    .chi-inp {
+      border: 2px solid var(--cream-dk); border-radius: 6px;
+      padding: 0.15rem 0.4rem; font-family: var(--fb); font-size: 0.88rem;
+      background: var(--white); width: 52px; text-align: center;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .chi-inp:focus { outline: none; border-color: var(--mc); }
+    .ipp-retry-btn {
+      display: block; background: none; border: 1.5px solid #e5ab07;
+      color: #c8940a; border-radius: 20px;
+      padding: 0.25rem 0.85rem; font-size: 0.76rem; font-weight: 700;
+      cursor: pointer; font-family: var(--fb);
+      margin-top: 0.5rem; transition: all 0.2s;
+    }
+    .ipp-retry-btn:hover { background: #EFCF7F; color: #1a1a18; }
     .opt-fb { font-size: 0.8rem; margin-top: 0.3rem; font-weight: 600; display:none; }
     .opt-fb.ok  { color: #2a7a4a; display: block; }
     .opt-fb.err { color: var(--red); display: block; }
@@ -283,7 +299,7 @@
     }
     .btn-next:hover { background: var(--mc); transform: translateY(-2px); box-shadow: 0 4px 14px rgba(229,171,7,0.4); }
 
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       .stage-link { padding: 0.7rem 0.9rem; font-size: 0.65rem; }
       .container { padding: 1.5rem 0.85rem 3rem; }
       .greet-grid { grid-template-columns: 1fr; }
@@ -331,6 +347,13 @@
 </header>
 
 
+<!-- STAGE NAV -->
+<nav style="background:var(--white);border-bottom:2px solid var(--cream-dk);display:flex;justify-content:center;gap:0.25rem;padding:0.45rem 1rem;flex-wrap:wrap;">
+  <a href="etapa2_descubrimiento.html" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:20px;border:1.5px solid var(--cream-dk);font-size:0.75rem;font-weight:600;color:#888;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='var(--cream)';this.style.color='var(--mc-dk)'" onmouseout="this.style.background='';this.style.color='#888'">← Descubrimiento</a>
+  <span style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:20px;border:1.5px solid var(--mc);background:var(--mc-bg);font-size:0.75rem;font-weight:700;color:var(--mc-dk);">● Gramática</span>
+  <a href="etapa4_ejercicios.html" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:20px;border:1.5px solid var(--cream-dk);font-size:0.75rem;font-weight:600;color:#888;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='var(--cream)';this.style.color='var(--mc-dk)'" onmouseout="this.style.background='';this.style.color='#888'">Ejercicios →</a>
+</nav>
+
 <!-- STICKY NAV -->
 <div class="sticky-nav">
   <a href="#alfabeto">El alfabeto</a>
@@ -338,7 +361,7 @@
   <a href="#saluti">Saludos</a>
   <a href="#numeri">Números</a>
   <a href="#espressioni">Expresiones</a>
-  <a href="#ejercicios">Ejercicios</a>
+  <a href="#integrador">Integrador</a>
 </div>
 
 <main class="container">
@@ -392,6 +415,23 @@
         </tbody>
       </table>
     </div>
+
+    <!-- ═══ Esercizi ① ═══ -->
+    <div class="ex-section" style="margin-top:2rem;">
+      <h3 class="ex-title">A · El alfabeto — completá con la ciudad correcta</h3>
+      <p class="ex-desc">Escribí la ciudad que corresponde a cada letra del alfabeto fonético italiano.</p>
+      <div class="ex-card">
+        <div class="fill-rows" id="exAlfa"></div>
+        <button class="check-btn" onclick="checkExAlfa()">Verificar</button>
+        <div class="ex-result" id="exAlfaRes"></div>
+      </div>
+    </div>
+
+    <div class="ex-section">
+      <h3 class="ex-title">B · Verdadero o Falso — las letras</h3>
+      <p class="ex-desc">¿Son correctas estas afirmaciones sobre el alfabeto italiano?</p>
+      <div class="ex-card" id="exVF"></div>
+    </div>
   </section>
 
   <!-- ② CHIAMARSI -->
@@ -434,6 +474,14 @@
         </tbody>
       </table>
     </div>
+
+    <!-- ═══ Esercizi ② ═══ -->
+    <div class="ex-section" style="margin-top:2rem;">
+      <h3 class="ex-title">C · Chiamarsi — completá con mi / ti / si / ci / vi</h3>
+      <p class="ex-desc">Escribí la partícula reflexiva correcta para cada oración.</p>
+      <div class="ex-card" id="exChiamarsi"></div>
+      <button class="check-btn" style="margin-top:0.75rem;" onclick="checkAllChi()">Verificar todo C</button>
+    </div>
   </section>
 
   <!-- ③ SALUTI -->
@@ -444,27 +492,45 @@
     <div class="rule-box">
       <div class="greet-grid">
         <div class="greet-card">
-          <h4 class="informal">Informale — con amigos, familia, jóvenes</h4>
+          <h4 class="informal">Informale — amigos y familia</h4>
           <div class="greet-row"><span class="it-phrase">Ciao!</span><span class="es-phrase">¡Hola! / ¡Chau!</span></div>
-          <div class="greet-row"><span class="it-phrase">Salve!</span><span class="es-phrase">¡Hola! (neutro)</span></div>
           <div class="greet-row"><span class="it-phrase">Come stai?</span><span class="es-phrase">¿Cómo estás?</span></div>
           <div class="greet-row"><span class="it-phrase">Bene, grazie!</span><span class="es-phrase">¡Bien, gracias!</span></div>
-          <div class="greet-row"><span class="it-phrase">Arrivederci</span><span class="es-phrase">Hasta luego</span></div>
           <div class="greet-row"><span class="it-phrase">A presto!</span><span class="es-phrase">¡Hasta pronto!</span></div>
         </div>
         <div class="greet-card">
-          <h4 class="formal">Formale — con adultos, clientes, desconocidos</h4>
+          <h4 class="formal">Formale — adultos y desconocidos</h4>
           <div class="greet-row"><span class="it-phrase">Buongiorno</span><span class="es-phrase">Buenos días</span></div>
           <div class="greet-row"><span class="it-phrase">Buon pomeriggio</span><span class="es-phrase">Buenas tardes</span></div>
-          <div class="greet-row"><span class="it-phrase">Buonasera</span><span class="es-phrase">Buenas noches (desde las 18hs)</span></div>
-          <div class="greet-row"><span class="it-phrase">Buonanotte</span><span class="es-phrase">Buenas noches (al irse a dormir)</span></div>
+          <div class="greet-row"><span class="it-phrase">Buonasera</span><span class="es-phrase">Buenas noches (desde las 18h)</span></div>
           <div class="greet-row"><span class="it-phrase">Come sta?</span><span class="es-phrase">¿Cómo está usted?</span></div>
           <div class="greet-row"><span class="it-phrase">Arrivederla</span><span class="es-phrase">Hasta luego (muy formal)</span></div>
         </div>
+        <div class="greet-card">
+          <h4 class="neutral">Neutro — válido en cualquier contexto</h4>
+          <div class="greet-row"><span class="it-phrase">Salve!</span><span class="es-phrase">¡Hola! (seguro siempre)</span></div>
+          <div class="greet-row"><span class="it-phrase">Arrivederci</span><span class="es-phrase">Hasta luego</span></div>
+          <div class="greet-row"><span class="it-phrase">Buonanotte</span><span class="es-phrase">Buenas noches (al dormir)</span></div>
+          <div class="greet-row"><span class="it-phrase">Piacere!</span><span class="es-phrase">¡Mucho gusto!</span></div>
+        </div>
       </div>
       <p style="font-size:0.83rem;color:#666;margin-top:0.5rem;font-style:italic;">
-        💡 <strong>Piacere!</strong> = ¡Mucho gusto! — se usa siempre al presentarse.
+        💡 ¿Dudás entre formal e informal? Usá <strong>Salve</strong> — es la opción segura en cualquier situación.
       </p>
+    </div>
+
+    <!-- ═══ Esercizi ③ ═══ -->
+    <div class="ex-section" style="margin-top:2rem;">
+      <h3 class="ex-title">D · Saludos — ¿formal o informal?</h3>
+      <p class="ex-desc">Clasificá cada saludo: ¿se usa en contexto formal, informal o neutro?</p>
+      <div class="ex-card" id="exSaluti"></div>
+      <h3 class="ex-title" style="margin-top:1.5rem;">D2 · ¿Qué decís en esta situación?</h3>
+      <p class="ex-desc">Dado el contexto, escribí el saludo italiano correcto.</p>
+      <div class="ex-card" id="exSituaciones"></div>
+      <div style="display:flex;gap:0.6rem;margin-top:0.75rem;flex-wrap:wrap;">
+        <button class="check-btn" onclick="checkAllSitu()">Verificar D2</button>
+      </div>
+      <div class="ex-result" id="exSituRes"></div>
     </div>
   </section>
 
@@ -483,6 +549,13 @@
         </p>
       </div>
     </div>
+
+    <!-- ═══ Esercizi ④ ═══ -->
+    <div class="ex-section" style="margin-top:2rem;">
+      <h3 class="ex-title">E · Números — ¿cómo se escribe?</h3>
+      <p class="ex-desc">Escribí en italiano cada número o resultado.</p>
+      <div class="ex-card" id="exNumeri"></div>
+    </div>
   </section>
 
   <!-- ⑤ ESPRESSIONI -->
@@ -495,51 +568,11 @@
     </div>
   </section>
 
-  <!-- ════════════ EJERCICIOS ════════════ -->
-  <section class="sec" id="ejercicios">
-    <h2 class="sec-title">Esercizi — Poné a prueba lo aprendido</h2>
-    <p class="sec-sub">Ejercicios organizados por tema — todos los contenidos de esta unidad</p>
+  <!-- ════════════ INTEGRADOR ════════════ -->
+  <section class="sec" id="integrador">
+    <h2 class="sec-title">Esercizio integrador</h2>
+    <p class="sec-sub">Combiná todo lo aprendido — ordenar un diálogo completo</p>
 
-    <!-- EJ 1: Completar alfabeto -->
-    <div class="ex-section">
-      <h3 class="ex-title">A · El alfabeto — completá con la ciudad correcta</h3>
-      <p class="ex-desc">Escribí la ciudad que corresponde a cada letra del alfabeto fonético italiano.</p>
-      <div class="ex-card">
-        <div class="fill-rows" id="exAlfa"></div>
-        <button class="check-btn" onclick="checkExAlfa()">Verificar</button>
-        <div class="ex-result" id="exAlfaRes"></div>
-      </div>
-    </div>
-
-    <!-- EJ 2: Letras extranjeras V/F -->
-    <div class="ex-section">
-      <h3 class="ex-title">B · Verdadero o Falso — las letras</h3>
-      <p class="ex-desc">¿Son correctas estas afirmaciones sobre el alfabeto italiano?</p>
-      <div class="ex-card" id="exVF"></div>
-    </div>
-
-    <!-- EJ 3: Chiamarsi — elegir partícula -->
-    <div class="ex-section">
-      <h3 class="ex-title">C · Chiamarsi — completá con mi / ti / si / ci / vi</h3>
-      <p class="ex-desc">Seleccioná la partícula reflexiva correcta para cada oración.</p>
-      <div class="ex-card" id="exChiamarsi"></div>
-    </div>
-
-    <!-- EJ 4: Saludos — ¿formal o informal? -->
-    <div class="ex-section">
-      <h3 class="ex-title">D · Saludos — ¿formal o informal?</h3>
-      <p class="ex-desc">Clasificá cada saludo: ¿se usa en contexto formal (F) o informal (I)?</p>
-      <div class="ex-card" id="exSaluti"></div>
-    </div>
-
-    <!-- EJ 5: Números — escribir la palabra -->
-    <div class="ex-section">
-      <h3 class="ex-title">E · Números — ¿cómo se escribe?</h3>
-      <p class="ex-desc">Seleccioná la opción correcta para cada número.</p>
-      <div class="ex-card" id="exNumeri"></div>
-    </div>
-
-    <!-- EJ 6: Diálogo — ordenar -->
     <div class="ex-section">
       <h3 class="ex-title">F · Ordenar el diálogo</h3>
       <p class="ex-desc">Numerá estas frases del 1 al 5 para reconstruir una presentación correcta.</p>
@@ -562,8 +595,15 @@
     </p>
   </div>
 
-  <!-- CTA -->
-
+  <!-- CTA — FIN DE UNIDAD -->
+  <div class="cta-block">
+    <p>
+      ¡<em>Complimenti!</em> Completaste la Unità 1 entera — exploración, descubrimiento y gramática.<br>
+      Ya sabés presentarte, deletrear tu nombre, contar hasta 30 y conjugar <em>chiamarsi</em>.<br>
+      En la próxima unidad aprendés a hablar de dónde venís y dónde vivís. <strong>¡Andiamo!</strong>
+    </p>
+    <a class="btn-next" href="../modulo_2/etapa1_exploracion.html">Ir a Unità 2 →</a>
+  </div>
 
   <!-- ══════ IL DIALOGO ══════ -->
 
@@ -581,6 +621,20 @@ if (!window.__ippVC) {
     _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
   }
 }
+
+/* ─────────────────────────────────────────────────────────
+   IPP VOICE CONFIG — cambiá estos valores para ajustar la voz
+   en toda la unidad desde un solo lugar.
+   rate:  velocidad (0.7 lento — 1.0 normal — 1.2 rápido)
+   pitch: tono     (0.8 grave  — 1.0 normal — 1.3 agudo)
+───────────────────────────────────────────────────────── */
+window.IPP_VOICE = window.IPP_VOICE || {
+  lang:         'it-IT',
+  rate:         0.85,
+  pitch:        1.0,
+  preferFemale: true,
+  preferGoogle: true
+};
 
 (function() {
   /* ═══ ALFABETO DATA ═══ */
@@ -654,54 +708,143 @@ if (!window.__ippVC) {
   }
 
   /* ═══ SPEECH ═══ */
-  function ippAudio(text, rate) {
-    if (!window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    const utt = new SpeechSynthesisUtterance(text);
-    utt.lang = 'it-IT'; utt.rate = rate || 0.82;
-    const voices = (window.__ippV && window.__ippV.length) ? window.__ippV : speechSynthesis.getVoices();
-    const itVoice = voices.find(v => v.lang.startsWith('it'));
-    if (itVoice) utt.voice = itVoice;
-    (function(u){ setTimeout(function(){ try { speechSynthesis.speak(u); } catch(e){} }, 60); })(utt);
+  /* ── Retry helper ── */
+  function ippRetry(container, resetFn) {
+    var old = container.querySelector('.ipp-retry-btn');
+    if (old) old.remove();
+    var rb = document.createElement('button');
+    rb.className = 'ipp-retry-btn';
+    rb.textContent = '↺ Reintentar';
+    rb.onclick = function() { rb.remove(); resetFn(); };
+    container.appendChild(rb);
   }
 
-  /* ═══ EJ A: FILL ALFA ═══ */
+  function _ippPickVoice(voices, cfg) {
+    var it = voices.filter(function(v) { return v.lang && v.lang.startsWith('it'); });
+    if (!it.length) return voices[0] || null;
+    var gFem = it.filter(function(v) { return /google/i.test(v.name) && /elsa|alice|giulia|female/i.test(v.name); });
+    var gAny = it.filter(function(v) { return /google/i.test(v.name); });
+    var fem  = it.filter(function(v) { return /elsa|alice|giulia|female/i.test(v.name); });
+    var nonLocal = it.filter(function(v) { return !v.localService; });
+    if (cfg.preferGoogle && cfg.preferFemale && gFem.length)  return gFem[0];
+    if (cfg.preferGoogle && gAny.length)                       return gAny[0];
+    if (cfg.preferFemale && fem.length)                        return fem[0];
+    if (nonLocal.length)                                        return nonLocal[0];
+    return it[0];
+  }
+
+  function ippAudio(text) {
+    if (!window.speechSynthesis) return;
+    try {
+      window.speechSynthesis.cancel();
+      var cfg = window.IPP_VOICE || {};
+      var utt = new SpeechSynthesisUtterance(text);
+      utt.lang   = cfg.lang  || 'it-IT';
+      utt.rate   = cfg.rate  !== undefined ? cfg.rate  : 0.85;
+      utt.pitch  = cfg.pitch !== undefined ? cfg.pitch : 1.0;
+      utt.volume = 1;
+      var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : speechSynthesis.getVoices();
+      var v = _ippPickVoice(voices, cfg);
+      if (v) utt.voice = v;
+      (function(u){ setTimeout(function(){ try { speechSynthesis.speak(u); } catch(e){} }, 60); })(utt);
+    } catch(e) { console.warn('SpeechSynthesis error:', e); }
+  }
+
+  /* ═══ EJ A: FILL ALFA — 10 ítems ═══
+     Letras elegidas por dificultad: incluye palabras largas (Domodossola),
+     confusiones con español (Firenze/Florence, Venezia/Venecia) y letras
+     menos frecuentes (Q, Z, U).
+  ══════════════════════════════════════════ */
   const exAlfaData = [
-    ['G','Genova'],['L','Livorno'],['N','Napoli'],['Q','Quarto'],['U','Udine'],
+    ['C','Cagliari'],   // C come Cagliari — no Como (que conocen del diálogo)
+    ['D','Domodossola'],// palabra larga, difícil de recordar
+    ['E','Enna'],       // ciudad siciliana poco conocida
+    ['F','Firenze'],    // ≠ "Florence" del inglés
+    ['G','Genova'],
+    ['L','Livorno'],
+    ['Q','Quarto'],     // Q poco frecuente
+    ['S','Sassari'],    // doble S
+    ['U','Udine'],
+    ['Z','Zagarolo'],   // Z come Zagarolo — confusión con Zara (la más famosa)
   ];
   function buildExAlfa() {
     const rows = document.getElementById('exAlfa');
-    exAlfaData.forEach((item, i) => {
+    if (!rows) return;
+    rows.innerHTML = '';
+    // Mezclar el orden para que no sea siempre alfabético
+    const shuffled = [...exAlfaData].sort(() => Math.random() - 0.5);
+    shuffled.forEach((item, i) => {
       const row = document.createElement('div');
       row.className = 'fill-row';
+      row.id = 'alfa-row-' + i;
+      row.dataset.letter = item[0];
+      row.dataset.city   = item[1];
       row.innerHTML = `
         <span class="fill-num">${i+1}.</span>
         <span><strong>${item[0]}</strong> come</span>
-        <input class="fill-inp" id="exAlfa-${i}" placeholder="ciudad…" data-ans="${item[1]}">
+        <input class="fill-inp" id="exAlfa-${i}" placeholder="ciudad…"
+          onkeypress="if(event.key==='Enter') checkExAlfa()">
+        <span class="fill-icon" id="alfa-icon-${i}"></span>
       `;
       rows.appendChild(row);
     });
   }
   function checkExAlfa() {
-    let ok = 0;
-    exAlfaData.forEach((item, i) => {
-      const inp = document.getElementById('exAlfa-' + i);
-      const val = (inp.value || '').trim().toLowerCase();
-      if (val === item[1].toLowerCase()) { inp.classList.add('ok'); inp.classList.remove('err'); ok++; }
-      else { inp.classList.add('err'); inp.classList.remove('ok'); inp.placeholder = item[1]; }
+    if (!document.getElementById('exAlfa')) return;
+    let ok = 0, total = 0;
+    const rows = document.getElementById('exAlfa').querySelectorAll('.fill-row');
+    rows.forEach((row, i) => {
+      const inp  = document.getElementById('exAlfa-' + i);
+      const icon = document.getElementById('alfa-icon-' + i);
+      if (!inp) return;
+      total++;
+      const val     = (inp.value || '').trim().toLowerCase();
+      const correct = row.dataset.city.toLowerCase();
+      if (val === correct) {
+        inp.classList.add('ok'); inp.classList.remove('err');
+        if (icon) icon.innerHTML = '<span style="color:#52a670;font-weight:700;">✓</span>';
+        ok++;
+      } else {
+        inp.classList.add('err'); inp.classList.remove('ok');
+        if (icon) icon.innerHTML =
+          '<span style="color:#cc4736;font-size:0.78rem;font-weight:600;">✗ ' + row.dataset.city + '</span>';
+      }
     });
     const res = document.getElementById('exAlfaRes');
-    res.textContent = `${ok}/${exAlfaData.length} correctas. ${ok === exAlfaData.length ? '¡Perfetto!' : 'Las incorrectas muestran la respuesta como placeholder.'}`;
-    res.className = 'ex-result ' + (ok === exAlfaData.length ? 'ok' : 'err');
+    if (!res) return;
+    res.className = 'ex-result ' + (ok === total ? 'ok' : 'err');
+    res.textContent = ok + '/' + total + ' correctas. ' +
+      (ok === total ? '¡Bravissimo/a! Sabés el alfabeto fonético de memoria.' :
+       'Las incorrectas muestran la respuesta en rojo.');
+    if (ok < total) {
+      ippRetry(res, function() {
+        res.className = 'ex-result';
+        res.textContent = '';
+        buildExAlfa();
+      });
+    }
   }
 
   /* ═══ EJ B: V/F ═══ */
   const vfData = [
-    ['El alfabeto italiano tiene 21 letras propias.', true, 'Correcto. Las 5 extranjeras (J,K,W,X,Y) son extra.'],
-    ['La H en italiano suena fuerte, como en inglés.', false, 'No — la H es completamente muda en italiano.'],
-    ['C + i suena como "K" (come Como).', false, 'No — C+e/i suena como "CH" de chico. C+a/o/u suena como K.'],
-    ['En italiano "gnocchi" lleva el sonido Ñ de "año".', true, 'Correcto — GN se pronuncia como la Ñ española.'],
-    ['La letra Z existe en el alfabeto italiano original.', true, 'Sí — Z come Zara es parte del alfabeto de 21 letras.'],
+    ['El alfabeto italiano tiene 21 letras propias.', true,
+      'Correcto. Las 5 extranjeras (J, K, W, X, Y) se usan solo en palabras importadas.'],
+    ['La H en italiano suena fuerte y aspirada, como en inglés.', false,
+      'Falso — la H italiana es completamente muda. Aparece en ho/hai/ha y en CH y GH, pero nunca suena sola.'],
+    ['La combinación CH en italiano suena como la CH de "chico" en español.', false,
+      'Cuidado — en italiano CH suena como K (dura). Es al revés que en español. Ejemplo: "che" = KE, "chi" = KI.'],
+    ['La combinación SC + e/i en italiano suena como SH en inglés ("show").', true,
+      'Correcto — "scena", "sci", "lasciare" llevan ese sonido SH. Ante a/o/u suena simplemente SK.'],
+    ['En italiano "gli" se pronuncia igual que "gl" + "i" por separado.', false,
+      'No — "GL+i" es un sonido único, similar a la LL del español rioplatense en "llamar" o "calle". Ejemplo: "figlio", "aglio".'],
+    ['En italiano "gnocchi" lleva el sonido Ñ de "año".', true,
+      'Correcto — GN se pronuncia exactamente como la Ñ española. "Lasagna", "gnocchi", "bagno".'],
+    ['Las consonantes dobles en italiano se pronuncian igual que las simples.', false,
+      'Falso — las dobles se mantienen más tiempo y cambian el significado. "Nono" (noveno) ≠ "nonno" (abuelo).'],
+    ['La combinación QU en italiano siempre suena como KU (con U pronunciada).', true,
+      'Correcto — "quando", "questo", "qui" se pronuncian con la U audible: KWAN-do, KWES-to. Igual que en latín.'],
+    ['La letra Z existe en el alfabeto italiano original.', true,
+      'Sí — Z come Zara es parte del alfabeto de 21 letras. Puede sonar como TS ("pizza") o DS ("zero") según la palabra.'],
   ];
   function buildExVF() {
     const card = document.getElementById('exVF');
@@ -730,48 +873,184 @@ if (!window.__ippVC) {
     btn.style.borderColor = isCorrect ? '#52a670' : '#cc4736';
     btn.style.color = isCorrect ? '#1f5c35' : '#7a1f14';
     const fb = document.createElement('p');
+    fb.className = 'ipp-vf-fb';
     fb.style.cssText = 'font-size:0.79rem;color:#555;margin:0.25rem 0 0 1rem;font-style:italic;';
     fb.textContent = (isCorrect ? '✓ ' : '✗ ') + msg;
     row.appendChild(fb);
+    ippRetry(row, function() {
+      delete row.dataset.done;
+      row.querySelectorAll('button').forEach(b => {
+        b.disabled = false; b.style.opacity = ''; b.style.background = ''; b.style.borderColor = ''; b.style.color = '';
+      });
+      var oldFb = row.querySelector('.ipp-vf-fb');
+      if (oldFb) oldFb.remove();
+    });
   }
 
-  /* ═══ EJ C: CHIAMARSI ═══ */
+  /* ═══ EJ C: CHIAMARSI — escritura libre ═══ */
   const chiData = [
-    { sentence: '______ chiamo Lucia. Sono italiana.', blank:'mi', opts:['mi','ti','si','ci','vi'], note:'1ª persona singular: io mi chiamo.' },
-    { sentence: 'Come ______ chiami? Non ho capito!', blank:'ti', opts:['mi','ti','si','ci','vi'], note:'2ª persona singular: tu ti chiami.' },
-    { sentence: 'Il professore ______ chiama Rossi.', blank:'si', opts:['mi','ti','si','ci','vi'], note:'3ª persona: lui/lei si chiama.' },
-    { sentence: 'Come ______ chiamate, ragazzi?', blank:'vi', opts:['mi','ti','si','ci','vi'], note:'2ª persona plural: voi vi chiamate.' },
-    { sentence: 'Noi ______ chiamiamo "Gli Amici dell\'italiano".',blank:'ci',opts:['mi','ti','si','ci','vi'], note:'1ª persona plural: noi ci chiamiamo.' },
-    { sentence: 'Loro ______ chiamano Marco e Luca.', blank:'si', opts:['mi','ti','si','ci','vi'], note:'3ª persona plural: loro si chiamano.' },
+    { sentence: '_____ chiamo Lucia. Sono di Milano.',        blank:'mi', pronoun:'io',      note:'io → <strong>mi</strong> chiamo. 1ª pers. sing.' },
+    { sentence: 'Come _____ chiami? Non ho capito bene!',     blank:'ti', pronoun:'tu',      note:'tu → <strong>ti</strong> chiami. 2ª pers. sing.' },
+    { sentence: 'Il professore _____ chiama dottor Rossi.',   blank:'si', pronoun:'lui/lei', note:'lui/lei → <strong>si</strong> chiama. 3ª pers. sing.' },
+    { sentence: 'Come _____ chiamate voi, ragazzi?',          blank:'vi', pronoun:'voi',     note:'voi → <strong>vi</strong> chiamate. 2ª pers. pl.' },
+    { sentence: 'Noi _____ chiamiamo "Il Circolo Italiano".', blank:'ci', pronoun:'noi',     note:'noi → <strong>ci</strong> chiamiamo. 1ª pers. pl.' },
+    { sentence: 'Loro _____ chiamano Marco e Giulia.',        blank:'si', pronoun:'loro',    note:'loro → <strong>si</strong> chiamano. 3ª pers. pl.' },
   ];
+
   function buildExChiamarsi() {
     const card = document.getElementById('exChiamarsi');
     chiData.forEach((item, i) => {
       const div = document.createElement('div');
       div.id = 'exchi-' + i;
-      div.style.cssText = 'margin-bottom:0.9rem;';
-      const opts = [...item.opts].sort(() => Math.random() - 0.5);
-      div.innerHTML = `
-        <p style="font-size:0.91rem;margin-bottom:0.4rem;">${i+1}. <em>${item.sentence}</em></p>
-        <div class="opts-row">
-          ${opts.map(o => `<button class="opt" onclick="checkOptChi(${i},this,'${o}')">${o}</button>`).join('')}
-        </div>
-        <div class="opt-fb" id="exchi-fb-${i}"></div>
-      `;
+      div.style.cssText = 'margin-bottom:1.1rem;background:var(--cream);border-radius:var(--r);padding:0.75rem 1rem;';
+      div.innerHTML =
+        '<p style="font-size:0.91rem;margin-bottom:0.35rem;">' +
+          '<span style="color:var(--mc-dk);font-weight:700;margin-right:0.4rem;">(' + item.pronoun + ')</span>' +
+          '<em>' + item.sentence.replace('_____',
+            '<input class="chi-inp" id="chi-inp-' + i + '" placeholder="?" maxlength="3" autocomplete="off"' +
+            ' onkeypress="if(event.key===\'Enter\')checkChiInput(' + i + ')">'
+          ) + '</em>' +
+        '</p>' +
+        '<div class="opt-fb" id="exchi-fb-' + i + '" style="font-size:0.82rem;margin-top:0.25rem;"></div>';
       card.appendChild(div);
     });
   }
 
+  function checkChiInput(i) {
+    var inp = document.getElementById('chi-inp-' + i);
+    var fb  = document.getElementById('exchi-fb-' + i);
+    var container = document.getElementById('exchi-' + i);
+    if (!inp || container.dataset.done) return;
+    var val = (inp.value || '').trim().toLowerCase();
+    var ok  = val === chiData[i].blank;
+    if (ok) {
+      container.dataset.done = '1';
+      inp.style.borderColor = '#52a670'; inp.style.background = '#e8f5ec'; inp.style.color = '#1f5c35';
+      inp.disabled = true;
+      fb.innerHTML = '✓ ' + chiData[i].note;
+      fb.className = 'opt-fb ok';
+    } else {
+      inp.style.borderColor = '#cc4736'; inp.style.background = '#fdecea';
+      fb.innerHTML = '✗ No es correcto. Pista: <em>mi · ti · si · ci · vi · si</em>';
+      fb.className = 'opt-fb err';
+    }
+    ippRetry(fb, function() {
+      delete container.dataset.done;
+      inp.value = ''; inp.style.borderColor = ''; inp.style.background = ''; inp.style.color = '';
+      inp.disabled = false;
+      fb.textContent = ''; fb.className = 'opt-fb';
+    });
+  }
+
+  function checkAllChi() {
+    chiData.forEach(function(_, i) { checkChiInput(i); });
+  }
+
   /* ═══ EJ D: SALUTI ═══ */
+  /* D2 — Situaciones: producción libre */
+  const situData = [
+    {
+      ctx: 'Son las 9:30 de la mañana. Entrás a una farmacia y la farmacéutica te mira.',
+      accepted: ['buongiorno','buon giorno'],
+      note: '<strong>Buongiorno!</strong> — saludo de mañana, contexto formal con desconocida.'
+    },
+    {
+      ctx: 'Tu amigo Marco te manda un mensaje por WhatsApp a las 15hs.',
+      accepted: ['ciao'],
+      note: '<strong>Ciao!</strong> — entre amigos, cualquier hora, siempre informal.'
+    },
+    {
+      ctx: 'Llegás a las 20hs a una cena de trabajo. Tu jefa te recibe en la puerta.',
+      accepted: ['buonasera','buona sera'],
+      note: '<strong>Buonasera!</strong> — saludo de tarde-noche, contexto formal.'
+    },
+    {
+      ctx: 'Es la 1 de la madrugada. Le decís buenas noches a tu compañera de piso.',
+      accepted: ['buonanotte','buona notte'],
+      note: '<strong>Buonanotte!</strong> — al irse a dormir, formal o informal.'
+    },
+    {
+      ctx: 'Tu profesora de italiano termina la clase. Te despedís con respeto.',
+      accepted: ['arrivederla','arrivederci'],
+      note: '<strong>Arrivederla!</strong> es la forma más respetuosa. <strong>Arrivederci</strong> también es válido en ese contexto.'
+    },
+    {
+      ctx: 'Ves a tu amiga Sofia y querés saber cómo está. Le preguntás:',
+      accepted: ['come stai','come stai?'],
+      note: '<strong>Come stai?</strong> — "¿Cómo estás?" informal. La formal sería "Come sta?"'
+    },
+  ];
+
+  function buildExSituaciones() {
+    const card = document.getElementById('exSituaciones');
+    if (!card) return;
+    card.innerHTML = '';
+    situData.forEach(function(item, i) {
+      const div = document.createElement('div');
+      div.id = 'situ-' + i;
+      div.style.cssText = 'margin-bottom:1rem;background:var(--cream);border-radius:var(--r);padding:0.8rem 1rem;';
+      div.innerHTML =
+        '<p style="font-size:0.85rem;color:#555;margin-bottom:0.4rem;font-style:italic;">' + item.ctx + '</p>' +
+        '<input class="chi-inp" id="situ-inp-' + i + '" placeholder="Escribí el saludo en italiano…" maxlength="30"' +
+        ' style="width:100%;max-width:280px;text-align:left;padding-left:0.5rem;"' +
+        ' onkeypress="if(event.key===\'Enter\')checkSitu(' + i + ')">' +
+        '<div class="opt-fb" id="situ-fb-' + i + '" style="font-size:0.82rem;margin-top:0.3rem;"></div>';
+      card.appendChild(div);
+    });
+  }
+
+  function checkSitu(i) {
+    var inp = document.getElementById('situ-inp-' + i);
+    var fb  = document.getElementById('situ-fb-' + i);
+    var container = document.getElementById('situ-' + i);
+    if (!inp || container.dataset.done) return;
+    var val = (inp.value || '').trim().toLowerCase().replace(/[!?.,]/g,'');
+    var ok  = situData[i].accepted.indexOf(val) !== -1;
+    if (ok) {
+      container.dataset.done = '1';
+      inp.style.borderColor = '#52a670'; inp.style.background = '#e8f5ec'; inp.style.color = '#1f5c35';
+      inp.disabled = true;
+      fb.innerHTML = '✓ ' + situData[i].note;
+      fb.className = 'opt-fb ok';
+    } else {
+      inp.style.borderColor = '#cc4736'; inp.style.background = '#fdecea';
+      fb.textContent = '✗ No es correcto para ese contexto. Revisá la tabla de saludos.';
+      fb.className = 'opt-fb err';
+    }
+    ippRetry(fb, function() {
+      delete container.dataset.done;
+      inp.value = ''; inp.style.borderColor = ''; inp.style.background = ''; inp.style.color = '';
+      inp.disabled = false;
+      fb.textContent = ''; fb.className = 'opt-fb';
+    });
+  }
+
+  function checkAllSitu() {
+    var ok = 0;
+    situData.forEach(function(_, i) {
+      var container = document.getElementById('situ-' + i);
+      if (container && container.dataset.done) { ok++; return; }
+      checkSitu(i);
+    });
+    var res = document.getElementById('exSituRes');
+    if (res) {
+      var done = document.querySelectorAll('#exSituaciones [data-done]').length;
+      res.textContent = done + '/' + situData.length + ' correctas.';
+      res.className = 'ex-result ' + (done === situData.length ? 'ok' : 'err');
+    }
+  }
+
   const salutiData = [
-    ['Buongiorno!',    'F', 'Saludo formal — se usa por la mañana con desconocidos o en contextos profesionales.'],
-    ['Ciao!',          'I', 'Saludo informal — con amigos y conocidos.'],
-    ['Buonasera!',     'F', 'Formal — desde las 18hs aproximadamente.'],
-    ['Come stai?',     'I', 'Informal — "stai" es la forma tu del verbo stare.'],
-    ['Come sta?',      'F', 'Formal — "sta" es la forma lei/Lei del verbo stare.'],
-    ['Arrivederla!',   'F', 'Muy formal — la -La es el pronombre de cortesía.'],
-    ['A presto!',      'I', 'Informal — "¡Hasta pronto!"'],
-    ['Buonanotte!',    'N', 'Neutro — se usa al irse a dormir, tanto formal como informalmente.'],
+    ['Buongiorno!',    'F', 'Formal — mañana, con desconocidos o en contextos profesionales.'],
+    ['Ciao!',          'I', 'Informal — solo entre amigos, familia y conocidos.'],
+    ['Buonasera!',     'F', 'Formal — desde las 18hs, en contextos adultos o profesionales.'],
+    ['Come stai?',     'I', 'Informal — usa "stai" (tú). Con desconocidos sería "Come sta?".'],
+    ['Come sta?',      'F', 'Formal — usa "sta" (Lei, usted). Se usa con adultos desconocidos.'],
+    ['Arrivederla!',   'F', 'Muy formal — "-La" es el pronombre de cortesía en tercera persona.'],
+    ['A presto!',      'I', 'Informal — "¡Hasta pronto!" Se usa con conocidos.'],
+    ['Salve!',         'N', 'Neutro — la opción segura: funciona tanto formal como informalmente.'],
+    ['Arrivederci',    'N', 'Neutro — "Hasta luego" estándar, válido en casi cualquier contexto.'],
+    ['Buonanotte!',    'N', 'Neutro — al irse a dormir: se usa con cualquier persona.'],
   ];
   function buildExSaluti() {
     const card = document.getElementById('exSaluti');
@@ -784,6 +1063,7 @@ if (!window.__ippVC) {
         <div style="display:flex;gap:0.4rem;">
           <button class="opt" style="padding:0.3rem 0.9rem;" onclick="checkSaluto(${i},this,'F')">Formal</button>
           <button class="opt" style="padding:0.3rem 0.9rem;" onclick="checkSaluto(${i},this,'I')">Informal</button>
+          <button class="opt" style="padding:0.3rem 0.9rem;" onclick="checkSaluto(${i},this,'N')">Neutro</button>
         </div>
         <div class="opt-fb" id="exsal-fb-${i}" style="width:100%;margin-top:0.25rem;"></div>
       `;
@@ -797,48 +1077,96 @@ if (!window.__ippVC) {
     if (row.dataset.done) return;
     row.dataset.done = '1';
     row.querySelectorAll('.opt').forEach(b => b.classList.add('disabled'));
-    const ok = pressed === correct || correct === 'N';
+    const ok = pressed === correct;
     btn.classList.add(ok ? 'correct' : 'wrong');
+    if (!ok) {
+      row.querySelectorAll('.opt').forEach(b => {
+        const map = { 'Formal':'F', 'Informal':'I', 'Neutro':'N' };
+        if (map[b.textContent.trim()] === correct) b.classList.add('correct');
+      });
+    }
     const fb = document.getElementById('exsal-fb-' + i);
     fb.textContent = (ok ? '✓ ' : '✗ ') + note;
     fb.className = 'opt-fb ' + (ok ? 'ok' : 'err');
+    ippRetry(fb, function() {
+      delete row.dataset.done;
+      row.querySelectorAll('.opt').forEach(b => b.classList.remove('disabled','correct','wrong'));
+      fb.textContent = ''; fb.className = 'opt-fb';
+    });
   }
 
   function checkOptChi(i, btn, pressed) {
-    const item = chiData[i];
+    var item = chiData[i];
     checkOpt('exchi-' + i, btn, pressed, item.blank, item.note);
   }
 
-  /* ═══ EJ E: NUMERI ═══ */
+  /* ═══ EJ E: NUMERI — escritura libre + aritmética ═══ */
+  // [etiqueta, correcto, [incorrectos similares], feedback]
   const numExData = [
-    [7,  'sette',       ['sette','sei','otto']],
-    [13, 'tredici',     ['quattordici','tredici','dodici']],
-    [21, 'ventuno',     ['ventiuno','ventuno','ventisette']],
-    [28, 'ventotto',    ['ventotto','ventotto','ventotto'].map((v,i)=>i===0?'ventiotto':i===1?'ventotto':'ventohotto')],
-    [15, 'quindici',    ['quinici','quindice','quindici']],
-    [23, 'ventitré',    ['ventitre','ventitré','ventisette']],
-    [30, 'trenta',      ['trenta','trentuno','trentadue'].map((v,i)=>i===0?'trenta':i===1?'trentuno':'treinta')],
+    ['11',     'undici',      ['undeci','undize','oundici'],          '11 = undici — UN-di-ci (3 sílabas). "Undeci" no existe.'],
+    ['16',     'sedici',      ['seidici','sedece','sedizi'],          '16 = sedici. sei → sedi al combinarse. No "seidici".'],
+    ['17',     'diciassette', ['diciasette','dicissette','dicciasette'],'17 = diciassette. Doble S obligatoria: di-cias-SET-te.'],
+    ['21',     'ventuno',     ['ventiuno','veintiuno','ventuono'],    '21 = ventuno. La I se pierde: no "ventiuno".'],
+    ['23',     'ventitré',    ['ventitre','ventitres','ventitré'],    '23 = ventitré. El acento en É es obligatorio — sin él es incorrecto.'],
+    ['28',     'ventotto',    ['ventiotto','ventoto','ventocto'],     '28 = ventotto. La I se pierde: no "ventiotto".'],
+    ['14',     'quattordici', ['quatordici','quattordeci','cuattordici'],'14 = quattordici. Doble T: quaTTordici.'],
+    ['8 + 5',  'tredici',     ['terdici','tridici','tredeci'],       '8+5=13 = tredici. tre + dici, no "terdici" (las sílabas van en ese orden).'],
+    ['20 − 3', 'diciassette', ['diciasette','diciasete','dici-assette'],'20−3=17 = diciassette. Doble S — error clásico omitirla.'],
+    ['4 × 4',  'sedici',      ['seidici','diecisei','sedize'],       '4×4=16 = sedici. No "seidici" ni "diecisei" (eso es español).'],
   ];
+
   function buildExNumeri() {
-    const card = document.getElementById('exNumeri');
-    numExData.forEach((item, i) => {
-      const [num, correct, opts] = item;
-      const shuffled = [...opts].sort(() => Math.random() - 0.5);
-      const div = document.createElement('div');
+    var card = document.getElementById('exNumeri');
+    card.innerHTML = '';
+    numExData.forEach(function(item, i) {
+      var label   = item[0];
+      var correct = item[1];
+      var wrongs  = item[2];
+      var allOpts = [correct].concat(wrongs).sort(function() { return Math.random() - 0.5; });
+      var isOp = /[+−×]/.test(label);
+      var question = isOp
+        ? '<strong style="color:var(--mc-dk);">Quanto fa ' + label + '?</strong>'
+        : '<strong>' + (i + 1) + '.</strong> ¿Cómo se escribe <strong style="font-size:1.05rem;">' + label + '</strong> en italiano?';
+      var div = document.createElement('div');
       div.id = 'exnum-' + i;
-      div.style.marginBottom = '1rem';
-      div.innerHTML = `
-        <p style="font-size:0.95rem;margin-bottom:0.4rem;font-weight:600;">
-          ${i+1}. ¿Cómo se escribe el número <strong>${num}</strong>?
-        </p>
-        <div class="opts-row">
-          ${shuffled.map(o => `<button class="opt" onclick="checkOpt('exnum-${i}',this,'${o}','${correct}','${num} = ${correct}')">${o}</button>`).join('')}
-        </div>
-        <div class="opt-fb" id="exnum-fb-${i}"></div>
-      `;
+      div.style.cssText = 'margin-bottom:1.1rem;background:var(--cream);border-radius:var(--r);padding:0.8rem 1rem;';
+      div.innerHTML =
+        '<p style="font-size:0.91rem;margin-bottom:0.6rem;">' + question + '</p>' +
+        '<div class="opts-row" id="exnum-opts-' + i + '">' +
+        allOpts.map(function(opt) {
+          return '<button class="opt" onclick="checkNumOpt(' + i + ',this,\'' + opt.replace(/'/g,"\\'") + '\')">' + opt + '</button>';
+        }).join('') +
+        '</div>' +
+        '<div class="opt-fb" id="exnum-fb-' + i + '" style="font-size:0.82rem;margin-top:0.35rem;"></div>';
       card.appendChild(div);
     });
   }
+
+  function checkNumOpt(i, btn, pressed) {
+    var correct   = numExData[i][1];
+    var container = document.getElementById('exnum-' + i);
+    var fb        = document.getElementById('exnum-fb-' + i);
+    if (container.dataset.done) return;
+    container.dataset.done = '1';
+    container.querySelectorAll('.opt').forEach(function(b) { b.classList.add('disabled'); });
+    var ok = pressed === correct;
+    btn.classList.add(ok ? 'correct' : 'wrong');
+    if (!ok) {
+      container.querySelectorAll('.opt').forEach(function(b) {
+        if (b.textContent.trim() === correct) b.classList.add('correct');
+      });
+    }
+    fb.textContent = (ok ? '✓ ' : '✗ ') + numExData[i][3];
+    fb.className = 'opt-fb ' + (ok ? 'ok' : 'err');
+    ippRetry(fb, function() {
+      delete container.dataset.done;
+      container.querySelectorAll('.opt').forEach(function(b) { b.classList.remove('disabled','correct','wrong'); });
+      fb.textContent = ''; fb.className = 'opt-fb';
+    });
+  }
+
+  function checkNumInput(i) { checkNumOpt(i, document.createElement('button'), ''); }
+  function checkAllNum() {}
 
   /* ═══ EJ F: ORDENAR DIÁLOGO ═══ */
   const ordenData = [
@@ -877,8 +1205,18 @@ if (!window.__ippVC) {
     const res = document.getElementById('exOrdenRes');
     res.textContent = ok === shuffledOrden.length
       ? '¡Perfetto! Orden correcto: Ciao → Mi chiamo → Piacere → Come si scrive → Deletreo.'
-      : `${ok}/${shuffledOrden.length} correctas. Revisá el orden y volvé a intentarlo.`;
+      : `${ok}/${shuffledOrden.length} correctas.`;
     res.className = 'ex-result ' + (ok === shuffledOrden.length ? 'ok' : 'err');
+    if (ok < shuffledOrden.length) {
+      ippRetry(res, function() {
+        res.className = 'ex-result';
+        res.textContent = '';
+        shuffledOrden.forEach(function(_, i) {
+          var sel = document.getElementById('ord-sel-' + i);
+          if (sel) { sel.value = ''; sel.style.borderColor = ''; sel.style.background = ''; }
+        });
+      });
+    }
   }
 
   /* ═══ GENERIC CHECK OPT ═══ */
@@ -899,28 +1237,42 @@ if (!window.__ippVC) {
     if (fb) {
       fb.textContent = (ok ? '✓ ' : '✗ ') + note;
       fb.className = 'opt-fb ' + (ok ? 'ok' : 'err');
+      if (!ok) {
+        ippRetry(fb, function() {
+          delete container.dataset.done;
+          container.querySelectorAll('.opt').forEach(b => b.classList.remove('disabled','correct','wrong'));
+          fb.textContent = ''; fb.className = 'opt-fb';
+        });
+      }
     }
   }
 
   /* ═══ INIT ═══ */
-  buildAlfaFull();
-  buildNums();
-  buildEspr();
-  buildExAlfa();
-  buildExVF();
-  buildExChiamarsi();
-  buildExSaluti();
-  buildExNumeri();
-  buildOrden();
+  // Exponer funciones PRIMERO — así los onclick funcionan aunque un build falle (Odoo DOMEval)
+  window.ippAudio     = ippAudio;
+  window.checkExAlfa  = checkExAlfa;
+  window.checkOrden   = checkOrden;
+  window.checkExVF    = checkExVF;
+  window.checkOptChi  = checkOptChi;
+  window.checkChiInput = checkChiInput;
+  window.checkAllChi   = checkAllChi;
+  window.checkNumInput = checkNumInput;
+  window.checkAllNum   = checkAllNum;
+  window.checkSitu     = checkSitu;
+  window.checkAllSitu  = checkAllSitu;
+  window.checkSaluto  = checkSaluto;
+  window.checkOpt     = checkOpt;
+  window.ippRetry = ippRetry;
 
-  // Exponer funciones para onclick handlers (necesario en Odoo DOMEval)
-  window.ippAudio = ippAudio;
-  window.checkExAlfa = checkExAlfa;
-  window.checkOrden = checkOrden;
-  window.checkExVF = checkExVF;
-  window.checkOptChi = checkOptChi;
-  window.checkSaluto = checkSaluto;
-  window.checkOpt = checkOpt;
+  // Builds con try-catch — un fallo no bloquea el resto
+  var builds = [
+    buildAlfaFull, buildNums, buildEspr,
+    buildExAlfa, buildExVF, buildExChiamarsi,
+    buildExSaluti, buildExSituaciones, buildExNumeri, buildOrden
+  ];
+  builds.forEach(function(fn) {
+    try { fn(); } catch(e) { console.warn('[IPP build error]', fn.name, e); }
+  });
 })();
 </script>
 <div id="ippyt-frame" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden"></div>

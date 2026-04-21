@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Módulo 2 — Di dove sei? | Etapa 3: Gramática</title>
+<title>Di dove sei?</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -50,8 +50,8 @@ body { font-family: var(--fb); background: var(--cream); color: var(--black); mi
 .conj-table td:nth-child(2) { font-weight: 700; color: var(--mc-text); font-style: italic; }
 .conj-table td:last-child { color: #666; font-size: 0.82rem; }
 .conj-table tr:nth-child(even) td { background: var(--cream); }
-.conj-table .conj-play { background: none; border: 1.5px solid var(--mc); color: var(--mc); border-radius: 10px; padding: 2px 8px; font-size: 0.72rem; cursor: pointer; }
-.conj-table .conj-play:hover { background: var(--mc); color: var(--white); }
+.conj-play { background: none; border: 1.5px solid var(--mc); color: var(--mc); border-radius: 50%; width: 28px; height: 28px; padding: 0; font-size: 0.72rem; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.conj-play:hover { background: var(--mc); color: var(--white); }
 
 /* NOMI TABLE */
 .nomi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -60,10 +60,15 @@ body { font-family: var(--fb); background: var(--cream); color: var(--black); mi
 .nomi-head.m { background: #e8f0fd; color: #1a3a6b; }
 .nomi-head.f { background: #fde8f0; color: #6b1a3a; }
 .nomi-body { padding: 14px 16px; }
-.nomi-row { display: flex; align-items: center; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--cream-dk); font-size: 0.9rem; }
+.nomi-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--cream-dk); font-size: 0.9rem; }
 .nomi-row:last-child { border-bottom: none; }
-.nomi-it { font-style: italic; font-weight: 600; color: var(--mc-text); }
-.nomi-es { font-size: 0.78rem; color: #888; }
+.nomi-it { font-style: italic; font-weight: 600; color: var(--mc-text); flex: 1; }
+.nomi-es { font-size: 0.78rem; color: #888; flex: 1; }
+/* Nomi play buttons — colores por género */
+.nomi-m .conj-play { border-color: #1a3a6b; color: #1a3a6b; }
+.nomi-m .conj-play:hover { background: #e8f0fd; color: #1a3a6b; }
+.nomi-f .conj-play { border-color: #6b1a3a; color: #6b1a3a; }
+.nomi-f .conj-play:hover { background: #fde8f0; color: #6b1a3a; }
 
 /* VERBI ARE */
 .are-wrap { background: var(--white); border-radius: var(--r); border: 1px solid var(--cream-dk); overflow: hidden; }
@@ -78,7 +83,7 @@ body { font-family: var(--fb); background: var(--cream); color: var(--black); mi
 .are-table td:first-child { color: #888; font-size: 0.82rem; width: 70px; }
 .are-table td:nth-child(2) { font-weight: 700; color: var(--mc-text); font-style: italic; }
 .are-table td:last-child { color: #666; font-size: 0.82rem; }
-.are-table .a-play { background: none; border: 1.5px solid var(--mc); color: var(--mc); border-radius: 10px; padding: 2px 8px; font-size: 0.72rem; cursor: pointer; }
+.are-table .a-play { background: none; border: 1.5px solid var(--mc); color: var(--mc); border-radius: 50%; width: 28px; height: 28px; padding: 0; font-size: 0.72rem; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .are-table .a-play:hover { background: var(--mc); color: var(--white); }
 
 /* EXERCISES */
@@ -141,11 +146,18 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
 .yt-btn-stop{background:var(--cream-dk,#ddd9c8);color:#1a1a18}
 .yt-btn-stop:hover{filter:brightness(.92)}
 .yt-btn:disabled{opacity:.45;cursor:not-allowed}
+.ipp-stop-fab{position:fixed;bottom:22px;right:22px;z-index:999;background:var(--cream-dk,#ddd9c8);color:#1a1a18;border:none;border-radius:50px;padding:9px 18px;font-size:.82rem;font-weight:700;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.18);display:none;align-items:center;gap:6px;font-family:var(--fb,'Outfit',system-ui,sans-serif)}
+.ipp-stop-fab:hover{background:#c8c4b4}
+.vocab-audio-btn{background:var(--mc-bg);border:none;color:var(--mc-text);border-radius:10px;padding:3px 10px;font-size:0.72rem;font-weight:600;cursor:pointer;margin-left:auto;flex-shrink:0;font-family:var(--fb)}
+.vocab-audio-btn:hover{background:var(--mc);color:var(--white)}
+.audio-stop-row{display:flex;justify-content:flex-end;margin-top:10px;}
+.audio-stop-sm{display:inline-flex;align-items:center;gap:5px;background:var(--cream-dk);color:var(--black);border:none;border-radius:16px;padding:5px 14px;font-size:0.8rem;font-weight:600;cursor:pointer;font-family:var(--fb)}
+.audio-stop-sm:hover{background:#c8c4b4}
 </style>
 </head>
 <body>
 
-
+<button class="ipp-stop-fab" id="ippStopFab" onclick="ippStop()">⏹ Detener audio</button>
 
 <div class="hero">
   <div class="hero-badge">Módulo 2 · Etapa 3</div>
@@ -387,11 +399,11 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
   <div class="nomi-card">
     <div class="nomi-head m">MASCHILE — il / un</div>
     <div class="nomi-body">
-      <div class="nomi-row"><span class="nomi-it">il treno</span><span class="nomi-es">el tren</span><button class="conj-play" onclick="ippAudio('il treno',0.85,'m')">▶</button></div>
-      <div class="nomi-row"><span class="nomi-it">il binario</span><span class="nomi-es">el andén</span><button class="conj-play" onclick="ippAudio('il binario',0.85,'m')">▶</button></div>
-      <div class="nomi-row"><span class="nomi-it">il passaporto</span><span class="nomi-es">el pasaporte</span><button class="conj-play" onclick="ippAudio('il passaporto',0.85,'m')">▶</button></div>
-      <div class="nomi-row"><span class="nomi-it">il nome</span><span class="nomi-es">el nombre</span><button class="conj-play" onclick="ippAudio('il nome',0.85,'m')">▶</button></div>
-      <div class="nomi-row"><span class="nomi-it">il numero</span><span class="nomi-es">el número</span><button class="conj-play" onclick="ippAudio('il numero',0.85,'m')">▶</button></div>
+      <div class="nomi-row"><span class="nomi-it">il treno</span><span class="nomi-es">el tren</span><button class="vocab-audio-btn" onclick="ippAudio('il treno',0.85,'m')">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">il binario</span><span class="nomi-es">el andén</span><button class="vocab-audio-btn" onclick="ippAudio('il binario',0.85,'m')">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">il passaporto</span><span class="nomi-es">el pasaporte</span><button class="vocab-audio-btn" onclick="ippAudio('il passaporto',0.85,'m')">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">il nome</span><span class="nomi-es">el nombre</span><button class="vocab-audio-btn" onclick="ippAudio('il nome',0.85,'m')">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">il numero</span><span class="nomi-es">el número</span><button class="vocab-audio-btn" onclick="ippAudio('il numero',0.85,'m')">▶ escuchar</button></div>
       <div class="nomi-row" style="background:var(--mc-bg);padding:8px;border-radius:6px;margin-top:8px;">
         <span style="font-size:0.8rem;color:var(--mc-text);">Generalmente terminan en <strong>-o</strong></span>
       </div>
@@ -400,17 +412,19 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
   <div class="nomi-card">
     <div class="nomi-head f">FEMMINILE — la / una</div>
     <div class="nomi-body">
-      <div class="nomi-row"><span class="nomi-it">la stazione</span><span class="nomi-es">la estación</span><button class="conj-play" onclick="ippAudio('la stazione',0.85,'f')">▶</button></div>
-      <div class="nomi-row"><span class="nomi-it">la città</span><span class="nomi-es">la ciudad</span><button class="conj-play" onclick="ippAudio('la città',0.85,'f')">▶</button></div>
-      <div class="nomi-row"><span class="nomi-it">la valigia</span><span class="nomi-es">la maleta</span><button class="conj-play" onclick="ippAudio('la valigia',0.85,'f')">▶</button></div>
-      <div class="nomi-row"><span class="nomi-it">la nazionalità</span><span class="nomi-es">la nacionalidad</span><button class="conj-play" onclick="ippAudio('la nazionalità',0.85,'f')">▶</button></div>
-      <div class="nomi-row"><span class="nomi-it">la partenza</span><span class="nomi-es">la salida</span><button class="conj-play" onclick="ippAudio('la partenza',0.85,'f')">▶</button></div>
+      <div class="nomi-row"><span class="nomi-it">la stazione</span><span class="nomi-es">la estación</span><button class="vocab-audio-btn" onclick="ippAudio('la stazione',0.85,'f')">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">la città</span><span class="nomi-es">la ciudad</span><button class="vocab-audio-btn" onclick="ippAudio('la città',0.85,'f')">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">la valigia</span><span class="nomi-es">la maleta</span><button class="vocab-audio-btn" onclick="ippAudio('la valigia',0.85,'f')">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">la nazionalità</span><span class="nomi-es">la nacionalidad</span><button class="vocab-audio-btn" onclick="ippAudio('la nazionalità',0.85,'f')">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">la partenza</span><span class="nomi-es">la salida</span><button class="vocab-audio-btn" onclick="ippAudio('la partenza',0.85,'f')">▶ escuchar</button></div>
       <div class="nomi-row" style="background:#fde8f0;padding:8px;border-radius:6px;margin-top:8px;">
         <span style="font-size:0.8rem;color:#6b1a3a;">Generalmente terminan en <strong>-a</strong> o <strong>-ione</strong></span>
       </div>
     </div>
   </div>
 </div>
+
+<div class="audio-stop-row"><button class="audio-stop-sm" onclick="ippStop()">⏹ Detener audio</button></div>
 
 <div class="callout" style="margin-top:16px;">
   💡 <strong>Excepciones:</strong> <em>il problema, il programma</em> (terminan en -a pero son maschile) · <em>la mano</em> (termina en -o pero es femminile). ¡Siempre conviene aprender el artículo con el nombre!
@@ -482,13 +496,14 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
         <tr><th>Persona</th><th>abitare</th><th>parlare</th><th>lavorare</th><th>chiamarsi</th><th></th></tr>
       </thead>
       <tbody>
-        <tr><td>io</td><td>abito</td><td>parlo</td><td>lavoro</td><td>mi chiamo</td><td><button class="a-play" onclick="ippAudio('io abito, io parlo, io lavoro, mi chiamo',0.82,'f')">▶</button></td></tr>
-        <tr><td>tu</td><td>abiti</td><td>parli</td><td>lavori</td><td>ti chiami</td><td><button class="a-play" onclick="ippAudio('tu abiti, tu parli, tu lavori, come ti chiami',0.82,'m')">▶</button></td></tr>
-        <tr><td>lui/lei</td><td>abita</td><td>parla</td><td>lavora</td><td>si chiama</td><td><button class="a-play" onclick="ippAudio('lui abita, lei parla, lui lavora, si chiama',0.82,'f')">▶</button></td></tr>
+        <tr><td>io</td><td>abito</td><td>parlo</td><td>lavoro</td><td>mi chiamo</td><td><button class="vocab-audio-btn" onclick="ippAudio('io abito, io parlo, io lavoro, mi chiamo',0.82,'f')">▶ escuchar</button></td></tr>
+        <tr><td>tu</td><td>abiti</td><td>parli</td><td>lavori</td><td>ti chiami</td><td><button class="vocab-audio-btn" onclick="ippAudio('tu abiti, tu parli, tu lavori, ti chiami',0.82,'m')">▶ escuchar</button></td></tr>
+        <tr><td>lui/lei</td><td>abita</td><td>parla</td><td>lavora</td><td>si chiama</td><td><button class="vocab-audio-btn" onclick="ippAudio('lui abita, lei parla, lui lavora, si chiama',0.82,'f')">▶ escuchar</button></td></tr>
       </tbody>
     </table>
   </div>
 </div>
+<div class="audio-stop-row"><button class="audio-stop-sm" onclick="ippStop()">⏹ Detener audio</button></div>
 
 <div style="background: var(--cream); border-radius: var(--r); padding: 16px 20px; margin: 20px 0;">
 <div class="ex-section">
@@ -673,6 +688,10 @@ function ippAudio(text, rate, gender) {
   utt.lang = 'it-IT'; utt.rate = rate;
   var voice = ippVoice(gender);
   if (voice) utt.voice = voice;
+  utt.onerror = function() {};
+  utt.onend = function() { var f=document.getElementById('ippStopFab'); if(f) f.style.display='none'; };
+  var fab = document.getElementById('ippStopFab');
+  if (fab) fab.style.display = 'inline-flex';
   (function(u){ setTimeout(function(){ try { speechSynthesis.speak(u); } catch(e){} }, 60); })(utt);
 }
 
@@ -704,7 +723,14 @@ function checkOpt(btn, exId, isCorrect, msg) {
   fb.className = 'ex-fb ' + (isCorrect ? 'ok' : 'no');
 }
 
+function ippStop() {
+  try { window.speechSynthesis.cancel(); } catch(e) {}
+  var fab = document.getElementById('ippStopFab');
+  if (fab) fab.style.display = 'none';
+}
+
   window.ippAudio = ippAudio;
+  window.ippStop  = ippStop;
   window.checkOpt = checkOpt;
 } // end execution guard
 </script>

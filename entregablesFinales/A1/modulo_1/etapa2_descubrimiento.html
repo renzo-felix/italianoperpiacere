@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unità 1 · Descubrimiento | Italiano Per Piacere</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Unità 0 · Descubrimiento | Italiano Per Piacere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
     :root {
       --cream:    #e9e6d5;
@@ -155,6 +152,15 @@
     .vf-btn.correct { background: #e8f5ec; border-color: #52a670; color: #1f5c35; }
     .vf-btn.wrong   { background: #fdecea; border-color: var(--red); color: #7a1f14; }
     .vf-btn.disabled { pointer-events: none; opacity: 0.55; }
+    .ipp-retry-btn {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      background: none; border: 1.5px solid #e5ab07;
+      color: #c8940a; border-radius: 20px;
+      padding: 0.25rem 0.85rem; font-size: 0.76rem; font-weight: 700;
+      cursor: pointer; font-family: var(--fb);
+      margin-top: 0.5rem; transition: all 0.2s; display: block;
+    }
+    .ipp-retry-btn:hover { background: #EFCF7F; color: #1a1a18; }
     .vf-explic { font-size: 0.79rem; color: #555; margin: 0.2rem 0 0.5rem 1rem; display: none; font-style: italic; }
     .vf-explic.show { display: block; }
 
@@ -309,10 +315,14 @@
     .pattern-row .pr-pro { font-weight: 700; color: var(--mc-dk); }
     .pattern-row .pr-blank {
       background: var(--white); border: 2px dashed var(--cream-dk);
-      border-radius: 6px; padding: 0.2rem 0.5rem; font-style: italic; color: #bbb;
-      text-align: center; font-size: 0.85rem;
+      border-radius: 6px; padding: 0.2rem 0.5rem;
+      text-align: center; font-size: 0.85rem; font-family: var(--fb);
+      width: 72px; outline: none; cursor: text;
     }
-    .pattern-row .pr-blank.revealed { color: var(--red); font-weight: 700; font-style: normal; border-style: solid; border-color: var(--red); background: #fdecea; }
+    .pattern-row .pr-blank:focus { border-color: var(--mc); border-style: solid; }
+    .pattern-row .pr-blank.ok  { color: var(--mc-dk); font-weight: 700; border-style: solid; border-color: var(--mc); background: #e4f0e9; }
+    .pattern-row .pr-blank.err { color: var(--red); border-style: solid; border-color: var(--red); background: #fdecea; }
+    .pattern-row .pr-blank.revealed { color: var(--red); font-weight: 700; border-style: solid; border-color: var(--red); background: #fdecea; }
     .pattern-row .pr-ex { font-style: italic; color: #666; font-size: 0.85rem; }
 
     .mc-opts { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.6rem; }
@@ -572,8 +582,8 @@
 .dial-line.yt-done{opacity:.7}
 
 </style>
-</head>
-<body>
+
+
 
 <!-- HERO -->
 <header class="hero">
@@ -581,7 +591,12 @@
   <h1>Come ti chiami?</h1>
 </header>
 
-
+<!-- STAGE NAV -->
+<nav style="background:var(--white);border-bottom:2px solid var(--cream-dk);display:flex;justify-content:center;gap:0.25rem;padding:0.45rem 1rem;flex-wrap:wrap;">
+  <a href="etapa1_input.md" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:20px;border:1.5px solid var(--cream-dk);font-size:0.75rem;font-weight:600;color:#888;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='var(--cream)';this.style.color='var(--mc-dk)'" onmouseout="this.style.background='';this.style.color='#888'">← Input</a>
+  <span style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:20px;border:1.5px solid var(--mc);background:var(--mc-bg);font-size:0.75rem;font-weight:700;color:var(--mc-dk);">● Descubrimiento</span>
+  <a href="etapa3_gramatica.html" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:20px;border:1.5px solid var(--cream-dk);font-size:0.75rem;font-weight:600;color:#888;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='var(--cream)';this.style.color='var(--mc-dk)'" onmouseout="this.style.background='';this.style.color='#888'">Gramática →</a>
+</nav>
 
 <main class="container">
 
@@ -593,9 +608,10 @@
         <div class="sofia-name">Sofia</div>
       </div>
       <div class="sofia-bubble">
-        <em>Benvenuti!</em> Ya viste el video — Italia tiene <strong>20 regiones</strong>, cada una con su arte, su paisaje y su comida.<br><br>
-        Ahora viene lo bueno: aprender a decir <strong>¿de dónde sos?</strong> — <em>Di dove sei?</em> —
-        y a hablar de ciudades italianas. Explorá cada sección a tu ritmo, sin presión.
+        <em>Benvenuti!</em> Hoy empezamos con algo muy simple: <strong>¿cómo te llamás?</strong>
+        Pero antes de responder, hay algo que los italianos hacen siempre: <strong>deletrear el nombre</strong>.
+        Y para deletrear en italiano, <strong>cada letra tiene su propia ciudad</strong>.<br><br>
+        En esta etapa vas a explorar el video, el alfabeto, los saludos, los números y las expresiones clave
         — <em>todo desde los ejemplos, sin reglas todavía</em>. Las reglas las vemos en Gramática.
       </div>
     </div>
@@ -608,9 +624,9 @@
     <p class="sec-sub">Activá lo que viste en la Exploración antes de continuar</p>
     <div class="task-box">
       <strong>Ya miraste el video en la Etapa 1. Ahora reflexioná:</strong><br><br>
-      ① ¿Cuántas regiones tiene Italia?<br>
-      ② ¿En qué ciudad está el David de Miguel Ángel? ¿De qué período histórico es?<br>
-      ③ ¿Qué comida típica asociaron con Nápoles? ¿Y con Emilia Romaña?<br><br>
+      ① ¿Cuántas letras tiene el alfabeto italiano? ¿Más o menos que el español (27)?<br>
+      ② ¿Qué letras se mencionan como <em>straniere</em> (extranjeras)?<br>
+      ③ ¿Qué ciudad italiana aparece en la letra R? ¿Por qué la describen como especial?<br><br>
       <strong>Vas a encontrar las respuestas en las actividades que siguen. El video también está disponible abajo si querés repasar alguna parte.</strong>
     </div>
   </section>
@@ -619,20 +635,14 @@
   <section class="sec" id="s-video">
     <div class="sec-label">Input</div>
     <h2 class="sec-title">Il video</h2>
-    <p class="sec-sub">L'Italia: regioni, arte e cultura · ~2 minutos · en italiano</p>
+    <p class="sec-sub">L'Alfabeto Italiano – un tour città per città · ~2 minutos · en italiano</p>
     <div class="video-wrap" id="videoWrap">
-      <iframe
-        id="yt-iframe"
-        src="https://www.youtube.com/embed/_JUKZQnY_Qk?rel=0"
-        title="L'Italia: regioni, arte e cultura"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        loading="lazy">
+      <iframe id="yt-iframe" src="https://www.youtube.com/embed/b5OLnI8DB3Q?rel=0" title="L'Alfabeto Italiano – città per città" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy">
       </iframe>
     </div>
     <div class="video-note">
       <span>Video: todos los derechos pertenecen a sus autores.</span>
-      <a class="video-yt-link" href="https://www.youtube.com/watch?v=_JUKZQnY_Qk" target="_blank" rel="noopener">
+      <a class="video-yt-link" href="https://www.youtube.com/watch?v=b5OLnI8DB3Q" target="_blank" rel="noopener">
         🔗 Ver directamente en YouTube
       </a>
     </div>
@@ -653,49 +663,49 @@
       <div class="card-title">Verdadero (V) o Falso (F)</div>
 
       <div class="vf-row" id="vf0">
-        <span class="vf-text">Italia está dividida en <em>20 regiones</em>.</span>
+        <span class="vf-text">El alfabeto italiano tiene <em>26 letras</em>, igual que el inglés.</span>
         <div class="vf-btns">
-          <button class="vf-btn" onclick="checkVF('vf0',this,'V',true)">V</button>
-          <button class="vf-btn" onclick="checkVF('vf0',this,'F',false)">F</button>
+          <button class="vf-btn" onclick="checkVF('vf0',this,'V',false)">V</button>
+          <button class="vf-btn" onclick="checkVF('vf0',this,'F',true)">F</button>
         </div>
       </div>
-      <div class="vf-explic" id="vf0-ex">¡Correcto! El video lo dice al inicio: <strong>«l'Italia è suddivisa in 20 regioni»</strong>. Cada región tiene su propio carácter, paisaje y cocina.</div>
+      <div class="vf-explic" id="vf0-ex">El alfabeto italiano tiene <strong>21 letras</strong>. Las letras J, K, W, X e Y son "straniere" — extranjeras, usadas solo en palabras importadas.</div>
 
       <div class="vf-row" id="vf1">
-        <span class="vf-text">El David de Miguel Ángel se encuentra en <em>Roma</em>.</span>
+        <span class="vf-text">En el video, la letra <em>B</em> se asocia con la ciudad de <em>Bologna</em>.</span>
         <div class="vf-btns">
-          <button class="vf-btn" onclick="checkVF('vf1',this,'V',false)">V</button>
-          <button class="vf-btn" onclick="checkVF('vf1',this,'F',true)">F</button>
+          <button class="vf-btn" onclick="checkVF('vf1',this,'V',true)">V</button>
+          <button class="vf-btn" onclick="checkVF('vf1',this,'F',false)">F</button>
         </div>
       </div>
-      <div class="vf-explic" id="vf1-ex">Falso. El David está en <strong>Florencia (Firenze)</strong>, y es uno de los símbolos del Renacimiento italiano — <em>uno dei simboli del Rinascimento</em>.</div>
+      <div class="vf-explic" id="vf1-ex">Sí: <strong>B come Bologna</strong>. Bologna es famosa por su cocina y por tener la universidad más antigua de Europa, fundada en 1088.</div>
 
       <div class="vf-row" id="vf2">
-        <span class="vf-text">El <em>Bosco Verticale</em> es un edificio inaugurado en 2014 en Milán.</span>
+        <span class="vf-text">La letra <em>J</em> existe en el alfabeto italiano original.</span>
         <div class="vf-btns">
-          <button class="vf-btn" onclick="checkVF('vf2',this,'V',true)">V</button>
-          <button class="vf-btn" onclick="checkVF('vf2',this,'F',false)">F</button>
+          <button class="vf-btn" onclick="checkVF('vf2',this,'V',false)">V</button>
+          <button class="vf-btn" onclick="checkVF('vf2',this,'F',true)">F</button>
         </div>
       </div>
-      <div class="vf-explic" id="vf2-ex">¡Correcto! El video lo menciona: <strong>«inaugurati nel 2014 a Milano»</strong>. Son dos torres cubiertas de árboles y plantas — arquitectura moderna italiana.</div>
+      <div class="vf-explic" id="vf2-ex">Falso. La J (junto con K, W, X, Y) es una <strong>lettera straniera</strong>. Aparece en palabras de origen extranjero como <em>jeans</em> o <em>yoga</em>.</div>
 
       <div class="vf-row" id="vf3">
-        <span class="vf-text">El volcán <em>Etna</em> se encuentra en Sicilia.</span>
+        <span class="vf-text">En el video, <em>Roma</em> es presentada como <em>"il cuore d'Italia"</em> y la capital.</span>
         <div class="vf-btns">
           <button class="vf-btn" onclick="checkVF('vf3',this,'V',true)">V</button>
           <button class="vf-btn" onclick="checkVF('vf3',this,'F',false)">F</button>
         </div>
       </div>
-      <div class="vf-explic" id="vf3-ex"><strong>¡Sí!</strong> — <em>«l'Etna è un vulcano che si trova in Sicilia»</em>. El Etna es el volcán activo más alto de Europa.</div>
+      <div class="vf-explic" id="vf3-ex"><strong>¡Sí!</strong> El video dice exactamente: <em>"con la R arriviamo al cuore d'Italia. Siamo a Roma, la capitale."</em> Roma es la letra R del alfabeto fonético.</div>
 
       <div class="vf-row" id="vf4">
-        <span class="vf-text">El carnaval más famoso de Italia es el de <em>Nápoles</em>.</span>
+        <span class="vf-text">La letra <em>H</em> en italiano suena fuerte y aspirada, como en inglés o alemán.</span>
         <div class="vf-btns">
           <button class="vf-btn" onclick="checkVF('vf4',this,'V',false)">V</button>
           <button class="vf-btn" onclick="checkVF('vf4',this,'F',true)">F</button>
         </div>
       </div>
-      <div class="vf-explic" id="vf4-ex">Falso. El video dice: <strong>«il più conosciuto è quello di Venezia»</strong>. El Carnaval de Venecia es el más famoso del mundo, con sus máscaras y disfraces elaborados.</div>
+      <div class="vf-explic" id="vf4-ex">Falso. La H italiana es completamente <strong>muda</strong> — no se pronuncia. Aparece en <em>ho, hai, ha, hanno</em> (verbo avere) y en las combinaciones <em>ch</em> y <em>gh</em> para endurecer la consonante.</div>
     </div>
   </section>
 
@@ -713,6 +723,11 @@
     <div class="card">
       <div class="card-title">Las 21 letras — clic para escuchar</div>
       <div class="alfa-grid" id="alfaListenGrid"></div>
+      <p style="font-size:0.78rem;color:#666;margin-top:0.6rem;line-height:1.6;background:var(--cream);border-radius:8px;padding:0.6rem 0.9rem;">
+        💡 <strong>¿Por qué la H no tiene ciudad?</strong>
+        En italiano no existen ciudades  con H inicial — la H es completamente muda .
+        Es la única letra del alfabeto sin referencia de ciudad: eso mismo te dice todo lo que necesitás saber sobre ella. <em>Si escuchás una H en italiano, no suena.</em>
+      </p>
       <div class="tts-note">🔊 Usa la síntesis de voz de tu navegador. En Chrome con voz italiana instalada suena mejor.</div>
     </div>
 
@@ -720,7 +735,7 @@
       <div class="card-title">Actividad — completá las ciudades que faltan</div>
       <p style="font-size:0.87rem;color:#777;margin-bottom:1rem;">
         Del video recordás las ciudades. Escribí la que corresponde a cada letra en blanco.
-        Las ciudades son: Ancona · Bologna · Como · Domodossola · Empoli · Firenze · Genova · Hotel · Imola · Livorno · Milano · Napoli · Otranto · Palermo · Quarto · Roma · Savona · Torino · Udine · Venezia · Zara
+        Las ciudades son: Ancona · Bologna · Cagliari · Domodossola · Enna · Firenze · Isernia · Livorno · Milano · Napoli · Otranto · Palermo · Quarto · Roma · Sassari · Torino · Urbino · Venezia · Zagarolo
       </p>
       <div class="fill-grid" id="alfaFillGrid"></div>
       <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
@@ -796,9 +811,9 @@
     <p class="sec-sub">En italiano el contexto cambia todo — escuchá y notá la diferencia</p>
 
     <div class="task-box">
-      <strong>Antes de ver las listas:</strong> ¿qué palabras de saludo reconociste en el video?
-      ¿Escuchaste <em>ciao</em>? ¿<em>Buongiorno</em>?
+      <strong>Antes de ver las listas:</strong> ¿ya conocés alguna forma de saludar en italiano?
       En italiano hay una diferencia importante entre hablarle a un amigo y hablarle a un adulto desconocido.
+      ¿Qué creés que cambia?
     </div>
 
     <div class="card">
@@ -820,8 +835,8 @@
     <p class="sec-sub">Descubrí el patrón de <em>chiamarsi</em> sin que nadie te lo explique</p>
 
     <div class="discover-quote">
-      <button class="dq-play" onclick="ippAudio('Mi chiamo Graziana. Come ti chiami?')" title="Escuchar">▶</button>
-      <span>En el video escuchamos: <span style="color:var(--red);">«Mi chiamo Graziana. Come ti chiami?»</span></span>
+      <button class="dq-play" onclick="ippAudio('Mi chiamo Sofia. Come ti chiami?')" title="Escuchar">▶</button>
+      <span>La frase clave de esta unidad: <span style="color:var(--red);">«Mi chiamo ___. Come ti chiami?»</span></span>
     </div>
 
     <div class="card">
@@ -838,21 +853,24 @@
       <div class="pattern-box" id="patternBox">
         <div class="pattern-row">
           <span class="pr-pro">io</span>
-          <span class="pr-blank" id="pb0">?</span>
+          <input class="pr-blank" id="pb0" placeholder="?" data-ans="mi" maxlength="4" onkeypress="if(event.key==='Enter') checkPattern()">
           <span class="pr-ex">chiamo — <em>Io ___ chiamo Sofia.</em></span>
         </div>
         <div class="pattern-row">
           <span class="pr-pro">tu</span>
-          <span class="pr-blank" id="pb1">?</span>
+          <input class="pr-blank" id="pb1" placeholder="?" data-ans="ti" maxlength="4" onkeypress="if(event.key==='Enter') checkPattern()">
           <span class="pr-ex">chiami — <em>Tu ___ chiami Marco.</em></span>
         </div>
         <div class="pattern-row">
           <span class="pr-pro">lui/lei</span>
-          <span class="pr-blank" id="pb2">?</span>
+          <input class="pr-blank" id="pb2" placeholder="?" data-ans="si" maxlength="4" onkeypress="if(event.key==='Enter') checkPattern()">
           <span class="pr-ex">chiama — <em>Lei ___ chiama Anna.</em></span>
         </div>
       </div>
-      <button class="reveal-btn" style="margin-top:0.75rem;margin-left:0;" onclick="revealPattern()">Ver respuestas →</button>
+      <div style="display:flex;gap:0.6rem;margin-top:0.75rem;flex-wrap:wrap;">
+        <button class="reveal-btn" style="margin:0;" onclick="checkPattern()">Verificar ✓</button>
+        <button class="reveal-btn" style="margin:0;background:var(--cream-dk);color:#555;" onclick="revealPattern()">Ver respuestas →</button>
+      </div>
       <div id="patternMsg" style="display:none;margin-top:0.75rem;font-size:0.85rem;color:#2a7a4a;font-weight:600;">
         ✓ ¡Lo descubriste! En Gramática vas a ver la conjugación completa con todos los pronombres.
       </div>
@@ -888,8 +906,8 @@
     <div class="card">
       <!-- Controles superiores centrados -->
       <div class="yt-top-controls">
-        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">&#9654; Reproducir conversación</button>
-        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">&#9646;&#9646; Detener</button>
+        <button class="yt-btn yt-btn-conv" onclick="ippYT_conversacion()">▶ Reproducir conversación</button>
+        <button class="yt-btn yt-btn-stop" onclick="ippYT_detener()">▮▮ Detener</button>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:0.85rem;margin-bottom:1.5rem;">
@@ -899,8 +917,8 @@
           <div class="dial-wrap">
             <div class="dial-bubble blurred"><span class="dial-sub">Ciao! Mi chiamo Graziana. E tu, come ti chiami?</span></div>
             <div class="dial-line-ctrl">
-              <button class="yt-lbtn play" onclick="ippYT_playLine(0)" title="Escuchar">&#9654;</button>
-              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+              <button class="yt-lbtn play" onclick="ippYT_playLine(0)" title="Escuchar">▶</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">▮▮</button>
             </div>
           </div>
         </div>
@@ -910,8 +928,8 @@
           <div class="dial-wrap">
             <div class="dial-bubble blurred"><span class="dial-sub">Ciao! Piacere! Mi chiamo Marco.</span></div>
             <div class="dial-line-ctrl">
-              <button class="yt-lbtn play" onclick="ippYT_playLine(1)" title="Escuchar">&#9654;</button>
-              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+              <button class="yt-lbtn play" onclick="ippYT_playLine(1)" title="Escuchar">▶</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">▮▮</button>
             </div>
           </div>
         </div>
@@ -921,8 +939,8 @@
           <div class="dial-wrap">
             <div class="dial-bubble blurred"><span class="dial-sub">Bello! Come si scrive il tuo nome?</span></div>
             <div class="dial-line-ctrl">
-              <button class="yt-lbtn play" onclick="ippYT_playLine(2)" title="Escuchar">&#9654;</button>
-              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+              <button class="yt-lbtn play" onclick="ippYT_playLine(2)" title="Escuchar">▶</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">▮▮</button>
             </div>
           </div>
         </div>
@@ -932,8 +950,8 @@
           <div class="dial-wrap">
             <div class="dial-bubble blurred"><span class="dial-sub">M come Milano, A come Ancona, R come Roma, C come Como, O come Otranto. Marco!</span></div>
             <div class="dial-line-ctrl">
-              <button class="yt-lbtn play" onclick="ippYT_playLine(3)" title="Escuchar">&#9654;</button>
-              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+              <button class="yt-lbtn play" onclick="ippYT_playLine(3)" title="Escuchar">▶</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">▮▮</button>
             </div>
           </div>
         </div>
@@ -943,8 +961,8 @@
           <div class="dial-wrap">
             <div class="dial-bubble blurred"><span class="dial-sub">Perfetto! E il tuo cognome?</span></div>
             <div class="dial-line-ctrl">
-              <button class="yt-lbtn play" onclick="ippYT_playLine(4)" title="Escuchar">&#9654;</button>
-              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+              <button class="yt-lbtn play" onclick="ippYT_playLine(4)" title="Escuchar">▶</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">▮▮</button>
             </div>
           </div>
         </div>
@@ -952,10 +970,10 @@
         <div class="dial-line right" data-yt-idx="5">
           <div class="dial-speaker b">Marco</div>
           <div class="dial-wrap">
-            <div class="dial-bubble blurred"><span class="dial-sub">R come Roma, O come Otranto, W... S come Savona, S come Savona, I come Imola. Rossi.</span></div>
+            <div class="dial-bubble blurred"><span class="dial-sub">R come Roma, O come Otranto, doppia S, I come Imola. Rossi!</span></div>
             <div class="dial-line-ctrl">
-              <button class="yt-lbtn play" onclick="ippYT_playLine(5)" title="Escuchar">&#9654;</button>
-              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+              <button class="yt-lbtn play" onclick="ippYT_playLine(5)" title="Escuchar">▶</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">▮▮</button>
             </div>
           </div>
         </div>
@@ -963,10 +981,10 @@
         <div class="dial-line" data-yt-idx="6">
           <div class="dial-speaker a">Graziana</div>
           <div class="dial-wrap">
-            <div class="dial-bubble blurred"><span class="dial-sub">Bravissimo! Arrivederci Marco.</span></div>
+            <div class="dial-bubble blurred"><span class="dial-sub">Bravissimo! Arrivederci, Marco!</span></div>
             <div class="dial-line-ctrl">
-              <button class="yt-lbtn play" onclick="ippYT_playLine(6)" title="Escuchar">&#9654;</button>
-              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+              <button class="yt-lbtn play" onclick="ippYT_playLine(6)" title="Escuchar">▶</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">▮▮</button>
             </div>
           </div>
         </div>
@@ -974,10 +992,10 @@
         <div class="dial-line right" data-yt-idx="7">
           <div class="dial-speaker b">Marco</div>
           <div class="dial-wrap">
-            <div class="dial-bubble blurred"><span class="dial-sub">A presto Graziana.</span></div>
+            <div class="dial-bubble blurred"><span class="dial-sub">A presto, Graziana! Buonasera!</span></div>
             <div class="dial-line-ctrl">
-              <button class="yt-lbtn play" onclick="ippYT_playLine(7)" title="Escuchar">&#9654;</button>
-              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">&#9646;&#9646;</button>
+              <button class="yt-lbtn play" onclick="ippYT_playLine(7)" title="Escuchar">▶</button>
+              <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">▮▮</button>
             </div>
           </div>
         </div>
@@ -992,11 +1010,11 @@
           <button class="mc-opt" onclick="checkMC(this,false,'No — revisá la línea donde Marco deletrea su nombre.')">
             M-A-R-C-O con Mantova, Arezzo, Roma, Catania, Ortona
           </button>
-          <button class="mc-opt" onclick="checkMC(this,true,'¡Perfetto! M como Milano, A como Ancona, R como Roma, C como Como, O como Otranto.')">
-            M-A-R-C-O con Milano, Ancona, Roma, Como, Otranto
+          <button class="mc-opt" onclick="checkMC(this,true,'¡Perfetto! M como Milano, A como Ancona, R como Roma, C como Cagliari, O como Otranto.')">
+            M-A-R-C-O con Milano, Ancona, Roma, Cagliari, Otranto
           </button>
           <button class="mc-opt" onclick="checkMC(this,false,'No — usa exactamente las ciudades del alfabeto fonético del video.')">
-            M-A-R-C-O con Milano, Ancona, Ravenna, Como, Otranto
+            M-A-R-C-O con Milano, Ancona, Ravenna, Cagliari, Otranto
           </button>
         </div>
         <div class="mc-fb" id="dialFb"></div>
@@ -1056,6 +1074,11 @@
     </div>
   </section>
 
+  <!-- BOTÓN CONTINUAR -->
+  <div class="cta-block">
+    <p>¡Già! Ya conocés el alfabeto telefónico, los saludos, los números y las expresiones esenciales.<br>Ahora vas a entender <em>por qué</em> funcionan — con poca gramática y mucha lógica.</p>
+    <a class="btn-next" href="etapa3_gramatica.html">Ir a Gramática →</a>
+  </div>
 
 </main>
 
@@ -1071,32 +1094,58 @@ if (!window.__ippVC) {
   }
 }
 
+/* ─────────────────────────────────────────────────────────
+   IPP VOICE CONFIG — cambiá estos valores para ajustar la voz
+   en toda la unidad desde un solo lugar.
+   rate:  velocidad (0.7 lento — 1.0 normal — 1.2 rápido)
+   pitch: tono     (0.8 grave  — 1.0 normal — 1.3 agudo)
+───────────────────────────────────────────────────────── */
+window.IPP_VOICE = window.IPP_VOICE || {
+  lang:         'it-IT',
+  rate:         0.85,
+  pitch:        1.0,
+  preferFemale: true,
+  preferGoogle: true
+};
+
 (function() {
   /* Inicialización — se puede re-ejecutar si Odoo recarga el slide */
 
   /* ══════════════════════════════════════════
      TTS — SÍNTESIS DE VOZ
+     Usa window.IPP_VOICE para configurar voz,
+     velocidad y tono desde una sola variable global.
      Para mejor calidad: en Chrome, instalá la
      voz "Google italiano" desde la configuración
      del sistema. En Android suena especialmente bien.
-     Alternativa de calidad premium (gratuita):
-     elevenlabs.io — 10.000 caracteres/mes gratis.
   ══════════════════════════════════════════ */
+
+  function _ippPickVoice(voices, cfg) {
+    var it = voices.filter(function(v) { return v.lang && v.lang.startsWith('it'); });
+    if (!it.length) return voices[0] || null;
+    var gFem = it.filter(function(v) { return /google/i.test(v.name) && /elsa|alice|giulia|female/i.test(v.name); });
+    var gAny = it.filter(function(v) { return /google/i.test(v.name); });
+    var fem  = it.filter(function(v) { return /elsa|alice|giulia|female/i.test(v.name); });
+    var nonLocal = it.filter(function(v) { return !v.localService; });
+    if (cfg.preferGoogle && cfg.preferFemale && gFem.length)  return gFem[0];
+    if (cfg.preferGoogle && gAny.length)                       return gAny[0];
+    if (cfg.preferFemale && fem.length)                        return fem[0];
+    if (nonLocal.length)                                        return nonLocal[0];
+    return it[0];
+  }
 
   function ippAudio(text, onStart, onEnd) {
     if (!window.speechSynthesis) { if (onEnd) onEnd(); return null; }
     try {
       window.speechSynthesis.cancel();
+      var cfg = window.IPP_VOICE || {};
       const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = 'it-IT';
-      utter.rate  = 0.82;
-      utter.pitch = 1.05;
+      utter.lang   = cfg.lang  || 'it-IT';
+      utter.rate   = cfg.rate  !== undefined ? cfg.rate  : 0.85;
+      utter.pitch  = cfg.pitch !== undefined ? cfg.pitch : 1.0;
       utter.volume = 1;
       const voices = (window.__ippV && window.__ippV.length) ? window.__ippV : speechSynthesis.getVoices();
-      const v = voices.find(v => v.lang === 'it-IT' && v.name.toLowerCase().includes('google'))
-             || voices.find(v => v.lang.startsWith('it') && !v.localService)
-             || voices.find(v => v.lang.startsWith('it'))
-             || voices.find(v => v.lang === 'it-IT');
+      const v = _ippPickVoice(voices, cfg);
       if (v) utter.voice = v;
       if (onStart) utter.onstart = onStart;
       if (onEnd)   utter.onend   = onEnd;
@@ -1113,10 +1162,11 @@ if (!window.__ippVC) {
   function ippAudioGendered(text, onStart, onEnd, gender) {
     if (!window.speechSynthesis) { if (onEnd) onEnd(); return; }
     try { window.speechSynthesis.cancel(); } catch(e) {}
+    var cfg = window.IPP_VOICE || {};
     var utt = new SpeechSynthesisUtterance(String(text));
-    utt.lang = 'it-IT';
-    utt.rate = 0.82;
-    utt.pitch = (gender === 'm') ? 0.85 : 1.1;
+    utt.lang  = cfg.lang || 'it-IT';
+    utt.rate  = cfg.rate !== undefined ? cfg.rate : 0.85;
+    utt.pitch = (gender === 'm') ? 0.85 : (cfg.pitch !== undefined ? cfg.pitch : 1.0);
     var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
     var itVoices = voices.filter(function(v) { return v.lang && v.lang.startsWith('it'); });
     var voice = null;
@@ -1169,6 +1219,17 @@ if (!window.__ippVC) {
   /* ══════════════════════════════════════════
      V/F
   ══════════════════════════════════════════ */
+  /* ── Retry helper ── */
+  function ippRetry(container, resetFn) {
+    var old = container.querySelector('.ipp-retry-btn');
+    if (old) old.remove();
+    var rb = document.createElement('button');
+    rb.className = 'ipp-retry-btn';
+    rb.textContent = '↺ Reintentar';
+    rb.onclick = function() { rb.remove(); resetFn(); };
+    container.appendChild(rb);
+  }
+
   function checkVF(rowId, btn, answer, correct) {
     const row = document.getElementById(rowId);
     const exp = document.getElementById(rowId + '-ex');
@@ -1176,6 +1237,10 @@ if (!window.__ippVC) {
     const isCorrect = correct;
     btn.classList.add(isCorrect ? 'correct' : 'wrong');
     if (exp) exp.classList.add('show');
+    ippRetry(row, function() {
+      row.querySelectorAll('.vf-btn').forEach(b => b.classList.remove('disabled','correct','wrong'));
+      if (exp) exp.classList.remove('show');
+    });
   }
 
   /* ══════════════════════════════════════════
@@ -1183,32 +1248,36 @@ if (!window.__ippVC) {
   ══════════════════════════════════════════ */
   const ALFA = [
     {l:'A', city:'Ancona'},    {l:'B', city:'Bologna'},
-    {l:'C', city:'Como'},      {l:'D', city:'Domodossola'},
-    {l:'E', city:'Empoli'},    {l:'F', city:'Firenze'},
-    {l:'G', city:'Genova'},    {l:'H', city:'Hotel'},
-    {l:'I', city:'Imola'},     {l:'L', city:'Livorno'},
+    {l:'C', city:'Cagliari'},  {l:'D', city:'Domodossola'},
+    {l:'E', city:'Enna'},      {l:'F', city:'Firenze'},
+    {l:'G', city:'Genova'},    {l:'H', city:'—'},
+    {l:'I', city:'Isernia'},   {l:'L', city:'Livorno'},
     {l:'M', city:'Milano'},    {l:'N', city:'Napoli'},
-    {l:'O', city:'Otranto'},   {l:'P', city:'Palermo'},
+    {l:'O', city:'Otranto'},    {l:'P', city:'Palermo'},
     {l:'Q', city:'Quarto'},    {l:'R', city:'Roma'},
-    {l:'S', city:'Savona'},    {l:'T', city:'Torino'},
-    {l:'U', city:'Udine'},     {l:'V', city:'Venezia'},
-    {l:'Z', city:'Zara'},
+    {l:'S', city:'Sassari'},   {l:'T', city:'Torino'},
+    {l:'U', city:'Urbino'},    {l:'V', city:'Venezia'},
+    {l:'Z', city:'Zagarolo'},
   ];
-  const ALFA_BLANKS = new Set(['B','D','F','H','L','N','P','R','T','V']);
+  const ALFA_BLANKS = new Set(['B','D','F','L','N','P','R','T','V']); // H quitado: "Hotel" no es ciudad
 
   // Build listen grid
   function buildAlfaListenGrid() {
     const grid = document.getElementById('alfaListenGrid');
     grid.innerHTML = '';
     ALFA.forEach(item => {
+      const noCity = item.city === '—';
       const div = document.createElement('div');
-      div.className = 'alfa-item';
-      div.innerHTML = `
-        <span class="alfa-ltr">${item.l}</span>
-        <button class="alfa-speak" id="asp-${item.l}" onclick="speakLetter('${item.l}','${item.city}')" title="Escuchar ${item.l} come ${item.city}">🔊</button>
-        <span class="alfa-como">come</span>
-        <span class="alfa-city">${item.city}</span>
-      `;
+      div.className = 'alfa-item' + (noCity ? ' alfa-item-dash' : '');
+      div.innerHTML = noCity
+        ? `<span class="alfa-ltr">${item.l}</span>
+           <span style="min-width:32px;display:inline-block;"></span>
+           <span class="alfa-como" style="visibility:hidden;">come</span>
+           <span class="alfa-city" style="color:#bbb;font-style:italic;">—</span>`
+        : `<span class="alfa-ltr">${item.l}</span>
+           <button class="alfa-speak" id="asp-${item.l}" onclick="speakLetter('${item.l}','${item.city}')" title="Escuchar ${item.l} come ${item.city}">🔊</button>
+           <span class="alfa-como">come</span>
+           <span class="alfa-city">${item.city}</span>`;
       grid.appendChild(div);
     });
   }
@@ -1219,16 +1288,20 @@ if (!window.__ippVC) {
       document.querySelectorAll('.alfa-speak').forEach(b => b.classList.remove('playing'));
       btn.classList.add('playing');
     }
-    ippAudio(`${ltr} come ${city}`, null, () => {
+    // H no tiene ciudad — solo pronuncia la letra
+    const text = city ? `${ltr} come ${city}` : ltr;
+    ippAudio(text, null, () => {
       if (btn) btn.classList.remove('playing');
     });
   }
 
-  // Build fill grid
+  // Build fill grid — H (Hotel) se excluye: no es una ciudad italiana
   function buildFillGrid() {
     const grid = document.getElementById('alfaFillGrid');
+    if (!grid) return;
     grid.innerHTML = '';
-    ALFA.forEach((item, i) => {
+    ALFA.forEach((item) => {
+      if (item.l === 'H') return; // H come Hotel no es ciudad — se muestra solo en la tabla de escucha
       const div = document.createElement('div');
       div.className = 'fill-item';
       if (ALFA_BLANKS.has(item.l)) {
@@ -1251,33 +1324,49 @@ if (!window.__ippVC) {
   function checkFill() {
     let ok = 0, total = 0;
     ALFA_BLANKS.forEach(ltr => {
-      total++;
-      const inp = document.getElementById('fi-' + ltr);
+      const inp  = document.getElementById('fi-' + ltr);
       const icon = document.getElementById('fii-' + ltr);
-      const val = (inp.value || '').trim().toLowerCase();
+      if (!inp) return; // elemento no existe todavía (DOMEval timing)
+      total++;
+      const val     = (inp.value || '').trim().toLowerCase();
       const correct = inp.dataset.city.toLowerCase();
       if (val === correct) {
         inp.classList.add('ok'); inp.classList.remove('err');
-        icon.textContent = '✓'; ok++;
+        if (icon) icon.textContent = '✓'; ok++;
       } else {
         inp.classList.add('err'); inp.classList.remove('ok');
-        icon.textContent = '✗';
+        if (icon) icon.textContent = '✗';
       }
     });
     const res = document.getElementById('fillResult');
+    if (!res) return;
     res.className = 'activity-result ' + (ok === total ? 'ok' : 'err');
     res.textContent = ok + '/' + total + ' correctas. ' + (ok === total ? '¡Bravissimo/a! ¡Las sabés todas!' : 'Revisá las marcadas en rojo.');
+    if (ok < total) {
+      ippRetry(res, function() {
+        ALFA_BLANKS.forEach(function(ltr) {
+          var inp  = document.getElementById('fi-' + ltr);
+          var icon = document.getElementById('fii-' + ltr);
+          if (inp)  { inp.value = ''; inp.classList.remove('ok','err'); }
+          if (icon) { icon.textContent = ''; }
+        });
+        res.className = 'activity-result';
+        res.textContent = '';
+      });
+    }
   }
 
   function revealFill() {
     ALFA_BLANKS.forEach(ltr => {
-      const inp = document.getElementById('fi-' + ltr);
+      const inp  = document.getElementById('fi-' + ltr);
       const icon = document.getElementById('fii-' + ltr);
+      if (!inp) return; // elemento no existe todavía (DOMEval timing)
       inp.value = inp.dataset.city;
       inp.classList.add('ok'); inp.classList.remove('err');
-      icon.textContent = '✓';
+      if (icon) icon.textContent = '✓';
     });
     const res = document.getElementById('fillResult');
+    if (!res) return;
     res.className = 'activity-result ok';
     res.textContent = 'Solución revelada. ¡Practicá en voz alta!';
   }
@@ -1351,6 +1440,17 @@ if (!window.__ippVC) {
     res.textContent = correct === 5
       ? '¡Perfetto! Las 5 letras straniere son J · K · W · X · Y — resaltadas en verde arriba.'
       : `Encontraste ${correct}/5. Las amarillas son las que te faltaron. Son: J, K, W, X, Y.`;
+    if (correct < 5) {
+      ippRetry(res, function() {
+        pickedForeign.clear();
+        document.querySelectorAll('#foreignPickGrid .foreign-chip').forEach(function(chip) {
+          chip.classList.remove('selected','correct','wrong','missed');
+        });
+        document.getElementById('foreignCheckBtn').disabled = false;
+        res.className = 'activity-result';
+        res.textContent = '';
+      });
+    }
   }
 
   /* ══════════════════════════════════════════
@@ -1470,8 +1570,13 @@ if (!window.__ippVC) {
     const row  = document.getElementById('gc-' + i);
     const exp  = document.getElementById('gc-ex-' + i);
     row.querySelectorAll('.vf-btn').forEach(b => b.classList.add('disabled'));
-    btn.classList.add(answer === item.correct ? 'correct' : 'wrong');
+    const isCorrect = answer === item.correct;
+    btn.classList.add(isCorrect ? 'correct' : 'wrong');
     if (exp) exp.classList.add('show');
+    ippRetry(row, function() {
+      row.querySelectorAll('.vf-btn').forEach(b => b.classList.remove('disabled','correct','wrong'));
+      if (exp) exp.classList.remove('show');
+    });
   }
 
   /* ══════════════════════════════════════════
@@ -1517,13 +1622,38 @@ if (!window.__ippVC) {
     });
   }
 
-  function revealPattern() {
-    const vals = ['mi','ti','si'];
-    vals.forEach((v,i) => {
-      const el = document.getElementById('pb' + i);
-      if (el) { el.textContent = v; el.classList.add('revealed'); }
+  function checkPattern() {
+    var correct = ['mi','ti','si'];
+    var allOk = true;
+    correct.forEach(function(ans, i) {
+      var inp = document.getElementById('pb' + i);
+      if (!inp) return;
+      var val = (inp.value || '').trim().toLowerCase();
+      inp.classList.remove('ok','err','revealed');
+      if (val === ans) {
+        inp.classList.add('ok');
+      } else {
+        inp.classList.add('err');
+        allOk = false;
+      }
     });
-    document.getElementById('patternMsg').style.display = 'block';
+    var msg = document.getElementById('patternMsg');
+    if (msg) msg.style.display = allOk ? 'block' : 'none';
+  }
+
+  function revealPattern() {
+    var vals = ['mi','ti','si'];
+    vals.forEach(function(v, i) {
+      var el = document.getElementById('pb' + i);
+      if (el) {
+        el.value = v;
+        el.classList.remove('ok','err');
+        el.classList.add('revealed');
+        el.disabled = true;
+      }
+    });
+    var msg = document.getElementById('patternMsg');
+    if (msg) msg.style.display = 'block';
   }
 
   /* ══════════════════════════════════════════
@@ -1537,6 +1667,10 @@ if (!window.__ippVC) {
     if (fbEl) {
       fbEl.className = 'mc-fb ' + (correct ? 'ok' : 'err');
       fbEl.textContent = (correct ? '✓ ' : '✗ ') + feedback;
+      ippRetry(fbEl, function() {
+        parent.querySelectorAll('.mc-opt').forEach(b => b.classList.remove('disabled','correct','wrong'));
+        fbEl.className = 'mc-fb'; fbEl.textContent = '';
+      });
     }
   }
 
@@ -1608,6 +1742,18 @@ if (!window.__ippVC) {
     const res = document.getElementById('numMatchResult');
     res.className = 'activity-result ' + (ok === NUM_MATCH.length ? 'ok' : 'err');
     res.textContent = ok + '/' + NUM_MATCH.length + ' correctos. ' + (ok === NUM_MATCH.length ? '¡Perfetto!' : 'Revisá los marcados en rojo.');
+    if (ok < NUM_MATCH.length) {
+      ippRetry(res, function() {
+        NUM_MATCH.forEach(function(_, i) {
+          var sel  = document.getElementById('nm-' + i);
+          var icon = document.getElementById('nmi-' + i);
+          if (sel)  { sel.value = ''; sel.classList.remove('ok','err'); }
+          if (icon) { icon.textContent = ''; }
+        });
+        res.className = 'activity-result';
+        res.textContent = '';
+      });
+    }
   }
 
   /* ══════════════════════════════════════════
@@ -1664,33 +1810,24 @@ if (!window.__ippVC) {
   }
 
   function checkEsprMC(btn, correct, qi) {
-    btn.closest('.mc-opts').querySelectorAll('.mc-opt').forEach(b => b.classList.add('disabled'));
+    const parent = btn.closest('.mc-opts');
+    parent.querySelectorAll('.mc-opt').forEach(b => b.classList.add('disabled'));
     btn.classList.add(correct ? 'correct' : 'wrong');
     const fb = document.getElementById('ea-fb-' + qi);
     if (fb) {
       fb.className = 'mc-fb ' + (correct ? 'ok' : 'err');
       fb.textContent = correct ? '✓ ¡Perfetto!' : '✗ Revisá la lista de arriba y volvé a intentarlo.';
+      ippRetry(fb, function() {
+        parent.querySelectorAll('.mc-opt').forEach(b => b.classList.remove('disabled','correct','wrong'));
+        fb.className = 'mc-fb'; fb.textContent = '';
+      });
     }
   }
 
   /* ══════════════════════════════════════════
      INIT
   ══════════════════════════════════════════ */
-  // Script está al final del body — DOM ya disponible, sin necesidad de DOMContentLoaded
-  buildAlfaListenGrid();
-  buildFillGrid();
-  buildForeignAudioGrid();
-  buildForeignPickGrid();
-  buildFonetica();
-  buildGreetGrid();
-  buildGreetContext();
-  buildConj();
-  buildNums();
-  buildNumMatch();
-  buildEspr();
-  buildEsprActivity();
-
-  // Exponer funciones para onclick handlers (necesario en Odoo DOMEval)
+  // Exponer funciones PRIMERO — así los onclick funcionan aunque un build falle
   window.ippAudio = ippAudio;
   window.ippAudioGendered = ippAudioGendered;
   window.speakLetter = speakLetter;
@@ -1701,8 +1838,21 @@ if (!window.__ippVC) {
   window.checkMC = checkMC;
   window.checkGC = checkGC;
   window.revealPattern = revealPattern;
+  window.checkPattern  = checkPattern;
   window.checkNumMatch = checkNumMatch;
   window.checkEsprMC = checkEsprMC;
+  window.ippRetry = ippRetry;
+
+  // Builds con try-catch — un fallo no bloquea el resto
+  var builds = [
+    buildAlfaListenGrid, buildFillGrid, buildForeignAudioGrid,
+    buildForeignPickGrid, buildFonetica, buildGreetGrid,
+    buildGreetContext, buildConj, buildNums, buildNumMatch,
+    buildEspr, buildEsprActivity
+  ];
+  builds.forEach(function(fn) {
+    try { fn(); } catch(e) { console.warn('[IPP build error]', fn.name, e); }
+  });
 })();
 </script>
 
@@ -1730,15 +1880,31 @@ if (!window.__ippVC) {
   }
 
   window._ippYTinitPlayer = function(videoId, frameId){
-    if(window._ippYT.player) return; // ya creado
+    var y = window._ippYT;
+    // Si ya existe un player, verificar que su iframe siga en el DOM
+    if(y.player){
+      try{
+        var f = y.player.getIframe ? y.player.getIframe() : null;
+        if(f && document.body && document.body.contains(f)) return; // sigue vivo
+      }catch(e){}
+      try{ y.player.destroy(); }catch(e){}
+      y.player = null; y.ready = false;
+    }
     function tryCreate(){
       if(!window.YT||!window.YT.Player){ setTimeout(tryCreate,300); return; }
-      window._ippYT.player = new YT.Player(frameId,{
+      y.player = new YT.Player(frameId,{
         videoId: videoId,
         height:1, width:1,
-        playerVars:{autoplay:0,controls:0,origin:location.origin||''},
+        playerVars:{autoplay:0,controls:0,origin:location.origin||'',playsinline:1},
         events:{
-          onReady:function(){ window._ippYT.ready=true; }
+          onReady:function(e){
+            y.ready=true;
+            // Prime: mute + play briefly + pause para que seekTo/playVideo funcione de inmediato
+            try{
+              e.target.mute(); e.target.playVideo();
+              setTimeout(function(){ try{e.target.pauseVideo();e.target.seekTo(0,true);e.target.unMute();}catch(x){} },300);
+            }catch(x){}
+          }
         }
       });
     }
@@ -1756,7 +1922,7 @@ if (!window.__ippVC) {
 
   window.ippYT_conversacion = function(){
     var y=window._ippYT;
-    if(!y.ready){alert('El reproductor aun se esta cargando...');return;}
+    if(!y.ready){ setTimeout(function(){ ippYT_conversacion(); }, 800); return; }
     ippYT_detener();
     // Revelar todo el texto inmediatamente
     document.querySelectorAll('[data-yt-idx]').forEach(function(el){
@@ -1768,7 +1934,7 @@ if (!window.__ippVC) {
 
   window.ippYT_dialogo = function(lineasCfg, dialSelector){
     var y=window._ippYT;
-    if(!y.ready){alert('El reproductor aun se esta cargando...');return;}
+    if(!y.ready){ setTimeout(function(){ ippYT_dialogo(lineasCfg, dialSelector); }, 800); return; }
     ippYT_detener();
     // Ocultar texto de todas las lineas
     var selector = dialSelector
@@ -1849,7 +2015,22 @@ if (!window.__ippVC) {
   };
 })();
 </script>
-<script>_ippYTinitPlayer('QRG6v-I5XUE','ippyt-frame');</script>
+<script>
+// Odoo nav fix: verificar stale player antes de init (corre fuera del guard, siempre)
+(function(){
+  var y = window._ippYT;
+  if(y && y.player){
+    try{
+      var f = y.player.getIframe ? y.player.getIframe() : null;
+      if(!f || !document.body.contains(f)){
+        try{ y.player.destroy(); }catch(e){}
+        y.player = null; y.ready = false;
+      }
+    }catch(e){ y.player = null; y.ready = false; }
+  }
+  _ippYTinitPlayer('QRG6v-I5XUE','ippyt-frame');
+})();
+</script>
 
 <script>
 /* ── IPP Per-line YouTube playback — M0 ── */
@@ -1885,7 +2066,7 @@ if (!window.__ippVC) {
     ippYT_stopLine();
 
     var y = window._ippYT;
-    if(!y || !y.ready){ alert('El reproductor aún se está cargando...'); return; }
+    if(!y || !y.ready){ setTimeout(function(){ ippYT_playLine(idx); }, 800); return; }
 
     var ts = LINE_TIMES[idx];
     if(!ts) return;
@@ -1933,5 +2114,3 @@ if (!window.__ippVC) {
   };
 })();
 </script>
-</body>
-</html>

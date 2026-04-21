@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test de Voces Italianas — Italiano Per Piacere</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #f0ede0;
+      color: #1a1a18;
+      padding: 2rem 1rem 4rem;
+    }
+    h1 {
+      font-size: 1.6rem;
+      color: #3d6b58;
+      margin-bottom: 0.4rem;
+    }
+    .subtitle {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+    .phrase-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .phrase-box label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #3d6b58;
+      margin-bottom: 0.5rem;
+    }
+    .phrase-box input {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .phrase-box input:focus {
+      outline: none;
+      border-color: #3d6b58;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #3d6b58;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid #528e74;
+    }
+
+    .voice-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .voice-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 0.9rem 1.2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .voice-card.playing {
+      border: 2px solid #528e74;
+      background: #e4f0e9;
+    }
+    .voice-card.female { border-left: 4px solid #cc4736; }
+    .voice-card.male   { border-left: 4px solid #78a6ba; }
+    .voice-card.unknown { border-left: 4px solid #ccc; }
+
+    .play-btn {
+      background: #528e74;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      font-size: 1rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .play-btn:hover { background: #3d6b58; }
+    .play-btn.active { background: #cc4736; }
+
+    .voice-info { flex: 1; }
+    .voice-name { font-weight: 600; font-size: 0.95rem; }
+    .voice-meta { font-size: 0.75rem; color: #888; margin-top: 0.2rem; }
+
+    .gender-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .gender-badge.female { background: #fdecea; color: #cc4736; }
+    .gender-badge.male   { background: #e0eff5; color: #78a6ba; }
+    .gender-badge.unknown { background: #f0f0f0; color: #999; }
+
+    .note {
+      background: #fff3cd;
+      border-left: 4px solid #e5ab07;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    #status {
+      font-size: 0.85rem;
+      color: #888;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .empty-msg {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+      color: #888;
+      font-style: italic;
+    }
+
+    /* RATE/PITCH controls */
+    .controls {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .ctrl-group { display: flex; flex-direction: column; gap: 0.3rem; flex: 1; min-width: 150px; }
+    .ctrl-group label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #3d6b58; }
+    .ctrl-group input[type=range] { width: 100%; }
+    .ctrl-group span { font-size: 0.8rem; color: #555; }
+    .presets { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+    .preset-btn {
+      background: #e4f0e9; border: 1.5px solid #528e74; color: #3d6b58;
+      border-radius: 20px; padding: 0.3rem 0.9rem; font-size: 0.78rem;
+      font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.2s;
+    }
+    .preset-btn:hover { background: #528e74; color: #fff; }
+    .preset-btn.active { background: #528e74; color: #fff; border-color: #3d6b58; }
+  </style>
+</head>
+<body>
+
+<h1>🎙 Test de Voces Italianas</h1>
+<p class="subtitle">Escuchá todas las voces disponibles y elegí la mejor para el curso</p>
+
+
+<div class="phrase-box">
+  <label>Frase de prueba (podés cambiarla)</label>
+  <input type="text" id="testPhrase" value="Buongiorno! Mi chiamo Sofia. Come stai? Piacere di conoscerti." />
+</div>
+
+<div class="controls">
+  <div class="ctrl-group">
+    <label>Velocidad (rate)</label>
+    <input type="range" id="rateCtrl" min="0.5" max="1.5" step="0.01" value="0.82">
+    <span id="rateVal">0.82</span>
+  </div>
+  <div class="ctrl-group">
+    <label>Tono (pitch)</label>
+    <input type="range" id="pitchCtrl" min="0.5" max="2" step="0.01" value="1.1">
+    <span id="pitchVal">1.10</span>
+  </div>
+  <div class="ctrl-group" style="justify-content:flex-end;">
+    <label>configuraciones  sugeridas
+    </label>
+    <div class="presets">
+      <button class="preset-btn active" onclick="applyPreset(this, 0.82, 1.10)">Modulo 1<br><small>0.82 / 1.10</small></button>
+      <button class="preset-btn" onclick="applyPreset(this, 0.85, 1.00)">Módulo 2 <br><small>0.85 / 1.00</small></button>
+      <button class="preset-btn" onclick="applyPreset(this, 0.93, 0.80)">Sugerencia de Renzo<br><small>0.93 / 0.80</small></button>
+    </div>
+  </div>
+</div>
+
+<div id="status">Cargando voces...</div>
+
+<div id="itSection" style="display:none">
+  <div class="section-title">🇮🇹 Voces Italianas (it-IT / it)</div>
+  <div class="voice-grid" id="itGrid"></div>
+</div>
+
+<div id="allSection" style="display:none">
+  <div class="section-title">🌐 Todas las demás voces disponibles</div>
+  <div class="voice-grid" id="allGrid"></div>
+</div>
+
+<script>
+  var allVoices = [];
+  var currentUtt = null;
+
+  var rateCtrl  = document.getElementById('rateCtrl');
+  var pitchCtrl = document.getElementById('pitchCtrl');
+  var rateVal   = document.getElementById('rateVal');
+  var pitchVal  = document.getElementById('pitchVal');
+
+  rateCtrl.addEventListener('input', function() {
+    rateVal.textContent = parseFloat(this.value).toFixed(2);
+    document.querySelectorAll('.preset-btn').forEach(function(b) { b.classList.remove('active'); });
+  });
+  pitchCtrl.addEventListener('input', function() {
+    pitchVal.textContent = parseFloat(this.value).toFixed(2);
+    document.querySelectorAll('.preset-btn').forEach(function(b) { b.classList.remove('active'); });
+  });
+
+  function applyPreset(btn, rate, pitch) {
+    rateCtrl.value  = rate;
+    pitchCtrl.value = pitch;
+    rateVal.textContent  = rate.toFixed(2);
+    pitchVal.textContent = pitch.toFixed(2);
+    document.querySelectorAll('.preset-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+  }
+
+  function guessGender(name) {
+    if (/alice|elsa|giulia|bianca|paola|lucia|sofia|female|woman|femme/i.test(name)) return 'female';
+    if (/cosimo|luca|giorgio|marco|male|man|homme/i.test(name)) return 'male';
+    return 'unknown';
+  }
+
+  function buildCard(voice, index) {
+    var gender = guessGender(voice.name);
+    var isGoogle = /google/i.test(voice.name);
+    var card = document.createElement('div');
+    card.className = 'voice-card ' + gender;
+    card.id = 'card-' + index;
+
+    var recommended = (voice.lang.startsWith('it') && isGoogle) ? ' ⭐ Recomendada' : '';
+
+    card.innerHTML =
+      '<button class="play-btn" id="btn-' + index + '" onclick="playVoice(' + index + ')">▶</button>' +
+      '<div class="voice-info">' +
+        '<div class="voice-name">' + voice.name + recommended + '</div>' +
+        '<div class="voice-meta">' + voice.lang + (voice.localService ? ' · Local' : ' · Online') + '</div>' +
+      '</div>' +
+      '<span class="gender-badge ' + gender + '">' +
+        (gender === 'female' ? '♀ Mujer' : gender === 'male' ? '♂ Hombre' : '? Neutro') +
+      '</span>';
+
+    return card;
+  }
+
+  function renderVoices(voices) {
+    var itVoices  = voices.filter(function(v) { return v.lang && v.lang.startsWith('it'); });
+    var otherVoices = voices.filter(function(v) { return !v.lang || !v.lang.startsWith('it'); });
+
+    var status = document.getElementById('status');
+
+    if (voices.length === 0) {
+      status.textContent = 'No se encontraron voces. Probá en Google Chrome.';
+      return;
+    }
+
+    status.textContent = 'Se encontraron ' + voices.length + ' voces en total (' + itVoices.length + ' italianas).';
+
+    // Italian voices
+    var itGrid = document.getElementById('itGrid');
+    itGrid.innerHTML = '';
+    if (itVoices.length > 0) {
+      itVoices.forEach(function(v) { itGrid.appendChild(buildCard(v, voices.indexOf(v))); });
+      document.getElementById('itSection').style.display = 'block';
+    } else {
+      itGrid.innerHTML = '<div class="empty-msg">No se encontraron voces italianas. Probá en Google Chrome con internet.</div>';
+      document.getElementById('itSection').style.display = 'block';
+    }
+
+    // Other voices
+    var allGrid = document.getElementById('allGrid');
+    allGrid.innerHTML = '';
+    otherVoices.forEach(function(v) { allGrid.appendChild(buildCard(v, voices.indexOf(v))); });
+    if (otherVoices.length > 0) document.getElementById('allSection').style.display = 'block';
+  }
+
+  var activeIndex = -1;
+
+  function stopAll() {
+    try { window.speechSynthesis.cancel(); } catch(e) {}
+    document.querySelectorAll('.play-btn').forEach(function(b) { b.classList.remove('active'); b.textContent = '▶'; });
+    document.querySelectorAll('.voice-card').forEach(function(c) { c.classList.remove('playing'); });
+    currentUtt = null;
+    activeIndex = -1;
+  }
+
+  function playVoice(index) {
+    if (!window.speechSynthesis) { alert('Tu navegador no soporta síntesis de voz.'); return; }
+
+    // Mismo botón → parar
+    if (index === activeIndex) { stopAll(); return; }
+
+    stopAll();
+
+    var voice = allVoices[index];
+    if (!voice) return;
+
+    var btn  = document.getElementById('btn-' + index);
+    var card = document.getElementById('card-' + index);
+
+    var phrase = document.getElementById('testPhrase').value || 'Buongiorno, come stai?';
+    var utt = new SpeechSynthesisUtterance(phrase);
+    utt.voice  = voice;
+    utt.lang   = voice.lang;
+    utt.rate   = parseFloat(rateCtrl.value);
+    utt.pitch  = parseFloat(pitchCtrl.value);
+    utt.volume = 1;
+
+    if (btn)  { btn.classList.add('active'); btn.textContent = '⏹'; }
+    if (card) card.classList.add('playing');
+
+    activeIndex  = index;
+    currentUtt   = utt;
+    utt.onend = utt.onerror = function() { stopAll(); };
+
+    setTimeout(function() {
+      try { window.speechSynthesis.speak(utt); } catch(e) { stopAll(); }
+    }, 60);
+  }
+
+  function loadVoices() {
+    var voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+    if (voices && voices.length) {
+      allVoices = voices;
+      renderVoices(voices);
+    }
+  }
+
+  if (window.speechSynthesis) {
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+    loadVoices();
+    setTimeout(loadVoices, 300);
+    setTimeout(loadVoices, 1000);
+    setTimeout(loadVoices, 2500);
+  } else {
+    document.getElementById('status').textContent = 'Tu navegador no soporta síntesis de voz.';
+  }
+</script>
+</body>
+</html>

@@ -138,10 +138,10 @@ def process_modulo(modulo_num: int, titulo: str, url: str):
 # Formato: (numero_modulo, "Titulo", "URL_YouTube")
 # =====================================================
 MODULOS = [
-        (1,  "Come ti chiami?",               "https://www.youtube.com/watch?v=_JUKZQnY_Qk"),
+        #(1,  "Come ti chiami?",               "https://www.youtube.com/watch?v=_JUKZQnY_Qk"),
     # (1,  "Di dove sei?",               "https://youtu.be/s7MBSo0E71o?si=rjFi6Lvw0J5IpOrK"),
 # (2,  "Una notte a Roma",           "https://youtu.be/nJ0gKWX8mjM"),
-# (3,  "Che ore sono?",              "https://www.youtube.com/watch?v=7mi5_TnIORo"),
+(3,  "chicchirichi fa il gallo",              "https://www.youtube.com/shorts/l_Ar6azdStk"),
 # (4,  "Che lavoro fai?",            "https://youtu.be/VsEBjpQTlyY"),
 # (5,  "Al bar",                     "https://youtu.be/2_VwcAlQUyU"),
 # (6,  "La mia giornata",            "https://www.youtube.com/watch?v=-ECZVRh6sgk"),
