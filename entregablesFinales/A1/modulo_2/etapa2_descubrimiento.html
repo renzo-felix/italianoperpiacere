@@ -13,7 +13,7 @@
   --fh: 'Playfair Display', Georgia, serif;
   --fb: 'Outfit', system-ui, sans-serif;
   --r: 10px;
-  --mc: #cc4736; --mc-dk: #a8382a; --mc-text: #7a1f14; --mc-bg: #faeae8;
+  --mc: #528e74; --mc-dk: #3d6b58; --mc-text: #2d4d3c; --mc-bg: #e4f0e9;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: var(--fb); background: var(--cream); color: var(--black); min-height: 100vh; }
@@ -26,10 +26,10 @@ body { font-family: var(--fb); background: var(--cream); color: var(--black); mi
 .stage-label.pending { color: #bbb; }
 .stage-sep { color: #ccc; font-size: 0.8rem; padding: 0 2px; }
 
-.hero { background: linear-gradient(135deg, var(--mc-bg) 0%, var(--cream-dk) 100%); border-bottom: 3px solid var(--mc); padding: 52px 20px 44px; text-align: center; }
-.hero-badge { display: inline-block; background: var(--mc); color: var(--white); font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 14px; }
-.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2rem,5vw,3rem); color: var(--mc-text); line-height: 1.1; margin-bottom: 10px; }
-.hero .sub { font-size: 1rem; color: var(--mc-text); opacity: .8; max-width: 560px; margin: 0 auto; }
+.hero { background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%); padding: 52px 20px 44px; text-align: center; color: var(--white); position: relative; overflow: hidden; }
+.hero-badge { display: inline-block; background: rgba(255,255,255,0.22); color: var(--white); font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 14px; }
+.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2rem,5vw,3rem); color: var(--white); line-height: 1.1; margin-bottom: 10px; }
+.hero .sub { font-size: 1rem; color: var(--white); opacity: .85; max-width: 560px; margin: 0 auto; }
 
 .container { max-width: 860px; margin: 0 auto; padding: 40px 20px 80px; }
 .sec-header { margin: 52px 0 22px; }
@@ -127,7 +127,7 @@ body { font-family: var(--fb); background: var(--cream); color: var(--black); mi
 .btn-audio-sm:hover { background: var(--mc); color: var(--white); }
 
 /* CULTURE */
-.culture-strip { background: linear-gradient(135deg, #faeae8 0%, #ddd9c8 100%); border-top: 4px solid var(--mc); border-radius: var(--r); padding: 28px; margin-top: 36px; }
+.culture-strip { background: linear-gradient(135deg, #e4f0e9 0%, #ddd9c8 100%); border-top: 4px solid var(--mc); border-radius: var(--r); padding: 28px; margin-top: 36px; }
 .culture-strip h3 { font-family: var(--fh); font-style: italic; color: var(--mc-dk); font-size: 1.2rem; margin-bottom: 14px; }
 .culture-strip p { font-size: 0.92rem; line-height: 1.8; color: #444; margin-bottom: 10px; }
 .btn-translate { display: inline-flex; align-items: center; gap: 6px; background: var(--white); border: 1.5px solid var(--mc); color: var(--mc-text); border-radius: 16px; padding: 6px 16px; font-size: 0.8rem; font-weight: 600; cursor: pointer; margin-top: 10px; }
@@ -135,6 +135,23 @@ body { font-family: var(--fb); background: var(--cream); color: var(--black); mi
 .culture-es { margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--mc); display: none; }
 
 hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 0; }
+
+/* ── EXERCISE BLOCKS ── */
+.ex-block { background: var(--white); border-radius: var(--r); border-left: 4px solid var(--mc); padding: 20px 22px; margin-top: 24px; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+.ex-block-title { font-family: var(--fh); font-style: italic; color: var(--mc-dk); font-size: 1rem; margin-bottom: 4px; font-weight: 700; }
+.ex-block-desc { font-size: 0.84rem; color: #777; margin-bottom: 16px; }
+.ex-q { background: var(--cream); border-radius: var(--r); padding: 14px 16px; margin-bottom: 12px; }
+.ex-q:last-child { margin-bottom: 0; }
+.ex-q p { font-size: 0.92rem; margin-bottom: 10px; color: var(--black); line-height: 1.5; }
+.opts-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+.opt-btn { padding: 0.4rem 1.1rem; border: 2px solid var(--cream-dk); border-radius: 30px; background: var(--white); font-family: var(--fb); font-size: 0.85rem; cursor: pointer; transition: all 0.2s; color: var(--black); }
+.opt-btn:hover:not(:disabled) { border-color: var(--mc); background: var(--mc-bg); }
+.opt-btn.correct { background: #e8f5ec; border-color: #52a670; color: #1f5c35; font-weight: 700; }
+.opt-btn.wrong { background: #fdecea; border-color: #cc4736; color: #7a1f14; }
+.opt-btn:disabled { pointer-events: none; opacity: 0.6; }
+.quiz-fb { font-size: 0.82rem; margin-top: 8px; font-weight: 600; min-height: 1em; line-height: 1.5; }
+.quiz-fb.ok { color: #2a7a4a; }
+.quiz-fb.no { color: #cc4736; }
 .callout { background: var(--mc-bg); border-left: 4px solid var(--mc); border-radius: 0 var(--r) var(--r) 0; padding: 14px 18px; margin: 18px 0; font-size: 0.88rem; color: var(--mc-text); line-height: 1.6; }
 .callout strong { color: var(--mc-dk); }
 
@@ -145,6 +162,22 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
 @media (max-width: 620px) {
   .city-explorer { grid-template-columns: 1fr; }
   .vocab-grid { grid-template-columns: repeat(2, 1fr); }
+
+   /* CTA */
+    .cta-block {
+      background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk));
+      border-top: 3px solid var(--mc);
+      border-radius: var(--r);
+      padding: 1.75rem 2rem;
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+    .cta-block p {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1.1rem;
+      line-height: 1.6;
+    }
 }
 
 /* ── IPP YouTube Player Controls ── */
@@ -155,12 +188,13 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
 .yt-btn-conv{background:var(--mc);color:var(--white)}
 .yt-btn-conv:hover{background:var(--mc-dk)}
 .yt-btn-dial{background:var(--white);color:var(--mc);border:2px solid var(--mc)}
-.yt-btn-dial:hover{background:var(--mc-bg,#faeae8)}
+.yt-btn-dial:hover{background:var(--mc-bg,#e4f0e9)}
 .yt-btn-stop{background:var(--cream-dk,#ddd9c8);color:var(--black,#1a1a18)}
 .yt-btn-stop:hover{filter:brightness(.92)}
 .yt-btn:disabled{opacity:.45;cursor:not-allowed}
 .dial-line.yt-active{outline:3px solid var(--mc);border-radius:8px;
-  background:var(--mc-bg,#faeae8);transition:background .3s}
+  background:var(--mc-bg,#e4f0e9);transition:background .3s}
+
 .dial-line.yt-done{opacity:.7}
 
 
@@ -190,6 +224,14 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
   <h1>Di dove sei?</h1>
   <p class="sub">Explorás las ciudades, los números, los datos personales y los verbos clave del módulo.</p>
 </div>
+
+
+<!-- STAGE NAV -->
+<nav style="background:var(--white);border-bottom:2px solid var(--cream-dk);display:flex;justify-content:center;gap:0.25rem;padding:0.45rem 1rem;flex-wrap:wrap;">
+  <a href="https://italianoperpiacere.com/slides/slide/exploracion-145?fullscreen=1#" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:20px;border:1.5px solid var(--cream-dk);font-size:0.75rem;font-weight:600;color:#888;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='var(--cream)';this.style.color='var(--mc-dk)'" onmouseout="this.style.background='';this.style.color='#888'">← Exploracion</a>
+  <span style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:20px;border:1.5px solid var(--mc);background:var(--mc-bg);font-size:0.75rem;font-weight:700;color:var(--mc-dk);">● Descubrimiento</span>
+  <a href="https://italianoperpiacere.com/slides/slide/gramatica-148?fullscreen=1#" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:20px;border:1.5px solid var(--cream-dk);font-size:0.75rem;font-weight:600;color:#888;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='var(--cream)';this.style.color='var(--mc-dk)'" onmouseout="this.style.background='';this.style.color='#888'">Gramática →</a>
+</nav>
 
 <main class="container">
 
@@ -222,6 +264,44 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
   <div class="vocab-chip" onclick="ippAudio('Matera', 0.85, 'f')"><div class="vocab-it">Matera</div><div class="vocab-es">Matera</div><button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('Matera',0.85,'f')">▶ escuchar</button></div>
   <div class="vocab-chip" onclick="ippAudio('Amalfi', 0.85, 'f')"><div class="vocab-it">Amalfi</div><div class="vocab-es">Amalfi</div><button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('Amalfi',0.85,'f')">▶ escuchar</button></div>
   <div class="vocab-chip" onclick="ippAudio('Asti', 0.85, 'f')"><div class="vocab-it">Asti</div><div class="vocab-es">Asti</div><button class="vocab-audio-btn" onclick="event.stopPropagation();ippAudio('Asti',0.85,'f')">▶ escuchar</button></div>
+</div>
+
+<div class="ex-block">
+  <div class="ex-block-title">✏️ ¿Cuál es el nombre italiano?</div>
+  <div class="ex-block-desc">Algunas ciudades tienen nombres distintos al español. ¿Las reconocés?</div>
+
+  <div class="ex-q" id="qc1">
+    <p>¿Cómo se dice <strong>"Florencia"</strong> en italiano?</p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, false, 'qc1', 'No — Fiorentina es el equipo de futbol. La ciudad es Firenze.')">Fiorentina</button>
+      <button class="opt-btn" onclick="checkMC(this, true, 'qc1', '¡Correcto! Florencia = Firenze. Siempre usa el nombre italiano.')">Firenze</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qc1', 'No — Florencia es el nombre en español. En italiano es Firenze.')">Florencia</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qc1', 'No existe esa forma. La ciudad es Firenze.')">Fiorenza</button>
+    </div>
+    <div class="quiz-fb" id="qc1fb"></div>
+  </div>
+
+  <div class="ex-q" id="qc2">
+    <p>¿Cómo se dice <strong>"Venecia"</strong> en italiano?</p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, false, 'qc2', 'No — Venecia es el nombre en español. En italiano es Venezia.')">Venecia</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qc2', 'No existe esa forma. La ciudad es Venezia.')">Venicia</button>
+      <button class="opt-btn" onclick="checkMC(this, true, 'qc2', '¡Correcto! Venecia = Venezia. Con Z, sin S al final.')">Venezia</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qc2', 'No — Veneccia no existe. La ciudad es Venezia.')">Veneccia</button>
+    </div>
+    <div class="quiz-fb" id="qc2fb"></div>
+  </div>
+
+  <div class="ex-q" id="qc3">
+    <p>¿Cómo se dice <strong>"Nápoles"</strong> en italiano?</p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, false, 'qc3', 'No — Napolia no existe. La ciudad es Napoli.')">Napolia</button>
+      <button class="opt-btn" onclick="checkMC(this, true, 'qc3', '¡Correcto! Napoli — sin acento, sin S final.')">Napoli</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qc3', 'No — Napoles es el nombre en español. En italiano: Napoli.')">Napoles</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qc3', 'No — Napoleone es el nombre de una persona. La ciudad es Napoli.')">Napoleone</button>
+    </div>
+    <div class="quiz-fb" id="qc3fb"></div>
+  </div>
 </div>
 
 <hr class="divider">
@@ -362,8 +442,52 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
   </div>
 </div>
 
-<hr class="divider">
+<div class="ex-block">
+  <div class="ex-block-title">✏️ ¿Entendiste el diálogo?</div>
+  <div class="ex-block-desc">Respondé sobre la conversación entre Giulia y Marco.</div>
 
+  <div class="ex-q" id="qd1">
+    <p>V/F: <em>Marco es de Torino.</em></p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkVF(this, true, 'qd1', 'Verdadero — Marco dice: Io sono di Torino.')">Verdadero</button>
+      <button class="opt-btn" onclick="checkVF(this, true, 'qd1', 'Falso — Marco si es de Torino: Io sono di Torino.')">Falso</button>
+    </div>
+    <div class="quiz-fb" id="qd1fb"></div>
+  </div>
+
+  <div class="ex-q" id="qd2">
+    <p>V/F: <em>Giulia es de Roma.</em></p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkVF(this, false, 'qd2', 'Falso — Giulia es de Firenze: Io sono di Firenze!')">Verdadero</button>
+      <button class="opt-btn" onclick="checkVF(this, false, 'qd2', '¡Correcto! Giulia es de Firenze, no de Roma.')">Falso</button>
+    </div>
+    <div class="quiz-fb" id="qd2fb"></div>
+  </div>
+
+  <div class="ex-q" id="qd3">
+    <p>¿Qué pide Marco a Giulia al final del diálogo?</p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, false, 'qd3', 'No — Marco pide el numero de telefono de la guia turistica.')">La dirección de Giulia</button>
+      <button class="opt-btn" onclick="checkMC(this, true, 'qd3', '¡Correcto! Marco dice: Hai il numero di telefono di quella guida turistica?')">El número de teléfono</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qd3', 'No — Marco pide el numero de telefono.')">Un billete de tren</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qd3', 'No — Marco pide el numero de telefono de la guia.')">El pasaporte</button>
+    </div>
+    <div class="quiz-fb" id="qd3fb"></div>
+  </div>
+
+  <div class="ex-q" id="qd4">
+    <p>¿Cuál de estas ciudades menciona Marco como famosa?</p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, false, 'qd4', 'No — Siena no aparece en la lista de Marco.')">Siena</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qd4', 'No — Palermo no aparece en la lista de Marco.')">Palermo</button>
+      <button class="opt-btn" onclick="checkMC(this, true, 'qd4', '¡Correcto! Marco dice: Roma, Venezia, Milano e Napoli, credo. Anche Firenze.')">Venezia</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qd4', 'No — Torino no aparece en su lista de ciudades famosas.')">Torino</button>
+    </div>
+    <div class="quiz-fb" id="qd4fb"></div>
+  </div>
+</div>
+
+<hr class="divider">
 <!-- ═══════════════════════════════════════════════════
      SEC 4 — ESSERE + PROVENIENZA
 ════════════════════════════════════════════════════ -->
@@ -403,6 +527,44 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
   </div>
 </div>
 
+<div class="ex-block">
+  <div class="ex-block-title">✏️ Essere + provenienza — ¿notás el patrón?</div>
+  <div class="ex-block-desc">Elegí la forma correcta de <em>essere</em> o la estructura correcta.</div>
+
+  <div class="ex-q" id="qe1">
+    <p>Completá: <em>Io ___ di Milano.</em></p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, true, 'qe1', '¡Correcto! Io sono — primera persona de essere.')">sono</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qe1', 'No — sei es la segunda persona (tu). Para io es sono.')">sei</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qe1', 'No — e con acento (è) es la tercera persona (lui/lei). Para io es sono.')">è</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qe1', 'No — siamo es nosotros (noi). Para io es sono.')">siamo</button>
+    </div>
+    <div class="quiz-fb" id="qe1fb"></div>
+  </div>
+
+  <div class="ex-q" id="qe2">
+    <p>¿Cómo preguntás <strong>"¿de dónde sos?"</strong> en italiano?</p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, false, 'qe2', 'No — Dove vai significa adonde vas. Para preguntar origen se usa Di dove sei.')">Dove vai?</button>
+      <button class="opt-btn" onclick="checkMC(this, true, 'qe2', '¡Correcto! Di dove sei — de donde eres/sos.')">Di dove sei?</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qe2', 'No — Come stai significa como estas. Para origen: Di dove sei.')">Come stai?</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qe2', 'No — ese orden no es correcto en italiano. La forma correcta es Di dove sei.')">Sei di dove?</button>
+    </div>
+    <div class="quiz-fb" id="qe2fb"></div>
+  </div>
+
+  <div class="ex-q" id="qe3">
+    <p>¿Cuál es correcta para <em>"ella es de Napoli"</em>?</p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, false, 'qe3', 'No — sono es primera persona (io). Para lei/lui se usa e con acento.')">Lei sono di Napoli.</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qe3', 'No — sei es segunda persona (tu). Para lei/lui se usa e con acento.')">Lei sei di Napoli.</button>
+      <button class="opt-btn" onclick="checkMC(this, true, 'qe3', '¡Correcto! Lei e di Napoli — tercera persona singular de essere.')">Lei è di Napoli.</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qe3', 'No — siete es segunda persona plural (voi). Para lei/lui se usa e con acento.')">Lei siete di Napoli.</button>
+    </div>
+    <div class="quiz-fb" id="qe3fb"></div>
+  </div>
+</div>
+
 <hr class="divider">
 
 <!-- ═══════════════════════════════════════════════════
@@ -437,6 +599,44 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
   <div class="pattern-card" onclick="ippAudio('Va a Firenze con il treno veloce.', 0.82, 'f')">
     <div class="pattern-it">Va a Firenze con il treno veloce.</div><div class="pattern-es">Va a Florencia en el tren rápido.</div>
     <button class="pattern-audio" onclick="event.stopPropagation();ippAudio('Va a Firenze con il treno veloce.',0.82,'f')">▶</button>
+  </div>
+</div>
+
+<div class="ex-block">
+  <div class="ex-block-title">✏️ Andare — ¿cuál forma corresponde?</div>
+  <div class="ex-block-desc">Elegí la conjugación correcta de <em>andare</em> según el sujeto.</div>
+
+  <div class="ex-q" id="qa1">
+    <p>¿Cómo decís <strong>"voy a Venezia"</strong>?</p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, true, 'qa1', '¡Correcto! Vado a Venezia — primera persona de andare.')">Vado a Venezia.</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qa1', 'No — vai es segunda persona (tu vas). Para io: vado.')">Vai a Venezia.</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qa1', 'No — va es tercera persona (el/ella va). Para io: vado.')">Va a Venezia.</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qa1', 'No — andiamo es nosotros. Para io: vado.')">Andiamo a Venezia.</button>
+    </div>
+    <div class="quiz-fb" id="qa1fb"></div>
+  </div>
+
+  <div class="ex-q" id="qa2">
+    <p>Completá: <em>Tu ___ a Roma domani?</em></p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, false, 'qa2', 'No — vado es primera persona (io). Para tu es vai.')">vado</button>
+      <button class="opt-btn" onclick="checkMC(this, true, 'qa2', '¡Correcto! Tu vai — segunda persona de andare.')">vai</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qa2', 'No — va es tercera persona (lui/lei). Para tu es vai.')">va</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qa2', 'No — andate es segunda persona plural (voi). Para tu es vai.')">andate</button>
+    </div>
+    <div class="quiz-fb" id="qa2fb"></div>
+  </div>
+
+  <div class="ex-q" id="qa3">
+    <p>¿Qué significa <em>"Vado all'aeroporto"</em>?</p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, false, 'qa3', 'No — vado es ir, no volver. Significa voy al aeropuerto.')">Vuelvo del aeropuerto.</button>
+      <button class="opt-btn" onclick="checkMC(this, true, 'qa3', '¡Correcto! Vado all aeropuerto = Voy al aeropuerto.')">Voy al aeropuerto.</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qa3', 'No — vado significa voy, no estoy. Significa voy al aeropuerto.')">Estoy en el aeropuerto.</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qa3', 'No — vado all aeroporto significa voy al aeropuerto, no a la estacion.')">Voy a la estación.</button>
+    </div>
+    <div class="quiz-fb" id="qa3fb"></div>
   </div>
 </div>
 
@@ -540,6 +740,44 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
   </div>
 </div>
 
+<div class="ex-block">
+  <div class="ex-block-title">✏️ I numeri — ¿cómo se escribe?</div>
+  <div class="ex-block-desc">Elegí la forma correcta para cada número.</div>
+
+  <div class="ex-q" id="qn1">
+    <p>¿Cómo se escribe el número <strong>17</strong>?</p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, false, 'qn1', 'No — diciasette le falta una S. La forma correcta es diciassette (doble S).')">diciasette</button>
+      <button class="opt-btn" onclick="checkMC(this, true, 'qn1', '¡Correcto! diciassette — con doble S obligatoria: di-cias-SET-te.')">diciassette</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qn1', 'No — diecisiete es el número en español. En italiano: diciassette.')">diecisiete</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qn1', 'No — esa forma no existe. La correcta es diciassette.')">dicissette</button>
+    </div>
+    <div class="quiz-fb" id="qn1fb"></div>
+  </div>
+
+  <div class="ex-q" id="qn2">
+    <p>¿Cómo se escribe el número <strong>21</strong>?</p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, false, 'qn2', 'No — veintiuno es español. En italiano la I se elide: ventuno.')">veintiuno</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qn2', 'No — ventiuno es el error mas comun. La I de venti se elide: ventuno.')">ventiuno</button>
+      <button class="opt-btn" onclick="checkMC(this, true, 'qn2', '¡Correcto! ventuno — la I de venti desaparece antes de uno.')">ventuno</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qn2', 'No — esa forma no existe. La correcta es ventuno.')">ventuono</button>
+    </div>
+    <div class="quiz-fb" id="qn2fb"></div>
+  </div>
+
+  <div class="ex-q" id="qn3">
+    <p>¿Cómo se escribe <strong>28</strong>? (Recordá la regla de elisión)</p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, false, 'qn3', 'No — ventiotto conserva la I. La regla de elision aplica con uno y otto: ventotto.')">ventiotto</button>
+      <button class="opt-btn" onclick="checkMC(this, true, 'qn3', '¡Correcto! ventotto — la I de venti se elide antes de otto.')">ventotto</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qn3', 'No — ventocto no existe. La correcta es ventotto.')">ventocto</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qn3', 'No — vintotto no existe. La correcta es ventotto.')">vintotto</button>
+    </div>
+    <div class="quiz-fb" id="qn3fb"></div>
+  </div>
+</div>
+
 <hr class="divider">
 
 <!-- ═══════════════════════════════════════════════════
@@ -633,6 +871,44 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
     <tr><td><em>Quanti/e</em></td><td>¿Cuántos/as?</td><td><em>Quanti anni hai?</em></td><td><button class="btn-audio-sm" onclick="ippAudio('Quanti anni hai?',0.82,'f')">▶</button></td></tr>
   </tbody>
 </table>
+
+<div class="ex-block">
+  <div class="ex-block-title">✏️ Gli interrogativi — ¿cuál corresponde?</div>
+  <div class="ex-block-desc">Elegí el interrogativo correcto para cada pregunta.</div>
+
+  <div class="ex-q" id="qi1">
+    <p>Para preguntar <strong>"¿de dónde sos?"</strong>:</p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, false, 'qi1', 'No — Dove vai pregunta adonde vas. Para el origen: Di dove sei.')">Dove vai?</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qi1', 'No — Come ti chiami pregunta como te llamas. Para el origen: Di dove sei.')">Come ti chiami?</button>
+      <button class="opt-btn" onclick="checkMC(this, true, 'qi1', '¡Correcto! Di dove sei — de donde eres/sos.')">Di dove sei?</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qi1', 'No — Quanti anni hai pregunta cuantos anos tenes. Para el origen: Di dove sei.')">Quanti anni hai?</button>
+    </div>
+    <div class="quiz-fb" id="qi1fb"></div>
+  </div>
+
+  <div class="ex-q" id="qi2">
+    <p>Para preguntar <strong>"¿cuántos años tenés?"</strong>:</p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, false, 'qi2', 'No — Come ti chiami pregunta como te llamas. Para la edad: Quanti anni hai.')">Come ti chiami?</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qi2', 'No — Di dove sei pregunta de donde sos. Para la edad: Quanti anni hai.')">Di dove sei?</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qi2', 'No — Dove abiti pregunta donde vives. Para la edad: Quanti anni hai.')">Dove abiti?</button>
+      <button class="opt-btn" onclick="checkMC(this, true, 'qi2', '¡Correcto! Quanti anni hai — cuantos anos tenes.')">Quanti anni hai?</button>
+    </div>
+    <div class="quiz-fb" id="qi2fb"></div>
+  </div>
+
+  <div class="ex-q" id="qi3">
+    <p>¿Cuál es la diferencia entre <em>Dove</em> y <em>Di dove</em>?</p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, false, 'qi3', 'No es al reves. Dove = donde/adonde (lugar actual o destino). Di dove = de donde (origen).')">Dove = origen · Di dove = destino</button>
+      <button class="opt-btn" onclick="checkMC(this, true, 'qi3', '¡Correcto! Dove = donde/adonde (lugar o destino). Di dove = de donde (origen, con di de procedencia).')">Dove = lugar/destino · Di dove = origen</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qi3', 'No — son distintos. Dove = lugar/destino. Di dove = origen.')">Son exactamente iguales</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qi3', 'No — ambos se usan con personas y lugares.')">Dove es solo para cosas · Di dove para personas</button>
+    </div>
+    <div class="quiz-fb" id="qi3fb"></div>
+  </div>
+</div>
 
 <hr class="divider">
 
@@ -791,7 +1067,43 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
   </div>
 </div>
 
+<div class="ex-block" style="margin-top:32px;">
+  <div class="ex-block-title">✏️ Le nazionalità — ¿masculino o femenino?</div>
+  <div class="ex-block-desc">Las nacionalidades cambian según el género. Elegí la forma correcta.</div>
 
+  <div class="ex-q" id="qnaz1">
+    <p>Una mujer de Italia dice: <em>"Sono ___"</em></p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, false, 'qnaz1', 'No — italiano es la forma masculina. Una mujer dice: sono italiana.')">italiano</button>
+      <button class="opt-btn" onclick="checkMC(this, true, 'qnaz1', '¡Correcto! Una mujer dice sono italiana. Masculino: italiano.')">italiana</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qnaz1', 'No — italiani es el plural masculino. Para una mujer: italiana.')">italiani</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qnaz1', 'No — italiane es el plural femenino. Para una mujer sola: italiana.')">italiane</button>
+    </div>
+    <div class="quiz-fb" id="qnaz1fb"></div>
+  </div>
+
+  <div class="ex-q" id="qnaz2">
+    <p>Un hombre de Argentina dice: <em>"Sono ___"</em></p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, true, 'qnaz2', '¡Correcto! Un hombre dice sono argentino. Femenino: argentina.')">argentino</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qnaz2', 'No — argentina es la forma femenina. Un hombre dice: sono argentino.')">argentina</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qnaz2', 'No — argentini es el plural masculino. Para un hombre solo: argentino.')">argentini</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qnaz2', 'No — argentinas no existe en italiano. Para un hombre: argentino.')">argentinas</button>
+    </div>
+    <div class="quiz-fb" id="qnaz2fb"></div>
+  </div>
+
+  <div class="ex-q" id="qnaz3">
+    <p>¿Qué tienen en común <em>francese</em> e <em>inglese</em>?</p>
+    <div class="opts-wrap">
+      <button class="opt-btn" onclick="checkMC(this, false, 'qnaz3', 'No — esas formas existen pero son plurales. Francese e inglese son invariables en singular.')">Tienen forma masculina y femenina distintas</button>
+      <button class="opt-btn" onclick="checkMC(this, true, 'qnaz3', '¡Correcto! Francese e inglese son invariables: son iguales para masculino y femenino.')">La forma es igual para masculino y femenino</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qnaz3', 'No — se usan constantemente en italiano.')">No se usan en italiano</button>
+      <button class="opt-btn" onclick="checkMC(this, false, 'qnaz3', 'No — terminan en -ese, no en -o/-a.')">Terminan en -o para masculino</button>
+    </div>
+    <div class="quiz-fb" id="qnaz3fb"></div>
+  </div>
+</div>
 
 </main>
 
@@ -813,6 +1125,14 @@ if (!window.__ippClickTracked) {
   document.addEventListener('click', function(e) { window.__ippLastClicked = e.target; }, true);
 }
 
+/* ── IPP VOICE CONFIG — cambiar aquí para toda la unidad ──
+   rate:  0.7 lento · 1.0 normal · 1.2 rápido
+   pitch: 0.8 grave · 1.0 normal · 1.3 agudo          */
+window.IPP_VOICE = window.IPP_VOICE || {
+  lang: 'it-IT', rate: 0.82, pitch: 1.10,
+  preferFemale: true, preferGoogle: true
+};
+
 // ── EXECUTION GUARD — define functions once ──
 if (!window.__ipp_m2_e2__) {
 window.__ipp_m2_e2__ = true;
@@ -830,7 +1150,7 @@ function ippResetBtn() {
 }
 
 function ippAudio(text, rate, gender) {
-  rate   = (typeof rate === 'number' && isFinite(rate)) ? rate : 0.82;
+  rate   = (typeof rate === 'number' && isFinite(rate)) ? rate : ((window.IPP_VOICE && window.IPP_VOICE.rate) ? window.IPP_VOICE.rate : 0.82);
   gender = (gender === 'm' || gender === 'f') ? gender : 'f';
   if (!window.speechSynthesis) return;
 
@@ -860,6 +1180,7 @@ function ippAudio(text, rate, gender) {
 
   var utt = new SpeechSynthesisUtterance(String(text));
   utt.lang = 'it-IT'; utt.rate = rate;
+  utt.pitch = (window.IPP_VOICE && window.IPP_VOICE.pitch) ? window.IPP_VOICE.pitch : 1.10;
   var voice = ippVoice(gender);
   if (voice) utt.voice = voice;
   utt.onerror = function() { ippResetBtn(); };
@@ -911,40 +1232,63 @@ function selectCity(key, btn) {
   ippAudio(data.name, 0.9, 'f');
 }
 
-// ── YOUTUBE PLAYBACK — uses window._yt2_m2 (global, survives re-entry) ──
-function ytPlaySeg_m2(start, end, btn, _retry) {
-  if (window._yt2_m2_timer) { clearTimeout(window._yt2_m2_timer); window._yt2_m2_timer = null; }
-  document.querySelectorAll('.dial-container .yt-lbtn').forEach(function(b) {
-    b.classList.remove('active-yt'); b.textContent = '▶';
+// ── RETRY HELPER ──
+function ippRetry(container, resetFn) {
+  var old = container.querySelector('.ipp-retry-btn');
+  if (old) old.remove();
+  var btn = document.createElement('button');
+  btn.className = 'ipp-retry-btn';
+  btn.style.cssText = 'margin-top:8px;display:inline-block;background:none;border:1.5px solid #e5ab07;color:#c8940a;border-radius:16px;padding:4px 14px;font-size:0.8rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.2s;';
+  btn.textContent = '↺ Reintentar';
+  btn.onmouseover = function() { btn.style.background='#EFCF7F'; btn.style.color='#1a1a18'; };
+  btn.onmouseout  = function() { btn.style.background='none'; btn.style.color='#c8940a'; };
+  btn.onclick = function() { btn.remove(); resetFn(); };
+  container.appendChild(btn);
+}
+
+function checkVF(btn, isCorrect, qId, msg) {
+  var q = document.getElementById(qId);
+  if (q.dataset.done) return;
+  q.dataset.done = '1';
+  q.querySelectorAll('.opt-btn').forEach(function(b) { b.disabled = true; });
+  var clickedTrue = btn.textContent.startsWith('V');
+  var wasCorrect = (clickedTrue && isCorrect) || (!clickedTrue && !isCorrect);
+  btn.classList.add(wasCorrect ? 'correct' : 'wrong');
+  if (!wasCorrect) {
+    q.querySelectorAll('.opt-btn').forEach(function(b) {
+      var bTrue = b.textContent.startsWith('V');
+      if ((bTrue && isCorrect) || (!bTrue && !isCorrect)) b.classList.add('correct');
+    });
+  }
+  var fb = document.getElementById(qId + 'fb');
+  fb.textContent = msg;
+  fb.className = 'quiz-fb ' + (wasCorrect ? 'ok' : 'no');
+  ippRetry(q, function() {
+    delete q.dataset.done;
+    q.querySelectorAll('.opt-btn').forEach(function(b) { b.disabled = false; b.classList.remove('correct','wrong'); });
+    fb.textContent = ''; fb.className = 'quiz-fb';
   });
-  if (btn) { btn.classList.add('active-yt'); btn.textContent = '⏸'; }
-  var p = window._yt2_m2;
-  if (!p || typeof p.seekTo !== 'function') {
-    if (!_retry) setTimeout(function(){ ytPlaySeg_m2(start, end, btn, true); }, 700);
-    return;
-  }
-  try { p.seekTo(start, true); p.playVideo(); } catch(e) {}
-  var dur = Math.max(1000, (end - start) * 1000 + 300);
-  window._yt2_m2_timer = setTimeout(function() {
-    try { if (window._yt2_m2) window._yt2_m2.pauseVideo(); } catch(e) {}
-    if (btn) { btn.classList.remove('active-yt'); btn.textContent = '▶'; }
-  }, dur);
 }
-function ytPlayAll_m2(_retry) {
-  if (window._yt2_m2_timer) { clearTimeout(window._yt2_m2_timer); window._yt2_m2_timer = null; }
-  document.querySelectorAll('.yt-lbtn').forEach(function(b) { b.classList.remove('active-yt'); b.textContent = '▶'; });
-  var p = window._yt2_m2;
-  if (!p || typeof p.seekTo !== 'function') {
-    if (!_retry) setTimeout(function(){ ytPlayAll_m2(true); }, 700);
-    return;
+
+function checkMC(btn, isCorrect, qId, msg) {
+  var q = document.getElementById(qId);
+  if (q.dataset.done) return;
+  q.dataset.done = '1';
+  q.querySelectorAll('.opt-btn').forEach(function(b) { b.disabled = true; });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    q.querySelectorAll('.opt-btn').forEach(function(b) {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(', true,')) b.classList.add('correct');
+    });
   }
-  try { p.seekTo(0, true); p.playVideo(); } catch(e) {}
-}
-function ytStop_m2() {
-  if (window._yt2_m2_timer) { clearTimeout(window._yt2_m2_timer); window._yt2_m2_timer = null; }
-  try { if (window._yt2_m2) window._yt2_m2.pauseVideo(); } catch(e) {}
-  try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch(e) {}
-  document.querySelectorAll('.yt-lbtn').forEach(function(b) { b.classList.remove('active-yt'); b.textContent = '▶'; });
+  var fb = document.getElementById(qId + 'fb');
+  fb.textContent = msg;
+  fb.className = 'quiz-fb ' + (isCorrect ? 'ok' : 'no');
+  ippRetry(q, function() {
+    delete q.dataset.done;
+    q.querySelectorAll('.opt-btn').forEach(function(b) { b.disabled = false; b.classList.remove('correct','wrong'); });
+    fb.textContent = ''; fb.className = 'quiz-fb';
+  });
 }
 
 // ── CULTURE ──
@@ -964,86 +1308,135 @@ function ippStop() {
   ippResetBtn();
 }
 
-window.ippAudio = ippAudio;
-window.ippStop  = ippStop;
+window.ippAudio   = ippAudio;
+window.ippStop    = ippStop;
 window.selectCity = selectCity;
-window.ytPlaySeg_m2 = ytPlaySeg_m2;
-window.ytPlayAll_m2 = ytPlayAll_m2;
-window.ytStop_m2 = ytStop_m2;
 window.toggleCulture = toggleCulture;
+window.ippRetry = ippRetry;
+window.checkVF  = checkVF;
+window.checkMC  = checkMC;
 } // end execution guard
 
-// ── YOUTUBE PLAYER INIT — runs on EVERY entry (outside guard) ──
-// Handles first load AND Odoo re-entry after navigation.
-(function() {
-  function _initYT2() {
-    var el = document.getElementById('ipp-yt-m2');
-    if (!el) return;
-    // Check if existing player is still valid (its iframe must be in the current DOM)
-    if (window._yt2_m2) {
+// ── YOUTUBE PLAYER — Modulo 2 · Di dove sei? ──
+// Corre FUERA del guard para que el player se re-inicialice si el iframe se vuelve stale (navegación Odoo)
+(function(){
+  window._ippYT_m2 = window._ippYT_m2 || { player: null, ready: false, poll: null };
+  var y = window._ippYT_m2;
+  var _activeBtn  = null;
+  var _activeLine = null;
+
+  // Carga YouTube IFrame API una sola vez
+  if (!window.YT) {
+    var s = document.createElement('script');
+    s.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(s);
+  }
+
+  function initPlayer() {
+    if (y.player) {
       try {
-        var f = window._yt2_m2.getIframe ? window._yt2_m2.getIframe() : null;
-        if (f && document.body && document.body.contains(f)) return; // still alive
+        var f = y.player.getIframe ? y.player.getIframe() : null;
+        if (f && document.body && document.body.contains(f)) return; // sigue vivo
       } catch(e) {}
-      // Stale — destroy and re-create
-      try { window._yt2_m2.destroy(); } catch(e) {}
-      window._yt2_m2 = null;
+      try { y.player.destroy(); } catch(e) {}
+      y.player = null; y.ready = false;
     }
-    window._yt2_m2 = new YT.Player('ipp-yt-m2', {
-      videoId: 'OqOh7Ss5ULE',
-      playerVars: { playsinline: 1, controls: 0, rel: 0, modestbranding: 1 },
-      events: {
-        onReady: function(e) {
-          // Pre-load first frame so seekTo/playVideo respond immediately on first click
-          try { e.target.mute(); e.target.playVideo();
-            setTimeout(function(){ try { e.target.pauseVideo(); e.target.seekTo(0,true); e.target.unMute(); } catch(x){} }, 300);
-          } catch(x) {}
+    function tryCreate() {
+      if (!window.YT || !window.YT.Player) { setTimeout(tryCreate, 300); return; }
+      y.player = new YT.Player('ipp-yt-m2', {
+        videoId: 'OqOh7Ss5ULE',
+        height: 1, width: 1,
+        playerVars: { autoplay: 0, controls: 0, origin: location.origin || '', playsinline: 1 },
+        events: {
+          onReady: function(e) {
+            y.ready = true;
+            // Prime: mute brevemente para que seekTo funcione de inmediato
+            try {
+              e.target.mute(); e.target.playVideo();
+              setTimeout(function() {
+                try { e.target.pauseVideo(); e.target.seekTo(0, true); e.target.unMute(); } catch(x) {}
+              }, 300);
+            } catch(x) {}
+          }
         }
+      });
+    }
+    tryCreate();
+  }
+
+  function resetBtn() {
+    if (_activeBtn) {
+      _activeBtn.textContent = '▶';
+      _activeBtn.classList.remove('ipp-playing');
+      _activeBtn = null;
+    }
+    if (_activeLine) {
+      _activeLine.classList.remove('yt-active');
+      _activeLine = null;
+    }
+  }
+
+  function stopPoll() {
+    if (y.poll) { clearInterval(y.poll); y.poll = null; }
+  }
+
+  window.ytPlaySeg_m2 = function(start, end, btn) {
+    if (!y.ready) { setTimeout(function() { ytPlaySeg_m2(start, end, btn); }, 700); return; }
+    stopPoll(); resetBtn();
+    _activeBtn = btn;
+    btn.textContent = '⏹'; btn.classList.add('ipp-playing');
+    var line = btn.closest ? btn.closest('.dial-line') : null;
+    if (line) { _activeLine = line; line.classList.add('yt-active'); }
+    try { y.player.seekTo(start, true); y.player.playVideo(); } catch(e) {}
+    y.poll = setInterval(function() {
+      try {
+        var ct = y.player.getCurrentTime();
+        if (ct >= end) { stopPoll(); try { y.player.pauseVideo(); } catch(e) {} resetBtn(); }
+      } catch(e) { stopPoll(); resetBtn(); }
+    }, 150);
+  };
+
+  window.ytPlayAll_m2 = function() {
+    if (!y.ready) { setTimeout(ytPlayAll_m2, 700); return; }
+    stopPoll(); resetBtn();
+    try { y.player.seekTo(0, true); y.player.playVideo(); } catch(e) {}
+  };
+
+  window.ytStop_m2 = function() {
+    stopPoll(); resetBtn();
+    if (y.player && y.ready) { try { y.player.pauseVideo(); } catch(e) {} }
+  };
+
+  // Verificar si el player anterior está stale y re-inicializar
+  if (y.player) {
+    try {
+      var f2 = y.player.getIframe ? y.player.getIframe() : null;
+      if (!f2 || !document.body.contains(f2)) {
+        try { y.player.destroy(); } catch(e) {}
+        y.player = null; y.ready = false;
       }
-    });
+    } catch(e) { y.player = null; y.ready = false; }
   }
-  if (!window.__ipp_yt_cbs) window.__ipp_yt_cbs = [];
-  window.__ipp_yt_cbs.push(_initYT2);
-  if (!window.__ipp_yt_api) {
-    window.__ipp_yt_api = true;
-    window.onYouTubeIframeAPIReady = function() {
-      (window.__ipp_yt_cbs || []).forEach(function(fn) { try { fn(); } catch(e) {} });
-    };
-    var _s = document.createElement('script');
-    _s.src = 'https://www.youtube.com/iframe_api';
-    (document.head || document.body).appendChild(_s);
-  } else if (window.YT && window.YT.Player) {
-    setTimeout(_initYT2, 80);
-    setTimeout(_initYT2, 600);
-  }
-  // else: API loading is in progress; onYouTubeIframeAPIReady will call _initYT2 when ready
+  initPlayer();
 })();
 
 // ── STOP ON LEAVE — pausa cuando salís de la slide ──
 (function() {
-  // 1. Pause when browser tab is hidden
   if (!window.__ipp_m2_vis__) {
     window.__ipp_m2_vis__ = true;
     document.addEventListener('visibilitychange', function() {
       if (document.hidden) {
-        try { if (window._yt2_m2) window._yt2_m2.pauseVideo(); } catch(e) {}
         try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch(e) {}
       }
     });
   }
-  // 2. Poll for DOM removal (Odoo removes the slide element on navigation)
-  var _leavePoll = setInterval(function() {
-    if (!document.getElementById('ipp-yt-m2')) {
-      clearInterval(_leavePoll);
-      if (window._yt2_m2_timer) { clearTimeout(window._yt2_m2_timer); window._yt2_m2_timer = null; }
-      try { if (window._yt2_m2) window._yt2_m2.pauseVideo(); } catch(e) {}
-      try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch(e) {}
-      // Nullify so re-entry creates a fresh player
-      window._yt2_m2 = null;
-    }
-  }, 1500);
 })();
 </script>
+<div class="cta-section">
+    <a class="btn-cta" href="https://italianoperpiacere.com/slides/slide/gramatica-148?fullscreen=1#">Ir a ejercicios →</a>
+  </div>
+
+
 
 </body>
 </html>

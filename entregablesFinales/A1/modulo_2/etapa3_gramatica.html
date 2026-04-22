@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Di dove sei?</title>
+<title>Di dove sei? · Gramática</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -13,7 +13,7 @@
   --fh: 'Playfair Display', Georgia, serif;
   --fb: 'Outfit', system-ui, sans-serif;
   --r: 10px;
-  --mc: #cc4736; --mc-dk: #a8382a; --mc-text: #7a1f14; --mc-bg: #faeae8;
+  --mc: #528e74; --mc-dk: #3d6b58; --mc-text: #2d4d3c; --mc-bg: #e4f0e9;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: var(--fb); background: var(--cream); color: var(--black); min-height: 100vh; }
@@ -24,12 +24,11 @@ body { font-family: var(--fb); background: var(--cream); color: var(--black); mi
 .stage-label.done { color: var(--green); border-bottom-color: var(--green); }
 .stage-label.active { color: var(--mc-text); border-bottom-color: var(--mc); }
 .stage-label.pending { color: #bbb; }
-.stage-sep { color: #ccc; font-size: 0.8rem; padding: 0 2px; }
 
-.hero { background: linear-gradient(135deg, var(--mc-bg) 0%, var(--cream-dk) 100%); border-bottom: 3px solid var(--mc); padding: 52px 20px 44px; text-align: center; }
-.hero-badge { display: inline-block; background: var(--mc); color: var(--white); font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 14px; }
-.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2rem,5vw,3rem); color: var(--mc-text); line-height: 1.1; margin-bottom: 10px; }
-.hero .sub { font-size: 1rem; color: var(--mc-text); opacity: .8; max-width: 560px; margin: 0 auto; }
+.hero { background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%); padding: 52px 20px 44px; text-align: center; color: var(--white); position: relative; overflow: hidden; }
+.hero-badge { display: inline-block; background: rgba(255,255,255,0.22); color: var(--white); font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 14px; }
+.hero h1 { font-family: var(--fh); font-style: italic; font-size: clamp(2rem,5vw,3rem); color: var(--white); line-height: 1.1; margin-bottom: 10px; }
+.hero .sub { font-size: 1rem; color: var(--white); opacity: .85; max-width: 560px; margin: 0 auto; }
 
 .container { max-width: 860px; margin: 0 auto; padding: 40px 20px 80px; }
 .sec-header { margin: 52px 0 22px; }
@@ -64,11 +63,6 @@ body { font-family: var(--fb); background: var(--cream); color: var(--black); mi
 .nomi-row:last-child { border-bottom: none; }
 .nomi-it { font-style: italic; font-weight: 600; color: var(--mc-text); flex: 1; }
 .nomi-es { font-size: 0.78rem; color: #888; flex: 1; }
-/* Nomi play buttons — colores por género */
-.nomi-m .conj-play { border-color: #1a3a6b; color: #1a3a6b; }
-.nomi-m .conj-play:hover { background: #e8f0fd; color: #1a3a6b; }
-.nomi-f .conj-play { border-color: #6b1a3a; color: #6b1a3a; }
-.nomi-f .conj-play:hover { background: #fde8f0; color: #6b1a3a; }
 
 /* VERBI ARE */
 .are-wrap { background: var(--white); border-radius: var(--r); border: 1px solid var(--cream-dk); overflow: hidden; }
@@ -91,86 +85,89 @@ body { font-family: var(--fb); background: var(--cream); color: var(--black); mi
 .ex-q { font-size: 0.95rem; font-weight: 600; color: var(--mc-text); margin-bottom: 14px; line-height: 1.5; }
 .ex-input-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 8px; font-size: 0.92rem; line-height: 2; }
 .ex-input-row label { color: #555; }
-.fill-blank { border: none; border-bottom: 2px solid var(--mc); background: transparent; font-size: 0.92rem; font-style: italic; color: var(--mc-text); font-weight: 600; width: 120px; padding: 2px 4px; outline: none; font-family: var(--fb); }
+.fill-blank { border: none; border-bottom: 2px solid var(--mc); background: transparent; font-size: 0.92rem; font-style: italic; color: var(--mc-text); font-weight: 600; padding: 2px 4px; outline: none; font-family: var(--fb); }
 .fill-blank:focus { background: var(--mc-bg); border-radius: 4px; }
-.btn-check { background: var(--mc); color: var(--white); border: none; border-radius: 16px; padding: 7px 18px; font-size: 0.82rem; font-weight: 600; cursor: pointer; }
+.fill-blank.ok  { border-bottom-color: #28a745; background: #d4edda; border-radius: 4px; }
+.fill-blank.err { border-bottom-color: #dc3545; background: #f8d7da; border-radius: 4px; }
+.btn-check { background: var(--mc); color: var(--white); border: none; border-radius: 16px; padding: 7px 18px; font-size: 0.82rem; font-weight: 600; cursor: pointer; margin-top: 6px; }
 .btn-check:hover { background: var(--mc-dk); }
-.ex-fb { font-size: 0.84rem; margin-top: 10px; padding: 6px 12px; border-radius: 6px; display: none; }
-.ex-fb.ok { display: block; background: #d4edda; color: #155724; }
-.ex-fb.no { display: block; background: #f8d7da; color: #721c24; }
+.ex-fb { font-size: 0.88rem; margin-top: 10px; padding: 11px 16px; border-radius: 8px; display: none; line-height: 1.65; }
+.ex-fb.ok { display: block; background: #d4edda; color: #155724; border-left: 4px solid #28a745; }
+.ex-fb.no { display: block; background: #f8d7da; color: #721c24; border-left: 4px solid #dc3545; }
 .opts-row { display: flex; flex-wrap: wrap; gap: 8px; }
-.opt-btn { border: 2px solid var(--cream-dk); background: var(--cream); color: var(--black); border-radius: 8px; padding: 8px 16px; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.18s; }
+.opts-row.four { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.opt-btn { border: 2px solid var(--cream-dk); background: var(--cream); color: var(--black); border-radius: 8px; padding: 8px 16px; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.18s; font-family: var(--fb); text-align: left; }
 .opt-btn:hover:not(:disabled) { border-color: var(--mc); background: var(--mc-bg); }
 .opt-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; pointer-events: none; }
 .opt-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; pointer-events: none; }
+.opt-btn.selected { background: var(--mc-bg); border-color: var(--mc); color: var(--mc-text); box-shadow: 0 0 0 3px rgba(82,142,116,0.25); }
 
 .ex-section { margin: 24px 0; }
-.ex-section-title { font-family: var(--fh); font-style: italic; color: var(--mc-dk); font-size: 1rem; margin-bottom: 14px; padding-bottom: 6px; border-bottom: 2px solid var(--mc-bg); }
+.ex-section-title { font-family: var(--fh); font-style: italic; color: var(--mc-dk); font-size: 1.05rem; margin-bottom: 14px; padding-bottom: 6px; border-bottom: 2px solid var(--mc-bg); }
 
 .callout { background: var(--mc-bg); border-left: 4px solid var(--mc); border-radius: 0 var(--r) var(--r) 0; padding: 14px 18px; margin: 18px 0; font-size: 0.88rem; color: var(--mc-text); line-height: 1.6; }
 .callout strong { color: var(--mc-dk); }
 hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 0; }
+
+/* DIALOGUE */
+.dial-section { background: var(--white); border-radius: var(--r); border: 1px solid var(--cream-dk); padding: 24px; margin: 20px 0; }
+.dial-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
+.dial-row.right { flex-direction: row-reverse; }
+.dial-who { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--mc-text); min-width: 56px; padding-top: 9px; }
+.dial-row.right .dial-who { color: #1a3a6b; text-align: right; }
+.dial-bubble-text { background: var(--cream); border-radius: 0 10px 10px 10px; padding: 10px 14px; font-style: italic; font-size: 0.92rem; line-height: 1.65; flex: 1; }
+.dial-row.right .dial-bubble-text { background: #e0eff5; border-radius: 10px 0 10px 10px; }
+.dial-play { background: none; border: 1.5px solid var(--mc); color: var(--mc); border-radius: 50%; width: 28px; height: 28px; padding: 0; font-size: 0.72rem; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 7px; }
+.dial-play:hover { background: var(--mc); color: var(--white); }
+.dial-row.right .dial-play { border-color: #1a3a6b; color: #1a3a6b; }
+.dial-row.right .dial-play:hover { background: #e8f0fd; }
+.dial-note { font-size: 0.78rem; color: #888; margin-top: 4px; font-style: normal; padding-left: 2px; }
+
+/* CTA */
 .cta-section { text-align: center; padding: 50px 0 20px; }
 .btn-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--mc); color: var(--white); border: none; border-radius: 30px; padding: 16px 36px; font-size: 1rem; font-weight: 700; cursor: pointer; text-decoration: none; transition: all 0.2s; }
 .btn-cta:hover { background: var(--mc-dk); transform: translateY(-2px); }
 
+.vocab-audio-btn { background: var(--mc-bg); border: none; color: var(--mc-text); border-radius: 10px; padding: 3px 10px; font-size: 0.72rem; font-weight: 600; cursor: pointer; margin-left: auto; flex-shrink: 0; font-family: var(--fb); }
+.vocab-audio-btn:hover { background: var(--mc); color: var(--white); }
+.audio-stop-row { display: flex; justify-content: flex-end; margin-top: 10px; }
+.audio-stop-sm { display: inline-flex; align-items: center; gap: 5px; background: var(--cream-dk); color: var(--black); border: none; border-radius: 16px; padding: 5px 14px; font-size: 0.8rem; font-weight: 600; cursor: pointer; font-family: var(--fb); }
+.audio-stop-sm:hover { background: #c8c4b4; }
+.ipp-stop-fab { position: fixed; bottom: 22px; right: 22px; z-index: 999; background: var(--cream-dk); color: #1a1a18; border: none; border-radius: 50px; padding: 9px 18px; font-size: .82rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.18); display: none; align-items: center; gap: 6px; font-family: var(--fb); }
+.ipp-stop-fab:hover { background: #c8c4b4; }
+
 @media (max-width: 560px) {
   .nomi-grid { grid-template-columns: 1fr; }
   .conj-wrap { grid-template-columns: 1fr; }
+  .opts-row.four { grid-template-columns: 1fr; }
 }
-/* ── IPP Dialog / YouTube Controls ── */
-.dial-line{display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:1rem}
-.dial-speaker{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;min-width:80px;padding-top:.5rem;color:#888}
-.dial-speaker.a{color:var(--mc-dk)}
-.dial-speaker.b{color:var(--teal,#78a6ba)}
-.dial-wrap{flex:1}
-.dial-bubble{background:var(--cream-dk,#ddd9c8);border-radius:0 10px 10px 10px;padding:.8rem 1.1rem;font-size:.93rem;line-height:1.65;font-style:italic;transition:filter .45s,opacity .45s}
-.dial-bubble.blurred{filter:blur(7px);opacity:.25;user-select:none;pointer-events:none}
-.dial-line.right .dial-speaker{order:2}
-.dial-line.right .dial-wrap{order:1}
-.dial-line.right .dial-bubble{border-radius:10px 0 10px 10px;background:#e0eff5}
-.dial-line-ctrl{display:flex;gap:6px;margin-top:7px}
-.yt-lbtn{width:32px;height:32px;border-radius:50%;border:1.8px solid var(--mc-dk);background:none;color:var(--mc-dk);cursor:pointer;font-size:.72rem;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
-.yt-lbtn:hover{background:var(--mc-bg,#e4f0e9)}
-.yt-lbtn.stop{border-color:#cc4736;color:#cc4736}
-.yt-lbtn.stop:hover{background:#faeaea}
-.dial-line.right .yt-lbtn{border-color:var(--teal,#78a6ba);color:var(--teal,#78a6ba)}
-.dial-line.right .yt-lbtn:hover{background:#e5f1f5}
-.dial-line.right .yt-lbtn.stop{border-color:#cc4736;color:#cc4736}
-.dial-line.yt-active{outline:3px solid var(--mc-dk);border-radius:8px;background:var(--mc-bg,#e4f0e9);transition:background .3s}
-.dial-line.yt-done{opacity:.7}
-.yt-top-controls{display:flex;gap:12px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
-.yt-btn{padding:10px 20px;border:none;border-radius:8px;font-family:var(--fb,'Outfit',system-ui,sans-serif);font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
-.yt-btn-conv{background:var(--mc-dk);color:#fff}
-.yt-btn-conv:hover{background:var(--mc)}
-.yt-btn-stop{background:var(--cream-dk,#ddd9c8);color:#1a1a18}
-.yt-btn-stop:hover{filter:brightness(.92)}
-.yt-btn:disabled{opacity:.45;cursor:not-allowed}
-.ipp-stop-fab{position:fixed;bottom:22px;right:22px;z-index:999;background:var(--cream-dk,#ddd9c8);color:#1a1a18;border:none;border-radius:50px;padding:9px 18px;font-size:.82rem;font-weight:700;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.18);display:none;align-items:center;gap:6px;font-family:var(--fb,'Outfit',system-ui,sans-serif)}
-.ipp-stop-fab:hover{background:#c8c4b4}
-.vocab-audio-btn{background:var(--mc-bg);border:none;color:var(--mc-text);border-radius:10px;padding:3px 10px;font-size:0.72rem;font-weight:600;cursor:pointer;margin-left:auto;flex-shrink:0;font-family:var(--fb)}
-.vocab-audio-btn:hover{background:var(--mc);color:var(--white)}
-.audio-stop-row{display:flex;justify-content:flex-end;margin-top:10px;}
-.audio-stop-sm{display:inline-flex;align-items:center;gap:5px;background:var(--cream-dk);color:var(--black);border:none;border-radius:16px;padding:5px 14px;font-size:0.8rem;font-weight:600;cursor:pointer;font-family:var(--fb)}
-.audio-stop-sm:hover{background:#c8c4b4}
 </style>
 </head>
 <body>
 
-<button class="ipp-stop-fab" id="ippStopFab" onclick="ippStop()">⏹ Detener audio</button>
+<button class="ipp-stop-fab" id="ippStopFab" data-stop="1">⏹ Detener audio</button>
 
 <div class="hero">
   <div class="hero-badge">Módulo 2 · Etapa 3</div>
-  <h1>La grammatica</h1>
-  <p class="sub"><em>Essere, andare, avere</em> — los tres pilares del italiano para presentarte y moverte.</p>
+  <h1>Di dove sei?</h1>
+  <p class="sub"><em>Essere, andare, avere</em> y los verbos en <em>-ARE</em> — las herramientas para presentarte, moverte y contar tu historia.</p>
 </div>
+
+<!-- STAGE NAV -->
+<nav style="background:var(--white);border-bottom:2px solid var(--cream-dk);display:flex;justify-content:center;gap:0.25rem;padding:0.45rem 1rem;flex-wrap:wrap;">
+  <a href="https://italianoperpiacere.com/slides/slide/descubrimiento-142?fullscreen=1#" class="nav-stage-link" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:20px;border:1.5px solid var(--cream-dk);font-size:0.75rem;font-weight:600;color:#888;text-decoration:none;transition:all 0.2s;">← Descubrimiento</a>
+  <span style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:20px;border:1.5px solid var(--mc);background:var(--mc-bg);font-size:0.75rem;font-weight:700;color:var(--mc-dk);">● Gramática</span>
+  <a href="https://italianoperpiacere.com/slides/slide/juegos-153?fullscreen=1#" class="nav-stage-link" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:20px;border:1.5px solid var(--cream-dk);font-size:0.75rem;font-weight:600;color:#888;text-decoration:none;transition:all 0.2s;">Ejercicios →</a>
+</nav>
 
 <main class="container">
 
-<!-- ═══ SEC 1: ESSERE ═══ -->
+<!-- ═══════════════════════════════════════════════════
+     SEC 1 · ESSERE
+════════════════════════════════════════════════════ -->
 <div class="sec-header">
   <h2><span class="sec-num">1</span> Il verbo <em>essere</em> — ser / estar</h2>
-  <p>Ser el verbo más importante del italiano. Lo usás para decir quién sos, de dónde sos, cómo estás.</p>
+  <p>El verbo más importante del italiano. Lo usás para decir quién sos, de dónde sos, cómo estás.</p>
 </div>
 
 <div class="callout">
@@ -181,229 +178,393 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
   <div class="conj-card">
     <div class="conj-head">
       <span>essere — ser / estar</span>
-      <button class="conj-btn-audio" onclick="ippAudio('io sono, tu sei, lui lei è',0.78,'f')">▶ escuchar</button>
+      <button class="conj-btn-audio" data-audio="io sono, tu sei, lui lei è, noi siamo, voi siete, loro sono" data-rate="0.78" data-gender="f">▶ escuchar todo</button>
     </div>
     <table class="conj-table">
-      <tr><td>io</td><td>sono</td><td>soy / estoy</td><td><button class="conj-play" onclick="ippAudio('io sono',0.82,'f')">▶</button></td></tr>
-      <tr><td>tu</td><td>sei</td><td>sos / estás</td><td><button class="conj-play" onclick="ippAudio('tu sei',0.82,'m')">▶</button></td></tr>
-      <tr><td>lui/lei</td><td>è</td><td>es / está</td><td><button class="conj-play" onclick="ippAudio('lui lei è',0.82,'f')">▶</button></td></tr>
+      <tr><td>io</td><td>sono</td><td>soy / estoy</td><td><button class="conj-play" data-audio="io sono di Buenos Aires" data-rate="0.82" data-gender="f">▶</button></td></tr>
+      <tr><td>tu</td><td>sei</td><td>sos / estás</td><td><button class="conj-play" data-audio="tu sei italiano?" data-rate="0.82" data-gender="m">▶</button></td></tr>
+      <tr><td>lui/lei</td><td>è</td><td>es / está</td><td><button class="conj-play" data-audio="lei è di Roma" data-rate="0.82" data-gender="f">▶</button></td></tr>
+      <tr><td>noi</td><td>siamo</td><td>somos</td><td><button class="conj-play" data-audio="noi siamo italiani" data-rate="0.82" data-gender="m">▶</button></td></tr>
+      <tr><td>voi</td><td>siete</td><td>son / sois</td><td><button class="conj-play" data-audio="voi siete di Milano?" data-rate="0.82" data-gender="f">▶</button></td></tr>
+      <tr><td>loro</td><td>sono</td><td>son / están</td><td><button class="conj-play" data-audio="loro sono argentini" data-rate="0.82" data-gender="m">▶</button></td></tr>
     </table>
   </div>
 </div>
 
 <div class="callout" style="margin-top:16px;">
-  💡 <strong>Atención:</strong> En italiano se puede omitir el pronombre — <em>Sono di Roma</em> (sin "io") es igual de correcto que <em>Io sono di Roma</em>. El verbo ya indica la persona.
+  💡 <strong>Atención:</strong> El pronombre es opcional en italiano — <em>Sono di Roma</em> (sin "io") es igual de correcto. El verbo ya indica la persona.<br>
+  ⚠️ <strong>Negación:</strong> <em>non</em> va justo antes del verbo → <em>Non sono di Milano.</em> / <em>Non è italiana.</em>
 </div>
 
-<div style="background: var(--cream); border-radius: var(--r); padding: 16px 20px; margin: 20px 0;">
+<div style="background:var(--cream);border-radius:var(--r);padding:16px 20px;margin:20px 0;">
 <div class="ex-section">
-  <h4 class="ex-section-title">Prattica — essere</h4>
+  <h4 class="ex-section-title">Esercizi — essere</h4>
 
+  <!-- E1-A MCQ 4 opciones -->
   <div class="ex-block" id="es1a">
-    <p class="ex-q">¿Cómo se dice "Yo soy de Roma"?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es1a',false,'Eso sería «tu sei» — eso es «vos sos».')">Tu sei di Roma.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es1a',true,'¡Perfetto! «Io sono» = yo soy/estoy.')">Io sono di Roma.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es1a',false,'Eso sería «lei è» — eso es «ella es».')">Lei è di Roma.</button>
+    <p class="ex-q">1. Completá la respuesta: <em>— Di dove sei? — _____ di Napoli, ma abito a Roma.</em></p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es1a" data-ok="0" data-msg="«Vai» es de andare — ir. Para responder di dove sei usás essere: sono.">Vai</button>
+      <button class="opt-btn" data-ex="es1a" data-ok="1" data-msg="¡Perfetto! La respuesta a «Di dove sei?» usa siempre essere: Sono di…">Sono</button>
+      <button class="opt-btn" data-ex="es1a" data-ok="0" data-msg="«Ho» es de avere — tener. Para el origen usás essere.">Ho</button>
+      <button class="opt-btn" data-ex="es1a" data-ok="0" data-msg="«Abito» significa «vivo/habito» — ya está en la oración. Falta essere.">Abito</button>
+    </div>
     <div class="ex-fb" id="es1afb"></div>
   </div>
 
+  <!-- E1-B free text -->
   <div class="ex-block" id="es1b">
-    <p class="ex-q">¿Cuál es la forma correcta para "vos sos estudiante"?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es1b',false,'«Io sono» = yo soy. Vos sos = tu sei.')">Io sono studente.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es1b',true,'¡Correcto! «Tu sei» = vos sos / tú eres.')">Tu sei studente.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es1b',false,'«Lui è» = él es. Aquí hablamos de vos.')">Lui è studente.</button>
+    <p class="ex-q">2. Escribí en italiano: <em>"Soy de Buenos Aires."</em></p>
+    <div class="ex-input-row">
+      <input class="fill-blank" type="text" id="f_es1b" placeholder="escribe aquí…" style="width:280px;"
+        data-ex="es1b" data-fn="free" data-accepted='["Sono di Buenos Aires","Io sono di Buenos Aires"]' data-hint="Usá «Sono di» + ciudad.">
+    </div>
+    <button class="btn-check" data-fn="free" data-inp="f_es1b" data-ex="es1b" data-accepted='["Sono di Buenos Aires","Io sono di Buenos Aires"]' data-hint="Usá «Sono di» + ciudad.">Verificar</button>
     <div class="ex-fb" id="es1bfb"></div>
   </div>
 
+  <!-- E1-C MCQ 4 opciones -->
   <div class="ex-block" id="es1c">
-    <p class="ex-q">Giulia __ italiana.</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es1c',false,'«Sei» es para «tu» (vos). Giulia es tercera persona.')">sei</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es1c',false,'«Sono» es para «io» (yo). Giulia es tercera persona.')">sono</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es1c',true,'¡Perfetto! «È» = es/está — tercera persona singular.')">è</button>
+    <p class="ex-q">3. <em>Giulia _____ italiana e _____ di Firenze.</em> ¿Cuál par completa correctamente?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es1c" data-ok="0" data-msg="«sei / sei» es para tu (segunda persona). Giulia es tercera persona singular.">sei / sei</button>
+      <button class="opt-btn" data-ex="es1c" data-ok="0" data-msg="«sono / sono» es para io o loro. Giulia es lui/lei → è.">sono / sono</button>
+      <button class="opt-btn" data-ex="es1c" data-ok="1" data-msg="¡Esatto! lui/lei → è. Ambos huecos son essere, tercera persona singular.">è / è</button>
+      <button class="opt-btn" data-ex="es1c" data-ok="0" data-msg="«sta / è» mezcla stare con essere. Aquí ambos son essere: è / è.">sta / è</button>
+    </div>
     <div class="ex-fb" id="es1cfb"></div>
   </div>
 
+  <!-- E1-D MCQ 4 opciones — distinción di dove / dove / come -->
   <div class="ex-block" id="es1d">
-    <p class="ex-q">¿Cómo preguntás "¿De dónde sos?" en italiano?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es1d',false,'«Come sei» significa ¿cómo estás?')">Come sei?</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es1d',true,'¡Sì! «Di dove sei?» = ¿de dónde sos?')">Di dove sei?</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es1d',false,'«Dove sei» sin «di» = ¿dónde estás?')">Dove sei?</button>
+    <p class="ex-q">4. ¿Cuál pregunta significa exactamente <em>"¿De dónde sos?"</em>?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es1d" data-ok="0" data-msg="«Come sei?» = ¿Cómo sos? — pregunta por carácter o apariencia, no por origen.">Come sei?</button>
+      <button class="opt-btn" data-ex="es1d" data-ok="0" data-msg="«Dove sei?» = ¿Dónde estás? — pregunta por ubicación actual, no por origen.">Dove sei?</button>
+      <button class="opt-btn" data-ex="es1d" data-ok="1" data-msg="¡Sì! «Di dove sei?» — la preposición «di» indica origen. Sin ella la pregunta cambia de significado.">Di dove sei?</button>
+      <button class="opt-btn" data-ex="es1d" data-ok="0" data-msg="«Di dove è?» pregunta por el origen de una tercera persona (él/ella/usted formal), no de «vos».">Di dove è?</button>
+    </div>
     <div class="ex-fb" id="es1dfb"></div>
   </div>
 
+  <!-- E1-E free text — forma formal -->
   <div class="ex-block" id="es1e">
-    <p class="ex-q">Traducí: "Ella es italiana y está bien."</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es1e',false,'«Sei» es para «tu». Para «lei» usás «è».')">Lei sei italiana e sta bene.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es1e',true,'¡Perfetto! «è» = es/está — tercera persona de essere.')">Lei è italiana e sta bene.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es1e',false,'«Sono» es primera persona — yo soy.')">Lei sono italiana e sta bene.</button>
+    <p class="ex-q">5. Escribí en italiano la pregunta formal: <em>"¿De dónde es usted?"</em></p>
+    <div class="ex-input-row">
+      <input class="fill-blank" type="text" id="f_es1e" placeholder="escribe aquí…" style="width:280px;"
+        data-ex="es1e" data-fn="free" data-accepted="[&quot;Di dove è?&quot;,&quot;Di dove è lei?&quot;,&quot;Di dov'è?&quot;,&quot;Di dov'è lei?&quot;]" data-hint="Forma formal de essere para «lei/usted» = è. «Di dove è?»">
+    </div>
+    <button class="btn-check" data-fn="free" data-inp="f_es1e" data-ex="es1e" data-accepted="[&quot;Di dove è?&quot;,&quot;Di dove è lei?&quot;,&quot;Di dov'è?&quot;,&quot;Di dov'è lei?&quot;]" data-hint="Forma formal de essere para «lei/usted» = è. «Di dove è?»">Verificar</button>
     <div class="ex-fb" id="es1efb"></div>
   </div>
+
+  <!-- E1-F avanzado -->
+  <div class="ex-block" id="es1f">
+    <p class="ex-q">⭐ Avanzado — Completá el párrafo. ¿Cuál de estas opciones tiene <strong>todas</strong> las formas de <em>essere</em> correctas?<br>
+    <small style="color:#888;font-weight:400;"><em>«___ di Buenos Aires. La mia amica ___ di Córdoba. Noi ___ argentine. Voi, di dove ___?»</em></small></p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es1f" data-ok="0" data-msg="«sono / è / siamo / siete» — casi correctas, pero revisá: «voi» → siete ✓, pero en la oración el orden ya lo indica correctamente. El error aquí es que la segunda persona debería ser «sei» si fuera «tu», pero con «voi» necesitás «siete». Esta opción mezcla mal las personas.">sono / sei / siamo / siete</button>
+      <button class="opt-btn" data-ex="es1f" data-ok="1" data-msg="¡Perfetto! io→sono · lei (amica)→è · noi→siamo · voi→siete. Las cuatro personas de essere en una sola oración: todas correctas.">sono / è / siamo / siete</button>
+      <button class="opt-btn" data-ex="es1f" data-ok="0" data-msg="«sono / sono / sono / sono» — «sono» es solo para io y loro. La amica (lei) necesita «è», y noi necesita «siamo».">sono / sono / sono / sono</button>
+      <button class="opt-btn" data-ex="es1f" data-ok="0" data-msg="«sono / è / siete / siamo» — invierte noi y voi. noi→siamo, voi→siete, no al revés.">sono / è / siete / siamo</button>
+    </div>
+    <div class="ex-fb" id="es1ffb"></div>
+  </div>
+
+  <!-- E1-G avanzado libre -->
+  <div class="ex-block" id="es1g">
+    <p class="ex-q">⭐⭐ Avanzado — Traducí esta conversación completa al italiano:<br>
+    <em>"— ¿De dónde sos? — Soy de Roma, pero estoy en Milán. — ¿Y él? — Él es de Nápoles."</em></p>
+    <div class="ex-input-row">
+      <input class="fill-blank" type="text" id="f_es1g" placeholder="Di dove sei? Sono di Roma…" style="width:100%;max-width:500px;"
+        data-ex="es1g" data-fn="free" data-accepted='["Di dove sei? Sono di Roma ma sono a Milano. E lui? È di Napoli.","Di dove sei? Sono di Roma, ma sono a Milano. E lui? E di Napoli.","Di dove sei? Sono di Roma ma sto a Milano. E lui? E di Napoli."]' data-hint="Preguntas: «Di dove sei?» · Respuesta: «Sono di Roma» · ubicación: «sono a Milano» o «sto a Milano» · tercera persona: «È di Napoli».">
+    </div>
+    <button class="btn-check" data-fn="free" data-inp="f_es1g" data-ex="es1g" data-accepted='["Di dove sei? Sono di Roma ma sono a Milano. E lui? È di Napoli.","Di dove sei? Sono di Roma ma sono a Milano. E lui? E di Napoli.","Di dove sei? Sono di Roma, ma sono a Milano. E lui? E di Napoli."]' data-hint="«Di dove sei?» · «Sono di Roma» · «sono a Milano» · «È di Napoli»">Verificar</button>
+    <div class="ex-fb" id="es1gfb"></div>
+  </div>
+
 </div>
 </div>
 
 <hr class="divider">
 
-<!-- ═══ SEC 2: ANDARE ═══ -->
+<!-- ═══════════════════════════════════════════════════
+     SEC 2 · ANDARE
+════════════════════════════════════════════════════ -->
 <div class="sec-header">
   <h2><span class="sec-num">2</span> Il verbo <em>andare</em> — ir</h2>
-  <p>Para decir adónde vas. Es irregular — prestá atención a las formas.</p>
+  <p>Para decir adónde vas. Es irregular en las primeras personas — prestá atención a las formas.</p>
 </div>
 
 <div class="conj-wrap">
   <div class="conj-card">
     <div class="conj-head">
       <span>andare — ir</span>
-      <button class="conj-btn-audio" onclick="ippAudio('io vado, tu vai, lui lei va',0.78,'f')">▶ escuchar</button>
+      <button class="conj-btn-audio" data-audio="io vado, tu vai, lui lei va, noi andiamo, voi andate, loro vanno" data-rate="0.78" data-gender="f">▶ escuchar todo</button>
     </div>
     <table class="conj-table">
-      <tr><td>io</td><td>vado</td><td>voy</td><td><button class="conj-play" onclick="ippAudio('vado a Roma',0.82,'m')">▶</button></td></tr>
-      <tr><td>tu</td><td>vai</td><td>vas</td><td><button class="conj-play" onclick="ippAudio('vai a Milano?',0.82,'f')">▶</button></td></tr>
-      <tr><td>lui/lei</td><td>va</td><td>va</td><td><button class="conj-play" onclick="ippAudio('va a Napoli',0.82,'m')">▶</button></td></tr>
+      <tr><td>io</td><td>vado</td><td>voy</td><td><button class="conj-play" data-audio="vado a Roma" data-rate="0.82" data-gender="m">▶</button></td></tr>
+      <tr><td>tu</td><td>vai</td><td>vas</td><td><button class="conj-play" data-audio="dove vai?" data-rate="0.82" data-gender="f">▶</button></td></tr>
+      <tr><td>lui/lei</td><td>va</td><td>va</td><td><button class="conj-play" data-audio="va a Napoli domani" data-rate="0.82" data-gender="m">▶</button></td></tr>
+      <tr><td>noi</td><td>andiamo</td><td>vamos</td><td><button class="conj-play" data-audio="andiamo alla stazione" data-rate="0.82" data-gender="f">▶</button></td></tr>
+      <tr><td>voi</td><td>andate</td><td>van / vais</td><td><button class="conj-play" data-audio="andate a Venezia?" data-rate="0.82" data-gender="m">▶</button></td></tr>
+      <tr><td>loro</td><td>vanno</td><td>van</td><td><button class="conj-play" data-audio="vanno in vacanza a Firenze" data-rate="0.82" data-gender="f">▶</button></td></tr>
     </table>
   </div>
 </div>
 
 <div class="callout" style="margin-top:16px;">
   💡 <strong>Andare + a + ciudad:</strong> <em>Vado a Roma · Vai a Venezia · Va a Milano</em><br>
-  Ante artículo: <em>Vado all'aeroporto · Vai alla stazione · Va al museo</em>
+  <strong>Ante artículo determinado</strong> → preposición articulada: <em>Vado all'aeroporto · Vai alla stazione · Va al museo</em><br>
+  ⚠️ <strong>¡Con ciudades siempre «a»!</strong> Nunca «in» con nombres de ciudad: <em>Vado a Milano</em> ✓ — <em>Vado in Milano</em> ✗
 </div>
 
-<div style="background: var(--cream); border-radius: var(--r); padding: 16px 20px; margin: 20px 0;">
+<div style="background:var(--cream);border-radius:var(--r);padding:16px 20px;margin:20px 0;">
 <div class="ex-section">
-  <h4 class="ex-section-title">Prattica — andare</h4>
+  <h4 class="ex-section-title">Esercizi — andare</h4>
 
+  <!-- E2-A MCQ 4 — detectar error -->
   <div class="ex-block" id="es2a">
-    <p class="ex-q">¿Cómo se dice "Yo voy a Roma"?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es2a',true,'¡Bravo! «Io vado a Roma» es correcto.')">Io vado a Roma.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es2a',false,'«Vai» es segunda persona — vos vas.')">Tu vai a Roma.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es2a',false,'«Va» es tercera persona — él/ella va.')">Lei va a Roma.</button>
+    <p class="ex-q">1. ¿Cuál de estas frases tiene un <strong>error</strong>?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es2a" data-ok="0" data-msg="«Vado a Roma» es correcto — andare + a + ciudad.">Vado a Roma.</button>
+      <button class="opt-btn" data-ex="es2a" data-ok="0" data-msg="«Andiamo alla stazione» es correcto — alla = a + la.">Andiamo alla stazione.</button>
+      <button class="opt-btn" data-ex="es2a" data-ok="1" data-msg="¡Errore! Con ciudades siempre «a», nunca «in»: debe ser «Vado a Venezia».">Vado in Venezia.</button>
+      <button class="opt-btn" data-ex="es2a" data-ok="0" data-msg="«Vanno in vacanza» es correcto — «in vacanza» es una expresión fija.">Vanno in vacanza.</button>
+    </div>
     <div class="ex-fb" id="es2afb"></div>
   </div>
 
+  <!-- E2-B MCQ 4 -->
   <div class="ex-block" id="es2b">
-    <p class="ex-q">Marco __ a Milano questo weekend.</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es2b',false,'«Vado» es primera persona — yo voy.')">vado</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es2b',false,'«Andate» es segunda persona plural — ustedes van.')">andate</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es2b',true,'¡Sì! «Va» = él/ella va — tercera persona singular.')">va</button>
+    <p class="ex-q">2. <em>Marco _____ a Milano in treno domani.</em></p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es2b" data-ok="0" data-msg="«Vado» es primera persona singular (io). Marco es tercera persona.">vado</button>
+      <button class="opt-btn" data-ex="es2b" data-ok="0" data-msg="«Andare» es el infinitivo. Con Marco (lui) necesitás la conjugación de tercera persona.">andare</button>
+      <button class="opt-btn" data-ex="es2b" data-ok="0" data-msg="«Vai» es segunda persona (tu). Marco es tercera persona.">vai</button>
+      <button class="opt-btn" data-ex="es2b" data-ok="1" data-msg="¡Sì! «Va» — lui/lei, tercera persona singular de andare.">va</button>
+    </div>
     <div class="ex-fb" id="es2bfb"></div>
   </div>
 
+  <!-- E2-C free text -->
   <div class="ex-block" id="es2c">
-    <p class="ex-q">¿Cuál es la forma correcta de "nosotros vamos"?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es2c',false,'«Vanno» es tercera persona plural — ellos van.')">Vanno</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es2c',true,'¡Esatto! «Andiamo» = nosotros/as vamos.')">Andiamo</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es2c',false,'«Andate» es segunda persona plural — ustedes van.')">Andate</button>
+    <p class="ex-q">3. Escribí en italiano: <em>"Nosotros vamos a Venezia."</em></p>
+    <div class="ex-input-row">
+      <input class="fill-blank" type="text" id="f_es2c" placeholder="escribe aquí…" style="width:300px;"
+        data-ex="es2c" data-fn="free" data-accepted='["Andiamo a Venezia","Noi andiamo a Venezia"]' data-hint="noi → andiamo. Con ciudades siempre «a».">
+    </div>
+    <button class="btn-check" data-fn="free" data-inp="f_es2c" data-ex="es2c" data-accepted='["Andiamo a Venezia","Noi andiamo a Venezia"]' data-hint="noi → andiamo. Con ciudades siempre «a».">Verificar</button>
     <div class="ex-fb" id="es2cfb"></div>
   </div>
 
+  <!-- E2-D MCQ 4 — preposición articulada -->
   <div class="ex-block" id="es2d">
-    <p class="ex-q">¿Cuál de estas frases usa correctamente "andare + a"?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es2d',false,'«Vado in Roma» no es correcto — con ciudades se usa «a»: «Vado a Roma».')">Vado in Roma.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es2d',true,'¡Perfetto! Andare + a + ciudad: «Vado a Venezia».')">Vado a Venezia.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es2d',false,'«Vai» es segunda persona — vos vas, no yo voy.')">Vai a Napoli.</button>
+    <p class="ex-q">4. <em>Vado _____ stazione.</em> ¿Qué preposición articulada es correcta?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es2d" data-ok="0" data-msg="«al» = a + il — se usa con sustantivos masculinos (al museo, al treno). «Stazione» es femenino.">al</button>
+      <button class="opt-btn" data-ex="es2d" data-ok="1" data-msg="¡Esatto! «alla» = a + la — «stazione» es femenino. «Vado alla stazione.»">alla</button>
+      <button class="opt-btn" data-ex="es2d" data-ok="0" data-msg="«a la» no existe en italiano — las preposiciones y artículos se fusionan: a + la = alla.">a la</button>
+      <button class="opt-btn" data-ex="es2d" data-ok="0" data-msg="«all'» = a + l' — se usa ante vocal. «Stazione» empieza con consonante.">all'</button>
+    </div>
     <div class="ex-fb" id="es2dfb"></div>
   </div>
 
+  <!-- E2-E free text -->
   <div class="ex-block" id="es2e">
-    <p class="ex-q">Loro __ in vacanza a Firenze ogni estate.</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es2e',false,'«Va» es tercera persona singular — él/ella va.')">va</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es2e',false,'«Andiamo» es primera persona plural — nosotros vamos.')">andiamo</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es2e',true,'¡Sì! «Vanno» = ellos/as van — tercera persona plural de andare.')">vanno</button>
+    <p class="ex-q">5. Escribí en italiano la pregunta: <em>"¿A dónde vas?"</em> (informal)</p>
+    <div class="ex-input-row">
+      <input class="fill-blank" type="text" id="f_es2e" placeholder="escribe aquí…" style="width:220px;"
+        data-ex="es2e" data-fn="free" data-accepted='["Dove vai?","Dove vai"]' data-hint="«Dove» = dónde. «Vai» = vas (tu). ¡No confundir con «Di dove sei?» — ahí se pregunta por el origen.">
+    </div>
+    <button class="btn-check" data-fn="free" data-inp="f_es2e" data-ex="es2e" data-accepted='["Dove vai?","Dove vai"]' data-hint="«Dove» = dónde. «Vai» = vas (tu). ¡No confundir con «Di dove sei?» — ahí se pregunta por el origen.">Verificar</button>
     <div class="ex-fb" id="es2efb"></div>
   </div>
+
+  <!-- E2-F avanzado -->
+  <div class="ex-block" id="es2f">
+    <p class="ex-q">⭐ Avanzado — ¿Cuál de estas opciones está <strong>completamente correcta</strong> (verbos Y preposiciones)?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es2f" data-ok="0" data-msg="«Io va» — error: io→vado, no va. «va» es de lui/lei.">Io va alla stazione e loro andate all'aeroporto.</button>
+      <button class="opt-btn" data-ex="es2f" data-ok="0" data-msg="«andiamo in Roma» — doble error: noi→andiamo (bien), pero con ciudades siempre «a», nunca «in»: «andiamo a Roma».">Noi andiamo in Roma ogni estate.</button>
+      <button class="opt-btn" data-ex="es2f" data-ok="1" data-msg="¡Esatto! vai a Milano (ciudad→a) · vanno alla stazione (a+la, femenino) · vado all'aeroporto (a+l', ante vocal). Verbos y preposiciones perfectos.">Tu vai a Milano, loro vanno alla stazione e io vado all'aeroporto.</button>
+      <button class="opt-btn" data-ex="es2f" data-ok="0" data-msg="«lei vai» — error: lei→va, no vai. «Vai» es de tu (segunda persona singular). «Voi andate al museo» está bien.">Voi andate al museo ma lei vai a casa.</button>
+    </div>
+    <div class="ex-fb" id="es2ffb"></div>
+  </div>
+
+  <!-- E2-G avanzado libre -->
+  <div class="ex-block" id="es2g">
+    <p class="ex-q">⭐⭐ Avanzado — Completá con la forma correcta de <em>andare</em> y la preposición adecuada:<br>
+    <em>«Domani io ___ (andare) ___ stazione. Marco ___ (andare) ___ aeroporto. Noi ___ (andare) ___ Firenze insieme.»</em><br>
+    <small style="color:#888;">Escribí los 6 elementos en orden, separados por barra: vado/alla/va/all'aeroporto/andiamo/a</small></p>
+    <div class="ex-input-row">
+      <input class="fill-blank" type="text" id="f_es2g" placeholder="vado / alla / va / all'aeroporto / andiamo / a" style="width:100%;max-width:480px;"
+        data-ex="es2g" data-fn="free" data-accepted="[&quot;vado / alla / va / all'aeroporto / andiamo / a&quot;,&quot;vado/alla/va/all'aeroporto/andiamo/a&quot;]" data-hint="io→vado · stazione(f)→alla stazione · lui→va · aeroporto(m,vocal)→all'aeroporto · noi→andiamo · ciudad→a Firenze">
+    </div>
+    <button class="btn-check" data-fn="free" data-inp="f_es2g" data-ex="es2g" data-accepted="[&quot;vado / alla / va / all'aeroporto / andiamo / a&quot;,&quot;vado/alla/va/all'aeroporto/andiamo/a&quot;]" data-hint="io→vado · stazione(f)→alla · lui→va · aeroporto(ante vocal)→all'aeroporto · noi→andiamo · ciudad→a">Verificar</button>
+    <div class="ex-fb" id="es2gfb"></div>
+  </div>
+
 </div>
 </div>
 
 <hr class="divider">
 
-<!-- ═══ SEC 3: AVERE ═══ -->
+<!-- ═══════════════════════════════════════════════════
+     SEC 3 · AVERE
+════════════════════════════════════════════════════ -->
 <div class="sec-header">
   <h2><span class="sec-num">3</span> Il verbo <em>avere</em> — tener</h2>
-  <p>Para decir la edad, tener cosas, poseer. Atención: <em>ho, hai, ha</em> no llevan <strong>h</strong> pronunciada — la h es muda.</p>
+  <p>Para expresar la edad, posesión y más. La <strong>h</strong> en ho/hai/ha es completamente muda — sirve solo para distinguirlas de <em>o, ai, a</em>.</p>
 </div>
 
 <div class="conj-wrap">
   <div class="conj-card">
     <div class="conj-head">
       <span>avere — tener</span>
-      <button class="conj-btn-audio" onclick="ippAudio('io ho, tu hai, lui lei ha',0.78,'f')">▶ escuchar</button>
+      <button class="conj-btn-audio" data-audio="io ho, tu hai, lui lei ha, noi abbiamo, voi avete, loro hanno" data-rate="0.78" data-gender="f">▶ escuchar todo</button>
     </div>
     <table class="conj-table">
-      <tr><td>io</td><td>ho</td><td>tengo</td><td><button class="conj-play" onclick="ippAudio('io ho venti anni',0.82,'m')">▶</button></td></tr>
-      <tr><td>tu</td><td>hai</td><td>tenés</td><td><button class="conj-play" onclick="ippAudio('quanti anni hai?',0.82,'f')">▶</button></td></tr>
-      <tr><td>lui/lei</td><td>ha</td><td>tiene</td><td><button class="conj-play" onclick="ippAudio('lei ha ventidue anni',0.82,'f')">▶</button></td></tr>
+      <tr><td>io</td><td>ho</td><td>tengo</td><td><button class="conj-play" data-audio="io ho venticinque anni" data-rate="0.82" data-gender="m">▶</button></td></tr>
+      <tr><td>tu</td><td>hai</td><td>tenés</td><td><button class="conj-play" data-audio="quanti anni hai?" data-rate="0.82" data-gender="f">▶</button></td></tr>
+      <tr><td>lui/lei</td><td>ha</td><td>tiene</td><td><button class="conj-play" data-audio="lei ha ventidue anni" data-rate="0.82" data-gender="f">▶</button></td></tr>
+      <tr><td>noi</td><td>abbiamo</td><td>tenemos</td><td><button class="conj-play" data-audio="noi abbiamo un problema" data-rate="0.82" data-gender="m">▶</button></td></tr>
+      <tr><td>voi</td><td>avete</td><td>tienen / tenéis</td><td><button class="conj-play" data-audio="voi avete il passaporto?" data-rate="0.82" data-gender="f">▶</button></td></tr>
+      <tr><td>loro</td><td>hanno</td><td>tienen</td><td><button class="conj-play" data-audio="loro hanno trent'anni" data-rate="0.82" data-gender="m">▶</button></td></tr>
     </table>
   </div>
 </div>
 
 <div class="callout" style="margin-top:16px;">
-  💡 <strong>La edad con avere:</strong> <em>Ho vent'anni</em> — Tengo 20 años. En italiano se usa <em>avere</em>, no <em>essere</em>.<br>
-  La <strong>h</strong> en ho/hai/ha es completamente muda — solo sirve para distinguir de <em>o</em> (o), <em>ai</em> (a los), <em>a</em> (a).
+  💡 <strong>La edad en italiano usa avere:</strong> <em>Ho vent'anni</em> — Tengo 20 años.<br>
+  En español decimos «soy de 20 años» (ser), pero en italiano se dice <strong>avere</strong>: <em>Ho 20 anni</em>, nunca <em>Sono 20 anni</em>.<br>
+  ⚠️ <strong>H muda:</strong> <em>ho, hai, ha, hanno</em> — la H solo sirve para distinguirlos de <em>o</em> (o), <em>ai</em> (a los), <em>a</em> (a), <em>anno</em> (año).
 </div>
 
-<div style="background: var(--cream); border-radius: var(--r); padding: 16px 20px; margin: 20px 0;">
+<div style="background:var(--cream);border-radius:var(--r);padding:16px 20px;margin:20px 0;">
 <div class="ex-section">
-  <h4 class="ex-section-title">Prattica — avere</h4>
+  <h4 class="ex-section-title">Esercizi — avere</h4>
 
+  <!-- E3-A MCQ 4 -->
   <div class="ex-block" id="es3a">
-    <p class="ex-q">¿Cómo se dice "Yo tengo 25 años"?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es3a',false,'«Sono 25 anni» no es correcto. En italiano la edad usa «avere».')">Sono 25 anni.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es3a',true,'¡Perfetto! «Ho» = yo tengo. La edad usa «avere» en italiano, no «essere».')">Ho 25 anni.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es3a',false,'«Ha» es tercera persona — él/ella tiene.')">Ha 25 anni.</button>
+    <p class="ex-q">1. ¿Cómo se dice correctamente <em>"Yo tengo 25 años"</em> en italiano?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es3a" data-ok="0" data-msg="«Sono 25 anni» es incorrecto. En italiano la edad no usa essere sino avere.">Sono 25 anni.</button>
+      <button class="opt-btn" data-ex="es3a" data-ok="1" data-msg="¡Perfetto! La edad se expresa con avere, nunca con essere: «Ho 25 anni».">Ho 25 anni.</button>
+      <button class="opt-btn" data-ex="es3a" data-ok="0" data-msg="«Ha» es tercera persona (lui/lei). Para «yo» usás «ho».">Ha 25 anni.</button>
+      <button class="opt-btn" data-ex="es3a" data-ok="0" data-msg="«Sono di 25 anni» mezcla essere con la edad — en italiano no existe esta construcción.">Sono di 25 anni.</button>
+    </div>
     <div class="ex-fb" id="es3afb"></div>
   </div>
 
+  <!-- E3-B MCQ 4 -->
   <div class="ex-block" id="es3b">
-    <p class="ex-q">Giulia __ una sorella che si chiama Anna.</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es3b',true,'¡Sì! «Ha» = ella tiene — tercera persona de avere.')">ha</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es3b',false,'«Ho» es primera persona — yo tengo.')">ho</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es3b',false,'«Hai» es segunda persona — vos tenés.')">hai</button>
+    <p class="ex-q">2. <em>Giulia _____ una sorella che si chiama Anna.</em></p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es3b" data-ok="0" data-msg="«Ho» es primera persona (io tengo). Giulia = lui/lei → ha.">ho</button>
+      <button class="opt-btn" data-ex="es3b" data-ok="0" data-msg="«Hai» es segunda persona (tu tenés). Giulia = lui/lei → ha.">hai</button>
+      <button class="opt-btn" data-ex="es3b" data-ok="1" data-msg="¡Sì! «Ha» — lui/lei, tercera persona singular de avere.">ha</button>
+      <button class="opt-btn" data-ex="es3b" data-ok="0" data-msg="«È» es essere (ser/estar), no avere (tener). Falta el verbo avere aquí.">è</button>
+    </div>
     <div class="ex-fb" id="es3bfb"></div>
   </div>
 
+  <!-- E3-C free text -->
   <div class="ex-block" id="es3c">
-    <p class="ex-q">¿Por qué en "Ho" no se pronuncia la H?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es3c',false,'No, la H en italiano no es aspirada como en inglés.')">Porque en italiano la H se aspira como en inglés</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es3c',true,'¡Correcto! En italiano la H es muda. Se escribe por etimología latina, pero no se pronuncia.')">Porque la H italiana es siempre muda</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es3c',false,'No — la H se usa como acento diacrítico en italiano.')">Porque se usa como acento</button>
+    <p class="ex-q">3. Escribí en italiano la pregunta: <em>"¿Cuántos años tenés?"</em></p>
+    <div class="ex-input-row">
+      <input class="fill-blank" type="text" id="f_es3c" placeholder="escribe aquí…" style="width:260px;"
+        data-ex="es3c" data-fn="free" data-accepted='["Quanti anni hai?","Quanti anni hai"]' data-hint="«Quanti» = cuántos. «Anni» = años. «Hai» = tenés (tu).">
+    </div>
+    <button class="btn-check" data-fn="free" data-inp="f_es3c" data-ex="es3c" data-accepted='["Quanti anni hai?","Quanti anni hai"]' data-hint="«Quanti» = cuántos. «Anni» = años. «Hai» = tenés (tu).">Verificar</button>
     <div class="ex-fb" id="es3cfb"></div>
   </div>
 
+  <!-- E3-D MCQ 4 — responder en 1ª persona -->
   <div class="ex-block" id="es3d">
-    <p class="ex-q">¿Cómo se dice "Tenés 30 años" dirigiéndote a alguien?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es3d',false,'«Ho» es primera persona — yo tengo.')">Ho trent'anni.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es3d',true,'¡Esatto! «Hai» = vos tenés — segunda persona de avere.')">Hai trent'anni.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es3d',false,'«Ha» es tercera persona — él/ella tiene.')">Ha trent'anni.</button>
+    <p class="ex-q">4. Te preguntan <em>«Quanti anni hai?»</em> — respondés en primera persona: <em>«_____ trent'anni.»</em></p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es3d" data-ok="0" data-msg="«Hai» es segunda persona (tu tenés) — pero la pregunta te la hacen a vos: respondés en primera persona.">Hai</button>
+      <button class="opt-btn" data-ex="es3d" data-ok="1" data-msg="¡Esatto! Respondés en primera persona: «Ho trent'anni» — yo tengo 30 años.">Ho</button>
+      <button class="opt-btn" data-ex="es3d" data-ok="0" data-msg="«Ha» es tercera persona (él/ella tiene). Para «yo» usás «ho».">Ha</button>
+      <button class="opt-btn" data-ex="es3d" data-ok="0" data-msg="«Sono» es essere, no avere. La edad siempre con avere: «Ho…anni».">Sono</button>
+    </div>
     <div class="ex-fb" id="es3dfb"></div>
   </div>
 
+  <!-- E3-E free text -->
   <div class="ex-block" id="es3e">
-    <p class="ex-q">Marco __ un appartamento a Milano e __ ventisei anni.</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es3e',false,'Necesitás tercera persona singular para ambas: «ha / ha».')">ho / ho</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es3e',false,'«hai» es segunda persona — vos tenés.')">hai / hai</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es3e',true,'¡Perfetto! Marco = lui → «ha» para ambas formas de avere.')">ha / ha</button>
+    <p class="ex-q">5. Escribí en italiano: <em>"Ella tiene 22 años."</em> (usá el número en palabras)</p>
+    <div class="ex-input-row">
+      <input class="fill-blank" type="text" id="f_es3e" placeholder="escribe aquí…" style="width:300px;"
+        data-ex="es3e" data-fn="free" data-accepted='["Ha ventidue anni","Lei ha ventidue anni","Ha 22 anni","Lei ha 22 anni"]' data-hint="lui/lei → ha. 22 = ventidue. «Ha ventidue anni.»">
+    </div>
+    <button class="btn-check" data-fn="free" data-inp="f_es3e" data-ex="es3e" data-accepted='["Ha ventidue anni","Lei ha ventidue anni","Ha 22 anni","Lei ha 22 anni"]' data-hint="lui/lei → ha. 22 = ventidue. «Ha ventidue anni.»">Verificar</button>
     <div class="ex-fb" id="es3efb"></div>
   </div>
+
+  <!-- E3-F avanzado -->
+  <div class="ex-block" id="es3f">
+    <p class="ex-q">⭐ Avanzado — ¿Cuál de estas opciones usa <em>avere</em> correctamente en <strong>todas</strong> las frases?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es3f" data-ok="0" data-msg="«Io sono 25 anni» — error grave: la edad usa SIEMPRE avere, nunca essere. Decís «Ho 25 anni», no «Sono 25 anni».">Io sono 25 anni. Tu hai un fratello. Noi abbiamo molti amici.</button>
+      <button class="opt-btn" data-ex="es3f" data-ok="0" data-msg="«Lei ho» — error: lei→ha, no ho. «Ho» es exclusivamente de io (primera persona singular).">Lei ho trent'anni. Voi avete il passaporto? Loro hanno fame.</button>
+      <button class="opt-btn" data-ex="es3f" data-ok="1" data-msg="¡Perfetto! ho (io) · hai (tu) · ha (lui/lei) — todas correctas y la H muda está bien escrita en los tres casos.">Ho fame. Tu hai sete? Marco ha vent'anni e abita a Roma.</button>
+      <button class="opt-btn" data-ex="es3f" data-ok="0" data-msg="«abbiamo anni trenta» — el orden es incorrecto en italiano. Debe ser «abbiamo trent'anni», nunca «anni trenta» para la edad.">Noi abbiamo anni trenta. Voi avete un cane? Loro hanno ragione.</button>
+    </div>
+    <div class="ex-fb" id="es3ffb"></div>
+  </div>
+
+  <!-- E3-G avanzado libre -->
+  <div class="ex-block" id="es3g">
+    <p class="ex-q">⭐⭐ Avanzado — Traducí al italiano:<br>
+    <em>"Yo tengo 28 años. Mi hermano tiene 30 años. ¿Cuántos años tenés vos?"</em><br>
+    <small style="color:#888;">Usá los números en letras.</small></p>
+    <div class="ex-input-row">
+      <input class="fill-blank" type="text" id="f_es3g" placeholder="Ho… anni. Mio fratello ha… Quanti anni hai?" style="width:100%;max-width:480px;"
+        data-ex="es3g" data-fn="verificarEs3g">
+    </div>
+    <button class="btn-check" data-fn="verificarEs3g">Verificar</button>
+
+<script>
+function verificarEs3g() {
+  checkFree(
+    'f_es3g',
+    'es3g',
+    [
+      "Ho ventotto anni. Mio fratello ha trent'anni. Quanti anni hai?",
+      "Ho ventotto anni. Mio fratello ha trenta anni. Quanti anni hai?"
+    ],
+    "io→ho · 28=ventotto anni · lui→ha · 30=trent'anni · tu→Quanti anni hai?"
+  );
+}
+</script>
+    <div class="ex-fb" id="es3gfb"></div>
+  </div>
+
 </div>
 </div>
 
 <hr class="divider">
 
-<!-- ═══ SEC 4: I NOMI ═══ -->
+<!-- ═══════════════════════════════════════════════════
+     SEC 4 · I NOMI
+════════════════════════════════════════════════════ -->
 <div class="sec-header">
   <h2><span class="sec-num">4</span> I nomi — los sustantivos</h2>
-  <p>En italiano todos los sustantivos tienen género (maschile o femminile). El artículo lo revela.</p>
+  <p>En italiano todos los sustantivos tienen género (maschile o femminile). El artículo lo revela — ¡aprendé siempre el artículo junto con la palabra!</p>
 </div>
 
 <div class="nomi-grid">
   <div class="nomi-card">
     <div class="nomi-head m">MASCHILE — il / un</div>
     <div class="nomi-body">
-      <div class="nomi-row"><span class="nomi-it">il treno</span><span class="nomi-es">el tren</span><button class="vocab-audio-btn" onclick="ippAudio('il treno',0.85,'m')">▶ escuchar</button></div>
-      <div class="nomi-row"><span class="nomi-it">il binario</span><span class="nomi-es">el andén</span><button class="vocab-audio-btn" onclick="ippAudio('il binario',0.85,'m')">▶ escuchar</button></div>
-      <div class="nomi-row"><span class="nomi-it">il passaporto</span><span class="nomi-es">el pasaporte</span><button class="vocab-audio-btn" onclick="ippAudio('il passaporto',0.85,'m')">▶ escuchar</button></div>
-      <div class="nomi-row"><span class="nomi-it">il nome</span><span class="nomi-es">el nombre</span><button class="vocab-audio-btn" onclick="ippAudio('il nome',0.85,'m')">▶ escuchar</button></div>
-      <div class="nomi-row"><span class="nomi-it">il numero</span><span class="nomi-es">el número</span><button class="vocab-audio-btn" onclick="ippAudio('il numero',0.85,'m')">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">il treno</span><span class="nomi-es">el tren</span><button class="vocab-audio-btn" data-audio="il treno" data-rate="0.85" data-gender="m">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">il binario</span><span class="nomi-es">el andén</span><button class="vocab-audio-btn" data-audio="il binario" data-rate="0.85" data-gender="m">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">il passaporto</span><span class="nomi-es">el pasaporte</span><button class="vocab-audio-btn" data-audio="il passaporto" data-rate="0.85" data-gender="m">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">il nome</span><span class="nomi-es">el nombre</span><button class="vocab-audio-btn" data-audio="il nome" data-rate="0.85" data-gender="m">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">il numero</span><span class="nomi-es">el número</span><button class="vocab-audio-btn" data-audio="il numero" data-rate="0.85" data-gender="m">▶ escuchar</button></div>
       <div class="nomi-row" style="background:var(--mc-bg);padding:8px;border-radius:6px;margin-top:8px;">
         <span style="font-size:0.8rem;color:var(--mc-text);">Generalmente terminan en <strong>-o</strong></span>
       </div>
@@ -412,270 +573,483 @@ hr.divider { border: none; border-top: 1px dashed var(--cream-dk); margin: 48px 
   <div class="nomi-card">
     <div class="nomi-head f">FEMMINILE — la / una</div>
     <div class="nomi-body">
-      <div class="nomi-row"><span class="nomi-it">la stazione</span><span class="nomi-es">la estación</span><button class="vocab-audio-btn" onclick="ippAudio('la stazione',0.85,'f')">▶ escuchar</button></div>
-      <div class="nomi-row"><span class="nomi-it">la città</span><span class="nomi-es">la ciudad</span><button class="vocab-audio-btn" onclick="ippAudio('la città',0.85,'f')">▶ escuchar</button></div>
-      <div class="nomi-row"><span class="nomi-it">la valigia</span><span class="nomi-es">la maleta</span><button class="vocab-audio-btn" onclick="ippAudio('la valigia',0.85,'f')">▶ escuchar</button></div>
-      <div class="nomi-row"><span class="nomi-it">la nazionalità</span><span class="nomi-es">la nacionalidad</span><button class="vocab-audio-btn" onclick="ippAudio('la nazionalità',0.85,'f')">▶ escuchar</button></div>
-      <div class="nomi-row"><span class="nomi-it">la partenza</span><span class="nomi-es">la salida</span><button class="vocab-audio-btn" onclick="ippAudio('la partenza',0.85,'f')">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">la stazione</span><span class="nomi-es">la estación</span><button class="vocab-audio-btn" data-audio="la stazione" data-rate="0.85" data-gender="f">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">la città</span><span class="nomi-es">la ciudad</span><button class="vocab-audio-btn" data-audio="la città" data-rate="0.85" data-gender="f">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">la valigia</span><span class="nomi-es">la maleta</span><button class="vocab-audio-btn" data-audio="la valigia" data-rate="0.85" data-gender="f">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">la nazionalità</span><span class="nomi-es">la nacionalidad</span><button class="vocab-audio-btn" data-audio="la nazionalità" data-rate="0.85" data-gender="f">▶ escuchar</button></div>
+      <div class="nomi-row"><span class="nomi-it">la partenza</span><span class="nomi-es">la salida</span><button class="vocab-audio-btn" data-audio="la partenza" data-rate="0.85" data-gender="f">▶ escuchar</button></div>
       <div class="nomi-row" style="background:#fde8f0;padding:8px;border-radius:6px;margin-top:8px;">
         <span style="font-size:0.8rem;color:#6b1a3a;">Generalmente terminan en <strong>-a</strong> o <strong>-ione</strong></span>
       </div>
     </div>
   </div>
 </div>
-
-<div class="audio-stop-row"><button class="audio-stop-sm" onclick="ippStop()">⏹ Detener audio</button></div>
+<div class="audio-stop-row"><button class="audio-stop-sm" data-stop="1">⏹ Detener audio</button></div>
 
 <div class="callout" style="margin-top:16px;">
-  💡 <strong>Excepciones:</strong> <em>il problema, il programma</em> (terminan en -a pero son maschile) · <em>la mano</em> (termina en -o pero es femminile). ¡Siempre conviene aprender el artículo con el nombre!
+  💡 <strong>Excepciones importantes:</strong><br>
+  • <em>il problema, il programma</em> — terminan en <strong>-a</strong> pero son <em>maschile</em> (origen griego).<br>
+  • <em>la mano</em> — termina en <strong>-o</strong> pero es <em>femminile</em>.<br>
+  • Ante vocal: el artículo se apostrofa → <em>l'aeroporto</em> (m) · <em>l'amica</em> (f).
 </div>
 
-<div style="background: var(--cream); border-radius: var(--r); padding: 16px 20px; margin: 20px 0;">
+<div style="background:var(--cream);border-radius:var(--r);padding:16px 20px;margin:20px 0;">
 <div class="ex-section">
-  <h4 class="ex-section-title">Prattica — i nomi</h4>
+  <h4 class="ex-section-title">Esercizi — i nomi</h4>
 
+  <!-- E4-A MCQ 4 -->
   <div class="ex-block" id="es4a">
-    <p class="ex-q">¿Cuál es el artículo correcto para "ragazzo" (chico)?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es4a',false,'«La» es el artículo femenino. «Ragazzo» es masculino.')">la ragazzo</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es4a',true,'¡Esatto! «Il» es el artículo masculino singular.')">il ragazzo</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es4a',false,'«Le» es el artículo femenino plural.')">le ragazzo</button>
+    <p class="ex-q">1. ¿Qué artículo determinado lleva <em>passaporto</em>?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es4a" data-ok="0" data-msg="«La» es artículo femenino. «Passaporto» termina en -o → maschile → «il».">la</button>
+      <button class="opt-btn" data-ex="es4a" data-ok="0" data-msg="«Lo» se usa con sustantivos masculinos que empiezan con s+consonante, z, gn, ps, x. «Passaporto» no cumple esa condición.">lo</button>
+      <button class="opt-btn" data-ex="es4a" data-ok="0" data-msg="«L'» se usa ante vocal (m o f). «Passaporto» empieza con consonante.">l'</button>
+      <button class="opt-btn" data-ex="es4a" data-ok="1" data-msg="¡Esatto! «Il passaporto» — maschile, empieza con consonante simple → il.">il</button>
+    </div>
     <div class="ex-fb" id="es4afb"></div>
   </div>
 
+  <!-- E4-B MCQ 4 -->
   <div class="ex-block" id="es4b">
-    <p class="ex-q">"Studentessa" (estudiante femenino) — ¿qué artículo lleva?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es4b',false,'«Il» es artículo masculino. «Studentessa» es femenino.')">il studentessa</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es4b',true,'¡Sì! «La» es el artículo femenino singular.')">la studentessa</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es4b',false,'«Lo» se usa con palabras masculinas que empiezan con s+consonante, z, ps, etc.')">lo studentessa</button>
+    <p class="ex-q">2. ¿Por qué <em>il problema</em> lleva artículo masculino si termina en <em>-a</em>?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es4b" data-ok="0" data-msg="No — la terminación -a generalmente indica femenino, pero no siempre. Aquí hay una excepción real.">Porque todas las palabras en -a son masculinas</button>
+      <button class="opt-btn" data-ex="es4b" data-ok="1" data-msg="¡Correcto! «Problema» viene del griego (-ma) y conserva el género masculino. Lo mismo: «il programma, il sistema, il tema».">Es una excepción de origen griego — las palabras en -ma del griego son maschile</button>
+      <button class="opt-btn" data-ex="es4b" data-ok="0" data-msg="No — la H no indica género en italiano. El género lo marcan la terminación y el uso histórico.">Porque lleva H muda al principio</button>
+      <button class="opt-btn" data-ex="es4b" data-ok="0" data-msg="No — no es un error. Es una excepción sistemática: todas las palabras de origen griego en -ma son masculinas.">Es un error del italiano moderno</button>
+    </div>
     <div class="ex-fb" id="es4bfb"></div>
   </div>
 
+  <!-- E4-C free text — dar el artículo -->
   <div class="ex-block" id="es4c">
-    <p class="ex-q">¿Cuál de estas palabras es femenina?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es4c',false,'«Ragazzo» termina en -o → masculino.')">ragazzo</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es4c',false,'«Libro» termina en -o → masculino.')">libro</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es4c',true,'¡Correcto! «Città» es femenino — las palabras en -à suelen ser femeninas.')">città</button>
+    <p class="ex-q">3. Escribí el artículo determinado correcto para: <em>«_____ stazione»</em></p>
+    <div class="ex-input-row">
+      <input class="fill-blank" type="text" id="f_es4c" placeholder="il / la / lo / l' ?" style="width:100px;"
+        data-ex="es4c" data-fn="free" data-accepted='["la"]' data-hint="«Stazione» es femminile (termina en -ione). → «la stazione».">
+    </div>
+    <button class="btn-check" data-fn="free" data-inp="f_es4c" data-ex="es4c" data-accepted='["la"]' data-hint="«Stazione» es femminile (termina en -ione). → «la stazione».">Verificar</button>
     <div class="ex-fb" id="es4cfb"></div>
   </div>
 
+  <!-- E4-D MCQ 4 — completar con artículos -->
   <div class="ex-block" id="es4d">
-    <p class="ex-q">¿Qué artículo corresponde a "problema" (masculino irregular)?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es4d',false,'«La» es artículo femenino, pero «problema» es masculino aunque termine en -a.')">la problema</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es4d',true,'¡Correcto! «Il problema» — terminación en -a pero género masculino. ¡Excepción importante!')">il problema</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es4d',false,'«Lo» se usa con palabras masculinas que empiezan con s+consonante, z, gn, ps.')">lo problema</button>
+    <p class="ex-q">4. <em>«_____ valigia è grande e _____ passaporto è nel cassetto.»</em> ¿Qué par es correcto?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es4d" data-ok="0" data-msg="«Il / la» invierte el orden: valigia es femminile → la; passaporto es maschile → il.">Il / la</button>
+      <button class="opt-btn" data-ex="es4d" data-ok="1" data-msg="¡Perfetto! «La valigia» (femminile, -a) y «il passaporto» (maschile, -o).">La / il</button>
+      <button class="opt-btn" data-ex="es4d" data-ok="0" data-msg="«La / la» pondría «la passaporto» — incorrecto, passaporto es maschile.">La / la</button>
+      <button class="opt-btn" data-ex="es4d" data-ok="0" data-msg="«Lo / il» usaría «lo valigia» — incorrecto, lo se usa con m+s-impura/z/gn.">Lo / il</button>
+    </div>
     <div class="ex-fb" id="es4dfb"></div>
   </div>
 
-  <div class="ex-block" id="es4e">
-    <p class="ex-q">Completá con el artículo correcto: "__ stazione e __ treno sono vicini."</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es4e',false,'«Il» es masculino. «Stazione» es femenino → «la». «Treno» es masculino → «il». Orden correcto: «La / il».')">Il / la</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es4e',true,'¡Perfetto! «La stazione» (femminile) y «il treno» (maschile).')">La / il</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es4e',false,'«La» va con stazione, pero «la treno» es incorrecto — treno es masculino.')">La / la</button>
-    <div class="ex-fb" id="es4efb"></div>
+  <!-- E4-E free text — artículo indefinido -->
+  <!-- E4-E free text — artículo indefinido -->
+<script>
+function checkEs4e() {
+  checkFree('f_es4e', 'es4e', ["un'"], "«Amica» es femminile y empieza con vocal → artículo indefinido apostrofado: un'amica.");
+}
+</script>
+
+<div class="ex-block" id="es4e">
+  <p class="ex-q">5. Escribí el artículo <strong>indefinido</strong> correcto para: <em>«_____ amica»</em> (una amiga)</p>
+  <div class="ex-input-row">
+    <input class="fill-blank" type="text" id="f_es4e" placeholder="un / una / un' ?" style="width:110px;"
+      data-ex="es4e" data-fn="checkEs4e">
   </div>
+  <button class="btn-check" data-fn="checkEs4e">Verificar</button>
+  <div class="ex-fb" id="es4efb"></div>
+</div>
+
+  <!-- E4-F avanzado -->
+  <div class="ex-block" id="es4f">
+    <p class="ex-q">⭐ Avanzado — ¿Cuál es el único grupo donde <strong>todos</strong> los artículos son correctos?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es4f" data-ok="0" data-msg="«lo stazione» — error: stazione es femminile → «la stazione». «Lo» va solo con masculinos que empiezan por s+consonante, z, gn, ps.">lo stazione · il passaporto · la valigia</button>
+      <button class="opt-btn" data-ex="es4f" data-ok="0" data-msg="«la problema» — error: problema es masculino de origen griego (il problema). Termina en -a pero es maschile.">la stazione · la problema · l'aeroporto</button>
+      <button class="opt-btn" data-ex="es4f" data-ok="0" data-msg="«il amica» — error: amica es femminile y empieza con vocal → «un'amica» (indef.) o «l'amica» (def.). Nunca «il» para femenino.">il treno · il amica · lo zaino</button>
+      <button class="opt-btn" data-ex="es4f" data-ok="1" data-msg="¡Perfetto! la stazione (f,-ione) · il problema (m, excepción griega -ma) · l'aeroporto (m, empieza con vocal). Los tres artículos son correctos.">la stazione · il problema · l'aeroporto</button>
+    </div>
+    <div class="ex-fb" id="es4ffb"></div>
+  </div>
+
+  <!-- E4-G avanzado libre -->
+  <script>
+function checkEs4g() {
+  checkFree('f_es4g', 'es4g',
+    ["lo / l' / la / il / il", "lo/l'/la/il/il"],
+    "zaino(m,z)→lo · amica(f,vocal)→l'amica · stazione(f,-ione)→la · problema(m,excepción griega)→il · treno(m,-o)→il"
+  );
+}
+</script>
+
+<div class="ex-block" id="es4g">
+  <p class="ex-q">⭐⭐ Avanzado — Escribí el artículo determinado correcto para cada sustantivo (separados por barra):<br>
+  <em>___ zaino · ___ amica · ___ stazione · ___ problema · ___ treno</em></p>
+  <div class="ex-input-row">
+    <input class="fill-blank" type="text" id="f_es4g" placeholder="lo / l' / la / il / il" style="width:340px;"
+      data-ex="es4g" data-fn="checkEs4g">
+  </div>
+  <button class="btn-check" data-fn="checkEs4g">Verificar</button>
+  <div class="ex-fb" id="es4gfb"></div>
+</div>
+
 </div>
 </div>
 
 <hr class="divider">
 
-<!-- ═══ SEC 5: VERBI -ARE ═══ -->
+<!-- ═══════════════════════════════════════════════════
+     SEC 5 · VERBI -ARE
+════════════════════════════════════════════════════ -->
 <div class="sec-header">
   <h2><span class="sec-num">5</span> I verbi in <em>-ARE</em></h2>
-  <p>Los verbos regulares en -ARE siguen siempre el mismo patrón. Si sabés uno, sabés todos.</p>
+  <p>Los verbos regulares en -ARE siguen siempre el mismo patrón. Si sabés conjugar uno, sabés todos.</p>
 </div>
 
 <div class="are-wrap">
-  <div class="are-head">Verbi in -ARE — patrón regular (io/tu/lui/lei)</div>
+  <div class="are-head">Verbi in -ARE — patrón regular (todas las personas)</div>
   <div class="are-body">
     <div class="are-rule">
-      La terminación cambia según la persona: <em>-o → io</em> · <em>-i → tu</em> · <em>-a → lui/lei</em><br>
-      Ejemplo con <strong>abitare</strong> (vivir): <em>abito · abiti · abita</em>
+      Quitás <em>-ARE</em> y agregás la terminación según la persona:<br>
+      <em>-o → io</em> · <em>-i → tu</em> · <em>-a → lui/lei</em> · <em>-iamo → noi</em> · <em>-ate → voi</em> · <em>-ano → loro</em>
     </div>
     <table class="are-table">
       <thead>
         <tr><th>Persona</th><th>abitare</th><th>parlare</th><th>lavorare</th><th>chiamarsi</th><th></th></tr>
       </thead>
       <tbody>
-        <tr><td>io</td><td>abito</td><td>parlo</td><td>lavoro</td><td>mi chiamo</td><td><button class="vocab-audio-btn" onclick="ippAudio('io abito, io parlo, io lavoro, mi chiamo',0.82,'f')">▶ escuchar</button></td></tr>
-        <tr><td>tu</td><td>abiti</td><td>parli</td><td>lavori</td><td>ti chiami</td><td><button class="vocab-audio-btn" onclick="ippAudio('tu abiti, tu parli, tu lavori, ti chiami',0.82,'m')">▶ escuchar</button></td></tr>
-        <tr><td>lui/lei</td><td>abita</td><td>parla</td><td>lavora</td><td>si chiama</td><td><button class="vocab-audio-btn" onclick="ippAudio('lui abita, lei parla, lui lavora, si chiama',0.82,'f')">▶ escuchar</button></td></tr>
+        <tr><td>io</td><td>abito</td><td>parlo</td><td>lavoro</td><td>mi chiamo</td><td><button class="vocab-audio-btn" data-audio="io abito a Milano, io parlo italiano, mi chiamo Sofia" data-rate="0.82" data-gender="f">▶</button></td></tr>
+        <tr><td>tu</td><td>abiti</td><td>parli</td><td>lavori</td><td>ti chiami</td><td><button class="vocab-audio-btn" data-audio="tu abiti a Roma, tu parli inglese, come ti chiami?" data-rate="0.82" data-gender="m">▶</button></td></tr>
+        <tr><td>lui/lei</td><td>abita</td><td>parla</td><td>lavora</td><td>si chiama</td><td><button class="vocab-audio-btn" data-audio="lei abita a Napoli, lui parla bene, si chiama Marco" data-rate="0.82" data-gender="f">▶</button></td></tr>
+        <tr><td>noi</td><td>abitiamo</td><td>parliamo</td><td>lavoriamo</td><td>ci chiamiamo</td><td><button class="vocab-audio-btn" data-audio="noi abitiamo a Torino, parliamo italiano" data-rate="0.82" data-gender="f">▶</button></td></tr>
+        <tr><td>voi</td><td>abitate</td><td>parlate</td><td>lavorate</td><td>vi chiamate</td><td><button class="vocab-audio-btn" data-audio="voi abitate qui? come vi chiamate?" data-rate="0.82" data-gender="m">▶</button></td></tr>
+        <tr><td>loro</td><td>abitano</td><td>parlano</td><td>lavorano</td><td>si chiamano</td><td><button class="vocab-audio-btn" data-audio="loro abitano a Venezia, parlano tre lingue" data-rate="0.82" data-gender="f">▶</button></td></tr>
       </tbody>
     </table>
   </div>
 </div>
-<div class="audio-stop-row"><button class="audio-stop-sm" onclick="ippStop()">⏹ Detener audio</button></div>
+<div class="audio-stop-row"><button class="audio-stop-sm" data-stop="1">⏹ Detener audio</button></div>
 
-<div style="background: var(--cream); border-radius: var(--r); padding: 16px 20px; margin: 20px 0;">
+<div style="background:var(--cream);border-radius:var(--r);padding:16px 20px;margin:20px 0;">
 <div class="ex-section">
-  <h4 class="ex-section-title">Prattica — verbi in -ARE</h4>
+  <h4 class="ex-section-title">Esercizi — verbi in -ARE</h4>
 
+  <!-- E5-A MCQ 4 — terminación correcta -->
   <div class="ex-block" id="es5a">
-    <p class="ex-q">¿Cómo se conjuga "parlare" para "io"?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es5a',true,'¡Perfetto! io + -ARE → quito -ARE, agrego -o: parlo.')">parlo</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es5a',false,'«Parli» es para «tu» (vos hablás).')">parli</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es5a',false,'«Parla» es para lui/lei (él/ella habla).')">parla</button>
+    <p class="ex-q">1. ¿Cuál es la terminación de un verbo -ARE para <em>tu</em>?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es5a" data-ok="0" data-msg="«-o» es la terminación de io (primera persona): parlo, abito, lavoro.">-o</button>
+      <button class="opt-btn" data-ex="es5a" data-ok="1" data-msg="¡Correcto! Tu + -ARE → -i. Ejemplos: parli, abiti, lavori, chiami.">-i</button>
+      <button class="opt-btn" data-ex="es5a" data-ok="0" data-msg="«-a» es la terminación de lui/lei (tercera persona): parla, abita, lavora.">-a</button>
+      <button class="opt-btn" data-ex="es5a" data-ok="0" data-msg="«-iamo» es la terminación de noi (primera persona plural): parliamo, abitiamo.">-iamo</button>
+    </div>
     <div class="ex-fb" id="es5afb"></div>
   </div>
 
+  <!-- E5-B free text -->
   <div class="ex-block" id="es5b">
-    <p class="ex-q">Sofia __ italiano molto bene. (parlare)</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es5b',false,'«Parli» es para «tu» — vos hablás.')">parli</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es5b',false,'«Parlate» es para «voi» — ustedes hablan.')">parlate</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es5b',true,'¡Sì! «Parla» es lui/lei — tercera persona singular.')">parla</button>
+    <p class="ex-q">2. Conjugá el verbo <em>lavorare</em> para <em>io</em>.</p>
+    <div class="ex-input-row">
+      <input class="fill-blank" type="text" id="f_es5b" placeholder="io ______" style="width:140px;"
+        data-ex="es5b" data-fn="free" data-accepted='["lavoro"]' data-hint="Quitás -ARE → lavor- · Agregás -o para io: lavoro.">
+    </div>
+    <button class="btn-check" data-fn="free" data-inp="f_es5b" data-ex="es5b" data-accepted='["lavoro"]' data-hint="Quitás -ARE → lavor- · Agregás -o para io: lavoro.">Verificar</button>
     <div class="ex-fb" id="es5bfb"></div>
   </div>
 
+  <!-- E5-C MCQ 4 -->
   <div class="ex-block" id="es5c">
-    <p class="ex-q">Noi __ a Napoli. (abitare = vivir)</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es5c',true,'¡Esatto! «noi + -ARE» → quito -ARE, agrego -iamo: abitiamo.')">abitiamo</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es5c',false,'«Abitate» es para «voi» — ustedes viven.')">abitate</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es5c',false,'«Abitano» es para «loro» — ellos viven.')">abitano</button>
+    <p class="ex-q">3. <em>Sofia _____ italiano molto bene.</em> (parlare)</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es5c" data-ok="0" data-msg="«Parlo» es primera persona (io). Sofia = lui/lei.">parlo</button>
+      <button class="opt-btn" data-ex="es5c" data-ok="0" data-msg="«Parli» es segunda persona (tu). Sofia = lui/lei.">parli</button>
+      <button class="opt-btn" data-ex="es5c" data-ok="0" data-msg="«Parlate» es segunda persona plural (voi). Sofia = lui/lei.">parlate</button>
+      <button class="opt-btn" data-ex="es5c" data-ok="1" data-msg="¡Sì! lui/lei + -ARE → parla. «Sofia parla italiano molto bene.»">parla</button>
+    </div>
     <div class="ex-fb" id="es5cfb"></div>
   </div>
 
+  <!-- E5-D free text -->
   <div class="ex-block" id="es5d">
-    <p class="ex-q">¿Cuál es la terminación correcta para "voi" en verbos -ARE?</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es5d',false,'«-o» es para io (yo).')">-o</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es5d',false,'«-iamo» es para noi (nosotros).')">-iamo</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es5d',true,'¡Correcto! Voi + -ARE → -ate. Ej: parlate, abitate, lavorate.')">-ate</button>
+    <p class="ex-q">4. Conjugá <em>abitare</em> para <em>noi</em>.</p>
+    <div class="ex-input-row">
+      <input class="fill-blank" type="text" id="f_es5d" placeholder="noi ______" style="width:160px;"
+        data-ex="es5d" data-fn="free" data-accepted='["abitiamo"]' data-hint="Quitás -ARE → abit- · Agregás -iamo para noi: abitiamo.">
+    </div>
+    <button class="btn-check" data-fn="free" data-inp="f_es5d" data-ex="es5d" data-accepted='["abitiamo"]' data-hint="Quitás -ARE → abit- · Agregás -iamo para noi: abitiamo.">Verificar</button>
     <div class="ex-fb" id="es5dfb"></div>
   </div>
 
+  <!-- E5-E MCQ 4 — detectar error -->
   <div class="ex-block" id="es5e">
-    <p class="ex-q">Completá con la forma correcta de <em>abitare</em>: «Noi _____ a Milano, ma loro _____ a Roma.»</p>
-    <button class="opt-btn" onclick="checkOpt(this,'es5e',false,'«abito / abita» sería para io … lui/lei, no para noi … loro.')">abito / abita</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es5e',false,'«abiti / abitate» mezcla tu + voi. Recordá: noi → -iamo, loro → -ano.')">abiti / abitate</button>
-    <button class="opt-btn" onclick="checkOpt(this,'es5e',true,'¡Perfetto! Noi → abitiamo (-iamo) y loro → abitano (-ano).')">abitiamo / abitano</button>
+    <p class="ex-q">5. ¿Cuál de estas frases tiene un <strong>error</strong> de conjugación?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es5e" data-ok="0" data-msg="«Io abito a Roma» es correcto — io + -ARE → -o.">Io abito a Roma.</button>
+      <button class="opt-btn" data-ex="es5e" data-ok="0" data-msg="«Tu lavori molto» es correcto — tu + -ARE → -i.">Tu lavori molto.</button>
+      <button class="opt-btn" data-ex="es5e" data-ok="1" data-msg="¡Errore! «Loro parlate» es incorrecto — loro + -ARE → parlano, no -ate. «Parlate» es para voi.">Loro parlate italiano.</button>
+      <button class="opt-btn" data-ex="es5e" data-ok="0" data-msg="«Lei parla bene» es correcto — lui/lei + -ARE → -a.">Lei parla bene.</button>
+    </div>
     <div class="ex-fb" id="es5efb"></div>
   </div>
+
+  <!-- E5-F avanzado -->
+  <div class="ex-block" id="es5f">
+    <p class="ex-q">⭐ Avanzado — ¿Cuál de estas opciones conjuga <strong>correctamente todos</strong> los verbos -ARE?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="es5f" data-ok="0" data-msg="«Loro parlate» — error: loro + -ARE → -ano: «parlano». «Parlate» es de voi.">Io parlo italiano. Tu abiti a Roma. Loro parlate molto.</button>
+      <button class="opt-btn" data-ex="es5f" data-ok="0" data-msg="«Noi lavorate» — error: noi + -ARE → -iamo: «lavoriamo». «Lavorate» es de voi.">Sofia parla bene. Noi lavorate insieme. Voi abitate qui.</button>
+      <button class="opt-btn" data-ex="es5f" data-ok="0" data-msg="«Tu chiamate» — error: tu + -ARE → -i: «ti chiami» (reflexivo) o «chiami». «Chiamate» es de voi.">Io mi chiamo Marco. Tu chiamate Sofia. Lei lavora a Milano.</button>
+      <button class="opt-btn" data-ex="es5f" data-ok="1" data-msg="¡Perfetto! parlo (io,-o) · parli (tu,-i) · parla (lui/lei,-a) · parliamo (noi,-iamo) · parlate (voi,-ate) · parlano (loro,-ano). Todas las personas correctas.">Io parlo, tu parli, lei parla, noi parliamo, voi parlate, loro parlano.</button>
+    </div>
+    <div class="ex-fb" id="es5ffb"></div>
+  </div>
+
+  <!-- E5-G avanzado libre -->
+  <div class="ex-block" id="es5g">
+    <p class="ex-q">⭐⭐ Avanzado — Conjugá los verbos indicados y escribilos en orden, separados por coma:<br>
+    <em>«Io ___ (lavorare). Tu ___ (parlare) italiano? Noi ___ (abitare) a Torino. Loro ___ (chiamarsi) Marco e Sofia.»</em></p>
+    <div class="ex-input-row">
+      <input class="fill-blank" type="text" id="f_es5g" placeholder="lavoro, parli, abitiamo, si chiamano" style="width:100%;max-width:420px;"
+        data-ex="es5g" data-fn="free" data-accepted='["lavoro, parli, abitiamo, si chiamano"]' data-hint="lavorare: io→lavoro · parlare: tu→parli · abitare: noi→abitiamo · chiamarsi: loro→si chiamano">
+    </div>
+    <button class="btn-check" data-fn="free" data-inp="f_es5g" data-ex="es5g" data-accepted='["lavoro, parli, abitiamo, si chiamano"]' data-hint="lavorare: io→lavoro · parlare: tu→parli · abitare: noi→abitiamo · chiamarsi reflexivo: loro→si chiamano">Verificar</button>
+    <div class="ex-fb" id="es5gfb"></div>
+  </div>
+
 </div>
 </div>
 
 <hr class="divider">
 
-<!-- ═══ SEC 6: EJERCICIOS ═══ -->
+<!-- ═══════════════════════════════════════════════════
+     SEC 6 · DIALOGO — Marco e Sofia alla stazione
+════════════════════════════════════════════════════ -->
 <div class="sec-header">
-  <h2><span class="sec-num">6</span> Esercizi — a practicar</h2>
+  <h2><span class="sec-num">6</span> Il dialogo — Marco e Sofia alla stazione</h2>
+  <p>Leé este diálogo. Identificá <em>essere, andare, avere</em> y los verbos <em>-ARE</em> que aparecen.</p>
 </div>
 
-<!-- EX 1 -->
-<div class="ex-block" id="ex1">
-  <div class="ex-q">1. Elegí la forma correcta de <em>essere</em>.</div>
-  <div class="ex-input-row">Io _____ di Roma.</div>
-  <div class="opts-row">
-    <button class="opt-btn" onclick="checkOpt(this,'ex1',false,'Incorrecto. Con «io» se usa «sono».')">sei</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex1',true,'¡Correcto! «Io sono di Roma.»')">sono</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex1',false,'Incorrecto. Con «io» se usa «sono».')">è</button>
+<div class="dial-section">
+
+  <div class="dial-row">
+    <div class="dial-who">Marco</div>
+    <div class="dial-bubble-text">Ciao! <strong>Di dove sei?</strong></div>
   </div>
-  <div class="ex-fb" id="ex1fb"></div>
-</div>
+  <div style="font-size:0.75rem;color:#888;padding:0 0 10px 68px;font-style:normal;">→ essere: sei (tu sos)</div>
 
-<!-- EX 2 -->
-<div class="ex-block" id="ex2">
-  <div class="ex-q">2. ¿Cómo se dice "¿Vos sos de Venezia?" en italiano?</div>
-  <div class="opts-row">
-    <button class="opt-btn" onclick="checkOpt(this,'ex2',false,'Incorrecto. «sei» es la forma para «tu».')">Lui è di Venezia?</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex2',true,'¡Correcto! «Tu sei di Venezia?»')">Tu sei di Venezia?</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex2',false,'Incorrecto. «Sono» es para «io».')">Io sono di Venezia?</button>
+  <div class="dial-row right">
+    <div class="dial-who">Sofia</div>
+    <div class="dial-bubble-text"><strong>Sono</strong> di Roma, ma <strong>abito</strong> a Milano. E tu?</div>
   </div>
-  <div class="ex-fb" id="ex2fb"></div>
-</div>
+  <div style="font-size:0.75rem;color:#888;padding:0 0 10px 68px;text-align:right;font-style:normal;">→ essere: sono (yo soy) · abitare -ARE: abito (yo vivo)</div>
 
-<!-- EX 3 -->
-<div class="ex-block" id="ex3">
-  <div class="ex-q">3. Completá: «Marco _____ a Milano in treno.» (andare)</div>
-  <div class="opts-row">
-    <button class="opt-btn" onclick="checkOpt(this,'ex3',false,'Incorrecto. «vai» es para «tu».')">vai</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex3',false,'Incorrecto. «vado» es para «io».')">vado</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex3',true,'¡Correcto! «lui/lei → va». Marco va a Milano in treno.')">va</button>
+  <div class="dial-row">
+    <div class="dial-who">Marco</div>
+    <div class="dial-bubble-text">Io <strong>sono</strong> di Napoli. <strong>Vado</strong> a Venezia per il weekend.</div>
   </div>
-  <div class="ex-fb" id="ex3fb"></div>
-</div>
+  <div style="font-size:0.75rem;color:#888;padding:0 0 10px 68px;font-style:normal;">→ essere: sono · andare: vado (yo voy)</div>
 
-<!-- EX 4 -->
-<div class="ex-block" id="ex4">
-  <div class="ex-q">4. Elegí la forma correcta de <em>avere</em>: «Quanti anni _____ tu?»</div>
-  <div class="opts-row">
-    <button class="opt-btn" onclick="checkOpt(this,'ex4',false,'Incorrecto. Con «tu» se usa «hai».')">ho</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex4',true,'¡Correcto! «Quanti anni hai?» — con «tu» se usa «hai».')">hai</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex4',false,'Incorrecto. Con «tu» se usa «hai».')">ha</button>
+  <div class="dial-row right">
+    <div class="dial-who">Sofia</div>
+    <div class="dial-bubble-text">Ah, bella città! <strong>Quanti anni hai?</strong></div>
   </div>
-  <div class="ex-fb" id="ex4fb"></div>
-</div>
+  <div style="font-size:0.75rem;color:#888;padding:0 0 10px 68px;text-align:right;font-style:normal;">→ avere: hai (vos tenés)</div>
 
-<!-- EX 5 -->
-<div class="ex-block" id="ex5">
-  <div class="ex-q">5. ¿Qué artículo va con <em>treno</em>?</div>
-  <div class="opts-row">
-    <button class="opt-btn" onclick="checkOpt(this,'ex5',false,'Incorrecto. «treno» es maschile → «il treno».')">la treno</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex5',true,'¡Correcto! «il treno» — maschile, termina en -o.')">il treno</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex5',false,'Incorrecto. «treno» es maschile → «il treno».')">l\'treno</button>
+  <div class="dial-row">
+    <div class="dial-who">Marco</div>
+    <div class="dial-bubble-text"><strong>Ho</strong> trent'anni. E tu?</div>
   </div>
-  <div class="ex-fb" id="ex5fb"></div>
-</div>
+  <div style="font-size:0.75rem;color:#888;padding:0 0 10px 68px;font-style:normal;">→ avere: ho (yo tengo)</div>
 
-<!-- EX 6 -->
-<div class="ex-block" id="ex6">
-  <div class="ex-q">6. ¿Cómo se conjuga <em>parlare</em> para «lui»?</div>
-  <div class="opts-row">
-    <button class="opt-btn" onclick="checkOpt(this,'ex6',false,'Incorrecto. «parli» es para «tu».')">parli</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex6',false,'Incorrecto. «parlo» es para «io».')">parlo</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex6',true,'¡Correcto! lui/lei → «parla». Verbo -ARE: -a para la 3ª persona singular.')">parla</button>
+  <div class="dial-row right">
+    <div class="dial-who">Sofia</div>
+    <div class="dial-bubble-text"><strong>Ho</strong> venticinque anni. <strong>Lavoro</strong> come guida turistica.</div>
   </div>
-  <div class="ex-fb" id="ex6fb"></div>
-</div>
+  <div style="font-size:0.75rem;color:#888;padding:0 0 10px 68px;text-align:right;font-style:normal;">→ avere: ho · lavorare -ARE: lavoro (yo trabajo)</div>
 
-<!-- EX 7 -->
-<div class="ex-block" id="ex7">
-  <div class="ex-q">7. Traducí: «Voy a la estación.»</div>
-  <div class="opts-row">
-    <button class="opt-btn" onclick="checkOpt(this,'ex7',false,'Incorrecto. «alla» = a + la. La forma correcta es «Vado alla stazione».')">Vai alla stazione.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex7',true,'¡Correcto! «Vado alla stazione.» — vado (io) + alla (a + la) + stazione.')">Vado alla stazione.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex7',false,'Incorrecto. «stazione» es femminile → «alla stazione», no «al stazione».')">Vado al stazione.</button>
+  <div class="dial-row">
+    <div class="dial-who">Marco</div>
+    <div class="dial-bubble-text">Interessante! <strong>Come ti chiami?</strong></div>
   </div>
-  <div class="ex-fb" id="ex7fb"></div>
-</div>
+  <div style="font-size:0.75rem;color:#888;padding:0 0 10px 68px;font-style:normal;">→ chiamarsi -ARE reflexivo: ti chiami</div>
 
-<!-- EX 8 -->
-<div class="ex-block" id="ex8">
-  <div class="ex-q">8. ¿Qué interrogativo falta? «_____ è il tuo numero di telefono?»</div>
-  <div class="opts-row">
-    <button class="opt-btn" onclick="checkOpt(this,'ex8',false,'Incorrecto. «Come» pregunta cómo, no cuál.')">Come</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex8',true,'¡Correcto! «Qual è il tuo numero?» — Qual(e) + essere para preguntar cuál.')">Qual</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex8',false,'Incorrecto. «Dove» pregunta dónde.')">Dove</button>
+  <div class="dial-row right">
+    <div class="dial-who">Sofia</div>
+    <div class="dial-bubble-text"><strong>Mi chiamo</strong> Sofia. Piacere!</div>
   </div>
-  <div class="ex-fb" id="ex8fb"></div>
-</div>
+  <div style="font-size:0.75rem;color:#888;padding:0 0 10px 68px;text-align:right;font-style:normal;">→ chiamarsi -ARE reflexivo: mi chiamo</div>
 
-<!-- EX 9 -->
-<div class="ex-block" id="ex9">
-  <div class="ex-q">9. Elegí la traducción correcta: «Ho trent'anni.»</div>
-  <div class="opts-row">
-    <button class="opt-btn" onclick="checkOpt(this,'ex9',false,'Incorrecto. «Ho» viene de «avere» = tener. «Ho trent\'anni» = Tengo 30 años.')">Soy de 30 años.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex9',true,'¡Correcto! «Ho trent\'anni» = Tengo 30 años. En italiano la edad se expresa con «avere».')">Tengo 30 años.</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex9',false,'Incorrecto. «Ho» viene de «avere» = tener. «Ho trent\'anni» = Tengo 30 años.')">Estoy de 30 años.</button>
+  <div class="dial-row">
+    <div class="dial-who">Marco</div>
+    <div class="dial-bubble-text">Piacere, Sofia! Io <strong>mi chiamo</strong> Marco. Arrivederci!</div>
   </div>
-  <div class="ex-fb" id="ex9fb"></div>
 </div>
 
-<!-- EX 10 -->
-<div class="ex-block" id="ex10">
-  <div class="ex-q">10. Giulia _____ italiana e _____ a Roma. (essere / abitare)</div>
-  <div class="opts-row">
-    <button class="opt-btn" onclick="checkOpt(this,'ex10',true,'¡Correcto! «è» (essere, lui/lei) + «abita» (abitare -ARE, lui/lei).')">è / abita</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex10',false,'Incorrecto. Para «lei» (Giulia) se usa «è» y «abita».')">sei / abiti</button>
-    <button class="opt-btn" onclick="checkOpt(this,'ex10',false,'Incorrecto. Para «lei» (Giulia) se usa «è» y «abita».')">sono / abito</button>
+<!-- Ejercicios de comprensión del diálogo -->
+<div style="background:var(--cream);border-radius:var(--r);padding:16px 20px;margin:20px 0;">
+<div class="ex-section">
+  <h4 class="ex-section-title">Comprensione del dialogo</h4>
+
+  <div class="ex-block" id="dial1">
+    <p class="ex-q">1. ¿En qué ciudad vive Sofia, aunque sea de Roma?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="dial1" data-ok="0" data-msg="Roma es de dónde es, pero no donde vive. Revisá la frase: «Sono di Roma, ma abito a ____».">Roma</button>
+      <button class="opt-btn" data-ex="dial1" data-ok="1" data-msg="¡Correcto! «Sono di Roma, ma abito a Milano.» — Es de Roma pero vive en Milán.">Milano</button>
+      <button class="opt-btn" data-ex="dial1" data-ok="0" data-msg="Venezia es adonde va Marco para el fin de semana, no donde vive Sofia.">Venezia</button>
+      <button class="opt-btn" data-ex="dial1" data-ok="0" data-msg="Napoli es de donde es Marco, no Sofia.">Napoli</button>
+    </div>
+    <div class="ex-fb" id="dial1fb"></div>
   </div>
-  <div class="ex-fb" id="ex10fb"></div>
+
+  <div class="ex-block" id="dial2">
+    <p class="ex-q">2. Con qué verbo expresa Sofia su profesión en el diálogo?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="dial2" data-ok="0" data-msg="«Sono» es essere — se usa para decir quién sos, no para hablar de trabajo con «come».">sono</button>
+      <button class="opt-btn" data-ex="dial2" data-ok="0" data-msg="«Vado» es andare — ir. Sofia no menciona adónde va.">vado</button>
+      <button class="opt-btn" data-ex="dial2" data-ok="1" data-msg="¡Sì! Sofia dice «Lavoro come guida turistica» — verbo lavorare (-ARE), primera persona: lavoro.">lavoro</button>
+      <button class="opt-btn" data-ex="dial2" data-ok="0" data-msg="«Ho» es avere. Sofia usa avere para su edad, no para su profesión.">ho</button>
+    </div>
+    <div class="ex-fb" id="dial2fb"></div>
+  </div>
+
+  <div class="ex-block" id="dial3">
+    <p class="ex-q">3. Escribí en italiano la presentación completa de Marco: origen, destino y edad.</p>
+    <div class="ex-input-row">
+      <input class="fill-blank" type="text" id="f_dial3" placeholder="Sono di… Vado a… Ho… anni." style="width:100%;max-width:420px;"
+        data-ex="dial3" data-fn="free" data-accepted="[&quot;Sono di Napoli. Vado a Venezia. Ho trent'anni.&quot;,&quot;Sono di Napoli, vado a Venezia, ho trent'anni&quot;,&quot;Sono di Napoli. Vado a Venezia. Ho trentanni.&quot;]" data-hint="«Sono di Napoli. Vado a Venezia per il weekend. Ho trent'anni.»">
+    </div>
+    <button class="btn-check" data-fn="free" data-inp="f_dial3" data-ex="dial3" data-accepted="[&quot;Sono di Napoli. Vado a Venezia. Ho trent'anni.&quot;,&quot;Sono di Napoli, vado a Venezia, ho trent'anni&quot;,&quot;Sono di Napoli. Vado a Venezia. Ho trentanni.&quot;]" data-hint="«Sono di Napoli. Vado a Venezia per il weekend. Ho trent'anni.»">Verificar</button>
+    <div class="ex-fb" id="dial3fb"></div>
+  </div>
+
+</div>
 </div>
 
+<hr class="divider">
 
-  <!-- ══════ IL DIALOGO ══════ -->
-  
+<!-- ═══════════════════════════════════════════════════
+     SEC 7 · ESERCIZI INTEGRATORI
+════════════════════════════════════════════════════ -->
+<div class="sec-header">
+  <h2><span class="sec-num">7</span> Esercizi integratori</h2>
+  <p>Combiná <em>essere · andare · avere</em> y los verbos <em>-ARE</em>. Estos ejercicios mezclan todos los contenidos de la unidad.</p>
+</div>
+
+<div style="background:var(--cream);border-radius:var(--r);padding:16px 20px;margin:20px 0;">
+
+  <!-- INT-A MCQ 4 — mix essere/avere -->
+  <div class="ex-block" id="int1">
+    <p class="ex-q">1. <em>Giulia _____ di Firenze, _____ ventisei anni e _____ come insegnante.</em><br>
+    <small style="color:#888;font-weight:400;">(essere / avere / lavorare)</small></p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="int1" data-ok="0" data-msg="«sei / hai / lavori» son las formas de tu (segunda persona). Giulia es lui/lei → tercera persona.">sei / hai / lavori</button>
+      <button class="opt-btn" data-ex="int1" data-ok="1" data-msg="¡Perfetto! lui/lei → è (essere) · ha (avere) · lavora (lavorare -ARE).">è / ha / lavora</button>
+      <button class="opt-btn" data-ex="int1" data-ok="0" data-msg="«sono / ho / lavoro» son las formas de io (primera persona).">sono / ho / lavoro</button>
+      <button class="opt-btn" data-ex="int1" data-ok="0" data-msg="«è / ha / lavorare» — «lavorare» es el infinitivo, no la conjugación. Necesitás «lavora».">è / ha / lavorare</button>
+    </div>
+    <div class="ex-fb" id="int1fb"></div>
+  </div>
+
+  <!-- INT-B free text — traducción completa -->
+  <div class="ex-block" id="int2">
+    <p class="ex-q">2. Traducí completamente al italiano:<br>
+    <em>"Sofia es de Roma pero vive en Milán. Tiene 25 años y habla italiano muy bien."</em></p>
+    <div class="ex-input-row">
+      <input class="fill-blank" type="text" id="f_int2" placeholder="escribe las dos oraciones aquí…" style="width:100%;max-width:500px;"
+        data-ex="int2" data-fn="free" data-accepted='["Sofia è di Roma ma abita a Milano. Ha 25 anni e parla italiano molto bene.","Sofia è di Roma ma abita a Milano. Ha venticinque anni e parla italiano molto bene.","Sofia è di Roma, ma abita a Milano. Ha 25 anni e parla italiano molto bene."]' data-hint="essere (è) · abitare -ARE (abita) · avere (ha) · parlare -ARE (parla). «Sofia è di Roma ma abita a Milano. Ha 25 anni e parla italiano molto bene.»">
+    </div>
+    <button class="btn-check" data-fn="free" data-inp="f_int2" data-ex="int2" data-accepted='["Sofia è di Roma ma abita a Milano. Ha 25 anni e parla italiano molto bene.","Sofia è di Roma ma abita a Milano. Ha venticinque anni e parla italiano molto bene.","Sofia è di Roma, ma abita a Milano. Ha 25 anni e parla italiano molto bene."]' data-hint="essere (è) · abitare -ARE (abita) · avere (ha) · parlare -ARE (parla). «Sofia è di Roma ma abita a Milano. Ha 25 anni e parla italiano molto bene.»">Verificar</button>
+    <div class="ex-fb" id="int2fb"></div>
+  </div>
+
+  <!-- INT-C MCQ 4 — andare + preposizioni -->
+  <div class="ex-block" id="int3">
+    <p class="ex-q">3. ¿Cuál de estas opciones está <strong>completamente correcta</strong>?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="int3" data-ok="0" data-msg="«Vai in Roma» tiene error: con ciudades se usa «a» no «in». → «Vai a Roma».">Vai in Roma ogni estate.</button>
+      <button class="opt-btn" data-ex="int3" data-ok="0" data-msg="«Loro vanno» requiere «alla» (a + la) para stazione femenino. «al stazione» no existe.">Loro vanno al stazione.</button>
+      <button class="opt-btn" data-ex="int3" data-ok="1" data-msg="¡Perfetto! «Vado all'aeroporto» — all' = a + l' (ante vocal, masculino).">Vado all'aeroporto alle otto.</button>
+      <button class="opt-btn" data-ex="int3" data-ok="0" data-msg="«Andiamo a la» no existe en italiano. «a + la» se fusiona en «alla»: «Andiamo alla pizzeria».">Andiamo a la pizzeria.</button>
+    </div>
+    <div class="ex-fb" id="int3fb"></div>
+  </div>
+
+  <!-- INT-D MCQ 4 — negación -->
+  <div class="ex-block" id="int4">
+    <p class="ex-q">4. ¿Cuál es la negación correcta de <em>"Sono italiano"</em>?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="int4" data-ok="0" data-msg="En italiano la negación usa «non» antes del verbo, no «no» como en español.">No sono italiano.</button>
+      <button class="opt-btn" data-ex="int4" data-ok="1" data-msg="¡Sì! «Non» va justo antes del verbo: «Non sono italiano.»">Non sono italiano.</button>
+      <button class="opt-btn" data-ex="int4" data-ok="0" data-msg="«Sono non italiano» no es correcto — el «non» va antes del verbo, no después.">Sono non italiano.</button>
+      <button class="opt-btn" data-ex="int4" data-ok="0" data-msg="«Non sei italiano» es la negación de «tu sei italiano» (vos sos), no de «io sono».">Non sei italiano.</button>
+    </div>
+    <div class="ex-fb" id="int4fb"></div>
+  </div>
+
+  <!-- INT-E free text — presentación propia -->
+  <div class="ex-block" id="int5">
+    <p class="ex-q">5. Escribí tu propia presentación en italiano (3 oraciones mínimo).<br>
+    <small style="color:#888;font-weight:400;">Incluí: de dónde sos, dónde vivís, cuántos años tenés. Usá essere, abitare y avere.</small></p>
+    <div class="ex-input-row" style="align-items:flex-start;">
+      <textarea id="f_int5" placeholder="Mi chiamo… Sono di… Abito a… Ho… anni." style="width:100%;max-width:500px;min-height:80px;border:2px solid var(--mc);border-radius:8px;padding:8px 12px;font-family:var(--fb);font-size:0.92rem;resize:vertical;background:var(--white);color:var(--black);outline:none;"></textarea>
+    </div>
+    <button class="btn-check" data-fn="checkPresentation">Verificar estructura</button>
+    <div class="ex-fb" id="int5fb"></div>
+  </div>
+
+  <!-- INT-F avanzado -->
+  <div class="ex-block" id="int6">
+    <p class="ex-q">⭐ Avanzado — ¿Cuál de estas presentaciones es <strong>completamente correcta</strong> en italiano?</p>
+    <div class="opts-row four">
+      <button class="opt-btn" data-ex="int6" data-ok="0" data-msg="«sono di 30 anni» — error: la edad usa avere (ho 30 anni). Además «vai a lavorare» debería ser «vado» (io, primera persona).">Mi chiamo Luca. Sono di Torino e sono di 30 anni. Vai a lavorare a Milano.</button>
+      <button class="opt-btn" data-ex="int6" data-ok="0" data-msg="«abito in Napoli» — error: con ciudades se usa siempre «a», nunca «in». Debe ser «abito a Napoli».">Mi chiamo Giulia. Sono di Roma ma abito in Napoli. Ho 28 anni e parlo bene italiano.</button>
+      <button class="opt-btn" data-ex="int6" data-ok="1" data-msg="¡Perfetto! essere (è di) · abitare (abita a, ciudad con a) · avere (ha trent'anni) · lavorare (lavora). Todo correcto incluyendo preposiciones.">Si chiama Marco. È di Napoli ma abita a Milano. Ha trent'anni e lavora come ingegnere.</button>
+      <button class="opt-btn" data-ex="int6" data-ok="0" data-msg="«Ha nome Sofia» no existe en italiano. Se dice «Si chiama Sofia» o «Il suo nome è Sofia». Además el pronombre cambia de persona en la última frase.">Ha nome Sofia. È di Venezia. Ho 22 anni e abita a Firenze con la famiglia.</button>
+    </div>
+    <div class="ex-fb" id="int6fb"></div>
+  </div>
+
+  <!-- INT-G avanzado libre — traducción compleja -->
+  <div class="ex-block" id="int7">
+    <p class="ex-q">⭐⭐ Avanzado — Traducí este párrafo completo al italiano:<br>
+    <em>"Me llamo Valentina. Soy de Córdoba, Argentina, pero vivo en Roma. Tengo 27 años. Trabajo como profesora y hablo italiano y español."</em></p>
+    <div class="ex-input-row" style="align-items:flex-start;">
+      <textarea id="f_int7" placeholder="Mi chiamo Valentina. Sono di…" style="width:100%;max-width:540px;min-height:90px;border:2px solid var(--mc);border-radius:8px;padding:8px 12px;font-family:var(--fb);font-size:0.92rem;resize:vertical;background:var(--white);color:var(--black);outline:none;"></textarea>
+    </div>
+    <button class="btn-check" data-fn="free" data-inp="f_int7" data-ex="int7" data-accepted='["Mi chiamo Valentina. Sono di Cordoba, Argentina, ma abito a Roma. Ho ventisette anni. Lavoro come insegnante e parlo italiano e spagnolo.","Mi chiamo Valentina. Sono di Cordoba, Argentina, ma abito a Roma. Ho 27 anni. Lavoro come insegnante e parlo italiano e spagnolo.","Mi chiamo Valentina. Sono di Cordoba ma abito a Roma. Ho ventisette anni. Lavoro come insegnante e parlo italiano e spagnolo."]' data-hint="chiamarsi→Mi chiamo · essere→Sono di · abitare→abito a · avere→Ho … anni · lavorare→Lavoro come · parlare→parlo. Revisá preposiciones: ciudad con «a», no «in».">Verificar</button>
+    <div class="ex-fb" id="int7fb"></div>
+  </div>
+
+</div>
+
+<div class="cta-section">
+  <p style="font-size:0.92rem;color:#666;margin-bottom:18px;">¡<em>Bravissimo/a!</em> Completaste la gramática del Módulo 2.<br>Ahora practicá todo en los ejercicios interactivos.</p>
+  <a class="btn-cta" href="etapa4_ejercicios.html">Ir a los ejercicios →</a>
+</div>
 
 </main>
 
+<div style="display:flex;justify-content:space-between;align-items:center;padding:1.5rem;border-top:2px solid var(--cream-dk);background:#fff;margin-top:auto;flex-wrap:wrap;gap:0.5rem;">
+  <a href="etapa2_descubrimiento.html" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.5rem;border-radius:30px;font-size:0.9rem;font-weight:700;text-decoration:none;border:2px solid var(--mc-dk);color:var(--mc-dk);background:transparent;">← Descubrimiento</a>
+  <span style="font-size:0.8rem;color:#aaa;">Unità 2 · Di dove sei?</span>
+  <a href="etapa4_ejercicios.html" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.5rem;border-radius:30px;font-size:0.9rem;font-weight:700;text-decoration:none;background:var(--mc);color:#fff;border:2px solid var(--mc);">Ejercicios →</a>
+</div>
+
 <script>
+window.IPP_VOICE = window.IPP_VOICE || {
+  lang: 'it-IT', rate: 0.82, pitch: 1.10,
+  preferFemale: true, preferGoogle: true
+};
+if (!window.__ippVC) {
+  window.__ippVC = true; window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) window.__ippV = v; };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
 if (!window.__ipp_m2_e3__) {
 window.__ipp_m2_e3__ = true;
 
@@ -686,13 +1060,14 @@ function ippAudio(text, rate, gender) {
   window.speechSynthesis.cancel();
   var utt = new SpeechSynthesisUtterance(String(text));
   utt.lang = 'it-IT'; utt.rate = rate;
+  utt.pitch = (window.IPP_VOICE && window.IPP_VOICE.pitch) ? window.IPP_VOICE.pitch : 1.10;
   var voice = ippVoice(gender);
   if (voice) utt.voice = voice;
   utt.onerror = function() {};
-  utt.onend = function() { var f=document.getElementById('ippStopFab'); if(f) f.style.display='none'; };
+  utt.onend = function() { var f = document.getElementById('ippStopFab'); if (f) f.style.display = 'none'; };
   var fab = document.getElementById('ippStopFab');
   if (fab) fab.style.display = 'inline-flex';
-  (function(u){ setTimeout(function(){ try { speechSynthesis.speak(u); } catch(e){} }, 60); })(utt);
+  (function(u) { setTimeout(function() { try { speechSynthesis.speak(u); } catch(e) {} }, 60); })(utt);
 }
 
 function ippVoice(gender) {
@@ -703,24 +1078,137 @@ function ippVoice(gender) {
     voice = itV.find(function(v) { return /cosimo|luca|giorgio|male|masc/i.test(v.name); });
     if (!voice) voice = itV.find(function(v) { return !/elsa|alice|giulia|female|femm/i.test(v.name); });
   } else {
-    voice = itV.find(function(v) { return /elsa|alice|giulia|female|femm/i.test(v.name); });
-    if (!voice) voice = itV.find(function(v) { return !/cosimo|luca|giorgio|male|masc/i.test(v.name); });
+    voice = itV.find(function(v) { return /google/i.test(v.name) && /elsa|alice|giulia|female/i.test(v.name); });
+    if (!voice) voice = itV.find(function(v) { return /google/i.test(v.name); });
+    if (!voice) voice = itV.find(function(v) { return /elsa|alice|giulia|female|femm/i.test(v.name); });
   }
   return voice || (itV.length ? itV[0] : null);
 }
 
+function ippRetry(container, resetFn) {
+  var old = container.querySelector('.ipp-retry-btn');
+  if (old) old.remove();
+  var btn = document.createElement('button');
+  btn.className = 'ipp-retry-btn';
+  btn.style.cssText = 'margin-top:8px;background:none;border:1.5px solid #e5ab07;color:#c8940a;border-radius:16px;padding:5px 16px;font-size:0.82rem;cursor:pointer;font-family:inherit;font-weight:700;display:inline-flex;align-items:center;gap:5px;';
+  btn.innerHTML = '↺ Reintentar';
+  btn.onclick = function() { btn.remove(); resetFn(); };
+  container.appendChild(btn);
+}
+
+/* MCQ: clic = verificar inmediatamente */
 function checkOpt(btn, exId, isCorrect, msg) {
   var block = document.getElementById(exId);
-  block.querySelectorAll('.opt-btn').forEach(function(b) { b.disabled = true; });
-  btn.classList.add(isCorrect ? 'correct' : 'wrong');
-  if (!isCorrect) {
+  if (!block || block.dataset.done) return;
+  btn._ippCorrect = isCorrect;
+  btn._ippMsg = msg;
+  block.querySelectorAll('.opt-btn').forEach(function(b) { b.classList.remove('selected'); });
+  btn.classList.add('selected');
+  doVerifyMCQ(exId);
+}
+
+function doVerifyMCQ(exId) {
+  var block = document.getElementById(exId);
+  if (!block || block.dataset.done) return;
+  var sel = block.querySelector('.opt-btn.selected');
+  if (!sel) {
+    var fb = document.getElementById(exId + 'fb');
+    if (fb) { fb.innerHTML = '⚠ Seleccioná una opción primero.'; fb.className = 'ex-fb no'; }
+    return;
+  }
+  var isOk = sel._ippCorrect === true;
+  var msg = sel._ippMsg || '';
+  block.dataset.done = '1';
+  block.querySelectorAll('.opt-btn').forEach(function(b) {
+    b.disabled = true; b.classList.remove('selected');
+  });
+  sel.classList.add(isOk ? 'correct' : 'wrong');
+  if (!isOk) {
     block.querySelectorAll('.opt-btn').forEach(function(b) {
-      if (b.getAttribute('onclick') && b.getAttribute('onclick').indexOf(',true,') !== -1) b.classList.add('correct');
+      if (b._ippCorrect === true) b.classList.add('correct');
     });
   }
   var fb = document.getElementById(exId + 'fb');
-  fb.textContent = msg;
-  fb.className = 'ex-fb ' + (isCorrect ? 'ok' : 'no');
+  if (fb) {
+    fb.innerHTML = (isOk ? '✓ ' : '✗ ') + msg;
+    fb.className = 'ex-fb ' + (isOk ? 'ok' : 'no');
+  }
+  var vb = block.querySelector('.btn-check-mcq');
+  if (vb) vb.style.display = 'none';
+  ippRetry(block, function() {
+    delete block.dataset.done;
+    block.querySelectorAll('.opt-btn').forEach(function(b) {
+      b.disabled = false; b.classList.remove('correct','wrong','selected');
+      delete b._ippCorrect; delete b._ippMsg;
+    });
+    if (fb) { fb.textContent = ''; fb.className = 'ex-fb'; }
+    if (vb) { vb.style.display = ''; }
+  });
+}
+
+function checkFree(inputId, exId, accepted, hint) {
+  var block = document.getElementById(exId);
+  if (block.dataset.done) return;
+  var inp = document.getElementById(inputId);
+  if (!inp) return;
+  var normalize = function(s) {
+    return (s || '').trim().toLowerCase()
+      .replace(/['']/g, "'")
+      .replace(/[!?.,;:]/g, '').replace(/[àá]/g, 'a').replace(/[éè]/g, 'e')
+      .replace(/[íì]/g, 'i').replace(/[óò]/g, 'o').replace(/[ú]/g, 'u')
+      .replace(/\s+/g, ' ');
+  };
+  var val = normalize(inp.value);
+  var ok = accepted.some(function(a) { return normalize(a) === val; });
+  var fb = document.getElementById(exId + 'fb');
+  if (!fb) return;
+  if (ok) {
+    block.dataset.done = '1';
+    inp.disabled = true; inp.classList.add('ok');
+    fb.innerHTML = '✓ <strong>¡Perfetto!</strong> Respuesta correcta: <em>' + accepted[0] + '</em>';
+    fb.className = 'ex-fb ok';
+  } else {
+    inp.classList.add('err');
+    fb.innerHTML = '✗ <strong>Revisá:</strong> ' + hint + '<br><small style="opacity:.75">Forma correcta: <em>' + accepted[0] + '</em></small>';
+    fb.className = 'ex-fb no';
+  }
+  ippRetry(block, function() {
+    delete block.dataset.done;
+    inp.value = ''; inp.disabled = false;
+    inp.classList.remove('ok','err');
+    fb.textContent = ''; fb.className = 'ex-fb';
+  });
+}
+
+function checkPresentation() {
+  var block = document.getElementById('int5');
+  if (block.dataset.done) return;
+  var ta = document.getElementById('f_int5');
+  var fb = document.getElementById('int5fb');
+  var val = (ta.value || '').toLowerCase();
+  var checks = {
+    essere:  /\b(sono|sei|è|siamo|siete)\b/.test(val),
+    abitare: /\babito\b/.test(val),
+    avere:   /\bho\b.*anni|anni.*\bho\b/.test(val),
+    name:    /\bmi chiamo\b/.test(val)
+  };
+  var missing = [];
+  if (!checks.essere)  missing.push('<em>essere</em> (sono di…)');
+  if (!checks.abitare) missing.push('<em>abitare</em> (abito a…)');
+  if (!checks.avere)   missing.push('<em>avere</em> + anni (ho … anni)');
+  if (!checks.name)    missing.push('<em>chiamarsi</em> (mi chiamo…)');
+  if (missing.length === 0) {
+    block.dataset.done = '1'; ta.disabled = true;
+    fb.innerHTML = '✓ <strong>¡Bravissimo/a!</strong> Tu presentación incluye todos los elementos: essere, abitare, avere y chiamarsi. ¡Estructura perfecta!';
+    fb.className = 'ex-fb ok';
+  } else {
+    fb.innerHTML = '✗ <strong>Falta incluir:</strong> ' + missing.join(' · ') + '.<br><small>Revisá que cada verbo aparezca en tu texto.</small>';
+    fb.className = 'ex-fb no';
+  }
+  ippRetry(block, function() {
+    delete block.dataset.done; ta.disabled = false;
+    fb.textContent = ''; fb.className = 'ex-fb';
+  });
 }
 
 function ippStop() {
@@ -729,10 +1217,74 @@ function ippStop() {
   if (fab) fab.style.display = 'none';
 }
 
-  window.ippAudio = ippAudio;
-  window.ippStop  = ippStop;
-  window.checkOpt = checkOpt;
-} // end execution guard
+window.ippAudio = ippAudio; window.ippStop = ippStop;
+window.checkOpt = checkOpt; window.doVerifyMCQ = doVerifyMCQ;
+window.checkFree = checkFree; window.checkPresentation = checkPresentation;
+
+// Inicializar event listeners (reemplaza onclick inline para compatibilidad CSP)
+function ippInitListeners() {
+  // MCQ opt-btn
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.opt-btn[data-ex]');
+    if (btn) { checkOpt(btn, btn.dataset.ex, btn.dataset.ok === '1', btn.dataset.msg); return; }
+
+    // Botón verificar texto libre
+    var fbtn = e.target.closest('.btn-check[data-fn="free"]');
+    if (fbtn) {
+      var accepted = JSON.parse(fbtn.dataset.accepted || '[]');
+      checkFree(fbtn.dataset.inp, fbtn.dataset.ex, accepted, fbtn.dataset.hint || '');
+      return;
+    }
+
+    // Botones helpers
+    var hbtn = e.target.closest('.btn-check[data-fn]');
+    if (hbtn) {
+      var fn = hbtn.dataset.fn;
+      if (fn === 'checkPresentation') checkPresentation();
+      else if (fn === 'checkEs4e') checkEs4e();
+      else if (fn === 'checkEs4g') checkEs4g();
+      else if (fn === 'verificarEs3g') verificarEs3g();
+      return;
+    }
+
+    // Audio buttons
+    var abtn = e.target.closest('[data-audio]');
+    if (abtn) { ippAudio(abtn.dataset.audio, parseFloat(abtn.dataset.rate || '0.82'), abtn.dataset.gender || 'f'); return; }
+
+    // Stop buttons
+    var sbtn = e.target.closest('[data-stop]');
+    if (sbtn) { ippStop(); return; }
+  });
+
+  // Enter en inputs de texto
+  document.addEventListener('keypress', function(e) {
+    if (e.key !== 'Enter') return;
+    var inp = e.target.closest('.fill-blank[data-ex]');
+    if (!inp) return;
+    var fn = inp.dataset.fn;
+    if (fn === 'free') {
+      var accepted = JSON.parse(inp.dataset.accepted || '[]');
+      checkFree(inp.id, inp.dataset.ex, accepted, inp.dataset.hint || '');
+    } else if (fn === 'checkEs4e') checkEs4e();
+    else if (fn === 'checkEs4g') checkEs4g();
+    else if (fn === 'verificarEs3g') verificarEs3g();
+  });
+
+  // Nav stage link hover via JS (reemplaza onmouseover/onmouseout inline)
+  document.querySelectorAll('.nav-stage-link').forEach(function(a) {
+    a.addEventListener('mouseover', function() {
+      this.style.background = 'var(--cream)';
+      this.style.color = 'var(--mc-dk)';
+    });
+    a.addEventListener('mouseout', function() {
+      this.style.background = '';
+      this.style.color = '#888';
+    });
+  });
+}
+ippInitListeners();
+
+} // end guard
 </script>
 </body>
 </html>

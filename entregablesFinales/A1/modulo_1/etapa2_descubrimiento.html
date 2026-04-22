@@ -585,6 +585,9 @@
 
 
 
+<!-- ⏹ Stop TTS fab (se muestra al reproducir) -->
+<button id="ippStopFab" onclick="if(window.ippStop)window.ippStop()" style="display:none;position:fixed;bottom:20px;right:20px;z-index:9999;background:#ddd9c8;color:#1a1a18;border:none;border-radius:50px;padding:9px 18px;font-size:0.82rem;font-weight:700;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.18);font-family:inherit;">⏹ Detener audio</button>
+
 <!-- HERO -->
 <header class="hero">
   <div class="hero-badge">Unità 1 · A1 · Descubrimiento</div>
@@ -593,9 +596,9 @@
 
 <!-- STAGE NAV -->
 <nav style="background:var(--white);border-bottom:2px solid var(--cream-dk);display:flex;justify-content:center;gap:0.25rem;padding:0.45rem 1rem;flex-wrap:wrap;">
-  <a href="etapa1_input.md" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:20px;border:1.5px solid var(--cream-dk);font-size:0.75rem;font-weight:600;color:#888;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='var(--cream)';this.style.color='var(--mc-dk)'" onmouseout="this.style.background='';this.style.color='#888'">← Input</a>
+  <a href="https://italianoperpiacere.com/slides/slide/exploracion-141?fullscreen=1#" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:20px;border:1.5px solid var(--cream-dk);font-size:0.75rem;font-weight:600;color:#888;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='var(--cream)';this.style.color='var(--mc-dk)'" onmouseout="this.style.background='';this.style.color='#888'">← Exploracion</a>
   <span style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:20px;border:1.5px solid var(--mc);background:var(--mc-bg);font-size:0.75rem;font-weight:700;color:var(--mc-dk);">● Descubrimiento</span>
-  <a href="etapa3_gramatica.html" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:20px;border:1.5px solid var(--cream-dk);font-size:0.75rem;font-weight:600;color:#888;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='var(--cream)';this.style.color='var(--mc-dk)'" onmouseout="this.style.background='';this.style.color='#888'">Gramática →</a>
+  <a href="https://italianoperpiacere.com/slides/slide/gramatica-143?fullscreen=1#" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:20px;border:1.5px solid var(--cream-dk);font-size:0.75rem;font-weight:600;color:#888;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='var(--cream)';this.style.color='var(--mc-dk)'" onmouseout="this.style.background='';this.style.color='#888'">Gramática →</a>
 </nav>
 
 <main class="container">
@@ -743,43 +746,6 @@
         <button class="reveal-btn" onclick="revealFill()">Ver solución</button>
       </div>
       <div class="activity-result" id="fillResult"></div>
-    </div>
-  </section>
-
-  <!-- ══════════ ③ LETRAS EXTRANJERAS ══════════ -->
-  <section class="sec" id="s-foreign">
-    <div class="sec-label">③ Letras extranjeras</div>
-    <h2 class="sec-title">Le lettere straniere</h2>
-    <p class="sec-sub">5 letras que no pertenecen al alfabeto italiano original — hacé clic para escucharlas</p>
-
-    <div class="task-box">
-      <strong>Recordás del video:</strong> la conductora mencionó letras que vienen de otros idiomas.
-      Hacé clic en cada letra para escucharla y su palabra de referencia.
-      Después, en la actividad, identificá cuáles son las 5 "straniere".
-    </div>
-
-    <div class="card">
-      <div class="card-title">Escuchá y reconocé las letras extranjeras</div>
-      <div class="foreign-grid" id="foreignAudioGrid"></div>
-      <div class="tts-note">🔊 Clic en la letra para escucharla con su palabra de referencia italiana.</div>
-    </div>
-
-    <div class="card">
-      <div class="card-title">Actividad — hacé clic en las 5 letras "straniere"</div>
-      <div class="foreign-grid" id="foreignPickGrid"></div>
-      <button class="check-btn" id="foreignCheckBtn" onclick="checkForeign()">Verificar selección</button>
-      <div class="activity-result" id="foreignResult"></div>
-    </div>
-
-    <div class="culture-strip">
-      <h4>🇮🇹 ¿Por qué existen letras "straniere"?</h4>
-      <p>
-        El italiano tomó muchas palabras del inglés, francés y alemán durante el siglo XX.
-        Palabras como <strong><em>jeans</em></strong> (inglés), <strong><em>weekend</em></strong> (inglés),
-        <strong><em>taxi</em></strong> (inglés) y <strong><em>karaoke</em></strong> (japonés vía inglés)
-        necesitaron letras que el italiano original no usaba.
-        En los textos formales, estas letras llevan a veces una nota <em>(lett. straniera)</em>.
-      </p>
     </div>
   </section>
 
@@ -1077,7 +1043,7 @@
   <!-- BOTÓN CONTINUAR -->
   <div class="cta-block">
     <p>¡Già! Ya conocés el alfabeto telefónico, los saludos, los números y las expresiones esenciales.<br>Ahora vas a entender <em>por qué</em> funcionan — con poca gramática y mucha lógica.</p>
-    <a class="btn-next" href="etapa3_gramatica.html">Ir a Gramática →</a>
+    <a class="btn-next" href="https://italianoperpiacere.com/slides/slide/gramatica-143?fullscreen=1#">Ir a Gramática →</a>
   </div>
 
 </main>
@@ -1102,8 +1068,8 @@ if (!window.__ippVC) {
 ───────────────────────────────────────────────────────── */
 window.IPP_VOICE = window.IPP_VOICE || {
   lang:         'it-IT',
-  rate:         0.85,
-  pitch:        1.0,
+  rate:         0.82,   /* ← Módulo 1 preset */
+  pitch:        1.10,   /* ← Módulo 1 preset */
   preferFemale: true,
   preferGoogle: true
 };
@@ -1134,6 +1100,13 @@ window.IPP_VOICE = window.IPP_VOICE || {
     return it[0];
   }
 
+  function _fabShow(v) { var f=document.getElementById('ippStopFab'); if(f) f.style.display=v?'inline-flex':'none'; }
+
+  function ippStop() {
+    try { window.speechSynthesis.cancel(); } catch(e) {}
+    _fabShow(false);
+  }
+
   function ippAudio(text, onStart, onEnd) {
     if (!window.speechSynthesis) { if (onEnd) onEnd(); return null; }
     try {
@@ -1141,16 +1114,16 @@ window.IPP_VOICE = window.IPP_VOICE || {
       var cfg = window.IPP_VOICE || {};
       const utter = new SpeechSynthesisUtterance(text);
       utter.lang   = cfg.lang  || 'it-IT';
-      utter.rate   = cfg.rate  !== undefined ? cfg.rate  : 0.85;
-      utter.pitch  = cfg.pitch !== undefined ? cfg.pitch : 1.0;
+      utter.rate   = cfg.rate  !== undefined ? cfg.rate  : 0.82;
+      utter.pitch  = cfg.pitch !== undefined ? cfg.pitch : 1.10;
       utter.volume = 1;
       const voices = (window.__ippV && window.__ippV.length) ? window.__ippV : speechSynthesis.getVoices();
       const v = _ippPickVoice(voices, cfg);
       if (v) utter.voice = v;
       if (onStart) utter.onstart = onStart;
-      if (onEnd)   utter.onend   = onEnd;
-      if (onEnd)   utter.onerror  = function() { onEnd(); };
-      (function(u){ setTimeout(function(){ try { speechSynthesis.speak(u); } catch(e){} }, 60); })(utter);
+      utter.onend   = onEnd ? function(){ _fabShow(false); onEnd(); } : function(){ _fabShow(false); };
+      utter.onerror = onEnd ? function(){ _fabShow(false); onEnd(); } : function(){ _fabShow(false); };
+      (function(u){ setTimeout(function(){ try { _fabShow(true); speechSynthesis.speak(u); } catch(e){ _fabShow(false); } }, 60); })(utter);
       return utter;
     } catch(e) {
       console.warn('SpeechSynthesis error:', e);
@@ -1165,8 +1138,10 @@ window.IPP_VOICE = window.IPP_VOICE || {
     var cfg = window.IPP_VOICE || {};
     var utt = new SpeechSynthesisUtterance(String(text));
     utt.lang  = cfg.lang || 'it-IT';
-    utt.rate  = cfg.rate !== undefined ? cfg.rate : 0.85;
-    utt.pitch = (gender === 'm') ? 0.85 : (cfg.pitch !== undefined ? cfg.pitch : 1.0);
+    utt.rate  = cfg.rate  !== undefined ? cfg.rate  : 0.82;
+    utt.pitch = (gender === 'm') ? Math.max(0.8, (cfg.pitch !== undefined ? cfg.pitch : 1.10) - 0.25)
+                                 : (cfg.pitch !== undefined ? cfg.pitch : 1.10);
+    _fabShow(true);
     var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
     var itVoices = voices.filter(function(v) { return v.lang && v.lang.startsWith('it'); });
     var voice = null;
@@ -1185,8 +1160,9 @@ window.IPP_VOICE = window.IPP_VOICE || {
     }
     if (voice) utt.voice = voice;
     if (onStart) utt.onstart = onStart;
-    if (onEnd) { utt.onend = onEnd; utt.onerror = function() { onEnd(); }; }
-    (function(u) { setTimeout(function() { try { speechSynthesis.speak(u); } catch(e) { if (onEnd) onEnd(); } }, 60); })(utt);
+    utt.onend   = onEnd ? function(){ _fabShow(false); onEnd(); } : function(){ _fabShow(false); };
+    utt.onerror = onEnd ? function(){ _fabShow(false); onEnd(); } : function(){ _fabShow(false); };
+    (function(u) { setTimeout(function() { try { speechSynthesis.speak(u); } catch(e) { _fabShow(false); if (onEnd) onEnd(); } }, 60); })(utt);
   }
 
   /* ══════════════════════════════════════════
@@ -1341,26 +1317,28 @@ window.IPP_VOICE = window.IPP_VOICE || {
     const res = document.getElementById('fillResult');
     if (!res) return;
     res.className = 'activity-result ' + (ok === total ? 'ok' : 'err');
-    res.textContent = ok + '/' + total + ' correctas. ' + (ok === total ? '¡Bravissimo/a! ¡Las sabés todas!' : 'Revisá las marcadas en rojo.');
-    if (ok < total) {
-      ippRetry(res, function() {
-        ALFA_BLANKS.forEach(function(ltr) {
-          var inp  = document.getElementById('fi-' + ltr);
-          var icon = document.getElementById('fii-' + ltr);
-          if (inp)  { inp.value = ''; inp.classList.remove('ok','err'); }
-          if (icon) { icon.textContent = ''; }
-        });
-        res.className = 'activity-result';
-        res.textContent = '';
-      });
-    }
+    res.textContent = ok === total
+      ? '✓ ¡Bravissimo/a! ' + ok + '/' + total + ' correctas.'
+      : '✗ ' + ok + '/' + total + ' correctas — las incorrectas están en rojo.';
+    ippRetry(res, resetFill);
+  }
+
+  function resetFill() {
+    ALFA_BLANKS.forEach(function(ltr) {
+      var inp  = document.getElementById('fi-' + ltr);
+      var icon = document.getElementById('fii-' + ltr);
+      if (inp)  { inp.value = ''; inp.classList.remove('ok','err'); inp.disabled = false; }
+      if (icon) { icon.textContent = ''; }
+    });
+    var res = document.getElementById('fillResult');
+    if (res) { res.className = 'activity-result'; res.textContent = ''; }
   }
 
   function revealFill() {
     ALFA_BLANKS.forEach(ltr => {
       const inp  = document.getElementById('fi-' + ltr);
       const icon = document.getElementById('fii-' + ltr);
-      if (!inp) return; // elemento no existe todavía (DOMEval timing)
+      if (!inp) return;
       inp.value = inp.dataset.city;
       inp.classList.add('ok'); inp.classList.remove('err');
       if (icon) icon.textContent = '✓';
@@ -1369,6 +1347,7 @@ window.IPP_VOICE = window.IPP_VOICE || {
     if (!res) return;
     res.className = 'activity-result ok';
     res.textContent = 'Solución revelada. ¡Practicá en voz alta!';
+    ippRetry(res, resetFill);
   }
 
   /* ══════════════════════════════════════════
@@ -1622,6 +1601,31 @@ window.IPP_VOICE = window.IPP_VOICE || {
     });
   }
 
+  function _patternReset() {
+    ['pb0','pb1','pb2'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) { el.value = ''; el.classList.remove('ok','err','revealed'); el.disabled = false; }
+    });
+    var msg = document.getElementById('patternMsg');
+    if (msg) msg.style.display = 'none';
+    var old = document.getElementById('patternRetryBtn');
+    if (old) old.remove();
+  }
+
+  function _patternAddRetry() {
+    var old = document.getElementById('patternRetryBtn');
+    if (old) old.remove();
+    var msg = document.getElementById('patternMsg');
+    if (!msg) return;
+    var retryBtn = document.createElement('button');
+    retryBtn.id = 'patternRetryBtn';
+    retryBtn.className = 'ipp-retry-btn';
+    retryBtn.style.marginTop = '8px';
+    retryBtn.textContent = '↺ Reintentar';
+    retryBtn.onclick = function() { _patternReset(); };
+    msg.parentNode.insertBefore(retryBtn, msg.nextSibling);
+  }
+
   function checkPattern() {
     var correct = ['mi','ti','si'];
     var allOk = true;
@@ -1639,6 +1643,7 @@ window.IPP_VOICE = window.IPP_VOICE || {
     });
     var msg = document.getElementById('patternMsg');
     if (msg) msg.style.display = allOk ? 'block' : 'none';
+    _patternAddRetry();
   }
 
   function revealPattern() {
@@ -1654,6 +1659,7 @@ window.IPP_VOICE = window.IPP_VOICE || {
     });
     var msg = document.getElementById('patternMsg');
     if (msg) msg.style.display = 'block';
+    _patternAddRetry();
   }
 
   /* ══════════════════════════════════════════
@@ -1830,6 +1836,7 @@ window.IPP_VOICE = window.IPP_VOICE || {
   // Exponer funciones PRIMERO — así los onclick funcionan aunque un build falle
   window.ippAudio = ippAudio;
   window.ippAudioGendered = ippAudioGendered;
+  window.ippStop  = ippStop;
   window.speakLetter = speakLetter;
   window.checkVF = checkVF;
   window.checkFill = checkFill;
@@ -1837,8 +1844,9 @@ window.IPP_VOICE = window.IPP_VOICE || {
   window.checkForeign = checkForeign;
   window.checkMC = checkMC;
   window.checkGC = checkGC;
-  window.revealPattern = revealPattern;
-  window.checkPattern  = checkPattern;
+  window.revealPattern  = revealPattern;
+  window.checkPattern   = checkPattern;
+  window._patternReset  = _patternReset;
   window.checkNumMatch = checkNumMatch;
   window.checkEsprMC = checkEsprMC;
   window.ippRetry = ippRetry;
