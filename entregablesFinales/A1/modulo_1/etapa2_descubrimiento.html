@@ -249,7 +249,7 @@
     .fon-audio-btn:hover { background: var(--mc-bg); }
 
     /* SALUDOS */
-    .greet-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+    .greet-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.85rem; }
     .greet-card { background: var(--cream); border-radius: var(--r); padding: 1rem; }
     .greet-head {
       font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
@@ -257,6 +257,8 @@
     }
     .greet-head.info { color: var(--teal); }
     .greet-head.fml  { color: var(--green); }
+    .greet-head.neut { color: var(--amber-dk); }
+    @media (max-width: 640px) { .greet-cols { grid-template-columns: 1fr; } }
     .greet-row-item {
       display: flex; align-items: center; justify-content: space-between;
       padding: 0.45rem 0; border-bottom: 1px solid var(--cream-dk); gap: 0.5rem;
@@ -731,6 +733,10 @@
         En italiano no existen ciudades  con H inicial — la H es completamente muda .
         Es la única letra del alfabeto sin referencia de ciudad: eso mismo te dice todo lo que necesitás saber sobre ella. <em>Si escuchás una H en italiano, no suena.</em>
       </p>
+      <p style="font-size:0.78rem;color:#666;margin-top:0.6rem;line-height:1.6;background:var(--cream);border-radius:8px;padding:0.6rem 0.9rem;">
+        ⚠️ <strong>¡Atención! La <em>u</em> de la Q se pronuncia siempre.</strong>
+        En italiano, la Q siempre va seguida de <em>u</em> y esa <em>u</em> suena: <em>Quarto</em> se pronuncia [kuar-to], no [kar-to].
+      </p>
       <div class="tts-note">🔊 Usa la síntesis de voz de tu navegador. En Chrome con voz italiana instalada suena mejor.</div>
     </div>
 
@@ -738,7 +744,7 @@
       <div class="card-title">Actividad — completá las ciudades que faltan</div>
       <p style="font-size:0.87rem;color:#777;margin-bottom:1rem;">
         Del video recordás las ciudades. Escribí la que corresponde a cada letra en blanco.
-        Las ciudades son: Ancona · Bologna · Cagliari · Domodossola · Enna · Firenze · Isernia · Livorno · Milano · Napoli · Otranto · Palermo · Quarto · Roma · Sassari · Torino · Urbino · Venezia · Zagarolo
+        Las ciudades son: Ancona · Bologna · Como · Domodossola · Enna · Firenze · Genova · Isernia · Livorno · Milano · Napoli · Ostuni · Palermo · Quarto · Roma · Sassari · Torino · Urbino · Venezia · Zagarolo
       </p>
       <div class="fill-grid" id="alfaFillGrid"></div>
       <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
@@ -746,6 +752,9 @@
         <button class="reveal-btn" onclick="revealFill()">Ver solución</button>
       </div>
       <div class="activity-result" id="fillResult"></div>
+      <p style="font-size:0.78rem;color:#666;margin-top:0.75rem;line-height:1.6;background:var(--cream);border-radius:8px;padding:0.6rem 0.9rem;">
+        💡 <strong>¿Te diste cuenta del detalle?</strong> A veces se puede usar más de una ciudad para la misma letra — lo importante es que el interlocutor entienda qué letra es. La forma habitual de pedir que deletreen es <strong><em>fare lo spelling</em></strong>: "Puoi fare lo spelling?"
+      </p>
     </div>
   </section>
 
@@ -792,6 +801,9 @@
       <p style="font-size:0.87rem;color:#777;margin-bottom:1rem;">Indicá si cada situación pide un saludo formal (F) o informal (I):</p>
       <div id="greetContext"></div>
     </div>
+    <div class="info-box" style="margin-top:0.75rem;">
+      🤝 <strong>¡Atención!</strong> En Italia no se dan un beso al saludar a alguien por primera vez — se da la mano. Los besos en la mejilla son entre conocidos cercanos o familia.
+    </div>
   </section>
 
   <!-- ══════════ ⑥ CHIAMARSI ══════════ -->
@@ -802,45 +814,18 @@
 
     <div class="discover-quote">
       <button class="dq-play" onclick="ippAudio('Mi chiamo Sofia. Come ti chiami?')" title="Escuchar">▶</button>
-      <span>La frase clave de esta unidad: <span style="color:var(--red);">«Mi chiamo ___. Come ti chiami?»</span></span>
+      <span>La frase clave de esta unidad: <span style="color:var(--red);">«Mi chiamo Sofia.--- Tu come ti chiami?»</span></span>
     </div>
 
     <div class="card">
       <div class="card-title">Más ejemplos — ¿notás el patrón?</div>
       <p style="font-size:0.87rem;color:#777;margin-bottom:1rem;">
-        Observá estas oraciones. Hay una partícula que cambia según quién habla.
         Elegí <em>mi · ti · si</em> para cada oración:
       </p>
       <div class="conj-rows" id="conjRows"></div>
 
-      <p style="font-size:0.87rem;color:#666;margin-top:0.5rem;margin-bottom:0.75rem;">
-        ¿Ya lo ves? Completá la tabla de abajo según lo que descubriste:
-      </p>
-      <div class="pattern-box" id="patternBox">
-        <div class="pattern-row">
-          <span class="pr-pro">io</span>
-          <input class="pr-blank" id="pb0" placeholder="?" data-ans="mi" maxlength="4" onkeypress="if(event.key==='Enter') checkPattern()">
-          <span class="pr-ex">chiamo — <em>Io ___ chiamo Sofia.</em></span>
-        </div>
-        <div class="pattern-row">
-          <span class="pr-pro">tu</span>
-          <input class="pr-blank" id="pb1" placeholder="?" data-ans="ti" maxlength="4" onkeypress="if(event.key==='Enter') checkPattern()">
-          <span class="pr-ex">chiami — <em>Tu ___ chiami Marco.</em></span>
-        </div>
-        <div class="pattern-row">
-          <span class="pr-pro">lui/lei</span>
-          <input class="pr-blank" id="pb2" placeholder="?" data-ans="si" maxlength="4" onkeypress="if(event.key==='Enter') checkPattern()">
-          <span class="pr-ex">chiama — <em>Lei ___ chiama Anna.</em></span>
-        </div>
-      </div>
-      <div style="display:flex;gap:0.6rem;margin-top:0.75rem;flex-wrap:wrap;">
-        <button class="reveal-btn" style="margin:0;" onclick="checkPattern()">Verificar ✓</button>
-        <button class="reveal-btn" style="margin:0;background:var(--cream-dk);color:#555;" onclick="revealPattern()">Ver respuestas →</button>
-      </div>
-      <div id="patternMsg" style="display:none;margin-top:0.75rem;font-size:0.85rem;color:#2a7a4a;font-weight:600;">
-        ✓ ¡Lo descubriste! En Gramática vas a ver la conjugación completa con todos los pronombres.
-      </div>
-    </div>
+      
+      
 
     <div class="card">
   <div class="card-title">¿Cómo le preguntarías a alguien su nombre?</div>
@@ -855,7 +840,7 @@
     <button class="mc-opt" onclick="checkMC(this, true, '¡Perfecto! «Come ti chiami?» = ¿Cómo te llamás? La usás con amigos y conocidos.', 'chiamarsiMCfb')">
       Come ti chiami?
     </button>
-    <button class="mc-opt" onclick="checkMC(this, false, '«Come si chiama?» es la forma formal — se usa con adultos desconocidos o en contextos de respeto.', 'chiamarsiMCfb')">
+    <button class="mc-opt" onclick="checkMC(this, false, '«Come si chiama?» es para referirse a otra persona o para la forma formal — se usa con adultos desconocidos o en contextos de respeto.', 'chiamarsiMCfb')">
       Come si chiama?
     </button>
   </div>
@@ -914,7 +899,7 @@
         <div class="dial-line right" data-yt-idx="3">
           <div class="dial-speaker b">Marco</div>
           <div class="dial-wrap">
-            <div class="dial-bubble blurred"><span class="dial-sub">M come Milano, A come Ancona, R come Roma, C come Como, O come Otranto. Marco!</span></div>
+            <div class="dial-bubble blurred"><span class="dial-sub">M come Milano, A come Ancona, R come Roma, C come Como, O come Ostuni. Marco!</span></div>
             <div class="dial-line-ctrl">
               <button class="yt-lbtn play" onclick="ippYT_playLine(3)" title="Escuchar">▶</button>
               <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">▮▮</button>
@@ -936,7 +921,7 @@
         <div class="dial-line right" data-yt-idx="5">
           <div class="dial-speaker b">Marco</div>
           <div class="dial-wrap">
-            <div class="dial-bubble blurred"><span class="dial-sub">R come Roma, O come Otranto, doppia S, I come Imola. Rossi!</span></div>
+            <div class="dial-bubble blurred"><span class="dial-sub">R come Roma, O come Ostuni, doppia S, I come Imola. Rossi!</span></div>
             <div class="dial-line-ctrl">
               <button class="yt-lbtn play" onclick="ippYT_playLine(5)" title="Escuchar">▶</button>
               <button class="yt-lbtn stop" onclick="ippYT_stopLine()" title="Detener" style="display:none">▮▮</button>
@@ -973,14 +958,14 @@
           ¿Cómo deletrea Marco su nombre en el diálogo?
         </p>
         <div class="mc-opts">
-          <button class="mc-opt" onclick="checkMC(this,false,'No — revisá la línea donde Marco deletrea su nombre.')">
+          <button class="mc-opt" onclick="checkMC(this,false,'Esas ciudades no aparecen en el diálogo. Prestá atención a las ciudades exactas que usa Marco.')">
             M-A-R-C-O con Mantova, Arezzo, Roma, Catania, Ortona
           </button>
-          <button class="mc-opt" onclick="checkMC(this,true,'¡Perfetto! M como Milano, A como Ancona, R como Roma, C como Cagliari, O como Otranto.')">
-            M-A-R-C-O con Milano, Ancona, Roma, Cagliari, Otranto
+          <button class="mc-opt" onclick="checkMC(this,true,'¡Perfecto! M como Milano, A como Ancona, R como Roma, C como Como, O como Otranto. ¿Te diste cuenta del detalle? A veces se puede usar más de una ciudad para cada letra (Como, Cagliari, Cremona).')">
+            M-A-R-C-O con Milano, Ancona, Roma, Como, Ostuni
           </button>
-          <button class="mc-opt" onclick="checkMC(this,false,'No — usa exactamente las ciudades del alfabeto fonético del video.')">
-            M-A-R-C-O con Milano, Ancona, Ravenna, Cagliari, Otranto
+          <button class="mc-opt" onclick="checkMC(this,false,'Ravenna es una ciudad italiana, pero no aparece en el diálogo.')">
+            M-A-R-C-O con Milano, Ancona, Ravenna, Como, Ostuni
           </button>
         </div>
         <div class="mc-fb" id="dialFb"></div>
@@ -1006,7 +991,7 @@
       <div style="margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--cream-dk);font-size:0.83rem;color:#666;line-height:1.7;">
         ⚠️ <strong>Atención:</strong> <em>uno → un / una</em> según el género del sustantivo.<br>
         ⚠️ <em>Ventuno, ventotto</em> — se pierde la vocal cuando el número termina en vocal + <em>uno/otto</em>.<br>
-        ⚠️ Los números del 11 al 16 terminan en <em>-dici</em>; del 17 al 19 empiezan con <em>dicia-</em>.
+        ⚠️ <strong>¡Atención al 16!</strong> No comienza con <em>dicia-</em> 
       </div>
     </div>
 
@@ -1032,6 +1017,9 @@
 
     <div class="card">
       <div class="espr-list" id="esprList"></div>
+      <p style="font-size:0.78rem;color:#666;margin-top:0.75rem;line-height:1.6;background:var(--cream);border-radius:8px;padding:0.6rem 0.9rem;">
+        ⚠️ <strong>Atención:</strong> en italiano el acento cae sobre la primera <em>i</em> de <em>signífica</em> — se pronuncia sig-NÍ-fi-ca, no sig-ni-FI-ca.
+      </p>
     </div>
 
     <div class="card">
@@ -1224,12 +1212,12 @@ window.IPP_VOICE = window.IPP_VOICE || {
   ══════════════════════════════════════════ */
   const ALFA = [
     {l:'A', city:'Ancona'},    {l:'B', city:'Bologna'},
-    {l:'C', city:'Cagliari'},  {l:'D', city:'Domodossola'},
+    {l:'C', city:'Como'},      {l:'D', city:'Domodossola'},
     {l:'E', city:'Enna'},      {l:'F', city:'Firenze'},
     {l:'G', city:'Genova'},    {l:'H', city:'—'},
     {l:'I', city:'Isernia'},   {l:'L', city:'Livorno'},
     {l:'M', city:'Milano'},    {l:'N', city:'Napoli'},
-    {l:'O', city:'Otranto'},    {l:'P', city:'Palermo'},
+    {l:'O', city:'Ostuni'},     {l:'P', city:'Palermo'},
     {l:'Q', city:'Quarto'},    {l:'R', city:'Roma'},
     {l:'S', city:'Sassari'},   {l:'T', city:'Torino'},
     {l:'U', city:'Urbino'},    {l:'V', city:'Venezia'},
@@ -1468,22 +1456,24 @@ window.IPP_VOICE = window.IPP_VOICE || {
      SALUDOS
   ══════════════════════════════════════════ */
   const GREET_INF = [
-    {it:'Ciao!',         es:'¡Hola! / ¡Chau!'},
-    {it:'Salve!',        es:'¡Hola! (neutro)'},
-    {it:'Come stai?',    es:'¿Cómo estás?'},
-    {it:'Bene, grazie!', es:'¡Bien, gracias!'},
+    {it:'Ciao!',            es:'¡Hola! / ¡Chau! (se puede usar al llegar o al irse)'},
+    {it:'Come stai?',       es:'¿Cómo estás?'},
+    {it:'Bene, grazie!',    es:'¡Bien, gracias!'},
     {it:'Dai! Ci vediamo!', es:'¡Dale! ¡Nos vemos!'},
-    {it:'A presto!',     es:'¡Hasta pronto!'},
-    {it:'Arrivederci',   es:'Hasta luego'},
+    {it:'A presto!',        es:'¡Hasta pronto!'},
   ];
   const GREET_FML = [
-    {it:'Buongiorno',      es:'Buenos días / Buen día'},
-    {it:'Buon pomeriggio', es:'Buenas tardes'},
-    {it:'Buonasera',       es:'Buenas noches (desde las 18h)'},
-    {it:'Buonanotte',      es:'Buenas noches (al dormir)'},
     {it:'Come sta?',       es:'¿Cómo está usted?'},
     {it:'Piacere!',        es:'¡Mucho gusto!'},
     {it:'Arrivederla',     es:'Hasta luego (muy formal)'},
+  ];
+  const GREET_NEUT = [
+    {it:'Salve!',       es:'¡Hola! (seguro siempre)'},
+    {it:'Arrivederci',  es:'Hasta luego'},
+    {it:'Buongiorno',   es:'Buenos días / Buen día (se puede usar al llegar o al irse)'},
+    {it:'Buonasera',    es:'Buenas tardes (desde 16h) — se puede usar al llegar o al irse'},
+    {it:'Buonanotte',   es:'Buenas noches (antes de ir a dormir)'},
+    {it:'Piacere!',     es:'¡Mucho gusto!'},
   ];
 
   function buildGreetGrid() {
@@ -1512,6 +1502,7 @@ window.IPP_VOICE = window.IPP_VOICE || {
 
     grid.appendChild(makeCard('Informal — amigos y familia', GREET_INF, 'info'));
     grid.appendChild(makeCard('Formal — adultos y desconocidos', GREET_FML, 'fml'));
+    grid.appendChild(makeCard('Neutro — válido en cualquier contexto', GREET_NEUT, 'neut'));
   }
 
   const GREET_CONTEXT = [
@@ -1562,7 +1553,7 @@ window.IPP_VOICE = window.IPP_VOICE || {
      CHIAMARSI
   ══════════════════════════════════════════ */
   const CONJ_DATA = [
-    {pro:'io',      refl:'mi', verb:'chiamo',   example:'Io ___ chiamo Marco.'},
+    {pro:'io',      refl:'mi', verb:'chiamo',   example:'Io ___ chiamo Sofia.'},
     {pro:'tu',      refl:'ti', verb:'chiami',   example:'Tu ___ chiami Graziana.'},
     {pro:'lui/lei', refl:'si', verb:'chiama',   example:'Lei ___ chiama Sofia.'},
     {pro:'noi',     refl:'ci', verb:'chiamiamo',example:'Noi ___ chiamiamo italiani.'},
@@ -1708,41 +1699,54 @@ window.IPP_VOICE = window.IPP_VOICE || {
     });
   }
 
-  // Match activity — 6 numbers
+  // Match activity — 6 numbers (opciones fijas por número)
   const NUM_MATCH = [
-    [3,'tre'],[7,'sette'],[12,'dodici'],[15,'quindici'],[21,'ventuno'],[28,'ventotto']
+    { num:3,  word:'tre',      wrong:['tredici','tri','tree'],            fb:'3 = tre.' },
+    { num:7,  word:'sette',    wrong:['sete','siete','siette'],           fb:'7 = sette. Doble T: set-te.' },
+    { num:12, word:'dodici',   wrong:['doce','donce','dodicini'],         fb:'12 = dodici. do-di-ci (3 sílabas).' },
+    { num:15, word:'quindici', wrong:['cinqui','quinci','quindece'],      fb:'15 = quindici. quin-di-ci. ¡Atención! La "u" de la Q se pronuncia siempre.' },
+    { num:21, word:'ventuno',  wrong:['ventiuno','ventunno','ventuuno'],  fb:'21 = ventuno. Sin I: no «ventiuno».' },
+    { num:28, word:'ventotto', wrong:['ventiotto','ventoto','venttotto'], fb:'28 = ventotto. Sin I: no «ventiotto».' },
   ];
-  const NUM_OPTS_POOL = ['tre','sette','dodici','quindici','ventuno','ventotto','venti','undici','due','diciotto'];
 
   function buildNumMatch() {
     const container = document.getElementById('numMatch');
     container.innerHTML = '';
-    NUM_MATCH.forEach(([num, word], i) => {
-      const opts = [word, ...NUM_OPTS_POOL.filter(w => w !== word).sort(() => Math.random()-0.5).slice(0,3)]
-                    .sort(() => Math.random()-0.5);
-      const row = document.createElement('div');
-      row.className = 'match-row';
-      row.innerHTML = `
-        <span class="match-num">${num}</span>
-        <select class="match-sel" id="nm-${i}" data-correct="${word}">
-          <option value="">— elegí —</option>
-          ${opts.map(o => `<option value="${o}">${o}</option>`).join('')}
-        </select>
-        <span class="match-icon" id="nmi-${i}"></span>
+    NUM_MATCH.forEach((item, i) => {
+      const opts = [item.word, ...item.wrong].sort(() => Math.random() - 0.5);
+      const wrap = document.createElement('div');
+      wrap.style.marginBottom = '0.6rem';
+      wrap.innerHTML = `
+        <div class="match-row">
+          <span class="match-num">${item.num}</span>
+          <select class="match-sel" id="nm-${i}" data-correct="${item.word}">
+            <option value="">— elegí —</option>
+            ${opts.map(o => `<option value="${o}">${o}</option>`).join('')}
+          </select>
+          <span class="match-icon" id="nmi-${i}"></span>
+        </div>
+        <div class="opt-fb" id="nmfb-${i}" style="font-size:0.82rem;padding:0 0.5rem;"></div>
       `;
-      container.appendChild(row);
+      container.appendChild(wrap);
     });
   }
 
   function checkNumMatch() {
     let ok = 0;
-    NUM_MATCH.forEach(([,word], i) => {
-      const sel  = document.getElementById('nm-' + i);
-      const icon = document.getElementById('nmi-' + i);
-      const correct = sel.value === sel.dataset.correct;
-      sel.classList.toggle('ok', correct);
+    NUM_MATCH.forEach((item, i) => {
+      const sel   = document.getElementById('nm-'   + i);
+      const icon  = document.getElementById('nmi-'  + i);
+      const fbEl  = document.getElementById('nmfb-' + i);
+      const correct = sel.value === item.word;
+      sel.classList.toggle('ok',  correct);
       sel.classList.toggle('err', !correct);
       icon.textContent = correct ? '✓' : '✗';
+      if (fbEl) {
+        fbEl.className   = 'opt-fb ' + (correct ? 'ok' : 'err');
+        fbEl.textContent = correct
+          ? '✓ ' + item.fb
+          : '✗ Era «' + item.word + '». ' + item.fb;
+      }
       if (correct) ok++;
     });
     const res = document.getElementById('numMatchResult');
@@ -1751,10 +1755,12 @@ window.IPP_VOICE = window.IPP_VOICE || {
     if (ok < NUM_MATCH.length) {
       ippRetry(res, function() {
         NUM_MATCH.forEach(function(_, i) {
-          var sel  = document.getElementById('nm-' + i);
-          var icon = document.getElementById('nmi-' + i);
+          var sel  = document.getElementById('nm-'   + i);
+          var icon = document.getElementById('nmi-'  + i);
+          var fb   = document.getElementById('nmfb-' + i);
           if (sel)  { sel.value = ''; sel.classList.remove('ok','err'); }
           if (icon) { icon.textContent = ''; }
+          if (fb)   { fb.className = 'opt-fb'; fb.textContent = ''; }
         });
         res.className = 'activity-result';
         res.textContent = '';
@@ -1792,9 +1798,27 @@ window.IPP_VOICE = window.IPP_VOICE || {
   }
 
   const ESPR_ACTIVITY = [
-    {situation:'No entendiste lo que dijo Sofia. ¿Qué le decís?', correct:'Non capisco. / Puoi ripetere?', opts:['Non capisco. / Puoi ripetere?','Piacere!','Come ti chiami?']},
-    {situation:'Escuchaste la palabra "gelato" y no sabés qué significa. ¿Preguntás?', correct:'Che significa?', opts:['Come si scrive?','Che significa?','Scusa!']},
-    {situation:'Acabás de conocer a Marco. Te presentás y le extendés la mano.', correct:'Piacere!', opts:['Arrivederci!','Piacere!','Non capisco.']},
+    {
+      situation: 'No entendiste lo que dijo Sofia. ¿Qué le decís?',
+      correct:   'Non capisco. / Puoi ripetere?',
+      opts:      ['Non capisco. / Puoi ripetere?','Piacere!','Come ti chiami?'],
+      fb_ok:     'Non capisco = No entiendo. Puoi ripetere = ¿Podés repetir? Ambas son válidas.',
+      fb_err:    'Pensá en cómo decir que no entendiste o pedir que repitan.'
+    },
+    {
+      situation: 'Escuchaste la palabra "gelato" y no sabés qué significa. ¿Preguntás?',
+      correct:   'Che significa?',
+      opts:      ['Come si scrive?','Che significa?','Scusa!'],
+      fb_ok:     '«Che significa?» = ¿Qué significa? Es la pregunta perfecta para vocabulario desconocido. ¡Atención! en italiano el acento cae sobre la primera i: che sig-NÍ-fi-ca.',
+      fb_err:    '«Come si scrive?» es para preguntar cómo se escribe, no qué significa.'
+    },
+    {
+      situation: 'Acabás de conocer a Marco. Te presentás y le extendés la mano.',
+      correct:   'Piacere!',
+      opts:      ['Arrivederci!','Piacere!','Non capisco.'],
+      fb_ok:     '«Piacere!» = ¡Mucho gusto! Se dice al presentarse, igual que "Encantado/a" en español. ¡Atención! en Italia no se dan un beso para saludarse si no se conocen — un apretón de manos es suficiente.',
+      fb_err:    'Arrivederci es para despedirse, no para presentarse.'
+    },
   ];
 
   function buildEsprActivity() {
@@ -1819,10 +1843,13 @@ window.IPP_VOICE = window.IPP_VOICE || {
     const parent = btn.closest('.mc-opts');
     parent.querySelectorAll('.mc-opt').forEach(b => b.classList.add('disabled'));
     btn.classList.add(correct ? 'correct' : 'wrong');
-    const fb = document.getElementById('ea-fb-' + qi);
+    const fb   = document.getElementById('ea-fb-' + qi);
+    const item = ESPR_ACTIVITY[qi];
     if (fb) {
-      fb.className = 'mc-fb ' + (correct ? 'ok' : 'err');
-      fb.textContent = correct ? '✓ ¡Perfetto!' : '✗ Revisá la lista de arriba y volvé a intentarlo.';
+      fb.className  = 'mc-fb ' + (correct ? 'ok' : 'err');
+      fb.textContent = correct
+        ? '✓ ' + (item && item.fb_ok  ? item.fb_ok  : '¡Perfetto!')
+        : '✗ ' + (item && item.fb_err ? item.fb_err : 'Revisá la lista de arriba y volvé a intentarlo.');
       ippRetry(fb, function() {
         parent.querySelectorAll('.mc-opt').forEach(b => b.classList.remove('disabled','correct','wrong'));
         fb.className = 'mc-fb'; fb.textContent = '';

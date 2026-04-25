@@ -171,10 +171,10 @@
     .greet-card h4.formal { color: var(--teal); }
     .greet-card h4.informal { color: var(--green); }
     .greet-card h4.neutral { color: var(--amber-dk); }
-    .greet-row { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--cream-dk); font-size: 0.88rem; }
+    .greet-row { display: flex; flex-direction: column; gap: 0.05rem; padding: 0.38rem 0; border-bottom: 1px solid var(--cream-dk); }
     .greet-row:last-child { border-bottom: none; }
-    .greet-row .it-phrase { font-weight: 700; color: var(--black); }
-    .greet-row .es-phrase { color: #777; font-style: italic; font-size: 0.83rem; }
+    .greet-row .it-phrase { font-weight: 700; color: var(--black); font-size: 0.88rem; }
+    .greet-row .es-phrase { color: #777; font-style: italic; font-size: 0.78rem; line-height: 1.35; }
 
     /* NUMBERS */
     .num-grid {
@@ -378,7 +378,7 @@
       </div>
       <div class="sofia-bubble">
         En la etapa anterior <strong>descubriste las reglas por tu cuenta</strong>. Ahora las confirmamos y completamos.
-        Esta etapa es para leer, escuchar y fijar. Al final hay ejercicios — <em>mínimo uno de cada tema</em>.
+        Esta etapa es para leer, escuchar y fijar. Al final hay ejercicios.
       </div>
     </div>
   </section>
@@ -422,10 +422,13 @@
     <!-- ═══ Esercizi ① ═══ -->
     <div class="ex-section" style="margin-top:2rem;">
       <h3 class="ex-title">A · El alfabeto — completá con la ciudad correcta</h3>
-      <p class="ex-desc">Escribí la ciudad que corresponde a cada letra del alfabeto fonético italiano.</p>
+      <p class="ex-desc">Escribí la ciudad que corresponde a cada letra según la tabla de arriba.</p>
       <div class="ex-card">
         <div class="fill-rows" id="exAlfa"></div>
-        <button class="check-btn" onclick="checkExAlfa()">Verificar</button>
+        <div style="display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.5rem;">
+          <button class="check-btn" onclick="checkExAlfa()">Verificar A</button>
+          <button class="reveal-btn" onclick="revealExAlfa()">Ver solución</button>
+        </div>
         <div class="ex-result" id="exAlfaRes"></div>
       </div>
     </div>
@@ -440,7 +443,8 @@
   <!-- ② CHIAMARSI -->
   <section class="sec" id="chiamarsi">
     <h2 class="sec-title">② Il verbo <em>chiamarsi</em></h2>
-    <p class="sec-sub">El verbo reflexivo para decir cómo te llamás — el primero que aprendés en italiano</p>
+    <p class="sec-sub"> El verbo reflexivo para decir cómo te llamás — el primero que aprendés en italiano Por que es reflexivo? Porque se refleja en uno mismo. Atención, los verbos reflexivos siempre van acompañados de su pronombre (mi ti si ci vi si)
+ </p>
 
     <div class="rule-box">
       <h3>Conjugación completa</h3>
@@ -454,6 +458,7 @@
           <tr><td class="pro">io</td>      <td><span class="refl">mi</span> <span class="stem">chiam</span><span class="end">o</span></td>    <td class="it">Io mi chiamo Sofia.</td></tr>
           <tr><td class="pro">tu</td>      <td><span class="refl">ti</span> <span class="stem">chiam</span><span class="end">i</span></td>    <td class="it">Tu ti chiami Marco.</td></tr>
           <tr><td class="pro">lui/lei</td> <td><span class="refl">si</span> <span class="stem">chiam</span><span class="end">a</span></td>    <td class="it">Lei si chiama Anna.</td></tr>
+          <tr style="background:rgba(82,142,116,0.07)"><td class="pro">Lei <em style="font-size:0.75rem;font-weight:400;">(formal)</em></td> <td><span class="refl">si</span> <span class="stem">chiam</span><span class="end">a</span></td>    <td class="it">Signora, come si chiama?</td></tr>
           <tr><td class="pro">noi</td>     <td><span class="refl">ci</span> <span class="stem">chiam</span><span class="end">iamo</span></td> <td class="it">Noi ci chiamiamo ragazzi.</td></tr>
           <tr><td class="pro">voi</td>     <td><span class="refl">vi</span> <span class="stem">chiam</span><span class="end">ate</span></td>  <td class="it">Come vi chiamate?</td></tr>
           <tr><td class="pro">loro</td>    <td><span class="refl">si</span> <span class="stem">chiam</span><span class="end">ano</span></td>  <td class="it">Si chiamano Paolo e Luca.</td></tr>
@@ -463,6 +468,7 @@
         🔴 La partícula reflexiva (<em>mi, ti, si, ci, vi, si</em>) es la parte que cambia.<br>
         🔵 La raíz <em>chiam-</em> es siempre la misma. Las desinencias (-o, -i, -a…) son las de los verbos en -ARE.
       </p>
+      
     </div>
 
     <div class="rule-box">
@@ -477,6 +483,10 @@
         </tbody>
       </table>
     </div>
+
+    <p class="conj-note">
+      Notaste que para usar la forma formal, el verbo va conjugado en tercera persona? Como en castellano!
+          </p>
 
     <!-- ═══ Esercizi ② ═══ -->
     <div class="ex-section" style="margin-top:2rem;">
@@ -503,22 +513,23 @@
         </div>
         <div class="greet-card">
           <h4 class="formal">Formale — adultos y desconocidos</h4>
-          <div class="greet-row"><span class="it-phrase">Buongiorno</span><span class="es-phrase">Buenos días</span></div>
-          <div class="greet-row"><span class="it-phrase">Buon pomeriggio</span><span class="es-phrase">Buenas tardes</span></div>
-          <div class="greet-row"><span class="it-phrase">Buonasera</span><span class="es-phrase">Buenas noches (desde las 18h)</span></div>
           <div class="greet-row"><span class="it-phrase">Come sta?</span><span class="es-phrase">¿Cómo está usted?</span></div>
+          
           <div class="greet-row"><span class="it-phrase">Arrivederla</span><span class="es-phrase">Hasta luego (muy formal)</span></div>
         </div>
         <div class="greet-card">
           <h4 class="neutral">Neutro — válido en cualquier contexto</h4>
           <div class="greet-row"><span class="it-phrase">Salve!</span><span class="es-phrase">¡Hola! (seguro siempre)</span></div>
           <div class="greet-row"><span class="it-phrase">Arrivederci</span><span class="es-phrase">Hasta luego</span></div>
-          <div class="greet-row"><span class="it-phrase">Buonanotte</span><span class="es-phrase">Buenas noches (al dormir)</span></div>
+          <div class="greet-row"><span class="it-phrase">Buonanotte</span><span class="es-phrase">Buenas noches (antes de ir a dormir)</span></div>
           <div class="greet-row"><span class="it-phrase">Piacere!</span><span class="es-phrase">¡Mucho gusto!</span></div>
+          <div class="greet-row"><span class="it-phrase">Buongiorno</span><span class="es-phrase">Buenos días <em style="font-size:0.75em;color:#888;">(se puede usar al llegar o al irse)</em></span></div>
+          <div class="greet-row"><span class="it-phrase">Buon pomeriggio</span><span class="es-phrase">Buenas tardes</span></div>
+          <div class="greet-row"><span class="it-phrase">Buonasera</span><span class="es-phrase">Buenas tardes-noche (desde las 16h) <em style="font-size:0.75em;color:#888;">(se puede usar al llegar o al irse)</em></span></div>
         </div>
       </div>
       <p style="font-size:0.83rem;color:#666;margin-top:0.5rem;font-style:italic;">
-        💡 ¿Dudás entre formal e informal? Usá <strong>Salve</strong> — es la opción segura en cualquier situación.
+        💡 ¿Dudás entre saludar de modo formal e informal? Usá <strong>Salve</strong> — es la opción segura en cualquier situación.
       </p>
     </div>
 
@@ -547,7 +558,6 @@
       <div style="margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--cream-dk);">
         <p style="font-size:0.84rem;color:#666;line-height:1.65;">
           ⚠️ <strong>Atención:</strong> <em>uno → un / una</em> según el género.<br>
-          ⚠️ <em>Tre</em> sola lleva acento: <strong>tré</strong> (para distinguirla de la preposición <em>tre</em>).<br>
           ⚠️ <em>Ventuno, ventotto</em> — se pierde la vocal cuando el número termina en vocal + <em>uno/otto</em>.
         </p>
       </div>
@@ -585,6 +595,16 @@
         <div class="ex-result" id="exOrdenRes"></div>
       </div>
     </div>
+
+    <div class="ex-section" style="margin-top:1.5rem;">
+      <h3 class="ex-title">G · Expresiones — ¿Qué dirías en estas situaciones?</h3>
+      <p class="ex-desc">Escribí la expresión italiana correcta para cada contexto.</p>
+      <div class="ex-card" id="exGExpr"></div>
+      <div style="display:flex;gap:0.6rem;margin-top:0.75rem;flex-wrap:wrap;">
+        <button class="check-btn" onclick="checkAllGExpr()">Verificar G</button>
+      </div>
+      <div class="ex-result" id="exGExprRes"></div>
+    </div>
   </section>
 
   <!-- CULTURA -->
@@ -593,7 +613,7 @@
     <p>
       En Italia, cuando das tu nombre por teléfono o en una ventanilla, siempre deletreás usando las ciudades del
       alfabeto fonético. Esta costumbre viene de los años en que las comunicaciones eran poco claras y había que
-      evitar confusiones entre letras que suenan parecido (M/N, B/P, D/T).
+      evitar confusiones entre letras que suenan parecido (M/N, B/P, D/T).  Una forma habitual de pedir que deletreen es FARE LO SPELLING, una expresión del inglés instalada en la cultura italiana
       <strong>Tip práctico:</strong> aprendé de memoria al menos 10 ciudades — te van a salir naturalmente muy pronto.
     </p>
   </div>
@@ -640,7 +660,7 @@ window.IPP_VOICE = window.IPP_VOICE || {
   const ALFA = [
     ['A','Ancona'],['B','Bologna'],['C','Como'],['D','Domodossola'],['E','Empoli'],
     ['F','Firenze'],['G','Genova'],['H','Hotel'],['I','Imola'],['L','Livorno'],
-    ['M','Milano'],['N','Napoli'],['O','Otranto'],['P','Palermo'],['Q','Quarto'],
+    ['M','Milano'],['N','Napoli'],['O','Ostuni'],['P','Palermo'],['Q','Quarto'],
     ['R','Roma'],['S','Savona'],['T','Torino'],['U','Udine'],['V','Venezia'],['Z','Zara'],
   ];
   const FOREIGN = new Set(['J','K','W','X','Y']);
@@ -689,7 +709,7 @@ window.IPP_VOICE = window.IPP_VOICE || {
     ['Di dove sei?',        '¿De dónde sos?'],
     ['Sono di…',            'Soy de…'],
     ['Quanti anni hai?',    '¿Cuántos años tenés?'],
-    ['Ho… anni.',           'Tengo… años.'],
+    ['Ho 25 anni.',           'Tengo 25 años.'],
     ['Scusa / Scusi',       'Perdón (inf./form.)'],
   ];
   function buildEspr() {
@@ -764,16 +784,16 @@ window.IPP_VOICE = window.IPP_VOICE || {
      menos frecuentes (Q, Z, U).
   ══════════════════════════════════════════ */
   const exAlfaData = [
-    ['C','Cagliari'],   // C come Cagliari — no Como (que conocen del diálogo)
-    ['D','Domodossola'],// palabra larga, difícil de recordar
-    ['E','Enna'],       // ciudad siciliana poco conocida
-    ['F','Firenze'],    // ≠ "Florence" del inglés
+    ['C','Como'],
+    ['D','Domodossola'],
+    ['E','Empoli'],
+    ['F','Firenze'],
     ['G','Genova'],
     ['L','Livorno'],
-    ['Q','Quarto'],     // Q poco frecuente
-    ['S','Sassari'],    // doble S
+    ['Q','Quarto'],
+    ['S','Savona'],
     ['U','Udine'],
-    ['Z','Zagarolo'],   // Z come Zagarolo — confusión con Zara (la más famosa)
+    ['Z','Zara'],
   ];
   function buildExAlfa() {
     const rows = document.getElementById('exAlfa');
@@ -820,11 +840,12 @@ window.IPP_VOICE = window.IPP_VOICE || {
     });
     const res = document.getElementById('exAlfaRes');
     if (!res) return;
-    res.className = 'ex-result ' + (ok === total ? 'ok' : 'err');
-    res.textContent = ok + '/' + total + ' correctas. ' +
-      (ok === total ? '¡Bravissimo/a! Sabés el alfabeto fonético de memoria.' :
-       'Las incorrectas muestran la respuesta en rojo.');
-    if (ok < total) {
+    if (ok === total) {
+      res.className = 'ex-result ok';
+      res.textContent = '¡Bravissimo/a! ' + total + '/' + total + ' correctas. ¡Conocés todas las ciudades del alfabeto fonético!';
+    } else {
+      res.className = 'ex-result err';
+      res.textContent = ok + '/' + total + ' correctas. Las incorrectas muestran la respuesta correcta en rojo.';
       ippRetry(res, function() {
         res.className = 'ex-result';
         res.textContent = '';
@@ -833,10 +854,35 @@ window.IPP_VOICE = window.IPP_VOICE || {
     }
   }
 
+  function revealExAlfa() {
+    const sorted = [...exAlfaData].sort((a,b) => a[0].localeCompare(b[0]));
+    const res = document.getElementById('exAlfaRes');
+    if (!res) return;
+    const lines = sorted.map(([l,c]) => l + ' come ' + c);
+    // Mostrar en columnas de 3
+    let html = '<div style="margin-top:0.4rem;"><strong>✅ Solución — Ejercicio A</strong><br>';
+    lines.forEach((line, i) => {
+      html += '<span style="display:inline-block;min-width:180px;margin:0.2rem 0.5rem 0 0;">'
+             + (i+1) + '. ' + line + '</span>';
+      if ((i+1) % 3 === 0) html += '<br>';
+    });
+    html += '</div>';
+    res.className = 'ex-result ok';
+    res.innerHTML = html;
+    // Completar los inputs con la respuesta correcta
+    const rows = document.getElementById('exAlfa').querySelectorAll('.fill-row');
+    rows.forEach((row, i) => {
+      const inp  = document.getElementById('exAlfa-' + i);
+      const icon = document.getElementById('alfa-icon-' + i);
+      if (inp) { inp.value = row.dataset.city; inp.classList.add('ok'); inp.classList.remove('err'); }
+      if (icon) icon.innerHTML = '<span style="color:#52a670;font-weight:700;">✓</span>';
+    });
+  }
+
   /* ═══ EJ B: V/F ═══ */
   const vfData = [
-    ['El alfabeto italiano tiene 21 letras propias.', true,
-      'Correcto. Las 5 extranjeras (J, K, W, X, Y) se usan solo en palabras importadas.'],
+    ['En el alfabeto fonético se usan siempre las mismas ciudades.', false,
+      'Falso. Las ciudades pueden cambiar — lo importante es saber que si un italiano te deletrea, puede hacerlo  directamente nombrando las ciudades.'],
     ['La H en italiano suena fuerte y aspirada, como en inglés.', false,
       'Falso — la H italiana es completamente muda. Aparece en ho/hai/ha y en CH y GH, pero nunca suena sola.'],
     ['La combinación CH en italiano suena como la CH de "chico" en español.', false,
@@ -848,7 +894,7 @@ window.IPP_VOICE = window.IPP_VOICE || {
     ['En italiano "gnocchi" lleva el sonido Ñ de "año".', true,
       'Correcto — GN se pronuncia exactamente como la Ñ española. "Lasagna", "gnocchi", "bagno".'],
     ['Las consonantes dobles en italiano se pronuncian igual que las simples.', false,
-      'Falso — las dobles se mantienen más tiempo y cambian el significado. "Nono" (noveno) ≠ "nonno" (abuelo).'],
+      'Falso — las dobles se mantienen más tiempo y a veces cambian el significado. "Nono" (noveno) ≠ "nonno" (abuelo).'],
     ['La combinación QU en italiano siempre suena como KU (con U pronunciada).', true,
       'Correcto — "quando", "questo", "qui" se pronuncian con la U audible: KWAN-do, KWES-to. Igual que en latín.'],
     ['La letra Z existe en el alfabeto italiano original.', true,
@@ -899,14 +945,17 @@ window.IPP_VOICE = window.IPP_VOICE || {
   const chiData = [
     { sentence: '_____ chiamo Lucia. Sono di Milano.',        blank:'mi', pronoun:'io',      note:'io → <strong>mi</strong> chiamo. 1ª pers. sing.' },
     { sentence: 'Come _____ chiami? Non ho capito bene!',     blank:'ti', pronoun:'tu',      note:'tu → <strong>ti</strong> chiami. 2ª pers. sing.' },
-    { sentence: 'Il professore _____ chiama dottor Rossi.',   blank:'si', pronoun:'lui/lei', note:'lui/lei → <strong>si</strong> chiama. 3ª pers. sing.' },
-    { sentence: 'Come _____ chiamate voi, ragazzi?',          blank:'vi', pronoun:'voi',     note:'voi → <strong>vi</strong> chiamate. 2ª pers. pl.' },
+    { sentence: 'Il professore _____ chiama Rossi.',          blank:'si', pronoun:'lui/lei', note:'lui/lei → <strong>si</strong> chiama. 3ª pers. sing.' },
+    { sentence: 'Signora, Lei come _____ chiama?',            blank:'si', pronoun:'Lei',     note:'Lei → Forma formal correspondiente a Ud. 3ª pers. sing.' },
+    { sentence: 'Come _____ chiamate, ragazzi?',              blank:'vi', pronoun:'voi',     note:'voi → <strong>vi</strong> chiamate. 2ª pers. pl.' },
     { sentence: 'Noi _____ chiamiamo "Il Circolo Italiano".', blank:'ci', pronoun:'noi',     note:'noi → <strong>ci</strong> chiamiamo. 1ª pers. pl.' },
     { sentence: 'Loro _____ chiamano Marco e Giulia.',        blank:'si', pronoun:'loro',    note:'loro → <strong>si</strong> chiamano. 3ª pers. pl.' },
   ];
 
   function buildExChiamarsi() {
     const card = document.getElementById('exChiamarsi');
+    if (!card) return;
+    card.innerHTML = '';
     chiData.forEach((item, i) => {
       const div = document.createElement('div');
       div.id = 'exchi-' + i;
@@ -959,33 +1008,33 @@ window.IPP_VOICE = window.IPP_VOICE || {
   const situData = [
     {
       ctx: 'Son las 9:30 de la mañana. Entrás a una farmacia y la farmacéutica te mira.',
-      accepted: ['buongiorno','buon giorno'],
-      note: '<strong>Buongiorno!</strong> — saludo de mañana, contexto formal con desconocida.'
+      accepted: ['buongiorno','buon giorno','salve'],
+      note: 'Buongiorno y Salve son dos saludos adecuados para esta situación — saludo de mañana, contexto formal con desconocida. (Se puede usar al llegar o al irse)'
     },
     {
       ctx: 'Tu amigo Marco te manda un mensaje por WhatsApp a las 15hs.',
       accepted: ['ciao'],
-      note: '<strong>Ciao!</strong> — entre amigos, cualquier hora, siempre informal.'
+      note: 'Ciao! — entre amigos, cualquier hora, siempre informal.'
     },
     {
       ctx: 'Llegás a las 20hs a una cena de trabajo. Tu jefa te recibe en la puerta.',
       accepted: ['buonasera','buona sera'],
-      note: '<strong>Buonasera!</strong> — saludo de tarde-noche, contexto formal.'
+      note: 'Buonasera! — saludo de tarde-noche, contexto formal. (Se puede usar al llegar o al irse)'
     },
     {
       ctx: 'Es la 1 de la madrugada. Le decís buenas noches a tu compañera de piso.',
       accepted: ['buonanotte','buona notte'],
-      note: '<strong>Buonanotte!</strong> — al irse a dormir, formal o informal.'
+      note: 'Buonanotte! — SOLO al irse a dormir, formal o informal.'
     },
     {
       ctx: 'Tu profesora de italiano termina la clase. Te despedís con respeto.',
-      accepted: ['arrivederla','arrivederci'],
-      note: '<strong>Arrivederla!</strong> es la forma más respetuosa. <strong>Arrivederci</strong> también es válido en ese contexto.'
+      accepted: ['arrivederla','arrivederci','salve'],
+      note: 'Arrivederla! es la forma más respetuosa. Arrivederci también es válido en ese contexto.'
     },
     {
       ctx: 'Ves a tu amiga Sofia y querés saber cómo está. Le preguntás:',
       accepted: ['come stai','come stai?'],
-      note: '<strong>Come stai?</strong> — "¿Cómo estás?" informal. La formal sería "Come sta?"'
+      note: 'Come stai? — ¿Cómo estás? informal. La formal sería "Come sta?"'
     },
   ];
 
@@ -1064,16 +1113,16 @@ window.IPP_VOICE = window.IPP_VOICE || {
   }
 
   const salutiData = [
-    ['Buongiorno!',    'F', 'Formal — mañana, con desconocidos o en contextos profesionales.'],
-    ['Ciao!',          'I', 'Informal — solo entre amigos, familia y conocidos.'],
-    ['Buonasera!',     'F', 'Formal — desde las 18hs, en contextos adultos o profesionales.'],
-    ['Come stai?',     'I', 'Informal — usa "stai" (tú). Con desconocidos sería "Come sta?".'],
-    ['Come sta?',      'F', 'Formal — usa "sta" (Lei, usted). Se usa con adultos desconocidos.'],
-    ['Arrivederla!',   'F', 'Muy formal — "-La" es el pronombre de cortesía en tercera persona.'],
-    ['A presto!',      'I', 'Informal — "¡Hasta pronto!" Se usa con conocidos.'],
-    ['Salve!',         'N', 'Neutro — la opción segura: funciona tanto formal como informalmente.'],
-    ['Arrivederci',    'N', 'Neutro — "Hasta luego" estándar, válido en casi cualquier contexto.'],
-    ['Buonanotte!',    'N', 'Neutro — al irse a dormir: se usa con cualquier persona.'],
+    ['Buongiorno!',  'N', 'Saludo de mañana, siempre con adultos o desconocidos.'],
+    ['Ciao!',        'I', 'Entre amigos y familia, a cualquier hora.'],
+    ['Buonasera!',   'N', 'Saludo de tarde-noche desde las 18h, con desconocidos.'],
+    ['Come stai?',   'I', '¿Cómo estás? — solo entre personas de confianza.'],
+    ['Come sta?',    'F', '¿Cómo está usted? — forma de respeto.'],
+    ['Arrivederla!', 'F', 'La forma más respetuosa de despedirse. La L mayúscula se usa para diferenciar el Lei (ud).'],
+    ['A presto!',    'I', '¡Hasta pronto! — entre amigos.'],
+    ['Salve!',       'N', 'Funciona en cualquier contexto — la opción segura.'],
+    ['Arrivederci',  'N', 'Despedida universal — formal e informal.'],
+    ['Buonanotte!',  'N', 'Al irse a dormir — válido con cualquier persona.'],
   ];
   function buildExSaluti() {
     const card = document.getElementById('exSaluti');
@@ -1126,16 +1175,16 @@ window.IPP_VOICE = window.IPP_VOICE || {
   /* ═══ EJ E: NUMERI — escritura libre + aritmética ═══ */
   // [etiqueta, correcto, [incorrectos similares], feedback]
   const numExData = [
-    ['11',     'undici',      ['undeci','undize','oundici'],          '11 = undici — UN-di-ci (3 sílabas). "Undeci" no existe.'],
-    ['16',     'sedici',      ['seidici','sedece','sedizi'],          '16 = sedici. sei → sedi al combinarse. No "seidici".'],
-    ['17',     'diciassette', ['diciasette','dicissette','dicciasette'],'17 = diciassette. Doble S obligatoria: di-cias-SET-te.'],
+    ['11',     'undici',      ['undecio','undize','oundici'],         '11 = undici — UN-di-ci (3 sílabas). "Undeci" no existe.'],
+    ['16',     'sedici',      ['seidici','diciasei','dicisei'],        '16 = sedici. sei → sedi al combinarse. No "seidici".'],
+    ['17',     'diciassette', ['diciasette','dichasette','dicciasette'],'17 = diciassette. Doble S obligatoria: di-cias-SET-te.'],
     ['21',     'ventuno',     ['ventiuno','veintiuno','ventuono'],    '21 = ventuno. La I se pierde: no "ventiuno".'],
-    ['23',     'ventitré',    ['ventitre','ventitres','ventitré'],    '23 = ventitré. El acento en É es obligatorio — sin él es incorrecto.'],
+    ['23',     'ventitré',    ['ventitre','ventitres','ventirés'],    '23 = ventitré. El acento en É es obligatorio — sin él es incorrecto.'],
     ['28',     'ventotto',    ['ventiotto','ventoto','ventocto'],     '28 = ventotto. La I se pierde: no "ventiotto".'],
-    ['14',     'quattordici', ['quatordici','quattordeci','cuattordici'],'14 = quattordici. Doble T: quaTTordici.'],
-    ['8 + 5',  'tredici',     ['terdici','tridici','tredeci'],       '8+5=13 = tredici. tre + dici, no "terdici" (las sílabas van en ese orden).'],
+    ['14',     'quattordici', ['quatordici','quattordeci','quattrodici'],'14 = quattordici. Doble T: quaTTordici.'],
+    ['8 + 5',  'tredici',     ['terdici','fridici','tredeci'],        '8+5=13 = tredici. tre + dici, no "terdici".'],
     ['20 − 3', 'diciassette', ['diciasette','diciasete','dici-assette'],'20−3=17 = diciassette. Doble S — error clásico omitirla.'],
-    ['4 × 4',  'sedici',      ['seidici','diecisei','sedize'],       '4×4=16 = sedici. No "seidici" ni "diecisei" (eso es español).'],
+    ['4 × 4',  'sedici',      ['seidici','diecisei','sedize'],       '4×4=16 = sedici. No "seidici" ni "diecisei".'],
   ];
 
   function buildExNumeri() {
@@ -1231,10 +1280,17 @@ window.IPP_VOICE = window.IPP_VOICE || {
       if (correct) ok++;
     });
     const res = document.getElementById('exOrdenRes');
-    res.textContent = ok === shuffledOrden.length
-      ? '¡Perfetto! Orden correcto: Ciao → Mi chiamo → Piacere → Come si scrive → Deletreo.'
-      : `${ok}/${shuffledOrden.length} correctas.`;
-    res.className = 'ex-result ' + (ok === shuffledOrden.length ? 'ok' : 'err');
+    if (ok === shuffledOrden.length) {
+      var sorted = ordenData.slice().sort(function(a,b){ return a.correct - b.correct; });
+      var lista = sorted.map(function(item){ return item.correct + ' → ' + item.text; }).join('<br>');
+      res.innerHTML =
+        '✅ <strong>SOLUCIÓN — Ejercicio F</strong><br>' + lista +
+        '<br><br>¡Perfetto! Orden correcto: Ciao → Mi chiamo → Piacere → Come si scrive → Deletreo.';
+      res.className = 'ex-result ok';
+    } else {
+      res.textContent = ok + '/' + shuffledOrden.length + ' correctas.';
+      res.className = 'ex-result err';
+    }
     if (ok < shuffledOrden.length) {
       ippRetry(res, function() {
         res.className = 'ex-result';
@@ -1275,11 +1331,101 @@ window.IPP_VOICE = window.IPP_VOICE || {
     }
   }
 
+  /* ═══ EJ G: EXPRESIONES ═══ */
+  const gExprData = [
+    {
+      ctx: 'No sabés qué quiere decir una palabra.',
+      accepted: ['che significa','che significa?'],
+      note: 'Che significa? = ¿Qué significa? Usala siempre que no entiendas una palabra.'
+    },
+    {
+      ctx: 'No sabés cómo se escribe el nombre de tu amigo.',
+      accepted: ['come si scrive','come si scrive?'],
+      note: 'Come si scrive? = ¿Cómo se escribe? Para pedir que deletreen.'
+    },
+    {
+      ctx: 'Conocés a una persona nueva y querés saber su nombre.',
+      accepted: ['come ti chiami','come ti chiami?'],
+      note: 'Come ti chiami? = ¿Cómo te llamás? Forma informal.'
+    },
+    {
+      ctx: 'Querés saber cómo se dice algo en italiano.',
+      accepted: ['come si dice in italiano','come si dice in italiano?','come si dice','come si dice?'],
+      note: 'Come si dice in italiano? = ¿Cómo se dice en italiano?'
+    },
+    {
+      ctx: '¿Cómo le preguntás a alguien de dónde es?',
+      accepted: ['di dove sei','di dove sei?'],
+      note: 'Di dove sei? = ¿De dónde sos? Forma informal.'
+    },
+  ];
+
+  function buildExGExpr() {
+    var card = document.getElementById('exGExpr');
+    if (!card) return;
+    card.innerHTML = '';
+    gExprData.forEach(function(item, i) {
+      var div = document.createElement('div');
+      div.id = 'gexpr-' + i;
+      div.style.cssText = 'margin-bottom:1rem;background:var(--cream);border-radius:var(--r);padding:0.8rem 1rem;';
+      div.innerHTML =
+        '<p style="font-size:0.85rem;color:#555;margin-bottom:0.4rem;font-style:italic;">' + item.ctx + '</p>' +
+        '<input class="chi-inp" id="gexpr-inp-' + i + '" placeholder="Escribí la expresión en italiano…" maxlength="40"' +
+        ' style="width:100%;max-width:320px;text-align:left;padding-left:0.5rem;"' +
+        ' onkeypress="if(event.key===\'Enter\')checkGExpr(' + i + ')">' +
+        '<div class="opt-fb" id="gexpr-fb-' + i + '" style="font-size:0.82rem;margin-top:0.3rem;"></div>';
+      card.appendChild(div);
+    });
+  }
+
+  function checkGExpr(i) {
+    var inp = document.getElementById('gexpr-inp-' + i);
+    var fb  = document.getElementById('gexpr-fb-' + i);
+    var container = document.getElementById('gexpr-' + i);
+    if (!inp || container.dataset.done) return;
+    var val = (inp.value || '').trim().toLowerCase().replace(/[!?.,]/g, '');
+    var accepted = gExprData[i].accepted.map(function(a){ return a.replace(/[!?.,]/g,''); });
+    var ok = accepted.indexOf(val) !== -1;
+    if (ok) {
+      container.dataset.done = '1';
+      inp.style.borderColor = '#52a670'; inp.style.background = '#e8f5ec'; inp.style.color = '#1f5c35';
+      inp.disabled = true;
+      fb.innerHTML = '✓ ' + gExprData[i].note;
+      fb.className = 'opt-fb ok';
+    } else {
+      inp.style.borderColor = '#cc4736'; inp.style.background = '#fdecea';
+      fb.innerHTML = '✗ Era: <em>' + gExprData[i].accepted[0] + '</em>';
+      fb.className = 'opt-fb err';
+      ippRetry(fb, function() {
+        delete container.dataset.done;
+        inp.value = ''; inp.style.borderColor = ''; inp.style.background = ''; inp.style.color = '';
+        inp.disabled = false;
+        fb.textContent = ''; fb.className = 'opt-fb';
+      });
+    }
+  }
+
+  function checkAllGExpr() {
+    var ok = 0;
+    gExprData.forEach(function(_, i) {
+      var inp = document.getElementById('gexpr-inp-' + i);
+      var container = document.getElementById('gexpr-' + i);
+      if (!container.dataset.done && inp && inp.value.trim()) checkGExpr(i);
+      if (container.dataset.done) ok++;
+    });
+    var res = document.getElementById('exGExprRes');
+    if (res) {
+      res.textContent = ok === gExprData.length ? '¡Perfetto! Conocés todas las expresiones.' : ok + '/' + gExprData.length + ' correctas.';
+      res.className = 'ex-result ' + (ok === gExprData.length ? 'ok' : 'err');
+    }
+  }
+
   /* ═══ INIT ═══ */
   // Exponer funciones PRIMERO — así los onclick funcionan aunque un build falle (Odoo DOMEval)
   window.ippAudio     = ippAudio;
   window.ippStop      = ippStop;
   window.checkExAlfa  = checkExAlfa;
+  window.revealExAlfa = revealExAlfa;
   window.checkOrden   = checkOrden;
   window.checkExVF    = checkExVF;
   window.checkOptChi  = checkOptChi;
@@ -1290,15 +1436,18 @@ window.IPP_VOICE = window.IPP_VOICE || {
   window.checkAllNum   = checkAllNum;
   window.checkSitu     = checkSitu;
   window.checkAllSitu  = checkAllSitu;
-  window.checkSaluto  = checkSaluto;
-  window.checkOpt     = checkOpt;
+  window.checkSaluto    = checkSaluto;
+  window.checkOpt       = checkOpt;
+  window.checkGExpr     = checkGExpr;
+  window.checkAllGExpr  = checkAllGExpr;
   window.ippRetry = ippRetry;
 
   // Builds con try-catch — un fallo no bloquea el resto
   var builds = [
     buildAlfaFull, buildNums, buildEspr,
     buildExAlfa, buildExVF, buildExChiamarsi,
-    buildExSaluti, buildExSituaciones, buildExNumeri, buildOrden
+    buildExSaluti, buildExSituaciones, buildExNumeri, buildOrden,
+    buildExGExpr
   ];
   builds.forEach(function(fn) {
     try { fn(); } catch(e) { console.warn('[IPP build error]', fn.name, e); }
