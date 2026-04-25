@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo de Interactivos — Italiano Per Piacere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN SYSTEM — ITALIANO PER PIACERE
+   Catálogo completo de interactivos para revisión de experta
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── TOKENS GLOBALES ── */
+:root {
+  /* Paleta base */
+  --cream:    #e9e6d5;
+  --cream-dk: #ddd9c8;
+  --gold:     #EFCF7F;
+  --amber:    #e5ab07;
+  --amber-dk: #c8940a;
+  --red:      #cc4736;
+  --teal:     #78a6ba;
+  --green:    #528e74;
+  --black:    #1a1a18;
+  --white:    #ffffff;
+
+  /* Tipografía */
+  --fh: 'Playfair Display', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+  --r: 10px;
+
+  /* Color de módulo (se sobreescribe por módulo) */
+  --mc:      #78a6ba;   /* Módulo 3: teal-azul */
+  --mc-dk:   #5a8ea0;
+  --mc-text: #2d5f72;
+  --mc-bg:   #e5f1f5;
+}
+
+/* VARIANTES DE COLOR POR MÓDULO */
+.mod1 { --mc: #528e74; --mc-dk: #3d6b58; --mc-text: #2a5a42; --mc-bg: #e8f4ef; }
+.mod2 { --mc: #6a8dc8; --mc-dk: #4e6fa0; --mc-text: #2d4f82; --mc-bg: #e8eef8; }
+.mod3 { --mc: #78a6ba; --mc-dk: #5a8ea0; --mc-text: #2d5f72; --mc-bg: #e5f1f5; }
+.mod4 { --mc: #e5ab07; --mc-dk: #c8940a; --mc-text: #7a5502; --mc-bg: #fef8e6; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--cream); font-family: var(--fb); color: var(--black); line-height: 1.6; }
+
+/* ── CABECERA DEL CATÁLOGO ── */
+.catalog-hero {
+  background: linear-gradient(135deg, #1a1a18 0%, #2d5f72 100%);
+  padding: 64px 24px 52px;
+  text-align: center;
+  color: var(--white);
+}
+.catalog-hero .cat-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 20px;
+  padding: 5px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.catalog-hero h1 {
+  font-family: var(--fh);
+  font-style: italic;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 14px;
+}
+.catalog-hero p { font-size: 1.05rem; opacity: 0.8; max-width: 600px; margin: 0 auto; }
+
+/* ── TABLA DE CONTENIDO ── */
+.toc {
+  background: var(--white);
+  border-bottom: 2px solid var(--cream-dk);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  overflow-x: auto;
+}
+.toc-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+  padding: 0 20px;
+}
+.toc a {
+  padding: 13px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #777;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.toc a:hover { color: var(--mc-text); border-bottom-color: var(--mc); }
+
+/* ── CONTAINER ── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+
+/* ── SECTION HEADERS ── */
+.cat-section {
+  scroll-margin-top: 60px;
+  margin-bottom: 80px;
+}
+.cat-section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 3px solid var(--cream-dk);
+}
+.cat-section-num {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a1a18, #2d5f72);
+  color: var(--white);
+  font-family: var(--fh);
+  font-style: italic;
+  font-size: 1.4rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cat-section-header h2 {
+  font-family: var(--fh);
+  font-style: italic;
+  font-size: 1.8rem;
+  color: var(--black);
+}
+.cat-section-header p {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* ── COMPONENTE CARD ── */
+.comp-card {
+  background: var(--white);
+  border-radius: var(--r);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+.comp-card-header {
+  background: #f5f5f3;
+  border-bottom: 2px solid var(--cream-dk);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.comp-label {
+  background: var(--black);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+.comp-name { font-weight: 700; font-size: 1.05rem; }
+.comp-desc { font-size: 13px; color: #666; margin-top: 2px; }
+.comp-body { padding: 28px 24px; }
+.comp-code {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  padding: 16px 20px;
+  border-top: 2px solid var(--cream-dk);
+  overflow-x: auto;
+  line-height: 1.7;
+}
+.comp-code .code-label {
+  color: #9cdcfe; font-weight: 700;
+  display: block; margin-bottom: 8px; font-size: 11px;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+
+/* ── GRID ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 768px) { .two-col, .three-col { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════
+   1. DESIGN SYSTEM — PALETA DE COLORES
+   ═══════════════════════════════════ */
+
+.color-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.color-chip {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.color-swatch { height: 72px; }
+.color-info { padding: 10px 12px; background: var(--white); }
+.color-name { font-size: 13px; font-weight: 700; }
+.color-hex { font-size: 11px; color: #888; font-family: monospace; margin-top: 2px; }
+.color-usage { font-size: 10px; color: #aaa; margin-top: 3px; }
+
+.module-colors {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+.mod-color-card {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid var(--cream-dk);
+}
+.mod-color-main { height: 56px; }
+.mod-color-dark { height: 20px; }
+.mod-color-info { padding: 10px; font-size: 12px; font-weight: 700; }
+
+/* ── TIPOGRAFÍA ── */
+.type-specimen { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--cream-dk); }
+.type-specimen:last-child { border-bottom: none; margin-bottom: 0; }
+.type-meta { font-size: 11px; color: #aaa; font-family: monospace; margin-bottom: 8px; letter-spacing: 0.5px; }
+
+/* ═══════════════════════════════════
+   2. SOFIA AVATAR
+   ═══════════════════════════════════ */
+.sofia-wrap { display: flex; gap: 16px; align-items: flex-start; }
+.sofia-avatar-el {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--mc);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; flex-shrink: 0;
+}
+.sofia-bubble-el {
+  background: var(--cream-dk);
+  border-radius: 0 var(--r) var(--r) var(--r);
+  padding: 16px 20px;
+  font-size: 0.95rem; line-height: 1.65; flex: 1;
+  position: relative;
+}
+.sofia-bubble-el::before {
+  content: '';
+  position: absolute; left: -10px; top: 12px;
+  border: 5px solid transparent;
+  border-right-color: var(--cream-dk);
+}
+.sofia-name-el {
+  font-weight: 700; color: var(--mc-text); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+}
+
+/* ═══════════════════════════════════
+   3. HERO + BADGE
+   ═══════════════════════════════════ */
+.demo-hero {
+  background: linear-gradient(135deg, var(--mc) 0%, var(--mc-dk) 100%);
+  padding: 40px 24px 32px;
+  text-align: center;
+  color: var(--white);
+  border-radius: var(--r);
+}
+.demo-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px;
+}
+.demo-hero h2 {
+  font-family: var(--fh); font-style: italic;
+  font-size: 2rem; font-weight: 700;
+}
+.demo-hero p { font-size: 0.95rem; opacity: 0.85; margin-top: 6px; }
+
+/* ═══════════════════════════════════
+   4. STAGE NAV
+   ═══════════════════════════════════ */
+.demo-stage-nav {
+  background: var(--white);
+  border: 1px solid var(--cream-dk);
+  border-radius: var(--r);
+  display: flex; overflow-x: auto;
+}
+.demo-stage-nav a {
+  display: flex; align-items: center; gap: 8px; padding: 13px 20px;
+  text-decoration: none; font-size: 12px; font-weight: 600; color: #888;
+  border-bottom: 3px solid transparent; white-space: nowrap; transition: all 0.2s;
+}
+.demo-stage-nav a.active { color: var(--mc-text); border-bottom-color: var(--mc); }
+.demo-stage-nav a.done { color: var(--green); }
+.demo-stage-nav .sn-num {
+  width: 20px; height: 20px; border-radius: 50%; background: #ddd; color: #666;
+  font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+}
+.demo-stage-nav a.active .sn-num { background: var(--mc); color: var(--white); }
+.demo-stage-nav a.done .sn-num { background: var(--green); color: var(--white); }
+
+/* ═══════════════════════════════════
+   5. VIDEO WRAP
+   ═══════════════════════════════════ */
+.demo-video {
+  position: relative; padding-bottom: 56.25%; height: 0;
+  overflow: hidden; border-radius: var(--r);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  background: #111; display: flex; align-items: center; justify-content: center;
+}
+.demo-video-placeholder {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: #666; gap: 12px;
+}
+.demo-video-placeholder .play-icon { font-size: 3rem; }
+.demo-video-placeholder p { font-size: 13px; }
+
+/* ═══════════════════════════════════
+   6. TASK BOX / INFO BOX
+   ═══════════════════════════════════ */
+.demo-task-box {
+  background: var(--mc-bg);
+  border-left: 4px solid var(--mc);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 16px 20px;
+}
+.demo-task-box h4 {
+  color: var(--mc-text); font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700; margin-bottom: 8px;
+}
+.demo-task-box ul { list-style: none; }
+.demo-task-box ul li { margin-bottom: 4px; }
+.demo-task-box ul li::before { content: '→ '; color: var(--mc); font-weight: 700; }
+
+.demo-info-box {
+  background: #e8f4ef; border-left: 4px solid var(--green);
+  border-radius: 0 var(--r) var(--r) 0; padding: 14px 18px; font-size: 0.9rem;
+}
+.demo-rule-box {
+  border-radius: 8px; padding: 14px 18px; font-size: 0.9rem;
+}
+.demo-rule-box.teal { background: var(--mc-bg); border-left: 4px solid var(--mc); }
+.demo-rule-box.gold { background: #fffae6; border-left: 4px solid var(--amber); }
+.demo-rule-box.red  { background: #fde8e8; border-left: 4px solid var(--red); }
+.demo-rule-box.green { background: #e9f5ef; border-left: 4px solid var(--green); }
+
+/* ═══════════════════════════════════
+   7. VERDADERO / FALSO
+   ═══════════════════════════════════ */
+.vf-item {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 14px 0; border-bottom: 1px solid var(--cream-dk);
+}
+.vf-item:last-child { border-bottom: none; }
+.vf-statement { font-size: 0.95rem; }
+.vf-buttons { display: flex; gap: 10px; }
+.btn-vf {
+  padding: 7px 20px; border: 2px solid var(--cream-dk);
+  border-radius: 6px; background: var(--cream);
+  font-family: var(--fb); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-vf:hover { border-color: var(--mc); color: var(--mc-text); }
+.btn-vf.correct { background: #d4edda; border-color: #2d7a4f; color: #2d7a4f; }
+.btn-vf.wrong { background: #fde8e8; border-color: var(--red); color: var(--red); }
+.vf-feedback { font-size: 13px; font-weight: 500; min-height: 16px; }
+
+/* ═══════════════════════════════════
+   8. SELECCIÓN MÚLTIPLE
+   ═══════════════════════════════════ */
+.mc-item { padding: 14px 0; border-bottom: 1px solid var(--cream-dk); }
+.mc-item:last-child { border-bottom: none; }
+.mc-question { font-weight: 600; margin-bottom: 10px; font-size: 0.95rem; }
+.mc-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn-mc {
+  padding: 8px 18px; border: 2px solid var(--cream-dk);
+  border-radius: 6px; background: var(--cream);
+  font-family: var(--fb); font-size: 13px; cursor: pointer; transition: all 0.2s;
+}
+.btn-mc:hover { border-color: var(--mc); }
+.btn-mc.correct { background: #d4edda; border-color: #2d7a4f; color: #2d7a4f; font-weight: 700; }
+.btn-mc.wrong { background: #fde8e8; border-color: var(--red); color: var(--red); }
+.mc-feedback { font-size: 13px; margin-top: 6px; font-weight: 500; }
+
+/* ═══════════════════════════════════
+   9. FILL-IN-BLANKS
+   ═══════════════════════════════════ */
+.fill-item { margin-bottom: 12px; }
+.fill-item label { font-size: 0.95rem; display: block; margin-bottom: 5px; }
+.fill-input {
+  border: 2px solid var(--cream-dk); border-radius: 6px;
+  padding: 7px 12px; font-family: var(--fb); font-size: 0.95rem;
+  width: 180px; transition: border 0.2s; background: var(--white);
+}
+.fill-input:focus { border-color: var(--mc); outline: none; }
+.fill-input.correct { border-color: #2d7a4f; background: #d4edda; }
+.fill-input.wrong { border-color: var(--red); background: #fde8e8; }
+.fill-feedback { font-size: 13px; margin-top: 3px; font-weight: 500; min-height: 16px; }
+
+/* ═══════════════════════════════════
+   10. VOCAB GRID
+   ═══════════════════════════════════ */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+.vocab-chip {
+  background: var(--white); border: 1.5px solid var(--mc-bg);
+  border-radius: var(--r); padding: 14px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  cursor: pointer; transition: all 0.2s;
+}
+.vocab-chip:hover { border-color: var(--mc); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(120,166,186,0.2); }
+.vocab-emoji { font-size: 1.5rem; }
+.vocab-it { font-size: 0.88rem; font-weight: 700; color: var(--mc-text); text-align: center; }
+.vocab-es { font-size: 0.72rem; color: #777; text-align: center; }
+.vocab-audio-btn {
+  margin-top: 2px; padding: 3px 10px;
+  background: var(--mc-bg); border: 1px solid var(--mc); border-radius: 12px;
+  color: var(--mc-dk); font-size: 0.7rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; font-family: var(--fb);
+}
+.vocab-audio-btn:hover { background: var(--mc); color: var(--white); }
+
+/* ═══════════════════════════════════
+   11. FRASES CARD
+   ═══════════════════════════════════ */
+.frases-list { display: flex; flex-direction: column; gap: 10px; }
+.frase-card {
+  background: var(--white); border-radius: var(--r);
+  border-left: 3px solid var(--mc); padding: 14px 18px;
+  display: flex; align-items: center; gap: 14px;
+  transition: box-shadow 0.2s;
+}
+.frase-card:hover { box-shadow: 0 3px 12px rgba(120,166,186,0.2); }
+.frase-it { font-size: 0.92rem; font-weight: 600; color: var(--mc-text); flex: 1; }
+.frase-es { font-size: 0.75rem; color: #777; margin-top: 3px; font-style: italic; }
+.frase-speaker { font-size: 1.3rem; flex-shrink: 0; }
+.btn-frase-play {
+  padding: 5px 13px; background: var(--mc-bg);
+  border: 1.5px solid var(--mc); border-radius: 20px;
+  color: var(--mc-dk); font-family: var(--fb); font-size: 0.75rem; font-weight: 600;
+  cursor: pointer; flex-shrink: 0; transition: all 0.2s;
+}
+.btn-frase-play:hover { background: var(--mc); color: var(--white); }
+
+/* ═══════════════════════════════════
+   12. DIÁLOGO
+   ═══════════════════════════════════ */
+.dial-wrap-demo {
+  background: var(--white); border-radius: var(--r);
+  padding: 24px; border: 1.5px solid var(--mc-bg);
+}
+.dial-line-demo { margin-bottom: 16px; display: flex; flex-direction: column; align-items: flex-start; }
+.dial-line-demo.right { align-items: flex-end; }
+.dial-speaker-row-demo { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+.right .dial-speaker-row-demo { flex-direction: row-reverse; }
+.dial-name-demo { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.f-name { color: var(--mc-dk); }
+.m-name { color: #3a6080; }
+.btn-line-play {
+  padding: 3px 10px; background: var(--white);
+  border: 1.5px solid var(--mc); border-radius: 20px;
+  color: var(--mc-dk); font-family: var(--fb); font-size: 0.72rem; font-weight: 600; cursor: pointer;
+}
+.f-bubble-demo {
+  background: var(--mc-bg); border-left: 3px solid var(--mc);
+  border-radius: 0 10px 10px 10px; padding: 11px 15px;
+  font-size: 0.9rem; max-width: 80%;
+}
+.m-bubble-demo {
+  background: #e8f0f5; border-left: 3px solid #3a6080;
+  border-radius: 0 10px 10px 10px; padding: 11px 15px;
+  font-size: 0.9rem; max-width: 80%;
+}
+.right .f-bubble-demo { border-left: none; border-right: 3px solid var(--mc); border-radius: 10px 0 10px 10px; }
+
+/* ═══════════════════════════════════
+   13. TABLA GRAMATICAL
+   ═══════════════════════════════════ */
+.gram-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.gram-table th {
+  background: var(--mc); color: var(--white);
+  padding: 9px 14px; text-align: left; font-size: 12px; font-weight: 600;
+}
+.gram-table td { padding: 9px 14px; border-bottom: 1px solid var(--cream-dk); }
+.gram-table tr:last-child td { border-bottom: none; }
+.gram-table tr:nth-child(even) td { background: var(--cream); }
+.gram-table .highlight { color: var(--mc-text); font-weight: 700; }
+.gram-table .ending { color: var(--red); font-weight: 800; }
+
+.conj-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.conj-table th { background: var(--mc-bg); color: var(--mc-text); padding: 8px 12px; font-weight: 700; font-size: 12px; border: 1px solid var(--mc); }
+.conj-table td { padding: 8px 12px; border: 1px solid var(--cream-dk); }
+.conj-table .pronoun { color: #666; font-style: italic; font-size: 12px; }
+.conj-table .verb-end { color: var(--red); font-weight: 800; }
+.conj-table tr:nth-child(even) td { background: var(--cream); }
+.noi-row { background: var(--mc-bg) !important; }
+.voi-row { background: #fef9e6 !important; }
+.loro-row { background: #e8f5e9 !important; }
+
+/* ═══════════════════════════════════
+   14. WORD-SORT / SENTENCE BUILDER
+   ═══════════════════════════════════ */
+.word-bank { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.word-token {
+  padding: 6px 14px; background: var(--mc-bg); border: 2px solid var(--mc);
+  border-radius: 6px; font-size: 0.88rem; font-weight: 600;
+  cursor: pointer; color: var(--mc-text); transition: all 0.2s; user-select: none;
+}
+.word-token:hover { background: var(--mc); color: var(--white); }
+.word-token.used { opacity: 0.3; pointer-events: none; }
+.answer-slots { display: flex; flex-wrap: wrap; gap: 8px; min-height: 40px; }
+.slot {
+  min-width: 80px; padding: 6px 12px;
+  background: var(--cream); border: 2px dashed var(--cream-dk);
+  border-radius: 6px; font-size: 0.88rem; text-align: center; color: #aaa;
+}
+.slot.filled { border-style: solid; border-color: var(--mc); color: var(--black); font-weight: 600; background: var(--mc-bg); }
+
+/* ═══════════════════════════════════
+   15. CLASIFICADOR / DRAG-TO-COLUMN
+   ═══════════════════════════════════ */
+.classify-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.classify-col {
+  border: 2px solid var(--cream-dk); border-radius: 8px; padding: 14px; min-height: 90px;
+}
+.classify-col h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 10px; text-align: center; }
+.classify-col.k-col { border-color: var(--mc); }
+.classify-col.ch-col { border-color: var(--red); }
+.classify-col.g-col { border-color: var(--green); }
+.classify-col.dj-col { border-color: var(--amber); }
+.classify-drop { min-height: 50px; display: flex; flex-wrap: wrap; gap: 6px; padding: 4px; }
+.classify-word {
+  padding: 5px 12px; background: var(--cream-dk); border-radius: 6px;
+  font-size: 0.88rem; font-style: italic; font-weight: 600; cursor: pointer; transition: all 0.2s;
+}
+.classify-word:hover { background: var(--mc-bg); }
+
+/* ═══════════════════════════════════
+   16. NÚMEROS / DAYS GRID
+   ═══════════════════════════════════ */
+.num-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+}
+.num-chip {
+  background: var(--white); border-radius: var(--r);
+  border: 2px solid var(--mc-bg); padding: 14px 10px;
+  text-align: center; cursor: pointer; transition: all 0.2s;
+}
+.num-chip:hover { border-color: var(--mc); transform: translateY(-2px); }
+.num-num { font-size: 1.4rem; font-weight: 700; color: var(--mc); }
+.num-it { font-size: 0.8rem; font-weight: 600; color: var(--mc-text); margin: 3px 0 1px; }
+.num-es { font-size: 0.7rem; color: #888; }
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 10px;
+}
+.day-chip {
+  background: var(--white); border-radius: var(--r);
+  border: 2px solid var(--mc-bg); padding: 13px 10px;
+  text-align: center; cursor: pointer; transition: all 0.2s;
+}
+.day-chip:hover { border-color: var(--mc); transform: translateY(-2px); }
+.day-it { font-size: 0.88rem; font-weight: 700; color: var(--mc-text); display: block; }
+.day-es { font-size: 0.7rem; color: #888; margin-top: 3px; }
+.day-num {
+  display: inline-block; width: 20px; height: 20px;
+  background: var(--mc); color: var(--white); border-radius: 50%;
+  font-size: 0.7rem; font-weight: 700; line-height: 20px;
+  text-align: center; margin-bottom: 5px;
+}
+
+/* ═══════════════════════════════════
+   17. CONJUGATION FILL
+   ═══════════════════════════════════ */
+.conj-grid-fill { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.conj-fill-item { background: var(--cream); border-radius: 8px; padding: 11px; }
+.conj-fill-item .pron { font-size: 11px; color: #666; font-style: italic; }
+.conj-fill-item input {
+  border: 2px solid var(--cream-dk); border-radius: 6px;
+  padding: 6px 10px; font-family: var(--fb); font-size: 0.9rem;
+  width: 100%; margin-top: 4px;
+}
+.conj-fill-item input:focus { border-color: var(--mc); outline: none; }
+.conj-fill-item input.correct { border-color: #2d7a4f; background: #d4edda; }
+.conj-fill-item input.wrong { border-color: var(--red); background: #fde8e8; }
+
+/* ═══════════════════════════════════
+   18. PATTERN DISCOVERY
+   ═══════════════════════════════════ */
+.pattern-box-demo {
+  background: var(--white); border-radius: var(--r);
+  padding: 22px; border: 1.5px solid var(--mc-bg);
+}
+.pattern-box-demo h4 {
+  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.5px; color: var(--mc); margin-bottom: 12px;
+}
+.pattern-phrase {
+  font-size: 0.9rem; padding: 9px 13px;
+  background: var(--mc-bg); border-radius: 8px;
+  line-height: 1.5; margin-bottom: 6px; cursor: pointer; transition: all 0.2s;
+}
+.pattern-phrase:hover { background: #c5dde8; }
+.pattern-phrase em { font-style: italic; font-weight: 700; color: var(--mc-text); background: rgba(120,166,186,0.25); padding: 1px 4px; border-radius: 4px; }
+.pattern-input-demo {
+  width: 100%; padding: 10px 14px;
+  border: 1.5px solid var(--mc); border-radius: 8px;
+  font-family: var(--fb); font-size: 0.88rem;
+  background: var(--white); color: var(--black); outline: none; margin-top: 12px;
+}
+
+/* ═══════════════════════════════════
+   19. FONETICA TABLE
+   ═══════════════════════════════════ */
+.fon-table-demo {
+  width: 100%; border-collapse: collapse;
+  background: var(--white); border-radius: var(--r);
+  overflow: hidden; border: 1.5px solid var(--mc-bg);
+}
+.fon-table-demo th {
+  background: var(--mc); color: var(--white); font-family: var(--fb);
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+  padding: 11px 16px; text-align: left;
+}
+.fon-table-demo td {
+  padding: 9px 16px; font-size: 0.86rem;
+  border-bottom: 1px solid var(--cream-dk); vertical-align: middle;
+}
+.fon-table-demo tr:last-child td { border-bottom: none; }
+.fon-table-demo tr:nth-child(even) td { background: #f5fafb; }
+.fon-sound {
+  display: inline-block; background: var(--mc-bg); color: var(--mc-text);
+  padding: 2px 10px; border-radius: 12px; font-weight: 700; font-size: 0.82rem;
+}
+
+/* ═══════════════════════════════════
+   20. CTA BLOCK
+   ═══════════════════════════════════ */
+.cta-block {
+  text-align: center; padding: 32px;
+  background: linear-gradient(135deg, var(--mc-bg), var(--cream-dk));
+  border-radius: var(--r); border: 1px solid var(--cream-dk);
+}
+.cta-block p { color: #555; margin-bottom: 16px; }
+.btn-next {
+  display: inline-block; padding: 13px 32px;
+  background: var(--mc); color: var(--white);
+  text-decoration: none; border-radius: 8px;
+  font-weight: 700; font-size: 0.95rem; transition: all 0.2s;
+}
+.btn-next:hover { background: var(--mc-dk); transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.15); }
+
+/* ═══════════════════════════════════
+   21. SCORE BAR
+   ═══════════════════════════════════ */
+.score-bar {
+  background: var(--cream-dk); border-radius: var(--r);
+  padding: 14px 20px; margin-top: 18px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.score-label { font-weight: 600; font-size: 0.9rem; }
+.score-num { font-size: 1.4rem; font-weight: 700; color: var(--mc-text); }
+
+/* ═══════════════════════════════════
+   BUTTONS SISTEMA
+   ═══════════════════════════════════ */
+.btn-check {
+  margin-top: 14px; padding: 9px 24px; background: var(--mc); color: var(--white);
+  border: none; border-radius: 7px; font-family: var(--fb); font-size: 13px;
+  font-weight: 600; cursor: pointer; transition: background 0.2s;
+}
+.btn-check:hover { background: var(--mc-dk); }
+.btn-reset {
+  margin-top: 14px; margin-left: 10px; padding: 9px 20px;
+  background: var(--cream-dk); color: var(--black);
+  border: none; border-radius: 7px; font-family: var(--fb); font-size: 13px; cursor: pointer;
+}
+
+/* ═══════════════════════════════════
+   SECTION DIVIDER
+   ═══════════════════════════════════ */
+.divider {
+  height: 2px; background: linear-gradient(to right, var(--mc), transparent);
+  margin: 40px 0; border-radius: 2px;
+}
+
+/* ── USAGE NOTES ── */
+.usage-note {
+  background: #fff9e6; border: 1px solid var(--gold);
+  border-radius: var(--r); padding: 14px 18px; margin-top: 16px;
+  font-size: 0.82rem; color: #5a4500; line-height: 1.6;
+}
+.usage-note strong { color: var(--amber-dk); }
+
+/* ── STATE SHOWCASE ── */
+.state-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.state-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #aaa; }
+</style>
+</head>
+<body>
+
+<!-- ── CABECERA ── -->
+<div class="catalog-hero">
+  <div class="cat-badge">Italiano Per Piacere — Design System</div>
+  <h1>Catálogo de Interactivos</h1>
+  <p>Referencia completa de todos los componentes disponibles: colores, tipografía, formatos y comportamiento. Documento para uso de la experta revisora.</p>
+</div>
+
+<!-- ── TABLA DE CONTENIDO ── -->
+<nav class="toc">
+  <div class="toc-inner">
+    <a href="#design-system">Design System</a>
+    <a href="#sofia">Sofia Avatar</a>
+    <a href="#hero">Hero & Nav</a>
+    <a href="#video">Video</a>
+    <a href="#cajas">Cajas Info</a>
+    <a href="#vf">Verdadero/Falso</a>
+    <a href="#mc">Selección Múltiple</a>
+    <a href="#fill">Fill-in-Blanks</a>
+    <a href="#vocab">Vocab Grid</a>
+    <a href="#frases">Frases Audio</a>
+    <a href="#dialogo">Diálogo</a>
+    <a href="#tablas">Tablas Gramática</a>
+    <a href="#sort">Word Sort</a>
+    <a href="#clasificador">Clasificador</a>
+    <a href="#numeros">Números & Días</a>
+    <a href="#conjugacion">Conjugación</a>
+    <a href="#patron">Patrón Discovery</a>
+    <a href="#fonetica">Fonética</a>
+    <a href="#cta">CTA & Score</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- ══════════════════════════════════════════
+  1. DESIGN SYSTEM
+══════════════════════════════════════════ -->
+<div class="cat-section" id="design-system">
+  <div class="cat-section-header">
+    <div class="cat-section-num">1</div>
+    <div>
+      <h2>Design System</h2>
+      <p>Paleta de colores, tipografía y espaciado del sistema</p>
+    </div>
+  </div>
+
+  <!-- COLORES BASE -->
+  <div class="comp-card">
+    <div class="comp-card-header">
+      <span class="comp-label">Tokens</span>
+      <div>
+        <div class="comp-name">Paleta de colores base</div>
+        <div class="comp-desc">Variables CSS globales compartidas en todos los módulos</div>
+      </div>
+    </div>
+    <div class="comp-body">
+      <div class="color-strip">
+        <div class="color-chip"><div class="color-swatch" style="background:#e9e6d5;"></div><div class="color-info"><div class="color-name">Cream</div><div class="color-hex">#e9e6d5</div><div class="color-usage">Fondo principal del body</div></div></div>
+        <div class="color-chip"><div class="color-swatch" style="background:#ddd9c8;"></div><div class="color-info"><div class="color-name">Cream Dark</div><div class="color-hex">#ddd9c8</div><div class="color-usage">Tarjetas, divisores</div></div></div>
+        <div class="color-chip"><div class="color-swatch" style="background:#EFCF7F;"></div><div class="color-info"><div class="color-name">Gold</div><div class="color-hex">#EFCF7F</div><div class="color-usage">Acentos dorados</div></div></div>
+        <div class="color-chip"><div class="color-swatch" style="background:#e5ab07;"></div><div class="color-info"><div class="color-name">Amber</div><div class="color-hex">#e5ab07</div><div class="color-usage">Advertencias, Módulo 4</div></div></div>
+        <div class="color-chip"><div class="color-swatch" style="background:#cc4736;"></div><div class="color-info"><div class="color-name">Red</div><div class="color-hex">#cc4736</div><div class="color-usage">Errores, respuesta incorrecta</div></div></div>
+        <div class="color-chip"><div class="color-swatch" style="background:#78a6ba;"></div><div class="color-info"><div class="color-name">Teal</div><div class="color-hex">#78a6ba</div><div class="color-usage">Color base Módulo 3</div></div></div>
+        <div class="color-chip"><div class="color-swatch" style="background:#528e74;"></div><div class="color-info"><div class="color-name">Green</div><div class="color-hex">#528e74</div><div class="color-usage">Correcto, Módulo 1</div></div></div>
+        <div class="color-chip"><div class="color-swatch" style="background:#1a1a18;"></div><div class="color-info"><div class="color-name">Black</div><div class="color-hex">#1a1a18</div><div class="color-usage">Texto principal</div></div></div>
+      </div>
+
+      <p style="font-weight:700; margin:20px 0 12px; color:#444;">Colores por módulo (variable <code>--mc</code>)</p>
+      <div class="module-colors">
+        <div class="mod-color-card">
+          <div class="mod-color-main" style="background:#528e74;"></div>
+          <div class="mod-color-dark" style="background:#3d6b58;"></div>
+          <div class="mod-color-info">Módulo 1<br><span style="font-weight:400;color:#888;font-size:11px;">#528e74 — verde</span></div>
+        </div>
+        <div class="mod-color-card">
+          <div class="mod-color-main" style="background:#6a8dc8;"></div>
+          <div class="mod-color-dark" style="background:#4e6fa0;"></div>
+          <div class="mod-color-info">Módulo 2<br><span style="font-weight:400;color:#888;font-size:11px;">#6a8dc8 — azul</span></div>
+        </div>
+        <div class="mod-color-card">
+          <div class="mod-color-main" style="background:#78a6ba;"></div>
+          <div class="mod-color-dark" style="background:#5a8ea0;"></div>
+          <div class="mod-color-info">Módulo 3<br><span style="font-weight:400;color:#888;font-size:11px;">#78a6ba — teal</span></div>
+        </div>
+        <div class="mod-color-card">
+          <div class="mod-color-main" style="background:#e5ab07;"></div>
+          <div class="mod-color-dark" style="background:#c8940a;"></div>
+          <div class="mod-color-info">Módulo 4<br><span style="font-weight:400;color:#888;font-size:11px;">#e5ab07 — ámbar</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIPOGRAFÍA -->
+  <div class="comp-card">
+    <div class="comp-card-header">
+      <span class="comp-label">Fonts</span>
+      <div>
+        <div class="comp-name">Tipografía</div>
+        <div class="comp-desc">Playfair Display (títulos) + Outfit (cuerpo)</div>
+      </div>
+    </div>
+    <div class="comp-body">
+      <div class="type-specimen">
+        <div class="type-meta">Playfair Display — Italic Bold — Títulos de sección, hero, tarjetas</div>
+        <div style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700; font-size:2.8rem; line-height:1.1; color:#2d5f72;">Una notte a Roma</div>
+        <div style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700; font-size:1.8rem; line-height:1.2; color:#2d5f72; margin-top:8px;">I nomi — El género de los sustantivos</div>
+        <div style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700; font-size:1.3rem; color:#2d5f72; margin-top:8px;">Singolare e plurale</div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-meta">Outfit — Regular/Medium/Bold — Cuerpo, botones, etiquetas</div>
+        <div style="font-family:'Outfit',system-ui,sans-serif; font-weight:400; font-size:1rem; line-height:1.65; color:#1a1a18;">El texto de instrucciones utiliza Outfit Regular (400). El cuerpo de las tarjetas de vocabulario, las frases del diálogo y las explicaciones pedagógicas usan esta fuente para máxima legibilidad.</div>
+        <div style="font-family:'Outfit',system-ui,sans-serif; font-weight:700; font-size:0.95rem; margin-top:10px; color:#1a1a18;">Labels y nombres de speaker en Outfit Bold (700).</div>
+        <div style="font-family:'Outfit',system-ui,sans-serif; font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; margin-top:10px; color:#888;">ETIQUETAS EN UPPERCASE — OUTFIT SEMIBOLD 600 — LETTER SPACING 1.5PX</div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-meta">Tamaños de texto usados</div>
+        <div style="font-size:clamp(2rem,5vw,3.2rem);font-family:'Playfair Display',serif;font-style:italic;color:#1a1a18;">Hero H1 — clamp(2rem, 5vw, 3.2rem)</div>
+        <div style="font-size:1.5rem;font-family:'Playfair Display',serif;font-style:italic;color:#1a1a18;margin-top:6px;">Section Title — 1.5rem</div>
+        <div style="font-size:1.05rem;font-weight:700;margin-top:6px;">Card Title — 1.05rem bold</div>
+        <div style="font-size:0.95rem;margin-top:6px;">Body text — 0.95rem regular</div>
+        <div style="font-size:0.82rem;color:#666;margin-top:6px;">Secondary / subtítulos — 0.82rem</div>
+        <div style="font-size:0.72rem;color:#aaa;margin-top:6px;">Micro labels — 0.72rem</div>
+      </div>
+    </div>
+  </div>
+</div><!-- /cat-section design-system -->
+
+
+<!-- ══════════════════════════════════════════
+  2. SOFIA AVATAR
+══════════════════════════════════════════ -->
+<div class="cat-section" id="sofia">
+  <div class="cat-section-header">
+    <div class="cat-section-num">2</div>
+    <div>
+      <h2>Sofia — Avatar guía</h2>
+      <p>Personaje que introduce cada etapa con instrucciones y motivación</p>
+    </div>
+  </div>
+  <div class="comp-card mod3">
+    <div class="comp-card-header"><span class="comp-label">Component</span><div><div class="comp-name">Sofia Card</div><div class="comp-desc">Avatar circular + burbuja de chat con flecha. Aparece al inicio de cada etapa.</div></div></div>
+    <div class="comp-body">
+      <div class="sofia-wrap" style="--mc:#78a6ba;--mc-text:#2d5f72;--cream-dk:#ddd9c8;">
+        <div class="sofia-avatar-el">🇮🇹</div>
+        <div class="sofia-bubble-el">
+          <div class="sofia-name-el">Sofia — tu guía</div>
+          ¿Alguna vez reservaste un hotel en italiano? Hoy vamos a ver exactamente cómo se hace. Este video está grabado en un hotel real — el <em>Casalunga Golf Resort</em> — y vas a escuchar frases auténticas. <strong>¡Así se habla el italiano de verdad!</strong>
+        </div>
+      </div>
+      <div class="usage-note" style="margin-top:20px;"><strong>Íconos disponibles para Sofia:</strong> 🇮🇹 (bandera italiana) · 👩‍🏫 (maestra) · 💬 (conversación) · 🎓 (académico). El avatar usa el color <code>--mc</code> del módulo como fondo del círculo.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  3. HERO & STAGE NAV
+══════════════════════════════════════════ -->
+<div class="cat-section" id="hero">
+  <div class="cat-section-header">
+    <div class="cat-section-num">3</div>
+    <div>
+      <h2>Hero & Navegación de etapas</h2>
+      <p>Encabezado de cada página con badge de módulo y navegación horizontal entre etapas</p>
+    </div>
+  </div>
+  <div class="comp-card mod3" style="--mc:#78a6ba;--mc-dk:#5a8ea0;--mc-text:#2d5f72;--mc-bg:#e5f1f5;">
+    <div class="comp-card-header"><span class="comp-label">Component</span><div><div class="comp-name">Hero Banner — Módulo 3 (teal)</div><div class="comp-desc">Gradiente de color del módulo. Badge superior con número, título en Playfair, subtítulo.</div></div></div>
+    <div class="comp-body">
+      <div class="demo-hero" style="--mc:#78a6ba;--mc-dk:#5a8ea0;">
+        <div class="demo-badge">Modulo 3 · A1 · Etapa 1</div>
+        <h2>Una notte a Roma</h2>
+        <p>Check-in en el hotel — vocabulario y frases reales</p>
+      </div>
+      <div style="margin-top:16px;">
+        <div class="demo-hero" style="--mc:#528e74;--mc-dk:#3d6b58;">
+          <div class="demo-badge">Modulo 1 · A1 · Etapa 2</div>
+          <h2>Come ti chiami?</h2>
+          <p>El alfabeto, saludos y números</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comp-card">
+    <div class="comp-card-header"><span class="comp-label">Component</span><div><div class="comp-name">Stage Navigation</div><div class="comp-desc">Barra pegajosa de navegación entre las 3-4 etapas de un módulo. Done = verde, Active = color módulo.</div></div></div>
+    <div class="comp-body">
+      <div class="demo-stage-nav" style="--mc:#78a6ba;--mc-text:#2d5f72;--green:#528e74;">
+        <a href="#" class="done"><span class="sn-num">✓</span> Exploración</a>
+        <a href="#" class="active"><span class="sn-num" style="background:#78a6ba;color:#fff;">2</span> Descubrimiento</a>
+        <a href="#"><span class="sn-num">3</span> Gramática</a>
+        <a href="#"><span class="sn-num">4</span> Ejercicios</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  4. VIDEO EMBED
+══════════════════════════════════════════ -->
+<div class="cat-section" id="video">
+  <div class="cat-section-header">
+    <div class="cat-section-num">4</div>
+    <div>
+      <h2>Video Embed</h2>
+      <p>YouTube iframe responsivo 16:9 con sombra. Siempre va antes de los ejercicios.</p>
+    </div>
+  </div>
+  <div class="comp-card">
+    <div class="comp-card-header"><span class="comp-label">Component</span><div><div class="comp-name">Video Wrapper</div><div class="comp-desc">Padding-bottom: 56.25% — aspect ratio 16:9. Border-radius 10px, box-shadow para profundidad.</div></div></div>
+    <div class="comp-body">
+      <div class="demo-video">
+        <div class="demo-video-placeholder">
+          <div class="play-icon">▶</div>
+          <p>YouTube iframe — 16:9 — loading="lazy"</p>
+          <p style="font-size:11px;color:#aaa;">Ej: https://www.youtube.com/embed/nJ0gKWX8mjM</p>
+        </div>
+      </div>
+      <div class="usage-note" style="margin-top:16px;"><strong>Atributos del iframe:</strong> <code>allowfullscreen</code> · <code>allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"</code> · <code>loading="lazy"</code> · <code>title="Descripción del video"</code></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  5. CAJAS DE INFORMACIÓN
+══════════════════════════════════════════ -->
+<div class="cat-section" id="cajas">
+  <div class="cat-section-header">
+    <div class="cat-section-num">5</div>
+    <div>
+      <h2>Cajas de información</h2>
+      <p>Task box, info box, rule boxes de 4 variantes de color</p>
+    </div>
+  </div>
+  <div class="comp-card" style="--mc:#78a6ba;--mc-text:#2d5f72;--mc-bg:#e5f1f5;">
+    <div class="comp-card-header"><span class="comp-label">Component</span><div><div class="comp-name">Task Box + Info Box + Rule Boxes</div></div></div>
+    <div class="comp-body">
+      <div class="two-col" style="--mc:#78a6ba;--mc-text:#2d5f72;--mc-bg:#e5f1f5;">
+        <div>
+          <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#aaa;margin-bottom:10px;">Task Box — color del módulo</p>
+          <div class="demo-task-box">
+            <h4>🎯 Mientras ves el video, presta atención a...</h4>
+            <ul>
+              <li>¿Cómo saluda la recepcionista Giulia?</li>
+              <li>¿Cuánto cuesta la habitación por noche?</li>
+              <li>¿Qué documentos le piden al huésped?</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#aaa;margin-bottom:10px;">Info Box — verde</p>
+          <div class="demo-info-box">
+            💡 <strong>Nota cultural:</strong> En Italia es obligatorio presentar un documento de identidad al hacer el check-in en cualquier hotel.
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#aaa;margin:24px 0 12px;">Rule Boxes — 4 variantes</p>
+      <div style="display:flex;flex-direction:column;gap:10px;--mc:#78a6ba;--mc-text:#2d5f72;--mc-bg:#e5f1f5;">
+        <div class="demo-rule-box teal"><strong>Teal (regla principal):</strong> Los artículos en italiano: Masculino → <em>il / lo / l' / i / gli</em> | Femenino → <em>la / l' / le</em></div>
+        <div class="demo-rule-box gold"><strong>Gold (atención / nota):</strong> Algunas palabras en <em>-e</em> son masculinas (<em>nome</em>) y otras femeninas (<em>notte</em>). ¡Hay que aprenderlas con el artículo!</div>
+        <div class="demo-rule-box red"><strong>Red (excepción / cuidado):</strong> Las palabras terminadas en <em>-à</em> son invariables en plural: <em>la città → le città</em>. Solo el artículo cambia.</div>
+        <div class="demo-rule-box green"><strong>Green (tip positivo):</strong> Las palabras extranjeras también son invariables: <em>il bar → i bar</em>, <em>il computer → i computer</em>.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  6. VERDADERO / FALSO
+══════════════════════════════════════════ -->
+<div class="cat-section" id="vf">
+  <div class="cat-section-header">
+    <div class="cat-section-num">6</div>
+    <div>
+      <h2>Verdadero / Falso</h2>
+      <p>Comprensión audiovisual. Se activa el feedback explicativo al responder.</p>
+    </div>
+  </div>
+  <div class="comp-card" style="--mc:#78a6ba;--mc-text:#2d5f72;--mc-bg:#e5f1f5;">
+    <div class="comp-card-header"><span class="comp-label">Interactivo</span><div><div class="comp-name">V/F con feedback explicativo</div><div class="comp-desc">Estados: default → clicked (verde/rojo) → disabled con explicación revelada</div></div></div>
+    <div class="comp-body">
+      <div class="vf-item" data-answer="true">
+        <div class="vf-statement">1. El hotel se llama <em>Casalunga Golf Resort</em>.</div>
+        <div class="vf-buttons">
+          <button class="btn-vf" onclick="demoVF(this,true,true)">✓ Verdadero</button>
+          <button class="btn-vf" onclick="demoVF(this,false,true)">✗ Falso</button>
+        </div>
+        <div class="vf-feedback" id="vf-demo-1"></div>
+      </div>
+      <div class="vf-item" data-answer="false">
+        <div class="vf-statement">2. La habitación cuesta 200 euros por noche.</div>
+        <div class="vf-buttons">
+          <button class="btn-vf" onclick="demoVF(this,true,false)">✓ Verdadero</button>
+          <button class="btn-vf" onclick="demoVF(this,false,false)">✗ Falso</button>
+        </div>
+        <div class="vf-feedback" id="vf-demo-2"></div>
+      </div>
+      <div class="vf-item" data-answer="true">
+        <div class="vf-statement">3. El desayuno (<em>colazione</em>) está incluido en el precio.</div>
+        <div class="vf-buttons">
+          <button class="btn-vf" onclick="demoVF(this,true,true)">✓ Verdadero</button>
+          <button class="btn-vf" onclick="demoVF(this,false,true)">✗ Falso</button>
+        </div>
+        <div class="vf-feedback" id="vf-demo-3"></div>
+      </div>
+      <div class="score-bar" style="--mc-text:#2d5f72;--cream-dk:#ddd9c8;">
+        <span class="score-label">Puntuación:</span>
+        <span class="score-num" id="vf-demo-score">0 / 3</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  7. SELECCIÓN MÚLTIPLE
+══════════════════════════════════════════ -->
+<div class="cat-section" id="mc">
+  <div class="cat-section-header">
+    <div class="cat-section-num">7</div>
+    <div>
+      <h2>Selección múltiple</h2>
+      <p>Botones de opción con feedback inmediato y muestra de respuesta correcta si falla</p>
+    </div>
+  </div>
+  <div class="comp-card" style="--mc:#78a6ba;--mc-text:#2d5f72;--mc-bg:#e5f1f5;">
+    <div class="comp-card-header"><span class="comp-label">Interactivo</span><div><div class="comp-name">Multiple Choice</div><div class="comp-desc">Al error: botón se pone rojo y la correcta se revela en verde</div></div></div>
+    <div class="comp-body">
+      <div class="mc-item" data-correct="Giulia">
+        <div class="mc-question">1. ¿Cómo se llama la recepcionista del hotel?</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="demoMC(this)">Maria</button>
+          <button class="btn-mc" onclick="demoMC(this)">Sofia</button>
+          <button class="btn-mc" onclick="demoMC(this)">Giulia</button>
+          <button class="btn-mc" onclick="demoMC(this)">Anna</button>
+        </div>
+        <div class="mc-feedback"></div>
+      </div>
+      <div class="mc-item" data-correct="2 noches">
+        <div class="mc-question">2. ¿Cuántas noches reservaron los Baldini?</div>
+        <div class="mc-options">
+          <button class="btn-mc" onclick="demoMC(this)">1 noche</button>
+          <button class="btn-mc" onclick="demoMC(this)">2 noches</button>
+          <button class="btn-mc" onclick="demoMC(this)">3 noches</button>
+          <button class="btn-mc" onclick="demoMC(this)">4 noches</button>
+        </div>
+        <div class="mc-feedback"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  8. FILL-IN-BLANKS
+══════════════════════════════════════════ -->
+<div class="cat-section" id="fill">
+  <div class="cat-section-header">
+    <div class="cat-section-num">8</div>
+    <div>
+      <h2>Fill-in-blanks</h2>
+      <p>Texto con espacios para completar. Validación en tiempo real al escribir.</p>
+    </div>
+  </div>
+  <div class="comp-card" style="--mc:#78a6ba;--mc-text:#2d5f72;--mc-bg:#e5f1f5;--cream-dk:#ddd9c8;">
+    <div class="comp-card-header"><span class="comp-label">Interactivo</span><div><div class="comp-name">Fill-in-blank inputs</div><div class="comp-desc">Border verde = correcto · Border rojo = incorrecto · "Ver respuestas" revela todo</div></div></div>
+    <div class="comp-body">
+      <p style="margin-bottom:16px;font-size:0.92rem;">Escribe el plural de cada sustantivo:</p>
+      <div class="fill-item">
+        <label><em>camera</em> (habitación) →
+          <input class="fill-input" type="text" placeholder="plural..." data-answer="camere" oninput="demoFill(this)">
+          <span class="fill-feedback"></span>
+        </label>
+      </div>
+      <div class="fill-item">
+        <label><em>notte</em> (noche) →
+          <input class="fill-input" type="text" placeholder="plural..." data-answer="notti" oninput="demoFill(this)">
+          <span class="fill-feedback"></span>
+        </label>
+      </div>
+      <div class="fill-item">
+        <label><em>città</em> (ciudad) →
+          <input class="fill-input" type="text" placeholder="plural..." data-answer="città" oninput="demoFill(this)">
+          <span class="fill-feedback"></span>
+        </label>
+      </div>
+      <button class="btn-check" onclick="demoRevealFills(this)">Ver respuestas</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  9. VOCAB GRID
+══════════════════════════════════════════ -->
+<div class="cat-section" id="vocab">
+  <div class="cat-section-header">
+    <div class="cat-section-num">9</div>
+    <div>
+      <h2>Vocab Grid — Tarjetas de vocabulario</h2>
+      <p>Grilla responsiva de tarjetas con emoji, término italiano, traducción y botón de audio TTS</p>
+    </div>
+  </div>
+  <div class="comp-card" style="--mc:#78a6ba;--mc-text:#2d5f72;--mc-bg:#e5f1f5;--mc-dk:#5a8ea0;">
+    <div class="comp-card-header"><span class="comp-label">Interactivo</span><div><div class="comp-name">Vocab Chip Grid</div><div class="comp-desc">auto-fill minmax(150px, 1fr) — hover levita con sombra teal</div></div></div>
+    <div class="comp-body">
+      <div class="vocab-grid">
+        <div class="vocab-chip"><span class="vocab-emoji">🏨</span><span class="vocab-it">albergo</span><span class="vocab-es">hotel</span><button class="vocab-audio-btn" onclick="ippAudio('albergo')">🔊 Escuchar</button></div>
+        <div class="vocab-chip"><span class="vocab-emoji">🛏️</span><span class="vocab-it">camera</span><span class="vocab-es">habitación</span><button class="vocab-audio-btn" onclick="ippAudio('camera')">🔊 Escuchar</button></div>
+        <div class="vocab-chip"><span class="vocab-emoji">☕</span><span class="vocab-it">colazione</span><span class="vocab-es">desayuno</span><button class="vocab-audio-btn" onclick="ippAudio('colazione')">🔊 Escuchar</button></div>
+        <div class="vocab-chip"><span class="vocab-emoji">🗝️</span><span class="vocab-it">chiave</span><span class="vocab-es">llave</span><button class="vocab-audio-btn" onclick="ippAudio('chiave')">🔊 Escuchar</button></div>
+        <div class="vocab-chip"><span class="vocab-emoji">📄</span><span class="vocab-it">documento</span><span class="vocab-es">documento</span><button class="vocab-audio-btn" onclick="ippAudio('documento')">🔊 Escuchar</button></div>
+        <div class="vocab-chip"><span class="vocab-emoji">💶</span><span class="vocab-it">prezzo</span><span class="vocab-es">precio</span><button class="vocab-audio-btn" onclick="ippAudio('prezzo')">🔊 Escuchar</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  10. FRASES CON AUDIO
+══════════════════════════════════════════ -->
+<div class="cat-section" id="frases">
+  <div class="cat-section-header">
+    <div class="cat-section-num">10</div>
+    <div>
+      <h2>Frases con audio</h2>
+      <p>Lista de frases clave con traducción, indicador de speaker y botón de reproducción TTS</p>
+    </div>
+  </div>
+  <div class="comp-card" style="--mc:#78a6ba;--mc-text:#2d5f72;--mc-bg:#e5f1f5;--mc-dk:#5a8ea0;">
+    <div class="comp-card-header"><span class="comp-label">Interactivo</span><div><div class="comp-name">Frases Card List</div><div class="comp-desc">Border-left color del módulo (recepcionista) o azul oscuro (cliente). Botón ▶ con TTS voz italiana.</div></div></div>
+    <div class="comp-body">
+      <div class="frases-list">
+        <div class="frase-card">
+          <span class="frase-speaker">👩</span>
+          <div style="flex:1;"><div class="frase-it">Buongiorno, benvenuti al Casalunga Golf Resort.</div><div class="frase-es">Buenos días, bienvenidos al Casalunga Golf Resort.</div></div>
+          <button class="btn-frase-play" onclick="ippAudio('Buongiorno, benvenuti al Casalunga Golf Resort.')">▶ Escuchar</button>
+        </div>
+        <div class="frase-card">
+          <span class="frase-speaker">👩</span>
+          <div style="flex:1;"><div class="frase-it">Ha una prenotazione?</div><div class="frase-es">¿Tiene una reserva?</div></div>
+          <button class="btn-frase-play" onclick="ippAudio('Ha una prenotazione?')">▶ Escuchar</button>
+        </div>
+        <div class="frase-card" style="border-left-color:#3a6080;">
+          <span class="frase-speaker">👨</span>
+          <div style="flex:1;"><div class="frase-it">Sì, sono il signor Baldini.</div><div class="frase-es">Sí, soy el señor Baldini.</div></div>
+          <button class="btn-frase-play" style="border-color:#3a6080;color:#3a6080;" onclick="ippAudio('Sì, sono il signor Baldini.',0.82,'m')">▶ Escuchar</button>
+        </div>
+        <div class="frase-card">
+          <span class="frase-speaker">👩</span>
+          <div style="flex:1;"><div class="frase-it">Il prezzo è di 150 euro a notte, comprensivo di prima colazione.</div><div class="frase-es">El precio es de 150 euros por noche, incluido el desayuno.</div></div>
+          <button class="btn-frase-play" onclick="ippAudio('Il prezzo è di centocinquanta euro a notte, comprensivo di prima colazione.')">▶ Escuchar</button>
+        </div>
+        <div class="frase-card">
+          <span class="frase-speaker">👩</span>
+          <div style="flex:1;"><div class="frase-it">Vi auguro un buon soggiorno!</div><div class="frase-es">¡Les deseo una buena estadía!</div></div>
+          <button class="btn-frase-play" onclick="ippAudio('Vi auguro un buon soggiorno!')">▶ Escuchar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  11. DIÁLOGO
+══════════════════════════════════════════ -->
+<div class="cat-section" id="dialogo">
+  <div class="cat-section-header">
+    <div class="cat-section-num">11</div>
+    <div>
+      <h2>Diálogo interactivo</h2>
+      <p>Burbujas de chat con audio por línea. Texto oculto que se revela al presionar play.</p>
+    </div>
+  </div>
+  <div class="comp-card" style="--mc:#78a6ba;--mc-text:#2d5f72;--mc-bg:#e5f1f5;--mc-dk:#5a8ea0;">
+    <div class="comp-card-header"><span class="comp-label">Interactivo</span><div><div class="comp-name">Dialogue Player</div><div class="comp-desc">Burbuja izquierda (recepcionista, teal) y derecha (huésped, azul). Texto revelado al presionar play.</div></div></div>
+    <div class="comp-body">
+      <div class="dial-wrap-demo">
+        <div class="dial-line-demo">
+          <div class="dial-speaker-row-demo">
+            <span class="dial-avatar">👩</span>
+            <span class="dial-name-demo f-name">Giulia — Receptionist</span>
+            <button class="btn-line-play" onclick="ippAudio('Buongiorno, benvenuti al Casalunga Golf Resort. Ha una prenotazione?','f')">▶</button>
+          </div>
+          <div class="f-bubble-demo">Buongiorno, benvenuti al <em>Casalunga Golf Resort</em>. Ha una prenotazione?</div>
+        </div>
+        <div class="dial-line-demo right">
+          <div class="dial-speaker-row-demo">
+            <span class="dial-avatar">👨</span>
+            <span class="dial-name-demo m-name">Signor Baldini — Huésped</span>
+            <button class="btn-line-play" style="border-color:#3a6080;color:#3a6080;" onclick="ippAudio('Sì, sono il signor Baldini.','m')">▶</button>
+          </div>
+          <div class="m-bubble-demo">Sì, sono il signor Baldini.</div>
+        </div>
+        <div class="dial-line-demo">
+          <div class="dial-speaker-row-demo">
+            <span class="dial-avatar">👩</span>
+            <span class="dial-name-demo f-name">Giulia</span>
+            <button class="btn-line-play" onclick="ippAudio('Perfetto! La camera è al terzo piano, numero trecentotredici.')">▶</button>
+          </div>
+          <div class="f-bubble-demo">Perfetto! La camera è al terzo piano, numero 313.</div>
+        </div>
+      </div>
+      <div class="usage-note" style="margin-top:16px;"><strong>Comportamiento:</strong> El texto puede comenzar oculto (blur + opacity 0.25) y se revela al presionar ▶. La versión completa usa YouTube Player API con timestamps por línea para sincronizar audio del video real.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  12. TABLAS GRAMATICALES
+══════════════════════════════════════════ -->
+<div class="cat-section" id="tablas">
+  <div class="cat-section-header">
+    <div class="cat-section-num">12</div>
+    <div>
+      <h2>Tablas gramaticales</h2>
+      <p>Tabla de reglas (gram-table) y tabla de conjugación (conj-table) con filas coloreadas</p>
+    </div>
+  </div>
+  <div class="comp-card" style="--mc:#78a6ba;--mc-text:#2d5f72;--mc-bg:#e5f1f5;--cream:#e9e6d5;--cream-dk:#ddd9c8;">
+    <div class="comp-card-header"><span class="comp-label">Contenido</span><div><div class="comp-name">Grammar Table + Conjugation Table</div><div class="comp-desc">Encabezados teal, filas alternas cream. En conj-table: noi=azul, voi=amarillo, loro=verde.</div></div></div>
+    <div class="comp-body">
+      <p style="font-weight:700;margin-bottom:10px;color:var(--mc-text);">Tabla de reglas (gram-table):</p>
+      <table class="gram-table">
+        <thead><tr><th>Singular</th><th>Plural</th><th>Ejemplo</th><th>Del video</th></tr></thead>
+        <tbody>
+          <tr><td>-<span class="ending">o</span> (masc.)</td><td>-<span class="ending">i</span></td><td><em>documento → document<strong>i</strong></em></td><td>«i vostri documenti»</td></tr>
+          <tr><td>-<span class="ending">a</span> (fem.)</td><td>-<span class="ending">e</span></td><td><em>camera → camer<strong>e</strong></em></td><td>«le camere del resort»</td></tr>
+          <tr><td>-<span class="ending">e</span></td><td>-<span class="ending">i</span></td><td><em>chiave → chiav<strong>i</strong></em></td><td>«le vostre chiavi»</td></tr>
+        </tbody>
+      </table>
+
+      <p style="font-weight:700;margin:24px 0 10px;color:var(--mc-text);">Tabla de conjugación (conj-table):</p>
+      <table class="conj-table">
+        <thead><tr><th>Pronombre</th><th>prenotare</th><th>Traducción</th></tr></thead>
+        <tbody>
+          <tr><td class="pronoun">io</td><td>prenot<span class="verb-end">o</span></td><td>yo reservo</td></tr>
+          <tr><td class="pronoun">tu</td><td>prenot<span class="verb-end">i</span></td><td>tú reservas</td></tr>
+          <tr><td class="pronoun">lui/lei</td><td>prenot<span class="verb-end">a</span></td><td>él/ella reserva</td></tr>
+          <tr class="noi-row"><td class="pronoun">noi</td><td>prenot<span class="verb-end">iamo</span></td><td>nosotros reservamos</td></tr>
+          <tr class="voi-row"><td class="pronoun">voi</td><td>prenot<span class="verb-end">ate</span></td><td>vosotros reserváis</td></tr>
+          <tr class="loro-row"><td class="pronoun">loro</td><td>prenot<span class="verb-end">ano</span></td><td>ellos reservan</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  13. WORD SORT / SENTENCE BUILDER
+══════════════════════════════════════════ -->
+<div class="cat-section" id="sort">
+  <div class="cat-section-header">
+    <div class="cat-section-num">13</div>
+    <div>
+      <h2>Word Sort — Ordenar palabras</h2>
+      <p>Banco de palabras + slots vacíos. Click en palabra → va al slot. Click en slot → regresa.</p>
+    </div>
+  </div>
+  <div class="comp-card" style="--mc:#78a6ba;--mc-text:#2d5f72;--mc-bg:#e5f1f5;--mc-dk:#5a8ea0;--cream:#e9e6d5;--cream-dk:#ddd9c8;">
+    <div class="comp-card-header"><span class="comp-label">Interactivo</span><div><div class="comp-name">Sentence Builder / Word Sort</div><div class="comp-desc">Tokens en banco de palabras → slots de respuesta. Verificación con botón Comprobar.</div></div></div>
+    <div class="comp-body">
+      <p style="margin-bottom:12px;font-size:0.92rem;">Ordena las palabras para formar la frase:</p>
+      <div class="word-bank" id="wb-demo">
+        <span class="word-token" onclick="demoPlaceWord(this)">camera</span>
+        <span class="word-token" onclick="demoPlaceWord(this)">Ho</span>
+        <span class="word-token" onclick="demoPlaceWord(this)">una</span>
+        <span class="word-token" onclick="demoPlaceWord(this)">prenotazione</span>
+      </div>
+      <div class="answer-slots" id="slots-demo">
+        <span class="slot">___</span>
+        <span class="slot">___</span>
+        <span class="slot">___</span>
+        <span class="slot">___</span>
+      </div>
+      <button class="btn-check" onclick="demoCheckSort()" style="margin-top:14px;">Comprobar</button>
+      <button class="btn-reset" onclick="demoResetSort()">Reiniciar</button>
+      <div id="sort-feedback" style="margin-top:10px;font-weight:600;font-size:13px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  14. CLASIFICADOR
+══════════════════════════════════════════ -->
+<div class="cat-section" id="clasificador">
+  <div class="cat-section-header">
+    <div class="cat-section-num">14</div>
+    <div>
+      <h2>Clasificador fonético / semántico</h2>
+      <p>Palabras en banco → categorías. Usado para fonética (C vs G) y géneros gramaticales.</p>
+    </div>
+  </div>
+  <div class="comp-card" style="--mc:#78a6ba;--mc-text:#2d5f72;--mc-bg:#e5f1f5;--cream-dk:#ddd9c8;">
+    <div class="comp-card-header"><span class="comp-label">Interactivo</span><div><div class="comp-name">Click-to-Classify</div><div class="comp-desc">Clic en palabra → se activa → clic en columna → se coloca. Verificar revela errores en rojo.</div></div></div>
+    <div class="comp-body">
+      <p style="margin-bottom:12px;font-size:0.92rem;">Clasifica según el sonido de la C:</p>
+      <div class="word-bank">
+        <span class="word-token">camera</span>
+        <span class="word-token">chiesa</span>
+        <span class="word-token">cena</span>
+        <span class="word-token">colazione</span>
+        <span class="word-token">certamente</span>
+      </div>
+      <div class="classify-grid">
+        <div class="classify-col k-col">
+          <h4 style="color:var(--mc-text);">Sonido /k/</h4>
+          <div class="classify-drop"><span class="classify-word">camera</span><span class="classify-word">colazione</span></div>
+        </div>
+        <div class="classify-col ch-col">
+          <h4 style="color:var(--red);">Sonido /tʃ/</h4>
+          <div class="classify-drop"><span class="classify-word">chiesa</span><span class="classify-word">cena</span><span class="classify-word">certamente</span></div>
+        </div>
+      </div>
+      <div class="usage-note" style="margin-top:12px;"><strong>Estado de muestra:</strong> Respuestas ya colocadas correctamente (estado post-clasificación). En uso real, las columnas aparecen vacías.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  15. NÚMEROS Y DÍAS
+══════════════════════════════════════════ -->
+<div class="cat-section" id="numeros">
+  <div class="cat-section-header">
+    <div class="cat-section-num">15</div>
+    <div>
+      <h2>Números & Días de la semana</h2>
+      <p>Chips interactivos con número en grande, nombre en italiano y traducción. Click para escuchar.</p>
+    </div>
+  </div>
+  <div class="comp-card" style="--mc:#78a6ba;--mc-text:#2d5f72;--mc-bg:#e5f1f5;--cream-dk:#ddd9c8;">
+    <div class="comp-card-header"><span class="comp-label">Interactivo</span><div><div class="comp-name">Number Grid + Days Grid</div><div class="comp-desc">Hover levita. Click reproduce TTS. Grid responsivo auto-fill.</div></div></div>
+    <div class="comp-body">
+      <p style="font-weight:700;margin-bottom:12px;color:var(--mc-text);">Números del hotel:</p>
+      <div class="num-grid">
+        <div class="num-chip" onclick="ippAudio('uno')"><span class="num-num">1</span><div class="num-it">uno</div><div class="num-es">uno</div></div>
+        <div class="num-chip" onclick="ippAudio('due')"><span class="num-num">2</span><div class="num-it">due</div><div class="num-es">dos</div></div>
+        <div class="num-chip" onclick="ippAudio('tre')"><span class="num-num">3</span><div class="num-it">tre</div><div class="num-es">tres</div></div>
+        <div class="num-chip" onclick="ippAudio('cento')"><span class="num-num">100</span><div class="num-it">cento</div><div class="num-es">cien</div></div>
+        <div class="num-chip" onclick="ippAudio('centocinquanta')"><span class="num-num">150</span><div class="num-it">centocinquanta</div><div class="num-es">ciento cincuenta</div></div>
+        <div class="num-chip" onclick="ippAudio('trecentotredici')"><span class="num-num">313</span><div class="num-it">trecentotredici</div><div class="num-es">trescientos trece</div></div>
+      </div>
+
+      <p style="font-weight:700;margin:24px 0 12px;color:var(--mc-text);">Días de la semana:</p>
+      <div class="days-grid">
+        <div class="day-chip" onclick="ippAudio('lunedì')"><span class="day-num">1</span><span class="day-it">lunedì</span><div class="day-es">lunes</div></div>
+        <div class="day-chip" onclick="ippAudio('martedì')"><span class="day-num">2</span><span class="day-it">martedì</span><div class="day-es">martes</div></div>
+        <div class="day-chip" onclick="ippAudio('mercoledì')"><span class="day-num">3</span><span class="day-it">mercoledì</span><div class="day-es">miércoles</div></div>
+        <div class="day-chip" onclick="ippAudio('giovedì')"><span class="day-num">4</span><span class="day-it">giovedì</span><div class="day-es">jueves</div></div>
+        <div class="day-chip" onclick="ippAudio('venerdì')"><span class="day-num">5</span><span class="day-it">venerdì</span><div class="day-es">viernes</div></div>
+        <div class="day-chip" onclick="ippAudio('sabato')"><span class="day-num">6</span><span class="day-it">sabato</span><div class="day-es">sábado</div></div>
+        <div class="day-chip" onclick="ippAudio('domenica')"><span class="day-num">7</span><span class="day-it">domenica</span><div class="day-es">domingo</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  16. CONJUGACIÓN FILL
+══════════════════════════════════════════ -->
+<div class="cat-section" id="conjugacion">
+  <div class="cat-section-header">
+    <div class="cat-section-num">16</div>
+    <div>
+      <h2>Conjugación — inputs de grilla</h2>
+      <p>6 celdas para completar la conjugación completa de un verbo. Validación en tiempo real.</p>
+    </div>
+  </div>
+  <div class="comp-card" style="--mc:#78a6ba;--mc-text:#2d5f72;--mc-bg:#e5f1f5;--cream:#e9e6d5;--cream-dk:#ddd9c8;">
+    <div class="comp-card-header"><span class="comp-label">Interactivo</span><div><div class="comp-name">Conjugation Grid Inputs</div><div class="comp-desc">Grid 2×3. Celdas noi/voi/loro con fondo diferente para énfasis pedagógico.</div></div></div>
+    <div class="comp-body">
+      <p style="margin-bottom:14px;font-size:0.92rem;">Conjuga el verbo <strong><em>prenotare</em></strong>:</p>
+      <div class="conj-grid-fill">
+        <div class="conj-fill-item"><div class="pron">io</div><input type="text" data-answer="prenoto" placeholder="io..." oninput="demoConjInput(this)"></div>
+        <div class="conj-fill-item"><div class="pron">tu</div><input type="text" data-answer="prenoti" placeholder="tu..." oninput="demoConjInput(this)"></div>
+        <div class="conj-fill-item"><div class="pron">lui / lei</div><input type="text" data-answer="prenota" placeholder="lui/lei..." oninput="demoConjInput(this)"></div>
+        <div class="conj-fill-item" style="background:var(--mc-bg);"><div class="pron">noi</div><input type="text" data-answer="prenotiamo" placeholder="noi..." oninput="demoConjInput(this)"></div>
+        <div class="conj-fill-item" style="background:#fef9e6;"><div class="pron">voi</div><input type="text" data-answer="prenotate" placeholder="voi..." oninput="demoConjInput(this)"></div>
+        <div class="conj-fill-item" style="background:#e8f5e9;"><div class="pron">loro</div><input type="text" data-answer="prenotano" placeholder="loro..." oninput="demoConjInput(this)"></div>
+      </div>
+      <button class="btn-check" onclick="demoRevealConj(this)">Ver respuestas</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  17. PATTERN DISCOVERY
+══════════════════════════════════════════ -->
+<div class="cat-section" id="patron">
+  <div class="cat-section-header">
+    <div class="cat-section-num">17</div>
+    <div>
+      <h2>Patrón Discovery</h2>
+      <p>El alumno observa frases reales, deduce la regla y la escribe. Luego se revela la explicación.</p>
+    </div>
+  </div>
+  <div class="comp-card" style="--mc:#78a6ba;--mc-text:#2d5f72;--mc-bg:#e5f1f5;--mc-dk:#5a8ea0;--cream:#e9e6d5;--cream-dk:#ddd9c8;">
+    <div class="comp-card-header"><span class="comp-label">Interactivo</span><div><div class="comp-name">Inductive Pattern Box</div><div class="comp-desc">Frases en azul con clave resaltada → pregunta de reflexión → "Ver explicación" revela la regla.</div></div></div>
+    <div class="comp-body">
+      <div class="pattern-box-demo">
+        <h4>📖 Observa y descubre</h4>
+        <div class="pattern-phrase" onclick="ippAudio('Ho una prenotazione.')">Ho una prenotazione. → <em>una</em> camera (singular)</div>
+        <div class="pattern-phrase" onclick="ippAudio('Abbiamo due camere.')">Abbiamo due camere. → <em>due</em> camere (plural)</div>
+        <div class="pattern-phrase" onclick="ippAudio('Vorrei tre notti.')">Vorrei tre notti. → <em>tre</em> notti</div>
+        <div style="background:var(--cream);border-radius:8px;padding:14px 16px;margin-top:14px;">
+          <p style="font-size:0.85rem;color:#555;margin-bottom:10px;font-style:italic;">¿Qué patrón notas en las terminaciones de los sustantivos?</p>
+          <textarea class="pattern-input-demo" rows="2" placeholder="Escribe tu observación..."></textarea>
+          <button class="btn-check" style="margin-top:8px;" onclick="this.nextElementSibling.style.display='block'">Ver explicación</button>
+          <div style="display:none;margin-top:10px;padding:12px 16px;background:var(--mc-bg);border-radius:8px;font-size:0.85rem;color:var(--mc-text);">
+            <strong>¡Muy bien!</strong> Los sustantivos en <em>-o</em> hacen plural en <em>-i</em>, y los en <em>-a</em> en <em>-e</em>. Las palabras en <em>-e</em> siempre van a <em>-i</em> en plural.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  18. FONÉTICA
+══════════════════════════════════════════ -->
+<div class="cat-section" id="fonetica">
+  <div class="cat-section-header">
+    <div class="cat-section-num">18</div>
+    <div>
+      <h2>Tabla fonética</h2>
+      <p>Reglas de pronunciación con símbolo IPA, ejemplo y botón de audio</p>
+    </div>
+  </div>
+  <div class="comp-card" style="--mc:#78a6ba;--mc-text:#2d5f72;--mc-bg:#e5f1f5;--mc-dk:#5a8ea0;--cream-dk:#ddd9c8;">
+    <div class="comp-card-header"><span class="comp-label">Contenido</span><div><div class="comp-name">Phonetics Table</div><div class="comp-desc">Header teal, filas alternas, pill badge para el símbolo fonético, botón ▶ TTS por ejemplo</div></div></div>
+    <div class="comp-body">
+      <table class="fon-table-demo">
+        <thead>
+          <tr><th>Letra + vocal</th><th>Sonido</th><th>Ejemplo</th><th>Como en español</th><th>Audio</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>C</strong> + a, o, u</td><td><span class="fon-sound">/k/</span></td><td><em>camera, colazione</em></td><td>como en "casa"</td><td><button class="vocab-audio-btn" onclick="ippAudio('camera, colazione')">▶</button></td></tr>
+          <tr><td><strong>C</strong> + e, i</td><td><span class="fon-sound" style="background:#fde8e8;color:#cc4736;">/tʃ/</span></td><td><em>certamente, piacere</em></td><td>como "ch" en "chocolate"</td><td><button class="vocab-audio-btn" onclick="ippAudio('certamente, piacere')">▶</button></td></tr>
+          <tr><td><strong>G</strong> + a, o, u</td><td><span class="fon-sound" style="background:#e9f5ef;color:#528e74;">/g/</span></td><td><em>gatto, garage</em></td><td>como en "gato"</td><td><button class="vocab-audio-btn" onclick="ippAudio('gatto, garage')">▶</button></td></tr>
+          <tr><td><strong>G</strong> + e, i</td><td><span class="fon-sound" style="background:#fffae6;color:#7a5502;">/dʒ/</span></td><td><em>gentilmente, viaggio</em></td><td>como "y" rioplatense</td><td><button class="vocab-audio-btn" onclick="ippAudio('gentilmente, viaggio')">▶</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  19. CTA & SCORE BAR
+══════════════════════════════════════════ -->
+<div class="cat-section" id="cta">
+  <div class="cat-section-header">
+    <div class="cat-section-num">19</div>
+    <div>
+      <h2>CTA Block & Score Bar</h2>
+      <p>Llamada a la acción al final de cada etapa, y barra de puntuación de ejercicios</p>
+    </div>
+  </div>
+  <div class="comp-card" style="--mc:#78a6ba;--mc-text:#2d5f72;--mc-bg:#e5f1f5;--mc-dk:#5a8ea0;--cream-dk:#ddd9c8;">
+    <div class="comp-card-header"><span class="comp-label">Component</span><div><div class="comp-name">CTA Block + Score Bar</div></div></div>
+    <div class="comp-body">
+      <p style="font-weight:700;margin-bottom:12px;color:var(--mc-text);">Score Bar:</p>
+      <div class="score-bar">
+        <span class="score-label">Puntuación Ejercicio 1:</span>
+        <span class="score-num">3 / 5</span>
+      </div>
+      <p style="font-weight:700;margin:24px 0 12px;color:var(--mc-text);">CTA Block (fin de etapa):</p>
+      <div class="cta-block">
+        <p>¡Excelente trabajo! Ya conoces el vocabulario del hotel y el diálogo de check-in. Ahora vamos a estudiar la gramática detrás de estas frases.</p>
+        <a class="btn-next" href="#">Ir a Gramática →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- ── FOOTER ── -->
+<div style="background:#1a1a18;color:#888;text-align:center;padding:28px 24px;font-size:12px;line-height:1.8;">
+  <strong style="color:#fff;">Italiano Per Piacere</strong> — Catálogo de Interactivos — Uso interno<br>
+  19 tipos de componentes · Design System completo · TTS en italiano (it-IT, voz femenina preferida)<br>
+  <span style="color:#555;">Generado para revisión pedagógica de la experta</span>
+</div>
+
+<script>
+/* ── TTS SYSTEM ── */
+if (!window.__ippVC) {
+  window.__ippVC = true;
+  window.__ippV = [];
+  if (window.speechSynthesis) {
+    var _ld = function() { var v = speechSynthesis.getVoices(); if (v && v.length) window.__ippV = v; };
+    speechSynthesis.onvoiceschanged = _ld;
+    _ld(); setTimeout(_ld, 100); setTimeout(_ld, 600); setTimeout(_ld, 1500);
+  }
+}
+function ippAudio(text, rate, gender) {
+  rate = rate || 0.82;
+  gender = gender || 'f';
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  var utt = new SpeechSynthesisUtterance(text);
+  utt.lang = 'it-IT';
+  utt.rate = rate;
+  var voices = (window.__ippV && window.__ippV.length) ? window.__ippV : speechSynthesis.getVoices();
+  var itV = voices.filter(function(v){ return v.lang && v.lang.startsWith('it'); });
+  var voice;
+  if (gender === 'm') {
+    voice = itV.find(function(v){ return /cosimo|luca|giorgio/i.test(v.name); }) || itV[itV.length-1];
+  } else {
+    voice = itV.find(function(v){ return /elsa|alice|giulia|female/i.test(v.name); }) || itV[0];
+  }
+  if (!voice && itV.length) voice = itV[0];
+  if (voice) utt.voice = voice;
+  setTimeout(function(){ try { speechSynthesis.speak(utt); } catch(e){} }, 60);
+}
+
+/* ── V/F DEMO ── */
+var vfDemoScores = {};
+var vfExpl = [
+  'Se escucha: «benvenuti al Casalunga Golf Resort».',
+  'El precio correcto es 150 euros: «il prezzo è di 150 euro a notte».',
+  'Giulia confirma: «comprensivo di prima colazione».'
+];
+function demoVF(btn, userAns, correct) {
+  var item = btn.closest('.vf-item');
+  if (item.dataset.done) return;
+  item.dataset.done = '1';
+  var idx = Array.from(document.querySelectorAll('.vf-item')).indexOf(item);
+  var fb = item.querySelector('.vf-feedback');
+  var btns = item.querySelectorAll('.btn-vf');
+  btns.forEach(function(b){ b.disabled = true; });
+  var isCorrect = (userAns === correct);
+  if (isCorrect) {
+    btn.classList.add('correct');
+    fb.style.color = '#2d7a4f';
+    fb.textContent = '✓ ¡Correcto! ' + (vfExpl[idx] || '');
+    vfDemoScores[idx] = 1;
+  } else {
+    btn.classList.add('wrong');
+    fb.style.color = '#cc4736';
+    fb.textContent = '✗ No exactamente. ' + (vfExpl[idx] || '');
+    vfDemoScores[idx] = 0;
+    btns.forEach(function(b){ var isV = b.textContent.includes('Verdadero'); if ((isV && correct) || (!isV && !correct)) b.classList.add('correct'); });
+  }
+  var t = 0; Object.values(vfDemoScores).forEach(function(v){ t+=v; });
+  document.getElementById('vf-demo-score').textContent = t + ' / 3';
+}
+
+/* ── MC DEMO ── */
+function demoMC(btn) {
+  var item = btn.closest('.mc-item');
+  if (item.dataset.done) return;
+  item.dataset.done = '1';
+  var correct = item.dataset.correct;
+  var btns = item.querySelectorAll('.btn-mc');
+  btns.forEach(function(b){ b.disabled = true; });
+  var fb = item.querySelector('.mc-feedback');
+  if (btn.textContent.trim() === correct) {
+    btn.classList.add('correct');
+    fb.style.color = '#2d7a4f';
+    fb.textContent = '✓ ¡Perfecto!';
+  } else {
+    btn.classList.add('wrong');
+    fb.style.color = '#cc4736';
+    fb.textContent = '✗ La respuesta correcta es: ' + correct;
+    btns.forEach(function(b){ if (b.textContent.trim() === correct) b.classList.add('correct'); });
+  }
+}
+
+/* ── FILL DEMO ── */
+function demoFill(inp) {
+  var ans = inp.dataset.answer;
+  var fb = inp.nextElementSibling;
+  var val = inp.value.trim().toLowerCase();
+  inp.classList.remove('correct','wrong');
+  if (!fb) return;
+  if (!val) { fb.textContent = ''; return; }
+  if (val === ans.toLowerCase()) {
+    inp.classList.add('correct');
+    fb.style.color = '#2d7a4f';
+    fb.textContent = '✓';
+  } else {
+    inp.classList.add('wrong');
+    fb.style.color = '#cc4736';
+    fb.textContent = '✗';
+  }
+}
+function demoRevealFills(btn) {
+  var card = btn.closest('.comp-body');
+  card.querySelectorAll('.fill-input').forEach(function(inp){
+    inp.value = inp.dataset.answer;
+    inp.classList.remove('wrong');
+    inp.classList.add('correct');
+    if (inp.nextElementSibling) { inp.nextElementSibling.style.color='#2d7a4f'; inp.nextElementSibling.textContent='✓'; }
+  });
+}
+
+/* ── CONJ DEMO ── */
+function demoConjInput(inp) {
+  var ans = inp.dataset.answer;
+  inp.classList.remove('correct','wrong');
+  if (!inp.value.trim()) return;
+  if (inp.value.trim().toLowerCase() === ans.toLowerCase()) inp.classList.add('correct');
+  else inp.classList.add('wrong');
+}
+function demoRevealConj(btn) {
+  btn.closest('.comp-body').querySelectorAll('.conj-fill-item input').forEach(function(inp){
+    inp.value = inp.dataset.answer;
+    inp.classList.remove('wrong'); inp.classList.add('correct');
+  });
+}
+
+/* ── WORD SORT DEMO ── */
+var sortSelected = null;
+var sortPlaced = [];
+function demoPlaceWord(btn) {
+  if (btn.classList.contains('used')) return;
+  sortSelected = btn;
+  var slots = document.querySelectorAll('#slots-demo .slot');
+  for (var i=0; i<slots.length; i++) {
+    if (!slots[i].classList.contains('filled')) {
+      slots[i].classList.add('filled');
+      slots[i].textContent = btn.textContent;
+      btn.classList.add('used');
+      sortPlaced.push({slot:slots[i], btn:btn});
+      break;
+    }
+  }
+}
+function demoCheckSort() {
+  var slots = document.querySelectorAll('#slots-demo .slot.filled');
+  var words = [];
+  slots.forEach(function(s){ words.push(s.textContent); });
+  var sentence = words.join(' ');
+  var fb = document.getElementById('sort-feedback');
+  if (sentence === 'Ho una prenotazione camera' || words.length < 4) {
+    fb.style.color = '#cc4736';
+    fb.textContent = '✗ El orden correcto es: Ho una prenotazione [en el hotel se añadiría más contexto]';
+  } else {
+    fb.style.color = '#2d7a4f';
+    fb.textContent = '✓ ¡Bien organizado!';
+  }
+}
+function demoResetSort() {
+  sortPlaced.forEach(function(p){ p.slot.classList.remove('filled'); p.slot.textContent='___'; p.btn.classList.remove('used'); });
+  sortPlaced = [];
+  document.getElementById('sort-feedback').textContent = '';
+}
+</script>
+</body>
+</html>
