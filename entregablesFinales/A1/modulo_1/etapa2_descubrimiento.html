@@ -1054,12 +1054,24 @@ if (!window.__ippVC) {
    rate:  velocidad (0.7 lento — 1.0 normal — 1.2 rápido)
    pitch: tono     (0.8 grave  — 1.0 normal — 1.3 agudo)
 ───────────────────────────────────────────────────────── */
-window.IPP_VOICE = window.IPP_VOICE || {
+window.IPP_VOICE = {
   lang:         'it-IT',
-  rate:         0.82,   /* ← Módulo 1 preset */
-  pitch:        1.10,   /* ← Módulo 1 preset */
+  rate:         0.82,
+  pitch:        1.10,
   preferFemale: true,
   preferGoogle: true
+};
+
+/* ── IPP Voice Debug — abrí la consola del navegador y ejecutá: ippVoiceDebug() ── */
+window.ippVoiceDebug = function() {
+  var voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+  var it = voices.filter(function(v){ return v.lang && v.lang.startsWith('it'); });
+  console.group('IPP Voice Debug');
+  console.log('Voces italianas disponibles (' + it.length + '):');
+  it.forEach(function(v){ console.log(' •', v.name, '|', v.lang, '| local:', v.localService); });
+  console.log('Todas las voces (' + voices.length + '):');
+  voices.forEach(function(v){ console.log(' –', v.name, '|', v.lang); });
+  console.groupEnd();
 };
 
 (function() {
@@ -1095,33 +1107,50 @@ window.IPP_VOICE = window.IPP_VOICE || {
     _fabShow(false);
   }
 
-  function ippAudio(text, onStart, onEnd) {
-    if (!window.speechSynthesis) { if (onEnd) onEnd(); return null; }
+  function _ippFreshVoices() {
+    var v = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+    if (v && v.length) window.__ippV = v;
+    return window.__ippV || [];
+  }
+
+  function _ippSpeak(text, onStart, _cb) {
     try {
       window.speechSynthesis.cancel();
       var cfg = window.IPP_VOICE || {};
-      const utter = new SpeechSynthesisUtterance(text);
+      var utter = new SpeechSynthesisUtterance(text);
       utter.lang   = cfg.lang  || 'it-IT';
       utter.rate   = cfg.rate  !== undefined ? cfg.rate  : 0.82;
       utter.pitch  = cfg.pitch !== undefined ? cfg.pitch : 1.10;
       utter.volume = 1;
-      const voices = (window.__ippV && window.__ippV.length) ? window.__ippV : speechSynthesis.getVoices();
-      const v = _ippPickVoice(voices, cfg);
+      var v = _ippPickVoice(_ippFreshVoices(), cfg);
       if (v) utter.voice = v;
       if (onStart) utter.onstart = onStart;
-      utter.onend   = onEnd ? function(){ _fabShow(false); onEnd(); } : function(){ _fabShow(false); };
-      utter.onerror = onEnd ? function(){ _fabShow(false); onEnd(); } : function(){ _fabShow(false); };
+      utter.onend   = _cb ? function(){ _fabShow(false); _cb(); } : function(){ _fabShow(false); };
+      utter.onerror = _cb ? function(){ _fabShow(false); _cb(); } : function(){ _fabShow(false); };
       (function(u){ setTimeout(function(){ try { _fabShow(true); speechSynthesis.speak(u); } catch(e){ _fabShow(false); } }, 60); })(utter);
       return utter;
     } catch(e) {
       console.warn('SpeechSynthesis error:', e);
-      if (onEnd) onEnd();
+      if (_cb) _cb();
       return null;
     }
   }
 
+  function ippAudio(text, onStart, onEnd) {
+    var _cb = typeof onEnd === 'function' ? onEnd : null;
+    if (!window.speechSynthesis) { if (_cb) _cb(); return null; }
+    var voices = _ippFreshVoices();
+    if (!voices.length) {
+      // voces aún no cargadas — esperar y reintentar una vez
+      setTimeout(function() { ippAudio(text, onStart, onEnd); }, 400);
+      return null;
+    }
+    return _ippSpeak(text, onStart, _cb);
+  }
+
   function ippAudioGendered(text, onStart, onEnd, gender) {
-    if (!window.speechSynthesis) { if (onEnd) onEnd(); return; }
+    var _cb = typeof onEnd === 'function' ? onEnd : null;
+    if (!window.speechSynthesis) { if (_cb) _cb(); return; }
     try { window.speechSynthesis.cancel(); } catch(e) {}
     var cfg = window.IPP_VOICE || {};
     var utt = new SpeechSynthesisUtterance(String(text));
@@ -1148,9 +1177,9 @@ window.IPP_VOICE = window.IPP_VOICE || {
     }
     if (voice) utt.voice = voice;
     if (onStart) utt.onstart = onStart;
-    utt.onend   = onEnd ? function(){ _fabShow(false); onEnd(); } : function(){ _fabShow(false); };
-    utt.onerror = onEnd ? function(){ _fabShow(false); onEnd(); } : function(){ _fabShow(false); };
-    (function(u) { setTimeout(function() { try { speechSynthesis.speak(u); } catch(e) { _fabShow(false); if (onEnd) onEnd(); } }, 60); })(utt);
+    utt.onend   = _cb ? function(){ _fabShow(false); _cb(); } : function(){ _fabShow(false); };
+    utt.onerror = _cb ? function(){ _fabShow(false); _cb(); } : function(){ _fabShow(false); };
+    (function(u) { setTimeout(function() { try { speechSynthesis.speak(u); } catch(e) { _fabShow(false); if (_cb) _cb(); } }, 60); })(utt);
   }
 
   /* ══════════════════════════════════════════
